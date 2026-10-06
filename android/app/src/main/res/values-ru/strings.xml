@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">VPN-подключение</string>
+    <string name="vpn_notification_channel_description">Показывает, когда подключение FuzeVPN активно.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Подключение %1$s активно</string>
+    <string name="vpn_notification_connecting">Выполняется подключение %1$s</string>
+    <string name="vpn_notification_disconnecting">Отключение %1$s</string>
+    <string name="vpn_notification_interrupted">Подключение %1$s прервано</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Готово · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Подключено · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Подключение %1$s…</string>
+    <string name="vpn_tile_disconnecting">Отключение…</string>
+    <string name="vpn_tile_interrupted">%1$s прерван</string>
+    <string name="vpn_tile_setup_required">Сначала откройте приложение</string>
+    <string name="vpn_tile_working">Операция VPN выполняется…</string>
+    <string name="vpn_notification_reconnecting">Повторное подключение… · %1$s</string>
+    <string name="vpn_system_action_required">Требуется действие в настройках Android</string>
+    <string name="vpn_tile_reconnecting">Повторное подключение… · %1$s</string>
+</resources>

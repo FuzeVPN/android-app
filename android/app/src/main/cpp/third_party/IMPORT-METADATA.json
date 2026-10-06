@@ -1,0 +1,25 @@
+{
+  "schema": "https://fuzevpn.com/schemas/openvpn3-android-import-v2.json",
+  "openvpn3": {
+    "url": "https://github.com/OpenVPN/openvpn3.git",
+    "commit": "28469efe3ae770268b2b5c6aa607ed1489e101f0",
+    "licenseOption": "MPL-2.0",
+    "localPatches": [],
+    "externalPrivateKey": "upstream-openssl-xkey-ecdsa"
+  },
+  "openssl": {
+    "version": "3.5.9",
+    "commit": "45e844fa2a14ec92d146bd8f5778ac130b6625fb",
+    "license": "Apache-2.0",
+    "metadataPath": "openssl/IMPORT-METADATA.json",
+    "metadataSha256": "0acbd8fde7ad4d461ddbcb63da22894ba292a3261268c93787d3c23de66bbcb3",
+    "manifestPath": "openssl/MANIFEST.sha256",
+    "manifestSha256": "e6d2804c0a752be2633cedf65dde8d26362d4ae8b905471e1da82e8c2b9cdbce"
+  },
+  "dependencies": {
+    "metadataPath": "deps/DEPENDENCIES-METADATA.json",
+    "metadataSha256": "a78b4fd2a224d253c969d9a943e0256d50cd739d11eb5a2b2a82add6852b06c2",
+    "manifestPath": "deps/MANIFEST.sha256",
+    "manifestSha256": "315faa2ea0df0c40f6aed2ce10f8502dc8547a856ef53ee42f8a20d8e8cb9095"
+  }
+}

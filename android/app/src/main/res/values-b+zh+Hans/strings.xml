@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">VPN 连接</string>
+    <string name="vpn_notification_channel_description">表示 FuzeVPN 连接何时处于活动状态。</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s 连接已启用</string>
+    <string name="vpn_notification_connecting">正在连接 %1$s</string>
+    <string name="vpn_notification_disconnecting">正在断开 %1$s</string>
+    <string name="vpn_notification_interrupted">%1$s 连接已中断</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">就绪 · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">已连接 · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">正在连接 %1$s…</string>
+    <string name="vpn_tile_disconnecting">正在断开连接…</string>
+    <string name="vpn_tile_interrupted">%1$s 已中断</string>
+    <string name="vpn_tile_setup_required">请先打开应用</string>
+    <string name="vpn_tile_working">VPN 操作进行中…</string>
+    <string name="vpn_notification_reconnecting">正在重新连接… · %1$s</string>
+    <string name="vpn_system_action_required">需要在 Android 设置中执行操作</string>
+    <string name="vpn_tile_reconnecting">正在重新连接… · %1$s</string>
+</resources>

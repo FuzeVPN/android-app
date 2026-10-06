@@ -1,0 +1,9 @@
+6f509e4bff3be1f056f1d8d5224c5e8eefd61fdf62c57fb1d0c8c6ce369e56e4  golang.org/x/time@v0.7.0/CONTRIBUTING.md
+911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad  golang.org/x/time@v0.7.0/LICENSE
+96f408bfae65bf137fc2525d3ecb030271c50c1e90799f87abf8846d8dd505cc  golang.org/x/time@v0.7.0/PATENTS
+b4079097fda0b5bafb46b791fcc223c83827a91a9d3c66175770f40d3903541d  golang.org/x/time@v0.7.0/README.md
+226a6cc982bae02ff1e168de8c3e45a2f3f986c69edbc1f416c58b6081ef262e  golang.org/x/time@v0.7.0/go.mod
+f2608ba83f9204963d6446394a7f050e7627aa08dcd4975c35de064c8c2ccf56  golang.org/x/time@v0.7.0/rate/rate.go
+7e951ac39048bf6b047db58e7df35da502d497eeb6755cf82d471df537b3a08c  golang.org/x/time@v0.7.0/rate/rate_test.go
+9a986c9fc76eff7214d2dae2612bd48f98298578e56cf1938f965a9125dfc37c  golang.org/x/time@v0.7.0/rate/sometimes.go
+fddf474fc4ad704eafe491c821fd6f8fd14d6dbdf12e4197e2237f98e039f075  golang.org/x/time@v0.7.0/rate/sometimes_test.go

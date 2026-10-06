@@ -1,0 +1,931 @@
+{
+  "locale": "el",
+  "arb": {
+    "accountRestoration_title": "Ο λογαριασμός δεν είναι προσωρινά διαθέσιμος",
+    "accountRestoration_message": "Η συνεδρία σας έχει διατηρηθεί. Δοκιμάστε ξανά για να επαναφέρετε τον λογαριασμό σας· μπορείτε ακόμη να διαχειριστείτε εδώ τη σύνδεση VPN.",
+    "action_retry": "Δοκιμή ξανά",
+    "session_endingTitle": "Τερματισμός συνεδρίας",
+    "session_ending": "Η συνεδρία σας έχει ακυρωθεί. Διακοπή του VPN και εκκαθάριση της συνεδρίας…",
+    "session_stopFailed": "Ο τερματισμός του VPN δεν έχει επιβεβαιωθεί. Δοκιμάστε ξανά πριν συνδεθείτε.",
+    "session_cleanupFailed": "Το VPN έχει σταματήσει, αλλά η αφαίρεση της συνεδρίας δεν έχει επιβεβαιωθεί. Δοκιμάστε ξανά την εκκαθάριση.",
+    "session_retryStop": "Δοκιμή τερματισμού ξανά",
+    "session_retryCleanup": "Δοκιμή εκκαθάρισης ξανά",
+    "@@locale": "el",
+    "appTitle": "FuzeVPN",
+    "startup": "Ασφαλής προετοιμασία του FuzeVPN…",
+    "nav_connection": "Σύνδεση",
+    "nav_locations": "Τοποθεσίες",
+    "nav_account": "Λογαριασμός",
+    "nav_devices": "Συσκευές",
+    "nav_settings": "Ρυθμίσεις",
+    "action_refresh": "Ανανέωση",
+    "auth_tab_login": "Σύνδεση",
+    "auth_tab_register": "Εγγραφή",
+    "auth_stepAccount": "Λογαριασμός",
+    "auth_stepIdentity": "Ταυτότητα",
+    "auth_stepAddress": "Διεύθυνση και συμφωνίες",
+    "auth_stepProgress": "Βήμα {current} από {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "Το VPN σας, απλά.",
+    "auth_keysLocal": "Τα ιδιωτικά κλειδιά VPN σας παραμένουν σε αυτή τη συσκευή.",
+    "form_email": "Διεύθυνση ηλεκτρονικού ταχυδρομείου",
+    "form_password": "Κωδικός πρόσβασης",
+    "form_showPassword": "Εμφάνιση κωδικού πρόσβασης",
+    "form_hidePassword": "Απόκρυψη κωδικού πρόσβασης",
+    "form_passwordMin": "8–72 byte UTF-8. Ορισμένοι χαρακτήρες καταλαμβάνουν περισσότερα από ένα byte.",
+    "form_firstName": "Όνομα",
+    "form_lastName": "Επώνυμο",
+    "form_phone": "Τηλέφωνο (+33612345678)",
+    "form_address": "Διεύθυνση",
+    "form_address2": "Γραμμή διεύθυνσης 2 (προαιρετικό)",
+    "form_postalCode": "Ταχυδρομικός κώδικας",
+    "form_city": "Πόλη",
+    "form_country": "Κωδικός χώρας (π.χ. FR)",
+    "action_login": "Σύνδεση",
+    "action_createAccount": "Δημιουργία λογαριασμού",
+    "action_createMyAccount": "Δημιουργία του λογαριασμού μου",
+    "action_next": "Συνέχεια",
+    "action_previous": "Πίσω",
+    "action_forgotPassword": "Ξεχάσατε τον κωδικό πρόσβασης;",
+    "auth_noAccount": "Δεν έχετε ακόμη λογαριασμό;",
+    "auth_requiredInformation": "Δημιουργήστε τον λογαριασμό σας σε τρία βήματα.",
+    "auth_termsPrefix": "Αποδέχομαι τους ",
+    "auth_termsLink": "όρους χρήσης",
+    "auth_privacyPrefix": "Αποδέχομαι την ",
+    "auth_privacyLink": "πολιτική απορρήτου",
+    "auth_consentRequired": "Απαιτείται η συγκατάθεσή σας για τη δημιουργία λογαριασμού.",
+    "validation_required": "Αυτό το πεδίο είναι υποχρεωτικό.",
+    "validation_email": "Εισαγάγετε έγκυρη διεύθυνση ηλεκτρονικού ταχυδρομείου.",
+    "validation_password": "Ο κωδικός πρόσβασης είναι πολύ σύντομος: τουλάχιστον 8 byte UTF-8.",
+    "validation_passwordTooLong": "Ο κωδικός πρόσβασης είναι πολύ μεγάλος: έως 72 byte UTF-8.",
+    "validation_phone": "Χρησιμοποιήστε διεθνή μορφή, για παράδειγμα +33612345678.",
+    "validation_country": "Χρησιμοποιήστε διγράμματο κωδικό χώρας, για παράδειγμα FR.",
+    "passwordReset_title": "Επαναφορά κωδικού πρόσβασης",
+    "passwordReset_description": "Εισαγάγετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του λογαριασμού σας για να ζητήσετε σύνδεσμο επαναφοράς κωδικού πρόσβασης.",
+    "passwordReset_send": "Αποστολή συνδέσμου",
+    "connection_title": "Η σύνδεσή σας",
+    "connection_subtitle": "Επιλέξτε τοποθεσία και, στη συνέχεια, ενεργοποιήστε το VPN.",
+    "connection_prepare": "Είστε έτοιμοι για σύνδεση;",
+    "connection_advancedOptions": "Σύνθετες επιλογές",
+    "connection_location": "Τοποθεσία",
+    "connection_chooseLocation": "Επιλέξτε τοποθεσία",
+    "connection_protocol": "Πρωτόκολλο",
+    "connection_connect": "Σύνδεση",
+    "connection_connecting": "Γίνεται σύνδεση…",
+    "connection_disconnect": "Αποσύνδεση",
+    "connection_disconnecting": "Γίνεται αποσύνδεση",
+    "connection_locationChange": "Αλλαγή τοποθεσίας…",
+    "connection_unavailable": "Το {protocol} δεν είναι διαθέσιμο",
+    "connection_activeLocation": "Ενεργή τοποθεσία",
+    "connection_duration": "Διάρκεια",
+    "connection_received": "Λήφθηκαν",
+    "connection_sent": "Στάλθηκαν",
+    "connection_lastHandshake": "Τελευταία ασφαλής ανταλλαγή",
+    "connection_handshakeAgo": "πριν από {duration}",
+    "verification_title": "Επιβεβαιώστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας",
+    "verification_message": "Επιβεβαιώστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας για να χρησιμοποιήσετε το VPN σε αυτό το τηλέφωνο.",
+    "verification_resend": "Νέα αποστολή μηνύματος ηλεκτρονικού ταχυδρομείου",
+    "migration_title": "Αλλαγή τοποθεσίας",
+    "migration_draining": "Προετοιμασία αλλαγής τοποθεσίας…",
+    "migration_activating": "Ενεργοποίηση νέου διακομιστή…",
+    "migration_ready": "Η τοποθεσία ενημερώθηκε.",
+    "migration_blocked": "Η αλλαγή τοποθεσίας απαιτεί παρέμβαση στον διακομιστή. Δοκιμάστε ξανά αργότερα ή επικοινωνήστε με την υποστήριξη.",
+    "migration_progress": "Πρόοδος αλλαγής τοποθεσίας",
+    "migration_retryDelay": "Καθυστέρηση μεταξύ ελέγχων: {seconds}s.",
+    "migration_resume": "Συνέχιση αλλαγής τοποθεσίας",
+    "status_authorizing": "Απαιτείται άδεια",
+    "status_authorizingDetail": "Αποδεχτείτε το αίτημα Android για να επιτρέψετε το VPN.",
+    "status_preparing": "Προετοιμασία",
+    "status_preparingDetail": "Προετοιμασία της ασφαλούς σύνδεσής σας.",
+    "status_reconnecting": "Επανασύνδεση…",
+    "status_reconnectingDetail": "Η σύνδεση διακόπηκε. Το VPN προσπαθεί να επανασυνδεθεί.",
+    "status_connecting": "Γίνεται σύνδεση",
+    "status_connectingDetail": "Σύνδεση με τον διακομιστή VPN…",
+    "status_connected": "Συνδεδεμένο",
+    "status_connectedDetail": "Η σύνδεση VPN σας είναι ενεργή.",
+    "status_disconnecting": "Γίνεται αποσύνδεση",
+    "status_disconnectingDetail": "Η σύνδεση VPN σας τερματίζεται.",
+    "status_error": "Η σύνδεση δεν είναι διαθέσιμη",
+    "status_errorDetail": "Η σύνδεση VPN δεν έχει επιβεβαιωθεί. Δοκιμάστε ξανά.",
+    "status_idle": "Αποσυνδεδεμένο",
+    "status_idleDetail": "Συνδέστε το VPN για να προστατεύσετε τη σύνδεσή σας.",
+    "trust_note": "Το κλείσιμο της εφαρμογής δεν σταματά το VPN. Για να το σταματήσετε, χρησιμοποιήστε την επιλογή Αποσύνδεση.",
+    "locations_none": "Δεν υπάρχουν διαθέσιμες τοποθεσίες αυτή τη στιγμή.",
+    "locations_available": "Επιλέξτε την επόμενη τοποθεσία σας.",
+    "locations_selected": "Επιλεγμένη τοποθεσία",
+    "locations_select": "Επιλογή αυτής της τοποθεσίας",
+    "locations_lockedTunnel": "Αποσυνδέστε το VPN για να αλλάξετε τοποθεσία.",
+    "locations_lockedMigration": "Περιμένετε να ολοκληρωθεί η αλλαγή τοποθεσίας.",
+    "devices_title": "Οι συσκευές σας",
+    "devices_used": "{count} / {limit} συσκευές",
+    "devices_refresh": "Ανανέωση συσκευών",
+    "devices_empty": "Δεν έχει καταχωριστεί ακόμη συσκευή VPN.",
+    "devices_firstConnection": "Το τηλέφωνό σας θα προστεθεί κατά την πρώτη σύνδεση.",
+    "devices_thisDevice": "Αυτή η συσκευή",
+    "devices_added": "Προστέθηκε στις {date}",
+    "action_remove": "Αφαίρεση",
+    "settings_title": "Ρυθμίσεις",
+    "settings_subtitle": "Οι προτιμήσεις και ο λογαριασμός σας, όλα σε ένα μέρος.",
+    "settings_appearance": "Εμφάνιση",
+    "settings_language": "Γλώσσα",
+    "settings_languageDescription": "Η γλώσσα που επιλέξατε εφαρμόζεται επίσης στις ειδοποιήσεις VPN.",
+    "settings_account": "Λογαριασμός",
+    "settings_signOut": "Αποσύνδεση",
+    "settings_privacy": "Πολιτική απορρήτου",
+    "settings_terms": "Όροι χρήσης",
+    "settings_security": "Ασφάλεια και διαφάνεια",
+    "settings_licenses": "Άδειες στοιχείων",
+    "settings_licensesDetail": "Λογισμικό που χρησιμοποιείται στην εφαρμογή",
+    "settings_background": "Το VPN παραμένει ενεργό όταν φεύγετε από την εφαρμογή. Για να το σταματήσετε, χρησιμοποιήστε την επιλογή Αποσύνδεση στην καρτέλα Σύνδεση.",
+    "theme_system": "Σύστημα",
+    "theme_light": "Φωτεινό",
+    "theme_dark": "Σκοτεινό",
+    "language_system": "Γλώσσα τηλεφώνου",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Να αφαιρεθεί αυτή η συσκευή;",
+    "dialog_removeCurrent": "Αυτό το τηλέφωνο θα αποσυνδεθεί από το VPN και θα χάσει την πρόσβαση. Τα δεδομένα σύνδεσης VPN θα αφαιρεθούν αφού το επιβεβαιώσει ο διακομιστής.",
+    "dialog_removeOther": "Η πρόσβαση VPN για το «{name}» θα ανακληθεί. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+    "dialog_signOut": "Να γίνει αποσύνδεση;",
+    "dialog_signOutMessage": "Το VPN θα σταματήσει και θα χρειαστεί να συνδεθείτε ξανά. Τα κρυπτογραφημένα κλειδιά VPN σας θα παραμείνουν σε αυτό το τηλέφωνο για την επόμενη σύνδεσή σας.",
+    "action_cancel": "Ακύρωση",
+    "action_signOut": "Αποσύνδεση",
+    "notice_close": "Απόρριψη μηνύματος",
+    "notice_sessionExpired_title": "Η συνεδρία έληξε",
+    "notice_sessionExpired_message": "Η συνεδρία σας έληξε. Συνδεθείτε ξανά.",
+    "notice_connectionFailed_title": "Η σύνδεση απέτυχε",
+    "notice_invalidCredentials_message": "Η διεύθυνση ηλεκτρονικού ταχυδρομείου ή ο κωδικός πρόσβασης είναι λανθασμένος.",
+    "notice_emailVerification_title": "Απαιτείται επιβεβαίωση ηλεκτρονικού ταχυδρομείου",
+    "notice_emailVerification_message": "Επιβεβαιώστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας πριν προσθέσετε συσκευή VPN.",
+    "notice_rateLimited_title": "Υπερβολικά πολλές προσπάθειες",
+    "notice_deviceLimit_title": "Συμπληρώθηκε το όριο των 2 συσκευών",
+    "notice_deviceLimit_message": "Αφαιρέστε μια υπάρχουσα συσκευή πριν προσθέσετε άλλη.",
+    "notice_identityRenewal_title": "Απαιτείται ανανέωση της ταυτότητας VPN",
+    "notice_identityRenewal_message": "Αυτή η ταυτότητα αφαιρέθηκε. Δημιουργήστε μια νέα τοπική ταυτότητα.",
+    "notice_migrationPending_title": "Η αλλαγή τοποθεσίας βρίσκεται σε εξέλιξη",
+    "notice_migrationPending_message": "Μια αλλαγή τοποθεσίας βρίσκεται ήδη σε εξέλιξη.",
+    "notice_migrationBlocked_title": "Η αλλαγή τοποθεσίας αποκλείστηκε",
+    "notice_migrationBlocked_message": "Η αλλαγή τοποθεσίας απαιτεί παρέμβαση στον διακομιστή. Δοκιμάστε ξανά αργότερα ή επικοινωνήστε με την υποστήριξη.",
+    "notice_targetUnavailable_title": "Ο διακομιστής δεν είναι προσωρινά διαθέσιμος",
+    "notice_targetUnavailable_message": "Αυτός ο διακομιστής δεν είναι προσωρινά διαθέσιμος.",
+    "notice_networkUnavailable_title": "Η σύνδεση στο διαδίκτυο δεν είναι διαθέσιμη",
+    "notice_networkUnavailable_message": "Ελέγξτε τη σύνδεσή σας και δοκιμάστε ξανά.",
+    "notice_permissionDenied_title": "Η άδεια VPN απορρίφθηκε",
+    "notice_permissionDenied_message": "Ξεκινήστε ξανά τη σύνδεση και αποδεχτείτε το αίτημα άδειας Android.",
+    "notice_wireguardTimeout_title": "Ο διακομιστής δεν ανταποκρίνεται",
+    "notice_wireguardTimeout_message": "Η σύνδεση WireGuard διήρκεσε υπερβολικά. Δοκιμάστε ξανά ή επιλέξτε άλλη τοποθεσία.",
+    "notice_tlsFailed_title": "Η ασφαλής σύνδεση απορρίφθηκε",
+    "notice_tlsFailed_message": "Ο διακομιστής δεν αποδέχτηκε τη σύνδεση OpenVPN. Δοκιμάστε ξανά. Αν το πρόβλημα συνεχιστεί, εκτελέστε διαγνωστικό έλεγχο.",
+    "notice_tunRejected_title": "Το Android απέρριψε τη διεπαφή VPN",
+    "notice_tunRejected_message": "Το Android απέρριψε τη διαμόρφωση δικτύου που ζητήθηκε από το OpenVPN.",
+    "notice_openvpnStart_title": "Το OpenVPN δεν μπόρεσε να ξεκινήσει",
+    "notice_openvpnStart_message": "Η μηχανή OpenVPN δεν μπόρεσε να ολοκληρώσει την εκκίνηση. Δοκιμάστε ξανά. Αν το πρόβλημα παραμένει, επικοινωνήστε με την υποστήριξη.",
+    "notice_diagnosticCode": "Κωδικός διαγνωστικού ελέγχου: {code}",
+    "notice_generic_title": "Η σύνδεση VPN απέτυχε",
+    "notice_generic_message": "Παρουσιάστηκε σφάλμα. Δοκιμάστε ξανά αργότερα.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Ο λογαριασμός δημιουργήθηκε} password_reset_sent{Το αίτημα επαναφοράς κωδικού πρόσβασης ελήφθη} verification_email_sent{Το μήνυμα επιβεβαίωσης στάλθηκε} location_migration_pending{Η αλλαγή τοποθεσίας βρίσκεται σε εξέλιξη} vpn_sign_in_required{Απαιτείται σύνδεση} protocol_unavailable_at_location{Το πρωτόκολλο δεν είναι διαθέσιμο} vpn_permission_denied{Η άδεια VPN απορρίφθηκε} revoked_identity_device_limit{Συμπληρώθηκε το όριο των 2 συσκευών} tunnel_start_unexpected{Δεν ήταν δυνατή η εκκίνηση του VPN} flutter_disconnect_timeout{Η αποσύνδεση δεν επιβεβαιώθηκε} flutter_disconnect_unexpected{Δεν ήταν δυνατή η αποσύνδεση} device_revoked{Η συσκευή αφαιρέθηκε} revoke_unexpected{Δεν ήταν δυνατή η αφαίρεση της συσκευής} identity_renewal_unexpected{Δεν ήταν δυνατή η ανανέωση της ταυτότητας} openvpn_renewal_unexpected{Δεν ήταν δυνατή η ανανέωση του OpenVPN} location_migration_blocked{Η αλλαγή τοποθεσίας αποκλείστηκε} location_migration_slow{Η αλλαγή τοποθεσίας βρίσκεται ακόμη σε εξέλιξη} location_migration_conflict{Η αλλαγή τοποθεσίας χρειάζεται ανανέωση} location_migration_verification_failed{Η αλλαγή τοποθεσίας δεν επιβεβαιώθηκε} location_migration_device_changed{Η συσκευή άλλαξε κατά την αλλαγή τοποθεσίας} tunnel_stop_failed{Η αλλαγή τοποθεσίας δεν είναι διαθέσιμη} other{Η λειτουργία απέτυχε}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Ο λογαριασμός δημιουργήθηκε, αλλά δεν ήταν δυνατή η αποστολή του μηνύματος επιβεβαίωσης. Χρησιμοποιήστε την επιλογή νέας αποστολής στην εφαρμογή.} password_reset_sent{Το αίτημά σας ελήφθη. Αν υπάρχει λογαριασμός με αυτή τη διεύθυνση, ενδέχεται να λάβετε μήνυμα ηλεκτρονικού ταχυδρομείου. Ελέγξτε επίσης τον φάκελο ανεπιθύμητης αλληλογραφίας.} verification_email_sent{Μόλις στάλθηκε νέο μήνυμα επιβεβαίωσης.} location_migration_pending{Η μετάβαση στο {target} προετοιμάζεται ακόμη. Μπορείτε να τη συνεχίσετε χωρίς να δημιουργήσετε ξανά τη συσκευή.} vpn_sign_in_required{Συνδεθείτε στον λογαριασμό σας πριν ξεκινήσετε το VPN.} protocol_unavailable_at_location{Το επιλεγμένο πρωτόκολλο δεν προσφέρεται από αυτή την τοποθεσία. Ανανεώστε τις τοποθεσίες ή επιλέξτε άλλο πρωτόκολλο.} vpn_permission_denied{Το Android απέρριψε την άδεια VPN. Ξεκινήστε ξανά τη σύνδεση και αποδεχτείτε το αίτημα του συστήματος.} revoked_identity_device_limit{Η πρόσβαση VPN αυτής της συσκευής αφαιρέθηκε και συμπληρώθηκε το όριο συσκευών. Αφαιρέστε μια συσκευή από τον Λογαριασμό → Διαχείριση των συσκευών μου.} tunnel_start_unexpected{Ένα απρόσμενο σφάλμα διέκοψε την προετοιμασία της σήραγγας. Ελέγξτε τον κωδικό διαγνωστικού ελέγχου και δοκιμάστε ξανά.} flutter_disconnect_timeout{Το Android δεν επιβεβαίωσε εγκαίρως ότι το VPN σταμάτησε. Δοκιμάστε να το σταματήσετε ξανά.} flutter_disconnect_unexpected{Ένα απρόσμενο σφάλμα εμπόδισε την επιβεβαίωση ότι η σήραγγα σταμάτησε.} device_revoked{Η πρόσβαση VPN της συσκευής ανακλήθηκε και τα τοπικά μυστικά της αφαιρέθηκαν.} revoke_unexpected{Δεν ήταν δυνατή η αφαίρεση της συσκευής. Ανανεώστε τη λίστα και δοκιμάστε ξανά.} identity_renewal_unexpected{Δεν ήταν δυνατή η δημιουργία της νέας ταυτότητας VPN. Ανανεώστε τις συσκευές και δοκιμάστε ξανά.} openvpn_renewal_unexpected{Δεν ήταν δυνατή η ανανέωση του προφίλ OpenVPN. Δοκιμάστε ξανά ή ελέγξτε τον κωδικό διαγνωστικού ελέγχου.} location_migration_blocked{Ο διακομιστής δεν μπορεί να ολοκληρώσει αυτή την αλλαγή τώρα. Η συσκευή και η τοπική της ταυτότητα διατηρήθηκαν.} location_migration_slow{Ο διακομιστής προετοιμάζει ακόμη τη μετάβαση στο {target}. Χρησιμοποιήστε την επιλογή Συνέχιση σε λίγα λεπτά.} location_migration_conflict{Η κατάσταση της συσκευής άλλαξε στον διακομιστή. Ανανεώστε τις συσκευές και, στη συνέχεια, συνεχίστε την αλλαγή.} location_migration_verification_failed{Ο διακομιστής δεν επιβεβαίωσε τη νέα τοποθεσία. Η προηγούμενη τοπική ταυτότητα διατηρήθηκε.} location_migration_device_changed{Η συσκευή που επέστρεψε ο διακομιστής δεν αντιστοιχεί πλέον σε αυτή που αλλάζει. Ανανεώστε τις συσκευές πριν δοκιμάσετε ξανά.} tunnel_stop_failed{Η προηγούμενη σήραγγα πρέπει να σταματήσει πλήρως πριν από τη νέα σύνδεση.} other{Δεν ήταν δυνατή η ολοκλήρωση της λειτουργίας. Δοκιμάστε ξανά ή στείλτε τον κωδικό διαγνωστικού ελέγχου στην υποστήριξη.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Η συνεδρία έληξε} invalid_credentials{Η σύνδεση απέτυχε} email_verification_required{Απαιτείται επιβεβαίωση ηλεκτρονικού ταχυδρομείου} verification_email_cooldown{Το μήνυμα έχει ήδη σταλεί} rate_limited{Υπερβολικά πολλές προσπάθειες} invalid_registration{Οι πληροφορίες πρέπει να διορθωθούν} email_exists{Ο λογαριασμός υπάρχει ήδη} invalid_profile{Μη έγκυρο προφίλ} invalid_device{Μη έγκυρη συσκευή} invalid_location{Η τοποθεσία δεν είναι διαθέσιμη} device_limit{Συμπληρώθηκε το όριο των 2 συσκευών} device_exists{Η ταυτότητα VPN χρησιμοποιείται ήδη} device_identity_revoked{Απαιτείται ανανέωση της ταυτότητας VPN} device_location_locked{Η αλλαγή τοποθεσίας χρειάζεται ανανέωση} location_migration_pending{Η αλλαγή τοποθεσίας βρίσκεται σε εξέλιξη} location_migration_blocked{Η αλλαγή τοποθεσίας αποκλείστηκε} target_ca_mismatch{Μη συμβατός διακομιστής OpenVPN} location_migration_conflict{Η αλλαγή τοποθεσίας χρειάζεται ανανέωση} server_full{Ο διακομιστής είναι πλήρης} capacity_unavailable{Η τοποθεσία δεν είναι προσωρινά διαθέσιμη} target_unavailable{Ο διακομιστής δεν είναι προσωρινά διαθέσιμος} not_found{Το στοιχείο δεν βρέθηκε} invalid_openvpn_csr{Μη έγκυρη ταυτότητα OpenVPN} openvpn_profile_exists{Το προφίλ OpenVPN υπάρχει ήδη} openvpn_profile_revoked{Το προφίλ OpenVPN ανακλήθηκε} openvpn_operation_pending{Η λειτουργία OpenVPN βρίσκεται σε εξέλιξη} openvpn_operation_terminal{Η λειτουργία OpenVPN διακόπηκε} openvpn_address_unavailable{Η διεύθυνση OpenVPN δεν είναι διαθέσιμη} openvpn_profile_conflict{Σύγκρουση OpenVPN} openvpn_signer_unavailable{Το OpenVPN δεν είναι διαθέσιμο} email_delivery_unavailable{Το ηλεκτρονικό ταχυδρομείο δεν είναι διαθέσιμο} invalid_token{Μη έγκυρος σύνδεσμος} network_unavailable{Η σύνδεση στο διαδίκτυο δεν είναι διαθέσιμη} invalid_json{Μη έγκυρο αίτημα} invalid_api_response{Μη έγκυρη απάντηση διακομιστή} ipv6_unavailable{Το IPv6 δεν είναι διαθέσιμο} invalid_ip_families{Η διαμόρφωση δικτύου απορρίφθηκε} other{Η υπηρεσία δεν είναι διαθέσιμη}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Η συνεδρία σας έληξε. Συνδεθείτε ξανά.} invalid_credentials{Η διεύθυνση ηλεκτρονικού ταχυδρομείου ή ο κωδικός πρόσβασης είναι λανθασμένος.} email_verification_required{Επιβεβαιώστε τη διεύθυνση ηλεκτρονικού ταχυδρομείου σας πριν προσθέσετε συσκευή VPN.} invalid_registration{Ελέγξτε τις ζητούμενες πληροφορίες και τις συγκαταθέσεις.} email_exists{Ένας λογαριασμός χρησιμοποιεί ήδη αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου.} invalid_profile{Ελέγξτε τα στοιχεία του προφίλ σας.} invalid_device{Το όνομα ή η τοπική ταυτότητα αυτής της συσκευής δεν είναι έγκυρα.} invalid_location{Ανανεώστε τη λίστα τοποθεσιών και δοκιμάστε ξανά.} device_limit{Αφαιρέστε μια υπάρχουσα συσκευή πριν προσθέσετε άλλη.} device_exists{Αυτή η ταυτότητα VPN είναι ήδη συνδεδεμένη με άλλον λογαριασμό.} device_identity_revoked{Αυτή η ταυτότητα αφαιρέθηκε. Πρέπει να δημιουργηθεί νέα τοπική ταυτότητα.} device_location_locked{Η τοποθεσία αυτής της συσκευής μόλις άλλαξε. Η εφαρμογή θα συνεχίσει την αλλαγή που βρίσκεται σε εξέλιξη.} location_migration_pending{Μια αλλαγή τοποθεσίας βρίσκεται ήδη σε εξέλιξη.} location_migration_blocked{Η αλλαγή τοποθεσίας απαιτεί παρέμβαση στον διακομιστή. Δοκιμάστε ξανά αργότερα ή επικοινωνήστε με την υποστήριξη.} target_ca_mismatch{Αυτός ο διακομιστής δεν είναι ακόμη συμβατός με το τρέχον προφίλ OpenVPN.} location_migration_conflict{Ανανεώστε τις συσκευές και, στη συνέχεια, δοκιμάστε ξανά την αλλαγή τοποθεσίας.} server_full{Αυτή η τοποθεσία έφτασε το όριο συνδέσεών της. Επιλέξτε άλλη τοποθεσία ή δοκιμάστε ξανά αργότερα.} capacity_unavailable{Δεν μπορούμε να επιβεβαιώσουμε αν αυτή η τοποθεσία είναι διαθέσιμη τώρα. Επιλέξτε άλλη τοποθεσία ή δοκιμάστε ξανά αργότερα.} target_unavailable{Αυτός ο διακομιστής δεν είναι προσωρινά διαθέσιμος.} not_found{Αυτό το στοιχείο δεν είναι πλέον διαθέσιμο στον λογαριασμό σας.} invalid_openvpn_csr{Δημιουργήστε νέα ταυτότητα OpenVPN και δοκιμάστε ξανά.} openvpn_profile_exists{Υπάρχει ήδη προφίλ OpenVPN για αυτή τη συσκευή.} openvpn_profile_revoked{Ανανεώστε το προφίλ OpenVPN για να συνεχίσετε.} openvpn_operation_pending{Η αλλαγή εξακολουθεί να διαδίδεται. Δοκιμάστε ξανά αργότερα.} openvpn_operation_terminal{Δημιουργήστε νέα ταυτότητα OpenVPN και δοκιμάστε ξανά.} openvpn_address_unavailable{Δεν υπάρχει διαθέσιμη διεύθυνση OpenVPN αυτή τη στιγμή.} openvpn_profile_conflict{Το προφίλ άλλαξε. Ανανεώστε τις συσκευές και δοκιμάστε ξανά.} openvpn_signer_unavailable{Η υπηρεσία OpenVPN δεν είναι προσωρινά διαθέσιμη.} email_delivery_unavailable{Δεν ήταν δυνατή η αποστολή του μηνύματος ηλεκτρονικού ταχυδρομείου. Δοκιμάστε ξανά αργότερα.} invalid_token{Αυτός ο σύνδεσμος δεν είναι έγκυρος ή έχει λήξει. Ζητήστε νέο.} network_unavailable{Ελέγξτε τη σύνδεσή σας στο διαδίκτυο και δοκιμάστε ξανά.} invalid_json{Ελέγξτε τις πληροφορίες που καταχωρίσατε και δοκιμάστε ξανά.} invalid_api_response{Ο διακομιστής επέστρεψε απρόσμενη απάντηση. Δοκιμάστε ξανά αργότερα.} ipv6_unavailable{Ο διακομιστής δεν μπορεί να ενεργοποιήσει το IPv6 αυτή τη στιγμή. Δοκιμάστε ξανά αργότερα.} invalid_ip_families{Η διαμόρφωση της σήραγγας είναι ελλιπής ή δεν αντιστοιχεί στις εγκεκριμένες διευθύνσεις. Δοκιμάστε ξανά από την εφαρμογή.} other{Παρουσιάστηκε σφάλμα διακομιστή. Δοκιμάστε ξανά αργότερα.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Δοκιμάστε ξανά σε λίγα λεπτά.",
+    "notice_retryAfter": "Δοκιμάστε ξανά σε {seconds} δευτερόλεπτα.",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "Object"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Η συνέχιση του VPN συστήματος δεν είναι διαθέσιμη} system_vpn_resume_corrupt{Μη έγκυρη συνέχιση VPN συστήματος} system_vpn_resume_session_invalid{Μη έγκυρη συνεδρία συνέχισης VPN} system_vpn_resume_identity_changed{Η ταυτότητα VPN άλλαξε} system_vpn_resume_identity_invalid{Μη έγκυρη ταυτότητα συνέχισης VPN} system_vpn_resume_storage_failed{Ο χώρος αποθήκευσης συνέχισης VPN δεν είναι διαθέσιμος} system_vpn_resume_network_timeout{Η συνέχιση του VPN δεν έχει δίκτυο} system_vpn_resume_blocked{Η συνέχιση του VPN αποκλείστηκε} system_vpn_resume_failed{Η συνέχιση του VPN απέτυχε} system_vpn_resume_error_invalid{Μη έγκυρο σφάλμα συνέχισης VPN} wireguard_identity_store_failed{Η ταυτότητα WireGuard δεν αποθηκεύτηκε} wireguard_identity_unavailable{Η ταυτότητα WireGuard δεν είναι διαθέσιμη} vpn_host_destroyed{Ο κεντρικός υπολογιστής VPN του Android σταμάτησε} vpn_host_unavailable{Ο κεντρικός υπολογιστής VPN του Android δεν είναι διαθέσιμος} vpn_permission_required{Απαιτείται άδεια VPN} vpn_permission_denied{Η άδεια VPN απορρίφθηκε} vpn_permission_request_failed{Δεν ήταν δυνατή η αίτηση άδειας} wireguard_foreground_service_unavailable{Η υπηρεσία WireGuard δεν είναι διαθέσιμη} wireguard_identity_invalid{Μη έγκυρο τοπικό κλειδί WireGuard} wireguard_identity_in_use{Η ταυτότητα WireGuard χρησιμοποιείται ήδη} wireguard_configuration_invalid{Μη έγκυρη διαμόρφωση WireGuard} wireguard_operation_pending{Η λειτουργία WireGuard παραμένει ενεργή} wireguard_start_failed{Η εκκίνηση του WireGuard απορρίφθηκε} wireguard_stop_timeout{Ο τερματισμός του WireGuard δεν επιβεβαιώθηκε} wireguard_handshake_timeout{Το WireGuard δεν ανταποκρίθηκε} openvpn_connection_timeout{Το OpenVPN δεν ανταποκρίθηκε} openvpn_core_unavailable{Η μηχανή OpenVPN δεν είναι διαθέσιμη} openvpn_operation_pending{Η συνεδρία OpenVPN παραμένει ενεργή} openvpn_stop_timeout{Ο τερματισμός του OpenVPN δεν επιβεβαιώθηκε} openvpn_profile_unavailable{Λείπει το τοπικό προφίλ OpenVPN} openvpn_native_failed{Η εγγενής κλήση OpenVPN διακόπηκε} openvpn_key_generation_failed{Δεν ήταν δυνατή η δημιουργία κλειδιού OpenVPN P-256} openvpn_csr_generation_failed{Δεν ήταν δυνατή η δημιουργία CSR OpenVPN} openvpn_identity_store_failed{Η ταυτότητα OpenVPN δεν αποθηκεύτηκε} openvpn_identity_clear_failed{Η αφαίρεση του OpenVPN δεν ολοκληρώθηκε} openvpn_identity_in_use{Η ταυτότητα OpenVPN χρησιμοποιείται ακόμη} openvpn_tls_verification_required{Λείπει η επαλήθευση TLS του OpenVPN} openvpn_cipher_invalid{Μη έγκυρος κρυπτογραφικός αλγόριθμος OpenVPN} openvpn_profile_rejected{Το προφίλ OpenVPN απορρίφθηκε} openvpn_identity_inconsistent{Ασυνεπής ταυτότητα OpenVPN} tls_handshake_failed{Η διαπραγμάτευση OpenVPN απορρίφθηκε} tls_alert_unknown_ca{Το πιστοποιητικό πελάτη OpenVPN δεν αναγνωρίστηκε} tls_alert_bad_certificate{Το πιστοποιητικό πελάτη OpenVPN απορρίφθηκε} tls_alert_unsupported_certificate{Το πιστοποιητικό OpenVPN δεν υποστηρίζεται} tls_client_certificate_required{Απαιτείται πιστοποιητικό πελάτη OpenVPN} tls_alert_misc{Ειδοποίηση TLS OpenVPN} tls_signature_algorithm_rejected{Η υπογραφή OpenVPN δεν υποστηρίζεται} tls_handshake_rejected{Η διαπραγμάτευση TLS OpenVPN απορρίφθηκε} tls_version_rejected{Μη συμβατή έκδοση TLS OpenVPN} tls_certificate_expired{Το πιστοποιητικό TLS έληξε} tls_certificate_revoked{Το πιστοποιητικό TLS ανακλήθηκε} transport_failed{Ο διακομιστής OpenVPN δεν είναι προσβάσιμος} tun_configuration_rejected{Δεν ήταν δυνατή η δημιουργία διεπαφής OpenVPN} tun_setup_failed{Η ρύθμιση TUN του OpenVPN απέτυχε} tun_interface_create_failed{Η δημιουργία διεπαφής OpenVPN απέτυχε} tun_interface_disabled{Η διεπαφή OpenVPN απενεργοποιήθηκε} tun_halted{Η διεπαφή OpenVPN διακόπηκε} tun_already_established{Η διεπαφή OpenVPN είναι ήδη ανοιχτή} tun_addresses_missing{Λείπει η διεύθυνση OpenVPN} tun_routes_missing{Λείπουν οι διαδρομές OpenVPN} tun_dns_missing{Λείπει το DNS του OpenVPN} tun_permission_revoked{Η άδεια VPN ανακλήθηκε} tun_establish_returned_null{Το Android απέρριψε τη διεπαφή VPN} openvpn_service_start_failed{Η υπηρεσία OpenVPN δεν είναι διαθέσιμη} openvpn_operation_timeout{Η κλήση OpenVPN έληξε λόγω χρονικού ορίου} openvpn_start_failed{Η εκκίνηση του OpenVPN απορρίφθηκε} openvpn_connection_failed{Η σύνδεση OpenVPN διακόπηκε} openvpn_core_status_error{Η βασική λειτουργία OpenVPN τερματίστηκε με σφάλμα} openvpn_stopped_before_connected{Το OpenVPN σταμάτησε πριν συνδεθεί} openvpn_auth_failed{Η πιστοποίηση OpenVPN απορρίφθηκε} openvpn_client_setup_failed{Η ρύθμιση πελάτη OpenVPN απέτυχε} openvpn_client_halted{Ο πελάτης OpenVPN διακόπηκε} openvpn_client_restart{Ζητήθηκε επανεκκίνηση του OpenVPN} openvpn_inactive_timeout{Το OpenVPN έμεινε ανενεργό για υπερβολικά μεγάλο διάστημα} openvpn_session_expired{Η συνεδρία OpenVPN έληξε} openvpn_credentials_required{Η πιστοποίηση OpenVPN δεν υποστηρίζεται} openvpn_proxy_failed{Η ενδιάμεση μεταφορά OpenVPN απέτυχε} openvpn_compression_failed{Η συμπίεση OpenVPN απορρίφθηκε} openvpn_ntlm_crypto_unavailable{Η κρυπτογράφηση NTLM του OpenVPN δεν είναι διαθέσιμη} openvpn_feature_unsupported{Η λειτουργία OpenVPN δεν υποστηρίζεται} network_unavailable{Η σύνδεση στο διαδίκτυο δεν είναι διαθέσιμη} network_lost{Το δίκτυο δεν είναι διαθέσιμο} certificate_validation_failed{Το πιστοποιητικό διακομιστή απορρίφθηκε} openvpn_certificate_expired{Το πιστοποιητικό OpenVPN έληξε} tunnel_active_for_another_account{Η σήραγγα άλλου λογαριασμού είναι ακόμη ενεργή} tunnel_already_active{Η εγγενής σήραγγα είναι ήδη ενεργή} tunnel_stop_timeout{Ο τερματισμός του {protocol} δεν επιβεβαιώθηκε} tunnel_disconnected{Το {protocol} διακόπηκε} native_bridge_unavailable{Η γέφυρα Android δεν είναι διαθέσιμη} native_operation_failed{Η λειτουργία Android διακόπηκε} invalid_arguments{Ελλιπείς παράμετροι VPN} invalid_account_id{Μη έγκυρος λογαριασμός VPN} invalid_device_id{Μη έγκυρο αναγνωριστικό συσκευής} storage_key_not_allowed{Το κλειδί αποθήκευσης απορρίφθηκε} secure_storage_read_failed{Η ασφαλής ανάγνωση απέτυχε} secure_storage_write_failed{Η ασφαλής εγγραφή απέτυχε} key_generation_failed{Δεν ήταν δυνατή η δημιουργία κλειδιού WireGuard} csr_generation_failed{Δεν ήταν δυνατή η δημιουργία CSR OpenVPN} other{Μη ταξινομημένο εγγενές σφάλμα VPN}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Το Android δεν μπορεί να βρει συνεδρία VPN που μπορεί να συνεχιστεί. Ξεκινήστε νέα σύνδεση στην εφαρμογή.} system_vpn_resume_corrupt{Τα αποθηκευμένα δεδομένα συνέχισης VPN δεν είναι έγκυρα και δεν θα χρησιμοποιηθούν. Ξεκινήστε νέα σύνδεση.} system_vpn_resume_session_invalid{Η αποθηκευμένη συνεδρία δεν μπορεί πλέον να συνεχίσει το VPN. Συνδεθείτε ξανά στην εφαρμογή.} system_vpn_resume_identity_changed{Η τοπική ταυτότητα VPN άλλαξε. Η συνέχιση σταμάτησε· ξεκινήστε νέα σύνδεση.} system_vpn_resume_identity_invalid{Η ταυτότητα για τη συνέχιση δεν είναι έγκυρη. Ξεκινήστε νέα σύνδεση.} system_vpn_resume_storage_failed{Το Android δεν μπόρεσε να διαβάσει ή να ενημερώσει τα κρυπτογραφημένα δεδομένα συνέχισης. Ξεκινήστε νέα σύνδεση.} system_vpn_resume_network_timeout{Το Android δεν βρήκε εγκαίρως δίκτυο για να συνεχίσει το VPN. Δοκιμάστε ξανά όταν υπάρχει διαθέσιμο δίκτυο.} system_vpn_resume_blocked{Η συνέχιση του VPN αποκλείστηκε. Ελέγξτε τις ρυθμίσεις Android και, στη συνέχεια, ξεκινήστε νέα σύνδεση.} system_vpn_resume_failed{Η συνέχιση του VPN στο Android απέτυχε. Ξεκινήστε νέα σύνδεση στην εφαρμογή.} system_vpn_resume_error_invalid{Το Android επέστρεψε μη χρησιμοποιήσιμο σφάλμα συνέχισης. Ξεκινήστε νέα σύνδεση.} wireguard_identity_store_failed{Το Android δεν μπόρεσε να αποθηκεύσει την κρυπτογραφημένη ταυτότητα WireGuard αυτού του λογαριασμού.} wireguard_identity_unavailable{Δεν υπάρχει διαθέσιμη αξιοποιήσιμη ταυτότητα WireGuard για αυτή τη σύνδεση.} vpn_host_destroyed{Το στοιχείο Android που φιλοξενούσε το VPN σταμάτησε. Ξεκινήστε νέα σύνδεση.} vpn_host_unavailable{Το Android δεν μπορεί να δημιουργήσει το στοιχείο που φιλοξενεί το VPN. Δοκιμάστε ξανά αφού ελέγξετε τις ρυθμίσεις VPN.} openvpn_renewal_required{Το πιστοποιητικό απαιτεί ενέργεια στην εφαρμογή πριν από τη σύνδεση.} openvpn_recovery_failed{Η αυτόματη ανάκτηση απέτυχε. Ξεκινήστε νέα σύνδεση στην εφαρμογή.} openvpn_recovery_exhausted{Η αυτόματη ανάκτηση έχει ήδη χρησιμοποιηθεί. Ξεκινήστε νέα σύνδεση στην εφαρμογή.} vpn_permission_required{Το Android απαιτεί νέα εξουσιοδότηση VPN πριν από την εκκίνηση της σήραγγας.} vpn_permission_denied{Επιτρέψτε το FuzeVPN στο αίτημα Android για να συνεχίσετε.} vpn_permission_request_failed{Το Android δεν μπόρεσε να ανοίξει την οθόνη άδειας VPN.} wireguard_foreground_service_unavailable{Το Android δεν μπόρεσε να διατηρήσει την υπηρεσία WireGuard στο προσκήνιο.} wireguard_identity_invalid{Το κρυπτογραφημένο κλειδί WireGuard αυτού του λογαριασμού δεν είναι αναγνώσιμο ή έγκυρο.} wireguard_identity_in_use{Μια άλλη λειτουργία χρησιμοποιεί ακόμη το κλειδί WireGuard αυτού του λογαριασμού.} wireguard_configuration_invalid{Η ληφθείσα διεύθυνση WireGuard, το DNS, το κλειδί διακομιστή ή οι διαδρομές δεν είναι έγκυρα.} wireguard_operation_pending{Η προηγούμενη λειτουργία WireGuard δεν έχει ακόμη απελευθερώσει την εγγενή υπηρεσία.} wireguard_start_failed{Η μηχανή WireGuard απέρριψε την ενεργοποίηση της διαμόρφωσης.} wireguard_stop_timeout{Η υπηρεσία WireGuard δεν επιβεβαίωσε την απελευθέρωση της διεπαφής VPN εντός του χρονικού ορίου.} wireguard_handshake_timeout{Η σήραγγα δεν επιβεβαίωσε εγκαίρως χειραψία με τον διακομιστή.} openvpn_connection_timeout{Το OpenVPN δεν επιβεβαίωσε εγκαίρως τη σύνδεση με τον διακομιστή.} openvpn_core_unavailable{Αυτή η έκδοση της εφαρμογής δεν περιέχει αξιοποιήσιμη μηχανή OpenVPN.} openvpn_operation_pending{Η εγγενής μηχανή διατηρεί ακόμη την προηγούμενη συνεδρία OpenVPN και αρνείται να δημιουργήσει δεύτερη.} openvpn_stop_timeout{Το OpenVPN Core δεν επιβεβαίωσε ότι η εγγενής συνεδρία του σταμάτησε και καταστράφηκε εντός του χρονικού ορίου.} openvpn_profile_unavailable{Δεν είναι δυνατή η ανάγνωση επικυρωμένου προφίλ OpenVPN για αυτή τη σύνδεση.} openvpn_native_failed{Σφάλμα της εφαρμογής διέκοψε το OpenVPN. Δοκιμάστε να συνδεθείτε ξανά. Αν το πρόβλημα συνεχιστεί, εκτελέστε διαγνωστικό έλεγχο.} openvpn_key_generation_failed{Το Android Keystore δεν μπόρεσε να δημιουργήσει ή να διαβάσει το μη εξαγώγιμο ιδιωτικό κλειδί P-256.} openvpn_csr_generation_failed{Το κλειδί Android Keystore δεν μπόρεσε να υπογράψει το αίτημα πιστοποιητικού OpenVPN.} openvpn_identity_store_failed{Δεν ήταν δυνατή η αποθήκευση του πιστοποιητικού ή του προφίλ OpenVPN σε κρυπτογραφημένο χώρο αποθήκευσης.} openvpn_identity_clear_failed{Το Android δεν μπόρεσε να αφαιρέσει ολόκληρη την τοπική ταυτότητα OpenVPN αυτού του λογαριασμού.} openvpn_identity_in_use{Μια εγγενής συνεδρία OpenVPN χρησιμοποιεί ακόμη το κλειδί ή το πιστοποιητικό αυτής της συσκευής.} openvpn_tls_verification_required{Το προφίλ δεν απαιτεί ρητά επαλήθευση πιστοποιητικού διακομιστή.} openvpn_cipher_invalid{Ο διακομιστής παρέχει αλγόριθμο κρυπτογράφησης που δεν περιλαμβάνεται στη λίστα επιτρεπόμενων.} openvpn_profile_rejected{Το προφίλ που ελήφθη από τον διακομιστή δεν είναι συμβατό. Δημιουργήστε ξανά αυτή τη συσκευή και δοκιμάστε ξανά.} openvpn_identity_inconsistent{Το πιστοποιητικό δεν αντιστοιχεί στην ασφαλή ταυτότητα αυτού του τηλεφώνου. Κανένα τοπικό προφίλ δεν αντικαταστάθηκε.} tls_handshake_failed{Ο διακομιστής απέρριψε τη διαπραγμάτευση TLS. Δημιουργήστε ξανά το προφίλ αν το πρόβλημα συνεχιστεί.} tls_alert_unknown_ca{Ο διακομιστής δεν αναγνωρίζει την αρχή έκδοσης του πιστοποιητικού αυτής της συσκευής. Πρέπει να ελεγχθεί ο διακομιστής OpenVPN.} tls_alert_bad_certificate{Ο διακομιστής απέρριψε το πιστοποιητικό αυτής της συσκευής. Δημιουργήστε ξανά τη συσκευή πριν δοκιμάσετε ξανά.} tls_alert_unsupported_certificate{Ο διακομιστής δεν υποστηρίζει τον ασφαλή τύπο πιστοποιητικού που χρησιμοποιεί το Android.} tls_client_certificate_required{Ο διακομιστής απαιτεί πιστοποιητικό πελάτη, αλλά το OpenVPN Core δεν μπόρεσε να παρουσιάσει κάποιο.} tls_alert_misc{Ο διακομιστής επέστρεψε ειδοποίηση TLS εκτός των κατηγοριών πιστοποιητικού και έκδοσης.} tls_signature_algorithm_rejected{Ο διακομιστής απέρριψε τον αλγόριθμο ECDSA P-256 του κλειδιού Android Keystore.} tls_handshake_rejected{Ο διακομιστής διέκοψε τη διαπραγμάτευση TLS πριν από τη σύνδεση.} tls_version_rejected{Ο πελάτης και ο διακομιστής δεν βρήκαν κοινή έκδοση TLS.} tls_certificate_expired{Το πιστοποιητικό που παρουσιάστηκε κατά τη σύνδεση έχει λήξει.} tls_certificate_revoked{Το πιστοποιητικό που παρουσιάστηκε κατά τη σύνδεση έχει ανακληθεί.} transport_failed{Ο διακομιστής OpenVPN δεν ανταποκρίνεται στο τρέχον δίκτυο. Δοκιμάστε ξανά σύντομα.} tun_configuration_rejected{Το Android απέρριψε τη διαμόρφωση δικτύου που ζητήθηκε από το OpenVPN.} tun_setup_failed{Το OpenVPN Core απέρριψε το σχέδιο δικτύου πριν δημιουργήσει τη διεπαφή Android.} tun_interface_create_failed{Το OpenVPN Core δεν μπόρεσε να λάβει τη διεπαφή TUN από το Android VpnService.} tun_interface_disabled{Το Android ή το OpenVPN Core απενεργοποίησε τη διεπαφή TUN κατά τη σύνδεση.} tun_halted{Το OpenVPN Core έλαβε αίτημα διακοπής της διεπαφής TUN.} tun_already_established{Το OpenVPN ζήτησε δεύτερη διεπαφή στην ίδια σύνδεση. Η σήραγγα σταμάτησε για λόγους ασφαλείας.} tun_addresses_missing{Ο διακομιστής δεν παρείχε αξιοποιήσιμη διεύθυνση σήραγγας.} tun_routes_missing{Ο διακομιστής δεν παρείχε αξιοποιήσιμες διαδρομές σήραγγας.} tun_dns_missing{Ο διακομιστής δεν παρείχε αξιοποιήσιμο διακομιστή DNS.} tun_permission_revoked{Το Android ανακάλεσε την άδεια VPN κατά τη σύνδεση.} tun_establish_returned_null{Το Android δεν δημιούργησε τη διεπαφή, συνήθως επειδή ένα άλλο VPN είναι ακόμη ενεργό.} openvpn_service_start_failed{Το Android δεν μπόρεσε να ξεκινήσει την υπηρεσία OpenVPN στο προσκήνιο.} openvpn_operation_timeout{Μια κλήση JNI στο OpenVPN Core ξεπέρασε τη μέγιστη διάρκειά της.} openvpn_start_failed{Η υπηρεσία Android είναι έτοιμη, αλλά το OpenVPN Core δεν αποδέχτηκε την εκκίνηση του προφίλ.} openvpn_connection_failed{Το OpenVPN Core σταμάτησε πριν εκπέμψει το συμβάν CONNECTED.} openvpn_core_status_error{Ο εγγενής βρόχος OpenVPN τερματίστηκε με σφάλμα και χωρίς πιο συγκεκριμένο τελικό συμβάν.} openvpn_stopped_before_connected{Ο εγγενής βρόχος OpenVPN σταμάτησε πριν από το CONNECTED, χωρίς ρητό σφάλμα του Core.} openvpn_auth_failed{Ο διακομιστής OpenVPN απέρριψε την πιστοποίηση του προφίλ.} openvpn_client_setup_failed{Το OpenVPN Core δεν μπόρεσε να αρχικοποιήσει τον πελάτη πριν από τη σύνδεση δικτύου.} openvpn_client_halted{Το OpenVPN Core έλαβε εντολή οριστικής διακοπής του πελάτη.} openvpn_client_restart{Το OpenVPN Core ζήτησε επανεκκίνηση της συνεδρίας μεταφοράς.} openvpn_inactive_timeout{Το OpenVPN Core έκλεισε τη συνεδρία μετά τη λήξη του χρονικού ορίου αδράνειας.} openvpn_session_expired{Ο διακομιστής ανέφερε ότι η συνεδρία OpenVPN έληξε.} openvpn_credentials_required{Ο διακομιστής ή ένας διακομιστής μεσολάβησης ζητά διαδραστικά διαπιστευτήρια που δεν περιλαμβάνονται σε αυτό το προφίλ πιστοποιητικού.} openvpn_proxy_failed{Το OpenVPN Core ανέφερε αποτυχία του διαμορφωμένου διακομιστή μεσολάβησης ή αναμεταδότη.} openvpn_compression_failed{Το OpenVPN Core απέρριψε τη λειτουργία συμπίεσης που ανακοινώθηκε από το προφίλ ή τον διακομιστή.} openvpn_ntlm_crypto_unavailable{Το προφίλ ζητά κρυπτογράφηση NTLM, η οποία δεν είναι διαθέσιμη σε αυτή την έκδοση.} openvpn_feature_unsupported{Το προφίλ ή ο διακομιστής απαιτεί λειτουργία που λείπει από αυτόν τον πελάτη Android.} network_unavailable{Δεν υπάρχει διαθέσιμο αξιοποιήσιμο φυσικό δίκτυο.} network_lost{Η σήραγγα διακόπηκε μετά την απώλεια του δικτύου.} certificate_validation_failed{Δεν ήταν δυνατή η επαλήθευση της ταυτότητας του διακομιστή OpenVPN.} openvpn_certificate_expired{Ανανεώστε το προφίλ OpenVPN πριν επανασυνδεθείτε.} tunnel_active_for_another_account{Μια σήραγγα που ανήκει σε άλλον λογαριασμό πρέπει να σταματήσει πριν από αυτή τη σύνδεση.} tunnel_already_active{Το Android αναφέρει ότι μια προηγούμενη συνεδρία VPN εξακολουθεί να χρησιμοποιεί τη διεπαφή.} tunnel_stop_timeout{Η μηχανή {protocol} δεν επιβεβαίωσε την αποδέσμευση της διεπαφής VPN εντός του χρονικού ορίου.} tunnel_disconnected{Η εγγενής μηχανή ανέφερε ότι η σήραγγα τερματίστηκε απροσδόκητα μετά την εκκίνηση.} native_bridge_unavailable{Η εφαρμογή δεν μπορεί να αποκτήσει πρόσβαση στην υπηρεσία VPN του Android. Κλείστε και ανοίξτε ξανά την εφαρμογή και, στη συνέχεια, δοκιμάστε ξανά.} native_operation_failed{Ένα σφάλμα της εφαρμογής διέκοψε τη λειτουργία VPN. Δοκιμάστε ξανά. Αν το πρόβλημα συνεχιστεί, εκτελέστε διαγνωστικό έλεγχο.} invalid_arguments{Οι πληροφορίες που απαιτούνται για αυτή τη λειτουργία VPN είναι ελλιπείς. Δοκιμάστε ξανά. Αν το πρόβλημα συνεχιστεί, εκτελέστε διαγνωστικό έλεγχο.} invalid_account_id{Η εγγενής λειτουργία δεν σχετίζεται με έγκυρο αναγνωριστικό λογαριασμού.} invalid_device_id{Το αναγνωριστικό συσκευής που στάλθηκε στην εγγενή μηχανή λείπει ή δεν είναι έγκυρο.} storage_key_not_allowed{Η γέφυρα Android απέκλεισε ένα κλειδί εκτός της επιτρεπόμενης λίστας αποθήκευσης.} secure_storage_read_failed{Το Android Keystore δεν μπόρεσε να αποκρυπτογραφήσει τα τοπικά δεδομένα αυτού του λογαριασμού.} secure_storage_write_failed{Το Android Keystore δεν μπόρεσε να κρυπτογραφήσει ή να αποθηκεύσει τα τοπικά δεδομένα.} key_generation_failed{Το Android δεν μπόρεσε να δημιουργήσει ή να διαβάσει το κλειδί WireGuard από την ασφαλή αποθήκευση.} csr_generation_failed{Το Android Keystore δεν μπόρεσε να δημιουργήσει ή να υπογράψει το CSR OpenVPN P-256.} other{Απέτυχε ένας μη τεκμηριωμένος εγγενής κλάδος. Στείλτε στην υποστήριξη τον διαγνωστικό κωδικό που εμφανίζεται παρακάτω.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Το αίτημα άδειας είναι ήδη ανοιχτό",
+    "notice_permissionRequestInProgress_message": "Το αίτημα άδειας VPN του Android εμφανίζεται ήδη. Ολοκληρώστε το πριν δοκιμάσετε ξανά.",
+    "notice_permissionRequestInterrupted_title": "Το αίτημα άδειας VPN διακόπηκε",
+    "notice_permissionRequestInterrupted_message": "Η οθόνη άδειας VPN έκλεισε πριν λάβει απάντηση η εφαρμογή.",
+    "notice_openvpnProofMissing_title": "Η σύνδεση OpenVPN δεν επιβεβαιώθηκε",
+    "notice_openvpnProofMissing_message": "Η σύνδεση OpenVPN δεν ήταν δυνατό να επιβεβαιωθεί. Σταμάτησε για λόγους ασφαλείας. Δοκιμάστε ξανά.",
+    "openvpnCleanup_title": "Το προφίλ OpenVPN ανακλήθηκε",
+    "openvpnCleanup_working": "Διακοπή και αφαίρεση του ανακληθέντος προφίλ OpenVPN…",
+    "openvpnCleanup_stopFailed": "Ο τερματισμός του OpenVPN δεν έχει επιβεβαιωθεί. Δοκιμάστε ξανά πριν δημιουργήσετε νέο προφίλ.",
+    "openvpnCleanup_cleanupFailed": "Το ανακληθέν προφίλ OpenVPN δεν ήταν δυνατό να αφαιρεθεί πλήρως. Δοκιμάστε ξανά την εκκαθάριση.",
+    "openvpnCleanup_complete": "Το ανακληθέν προφίλ OpenVPN αφαιρέθηκε. Πατήστε Σύνδεση για να δημιουργήσετε νέο.",
+    "network_title": "Διαμόρφωση δικτύου",
+    "network_ipv4Fallback": "Το IPv6 δεν είναι προσωρινά διαθέσιμο. Η προετοιμασία συνεχίζεται με IPv4.",
+    "network_rejectedTitle": "Η διαμόρφωση δικτύου απορρίφθηκε",
+    "network_rejectedMessage": "Η διαμόρφωση της σήραγγας είναι ελλιπής ή δεν αντιστοιχεί στις εγκεκριμένες διευθύνσεις. Δοκιμάστε ξανά από την εφαρμογή.",
+    "network_unreadableTitle": "Η τοπική διαμόρφωση δεν είναι αναγνώσιμη",
+    "network_unreadableMessage": "Η αποθηκευμένη διαμόρφωση δικτύου OpenVPN δεν μπορεί να χρησιμοποιηθεί. Συνδεθείτε ξανά από την εφαρμογή για να την ενημερώσετε.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Προστασία δικτύου",
+    "protection_subtitle": "Αποκλεισμός άμεσης πρόσβασης στο διαδίκτυο αν αποσυνδεθεί το VPN.",
+    "protection_active": "Η προστασία συστήματος είναι ενεργή",
+    "protection_alwaysOnOnly": "Το VPN σε μόνιμη λειτουργία είναι ενεργοποιημένο· ενεργοποιήστε τον αποκλεισμό εκτός VPN",
+    "protection_inactive": "Η προστασία συστήματος είναι ανενεργή",
+    "protection_unknown": "Έλεγχος προστασίας συστήματος",
+    "protection_openSettings": "Άνοιγμα ρυθμίσεων Android",
+    "protection_dialogTitle": "Ρύθμιση προστασίας δικτύου",
+    "protection_dialogMessage": "Το Android διαχειρίζεται το VPN σε μόνιμη λειτουργία και τον αποκλεισμό συνδέσεων εκτός VPN. Ελέγξτε ότι έχει επιλεγεί το FuzeVPN και ενεργοποιήστε τον αποκλεισμό στις ρυθμίσεις συστήματος.",
+    "protection_dialogOpen": "Άνοιγμα ρυθμίσεων",
+    "session_systemProtectionNote": "Αν το Android εξακολουθεί να αποκλείει την κίνηση εκτός VPN, ανοίξτε τις ρυθμίσεις συστήματος για να ελέγξετε ή να αλλάξετε αυτή την προστασία.",
+    "diagnostics_title": "Διαγνωστικοί έλεγχοι",
+    "diagnostics_settingsTitle": "Διαγνωστικοί έλεγχοι εφαρμογής",
+    "diagnostics_automaticTitle": "Αποστολή σημαντικών σφαλμάτων",
+    "diagnostics_automaticDescription": "Κοινή χρήση μιας σύντομης τεχνικής αναφοράς όταν προκύπτει σημαντικό σφάλμα.",
+    "diagnostics_privacy": "Οι αναφορές που αποστέλλονται συνδέονται με τον συνδεδεμένο λογαριασμό και διατηρούνται για 30 ημέρες. Δεν περιέχουν ιστορικό περιήγησης, κωδικούς πρόσβασης ή κλειδιά VPN.",
+    "diagnostics_manualOpen": "Εκτέλεση διαγνωστικού ελέγχου",
+    "diagnostics_localDescription": "Δημιουργία αναφοράς για την εφαρμογή και την κατάσταση του VPN. Η σύνδεσή σας παραμένει αμετάβλητη.",
+    "diagnostics_sendReport": "Αποστολή αναφοράς",
+    "diagnostics_sendHint": "Αφήστε αυτό το πλαίσιο μη επιλεγμένο για να διατηρήσετε την αναφορά σε αυτή τη συσκευή.",
+    "diagnostics_signedOut": "Συνδεθείτε στον λογαριασμό σας για να στείλετε αναφορά.",
+    "diagnostics_localLifetime": "Αποθηκεύστε αυτή την αναφορά στο τηλέφωνό σας για να τη διατηρήσετε μετά το κλείσιμο της εφαρμογής.",
+    "diagnostics_run": "Εκτέλεση διαγνωστικού ελέγχου",
+    "diagnostics_rerun": "Εκτέλεση διαγνωστικού ελέγχου ξανά",
+    "diagnostics_running": "Έλεγχος…",
+    "diagnostics_sending": "Αποστολή αναφοράς…",
+    "diagnostics_prepared": "Η αναφορά είναι έτοιμη σε αυτή τη συσκευή",
+    "diagnostics_queued": "Η αναφορά αναμένει αποστολή",
+    "diagnostics_sent": "Η αναφορά ελήφθη",
+    "diagnostics_failed": "Η αποστολή απέτυχε. Η τοπική αναφορά σας είναι ακόμη διαθέσιμη.",
+    "diagnostics_preparationFailed": "Η διαγνωστική αναφορά δεν ήταν δυνατό να προετοιμαστεί. Δοκιμάστε ξανά.",
+    "diagnostics_authenticationRequired": "Συνδεθείτε ξανά για να στείλετε την αναφορά.",
+    "diagnostics_retry": "Δοκιμή αποστολής ξανά",
+    "diagnostics_export": "Αποθήκευση αναφοράς",
+    "diagnostics_exportFailed": "Η εξαγωγή απέτυχε. Δοκιμάστε ξανά από την τοπική αναφορά.",
+    "diagnostics_preferenceFailed": "Δεν ήταν δυνατή η αποθήκευση αυτής της ρύθμισης. Δοκιμάστε ξανά.",
+    "diagnostics_receipt": "Αναγνωριστικό: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Ελήφθη στις {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Διατηρείται έως τις {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Αυτή η αναφορά είχε ήδη ληφθεί.",
+    "diagnostics_preview": "Προεπισκόπηση αναφοράς",
+    "diagnostics_eventCount": "{count, plural, =0{Δεν επισυνάφθηκαν τεχνικά συμβάντα} =1{{count} τεχνικό συμβάν επισυνάφθηκε} other{{count} τεχνικά συμβάντα επισυνάφθηκαν}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Τεχνικές λεπτομέρειες",
+    "diagnostics_empty": "Δεν έχει προετοιμαστεί ακόμη διαγνωστική αναφορά.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Κατάσταση σήραγγας} handshake{Επιβεβαίωση σύνδεσης} certificate{Πιστοποιητικό VPN} kill_switch{Προστασία Android} connectivity{Διαθέσιμο δίκτυο} api_reachability{Πρόσβαση στην υπηρεσία} secure_storage{Ασφαλής αποθήκευση} other{Τοπικός έλεγχος}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Ελέγχθηκε} failed{Χρειάζεται προσοχή} skipped{Δεν ελέγχθηκε — δεν υπάρχει ενεργός έλεγχος} unknown{Οι πληροφορίες δεν είναι διαθέσιμες} other{Οι πληροφορίες δεν είναι διαθέσιμες}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Καλώς ήρθατε στο FuzeVPN",
+    "connection_changeLocation": "Αλλαγή τοποθεσίας",
+    "connection_details": "Λεπτομέρειες σύνδεσης",
+    "locations_searchLabel": "Αναζήτηση πόλης ή χώρας",
+    "locations_clearSearch": "Εκκαθάριση αναζήτησης",
+    "locations_filterAll": "Όλες",
+    "locations_filterFavorites": "Αγαπημένες",
+    "locations_results": "{count, plural, one{{count} τοποθεσία} other{{count} τοποθεσίες}}",
+    "locations_noResults": "Δεν βρέθηκαν τοποθεσίες",
+    "locations_noResultsHint": "Δοκιμάστε άλλη πόλη ή χώρα.",
+    "locations_noFavorites": "Οι αγαπημένες σας, πάντα κοντά σας",
+    "locations_noFavoritesHint": "Πατήστε το αστέρι δίπλα σε μια τοποθεσία για να την αποθηκεύσετε εδώ.",
+    "locations_showAll": "Προβολή όλων των τοποθεσιών",
+    "locations_addFavorite": "Προσθήκη του {name} στις αγαπημένες",
+    "locations_removeFavorite": "Αφαίρεση του {name} από τις αγαπημένες",
+    "locations_favoriteSaveFailed": "Δεν ήταν δυνατή η αποθήκευση της αγαπημένης. Δοκιμάστε ξανά.",
+    "locations_emptyTitle": "Δεν υπάρχουν διαθέσιμες τοποθεσίες",
+    "locations_emptyHint": "Ανανεώστε τη λίστα για να δοκιμάσετε ξανά.",
+    "devices_manage": "Διαχείριση των συσκευών μου",
+    "settings_personalization": "Κάντε το δικό σας",
+    "settings_safety": "Προστασία",
+    "settings_help": "Χρειάζεστε βοήθεια;",
+    "settings_about": "Σχετικά με το FuzeVPN",
+    "diagnostics_heading": "Κατανόηση προβλήματος σύνδεσης",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Διαθέσιμο} pending{Προετοιμασία} revoked{Αφαιρέθηκε} expired{Έληξε} other{Η κατάσταση δεν είναι διαθέσιμη}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Η προτίμηση δεν αποθηκεύτηκε",
+    "notice_preferenceSave_message": "Η επιλογή σας εφαρμόστηκε προς το παρόν, αλλά δεν ήταν δυνατή η αποθήκευσή της. Δοκιμάστε ξανά για να διατηρηθεί μετά το κλείσιμο της εφαρμογής.",
+    "connection_androidDisconnectHint": "Αν το Android διατηρεί ενεργό το VPN, απενεργοποιήστε το VPN σε μόνιμη λειτουργία από τις ρυθμίσεις που ανοίγουν.",
+    "protection_learnMore": "Μάθετε για την προστασία Android",
+    "protection_guideWhy": "Αυτή η προστασία εμποδίζει τις εφαρμογές να χρησιμοποιούν απευθείας το διαδίκτυο αν αποσυνδεθεί το VPN. Διαμορφώνεται στο Android.",
+    "protection_guideAlwaysOnTitle": "VPN σε μόνιμη λειτουργία",
+    "protection_guideAlwaysOn": "Το Android διατηρεί ενεργή την υπηρεσία VPN και μπορεί να την επανεκκινήσει μετά την επανεκκίνηση του τηλεφώνου.",
+    "protection_guideBlockTitle": "Αποκλεισμός συνδέσεων χωρίς VPN",
+    "protection_guideBlock": "Αυτή η ρύθμιση εμποδίζει την παράκαμψη του VPN από την κίνηση, ακόμη και όσο η σύνδεση έχει διακοπεί.",
+    "protection_guideWarning": "Με ενεργοποιημένο αυτόν τον αποκλεισμό, η πρόσβαση στο διαδίκτυο παραμένει απενεργοποιημένη μέχρι να συνδεθεί το VPN.",
+    "protection_guideStepsTitle": "Ενεργοποίηση προστασίας",
+    "protection_guideStep1": "Ανοίξτε τις ρυθμίσεις VPN του Android με το παρακάτω κουμπί.",
+    "protection_guideStep2": "Ανοίξτε τις επιλογές χρησιμοποιώντας το εικονίδιο γραναζιού δίπλα στο FuzeVPN.",
+    "protection_guideStep3": "Ενεργοποιήστε το VPN σε μόνιμη λειτουργία και, στη συνέχεια, τον αποκλεισμό συνδέσεων χωρίς VPN, αν αυτές οι επιλογές είναι διαθέσιμες.",
+    "protection_guideManufacturers": "Οι ονομασίες διαφέρουν ανά τηλέφωνο. Αν χρειάζεται, αναζητήστε το VPN στις Ρυθμίσεις, συνήθως στην ενότητα Δίκτυο και διαδίκτυο.",
+    "protection_guideDisableTitle": "Απενεργοποίηση αυτής της προστασίας",
+    "protection_guideDisable": "Στις ίδιες ρυθμίσεις, απενεργοποιήστε τον αποκλεισμό χωρίς VPN για να επιτρέψετε την πρόσβαση στο διαδίκτυο χωρίς το VPN. Απενεργοποιήστε επίσης το VPN σε μόνιμη λειτουργία αν δεν θέλετε πλέον το Android να το επανεκκινεί.",
+    "protection_guideManual": "Εσείς επιλέγετε αυτές τις ρυθμίσεις στο Android. Το FuzeVPN δεν τις αλλάζει για εσάς.",
+    "locations_changeTitle": "Αλλαγή τοποθεσίας;",
+    "locations_changeActive": "Το VPN θα αποσυνδεθεί και, στη συνέχεια, θα προσπαθήσει να συνδεθεί στο {name}.",
+    "locations_changeIdle": "Το VPN θα προσπαθήσει να συνδεθεί στο {name}.",
+    "locations_confirmChange": "Αλλαγή και σύνδεση",
+    "locations_changeBusy": "Μια αλλαγή βρίσκεται σε εξέλιξη. Περιμένετε πριν επιλέξετε άλλη τοποθεσία.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Αυτόματη επιλογή",
+    "locations_cities": "Πόλεις",
+    "locations_servers": "Διακομιστές",
+    "locations_viewCities": "Προβολή πόλεων στο {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Προβολή διακομιστών στο {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} χώρα} other{{count} χώρες}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} πόλη} other{{count} πόλεις}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} διακομιστής} other{{count} διακομιστές}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Όλες οι χώρες",
+    "locations_backToCountries": "Επιστροφή στις χώρες",
+    "locations_backToCities": "Επιστροφή στις πόλεις του {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Επιλογή του {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Επιλογή του {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Δεν υπάρχει διαθέσιμος συμβατός διακομιστής.",
+    "externalLink_failed": "Δεν ήταν δυνατό το άνοιγμα του συνδέσμου. Μπορείτε να τον αντιγράψετε και να τον ανοίξετε στο πρόγραμμα περιήγησης.",
+    "externalLink_copy": "Αντιγραφή συνδέσμου",
+    "externalLink_copied": "Ο σύνδεσμος αντιγράφηκε",
+    "externalLink_copyFailed": "Δεν ήταν δυνατή η αντιγραφή του συνδέσμου. Επιλέξτε τη διεύθυνση παρακάτω.",
+    "settings_deleteAccount": "Διαγραφή του λογαριασμού μου",
+    "settings_deleteAccountDetail": "Δείτε πώς να ζητήσετε διαγραφή λογαριασμού",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Επιλέξτε τη συνδρομή VPN σας.",
+    "billing_subscribe": "Εγγραφή",
+    "billing_choosePlan": "Επιλέξτε ένα πρόγραμμα για να συνεχίσετε.",
+    "billing_monthly": "Μηνιαίο",
+    "billing_yearly": "Ετήσιο",
+    "billing_continue": "Συνέχεια με το Google Play",
+    "billing_restore": "Επαναφορά αγορών",
+    "billing_manage": "Διαχείριση συνδρομής",
+    "billing_deleteAccountWarning": "Αν έχετε συνδρομή μέσω Google Play, η διαγραφή του λογαριασμού σας στο FuzeVPN δεν ακυρώνει την ανανέωσή της. Διαχειριστείτε ή ακυρώστε την ανανέωση ξεχωριστά στο Google Play.",
+    "billing_deleteAccountContinue": "Συνέχεια στο αίτημα διαγραφής λογαριασμού",
+    "billing_refresh": "Ανανέωση πρόσβασης",
+    "billing_loadingPlans": "Φόρτωση προγραμμάτων…",
+    "billing_unavailable": "Δεν υπάρχουν διαθέσιμα προγράμματα αυτήν τη στιγμή. Δοκιμάστε αργότερα.",
+    "billing_comingSoon": "Οι συνδρομές θα είναι σύντομα διαθέσιμες.",
+    "billing_priceDisclosure": "Η τιμή παρέχεται από το Google Play. Το τελικό ποσό επιβεβαιώνεται πριν από την πληρωμή.",
+    "billing_renewalMonthly": "Ανανεώνεται αυτόματα κάθε μήνα, εκτός αν ακυρωθεί. Μπορείτε να ακυρώσετε οποτεδήποτε στις συνδρομές του Google Play.",
+    "billing_renewalYearly": "Ανανεώνεται αυτόματα κάθε έτος, εκτός αν ακυρωθεί. Μπορείτε να ακυρώσετε οποτεδήποτε στις συνδρομές του Google Play.",
+    "billing_active": "Η πρόσβαση Premium είναι ενεργή",
+    "billing_accessUntil": "Πρόσβαση έως {date}.",
+    "billing_webManaged": "Η συνδρομή σας διαχειρίζεται στον ιστότοπο FuzeVPN.",
+    "billing_playManaged": "Η συνδρομή σας διαχειρίζεται μέσω Google Play.",
+    "billing_inactive": "Καμία ενεργή συνδρομή.",
+    "billing_checkingAccess": "Έλεγχος της πρόσβασής σας…",
+    "billing_restoring": "Επαναφορά αγορών…",
+    "billing_pending": "Η πληρωμή εκκρεμεί. Η πρόσβασή σας θα ενεργοποιηθεί μετά την επιβεβαίωση.",
+    "billing_cancelled": "Η αγορά ακυρώθηκε. Δεν ενεργοποιήθηκε νέα συνδρομή.",
+    "billing_verifying": "Επαλήθευση αγοράς…",
+    "billing_success": "Η συνδρομή ενεργοποιήθηκε. Η πρόσβαση Premium είναι έτοιμη.",
+    "billing_restored": "Οι αγορές σας επαναφέρθηκαν.",
+    "billing_restoreEmpty": "Δεν υπάρχουν αγορές για επαναφορά σε αυτόν τον λογαριασμό Google Play.",
+    "billing_catalogError": "Αδυναμία φόρτωσης προγραμμάτων. Δοκιμάστε ξανά.",
+    "billing_purchaseError": "Αδυναμία έναρξης αγοράς. Δοκιμάστε ξανά.",
+    "billing_verificationError": "Η επαλήθευση αγοράς είναι προσωρινά μη διαθέσιμη. Επαναφέρετε τις αγορές για να δοκιμάσετε ξανά.",
+    "billing_restoreError": "Αδυναμία επαναφοράς αγορών. Δοκιμάστε ξανά.",
+    "billing_managementError": "Αδυναμία ανοίγματος της διαχείρισης συνδρομών. Δοκιμάστε ξανά.",
+    "billing_storeUnavailable": "Το Google Play δεν είναι διαθέσιμο σε αυτήν τη συσκευή.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "Το VPN σου, απλά.",
+    "welcome_description": "Προστάτεψε τη σύνδεσή σου. Κράτησε τον έλεγχο του απορρήτου σου.",
+    "welcome_start": "Έναρξη",
+    "welcome_alreadyPurchased": "Έχεις ήδη αγοράσει;",
+    "welcome_noAccountRequired": "Δεν χρειάζεται να δημιουργήσεις λογαριασμό για να ξεκινήσεις.",
+    "guest_accountTitle": "Ο λογαριασμός δεν έχει συνδεθεί",
+    "guest_accountDescription": "Επαναφέρετε τις αγορές με τον ίδιο λογαριασμό Google Play για να χρησιμοποιήσετε τη συνδρομή σε άλλη συσκευή.",
+    "guest_existingSubscriberSignIn": "Έχεις ήδη συνδρομή; Σύνδεση",
+    "guest_claimTitle": "Πάρε το FuzeVPN μαζί σου",
+    "guest_claimDescription": "Δημιούργησε λογαριασμό για πρόσβαση στη συνδρομή από τις άλλες συσκευές σου. Αυτό το βήμα είναι προαιρετικό.",
+    "guest_skip": "Αργότερα",
+    "guest_activationTitle": "Το Fuze Premium είναι ενεργό",
+    "guest_activationDescription": "Η συνδρομή σου είναι έτοιμη. Χρησιμοποίησε το VPN και δημιούργησε λογαριασμό όποτε θέλεις.",
+    "guest_useVpn": "Χρήση του VPN μου",
+    "guest_loginRequired": "Αυτή η αγορά είναι ήδη συνδεδεμένη με λογαριασμό FuzeVPN. Συνδέσου σε αυτόν για να αποκτήσεις πρόσβαση στη συνδρομή σου.",
+    "guest_signOutWarning": "Μπορείς να ανακτήσεις τη συνδρομή επαναφέροντας τις αγορές με τον ίδιο λογαριασμό Google Play.",
+    "guest_profileUnavailable": "Ο λογαριασμός σου είναι ήδη συνδεδεμένος. Συνδέσου για να δεις και να διαχειριστείς τα στοιχεία σου.",
+    "billing_acceptance": "Συνεχίζοντας, αποδέχεσαι τους Όρους χρήσης και την Πολιτική απορρήτου.",
+    "guest_verifyEmailReminder": "Επιβεβαίωσε τη διεύθυνση email για να ασφαλίσεις τον λογαριασμό σου. Μπορείς να συνεχίσεις να χρησιμοποιείς το VPN.",
+    "guest_serviceUnavailable": "Η υπηρεσία δεν είναι διαθέσιμη προσωρινά. Δοκίμασε ξανά σε λίγο.",
+    "guest_restoreError": "Δεν ήταν δυνατή η επαναφορά των αγορών σου. Δοκίμασε ξανά με τον λογαριασμό Google Play που χρησιμοποίησες για την αγορά.",
+    "guest_claimSuccess": "Ο λογαριασμός σου δημιουργήθηκε. Η συνδρομή και η πρόσβαση στο VPN διατηρούνται.",
+    "guest_emailExists": "Αυτή η διεύθυνση email χρησιμοποιείται ήδη. Επίλεξε άλλη διεύθυνση ή συνδέσου στον υπάρχοντα λογαριασμό σου. Η αγορά σου παραμένει διαθέσιμη μέσω του Google Play.",
+    "guest_claimError": "Δεν ήταν δυνατή η δημιουργία του λογαριασμού σου. Μπορείς να συνεχίσεις να χρησιμοποιείς το VPN και να δοκιμάσεις ξανά αργότερα.",
+    "guest_secureStorageError": "Δεν ήταν δυνατή η ασφαλής αποθήκευση της συνεδρίας σου σε αυτή τη συσκευή. Δοκίμασε ξανά.",
+    "guest_premiumRequired": "Επίλεξε μια συνδρομή για να ενεργοποιήσεις το VPN σου.",
+    "welcome_viewPlans": "Δες τα προγράμματα",
+    "google_continue": "Συνέχεια με Google",
+    "google_or": "ή",
+    "google_title": "Ο λογαριασμός σας FuzeVPN",
+    "google_settingUp": "Ολοκληρώστε τον λογαριασμό σας",
+    "google_country": "Χώρα κατοικίας",
+    "google_profileDescription": "Επιλέξτε τη χώρα σας και διαβάστε τα δύο έγγραφα για να δημιουργήσετε λογαριασμό FuzeVPN.",
+    "google_claimDescription": "Συνδέστε τον λογαριασμό επισκέπτη με το Google. Η συνδρομή και η συσκευή παραμένουν σε αυτόν τον λογαριασμό.",
+    "google_linkTitle": "Σύνδεση Google με FuzeVPN",
+    "google_linkDescription": "Επιβεβαιώστε την πρόσβαση στον υπάρχοντα λογαριασμό FuzeVPN. Δεν ζητείται ο κωδικός Google.",
+    "google_password": "Κωδικός FuzeVPN",
+    "google_linkAccount": "Επιβεβαίωση σύνδεσης",
+    "google_requestEmail": "Λήψη email επιβεβαίωσης",
+    "google_emailInstructions": "Ανοίξτε το email του FuzeVPN και εισαγάγετε τον κωδικό επιβεβαίωσης.",
+    "google_emailCode": "Κωδικός επιβεβαίωσης email",
+    "google_confirmEmail": "Επιβεβαίωση κωδικού",
+    "google_restart": "Επιλογή άλλου λογαριασμού Google",
+    "google_resume": "Έλεγχος αυτής της προσπάθειας",
+    "google_unavailable": "Η σύνδεση Google δεν είναι διαθέσιμη. Μπορείτε να χρησιμοποιήσετε email και κωδικό.",
+    "google_expired": "Αυτή η προσπάθεια έληξε. Ακυρώστε την και ξεκινήστε ξανά.",
+    "google_conflict": "Αυτός ο λογαριασμός Google συνδέεται ήδη αλλού. Ο τρέχων λογαριασμός και η συνδρομή διατηρούνται.",
+    "google_error": "Η σύνδεση Google απέτυχε. Δοκιμάστε ξανά· η τρέχουσα πρόσβαση διατηρείται.",
+    "google_uncertain": "Το αποτέλεσμα δεν επιβεβαιώθηκε. Ελέγξτε την προσπάθεια ή ακυρώστε την πριν ξεκινήσετε ξανά.",
+    "google_cancelFailed": "Η ακύρωση δεν επιβεβαιώθηκε. Δοκιμάστε να ακυρώσετε ξανά πριν φύγετε από αυτή την οθόνη.",
+    "google_cancelled": "Η σύνδεση Google ακυρώθηκε.",
+    "google_selecting": "Επιλέξτε τον λογαριασμό σας Google…",
+    "google_verifying": "Έλεγχος λογαριασμού…",
+    "google_emailUnavailable": "Το email επιβεβαίωσης δεν στάλθηκε. Δοκιμάστε αργότερα.",
+    "google_emailSent": "Στάλθηκε email επιβεβαίωσης. Ελέγξτε τα εισερχόμενα.",
+    "google_rateLimited": "Περιμένετε πριν δοκιμάσετε ξανά.",
+    "google_invalidPassword": "Ο κωδικός FuzeVPN είναι λανθασμένος. Ο τρέχων λογαριασμός διατηρείται.",
+    "google_invalidCode": "Ο κωδικός επιβεβαίωσης δεν είναι έγκυρος ή έχει λήξει.",
+    "google_accountChanged": "Η συνεδρία άλλαξε. Ακυρώστε αυτή την προσπάθεια πριν ξεκινήσετε ξανά.",
+    "google_invalidResponse": "Η απάντηση δεν επικυρώθηκε. Η τρέχουσα πρόσβαση διατηρείται.",
+    "google_invalidRegistration": "Ελέγξτε τη χώρα και τις δύο συγκαταθέσεις.",
+    "google_consentRequired": "Επιλέξτε χώρα και αποδεχτείτε τα δύο έγγραφα για να συνεχίσετε.",
+    "google_challengeRequired": "Απαιτείται επιπλέον έλεγχος ασφαλείας. Η τρέχουσα πρόσβαση διατηρείται.",
+    "google_challengeUnavailable": "Ο έλεγχος ασφαλείας δεν είναι διαθέσιμος. Δοκιμάστε αργότερα."
+  },
+  "android": {
+    "vpn_notification_channel": "Σύνδεση VPN",
+    "vpn_notification_channel_description": "Υποδεικνύει πότε είναι ενεργή μια σύνδεση FuzeVPN.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "Η σύνδεση %1$s είναι ενεργή",
+    "vpn_notification_connecting": "Η σύνδεση %1$s βρίσκεται σε εξέλιξη",
+    "vpn_notification_disconnecting": "Αποσύνδεση του %1$s",
+    "vpn_notification_interrupted": "Η σύνδεση %1$s διακόπηκε",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Έτοιμο · %1$s · %2$s",
+    "vpn_tile_connected": "Συνδεδεμένο · %1$s · %2$s",
+    "vpn_tile_connecting": "Σύνδεση του %1$s…",
+    "vpn_tile_disconnecting": "Αποσύνδεση…",
+    "vpn_tile_interrupted": "Το %1$s διακόπηκε",
+    "vpn_tile_setup_required": "Ανοίξτε πρώτα την εφαρμογή",
+    "vpn_tile_working": "Η λειτουργία VPN βρίσκεται σε εξέλιξη…",
+    "vpn_notification_reconnecting": "Επανασύνδεση… · %1$s",
+    "vpn_system_action_required": "Απαιτείται ενέργεια στις ρυθμίσεις Android",
+    "vpn_tile_reconnecting": "Επανασύνδεση… · %1$s"
+  },
+  "countries": {
+    "AC": "Νήσος Ασενσιόν",
+    "AD": "Ανδόρα",
+    "AE": "Ηνωμένα Αραβικά Εμιράτα",
+    "AF": "Αφγανιστάν",
+    "AG": "Αντίγκουα και Μπαρμπούντα",
+    "AI": "Ανγκουίλα",
+    "AL": "Αλβανία",
+    "AM": "Αρμενία",
+    "AO": "Ανγκόλα",
+    "AQ": "Ανταρκτική",
+    "AR": "Αργεντινή",
+    "AS": "Αμερικανική Σαμόα",
+    "AT": "Αυστρία",
+    "AU": "Αυστραλία",
+    "AW": "Αρούμπα",
+    "AX": "Νήσοι Ώλαντ",
+    "AZ": "Αζερμπαϊτζάν",
+    "BA": "Βοσνία και Ερζεγοβίνη",
+    "BB": "Μπαρμπάντος",
+    "BD": "Μπανγκλαντές",
+    "BE": "Βέλγιο",
+    "BF": "Μπουρκίνα Φάσο",
+    "BG": "Βουλγαρία",
+    "BH": "Μπαχρέιν",
+    "BI": "Μπουρούντι",
+    "BJ": "Μπενίν",
+    "BL": "Άγιος Βαρθολομαίος",
+    "BM": "Βερμούδες",
+    "BN": "Μπρουνέι",
+    "BO": "Βολιβία",
+    "BQ": "Καραϊβανδικές Κάτω Χώρες",
+    "BR": "Βραζιλία",
+    "BS": "Μπαχάμες",
+    "BT": "Μπουτάν",
+    "BV": "Νήσος Μπουβέ",
+    "BW": "Μποτσουάνα",
+    "BY": "Λευκορωσία",
+    "BZ": "Μπελίζ",
+    "CA": "Καναδάς",
+    "CC": "Νήσοι Κόκος (Κίλινγκ)",
+    "CD": "Κονγκό - Κινσάσα",
+    "CF": "Κεντροαφρικανική Δημοκρατία",
+    "CG": "Κονγκό - Μπραζαβίλ",
+    "CH": "Ελβετία",
+    "CI": "Ακτή Ελεφαντοστού",
+    "CK": "Νήσοι Κουκ",
+    "CL": "Χιλή",
+    "CM": "Καμερούν",
+    "CN": "Κίνα",
+    "CO": "Κολομβία",
+    "CP": "Νήσος Κλίπερτον",
+    "CQ": "Σαρκ",
+    "CR": "Κόστα Ρίκα",
+    "CU": "Κούβα",
+    "CV": "Πράσινο Ακρωτήριο",
+    "CW": "Κουρασάο",
+    "CX": "Νήσος των Χριστουγέννων",
+    "CY": "Κύπρος",
+    "CZ": "Τσεχία",
+    "DE": "Γερμανία",
+    "DG": "Ντιέγκο Γκαρσία",
+    "DJ": "Τζιμπουτί",
+    "DK": "Δανία",
+    "DM": "Ντομίνικα",
+    "DO": "Δομινικανή Δημοκρατία",
+    "DZ": "Αλγερία",
+    "EA": "Θέουτα και Μελίλια",
+    "EC": "Εκουαδόρ",
+    "EE": "Εσθονία",
+    "EG": "Αίγυπτος",
+    "EH": "Δυτική Σαχάρα",
+    "ER": "Ερυθραία",
+    "ES": "Ισπανία",
+    "ET": "Αιθιοπία",
+    "EU": "Ευρωπαϊκή Ένωση",
+    "EZ": "Ευρωζώνη",
+    "FI": "Φινλανδία",
+    "FJ": "Φίτζι",
+    "FK": "Νήσοι Φώκλαντ",
+    "FM": "Μικρονησία",
+    "FO": "Νήσοι Φερόες",
+    "FR": "Γαλλία",
+    "GA": "Γκαμπόν",
+    "GB": "Ηνωμένο Βασίλειο",
+    "GD": "Γρενάδα",
+    "GE": "Γεωργία",
+    "GF": "Γαλλική Γουιάνα",
+    "GG": "Γκέρνζι",
+    "GH": "Γκάνα",
+    "GI": "Γιβραλτάρ",
+    "GL": "Γροιλανδία",
+    "GM": "Γκάμπια",
+    "GN": "Γουινέα",
+    "GP": "Γουαδελούπη",
+    "GQ": "Ισημερινή Γουινέα",
+    "GR": "Ελλάδα",
+    "GS": "Νότια Γεωργία και Νότιες Νήσοι Σάντουιτς",
+    "GT": "Γουατεμάλα",
+    "GU": "Γκουάμ",
+    "GW": "Γουινέα-Μπισάου",
+    "GY": "Γουιάνα",
+    "HK": "Χονγκ Κονγκ (Ειδική Διοικητική Περιοχή Κίνας)",
+    "HM": "Νήσοι Χερντ και Μακντόναλντ",
+    "HN": "Ονδούρα",
+    "HR": "Κροατία",
+    "HT": "Αϊτή",
+    "HU": "Ουγγαρία",
+    "IC": "Κανάριοι Νήσοι",
+    "ID": "Ινδονησία",
+    "IE": "Ιρλανδία",
+    "IL": "Ισραήλ",
+    "IM": "Νήσος Μαν",
+    "IN": "Ινδία",
+    "IO": "Βρετανική επικράτεια Ινδικού Ωκεανού",
+    "IQ": "Ιράκ",
+    "IR": "Ιράν",
+    "IS": "Ισλανδία",
+    "IT": "Ιταλία",
+    "JE": "Τζέρσεϊ",
+    "JM": "Τζαμάικα",
+    "JO": "Ιορδανία",
+    "JP": "Ιαπωνία",
+    "KE": "Κένυα",
+    "KG": "Κιργιστάν",
+    "KH": "Καμπότζη",
+    "KI": "Κιριμπάτι",
+    "KM": "Κομόρες",
+    "KN": "Άγιος Χριστόφορος και Νέβις",
+    "KP": "Βόρεια Κορέα",
+    "KR": "Νότια Κορέα",
+    "KW": "Κουβέιτ",
+    "KY": "Νήσοι Κέιμαν",
+    "KZ": "Καζακστάν",
+    "LA": "Λάος",
+    "LB": "Λίβανος",
+    "LC": "Αγία Λουκία",
+    "LI": "Λιχτενστάιν",
+    "LK": "Σρι Λάνκα",
+    "LR": "Λιβερία",
+    "LS": "Λεσότο",
+    "LT": "Λιθουανία",
+    "LU": "Λουξεμβούργο",
+    "LV": "Λετονία",
+    "LY": "Λιβύη",
+    "MA": "Μαρόκο",
+    "MC": "Μονακό",
+    "MD": "Μολδαβία",
+    "ME": "Μαυροβούνιο",
+    "MF": "Άγιος Μαρτίνος",
+    "MG": "Μαδαγασκάρη",
+    "MH": "Νήσοι Μάρσαλ",
+    "MK": "Βόρεια Μακεδονία",
+    "ML": "Μάλι",
+    "MM": "Μιανμάρ (Βιρμανία)",
+    "MN": "Μογγολία",
+    "MO": "Μακάο (Ειδική Διοικητική Περιοχή Κίνας)",
+    "MP": "Βόρειες Μαριάνες Νήσοι",
+    "MQ": "Μαρτινίκα",
+    "MR": "Μαυριτανία",
+    "MS": "Μονσεράτ",
+    "MT": "Μάλτα",
+    "MU": "Μαυρίκιος",
+    "MV": "Μαλδίβες",
+    "MW": "Μαλάουι",
+    "MX": "Μεξικό",
+    "MY": "Μαλαισία",
+    "MZ": "Μοζαμβίκη",
+    "NA": "Ναμίμπια",
+    "NC": "Νέα Καληδονία",
+    "NE": "Νίγηρας",
+    "NF": "Νήσος Νόρφολκ",
+    "NG": "Νιγηρία",
+    "NI": "Νικαράγουα",
+    "NL": "Κάτω Χώρες",
+    "NO": "Νορβηγία",
+    "NP": "Νεπάλ",
+    "NR": "Ναουρού",
+    "NU": "Νιούε",
+    "NZ": "Νέα Ζηλανδία",
+    "OM": "Ομάν",
+    "PA": "Παναμάς",
+    "PE": "Περού",
+    "PF": "Γαλλική Πολυνησία",
+    "PG": "Παπούα Νέα Γουινέα",
+    "PH": "Φιλιππίνες",
+    "PK": "Πακιστάν",
+    "PL": "Πολωνία",
+    "PM": "Άγιος Πέτρος και Μικελόν",
+    "PN": "Νήσοι Πίτκερν",
+    "PR": "Πουέρτο Ρίκο",
+    "PS": "Παλαιστινιακά Εδάφη",
+    "PT": "Πορτογαλία",
+    "PW": "Παλάου",
+    "PY": "Παραγουάη",
+    "QA": "Κατάρ",
+    "QO": "Απομακρυσμένη Ωκεανία",
+    "RE": "Ρεϊνιόν",
+    "RO": "Ρουμανία",
+    "RS": "Σερβία",
+    "RU": "Ρωσία",
+    "RW": "Ρουάντα",
+    "SA": "Σαουδική Αραβία",
+    "SB": "Νήσοι Σολομώντα",
+    "SC": "Σεϋχέλλες",
+    "SD": "Σουδάν",
+    "SE": "Σουηδία",
+    "SG": "Σιγκαπούρη",
+    "SH": "Αγία Ελένη",
+    "SI": "Σλοβενία",
+    "SJ": "Σβάλμπαρντ και Γιαν Μάγεν",
+    "SK": "Σλοβακία",
+    "SL": "Σιέρα Λεόνε",
+    "SM": "Άγιος Μαρίνος",
+    "SN": "Σενεγάλη",
+    "SO": "Σομαλία",
+    "SR": "Σουρινάμ",
+    "SS": "Νότιο Σουδάν",
+    "ST": "Σάο Τομέ και Πρίνσιπε",
+    "SV": "Ελ Σαλβαδόρ",
+    "SX": "Άγιος Μαρτίνος (ολλανδικό τμήμα)",
+    "SY": "Συρία",
+    "SZ": "Εσουατίνι",
+    "TA": "Τριστάν ντα Κούνια",
+    "TC": "Νήσοι Τερκς και Κέικος",
+    "TD": "Τσαντ",
+    "TF": "Γαλλικά Νότια Εδάφη",
+    "TG": "Τόγκο",
+    "TH": "Ταϊλάνδη",
+    "TJ": "Τατζικιστάν",
+    "TK": "Τοκελάου",
+    "TL": "Τιμόρ-Λέστε",
+    "TM": "Τουρκμενιστάν",
+    "TN": "Τυνησία",
+    "TO": "Τόνγκα",
+    "TR": "Τουρκία",
+    "TT": "Τρινιντάντ και Τομπάγκο",
+    "TV": "Τουβαλού",
+    "TW": "Ταϊβάν",
+    "TZ": "Τανζανία",
+    "UA": "Ουκρανία",
+    "UG": "Ουγκάντα",
+    "UM": "Απομακρυσμένες Νήσοι ΗΠΑ",
+    "UN": "Ηνωμένα Έθνη",
+    "US": "Ηνωμένες Πολιτείες",
+    "UY": "Ουρουγουάη",
+    "UZ": "Ουζμπεκιστάν",
+    "VA": "Πόλη του Βατικανού",
+    "VC": "Άγιος Βικέντιος και Γρεναδίνες",
+    "VE": "Βενεζουέλα",
+    "VG": "Βρετανικές Παρθένοι Νήσοι",
+    "VI": "Αμερικανικές Παρθένοι Νήσοι",
+    "VN": "Βιετνάμ",
+    "VU": "Βανουάτου",
+    "WF": "Ουάλις και Φουτούνα",
+    "WS": "Σαμόα",
+    "XA": "Ψευδοτονισμοί",
+    "XB": "Ψευδοαμφίδρομο κείμενο",
+    "XK": "Κόσοβο",
+    "YE": "Υεμένη",
+    "YT": "Μαγιότ",
+    "ZA": "Νότια Αφρική",
+    "ZM": "Ζάμπια",
+    "ZW": "Ζιμπάμπουε",
+    "ZZ": "Άγνωστη περιοχή"
+  }
+}

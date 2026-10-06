@@ -1,0 +1,3183 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "FuzeVPN-Android-0.2.4-source-inventory",
+  "documentNamespace": "https://fuzevpn.com/sbom/android/0.2.4/74010/2026-10-07-source-inventory",
+  "creationInfo": {
+    "created": "2026-10-07T00:00:00Z",
+    "creators": [
+      "Tool: FuzeVPN Android source inventory",
+      "Organization: FuzeVPN"
+    ],
+    "licenseListVersion": "3.26",
+    "comment": "Source inventory from pubspec.lock, declared Gradle dependencies, vendored metadata, local font metadata and asset provenance; the Play Billing 9.1.0 preparation adds selected locked transitives, cached artifact checksums and POM license declarations inspected on 2026-10-03. It includes development and non-Android packages resolved by Pub; it is not an AAB-resolved dependency graph or a complete inventory of Flutter engine internals and all Gradle transitives. Custom Android SDK terms are identified by name and official URL; no legal license conclusion is asserted. Update for 0.2.3+74009: three directly declared Google authentication SDKs, six selected locked Google Play services transitives, Google Sans and the official G logo were inspected on 2026-10-05. Public cached POM/AAR and local asset checksums are recorded. Existing entries and their earlier inspection context are retained; this remains a limited source inventory rather than a complete runtime reachability analysis. Update for public source publication 0.2.4+74010 on 2026-10-07: own application code has MPL-2.0 as the root default, with existing file notices, third-party terms and brand exclusions preserved in LICENSING.md. No APK/AAB or backend is distributed or qualified by this inventory. Official Maven POM declarations for AndroidX annotation/collection, javax.inject and selected test dependencies were rechecked; previous artifact checksums and component inspection context are preserved. This is not a claim that a resulting APK is entirely free software. Supplemental source-license inspection on 2026-10-07 confirms retained Go 1.24.3 and all eight module LICENSE files, as well as wireguard-tools and elf-cleaner COPYING. Main Go module license declarations are completed and three supplemental source-only modules are added. A missing full LGPL-2.1 text for the netlink.h SPDX grant is provided outside locked native inputs under licenses/, using the official SPDX v3.26.0 FSF license text with its checksum."
+  },
+  "documentDescribes": [
+    "SPDXRef-Package-FuzeVPNAndroid"
+  ],
+  "packages": [
+    {
+      "name": "FuzeVPN Android",
+      "SPDXID": "SPDXRef-Package-FuzeVPNAndroid",
+      "versionInfo": "0.2.4+74010",
+      "downloadLocation": "https://github.com/FuzeVPN/android-app",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MPL-2.0",
+      "copyrightText": "NOASSERTION",
+      "supplier": "Organization: FuzeVPN",
+      "comment": "Default license for original application source: MPL-2.0, except files with existing explicit notices and excluded brand assets, as documented in LICENSE and LICENSING.md. Third-party licenses remain separate. licenseConcluded is not an aggregate license conclusion for all source/build inputs or an APK."
+    },
+    {
+      "name": "Flutter SDK",
+      "SPDXID": "SPDXRef-Package-Flutter",
+      "versionInfo": "3.44.7",
+      "downloadLocation": "https://github.com/flutter/flutter",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/flutter/flutter@3.44.7"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher",
+      "SPDXID": "SPDXRef-Package-UrlLauncher",
+      "versionInfo": "6.3.2",
+      "downloadLocation": "https://pub.dev/packages/url_launcher",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher@6.3.2"
+        }
+      ],
+      "comment": "pubspec.lock: direct main. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f6a7e5c4835bb4e3026a04793a4199ca2d14c739ec378fdfe23fc8075d0439f8"
+        }
+      ]
+    },
+    {
+      "name": "WireGuard Android Tunnel",
+      "SPDXID": "SPDXRef-Package-WireGuardAndroidTunnel",
+      "versionInfo": "1.0.20260102-fuzevpn-fgs",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Local patched AAR from WireGuard Android 1.0.20260102 at 09b75c2bd37f749e2a8c85876394854113c74be7. Patches in order: patches/fuzevpn/0001-go-backend-real-foreground-service.patch (SHA-256 777a8563e37ca11c4bf084820c3fd69e12280c5dd48af99274cf407dcfacd92c), patches/fuzevpn/0002-go-backend-protected-start.patch (SHA-256 e6861dba0b06e569b65119029c7d817adc98b4120e36d75c95af7ff4999e1ded). Shared foreground VpnService and two-phase protected socket startup. libwg-go.so is rebuilt with protected-start JNI and the com.fuzevpn IPC socket directory for all four ABIs; other native libraries remain from official AAR SHA-256 2b9c16db026496123e4db695d26d03d1958a201096c7c4c89b21077dc70f3119. Full native source/toolchain/ABI hashes are in the adjacent .metadata.json; approval digest is independently pinned in WireGuardAarPolicy.java. The Maven artifact is a debug-only fallback. Apache-2.0 in licenseDeclared describes the Java tunnel layer only. The AAR also contains native components with separate MIT/GPL/LGPL source notices, including wg-quick/android.c under GPL-2.0-only. No aggregate AAR license conclusion is asserted.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:generic/fuzevpn/wireguard-android-tunnel@1.0.20260102-fuzevpn-fgs"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bf96422b21e086cf371154613f5250c8101568538ab40acb4ccbad09394e4811"
+        }
+      ]
+    },
+    {
+      "name": "wireguard-go",
+      "SPDXID": "SPDXRef-Package-WireGuardGo",
+      "versionInfo": "v0.0.0-20250521234502-f333402bd9cb",
+      "downloadLocation": "https://git.zx2c4.com/wireguard-go/about/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "comment": "Go module pinned by libwg-go/go.mod and go.sum. The local libwg-go bridge is patched for wgSetConfig; build metadata records source hashes. Go 1.24.3 includes the reviewed CLOCK_BOOTTIME runtime patch. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.zip; origin https://proxy.golang.org/golang.zx2c4.com/wireguard/@v/v0.0.0-20250521234502-f333402bd9cb.zip; archive SHA-256 e40fbd4b585b8097e8d2577c2100c092f9844b44b09a6d6d640740e42e86f649. The following included license files were read and match the unchanged completeness manifest: golang.zx2c4.com/wireguard@v0.0.0-20250521234502-f333402bd9cb/LICENSE (SHA-256 91276db973f25602d1aa43491f59cbc84cb88e6f151e1d0cc82a755563ce0195). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/golang.zx2c4.com/wireguard@v0.0.0-20250521234502-f333402bd9cb"
+        }
+      ]
+    },
+    {
+      "name": "OpenVPN 3 Core",
+      "SPDXID": "SPDXRef-Package-OpenVPN3Core",
+      "versionInfo": "28469efe3ae770268b2b5c6aa607ed1489e101f0",
+      "downloadLocation": "https://github.com/OpenVPN/openvpn3.git",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MPL-2.0",
+      "licenseDeclared": "MPL-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Unmodified source is vendored under android/app/src/main/cpp/third_party/openvpn3-core at the exact pin. ECDSA uses the upstream OpenSSL XKey provider; no application cryptographic patch is applied.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/OpenVPN/openvpn3@28469efe3ae770268b2b5c6aa607ed1489e101f0"
+        }
+      ]
+    },
+    {
+      "name": "OpenSSL",
+      "SPDXID": "SPDXRef-Package-OpenSSL",
+      "versionInfo": "3.5.9",
+      "downloadLocation": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.9",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Static Android archives are built from the official 3.5.9 source archive for API 26 and three ABIs. Source SHA-256: 603f5602e2eef00d77fbd429d34dcd5822bb301757a1bc9cdb24c670f1eb859a. IMPORT-METADATA.json and MANIFEST.sha256 record per-ABI provenance.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/openssl/openssl@openssl-3.5.9"
+        }
+      ]
+    },
+    {
+      "name": "Asio",
+      "SPDXID": "SPDXRef-Package-Asio",
+      "versionInfo": "1.36.0",
+      "downloadLocation": "https://github.com/chriskohlhoff/asio.git",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSL-1.0",
+      "licenseDeclared": "BSL-1.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/chriskohlhoff/asio@231cb29bab30f82712fcd54faaea42424cc6e710"
+        }
+      ],
+      "comment": "Six OpenVPN-maintained Asio patches are applied; names and hashes are recorded in android/app/src/main/cpp/third_party/deps/DEPENDENCIES-METADATA.json."
+    },
+    {
+      "name": "fmt",
+      "SPDXID": "SPDXRef-Package-fmt",
+      "versionInfo": "12.1.0",
+      "downloadLocation": "https://github.com/fmtlib/fmt.git",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/fmtlib/fmt@407c905e45ad75fc29bf0f9bb7c5c2fd3475976f"
+        }
+      ]
+    },
+    {
+      "name": "lz4",
+      "SPDXID": "SPDXRef-Package-lz4",
+      "versionInfo": "1.10.0",
+      "downloadLocation": "https://github.com/lz4/lz4.git",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-2-Clause",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:github/lz4/lz4@ebb370ca83af193212df4dcbadcc5d87bc0de2f0"
+        }
+      ]
+    },
+    {
+      "name": "androidx.core:core-ktx",
+      "SPDXID": "SPDXRef-Package-AndroidXCoreKtx",
+      "versionInfo": "1.16.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.core/core-ktx@1.16.0"
+        }
+      ],
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts. "
+    },
+    {
+      "name": "Kotlin",
+      "SPDXID": "SPDXRef-Package-Kotlin",
+      "versionInfo": "2.3.20",
+      "downloadLocation": "https://github.com/JetBrains/kotlin",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-android",
+      "SPDXID": "SPDXRef-Package-KotlinCoroutinesAndroid",
+      "versionInfo": "1.10.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-android@1.10.2"
+        }
+      ],
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts. "
+    },
+    {
+      "name": "Android Gradle Plugin",
+      "SPDXID": "SPDXRef-Package-AndroidGradlePlugin",
+      "versionInfo": "9.3.0",
+      "downloadLocation": "https://developer.android.com/build",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "name": "Gradle",
+      "SPDXID": "SPDXRef-Package-Gradle",
+      "versionInfo": "9.5.0",
+      "downloadLocation": "https://github.com/gradle/gradle",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "name": "Android NDK",
+      "SPDXID": "SPDXRef-Package-AndroidNDK",
+      "versionInfo": "28.2.13676358",
+      "downloadLocation": "https://developer.android.com/ndk",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Build toolchain component; preserve the upstream notices with the controlled build image. External toolchain prerequisite only: this public source repository does not redistribute its executable/distribution. NOASSERTION here is an inventory/provenance limit, not a missing license for redistributed source. Obtain and retain the vendor distribution terms when preparing a build environment."
+    },
+    {
+      "name": "JDK",
+      "SPDXID": "SPDXRef-Package-JDK17",
+      "versionInfo": "17",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "The precise JDK distribution must be recorded by the release environment. External toolchain prerequisite only: this public source repository does not redistribute its executable/distribution. NOASSERTION here is an inventory/provenance limit, not a missing license for redistributed source. Obtain and retain the vendor distribution terms when preparing a build environment."
+    },
+    {
+      "name": "async",
+      "SPDXID": "SPDXRef-Package-Pub-async",
+      "versionInfo": "2.13.1",
+      "downloadLocation": "https://pub.dev/packages/async",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/async@2.13.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e2eb0491ba5ddb6177742d2da23904574082139b07c1e33b8503b9f46f3e1a37"
+        }
+      ]
+    },
+    {
+      "name": "boolean_selector",
+      "SPDXID": "SPDXRef-Package-Pub-boolean-selector",
+      "versionInfo": "2.1.2",
+      "downloadLocation": "https://pub.dev/packages/boolean_selector",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/boolean_selector@2.1.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8aab1771e1243a5063b8b0ff68042d67334e3feab9e95b9490f9a6ebf73b42ea"
+        }
+      ]
+    },
+    {
+      "name": "characters",
+      "SPDXID": "SPDXRef-Package-Pub-characters",
+      "versionInfo": "1.4.1",
+      "downloadLocation": "https://pub.dev/packages/characters",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/characters@1.4.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "faf38497bda5ead2a8c7615f4f7939df04333478bf32e4173fcb06d428b5716b"
+        }
+      ]
+    },
+    {
+      "name": "clock",
+      "SPDXID": "SPDXRef-Package-Pub-clock",
+      "versionInfo": "1.1.2",
+      "downloadLocation": "https://pub.dev/packages/clock",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/clock@1.1.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fddb70d9b5277016c77a80201021d40a2247104d9f4aa7bab7157b7e3f05b84b"
+        }
+      ]
+    },
+    {
+      "name": "collection",
+      "SPDXID": "SPDXRef-Package-Pub-collection",
+      "versionInfo": "1.19.1",
+      "downloadLocation": "https://pub.dev/packages/collection",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/collection@1.19.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2f5709ae4d3d59dd8f7cd309b4e023046b57d8a6c82130785d2b0e5868084e76"
+        }
+      ]
+    },
+    {
+      "name": "crypto",
+      "SPDXID": "SPDXRef-Package-Pub-crypto",
+      "versionInfo": "3.0.7",
+      "downloadLocation": "https://pub.dev/packages/crypto",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: direct main. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/crypto@3.0.7"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c8ea0233063ba03258fbcf2ca4d6dadfefe14f02fab57702265467a19f27fadf"
+        }
+      ]
+    },
+    {
+      "name": "fake_async",
+      "SPDXID": "SPDXRef-Package-Pub-fake-async",
+      "versionInfo": "1.3.3",
+      "downloadLocation": "https://pub.dev/packages/fake_async",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/fake_async@1.3.3"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5368f224a74523e8d2e7399ea1638b37aecfca824a3cc4dfdf77bf1fa905ac44"
+        }
+      ]
+    },
+    {
+      "name": "flutter_lints",
+      "SPDXID": "SPDXRef-Package-Pub-flutter-lints",
+      "versionInfo": "5.0.0",
+      "downloadLocation": "https://pub.dev/packages/flutter_lints",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: direct dev. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/flutter_lints@5.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5398f14efa795ffb7a33e9b6a08798b26a180edac4ad7db3f231e40f82ce11e1"
+        }
+      ]
+    },
+    {
+      "name": "flutter_localizations",
+      "SPDXID": "SPDXRef-Package-Pub-flutter-localizations",
+      "versionInfo": "3.44.7",
+      "downloadLocation": "https://github.com/flutter/flutter",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: direct main. SDK package version is inherited from Flutter 3.44.7; lockfile placeholder is 0.0.0. License not independently established from files inspected in this workspace."
+    },
+    {
+      "name": "flutter_test",
+      "SPDXID": "SPDXRef-Package-Pub-flutter-test",
+      "versionInfo": "3.44.7",
+      "downloadLocation": "https://github.com/flutter/flutter",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: direct dev. SDK package version is inherited from Flutter 3.44.7; lockfile placeholder is 0.0.0. License not independently established from files inspected in this workspace."
+    },
+    {
+      "name": "flutter_web_plugins",
+      "SPDXID": "SPDXRef-Package-Pub-flutter-web-plugins",
+      "versionInfo": "3.44.7",
+      "downloadLocation": "https://github.com/flutter/flutter",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. SDK package version is inherited from Flutter 3.44.7; lockfile placeholder is 0.0.0. Resolved transitive package; Android release reachability is not established by this source inventory. Non-Android platform support; inclusion in an Android APK is not claimed. License not independently established from files inspected in this workspace."
+    },
+    {
+      "name": "intl",
+      "SPDXID": "SPDXRef-Package-Pub-intl",
+      "versionInfo": "0.20.2",
+      "downloadLocation": "https://pub.dev/packages/intl",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: direct main. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/intl@0.20.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3df61194eb431efc39c4ceba583b95633a403f46c9fd341e550ce0bfa50e9aa5"
+        }
+      ]
+    },
+    {
+      "name": "leak_tracker",
+      "SPDXID": "SPDXRef-Package-Pub-leak-tracker",
+      "versionInfo": "11.0.2",
+      "downloadLocation": "https://pub.dev/packages/leak_tracker",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/leak_tracker@11.0.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "33e2e26bdd85a0112ec15400c8cbffea70d0f9c3407491f672a2fad47915e2de"
+        }
+      ]
+    },
+    {
+      "name": "leak_tracker_flutter_testing",
+      "SPDXID": "SPDXRef-Package-Pub-leak-tracker-flutter-testing",
+      "versionInfo": "3.0.10",
+      "downloadLocation": "https://pub.dev/packages/leak_tracker_flutter_testing",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/leak_tracker_flutter_testing@3.0.10"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1dbc140bb5a23c75ea9c4811222756104fbcd1a27173f0c34ca01e16bea473c1"
+        }
+      ]
+    },
+    {
+      "name": "leak_tracker_testing",
+      "SPDXID": "SPDXRef-Package-Pub-leak-tracker-testing",
+      "versionInfo": "3.0.2",
+      "downloadLocation": "https://pub.dev/packages/leak_tracker_testing",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/leak_tracker_testing@3.0.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8d5a2d49f4a66b49744b23b018848400d23e54caf9463f4eb20df3eb8acb2eb1"
+        }
+      ]
+    },
+    {
+      "name": "lints",
+      "SPDXID": "SPDXRef-Package-Pub-lints",
+      "versionInfo": "5.1.1",
+      "downloadLocation": "https://pub.dev/packages/lints",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/lints@5.1.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c35bb79562d980e9a453fc715854e1ed39e24e7d0297a880ef54e17f9874a9d7"
+        }
+      ]
+    },
+    {
+      "name": "matcher",
+      "SPDXID": "SPDXRef-Package-Pub-matcher",
+      "versionInfo": "0.12.19",
+      "downloadLocation": "https://pub.dev/packages/matcher",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/matcher@0.12.19"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dc0b7dc7651697ea4ff3e69ef44b0407ea32c487a39fff6a4004fa585e901861"
+        }
+      ]
+    },
+    {
+      "name": "material_color_utilities",
+      "SPDXID": "SPDXRef-Package-Pub-material-color-utilities",
+      "versionInfo": "0.13.0",
+      "downloadLocation": "https://pub.dev/packages/material_color_utilities",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/material_color_utilities@0.13.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9c337007e82b1889149c82ed242ed1cb24a66044e30979c44912381e9be4c48b"
+        }
+      ]
+    },
+    {
+      "name": "meta",
+      "SPDXID": "SPDXRef-Package-Pub-meta",
+      "versionInfo": "1.18.0",
+      "downloadLocation": "https://pub.dev/packages/meta",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/meta@1.18.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1741988757a65eb6b36abe716829688cf01910bbf91c34354ff7ec1c3de2b349"
+        }
+      ]
+    },
+    {
+      "name": "path",
+      "SPDXID": "SPDXRef-Package-Pub-path",
+      "versionInfo": "1.9.1",
+      "downloadLocation": "https://pub.dev/packages/path",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/path@1.9.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "75cca69d1490965be98c73ceaea117e8a04dd21217b37b292c9ddbec0d955bc5"
+        }
+      ]
+    },
+    {
+      "name": "plugin_platform_interface",
+      "SPDXID": "SPDXRef-Package-Pub-plugin-platform-interface",
+      "versionInfo": "2.1.8",
+      "downloadLocation": "https://pub.dev/packages/plugin_platform_interface",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/plugin_platform_interface@2.1.8"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
+        }
+      ]
+    },
+    {
+      "name": "sky_engine",
+      "SPDXID": "SPDXRef-Package-Pub-sky-engine",
+      "versionInfo": "3.44.7",
+      "downloadLocation": "https://github.com/flutter/flutter",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. SDK package version is inherited from Flutter 3.44.7; lockfile placeholder is 0.0.0. Resolved transitive package; Android release reachability is not established by this source inventory. License not independently established from files inspected in this workspace."
+    },
+    {
+      "name": "source_span",
+      "SPDXID": "SPDXRef-Package-Pub-source-span",
+      "versionInfo": "1.10.2",
+      "downloadLocation": "https://pub.dev/packages/source_span",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/source_span@1.10.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "56a02f1f4cd1a2d96303c0144c93bd6d909eea6bee6bf5a0e0b685edbd4c47ab"
+        }
+      ]
+    },
+    {
+      "name": "stack_trace",
+      "SPDXID": "SPDXRef-Package-Pub-stack-trace",
+      "versionInfo": "1.12.1",
+      "downloadLocation": "https://pub.dev/packages/stack_trace",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/stack_trace@1.12.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8b27215b45d22309b5cddda1aa2b19bdfec9df0e765f2de506401c071d38d1b1"
+        }
+      ]
+    },
+    {
+      "name": "stream_channel",
+      "SPDXID": "SPDXRef-Package-Pub-stream-channel",
+      "versionInfo": "2.1.4",
+      "downloadLocation": "https://pub.dev/packages/stream_channel",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/stream_channel@2.1.4"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "969e04c80b8bcdf826f8f16579c7b14d780458bd97f56d107d3950fdbeef059d"
+        }
+      ]
+    },
+    {
+      "name": "string_scanner",
+      "SPDXID": "SPDXRef-Package-Pub-string-scanner",
+      "versionInfo": "1.4.1",
+      "downloadLocation": "https://pub.dev/packages/string_scanner",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/string_scanner@1.4.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "921cd31725b72fe181906c6a94d987c78e3b98c2e205b397ea399d4054872b43"
+        }
+      ]
+    },
+    {
+      "name": "term_glyph",
+      "SPDXID": "SPDXRef-Package-Pub-term-glyph",
+      "versionInfo": "1.2.2",
+      "downloadLocation": "https://pub.dev/packages/term_glyph",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/term_glyph@1.2.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7f554798625ea768a7518313e58f83891c7f5024f88e46e7182a4558850a4b8e"
+        }
+      ]
+    },
+    {
+      "name": "test_api",
+      "SPDXID": "SPDXRef-Package-Pub-test-api",
+      "versionInfo": "0.7.11",
+      "downloadLocation": "https://pub.dev/packages/test_api",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/test_api@0.7.11"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "949a932224383300f01be9221c39180316445ecb8e7547f70a41a35bf421fb9e"
+        }
+      ]
+    },
+    {
+      "name": "typed_data",
+      "SPDXID": "SPDXRef-Package-Pub-typed-data",
+      "versionInfo": "1.4.0",
+      "downloadLocation": "https://pub.dev/packages/typed_data",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/typed_data@1.4.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f9049c039ebfeb4cf7a7104a675823cd72dba8297f264b6637062516699fa006"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher_android",
+      "SPDXID": "SPDXRef-Package-Pub-url-launcher-android",
+      "versionInfo": "6.3.32",
+      "downloadLocation": "https://pub.dev/packages/url_launcher_android",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher_android@6.3.32"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b413d49b73867ac08dd2f9890efd3cc11f2a0e577618d50843440a1fb3776c32"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher_ios",
+      "SPDXID": "SPDXRef-Package-Pub-url-launcher-ios",
+      "versionInfo": "6.4.1",
+      "downloadLocation": "https://pub.dev/packages/url_launcher_ios",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Non-Android platform support; inclusion in an Android APK is not claimed. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher_ios@6.4.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "580fe5dfb51671ae38191d316e027f6b76272b026370708c2d898799750a02b0"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher_linux",
+      "SPDXID": "SPDXRef-Package-Pub-url-launcher-linux",
+      "versionInfo": "3.2.2",
+      "downloadLocation": "https://pub.dev/packages/url_launcher_linux",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Non-Android platform support; inclusion in an Android APK is not claimed. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher_linux@3.2.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d5e14138b3bc193a0f63c10a53c94b91d399df0512b1f29b94a043db7482384a"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher_macos",
+      "SPDXID": "SPDXRef-Package-Pub-url-launcher-macos",
+      "versionInfo": "3.2.5",
+      "downloadLocation": "https://pub.dev/packages/url_launcher_macos",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Non-Android platform support; inclusion in an Android APK is not claimed. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher_macos@3.2.5"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "368adf46f71ad3c21b8f06614adb38346f193f3a59ba8fe9a2fd74133070ba18"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "SPDXID": "SPDXRef-Package-Pub-url-launcher-platform-interface",
+      "versionInfo": "2.3.2",
+      "downloadLocation": "https://pub.dev/packages/url_launcher_platform_interface",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher_platform_interface@2.3.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "552f8a1e663569be95a8190206a38187b531910283c3e982193e4f2733f01029"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher_web",
+      "SPDXID": "SPDXRef-Package-Pub-url-launcher-web",
+      "versionInfo": "2.4.3",
+      "downloadLocation": "https://pub.dev/packages/url_launcher_web",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Non-Android platform support; inclusion in an Android APK is not claimed. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher_web@2.4.3"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "85c81589622fbc87c1c683aaea164d3604a7777495a79d91e39ffcdec39ddb34"
+        }
+      ]
+    },
+    {
+      "name": "url_launcher_windows",
+      "SPDXID": "SPDXRef-Package-Pub-url-launcher-windows",
+      "versionInfo": "3.1.5",
+      "downloadLocation": "https://pub.dev/packages/url_launcher_windows",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Non-Android platform support; inclusion in an Android APK is not claimed. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/url_launcher_windows@3.1.5"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "712c70ab1b99744ff066053cbe3e80c73332b38d46e5e945c98689b2e66fc15f"
+        }
+      ]
+    },
+    {
+      "name": "vector_math",
+      "SPDXID": "SPDXRef-Package-Pub-vector-math",
+      "versionInfo": "2.2.0",
+      "downloadLocation": "https://pub.dev/packages/vector_math",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/vector_math@2.2.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d530bd74fea330e6e364cda7a85019c434070188383e1cd8d9777ee586914c5b"
+        }
+      ]
+    },
+    {
+      "name": "vm_service",
+      "SPDXID": "SPDXRef-Package-Pub-vm-service",
+      "versionInfo": "15.2.0",
+      "downloadLocation": "https://pub.dev/packages/vm_service",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/vm_service@15.2.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0016aef94fc66495ac78af5859181e3f3bf2026bd8eecc72b9565601e19ab360"
+        }
+      ]
+    },
+    {
+      "name": "web",
+      "SPDXID": "SPDXRef-Package-Pub-web",
+      "versionInfo": "1.1.1",
+      "downloadLocation": "https://pub.dev/packages/web",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "pubspec.lock: transitive. Resolved transitive package; Android release reachability is not established by this source inventory. Non-Android platform support; inclusion in an Android APK is not claimed. Declared license identified in the existing generated Flutter notices inspected offline on 2026-09-30.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pub/web@1.1.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "868d88a33d8a87b18ffc05f9f030ba328ffefba92d6c127917a2ba740f9cfe4a"
+        }
+      ]
+    },
+    {
+      "name": "androidx.annotation:annotation",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.annotation-annotation",
+      "versionInfo": "1.9.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts. Official upstream Maven POM inspected on 2026-10-07: https://dl.google.com/dl/android/maven2/androidx/annotation/annotation/1.9.1/annotation-1.9.1.pom; declares Apache-2.0; POM SHA-256: c733881c2e17d5f7c8661cc02a9159cb160b7b2094a27d593916c87d3e250636. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.annotation/annotation@1.9.1"
+        }
+      ]
+    },
+    {
+      "name": "androidx.collection:collection",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.collection-collection",
+      "versionInfo": "1.5.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts. Official upstream Maven POM inspected on 2026-10-07: https://dl.google.com/dl/android/maven2/androidx/collection/collection/1.5.0/collection-1.5.0.pom; declares Apache-2.0; POM SHA-256: 2d65c8d0b36d4b4faadc44aff9bade23d871d7159eedf2b3f02d802b34b77a57. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.collection/collection@1.5.0"
+        }
+      ]
+    },
+    {
+      "name": "junit:junit",
+      "SPDXID": "SPDXRef-Package-Maven-junit-junit",
+      "versionInfo": "4.13.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "EPL-1.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit testImplementation declaration in android/app/build.gradle.kts. Test dependency, not an application runtime dependency. Official upstream Maven POM inspected on 2026-10-07: https://repo.maven.apache.org/maven2/junit/junit/4.13.2/junit-4.13.2.pom; declares EPL-1.0; POM SHA-256: 569b6977ee4603c965c1c46c3058fa6e969291b0160eb6964dd092cd89eadd94. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/junit/junit@4.13.2"
+        }
+      ]
+    },
+    {
+      "name": "org.json:json",
+      "SPDXID": "SPDXRef-Package-Maven-org.json-json",
+      "versionInfo": "20240303",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit testImplementation declaration in android/app/build.gradle.kts. Test dependency, not an application runtime dependency.  Official Maven POM inspected on 2026-10-07: https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.pom; declares Public Domain and references https://github.com/stleary/JSON-java/blob/master/LICENSE. POM SHA-256: 994baf5d89bf4caa5ce968e4c4eab135c8f9783ecf4d2b7b0e9d1c8a4ddf1e4f. No SPDX-equivalent declaration or legal conclusion is assigned by this inventory.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/org.json/json@20240303"
+        }
+      ]
+    },
+    {
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-test",
+      "SPDXID": "SPDXRef-Package-Maven-org.jetbrains.kotlinx-kotlinx-coroutines-test",
+      "versionInfo": "1.10.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit testImplementation declaration in android/app/build.gradle.kts. Test dependency, not an application runtime dependency. Official upstream Maven POM inspected on 2026-10-07: https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-test/1.10.2/kotlinx-coroutines-test-1.10.2.pom; declares Apache-2.0; POM SHA-256: bf25c8df0ec9f3eac7bbee539b601b6019b7e99f5f3f3011e2e8178b140750db. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/org.jetbrains.kotlinx/kotlinx-coroutines-test@1.10.2"
+        }
+      ]
+    },
+    {
+      "name": "androidx.test:core-ktx",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.test-core-ktx",
+      "versionInfo": "1.6.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit androidTestImplementation declaration in android/app/build.gradle.kts. Test dependency, not an application runtime dependency. Official upstream Maven POM inspected on 2026-10-07: https://dl.google.com/dl/android/maven2/androidx/test/core-ktx/1.6.1/core-ktx-1.6.1.pom; declares Apache-2.0; POM SHA-256: c0350ba347ba9b6c80af12f069beda3d8da5ee49f0c9787d6ee6ac86df7fb336. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.test/core-ktx@1.6.1"
+        }
+      ]
+    },
+    {
+      "name": "androidx.test.ext:junit",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.test.ext-junit",
+      "versionInfo": "1.2.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit androidTestImplementation declaration in android/app/build.gradle.kts. Test dependency, not an application runtime dependency. Official upstream Maven POM inspected on 2026-10-07: https://dl.google.com/dl/android/maven2/androidx/test/ext/junit/1.2.1/junit-1.2.1.pom; declares Apache-2.0; POM SHA-256: 983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.test.ext/junit@1.2.1"
+        }
+      ]
+    },
+    {
+      "name": "androidx.test:runner",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.test-runner",
+      "versionInfo": "1.6.2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit androidTestImplementation declaration in android/app/build.gradle.kts. Test dependency, not an application runtime dependency. Official upstream Maven POM inspected on 2026-10-07: https://dl.google.com/dl/android/maven2/androidx/test/runner/1.6.2/runner-1.6.2.pom; declares Apache-2.0; POM SHA-256: e6abf0cb643a79f3e120b3d6a03dd8906f8d6a9edb73cfbb7a64048d073a4f16. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.test/runner@1.6.2"
+        }
+      ]
+    },
+    {
+      "name": "androidx.test.uiautomator:uiautomator",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.test.uiautomator-uiautomator",
+      "versionInfo": "2.3.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Explicit androidTestImplementation declaration in android/app/build.gradle.kts. Test dependency, not an application runtime dependency. Official upstream Maven POM inspected on 2026-10-07: https://dl.google.com/dl/android/maven2/androidx/test/uiautomator/uiautomator/2.3.0/uiautomator-2.3.0.pom; declares Apache-2.0; POM SHA-256: 9608320331d20afcf2f79bcd8ae1bc3d8fd8ee95c8b7ae77f0b4b36b42bee472. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.test.uiautomator/uiautomator@2.3.0"
+        }
+      ]
+    },
+    {
+      "name": "Go toolchain",
+      "SPDXID": "SPDXRef-Package-Go",
+      "versionInfo": "1.24.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "Pinned Windows build toolchain. Runtime CLOCK_BOOTTIME patch and archive digest are recorded in WireGuard AAR metadata. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/go1.24.3.src.tar.gz; origin https://dl.google.com/go/go1.24.3.src.tar.gz; archive SHA-256 229c08b600b1446798109fae1f569228102c8473caba8104b6418cb5bc032878. The following included license files were read and match the unchanged completeness manifest: go/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/github.com/google/pprof/LICENSE (SHA-256 cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30); go/src/cmd/vendor/github.com/google/pprof/third_party/svgpan/LICENSE (SHA-256 154c946c17de61ca71d28e13673d76a5798e6e25995a7397fbae157afc8f62b4); go/src/cmd/vendor/github.com/ianlancetaylor/demangle/LICENSE (SHA-256 b73277f7730993ef8e7f80aed83e5309762fed4d77eced982abb2c00657c074d); go/src/cmd/vendor/golang.org/x/arch/LICENSE (SHA-256 8cda009bd927676a95ee7ce2dae921442ac4d9584d041b56ecfcba6839032f0b); go/src/cmd/vendor/golang.org/x/build/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/golang.org/x/mod/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/golang.org/x/sync/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/golang.org/x/sys/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/golang.org/x/telemetry/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/golang.org/x/term/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/golang.org/x/text/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/golang.org/x/tools/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/cmd/vendor/rsc.io/markdown/LICENSE (SHA-256 2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067); go/src/crypto/internal/boring/LICENSE (SHA-256 56210f826b8f0fbac3160dfe55c97f4019eb6cdda3963b5a0eab8a8bdb62360e); go/src/vendor/golang.org/x/crypto/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/vendor/golang.org/x/net/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/vendor/golang.org/x/sys/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad); go/src/vendor/golang.org/x/text/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted."
+    },
+    {
+      "name": "Android SDK Platform",
+      "SPDXID": "SPDXRef-Package-AndroidSDKPlatform",
+      "versionInfo": "36",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Declared compileSdk/targetSdk. Toolchain component; full notices belong to the release build environment. External toolchain prerequisite only: this public source repository does not redistribute its executable/distribution. NOASSERTION here is an inventory/provenance limit, not a missing license for redistributed source. Obtain and retain the vendor distribution terms when preparing a build environment."
+    },
+    {
+      "name": "CMake",
+      "SPDXID": "SPDXRef-Package-CMake",
+      "versionInfo": "3.22.1",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "comment": "Pinned externalNativeBuild toolchain version. External toolchain prerequisite only: this public source repository does not redistribute its executable/distribution. NOASSERTION here is an inventory/provenance limit, not a missing license for redistributed source. Obtain and retain the vendor distribution terms when preparing a build environment."
+    },
+    {
+      "name": "golang.org/x/sys",
+      "SPDXID": "SPDXRef-Package-Go-sys",
+      "versionInfo": "v0.33.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "Declared in vendored libwg-go/go.mod; go.sum records module checksums. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/golang.org_x_sys@v0.33.0.zip; origin https://proxy.golang.org/golang.org/x/sys/@v/v0.33.0.zip; archive SHA-256 182df79c87135f6dbd0d45656b6527e9221e28899ee44cc6cc7e7a396aedaef9. The following included license files were read and match the unchanged completeness manifest: golang.org/x/sys@v0.33.0/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/golang.org/x/sys@v0.33.0"
+        }
+      ]
+    },
+    {
+      "name": "golang.org/x/crypto",
+      "SPDXID": "SPDXRef-Package-Go-crypto",
+      "versionInfo": "v0.38.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "Declared in vendored libwg-go/go.mod; go.sum records module checksums. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/golang.org_x_crypto@v0.38.0.zip; origin https://proxy.golang.org/golang.org/x/crypto/@v/v0.38.0.zip; archive SHA-256 02824dd62fa3241946a2ac14fdadbd393514d76cebbfbd8bddcddbfc80c7f94b. The following included license files were read and match the unchanged completeness manifest: golang.org/x/crypto@v0.38.0/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/golang.org/x/crypto@v0.38.0"
+        }
+      ]
+    },
+    {
+      "name": "golang.org/x/net",
+      "SPDXID": "SPDXRef-Package-Go-net",
+      "versionInfo": "v0.40.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "comment": "Declared in vendored libwg-go/go.mod; go.sum records module checksums. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/golang.org_x_net@v0.40.0.zip; origin https://proxy.golang.org/golang.org/x/net/@v/v0.40.0.zip; archive SHA-256 388e4a624f48990057f1a2a2cc5f3e0f81e41b99dd2036247d98c931c59d44d4. The following included license files were read and match the unchanged completeness manifest: golang.org/x/net@v0.40.0/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/golang.org/x/net@v0.40.0"
+        }
+      ]
+    },
+    {
+      "name": "golang.zx2c4.com/wintun",
+      "SPDXID": "SPDXRef-Package-Go-wintun",
+      "versionInfo": "v0.0.0-20230126152724-0fa3db229ce2",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "comment": "Declared in vendored libwg-go/go.mod; go.sum records module checksums.  Wintun is Windows support, not claimed as Android runtime content. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/golang.zx2c4.com_wintun@v0.0.0-20230126152724-0fa3db229ce2.zip; origin https://proxy.golang.org/golang.zx2c4.com/wintun/@v/v0.0.0-20230126152724-0fa3db229ce2.zip; archive SHA-256 06599222daa6af8547045c446cefa9a2bab19d57bde1fc6436114308d79a2b4b. The following included license files were read and match the unchanged completeness manifest: golang.zx2c4.com/wintun@v0.0.0-20230126152724-0fa3db229ce2/LICENSE (SHA-256 91276db973f25602d1aa43491f59cbc84cb88e6f151e1d0cc82a755563ce0195). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted.",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/golang.zx2c4.com/wintun@v0.0.0-20230126152724-0fa3db229ce2"
+        }
+      ]
+    },
+    {
+      "name": "wireguard-tools",
+      "SPDXID": "SPDXRef-Package-WireGuardTools",
+      "versionInfo": "e2ecaaa739144997ccff89d6ad6ec81698ea6ced",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "GPL-2.0-only",
+      "copyrightText": "NOASSERTION",
+      "comment": "Imported submodule pin. README declares GPLv2; individual wg C sources also offer MIT. wg-quick/android.c declares GPL-2.0. The upstream AAR packages libwg.so and libwg-quick.so; these are preserved from the verified official artifact. Preserve source-level notices and license choices. Netlink source headers retain LGPL-2.1-or-later; preserve per-file alternatives and notices rather than applying the Java tunnel license to this native component. Full GPL-2.0 COPYING is present at android/third_party/wireguard-android/tunnel/tools/wireguard-tools/COPYING (SHA-256 189b1af95d661151e054cea10c91b3d754e4de4d3fecfb074c1fb29476f7167b). Supplemental LGPL-2.1 text is supplied for src/netlink.h, which declares LGPL-2.1+: licenses/WIREGUARD-NETLINK-LGPL-2.1.txt (SHA-256 5749785c8bdefafcb5d798270ed0a967036fe2ca63dcedade1627565dfef81d2), retrieved on 2026-10-07 from the official SPDX license-list-data v3.26.0 distribution of the FSF license: https://raw.githubusercontent.com/spdx/license-list-data/v3.26.0/text/LGPL-2.1-or-later.txt. GNU canonical URL https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt was unreachable at inspection. Native files and locked metadata are unchanged."
+    },
+    {
+      "name": "termux-elf-cleaner",
+      "SPDXID": "SPDXRef-Package-ElfCleaner",
+      "versionInfo": "7efc05090675ec6161b7def862728086a26c3b1f",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "GPL-3.0-or-later",
+      "copyrightText": "NOASSERTION",
+      "comment": "Imported build-time submodule. elf-cleaner.cpp declares GPL version 3 or later. Used by upstream CMake to clean ELF files; not an Android runtime library. Full GPL-3.0 COPYING is present at android/third_party/wireguard-android/tunnel/tools/elf-cleaner/COPYING (SHA-256 53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad); inspected on 2026-10-07. The or-later grant is preserved in elf-cleaner.cpp."
+    },
+    {
+      "name": "Archivo",
+      "SPDXID": "SPDXRef-Package-Archivo",
+      "versionInfo": "2.001",
+      "downloadLocation": "https://github.com/Omnibus-Type/Archivo",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "OFL-1.1",
+      "copyrightText": "NOASSERTION",
+      "comment": "Version read from the bundled TTF name table. Copyright 2020 The Archivo Project Authors. Exact font file is inventoried below; upstream download revision is not recorded."
+    },
+    {
+      "name": "IBM Plex Mono",
+      "SPDXID": "SPDXRef-Package-IBMPlexMono",
+      "versionInfo": "2.3",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "OFL-1.1",
+      "copyrightText": "NOASSERTION",
+      "comment": "Version read from both bundled TTF name tables. Copyright 2017 IBM Corp.; reserved font name Plex. Exact files are inventoried below; upstream download revision is not recorded."
+    },
+    {
+      "name": "Noto Sans Arabic",
+      "SPDXID": "SPDXRef-Package-NotoSansArabic",
+      "versionInfo": "2.012",
+      "downloadLocation": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notosansarabic/NotoSansArabic%5Bwdth%2Cwght%5D.ttf",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "OFL-1.1",
+      "copyrightText": "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)",
+      "comment": "Unmodified variable TTF, bundled as a fallback to Archivo and IBM Plex Mono for Arabic, Persian and Urdu text. Version read from the TTF name table; weight axis 100-900 and width axis 62.5-100. Google Fonts revision 8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5 references notofonts/arabic source revision 6c8320740db19efbb3127c3697b0ee5d0fa62319. Exact font and OFL SHA-256 values, immutable source URLs and retrieval date are also recorded in licenses/NotoSansArabic-source.json."
+    },
+    {
+      "name": "Twemoji flag artwork",
+      "SPDXID": "SPDXRef-Package-Twemoji",
+      "versionInfo": "v14.0.2",
+      "downloadLocation": "https://github.com/twitter/twemoji",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "CC-BY-4.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Bundled PNG flag artwork. Upstream tree 7a3dad4a4da30497093dab22eafba135f02308e1; per-file SHA-256 values in assets/licenses/country-assets.json. License text in assets/licenses/TWEMOJI.txt."
+    },
+    {
+      "name": "Unicode CLDR country names",
+      "SPDXID": "SPDXRef-Package-CLDR",
+      "versionInfo": "47.0.0",
+      "downloadLocation": "https://github.com/unicode-org/cldr-json",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Unicode-3.0",
+      "copyrightText": "NOASSERTION",
+      "comment": "Country-name source data for lib/core/country_data.dart. tools/prepare_country_assets.py records the source URLs; assets/licenses/UNICODE.txt preserves Unicode License V3. Additional translated packs are application data, not claimed to be verbatim CLDR."
+    },
+    {
+      "name": "com.android.billingclient:billing",
+      "SPDXID": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "versionInfo": "9.1.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/android/billingclient/billing/9.1.0/billing-9.1.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.android.billingclient/billing@9.1.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d28286d4e4c18725510980de01211d9b72501e7146d96817fa0c9999af9b0d22"
+        }
+      ],
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts; Native Play Billing catalogue and purchase integration for premium/monthly/yearly; client expects separate server validation routes; runtime purchase/backend/RTDN qualification is not asserted by this public source inventory. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. This custom license is recorded by name and URL; no SPDX license conclusion is asserted. POM SHA-256: 99b89f5001a3df1971e5c5b8c3742f1c5197848a64c8105bbc81b4fa6299a545. Artifact SHA-256 below refers to billing-9.1.0.aar. The AAR retains third_party_licenses.json (SHA-256 24cc3013b45a588136eee31a2b2252db279d74d1874c9e728e36d2ecf6f71240) and third_party_licenses.txt (SHA-256 c3f2bd185ed538fd885940ed40ea18f7caf7202cbc28ecdff2be9b6f123c0e27); the latter includes Android SDK Platforms terms dated April 10, 2009 and separate notices for bundled third-party components."
+    },
+    {
+      "name": "com.google.android.datatransport:transport-api",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api",
+      "versionInfo": "3.0.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/datatransport/transport-api/3.0.0/transport-api-3.0.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.datatransport/transport-api@3.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4e6983c0703b357df6f1c6ceacb1b5dfc2c5006a789c799fec2298b2b5337466"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM SHA-256: 1537bebd44da2eb7e3be73fc4259e1116f2a68a5305f4fe23c6cea9a6f84f791. Artifact SHA-256 below refers to transport-api-3.0.0.aar."
+    },
+    {
+      "name": "com.google.android.datatransport:transport-backend-cct",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "versionInfo": "3.1.8",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/datatransport/transport-backend-cct/3.1.8/transport-backend-cct-3.1.8.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.datatransport/transport-backend-cct@3.1.8"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e17edd1ef7fd475c90baa4e39422332f27087d34bcb46cb48ce86af9a54a612e"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM SHA-256: 42698696ebd5af1eb33f917e582baa416e289a21cd83ee329c255852216b8a78. Artifact SHA-256 below refers to transport-backend-cct-3.1.8.aar."
+    },
+    {
+      "name": "com.google.android.datatransport:transport-runtime",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "versionInfo": "3.1.8",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/datatransport/transport-runtime/3.1.8/transport-runtime-3.1.8.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.datatransport/transport-runtime@3.1.8"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cb9353ef1791ae17097d878ca711e25a9c32cec9042adc49b00cadfee1a7290b"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM SHA-256: d6ff762251fb35594afe5efe860b5871064e18c0bd1bdb77084e3573f90e4e8f. Artifact SHA-256 below refers to transport-runtime-3.1.8.aar."
+    },
+    {
+      "name": "com.google.android.gms:play-services-base",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "versionInfo": "18.5.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-base/18.5.0/play-services-base-18.5.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-base@18.5.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "59a5c0c2da12311d75d965ce1f419498536b1a167fb28ff7dfc2dfd9cefa4157"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. This custom license is recorded by name and URL; no SPDX license conclusion is asserted. POM SHA-256: 2570b515c2717af386c890e97f644782e3f86da7b677a4ff1036147e7ea622a4. Artifact SHA-256 below refers to play-services-base-18.5.0.aar."
+    },
+    {
+      "name": "com.google.android.gms:play-services-basement",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "versionInfo": "18.9.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-basement/18.9.0/play-services-basement-18.9.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-basement@18.9.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c6ed7236b1b3ce0296b508a5c0a09108fd52d83559d35cad2639505cd04ab255"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. This custom license is recorded by name and URL; no SPDX license conclusion is asserted. POM SHA-256: 601ef047167c6c280b8b190942d9e94a0463e891acd9c6ccf532eb298a5efe5b. Artifact SHA-256 below refers to play-services-basement-18.9.0.aar."
+    },
+    {
+      "name": "com.google.android.gms:play-services-location",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "versionInfo": "19.0.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-location/19.0.0/play-services-location-19.0.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-location@19.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6b205c43ba5df751eca8ce9dae7a58effafac7d637fb4fc708a7522d1b99cf80"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. This custom license is recorded by name and URL; no SPDX license conclusion is asserted. POM SHA-256: cce60a0c4250e5be6d33f46505ba7269048a68d478862c87bf761c69ef84da3e. Artifact SHA-256 below refers to play-services-location-19.0.0.aar."
+    },
+    {
+      "name": "com.google.android.gms:play-services-places-placereport",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-places-placereport",
+      "versionInfo": "17.0.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-places-placereport/17.0.0/play-services-places-placereport-17.0.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-places-placereport@17.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2c7fd63ad02f28150ae4ffe4615dac7d694d790e2c4667f777aedc8ee054e929"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. This custom license is recorded by name and URL; no SPDX license conclusion is asserted. POM SHA-256: 23604d3a278bd430af4f204105e48492f71501516201d8a2a8e72253fb9396f7. Artifact SHA-256 below refers to play-services-places-placereport-17.0.0.aar."
+    },
+    {
+      "name": "com.google.android.gms:play-services-tasks",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "versionInfo": "18.2.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-tasks/18.2.0/play-services-tasks-18.2.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-tasks@18.2.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7f2aaa8f502068eaf54356ca92aec04271d6e7c416c52c45c0d23440fcbd1654"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. This custom license is recorded by name and URL; no SPDX license conclusion is asserted. POM SHA-256: 6b99c48a895d155e58abcee66cc22146db83abd5d84caf6c8f7a2aea9b1bcd21. Artifact SHA-256 below refers to play-services-tasks-18.2.0.aar."
+    },
+    {
+      "name": "com.google.firebase:firebase-encoders",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders",
+      "versionInfo": "17.0.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-encoders/17.0.0/firebase-encoders-17.0.0.jar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.firebase/firebase-encoders@17.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "282a5a703f9b7eb56508dde97ea918e95d73318b157050f457f7a86dca750150"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM SHA-256: 423575e3500e9910e3aa83f9d7a6d755b5f76ac591823baf67570fb6ce7ea816. Artifact SHA-256 below refers to firebase-encoders-17.0.0.jar."
+    },
+    {
+      "name": "com.google.firebase:firebase-encoders-json",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-json",
+      "versionInfo": "18.0.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-encoders-json/18.0.0/firebase-encoders-json-18.0.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.firebase/firebase-encoders-json@18.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "80aece7e1ef58957ca2fc1957bc9208ec92a3a9528201331d3c63e3182570f97"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM SHA-256: 3a7d59795a799683afa6435931066c5bb634adfebd2883a08b4765f38cdd3ea1. Artifact SHA-256 below refers to firebase-encoders-json-18.0.0.aar."
+    },
+    {
+      "name": "com.google.firebase:firebase-encoders-proto",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-proto",
+      "versionInfo": "16.0.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-encoders-proto/16.0.0/firebase-encoders-proto-16.0.0.jar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.firebase/firebase-encoders-proto@16.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "293db96a0d1d43f033167881b638d8fde844e4e5495f5101cf52295765295e0e"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM SHA-256: 5f5fb74af3fff0e1f961fcb5f3f99267c103b16a23c89b556c8cb4a711a8dcb2. Artifact SHA-256 below refers to firebase-encoders-proto-16.0.0.jar."
+    },
+    {
+      "name": "javax.inject:javax.inject",
+      "SPDXID": "SPDXRef-Package-Maven-javax.inject-javax.inject",
+      "versionInfo": "1",
+      "downloadLocation": "https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.jar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/javax.inject/javax.inject@1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "91c77044a50c481636c32d916fd89c9118a72195390452c81065080f957de7ff"
+        }
+      ],
+      "comment": "Selected transitive of Play Billing 9.1.0 in both app-patched.lockfile and app-maven.lockfile; resolved graph inclusion does not assert inclusion in the optimized AAB. Cached Google Maven/public Maven artifacts inspected on 2026-10-03. The earlier absence-of-license assertion is corrected by the official POM inspection below. POM SHA-256: 943e12b100627804638fa285805a0ab788a680266531e650921ebfe4621a8bfa. Artifact SHA-256 below refers to javax.inject-1.jar. Official upstream Maven POM inspected on 2026-10-07: https://repo.maven.apache.org/maven2/javax/inject/javax.inject/1/javax.inject-1.pom; declares Apache-2.0; POM SHA-256: 943e12b100627804638fa285805a0ab788a680266531e650921ebfe4621a8bfa. This establishes the POM declaration, not a full artifact-level license conclusion or APK reachability."
+    },
+    {
+      "name": "androidx.credentials:credentials",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.credentials-credentials",
+      "versionInfo": "1.6.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/androidx/credentials/credentials/1.6.0/credentials-1.6.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.credentials/credentials@1.6.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9051922592ee3c92370ce3f942d66661f1e9050ac5b370932c71f0a380acf227"
+        }
+      ],
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM URL: https://dl.google.com/dl/android/maven2/androidx/credentials/credentials/1.6.0/credentials-1.6.0.pom. POM SHA-256: 3193f02566989b0e59334e374d9982d8f30a12fae907d7719efbc4d0054f9b04. Artifact SHA-256 below refers to credentials-1.6.0.aar. AAR retains META-INF/androidx/credentials/credentials/LICENSE.txt (SHA-256 809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0)."
+    },
+    {
+      "name": "androidx.credentials:credentials-play-services-auth",
+      "SPDXID": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "versionInfo": "1.6.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/androidx/credentials/credentials-play-services-auth/1.6.0/credentials-play-services-auth-1.6.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/androidx.credentials/credentials-play-services-auth@1.6.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "837a0a01988f93182bbe3e01007cbcc2a9ac9185c934153a136b37ac1bd8cc48"
+        }
+      ],
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares The Apache Software License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0.txt. POM URL: https://dl.google.com/dl/android/maven2/androidx/credentials/credentials-play-services-auth/1.6.0/credentials-play-services-auth-1.6.0.pom. POM SHA-256: 9f748f8992ba5de9f9d62973a04f8ab71744b8ac486ee84b88a7e98be9bdd913. Artifact SHA-256 below refers to credentials-play-services-auth-1.6.0.aar. AAR retains META-INF/androidx/credentials/credentials-play-services-auth/LICENSE.txt (SHA-256 809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0)."
+    },
+    {
+      "name": "com.google.android.libraries.identity.googleid:googleid",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid",
+      "versionInfo": "1.2.1",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/libraries/identity/googleid/googleid/1.2.1/googleid-1.2.1.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.libraries.identity.googleid/googleid@1.2.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e164e1a20ba98a08e7f5280bf73c22db7fa69a2380ecc0e783c2e7ded158dfe5"
+        }
+      ],
+      "comment": "Explicit implementation declaration in android/app/build.gradle.kts. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. POM URL: https://dl.google.com/dl/android/maven2/com/google/android/libraries/identity/googleid/googleid/1.2.1/googleid-1.2.1.pom. POM SHA-256: 9ffc2c92d69916121738a94a6d367beff451a180e8b66d2d115149e1d39e72eb. Artifact SHA-256 below refers to googleid-1.2.1.aar. AAR retains third_party_licenses.json (SHA-256 eaa13d36bec4c034519149d648482a4a36cb4fe3840439e376d5eda292a8e7fe); third_party_licenses.txt (SHA-256 2f3c85e7d82f3b84bf9ebe238fb6452e0727f2f82797dc3b12fb2e389c058381). Custom SDK license is recorded by name and official URL; included third-party notices retain their own scope, and no legal license conclusion is asserted."
+    },
+    {
+      "name": "com.google.android.gms:play-services-auth",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "versionInfo": "21.1.1",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth/21.1.1/play-services-auth-21.1.1.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-auth@21.1.1"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d73155e83e97875e93634ca9fd27d0159e2218f3347c53aeaaf0faa2efaa280f"
+        }
+      ],
+      "comment": "Selected transitive of the Google authentication dependencies in android/gradle/dependency-locks/app-patched.lockfile. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. POM URL: https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth/21.1.1/play-services-auth-21.1.1.pom. POM SHA-256: de931d61f566f280edf691240059151612c86cfb18384e2eb9cf1ed56e00436c. Artifact SHA-256 below refers to play-services-auth-21.1.1.aar. AAR retains third_party_licenses.json (SHA-256 8a31046da819774578cf3265e78110d46078111b8bde36095a3bc4fa9eb1b6b2); third_party_licenses.txt (SHA-256 13fec28edc6c6e70ee62617b75bd215c802105c5dad3b33993df518074742a24). Custom SDK license is recorded by name and official URL; included third-party notices retain their own scope, and no legal license conclusion is asserted."
+    },
+    {
+      "name": "com.google.android.gms:play-services-auth-api-phone",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "versionInfo": "18.0.2",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth-api-phone/18.0.2/play-services-auth-api-phone-18.0.2.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-auth-api-phone@18.0.2"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bfdf380e7400a9d950cba4dedc152b1bce614a87353009e851087428927cc240"
+        }
+      ],
+      "comment": "Selected transitive of the Google authentication dependencies in android/gradle/dependency-locks/app-patched.lockfile. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. POM URL: https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth-api-phone/18.0.2/play-services-auth-api-phone-18.0.2.pom. POM SHA-256: 9e0b47a568a8deb9cb0b82f3c176d69c14d603bca78bb367bb37010b4a64b184. Artifact SHA-256 below refers to play-services-auth-api-phone-18.0.2.aar. AAR retains third_party_licenses.json (SHA-256 f49b0d3754fe9430ca8e1d7578b98f9c74c912fa5182bee2db86f0c386ab7970); third_party_licenses.txt (SHA-256 653d2e7a2bb02c79b897e826df9c3b2d8e8b1a3b2cef5e29585124fa455ddaf5). Custom SDK license is recorded by name and official URL; included third-party notices retain their own scope, and no legal license conclusion is asserted."
+    },
+    {
+      "name": "com.google.android.gms:play-services-auth-base",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "versionInfo": "18.0.10",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth-base/18.0.10/play-services-auth-base-18.0.10.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-auth-base@18.0.10"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d8bff2c98d239633fb550229e527779425bfb51ff04b96ac0f12d3acba0b1f42"
+        }
+      ],
+      "comment": "Selected transitive of the Google authentication dependencies in android/gradle/dependency-locks/app-patched.lockfile. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. POM URL: https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth-base/18.0.10/play-services-auth-base-18.0.10.pom. POM SHA-256: 853ea5c46999d5435c923f7021b033bd5ec0a2f37f995b9b7a13a565518d700a. Artifact SHA-256 below refers to play-services-auth-base-18.0.10.aar. AAR retains third_party_licenses.json (SHA-256 de5f2db3626d3d298f024b4ce6f5585752fcd421b04f3844d47149fe07e42720); third_party_licenses.txt (SHA-256 483d00a5adc8beaa92a98379044b4734bd635072611cc5165ae0e1956bab0800). Custom SDK license is recorded by name and official URL; included third-party notices retain their own scope, and no legal license conclusion is asserted."
+    },
+    {
+      "name": "com.google.android.gms:play-services-auth-blockstore",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "versionInfo": "16.4.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth-blockstore/16.4.0/play-services-auth-blockstore-16.4.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-auth-blockstore@16.4.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7e70f20ca8710a783bfbdb268b35603105089e55134313c977e5ba6a0fae4938"
+        }
+      ],
+      "comment": "Selected transitive of the Google authentication dependencies in android/gradle/dependency-locks/app-patched.lockfile. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. POM URL: https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-auth-blockstore/16.4.0/play-services-auth-blockstore-16.4.0.pom. POM SHA-256: 0b2d13c0ad3d5142085c3a455f239419dffd4867cb41fce313d5c2c0de5cc475. Artifact SHA-256 below refers to play-services-auth-blockstore-16.4.0.aar. AAR retains third_party_licenses.json (SHA-256 92a50c578cf856b6af441b7fd53a2f84a4a6349fcd22f14fdd261a0ecff9faa1); third_party_licenses.txt (SHA-256 6ad96c63a0e188ed4b1451cf136a8ff8a8d5d1d8ab2f5d4684881e47d323465d). Custom SDK license is recorded by name and official URL; included third-party notices retain their own scope, and no legal license conclusion is asserted."
+    },
+    {
+      "name": "com.google.android.gms:play-services-fido",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "versionInfo": "21.0.0",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-fido/21.0.0/play-services-fido-21.0.0.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-fido@21.0.0"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e5c10dad0192a37768a412650567e2e3457c7092b00dd8c11ec97bc36f8fa860"
+        }
+      ],
+      "comment": "Selected transitive of the Google authentication dependencies in android/gradle/dependency-locks/app-patched.lockfile. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. POM URL: https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-fido/21.0.0/play-services-fido-21.0.0.pom. POM SHA-256: 232d7f09fb0e5975796eaaa4576d0b3728b36563ac537ec21dd381d773932fa6. Artifact SHA-256 below refers to play-services-fido-21.0.0.aar. AAR retains third_party_licenses.json (SHA-256 f74d0242e0aa6b99db46a0b9acaea49dfa145a66ec5699c584f09553b7fc3600); third_party_licenses.txt (SHA-256 c7852b98a25e2e4fb0cf6edeaf83dfddd2849bbee69e9e2269ceeb5306ab9cda). Custom SDK license is recorded by name and official URL; included third-party notices retain their own scope, and no legal license conclusion is asserted."
+    },
+    {
+      "name": "com.google.android.gms:play-services-identity-credentials",
+      "SPDXID": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "versionInfo": "16.0.0-alpha08",
+      "downloadLocation": "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-identity-credentials/16.0.0-alpha08/play-services-identity-credentials-16.0.0-alpha08.aar",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:maven/com.google.android.gms/play-services-identity-credentials@16.0.0-alpha08"
+        }
+      ],
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8d001d314c54d6c7c011415c4df74a55d2fec3c2a7fc9d5fff59a8d882ff941e"
+        }
+      ],
+      "comment": "Selected transitive of the Google authentication dependencies in android/gradle/dependency-locks/app-patched.lockfile. Source inventory only; resolved graph inclusion does not assert inclusion in the optimized APK or AAB. Cached public Google Maven POM and AAR inspected on 2026-10-05. POM declares Android Software Development Kit License: https://developer.android.com/studio/terms.html. POM URL: https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-identity-credentials/16.0.0-alpha08/play-services-identity-credentials-16.0.0-alpha08.pom. POM SHA-256: a3346239aee96fafca045a68b794b0527248425e189aa1f7bb85a817f0d2d9d0. Artifact SHA-256 below refers to play-services-identity-credentials-16.0.0-alpha08.aar. AAR retains third_party_licenses.json (SHA-256 c24c8840650fb045069d5b9d37bae5a0e58338c546a6845053d933741ed77878); third_party_licenses.txt (SHA-256 ce8b3284215b312d3aaeb2ca73228b1b52557ca5151bd8725b47e11a707ccf77). Custom SDK license is recorded by name and official URL; included third-party notices retain their own scope, and no legal license conclusion is asserted."
+    },
+    {
+      "name": "Google Sans",
+      "SPDXID": "SPDXRef-Package-GoogleSans",
+      "versionInfo": "14.000",
+      "downloadLocation": "https://raw.githubusercontent.com/google/fonts/main/ofl/googlesans/GoogleSans%5BGRAD%2Copsz%2Cwght%5D.ttf",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "OFL-1.1",
+      "copyrightText": "Copyright 2025 The Google Sans Project Authors (https://github.com/googlefonts/googlesans)",
+      "comment": "Unmodified variable TTF from the official Google Fonts repository, retrieved on 2026-10-05. Version 14.000 and revision 08f2ac800 read from the local TTF name table. Bundled for the voluntary Google sign-in button. OFL text and separate trademark notice are retained as assets/fonts/GoogleSans-OFL.txt and assets/fonts/GoogleSans-TRADEMARKS.md. Google and Google Sans are trademarks of Google LLC; the font license does not grant general rights to those marks. The upstream main URL is mutable; exact local file SHA-256 values are inventoried below."
+    },
+    {
+      "name": "Google G official sign-in logo",
+      "SPDXID": "SPDXRef-Package-GoogleGLogo",
+      "versionInfo": "Retrieved 2026-10-05",
+      "downloadLocation": "https://developers.google.com/static/identity/images/g-logo.png",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a"
+        }
+      ],
+      "comment": "Unmodified public Google Identity PNG, retrieved on 2026-10-05, used for the voluntary Google sign-in button. Official presentation rules: https://developers.google.com/identity/branding-guidelines. This is a Google brand asset; no open-source license is attributed to the logo, and the font OFL does not license the logo."
+    },
+    {
+      "name": "github.com/google/btree",
+      "SPDXID": "SPDXRef-Package-Go-btree",
+      "versionInfo": "v1.1.2",
+      "downloadLocation": "https://proxy.golang.org/github.com/google/btree/@v/v1.1.2.zip",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "faee8550c5fffb4ae1dadde5ccaccb13298726f9fad226bb4eed0c03c90a481d"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/github.com/google/btree@v1.1.2"
+        }
+      ],
+      "comment": "Supplementary upstream module sources redistributed with the full WireGuard module. This component is not asserted to be an Android runtime dependency. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/github.com_google_btree@v1.1.2.zip; origin https://proxy.golang.org/github.com/google/btree/@v/v1.1.2.zip; archive SHA-256 faee8550c5fffb4ae1dadde5ccaccb13298726f9fad226bb4eed0c03c90a481d. The following included license files were read and match the unchanged completeness manifest: github.com/google/btree@v1.1.2/LICENSE (SHA-256 cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted."
+    },
+    {
+      "name": "golang.org/x/time",
+      "SPDXID": "SPDXRef-Package-Go-time",
+      "versionInfo": "v0.7.0",
+      "downloadLocation": "https://proxy.golang.org/golang.org/x/time/@v/v0.7.0.zip",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ce9157f4961055bd942bbb02666ca5be9f92c92f8e64361aede9d1090df44464"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/golang.org/x/time@v0.7.0"
+        }
+      ],
+      "comment": "Supplementary upstream module sources redistributed with the full WireGuard module. This component is not asserted to be an Android runtime dependency. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/golang.org_x_time@v0.7.0.zip; origin https://proxy.golang.org/golang.org/x/time/@v/v0.7.0.zip; archive SHA-256 ce9157f4961055bd942bbb02666ca5be9f92c92f8e64361aede9d1090df44464. The following included license files were read and match the unchanged completeness manifest: golang.org/x/time@v0.7.0/LICENSE (SHA-256 911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted."
+    },
+    {
+      "name": "gvisor.dev/gvisor",
+      "SPDXID": "SPDXRef-Package-Go-gvisor",
+      "versionInfo": "v0.0.0-20250503011706-39ed1f5ac29c",
+      "downloadLocation": "https://proxy.golang.org/gvisor.dev/gvisor/@v/v0.0.0-20250503011706-39ed1f5ac29c.zip",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f325eeae7ec217a3379d2845999344533562ffe4f4ca204cc18a1f78037eb43b"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:golang/gvisor.dev/gvisor@v0.0.0-20250503011706-39ed1f5ac29c"
+        }
+      ],
+      "comment": "Supplementary upstream module sources redistributed with the full WireGuard module. This component is not asserted to be an Android runtime dependency. Source-distribution license inspection on 2026-10-07: retained upstream archive android/source-distribution/archives/gvisor.dev_gvisor@v0.0.0-20250503011706-39ed1f5ac29c.zip; origin https://proxy.golang.org/gvisor.dev/gvisor/@v/v0.0.0-20250503011706-39ed1f5ac29c.zip; archive SHA-256 f325eeae7ec217a3379d2845999344533562ffe4f4ca204cc18a1f78037eb43b. The following included license files were read and match the unchanged completeness manifest: gvisor.dev/gvisor@v0.0.0-20250503011706-39ed1f5ac29c/LICENSE (SHA-256 5af94223052169198cfa2195455b7d87209d9aa0fff4705822f328b4b272facb). Declaration describes the main upstream license; preserve additional per-file/vendor notices. Source redistribution is confirmed; complete Android linkage or aggregate license conclusion is not asserted."
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Flutter"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-UrlLauncher"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-WireGuardAndroidTunnel"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardAndroidTunnel",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-WireGuardGo"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-OpenVPN3Core",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-OpenSSL"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-OpenVPN3Core",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Asio"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-OpenVPN3Core",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-fmt"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-OpenVPN3Core",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-lz4"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-AndroidXCoreKtx"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-KotlinCoroutinesAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-KotlinCoroutinesAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Kotlin"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Flutter",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-AndroidGradlePlugin",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Gradle",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-AndroidNDK",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-JDK17",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-OpenVPN3Core"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-async",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-boolean-selector",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-characters",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-clock",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-collection",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-crypto"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-fake-async",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Pub-flutter-lints",
+      "relationshipType": "DEV_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-flutter-localizations"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Pub-flutter-test",
+      "relationshipType": "DEV_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-flutter-web-plugins",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-intl"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-leak-tracker",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-leak-tracker-flutter-testing",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-leak-tracker-testing",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-lints",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-matcher",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-material-color-utilities",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-meta",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-path",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-plugin-platform-interface",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-sky-engine",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-source-span",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-stack-trace",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-stream-channel",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-string-scanner",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-term-glyph",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-test-api",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-typed-data",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-url-launcher-android",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-url-launcher-ios",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-url-launcher-linux",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-url-launcher-macos",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-url-launcher-platform-interface",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-url-launcher-web",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-url-launcher-windows",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-vector-math",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-vm-service",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Pub-web",
+      "comment": "Resolved entry of pubspec.lock; runtime/test/platform reachability is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.collection-collection"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-junit-junit",
+      "relationshipType": "TEST_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-org.json-json",
+      "relationshipType": "TEST_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-org.jetbrains.kotlinx-kotlinx-coroutines-test",
+      "relationshipType": "TEST_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.test-core-ktx",
+      "relationshipType": "TEST_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.test.ext-junit",
+      "relationshipType": "TEST_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.test-runner",
+      "relationshipType": "TEST_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.test.uiautomator-uiautomator",
+      "relationshipType": "TEST_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Go",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-AndroidSDKPlatform",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-CMake",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-FuzeVPNAndroid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardGo",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Go-sys",
+      "comment": "Module graph entry of the vendored Android bridge; target-specific inclusion is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardGo",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Go-crypto",
+      "comment": "Module graph entry of the vendored Android bridge; target-specific inclusion is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardGo",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Go-net",
+      "comment": "Module graph entry of the vendored Android bridge; target-specific inclusion is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardGo",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Go-wintun",
+      "comment": "Module graph entry of the vendored Android bridge; target-specific inclusion is not inferred."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardAndroidTunnel",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-WireGuardTools"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-ElfCleaner",
+      "relationshipType": "BUILD_DEPENDENCY_OF",
+      "relatedSpdxElement": "SPDXRef-Package-WireGuardAndroidTunnel"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-Archivo"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-IBMPlexMono"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-Twemoji"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-CLDR"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Archivo",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-Archivo-Variable-ttf"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-IBMPlexMono",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-IBMPlexMono-Regular-ttf"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-IBMPlexMono",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-IBMPlexMono-SemiBold-ttf"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-NotoSansArabic"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-NotoSansArabic",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-NotoSansArabic-ttf"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-NotoSansArabic",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-NotoSansArabic-OFL-txt"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.android.billingclient-billing"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-json"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-proto"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-javax.inject-javax.inject"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.collection-collection"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.collection-collection"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-places-placereport"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-places-placereport",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-json",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-json",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-proto",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-proto",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.credentials-credentials"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.credentials-credentials",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.annotation-annotation",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.credentials-credentials",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.credentials-credentials",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-androidx.collection-collection",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "comment": "Dependency declared by the inspected POM, linked to the selected inventoried version. This source inventory does not enumerate every transitive dependency or prove optimized runtime reachability."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-GoogleSans"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-FuzeVPNAndroid",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-Package-GoogleGLogo"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-GoogleSans",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-GoogleSans-Variable-ttf"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-GoogleSans",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-GoogleSans-OFL-txt"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-GoogleSans",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-GoogleSans-TRADEMARKS-md"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-GoogleGLogo",
+      "relationshipType": "CONTAINS",
+      "relatedSpdxElement": "SPDXRef-File-Google-G-png"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardGo",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Go-btree",
+      "comment": "Supplementary source archive distributed for the complete upstream WireGuard module; no Android runtime inclusion asserted."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardGo",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Go-time",
+      "comment": "Supplementary source archive distributed for the complete upstream WireGuard module; no Android runtime inclusion asserted."
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-WireGuardGo",
+      "relationshipType": "OTHER",
+      "relatedSpdxElement": "SPDXRef-Package-Go-gvisor",
+      "comment": "Supplementary source archive distributed for the complete upstream WireGuard module; no Android runtime inclusion asserted."
+    }
+  ],
+  "files": [
+    {
+      "fileName": "./assets/fonts/Archivo-Variable.ttf",
+      "SPDXID": "SPDXRef-File-Archivo-Variable-ttf",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0e094a7d3c7c4c25cf1310c4b30014f1dae9332220b1c2c88f4fa996f0b05053"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "OFL-1.1"
+      ],
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./assets/fonts/IBMPlexMono-Regular.ttf",
+      "SPDXID": "SPDXRef-File-IBMPlexMono-Regular-ttf",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "OFL-1.1"
+      ],
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./assets/fonts/IBMPlexMono-SemiBold.ttf",
+      "SPDXID": "SPDXRef-File-IBMPlexMono-SemiBold-ttf",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d3c38e55c78f5b0f28009fddba4834ec503278936a5986032424c9bd2d23aa46"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "OFL-1.1"
+      ],
+      "copyrightText": "NOASSERTION"
+    },
+    {
+      "fileName": "./assets/fonts/NotoSansArabic.ttf",
+      "SPDXID": "SPDXRef-File-NotoSansArabic-ttf",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "63111b5b2e074dd48cc67692e0a2726d86ee94c1c37fe8598257b7b4e87e869e"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "OFL-1.1"
+      ],
+      "copyrightText": "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)"
+    },
+    {
+      "fileName": "./assets/fonts/NotoSansArabic-OFL.txt",
+      "SPDXID": "SPDXRef-File-NotoSansArabic-OFL-txt",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "07fc70bfeb985cc1a87a8587d0a0c80bab11c86c9dc3fd95b6f0cb332f983e96"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "OFL-1.1"
+      ],
+      "copyrightText": "Copyright 2022 The Noto Project Authors (https://github.com/notofonts/arabic)"
+    },
+    {
+      "fileName": "./assets/fonts/GoogleSans-Variable.ttf",
+      "SPDXID": "SPDXRef-File-GoogleSans-Variable-ttf",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "OFL-1.1"
+      ],
+      "copyrightText": "Copyright 2025 The Google Sans Project Authors (https://github.com/googlefonts/googlesans)",
+      "comment": "Public upstream source: https://raw.githubusercontent.com/google/fonts/main/ofl/googlesans/GoogleSans%5BGRAD%2Copsz%2Cwght%5D.ttf. Retrieved on 2026-10-05; exact local bytes are identified by SHA-256."
+    },
+    {
+      "fileName": "./assets/fonts/GoogleSans-OFL.txt",
+      "SPDXID": "SPDXRef-File-GoogleSans-OFL-txt",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2b75ef20f13d83a7514aee452c4782c20cdc9ff2dee17600f44d37a06d4fb958"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "OFL-1.1"
+      ],
+      "copyrightText": "Copyright 2025 The Google Sans Project Authors (https://github.com/googlefonts/googlesans)",
+      "comment": "Public upstream source: https://raw.githubusercontent.com/google/fonts/main/ofl/googlesans/OFL.txt. Retrieved on 2026-10-05; exact local bytes are identified by SHA-256."
+    },
+    {
+      "fileName": "./assets/fonts/GoogleSans-TRADEMARKS.md",
+      "SPDXID": "SPDXRef-File-GoogleSans-TRADEMARKS-md",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "215bc8c1ce46d1b81531f33ebb5af201e7a5da76b8f3ae4c705336fd70fc89e1"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "NOASSERTION"
+      ],
+      "copyrightText": "NOASSERTION",
+      "comment": "Public upstream source: https://raw.githubusercontent.com/google/fonts/main/ofl/googlesans/TRADEMARKS.md. Retrieved on 2026-10-05; exact local bytes are identified by SHA-256."
+    },
+    {
+      "fileName": "./assets/images/google-g.png",
+      "SPDXID": "SPDXRef-File-Google-G-png",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "NOASSERTION"
+      ],
+      "copyrightText": "NOASSERTION",
+      "comment": "Public upstream source: https://developers.google.com/static/identity/images/g-logo.png. Retrieved on 2026-10-05; exact local bytes are identified by SHA-256."
+    },
+    {
+      "fileName": "./licenses/WIREGUARD-NETLINK-LGPL-2.1.txt",
+      "SPDXID": "SPDXRef-File-WireGuard-Netlink-LGPL-2-1",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5749785c8bdefafcb5d798270ed0a967036fe2ca63dcedade1627565dfef81d2"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseInfoInFiles": [
+        "LGPL-2.1-or-later"
+      ],
+      "copyrightText": "Copyright (C) 1991, 1999 Free Software Foundation, Inc.",
+      "comment": "Full FSF LGPL 2.1 text, retrieved unchanged from official SPDX license-list-data v3.26.0: https://raw.githubusercontent.com/spdx/license-list-data/v3.26.0/text/LGPL-2.1-or-later.txt. Applies as a supplemental license copy for wireguard-tools/src/netlink.h (LGPL-2.1+); does not relicense or modify native source."
+    }
+  ]
+}

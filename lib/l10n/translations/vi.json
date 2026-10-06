@@ -1,0 +1,931 @@
+{
+  "locale": "vi",
+  "arb": {
+    "accountRestoration_title": "Tài khoản tạm thời không khả dụng",
+    "accountRestoration_message": "Phiên của bạn vẫn được giữ lại. Hãy thử lại để khôi phục tài khoản; bạn vẫn có thể quản lý kết nối VPN tại đây.",
+    "action_retry": "Thử lại",
+    "session_endingTitle": "Đang kết thúc phiên",
+    "session_ending": "Phiên của bạn đã bị vô hiệu hóa. Đang dừng VPN và xóa phiên…",
+    "session_stopFailed": "Chưa xác nhận việc tắt VPN. Hãy thử lại trước khi đăng nhập lần nữa.",
+    "session_cleanupFailed": "VPN đã dừng nhưng chưa xác nhận việc xóa phiên. Hãy thử dọn dẹp lại.",
+    "session_retryStop": "Thử tắt lại",
+    "session_retryCleanup": "Thử dọn dẹp lại",
+    "@@locale": "vi",
+    "appTitle": "FuzeVPN",
+    "startup": "Đang chuẩn bị FuzeVPN an toàn…",
+    "nav_connection": "Kết nối",
+    "nav_locations": "Vị trí",
+    "nav_account": "Tài khoản",
+    "nav_devices": "Thiết bị",
+    "nav_settings": "Cài đặt",
+    "action_refresh": "Làm mới",
+    "auth_tab_login": "Đăng nhập",
+    "auth_tab_register": "Đăng ký",
+    "auth_stepAccount": "Tài khoản",
+    "auth_stepIdentity": "Danh tính",
+    "auth_stepAddress": "Địa chỉ và thỏa thuận",
+    "auth_stepProgress": "Bước {current} trên {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "VPN của bạn, đơn giản hơn.",
+    "auth_keysLocal": "Các khóa VPN riêng tư của bạn được lưu trên thiết bị này.",
+    "form_email": "Địa chỉ email",
+    "form_password": "Mật khẩu",
+    "form_showPassword": "Hiện mật khẩu",
+    "form_hidePassword": "Ẩn mật khẩu",
+    "form_passwordMin": "8–72 byte UTF-8. Một số ký tự sử dụng nhiều hơn một byte.",
+    "form_firstName": "Tên",
+    "form_lastName": "Họ",
+    "form_phone": "Số điện thoại (+33612345678)",
+    "form_address": "Địa chỉ",
+    "form_address2": "Dòng địa chỉ 2 (không bắt buộc)",
+    "form_postalCode": "Mã bưu chính",
+    "form_city": "Thành phố",
+    "form_country": "Mã quốc gia (ví dụ: FR)",
+    "action_login": "Đăng nhập",
+    "action_createAccount": "Tạo tài khoản",
+    "action_createMyAccount": "Tạo tài khoản của tôi",
+    "action_next": "Tiếp tục",
+    "action_previous": "Quay lại",
+    "action_forgotPassword": "Quên mật khẩu?",
+    "auth_noAccount": "Bạn chưa có tài khoản?",
+    "auth_requiredInformation": "Tạo tài khoản của bạn qua ba bước.",
+    "auth_termsPrefix": "Tôi chấp nhận ",
+    "auth_termsLink": "điều khoản sử dụng",
+    "auth_privacyPrefix": "Tôi chấp nhận ",
+    "auth_privacyLink": "chính sách quyền riêng tư",
+    "auth_consentRequired": "Bạn phải đồng ý để tạo tài khoản.",
+    "validation_required": "Bạn phải điền trường này.",
+    "validation_email": "Hãy nhập một địa chỉ email hợp lệ.",
+    "validation_password": "Mật khẩu quá ngắn: tối thiểu 8 byte UTF-8.",
+    "validation_passwordTooLong": "Mật khẩu quá dài: tối đa 72 byte UTF-8.",
+    "validation_phone": "Hãy sử dụng định dạng quốc tế, ví dụ: +33612345678.",
+    "validation_country": "Hãy sử dụng mã quốc gia gồm hai chữ cái, ví dụ: FR.",
+    "passwordReset_title": "Đặt lại mật khẩu",
+    "passwordReset_description": "Nhập địa chỉ email tài khoản của bạn để yêu cầu liên kết đặt lại mật khẩu.",
+    "passwordReset_send": "Gửi liên kết",
+    "connection_title": "Kết nối của bạn",
+    "connection_subtitle": "Chọn một vị trí, sau đó bật VPN.",
+    "connection_prepare": "Sẵn sàng kết nối?",
+    "connection_advancedOptions": "Tùy chọn nâng cao",
+    "connection_location": "Vị trí",
+    "connection_chooseLocation": "Chọn một vị trí",
+    "connection_protocol": "Giao thức",
+    "connection_connect": "Kết nối",
+    "connection_connecting": "Đang kết nối…",
+    "connection_disconnect": "Ngắt kết nối",
+    "connection_disconnecting": "Đang ngắt kết nối",
+    "connection_locationChange": "Đang thay đổi vị trí…",
+    "connection_unavailable": "{protocol} không khả dụng",
+    "connection_activeLocation": "Vị trí đang hoạt động",
+    "connection_duration": "Thời lượng",
+    "connection_received": "Đã nhận",
+    "connection_sent": "Đã gửi",
+    "connection_lastHandshake": "Lần trao đổi bảo mật gần nhất",
+    "connection_handshakeAgo": "{duration} trước",
+    "verification_title": "Xác nhận địa chỉ email của bạn",
+    "verification_message": "Xác nhận địa chỉ email của bạn để sử dụng VPN trên điện thoại này.",
+    "verification_resend": "Gửi lại email",
+    "migration_title": "Thay đổi vị trí",
+    "migration_draining": "Đang chuẩn bị thay đổi vị trí…",
+    "migration_activating": "Đang kích hoạt máy chủ mới…",
+    "migration_ready": "Đã cập nhật vị trí.",
+    "migration_blocked": "Việc thay đổi vị trí cần máy chủ can thiệp. Hãy thử lại sau hoặc liên hệ bộ phận hỗ trợ.",
+    "migration_progress": "Tiến trình thay đổi vị trí",
+    "migration_retryDelay": "Khoảng thời gian giữa các lần kiểm tra: {seconds} giây.",
+    "migration_resume": "Tiếp tục thay đổi vị trí",
+    "status_authorizing": "Cần cấp quyền",
+    "status_authorizingDetail": "Chấp nhận yêu cầu của Android để cho phép VPN.",
+    "status_preparing": "Đang chuẩn bị",
+    "status_preparingDetail": "Đang chuẩn bị kết nối bảo mật của bạn.",
+    "status_reconnecting": "Đang kết nối lại…",
+    "status_reconnectingDetail": "Kết nối bị gián đoạn. VPN đang cố gắng kết nối lại.",
+    "status_connecting": "Đang kết nối",
+    "status_connectingDetail": "Đang kết nối với máy chủ VPN…",
+    "status_connected": "Đã kết nối",
+    "status_connectedDetail": "Kết nối VPN của bạn đang hoạt động.",
+    "status_disconnecting": "Đang ngắt kết nối",
+    "status_disconnectingDetail": "Kết nối VPN của bạn đang dừng.",
+    "status_error": "Kết nối không khả dụng",
+    "status_errorDetail": "Chưa xác nhận kết nối VPN. Hãy thử lại.",
+    "status_idle": "Đã ngắt kết nối",
+    "status_idleDetail": "Kết nối VPN để bảo vệ kết nối của bạn.",
+    "trust_note": "Đóng ứng dụng không dừng VPN. Để dừng VPN, hãy chọn Ngắt kết nối.",
+    "locations_none": "Hiện không có vị trí nào khả dụng.",
+    "locations_available": "Chọn vị trí tiếp theo của bạn.",
+    "locations_selected": "Vị trí đã chọn",
+    "locations_select": "Chọn vị trí này",
+    "locations_lockedTunnel": "Ngắt kết nối VPN để thay đổi vị trí.",
+    "locations_lockedMigration": "Chờ quá trình thay đổi vị trí hoàn tất.",
+    "devices_title": "Các thiết bị của bạn",
+    "devices_used": "{count} / {limit} thiết bị",
+    "devices_refresh": "Làm mới thiết bị",
+    "devices_empty": "Chưa có thiết bị VPN nào được đăng ký.",
+    "devices_firstConnection": "Điện thoại của bạn sẽ được thêm vào lần kết nối đầu tiên.",
+    "devices_thisDevice": "Thiết bị này",
+    "devices_added": "Đã thêm vào {date}",
+    "action_remove": "Xóa",
+    "settings_title": "Cài đặt",
+    "settings_subtitle": "Tất cả tùy chọn và tài khoản của bạn ở cùng một nơi.",
+    "settings_appearance": "Giao diện",
+    "settings_language": "Ngôn ngữ",
+    "settings_languageDescription": "Ngôn ngữ bạn chọn cũng được áp dụng cho các thông báo VPN.",
+    "settings_account": "Tài khoản",
+    "settings_signOut": "Đăng xuất",
+    "settings_privacy": "Chính sách quyền riêng tư",
+    "settings_terms": "Điều khoản sử dụng",
+    "settings_security": "Bảo mật và minh bạch",
+    "settings_licenses": "Giấy phép thành phần",
+    "settings_licensesDetail": "Phần mềm được sử dụng trong ứng dụng",
+    "settings_background": "VPN vẫn hoạt động khi bạn rời ứng dụng. Để dừng VPN, hãy chọn Ngắt kết nối trong tab Kết nối.",
+    "theme_system": "Theo hệ thống",
+    "theme_light": "Sáng",
+    "theme_dark": "Tối",
+    "language_system": "Ngôn ngữ điện thoại",
+    "language_fr": "Tiếng Pháp",
+    "language_en": "Tiếng Anh",
+    "language_es": "Tiếng Tây Ban Nha",
+    "language_de": "Tiếng Đức",
+    "dialog_removeDevice": "Xóa thiết bị này?",
+    "dialog_removeCurrent": "Điện thoại này sẽ ngắt kết nối khỏi VPN và mất quyền truy cập. Dữ liệu kết nối VPN của điện thoại sẽ được xóa sau khi máy chủ xác nhận.",
+    "dialog_removeOther": "Quyền truy cập VPN của “{name}” sẽ bị thu hồi. Bạn không thể hoàn tác thao tác này.",
+    "dialog_signOut": "Đăng xuất?",
+    "dialog_signOutMessage": "VPN sẽ dừng và bạn sẽ phải đăng nhập lại. Các khóa VPN đã mã hóa của bạn vẫn được giữ trên điện thoại này để sử dụng cho lần kết nối tiếp theo.",
+    "action_cancel": "Hủy",
+    "action_signOut": "Đăng xuất",
+    "notice_close": "Bỏ qua thông báo",
+    "notice_sessionExpired_title": "Phiên đã hết hạn",
+    "notice_sessionExpired_message": "Phiên của bạn đã hết hạn. Hãy đăng nhập lại.",
+    "notice_connectionFailed_title": "Kết nối thất bại",
+    "notice_invalidCredentials_message": "Địa chỉ email hoặc mật khẩu không chính xác.",
+    "notice_emailVerification_title": "Cần xác nhận email",
+    "notice_emailVerification_message": "Hãy xác nhận địa chỉ email trước khi thêm thiết bị VPN.",
+    "notice_rateLimited_title": "Quá nhiều lần thử",
+    "notice_deviceLimit_title": "Đã đạt giới hạn 2 thiết bị",
+    "notice_deviceLimit_message": "Hãy xóa một thiết bị hiện có trước khi thêm thiết bị khác.",
+    "notice_identityRenewal_title": "Cần gia hạn danh tính VPN",
+    "notice_identityRenewal_message": "Danh tính này đã bị xóa. Hãy tạo một danh tính cục bộ mới.",
+    "notice_migrationPending_title": "Đang thay đổi vị trí",
+    "notice_migrationPending_message": "Một quá trình thay đổi vị trí đang diễn ra.",
+    "notice_migrationBlocked_title": "Thay đổi vị trí bị chặn",
+    "notice_migrationBlocked_message": "Việc thay đổi vị trí cần máy chủ can thiệp. Hãy thử lại sau hoặc liên hệ bộ phận hỗ trợ.",
+    "notice_targetUnavailable_title": "Máy chủ tạm thời không khả dụng",
+    "notice_targetUnavailable_message": "Máy chủ này tạm thời không khả dụng.",
+    "notice_networkUnavailable_title": "Kết nối Internet không khả dụng",
+    "notice_networkUnavailable_message": "Hãy kiểm tra kết nối của bạn rồi thử lại.",
+    "notice_permissionDenied_title": "Quyền VPN bị từ chối",
+    "notice_permissionDenied_message": "Hãy bắt đầu lại kết nối và chấp nhận yêu cầu cấp quyền của Android.",
+    "notice_wireguardTimeout_title": "Máy chủ không phản hồi",
+    "notice_wireguardTimeout_message": "Kết nối WireGuard mất quá nhiều thời gian. Hãy thử lại hoặc chọn vị trí khác.",
+    "notice_tlsFailed_title": "Kết nối bảo mật bị từ chối",
+    "notice_tlsFailed_message": "Máy chủ không chấp nhận kết nối OpenVPN. Hãy thử lại. Nếu vấn đề vẫn tiếp diễn, hãy chạy chẩn đoán.",
+    "notice_tunRejected_title": "Android từ chối giao diện VPN",
+    "notice_tunRejected_message": "Android từ chối cấu hình mạng mà OpenVPN yêu cầu.",
+    "notice_openvpnStart_title": "Không thể khởi động OpenVPN",
+    "notice_openvpnStart_message": "Công cụ OpenVPN không thể hoàn tất quá trình khởi động. Hãy thử lại. Nếu vấn đề vẫn tiếp diễn, hãy liên hệ bộ phận hỗ trợ.",
+    "notice_diagnosticCode": "Mã chẩn đoán: {code}",
+    "notice_generic_title": "Kết nối VPN thất bại",
+    "notice_generic_message": "Đã xảy ra lỗi. Hãy thử lại sau.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Đã tạo tài khoản} password_reset_sent{Đã nhận yêu cầu đặt lại mật khẩu} verification_email_sent{Đã gửi email xác minh} location_migration_pending{Đang thay đổi vị trí} vpn_sign_in_required{Cần đăng nhập} protocol_unavailable_at_location{Giao thức không khả dụng} vpn_permission_denied{Quyền VPN bị từ chối} revoked_identity_device_limit{Đã đạt giới hạn 2 thiết bị} tunnel_start_unexpected{Không thể khởi động VPN} flutter_disconnect_timeout{Chưa xác nhận ngắt kết nối} flutter_disconnect_unexpected{Không thể ngắt kết nối} device_revoked{Đã xóa thiết bị} revoke_unexpected{Không thể xóa thiết bị} identity_renewal_unexpected{Không thể gia hạn danh tính} openvpn_renewal_unexpected{Không thể gia hạn OpenVPN} location_migration_blocked{Thay đổi vị trí bị chặn} location_migration_slow{Quá trình thay đổi vị trí vẫn đang diễn ra} location_migration_conflict{Cần làm mới để thay đổi vị trí} location_migration_verification_failed{Chưa xác nhận thay đổi vị trí} location_migration_device_changed{Thiết bị đã thay đổi trong quá trình thay đổi vị trí} tunnel_stop_failed{Thay đổi vị trí không khả dụng} other{Thao tác thất bại}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Đã tạo tài khoản nhưng không thể gửi email xác minh. Hãy dùng chức năng gửi lại trong ứng dụng.} password_reset_sent{Đã nhận yêu cầu của bạn. Nếu có tài khoản khớp với địa chỉ này, bạn có thể nhận được email. Vui lòng kiểm tra cả thư mục spam.} verification_email_sent{Một email xác minh mới vừa được gửi.} location_migration_pending{Quá trình chuyển đến {target} vẫn đang được chuẩn bị. Bạn có thể tiếp tục mà không cần tạo lại thiết bị.} vpn_sign_in_required{Hãy đăng nhập vào tài khoản trước khi khởi động VPN.} protocol_unavailable_at_location{Vị trí này không cung cấp giao thức đã chọn. Hãy làm mới danh sách vị trí hoặc chọn giao thức khác.} vpn_permission_denied{Android đã từ chối quyền VPN. Hãy bắt đầu lại kết nối và chấp nhận yêu cầu của hệ thống.} revoked_identity_device_limit{Quyền truy cập VPN của thiết bị này đã bị xóa và đã đạt giới hạn thiết bị. Hãy xóa một thiết bị trong Tài khoản → Quản lý thiết bị của tôi.} tunnel_start_unexpected{Một lỗi không mong muốn đã làm gián đoạn quá trình chuẩn bị đường hầm. Hãy kiểm tra mã chẩn đoán và thử lại.} flutter_disconnect_timeout{Android không xác nhận kịp thời rằng VPN đã dừng. Hãy thử dừng lại.} flutter_disconnect_unexpected{Một lỗi không mong muốn khiến không thể xác nhận đường hầm đã dừng.} device_revoked{Quyền truy cập VPN của thiết bị đã bị thu hồi và các thông tin bí mật cục bộ đã bị xóa.} revoke_unexpected{Không thể xóa thiết bị. Hãy làm mới danh sách rồi thử lại.} identity_renewal_unexpected{Không thể tạo danh tính VPN mới. Hãy làm mới danh sách thiết bị rồi thử lại.} openvpn_renewal_unexpected{Không thể gia hạn hồ sơ OpenVPN. Hãy thử lại hoặc kiểm tra mã chẩn đoán.} location_migration_blocked{Máy chủ hiện không thể hoàn tất thay đổi này. Thiết bị và danh tính cục bộ của thiết bị vẫn được giữ lại.} location_migration_slow{Máy chủ vẫn đang chuẩn bị chuyển đến {target}. Hãy dùng chức năng Tiếp tục sau ít phút.} location_migration_conflict{Trạng thái thiết bị đã thay đổi trên máy chủ. Hãy làm mới danh sách thiết bị rồi tiếp tục thay đổi.} location_migration_verification_failed{Máy chủ không xác nhận vị trí mới. Danh tính cục bộ trước đó vẫn được giữ lại.} location_migration_device_changed{Thiết bị do máy chủ trả về không còn khớp với thiết bị đang được thay đổi. Hãy làm mới danh sách thiết bị trước khi thử lại.} tunnel_stop_failed{Phải dừng hoàn toàn đường hầm trước đó trước khi tạo kết nối mới.} other{Không thể hoàn tất thao tác. Hãy thử lại hoặc gửi mã chẩn đoán cho bộ phận hỗ trợ.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Phiên đã hết hạn} invalid_credentials{Đăng nhập thất bại} email_verification_required{Cần xác nhận email} verification_email_cooldown{Email đã được gửi} rate_limited{Quá nhiều lần thử} invalid_registration{Cần sửa thông tin} email_exists{Tài khoản đã tồn tại} invalid_profile{Hồ sơ không hợp lệ} invalid_device{Thiết bị không hợp lệ} invalid_location{Vị trí không khả dụng} device_limit{Đã đạt giới hạn 2 thiết bị} device_exists{Danh tính VPN đã được sử dụng} device_identity_revoked{Cần gia hạn danh tính VPN} device_location_locked{Cần làm mới để thay đổi vị trí} location_migration_pending{Đang thay đổi vị trí} location_migration_blocked{Thay đổi vị trí bị chặn} target_ca_mismatch{Máy chủ OpenVPN không tương thích} location_migration_conflict{Cần làm mới để thay đổi vị trí} server_full{Máy chủ đã đầy} capacity_unavailable{Vị trí tạm thời không khả dụng} target_unavailable{Máy chủ tạm thời không khả dụng} not_found{Không tìm thấy mục} invalid_openvpn_csr{Danh tính OpenVPN không hợp lệ} openvpn_profile_exists{Hồ sơ OpenVPN đã tồn tại} openvpn_profile_revoked{Hồ sơ OpenVPN đã bị thu hồi} openvpn_operation_pending{Đang thực hiện thao tác OpenVPN} openvpn_operation_terminal{Thao tác OpenVPN bị gián đoạn} openvpn_address_unavailable{Địa chỉ OpenVPN không khả dụng} openvpn_profile_conflict{Xung đột OpenVPN} openvpn_signer_unavailable{OpenVPN không khả dụng} email_delivery_unavailable{Email không khả dụng} invalid_token{Liên kết không hợp lệ} network_unavailable{Kết nối Internet không khả dụng} invalid_json{Yêu cầu không hợp lệ} invalid_api_response{Phản hồi máy chủ không hợp lệ} ipv6_unavailable{IPv6 không khả dụng} invalid_ip_families{Cấu hình mạng bị từ chối} other{Dịch vụ không khả dụng}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Phiên của bạn đã hết hạn. Hãy đăng nhập lại.} invalid_credentials{Địa chỉ email hoặc mật khẩu không chính xác.} email_verification_required{Hãy xác nhận địa chỉ email trước khi thêm thiết bị VPN.} invalid_registration{Hãy kiểm tra thông tin và các chấp thuận được yêu cầu.} email_exists{Đã có tài khoản sử dụng địa chỉ email này.} invalid_profile{Hãy kiểm tra thông tin hồ sơ của bạn.} invalid_device{Tên hoặc danh tính cục bộ của thiết bị này không hợp lệ.} invalid_location{Hãy làm mới danh sách vị trí rồi thử lại.} device_limit{Hãy xóa một thiết bị hiện có trước khi thêm thiết bị khác.} device_exists{Danh tính VPN này đã được liên kết với tài khoản khác.} device_identity_revoked{Danh tính này đã bị xóa. Phải tạo một danh tính cục bộ mới.} device_location_locked{Vị trí của thiết bị này vừa thay đổi. Ứng dụng sẽ tiếp tục quá trình đang diễn ra.} location_migration_pending{Một quá trình thay đổi vị trí đang diễn ra.} location_migration_blocked{Việc thay đổi vị trí cần máy chủ can thiệp. Hãy thử lại sau hoặc liên hệ bộ phận hỗ trợ.} target_ca_mismatch{Máy chủ này chưa tương thích với hồ sơ OpenVPN hiện tại.} location_migration_conflict{Hãy làm mới danh sách thiết bị rồi thử thay đổi vị trí lại.} server_full{Vị trí này đã đạt giới hạn kết nối. Hãy chọn vị trí khác hoặc thử lại sau.} capacity_unavailable{Hiện không thể xác nhận vị trí này có khả dụng hay không. Hãy chọn vị trí khác hoặc thử lại sau.} target_unavailable{Máy chủ này tạm thời không khả dụng.} not_found{Mục này không còn khả dụng trên tài khoản của bạn.} invalid_openvpn_csr{Hãy tạo danh tính OpenVPN mới rồi thử lại.} openvpn_profile_exists{Thiết bị này đã có hồ sơ OpenVPN.} openvpn_profile_revoked{Hãy gia hạn hồ sơ OpenVPN để tiếp tục.} openvpn_operation_pending{Thay đổi vẫn đang được cập nhật. Hãy thử lại sau.} openvpn_operation_terminal{Hãy tạo danh tính OpenVPN mới rồi thử lại.} openvpn_address_unavailable{Hiện không có địa chỉ OpenVPN khả dụng.} openvpn_profile_conflict{Hồ sơ đã thay đổi. Hãy làm mới danh sách thiết bị rồi thử lại.} openvpn_signer_unavailable{Dịch vụ OpenVPN tạm thời không khả dụng.} email_delivery_unavailable{Không thể gửi email. Hãy thử lại sau.} invalid_token{Liên kết này không hợp lệ hoặc đã hết hạn. Hãy yêu cầu liên kết mới.} network_unavailable{Hãy kiểm tra kết nối Internet rồi thử lại.} invalid_json{Hãy kiểm tra thông tin đã nhập rồi thử lại.} invalid_api_response{Máy chủ trả về phản hồi không mong đợi. Hãy thử lại sau.} ipv6_unavailable{Hiện máy chủ không thể kích hoạt IPv6. Hãy thử lại sau.} invalid_ip_families{Cấu hình đường hầm chưa hoàn chỉnh hoặc không khớp với các địa chỉ được cấp quyền. Hãy thử lại từ ứng dụng.} other{Đã xảy ra lỗi máy chủ. Hãy thử lại sau.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Hãy thử lại sau ít phút.",
+    "notice_retryAfter": "Hãy thử lại sau {seconds} giây.",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "Object"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Không thể tiếp tục VPN hệ thống} system_vpn_resume_corrupt{Dữ liệu tiếp tục VPN hệ thống không hợp lệ} system_vpn_resume_session_invalid{Phiên tiếp tục VPN không hợp lệ} system_vpn_resume_identity_changed{Danh tính VPN đã thay đổi} system_vpn_resume_identity_invalid{Danh tính tiếp tục VPN không hợp lệ} system_vpn_resume_storage_failed{Không có bộ nhớ tiếp tục VPN} system_vpn_resume_network_timeout{VPN không có mạng để tiếp tục} system_vpn_resume_blocked{Tiếp tục VPN bị chặn} system_vpn_resume_failed{Tiếp tục VPN thất bại} system_vpn_resume_error_invalid{Lỗi tiếp tục VPN không hợp lệ} wireguard_identity_store_failed{Chưa lưu danh tính WireGuard} wireguard_identity_unavailable{Danh tính WireGuard không khả dụng} vpn_host_destroyed{Máy chủ VPN Android đã dừng} vpn_host_unavailable{Máy chủ VPN Android không khả dụng} vpn_permission_required{Cần cấp quyền VPN} vpn_permission_denied{Quyền VPN bị từ chối} vpn_permission_request_failed{Không thể yêu cầu quyền} wireguard_foreground_service_unavailable{Dịch vụ WireGuard không khả dụng} wireguard_identity_invalid{Khóa WireGuard cục bộ không hợp lệ} wireguard_identity_in_use{Danh tính WireGuard đang được sử dụng} wireguard_configuration_invalid{Cấu hình WireGuard không hợp lệ} wireguard_operation_pending{Thao tác WireGuard vẫn đang hoạt động} wireguard_start_failed{WireGuard từ chối khởi động} wireguard_stop_timeout{Chưa xác nhận WireGuard đã dừng} wireguard_handshake_timeout{WireGuard không phản hồi} openvpn_connection_timeout{OpenVPN không phản hồi} openvpn_core_unavailable{Công cụ OpenVPN không khả dụng} openvpn_operation_pending{Phiên OpenVPN vẫn đang hoạt động} openvpn_stop_timeout{Chưa xác nhận OpenVPN đã dừng} openvpn_profile_unavailable{Thiếu hồ sơ OpenVPN cục bộ} openvpn_native_failed{Cuộc gọi OpenVPN gốc bị gián đoạn} openvpn_key_generation_failed{Không thể tạo khóa OpenVPN P-256} openvpn_csr_generation_failed{Không thể tạo CSR OpenVPN} openvpn_identity_store_failed{Chưa lưu danh tính OpenVPN} openvpn_identity_clear_failed{Xóa danh tính OpenVPN chưa hoàn tất} openvpn_identity_in_use{Danh tính OpenVPN vẫn đang được sử dụng} openvpn_tls_verification_required{Thiếu xác minh TLS OpenVPN} openvpn_cipher_invalid{Mật mã OpenVPN không hợp lệ} openvpn_profile_rejected{Hồ sơ OpenVPN bị từ chối} openvpn_identity_inconsistent{Danh tính OpenVPN không nhất quán} tls_handshake_failed{Đàm phán OpenVPN bị từ chối} tls_alert_unknown_ca{Chứng chỉ máy khách OpenVPN không được nhận diện} tls_alert_bad_certificate{Chứng chỉ máy khách OpenVPN bị từ chối} tls_alert_unsupported_certificate{Chứng chỉ OpenVPN không được hỗ trợ} tls_client_certificate_required{Cần chứng chỉ máy khách OpenVPN} tls_alert_misc{Cảnh báo TLS OpenVPN} tls_signature_algorithm_rejected{Chữ ký OpenVPN không được hỗ trợ} tls_handshake_rejected{Đàm phán TLS OpenVPN bị từ chối} tls_version_rejected{Phiên bản TLS OpenVPN không tương thích} tls_certificate_expired{Chứng chỉ TLS đã hết hạn} tls_certificate_revoked{Chứng chỉ TLS đã bị thu hồi} transport_failed{Không thể truy cập máy chủ OpenVPN} tun_configuration_rejected{Không thể tạo giao diện OpenVPN} tun_setup_failed{Thiết lập TUN OpenVPN thất bại} tun_interface_create_failed{Tạo giao diện OpenVPN thất bại} tun_interface_disabled{Giao diện OpenVPN bị vô hiệu hóa} tun_halted{Giao diện OpenVPN bị gián đoạn} tun_already_established{Giao diện OpenVPN đã mở} tun_addresses_missing{Thiếu địa chỉ OpenVPN} tun_routes_missing{Thiếu tuyến OpenVPN} tun_dns_missing{Thiếu DNS OpenVPN} tun_permission_revoked{Quyền VPN đã bị thu hồi} tun_establish_returned_null{Android từ chối giao diện VPN} openvpn_service_start_failed{Dịch vụ OpenVPN không khả dụng} openvpn_operation_timeout{Cuộc gọi OpenVPN hết thời gian} openvpn_start_failed{OpenVPN từ chối khởi động} openvpn_connection_failed{Kết nối OpenVPN bị gián đoạn} openvpn_core_status_error{OpenVPN Core kết thúc với lỗi} openvpn_stopped_before_connected{OpenVPN dừng trước khi kết nối} openvpn_auth_failed{Xác thực OpenVPN bị từ chối} openvpn_client_setup_failed{Thiết lập máy khách OpenVPN thất bại} openvpn_client_halted{Máy khách OpenVPN bị gián đoạn} openvpn_client_restart{Đã yêu cầu khởi động lại OpenVPN} openvpn_inactive_timeout{OpenVPN không hoạt động quá lâu} openvpn_session_expired{Phiên OpenVPN đã hết hạn} openvpn_credentials_required{Xác thực OpenVPN không được hỗ trợ} openvpn_proxy_failed{Truyền qua trung gian OpenVPN thất bại} openvpn_compression_failed{Nén OpenVPN bị từ chối} openvpn_ntlm_crypto_unavailable{Mã hóa NTLM OpenVPN không khả dụng} openvpn_feature_unsupported{Tính năng OpenVPN không được hỗ trợ} network_unavailable{Kết nối Internet không khả dụng} network_lost{Mạng không khả dụng} certificate_validation_failed{Chứng chỉ máy chủ bị từ chối} openvpn_certificate_expired{Chứng chỉ OpenVPN đã hết hạn} tunnel_active_for_another_account{Đường hầm của tài khoản khác vẫn đang hoạt động} tunnel_already_active{Đường hầm gốc đã hoạt động} tunnel_stop_timeout{Chưa xác nhận {protocol} đã dừng} tunnel_disconnected{{protocol} bị gián đoạn} native_bridge_unavailable{Cầu nối Android không khả dụng} native_operation_failed{Thao tác Android bị gián đoạn} invalid_arguments{Tham số VPN chưa đầy đủ} invalid_account_id{Tài khoản VPN không hợp lệ} invalid_device_id{Mã nhận diện thiết bị không hợp lệ} storage_key_not_allowed{Khóa bộ nhớ bị từ chối} secure_storage_read_failed{Đọc bộ nhớ bảo mật thất bại} secure_storage_write_failed{Ghi bộ nhớ bảo mật thất bại} key_generation_failed{Không thể tạo khóa WireGuard} csr_generation_failed{Không thể tạo CSR OpenVPN} other{Lỗi VPN gốc chưa được phân loại}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android không tìm thấy phiên VPN có thể tiếp tục. Hãy bắt đầu kết nối mới trong ứng dụng.} system_vpn_resume_corrupt{Dữ liệu tiếp tục VPN đã lưu không hợp lệ và sẽ không được sử dụng. Hãy bắt đầu kết nối mới.} system_vpn_resume_session_invalid{Phiên đã lưu không thể tiếp tục VPN nữa. Hãy đăng nhập lại trong ứng dụng.} system_vpn_resume_identity_changed{Danh tính VPN cục bộ đã thay đổi. Đã dừng việc tiếp tục; hãy bắt đầu kết nối mới.} system_vpn_resume_identity_invalid{Danh tính dùng để tiếp tục không hợp lệ. Hãy bắt đầu kết nối mới.} system_vpn_resume_storage_failed{Android không thể đọc hoặc cập nhật dữ liệu tiếp tục đã mã hóa. Hãy bắt đầu kết nối mới.} system_vpn_resume_network_timeout{Android không tìm thấy mạng kịp thời để tiếp tục VPN. Hãy thử lại khi có mạng.} system_vpn_resume_blocked{Tiếp tục VPN bị chặn. Hãy kiểm tra cài đặt Android rồi bắt đầu kết nối mới.} system_vpn_resume_failed{Tiếp tục VPN Android thất bại. Hãy bắt đầu kết nối mới trong ứng dụng.} system_vpn_resume_error_invalid{Android trả về lỗi tiếp tục không thể sử dụng. Hãy bắt đầu kết nối mới.} wireguard_identity_store_failed{Android không thể lưu danh tính WireGuard đã mã hóa của tài khoản này.} wireguard_identity_unavailable{Không có danh tính WireGuard khả dụng cho kết nối này.} vpn_host_destroyed{Thành phần Android lưu trữ VPN đã dừng. Hãy bắt đầu kết nối mới.} vpn_host_unavailable{Android không thể tạo thành phần lưu trữ VPN. Hãy kiểm tra cài đặt VPN rồi thử lại.} openvpn_renewal_required{Chứng chỉ cần được xử lý trong ứng dụng trước khi kết nối.} openvpn_recovery_failed{Khôi phục tự động thất bại. Hãy bắt đầu kết nối mới trong ứng dụng.} openvpn_recovery_exhausted{Khôi phục tự động đã được sử dụng. Hãy bắt đầu kết nối mới trong ứng dụng.} vpn_permission_required{Android yêu cầu cấp quyền VPN mới trước khi bắt đầu đường hầm.} vpn_permission_denied{Hãy cho phép FuzeVPN trong yêu cầu của Android để tiếp tục.} vpn_permission_request_failed{Android không thể mở màn hình cấp quyền VPN.} wireguard_foreground_service_unavailable{Android không thể duy trì dịch vụ WireGuard ở chế độ nền trước.} wireguard_identity_invalid{Khóa WireGuard đã mã hóa của tài khoản này không thể đọc hoặc không hợp lệ.} wireguard_identity_in_use{Thao tác khác vẫn đang sử dụng khóa WireGuard của tài khoản này.} wireguard_configuration_invalid{Địa chỉ WireGuard, DNS, khóa máy chủ hoặc tuyến nhận được không hợp lệ.} wireguard_operation_pending{Thao tác WireGuard trước đó chưa giải phóng dịch vụ gốc.} wireguard_start_failed{Công cụ WireGuard từ chối kích hoạt cấu hình.} wireguard_stop_timeout{Dịch vụ WireGuard không xác nhận giải phóng giao diện VPN trong thời hạn.} wireguard_handshake_timeout{Đường hầm không xác nhận bắt tay với máy chủ kịp thời.} openvpn_connection_timeout{OpenVPN không xác nhận kết nối với máy chủ kịp thời.} openvpn_core_unavailable{Phiên bản ứng dụng này không có công cụ OpenVPN khả dụng.} openvpn_operation_pending{Công cụ gốc vẫn giữ phiên OpenVPN trước đó và từ chối tạo phiên thứ hai.} openvpn_stop_timeout{OpenVPN Core không xác nhận phiên gốc đã dừng và bị hủy trong thời hạn.} openvpn_profile_unavailable{Không thể đọc hồ sơ OpenVPN đã xác thực cho kết nối này.} openvpn_native_failed{Lỗi ứng dụng đã làm gián đoạn OpenVPN. Hãy thử kết nối lại. Nếu sự cố tiếp diễn, hãy chạy chẩn đoán.} openvpn_key_generation_failed{Android Keystore không thể tạo hoặc đọc khóa riêng P-256 không thể xuất.} openvpn_csr_generation_failed{Khóa Android Keystore không thể ký yêu cầu chứng chỉ OpenVPN.} openvpn_identity_store_failed{Không thể lưu chứng chỉ hoặc hồ sơ OpenVPN trong bộ nhớ đã mã hóa.} openvpn_identity_clear_failed{Android không thể xóa toàn bộ danh tính OpenVPN cục bộ của tài khoản này.} openvpn_identity_in_use{Một phiên OpenVPN gốc vẫn đang sử dụng khóa hoặc chứng chỉ của thiết bị này.} openvpn_tls_verification_required{Hồ sơ không yêu cầu rõ ràng việc xác minh chứng chỉ máy chủ.} openvpn_cipher_invalid{Máy chủ cung cấp thuật toán mã hóa không nằm trong danh sách cho phép.} openvpn_profile_rejected{Hồ sơ nhận từ máy chủ không tương thích. Hãy tạo lại thiết bị rồi thử lại.} openvpn_identity_inconsistent{Chứng chỉ không khớp với danh tính bảo mật của điện thoại này. Không thay thế hồ sơ cục bộ.} tls_handshake_failed{Máy chủ từ chối đàm phán TLS. Hãy tạo lại hồ sơ nếu sự cố vẫn tiếp diễn.} tls_alert_unknown_ca{Máy chủ không nhận diện cơ quan cấp chứng chỉ thiết bị này. Cần kiểm tra máy chủ OpenVPN.} tls_alert_bad_certificate{Máy chủ từ chối chứng chỉ thiết bị này. Hãy tạo lại thiết bị trước khi thử lại.} tls_alert_unsupported_certificate{Máy chủ không hỗ trợ loại chứng chỉ bảo mật Android đang sử dụng.} tls_client_certificate_required{Máy chủ yêu cầu chứng chỉ máy khách nhưng OpenVPN Core không thể cung cấp.} tls_alert_misc{Máy chủ trả về cảnh báo TLS ngoài các nhóm chứng chỉ và phiên bản.} tls_signature_algorithm_rejected{Máy chủ từ chối thuật toán ECDSA P-256 của khóa Android Keystore.} tls_handshake_rejected{Máy chủ đã gián đoạn đàm phán TLS trước khi kết nối.} tls_version_rejected{Máy khách và máy chủ không tìm thấy phiên bản TLS chung.} tls_certificate_expired{Chứng chỉ được cung cấp khi kết nối đã hết hạn.} tls_certificate_revoked{Chứng chỉ được cung cấp khi kết nối đã bị thu hồi.} transport_failed{Máy chủ OpenVPN không phản hồi trên mạng hiện tại. Hãy thử lại sau ít phút.} tun_configuration_rejected{Android từ chối cấu hình mạng mà OpenVPN yêu cầu.} tun_setup_failed{OpenVPN Core từ chối kế hoạch mạng trước khi tạo giao diện Android.} tun_interface_create_failed{OpenVPN Core không thể lấy giao diện TUN từ Android VpnService.} tun_interface_disabled{Android hoặc OpenVPN Core đã vô hiệu hóa giao diện TUN trong khi kết nối.} tun_halted{OpenVPN Core nhận được yêu cầu dừng giao diện TUN.} tun_already_established{OpenVPN yêu cầu giao diện thứ hai trong cùng kết nối. Đường hầm đã dừng để đảm bảo an toàn.} tun_addresses_missing{Máy chủ không cung cấp địa chỉ đường hầm có thể sử dụng.} tun_routes_missing{Máy chủ không cung cấp tuyến đường hầm có thể sử dụng.} tun_dns_missing{Máy chủ không cung cấp máy chủ DNS có thể sử dụng.} tun_permission_revoked{Android đã thu hồi quyền VPN trong khi kết nối.} tun_establish_returned_null{Android không tạo giao diện, thường do một VPN khác vẫn đang hoạt động.} openvpn_service_start_failed{Android không thể khởi động dịch vụ OpenVPN ở chế độ nền trước.} openvpn_operation_timeout{Cuộc gọi JNI đến OpenVPN Core vượt quá thời lượng tối đa.} openvpn_start_failed{Dịch vụ Android đã sẵn sàng nhưng OpenVPN Core không chấp nhận khởi động hồ sơ.} openvpn_connection_failed{OpenVPN Core dừng trước khi phát sự kiện CONNECTED.} openvpn_core_status_error{Vòng lặp OpenVPN gốc kết thúc với lỗi và không có sự kiện kết thúc cụ thể hơn.} openvpn_stopped_before_connected{Vòng lặp OpenVPN gốc dừng trước CONNECTED mà không có lỗi Core rõ ràng.} openvpn_auth_failed{Máy chủ OpenVPN từ chối xác thực hồ sơ.} openvpn_client_setup_failed{OpenVPN Core không thể khởi tạo máy khách trước khi kết nối mạng.} openvpn_client_halted{OpenVPN Core nhận được yêu cầu dừng máy khách cuối cùng.} openvpn_client_restart{OpenVPN Core yêu cầu khởi động lại phiên truyền tải.} openvpn_inactive_timeout{OpenVPN Core đóng phiên sau thời gian không hoạt động.} openvpn_session_expired{Máy chủ báo phiên OpenVPN đã hết hạn.} openvpn_credentials_required{Máy chủ hoặc proxy yêu cầu thông tin xác thực tương tác không có trong hồ sơ chứng chỉ này.} openvpn_proxy_failed{OpenVPN Core báo lỗi proxy hoặc bộ chuyển tiếp đã cấu hình.} openvpn_compression_failed{OpenVPN Core từ chối chế độ nén do hồ sơ hoặc máy chủ công bố.} openvpn_ntlm_crypto_unavailable{Hồ sơ yêu cầu mã hóa NTLM không khả dụng trong phiên bản này.} openvpn_feature_unsupported{Hồ sơ hoặc máy chủ yêu cầu tính năng không có trong máy khách Android này.} network_unavailable{Không có mạng vật lý khả dụng.} network_lost{Đường hầm đã dừng sau khi mất mạng.} certificate_validation_failed{Không thể xác minh danh tính máy chủ OpenVPN.} openvpn_certificate_expired{Hãy gia hạn hồ sơ OpenVPN trước khi kết nối lại.} tunnel_active_for_another_account{Đường hầm của tài khoản khác phải dừng trước kết nối này.} tunnel_already_active{Android báo một phiên VPN trước đó vẫn đang sử dụng giao diện.} tunnel_stop_timeout{Công cụ {protocol} không xác nhận giải phóng giao diện VPN trong thời hạn.} tunnel_disconnected{Công cụ gốc báo đường hầm kết thúc bất ngờ sau khi khởi động.} native_bridge_unavailable{Ứng dụng không thể truy cập dịch vụ VPN Android. Hãy đóng và mở lại ứng dụng rồi thử lại.} native_operation_failed{Lỗi ứng dụng đã làm gián đoạn thao tác VPN. Hãy thử lại. Nếu sự cố tiếp diễn, hãy chạy chẩn đoán.} invalid_arguments{Thông tin cần cho thao tác VPN này chưa đầy đủ. Hãy thử lại. Nếu sự cố tiếp diễn, hãy chạy chẩn đoán.} invalid_account_id{Thao tác gốc không gắn với mã tài khoản hợp lệ.} invalid_device_id{Mã nhận diện thiết bị gửi đến công cụ gốc bị thiếu hoặc không hợp lệ.} storage_key_not_allowed{Cầu nối Android đã chặn khóa nằm ngoài danh sách bộ nhớ cho phép.} secure_storage_read_failed{Android Keystore không thể giải mã dữ liệu cục bộ của tài khoản này.} secure_storage_write_failed{Android Keystore không thể mã hóa hoặc lưu dữ liệu cục bộ.} key_generation_failed{Android không thể tạo hoặc đọc khóa WireGuard trong bộ nhớ bảo mật.} csr_generation_failed{Android Keystore không thể tạo hoặc ký CSR OpenVPN P-256.} other{Một nhánh gốc chưa được ghi nhận đã thất bại. Hãy gửi mã chẩn đoán bên dưới cho bộ phận hỗ trợ.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Yêu cầu cấp quyền đã được mở",
+    "notice_permissionRequestInProgress_message": "Yêu cầu cấp quyền VPN của Android đang hiển thị. Hãy hoàn tất yêu cầu trước khi thử lại.",
+    "notice_permissionRequestInterrupted_title": "Yêu cầu cấp quyền VPN bị gián đoạn",
+    "notice_permissionRequestInterrupted_message": "Màn hình cấp quyền VPN đã đóng trước khi ứng dụng nhận được phản hồi.",
+    "notice_openvpnProofMissing_title": "Chưa xác nhận kết nối OpenVPN",
+    "notice_openvpnProofMissing_message": "Không thể xác nhận kết nối OpenVPN. Kết nối đã được dừng để đảm bảo an toàn. Hãy thử lại.",
+    "openvpnCleanup_title": "Hồ sơ OpenVPN đã bị thu hồi",
+    "openvpnCleanup_working": "Đang dừng và xóa hồ sơ OpenVPN đã bị thu hồi…",
+    "openvpnCleanup_stopFailed": "Chưa xác nhận việc tắt OpenVPN. Hãy thử lại trước khi tạo hồ sơ mới.",
+    "openvpnCleanup_cleanupFailed": "Không thể xóa hoàn toàn hồ sơ OpenVPN đã bị thu hồi. Hãy thử dọn dẹp lại.",
+    "openvpnCleanup_complete": "Đã xóa hồ sơ OpenVPN bị thu hồi. Nhấn Kết nối để tạo hồ sơ mới.",
+    "network_title": "Cấu hình mạng",
+    "network_ipv4Fallback": "IPv6 tạm thời không khả dụng. Tiếp tục chuẩn bị bằng IPv4.",
+    "network_rejectedTitle": "Cấu hình mạng bị từ chối",
+    "network_rejectedMessage": "Cấu hình đường hầm chưa hoàn chỉnh hoặc không khớp với các địa chỉ được cấp quyền. Hãy thử lại từ ứng dụng.",
+    "network_unreadableTitle": "Không thể đọc cấu hình cục bộ",
+    "network_unreadableMessage": "Không thể sử dụng cấu hình mạng OpenVPN đã lưu. Hãy kết nối lại từ ứng dụng để cập nhật cấu hình.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Bảo vệ mạng",
+    "protection_subtitle": "Chặn truy cập Internet trực tiếp nếu VPN bị ngắt kết nối.",
+    "protection_active": "Bảo vệ hệ thống đang hoạt động",
+    "protection_alwaysOnOnly": "VPN luôn bật đã được bật; bật chặn kết nối bên ngoài VPN",
+    "protection_inactive": "Bảo vệ hệ thống không hoạt động",
+    "protection_unknown": "Kiểm tra bảo vệ hệ thống",
+    "protection_openSettings": "Mở cài đặt Android",
+    "protection_dialogTitle": "Thiết lập bảo vệ mạng",
+    "protection_dialogMessage": "Android quản lý VPN luôn bật và việc chặn các kết nối bên ngoài VPN. Hãy kiểm tra FuzeVPN đã được chọn và bật tính năng chặn trong cài đặt hệ thống.",
+    "protection_dialogOpen": "Mở cài đặt",
+    "session_systemProtectionNote": "Nếu Android vẫn đang chặn lưu lượng bên ngoài VPN, hãy mở cài đặt hệ thống để kiểm tra hoặc thay đổi chế độ bảo vệ này.",
+    "diagnostics_title": "Chẩn đoán",
+    "diagnostics_settingsTitle": "Chẩn đoán ứng dụng",
+    "diagnostics_automaticTitle": "Gửi lỗi quan trọng",
+    "diagnostics_automaticDescription": "Chia sẻ một báo cáo kỹ thuật ngắn khi xảy ra lỗi quan trọng.",
+    "diagnostics_privacy": "Các báo cáo đã gửi được liên kết với tài khoản đang đăng nhập và được lưu trong 30 ngày. Báo cáo không chứa lịch sử duyệt web, mật khẩu hoặc khóa VPN.",
+    "diagnostics_manualOpen": "Chạy chẩn đoán",
+    "diagnostics_localDescription": "Tạo báo cáo về trạng thái ứng dụng và VPN. Kết nối của bạn không thay đổi.",
+    "diagnostics_sendReport": "Gửi báo cáo",
+    "diagnostics_sendHint": "Bỏ chọn ô này để giữ báo cáo trên thiết bị.",
+    "diagnostics_signedOut": "Đăng nhập vào tài khoản để gửi báo cáo.",
+    "diagnostics_localLifetime": "Lưu báo cáo này trên điện thoại để giữ lại sau khi đóng ứng dụng.",
+    "diagnostics_run": "Chạy chẩn đoán",
+    "diagnostics_rerun": "Chạy lại chẩn đoán",
+    "diagnostics_running": "Đang kiểm tra…",
+    "diagnostics_sending": "Đang gửi báo cáo…",
+    "diagnostics_prepared": "Báo cáo đã sẵn sàng trên thiết bị này",
+    "diagnostics_queued": "Báo cáo đang chờ được gửi",
+    "diagnostics_sent": "Đã nhận báo cáo",
+    "diagnostics_failed": "Gửi thất bại. Báo cáo cục bộ của bạn vẫn khả dụng.",
+    "diagnostics_preparationFailed": "Không thể chuẩn bị báo cáo chẩn đoán. Hãy thử lại.",
+    "diagnostics_authenticationRequired": "Đăng nhập lại để gửi báo cáo.",
+    "diagnostics_retry": "Thử gửi lại",
+    "diagnostics_export": "Lưu báo cáo",
+    "diagnostics_exportFailed": "Xuất thất bại. Hãy thử lại từ báo cáo cục bộ.",
+    "diagnostics_preferenceFailed": "Không thể lưu cài đặt này. Hãy thử lại.",
+    "diagnostics_receipt": "Mã tham chiếu: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Đã nhận vào {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Được giữ đến {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Báo cáo này đã được nhận trước đó.",
+    "diagnostics_preview": "Xem trước báo cáo",
+    "diagnostics_eventCount": "{count, plural, =0{Không có sự kiện kỹ thuật nào được đính kèm} =1{Đã đính kèm 1 sự kiện kỹ thuật} other{Đã đính kèm {count} sự kiện kỹ thuật}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Chi tiết kỹ thuật",
+    "diagnostics_empty": "Chưa có báo cáo chẩn đoán nào được chuẩn bị.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Trạng thái đường hầm} handshake{Xác nhận kết nối} certificate{Chứng chỉ VPN} kill_switch{Bảo vệ Android} connectivity{Mạng khả dụng} api_reachability{Truy cập dịch vụ} secure_storage{Bộ nhớ bảo mật} other{Kiểm tra cục bộ}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Đã kiểm tra} failed{Cần chú ý} skipped{Chưa kiểm tra — không có phép thăm dò đang hoạt động} unknown{Không có thông tin} other{Không có thông tin}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Chào mừng đến với FuzeVPN",
+    "connection_changeLocation": "Thay đổi vị trí",
+    "connection_details": "Chi tiết kết nối",
+    "locations_searchLabel": "Tìm kiếm thành phố hoặc quốc gia",
+    "locations_clearSearch": "Xóa tìm kiếm",
+    "locations_filterAll": "Tất cả",
+    "locations_filterFavorites": "Yêu thích",
+    "locations_results": "{count, plural, one{{count} vị trí} other{{count} vị trí}}",
+    "locations_noResults": "Không tìm thấy vị trí nào",
+    "locations_noResultsHint": "Hãy thử thành phố hoặc quốc gia khác.",
+    "locations_noFavorites": "Mục yêu thích của bạn, luôn trong tầm tay",
+    "locations_noFavoritesHint": "Nhấn vào ngôi sao bên cạnh một vị trí để lưu vị trí đó tại đây.",
+    "locations_showAll": "Xem tất cả vị trí",
+    "locations_addFavorite": "Thêm {name} vào mục yêu thích",
+    "locations_removeFavorite": "Xóa {name} khỏi mục yêu thích",
+    "locations_favoriteSaveFailed": "Không thể lưu mục yêu thích. Hãy thử lại.",
+    "locations_emptyTitle": "Không có vị trí nào khả dụng",
+    "locations_emptyHint": "Làm mới danh sách để thử lại.",
+    "devices_manage": "Quản lý thiết bị của tôi",
+    "settings_personalization": "Tùy chỉnh theo ý bạn",
+    "settings_safety": "Bảo vệ",
+    "settings_help": "Cần trợ giúp?",
+    "settings_about": "Giới thiệu về FuzeVPN",
+    "diagnostics_heading": "Tìm hiểu sự cố kết nối",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Khả dụng} pending{Đang chuẩn bị} revoked{Đã xóa} expired{Đã hết hạn} other{Không có trạng thái}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Chưa lưu tùy chọn",
+    "notice_preferenceSave_message": "Lựa chọn của bạn hiện đã được áp dụng nhưng không thể lưu. Hãy thử lại để giữ lựa chọn sau khi đóng ứng dụng.",
+    "connection_androidDisconnectHint": "Nếu Android vẫn giữ VPN hoạt động, hãy tắt VPN luôn bật trong phần cài đặt được mở.",
+    "protection_learnMore": "Tìm hiểu về bảo vệ Android",
+    "protection_guideWhy": "Chế độ bảo vệ này ngăn các ứng dụng sử dụng Internet trực tiếp nếu VPN bị ngắt kết nối. Chế độ này được cấu hình trong Android.",
+    "protection_guideAlwaysOnTitle": "VPN luôn bật",
+    "protection_guideAlwaysOn": "Android giữ dịch vụ VPN hoạt động và có thể khởi động lại dịch vụ sau khi điện thoại khởi động lại.",
+    "protection_guideBlockTitle": "Chặn kết nối không qua VPN",
+    "protection_guideBlock": "Cài đặt này ngăn lưu lượng bỏ qua VPN, kể cả khi kết nối bị gián đoạn.",
+    "protection_guideWarning": "Khi bật chế độ chặn này, truy cập Internet sẽ bị tắt cho đến khi VPN được kết nối.",
+    "protection_guideStepsTitle": "Bật bảo vệ",
+    "protection_guideStep1": "Mở cài đặt VPN của Android bằng nút bên dưới.",
+    "protection_guideStep2": "Mở các tùy chọn bằng biểu tượng bánh răng bên cạnh FuzeVPN.",
+    "protection_guideStep3": "Bật VPN luôn bật, sau đó bật Chặn kết nối không qua VPN nếu các tùy chọn này khả dụng.",
+    "protection_guideManufacturers": "Tên gọi khác nhau tùy điện thoại. Nếu cần, hãy tìm VPN trong Cài đặt, thường nằm dưới mục Mạng và Internet.",
+    "protection_guideDisableTitle": "Tắt chế độ bảo vệ này",
+    "protection_guideDisable": "Trong cùng phần cài đặt, hãy tắt chế độ chặn kết nối không qua VPN để cho phép truy cập Internet khi không có VPN. Đồng thời tắt VPN luôn bật nếu bạn không muốn Android khởi động lại VPN.",
+    "protection_guideManual": "Bạn tự chọn các cài đặt này trong Android. FuzeVPN không thay đổi chúng thay bạn.",
+    "locations_changeTitle": "Thay đổi vị trí?",
+    "locations_changeActive": "VPN sẽ ngắt kết nối, sau đó cố gắng kết nối với {name}.",
+    "locations_changeIdle": "VPN sẽ cố gắng kết nối với {name}.",
+    "locations_confirmChange": "Thay đổi và kết nối",
+    "locations_changeBusy": "Một quá trình thay đổi đang diễn ra. Hãy chờ trước khi chọn vị trí khác.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Tự động chọn",
+    "locations_cities": "Thành phố",
+    "locations_servers": "Máy chủ",
+    "locations_viewCities": "Xem các thành phố tại {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Xem các máy chủ tại {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} quốc gia} other{{count} quốc gia}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} thành phố} other{{count} thành phố}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} máy chủ} other{{count} máy chủ}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Tất cả quốc gia",
+    "locations_backToCountries": "Quay lại danh sách quốc gia",
+    "locations_backToCities": "Quay lại các thành phố tại {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Chọn {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Chọn {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Không có máy chủ tương thích nào khả dụng.",
+    "externalLink_failed": "Không thể mở liên kết này. Bạn có thể sao chép và mở liên kết trong trình duyệt.",
+    "externalLink_copy": "Sao chép liên kết",
+    "externalLink_copied": "Đã sao chép liên kết",
+    "externalLink_copyFailed": "Không thể sao chép liên kết. Hãy chọn địa chỉ bên dưới.",
+    "settings_deleteAccount": "Xóa tài khoản của tôi",
+    "settings_deleteAccountDetail": "Xem cách yêu cầu xóa tài khoản",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Chọn gói đăng ký VPN của bạn.",
+    "billing_subscribe": "Đăng ký",
+    "billing_choosePlan": "Chọn một gói để tiếp tục.",
+    "billing_monthly": "Hằng tháng",
+    "billing_yearly": "Hằng năm",
+    "billing_continue": "Tiếp tục với Google Play",
+    "billing_restore": "Khôi phục giao dịch mua",
+    "billing_manage": "Quản lý gói đăng ký",
+    "billing_deleteAccountWarning": "Nếu bạn có gói đăng ký qua Google Play, việc xóa tài khoản FuzeVPN sẽ không hủy việc gia hạn gói đăng ký đó. Hãy quản lý hoặc hủy gia hạn riêng trong Google Play.",
+    "billing_deleteAccountContinue": "Tiếp tục đến yêu cầu xóa tài khoản",
+    "billing_refresh": "Làm mới quyền truy cập",
+    "billing_loadingPlans": "Đang tải các gói…",
+    "billing_unavailable": "Hiện chưa có gói nào. Vui lòng thử lại sau.",
+    "billing_comingSoon": "Các gói đăng ký sẽ sớm có mặt.",
+    "billing_priceDisclosure": "Giá do Google Play cung cấp. Số tiền cuối cùng được xác nhận trước khi thanh toán.",
+    "billing_renewalMonthly": "Tự động gia hạn mỗi tháng nếu không hủy. Bạn có thể hủy bất kỳ lúc nào trong mục gói đăng ký Google Play.",
+    "billing_renewalYearly": "Tự động gia hạn mỗi năm nếu không hủy. Bạn có thể hủy bất kỳ lúc nào trong mục gói đăng ký Google Play.",
+    "billing_active": "Quyền truy cập Premium đang hoạt động",
+    "billing_accessUntil": "Truy cập đến {date}.",
+    "billing_webManaged": "Gói đăng ký của bạn được quản lý trên trang web FuzeVPN.",
+    "billing_playManaged": "Gói đăng ký của bạn được quản lý qua Google Play.",
+    "billing_inactive": "Không có gói đăng ký đang hoạt động.",
+    "billing_checkingAccess": "Đang kiểm tra quyền truy cập…",
+    "billing_restoring": "Đang khôi phục giao dịch mua…",
+    "billing_pending": "Thanh toán đang chờ xử lý. Quyền truy cập sẽ được kích hoạt sau khi xác nhận.",
+    "billing_cancelled": "Đã hủy giao dịch mua. Không có gói đăng ký mới nào được kích hoạt.",
+    "billing_verifying": "Đang xác minh giao dịch mua…",
+    "billing_success": "Đã kích hoạt gói đăng ký. Bạn có thể sử dụng Premium.",
+    "billing_restored": "Các giao dịch mua đã được khôi phục.",
+    "billing_restoreEmpty": "Không có giao dịch mua cần khôi phục cho tài khoản Google Play này.",
+    "billing_catalogError": "Không thể tải các gói. Vui lòng thử lại.",
+    "billing_purchaseError": "Không thể bắt đầu giao dịch mua. Vui lòng thử lại.",
+    "billing_verificationError": "Tạm thời không thể xác minh giao dịch mua. Khôi phục giao dịch mua để thử lại.",
+    "billing_restoreError": "Không thể khôi phục giao dịch mua. Vui lòng thử lại.",
+    "billing_managementError": "Không thể mở phần quản lý gói đăng ký. Vui lòng thử lại.",
+    "billing_storeUnavailable": "Google Play không khả dụng trên thiết bị này.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "VPN của bạn, thật đơn giản.",
+    "welcome_description": "Bảo vệ kết nối. Chủ động kiểm soát quyền riêng tư.",
+    "welcome_start": "Bắt đầu",
+    "welcome_alreadyPurchased": "Đã mua rồi?",
+    "welcome_noAccountRequired": "Không cần tạo tài khoản để bắt đầu.",
+    "guest_accountTitle": "Tài khoản chưa liên kết",
+    "guest_accountDescription": "Khôi phục giao dịch mua bằng cùng tài khoản Google Play để dùng gói đăng ký trên thiết bị khác.",
+    "guest_existingSubscriberSignIn": "Đã đăng ký gói? Đăng nhập",
+    "guest_claimTitle": "Mang FuzeVPN theo bạn",
+    "guest_claimDescription": "Tạo tài khoản để truy cập gói đăng ký trên các thiết bị khác. Bước này không bắt buộc.",
+    "guest_skip": "Để sau",
+    "guest_activationTitle": "Fuze Premium đã được kích hoạt",
+    "guest_activationDescription": "Gói đăng ký của bạn đã sẵn sàng. Hãy dùng VPN và tạo tài khoản bất cứ lúc nào.",
+    "guest_useVpn": "Dùng VPN của tôi",
+    "guest_loginRequired": "Giao dịch mua này đã liên kết với một tài khoản FuzeVPN. Đăng nhập vào tài khoản đó để truy cập gói đăng ký.",
+    "guest_signOutWarning": "Bạn có thể khôi phục gói đăng ký bằng cách khôi phục giao dịch mua bằng cùng tài khoản Google Play.",
+    "guest_profileUnavailable": "Tài khoản của bạn đã được liên kết. Đăng nhập để xem và quản lý thông tin.",
+    "billing_acceptance": "Bằng việc tiếp tục, bạn chấp nhận Điều khoản sử dụng và Chính sách quyền riêng tư.",
+    "guest_verifyEmailReminder": "Xác nhận địa chỉ email để bảo vệ tài khoản. Bạn vẫn có thể tiếp tục dùng VPN.",
+    "guest_serviceUnavailable": "Dịch vụ tạm thời không khả dụng. Vui lòng thử lại sau ít phút.",
+    "guest_restoreError": "Không thể khôi phục giao dịch mua. Hãy thử lại với tài khoản Google Play đã dùng để mua.",
+    "guest_claimSuccess": "Tài khoản đã được tạo. Gói đăng ký và quyền truy cập VPN của bạn được giữ nguyên.",
+    "guest_emailExists": "Email này đã được sử dụng. Chọn địa chỉ khác hoặc đăng nhập vào tài khoản hiện có. Giao dịch mua vẫn khả dụng qua Google Play.",
+    "guest_claimError": "Không thể tạo tài khoản. Bạn có thể tiếp tục dùng VPN và thử lại sau.",
+    "guest_secureStorageError": "Không thể lưu phiên một cách an toàn trên thiết bị này. Vui lòng thử lại.",
+    "guest_premiumRequired": "Chọn một gói đăng ký để kích hoạt VPN.",
+    "welcome_viewPlans": "Xem các gói",
+    "google_continue": "Tiếp tục với Google",
+    "google_or": "hoặc",
+    "google_title": "Tài khoản FuzeVPN của bạn",
+    "google_settingUp": "Hoàn tất tài khoản",
+    "google_country": "Quốc gia cư trú",
+    "google_profileDescription": "Chọn quốc gia và đọc cả hai tài liệu để tạo tài khoản FuzeVPN.",
+    "google_claimDescription": "Liên kết tài khoản khách với Google. Gói đăng ký và thiết bị vẫn thuộc tài khoản này.",
+    "google_linkTitle": "Liên kết Google với FuzeVPN",
+    "google_linkDescription": "Xác nhận quyền truy cập tài khoản FuzeVPN hiện có. Không yêu cầu mật khẩu Google.",
+    "google_password": "Mật khẩu FuzeVPN",
+    "google_linkAccount": "Xác nhận liên kết",
+    "google_requestEmail": "Nhận email xác nhận",
+    "google_emailInstructions": "Mở email FuzeVPN và nhập mã xác nhận.",
+    "google_emailCode": "Mã xác nhận qua email",
+    "google_confirmEmail": "Xác nhận mã",
+    "google_restart": "Chọn tài khoản Google khác",
+    "google_resume": "Kiểm tra lần thử này",
+    "google_unavailable": "Đăng nhập Google không khả dụng. Bạn có thể dùng email và mật khẩu.",
+    "google_expired": "Lần thử này đã hết hạn. Hủy rồi bắt đầu lại.",
+    "google_conflict": "Tài khoản Google này đã liên kết với tài khoản khác. Tài khoản và gói đăng ký hiện tại được giữ nguyên.",
+    "google_error": "Đăng nhập Google thất bại. Thử lại; quyền truy cập hiện tại được giữ nguyên.",
+    "google_uncertain": "Chưa thể xác nhận kết quả. Kiểm tra lần thử này hoặc hủy trước khi bắt đầu lại.",
+    "google_cancelFailed": "Chưa thể xác nhận việc hủy. Thử hủy lại trước khi rời màn hình này.",
+    "google_cancelled": "Đã hủy đăng nhập Google.",
+    "google_selecting": "Chọn tài khoản Google…",
+    "google_verifying": "Đang kiểm tra tài khoản…",
+    "google_emailUnavailable": "Không thể gửi email xác nhận. Thử lại sau.",
+    "google_emailSent": "Đã gửi email xác nhận. Kiểm tra hộp thư đến.",
+    "google_rateLimited": "Vui lòng đợi trước khi thử lại.",
+    "google_invalidPassword": "Mật khẩu FuzeVPN không đúng. Tài khoản hiện tại được giữ nguyên.",
+    "google_invalidCode": "Mã xác nhận không hợp lệ hoặc đã hết hạn.",
+    "google_accountChanged": "Phiên đã thay đổi. Hủy lần thử này trước khi bắt đầu lại.",
+    "google_invalidResponse": "Không thể xác thực phản hồi. Quyền truy cập hiện tại được giữ nguyên.",
+    "google_invalidRegistration": "Kiểm tra quốc gia và cả hai sự đồng ý.",
+    "google_consentRequired": "Chọn quốc gia và chấp nhận cả hai tài liệu để tiếp tục.",
+    "google_challengeRequired": "Cần kiểm tra bảo mật bổ sung. Quyền truy cập hiện tại được giữ nguyên.",
+    "google_challengeUnavailable": "Kiểm tra bảo mật không khả dụng. Thử lại sau."
+  },
+  "android": {
+    "vpn_notification_channel": "Kết nối VPN",
+    "vpn_notification_channel_description": "Cho biết khi kết nối FuzeVPN đang hoạt động.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "Kết nối %1$s đang hoạt động",
+    "vpn_notification_connecting": "Đang kết nối %1$s",
+    "vpn_notification_disconnecting": "Đang ngắt kết nối %1$s",
+    "vpn_notification_interrupted": "Kết nối %1$s bị gián đoạn",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Sẵn sàng · %1$s · %2$s",
+    "vpn_tile_connected": "Đã kết nối · %1$s · %2$s",
+    "vpn_tile_connecting": "Đang kết nối %1$s…",
+    "vpn_tile_disconnecting": "Đang ngắt kết nối…",
+    "vpn_tile_interrupted": "%1$s bị gián đoạn",
+    "vpn_tile_setup_required": "Mở ứng dụng trước",
+    "vpn_tile_working": "Đang xử lý VPN…",
+    "vpn_notification_reconnecting": "Đang kết nối lại… · %1$s",
+    "vpn_system_action_required": "Cần thao tác trong cài đặt Android",
+    "vpn_tile_reconnecting": "Đang kết nối lại… · %1$s"
+  },
+  "countries": {
+    "AC": "Đảo Ascension",
+    "AD": "Andorra",
+    "AE": "Các Tiểu vương quốc Ả Rập Thống nhất",
+    "AF": "Afghanistan",
+    "AG": "Antigua và Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albania",
+    "AM": "Armenia",
+    "AO": "Angola",
+    "AQ": "Nam Cực",
+    "AR": "Argentina",
+    "AS": "Samoa thuộc Mỹ",
+    "AT": "Áo",
+    "AU": "Úc",
+    "AW": "Aruba",
+    "AX": "Quần đảo Åland",
+    "AZ": "Azerbaijan",
+    "BA": "Bosnia và Herzegovina",
+    "BB": "Barbados",
+    "BD": "Bangladesh",
+    "BE": "Bỉ",
+    "BF": "Burkina Faso",
+    "BG": "Bulgaria",
+    "BH": "Bahrain",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "Saint Barthélemy",
+    "BM": "Bermuda",
+    "BN": "Brunei",
+    "BO": "Bolivia",
+    "BQ": "Caribe Hà Lan",
+    "BR": "Brazil",
+    "BS": "Bahamas",
+    "BT": "Bhutan",
+    "BV": "Đảo Bouvet",
+    "BW": "Botswana",
+    "BY": "Belarus",
+    "BZ": "Belize",
+    "CA": "Canada",
+    "CC": "Quần đảo Cocos (Keeling)",
+    "CD": "Congo - Kinshasa",
+    "CF": "Cộng hòa Trung Phi",
+    "CG": "Congo - Brazzaville",
+    "CH": "Thụy Sĩ",
+    "CI": "Bờ Biển Ngà",
+    "CK": "Quần đảo Cook",
+    "CL": "Chile",
+    "CM": "Cameroon",
+    "CN": "Trung Quốc",
+    "CO": "Colombia",
+    "CP": "Đảo Clipperton",
+    "CQ": "Sark",
+    "CR": "Costa Rica",
+    "CU": "Cuba",
+    "CV": "Cabo Verde",
+    "CW": "Curaçao",
+    "CX": "Đảo Christmas",
+    "CY": "Síp",
+    "CZ": "Séc",
+    "DE": "Đức",
+    "DG": "Diego Garcia",
+    "DJ": "Djibouti",
+    "DK": "Đan Mạch",
+    "DM": "Dominica",
+    "DO": "Cộng hòa Dominica",
+    "DZ": "Algeria",
+    "EA": "Ceuta và Melilla",
+    "EC": "Ecuador",
+    "EE": "Estonia",
+    "EG": "Ai Cập",
+    "EH": "Tây Sahara",
+    "ER": "Eritrea",
+    "ES": "Tây Ban Nha",
+    "ET": "Ethiopia",
+    "EU": "Liên minh châu Âu",
+    "EZ": "Khu vực đồng euro",
+    "FI": "Phần Lan",
+    "FJ": "Fiji",
+    "FK": "Quần đảo Falkland",
+    "FM": "Micronesia",
+    "FO": "Quần đảo Faroe",
+    "FR": "Pháp",
+    "GA": "Gabon",
+    "GB": "Vương quốc Anh",
+    "GD": "Grenada",
+    "GE": "Georgia",
+    "GF": "Guiana thuộc Pháp",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GL": "Greenland",
+    "GM": "Gambia",
+    "GN": "Guinea",
+    "GP": "Guadeloupe",
+    "GQ": "Guinea Xích Đạo",
+    "GR": "Hy Lạp",
+    "GS": "Nam Georgia và Quần đảo Nam Sandwich",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hồng Kông, Trung Quốc",
+    "HM": "Quần đảo Heard và McDonald",
+    "HN": "Honduras",
+    "HR": "Croatia",
+    "HT": "Haiti",
+    "HU": "Hungary",
+    "IC": "Quần đảo Canary",
+    "ID": "Indonesia",
+    "IE": "Ireland",
+    "IL": "Israel",
+    "IM": "Đảo Man",
+    "IN": "Ấn Độ",
+    "IO": "Lãnh thổ Ấn Độ Dương thuộc Anh",
+    "IQ": "Iraq",
+    "IR": "Iran",
+    "IS": "Iceland",
+    "IT": "Ý",
+    "JE": "Jersey",
+    "JM": "Jamaica",
+    "JO": "Jordan",
+    "JP": "Nhật Bản",
+    "KE": "Kenya",
+    "KG": "Kyrgyzstan",
+    "KH": "Campuchia",
+    "KI": "Kiribati",
+    "KM": "Comoros",
+    "KN": "Saint Kitts và Nevis",
+    "KP": "Triều Tiên",
+    "KR": "Hàn Quốc",
+    "KW": "Kuwait",
+    "KY": "Quần đảo Cayman",
+    "KZ": "Kazakhstan",
+    "LA": "Lào",
+    "LB": "Liban",
+    "LC": "Saint Lucia",
+    "LI": "Liechtenstein",
+    "LK": "Sri Lanka",
+    "LR": "Liberia",
+    "LS": "Lesotho",
+    "LT": "Litva",
+    "LU": "Luxembourg",
+    "LV": "Latvia",
+    "LY": "Libya",
+    "MA": "Maroc",
+    "MC": "Monaco",
+    "MD": "Moldova",
+    "ME": "Montenegro",
+    "MF": "Saint Martin",
+    "MG": "Madagascar",
+    "MH": "Quần đảo Marshall",
+    "MK": "Bắc Macedonia",
+    "ML": "Mali",
+    "MM": "Myanmar (Miến Điện)",
+    "MN": "Mông Cổ",
+    "MO": "Ma Cao, Trung Quốc",
+    "MP": "Quần đảo Bắc Mariana",
+    "MQ": "Martinique",
+    "MR": "Mauritania",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Mauritius",
+    "MV": "Maldives",
+    "MW": "Malawi",
+    "MX": "Mexico",
+    "MY": "Malaysia",
+    "MZ": "Mozambique",
+    "NA": "Namibia",
+    "NC": "New Caledonia",
+    "NE": "Niger",
+    "NF": "Đảo Norfolk",
+    "NG": "Nigeria",
+    "NI": "Nicaragua",
+    "NL": "Hà Lan",
+    "NO": "Na Uy",
+    "NP": "Nepal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "New Zealand",
+    "OM": "Oman",
+    "PA": "Panama",
+    "PE": "Peru",
+    "PF": "Polynesia thuộc Pháp",
+    "PG": "Papua New Guinea",
+    "PH": "Philippines",
+    "PK": "Pakistan",
+    "PL": "Ba Lan",
+    "PM": "Saint Pierre và Miquelon",
+    "PN": "Quần đảo Pitcairn",
+    "PR": "Puerto Rico",
+    "PS": "Lãnh thổ Palestine",
+    "PT": "Bồ Đào Nha",
+    "PW": "Palau",
+    "PY": "Paraguay",
+    "QA": "Qatar",
+    "QO": "Châu Đại Dương ngoài lãnh thổ",
+    "RE": "Réunion",
+    "RO": "Romania",
+    "RS": "Serbia",
+    "RU": "Nga",
+    "RW": "Rwanda",
+    "SA": "Ả Rập Xê Út",
+    "SB": "Quần đảo Solomon",
+    "SC": "Seychelles",
+    "SD": "Sudan",
+    "SE": "Thụy Điển",
+    "SG": "Singapore",
+    "SH": "Saint Helena",
+    "SI": "Slovenia",
+    "SJ": "Svalbard và Jan Mayen",
+    "SK": "Slovakia",
+    "SL": "Sierra Leone",
+    "SM": "San Marino",
+    "SN": "Senegal",
+    "SO": "Somalia",
+    "SR": "Suriname",
+    "SS": "Nam Sudan",
+    "ST": "São Tomé và Príncipe",
+    "SV": "El Salvador",
+    "SX": "Sint Maarten",
+    "SY": "Syria",
+    "SZ": "Eswatini",
+    "TA": "Tristan da Cunha",
+    "TC": "Quần đảo Turks và Caicos",
+    "TD": "Tchad",
+    "TF": "Lãnh thổ phía Nam thuộc Pháp",
+    "TG": "Togo",
+    "TH": "Thái Lan",
+    "TJ": "Tajikistan",
+    "TK": "Tokelau",
+    "TL": "Timor-Leste",
+    "TM": "Turkmenistan",
+    "TN": "Tunisia",
+    "TO": "Tonga",
+    "TR": "Türkiye",
+    "TT": "Trinidad và Tobago",
+    "TV": "Tuvalu",
+    "TW": "Đài Loan",
+    "TZ": "Tanzania",
+    "UA": "Ukraina",
+    "UG": "Uganda",
+    "UM": "Các đảo xa của Hoa Kỳ",
+    "UN": "Liên Hợp Quốc",
+    "US": "Hoa Kỳ",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VA": "Thành Vatican",
+    "VC": "Saint Vincent và Grenadines",
+    "VE": "Venezuela",
+    "VG": "Quần đảo Virgin thuộc Anh",
+    "VI": "Quần đảo Virgin thuộc Mỹ",
+    "VN": "Việt Nam",
+    "VU": "Vanuatu",
+    "WF": "Wallis và Futuna",
+    "WS": "Samoa",
+    "XA": "Dấu trọng âm giả",
+    "XB": "Bi-đi giả",
+    "XK": "Kosovo",
+    "YE": "Yemen",
+    "YT": "Mayotte",
+    "ZA": "Nam Phi",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "Khu vực không xác định"
+  }
+}

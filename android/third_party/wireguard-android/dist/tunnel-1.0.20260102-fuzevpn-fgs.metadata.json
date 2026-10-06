@@ -1,0 +1,67 @@
+{
+  "schema": "https://fuzevpn.com/schemas/wireguard-patched-aar-v1.json",
+  "artifact": "tunnel-1.0.20260102-fuzevpn-fgs.aar",
+  "sha256": "bf96422b21e086cf371154613f5250c8101568538ab40acb4ccbad09394e4811",
+  "upstreamAarSha256": "2b9c16db026496123e4db695d26d03d1958a201096c7c4c89b21077dc70f3119",
+  "sourceCommit": "09b75c2bd37f749e2a8c85876394854113c74be7",
+  "patchSha256": "777a8563e37ca11c4bf084820c3fd69e12280c5dd48af99274cf407dcfacd92c",
+  "protectedStartPatchSha256": "e6861dba0b06e569b65119029c7d817adc98b4120e36d75c95af7ff4999e1ded",
+  "jdk": "openjdk version \"17.0.20.1\" 2026-08-18",
+  "nativeLibraries": "libwg-go rebuilt from pinned source with protected-start JNI; other libraries unchanged from official AAR.",
+  "nativeBuild": {
+    "schema": "https://fuzevpn.com/schemas/wireguard-native-build-v1.json",
+    "builtAtUtc": "2026-10-02T11:25:16.4317066Z",
+    "go": "go version go1.24.3 windows/amd64",
+    "goArchive": {
+      "sha256": "be9787cb08998b1860fe3513e48a5fe5b96302d358a321b58e651184fa9638b3",
+      "url": "https://dl.google.com/go/go1.24.3.windows-amd64.zip"
+    },
+    "runtimePatchSha256": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395",
+    "ndk": {
+      "path": "C:\\Users\\Tak\\.codex\\toolchains\\android-sdk\\ndk\\28.2.13676358",
+      "version": "28.2.13676358"
+    },
+    "api": 21,
+    "module": "golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb",
+    "sourceHashes": {
+      "api-android.go": "53427a92d20e46e430fd7cfc855c4ac857c3e54a1dff8344f930665e4fa2876c",
+      "jni.c": "60496563d5ff416de4ad5eae76951a2ade16352bda473c2a54cffac23cdf7057",
+      "go.mod": "8786bc8ea1dc05d185b88322bbb0ac62643c890092a0541bceb14e29ab41ee47",
+      "go.sum": "ce306aed32f667a553af6aed626fa53e98dee36a494a76033ab9d15343986d3e",
+      "goruntime-boottime-over-monotonic.diff": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395"
+    },
+    "abi": [
+      {
+        "name": "arm64-v8a",
+        "file": "arm64-v8a/libwg-go.so",
+        "sha256": "33102d711ecb0f43a1709fc02a7044aca463f946c7782207a073b201f4d8b5e4",
+        "log": "logs/arm64-v8a.log"
+      },
+      {
+        "name": "armeabi-v7a",
+        "file": "armeabi-v7a/libwg-go.so",
+        "sha256": "81c2a9f84c13d5ec6b6d9d9d73091b97aaac73233d88d89cdfc54297fcf3568d",
+        "log": "logs/armeabi-v7a.log"
+      },
+      {
+        "name": "x86_64",
+        "file": "x86_64/libwg-go.so",
+        "sha256": "f3d571b3444fd868046a7ca45e653911fe9425fa5e70a3df7773499e792f37e5",
+        "log": "logs/x86_64.log"
+      },
+      {
+        "name": "x86",
+        "file": "x86/libwg-go.so",
+        "sha256": "ff7d0215407e8ecadd2772619d748cfee7861ab3879fec32638c3c439dd73bbc",
+        "log": "logs/x86.log"
+      }
+    ]
+  },
+  "emptyRTxt": "Excluded because AGP 9.3 fails transforming a local AAR with empty R.txt.",
+  "abi": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ]
+}

@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">Koneksi VPN</string>
+    <string name="vpn_notification_channel_description">Menunjukkan saat koneksi FuzeVPN aktif.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Koneksi %1$s aktif</string>
+    <string name="vpn_notification_connecting">Koneksi %1$s sedang berlangsung</string>
+    <string name="vpn_notification_disconnecting">Memutuskan %1$s</string>
+    <string name="vpn_notification_interrupted">Koneksi %1$s terputus</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Siap · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Terhubung · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Menghubungkan %1$s…</string>
+    <string name="vpn_tile_disconnecting">Memutuskan…</string>
+    <string name="vpn_tile_interrupted">%1$s terputus</string>
+    <string name="vpn_tile_setup_required">Buka aplikasi terlebih dahulu</string>
+    <string name="vpn_tile_working">Operasi VPN sedang berlangsung…</string>
+    <string name="vpn_notification_reconnecting">Menghubungkan kembali… · %1$s</string>
+    <string name="vpn_system_action_required">Tindakan diperlukan di pengaturan Android</string>
+    <string name="vpn_tile_reconnecting">Menghubungkan kembali… · %1$s</string>
+</resources>

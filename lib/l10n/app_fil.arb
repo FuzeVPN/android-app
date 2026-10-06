@@ -1,0 +1,642 @@
+{
+  "accountRestoration_title": "Pansamantalang hindi magagamit ang account",
+  "accountRestoration_message": "Napanatili ang iyong session. Subukang muli upang maibalik ang iyong account; maaari mo pa ring pamahalaan dito ang koneksyon ng VPN.",
+  "action_retry": "Subukang muli",
+  "session_endingTitle": "Tinatapos ang session",
+  "session_ending": "Pinawalang-bisa ang iyong session. Ihihinto ang VPN at lilinisin ang session…",
+  "session_stopFailed": "Hindi nakumpirma ang pagsasara ng VPN. Subukang muli bago muling mag-sign in.",
+  "session_cleanupFailed": "Naihinto ang VPN, ngunit hindi nakumpirma ang pag-alis ng session. Subukang muli ang paglilinis.",
+  "session_retryStop": "Subukang muli ang pagsasara",
+  "session_retryCleanup": "Subukang muli ang paglilinis",
+  "@@locale": "fil",
+  "appTitle": "FuzeVPN",
+  "startup": "Ligtas na inihahanda ang FuzeVPN…",
+  "nav_connection": "Koneksyon",
+  "nav_locations": "Mga lokasyon",
+  "nav_account": "Account",
+  "nav_devices": "Mga device",
+  "nav_settings": "Mga setting",
+  "action_refresh": "I-refresh",
+  "auth_tab_login": "Mag-sign in",
+  "auth_tab_register": "Mag-sign up",
+  "auth_stepAccount": "Account",
+  "auth_stepIdentity": "Pagkakakilanlan",
+  "auth_stepAddress": "Address at mga kasunduan",
+  "auth_stepProgress": "Hakbang {current} sa {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "Pinadali ang iyong VPN.",
+  "auth_keysLocal": "Nananatili sa device na ito ang iyong mga pribadong VPN key.",
+  "form_email": "Email address",
+  "form_password": "Password",
+  "form_showPassword": "Ipakita ang password",
+  "form_hidePassword": "Itago ang password",
+  "form_passwordMin": "8–72 UTF-8 byte. May ilang character na gumagamit ng higit sa isang byte.",
+  "form_firstName": "Pangalan",
+  "form_lastName": "Apelyido",
+  "form_phone": "Telepono (+33612345678)",
+  "form_address": "Address",
+  "form_address2": "Ikalawang linya ng address (opsyonal)",
+  "form_postalCode": "Postal code",
+  "form_city": "Lungsod",
+  "form_country": "Code ng bansa (hal. FR)",
+  "action_login": "Mag-sign in",
+  "action_createAccount": "Gumawa ng account",
+  "action_createMyAccount": "Gawin ang aking account",
+  "action_next": "Magpatuloy",
+  "action_previous": "Bumalik",
+  "action_forgotPassword": "Nakalimutan ang password?",
+  "auth_noAccount": "Wala ka pa bang account?",
+  "auth_requiredInformation": "Gawin ang iyong account sa tatlong hakbang.",
+  "auth_termsPrefix": "Tinatanggap ko ang ",
+  "auth_termsLink": "mga tuntunin ng paggamit",
+  "auth_privacyPrefix": "Tinatanggap ko ang ",
+  "auth_privacyLink": "patakaran sa privacy",
+  "auth_consentRequired": "Kailangan ang iyong pahintulot upang makagawa ng account.",
+  "validation_required": "Kinakailangan ang field na ito.",
+  "validation_email": "Maglagay ng wastong email address.",
+  "validation_password": "Masyadong maikli ang password: hindi bababa sa 8 UTF-8 byte.",
+  "validation_passwordTooLong": "Masyadong mahaba ang password: hanggang 72 UTF-8 byte lamang.",
+  "validation_phone": "Gamitin ang internasyonal na format, halimbawa +33612345678.",
+  "validation_country": "Gumamit ng dalawang titik na code ng bansa, halimbawa FR.",
+  "passwordReset_title": "I-reset ang password",
+  "passwordReset_description": "Ilagay ang email address ng iyong account upang humiling ng link para i-reset ang password.",
+  "passwordReset_send": "Ipadala ang link",
+  "connection_title": "Ang iyong koneksyon",
+  "connection_subtitle": "Pumili ng lokasyon, pagkatapos ay i-on ang iyong VPN.",
+  "connection_prepare": "Handa ka na bang kumonekta?",
+  "connection_advancedOptions": "Mga advanced na opsyon",
+  "connection_location": "Lokasyon",
+  "connection_chooseLocation": "Pumili ng lokasyon",
+  "connection_protocol": "Protocol",
+  "connection_connect": "Kumonekta",
+  "connection_connecting": "Kumokonekta…",
+  "connection_disconnect": "Idiskonekta",
+  "connection_disconnecting": "Dinidiskonekta",
+  "connection_locationChange": "Binabago ang lokasyon…",
+  "connection_unavailable": "Hindi magagamit ang {protocol}",
+  "connection_activeLocation": "Aktibong lokasyon",
+  "connection_duration": "Tagal",
+  "connection_received": "Natanggap",
+  "connection_sent": "Naipadala",
+  "connection_lastHandshake": "Huling ligtas na palitan",
+  "connection_handshakeAgo": "{duration} ang nakalipas",
+  "verification_title": "Kumpirmahin ang iyong email address",
+  "verification_message": "Kumpirmahin ang iyong email address upang magamit ang VPN sa teleponong ito.",
+  "verification_resend": "Ipadala muli ang email",
+  "migration_title": "Pagbabago ng lokasyon",
+  "migration_draining": "Inihahanda ang pagbabago ng lokasyon…",
+  "migration_activating": "Ina-activate ang bagong server…",
+  "migration_ready": "Na-update ang lokasyon.",
+  "migration_blocked": "Nangangailangan ng interbensyon ng server ang pagbabago ng lokasyon. Subukan muli mamaya o makipag-ugnayan sa suporta.",
+  "migration_progress": "Pag-usad ng pagbabago ng lokasyon",
+  "migration_retryDelay": "Pagitan ng mga pagsusuri: {seconds} segundo.",
+  "migration_resume": "Ipagpatuloy ang pagbabago ng lokasyon",
+  "status_authorizing": "Kailangan ng pahintulot",
+  "status_authorizingDetail": "Tanggapin ang kahilingan ng Android upang payagan ang VPN.",
+  "status_preparing": "Inihahanda",
+  "status_preparingDetail": "Inihahanda ang iyong ligtas na koneksyon.",
+  "status_reconnecting": "Muling kumokonekta…",
+  "status_reconnectingDetail": "Naantala ang koneksyon. Sinusubukan ng VPN na muling kumonekta.",
+  "status_connecting": "Kumokonekta",
+  "status_connectingDetail": "Kumokonekta sa VPN server…",
+  "status_connected": "Nakakonekta",
+  "status_connectedDetail": "Aktibo ang iyong koneksyon sa VPN.",
+  "status_disconnecting": "Dinidiskonekta",
+  "status_disconnectingDetail": "Ihihinto ang iyong koneksyon sa VPN.",
+  "status_error": "Hindi magagamit ang koneksyon",
+  "status_errorDetail": "Hindi nakumpirma ang koneksyon sa VPN. Subukan muli.",
+  "status_idle": "Nakadiskonekta",
+  "status_idleDetail": "Ikonekta ang VPN upang maprotektahan ang iyong koneksyon.",
+  "trust_note": "Hindi ihihinto ng pagsasara ng app ang VPN. Para ihinto ito, gamitin ang Idiskonekta.",
+  "locations_none": "Kasalukuyang walang magagamit na lokasyon.",
+  "locations_available": "Pumili ng iyong susunod na lokasyon.",
+  "locations_selected": "Napiling lokasyon",
+  "locations_select": "Gamitin ang lokasyong ito",
+  "locations_lockedTunnel": "Idiskonekta ang VPN upang magpalit ng lokasyon.",
+  "locations_lockedMigration": "Hintaying matapos ang pagbabago ng lokasyon.",
+  "devices_title": "Ang iyong mga device",
+  "devices_used": "{count} / {limit} device",
+  "devices_refresh": "I-refresh ang mga device",
+  "devices_empty": "Wala pang nakarehistrong VPN device.",
+  "devices_firstConnection": "Idaragdag ang iyong telepono sa unang koneksyon.",
+  "devices_thisDevice": "Device na ito",
+  "devices_added": "Idinagdag noong {date}",
+  "action_remove": "Alisin",
+  "settings_title": "Mga setting",
+  "settings_subtitle": "Nasa iisang lugar ang iyong mga kagustuhan at account.",
+  "settings_appearance": "Hitsura",
+  "settings_language": "Wika",
+  "settings_languageDescription": "Ang pinili mong wika ay ginagamit din sa mga notification ng VPN.",
+  "settings_account": "Account",
+  "settings_signOut": "Mag-sign out",
+  "settings_privacy": "Patakaran sa privacy",
+  "settings_terms": "Mga tuntunin ng paggamit",
+  "settings_security": "Seguridad at transparency",
+  "settings_licenses": "Mga lisensya ng component",
+  "settings_licensesDetail": "Software na ginagamit sa app",
+  "settings_background": "Mananatiling naka-on ang VPN kapag umalis ka sa app. Para ihinto ito, gamitin ang Idiskonekta sa tab na Koneksyon.",
+  "theme_system": "System",
+  "theme_light": "Maliwanag",
+  "theme_dark": "Madilim",
+  "language_system": "Wika ng telepono",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Alisin ang device na ito?",
+  "dialog_removeCurrent": "Mawawala sa VPN ang koneksyon ng teleponong ito at ang access nito. Aalisin ang datos ng koneksyon ng VPN kapag nakumpirma ng server.",
+  "dialog_removeOther": "Bawiin ang access sa VPN para kay “{name}”. Hindi na ito maibabalik.",
+  "dialog_signOut": "Mag-sign out?",
+  "dialog_signOutMessage": "Ihihinto ang VPN at kakailanganin mong mag-sign in muli. Mananatili sa teleponong ito ang iyong mga naka-encrypt na VPN key para sa susunod mong koneksyon.",
+  "action_cancel": "Kanselahin",
+  "action_signOut": "Mag-sign out",
+  "notice_close": "I-dismiss ang mensahe",
+  "notice_sessionExpired_title": "Nag-expire ang session",
+  "notice_sessionExpired_message": "Nag-expire na ang iyong session. Mag-sign in muli.",
+  "notice_connectionFailed_title": "Hindi nakakonekta",
+  "notice_invalidCredentials_message": "Mali ang email address o password.",
+  "notice_emailVerification_title": "Kailangang kumpirmahin ang email",
+  "notice_emailVerification_message": "Kumpirmahin ang iyong email address bago magdagdag ng VPN device.",
+  "notice_rateLimited_title": "Napakaraming pagtatangka",
+  "notice_deviceLimit_title": "Naabot ang limitasyong 2 device",
+  "notice_deviceLimit_message": "Alisin ang isang kasalukuyang device bago magdagdag ng isa pa.",
+  "notice_identityRenewal_title": "Kailangang i-renew ang pagkakakilanlan ng VPN",
+  "notice_identityRenewal_message": "Inalis ang pagkakakilanlang ito. Gumawa ng bagong lokal na pagkakakilanlan.",
+  "notice_migrationPending_title": "Isinasagawa ang pagbabago ng lokasyon",
+  "notice_migrationPending_message": "May isinasagawa nang pagbabago ng lokasyon.",
+  "notice_migrationBlocked_title": "Na-block ang pagbabago ng lokasyon",
+  "notice_migrationBlocked_message": "Nangangailangan ng interbensyon ng server ang pagbabago ng lokasyon. Subukan muli mamaya o makipag-ugnayan sa suporta.",
+  "notice_targetUnavailable_title": "Pansamantalang hindi magagamit ang server",
+  "notice_targetUnavailable_message": "Pansamantalang hindi magagamit ang server na ito.",
+  "notice_networkUnavailable_title": "Hindi magagamit ang koneksyon sa internet",
+  "notice_networkUnavailable_message": "Suriin ang iyong koneksyon at subukan muli.",
+  "notice_permissionDenied_title": "Tinanggihan ang pahintulot sa VPN",
+  "notice_permissionDenied_message": "Simulan muli ang koneksyon at tanggapin ang kahilingan sa pahintulot ng Android.",
+  "notice_wireguardTimeout_title": "Hindi tumutugon ang server",
+  "notice_wireguardTimeout_message": "Masyadong matagal ang koneksyon ng WireGuard. Subukan muli o pumili ng ibang lokasyon.",
+  "notice_tlsFailed_title": "Tinanggihan ang ligtas na koneksyon",
+  "notice_tlsFailed_message": "Hindi tinanggap ng server ang koneksyon ng OpenVPN. Subukan muli. Kung magpatuloy ang problema, magpatakbo ng diagnostic.",
+  "notice_tunRejected_title": "Tinanggihan ng Android ang interface ng VPN",
+  "notice_tunRejected_message": "Tinanggihan ng Android ang configuration ng network na hiningi ng OpenVPN.",
+  "notice_openvpnStart_title": "Hindi masimulan ang OpenVPN",
+  "notice_openvpnStart_message": "Hindi natapos ng OpenVPN engine ang pagsisimula. Subukan muli. Kung magpatuloy ang problema, makipag-ugnayan sa suporta.",
+  "notice_diagnosticCode": "Code ng diagnostic: {code}",
+  "notice_generic_title": "Nabigo ang koneksyon ng VPN",
+  "notice_generic_message": "May naganap na error. Subukan muli mamaya.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Nagawa ang account} password_reset_sent{Natanggap ang kahilingan para i-reset ang password} verification_email_sent{Naipadala ang email ng kumpirmasyon} location_migration_pending{Isinasagawa ang pagbabago ng lokasyon} vpn_sign_in_required{Kailangang mag-sign in} protocol_unavailable_at_location{Hindi magagamit ang protocol} vpn_permission_denied{Tinanggihan ang pahintulot sa VPN} revoked_identity_device_limit{Naabot ang limitasyong 2 device} tunnel_start_unexpected{Hindi masimulan ang VPN} flutter_disconnect_timeout{Hindi nakumpirma ang pagdiskonekta} flutter_disconnect_unexpected{Hindi makapagdiskonekta} device_revoked{Inalis ang device} revoke_unexpected{Hindi maalis ang device} identity_renewal_unexpected{Hindi ma-renew ang pagkakakilanlan} openvpn_renewal_unexpected{Hindi ma-renew ang OpenVPN} location_migration_blocked{Na-block ang pagbabago ng lokasyon} location_migration_slow{Isinasagawa pa rin ang pagbabago ng lokasyon} location_migration_conflict{Kailangang i-refresh ang pagbabago ng lokasyon} location_migration_verification_failed{Hindi nakumpirma ang pagbabago ng lokasyon} location_migration_device_changed{Nagbago ang device habang binabago ang lokasyon} tunnel_stop_failed{Hindi magagamit ang pagbabago ng lokasyon} other{Nabigo ang operasyon}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Nagawa ang account, ngunit hindi naipadala ang email ng kumpirmasyon. Gamitin ang muling pagpapadala sa app.} password_reset_sent{Natanggap ang iyong kahilingan. Kung may account na tumutugma sa address na ito, maaari kang makatanggap ng email. Suriin din ang iyong spam folder.} verification_email_sent{Kakapadala lang ng bagong email ng kumpirmasyon.} location_migration_pending{Inihahanda pa rin ang paglipat sa {target}. Maaari mo itong ipagpatuloy nang hindi muling ginagawa ang device.} vpn_sign_in_required{Mag-sign in sa iyong account bago simulan ang VPN.} protocol_unavailable_at_location{Hindi inaalok ng lokasyong ito ang napiling protocol. I-refresh ang mga lokasyon o pumili ng ibang protocol.} vpn_permission_denied{Tinanggihan ng Android ang pahintulot sa VPN. Simulan muli ang koneksyon at tanggapin ang kahilingan ng system.} revoked_identity_device_limit{Inalis ang access ng device na ito sa VPN at naabot na ang limitasyon ng device. Mag-alis ng device sa Account → Pamahalaan ang aking mga device.} tunnel_start_unexpected{Isang hindi inaasahang error ang nakaantala sa paghahanda ng tunnel. Suriin ang diagnostic code at subukan muli.} flutter_disconnect_timeout{Hindi nakumpirma ng Android sa tamang oras na nahinto ang VPN. Subukang ihinto itong muli.} flutter_disconnect_unexpected{Isang hindi inaasahang error ang pumigil sa pagkumpirma na nahinto ang tunnel.} device_revoked{Binawi ang access ng device sa VPN at inalis ang mga lokal na lihim nito.} revoke_unexpected{Hindi maalis ang device. I-refresh ang listahan at subukan muli.} identity_renewal_unexpected{Hindi nagawa ang bagong pagkakakilanlan ng VPN. I-refresh ang mga device at subukan muli.} openvpn_renewal_unexpected{Hindi ma-renew ang profile ng OpenVPN. Subukan muli o tingnan ang diagnostic code.} location_migration_blocked{Hindi makumpleto ng server ang pagbabagong ito sa ngayon. Pinanatili ang device at lokal na pagkakakilanlan nito.} location_migration_slow{Inihahanda pa rin ng server ang paglipat sa {target}. Gamitin ang Ipagpatuloy pagkalipas ng ilang sandali.} location_migration_conflict{Nagbago ang estado ng device sa server. I-refresh ang mga device, pagkatapos ay ipagpatuloy ang pagbabago.} location_migration_verification_failed{Hindi kinumpirma ng server ang bagong lokasyon. Pinanatili ang dating lokal na pagkakakilanlan.} location_migration_device_changed{Hindi na tumutugma ang device na ibinalik ng server sa binabago. I-refresh ang mga device bago subukan muli.} tunnel_stop_failed{Dapat lubusang mahinto ang dating tunnel bago ang bagong koneksyon.} other{Hindi nakumpleto ang operasyon. Subukan muli o ipadala ang diagnostic code sa suporta.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Nag-expire ang session} invalid_credentials{Nabigo ang pag-sign in} email_verification_required{Kailangang kumpirmahin ang email} verification_email_cooldown{Naipadala na ang email} rate_limited{Napakaraming pagtatangka} invalid_registration{Kailangang itama ang impormasyon} email_exists{May account na} invalid_profile{Hindi wastong profile} invalid_device{Hindi wastong device} invalid_location{Hindi magagamit ang lokasyon} device_limit{Naabot ang limitasyong 2 device} device_exists{Ginagamit na ang pagkakakilanlan ng VPN} device_identity_revoked{Kailangang i-renew ang pagkakakilanlan ng VPN} device_location_locked{Kailangang i-refresh ang pagbabago ng lokasyon} location_migration_pending{Isinasagawa ang pagbabago ng lokasyon} location_migration_blocked{Na-block ang pagbabago ng lokasyon} target_ca_mismatch{Hindi compatible na OpenVPN server} location_migration_conflict{Kailangang i-refresh ang pagbabago ng lokasyon} server_full{Puno ang server} capacity_unavailable{Pansamantalang hindi magagamit ang lokasyon} target_unavailable{Pansamantalang hindi magagamit ang server} not_found{Hindi nahanap ang item} invalid_openvpn_csr{Hindi wastong pagkakakilanlan ng OpenVPN} openvpn_profile_exists{May profile na ng OpenVPN} openvpn_profile_revoked{Binawi ang profile ng OpenVPN} openvpn_operation_pending{Isinasagawa ang operasyon ng OpenVPN} openvpn_operation_terminal{Naantala ang operasyon ng OpenVPN} openvpn_address_unavailable{Hindi magagamit ang address ng OpenVPN} openvpn_profile_conflict{Salungatan sa OpenVPN} openvpn_signer_unavailable{Hindi magagamit ang OpenVPN} email_delivery_unavailable{Hindi magagamit ang email} invalid_token{Hindi wastong link} network_unavailable{Hindi magagamit ang koneksyon sa internet} invalid_json{Hindi wastong kahilingan} invalid_api_response{Hindi wastong tugon ng server} ipv6_unavailable{Hindi magagamit ang IPv6} invalid_ip_families{Tinanggihan ang configuration ng network} other{Hindi magagamit ang serbisyo}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Nag-expire na ang iyong session. Mag-sign in muli.} invalid_credentials{Mali ang email address o password.} email_verification_required{Kumpirmahin ang iyong email address bago magdagdag ng VPN device.} invalid_registration{Suriin ang hinihinging impormasyon at mga pahintulot.} email_exists{May account nang gumagamit ng email address na ito.} invalid_profile{Suriin ang impormasyon ng iyong profile.} invalid_device{Hindi wasto ang pangalan o lokal na pagkakakilanlan ng device na ito.} invalid_location{I-refresh ang listahan ng lokasyon at subukan muli.} device_limit{Alisin ang isang kasalukuyang device bago magdagdag ng isa pa.} device_exists{Naka-link na ang pagkakakilanlan ng VPN na ito sa ibang account.} device_identity_revoked{Inalis ang pagkakakilanlang ito. Kailangang gumawa ng bagong lokal na pagkakakilanlan.} device_location_locked{Kakabago lang ng lokasyon ng device na ito. Ipagpapatuloy ng app ang pagbabagong isinasagawa.} location_migration_pending{May isinasagawa nang pagbabago ng lokasyon.} location_migration_blocked{Nangangailangan ng interbensyon ng server ang pagbabago ng lokasyon. Subukan muli mamaya o makipag-ugnayan sa suporta.} target_ca_mismatch{Hindi pa compatible ang server na ito sa kasalukuyang profile ng OpenVPN.} location_migration_conflict{I-refresh ang mga device, pagkatapos ay subukang muli ang pagbabago ng lokasyon.} server_full{Naabot na ng lokasyong ito ang limitasyon ng koneksyon. Pumili ng ibang lokasyon o subukan muli mamaya.} capacity_unavailable{Hindi namin makumpirma kung magagamit ang lokasyong ito ngayon. Pumili ng ibang lokasyon o subukan muli mamaya.} target_unavailable{Pansamantalang hindi magagamit ang server na ito.} not_found{Hindi na magagamit ang item na ito sa iyong account.} invalid_openvpn_csr{Gumawa ng bagong pagkakakilanlan ng OpenVPN at subukan muli.} openvpn_profile_exists{May profile na ng OpenVPN para sa device na ito.} openvpn_profile_revoked{I-renew ang profile ng OpenVPN upang magpatuloy.} openvpn_operation_pending{Ipinapamahagi pa rin ang pagbabago. Subukan muli mamaya.} openvpn_operation_terminal{Gumawa ng bagong pagkakakilanlan ng OpenVPN at subukan muli.} openvpn_address_unavailable{Kasalukuyang walang magagamit na address ng OpenVPN.} openvpn_profile_conflict{Nagbago ang profile. I-refresh ang mga device at subukan muli.} openvpn_signer_unavailable{Pansamantalang hindi magagamit ang serbisyo ng OpenVPN.} email_delivery_unavailable{Hindi maipadala ang email. Subukan muli mamaya.} invalid_token{Hindi wasto o nag-expire na ang link na ito. Humiling ng bago.} network_unavailable{Suriin ang iyong koneksyon sa internet at subukan muli.} invalid_json{Suriin ang inilagay na impormasyon at subukan muli.} invalid_api_response{Nagbalik ang server ng hindi inaasahang tugon. Subukan muli mamaya.} ipv6_unavailable{Hindi ma-activate ng server ang IPv6 sa ngayon. Subukan muli mamaya.} invalid_ip_families{Hindi kumpleto ang configuration ng tunnel o hindi ito tumutugma sa mga awtorisadong address. Subukan muli mula sa app.} other{May naganap na error sa server. Subukan muli mamaya.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Subukan muli pagkalipas ng ilang sandali.",
+  "notice_retryAfter": "Subukan muli pagkalipas ng {seconds} segundo.",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "Object"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Hindi magagamit ang pagpapatuloy ng system VPN} system_vpn_resume_corrupt{Hindi wasto ang pagpapatuloy ng system VPN} system_vpn_resume_session_invalid{Hindi wastong session ng pagpapatuloy ng VPN} system_vpn_resume_identity_changed{Nagbago ang pagkakakilanlan ng VPN} system_vpn_resume_identity_invalid{Hindi wastong pagkakakilanlan para sa pagpapatuloy ng VPN} system_vpn_resume_storage_failed{Hindi magagamit ang imbakan para sa pagpapatuloy ng VPN} system_vpn_resume_network_timeout{Walang network ang pagpapatuloy ng VPN} system_vpn_resume_blocked{Na-block ang pagpapatuloy ng VPN} system_vpn_resume_failed{Nabigo ang pagpapatuloy ng VPN} system_vpn_resume_error_invalid{Hindi wastong error sa pagpapatuloy ng VPN} wireguard_identity_store_failed{Hindi na-save ang pagkakakilanlan ng WireGuard} wireguard_identity_unavailable{Hindi magagamit ang pagkakakilanlan ng WireGuard} vpn_host_destroyed{Nahinto ang Android VPN host} vpn_host_unavailable{Hindi magagamit ang Android VPN host} vpn_permission_required{Kailangan ng pahintulot sa VPN} vpn_permission_denied{Tinanggihan ang pahintulot sa VPN} vpn_permission_request_failed{Hindi makahiling ng pahintulot} wireguard_foreground_service_unavailable{Hindi magagamit ang serbisyo ng WireGuard} wireguard_identity_invalid{Hindi wastong lokal na key ng WireGuard} wireguard_identity_in_use{Ginagamit na ang pagkakakilanlan ng WireGuard} wireguard_configuration_invalid{Hindi wastong configuration ng WireGuard} wireguard_operation_pending{Aktibo pa rin ang operasyon ng WireGuard} wireguard_start_failed{Tinanggihan ang pagsisimula ng WireGuard} wireguard_stop_timeout{Hindi nakumpirma ang paghinto ng WireGuard} wireguard_handshake_timeout{Hindi tumugon ang WireGuard} openvpn_connection_timeout{Hindi tumugon ang OpenVPN} openvpn_core_unavailable{Hindi magagamit ang OpenVPN engine} openvpn_operation_pending{Aktibo pa rin ang session ng OpenVPN} openvpn_stop_timeout{Hindi nakumpirma ang paghinto ng OpenVPN} openvpn_profile_unavailable{Nawawala ang lokal na profile ng OpenVPN} openvpn_native_failed{Naantala ang native na tawag sa OpenVPN} openvpn_key_generation_failed{Hindi makagawa ng OpenVPN P-256 key} openvpn_csr_generation_failed{Hindi makagawa ng OpenVPN CSR} openvpn_identity_store_failed{Hindi na-save ang pagkakakilanlan ng OpenVPN} openvpn_identity_clear_failed{Hindi kumpletong pag-alis ng OpenVPN} openvpn_identity_in_use{Ginagamit pa rin ang pagkakakilanlan ng OpenVPN} openvpn_tls_verification_required{Nawawala ang TLS verification ng OpenVPN} openvpn_cipher_invalid{Hindi wastong cipher ng OpenVPN} openvpn_profile_rejected{Tinanggihan ang profile ng OpenVPN} openvpn_identity_inconsistent{Hindi magkakatugma ang pagkakakilanlan ng OpenVPN} tls_handshake_failed{Tinanggihan ang negosasyon ng OpenVPN} tls_alert_unknown_ca{Hindi nakilala ang certificate ng kliyente ng OpenVPN} tls_alert_bad_certificate{Tinanggihan ang certificate ng kliyente ng OpenVPN} tls_alert_unsupported_certificate{Hindi suportadong certificate ng OpenVPN} tls_client_certificate_required{Kailangan ng certificate ng kliyente ng OpenVPN} tls_alert_misc{TLS alert ng OpenVPN} tls_signature_algorithm_rejected{Hindi suportadong signature ng OpenVPN} tls_handshake_rejected{Tinanggihan ang TLS negotiation ng OpenVPN} tls_version_rejected{Hindi compatible na bersyon ng OpenVPN TLS} tls_certificate_expired{Nag-expire ang TLS certificate} tls_certificate_revoked{Binawi ang TLS certificate} transport_failed{Hindi maabot ang OpenVPN server} tun_configuration_rejected{Hindi makagawa ng interface ng OpenVPN} tun_setup_failed{Nabigo ang pag-set up ng OpenVPN TUN} tun_interface_create_failed{Nabigo ang paggawa ng interface ng OpenVPN} tun_interface_disabled{Na-disable ang interface ng OpenVPN} tun_halted{Naantala ang interface ng OpenVPN} tun_already_established{Bukas na ang interface ng OpenVPN} tun_addresses_missing{Nawawala ang address ng OpenVPN} tun_routes_missing{Nawawala ang mga ruta ng OpenVPN} tun_dns_missing{Nawawala ang DNS ng OpenVPN} tun_permission_revoked{Binawi ang pahintulot sa VPN} tun_establish_returned_null{Tinanggihan ng Android ang interface ng VPN} openvpn_service_start_failed{Hindi magagamit ang serbisyo ng OpenVPN} openvpn_operation_timeout{Nag-timeout ang tawag sa OpenVPN} openvpn_start_failed{Tinanggihan ang pagsisimula ng OpenVPN} openvpn_connection_failed{Naantala ang koneksyon ng OpenVPN} openvpn_core_status_error{Nagtapos ang OpenVPN Core na may error} openvpn_stopped_before_connected{Nahinto ang OpenVPN bago kumonekta} openvpn_auth_failed{Tinanggihan ang authentication ng OpenVPN} openvpn_client_setup_failed{Nabigo ang pag-set up ng kliyente ng OpenVPN} openvpn_client_halted{Naantala ang kliyente ng OpenVPN} openvpn_client_restart{Hiniling ang pag-restart ng OpenVPN} openvpn_inactive_timeout{Masyadong matagal na hindi aktibo ang OpenVPN} openvpn_session_expired{Nag-expire ang session ng OpenVPN} openvpn_credentials_required{Hindi suportadong authentication ng OpenVPN} openvpn_proxy_failed{Nabigo ang intermediary transport ng OpenVPN} openvpn_compression_failed{Tinanggihan ang compression ng OpenVPN} openvpn_ntlm_crypto_unavailable{Hindi magagamit ang NTLM encryption ng OpenVPN} openvpn_feature_unsupported{Hindi suportadong feature ng OpenVPN} network_unavailable{Hindi magagamit ang koneksyon sa internet} network_lost{Hindi magagamit ang network} certificate_validation_failed{Tinanggihan ang certificate ng server} openvpn_certificate_expired{Nag-expire ang certificate ng OpenVPN} tunnel_active_for_another_account{Aktibo pa ang tunnel ng ibang account} tunnel_already_active{Aktibo na ang native tunnel} tunnel_stop_timeout{Hindi nakumpirma ang paghinto ng {protocol}} tunnel_disconnected{Naantala ang {protocol}} native_bridge_unavailable{Hindi magagamit ang Android bridge} native_operation_failed{Naantala ang operasyon ng Android} invalid_arguments{Hindi kumpletong parameter ng VPN} invalid_account_id{Hindi wastong VPN account} invalid_device_id{Hindi wastong identifier ng device} storage_key_not_allowed{Tinanggihan ang storage key} secure_storage_read_failed{Nabigo ang ligtas na pagbasa} secure_storage_write_failed{Nabigo ang ligtas na pagsulat} key_generation_failed{Hindi makagawa ng WireGuard key} csr_generation_failed{Hindi makagawa ng OpenVPN CSR} other{Hindi nauri na native VPN error}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Hindi makahanap ang Android ng session ng VPN na maaaring ipagpatuloy. Magsimula ng bagong koneksyon sa app.} system_vpn_resume_corrupt{Hindi wasto ang naka-save na datos para ipagpatuloy ang VPN at hindi ito gagamitin. Magsimula ng bagong koneksyon.} system_vpn_resume_session_invalid{Hindi na maipagpapatuloy ng naka-save na session ang VPN. Mag-sign in muli sa app.} system_vpn_resume_identity_changed{Nagbago ang lokal na pagkakakilanlan ng VPN. Itinigil ang pagpapatuloy; magsimula ng bagong koneksyon.} system_vpn_resume_identity_invalid{Hindi wasto ang pagkakakilanlan para sa pagpapatuloy. Magsimula ng bagong koneksyon.} system_vpn_resume_storage_failed{Hindi mabasa o ma-update ng Android ang naka-encrypt na datos para sa pagpapatuloy. Magsimula ng bagong koneksyon.} system_vpn_resume_network_timeout{Hindi nakahanap ang Android ng network sa tamang oras upang ipagpatuloy ang VPN. Subukan muli kapag may available na network.} system_vpn_resume_blocked{Na-block ang pagpapatuloy ng VPN. Suriin ang mga setting ng Android, pagkatapos ay magsimula ng bagong koneksyon.} system_vpn_resume_failed{Nabigo ang pagpapatuloy ng Android VPN. Magsimula ng bagong koneksyon sa app.} system_vpn_resume_error_invalid{Nagbalik ang Android ng hindi magagamit na error sa pagpapatuloy. Magsimula ng bagong koneksyon.} wireguard_identity_store_failed{Hindi na-save ng Android ang naka-encrypt na pagkakakilanlan ng WireGuard ng account na ito.} wireguard_identity_unavailable{Walang magagamit na pagkakakilanlan ng WireGuard para sa koneksyong ito.} vpn_host_destroyed{Nahinto ang Android component na nagho-host ng VPN. Magsimula ng bagong koneksyon.} vpn_host_unavailable{Hindi magawa ng Android ang component na nagho-host ng VPN. Subukan muli pagkatapos suriin ang mga setting ng VPN.} openvpn_renewal_required{Nangangailangan ang certificate ng aksyon sa app bago kumonekta.} openvpn_recovery_failed{Nabigo ang awtomatikong pag-recover. Magsimula ng bagong koneksyon sa app.} openvpn_recovery_exhausted{Nagamit na ang awtomatikong pag-recover. Magsimula ng bagong koneksyon sa app.} vpn_permission_required{Kailangan ng Android ng bagong awtorisasyon sa VPN bago simulan ang tunnel.} vpn_permission_denied{Payagan ang FuzeVPN sa kahilingan ng Android upang magpatuloy.} vpn_permission_request_failed{Hindi mabuksan ng Android ang screen ng pahintulot sa VPN.} wireguard_foreground_service_unavailable{Hindi mapanatili ng Android sa foreground ang serbisyo ng WireGuard.} wireguard_identity_invalid{Hindi mabasa o hindi wasto ang naka-encrypt na WireGuard key ng account na ito.} wireguard_identity_in_use{Ginagamit pa rin ng ibang operasyon ang WireGuard key ng account na ito.} wireguard_configuration_invalid{Hindi wasto ang natanggap na address, DNS, server key o mga ruta ng WireGuard.} wireguard_operation_pending{Hindi pa nailalabas ng nakaraang operasyon ng WireGuard ang native service nito.} wireguard_start_failed{Tinanggihan ng WireGuard engine ang pag-activate ng configuration.} wireguard_stop_timeout{Hindi nakumpirma ng serbisyo ng WireGuard ang pag-release ng interface ng VPN sa itinakdang oras.} wireguard_handshake_timeout{Hindi nakumpirma ng tunnel ang handshake sa server sa tamang oras.} openvpn_connection_timeout{Hindi nakumpirma ng OpenVPN ang koneksyon sa server sa tamang oras.} openvpn_core_unavailable{Walang magagamit na OpenVPN engine sa bersyong ito ng app.} openvpn_operation_pending{Hawak pa ng native engine ang dating session ng OpenVPN at tumatangging gumawa ng pangalawa.} openvpn_stop_timeout{Hindi nakumpirma ng OpenVPN Core na nahinto at nawasak ang native session nito sa itinakdang oras.} openvpn_profile_unavailable{Walang validated na profile ng OpenVPN na mababasa para sa koneksyong ito.} openvpn_native_failed{Naantala ng error sa app ang OpenVPN. Subukang kumonekta muli. Kung magpatuloy ang problema, magpatakbo ng diagnostic.} openvpn_key_generation_failed{Hindi makagawa o makabasa ang Android Keystore ng hindi mae-export na P-256 private key.} openvpn_csr_generation_failed{Hindi ma-sign ng Android Keystore key ang kahilingan para sa certificate ng OpenVPN.} openvpn_identity_store_failed{Hindi ma-save ang certificate o profile ng OpenVPN sa naka-encrypt na imbakan.} openvpn_identity_clear_failed{Hindi maalis ng Android ang buong lokal na pagkakakilanlan ng OpenVPN para sa account na ito.} openvpn_identity_in_use{Ginagamit pa rin ng native OpenVPN session ang key o certificate ng device na ito.} openvpn_tls_verification_required{Hindi tahasang hinihingi ng profile ang pag-verify ng certificate ng server.} openvpn_cipher_invalid{Nagbigay ang server ng encryption algorithm na wala sa pinapayagang listahan.} openvpn_profile_rejected{Hindi compatible ang profile na natanggap mula sa server. Gawin muli ang device na ito at subukan muli.} openvpn_identity_inconsistent{Hindi tumutugma ang certificate sa secure identity ng teleponong ito. Walang lokal na profile na pinalitan.} tls_handshake_failed{Tinanggihan ng server ang TLS negotiation. Gawin muli ang profile kung magpatuloy ang problema.} tls_alert_unknown_ca{Hindi kinikilala ng server ang awtoridad ng certificate ng device na ito. Kailangang suriin ang OpenVPN server.} tls_alert_bad_certificate{Tinanggihan ng server ang certificate ng device na ito. Gawin muli ang device bago subukan ulit.} tls_alert_unsupported_certificate{Hindi sinusuportahan ng server ang secure certificate type na ginagamit ng Android.} tls_client_certificate_required{Kailangan ng server ng certificate ng kliyente, ngunit hindi makapagbigay nito ang OpenVPN Core.} tls_alert_misc{Nagbalik ang server ng TLS alert na wala sa mga kategorya ng certificate at bersyon.} tls_signature_algorithm_rejected{Tinanggihan ng server ang ECDSA P-256 algorithm ng Android Keystore key.} tls_handshake_rejected{Naantala ng server ang TLS negotiation bago ang koneksyon.} tls_version_rejected{Walang nakitang magkaparehong bersyon ng TLS ang kliyente at server.} tls_certificate_expired{Nag-expire ang certificate na ipinakita habang kumokonekta.} tls_certificate_revoked{Binawi ang certificate na ipinakita habang kumokonekta.} transport_failed{Hindi tumutugon ang OpenVPN server sa kasalukuyang network. Subukan muli pagkalipas ng ilang sandali.} tun_configuration_rejected{Tinanggihan ng Android ang configuration ng network na hiningi ng OpenVPN.} tun_setup_failed{Tinanggihan ng OpenVPN Core ang network plan bago gawin ang Android interface.} tun_interface_create_failed{Hindi makuha ng OpenVPN Core ang TUN interface mula sa Android VpnService.} tun_interface_disabled{Na-disable ng Android o OpenVPN Core ang TUN interface habang kumokonekta.} tun_halted{Nakatanggap ang OpenVPN Core ng kahilingang ihinto ang TUN interface.} tun_already_established{Humiling ang OpenVPN ng ikalawang interface sa parehong koneksyon. Ihihinto ang tunnel para sa kaligtasan.} tun_addresses_missing{Hindi nagbigay ang server ng magagamit na tunnel address.} tun_routes_missing{Hindi nagbigay ang server ng magagamit na tunnel routes.} tun_dns_missing{Hindi nagbigay ang server ng magagamit na DNS server.} tun_permission_revoked{Binawi ng Android ang pahintulot sa VPN habang kumokonekta.} tun_establish_returned_null{Hindi ginawa ng Android ang interface, karaniwang dahil aktibo pa ang ibang VPN.} openvpn_service_start_failed{Hindi masimulan ng Android ang foreground service ng OpenVPN.} openvpn_operation_timeout{Lumampas sa maximum na tagal ang JNI call sa OpenVPN Core.} openvpn_start_failed{Handa na ang serbisyo ng Android, ngunit hindi tinanggap ng OpenVPN Core ang pagsisimula ng profile.} openvpn_connection_failed{Nahinto ang OpenVPN Core bago ilabas ang CONNECTED event.} openvpn_core_status_error{Nagtapos ang native OpenVPN loop nang may error at walang mas tiyak na terminal event.} openvpn_stopped_before_connected{Nahinto ang native OpenVPN loop bago ang CONNECTED, nang walang tahasang Core error.} openvpn_auth_failed{Tinanggihan ng OpenVPN server ang authentication ng profile.} openvpn_client_setup_failed{Hindi ma-initialize ng OpenVPN Core ang kliyente bago ang koneksyon sa network.} openvpn_client_halted{Nakatanggap ang OpenVPN Core ng terminal stop para sa kliyente.} openvpn_client_restart{Humiling ang OpenVPN Core ng pag-restart ng transport session nito.} openvpn_inactive_timeout{Isinara ng OpenVPN Core ang session matapos ang timeout ng kawalan ng aktibidad.} openvpn_session_expired{Iniulat ng server na nag-expire ang session ng OpenVPN.} openvpn_credentials_required{Humihiling ang server o proxy ng interactive credentials na wala sa certificate profile na ito.} openvpn_proxy_failed{Iniulat ng OpenVPN Core ang pagkabigo ng naka-configure na proxy o relay.} openvpn_compression_failed{Tinanggihan ng OpenVPN Core ang compression mode na inanunsyo ng profile o server.} openvpn_ntlm_crypto_unavailable{Humihiling ang profile ng NTLM encryption na hindi magagamit sa bersyong ito.} openvpn_feature_unsupported{Nangangailangan ang profile o server ng feature na wala sa Android client na ito.} network_unavailable{Walang magagamit na pisikal na network.} network_lost{Nahinto ang tunnel matapos mawala ang network.} certificate_validation_failed{Hindi ma-verify ang pagkakakilanlan ng OpenVPN server.} openvpn_certificate_expired{I-renew ang profile ng OpenVPN bago muling kumonekta.} tunnel_active_for_another_account{Dapat munang mahinto ang tunnel ng ibang account bago ang koneksyong ito.} tunnel_already_active{Iniulat ng Android na ginagamit pa rin ng dating session ng VPN ang interface.} tunnel_stop_timeout{Hindi nakumpirma ng {protocol} engine ang pag-release ng interface ng VPN sa itinakdang oras.} tunnel_disconnected{Iniulat ng native engine na hindi inaasahang natapos ang tunnel matapos simulan.} native_bridge_unavailable{Hindi ma-access ng app ang serbisyo ng Android VPN. Isara at buksan muli ang app, pagkatapos ay subukan muli.} native_operation_failed{Naantala ng error sa app ang operasyon ng VPN. Subukan muli. Kung magpatuloy ang problema, magpatakbo ng diagnostic.} invalid_arguments{Hindi kumpleto ang impormasyong kailangan para sa operasyong ito ng VPN. Subukan muli. Kung magpatuloy ang problema, magpatakbo ng diagnostic.} invalid_account_id{Ang native operation ay hindi nauugnay sa wastong account identifier.} invalid_device_id{Nawawala o hindi wasto ang device identifier na ipinadala sa native engine.} storage_key_not_allowed{Hinarang ng Android bridge ang key na wala sa pinapayagang listahan ng storage.} secure_storage_read_failed{Hindi ma-decrypt ng Android Keystore ang lokal na data ng account na ito.} secure_storage_write_failed{Hindi ma-encrypt o ma-save ng Android Keystore ang lokal na data.} key_generation_failed{Hindi makagawa o makabasa ang Android ng WireGuard key sa ligtas na imbakan.} csr_generation_failed{Hindi makagawa o maka-sign ang Android Keystore ng OpenVPN P-256 CSR.} other{Nabigo ang isang hindi dokumentadong native branch. Ipadala sa suporta ang diagnostic code na ipinapakita sa ibaba.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Nakabukas na ang kahilingan sa pahintulot",
+  "notice_permissionRequestInProgress_message": "Ipinapakita na ang kahilingan sa pahintulot ng Android VPN. Kumpletuhin ito bago muling subukan.",
+  "notice_permissionRequestInterrupted_title": "Naantala ang kahilingan sa pahintulot ng VPN",
+  "notice_permissionRequestInterrupted_message": "Nagsara ang screen ng pahintulot ng VPN bago makatanggap ng tugon ang app.",
+  "notice_openvpnProofMissing_title": "Hindi nakumpirma ang koneksyon ng OpenVPN",
+  "notice_openvpnProofMissing_message": "Hindi makumpirma ang koneksyon ng OpenVPN. Ihihinto ito para sa kaligtasan. Subukan muli.",
+  "openvpnCleanup_title": "Binawi ang profile ng OpenVPN",
+  "openvpnCleanup_working": "Ihihinto at aalisin ang binawing profile ng OpenVPN…",
+  "openvpnCleanup_stopFailed": "Hindi nakumpirma ang pagsasara ng OpenVPN. Subukang muli bago gumawa ng bagong profile.",
+  "openvpnCleanup_cleanupFailed": "Hindi lubusang maalis ang binawing profile ng OpenVPN. Subukang muli ang paglilinis.",
+  "openvpnCleanup_complete": "Naalis na ang binawing profile ng OpenVPN. I-tap ang Kumonekta upang gumawa ng bago.",
+  "network_title": "Configuration ng network",
+  "network_ipv4Fallback": "Pansamantalang hindi magagamit ang IPv6. Magpapatuloy ang paghahanda gamit ang IPv4.",
+  "network_rejectedTitle": "Tinanggihan ang configuration ng network",
+  "network_rejectedMessage": "Hindi kumpleto ang configuration ng tunnel o hindi ito tumutugma sa mga awtorisadong address. Subukan muli mula sa app.",
+  "network_unreadableTitle": "Hindi mabasa ang lokal na configuration",
+  "network_unreadableMessage": "Hindi magagamit ang naka-save na configuration ng OpenVPN network. Kumonekta muli mula sa app upang i-update ito.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Proteksyon ng network",
+  "protection_subtitle": "I-block ang direktang access sa internet kapag nadiskonekta ang VPN.",
+  "protection_active": "Aktibo ang proteksyon ng system",
+  "protection_alwaysOnOnly": "Naka-enable ang always-on VPN; i-on ang pag-block sa labas ng VPN",
+  "protection_inactive": "Hindi aktibo ang proteksyon ng system",
+  "protection_unknown": "Suriin ang proteksyon ng system",
+  "protection_openSettings": "Buksan ang mga setting ng Android",
+  "protection_dialogTitle": "I-set up ang proteksyon ng network",
+  "protection_dialogMessage": "Pinamamahalaan ng Android ang always-on VPN at pag-block ng mga koneksyon sa labas ng VPN. Tiyaking napili ang FuzeVPN at i-enable ang pag-block sa mga setting ng system.",
+  "protection_dialogOpen": "Buksan ang mga setting",
+  "session_systemProtectionNote": "Kung bina-block pa rin ng Android ang trapiko sa labas ng VPN, buksan ang mga setting ng system upang suriin o baguhin ang proteksyong ito.",
+  "diagnostics_title": "Diagnostics",
+  "diagnostics_settingsTitle": "Diagnostics ng app",
+  "diagnostics_automaticTitle": "Magpadala ng mahahalagang error",
+  "diagnostics_automaticDescription": "Magbahagi ng maikling teknikal na ulat kapag may naganap na mahalagang error.",
+  "diagnostics_privacy": "Naka-link ang mga ipinadalang ulat sa naka-sign-in na account at itinatago nang 30 araw. Wala itong browsing history, password o VPN key.",
+  "diagnostics_manualOpen": "Magpatakbo ng diagnostics",
+  "diagnostics_localDescription": "Gumawa ng ulat tungkol sa app at status ng VPN. Hindi magbabago ang iyong koneksyon.",
+  "diagnostics_sendReport": "Ipadala ang ulat",
+  "diagnostics_sendHint": "Iwanang hindi naka-check ang kahong ito upang manatili ang ulat sa device na ito.",
+  "diagnostics_signedOut": "Mag-sign in sa iyong account upang magpadala ng ulat.",
+  "diagnostics_localLifetime": "I-save ang ulat na ito sa iyong telepono upang manatili ito kahit isara ang app.",
+  "diagnostics_run": "Magpatakbo ng diagnostics",
+  "diagnostics_rerun": "Magpatakbo muli ng diagnostics",
+  "diagnostics_running": "Sinusuri…",
+  "diagnostics_sending": "Ipinapadala ang ulat…",
+  "diagnostics_prepared": "Handa na ang ulat sa device na ito",
+  "diagnostics_queued": "Naghihintay na maipadala ang ulat",
+  "diagnostics_sent": "Natanggap ang ulat",
+  "diagnostics_failed": "Nabigo ang pagpapadala. Magagamit pa rin ang iyong lokal na ulat.",
+  "diagnostics_preparationFailed": "Hindi maihanda ang diagnostic report. Subukan muli.",
+  "diagnostics_authenticationRequired": "Mag-sign in muli upang maipadala ang ulat.",
+  "diagnostics_retry": "Subukang muli ang pagpapadala",
+  "diagnostics_export": "I-save ang ulat",
+  "diagnostics_exportFailed": "Nabigo ang pag-export. Subukan muli mula sa lokal na ulat.",
+  "diagnostics_preferenceFailed": "Hindi ma-save ang setting na ito. Subukan muli.",
+  "diagnostics_receipt": "Sanggunian: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "Natanggap noong {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Itinatago hanggang {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Natanggap na ang ulat na ito.",
+  "diagnostics_preview": "Preview ng ulat",
+  "diagnostics_eventCount": "{count, plural, =0{Walang naka-attach na teknikal na event} =1{1 naka-attach na teknikal na event} other{{count} naka-attach na teknikal na event}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Mga teknikal na detalye",
+  "diagnostics_empty": "Wala pang naihandang diagnostic report.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Estado ng tunnel} handshake{Kumpirmasyon ng koneksyon} certificate{VPN certificate} kill_switch{Proteksyon ng Android} connectivity{Available na network} api_reachability{Access sa serbisyo} secure_storage{Ligtas na imbakan} other{Lokal na pagsusuri}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Nasuri} failed{Kailangan ng atensyon} skipped{Hindi nasuri — walang aktibong probe} unknown{Hindi magagamit ang impormasyon} other{Hindi magagamit ang impormasyon}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Maligayang pagdating sa FuzeVPN",
+  "connection_changeLocation": "Magpalit ng lokasyon",
+  "connection_details": "Mga detalye ng koneksyon",
+  "locations_searchLabel": "Maghanap ng lungsod o bansa",
+  "locations_clearSearch": "I-clear ang paghahanap",
+  "locations_filterAll": "Lahat",
+  "locations_filterFavorites": "Mga paborito",
+  "locations_results": "{count, plural, one{{count} lokasyon} other{{count} lokasyon}}",
+  "locations_noResults": "Walang nakitang lokasyon",
+  "locations_noResultsHint": "Subukan ang ibang lungsod o bansa.",
+  "locations_noFavorites": "Nasa kamay ang iyong mga paborito",
+  "locations_noFavoritesHint": "I-tap ang bituin sa tabi ng lokasyon upang i-save ito rito.",
+  "locations_showAll": "Tingnan ang lahat ng lokasyon",
+  "locations_addFavorite": "Idagdag ang {name} sa mga paborito",
+  "locations_removeFavorite": "Alisin ang {name} sa mga paborito",
+  "locations_favoriteSaveFailed": "Hindi ma-save ang paborito. Subukan muli.",
+  "locations_emptyTitle": "Walang magagamit na lokasyon",
+  "locations_emptyHint": "I-refresh ang listahan upang subukan muli.",
+  "devices_manage": "Pamahalaan ang aking mga device",
+  "settings_personalization": "Iangkop ito sa iyo",
+  "settings_safety": "Proteksyon",
+  "settings_help": "Kailangan mo ng tulong?",
+  "settings_about": "Tungkol sa FuzeVPN",
+  "diagnostics_heading": "Unawain ang problema sa koneksyon",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Magagamit} pending{Inihahanda} revoked{Inalis} expired{Nag-expire} other{Hindi magagamit ang status}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Hindi na-save ang kagustuhan",
+  "notice_preferenceSave_message": "Ginagamit muna ang iyong pinili, ngunit hindi ito na-save. Subukan muli upang manatili ito pagkatapos isara ang app.",
+  "connection_androidDisconnectHint": "Kung pinananatiling aktibo ng Android ang VPN, i-off ang Always-on VPN sa mga setting na bubukas.",
+  "protection_learnMore": "Alamin ang tungkol sa proteksyon ng Android",
+  "protection_guideWhy": "Pinipigilan ng proteksyong ito ang mga app na direktang gumamit ng internet kapag nadiskonekta ang VPN. Kino-configure ito sa Android.",
+  "protection_guideAlwaysOnTitle": "Always-on VPN",
+  "protection_guideAlwaysOn": "Pinananatiling tumatakbo ng Android ang serbisyo ng VPN at maaari itong i-restart pagkatapos mag-reboot ang telepono.",
+  "protection_guideBlockTitle": "I-block ang mga koneksyong walang VPN",
+  "protection_guideBlock": "Pinipigilan ng setting na ito ang pag-bypass ng trapiko sa VPN, pati habang naaantala ang koneksyon.",
+  "protection_guideWarning": "Kapag naka-enable ang pag-block na ito, mananatiling naka-off ang access sa internet hanggang nakakonekta ang VPN.",
+  "protection_guideStepsTitle": "I-on ang proteksyon",
+  "protection_guideStep1": "Buksan ang mga setting ng Android VPN gamit ang button sa ibaba.",
+  "protection_guideStep2": "Buksan ang mga opsyon gamit ang icon na gear sa tabi ng FuzeVPN.",
+  "protection_guideStep3": "I-enable ang Always-on VPN, pagkatapos ay ang I-block ang mga koneksyong walang VPN, kung magagamit ang mga opsyong ito.",
+  "protection_guideManufacturers": "Nag-iiba ang mga pangalan depende sa telepono. Kung kailangan, hanapin ang VPN sa Settings, kadalasan sa ilalim ng Network at internet.",
+  "protection_guideDisableTitle": "I-off ang proteksyong ito",
+  "protection_guideDisable": "Sa parehong mga setting, i-off ang pag-block kapag walang VPN upang payagan ang internet nang walang VPN. I-off din ang Always-on VPN kung ayaw mo nang i-restart ito ng Android.",
+  "protection_guideManual": "Ikaw ang pumipili ng mga setting na ito sa Android. Hindi binabago ng FuzeVPN ang mga ito para sa iyo.",
+  "locations_changeTitle": "Magpalit ng lokasyon?",
+  "locations_changeActive": "Madidiskonekta ang VPN, pagkatapos ay susubukang kumonekta sa {name}.",
+  "locations_changeIdle": "Susubukang kumonekta ng VPN sa {name}.",
+  "locations_confirmChange": "Magpalit at kumonekta",
+  "locations_changeBusy": "May isinasagawang pagbabago. Maghintay bago pumili ng ibang lokasyon.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Awtomatikong pagpili",
+  "locations_cities": "Mga lungsod",
+  "locations_servers": "Mga server",
+  "locations_viewCities": "Tingnan ang mga lungsod sa {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Tingnan ang mga server sa {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} bansa} other{{count} bansa}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} lungsod} other{{count} lungsod}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} server} other{{count} server}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Lahat ng bansa",
+  "locations_backToCountries": "Bumalik sa mga bansa",
+  "locations_backToCities": "Bumalik sa mga lungsod sa {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Piliin ang {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Piliin ang {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Walang available na compatible na server.",
+  "externalLink_failed": "Hindi mabuksan ang link na ito. Maaari mo itong kopyahin at buksan sa iyong browser.",
+  "externalLink_copy": "Kopyahin ang link",
+  "externalLink_copied": "Nakopya ang link",
+  "externalLink_copyFailed": "Hindi makopya ang link. Piliin ang address sa ibaba.",
+  "settings_deleteAccount": "Burahin ang aking account",
+  "settings_deleteAccountDetail": "Tingnan kung paano humiling ng pagbura ng account",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Piliin ang iyong VPN subscription.",
+  "billing_subscribe": "Mag-subscribe",
+  "billing_choosePlan": "Pumili ng plan para magpatuloy.",
+  "billing_monthly": "Buwanan",
+  "billing_yearly": "Taunan",
+  "billing_continue": "Magpatuloy sa Google Play",
+  "billing_restore": "Ibalik ang mga pagbili",
+  "billing_manage": "Pamahalaan ang subscription",
+  "billing_deleteAccountWarning": "Kung mayroon kang subscription sa Google Play, hindi makakansela ang pag-renew nito kapag binura mo ang iyong FuzeVPN account. Pamahalaan o kanselahin ang pag-renew nang hiwalay sa Google Play.",
+  "billing_deleteAccountContinue": "Magpatuloy sa kahilingan sa pagbura ng account",
+  "billing_refresh": "I-refresh ang access",
+  "billing_loadingPlans": "Naglo-load ng mga plan…",
+  "billing_unavailable": "Walang available na plan ngayon. Subukan ulit mamaya.",
+  "billing_comingSoon": "Malapit nang maging available ang mga subscription.",
+  "billing_priceDisclosure": "Ang presyo ay mula sa Google Play. Kinukumpirma ang huling halaga bago magbayad.",
+  "billing_renewalMonthly": "Awtomatikong nagre-renew bawat buwan maliban kung kakanselahin. Maaari mong kanselahin anumang oras sa mga subscription ng Google Play.",
+  "billing_renewalYearly": "Awtomatikong nagre-renew bawat taon maliban kung kakanselahin. Maaari mong kanselahin anumang oras sa mga subscription ng Google Play.",
+  "billing_active": "Aktibo ang iyong Premium access",
+  "billing_accessUntil": "May access hanggang {date}.",
+  "billing_webManaged": "Pinamamahalaan ang iyong subscription sa website ng FuzeVPN.",
+  "billing_playManaged": "Pinamamahalaan ang iyong subscription sa Google Play.",
+  "billing_inactive": "Walang aktibong subscription.",
+  "billing_checkingAccess": "Sinusuri ang iyong access…",
+  "billing_restoring": "Ibinabalik ang mga pagbili…",
+  "billing_pending": "Nakabinbin ang bayad. Maa-activate ang access pagkatapos makumpirma.",
+  "billing_cancelled": "Kinansela ang pagbili. Walang bagong subscription na na-activate.",
+  "billing_verifying": "Bineberipika ang pagbili…",
+  "billing_success": "Na-activate ang subscription. Handa na ang iyong Premium access.",
+  "billing_restored": "Naibalik na ang iyong mga pagbili.",
+  "billing_restoreEmpty": "Walang pagbiling maibabalik para sa Google Play account na ito.",
+  "billing_catalogError": "Hindi ma-load ang mga plan. Subukan ulit.",
+  "billing_purchaseError": "Hindi masimulan ang pagbili. Subukan ulit.",
+  "billing_verificationError": "Pansamantalang hindi available ang beripikasyon ng pagbili. Ibalik ang mga pagbili para subukan ulit.",
+  "billing_restoreError": "Hindi maibalik ang mga pagbili. Subukan ulit.",
+  "billing_managementError": "Hindi mabuksan ang pamamahala ng subscription. Subukan ulit.",
+  "billing_storeUnavailable": "Hindi available ang Google Play sa device na ito.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "Ang VPN mo, mas pinadali.",
+  "welcome_description": "Protektahan ang iyong koneksyon. Panatilihin ang kontrol sa iyong privacy.",
+  "welcome_start": "Magsimula",
+  "welcome_alreadyPurchased": "Nakabili ka na?",
+  "welcome_noAccountRequired": "Hindi kailangan ng account para magsimula.",
+  "guest_accountTitle": "Hindi pa naka-link ang account",
+  "guest_accountDescription": "I-restore ang iyong mga pagbili gamit ang parehong Google Play account para magamit ang subscription sa ibang device.",
+  "guest_existingSubscriberSignIn": "May subscription ka na? Mag-sign in",
+  "guest_claimTitle": "Gamitin ang FuzeVPN saanman",
+  "guest_claimDescription": "Gumawa ng account para ma-access ang iyong subscription sa iba mong device. Opsyonal ang hakbang na ito.",
+  "guest_skip": "Mamaya na",
+  "guest_activationTitle": "Aktibo ang Fuze Premium",
+  "guest_activationDescription": "Handa na ang iyong subscription. Gamitin ang VPN at gumawa ng account kung kailan mo gusto.",
+  "guest_useVpn": "Gamitin ang aking VPN",
+  "guest_loginRequired": "Naka-link na ang pagbiling ito sa isang FuzeVPN account. Mag-sign in sa account na iyon para ma-access ang iyong subscription.",
+  "guest_signOutWarning": "Maaari mong maibalik ang subscription sa pamamagitan ng pag-restore ng mga pagbili gamit ang parehong Google Play account.",
+  "guest_profileUnavailable": "Naka-link na ang iyong account. Mag-sign in para tingnan at pamahalaan ang iyong impormasyon.",
+  "billing_acceptance": "Sa pagpapatuloy, tinatanggap mo ang Mga Tuntunin ng Paggamit at Patakaran sa Privacy.",
+  "guest_verifyEmailReminder": "Kumpirmahin ang iyong email address para protektahan ang account. Maaari mong patuloy na gamitin ang VPN.",
+  "guest_serviceUnavailable": "Pansamantalang hindi available ang serbisyo. Subukan muli pagkalipas ng ilang sandali.",
+  "guest_restoreError": "Hindi na-restore ang iyong mga pagbili. Subukan muli gamit ang Google Play account na ginamit sa pagbili.",
+  "guest_claimSuccess": "Nagawa na ang iyong account. Napanatili ang iyong subscription at access sa VPN.",
+  "guest_emailExists": "Ginagamit na ang email na ito. Pumili ng ibang address o mag-sign in sa iyong kasalukuyang account. Mananatiling available ang iyong pagbili sa pamamagitan ng Google Play.",
+  "guest_claimError": "Hindi nagawa ang iyong account. Maaari mong patuloy na gamitin ang VPN at subukan muli sa ibang pagkakataon.",
+  "guest_secureStorageError": "Hindi na-save nang ligtas ang iyong session sa device na ito. Subukan muli.",
+  "guest_premiumRequired": "Pumili ng subscription para i-activate ang iyong VPN.",
+  "welcome_viewPlans": "Tingnan ang mga plan",
+  "google_continue": "Magpatuloy gamit ang Google",
+  "google_or": "o",
+  "google_title": "Ang iyong FuzeVPN account",
+  "google_settingUp": "Kumpletuhin ang iyong account",
+  "google_country": "Bansang tinitirhan",
+  "google_profileDescription": "Piliin ang iyong bansa at basahin ang dalawang dokumento para gumawa ng FuzeVPN account.",
+  "google_claimDescription": "Iugnay ang guest account sa Google. Mananatiling kaugnay ng account na ito ang subscription at device.",
+  "google_linkTitle": "Iugnay ang Google sa FuzeVPN",
+  "google_linkDescription": "Kumpirmahin ang access sa kasalukuyang FuzeVPN account. Hindi hinihingi ang Google password.",
+  "google_password": "FuzeVPN password",
+  "google_linkAccount": "Kumpirmahin ang pag-uugnay",
+  "google_requestEmail": "Magpadala ng email sa pagkumpirma",
+  "google_emailInstructions": "Buksan ang FuzeVPN email at ilagay ang code sa pagkumpirma.",
+  "google_emailCode": "Code sa pagkumpirma sa email",
+  "google_confirmEmail": "Kumpirmahin ang code",
+  "google_restart": "Pumili ng ibang Google account",
+  "google_resume": "Suriin ang pagsubok na ito",
+  "google_unavailable": "Hindi available ang Google sign-in. Maaari mong gamitin ang email at password.",
+  "google_expired": "Nag-expire ang pagsubok na ito. Kanselahin at magsimula muli.",
+  "google_conflict": "Nakaugnay na ang Google account na ito sa ibang account. Nananatili ang kasalukuyang account at subscription.",
+  "google_error": "Nabigo ang Google sign-in. Subukang muli; nananatili ang kasalukuyang access.",
+  "google_uncertain": "Hindi makumpirma ang resulta. Suriin ang pagsubok o kanselahin bago magsimula muli.",
+  "google_cancelFailed": "Hindi makumpirma ang pagkansela. Subukang kanselahin muli bago umalis sa screen na ito.",
+  "google_cancelled": "Nakansela ang Google sign-in.",
+  "google_selecting": "Piliin ang iyong Google account…",
+  "google_verifying": "Sinusuri ang iyong account…",
+  "google_emailUnavailable": "Hindi maipadala ang email sa pagkumpirma. Subukan sa ibang pagkakataon.",
+  "google_emailSent": "Naipadala ang email sa pagkumpirma. Tingnan ang iyong inbox.",
+  "google_rateLimited": "Maghintay bago subukang muli.",
+  "google_invalidPassword": "Mali ang FuzeVPN password. Nananatili ang kasalukuyang account.",
+  "google_invalidCode": "Hindi wasto o expired na ang code sa pagkumpirma.",
+  "google_accountChanged": "Nagbago ang session. Kanselahin ang pagsubok na ito bago magsimula muli.",
+  "google_invalidResponse": "Hindi ma-validate ang tugon. Nananatili ang kasalukuyang access.",
+  "google_invalidRegistration": "Suriin ang bansa at parehong pahintulot.",
+  "google_consentRequired": "Piliin ang bansa at tanggapin ang dalawang dokumento para magpatuloy.",
+  "google_challengeRequired": "Kailangan ng karagdagang pagsusuri sa seguridad. Nananatili ang kasalukuyang access.",
+  "google_challengeUnavailable": "Hindi available ang pagsusuri sa seguridad. Subukan sa ibang pagkakataon."
+}

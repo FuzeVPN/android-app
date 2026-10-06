@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">Koneksyon ng VPN</string>
+    <string name="vpn_notification_channel_description">Ipinapakita kung aktibo ang koneksyon ng FuzeVPN.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Aktibo ang koneksyon sa %1$s</string>
+    <string name="vpn_notification_connecting">Isinasagawa ang koneksyon sa %1$s</string>
+    <string name="vpn_notification_disconnecting">Dinidiskonekta ang %1$s</string>
+    <string name="vpn_notification_interrupted">Naantala ang koneksyon sa %1$s</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Handa · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Nakakonekta · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Kumokonekta sa %1$s…</string>
+    <string name="vpn_tile_disconnecting">Dinidiskonekta…</string>
+    <string name="vpn_tile_interrupted">Naantala ang %1$s</string>
+    <string name="vpn_tile_setup_required">Buksan muna ang app</string>
+    <string name="vpn_tile_working">Isinasagawa ang operasyon ng VPN…</string>
+    <string name="vpn_notification_reconnecting">Muling kumokonekta… · %1$s</string>
+    <string name="vpn_system_action_required">Kailangan ng aksyon sa mga setting ng Android</string>
+    <string name="vpn_tile_reconnecting">Muling kumokonekta… · %1$s</string>
+</resources>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">การเชื่อมต่อ VPN</string>
+    <string name="vpn_notification_channel_description">แสดงเมื่อการเชื่อมต่อ FuzeVPN ทำงานอยู่</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">การเชื่อมต่อ %1$s ทำงานอยู่</string>
+    <string name="vpn_notification_connecting">กำลังเชื่อมต่อ %1$s</string>
+    <string name="vpn_notification_disconnecting">กำลังตัดการเชื่อมต่อ %1$s</string>
+    <string name="vpn_notification_interrupted">การเชื่อมต่อ %1$s ถูกขัดจังหวะ</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">พร้อม · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">เชื่อมต่อแล้ว · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">กำลังเชื่อมต่อ %1$s…</string>
+    <string name="vpn_tile_disconnecting">กำลังตัดการเชื่อมต่อ…</string>
+    <string name="vpn_tile_interrupted">%1$s ถูกขัดจังหวะ</string>
+    <string name="vpn_tile_setup_required">เปิดแอปก่อน</string>
+    <string name="vpn_tile_working">กำลังดำเนินการ VPN…</string>
+    <string name="vpn_notification_reconnecting">กำลังเชื่อมต่อใหม่… · %1$s</string>
+    <string name="vpn_system_action_required">ต้องดำเนินการในการตั้งค่า Android</string>
+    <string name="vpn_tile_reconnecting">กำลังเชื่อมต่อใหม่… · %1$s</string>
+</resources>

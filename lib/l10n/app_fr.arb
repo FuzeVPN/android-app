@@ -1,0 +1,649 @@
+{
+  "accountRestoration_title": "Compte temporairement indisponible",
+  "accountRestoration_message": "Votre session est conservée. Réessayez pour retrouver votre compte ; vous pouvez toujours gérer la connexion VPN ici.",
+  "action_retry": "Réessayer",
+  "session_endingTitle": "Arrêt de la session",
+  "session_ending": "Votre session est invalidée. Arrêt du VPN et nettoyage en cours…",
+  "session_stopFailed": "L’arrêt du VPN n’est pas confirmé. Réessayez avant de vous reconnecter.",
+  "session_cleanupFailed": "Le VPN est arrêté, mais l’effacement de la session n’est pas confirmé. Réessayez le nettoyage.",
+  "session_retryStop": "Réessayer l’arrêt",
+  "session_retryCleanup": "Réessayer le nettoyage",
+  "@@locale": "fr",
+  "appTitle": "FuzeVPN",
+  "startup": "Préparation sécurisée de FuzeVPN…",
+  "nav_connection": "Connexion",
+  "nav_locations": "Emplacements",
+  "nav_account": "Compte",
+  "nav_devices": "Appareils",
+  "nav_settings": "Réglages",
+  "action_refresh": "Actualiser",
+  "auth_tab_login": "Connexion",
+  "auth_tab_register": "Inscription",
+  "auth_stepAccount": "Compte",
+  "auth_stepIdentity": "Identité",
+  "auth_stepAddress": "Adresse et accords",
+  "auth_stepProgress": "Étape {current} sur {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "Votre VPN, simplement.",
+  "auth_keysLocal": "Vos clés privées VPN restent sur cet appareil.",
+  "form_email": "Adresse e-mail",
+  "form_password": "Mot de passe",
+  "form_showPassword": "Afficher le mot de passe",
+  "form_hidePassword": "Masquer le mot de passe",
+  "form_passwordMin": "8 à 72 octets UTF-8. Certains caractères occupent plusieurs octets.",
+  "form_firstName": "Prénom",
+  "form_lastName": "Nom",
+  "form_phone": "Téléphone (+33612345678)",
+  "form_address": "Adresse",
+  "form_address2": "Complément d’adresse (facultatif)",
+  "form_postalCode": "Code postal",
+  "form_city": "Ville",
+  "form_country": "Code pays (ex. FR)",
+  "action_login": "Se connecter",
+  "action_createAccount": "Créer un compte",
+  "action_createMyAccount": "Créer mon compte",
+  "action_next": "Continuer",
+  "action_previous": "Retour",
+  "action_forgotPassword": "Mot de passe oublié ?",
+  "auth_noAccount": "Vous n’avez pas encore de compte ?",
+  "auth_requiredInformation": "Créez votre compte en trois étapes.",
+  "auth_termsPrefix": "J’accepte les ",
+  "auth_termsLink": "conditions d’utilisation",
+  "auth_privacyPrefix": "J’accepte la ",
+  "auth_privacyLink": "politique de confidentialité",
+  "auth_consentRequired": "Votre accord est nécessaire pour créer un compte.",
+  "validation_required": "Ce champ est obligatoire.",
+  "validation_email": "Saisissez une adresse e-mail valide.",
+  "validation_password": "Mot de passe trop court : au moins 8 octets UTF-8.",
+  "validation_passwordTooLong": "Mot de passe trop long : au maximum 72 octets UTF-8.",
+  "validation_phone": "Utilisez le format international, par exemple +33612345678.",
+  "validation_country": "Utilisez un code pays à deux lettres, par exemple FR.",
+  "passwordReset_title": "Réinitialiser le mot de passe",
+  "passwordReset_description": "Saisissez l’adresse e-mail de votre compte pour demander un lien de réinitialisation.",
+  "passwordReset_send": "Envoyer le lien",
+  "connection_title": "Votre connexion",
+  "connection_subtitle": "Choisissez une destination, puis activez votre VPN.",
+  "connection_prepare": "Prêt à vous connecter ?",
+  "connection_advancedOptions": "Options avancées",
+  "connection_location": "Emplacement",
+  "connection_chooseLocation": "Choisissez un emplacement",
+  "connection_protocol": "Protocole",
+  "connection_connect": "Se connecter",
+  "connection_connecting": "Connexion en cours…",
+  "connection_disconnect": "Se déconnecter",
+  "connection_disconnecting": "Déconnexion en cours",
+  "connection_locationChange": "Changement d’emplacement…",
+  "connection_unavailable": "{protocol} indisponible",
+  "connection_activeLocation": "Emplacement actif",
+  "connection_duration": "Durée",
+  "connection_received": "Reçus",
+  "connection_sent": "Envoyés",
+  "connection_lastHandshake": "Dernier échange sécurisé",
+  "connection_handshakeAgo": "Il y a {duration}",
+  "verification_title": "Confirmez votre adresse e-mail",
+  "verification_message": "Confirmez votre adresse e-mail pour activer le VPN sur ce téléphone.",
+  "verification_resend": "Renvoyer l’e-mail",
+  "migration_title": "Changement d’emplacement",
+  "migration_draining": "Préparation du changement d’emplacement…",
+  "migration_activating": "Activation du nouveau serveur…",
+  "migration_ready": "Emplacement mis à jour.",
+  "migration_blocked": "Le changement nécessite une intervention serveur. Réessayez plus tard ou contactez le support.",
+  "migration_progress": "Progression du changement d’emplacement",
+  "migration_retryDelay": "Délai entre deux vérifications : {seconds} s.",
+  "migration_resume": "Reprendre le changement",
+  "status_authorizing": "Autorisation requise",
+  "status_authorizingDetail": "Acceptez la demande Android pour autoriser le VPN.",
+  "status_preparing": "Préparation",
+  "status_preparingDetail": "Votre connexion sécurisée se prépare.",
+  "status_reconnecting": "Reconnexion…",
+  "status_reconnectingDetail": "Connexion interrompue. Le VPN tente de se reconnecter.",
+  "status_connecting": "Connexion en cours",
+  "status_connectingDetail": "Connexion au serveur VPN…",
+  "status_connected": "Connecté",
+  "status_connectedDetail": "Votre connexion VPN est active.",
+  "status_disconnecting": "Déconnexion en cours",
+  "status_disconnectingDetail": "Votre connexion VPN est en cours d’arrêt.",
+  "status_error": "Connexion indisponible",
+  "status_errorDetail": "La connexion VPN n’est pas confirmée. Réessayez.",
+  "status_idle": "Déconnecté",
+  "status_idleDetail": "Connectez le VPN pour protéger votre connexion.",
+  "trust_note": "Fermer l’application ne coupe pas le VPN. Pour l’arrêter, utilisez Se déconnecter.",
+  "locations_none": "Aucun emplacement disponible pour le moment.",
+  "locations_available": "Choisissez votre prochaine destination.",
+  "locations_selected": "Emplacement sélectionné",
+  "locations_select": "Choisir cet emplacement",
+  "locations_lockedTunnel": "Déconnectez le VPN pour changer d’emplacement.",
+  "locations_lockedMigration": "Patientez jusqu’à la fin du changement d’emplacement.",
+  "devices_title": "Vos appareils",
+  "devices_used": "{count} / {limit} appareils",
+  "devices_refresh": "Actualiser les appareils",
+  "devices_empty": "Aucun appareil VPN n’est encore enregistré.",
+  "devices_firstConnection": "Votre téléphone sera ajouté lors de la première connexion.",
+  "devices_thisDevice": "Cet appareil",
+  "devices_added": "Ajouté le {date}",
+  "action_remove": "Retirer",
+  "settings_title": "Réglages",
+  "settings_subtitle": "Vos préférences et votre compte, au même endroit.",
+  "settings_appearance": "Apparence",
+  "settings_language": "Langue",
+  "settings_languageDescription": "La langue choisie s’applique aussi aux notifications VPN.",
+  "settings_account": "Compte",
+  "settings_signOut": "Déconnecter le compte",
+  "settings_privacy": "Politique de confidentialité",
+  "settings_terms": "Conditions d’utilisation",
+  "settings_security": "Sécurité et transparence",
+  "settings_licenses": "Licences des composants",
+  "settings_licensesDetail": "Logiciels utilisés dans l’application",
+  "settings_background": "Le VPN reste actif quand vous quittez l’application. Pour l’arrêter, utilisez Se déconnecter dans l’onglet Connexion.",
+  "theme_system": "Système",
+  "theme_light": "Clair",
+  "theme_dark": "Sombre",
+  "language_system": "Langue du téléphone",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Retirer cet appareil ?",
+  "dialog_removeCurrent": "Ce téléphone sera déconnecté du VPN et perdra son accès. Ses données de connexion VPN seront effacées après confirmation du serveur.",
+  "dialog_removeOther": "L’accès VPN de « {name} » sera révoqué. Cette action ne peut pas être annulée.",
+  "dialog_signOut": "Déconnecter le compte ?",
+  "dialog_signOutMessage": "Le VPN sera arrêté et vous devrez vous reconnecter à votre compte. Les clés VPN chiffrées resteront sur ce téléphone pour votre prochaine connexion.",
+  "action_cancel": "Annuler",
+  "action_signOut": "Déconnecter",
+  "notice_close": "Fermer le message",
+  "notice_sessionExpired_title": "Session expirée",
+  "notice_sessionExpired_message": "Votre session a expiré. Connectez-vous de nouveau.",
+  "notice_connectionFailed_title": "Connexion impossible",
+  "notice_invalidCredentials_message": "L’adresse e-mail ou le mot de passe est incorrect.",
+  "notice_emailVerification_title": "Adresse e-mail à confirmer",
+  "notice_emailVerification_message": "Confirmez votre adresse e-mail avant d’ajouter un appareil VPN.",
+  "notice_rateLimited_title": "Trop de tentatives",
+  "notice_deviceLimit_title": "Limite de 2 appareils atteinte",
+  "notice_deviceLimit_message": "Retirez un appareil existant avant d’en ajouter un autre.",
+  "notice_identityRenewal_title": "Identité VPN à renouveler",
+  "notice_identityRenewal_message": "Cette identité a été retirée. Créez une nouvelle identité locale.",
+  "notice_migrationPending_title": "Changement d’emplacement en cours",
+  "notice_migrationPending_message": "Un changement d’emplacement est déjà en cours.",
+  "notice_migrationBlocked_title": "Changement d’emplacement bloqué",
+  "notice_migrationBlocked_message": "Le changement d’emplacement nécessite une intervention serveur. Réessayez plus tard ou contactez le support.",
+  "notice_targetUnavailable_title": "Serveur temporairement indisponible",
+  "notice_targetUnavailable_message": "Ce serveur est temporairement indisponible.",
+  "notice_networkUnavailable_title": "Connexion Internet indisponible",
+  "notice_networkUnavailable_message": "Vérifiez votre connexion puis réessayez.",
+  "notice_permissionDenied_title": "Autorisation VPN refusée",
+  "notice_permissionDenied_message": "Relancez la connexion et acceptez la demande d’autorisation Android.",
+  "notice_wireguardTimeout_title": "Le serveur ne répond pas",
+  "notice_wireguardTimeout_message": "La connexion WireGuard n’a pas abouti à temps. Réessayez ou choisissez un autre emplacement.",
+  "notice_tlsFailed_title": "Connexion sécurisée refusée",
+  "notice_tlsFailed_message": "Le serveur n’a pas accepté la connexion OpenVPN. Réessayez. Si le problème persiste, lancez un diagnostic.",
+  "notice_tunRejected_title": "Interface VPN refusée par Android",
+  "notice_tunRejected_message": "Android a refusé la configuration réseau demandée par OpenVPN.",
+  "notice_openvpnStart_title": "Démarrage OpenVPN impossible",
+  "notice_openvpnStart_message": "Le moteur OpenVPN n’a pas pu terminer le démarrage. Réessayez. Si le problème persiste, contactez le support.",
+  "notice_diagnosticCode": "Code diagnostic : {code}",
+  "@notice_diagnosticCode": {
+    "placeholders": {
+      "code": {
+        "type": "Object"
+      }
+    }
+  },
+  "notice_generic_title": "Connexion VPN impossible",
+  "notice_generic_message": "Une erreur est survenue. Réessayez plus tard.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Compte créé} password_reset_sent{Demande de réinitialisation reçue} verification_email_sent{E-mail de vérification envoyé} location_migration_pending{Changement d’emplacement en cours} vpn_sign_in_required{Connexion requise} protocol_unavailable_at_location{Protocole indisponible} vpn_permission_denied{Autorisation VPN refusée} revoked_identity_device_limit{Limite de 2 appareils atteinte} tunnel_start_unexpected{Démarrage VPN impossible} flutter_disconnect_timeout{Déconnexion non confirmée} flutter_disconnect_unexpected{Déconnexion impossible} device_revoked{Appareil retiré} revoke_unexpected{Suppression impossible} identity_renewal_unexpected{Renouvellement impossible} openvpn_renewal_unexpected{Renouvellement OpenVPN impossible} location_migration_blocked{Changement d’emplacement bloqué} location_migration_slow{Changement toujours en cours} location_migration_conflict{Changement d’emplacement à actualiser} location_migration_verification_failed{Changement non confirmé} location_migration_device_changed{Appareil modifié pendant le changement} tunnel_stop_failed{Changement impossible} other{Opération impossible}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Le compte a été créé, mais l’e-mail de vérification n’a pas pu être envoyé. Utilisez le renvoi depuis l’application.} password_reset_sent{Votre demande a été reçue. Si un compte correspond à cette adresse, un e-mail pourra vous parvenir. Vérifiez aussi vos courriers indésirables.} verification_email_sent{Un nouvel e-mail de vérification vient d’être envoyé.} location_migration_pending{La préparation du déplacement vers {target} est toujours en cours. Vous pouvez la reprendre sans recréer l’appareil.} vpn_sign_in_required{Connectez-vous à votre compte avant de démarrer le VPN.} protocol_unavailable_at_location{Le protocole sélectionné n’est pas proposé par cet emplacement. Actualisez les emplacements ou choisissez un autre protocole.} vpn_permission_denied{Android a refusé l’autorisation VPN. Relancez la connexion puis acceptez la demande système.} revoked_identity_device_limit{L’accès VPN de cet appareil a été retiré et la limite d’appareils est atteinte. Retirez un appareil dans Compte → Gérer mes appareils.} tunnel_start_unexpected{Une erreur inattendue a interrompu la préparation du tunnel. Consultez le code diagnostic puis réessayez.} flutter_disconnect_timeout{Android n’a pas confirmé l’arrêt du VPN à temps. Réessayez l’arrêt.} flutter_disconnect_unexpected{Une erreur inattendue a empêché la confirmation de l’arrêt du tunnel.} device_revoked{L’accès VPN de l’appareil a été révoqué et ses secrets locaux ont été supprimés.} revoke_unexpected{L’appareil n’a pas pu être retiré. Actualisez la liste puis réessayez.} identity_renewal_unexpected{La nouvelle identité VPN n’a pas pu être créée. Actualisez les appareils puis réessayez.} openvpn_renewal_unexpected{Le profil OpenVPN n’a pas pu être renouvelé. Réessayez ou consultez le code diagnostic.} location_migration_blocked{Le serveur ne peut pas terminer ce changement pour le moment. L’appareil et son identité locale ont été conservés.} location_migration_slow{Le serveur prépare encore le déplacement vers {target}. Utilisez Reprendre dans quelques instants.} location_migration_conflict{L’état de l’appareil a changé sur le serveur. Actualisez les appareils puis reprenez le changement.} location_migration_verification_failed{Le serveur n’a pas confirmé le nouvel emplacement. L’ancienne identité locale a été conservée.} location_migration_device_changed{L’appareil retourné par le serveur ne correspond plus à celui du changement. Actualisez les appareils avant de réessayer.} tunnel_stop_failed{Le tunnel précédent doit être complètement arrêté avant la nouvelle connexion.} other{L’opération n’a pas pu être terminée. Réessayez ou transmettez le code diagnostic au support.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Session expirée} invalid_credentials{Connexion impossible} email_verification_required{Adresse e-mail à confirmer} verification_email_cooldown{E-mail déjà envoyé} rate_limited{Trop de tentatives} invalid_registration{Informations à corriger} email_exists{Compte existant} invalid_profile{Profil invalide} invalid_device{Appareil invalide} invalid_location{Emplacement indisponible} device_limit{Limite de 2 appareils atteinte} device_exists{Identité VPN déjà utilisée} device_identity_revoked{Identité VPN à renouveler} device_location_locked{Changement d’emplacement à actualiser} location_migration_pending{Changement d’emplacement en cours} location_migration_blocked{Changement d’emplacement bloqué} target_ca_mismatch{Serveur OpenVPN non compatible} location_migration_conflict{Changement d’emplacement à actualiser} server_full{Serveur complet} capacity_unavailable{Emplacement temporairement indisponible} target_unavailable{Serveur temporairement indisponible} not_found{Élément introuvable} invalid_openvpn_csr{Identité OpenVPN invalide} openvpn_profile_exists{Profil OpenVPN existant} openvpn_profile_revoked{Profil OpenVPN révoqué} openvpn_operation_pending{Opération OpenVPN en cours} openvpn_operation_terminal{Opération OpenVPN interrompue} openvpn_address_unavailable{Adresse OpenVPN indisponible} openvpn_profile_conflict{Conflit OpenVPN} openvpn_signer_unavailable{OpenVPN indisponible} email_delivery_unavailable{E-mail indisponible} invalid_token{Lien invalide} network_unavailable{Connexion Internet indisponible} invalid_json{Demande invalide} invalid_api_response{Réponse serveur invalide} ipv6_unavailable{IPv6 indisponible} invalid_ip_families{Configuration réseau refusée} other{Service indisponible}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Votre session a expiré. Connectez-vous de nouveau.} invalid_credentials{L’adresse e-mail ou le mot de passe est incorrect.} email_verification_required{Confirmez votre adresse e-mail avant d’ajouter un appareil VPN.} invalid_registration{Vérifiez les informations et les consentements demandés.} email_exists{Cette adresse e-mail possède déjà un compte.} invalid_profile{Vérifiez les informations de votre profil.} invalid_device{Le nom ou l’identité locale de cet appareil est invalide.} invalid_location{Actualisez la liste des emplacements puis réessayez.} device_limit{Retirez un appareil existant avant d’en ajouter un autre.} device_exists{Cette identité VPN est déjà liée à un autre compte.} device_identity_revoked{Cette identité a été retirée. Une nouvelle identité locale doit être créée.} device_location_locked{L’emplacement de cet appareil vient de changer. L’application va reprendre le changement en cours.} location_migration_pending{Un changement d’emplacement est déjà en cours.} location_migration_blocked{Le changement d’emplacement nécessite une intervention serveur. Réessayez plus tard ou contactez le support.} target_ca_mismatch{Ce serveur n’est pas encore compatible avec le profil OpenVPN actuel.} location_migration_conflict{Actualisez les appareils puis réessayez le changement d’emplacement.} server_full{Cet emplacement a atteint sa limite de connexions. Choisissez un autre emplacement ou réessayez plus tard.} capacity_unavailable{La disponibilité de cet emplacement ne peut pas être confirmée pour le moment. Choisissez un autre emplacement ou réessayez plus tard.} target_unavailable{Ce serveur est temporairement indisponible.} not_found{Cet élément n’est plus disponible sur votre compte.} invalid_openvpn_csr{Créez une nouvelle identité OpenVPN puis réessayez.} openvpn_profile_exists{Un profil OpenVPN existe déjà pour cet appareil.} openvpn_profile_revoked{Renouvelez le profil OpenVPN pour continuer.} openvpn_operation_pending{La modification est en cours de propagation. Réessayez plus tard.} openvpn_operation_terminal{Créez une nouvelle identité OpenVPN puis réessayez.} openvpn_address_unavailable{Aucune adresse OpenVPN n’est disponible pour le moment.} openvpn_profile_conflict{Le profil a changé. Actualisez les appareils puis réessayez.} openvpn_signer_unavailable{Le service OpenVPN est momentanément indisponible.} email_delivery_unavailable{L’e-mail n’a pas pu être envoyé. Réessayez plus tard.} invalid_token{Ce lien est invalide ou a expiré. Demandez-en un nouveau.} network_unavailable{Vérifiez votre connexion Internet puis réessayez.} invalid_json{Vérifiez les informations saisies puis réessayez.} invalid_api_response{Le serveur a renvoyé une réponse inattendue. Réessayez plus tard.} ipv6_unavailable{Le serveur ne peut pas activer IPv6 pour le moment. Réessayez plus tard.} invalid_ip_families{La configuration du tunnel est incomplète ou ne correspond pas aux adresses autorisées. Réessayez depuis l’application.} other{Une erreur serveur est survenue. Réessayez plus tard.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Réessayez dans quelques instants.",
+  "notice_retryAfter": "Réessayez dans {seconds} secondes.",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "Object"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Reprise VPN système indisponible} system_vpn_resume_corrupt{Reprise VPN système invalide} system_vpn_resume_session_invalid{Session de reprise VPN invalide} system_vpn_resume_identity_changed{Identité VPN modifiée} system_vpn_resume_identity_invalid{Identité de reprise VPN invalide} system_vpn_resume_storage_failed{Stockage de reprise VPN indisponible} system_vpn_resume_network_timeout{Reprise VPN sans réseau} system_vpn_resume_blocked{Reprise VPN bloquée} system_vpn_resume_failed{Reprise VPN échouée} system_vpn_resume_error_invalid{Erreur de reprise VPN invalide} wireguard_identity_store_failed{Identité WireGuard non enregistrée} wireguard_identity_unavailable{Identité WireGuard indisponible} vpn_host_destroyed{Hôte VPN Android arrêté} vpn_host_unavailable{Hôte VPN Android indisponible} vpn_permission_required{Autorisation VPN requise} vpn_permission_denied{Autorisation VPN refusée} vpn_permission_request_failed{Demande d’autorisation impossible} wireguard_foreground_service_unavailable{Service WireGuard indisponible} wireguard_identity_invalid{Clé WireGuard locale invalide} wireguard_identity_in_use{Identité WireGuard déjà utilisée} wireguard_configuration_invalid{Configuration WireGuard invalide} wireguard_operation_pending{Opération WireGuard encore active} wireguard_start_failed{Démarrage WireGuard refusé} wireguard_stop_timeout{Arrêt WireGuard non confirmé} wireguard_handshake_timeout{WireGuard sans réponse} openvpn_connection_timeout{OpenVPN sans réponse} openvpn_core_unavailable{Moteur OpenVPN indisponible} openvpn_operation_pending{Session OpenVPN encore active} openvpn_stop_timeout{Arrêt OpenVPN non confirmé} openvpn_profile_unavailable{Profil OpenVPN local absent} openvpn_native_failed{Appel natif OpenVPN interrompu} openvpn_key_generation_failed{Clé OpenVPN P-256 impossible} openvpn_csr_generation_failed{CSR OpenVPN impossible} openvpn_identity_store_failed{Identité OpenVPN non enregistrée} openvpn_identity_clear_failed{Suppression OpenVPN incomplète} openvpn_identity_in_use{Identité OpenVPN encore utilisée} openvpn_tls_verification_required{Vérification TLS OpenVPN absente} openvpn_cipher_invalid{Chiffrement OpenVPN invalide} openvpn_profile_rejected{Profil OpenVPN refusé} openvpn_identity_inconsistent{Identité OpenVPN incohérente} tls_handshake_failed{Négociation OpenVPN refusée} tls_alert_unknown_ca{Certificat client OpenVPN non reconnu} tls_alert_bad_certificate{Certificat client OpenVPN refusé} tls_alert_unsupported_certificate{Certificat OpenVPN non compatible} tls_client_certificate_required{Certificat client OpenVPN requis} tls_alert_misc{Alerte TLS OpenVPN} tls_signature_algorithm_rejected{Signature OpenVPN non compatible} tls_handshake_rejected{Négociation TLS OpenVPN refusée} tls_version_rejected{Version TLS OpenVPN incompatible} tls_certificate_expired{Certificat TLS expiré} tls_certificate_revoked{Certificat TLS révoqué} transport_failed{Serveur OpenVPN injoignable} tun_configuration_rejected{Interface OpenVPN impossible} tun_setup_failed{Initialisation TUN OpenVPN échouée} tun_interface_create_failed{Création de l’interface OpenVPN échouée} tun_interface_disabled{Interface OpenVPN désactivée} tun_halted{Interface OpenVPN interrompue} tun_already_established{Interface OpenVPN déjà ouverte} tun_addresses_missing{Adresse OpenVPN absente} tun_routes_missing{Routes OpenVPN absentes} tun_dns_missing{DNS OpenVPN absent} tun_permission_revoked{Autorisation VPN révoquée} tun_establish_returned_null{Interface VPN refusée par Android} openvpn_service_start_failed{Service OpenVPN indisponible} openvpn_operation_timeout{Appel OpenVPN expiré} openvpn_start_failed{Démarrage OpenVPN refusé} openvpn_connection_failed{Connexion OpenVPN interrompue} openvpn_core_status_error{OpenVPN Core terminé en erreur} openvpn_stopped_before_connected{OpenVPN arrêté avant connexion} openvpn_auth_failed{Authentification OpenVPN refusée} openvpn_client_setup_failed{Préparation du client OpenVPN échouée} openvpn_client_halted{Client OpenVPN interrompu} openvpn_client_restart{Redémarrage OpenVPN demandé} openvpn_inactive_timeout{OpenVPN inactif trop longtemps} openvpn_session_expired{Session OpenVPN expirée} openvpn_credentials_required{Authentification OpenVPN non prise en charge} openvpn_proxy_failed{Transport intermédiaire OpenVPN en échec} openvpn_compression_failed{Compression OpenVPN refusée} openvpn_ntlm_crypto_unavailable{Chiffrement NTLM OpenVPN indisponible} openvpn_feature_unsupported{Fonction OpenVPN non prise en charge} network_unavailable{Connexion Internet indisponible} network_lost{Réseau indisponible} certificate_validation_failed{Certificat serveur refusé} openvpn_certificate_expired{Certificat OpenVPN expiré} tunnel_active_for_another_account{Tunnel d’un autre compte encore actif} tunnel_already_active{Tunnel natif déjà actif} tunnel_stop_timeout{Arrêt {protocol} non confirmé} tunnel_disconnected{{protocol} interrompu} native_bridge_unavailable{Bridge Android indisponible} native_operation_failed{Opération Android interrompue} invalid_arguments{Paramètres VPN incomplets} invalid_account_id{Compte VPN invalide} invalid_device_id{Identifiant d’appareil invalide} storage_key_not_allowed{Clé de stockage refusée} secure_storage_read_failed{Lecture sécurisée impossible} secure_storage_write_failed{Écriture sécurisée impossible} key_generation_failed{Génération WireGuard impossible} csr_generation_failed{Génération OpenVPN impossible} other{Erreur VPN native non classée}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ne trouve aucune reprise VPN utilisable. Démarrez une nouvelle connexion dans l’application.} system_vpn_resume_corrupt{Les données de reprise VPN enregistrées sont invalides et ne seront pas utilisées. Démarrez une nouvelle connexion.} system_vpn_resume_session_invalid{La session enregistrée ne permet plus de reprendre le VPN. Connectez-vous à nouveau dans l’application.} system_vpn_resume_identity_changed{L’identité VPN locale a changé. La reprise a été arrêtée; démarrez une nouvelle connexion.} system_vpn_resume_identity_invalid{L’identité prévue pour la reprise n’est pas valide. Démarrez une nouvelle connexion.} system_vpn_resume_storage_failed{Android n’a pas pu lire ou mettre à jour les données de reprise chiffrées. Démarrez une nouvelle connexion.} system_vpn_resume_network_timeout{Android n’a pas trouvé de réseau à temps pour reprendre le VPN. Réessayez lorsque le réseau est disponible.} system_vpn_resume_blocked{La reprise VPN est bloquée. Vérifiez les réglages Android puis démarrez une nouvelle connexion.} system_vpn_resume_failed{La reprise VPN par Android a échoué. Démarrez une nouvelle connexion dans l’application.} system_vpn_resume_error_invalid{Android a renvoyé une erreur de reprise non utilisable. Démarrez une nouvelle connexion.} wireguard_identity_store_failed{Android n’a pas pu enregistrer l’identité WireGuard chiffrée de ce compte.} wireguard_identity_unavailable{Aucune identité WireGuard utilisable n’est disponible pour cette connexion.} vpn_host_destroyed{Le composant Android qui hébergeait le VPN a été arrêté. Démarrez une nouvelle connexion.} vpn_host_unavailable{Android ne peut pas créer le composant qui héberge le VPN. Réessayez après avoir vérifié les réglages VPN.} openvpn_renewal_required{Le certificat nécessite une action dans l’application avant la connexion.} openvpn_recovery_failed{La reprise automatique a échoué. Relancez la connexion dans l’application.} openvpn_recovery_exhausted{La reprise automatique a déjà été utilisée. Relancez la connexion dans l’application.} vpn_permission_required{Android exige une nouvelle autorisation VPN avant le démarrage du tunnel.} vpn_permission_denied{Autorisez FuzeVPN dans la demande Android pour continuer.} vpn_permission_request_failed{Android n’a pas pu ouvrir l’écran d’autorisation VPN.} wireguard_foreground_service_unavailable{Android n’a pas pu maintenir le service WireGuard au premier plan.} wireguard_identity_invalid{La clé WireGuard chiffrée de ce compte est illisible ou invalide.} wireguard_identity_in_use{Une autre opération utilise encore la clé WireGuard de ce compte.} wireguard_configuration_invalid{L’adresse, le DNS, la clé serveur ou les routes WireGuard reçues sont invalides.} wireguard_operation_pending{La précédente opération WireGuard n’a pas encore libéré son service natif.} wireguard_start_failed{Le moteur WireGuard a refusé la mise en ligne de la configuration.} wireguard_stop_timeout{Le service WireGuard n’a pas confirmé la libération de l’interface VPN dans le délai imparti.} wireguard_handshake_timeout{Le tunnel n’a pas confirmé de handshake avec le serveur à temps.} openvpn_connection_timeout{OpenVPN n’a pas confirmé la connexion avec le serveur à temps.} openvpn_core_unavailable{Cette version de l’application ne contient pas un moteur OpenVPN utilisable.} openvpn_operation_pending{Le moteur natif conserve la session OpenVPN précédente et refuse d’en créer une seconde.} openvpn_stop_timeout{OpenVPN Core n’a pas confirmé l’arrêt et la destruction de sa session native dans le délai imparti.} openvpn_profile_unavailable{Aucun profil OpenVPN validé ne peut être relu pour cette connexion.} openvpn_native_failed{Une erreur de l’application a interrompu OpenVPN. Réessayez la connexion. Si le problème persiste, lancez un diagnostic.} openvpn_key_generation_failed{Android Keystore n’a pas pu créer ou relire la clé privée P-256 non exportable.} openvpn_csr_generation_failed{La clé Android Keystore n’a pas pu signer la demande de certificat OpenVPN.} openvpn_identity_store_failed{Le certificat ou le profil OpenVPN n’a pas pu être enregistré dans le stockage chiffré.} openvpn_identity_clear_failed{Android n’a pas pu supprimer toute l’identité OpenVPN locale de ce compte.} openvpn_identity_in_use{Une session OpenVPN native utilise encore la clé ou le certificat de cet appareil.} openvpn_tls_verification_required{Le profil ne demande pas explicitement la vérification du certificat serveur.} openvpn_cipher_invalid{Le serveur a fourni un algorithme de chiffrement absent de la liste autorisée.} openvpn_profile_rejected{Le profil reçu du serveur n’est pas compatible. Recréez cet appareil puis réessayez.} openvpn_identity_inconsistent{Le certificat ne correspond pas à l’identité sécurisée de ce téléphone. Aucun profil local n’a été remplacé.} tls_handshake_failed{Le serveur a refusé la négociation TLS. Recréez le profil si le problème persiste.} tls_alert_unknown_ca{Le serveur ne reconnaît pas l’autorité du certificat de cet appareil. Le serveur OpenVPN doit être vérifié.} tls_alert_bad_certificate{Le serveur a refusé le certificat de cet appareil. Recréez l’appareil avant un nouvel essai.} tls_alert_unsupported_certificate{Le serveur ne prend pas en charge le type de certificat sécurisé utilisé par Android.} tls_client_certificate_required{Le serveur exige un certificat client, mais OpenVPN Core n’a pas pu en présenter un.} tls_alert_misc{Le serveur a renvoyé une alerte TLS qui ne correspond pas aux catégories certificat ou version.} tls_signature_algorithm_rejected{Le serveur a refusé l’algorithme ECDSA P-256 de la clé Android Keystore.} tls_handshake_rejected{Le serveur a interrompu la négociation TLS avant la connexion.} tls_version_rejected{Le client et le serveur n’ont pas trouvé de version TLS commune.} tls_certificate_expired{Le certificat présenté pendant la connexion a expiré.} tls_certificate_revoked{Le certificat présenté pendant la connexion a été révoqué.} transport_failed{Le serveur OpenVPN ne répond pas sur le réseau actuel. Réessayez dans un instant.} tun_configuration_rejected{Android a refusé la configuration réseau demandée par OpenVPN.} tun_setup_failed{OpenVPN Core a refusé le plan réseau avant la création de l’interface Android.} tun_interface_create_failed{OpenVPN Core n’a pas pu obtenir l’interface TUN auprès du VpnService Android.} tun_interface_disabled{Android ou OpenVPN Core a désactivé l’interface TUN pendant la connexion.} tun_halted{OpenVPN Core a reçu une demande d’arrêt de l’interface TUN.} tun_already_established{OpenVPN a demandé une seconde interface dans la même connexion. Le tunnel a été arrêté par sécurité.} tun_addresses_missing{Le serveur n’a fourni aucune adresse utilisable pour le tunnel.} tun_routes_missing{Le serveur n’a fourni aucune route utilisable pour le tunnel.} tun_dns_missing{Le serveur n’a fourni aucun serveur DNS utilisable.} tun_permission_revoked{Android a retiré l’autorisation VPN pendant la connexion.} tun_establish_returned_null{Android n’a pas créé l’interface, généralement parce qu’un autre VPN est encore actif.} openvpn_service_start_failed{Android n’a pas pu démarrer le service OpenVPN au premier plan.} openvpn_operation_timeout{Un appel JNI vers OpenVPN Core a dépassé son délai maximal.} openvpn_start_failed{Le service Android est prêt, mais OpenVPN Core n’a pas accepté le démarrage du profil.} openvpn_connection_failed{OpenVPN Core s’est arrêté avant d’émettre l’événement CONNECTED.} openvpn_core_status_error{La boucle native OpenVPN s’est terminée en erreur sans événement terminal plus précis.} openvpn_stopped_before_connected{La boucle native OpenVPN s’est arrêtée avant l’événement CONNECTED, sans erreur Core explicite.} openvpn_auth_failed{Le serveur OpenVPN a refusé l’authentification du profil.} openvpn_client_setup_failed{OpenVPN Core n’a pas pu initialiser le client avant la connexion réseau.} openvpn_client_halted{OpenVPN Core a reçu un arrêt terminal du client.} openvpn_client_restart{OpenVPN Core a demandé le redémarrage de sa session de transport.} openvpn_inactive_timeout{OpenVPN Core a fermé la session après le délai d’inactivité.} openvpn_session_expired{Le serveur a signalé l’expiration de la session OpenVPN.} openvpn_credentials_required{Le serveur ou un proxy demande des identifiants interactifs absents de ce profil certificat.} openvpn_proxy_failed{OpenVPN Core a signalé un échec du proxy ou du relais configuré.} openvpn_compression_failed{OpenVPN Core a rejeté le mode de compression annoncé par le profil ou le serveur.} openvpn_ntlm_crypto_unavailable{Le profil demande un chiffrement NTLM qui n’est pas disponible dans cette version.} openvpn_feature_unsupported{Le profil ou le serveur demande une fonction absente de ce client Android.} network_unavailable{Aucun réseau physique utilisable n’est disponible.} network_lost{Le tunnel a été arrêté après la perte du réseau.} certificate_validation_failed{L’identité du serveur OpenVPN n’a pas pu être vérifiée.} openvpn_certificate_expired{Renouvelez le profil OpenVPN avant de vous reconnecter.} tunnel_active_for_another_account{Un tunnel appartenant à un autre compte doit être arrêté avant cette connexion.} tunnel_already_active{Android signale qu’une session VPN précédente utilise encore l’interface.} tunnel_stop_timeout{Le moteur {protocol} n’a pas confirmé la libération de l’interface VPN dans le délai imparti.} tunnel_disconnected{Le moteur natif a signalé la fin inattendue du tunnel après son démarrage.} native_bridge_unavailable{L’application ne peut pas accéder au service VPN Android. Fermez puis rouvrez l’application et réessayez.} native_operation_failed{Une erreur de l’application a interrompu l’opération VPN. Réessayez. Si le problème persiste, lancez un diagnostic.} invalid_arguments{Les informations nécessaires à cette opération VPN sont incomplètes. Réessayez. Si le problème persiste, lancez un diagnostic.} invalid_account_id{L’opération native n’est pas associée à un identifiant de compte valide.} invalid_device_id{L’identifiant d’appareil transmis au moteur natif est absent ou invalide.} storage_key_not_allowed{Le bridge Android a bloqué une clé qui n’appartient pas à la liste de stockage autorisée.} secure_storage_read_failed{Android Keystore n’a pas pu déchiffrer les données locales de ce compte.} secure_storage_write_failed{Android Keystore n’a pas pu chiffrer ou enregistrer les données locales.} key_generation_failed{Android n’a pas pu créer ou relire la clé WireGuard dans le stockage sécurisé.} csr_generation_failed{Android Keystore n’a pas pu créer ou signer le CSR P-256 OpenVPN.} other{Une branche native non documentée a échoué. Transmettez le code diagnostic affiché ci-dessous.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Demande d’autorisation déjà ouverte",
+  "notice_permissionRequestInProgress_message": "La demande d’autorisation VPN Android est déjà affichée. Terminez-la avant de réessayer.",
+  "notice_permissionRequestInterrupted_title": "Autorisation VPN interrompue",
+  "notice_permissionRequestInterrupted_message": "L’écran d’autorisation VPN a été fermé avant que l’application reçoive la réponse.",
+  "notice_openvpnProofMissing_title": "Connexion OpenVPN non confirmée",
+  "notice_openvpnProofMissing_message": "La connexion OpenVPN n’a pas pu être confirmée. Elle a été arrêtée par sécurité. Réessayez.",
+  "openvpnCleanup_title": "Profil OpenVPN révoqué",
+  "openvpnCleanup_working": "Arrêt et suppression du profil OpenVPN révoqué…",
+  "openvpnCleanup_stopFailed": "L’arrêt d’OpenVPN n’est pas confirmé. Réessayez avant de créer un nouveau profil.",
+  "openvpnCleanup_cleanupFailed": "Le profil OpenVPN révoqué n’a pas pu être entièrement supprimé. Réessayez le nettoyage.",
+  "openvpnCleanup_complete": "Le profil OpenVPN révoqué a été supprimé. Appuyez sur Se connecter pour en créer un nouveau.",
+  "network_title": "Configuration réseau",
+  "network_ipv4Fallback": "IPv6 est momentanément indisponible. La préparation continue en IPv4.",
+  "network_rejectedTitle": "Configuration réseau refusée",
+  "network_rejectedMessage": "La configuration du tunnel est incomplète ou ne correspond pas aux adresses autorisées. Réessayez depuis l’application.",
+  "network_unreadableTitle": "Configuration locale illisible",
+  "network_unreadableMessage": "La configuration réseau OpenVPN enregistrée ne peut pas être utilisée. Reconnectez-vous depuis l’application pour l’actualiser.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Protection réseau",
+  "protection_subtitle": "Bloquez l’accès direct à Internet si le VPN s’interrompt.",
+  "protection_active": "Protection système active",
+  "protection_alwaysOnOnly": "VPN permanent activé, blocage hors VPN à activer",
+  "protection_inactive": "Protection système inactive",
+  "protection_unknown": "Protection système à vérifier",
+  "protection_openSettings": "Ouvrir les réglages Android",
+  "protection_dialogTitle": "Configurer la protection réseau",
+  "protection_dialogMessage": "Android gère le VPN permanent et le blocage des connexions hors VPN. Vérifiez que FuzeVPN est sélectionné et activez le blocage dans les réglages système.",
+  "protection_dialogOpen": "Ouvrir les réglages",
+  "session_systemProtectionNote": "Si Android bloque encore le trafic hors VPN, ouvrez les réglages système pour vérifier ou modifier cette protection.",
+  "diagnostics_title": "Diagnostic",
+  "diagnostics_settingsTitle": "Diagnostic de l’application",
+  "diagnostics_automaticTitle": "Envoyer les erreurs importantes",
+  "diagnostics_automaticDescription": "Partagez un petit rapport technique lorsqu’une erreur importante survient.",
+  "diagnostics_privacy": "Les rapports envoyés sont liés au compte connecté et conservés pendant 30 jours. Ils ne contiennent pas d’historique de navigation, de mots de passe ou de clés VPN.",
+  "diagnostics_manualOpen": "Lancer un diagnostic",
+  "diagnostics_localDescription": "Créez un rapport de l’état de l’application et du VPN. Votre connexion reste inchangée.",
+  "diagnostics_sendReport": "Envoyer le rapport",
+  "diagnostics_sendHint": "Laissez cette case décochée pour garder le rapport sur cet appareil.",
+  "diagnostics_signedOut": "Connectez-vous à votre compte pour envoyer un rapport.",
+  "diagnostics_localLifetime": "Pour conserver ce rapport après la fermeture de l’application, enregistrez-le sur votre téléphone.",
+  "diagnostics_run": "Lancer le diagnostic",
+  "diagnostics_rerun": "Refaire un diagnostic",
+  "diagnostics_running": "Vérifications en cours…",
+  "diagnostics_sending": "Envoi du rapport…",
+  "diagnostics_prepared": "Rapport prêt sur cet appareil",
+  "diagnostics_queued": "Rapport en attente d’envoi",
+  "diagnostics_sent": "Rapport reçu",
+  "diagnostics_failed": "L’envoi a échoué. Votre rapport local reste disponible.",
+  "diagnostics_preparationFailed": "Le diagnostic n’a pas pu être préparé. Réessayez.",
+  "diagnostics_authenticationRequired": "Reconnectez-vous pour envoyer le rapport.",
+  "diagnostics_retry": "Réessayer l’envoi",
+  "diagnostics_export": "Enregistrer le rapport",
+  "diagnostics_exportFailed": "L’export a échoué. Réessayez depuis le rapport local.",
+  "diagnostics_preferenceFailed": "Ce réglage n’a pas pu être enregistré. Réessayez.",
+  "diagnostics_receipt": "Référence : {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "Reçu le {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Conservé jusqu’au {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Ce rapport avait déjà été reçu.",
+  "diagnostics_preview": "Aperçu du rapport",
+  "diagnostics_eventCount": "{count, plural, =0{Aucun événement technique joint} =1{1 événement technique joint} other{{count} événements techniques joints}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Détails techniques",
+  "diagnostics_empty": "Aucun diagnostic n’a encore été préparé.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{État du tunnel} handshake{Confirmation de connexion} certificate{Certificat VPN} kill_switch{Protection Android} connectivity{Réseau disponible} api_reachability{Accès au service} secure_storage{Stockage sécurisé} other{Vérification locale}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Vérifié} failed{À vérifier} skipped{Non testé — aucune sonde active} unknown{Information indisponible} other{Information indisponible}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Bienvenue chez FuzeVPN",
+  "connection_changeLocation": "Changer d’emplacement",
+  "connection_details": "Détails de la connexion",
+  "locations_searchLabel": "Rechercher une ville ou un pays",
+  "locations_clearSearch": "Effacer la recherche",
+  "locations_filterAll": "Tous",
+  "locations_filterFavorites": "Favoris",
+  "locations_results": "{count, plural, one{{count} destination} other{{count} destinations}}",
+  "locations_noResults": "Aucune destination trouvée",
+  "locations_noResultsHint": "Essayez une autre ville ou un autre pays.",
+  "locations_noFavorites": "Vos favoris, à portée de main",
+  "locations_noFavoritesHint": "Touchez l’étoile d’une destination pour la retrouver ici.",
+  "locations_showAll": "Voir toutes les destinations",
+  "locations_addFavorite": "Ajouter {name} aux favoris",
+  "locations_removeFavorite": "Retirer {name} des favoris",
+  "locations_favoriteSaveFailed": "Le favori n’a pas pu être enregistré. Réessayez.",
+  "locations_emptyTitle": "Aucune destination disponible",
+  "locations_emptyHint": "Actualisez la liste pour réessayer.",
+  "devices_manage": "Gérer mes appareils",
+  "settings_personalization": "À votre goût",
+  "settings_safety": "Protection",
+  "settings_help": "Besoin d’aide ?",
+  "settings_about": "À propos de FuzeVPN",
+  "diagnostics_heading": "Comprendre un problème de connexion",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Disponible} pending{En préparation} revoked{Retiré} expired{Expiré} other{Statut indisponible}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Préférence non enregistrée",
+  "notice_preferenceSave_message": "Votre choix est appliqué pour le moment, mais n’a pas pu être enregistré. Réessayez pour le conserver après la fermeture de l’application.",
+  "connection_androidDisconnectHint": "Si Android maintient le VPN actif, désactivez « VPN permanent » dans les réglages qui s’ouvrent.",
+  "protection_learnMore": "Comprendre la protection Android",
+  "protection_guideWhy": "Cette protection évite que vos applications utilisent directement Internet si le VPN s’interrompt. Elle se règle dans Android.",
+  "protection_guideAlwaysOnTitle": "VPN permanent",
+  "protection_guideAlwaysOn": "Android maintient le service VPN actif et peut le relancer après un redémarrage du téléphone.",
+  "protection_guideBlockTitle": "Bloquer les connexions sans VPN",
+  "protection_guideBlock": "Ce réglage empêche le trafic de passer en dehors du VPN, y compris pendant une interruption de la connexion.",
+  "protection_guideWarning": "Avec ce blocage activé, Internet reste coupé tant que le VPN n’est pas connecté.",
+  "protection_guideStepsTitle": "Activer la protection",
+  "protection_guideStep1": "Ouvrez les réglages VPN Android avec le bouton ci-dessous.",
+  "protection_guideStep2": "À côté de FuzeVPN, ouvrez les options avec la roue dentée.",
+  "protection_guideStep3": "Activez « VPN permanent », puis « Bloquer les connexions sans VPN », si ces options sont proposées.",
+  "protection_guideManufacturers": "Les noms varient selon le téléphone. Si nécessaire, recherchez « VPN » dans les paramètres, souvent dans Réseau et Internet.",
+  "protection_guideDisableTitle": "Désactiver cette protection",
+  "protection_guideDisable": "Dans les mêmes réglages, désactivez le blocage sans VPN pour autoriser Internet sans VPN. Désactivez aussi le VPN permanent si vous ne voulez plus qu’Android le relance.",
+  "protection_guideManual": "Vous choisissez ces réglages dans Android. FuzeVPN ne les modifie pas à votre place.",
+  "locations_changeTitle": "Changer d’emplacement ?",
+  "locations_changeActive": "Le VPN va se déconnecter, puis tenter une connexion à {name}.",
+  "locations_changeIdle": "Le VPN va tenter une connexion à {name}.",
+  "locations_confirmChange": "Changer et se connecter",
+  "locations_changeBusy": "Un changement est en cours. Patientez avant de choisir un autre emplacement.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Sélection automatique",
+  "locations_cities": "Villes",
+  "locations_servers": "Serveurs",
+  "locations_viewCities": "Voir les villes de {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Voir les serveurs de {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} pays} other{{count} pays}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, =0{0 villes} one{{count} ville} other{{count} villes}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, =0{0 serveurs} one{{count} serveur} other{{count} serveurs}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Tous les pays",
+  "locations_backToCountries": "Retour aux pays",
+  "locations_backToCities": "Retour aux villes de {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Choisir {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Choisir {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Aucun serveur compatible disponible.",
+  "externalLink_failed": "Impossible d’ouvrir ce lien. Vous pouvez le copier pour l’ouvrir dans votre navigateur.",
+  "externalLink_copy": "Copier le lien",
+  "externalLink_copied": "Lien copié",
+  "externalLink_copyFailed": "Impossible de copier le lien. Sélectionnez l’adresse ci-dessous.",
+  "settings_deleteAccount": "Supprimer mon compte",
+  "settings_deleteAccountDetail": "Consulter la procédure de demande de suppression",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Choisissez votre abonnement VPN.",
+  "billing_subscribe": "S’abonner",
+  "billing_choosePlan": "Choisissez une formule pour continuer.",
+  "billing_monthly": "Mensuel",
+  "billing_yearly": "Annuel",
+  "billing_continue": "Continuer avec Google Play",
+  "billing_restore": "Restaurer les achats",
+  "billing_manage": "Gérer l’abonnement",
+  "billing_deleteAccountWarning": "Si vous avez un abonnement Google Play, supprimer votre compte FuzeVPN n'annule pas son renouvellement. Gérez ou annulez ce renouvellement séparément dans Google Play.",
+  "billing_deleteAccountContinue": "Continuer vers la demande de suppression",
+  "billing_refresh": "Actualiser l’accès",
+  "billing_loadingPlans": "Chargement des offres…",
+  "billing_unavailable": "Aucune offre disponible actuellement. Réessayez plus tard.",
+  "billing_comingSoon": "Abonnements bientôt disponibles.",
+  "billing_priceDisclosure": "Prix fourni par Google Play. Le montant final est confirmé avant le paiement.",
+  "billing_renewalMonthly": "Renouvellement automatique chaque mois, sauf résiliation. Vous pouvez résilier à tout moment dans les abonnements Google Play.",
+  "billing_renewalYearly": "Renouvellement automatique chaque année, sauf résiliation. Vous pouvez résilier à tout moment dans les abonnements Google Play.",
+  "billing_active": "Votre accès Premium est actif",
+  "billing_accessUntil": "Accès jusqu’au {date}.",
+  "billing_webManaged": "Votre abonnement est géré sur le site FuzeVPN.",
+  "billing_playManaged": "Votre abonnement est géré par Google Play.",
+  "billing_inactive": "Aucun abonnement actif.",
+  "billing_checkingAccess": "Vérification de votre accès…",
+  "billing_restoring": "Restauration des achats…",
+  "billing_pending": "Le paiement est en attente. Votre accès sera activé après confirmation.",
+  "billing_cancelled": "Achat annulé. Aucun nouvel abonnement n’a été activé.",
+  "billing_verifying": "Vérification de l’achat…",
+  "billing_success": "Abonnement activé. Votre accès Premium est prêt.",
+  "billing_restored": "Vos achats ont été restaurés.",
+  "billing_restoreEmpty": "Aucun achat à restaurer pour ce compte Google Play.",
+  "billing_catalogError": "Impossible de charger les offres. Réessayez.",
+  "billing_purchaseError": "Impossible de démarrer l’achat. Réessayez.",
+  "billing_verificationError": "La vérification de l’achat est temporairement indisponible. Restaurez les achats pour réessayer.",
+  "billing_restoreError": "Impossible de restaurer les achats. Réessayez.",
+  "billing_managementError": "Impossible d’ouvrir la gestion des abonnements. Réessayez.",
+  "billing_storeUnavailable": "Google Play n’est pas disponible sur cet appareil.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "Votre VPN, simplement.",
+  "welcome_description": "Protégez votre connexion. Gardez le contrôle sur votre vie privée.",
+  "welcome_start": "Démarrer",
+  "welcome_alreadyPurchased": "Déjà acheté ?",
+  "welcome_noAccountRequired": "Aucun compte à créer pour commencer.",
+  "guest_accountTitle": "Compte non rattaché",
+  "guest_accountDescription": "Vos achats peuvent être restaurés sur un autre appareil avec le même compte Google Play.",
+  "guest_existingSubscriberSignIn": "Déjà abonné ? Se connecter",
+  "guest_claimTitle": "Retrouvez FuzeVPN partout",
+  "guest_claimDescription": "Créez votre compte pour retrouver votre abonnement sur vos autres appareils. Cette étape est facultative.",
+  "guest_skip": "Plus tard",
+  "guest_activationTitle": "Fuze Premium est activé",
+  "guest_activationDescription": "Votre abonnement est prêt. Vous pouvez utiliser votre VPN et créer votre compte quand vous le souhaitez.",
+  "guest_useVpn": "Utiliser mon VPN",
+  "guest_loginRequired": "Cet achat est déjà rattaché à un compte FuzeVPN. Connectez-vous à ce compte pour retrouver votre abonnement.",
+  "guest_signOutWarning": "Vous pourrez retrouver votre abonnement en restaurant vos achats avec le même compte Google Play.",
+  "guest_profileUnavailable": "Votre compte est déjà rattaché. Connectez-vous pour afficher et gérer vos informations.",
+  "billing_acceptance": "En continuant, vous acceptez les Conditions d’utilisation et la Politique de confidentialité.",
+  "guest_verifyEmailReminder": "Confirmez votre adresse e-mail pour sécuriser votre compte. Vous pouvez continuer à utiliser votre VPN.",
+  "guest_serviceUnavailable": "Le service est temporairement indisponible. Réessayez dans un instant.",
+  "guest_restoreError": "Impossible de restaurer vos achats. Réessayez avec le compte Google Play utilisé pour l’achat.",
+  "guest_claimSuccess": "Votre compte a été créé. Votre abonnement et votre accès VPN sont conservés.",
+  "guest_emailExists": "Cette adresse est déjà utilisée. Choisissez une autre adresse ou connectez-vous à votre compte existant. Votre achat reste disponible avec Google Play.",
+  "guest_claimError": "Votre compte n’a pas pu être créé. Vous pouvez continuer à utiliser votre VPN et réessayer plus tard.",
+  "guest_secureStorageError": "Impossible de sécuriser votre session sur cet appareil. Réessayez.",
+  "guest_premiumRequired": "Choisissez un abonnement pour activer votre VPN.",
+  "welcome_viewPlans": "Voir les formules",
+  "google_continue": "Continuer avec Google",
+  "google_or": "ou",
+  "google_title": "Votre compte FuzeVPN",
+  "google_settingUp": "Finalisez votre compte",
+  "google_country": "Pays de résidence",
+  "google_profileDescription": "Choisissez votre pays et consultez les deux documents pour créer votre compte FuzeVPN.",
+  "google_claimDescription": "Rattachez votre compte invité à Google. Votre abonnement et votre appareil restent associés à ce compte.",
+  "google_linkTitle": "Associer Google à FuzeVPN",
+  "google_linkDescription": "Confirmez l’accès à votre compte FuzeVPN existant. Cette étape ne demande pas votre mot de passe Google.",
+  "google_password": "Mot de passe FuzeVPN",
+  "google_linkAccount": "Confirmer l’association",
+  "google_requestEmail": "Recevoir un e-mail de confirmation",
+  "google_emailInstructions": "Ouvrez l’e-mail de FuzeVPN et saisissez le code de confirmation.",
+  "google_emailCode": "Code de confirmation par e-mail",
+  "google_confirmEmail": "Confirmer le code",
+  "google_restart": "Choisir un autre compte Google",
+  "google_resume": "Vérifier cette tentative",
+  "google_unavailable": "La connexion Google est indisponible. Vous pouvez utiliser votre e-mail et votre mot de passe.",
+  "google_expired": "Cette tentative a expiré. Annulez-la puis recommencez.",
+  "google_conflict": "Ce compte Google est déjà associé ailleurs. Votre compte et votre abonnement actuels sont conservés.",
+  "google_error": "La connexion Google a échoué. Réessayez ; votre accès actuel est conservé.",
+  "google_uncertain": "Le résultat n’a pas pu être confirmé. Vérifiez cette tentative ou annulez-la avant de recommencer.",
+  "google_cancelFailed": "L’annulation n’a pas pu être confirmée. Réessayez d’annuler avant de quitter cet écran.",
+  "google_cancelled": "Connexion Google annulée.",
+  "google_selecting": "Choisissez votre compte Google…",
+  "google_verifying": "Vérification de votre compte…",
+  "google_emailUnavailable": "L’e-mail de confirmation n’a pas pu être envoyé. Réessayez plus tard.",
+  "google_emailSent": "E-mail de confirmation envoyé. Consultez votre messagerie.",
+  "google_rateLimited": "Veuillez patienter avant de réessayer.",
+  "google_invalidPassword": "Le mot de passe FuzeVPN est incorrect. Votre compte actuel est conservé.",
+  "google_invalidCode": "Le code de confirmation est invalide ou expiré.",
+  "google_accountChanged": "La session a changé. Annulez cette tentative avant de recommencer.",
+  "google_invalidResponse": "Impossible de valider la réponse. Votre accès actuel est conservé.",
+  "google_invalidRegistration": "Vérifiez le pays et les consentements.",
+  "google_consentRequired": "Choisissez votre pays et acceptez les deux documents pour continuer.",
+  "google_challengeRequired": "Une vérification de sécurité supplémentaire est requise. Votre accès actuel est conservé.",
+  "google_challengeUnavailable": "La vérification de sécurité est indisponible. Réessayez plus tard."
+}

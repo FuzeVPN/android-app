@@ -1,0 +1,931 @@
+{
+  "locale": "da",
+  "arb": {
+    "accountRestoration_title": "Kontoet er midlertidigt utilgængeligt",
+    "accountRestoration_message": "Din session er bevaret. Prøv igen for at gendanne din konto; du kan stadig administrere VPN-forbindelsen her.",
+    "action_retry": "Prøv igen",
+    "session_endingTitle": "Sessionen afsluttes",
+    "session_ending": "Din session er ugyldiggjort. VPN-forbindelsen stoppes, og sessionen ryddes…",
+    "session_stopFailed": "VPN-nedlukningen er ikke bekræftet. Prøv igen, før du logger ind på ny.",
+    "session_cleanupFailed": "VPN-forbindelsen er stoppet, men fjernelsen af sessionen er ikke bekræftet. Prøv at rydde op igen.",
+    "session_retryStop": "Prøv at lukke ned igen",
+    "session_retryCleanup": "Prøv at rydde op igen",
+    "@@locale": "da",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN klargøres sikkert…",
+    "nav_connection": "Forbindelse",
+    "nav_locations": "Placeringer",
+    "nav_account": "Konto",
+    "nav_devices": "Enheder",
+    "nav_settings": "Indstillinger",
+    "action_refresh": "Opdater",
+    "auth_tab_login": "Log ind",
+    "auth_tab_register": "Opret konto",
+    "auth_stepAccount": "Konto",
+    "auth_stepIdentity": "Identitet",
+    "auth_stepAddress": "Adresse og aftaler",
+    "auth_stepProgress": "Trin {current} af {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "Din VPN gjort enkel.",
+    "auth_keysLocal": "Dine private VPN-nøgler bliver på denne enhed.",
+    "form_email": "E-mailadresse",
+    "form_password": "Adgangskode",
+    "form_showPassword": "Vis adgangskode",
+    "form_hidePassword": "Skjul adgangskode",
+    "form_passwordMin": "8–72 UTF-8-bytes. Nogle tegn bruger mere end én byte.",
+    "form_firstName": "Fornavn",
+    "form_lastName": "Efternavn",
+    "form_phone": "Telefon (+33612345678)",
+    "form_address": "Adresse",
+    "form_address2": "Adresselinje 2 (valgfri)",
+    "form_postalCode": "Postnummer",
+    "form_city": "By",
+    "form_country": "Landekode (f.eks. FR)",
+    "action_login": "Log ind",
+    "action_createAccount": "Opret en konto",
+    "action_createMyAccount": "Opret min konto",
+    "action_next": "Fortsæt",
+    "action_previous": "Tilbage",
+    "action_forgotPassword": "Glemt adgangskode?",
+    "auth_noAccount": "Har du ikke en konto endnu?",
+    "auth_requiredInformation": "Opret din konto i tre trin.",
+    "auth_termsPrefix": "Jeg accepterer ",
+    "auth_termsLink": "brugsbetingelserne",
+    "auth_privacyPrefix": "Jeg accepterer ",
+    "auth_privacyLink": "privatlivspolitikken",
+    "auth_consentRequired": "Dit samtykke er nødvendigt for at oprette en konto.",
+    "validation_required": "Dette felt er påkrævet.",
+    "validation_email": "Indtast en gyldig e-mailadresse.",
+    "validation_password": "Adgangskoden er for kort: mindst 8 UTF-8-bytes.",
+    "validation_passwordTooLong": "Adgangskoden er for lang: højst 72 UTF-8-bytes.",
+    "validation_phone": "Brug internationalt format, f.eks. +33612345678.",
+    "validation_country": "Brug en landekode på to bogstaver, f.eks. FR.",
+    "passwordReset_title": "Nulstil adgangskode",
+    "passwordReset_description": "Indtast e-mailadressen til din konto for at anmode om et link til nulstilling af adgangskoden.",
+    "passwordReset_send": "Send link",
+    "connection_title": "Din forbindelse",
+    "connection_subtitle": "Vælg en placering, og slå derefter din VPN til.",
+    "connection_prepare": "Klar til at oprette forbindelse?",
+    "connection_advancedOptions": "Avancerede indstillinger",
+    "connection_location": "Placering",
+    "connection_chooseLocation": "Vælg en placering",
+    "connection_protocol": "Protokol",
+    "connection_connect": "Opret forbindelse",
+    "connection_connecting": "Opretter forbindelse…",
+    "connection_disconnect": "Afbryd forbindelsen",
+    "connection_disconnecting": "Afbryder forbindelsen",
+    "connection_locationChange": "Skifter placering…",
+    "connection_unavailable": "{protocol} er ikke tilgængelig",
+    "connection_activeLocation": "Aktiv placering",
+    "connection_duration": "Varighed",
+    "connection_received": "Modtaget",
+    "connection_sent": "Sendt",
+    "connection_lastHandshake": "Seneste sikre udveksling",
+    "connection_handshakeAgo": "for {duration} siden",
+    "verification_title": "Bekræft din e-mailadresse",
+    "verification_message": "Bekræft din e-mailadresse for at bruge VPN på denne telefon.",
+    "verification_resend": "Send e-mail igen",
+    "migration_title": "Skift placering",
+    "migration_draining": "Forbereder skift af placering…",
+    "migration_activating": "Aktiverer den nye server…",
+    "migration_ready": "Placeringen er opdateret.",
+    "migration_blocked": "Skift af placering kræver indgriben fra serveren. Prøv igen senere, eller kontakt support.",
+    "migration_progress": "Fremskridt for skift af placering",
+    "migration_retryDelay": "Forsinkelse mellem kontroller: {seconds}s.",
+    "migration_resume": "Fortsæt skift af placering",
+    "status_authorizing": "Tilladelse påkrævet",
+    "status_authorizingDetail": "Accepter Android-anmodningen for at tillade VPN.",
+    "status_preparing": "Forbereder",
+    "status_preparingDetail": "Forbereder din sikre forbindelse.",
+    "status_reconnecting": "Opretter forbindelse igen…",
+    "status_reconnectingDetail": "Forbindelsen blev afbrudt. VPN forsøger at oprette forbindelse igen.",
+    "status_connecting": "Opretter forbindelse",
+    "status_connectingDetail": "Opretter forbindelse til VPN-serveren…",
+    "status_connected": "Forbundet",
+    "status_connectedDetail": "Din VPN-forbindelse er aktiv.",
+    "status_disconnecting": "Afbryder forbindelsen",
+    "status_disconnectingDetail": "Din VPN-forbindelse stoppes.",
+    "status_error": "Forbindelsen er utilgængelig",
+    "status_errorDetail": "VPN-forbindelsen er ikke bekræftet. Prøv igen.",
+    "status_idle": "Ikke forbundet",
+    "status_idleDetail": "Opret forbindelse til VPN for at beskytte din forbindelse.",
+    "trust_note": "Når du lukker appen, stopper VPN ikke. Brug Afbryd forbindelsen for at stoppe den.",
+    "locations_none": "Ingen placeringer er tilgængelige lige nu.",
+    "locations_available": "Vælg din næste placering.",
+    "locations_selected": "Valgt placering",
+    "locations_select": "Vælg denne placering",
+    "locations_lockedTunnel": "Afbryd VPN-forbindelsen for at skifte placering.",
+    "locations_lockedMigration": "Vent, indtil skiftet af placering er færdigt.",
+    "devices_title": "Dine enheder",
+    "devices_used": "{count} / {limit} enheder",
+    "devices_refresh": "Opdater enheder",
+    "devices_empty": "Ingen VPN-enhed er registreret endnu.",
+    "devices_firstConnection": "Din telefon bliver tilføjet ved den første forbindelse.",
+    "devices_thisDevice": "Denne enhed",
+    "devices_added": "Tilføjet {date}",
+    "action_remove": "Fjern",
+    "settings_title": "Indstillinger",
+    "settings_subtitle": "Dine præferencer og din konto samlet ét sted.",
+    "settings_appearance": "Udseende",
+    "settings_language": "Sprog",
+    "settings_languageDescription": "Det valgte sprog gælder også for VPN-meddelelser.",
+    "settings_account": "Konto",
+    "settings_signOut": "Log ud",
+    "settings_privacy": "Privatlivspolitik",
+    "settings_terms": "Brugsbetingelser",
+    "settings_security": "Sikkerhed og gennemsigtighed",
+    "settings_licenses": "Komponentlicenser",
+    "settings_licensesDetail": "Software, der bruges i appen",
+    "settings_background": "VPN forbliver aktiv, når du forlader appen. Brug Afbryd forbindelsen under fanen Forbindelse for at stoppe den.",
+    "theme_system": "System",
+    "theme_light": "Lys",
+    "theme_dark": "Mørk",
+    "language_system": "Telefonsprog",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Fjern denne enhed?",
+    "dialog_removeCurrent": "Denne telefon afbrydes fra VPN og mister adgangen. Dens VPN-forbindelsesdata fjernes, når serveren har bekræftet det.",
+    "dialog_removeOther": "VPN-adgangen for “{name}” tilbagekaldes. Dette kan ikke fortrydes.",
+    "dialog_signOut": "Log ud?",
+    "dialog_signOutMessage": "VPN stoppes, og du skal logge ind igen. Dine krypterede VPN-nøgler bliver på denne telefon til din næste forbindelse.",
+    "action_cancel": "Annuller",
+    "action_signOut": "Log ud",
+    "notice_close": "Afvis meddelelse",
+    "notice_sessionExpired_title": "Sessionen er udløbet",
+    "notice_sessionExpired_message": "Din session er udløbet. Log ind igen.",
+    "notice_connectionFailed_title": "Forbindelsen mislykkedes",
+    "notice_invalidCredentials_message": "E-mailadressen eller adgangskoden er forkert.",
+    "notice_emailVerification_title": "E-mailbekræftelse påkrævet",
+    "notice_emailVerification_message": "Bekræft din e-mailadresse, før du tilføjer en VPN-enhed.",
+    "notice_rateLimited_title": "For mange forsøg",
+    "notice_deviceLimit_title": "Grænsen på 2 enheder er nået",
+    "notice_deviceLimit_message": "Fjern en eksisterende enhed, før du tilføjer en anden.",
+    "notice_identityRenewal_title": "VPN-identiteten skal fornyes",
+    "notice_identityRenewal_message": "Denne identitet blev fjernet. Opret en ny lokal identitet.",
+    "notice_migrationPending_title": "Skift af placering er i gang",
+    "notice_migrationPending_message": "Et skift af placering er allerede i gang.",
+    "notice_migrationBlocked_title": "Skift af placering blokeret",
+    "notice_migrationBlocked_message": "Skift af placering kræver indgriben fra serveren. Prøv igen senere, eller kontakt support.",
+    "notice_targetUnavailable_title": "Serveren er midlertidigt utilgængelig",
+    "notice_targetUnavailable_message": "Denne server er midlertidigt utilgængelig.",
+    "notice_networkUnavailable_title": "Internetforbindelsen er utilgængelig",
+    "notice_networkUnavailable_message": "Kontroller din forbindelse, og prøv igen.",
+    "notice_permissionDenied_title": "VPN-tilladelse afvist",
+    "notice_permissionDenied_message": "Start forbindelsen igen, og accepter Android-tilladelsesanmodningen.",
+    "notice_wireguardTimeout_title": "Serveren svarer ikke",
+    "notice_wireguardTimeout_message": "WireGuard-forbindelsen tog for lang tid. Prøv igen, eller vælg en anden placering.",
+    "notice_tlsFailed_title": "Sikker forbindelse afvist",
+    "notice_tlsFailed_message": "Serveren accepterede ikke OpenVPN-forbindelsen. Prøv igen. Hvis problemet fortsætter, skal du køre en diagnosticering.",
+    "notice_tunRejected_title": "Android afviste VPN-grænsefladen",
+    "notice_tunRejected_message": "Android afviste den netværkskonfiguration, som OpenVPN anmodede om.",
+    "notice_openvpnStart_title": "OpenVPN kunne ikke starte",
+    "notice_openvpnStart_message": "OpenVPN-motoren kunne ikke færdiggøre opstarten. Prøv igen. Hvis problemet fortsætter, skal du kontakte support.",
+    "notice_diagnosticCode": "Diagnosticeringskode: {code}",
+    "notice_generic_title": "VPN-forbindelsen mislykkedes",
+    "notice_generic_message": "Der opstod en fejl. Prøv igen senere.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Konto oprettet} password_reset_sent{Anmodning om nulstilling af adgangskode modtaget} verification_email_sent{Bekræftelses-e-mail sendt} location_migration_pending{Skift af placering er i gang} vpn_sign_in_required{Login påkrævet} protocol_unavailable_at_location{Protokol ikke tilgængelig} vpn_permission_denied{VPN-tilladelse afvist} revoked_identity_device_limit{Grænsen på 2 enheder er nået} tunnel_start_unexpected{VPN kunne ikke starte} flutter_disconnect_timeout{Afbrydelse ikke bekræftet} flutter_disconnect_unexpected{Kunne ikke afbryde forbindelsen} device_revoked{Enhed fjernet} revoke_unexpected{Enheden kunne ikke fjernes} identity_renewal_unexpected{Identiteten kunne ikke fornyes} openvpn_renewal_unexpected{OpenVPN kunne ikke fornyes} location_migration_blocked{Skift af placering blokeret} location_migration_slow{Skift af placering er stadig i gang} location_migration_conflict{Skift af placering skal opdateres} location_migration_verification_failed{Skift af placering ikke bekræftet} location_migration_device_changed{Enheden blev ændret under skift af placering} tunnel_stop_failed{Skift af placering er ikke tilgængeligt} other{Handlingen mislykkedes}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Kontoen blev oprettet, men bekræftelses-e-mailen kunne ikke sendes. Brug Send igen i appen.} password_reset_sent{Din anmodning blev modtaget. Hvis en konto matcher denne adresse, modtager du muligvis en e-mail. Tjek også din spammappe.} verification_email_sent{En ny bekræftelses-e-mail er netop sendt.} location_migration_pending{Flytningen til {target} forberedes stadig. Du kan fortsætte den uden at oprette enheden igen.} vpn_sign_in_required{Log ind på din konto, før du starter VPN.} protocol_unavailable_at_location{Den valgte protokol tilbydes ikke på denne placering. Opdater placeringerne, eller vælg en anden protokol.} vpn_permission_denied{Android afviste VPN-tilladelsen. Start forbindelsen igen, og accepter systemanmodningen.} revoked_identity_device_limit{Denne enheds VPN-adgang blev fjernet, og enhedsgrænsen er nået. Fjern en enhed under Konto → Administrer mine enheder.} tunnel_start_unexpected{En uventet fejl afbrød klargøringen af tunnelen. Kontroller diagnosticeringskoden, og prøv igen.} flutter_disconnect_timeout{Android bekræftede ikke i tide, at VPN var stoppet. Prøv at stoppe den igen.} flutter_disconnect_unexpected{En uventet fejl forhindrede bekræftelsen af, at tunnelen var stoppet.} device_revoked{Enhedens VPN-adgang blev tilbagekaldt, og dens lokale hemmeligheder blev fjernet.} revoke_unexpected{Enheden kunne ikke fjernes. Opdater listen, og prøv igen.} identity_renewal_unexpected{Den nye VPN-identitet kunne ikke oprettes. Opdater enhederne, og prøv igen.} openvpn_renewal_unexpected{OpenVPN-profilen kunne ikke fornyes. Prøv igen, eller kontroller diagnosticeringskoden.} location_migration_blocked{Serveren kan ikke gennemføre dette skift lige nu. Enheden og dens lokale identitet er bevaret.} location_migration_slow{Serveren forbereder stadig flytningen til {target}. Brug Fortsæt om et øjeblik.} location_migration_conflict{Enhedens tilstand blev ændret på serveren. Opdater enhederne, og fortsæt derefter skiftet.} location_migration_verification_failed{Serveren bekræftede ikke den nye placering. Den tidligere lokale identitet er bevaret.} location_migration_device_changed{Den enhed, serveren returnerede, matcher ikke længere den enhed, der ændres. Opdater enhederne, før du prøver igen.} tunnel_stop_failed{Den tidligere tunnel skal stoppes helt, før den nye forbindelse kan oprettes.} other{Handlingen kunne ikke gennemføres. Prøv igen, eller send diagnosticeringskoden til support.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Sessionen er udløbet} invalid_credentials{Login mislykkedes} email_verification_required{E-mailbekræftelse påkrævet} verification_email_cooldown{E-mail allerede sendt} rate_limited{For mange forsøg} invalid_registration{Oplysningerne skal rettes} email_exists{Kontoen findes allerede} invalid_profile{Ugyldig profil} invalid_device{Ugyldig enhed} invalid_location{Placering ikke tilgængelig} device_limit{Grænsen på 2 enheder er nået} device_exists{VPN-identiteten er allerede i brug} device_identity_revoked{VPN-identiteten skal fornyes} device_location_locked{Skift af placering skal opdateres} location_migration_pending{Skift af placering er i gang} location_migration_blocked{Skift af placering blokeret} target_ca_mismatch{OpenVPN-serveren er inkompatibel} location_migration_conflict{Skift af placering skal opdateres} server_full{Serveren er fuld} capacity_unavailable{Placeringen er midlertidigt utilgængelig} target_unavailable{Serveren er midlertidigt utilgængelig} not_found{Elementet blev ikke fundet} invalid_openvpn_csr{Ugyldig OpenVPN-identitet} openvpn_profile_exists{OpenVPN-profilen findes allerede} openvpn_profile_revoked{OpenVPN-profil tilbagekaldt} openvpn_operation_pending{OpenVPN-handling er i gang} openvpn_operation_terminal{OpenVPN-handlingen blev afbrudt} openvpn_address_unavailable{OpenVPN-adresse ikke tilgængelig} openvpn_profile_conflict{OpenVPN-konflikt} openvpn_signer_unavailable{OpenVPN ikke tilgængelig} email_delivery_unavailable{E-mail ikke tilgængelig} invalid_token{Ugyldigt link} network_unavailable{Internetforbindelsen er utilgængelig} invalid_json{Ugyldig anmodning} invalid_api_response{Ugyldigt serversvar} ipv6_unavailable{IPv6 ikke tilgængelig} invalid_ip_families{Netværkskonfiguration afvist} other{Tjenesten er utilgængelig}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Din session er udløbet. Log ind igen.} invalid_credentials{E-mailadressen eller adgangskoden er forkert.} email_verification_required{Bekræft din e-mailadresse, før du tilføjer en VPN-enhed.} invalid_registration{Kontroller de ønskede oplysninger og samtykker.} email_exists{En konto bruger allerede denne e-mailadresse.} invalid_profile{Kontroller dine profiloplysninger.} invalid_device{Denne enheds navn eller lokale identitet er ugyldig.} invalid_location{Opdater listen over placeringer, og prøv igen.} device_limit{Fjern en eksisterende enhed, før du tilføjer en anden.} device_exists{Denne VPN-identitet er allerede knyttet til en anden konto.} device_identity_revoked{Denne identitet blev fjernet. Der skal oprettes en ny lokal identitet.} device_location_locked{Denne enheds placering blev netop ændret. Appen fortsætter det igangværende skift.} location_migration_pending{Et skift af placering er allerede i gang.} location_migration_blocked{Skift af placering kræver indgriben fra serveren. Prøv igen senere, eller kontakt support.} target_ca_mismatch{Denne server er endnu ikke kompatibel med den aktuelle OpenVPN-profil.} location_migration_conflict{Opdater enhederne, og prøv derefter at skifte placering igen.} server_full{Denne placering har nået sin forbindelsesgrænse. Vælg en anden placering, eller prøv igen senere.} capacity_unavailable{Vi kan ikke bekræfte, om denne placering er tilgængelig lige nu. Vælg en anden placering, eller prøv igen senere.} target_unavailable{Denne server er midlertidigt utilgængelig.} not_found{Dette element er ikke længere tilgængeligt på din konto.} invalid_openvpn_csr{Opret en ny OpenVPN-identitet, og prøv igen.} openvpn_profile_exists{Der findes allerede en OpenVPN-profil til denne enhed.} openvpn_profile_revoked{Forny OpenVPN-profilen for at fortsætte.} openvpn_operation_pending{Ændringen er stadig ved at blive udbredt. Prøv igen senere.} openvpn_operation_terminal{Opret en ny OpenVPN-identitet, og prøv igen.} openvpn_address_unavailable{Ingen OpenVPN-adresse er tilgængelig lige nu.} openvpn_profile_conflict{Profilen blev ændret. Opdater enhederne, og prøv igen.} openvpn_signer_unavailable{OpenVPN-tjenesten er midlertidigt utilgængelig.} email_delivery_unavailable{E-mailen kunne ikke sendes. Prøv igen senere.} invalid_token{Dette link er ugyldigt eller udløbet. Anmod om et nyt.} network_unavailable{Kontroller din internetforbindelse, og prøv igen.} invalid_json{Kontroller de indtastede oplysninger, og prøv igen.} invalid_api_response{Serveren returnerede et uventet svar. Prøv igen senere.} ipv6_unavailable{Serveren kan ikke aktivere IPv6 lige nu. Prøv igen senere.} invalid_ip_families{Tunnelkonfigurationen er ufuldstændig eller stemmer ikke overens med de godkendte adresser. Prøv igen fra appen.} other{Der opstod en serverfejl. Prøv igen senere.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Prøv igen om et øjeblik.",
+    "notice_retryAfter": "Prøv igen om {seconds} sekunder.",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "Object"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Genoptagelse af system-VPN ikke tilgængelig} system_vpn_resume_corrupt{Ugyldig genoptagelse af system-VPN} system_vpn_resume_session_invalid{Ugyldig session til genoptagelse af VPN} system_vpn_resume_identity_changed{VPN-identiteten blev ændret} system_vpn_resume_identity_invalid{Ugyldig VPN-identitet til genoptagelse} system_vpn_resume_storage_failed{Lager til genoptagelse af VPN er ikke tilgængeligt} system_vpn_resume_network_timeout{Genoptagelse af VPN har intet netværk} system_vpn_resume_blocked{Genoptagelse af VPN blokeret} system_vpn_resume_failed{Genoptagelse af VPN mislykkedes} system_vpn_resume_error_invalid{Ugyldig fejl ved genoptagelse af VPN} wireguard_identity_store_failed{WireGuard-identiteten blev ikke gemt} wireguard_identity_unavailable{WireGuard-identitet ikke tilgængelig} vpn_host_destroyed{Androids VPN-vært stoppet} vpn_host_unavailable{Androids VPN-vært ikke tilgængelig} vpn_permission_required{VPN-tilladelse påkrævet} vpn_permission_denied{VPN-tilladelse afvist} vpn_permission_request_failed{Tilladelsen kunne ikke anmodes} wireguard_foreground_service_unavailable{WireGuard-tjeneste ikke tilgængelig} wireguard_identity_invalid{Ugyldig lokal WireGuard-nøgle} wireguard_identity_in_use{WireGuard-identiteten er allerede i brug} wireguard_configuration_invalid{Ugyldig WireGuard-konfiguration} wireguard_operation_pending{WireGuard-handling stadig aktiv} wireguard_start_failed{WireGuard-start afvist} wireguard_stop_timeout{WireGuard-stop ikke bekræftet} wireguard_handshake_timeout{WireGuard svarede ikke} openvpn_connection_timeout{OpenVPN svarede ikke} openvpn_core_unavailable{OpenVPN-motor ikke tilgængelig} openvpn_operation_pending{OpenVPN-session stadig aktiv} openvpn_stop_timeout{OpenVPN-stop ikke bekræftet} openvpn_profile_unavailable{Lokal OpenVPN-profil mangler} openvpn_native_failed{Indbygget OpenVPN-kald afbrudt} openvpn_key_generation_failed{OpenVPN P-256-nøglen kunne ikke oprettes} openvpn_csr_generation_failed{OpenVPN-CSR kunne ikke oprettes} openvpn_identity_store_failed{OpenVPN-identiteten blev ikke gemt} openvpn_identity_clear_failed{Ufuldstændig fjernelse af OpenVPN} openvpn_identity_in_use{OpenVPN-identiteten er stadig i brug} openvpn_tls_verification_required{OpenVPN TLS-bekræftelse mangler} openvpn_cipher_invalid{Ugyldig OpenVPN-kryptering} openvpn_profile_rejected{OpenVPN-profil afvist} openvpn_identity_inconsistent{OpenVPN-identiteten er inkonsekvent} tls_handshake_failed{OpenVPN-forhandling afvist} tls_alert_unknown_ca{OpenVPN-klientcertifikat ikke genkendt} tls_alert_bad_certificate{OpenVPN-klientcertifikat afvist} tls_alert_unsupported_certificate{OpenVPN-certifikat understøttes ikke} tls_client_certificate_required{OpenVPN-klientcertifikat påkrævet} tls_alert_misc{OpenVPN TLS-alarm} tls_signature_algorithm_rejected{OpenVPN-signatur understøttes ikke} tls_handshake_rejected{OpenVPN TLS-forhandling afvist} tls_version_rejected{Inkompatibel OpenVPN TLS-version} tls_certificate_expired{TLS-certifikat udløbet} tls_certificate_revoked{TLS-certifikat tilbagekaldt} transport_failed{OpenVPN-server ikke tilgængelig} tun_configuration_rejected{OpenVPN-grænseflade kunne ikke oprettes} tun_setup_failed{OpenVPN TUN-konfiguration mislykkedes} tun_interface_create_failed{Oprettelse af OpenVPN-grænseflade mislykkedes} tun_interface_disabled{OpenVPN-grænseflade deaktiveret} tun_halted{OpenVPN-grænseflade afbrudt} tun_already_established{OpenVPN-grænseflade allerede åben} tun_addresses_missing{OpenVPN-adresse mangler} tun_routes_missing{OpenVPN-ruter mangler} tun_dns_missing{OpenVPN-DNS mangler} tun_permission_revoked{VPN-tilladelse tilbagekaldt} tun_establish_returned_null{Android afviste VPN-grænsefladen} openvpn_service_start_failed{OpenVPN-tjeneste ikke tilgængelig} openvpn_operation_timeout{OpenVPN-kald fik timeout} openvpn_start_failed{OpenVPN-start afvist} openvpn_connection_failed{OpenVPN-forbindelse afbrudt} openvpn_core_status_error{OpenVPN Core afsluttede med en fejl} openvpn_stopped_before_connected{OpenVPN stoppede før forbindelse} openvpn_auth_failed{OpenVPN-godkendelse afvist} openvpn_client_setup_failed{OpenVPN-klientopsætning mislykkedes} openvpn_client_halted{OpenVPN-klient afbrudt} openvpn_client_restart{OpenVPN-genstart anmodet} openvpn_inactive_timeout{OpenVPN inaktiv for længe} openvpn_session_expired{OpenVPN-session udløbet} openvpn_credentials_required{OpenVPN-godkendelse understøttes ikke} openvpn_proxy_failed{OpenVPN-mellemtransport mislykkedes} openvpn_compression_failed{OpenVPN-komprimering afvist} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM-kryptering ikke tilgængelig} openvpn_feature_unsupported{OpenVPN-funktion understøttes ikke} network_unavailable{Internetforbindelsen er utilgængelig} network_lost{Netværk ikke tilgængeligt} certificate_validation_failed{Servercertifikat afvist} openvpn_certificate_expired{OpenVPN-certifikat udløbet} tunnel_active_for_another_account{En anden kontos tunnel er stadig aktiv} tunnel_already_active{Indbygget tunnel allerede aktiv} tunnel_stop_timeout{{protocol}-stop ikke bekræftet} tunnel_disconnected{{protocol} afbrudt} native_bridge_unavailable{Android-bro ikke tilgængelig} native_operation_failed{Android-handling afbrudt} invalid_arguments{Ufuldstændige VPN-parametre} invalid_account_id{Ugyldig VPN-konto} invalid_device_id{Ugyldig enhedsidentifikator} storage_key_not_allowed{Lager-nøgle afvist} secure_storage_read_failed{Sikker læsning mislykkedes} secure_storage_write_failed{Sikker skrivning mislykkedes} key_generation_failed{WireGuard-nøgle kunne ikke genereres} csr_generation_failed{OpenVPN-CSR kunne ikke genereres} other{Uklassificeret indbygget VPN-fejl}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android kan ikke finde en VPN-session, der kan genoptages. Start en ny forbindelse i appen.} system_vpn_resume_corrupt{De gemte data til genoptagelse af VPN er ugyldige og vil ikke blive brugt. Start en ny forbindelse.} system_vpn_resume_session_invalid{Den gemte session kan ikke længere genoptage VPN. Log ind igen i appen.} system_vpn_resume_identity_changed{Den lokale VPN-identitet blev ændret. Genoptagelsen blev stoppet; start en ny forbindelse.} system_vpn_resume_identity_invalid{Identiteten til genoptagelse er ugyldig. Start en ny forbindelse.} system_vpn_resume_storage_failed{Android kunne ikke læse eller opdatere krypterede data til genoptagelse. Start en ny forbindelse.} system_vpn_resume_network_timeout{Android fandt ikke et netværk i tide til at genoptage VPN. Prøv igen, når et netværk er tilgængeligt.} system_vpn_resume_blocked{Genoptagelse af VPN er blokeret. Kontroller Android-indstillingerne, og start derefter en ny forbindelse.} system_vpn_resume_failed{Genoptagelse af Android-VPN mislykkedes. Start en ny forbindelse i appen.} system_vpn_resume_error_invalid{Android returnerede en ubrugelig fejl ved genoptagelse. Start en ny forbindelse.} wireguard_identity_store_failed{Android kunne ikke gemme denne kontos krypterede WireGuard-identitet.} wireguard_identity_unavailable{Ingen brugbar WireGuard-identitet er tilgængelig for denne forbindelse.} vpn_host_destroyed{Android-komponenten, der var vært for VPN, blev stoppet. Start en ny forbindelse.} vpn_host_unavailable{Android kan ikke oprette komponenten, der er vært for VPN. Prøv igen efter at have kontrolleret VPN-indstillingerne.} openvpn_renewal_required{Certifikatet kræver en handling i appen, før der kan oprettes forbindelse.} openvpn_recovery_failed{Automatisk gendannelse mislykkedes. Start en ny forbindelse i appen.} openvpn_recovery_exhausted{Automatisk gendannelse er allerede brugt. Start en ny forbindelse i appen.} vpn_permission_required{Android kræver en ny VPN-godkendelse, før tunnelen kan startes.} vpn_permission_denied{Tillad FuzeVPN i Android-anmodningen for at fortsætte.} vpn_permission_request_failed{Android kunne ikke åbne VPN-tilladelsesskærmen.} wireguard_foreground_service_unavailable{Android kunne ikke holde WireGuard-tjenesten i forgrunden.} wireguard_identity_invalid{Denne kontos krypterede WireGuard-nøgle kan ikke læses eller er ugyldig.} wireguard_identity_in_use{En anden handling bruger stadig denne kontos WireGuard-nøgle.} wireguard_configuration_invalid{Den modtagne WireGuard-adresse, DNS, servernøgle eller ruter er ugyldige.} wireguard_operation_pending{Den forrige WireGuard-handling har endnu ikke frigivet sin indbyggede tjeneste.} wireguard_start_failed{WireGuard-motoren afviste aktivering af konfigurationen.} wireguard_stop_timeout{WireGuard-tjenesten bekræftede ikke frigivelsen af VPN-grænsefladen inden for tidsgrænsen.} wireguard_handshake_timeout{Tunnelen bekræftede ikke et håndtryk med serveren i tide.} openvpn_connection_timeout{OpenVPN bekræftede ikke forbindelsen til serveren i tide.} openvpn_core_unavailable{Denne appversion indeholder ikke en brugbar OpenVPN-motor.} openvpn_operation_pending{Den indbyggede motor holder stadig den forrige OpenVPN-session og nægter at oprette en ny.} openvpn_stop_timeout{OpenVPN Core bekræftede ikke, at den indbyggede session blev stoppet og ødelagt inden for tidsgrænsen.} openvpn_profile_unavailable{Ingen valideret OpenVPN-profil kan læses til denne forbindelse.} openvpn_native_failed{En appfejl afbrød OpenVPN. Prøv at oprette forbindelse igen. Hvis problemet fortsætter, skal du køre en diagnosticering.} openvpn_key_generation_failed{Android Keystore kunne ikke oprette eller læse den ikke-eksporterbare private P-256-nøgle.} openvpn_csr_generation_failed{Android Keystore-nøglen kunne ikke signere OpenVPN-certifikatanmodningen.} openvpn_identity_store_failed{OpenVPN-certifikatet eller profilen kunne ikke gemmes i krypteret lager.} openvpn_identity_clear_failed{Android kunne ikke fjerne hele den lokale OpenVPN-identitet for denne konto.} openvpn_identity_in_use{En indbygget OpenVPN-session bruger stadig denne enheds nøgle eller certifikat.} openvpn_tls_verification_required{Profilen kræver ikke udtrykkeligt bekræftelse af servercertifikatet.} openvpn_cipher_invalid{Serveren angav en krypteringsalgoritme, der ikke er på den tilladte liste.} openvpn_profile_rejected{Profilen fra serveren er inkompatibel. Opret denne enhed igen, og prøv igen.} openvpn_identity_inconsistent{Certifikatet matcher ikke denne telefons sikre identitet. Ingen lokal profil blev erstattet.} tls_handshake_failed{Serveren afviste TLS-forhandlingen. Opret profilen igen, hvis problemet fortsætter.} tls_alert_unknown_ca{Serveren genkender ikke denne enhedscertifikats certifikatmyndighed. OpenVPN-serveren skal kontrolleres.} tls_alert_bad_certificate{Serveren afviste dette enhedscertifikat. Opret enheden igen, før du prøver igen.} tls_alert_unsupported_certificate{Serveren understøtter ikke den sikre certifikattype, som Android bruger.} tls_client_certificate_required{Serveren kræver et klientcertifikat, men OpenVPN Core kunne ikke præsentere et.} tls_alert_misc{Serveren returnerede en TLS-alarm uden for kategorierne certifikat og version.} tls_signature_algorithm_rejected{Serveren afviste Android Keystore-nøglens ECDSA P-256-algoritme.} tls_handshake_rejected{Serveren afbrød TLS-forhandlingen før forbindelsen.} tls_version_rejected{Klienten og serveren fandt ingen fælles TLS-version.} tls_certificate_expired{Certifikatet, der blev præsenteret under forbindelsen, er udløbet.} tls_certificate_revoked{Certifikatet, der blev præsenteret under forbindelsen, er tilbagekaldt.} transport_failed{OpenVPN-serveren svarer ikke på det aktuelle netværk. Prøv igen om lidt.} tun_configuration_rejected{Android afviste den netværkskonfiguration, som OpenVPN anmodede om.} tun_setup_failed{OpenVPN Core afviste netværksplanen, før Android-grænsefladen blev oprettet.} tun_interface_create_failed{OpenVPN Core kunne ikke få TUN-grænsefladen fra Android VpnService.} tun_interface_disabled{Android eller OpenVPN Core deaktiverede TUN-grænsefladen under forbindelsen.} tun_halted{OpenVPN Core modtog en anmodning om at stoppe TUN-grænsefladen.} tun_already_established{OpenVPN anmodede om en ekstra grænseflade i den samme forbindelse. Tunnelen blev stoppet af sikkerhedshensyn.} tun_addresses_missing{Serveren leverede ikke en brugbar tunneladresse.} tun_routes_missing{Serveren leverede ikke brugbare tunnelruter.} tun_dns_missing{Serveren leverede ikke en brugbar DNS-server.} tun_permission_revoked{Android tilbagekaldte VPN-tilladelsen under forbindelsen.} tun_establish_returned_null{Android oprettede ikke grænsefladen, normalt fordi en anden VPN stadig er aktiv.} openvpn_service_start_failed{Android kunne ikke starte OpenVPN-forgrundstjenesten.} openvpn_operation_timeout{Et JNI-kald til OpenVPN Core overskred sin maksimale varighed.} openvpn_start_failed{Android-tjenesten er klar, men OpenVPN Core accepterede ikke at starte profilen.} openvpn_connection_failed{OpenVPN Core stoppede, før CONNECTED-hændelsen blev sendt.} openvpn_core_status_error{Den indbyggede OpenVPN-løkke sluttede med en fejl uden en mere specifik afsluttende hændelse.} openvpn_stopped_before_connected{Den indbyggede OpenVPN-løkke stoppede før CONNECTED uden en eksplicit Core-fejl.} openvpn_auth_failed{OpenVPN-serveren afviste profilens godkendelse.} openvpn_client_setup_failed{OpenVPN Core kunne ikke initialisere klienten før netværksforbindelsen.} openvpn_client_halted{OpenVPN Core modtog en afsluttende klientstopanmodning.} openvpn_client_restart{OpenVPN Core anmodede om genstart af sin transportsession.} openvpn_inactive_timeout{OpenVPN Core lukkede sessionen efter timeout for inaktivitet.} openvpn_session_expired{Serveren oplyste, at OpenVPN-sessionen er udløbet.} openvpn_credentials_required{Serveren eller en proxy anmoder om interaktive legitimationsoplysninger, som ikke er en del af denne certifikatprofil.} openvpn_proxy_failed{OpenVPN Core rapporterede en fejl i den konfigurerede proxy eller relay.} openvpn_compression_failed{OpenVPN Core afviste den komprimeringstilstand, som profilen eller serveren annoncerede.} openvpn_ntlm_crypto_unavailable{Profilen anmoder om NTLM-kryptering, som ikke er tilgængelig i denne version.} openvpn_feature_unsupported{Profilen eller serveren kræver en funktion, der mangler i denne Android-klient.} network_unavailable{Intet brugbart fysisk netværk er tilgængeligt.} network_lost{Tunnelen blev stoppet, efter netværket gik tabt.} certificate_validation_failed{OpenVPN-serverens identitet kunne ikke bekræftes.} openvpn_certificate_expired{Forny OpenVPN-profilen, før du opretter forbindelse igen.} tunnel_active_for_another_account{En tunnel, der tilhører en anden konto, skal stoppes, før denne forbindelse kan oprettes.} tunnel_already_active{Android rapporterer, at en tidligere VPN-session stadig bruger grænsefladen.} tunnel_stop_timeout{{protocol}-motoren bekræftede ikke frigivelsen af VPN-grænsefladen inden for tidsgrænsen.} tunnel_disconnected{Den indbyggede motor rapporterede, at tunnelen sluttede uventet efter start.} native_bridge_unavailable{Appen kan ikke få adgang til Androids VPN-tjeneste. Luk og åbn appen igen, og prøv derefter.} native_operation_failed{En appfejl afbrød VPN-handlingen. Prøv igen. Hvis problemet fortsætter, skal du køre en diagnosticering.} invalid_arguments{Oplysningerne til denne VPN-handling er ufuldstændige. Prøv igen. Hvis problemet fortsætter, skal du køre en diagnosticering.} invalid_account_id{Den indbyggede handling er ikke knyttet til en gyldig kontoidentifikator.} invalid_device_id{Den enhedsidentifikator, der blev sendt til den indbyggede motor, mangler eller er ugyldig.} storage_key_not_allowed{Android-broen blokerede en nøgle uden for den tilladte lagerliste.} secure_storage_read_failed{Android Keystore kunne ikke dekryptere denne kontos lokale data.} secure_storage_write_failed{Android Keystore kunne ikke kryptere eller gemme de lokale data.} key_generation_failed{Android kunne ikke oprette eller læse WireGuard-nøglen i det sikre lager.} csr_generation_failed{Android Keystore kunne ikke oprette eller signere OpenVPN P-256-CSR'en.} other{En udokumenteret indbygget gren mislykkedes. Send diagnosticeringskoden nedenfor til support.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Tilladelsesanmodningen er allerede åben",
+    "notice_permissionRequestInProgress_message": "Androids VPN-tilladelsesanmodning vises allerede. Gennemfør den, før du prøver igen.",
+    "notice_permissionRequestInterrupted_title": "VPN-tilladelsesanmodningen blev afbrudt",
+    "notice_permissionRequestInterrupted_message": "VPN-tilladelsesskærmen blev lukket, før appen modtog et svar.",
+    "notice_openvpnProofMissing_title": "OpenVPN-forbindelsen er ikke bekræftet",
+    "notice_openvpnProofMissing_message": "OpenVPN-forbindelsen kunne ikke bekræftes. Den blev stoppet af sikkerhedshensyn. Prøv igen.",
+    "openvpnCleanup_title": "OpenVPN-profil tilbagekaldt",
+    "openvpnCleanup_working": "Stopper og fjerner den tilbagekaldte OpenVPN-profil…",
+    "openvpnCleanup_stopFailed": "OpenVPN-nedlukningen er ikke bekræftet. Prøv igen, før du opretter en ny profil.",
+    "openvpnCleanup_cleanupFailed": "Den tilbagekaldte OpenVPN-profil kunne ikke fjernes helt. Prøv at rydde op igen.",
+    "openvpnCleanup_complete": "Den tilbagekaldte OpenVPN-profil er fjernet. Tryk på Opret forbindelse for at oprette en ny.",
+    "network_title": "Netværkskonfiguration",
+    "network_ipv4Fallback": "IPv6 er midlertidigt utilgængelig. Klargøringen fortsætter med IPv4.",
+    "network_rejectedTitle": "Netværkskonfiguration afvist",
+    "network_rejectedMessage": "Tunnelkonfigurationen er ufuldstændig eller stemmer ikke overens med de godkendte adresser. Prøv igen fra appen.",
+    "network_unreadableTitle": "Lokal konfiguration kan ikke læses",
+    "network_unreadableMessage": "Den gemte OpenVPN-netværkskonfiguration kan ikke bruges. Opret forbindelse igen fra appen for at opdatere den.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Netværksbeskyttelse",
+    "protection_subtitle": "Bloker direkte internetadgang, hvis VPN-forbindelsen afbrydes.",
+    "protection_active": "Systembeskyttelse aktiv",
+    "protection_alwaysOnOnly": "VPN altid til er aktiveret; slå blokering uden for VPN til",
+    "protection_inactive": "Systembeskyttelse inaktiv",
+    "protection_unknown": "Kontroller systembeskyttelsen",
+    "protection_openSettings": "Åbn Android-indstillinger",
+    "protection_dialogTitle": "Konfigurer netværksbeskyttelse",
+    "protection_dialogMessage": "Android administrerer VPN altid til og blokering af forbindelser uden for VPN. Kontroller, at FuzeVPN er valgt, og aktivér blokering i systemindstillingerne.",
+    "protection_dialogOpen": "Åbn indstillinger",
+    "session_systemProtectionNote": "Hvis Android stadig blokerer trafik uden for VPN, skal du åbne systemindstillingerne for at kontrollere eller ændre denne beskyttelse.",
+    "diagnostics_title": "Diagnosticering",
+    "diagnostics_settingsTitle": "Appdiagnosticering",
+    "diagnostics_automaticTitle": "Send vigtige fejl",
+    "diagnostics_automaticDescription": "Del en kort teknisk rapport, når der opstår en vigtig fejl.",
+    "diagnostics_privacy": "Sendte rapporter er knyttet til den konto, du er logget ind på, og opbevares i 30 dage. De indeholder ingen browserhistorik, adgangskoder eller VPN-nøgler.",
+    "diagnostics_manualOpen": "Kør diagnosticering",
+    "diagnostics_localDescription": "Opret en rapport om appens og VPN-forbindelsens status. Din forbindelse forbliver uændret.",
+    "diagnostics_sendReport": "Send rapporten",
+    "diagnostics_sendHint": "Lad dette felt være umarkeret for at beholde rapporten på denne enhed.",
+    "diagnostics_signedOut": "Log ind på din konto for at sende en rapport.",
+    "diagnostics_localLifetime": "Gem denne rapport på din telefon for at beholde den, efter appen er lukket.",
+    "diagnostics_run": "Kør diagnosticering",
+    "diagnostics_rerun": "Kør diagnosticering igen",
+    "diagnostics_running": "Kontrollerer…",
+    "diagnostics_sending": "Sender rapport…",
+    "diagnostics_prepared": "Rapport klar på denne enhed",
+    "diagnostics_queued": "Rapport afventer afsendelse",
+    "diagnostics_sent": "Rapport modtaget",
+    "diagnostics_failed": "Afsendelsen mislykkedes. Din lokale rapport er stadig tilgængelig.",
+    "diagnostics_preparationFailed": "Diagnosticeringsrapporten kunne ikke klargøres. Prøv igen.",
+    "diagnostics_authenticationRequired": "Log ind igen for at sende rapporten.",
+    "diagnostics_retry": "Prøv at sende igen",
+    "diagnostics_export": "Gem rapport",
+    "diagnostics_exportFailed": "Eksporten mislykkedes. Prøv igen fra den lokale rapport.",
+    "diagnostics_preferenceFailed": "Denne indstilling kunne ikke gemmes. Prøv igen.",
+    "diagnostics_receipt": "Reference: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Modtaget {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Opbevares indtil {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Denne rapport var allerede modtaget.",
+    "diagnostics_preview": "Forhåndsvisning af rapport",
+    "diagnostics_eventCount": "{count, plural, =0{{count} tekniske hændelser vedhæftet} =1{{count} teknisk hændelse vedhæftet} other{{count} tekniske hændelser vedhæftet}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Tekniske detaljer",
+    "diagnostics_empty": "Der er endnu ikke klargjort nogen diagnosticeringsrapport.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Tunneltilstand} handshake{Forbindelsesbekræftelse} certificate{VPN-certifikat} kill_switch{Android-beskyttelse} connectivity{Tilgængeligt netværk} api_reachability{Tjenesteadgang} secure_storage{Sikkert lager} other{Lokal kontrol}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Kontrolleret} failed{Kræver opmærksomhed} skipped{Ikke testet — ingen aktiv kontrol} unknown{Oplysninger ikke tilgængelige} other{Oplysninger ikke tilgængelige}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Velkommen til FuzeVPN",
+    "connection_changeLocation": "Skift placering",
+    "connection_details": "Forbindelsesoplysninger",
+    "locations_searchLabel": "Søg efter en by eller et land",
+    "locations_clearSearch": "Ryd søgning",
+    "locations_filterAll": "Alle",
+    "locations_filterFavorites": "Favoritter",
+    "locations_results": "{count, plural, one{{count} placering} other{{count} placeringer}}",
+    "locations_noResults": "Ingen placeringer fundet",
+    "locations_noResultsHint": "Prøv en anden by eller et andet land.",
+    "locations_noFavorites": "Dine favoritter lige ved hånden",
+    "locations_noFavoritesHint": "Tryk på stjernen ved siden af en placering for at gemme den her.",
+    "locations_showAll": "Se alle placeringer",
+    "locations_addFavorite": "Føj {name} til favoritter",
+    "locations_removeFavorite": "Fjern {name} fra favoritter",
+    "locations_favoriteSaveFailed": "Favoritten kunne ikke gemmes. Prøv igen.",
+    "locations_emptyTitle": "Ingen placeringer tilgængelige",
+    "locations_emptyHint": "Opdater listen for at prøve igen.",
+    "devices_manage": "Administrer mine enheder",
+    "settings_personalization": "Gør den til din egen",
+    "settings_safety": "Beskyttelse",
+    "settings_help": "Har du brug for hjælp?",
+    "settings_about": "Om FuzeVPN",
+    "diagnostics_heading": "Forstå et forbindelsesproblem",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Tilgængelig} pending{Forbereder} revoked{Fjernet} expired{Udløbet} other{Status ikke tilgængelig}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Præference ikke gemt",
+    "notice_preferenceSave_message": "Dit valg er anvendt indtil videre, men kunne ikke gemmes. Prøv igen for at beholde det, efter appen er lukket.",
+    "connection_androidDisconnectHint": "Hvis Android holder VPN aktiv, skal du slå VPN altid til fra i de indstillinger, der åbnes.",
+    "protection_learnMore": "Læs om Android-beskyttelse",
+    "protection_guideWhy": "Denne beskyttelse forhindrer apps i at bruge internettet direkte, hvis VPN-forbindelsen afbrydes. Den konfigureres i Android.",
+    "protection_guideAlwaysOnTitle": "VPN altid til",
+    "protection_guideAlwaysOn": "Android holder VPN-tjenesten kørende og kan genstarte den, efter telefonen genstartes.",
+    "protection_guideBlockTitle": "Bloker forbindelser uden VPN",
+    "protection_guideBlock": "Denne indstilling forhindrer trafik i at omgå VPN, også mens forbindelsen er afbrudt.",
+    "protection_guideWarning": "Når denne blokering er aktiveret, forbliver internetadgangen slået fra, indtil VPN er forbundet.",
+    "protection_guideStepsTitle": "Slå beskyttelse til",
+    "protection_guideStep1": "Åbn Androids VPN-indstillinger med knappen nedenfor.",
+    "protection_guideStep2": "Åbn indstillingerne med tandhjulsikonet ved siden af FuzeVPN.",
+    "protection_guideStep3": "Aktivér VPN altid til og derefter Bloker forbindelser uden VPN, hvis disse indstillinger er tilgængelige.",
+    "protection_guideManufacturers": "Navnene varierer fra telefon til telefon. Søg om nødvendigt efter VPN i Indstillinger, ofte under Netværk og internet.",
+    "protection_guideDisableTitle": "Slå denne beskyttelse fra",
+    "protection_guideDisable": "Slå blokering uden VPN fra i de samme indstillinger for at tillade internetadgang uden VPN. Slå også VPN altid til fra, hvis du ikke længere ønsker, at Android genstarter den.",
+    "protection_guideManual": "Du vælger disse indstillinger i Android. FuzeVPN ændrer dem ikke for dig.",
+    "locations_changeTitle": "Skift placering?",
+    "locations_changeActive": "VPN afbryder forbindelsen og forsøger derefter at oprette forbindelse til {name}.",
+    "locations_changeIdle": "VPN forsøger at oprette forbindelse til {name}.",
+    "locations_confirmChange": "Skift og opret forbindelse",
+    "locations_changeBusy": "Et skift er i gang. Vent, før du vælger en anden placering.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Automatisk valg",
+    "locations_cities": "Byer",
+    "locations_servers": "Servere",
+    "locations_viewCities": "Se byer i {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Se servere i {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} land} other{{count} lande}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} by} other{{count} byer}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} server} other{{count} servere}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Alle lande",
+    "locations_backToCountries": "Tilbage til lande",
+    "locations_backToCities": "Tilbage til byer i {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Vælg {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Vælg {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Ingen kompatibel server er tilgængelig.",
+    "externalLink_failed": "Linket kunne ikke åbnes. Du kan kopiere det og åbne det i din browser.",
+    "externalLink_copy": "Kopiér link",
+    "externalLink_copied": "Link kopieret",
+    "externalLink_copyFailed": "Linket kunne ikke kopieres. Markér adressen nedenfor.",
+    "settings_deleteAccount": "Slet min konto",
+    "settings_deleteAccountDetail": "Se, hvordan du anmoder om at få slettet kontoen",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Vælg dit VPN-abonnement.",
+    "billing_subscribe": "Abonner",
+    "billing_choosePlan": "Vælg et abonnement for at fortsætte.",
+    "billing_monthly": "Månedligt",
+    "billing_yearly": "Årligt",
+    "billing_continue": "Fortsæt med Google Play",
+    "billing_restore": "Gendan køb",
+    "billing_manage": "Administrer abonnement",
+    "billing_deleteAccountWarning": "Hvis du har et abonnement via Google Play, stopper sletning af din FuzeVPN-konto ikke fornyelsen. Administrer eller stop fornyelsen separat i Google Play.",
+    "billing_deleteAccountContinue": "Fortsæt til anmodning om kontosletning",
+    "billing_refresh": "Opdater adgang",
+    "billing_loadingPlans": "Indlæser abonnementer…",
+    "billing_unavailable": "Ingen abonnementer er tilgængelige lige nu. Prøv igen senere.",
+    "billing_comingSoon": "Abonnementer kommer snart.",
+    "billing_priceDisclosure": "Prisen leveres af Google Play. Det endelige beløb bekræftes før betaling.",
+    "billing_renewalMonthly": "Fornyes automatisk hver måned, medmindre det opsiges. Du kan opsige når som helst under Google Play-abonnementer.",
+    "billing_renewalYearly": "Fornyes automatisk hvert år, medmindre det opsiges. Du kan opsige når som helst under Google Play-abonnementer.",
+    "billing_active": "Din Premium-adgang er aktiv",
+    "billing_accessUntil": "Adgang indtil {date}.",
+    "billing_webManaged": "Dit abonnement administreres på FuzeVPNs hjemmeside.",
+    "billing_playManaged": "Dit abonnement administreres via Google Play.",
+    "billing_inactive": "Intet aktivt abonnement.",
+    "billing_checkingAccess": "Kontrollerer din adgang…",
+    "billing_restoring": "Gendanner køb…",
+    "billing_pending": "Betalingen afventer. Din adgang aktiveres efter bekræftelse.",
+    "billing_cancelled": "Købet blev annulleret. Intet nyt abonnement blev aktiveret.",
+    "billing_verifying": "Bekræfter køb…",
+    "billing_success": "Abonnementet er aktiveret. Din Premium-adgang er klar.",
+    "billing_restored": "Dine køb er gendannet.",
+    "billing_restoreEmpty": "Ingen køb at gendanne for denne Google Play-konto.",
+    "billing_catalogError": "Kunne ikke indlæse abonnementer. Prøv igen.",
+    "billing_purchaseError": "Kunne ikke starte købet. Prøv igen.",
+    "billing_verificationError": "Bekræftelse af køb er midlertidigt utilgængelig. Gendan køb for at prøve igen.",
+    "billing_restoreError": "Kunne ikke gendanne køb. Prøv igen.",
+    "billing_managementError": "Kunne ikke åbne abonnementsadministration. Prøv igen.",
+    "billing_storeUnavailable": "Google Play er ikke tilgængelig på denne enhed.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "Din VPN, helt enkelt.",
+    "welcome_description": "Beskyt din forbindelse. Bevar kontrollen over dit privatliv.",
+    "welcome_start": "Kom i gang",
+    "welcome_alreadyPurchased": "Har du allerede købt?",
+    "welcome_noAccountRequired": "Du behøver ikke oprette en konto for at komme i gang.",
+    "guest_accountTitle": "Kontoen er ikke tilknyttet",
+    "guest_accountDescription": "Gendan dine køb med den samme Google Play-konto for at bruge abonnementet på en anden enhed.",
+    "guest_existingSubscriberSignIn": "Har du allerede et abonnement? Log ind",
+    "guest_claimTitle": "Tag FuzeVPN med dig",
+    "guest_claimDescription": "Opret en konto for at bruge dit abonnement på dine andre enheder. Dette trin er valgfrit.",
+    "guest_skip": "Senere",
+    "guest_activationTitle": "Fuze Premium er aktivt",
+    "guest_activationDescription": "Dit abonnement er klar. Brug din VPN, og opret en konto, når du har lyst.",
+    "guest_useVpn": "Brug min VPN",
+    "guest_loginRequired": "Dette køb er allerede tilknyttet en FuzeVPN-konto. Log ind på den konto for at bruge dit abonnement.",
+    "guest_signOutWarning": "Du kan få dit abonnement tilbage ved at gendanne køb med den samme Google Play-konto.",
+    "guest_profileUnavailable": "Din konto er allerede tilknyttet. Log ind for at se og administrere dine oplysninger.",
+    "billing_acceptance": "Ved at fortsætte accepterer du Brugsvilkårene og Privatlivspolitikken.",
+    "guest_verifyEmailReminder": "Bekræft din e-mailadresse for at beskytte din konto. Du kan fortsætte med at bruge din VPN.",
+    "guest_serviceUnavailable": "Tjenesten er midlertidigt utilgængelig. Prøv igen om lidt.",
+    "guest_restoreError": "Dine køb kunne ikke gendannes. Prøv igen med den Google Play-konto, du brugte til købet.",
+    "guest_claimSuccess": "Din konto er oprettet. Dit abonnement og din VPN-adgang er bevaret.",
+    "guest_emailExists": "Denne e-mailadresse er allerede i brug. Vælg en anden adresse, eller log ind på din eksisterende konto. Dit køb er stadig tilgængeligt via Google Play.",
+    "guest_claimError": "Din konto kunne ikke oprettes. Du kan fortsætte med at bruge din VPN og prøve igen senere.",
+    "guest_secureStorageError": "Din session kunne ikke gemmes sikkert på denne enhed. Prøv igen.",
+    "guest_premiumRequired": "Vælg et abonnement for at aktivere din VPN.",
+    "welcome_viewPlans": "Se abonnementer",
+    "google_continue": "Fortsæt med Google",
+    "google_or": "eller",
+    "google_title": "Din FuzeVPN-konto",
+    "google_settingUp": "Færdiggør din konto",
+    "google_country": "Bopælsland",
+    "google_profileDescription": "Vælg dit land og læs begge dokumenter for at oprette din FuzeVPN-konto.",
+    "google_claimDescription": "Knyt din gæstekonto til Google. Abonnement og enhed forbliver knyttet til denne konto.",
+    "google_linkTitle": "Knyt Google til FuzeVPN",
+    "google_linkDescription": "Bekræft adgang til din eksisterende FuzeVPN-konto. Din Google-adgangskode efterspørges ikke.",
+    "google_password": "FuzeVPN-adgangskode",
+    "google_linkAccount": "Bekræft tilknytning",
+    "google_requestEmail": "Modtag en bekræftelsesmail",
+    "google_emailInstructions": "Åbn mailen fra FuzeVPN og indtast bekræftelseskoden.",
+    "google_emailCode": "Bekræftelseskode fra mail",
+    "google_confirmEmail": "Bekræft koden",
+    "google_restart": "Vælg en anden Google-konto",
+    "google_resume": "Kontrollér dette forsøg",
+    "google_unavailable": "Google-login er ikke tilgængeligt. Du kan bruge e-mail og adgangskode.",
+    "google_expired": "Dette forsøg er udløbet. Annuller det og begynd igen.",
+    "google_conflict": "Denne Google-konto er allerede knyttet til en anden konto. Din nuværende konto og dit abonnement bevares.",
+    "google_error": "Google-login mislykkedes. Prøv igen; din nuværende adgang bevares.",
+    "google_uncertain": "Resultatet kunne ikke bekræftes. Kontrollér forsøget eller annuller før du begynder igen.",
+    "google_cancelFailed": "Annulleringen kunne ikke bekræftes. Prøv at annullere igen, før du forlader skærmen.",
+    "google_cancelled": "Google-login annulleret.",
+    "google_selecting": "Vælg din Google-konto…",
+    "google_verifying": "Kontrollerer din konto…",
+    "google_emailUnavailable": "Bekræftelsesmailen kunne ikke sendes. Prøv senere.",
+    "google_emailSent": "Bekræftelsesmail sendt. Kontrollér din indbakke.",
+    "google_rateLimited": "Vent før du prøver igen.",
+    "google_invalidPassword": "FuzeVPN-adgangskoden er forkert. Din nuværende konto bevares.",
+    "google_invalidCode": "Bekræftelseskoden er ugyldig eller udløbet.",
+    "google_accountChanged": "Sessionen er ændret. Annuller dette forsøg, før du begynder igen.",
+    "google_invalidResponse": "Svaret kunne ikke valideres. Din nuværende adgang bevares.",
+    "google_invalidRegistration": "Kontrollér landet og begge samtykker.",
+    "google_consentRequired": "Vælg dit land og accepter begge dokumenter for at fortsætte.",
+    "google_challengeRequired": "En yderligere sikkerhedskontrol er nødvendig. Din nuværende adgang bevares.",
+    "google_challengeUnavailable": "Sikkerhedskontrollen er ikke tilgængelig. Prøv senere."
+  },
+  "android": {
+    "vpn_notification_channel": "VPN-forbindelse",
+    "vpn_notification_channel_description": "Angiver, når en FuzeVPN-forbindelse er aktiv.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s-forbindelse aktiv",
+    "vpn_notification_connecting": "%1$s-forbindelse i gang",
+    "vpn_notification_disconnecting": "Afbryder %1$s",
+    "vpn_notification_interrupted": "%1$s-forbindelse afbrudt",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Klar · %1$s · %2$s",
+    "vpn_tile_connected": "Forbundet · %1$s · %2$s",
+    "vpn_tile_connecting": "Opretter forbindelse til %1$s…",
+    "vpn_tile_disconnecting": "Afbryder forbindelsen…",
+    "vpn_tile_interrupted": "%1$s afbrudt",
+    "vpn_tile_setup_required": "Åbn appen først",
+    "vpn_tile_working": "VPN-handling i gang…",
+    "vpn_notification_reconnecting": "Opretter forbindelse igen… · %1$s",
+    "vpn_system_action_required": "Handling påkrævet i Android-indstillinger",
+    "vpn_tile_reconnecting": "Opretter forbindelse igen… · %1$s"
+  },
+  "countries": {
+    "AC": "Ascension",
+    "AD": "Andorra",
+    "AE": "De Forenede Arabiske Emirater",
+    "AF": "Afghanistan",
+    "AG": "Antigua og Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albanien",
+    "AM": "Armenien",
+    "AO": "Angola",
+    "AQ": "Antarktis",
+    "AR": "Argentina",
+    "AS": "Amerikansk Samoa",
+    "AT": "Østrig",
+    "AU": "Australien",
+    "AW": "Aruba",
+    "AX": "Ålandsøerne",
+    "AZ": "Aserbajdsjan",
+    "BA": "Bosnien-Hercegovina",
+    "BB": "Barbados",
+    "BD": "Bangladesh",
+    "BE": "Belgien",
+    "BF": "Burkina Faso",
+    "BG": "Bulgarien",
+    "BH": "Bahrain",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "Saint-Barthélemy",
+    "BM": "Bermuda",
+    "BN": "Brunei",
+    "BO": "Bolivia",
+    "BQ": "Caribisk Nederlandene",
+    "BR": "Brasilien",
+    "BS": "Bahamas",
+    "BT": "Bhutan",
+    "BV": "Bouvetøen",
+    "BW": "Botswana",
+    "BY": "Belarus",
+    "BZ": "Belize",
+    "CA": "Canada",
+    "CC": "Cocosøerne (Keelingøerne)",
+    "CD": "Congo-Kinshasa",
+    "CF": "Den Centralafrikanske Republik",
+    "CG": "Congo-Brazzaville",
+    "CH": "Schweiz",
+    "CI": "Elfenbenskysten",
+    "CK": "Cookøerne",
+    "CL": "Chile",
+    "CM": "Cameroun",
+    "CN": "Kina",
+    "CO": "Colombia",
+    "CP": "Clippertonøen",
+    "CQ": "Sark",
+    "CR": "Costa Rica",
+    "CU": "Cuba",
+    "CV": "Kap Verde",
+    "CW": "Curaçao",
+    "CX": "Christmasøen",
+    "CY": "Cypern",
+    "CZ": "Tjekkiet",
+    "DE": "Tyskland",
+    "DG": "Diego Garcia",
+    "DJ": "Djibouti",
+    "DK": "Danmark",
+    "DM": "Dominica",
+    "DO": "Den Dominikanske Republik",
+    "DZ": "Algeriet",
+    "EA": "Ceuta og Melilla",
+    "EC": "Ecuador",
+    "EE": "Estland",
+    "EG": "Egypten",
+    "EH": "Vestsahara",
+    "ER": "Eritrea",
+    "ES": "Spanien",
+    "ET": "Etiopien",
+    "EU": "Den Europæiske Union",
+    "EZ": "Eurozonen",
+    "FI": "Finland",
+    "FJ": "Fiji",
+    "FK": "Falklandsøerne",
+    "FM": "Mikronesien",
+    "FO": "Færøerne",
+    "FR": "Frankrig",
+    "GA": "Gabon",
+    "GB": "Storbritannien",
+    "GD": "Grenada",
+    "GE": "Georgien",
+    "GF": "Fransk Guyana",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GL": "Grønland",
+    "GM": "Gambia",
+    "GN": "Guinea",
+    "GP": "Guadeloupe",
+    "GQ": "Ækvatorialguinea",
+    "GR": "Grækenland",
+    "GS": "South Georgia og South Sandwichøerne",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hongkong SAR Kina",
+    "HM": "Heard Island og McDonaldøerne",
+    "HN": "Honduras",
+    "HR": "Kroatien",
+    "HT": "Haiti",
+    "HU": "Ungarn",
+    "IC": "De Kanariske Øer",
+    "ID": "Indonesien",
+    "IE": "Irland",
+    "IL": "Israel",
+    "IM": "Isle of Man",
+    "IN": "Indien",
+    "IO": "Det Britiske Territorium i Det Indiske Ocean",
+    "IQ": "Irak",
+    "IR": "Iran",
+    "IS": "Island",
+    "IT": "Italien",
+    "JE": "Jersey",
+    "JM": "Jamaica",
+    "JO": "Jordan",
+    "JP": "Japan",
+    "KE": "Kenya",
+    "KG": "Kirgisistan",
+    "KH": "Cambodja",
+    "KI": "Kiribati",
+    "KM": "Comorerne",
+    "KN": "Saint Kitts og Nevis",
+    "KP": "Nordkorea",
+    "KR": "Sydkorea",
+    "KW": "Kuwait",
+    "KY": "Caymanøerne",
+    "KZ": "Kasakhstan",
+    "LA": "Laos",
+    "LB": "Libanon",
+    "LC": "Saint Lucia",
+    "LI": "Liechtenstein",
+    "LK": "Sri Lanka",
+    "LR": "Liberia",
+    "LS": "Lesotho",
+    "LT": "Litauen",
+    "LU": "Luxembourg",
+    "LV": "Letland",
+    "LY": "Libyen",
+    "MA": "Marokko",
+    "MC": "Monaco",
+    "MD": "Moldova",
+    "ME": "Montenegro",
+    "MF": "Saint-Martin",
+    "MG": "Madagaskar",
+    "MH": "Marshalløerne",
+    "MK": "Nordmakedonien",
+    "ML": "Mali",
+    "MM": "Myanmar (Burma)",
+    "MN": "Mongoliet",
+    "MO": "Macao SAR Kina",
+    "MP": "Nordmarianerne",
+    "MQ": "Martinique",
+    "MR": "Mauretanien",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Mauritius",
+    "MV": "Maldiverne",
+    "MW": "Malawi",
+    "MX": "Mexico",
+    "MY": "Malaysia",
+    "MZ": "Mozambique",
+    "NA": "Namibia",
+    "NC": "Ny Kaledonien",
+    "NE": "Niger",
+    "NF": "Norfolkøen",
+    "NG": "Nigeria",
+    "NI": "Nicaragua",
+    "NL": "Nederlandene",
+    "NO": "Norge",
+    "NP": "Nepal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "New Zealand",
+    "OM": "Oman",
+    "PA": "Panama",
+    "PE": "Peru",
+    "PF": "Fransk Polynesien",
+    "PG": "Papua Ny Guinea",
+    "PH": "Filippinerne",
+    "PK": "Pakistan",
+    "PL": "Polen",
+    "PM": "Saint-Pierre og Miquelon",
+    "PN": "Pitcairnøerne",
+    "PR": "Puerto Rico",
+    "PS": "De Palæstinensiske Territorier",
+    "PT": "Portugal",
+    "PW": "Palau",
+    "PY": "Paraguay",
+    "QA": "Qatar",
+    "QO": "Det Ydre Oceanien",
+    "RE": "Réunion",
+    "RO": "Rumænien",
+    "RS": "Serbien",
+    "RU": "Rusland",
+    "RW": "Rwanda",
+    "SA": "Saudi-Arabien",
+    "SB": "Salomonøerne",
+    "SC": "Seychellerne",
+    "SD": "Sudan",
+    "SE": "Sverige",
+    "SG": "Singapore",
+    "SH": "Sankt Helena",
+    "SI": "Slovenien",
+    "SJ": "Svalbard og Jan Mayen",
+    "SK": "Slovakiet",
+    "SL": "Sierra Leone",
+    "SM": "San Marino",
+    "SN": "Senegal",
+    "SO": "Somalia",
+    "SR": "Surinam",
+    "SS": "Sydsudan",
+    "ST": "São Tomé og Príncipe",
+    "SV": "El Salvador",
+    "SX": "Sint Maarten",
+    "SY": "Syrien",
+    "SZ": "Eswatini",
+    "TA": "Tristan da Cunha",
+    "TC": "Turks- og Caicosøerne",
+    "TD": "Tchad",
+    "TF": "De Franske Besiddelser i Det Sydlige Indiske Ocean",
+    "TG": "Togo",
+    "TH": "Thailand",
+    "TJ": "Tadsjikistan",
+    "TK": "Tokelau",
+    "TL": "Timor-Leste",
+    "TM": "Turkmenistan",
+    "TN": "Tunesien",
+    "TO": "Tonga",
+    "TR": "Tyrkiet",
+    "TT": "Trinidad og Tobago",
+    "TV": "Tuvalu",
+    "TW": "Taiwan",
+    "TZ": "Tanzania",
+    "UA": "Ukraine",
+    "UG": "Uganda",
+    "UM": "De Mindre Amerikanske Oversøiske Øer",
+    "UN": "De Forenede Nationer",
+    "US": "USA",
+    "UY": "Uruguay",
+    "UZ": "Usbekistan",
+    "VA": "Vatikanstaten",
+    "VC": "Saint Vincent og Grenadinerne",
+    "VE": "Venezuela",
+    "VG": "De Britiske Jomfruøer",
+    "VI": "De Amerikanske Jomfruøer",
+    "VN": "Vietnam",
+    "VU": "Vanuatu",
+    "WF": "Wallis og Futuna",
+    "WS": "Samoa",
+    "XA": "Pseudoaccenter",
+    "XB": "Pseudo-bidirektional tekst",
+    "XK": "Kosovo",
+    "YE": "Yemen",
+    "YT": "Mayotte",
+    "ZA": "Sydafrika",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "Ukendt region"
+  }
+}

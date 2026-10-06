@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">VPN-Verbindung</string>
+    <string name="vpn_notification_channel_description">Zeigt an, wenn eine FuzeVPN-Verbindung aktiv ist.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s-Verbindung aktiv</string>
+    <string name="vpn_notification_connecting">%1$s-Verbindung wird hergestellt</string>
+    <string name="vpn_notification_disconnecting">%1$s wird getrennt</string>
+    <string name="vpn_notification_interrupted">%1$s-Verbindung unterbrochen</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Bereit · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Verbunden · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s wird verbunden…</string>
+    <string name="vpn_tile_disconnecting">Verbindung wird getrennt…</string>
+    <string name="vpn_tile_interrupted">%1$s unterbrochen</string>
+    <string name="vpn_tile_setup_required">Öffnen Sie zuerst die App</string>
+    <string name="vpn_tile_working">VPN-Vorgang läuft…</string>
+    <string name="vpn_notification_reconnecting">Verbindung wird wiederhergestellt… · %1$s</string>
+    <string name="vpn_system_action_required">Aktion in den Android-Einstellungen erforderlich</string>
+    <string name="vpn_tile_reconnecting">Verbindung wird wiederhergestellt… · %1$s</string>
+</resources>

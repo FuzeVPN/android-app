@@ -1,0 +1,462 @@
+{
+  "schema": 1,
+  "components": [
+    {
+      "name": "asio",
+      "version": "asio-1-36-0",
+      "ref": "asio-1-36-0",
+      "commit": "231cb29bab30f82712fcd54faaea42424cc6e710",
+      "path": "android/source-distribution/archives/asio-1.36.0-231cb29bab30f82712fcd54faaea42424cc6e710.tar.gz",
+      "origin": "https://codeload.github.com/chriskohlhoff/asio/tar.gz/231cb29bab30f82712fcd54faaea42424cc6e710",
+      "repository": "https://github.com/chriskohlhoff/asio.git",
+      "license": "BSL-1.0",
+      "applied_patches": [
+        {
+          "name": "0001-Added-Apple-NAT64-support-when-both-ASIO_HAS_GETADDR.patch",
+          "sha256": "ec2a1c368b58328bb28a8462457c7aeb889f64212c2b61f415abe0f8dae1b431"
+        },
+        {
+          "name": "0002-Added-user-code-hook-async_connect_post_open-to-be-c.patch",
+          "sha256": "c2a559a0105c65471854c49839238c1aa3b76d1d250f337478a667f9c49bb2dc"
+        },
+        {
+          "name": "0003-error_code.ipp-Use-English-for-Windows-error-message.patch",
+          "sha256": "e998badb8cd925adacbadba902a37a7bfdef359f5895397d8812392cdd27b97a"
+        },
+        {
+          "name": "0004-Added-kovpn-route_id-support-to-endpoints-for-sendto.patch",
+          "sha256": "ee408ae4146eb9a565694e8ceddc80ae48c52097d78723908e5b8d37e0417260"
+        },
+        {
+          "name": "0005-basic_resolver_results-added-data-and-cdata-members-.patch",
+          "sha256": "5e09e4339ab4f41f0a2bc6e8c387afeeba6ce3c4a031d6fef7eb7d3acea5670a"
+        },
+        {
+          "name": "0006-reactive_socket_service_base-add-constructor-for-bas.patch",
+          "sha256": "ec9133d499dd2221dcd1fa388432cb73bd1d6fc0a4a902617016924932354e64"
+        }
+      ],
+      "patch_directory": "android/app/src/main/cpp/third_party/openvpn3-core/deps/vcpkg-ports/asio",
+      "sha256": "5def09efbd4be199dd6ddca53a2c99b9eef696f6b430910d896594b04ff59108",
+      "file_count": 1533,
+      "archive_roots": [
+        "asio-231cb29bab30f82712fcd54faaea42424cc6e710"
+      ],
+      "licenses": [
+        {
+          "path": "asio-231cb29bab30f82712fcd54faaea42424cc6e710/asio/COPYING",
+          "sha256": "062cc14c4448f675ab92e647fef5435197b6419ed89f8002adb33c18d35c5219"
+        }
+      ],
+      "contents_inventory": "android/source-distribution/inventories/asio-1.36.0-231cb29bab30f82712fcd54faaea42424cc6e710.tar.gz.contents.sha256",
+      "contents_inventory_sha256": "0b842851031c987d38674b1d2321f627bf59b4ea6433f01921b8f08087b65ad5"
+    },
+    {
+      "name": "fmt",
+      "version": "12.1.0",
+      "ref": "12.1.0",
+      "commit": "407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
+      "path": "android/source-distribution/archives/fmt-12.1.0-407c905e45ad75fc29bf0f9bb7c5c2fd3475976f.tar.gz",
+      "origin": "https://codeload.github.com/fmtlib/fmt/tar.gz/407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
+      "repository": "https://github.com/fmtlib/fmt.git",
+      "license": "MIT",
+      "sha256": "2bc1fe4a5b6d5d6a614239b4ca1d520e66e152a02d3d262684d26dfd6ab3438a",
+      "file_count": 128,
+      "archive_roots": [
+        "fmt-407c905e45ad75fc29bf0f9bb7c5c2fd3475976f"
+      ],
+      "licenses": [
+        {
+          "path": "fmt-407c905e45ad75fc29bf0f9bb7c5c2fd3475976f/LICENSE",
+          "sha256": "07580f2a3b35709ce703d523f447b242f6dfec7582a8c0df102c7fa2849375f8"
+        }
+      ],
+      "contents_inventory": "android/source-distribution/inventories/fmt-12.1.0-407c905e45ad75fc29bf0f9bb7c5c2fd3475976f.tar.gz.contents.sha256",
+      "contents_inventory_sha256": "620574f1f0916209880eaccbf3514cc215ce06890079f1bed50e46ca6995fa18"
+    },
+    {
+      "name": "github.com/google/btree",
+      "version": "v1.1.2",
+      "path": "android/source-distribution/archives/github.com_google_btree@v1.1.2.zip",
+      "sha256": "faee8550c5fffb4ae1dadde5ccaccb13298726f9fad226bb4eed0c03c90a481d",
+      "origin": "https://proxy.golang.org/github.com/google/btree/@v/v1.1.2.zip",
+      "go_sum": "h1:xf4v41cLI2Z6FxbKm+8Bu+m8ifhj15JuZ9sa0jZCMUU=",
+      "go_mod_sum": "h1:qOPhT0dTNdNzV6Z/lhRX0YXUafgPLFUh+gZMl761Gm4=",
+      "repository": null,
+      "commit": null,
+      "license": "Apache-2.0",
+      "go_mod_file": "android/source-distribution/module-metadata/github.com_google_btree@v1.1.2.mod",
+      "version_info_file": "android/source-distribution/module-metadata/github.com_google_btree@v1.1.2.info",
+      "android_runtime_dependency": false,
+      "file_count": 9,
+      "archive_roots": [
+        "github.com"
+      ],
+      "licenses": [
+        {
+          "path": "github.com/google/btree@v1.1.2/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ],
+      "go_mod_sha256": "671a2227c5628cbb94ce027ab4232858c4f0dd0cbb98aaa83d7a265d7ec194d7",
+      "version_info_sha256": "5e323c25ccce83895c67408249220b723ab36a7864fdb3077eac6834f0756fe9",
+      "contents_inventory": "android/source-distribution/inventories/github.com_google_btree@v1.1.2.zip.contents.sha256",
+      "contents_inventory_sha256": "c5fe2fe3570b23667a1716ca9bef01bbe9bc89f863d7926e67db1ad236423145"
+    },
+    {
+      "name": "go",
+      "version": "1.24.3",
+      "path": "android/source-distribution/archives/go1.24.3.src.tar.gz",
+      "origin": "https://dl.google.com/go/go1.24.3.src.tar.gz",
+      "official_checksum_source": "https://go.dev/dl/?mode=json&include=all",
+      "official_sha256": "229c08b600b1446798109fae1f569228102c8473caba8104b6418cb5bc032878",
+      "license": "BSD-3-Clause",
+      "runtime_patch": "android/third_party/wireguard-android/tunnel/tools/libwg-go/goruntime-boottime-over-monotonic.diff",
+      "runtime_patch_sha256": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395",
+      "runtime_patch_application": "tools/build_wireguard_native.ps1",
+      "sha256": "229c08b600b1446798109fae1f569228102c8473caba8104b6418cb5bc032878",
+      "file_count": 14133,
+      "archive_roots": [
+        "go"
+      ],
+      "licenses": [
+        {
+          "path": "go/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/github.com/google/pprof/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        },
+        {
+          "path": "go/src/cmd/vendor/github.com/google/pprof/third_party/svgpan/LICENSE",
+          "sha256": "154c946c17de61ca71d28e13673d76a5798e6e25995a7397fbae157afc8f62b4"
+        },
+        {
+          "path": "go/src/cmd/vendor/github.com/ianlancetaylor/demangle/LICENSE",
+          "sha256": "b73277f7730993ef8e7f80aed83e5309762fed4d77eced982abb2c00657c074d"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/arch/LICENSE",
+          "sha256": "8cda009bd927676a95ee7ce2dae921442ac4d9584d041b56ecfcba6839032f0b"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/build/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/mod/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/sync/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/sys/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/telemetry/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/term/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/text/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/golang.org/x/tools/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/vendor/rsc.io/markdown/LICENSE",
+          "sha256": "2d36597f7117c38b006835ae7f537487207d8ec407aa9d9980794b2030cbc067"
+        },
+        {
+          "path": "go/src/crypto/internal/boring/LICENSE",
+          "sha256": "56210f826b8f0fbac3160dfe55c97f4019eb6cdda3963b5a0eab8a8bdb62360e"
+        },
+        {
+          "path": "go/src/vendor/golang.org/x/crypto/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/vendor/golang.org/x/net/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/vendor/golang.org/x/sys/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/vendor/golang.org/x/text/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "contents_inventory": "android/source-distribution/inventories/go1.24.3.src.tar.gz.contents.sha256",
+      "contents_inventory_sha256": "5938475da4d7a8185fadee4ea6c603be01054f410ae8b984711c7642e7f331d2"
+    },
+    {
+      "name": "golang.org/x/crypto",
+      "version": "v0.38.0",
+      "path": "android/source-distribution/archives/golang.org_x_crypto@v0.38.0.zip",
+      "sha256": "02824dd62fa3241946a2ac14fdadbd393514d76cebbfbd8bddcddbfc80c7f94b",
+      "origin": "https://proxy.golang.org/golang.org/x/crypto/@v/v0.38.0.zip",
+      "go_sum": "h1:jt+WWG8IZlBnVbomuhg2Mdq0+BBQaHbtqHEFEigjUV8=",
+      "go_mod_sum": "h1:MvrbAqul58NNYPKnOra203SB9vpuZW0e+RRZV+Ggqjw=",
+      "repository": "https://go.googlesource.com/crypto",
+      "commit": "aae6e61070421a51c1ba3bd9bba4b9b3979ed488",
+      "license": "BSD-3-Clause",
+      "go_mod_file": "android/source-distribution/module-metadata/golang.org_x_crypto@v0.38.0.mod",
+      "version_info_file": "android/source-distribution/module-metadata/golang.org_x_crypto@v0.38.0.info",
+      "android_runtime_dependency": true,
+      "file_count": 391,
+      "archive_roots": [
+        "golang.org"
+      ],
+      "licenses": [
+        {
+          "path": "golang.org/x/crypto@v0.38.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "go_mod_sha256": "e9c23d3613ad3c29e18552f90d02798b7295419dd47d4f667d5843d7dc1673b3",
+      "version_info_sha256": "3a571af9841e8fe464e8e83f96987e3ddefbdf7334cf216f3807029ed36ac5aa",
+      "contents_inventory": "android/source-distribution/inventories/golang.org_x_crypto@v0.38.0.zip.contents.sha256",
+      "contents_inventory_sha256": "8edf96586f0866506755ba26ba183631dab4f810506876eda87105122823515f"
+    },
+    {
+      "name": "golang.org/x/net",
+      "version": "v0.40.0",
+      "path": "android/source-distribution/archives/golang.org_x_net@v0.40.0.zip",
+      "sha256": "388e4a624f48990057f1a2a2cc5f3e0f81e41b99dd2036247d98c931c59d44d4",
+      "origin": "https://proxy.golang.org/golang.org/x/net/@v/v0.40.0.zip",
+      "go_sum": "h1:79Xs7wF06Gbdcg4kdCCIQArK11Z1hr5POQ6+fIYHNuY=",
+      "go_mod_sum": "h1:y0hY0exeL2Pku80/zKK7tpntoX23cqL3Oa6njdgRtds=",
+      "repository": "https://go.googlesource.com/net",
+      "commit": "7d6e62ace5ed100018bd82d1967d2d98cff6fbae",
+      "license": "BSD-3-Clause",
+      "go_mod_file": "android/source-distribution/module-metadata/golang.org_x_net@v0.40.0.mod",
+      "version_info_file": "android/source-distribution/module-metadata/golang.org_x_net@v0.40.0.info",
+      "android_runtime_dependency": true,
+      "file_count": 819,
+      "archive_roots": [
+        "golang.org"
+      ],
+      "licenses": [
+        {
+          "path": "golang.org/x/net@v0.40.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "go_mod_sha256": "3258ec9e17abe2bf1053d0b176d3d50367815237a7701eb373c38152bbd6b9a0",
+      "version_info_sha256": "5d38920b05dfafeffb5f33b602912299a7359360fcdb92c6f167175756ae4a13",
+      "contents_inventory": "android/source-distribution/inventories/golang.org_x_net@v0.40.0.zip.contents.sha256",
+      "contents_inventory_sha256": "efd5ecef0174e866dd720e24742088400acad7567586be4f390ebe7c860736e6"
+    },
+    {
+      "name": "golang.org/x/sys",
+      "version": "v0.33.0",
+      "path": "android/source-distribution/archives/golang.org_x_sys@v0.33.0.zip",
+      "sha256": "182df79c87135f6dbd0d45656b6527e9221e28899ee44cc6cc7e7a396aedaef9",
+      "origin": "https://proxy.golang.org/golang.org/x/sys/@v/v0.33.0.zip",
+      "go_sum": "h1:q3i8TbbEz+JRD9ywIRlyRAQbM0qF7hu24q3teo2hbuw=",
+      "go_mod_sum": "h1:BJP2sWEmIv4KK5OTEluFJCKSidICx8ciO85XgH3Ak8k=",
+      "repository": "https://go.googlesource.com/sys",
+      "commit": "3d9a6b80792a3911da1fa665c959a5ede3abf476",
+      "license": "BSD-3-Clause",
+      "go_mod_file": "android/source-distribution/module-metadata/golang.org_x_sys@v0.33.0.mod",
+      "version_info_file": "android/source-distribution/module-metadata/golang.org_x_sys@v0.33.0.info",
+      "android_runtime_dependency": true,
+      "file_count": 539,
+      "archive_roots": [
+        "golang.org"
+      ],
+      "licenses": [
+        {
+          "path": "golang.org/x/sys@v0.33.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "go_mod_sha256": "f67e3e18f4c08e60a7e80726ab36b691fdcea5b81ae1c696ff64caf518bcfe3d",
+      "version_info_sha256": "81319c4430e6979198af6e0ae330cd7fa141979c11871559bc37f573590a2e51",
+      "contents_inventory": "android/source-distribution/inventories/golang.org_x_sys@v0.33.0.zip.contents.sha256",
+      "contents_inventory_sha256": "ab78bc4db6c4cfe2510fdcb021197244041b334a85ee1bb6e2aded7a8da16eec"
+    },
+    {
+      "name": "golang.org/x/time",
+      "version": "v0.7.0",
+      "path": "android/source-distribution/archives/golang.org_x_time@v0.7.0.zip",
+      "sha256": "ce9157f4961055bd942bbb02666ca5be9f92c92f8e64361aede9d1090df44464",
+      "origin": "https://proxy.golang.org/golang.org/x/time/@v/v0.7.0.zip",
+      "go_sum": "h1:ntUhktv3OPE6TgYxXWv9vKvUSJyIFJlyohwbkEwPrKQ=",
+      "go_mod_sum": "h1:3BpzKBy/shNhVucY/MWOyx10tF3SFh9QdLuxbVysPQM=",
+      "repository": "https://go.googlesource.com/time",
+      "commit": "772484ea383fac83b7da05684a96ae628b251bcd",
+      "license": "BSD-3-Clause",
+      "go_mod_file": "android/source-distribution/module-metadata/golang.org_x_time@v0.7.0.mod",
+      "version_info_file": "android/source-distribution/module-metadata/golang.org_x_time@v0.7.0.info",
+      "android_runtime_dependency": false,
+      "file_count": 9,
+      "archive_roots": [
+        "golang.org"
+      ],
+      "licenses": [
+        {
+          "path": "golang.org/x/time@v0.7.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "go_mod_sha256": "226a6cc982bae02ff1e168de8c3e45a2f3f986c69edbc1f416c58b6081ef262e",
+      "version_info_sha256": "7638f46038ac50e215667badbba2f11ddec8f34ca8b9fe7992fa8b143c9d3285",
+      "contents_inventory": "android/source-distribution/inventories/golang.org_x_time@v0.7.0.zip.contents.sha256",
+      "contents_inventory_sha256": "9ed52192dbf738f13a4e06315d6bfdbcabd4489c88149972a21c1b904c0faca4"
+    },
+    {
+      "name": "golang.zx2c4.com/wintun",
+      "version": "v0.0.0-20230126152724-0fa3db229ce2",
+      "path": "android/source-distribution/archives/golang.zx2c4.com_wintun@v0.0.0-20230126152724-0fa3db229ce2.zip",
+      "sha256": "06599222daa6af8547045c446cefa9a2bab19d57bde1fc6436114308d79a2b4b",
+      "origin": "https://proxy.golang.org/golang.zx2c4.com/wintun/@v/v0.0.0-20230126152724-0fa3db229ce2.zip",
+      "go_sum": "h1:B82qJJgjvYKsXS9jeunTOisW56dUokqW/FOteYJJ/yg=",
+      "go_mod_sum": "h1:deeaetjYA+DHMHg+sMSMI58GrEteJUUzzw7en6TJQcI=",
+      "repository": "https://git.zx2c4.com/wintun-go",
+      "commit": "0fa3db229ce2036ae779de8ba03d336b7aa826bd",
+      "license": "MIT",
+      "go_mod_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wintun@v0.0.0-20230126152724-0fa3db229ce2.mod",
+      "version_info_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wintun@v0.0.0-20230126152724-0fa3db229ce2.info",
+      "android_runtime_dependency": false,
+      "file_count": 7,
+      "archive_roots": [
+        "golang.zx2c4.com"
+      ],
+      "licenses": [
+        {
+          "path": "golang.zx2c4.com/wintun@v0.0.0-20230126152724-0fa3db229ce2/LICENSE",
+          "sha256": "91276db973f25602d1aa43491f59cbc84cb88e6f151e1d0cc82a755563ce0195"
+        }
+      ],
+      "go_mod_sha256": "261a59cf47651c915030e1669fc1b86879c473fc5abe7222a36f637df93da00f",
+      "version_info_sha256": "db76aeba374ab291fa6366342831bb810a528b16f0d6ca8faf95a458805e574e",
+      "contents_inventory": "android/source-distribution/inventories/golang.zx2c4.com_wintun@v0.0.0-20230126152724-0fa3db229ce2.zip.contents.sha256",
+      "contents_inventory_sha256": "07cdaa249823bd82ac5d2f637ae9d33a2b16e7a754a24a96fc53ad798249ff28"
+    },
+    {
+      "name": "golang.zx2c4.com/wireguard",
+      "version": "v0.0.0-20250521234502-f333402bd9cb",
+      "path": "android/source-distribution/archives/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.zip",
+      "sha256": "e40fbd4b585b8097e8d2577c2100c092f9844b44b09a6d6d640740e42e86f649",
+      "origin": "https://proxy.golang.org/golang.zx2c4.com/wireguard/@v/v0.0.0-20250521234502-f333402bd9cb.zip",
+      "go_sum": "h1:whnFRlWMcXI9d+ZbWg+4sHnLp52d5yiIPUxMBSt4X9A=",
+      "go_mod_sum": "h1:rpwXGsirqLqN2L0JDJQlwOboGHmptD5ZD6T2VmcqhTw=",
+      "repository": "https://git.zx2c4.com/wireguard-go",
+      "commit": "f333402bd9cbe0f3eeb02507bd14e23d7d639280",
+      "license": "MIT",
+      "go_mod_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.mod",
+      "version_info_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.info",
+      "android_runtime_dependency": true,
+      "file_count": 107,
+      "archive_roots": [
+        "golang.zx2c4.com"
+      ],
+      "licenses": [
+        {
+          "path": "golang.zx2c4.com/wireguard@v0.0.0-20250521234502-f333402bd9cb/LICENSE",
+          "sha256": "91276db973f25602d1aa43491f59cbc84cb88e6f151e1d0cc82a755563ce0195"
+        }
+      ],
+      "go_mod_sha256": "87e5574c17f1c8d3badd9195d933237c289c07b5813f4e60ceae36c7b270e288",
+      "version_info_sha256": "c4073a12a52d2c27e960e810410e35cddbb694c313117f071a30335634801ed7",
+      "contents_inventory": "android/source-distribution/inventories/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.zip.contents.sha256",
+      "contents_inventory_sha256": "c219c546558c71723d77e65b5a0fb8b079cba79d9de728883d4c4c052b785fd0"
+    },
+    {
+      "name": "gvisor.dev/gvisor",
+      "version": "v0.0.0-20250503011706-39ed1f5ac29c",
+      "path": "android/source-distribution/archives/gvisor.dev_gvisor@v0.0.0-20250503011706-39ed1f5ac29c.zip",
+      "sha256": "f325eeae7ec217a3379d2845999344533562ffe4f4ca204cc18a1f78037eb43b",
+      "origin": "https://proxy.golang.org/gvisor.dev/gvisor/@v/v0.0.0-20250503011706-39ed1f5ac29c.zip",
+      "go_sum": "h1:m/r7OM+Y2Ty1sgBQ7Qb27VgIMBW8ZZhT4gLnUyDIhzI=",
+      "go_mod_sum": "h1:3r5CMtNQMKIvBlrmM9xWUNamjKBYPOWyXOjmg5Kts3g=",
+      "repository": "https://github.com/google/gvisor",
+      "commit": "39ed1f5ac29cb9a2d99d41502de53b8f0e2d19b6",
+      "license": "Apache-2.0",
+      "go_mod_file": "android/source-distribution/module-metadata/gvisor.dev_gvisor@v0.0.0-20250503011706-39ed1f5ac29c.mod",
+      "version_info_file": "android/source-distribution/module-metadata/gvisor.dev_gvisor@v0.0.0-20250503011706-39ed1f5ac29c.info",
+      "android_runtime_dependency": false,
+      "file_count": 2137,
+      "archive_roots": [
+        "gvisor.dev"
+      ],
+      "licenses": [
+        {
+          "path": "gvisor.dev/gvisor@v0.0.0-20250503011706-39ed1f5ac29c/LICENSE",
+          "sha256": "5af94223052169198cfa2195455b7d87209d9aa0fff4705822f328b4b272facb"
+        }
+      ],
+      "go_mod_sha256": "f5b790d00657ce9be811d116ac1ea0cd99518e21da38d29c5659b1d4777d6e82",
+      "version_info_sha256": "136e734e4a3f96039282e054f13e5cb9b1a9fc1d0521862c7c2c586a49f0d5c6",
+      "contents_inventory": "android/source-distribution/inventories/gvisor.dev_gvisor@v0.0.0-20250503011706-39ed1f5ac29c.zip.contents.sha256",
+      "contents_inventory_sha256": "9bfafb38cf98d93cb5b20050ed06f6ed58083015bc659853e202e75320c88732"
+    },
+    {
+      "name": "lz4",
+      "version": "v1.10.0",
+      "ref": "v1.10.0",
+      "commit": "ebb370ca83af193212df4dcbadcc5d87bc0de2f0",
+      "path": "android/source-distribution/archives/lz4-1.10.0-ebb370ca83af193212df4dcbadcc5d87bc0de2f0.tar.gz",
+      "origin": "https://codeload.github.com/lz4/lz4/tar.gz/ebb370ca83af193212df4dcbadcc5d87bc0de2f0",
+      "repository": "https://github.com/lz4/lz4.git",
+      "license": "BSD-2-Clause",
+      "sha256": "eb1a93e934d4fd29df6e2061ba0bf447568561764d758f4a5662c0e29370ffa9",
+      "file_count": 208,
+      "archive_roots": [
+        "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0"
+      ],
+      "licenses": [
+        {
+          "path": "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/LICENSE",
+          "sha256": "4bc9c403f6b679cc076dee210e0e21c27b4e8f6d3fb43d85364c76657bfaaac5"
+        },
+        {
+          "path": "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/contrib/debian/copyright",
+          "sha256": "4f6ef9d0e844bf432d6a0abb2623f5a61175ae40f7f0e3665490311d89e3af87"
+        },
+        {
+          "path": "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/contrib/djgpp/LICENSE",
+          "sha256": "d011d1e02cb32b71c1ce2922ab41a2e2ad30f4ecf8de22c078d53618205abc05"
+        },
+        {
+          "path": "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/examples/COPYING",
+          "sha256": "609b910ef05c9c855ecc1da155a36ed0f57514eac452cf93446530b5ea4b3bc3"
+        },
+        {
+          "path": "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/lib/LICENSE",
+          "sha256": "8b58c446121a109ccf32edc094bba3010a3d85e4ee3702950db55e4d3e87736c"
+        },
+        {
+          "path": "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/programs/COPYING",
+          "sha256": "609b910ef05c9c855ecc1da155a36ed0f57514eac452cf93446530b5ea4b3bc3"
+        },
+        {
+          "path": "lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/tests/COPYING",
+          "sha256": "609b910ef05c9c855ecc1da155a36ed0f57514eac452cf93446530b5ea4b3bc3"
+        }
+      ],
+      "contents_inventory": "android/source-distribution/inventories/lz4-1.10.0-ebb370ca83af193212df4dcbadcc5d87bc0de2f0.tar.gz.contents.sha256",
+      "contents_inventory_sha256": "265867ceb881a113085b740c741abeedc04bb6d5f5fef570686619de86918a91"
+    }
+  ],
+  "missing_sources": [],
+  "scope": "Complete upstream source archives for native runtime dependencies missing from vendored trees. SDK archive contains source and public test fixtures, without compiler binaries. Public Go modules not used by Android runtime are retained to accompany the complete WireGuard module.",
+  "existing_sources": [
+    "android/app/src/main/cpp/third_party/openvpn3-core",
+    "android/app/src/main/cpp/third_party/openssl/source",
+    "android/third_party/wireguard-android"
+  ],
+  "android_runtime_modules_evidence": "build/reports/audit-fixes-2026-09-30/native/wireguard-android-runtime-modules.txt"
+}

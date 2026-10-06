@@ -1,0 +1,322 @@
+diff --git a/tunnel/src/main/java/com/wireguard/android/backend/GoBackend.java b/tunnel/src/main/java/com/wireguard/android/backend/GoBackend.java
+--- a/tunnel/src/main/java/com/wireguard/android/backend/GoBackend.java
++++ b/tunnel/src/main/java/com/wireguard/android/backend/GoBackend.java
+@@ -150,6 +150,9 @@
+ 
+     private static native int wgTurnOn(String ifName, int tunFd, String settings);
+ 
++    /** Applies peer state after the Android VPN service has protected the already-bound sockets. */
++    private static native int wgSetConfig(int handle, String settings);
++
+     private static native String wgVersion();
+ 
+     /**
+@@ -301,7 +304,11 @@
+             try {
+                 setStateInternal(tunnel, config, state);
+             } catch (final Exception e) {
+-                if (originalTunnel != null)
++                // A failed two-phase start may retain the new handle solely so
++                // a later DOWN can close it. Restoring the old tunnel in that
++                // state would mistake the retained handle for a running old
++                // engine and abandon the cleanup target.
++                if (originalTunnel != null && !(currentTunnel == tunnel && currentTunnelHandle != -1))
+                     setStateInternal(originalTunnel, originalConfig, State.UP);
+                 throw e;
+             }
+@@ -354,8 +361,12 @@
+                 break;
+             }
+ 
+-            // Build config
+-            final String goConfig = config.toWgUserspaceString();
++            // Bring the device up with interface settings only. Device.Up binds
++            // its UDP sockets; peers are deliberately withheld until Android
++            // has protected those exact descriptors below. Re-sending
++            // listen_port later would rebind and lose that protection.
++            final String interfaceConfig = config.getInterface().toWgUserspaceString();
++            final String peerConfig = peerConfig(config);
+ 
+             // Create the vpn tunnel with android API
+             final VpnService.Builder builder = service.getBuilder();
+@@ -403,16 +414,35 @@
+                 if (tun == null)
+                     throw new BackendException(Reason.TUN_CREATION_ERROR);
+                 Log.d(TAG, "Go backend " + wgVersion());
+-                currentTunnelHandle = wgTurnOn(tunnel.getName(), tun.detachFd(), goConfig);
++                currentTunnelHandle = wgTurnOn(tunnel.getName(), tun.detachFd(), interfaceConfig);
+             }
+             if (currentTunnelHandle < 0)
+                 throw new BackendException(Reason.GO_ACTIVATION_ERROR_CODE, currentTunnelHandle);
++            final TwoPhaseResult activation = activatePeersAfterProtection(currentTunnelHandle, peerConfig,
++                    new TwoPhaseOperations() {
++                        @Override public int socketV4(final int handle) { return wgGetSocketV4(handle); }
++                        @Override public int socketV6(final int handle) { return wgGetSocketV6(handle); }
++                        @Override public boolean protect(final int socket) { return service.protect(socket); }
++                        @Override public int applyPeerConfig(final int handle, final String peers) {
++                            return wgSetConfig(handle, peers);
++                        }
++                        @Override public void turnOff(final int handle) { wgTurnOff(handle); }
++                    });
++            if (!activation.activated) {
++                if (activation.handleReleased) {
++                    currentTunnelHandle = -1;
++                } else {
++                    // A throwing native stop leaves the detached TUN's state
++                    // unknown. Associate it before surfacing the error so the
++                    // caller's confirmed DOWN retry addresses this handle.
++                    currentTunnel = tunnel;
++                    currentConfig = config;
++                }
++                throw new BackendException(Reason.GO_ACTIVATION_ERROR_CODE, currentTunnelHandle);
++            }
+ 
+             currentTunnel = tunnel;
+             currentConfig = config;
+-
+-            service.protect(wgGetSocketV4(currentTunnelHandle));
+-            service.protect(wgGetSocketV6(currentTunnelHandle));
+         } else {
+             if (currentTunnelHandle == -1) {
+                 Log.w(TAG, "Tunnel already down");
+@@ -427,6 +457,59 @@
+         }
+ 
+         tunnel.onStateChange(state);
++    }
++
++    /** Peer-only UAPI data never carries private_key or listen_port, so it cannot rebind sockets. */
++    static String peerConfig(final Config config) {
++        final StringBuilder sb = new StringBuilder("replace_peers=true\n");
++        for (final Peer peer : config.getPeers())
++            sb.append(peer.toWgUserspaceString());
++        return sb.toString();
++    }
++
++    interface TwoPhaseOperations {
++        int socketV4(int handle);
++        int socketV6(int handle);
++        boolean protect(int socket);
++        int applyPeerConfig(int handle, String settings);
++        void turnOff(int handle);
++    }
++
++    static final class TwoPhaseResult {
++        final boolean activated;
++        final boolean handleReleased;
++
++        private TwoPhaseResult(final boolean activated, final boolean handleReleased) {
++            this.activated = activated;
++            this.handleReleased = handleReleased;
++        }
++    }
++
++    /** Protects every bound socket before peer installation. IPv4 is mandatory; IPv6 is optional. */
++    static TwoPhaseResult activatePeersAfterProtection(final int handle, final String peers,
++                                                         final TwoPhaseOperations operations) {
++        try {
++            final int socketV4 = operations.socketV4(handle);
++            if (socketV4 < 0 || !operations.protect(socketV4))
++                return failedTwoPhaseStart(handle, operations);
++            final int socketV6 = operations.socketV6(handle);
++            if (socketV6 >= 0 && !operations.protect(socketV6))
++                return failedTwoPhaseStart(handle, operations);
++            if (operations.applyPeerConfig(handle, peers) != 0)
++                return failedTwoPhaseStart(handle, operations);
++            return new TwoPhaseResult(true, false);
++        } catch (final RuntimeException ignored) {
++            return failedTwoPhaseStart(handle, operations);
++        }
++    }
++
++    private static TwoPhaseResult failedTwoPhaseStart(final int handle, final TwoPhaseOperations operations) {
++        try {
++            operations.turnOff(handle);
++            return new TwoPhaseResult(false, true);
++        } catch (final RuntimeException ignored) {
++            return new TwoPhaseResult(false, false);
++        }
+     }
+ 
+     /**
+diff --git a/tunnel/tools/libwg-go/api-android.go b/tunnel/tools/libwg-go/api-android.go
+--- a/tunnel/tools/libwg-go/api-android.go
++++ b/tunnel/tools/libwg-go/api-android.go
+@@ -159,6 +159,34 @@
+ 	handle.device.Close()
+ }
+ 
++//export wgSetConfig
++func wgSetConfig(tunnelHandle int32, settings string) int32 {
++	handle, ok := tunnelHandles[tunnelHandle]
++	if !ok {
++		return -1
++	}
++	// Callers install only peer UAPI fields here. In particular, a repeated
++	// listen_port would force BindUpdate and replace Android-protected sockets.
++	if !isPeerOnlyConfig(settings) {
++		return -1
++	}
++	if err := handle.device.IpcSet(settings); err != nil {
++		return -1
++	}
++	return 0
++}
++
++func isPeerOnlyConfig(settings string) bool {
++	for _, line := range strings.Split(settings, "\n") {
++		if strings.HasPrefix(line, "private_key=") ||
++			strings.HasPrefix(line, "listen_port=") ||
++			strings.HasPrefix(line, "fwmark=") {
++			return false
++		}
++	}
++	return true
++}
++
+ //export wgGetSocketV4
+ func wgGetSocketV4(tunnelHandle int32) int32 {
+ 	handle, ok := tunnelHandles[tunnelHandle]
+diff --git a/tunnel/tools/libwg-go/jni.c b/tunnel/tools/libwg-go/jni.c
+--- a/tunnel/tools/libwg-go/jni.c
++++ b/tunnel/tools/libwg-go/jni.c
+@@ -10,6 +10,7 @@
+ struct go_string { const char *str; long n; };
+ extern int wgTurnOn(struct go_string ifname, int tun_fd, struct go_string settings);
+ extern void wgTurnOff(int handle);
++extern int wgSetConfig(int handle, struct go_string settings);
+ extern int wgGetSocketV4(int handle);
+ extern int wgGetSocketV6(int handle);
+ extern char *wgGetConfig(int handle);
+@@ -36,6 +37,18 @@
+ JNIEXPORT void JNICALL Java_com_wireguard_android_backend_GoBackend_wgTurnOff(JNIEnv *env, jclass c, jint handle)
+ {
+ 	wgTurnOff(handle);
++}
++
++JNIEXPORT jint JNICALL Java_com_wireguard_android_backend_GoBackend_wgSetConfig(JNIEnv *env, jclass c, jint handle, jstring settings)
++{
++	const char *settings_str = (*env)->GetStringUTFChars(env, settings, 0);
++	size_t settings_len = (*env)->GetStringUTFLength(env, settings);
++	int ret = wgSetConfig(handle, (struct go_string){
++		.str = settings_str,
++		.n = settings_len
++	});
++	(*env)->ReleaseStringUTFChars(env, settings, settings_str);
++	return ret;
+ }
+ 
+ JNIEXPORT jint JNICALL Java_com_wireguard_android_backend_GoBackend_wgGetSocketV4(JNIEnv *env, jclass c, jint handle)
+diff --git a/tunnel/src/test/java/com/wireguard/android/backend/GoBackendTwoPhaseConfigTest.java b/tunnel/src/test/java/com/wireguard/android/backend/GoBackendTwoPhaseConfigTest.java
+new file mode 100644
+--- /dev/null
++++ b/tunnel/src/test/java/com/wireguard/android/backend/GoBackendTwoPhaseConfigTest.java
+@@ -0,0 +1,108 @@
++package com.wireguard.android.backend;
++
++import com.wireguard.config.Config;
++
++import org.junit.Test;
++
++import java.io.InputStream;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.List;
++import java.util.Objects;
++
++import static org.junit.Assert.assertEquals;
++import static org.junit.Assert.assertFalse;
++import static org.junit.Assert.assertTrue;
++
++public class GoBackendTwoPhaseConfigTest {
++    @Test
++    public void peerPhaseCannotRebindProtectedSockets() throws Exception {
++        final Config config;
++        try (final InputStream input = Objects.requireNonNull(
++                getClass().getClassLoader()).getResourceAsStream("working.conf")) {
++            config = Config.parse(input);
++        }
++        final String bootstrap = config.getInterface().toWgUserspaceString();
++        final String peers = GoBackend.peerConfig(config);
++
++        assertFalse(bootstrap.contains("public_key="));
++        assertFalse(peers.contains("private_key="));
++        assertFalse(peers.contains("listen_port="));
++        assertTrue(peers.startsWith("replace_peers=true\n"));
++        assertTrue(peers.contains("public_key="));
++    }
++
++    @Test
++    public void protectsBothSocketsBeforeInstallingPeers() {
++        final Operations operations = new Operations(4, 6, true, true, false);
++        final GoBackend.TwoPhaseResult result = GoBackend.activatePeersAfterProtection(9, "replace_peers=true\n", operations);
++
++        assertTrue(result.activated);
++        assertFalse(result.handleReleased);
++        assertEquals(Arrays.asList("v4", "protect:4", "v6", "protect:6", "peers"), operations.calls);
++    }
++
++    @Test
++    public void absentIpv6DoesNotBlockPeerInstallation() {
++        final Operations operations = new Operations(4, -1, true, true, false);
++        final GoBackend.TwoPhaseResult result = GoBackend.activatePeersAfterProtection(9, "peers", operations);
++
++        assertTrue(result.activated);
++        assertEquals(Arrays.asList("v4", "protect:4", "v6", "peers"), operations.calls);
++    }
++
++    @Test
++    public void absentIpv4OrRejectedProtectionNeverInstallsPeers() {
++        final Operations absentV4 = new Operations(-1, 6, true, true, false);
++        final GoBackend.TwoPhaseResult absentResult = GoBackend.activatePeersAfterProtection(9, "peers", absentV4);
++        assertFalse(absentResult.activated);
++        assertTrue(absentResult.handleReleased);
++        assertEquals(Arrays.asList("v4", "off"), absentV4.calls);
++
++        final Operations rejectedV4 = new Operations(4, 6, false, true, false);
++        final GoBackend.TwoPhaseResult rejectedResult = GoBackend.activatePeersAfterProtection(9, "peers", rejectedV4);
++        assertFalse(rejectedResult.activated);
++        assertTrue(rejectedResult.handleReleased);
++        assertEquals(Arrays.asList("v4", "protect:4", "off"), rejectedV4.calls);
++    }
++
++    @Test
++    public void failedCleanupRetainsHandleForConfirmedDownRetry() {
++        final Operations operations = new Operations(4, 6, false, true, true);
++        final GoBackend.TwoPhaseResult result = GoBackend.activatePeersAfterProtection(9, "peers", operations);
++
++        assertFalse(result.activated);
++        assertFalse(result.handleReleased);
++        assertEquals(Arrays.asList("v4", "protect:4", "off"), operations.calls);
++    }
++
++    private static final class Operations implements GoBackend.TwoPhaseOperations {
++        final List<String> calls = new ArrayList<>();
++        final int v4;
++        final int v6;
++        final boolean protectV4;
++        final boolean protectV6;
++        final boolean throwOnStop;
++
++        Operations(final int v4, final int v6, final boolean protectV4, final boolean protectV6,
++                   final boolean throwOnStop) {
++            this.v4 = v4;
++            this.v6 = v6;
++            this.protectV4 = protectV4;
++            this.protectV6 = protectV6;
++            this.throwOnStop = throwOnStop;
++        }
++
++        @Override public int socketV4(final int handle) { calls.add("v4"); return v4; }
++        @Override public int socketV6(final int handle) { calls.add("v6"); return v6; }
++        @Override public boolean protect(final int socket) {
++            calls.add("protect:" + socket);
++            return socket == v4 ? protectV4 : protectV6;
++        }
++        @Override public int applyPeerConfig(final int handle, final String settings) { calls.add("peers"); return 0; }
++        @Override public void turnOff(final int handle) {
++            calls.add("off");
++            if (throwOnStop) throw new IllegalStateException("stop");
++        }
++    }
++}

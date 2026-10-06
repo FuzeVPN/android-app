@@ -1,0 +1,642 @@
+{
+  "accountRestoration_title": "Akun untuk sementara tidak tersedia",
+  "accountRestoration_message": "Sesi Anda tetap tersimpan. Coba lagi untuk memulihkan akun; Anda masih dapat mengelola koneksi VPN di sini.",
+  "action_retry": "Coba lagi",
+  "session_endingTitle": "Mengakhiri sesi",
+  "session_ending": "Sesi Anda dibatalkan. Menghentikan VPN dan menghapus sesi…",
+  "session_stopFailed": "Penghentian VPN belum dikonfirmasi. Coba lagi sebelum masuk kembali.",
+  "session_cleanupFailed": "VPN sudah dihentikan, tetapi penghapusan sesi belum dikonfirmasi. Coba hapus sesi lagi.",
+  "session_retryStop": "Coba hentikan lagi",
+  "session_retryCleanup": "Coba hapus lagi",
+  "@@locale": "id",
+  "appTitle": "FuzeVPN",
+  "startup": "Menyiapkan FuzeVPN dengan aman…",
+  "nav_connection": "Koneksi",
+  "nav_locations": "Lokasi",
+  "nav_account": "Akun",
+  "nav_devices": "Perangkat",
+  "nav_settings": "Pengaturan",
+  "action_refresh": "Segarkan",
+  "auth_tab_login": "Masuk",
+  "auth_tab_register": "Daftar",
+  "auth_stepAccount": "Akun",
+  "auth_stepIdentity": "Identitas",
+  "auth_stepAddress": "Alamat dan persetujuan",
+  "auth_stepProgress": "Langkah {current} dari {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "VPN Anda, dibuat sederhana.",
+  "auth_keysLocal": "Kunci VPN pribadi Anda tetap berada di perangkat ini.",
+  "form_email": "Alamat email",
+  "form_password": "Kata sandi",
+  "form_showPassword": "Tampilkan kata sandi",
+  "form_hidePassword": "Sembunyikan kata sandi",
+  "form_passwordMin": "8–72 byte UTF-8. Beberapa karakter menggunakan lebih dari satu byte.",
+  "form_firstName": "Nama depan",
+  "form_lastName": "Nama belakang",
+  "form_phone": "Telepon (+33612345678)",
+  "form_address": "Alamat",
+  "form_address2": "Baris alamat 2 (opsional)",
+  "form_postalCode": "Kode pos",
+  "form_city": "Kota",
+  "form_country": "Kode negara (misalnya FR)",
+  "action_login": "Masuk",
+  "action_createAccount": "Buat akun",
+  "action_createMyAccount": "Buat akun saya",
+  "action_next": "Lanjutkan",
+  "action_previous": "Kembali",
+  "action_forgotPassword": "Lupa kata sandi?",
+  "auth_noAccount": "Belum memiliki akun?",
+  "auth_requiredInformation": "Buat akun Anda dalam tiga langkah.",
+  "auth_termsPrefix": "Saya menerima ",
+  "auth_termsLink": "ketentuan penggunaan",
+  "auth_privacyPrefix": "Saya menerima ",
+  "auth_privacyLink": "kebijakan privasi",
+  "auth_consentRequired": "Persetujuan Anda diperlukan untuk membuat akun.",
+  "validation_required": "Kolom ini wajib diisi.",
+  "validation_email": "Masukkan alamat email yang valid.",
+  "validation_password": "Kata sandi terlalu pendek: minimal 8 byte UTF-8.",
+  "validation_passwordTooLong": "Kata sandi terlalu panjang: maksimal 72 byte UTF-8.",
+  "validation_phone": "Gunakan format internasional, misalnya +33612345678.",
+  "validation_country": "Gunakan kode negara dua huruf, misalnya FR.",
+  "passwordReset_title": "Atur ulang kata sandi",
+  "passwordReset_description": "Masukkan alamat email akun Anda untuk meminta tautan pengaturan ulang kata sandi.",
+  "passwordReset_send": "Kirim tautan",
+  "connection_title": "Koneksi Anda",
+  "connection_subtitle": "Pilih lokasi, lalu aktifkan VPN Anda.",
+  "connection_prepare": "Siap terhubung?",
+  "connection_advancedOptions": "Opsi lanjutan",
+  "connection_location": "Lokasi",
+  "connection_chooseLocation": "Pilih lokasi",
+  "connection_protocol": "Protokol",
+  "connection_connect": "Hubungkan",
+  "connection_connecting": "Menghubungkan…",
+  "connection_disconnect": "Putuskan",
+  "connection_disconnecting": "Memutuskan",
+  "connection_locationChange": "Mengubah lokasi…",
+  "connection_unavailable": "{protocol} tidak tersedia",
+  "connection_activeLocation": "Lokasi aktif",
+  "connection_duration": "Durasi",
+  "connection_received": "Diterima",
+  "connection_sent": "Dikirim",
+  "connection_lastHandshake": "Pertukaran aman terakhir",
+  "connection_handshakeAgo": "{duration} yang lalu",
+  "verification_title": "Konfirmasikan alamat email Anda",
+  "verification_message": "Konfirmasikan alamat email Anda untuk menggunakan VPN di ponsel ini.",
+  "verification_resend": "Kirim ulang email",
+  "migration_title": "Perubahan lokasi",
+  "migration_draining": "Menyiapkan perubahan lokasi…",
+  "migration_activating": "Mengaktifkan server baru…",
+  "migration_ready": "Lokasi diperbarui.",
+  "migration_blocked": "Perubahan lokasi memerlukan tindakan dari server. Coba lagi nanti atau hubungi dukungan.",
+  "migration_progress": "Kemajuan perubahan lokasi",
+  "migration_retryDelay": "Jeda antar pemeriksaan: {seconds} dtk.",
+  "migration_resume": "Lanjutkan perubahan lokasi",
+  "status_authorizing": "Izin diperlukan",
+  "status_authorizingDetail": "Terima permintaan Android untuk mengizinkan VPN.",
+  "status_preparing": "Menyiapkan",
+  "status_preparingDetail": "Menyiapkan koneksi aman Anda.",
+  "status_reconnecting": "Menghubungkan kembali…",
+  "status_reconnectingDetail": "Koneksi terputus. VPN sedang mencoba terhubung kembali.",
+  "status_connecting": "Menghubungkan",
+  "status_connectingDetail": "Menghubungkan ke server VPN…",
+  "status_connected": "Terhubung",
+  "status_connectedDetail": "Koneksi VPN Anda aktif.",
+  "status_disconnecting": "Memutuskan",
+  "status_disconnectingDetail": "Koneksi VPN Anda sedang dihentikan.",
+  "status_error": "Koneksi tidak tersedia",
+  "status_errorDetail": "Koneksi VPN belum dikonfirmasi. Coba lagi.",
+  "status_idle": "Terputus",
+  "status_idleDetail": "Hubungkan VPN untuk melindungi koneksi Anda.",
+  "trust_note": "Menutup aplikasi tidak menghentikan VPN. Untuk menghentikannya, gunakan Putuskan.",
+  "locations_none": "Saat ini tidak ada lokasi yang tersedia.",
+  "locations_available": "Pilih lokasi berikutnya.",
+  "locations_selected": "Lokasi yang dipilih",
+  "locations_select": "Pilih lokasi ini",
+  "locations_lockedTunnel": "Putuskan VPN untuk mengubah lokasi.",
+  "locations_lockedMigration": "Tunggu hingga perubahan lokasi selesai.",
+  "devices_title": "Perangkat Anda",
+  "devices_used": "{count} / {limit} perangkat",
+  "devices_refresh": "Segarkan perangkat",
+  "devices_empty": "Belum ada perangkat VPN yang terdaftar.",
+  "devices_firstConnection": "Ponsel Anda akan ditambahkan saat koneksi pertama.",
+  "devices_thisDevice": "Perangkat ini",
+  "devices_added": "Ditambahkan pada {date}",
+  "action_remove": "Hapus",
+  "settings_title": "Pengaturan",
+  "settings_subtitle": "Preferensi dan akun Anda, semuanya di satu tempat.",
+  "settings_appearance": "Tampilan",
+  "settings_language": "Bahasa",
+  "settings_languageDescription": "Bahasa yang Anda pilih juga berlaku untuk notifikasi VPN.",
+  "settings_account": "Akun",
+  "settings_signOut": "Keluar",
+  "settings_privacy": "Kebijakan privasi",
+  "settings_terms": "Ketentuan penggunaan",
+  "settings_security": "Keamanan dan transparansi",
+  "settings_licenses": "Lisensi komponen",
+  "settings_licensesDetail": "Perangkat lunak yang digunakan dalam aplikasi",
+  "settings_background": "VPN tetap aktif saat Anda meninggalkan aplikasi. Untuk menghentikannya, gunakan Putuskan pada tab Koneksi.",
+  "theme_system": "Sistem",
+  "theme_light": "Terang",
+  "theme_dark": "Gelap",
+  "language_system": "Bahasa ponsel",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Hapus perangkat ini?",
+  "dialog_removeCurrent": "Ponsel ini akan terputus dari VPN dan kehilangan akses. Data koneksi VPN-nya akan dihapus setelah server mengonfirmasi.",
+  "dialog_removeOther": "Akses VPN untuk “{name}” akan dicabut. Tindakan ini tidak dapat dibatalkan.",
+  "dialog_signOut": "Keluar?",
+  "dialog_signOutMessage": "VPN akan dihentikan dan Anda harus masuk kembali. Kunci VPN terenkripsi Anda akan tetap berada di ponsel ini untuk koneksi berikutnya.",
+  "action_cancel": "Batal",
+  "action_signOut": "Keluar",
+  "notice_close": "Tutup pesan",
+  "notice_sessionExpired_title": "Sesi kedaluwarsa",
+  "notice_sessionExpired_message": "Sesi Anda telah kedaluwarsa. Masuk kembali.",
+  "notice_connectionFailed_title": "Koneksi gagal",
+  "notice_invalidCredentials_message": "Alamat email atau kata sandi salah.",
+  "notice_emailVerification_title": "Konfirmasi email diperlukan",
+  "notice_emailVerification_message": "Konfirmasikan alamat email Anda sebelum menambahkan perangkat VPN.",
+  "notice_rateLimited_title": "Terlalu banyak percobaan",
+  "notice_deviceLimit_title": "Batas 2 perangkat tercapai",
+  "notice_deviceLimit_message": "Hapus perangkat yang sudah ada sebelum menambahkan perangkat lain.",
+  "notice_identityRenewal_title": "Identitas VPN harus diperbarui",
+  "notice_identityRenewal_message": "Identitas ini telah dihapus. Buat identitas lokal baru.",
+  "notice_migrationPending_title": "Perubahan lokasi sedang berlangsung",
+  "notice_migrationPending_message": "Perubahan lokasi sudah sedang berlangsung.",
+  "notice_migrationBlocked_title": "Perubahan lokasi terhalang",
+  "notice_migrationBlocked_message": "Perubahan lokasi memerlukan tindakan dari server. Coba lagi nanti atau hubungi dukungan.",
+  "notice_targetUnavailable_title": "Server untuk sementara tidak tersedia",
+  "notice_targetUnavailable_message": "Server ini untuk sementara tidak tersedia.",
+  "notice_networkUnavailable_title": "Koneksi internet tidak tersedia",
+  "notice_networkUnavailable_message": "Periksa koneksi Anda dan coba lagi.",
+  "notice_permissionDenied_title": "Izin VPN ditolak",
+  "notice_permissionDenied_message": "Mulai kembali koneksi dan terima permintaan izin Android.",
+  "notice_wireguardTimeout_title": "Server tidak merespons",
+  "notice_wireguardTimeout_message": "Koneksi WireGuard memerlukan waktu terlalu lama. Coba lagi atau pilih lokasi lain.",
+  "notice_tlsFailed_title": "Koneksi aman ditolak",
+  "notice_tlsFailed_message": "Server tidak menerima koneksi OpenVPN. Coba lagi. Jika masalah berlanjut, jalankan diagnostik.",
+  "notice_tunRejected_title": "Android menolak antarmuka VPN",
+  "notice_tunRejected_message": "Android menolak konfigurasi jaringan yang diminta oleh OpenVPN.",
+  "notice_openvpnStart_title": "OpenVPN tidak dapat dimulai",
+  "notice_openvpnStart_message": "Mesin OpenVPN tidak dapat menyelesaikan proses mulai. Coba lagi. Jika masalah berlanjut, hubungi dukungan.",
+  "notice_diagnosticCode": "Kode diagnostik: {code}",
+  "notice_generic_title": "Koneksi VPN gagal",
+  "notice_generic_message": "Terjadi kesalahan. Coba lagi nanti.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Akun dibuat} password_reset_sent{Permintaan pengaturan ulang kata sandi diterima} verification_email_sent{Email verifikasi dikirim} location_migration_pending{Perubahan lokasi sedang berlangsung} vpn_sign_in_required{Harus masuk} protocol_unavailable_at_location{Protokol tidak tersedia} vpn_permission_denied{Izin VPN ditolak} revoked_identity_device_limit{Batas 2 perangkat tercapai} tunnel_start_unexpected{VPN tidak dapat dimulai} flutter_disconnect_timeout{Pemutusan belum dikonfirmasi} flutter_disconnect_unexpected{Tidak dapat memutuskan} device_revoked{Perangkat dihapus} revoke_unexpected{Tidak dapat menghapus perangkat} identity_renewal_unexpected{Tidak dapat memperbarui identitas} openvpn_renewal_unexpected{Tidak dapat memperbarui OpenVPN} location_migration_blocked{Perubahan lokasi terhalang} location_migration_slow{Perubahan lokasi masih berlangsung} location_migration_conflict{Perubahan lokasi perlu disegarkan} location_migration_verification_failed{Perubahan lokasi belum dikonfirmasi} location_migration_device_changed{Perangkat berubah selama perubahan lokasi} tunnel_stop_failed{Perubahan lokasi tidak tersedia} other{Operasi gagal}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Akun telah dibuat, tetapi email verifikasi tidak dapat dikirim. Gunakan kirim ulang di aplikasi.} password_reset_sent{Permintaan Anda telah diterima. Jika ada akun yang cocok dengan alamat ini, Anda mungkin menerima email. Periksa juga folder spam Anda.} verification_email_sent{Email verifikasi baru saja dikirim.} location_migration_pending{Pemindahan ke {target} masih disiapkan. Anda dapat melanjutkannya tanpa membuat ulang perangkat.} vpn_sign_in_required{Masuk ke akun Anda sebelum memulai VPN.} protocol_unavailable_at_location{Protokol yang dipilih tidak ditawarkan oleh lokasi ini. Segarkan lokasi atau pilih protokol lain.} vpn_permission_denied{Android menolak izin VPN. Mulai kembali koneksi dan terima permintaan sistem.} revoked_identity_device_limit{Akses VPN perangkat ini telah dihapus dan batas perangkat telah tercapai. Hapus perangkat melalui Akun → Kelola perangkat saya.} tunnel_start_unexpected{Kesalahan tak terduga menghentikan persiapan tunnel. Periksa kode diagnostik dan coba lagi.} flutter_disconnect_timeout{Android tidak mengonfirmasi bahwa VPN berhenti tepat waktu. Coba hentikan lagi.} flutter_disconnect_unexpected{Kesalahan tak terduga menghalangi konfirmasi bahwa tunnel telah berhenti.} device_revoked{Akses VPN perangkat telah dicabut dan rahasia lokalnya telah dihapus.} revoke_unexpected{Perangkat tidak dapat dihapus. Segarkan daftar dan coba lagi.} identity_renewal_unexpected{Identitas VPN baru tidak dapat dibuat. Segarkan perangkat dan coba lagi.} openvpn_renewal_unexpected{Profil OpenVPN tidak dapat diperbarui. Coba lagi atau periksa kode diagnostik.} location_migration_blocked{Server tidak dapat menyelesaikan perubahan ini sekarang. Perangkat dan identitas lokalnya tetap disimpan.} location_migration_slow{Server masih menyiapkan pemindahan ke {target}. Gunakan Lanjutkan beberapa saat lagi.} location_migration_conflict{Status perangkat berubah di server. Segarkan perangkat, lalu lanjutkan perubahan.} location_migration_verification_failed{Server tidak mengonfirmasi lokasi baru. Identitas lokal sebelumnya tetap disimpan.} location_migration_device_changed{Perangkat yang dikembalikan server tidak lagi cocok dengan perangkat yang sedang diubah. Segarkan perangkat sebelum mencoba lagi.} tunnel_stop_failed{Tunnel sebelumnya harus dihentikan sepenuhnya sebelum koneksi baru dibuat.} other{Operasi tidak dapat diselesaikan. Coba lagi atau kirim kode diagnostik ke dukungan.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Sesi kedaluwarsa} invalid_credentials{Gagal masuk} email_verification_required{Konfirmasi email diperlukan} verification_email_cooldown{Email sudah dikirim} rate_limited{Terlalu banyak percobaan} invalid_registration{Informasi harus diperbaiki} email_exists{Akun sudah ada} invalid_profile{Profil tidak valid} invalid_device{Perangkat tidak valid} invalid_location{Lokasi tidak tersedia} device_limit{Batas 2 perangkat tercapai} device_exists{Identitas VPN sudah digunakan} device_identity_revoked{Identitas VPN harus diperbarui} device_location_locked{Perubahan lokasi perlu disegarkan} location_migration_pending{Perubahan lokasi sedang berlangsung} location_migration_blocked{Perubahan lokasi terhalang} target_ca_mismatch{Server OpenVPN tidak kompatibel} location_migration_conflict{Perubahan lokasi perlu disegarkan} server_full{Server penuh} capacity_unavailable{Lokasi untuk sementara tidak tersedia} target_unavailable{Server untuk sementara tidak tersedia} not_found{Item tidak ditemukan} invalid_openvpn_csr{Identitas OpenVPN tidak valid} openvpn_profile_exists{Profil OpenVPN sudah ada} openvpn_profile_revoked{Profil OpenVPN dicabut} openvpn_operation_pending{Operasi OpenVPN sedang berlangsung} openvpn_operation_terminal{Operasi OpenVPN terputus} openvpn_address_unavailable{Alamat OpenVPN tidak tersedia} openvpn_profile_conflict{Konflik OpenVPN} openvpn_signer_unavailable{OpenVPN tidak tersedia} email_delivery_unavailable{Email tidak tersedia} invalid_token{Tautan tidak valid} network_unavailable{Koneksi internet tidak tersedia} invalid_json{Permintaan tidak valid} invalid_api_response{Respons server tidak valid} ipv6_unavailable{IPv6 tidak tersedia} invalid_ip_families{Konfigurasi jaringan ditolak} other{Layanan tidak tersedia}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Sesi Anda telah kedaluwarsa. Masuk kembali.} invalid_credentials{Alamat email atau kata sandi salah.} email_verification_required{Konfirmasikan alamat email Anda sebelum menambahkan perangkat VPN.} invalid_registration{Periksa informasi dan persetujuan yang diminta.} email_exists{Sudah ada akun yang menggunakan alamat email ini.} invalid_profile{Periksa informasi profil Anda.} invalid_device{Nama perangkat atau identitas lokal perangkat ini tidak valid.} invalid_location{Segarkan daftar lokasi dan coba lagi.} device_limit{Hapus perangkat yang sudah ada sebelum menambahkan perangkat lain.} device_exists{Identitas VPN ini sudah ditautkan ke akun lain.} device_identity_revoked{Identitas ini telah dihapus. Identitas lokal baru harus dibuat.} device_location_locked{Lokasi perangkat ini baru saja berubah. Aplikasi akan melanjutkan perubahan yang sedang berlangsung.} location_migration_pending{Perubahan lokasi sudah sedang berlangsung.} location_migration_blocked{Perubahan lokasi memerlukan tindakan dari server. Coba lagi nanti atau hubungi dukungan.} target_ca_mismatch{Server ini belum kompatibel dengan profil OpenVPN saat ini.} location_migration_conflict{Segarkan perangkat, lalu coba ubah lokasi lagi.} server_full{Lokasi ini telah mencapai batas koneksinya. Pilih lokasi lain atau coba lagi nanti.} capacity_unavailable{Kami tidak dapat mengonfirmasi apakah lokasi ini tersedia sekarang. Pilih lokasi lain atau coba lagi nanti.} target_unavailable{Server ini untuk sementara tidak tersedia.} not_found{Item ini tidak lagi tersedia di akun Anda.} invalid_openvpn_csr{Buat identitas OpenVPN baru dan coba lagi.} openvpn_profile_exists{Profil OpenVPN sudah ada untuk perangkat ini.} openvpn_profile_revoked{Perbarui profil OpenVPN untuk melanjutkan.} openvpn_operation_pending{Perubahan masih disebarkan. Coba lagi nanti.} openvpn_operation_terminal{Buat identitas OpenVPN baru dan coba lagi.} openvpn_address_unavailable{Saat ini tidak ada alamat OpenVPN yang tersedia.} openvpn_profile_conflict{Profil telah berubah. Segarkan perangkat dan coba lagi.} openvpn_signer_unavailable{Layanan OpenVPN untuk sementara tidak tersedia.} email_delivery_unavailable{Email tidak dapat dikirim. Coba lagi nanti.} invalid_token{Tautan ini tidak valid atau telah kedaluwarsa. Minta tautan baru.} network_unavailable{Periksa koneksi internet Anda dan coba lagi.} invalid_json{Periksa informasi yang dimasukkan dan coba lagi.} invalid_api_response{Server mengembalikan respons yang tidak terduga. Coba lagi nanti.} ipv6_unavailable{Server tidak dapat mengaktifkan IPv6 saat ini. Coba lagi nanti.} invalid_ip_families{Konfigurasi tunnel tidak lengkap atau tidak cocok dengan alamat yang diizinkan. Coba lagi dari aplikasi.} other{Terjadi kesalahan server. Coba lagi nanti.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Coba lagi beberapa saat lagi.",
+  "notice_retryAfter": "Coba lagi dalam {seconds} detik.",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "Object"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Melanjutkan VPN sistem tidak tersedia} system_vpn_resume_corrupt{Data lanjutan VPN sistem tidak valid} system_vpn_resume_session_invalid{Sesi lanjutan VPN tidak valid} system_vpn_resume_identity_changed{Identitas VPN berubah} system_vpn_resume_identity_invalid{Identitas lanjutan VPN tidak valid} system_vpn_resume_storage_failed{Penyimpanan lanjutan VPN tidak tersedia} system_vpn_resume_network_timeout{Tidak ada jaringan untuk melanjutkan VPN} system_vpn_resume_blocked{Pelanjutan VPN diblokir} system_vpn_resume_failed{Pelanjutan VPN gagal} system_vpn_resume_error_invalid{Kesalahan pelanjutan VPN tidak valid} wireguard_identity_store_failed{Identitas WireGuard tidak disimpan} wireguard_identity_unavailable{Identitas WireGuard tidak tersedia} vpn_host_destroyed{Host VPN Android dihentikan} vpn_host_unavailable{Host VPN Android tidak tersedia} vpn_permission_required{Izin VPN diperlukan} vpn_permission_denied{Izin VPN ditolak} vpn_permission_request_failed{Tidak dapat meminta izin} wireguard_foreground_service_unavailable{Layanan latar depan WireGuard tidak tersedia} wireguard_identity_invalid{Kunci WireGuard lokal tidak valid} wireguard_identity_in_use{Identitas WireGuard sudah digunakan} wireguard_configuration_invalid{Konfigurasi WireGuard tidak valid} wireguard_operation_pending{Operasi WireGuard masih aktif} wireguard_start_failed{Pemulai WireGuard ditolak} wireguard_stop_timeout{Penghentian WireGuard belum dikonfirmasi} wireguard_handshake_timeout{WireGuard tidak merespons} openvpn_connection_timeout{OpenVPN tidak merespons} openvpn_core_unavailable{Mesin OpenVPN tidak tersedia} openvpn_operation_pending{Sesi OpenVPN masih aktif} openvpn_stop_timeout{Penghentian OpenVPN belum dikonfirmasi} openvpn_profile_unavailable{Profil OpenVPN lokal tidak ada} openvpn_native_failed{Panggilan OpenVPN asli terputus} openvpn_key_generation_failed{Tidak dapat membuat kunci OpenVPN P-256} openvpn_csr_generation_failed{Tidak dapat membuat CSR OpenVPN} openvpn_identity_store_failed{Identitas OpenVPN tidak disimpan} openvpn_identity_clear_failed{Penghapusan OpenVPN tidak lengkap} openvpn_identity_in_use{Identitas OpenVPN masih digunakan} openvpn_tls_verification_required{Verifikasi TLS OpenVPN tidak ada} openvpn_cipher_invalid{Cipher OpenVPN tidak valid} openvpn_profile_rejected{Profil OpenVPN ditolak} openvpn_identity_inconsistent{Identitas OpenVPN tidak konsisten} tls_handshake_failed{Negosiasi OpenVPN ditolak} tls_alert_unknown_ca{Sertifikat klien OpenVPN tidak dikenali} tls_alert_bad_certificate{Sertifikat klien OpenVPN ditolak} tls_alert_unsupported_certificate{Sertifikat OpenVPN tidak didukung} tls_client_certificate_required{Sertifikat klien OpenVPN diperlukan} tls_alert_misc{Peringatan TLS OpenVPN} tls_signature_algorithm_rejected{Tanda tangan OpenVPN tidak didukung} tls_handshake_rejected{Negosiasi TLS OpenVPN ditolak} tls_version_rejected{Versi TLS OpenVPN tidak kompatibel} tls_certificate_expired{Sertifikat TLS kedaluwarsa} tls_certificate_revoked{Sertifikat TLS dicabut} transport_failed{Server OpenVPN tidak dapat dijangkau} tun_configuration_rejected{Tidak dapat membuat antarmuka OpenVPN} tun_setup_failed{Penyiapan TUN OpenVPN gagal} tun_interface_create_failed{Pembuatan antarmuka OpenVPN gagal} tun_interface_disabled{Antarmuka OpenVPN dinonaktifkan} tun_halted{Antarmuka OpenVPN terputus} tun_already_established{Antarmuka OpenVPN sudah terbuka} tun_addresses_missing{Alamat OpenVPN tidak ada} tun_routes_missing{Rute OpenVPN tidak ada} tun_dns_missing{DNS OpenVPN tidak ada} tun_permission_revoked{Izin VPN dicabut} tun_establish_returned_null{Android menolak antarmuka VPN} openvpn_service_start_failed{Layanan OpenVPN tidak tersedia} openvpn_operation_timeout{Waktu panggilan OpenVPN habis} openvpn_start_failed{Pemulai OpenVPN ditolak} openvpn_connection_failed{Koneksi OpenVPN terputus} openvpn_core_status_error{OpenVPN Core berakhir dengan kesalahan} openvpn_stopped_before_connected{OpenVPN berhenti sebelum terhubung} openvpn_auth_failed{Autentikasi OpenVPN ditolak} openvpn_client_setup_failed{Penyiapan klien OpenVPN gagal} openvpn_client_halted{Klien OpenVPN terputus} openvpn_client_restart{Mulai ulang OpenVPN diminta} openvpn_inactive_timeout{OpenVPN tidak aktif terlalu lama} openvpn_session_expired{Sesi OpenVPN kedaluwarsa} openvpn_credentials_required{Autentikasi OpenVPN tidak didukung} openvpn_proxy_failed{Transport perantara OpenVPN gagal} openvpn_compression_failed{Kompresi OpenVPN ditolak} openvpn_ntlm_crypto_unavailable{Enkripsi NTLM OpenVPN tidak tersedia} openvpn_feature_unsupported{Fitur OpenVPN tidak didukung} network_unavailable{Koneksi internet tidak tersedia} network_lost{Jaringan tidak tersedia} certificate_validation_failed{Sertifikat server ditolak} openvpn_certificate_expired{Sertifikat OpenVPN kedaluwarsa} tunnel_active_for_another_account{Tunnel akun lain masih aktif} tunnel_already_active{Tunnel asli sudah aktif} tunnel_stop_timeout{Penghentian {protocol} belum dikonfirmasi} tunnel_disconnected{{protocol} terputus} native_bridge_unavailable{Bridge Android tidak tersedia} native_operation_failed{Operasi Android terputus} invalid_arguments{Parameter VPN tidak lengkap} invalid_account_id{Akun VPN tidak valid} invalid_device_id{Pengenal perangkat tidak valid} storage_key_not_allowed{Kunci penyimpanan ditolak} secure_storage_read_failed{Pembacaan aman gagal} secure_storage_write_failed{Penulisan aman gagal} key_generation_failed{Tidak dapat membuat kunci WireGuard} csr_generation_failed{Tidak dapat membuat CSR OpenVPN} other{Kesalahan VPN asli yang tidak terklasifikasi}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android tidak dapat menemukan sesi VPN yang dapat dilanjutkan. Mulai koneksi baru di aplikasi.} system_vpn_resume_corrupt{Data lanjutan VPN yang tersimpan tidak valid dan tidak akan digunakan. Mulai koneksi baru.} system_vpn_resume_session_invalid{Sesi tersimpan tidak dapat lagi melanjutkan VPN. Masuk kembali di aplikasi.} system_vpn_resume_identity_changed{Identitas VPN lokal berubah. Pelanjutan dihentikan; mulai koneksi baru.} system_vpn_resume_identity_invalid{Identitas untuk melanjutkan tidak valid. Mulai koneksi baru.} system_vpn_resume_storage_failed{Android tidak dapat membaca atau memperbarui data lanjutan terenkripsi. Mulai koneksi baru.} system_vpn_resume_network_timeout{Android tidak menemukan jaringan tepat waktu untuk melanjutkan VPN. Coba lagi saat jaringan tersedia.} system_vpn_resume_blocked{Pelanjutan VPN diblokir. Periksa pengaturan Android, lalu mulai koneksi baru.} system_vpn_resume_failed{Pelanjutan VPN Android gagal. Mulai koneksi baru di aplikasi.} system_vpn_resume_error_invalid{Android mengembalikan kesalahan pelanjutan yang tidak dapat digunakan. Mulai koneksi baru.} wireguard_identity_store_failed{Android tidak dapat menyimpan identitas WireGuard terenkripsi akun ini.} wireguard_identity_unavailable{Tidak ada identitas WireGuard yang dapat digunakan untuk koneksi ini.} vpn_host_destroyed{Komponen Android yang menjadi host VPN dihentikan. Mulai koneksi baru.} vpn_host_unavailable{Android tidak dapat membuat komponen yang menjadi host VPN. Coba lagi setelah memeriksa pengaturan VPN.} openvpn_renewal_required{Sertifikat memerlukan tindakan di aplikasi sebelum terhubung.} openvpn_recovery_failed{Pemulihan otomatis gagal. Mulai koneksi baru di aplikasi.} openvpn_recovery_exhausted{Pemulihan otomatis sudah digunakan. Mulai koneksi baru di aplikasi.} vpn_permission_required{Android memerlukan otorisasi VPN baru sebelum memulai tunnel.} vpn_permission_denied{Izinkan FuzeVPN dalam permintaan Android untuk melanjutkan.} vpn_permission_request_failed{Android tidak dapat membuka layar izin VPN.} wireguard_foreground_service_unavailable{Android tidak dapat menjaga layanan WireGuard tetap berjalan di latar depan.} wireguard_identity_invalid{Kunci WireGuard terenkripsi akun ini tidak dapat dibaca atau tidak valid.} wireguard_identity_in_use{Operasi lain masih menggunakan kunci WireGuard akun ini.} wireguard_configuration_invalid{Alamat WireGuard, DNS, kunci server, atau rute yang diterima tidak valid.} wireguard_operation_pending{Operasi WireGuard sebelumnya belum melepaskan layanan aslinya.} wireguard_start_failed{Mesin WireGuard menolak aktivasi konfigurasi.} wireguard_stop_timeout{Layanan WireGuard tidak mengonfirmasi pelepasan antarmuka VPN dalam batas waktu.} wireguard_handshake_timeout{Tunnel tidak mengonfirmasi handshake dengan server tepat waktu.} openvpn_connection_timeout{OpenVPN tidak mengonfirmasi koneksi ke server tepat waktu.} openvpn_core_unavailable{Versi aplikasi ini tidak berisi mesin OpenVPN yang dapat digunakan.} openvpn_operation_pending{Mesin asli masih menahan sesi OpenVPN sebelumnya dan menolak membuat sesi kedua.} openvpn_stop_timeout{OpenVPN Core tidak mengonfirmasi bahwa sesi aslinya berhenti dan dihancurkan dalam batas waktu.} openvpn_profile_unavailable{Tidak ada profil OpenVPN tervalidasi yang dapat dibaca untuk koneksi ini.} openvpn_native_failed{Kesalahan aplikasi mengganggu OpenVPN. Coba hubungkan lagi. Jika masalah berlanjut, jalankan diagnostik.} openvpn_key_generation_failed{Android Keystore tidak dapat membuat atau membaca kunci privat P-256 yang tidak dapat diekspor.} openvpn_csr_generation_failed{Kunci Android Keystore tidak dapat menandatangani permintaan sertifikat OpenVPN.} openvpn_identity_store_failed{Sertifikat atau profil OpenVPN tidak dapat disimpan dalam penyimpanan terenkripsi.} openvpn_identity_clear_failed{Android tidak dapat menghapus seluruh identitas OpenVPN lokal untuk akun ini.} openvpn_identity_in_use{Sesi OpenVPN asli masih menggunakan kunci atau sertifikat perangkat ini.} openvpn_tls_verification_required{Profil tidak secara eksplisit mewajibkan verifikasi sertifikat server.} openvpn_cipher_invalid{Server memberikan algoritme enkripsi yang tidak ada dalam daftar yang diizinkan.} openvpn_profile_rejected{Profil yang diterima dari server tidak kompatibel. Buat ulang perangkat ini dan coba lagi.} openvpn_identity_inconsistent{Sertifikat tidak cocok dengan identitas aman ponsel ini. Tidak ada profil lokal yang diganti.} tls_handshake_failed{Server menolak negosiasi TLS. Buat ulang profil jika masalah berlanjut.} tls_alert_unknown_ca{Server tidak mengenali otoritas sertifikat perangkat ini. Server OpenVPN harus diperiksa.} tls_alert_bad_certificate{Server menolak sertifikat perangkat ini. Buat ulang perangkat sebelum mencoba lagi.} tls_alert_unsupported_certificate{Server tidak mendukung jenis sertifikat aman yang digunakan Android.} tls_client_certificate_required{Server memerlukan sertifikat klien, tetapi OpenVPN Core tidak dapat menyediakannya.} tls_alert_misc{Server mengembalikan peringatan TLS di luar kategori sertifikat dan versi.} tls_signature_algorithm_rejected{Server menolak algoritme ECDSA P-256 dari kunci Android Keystore.} tls_handshake_rejected{Server menghentikan negosiasi TLS sebelum koneksi.} tls_version_rejected{Klien dan server tidak menemukan versi TLS yang sama.} tls_certificate_expired{Sertifikat yang ditampilkan saat koneksi telah kedaluwarsa.} tls_certificate_revoked{Sertifikat yang ditampilkan saat koneksi telah dicabut.} transport_failed{Server OpenVPN tidak merespons di jaringan saat ini. Coba lagi sebentar lagi.} tun_configuration_rejected{Android menolak konfigurasi jaringan yang diminta oleh OpenVPN.} tun_setup_failed{OpenVPN Core menolak rencana jaringan sebelum membuat antarmuka Android.} tun_interface_create_failed{OpenVPN Core tidak dapat memperoleh antarmuka TUN dari Android VpnService.} tun_interface_disabled{Android atau OpenVPN Core menonaktifkan antarmuka TUN selama koneksi.} tun_halted{OpenVPN Core menerima permintaan untuk menghentikan antarmuka TUN.} tun_already_established{OpenVPN meminta antarmuka kedua dalam koneksi yang sama. Tunnel dihentikan demi keamanan.} tun_addresses_missing{Server tidak memberikan alamat tunnel yang dapat digunakan.} tun_routes_missing{Server tidak memberikan rute tunnel yang dapat digunakan.} tun_dns_missing{Server tidak memberikan server DNS yang dapat digunakan.} tun_permission_revoked{Android mencabut izin VPN selama koneksi.} tun_establish_returned_null{Android tidak membuat antarmuka, biasanya karena VPN lain masih aktif.} openvpn_service_start_failed{Android tidak dapat memulai layanan latar depan OpenVPN.} openvpn_operation_timeout{Panggilan JNI ke OpenVPN Core melampaui durasi maksimumnya.} openvpn_start_failed{Layanan Android siap, tetapi OpenVPN Core tidak menerima pemulaan profil.} openvpn_connection_failed{OpenVPN Core berhenti sebelum memancarkan peristiwa CONNECTED.} openvpn_core_status_error{Loop OpenVPN asli berakhir dengan kesalahan dan tanpa peristiwa terminal yang lebih spesifik.} openvpn_stopped_before_connected{Loop OpenVPN asli berhenti sebelum CONNECTED, tanpa kesalahan Core yang eksplisit.} openvpn_auth_failed{Server OpenVPN menolak autentikasi profil.} openvpn_client_setup_failed{OpenVPN Core tidak dapat menginisialisasi klien sebelum koneksi jaringan.} openvpn_client_halted{OpenVPN Core menerima penghentian klien terminal.} openvpn_client_restart{OpenVPN Core meminta dimulainya ulang sesi transportasinya.} openvpn_inactive_timeout{OpenVPN Core menutup sesi setelah batas waktu tidak aktif.} openvpn_session_expired{Server melaporkan bahwa sesi OpenVPN telah kedaluwarsa.} openvpn_credentials_required{Server atau proksi meminta kredensial interaktif yang bukan bagian dari profil sertifikat ini.} openvpn_proxy_failed{OpenVPN Core melaporkan kegagalan proksi atau relai yang dikonfigurasi.} openvpn_compression_failed{OpenVPN Core menolak mode kompresi yang diumumkan oleh profil atau server.} openvpn_ntlm_crypto_unavailable{Profil meminta enkripsi NTLM yang tidak tersedia dalam versi ini.} openvpn_feature_unsupported{Profil atau server memerlukan fitur yang tidak tersedia di klien Android ini.} network_unavailable{Tidak ada jaringan fisik yang dapat digunakan.} network_lost{Tunnel dihentikan setelah jaringan terputus.} certificate_validation_failed{Identitas server OpenVPN tidak dapat diverifikasi.} openvpn_certificate_expired{Perbarui profil OpenVPN sebelum terhubung kembali.} tunnel_active_for_another_account{Tunnel milik akun lain harus dihentikan sebelum koneksi ini.} tunnel_already_active{Android melaporkan bahwa sesi VPN sebelumnya masih menggunakan antarmuka.} tunnel_stop_timeout{Mesin {protocol} tidak mengonfirmasi pelepasan antarmuka VPN dalam batas waktu.} tunnel_disconnected{Mesin asli melaporkan bahwa tunnel berakhir secara tak terduga setelah dimulai.} native_bridge_unavailable{Aplikasi tidak dapat mengakses layanan VPN Android. Tutup dan buka kembali aplikasi, lalu coba lagi.} native_operation_failed{Kesalahan aplikasi mengganggu operasi VPN. Coba lagi. Jika masalah berlanjut, jalankan diagnostik.} invalid_arguments{Informasi yang diperlukan untuk operasi VPN ini tidak lengkap. Coba lagi. Jika masalah berlanjut, jalankan diagnostik.} invalid_account_id{Operasi asli tidak terkait dengan pengenal akun yang valid.} invalid_device_id{Pengenal perangkat yang dikirim ke mesin asli tidak ada atau tidak valid.} storage_key_not_allowed{Bridge Android memblokir kunci di luar daftar penyimpanan yang diizinkan.} secure_storage_read_failed{Android Keystore tidak dapat mendekripsi data lokal akun ini.} secure_storage_write_failed{Android Keystore tidak dapat mengenkripsi atau menyimpan data lokal.} key_generation_failed{Android tidak dapat membuat atau membaca kunci WireGuard di penyimpanan aman.} csr_generation_failed{Android Keystore tidak dapat membuat atau menandatangani CSR OpenVPN P-256.} other{Cabang asli yang tidak terdokumentasi gagal. Kirim kode diagnostik yang ditampilkan di bawah kepada dukungan.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Permintaan izin sudah terbuka",
+  "notice_permissionRequestInProgress_message": "Permintaan izin VPN Android sudah ditampilkan. Selesaikan permintaan tersebut sebelum mencoba lagi.",
+  "notice_permissionRequestInterrupted_title": "Permintaan izin VPN terputus",
+  "notice_permissionRequestInterrupted_message": "Layar izin VPN tertutup sebelum aplikasi menerima respons.",
+  "notice_openvpnProofMissing_title": "Koneksi OpenVPN belum dikonfirmasi",
+  "notice_openvpnProofMissing_message": "Koneksi OpenVPN tidak dapat dikonfirmasi. Koneksi dihentikan demi keamanan. Coba lagi.",
+  "openvpnCleanup_title": "Profil OpenVPN dicabut",
+  "openvpnCleanup_working": "Menghentikan dan menghapus profil OpenVPN yang dicabut…",
+  "openvpnCleanup_stopFailed": "Penghentian OpenVPN belum dikonfirmasi. Coba lagi sebelum membuat profil baru.",
+  "openvpnCleanup_cleanupFailed": "Profil OpenVPN yang dicabut tidak dapat dihapus sepenuhnya. Coba hapus lagi.",
+  "openvpnCleanup_complete": "Profil OpenVPN yang dicabut telah dihapus. Ketuk Hubungkan untuk membuat yang baru.",
+  "network_title": "Konfigurasi jaringan",
+  "network_ipv4Fallback": "IPv6 untuk sementara tidak tersedia. Persiapan dilanjutkan dengan IPv4.",
+  "network_rejectedTitle": "Konfigurasi jaringan ditolak",
+  "network_rejectedMessage": "Konfigurasi tunnel tidak lengkap atau tidak cocok dengan alamat yang diizinkan. Coba lagi dari aplikasi.",
+  "network_unreadableTitle": "Konfigurasi lokal tidak dapat dibaca",
+  "network_unreadableMessage": "Konfigurasi jaringan OpenVPN yang tersimpan tidak dapat digunakan. Hubungkan kembali dari aplikasi untuk memperbaruinya.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Perlindungan jaringan",
+  "protection_subtitle": "Blokir akses internet langsung jika VPN terputus.",
+  "protection_active": "Perlindungan sistem aktif",
+  "protection_alwaysOnOnly": "VPN selalu aktif diaktifkan; aktifkan pemblokiran di luar VPN",
+  "protection_inactive": "Perlindungan sistem tidak aktif",
+  "protection_unknown": "Periksa perlindungan sistem",
+  "protection_openSettings": "Buka pengaturan Android",
+  "protection_dialogTitle": "Siapkan perlindungan jaringan",
+  "protection_dialogMessage": "Android mengelola VPN selalu aktif dan pemblokiran koneksi di luar VPN. Pastikan FuzeVPN dipilih dan aktifkan pemblokiran di pengaturan sistem.",
+  "protection_dialogOpen": "Buka pengaturan",
+  "session_systemProtectionNote": "Jika Android masih memblokir lalu lintas di luar VPN, buka pengaturan sistem untuk memeriksa atau mengubah perlindungan ini.",
+  "diagnostics_title": "Diagnostik",
+  "diagnostics_settingsTitle": "Diagnostik aplikasi",
+  "diagnostics_automaticTitle": "Kirim kesalahan penting",
+  "diagnostics_automaticDescription": "Bagikan laporan teknis singkat saat terjadi kesalahan penting.",
+  "diagnostics_privacy": "Laporan yang dikirim ditautkan ke akun yang digunakan untuk masuk dan disimpan selama 30 hari. Laporan tidak berisi riwayat penelusuran, kata sandi, atau kunci VPN.",
+  "diagnostics_manualOpen": "Jalankan diagnostik",
+  "diagnostics_localDescription": "Buat laporan tentang status aplikasi dan VPN. Koneksi Anda tetap tidak berubah.",
+  "diagnostics_sendReport": "Kirim laporan",
+  "diagnostics_sendHint": "Biarkan kotak ini tidak dicentang agar laporan tetap tersimpan di perangkat ini.",
+  "diagnostics_signedOut": "Masuk ke akun Anda untuk mengirim laporan.",
+  "diagnostics_localLifetime": "Simpan laporan ini di ponsel agar tetap ada setelah aplikasi ditutup.",
+  "diagnostics_run": "Jalankan diagnostik",
+  "diagnostics_rerun": "Jalankan diagnostik lagi",
+  "diagnostics_running": "Memeriksa…",
+  "diagnostics_sending": "Mengirim laporan…",
+  "diagnostics_prepared": "Laporan siap di perangkat ini",
+  "diagnostics_queued": "Laporan menunggu untuk dikirim",
+  "diagnostics_sent": "Laporan diterima",
+  "diagnostics_failed": "Pengiriman gagal. Laporan lokal Anda masih tersedia.",
+  "diagnostics_preparationFailed": "Laporan diagnostik tidak dapat disiapkan. Coba lagi.",
+  "diagnostics_authenticationRequired": "Masuk lagi untuk mengirim laporan.",
+  "diagnostics_retry": "Coba kirim lagi",
+  "diagnostics_export": "Simpan laporan",
+  "diagnostics_exportFailed": "Ekspor gagal. Coba lagi dari laporan lokal.",
+  "diagnostics_preferenceFailed": "Pengaturan ini tidak dapat disimpan. Coba lagi.",
+  "diagnostics_receipt": "Referensi: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "Diterima pada {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Disimpan hingga {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Laporan ini sudah pernah diterima.",
+  "diagnostics_preview": "Pratinjau laporan",
+  "diagnostics_eventCount": "{count, plural, =0{Tidak ada peristiwa teknis yang dilampirkan} =1{1 peristiwa teknis dilampirkan} other{{count} peristiwa teknis dilampirkan}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Detail teknis",
+  "diagnostics_empty": "Belum ada laporan diagnostik yang disiapkan.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Status tunnel} handshake{Konfirmasi koneksi} certificate{Sertifikat VPN} kill_switch{Perlindungan Android} connectivity{Jaringan yang tersedia} api_reachability{Akses layanan} secure_storage{Penyimpanan aman} other{Pemeriksaan lokal}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Diperiksa} failed{Memerlukan perhatian} skipped{Tidak diuji — tidak ada pemeriksaan aktif} unknown{Informasi tidak tersedia} other{Informasi tidak tersedia}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Selamat datang di FuzeVPN",
+  "connection_changeLocation": "Ubah lokasi",
+  "connection_details": "Detail koneksi",
+  "locations_searchLabel": "Cari kota atau negara",
+  "locations_clearSearch": "Hapus pencarian",
+  "locations_filterAll": "Semua",
+  "locations_filterFavorites": "Favorit",
+  "locations_results": "{count, plural, one{{count} lokasi} other{{count} lokasi}}",
+  "locations_noResults": "Tidak ada lokasi yang ditemukan",
+  "locations_noResultsHint": "Coba kota atau negara lain.",
+  "locations_noFavorites": "Favorit Anda, dekat di tangan",
+  "locations_noFavoritesHint": "Ketuk bintang di samping lokasi untuk menyimpannya di sini.",
+  "locations_showAll": "Lihat semua lokasi",
+  "locations_addFavorite": "Tambahkan {name} ke favorit",
+  "locations_removeFavorite": "Hapus {name} dari favorit",
+  "locations_favoriteSaveFailed": "Favorit tidak dapat disimpan. Coba lagi.",
+  "locations_emptyTitle": "Tidak ada lokasi yang tersedia",
+  "locations_emptyHint": "Segarkan daftar untuk mencoba lagi.",
+  "devices_manage": "Kelola perangkat saya",
+  "settings_personalization": "Jadikan milik Anda",
+  "settings_safety": "Perlindungan",
+  "settings_help": "Perlu bantuan?",
+  "settings_about": "Tentang FuzeVPN",
+  "diagnostics_heading": "Pahami masalah koneksi",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Tersedia} pending{Menyiapkan} revoked{Dihapus} expired{Kedaluwarsa} other{Status tidak tersedia}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Preferensi tidak disimpan",
+  "notice_preferenceSave_message": "Pilihan Anda diterapkan untuk saat ini, tetapi tidak dapat disimpan. Coba lagi agar pilihan tetap tersimpan setelah aplikasi ditutup.",
+  "connection_androidDisconnectHint": "Jika Android tetap mempertahankan VPN aktif, matikan VPN selalu aktif di pengaturan yang terbuka.",
+  "protection_learnMore": "Pelajari perlindungan Android",
+  "protection_guideWhy": "Perlindungan ini mencegah aplikasi menggunakan internet secara langsung jika VPN terputus. Perlindungan ini dikonfigurasi di Android.",
+  "protection_guideAlwaysOnTitle": "VPN selalu aktif",
+  "protection_guideAlwaysOn": "Android menjaga layanan VPN tetap berjalan dan dapat memulainya kembali setelah ponsel dimulai ulang.",
+  "protection_guideBlockTitle": "Blokir koneksi tanpa VPN",
+  "protection_guideBlock": "Pengaturan ini mencegah lalu lintas melewati VPN, termasuk saat koneksi terputus.",
+  "protection_guideWarning": "Dengan pemblokiran ini diaktifkan, akses internet tetap nonaktif hingga VPN terhubung.",
+  "protection_guideStepsTitle": "Aktifkan perlindungan",
+  "protection_guideStep1": "Buka pengaturan VPN Android dengan tombol di bawah.",
+  "protection_guideStep2": "Buka opsi menggunakan ikon roda gigi di samping FuzeVPN.",
+  "protection_guideStep3": "Aktifkan VPN selalu aktif, lalu Blokir koneksi tanpa VPN, jika opsi tersebut tersedia.",
+  "protection_guideManufacturers": "Nama dapat berbeda menurut ponsel. Jika perlu, cari VPN di Pengaturan, biasanya di bagian Jaringan & internet.",
+  "protection_guideDisableTitle": "Matikan perlindungan ini",
+  "protection_guideDisable": "Di pengaturan yang sama, matikan pemblokiran tanpa VPN untuk mengizinkan akses internet tanpa VPN. Matikan juga VPN selalu aktif jika Anda tidak ingin Android memulainya kembali.",
+  "protection_guideManual": "Anda memilih pengaturan ini di Android. FuzeVPN tidak mengubahnya untuk Anda.",
+  "locations_changeTitle": "Ubah lokasi?",
+  "locations_changeActive": "VPN akan terputus, lalu mencoba terhubung ke {name}.",
+  "locations_changeIdle": "VPN akan mencoba terhubung ke {name}.",
+  "locations_confirmChange": "Ubah dan hubungkan",
+  "locations_changeBusy": "Perubahan sedang berlangsung. Tunggu sebelum memilih lokasi lain.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Pilihan otomatis",
+  "locations_cities": "Kota",
+  "locations_servers": "Server",
+  "locations_viewCities": "Lihat kota di {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Lihat server di {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} negara} other{{count} negara}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} kota} other{{count} kota}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} server} other{{count} server}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Semua negara",
+  "locations_backToCountries": "Kembali ke negara",
+  "locations_backToCities": "Kembali ke kota di {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Pilih {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Pilih {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Tidak ada server yang kompatibel.",
+  "externalLink_failed": "Tautan ini tidak dapat dibuka. Anda dapat menyalinnya dan membukanya di peramban.",
+  "externalLink_copy": "Salin tautan",
+  "externalLink_copied": "Tautan disalin",
+  "externalLink_copyFailed": "Tautan tidak dapat disalin. Pilih alamat di bawah.",
+  "settings_deleteAccount": "Hapus akun saya",
+  "settings_deleteAccountDetail": "Lihat cara mengajukan penghapusan akun",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Pilih langganan VPN Anda.",
+  "billing_subscribe": "Berlangganan",
+  "billing_choosePlan": "Pilih paket untuk melanjutkan.",
+  "billing_monthly": "Bulanan",
+  "billing_yearly": "Tahunan",
+  "billing_continue": "Lanjutkan dengan Google Play",
+  "billing_restore": "Pulihkan pembelian",
+  "billing_manage": "Kelola langganan",
+  "billing_deleteAccountWarning": "Jika Anda memiliki langganan Google Play, menghapus akun FuzeVPN Anda tidak membatalkan perpanjangannya. Kelola atau batalkan perpanjangan secara terpisah di Google Play.",
+  "billing_deleteAccountContinue": "Lanjutkan ke permintaan penghapusan akun",
+  "billing_refresh": "Perbarui akses",
+  "billing_loadingPlans": "Memuat paket…",
+  "billing_unavailable": "Belum ada paket yang tersedia. Coba lagi nanti.",
+  "billing_comingSoon": "Langganan segera tersedia.",
+  "billing_priceDisclosure": "Harga disediakan oleh Google Play. Jumlah akhir dikonfirmasi sebelum pembayaran.",
+  "billing_renewalMonthly": "Diperpanjang otomatis setiap bulan kecuali dibatalkan. Anda dapat membatalkan kapan saja di langganan Google Play.",
+  "billing_renewalYearly": "Diperpanjang otomatis setiap tahun kecuali dibatalkan. Anda dapat membatalkan kapan saja di langganan Google Play.",
+  "billing_active": "Akses Premium Anda aktif",
+  "billing_accessUntil": "Akses hingga {date}.",
+  "billing_webManaged": "Langganan Anda dikelola di situs web FuzeVPN.",
+  "billing_playManaged": "Langganan Anda dikelola melalui Google Play.",
+  "billing_inactive": "Tidak ada langganan aktif.",
+  "billing_checkingAccess": "Memeriksa akses Anda…",
+  "billing_restoring": "Memulihkan pembelian…",
+  "billing_pending": "Pembayaran tertunda. Akses akan diaktifkan setelah konfirmasi.",
+  "billing_cancelled": "Pembelian dibatalkan. Tidak ada langganan baru yang diaktifkan.",
+  "billing_verifying": "Memverifikasi pembelian…",
+  "billing_success": "Langganan diaktifkan. Akses Premium Anda siap.",
+  "billing_restored": "Pembelian Anda telah dipulihkan.",
+  "billing_restoreEmpty": "Tidak ada pembelian untuk dipulihkan pada akun Google Play ini.",
+  "billing_catalogError": "Tidak dapat memuat paket. Coba lagi.",
+  "billing_purchaseError": "Tidak dapat memulai pembelian. Coba lagi.",
+  "billing_verificationError": "Verifikasi pembelian sementara tidak tersedia. Pulihkan pembelian untuk mencoba lagi.",
+  "billing_restoreError": "Tidak dapat memulihkan pembelian. Coba lagi.",
+  "billing_managementError": "Tidak dapat membuka pengelolaan langganan. Coba lagi.",
+  "billing_storeUnavailable": "Google Play tidak tersedia di perangkat ini.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "VPN Anda, kini lebih mudah.",
+  "welcome_description": "Lindungi koneksi Anda. Tetap kendalikan privasi Anda.",
+  "welcome_start": "Mulai",
+  "welcome_alreadyPurchased": "Sudah membeli?",
+  "welcome_noAccountRequired": "Tidak perlu membuat akun untuk memulai.",
+  "guest_accountTitle": "Akun belum ditautkan",
+  "guest_accountDescription": "Pulihkan pembelian dengan akun Google Play yang sama untuk menggunakan langganan di perangkat lain.",
+  "guest_existingSubscriberSignIn": "Sudah berlangganan? Masuk",
+  "guest_claimTitle": "Gunakan FuzeVPN di mana saja",
+  "guest_claimDescription": "Buat akun untuk mengakses langganan di perangkat Anda lainnya. Langkah ini opsional.",
+  "guest_skip": "Nanti saja",
+  "guest_activationTitle": "Fuze Premium aktif",
+  "guest_activationDescription": "Langganan Anda siap. Gunakan VPN dan buat akun kapan saja.",
+  "guest_useVpn": "Gunakan VPN saya",
+  "guest_loginRequired": "Pembelian ini sudah ditautkan ke akun FuzeVPN. Masuk ke akun tersebut untuk mengakses langganan Anda.",
+  "guest_signOutWarning": "Anda dapat memulihkan langganan dengan memulihkan pembelian menggunakan akun Google Play yang sama.",
+  "guest_profileUnavailable": "Akun Anda sudah ditautkan. Masuk untuk melihat dan mengelola informasi Anda.",
+  "billing_acceptance": "Dengan melanjutkan, Anda menyetujui Ketentuan Penggunaan dan Kebijakan Privasi.",
+  "guest_verifyEmailReminder": "Konfirmasikan alamat email untuk melindungi akun Anda. Anda dapat terus menggunakan VPN.",
+  "guest_serviceUnavailable": "Layanan untuk sementara tidak tersedia. Coba lagi sebentar.",
+  "guest_restoreError": "Pembelian Anda tidak dapat dipulihkan. Coba lagi dengan akun Google Play yang digunakan untuk membeli.",
+  "guest_claimSuccess": "Akun Anda telah dibuat. Langganan dan akses VPN Anda tetap terjaga.",
+  "guest_emailExists": "Email ini sudah digunakan. Pilih alamat lain atau masuk ke akun yang sudah ada. Pembelian Anda tetap tersedia melalui Google Play.",
+  "guest_claimError": "Akun Anda tidak dapat dibuat. Anda dapat terus menggunakan VPN dan mencoba lagi nanti.",
+  "guest_secureStorageError": "Sesi Anda tidak dapat diamankan di perangkat ini. Coba lagi.",
+  "guest_premiumRequired": "Pilih langganan untuk mengaktifkan VPN Anda.",
+  "welcome_viewPlans": "Lihat paket",
+  "google_continue": "Lanjutkan dengan Google",
+  "google_or": "atau",
+  "google_title": "Akun FuzeVPN Anda",
+  "google_settingUp": "Selesaikan akun Anda",
+  "google_country": "Negara tempat tinggal",
+  "google_profileDescription": "Pilih negara Anda dan tinjau kedua dokumen untuk membuat akun FuzeVPN.",
+  "google_claimDescription": "Tautkan akun tamu Anda ke Google. Langganan dan perangkat tetap terkait dengan akun ini.",
+  "google_linkTitle": "Tautkan Google ke FuzeVPN",
+  "google_linkDescription": "Konfirmasikan akses ke akun FuzeVPN Anda yang ada. Kata sandi Google tidak diminta.",
+  "google_password": "Kata sandi FuzeVPN",
+  "google_linkAccount": "Konfirmasi penautan",
+  "google_requestEmail": "Kirim email konfirmasi",
+  "google_emailInstructions": "Buka email FuzeVPN dan masukkan kode konfirmasi.",
+  "google_emailCode": "Kode konfirmasi email",
+  "google_confirmEmail": "Konfirmasi kode",
+  "google_restart": "Pilih akun Google lain",
+  "google_resume": "Periksa percobaan ini",
+  "google_unavailable": "Login Google tidak tersedia. Anda dapat menggunakan email dan kata sandi.",
+  "google_expired": "Percobaan ini kedaluwarsa. Batalkan lalu mulai lagi.",
+  "google_conflict": "Akun Google ini sudah tertaut ke akun lain. Akun dan langganan Anda saat ini tetap disimpan.",
+  "google_error": "Login Google gagal. Coba lagi; akses Anda saat ini tetap disimpan.",
+  "google_uncertain": "Hasil belum dapat dikonfirmasi. Periksa percobaan ini atau batalkan sebelum memulai lagi.",
+  "google_cancelFailed": "Pembatalan belum dapat dikonfirmasi. Coba batalkan lagi sebelum meninggalkan layar ini.",
+  "google_cancelled": "Login Google dibatalkan.",
+  "google_selecting": "Pilih akun Google Anda…",
+  "google_verifying": "Memeriksa akun Anda…",
+  "google_emailUnavailable": "Email konfirmasi tidak dapat dikirim. Coba lagi nanti.",
+  "google_emailSent": "Email konfirmasi terkirim. Periksa kotak masuk Anda.",
+  "google_rateLimited": "Harap tunggu sebelum mencoba lagi.",
+  "google_invalidPassword": "Kata sandi FuzeVPN salah. Akun Anda saat ini tetap disimpan.",
+  "google_invalidCode": "Kode konfirmasi tidak valid atau kedaluwarsa.",
+  "google_accountChanged": "Sesi berubah. Batalkan percobaan ini sebelum memulai lagi.",
+  "google_invalidResponse": "Respons tidak dapat divalidasi. Akses Anda saat ini tetap disimpan.",
+  "google_invalidRegistration": "Periksa negara dan kedua persetujuan.",
+  "google_consentRequired": "Pilih negara Anda dan setujui kedua dokumen untuk melanjutkan.",
+  "google_challengeRequired": "Pemeriksaan keamanan tambahan diperlukan. Akses Anda saat ini tetap disimpan.",
+  "google_challengeUnavailable": "Pemeriksaan keamanan tidak tersedia. Coba lagi nanti."
+}

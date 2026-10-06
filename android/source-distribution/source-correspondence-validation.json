@@ -1,0 +1,29 @@
+{
+  "asio": {
+    "headers_matching_imported_prefix": 629,
+    "patches_applied": 6
+  },
+  "fmt": {
+    "headers_matching_imported_prefix": 14,
+    "patches_applied": 0
+  },
+  "lz4": {
+    "headers_matching_imported_prefix": 6,
+    "patches_applied": 0
+  },
+  "go_runtime": {
+    "matching_source_files": 10681,
+    "changed_files": [
+      "runtime/sys_linux_386.s",
+      "runtime/sys_linux_amd64.s",
+      "runtime/sys_linux_arm.s",
+      "runtime/sys_linux_arm64.s",
+      "runtime/sys_linux_mips64x.s",
+      "runtime/sys_linux_mipsx.s",
+      "runtime/sys_linux_ppc64x.s",
+      "runtime/sys_linux_s390x.s"
+    ],
+    "patch_application": "tools/build_wireguard_native.ps1",
+    "patch": "android/third_party/wireguard-android/tunnel/tools/libwg-go/goruntime-boottime-over-monotonic.diff"
+  }
+}

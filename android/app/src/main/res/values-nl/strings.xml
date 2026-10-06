@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">VPN-verbinding</string>
+    <string name="vpn_notification_channel_description">Geeft aan wanneer een FuzeVPN-verbinding actief is.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s-verbinding actief</string>
+    <string name="vpn_notification_connecting">%1$s-verbinding wordt gemaakt</string>
+    <string name="vpn_notification_disconnecting">Verbinding met %1$s verbreken</string>
+    <string name="vpn_notification_interrupted">%1$s-verbinding onderbroken</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Gereed · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Verbonden · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Verbinden met %1$s…</string>
+    <string name="vpn_tile_disconnecting">Verbinding verbreken…</string>
+    <string name="vpn_tile_interrupted">%1$s onderbroken</string>
+    <string name="vpn_tile_setup_required">Open eerst de app</string>
+    <string name="vpn_tile_working">VPN-bewerking wordt uitgevoerd…</string>
+    <string name="vpn_notification_reconnecting">Opnieuw verbinden… · %1$s</string>
+    <string name="vpn_system_action_required">Actie vereist in de Android-instellingen</string>
+    <string name="vpn_tile_reconnecting">Opnieuw verbinden… · %1$s</string>
+</resources>

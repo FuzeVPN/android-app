@@ -1,0 +1,931 @@
+{
+  "locale": "ro",
+  "arb": {
+    "accountRestoration_title": "Cont indisponibil temporar",
+    "accountRestoration_message": "Sesiunea a fost păstrată. Încearcă din nou pentru a-ți restaura contul; poți gestiona în continuare conexiunea VPN aici.",
+    "action_retry": "Încearcă din nou",
+    "session_endingTitle": "Încheierea sesiunii",
+    "session_ending": "Sesiunea ta a fost invalidată. VPN-ul este oprit, iar sesiunea este ștearsă…",
+    "session_stopFailed": "Oprirea VPN-ului nu este confirmată. Încearcă din nou înainte de a te autentifica.",
+    "session_cleanupFailed": "VPN-ul este oprit, dar eliminarea sesiunii nu este confirmată. Încearcă din nou curățarea.",
+    "session_retryStop": "Încearcă din nou oprirea",
+    "session_retryCleanup": "Încearcă din nou curățarea",
+    "@@locale": "ro",
+    "appTitle": "FuzeVPN",
+    "startup": "Se pregătește FuzeVPN în siguranță…",
+    "nav_connection": "Conexiune",
+    "nav_locations": "Locații",
+    "nav_account": "Cont",
+    "nav_devices": "Dispozitive",
+    "nav_settings": "Setări",
+    "action_refresh": "Reîmprospătează",
+    "auth_tab_login": "Autentificare",
+    "auth_tab_register": "Înregistrare",
+    "auth_stepAccount": "Cont",
+    "auth_stepIdentity": "Identitate",
+    "auth_stepAddress": "Adresă și acorduri",
+    "auth_stepProgress": "Pasul {current} din {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "VPN-ul tău, simplificat.",
+    "auth_keysLocal": "Cheile tale VPN private rămân pe acest dispozitiv.",
+    "form_email": "Adresă de e-mail",
+    "form_password": "Parolă",
+    "form_showPassword": "Afișează parola",
+    "form_hidePassword": "Ascunde parola",
+    "form_passwordMin": "8–72 de octeți UTF-8. Unele caractere folosesc mai mult de un octet.",
+    "form_firstName": "Prenume",
+    "form_lastName": "Nume",
+    "form_phone": "Telefon (+33612345678)",
+    "form_address": "Adresă",
+    "form_address2": "A doua linie a adresei (opțional)",
+    "form_postalCode": "Cod poștal",
+    "form_city": "Oraș",
+    "form_country": "Codul țării (de ex. FR)",
+    "action_login": "Autentificare",
+    "action_createAccount": "Creează un cont",
+    "action_createMyAccount": "Creează-mi contul",
+    "action_next": "Continuă",
+    "action_previous": "Înapoi",
+    "action_forgotPassword": "Ai uitat parola?",
+    "auth_noAccount": "Nu ai încă un cont?",
+    "auth_requiredInformation": "Creează-ți contul în trei pași.",
+    "auth_termsPrefix": "Accept ",
+    "auth_termsLink": "termenii de utilizare",
+    "auth_privacyPrefix": "Accept ",
+    "auth_privacyLink": "politica de confidențialitate",
+    "auth_consentRequired": "Consimțământul tău este necesar pentru a crea un cont.",
+    "validation_required": "Acest câmp este obligatoriu.",
+    "validation_email": "Introdu o adresă de e-mail validă.",
+    "validation_password": "Parola este prea scurtă: cel puțin 8 octeți UTF-8.",
+    "validation_passwordTooLong": "Parola este prea lungă: cel mult 72 de octeți UTF-8.",
+    "validation_phone": "Folosește formatul internațional, de exemplu +33612345678.",
+    "validation_country": "Folosește un cod de țară din două litere, de exemplu FR.",
+    "passwordReset_title": "Resetează parola",
+    "passwordReset_description": "Introdu adresa de e-mail a contului pentru a solicita un link de resetare a parolei.",
+    "passwordReset_send": "Trimite linkul",
+    "connection_title": "Conexiunea ta",
+    "connection_subtitle": "Alege o locație, apoi pornește VPN-ul.",
+    "connection_prepare": "Ești gata să te conectezi?",
+    "connection_advancedOptions": "Opțiuni avansate",
+    "connection_location": "Locație",
+    "connection_chooseLocation": "Alege o locație",
+    "connection_protocol": "Protocol",
+    "connection_connect": "Conectează-te",
+    "connection_connecting": "Se conectează…",
+    "connection_disconnect": "Deconectează-te",
+    "connection_disconnecting": "Se deconectează",
+    "connection_locationChange": "Se schimbă locația…",
+    "connection_unavailable": "{protocol} indisponibil",
+    "connection_activeLocation": "Locație activă",
+    "connection_duration": "Durată",
+    "connection_received": "Primit",
+    "connection_sent": "Trimis",
+    "connection_lastHandshake": "Ultimul schimb securizat",
+    "connection_handshakeAgo": "acum {duration}",
+    "verification_title": "Confirmă-ți adresa de e-mail",
+    "verification_message": "Confirmă-ți adresa de e-mail pentru a folosi VPN-ul pe acest telefon.",
+    "verification_resend": "Retrimite e-mailul",
+    "migration_title": "Schimbarea locației",
+    "migration_draining": "Se pregătește schimbarea locației…",
+    "migration_activating": "Se activează noul server…",
+    "migration_ready": "Locația a fost actualizată.",
+    "migration_blocked": "Schimbarea locației necesită intervenția serverului. Încearcă din nou mai târziu sau contactează serviciul de asistență.",
+    "migration_progress": "Progresul schimbării locației",
+    "migration_retryDelay": "Întârziere între verificări: {seconds}s.",
+    "migration_resume": "Reia schimbarea locației",
+    "status_authorizing": "Este necesară permisiunea",
+    "status_authorizingDetail": "Acceptă solicitarea Android pentru a permite VPN-ul.",
+    "status_preparing": "Se pregătește",
+    "status_preparingDetail": "Se pregătește conexiunea ta securizată.",
+    "status_reconnecting": "Se reconectează…",
+    "status_reconnectingDetail": "Conexiunea a fost întreruptă. VPN-ul încearcă să se reconecteze.",
+    "status_connecting": "Se conectează",
+    "status_connectingDetail": "Se conectează la serverul VPN…",
+    "status_connected": "Conectat",
+    "status_connectedDetail": "Conexiunea ta VPN este activă.",
+    "status_disconnecting": "Se deconectează",
+    "status_disconnectingDetail": "Conexiunea ta VPN se oprește.",
+    "status_error": "Conexiune indisponibilă",
+    "status_errorDetail": "Conexiunea VPN nu este confirmată. Încearcă din nou.",
+    "status_idle": "Deconectat",
+    "status_idleDetail": "Conectează VPN-ul pentru a-ți proteja conexiunea.",
+    "trust_note": "Închiderea aplicației nu oprește VPN-ul. Pentru a-l opri, folosește Deconectare.",
+    "locations_none": "Momentan nu există locații disponibile.",
+    "locations_available": "Alege următoarea locație.",
+    "locations_selected": "Locație selectată",
+    "locations_select": "Alege această locație",
+    "locations_lockedTunnel": "Deconectează VPN-ul pentru a schimba locația.",
+    "locations_lockedMigration": "Așteaptă finalizarea schimbării locației.",
+    "devices_title": "Dispozitivele tale",
+    "devices_used": "{count} / {limit} dispozitive",
+    "devices_refresh": "Reîmprospătează dispozitivele",
+    "devices_empty": "Încă nu este înregistrat niciun dispozitiv VPN.",
+    "devices_firstConnection": "Telefonul tău va fi adăugat la prima conexiune.",
+    "devices_thisDevice": "Acest dispozitiv",
+    "devices_added": "Adăugat la {date}",
+    "action_remove": "Elimină",
+    "settings_title": "Setări",
+    "settings_subtitle": "Preferințele și contul tău, toate într-un singur loc.",
+    "settings_appearance": "Aspect",
+    "settings_language": "Limbă",
+    "settings_languageDescription": "Limba aleasă de tine se aplică și notificărilor VPN.",
+    "settings_account": "Cont",
+    "settings_signOut": "Deconectare",
+    "settings_privacy": "Politica de confidențialitate",
+    "settings_terms": "Termenii de utilizare",
+    "settings_security": "Securitate și transparență",
+    "settings_licenses": "Licențele componentelor",
+    "settings_licensesDetail": "Software folosit în aplicație",
+    "settings_background": "VPN-ul rămâne pornit când părăsești aplicația. Pentru a-l opri, folosește Deconectare din fila Conexiune.",
+    "theme_system": "Sistem",
+    "theme_light": "Deschis",
+    "theme_dark": "Închis",
+    "language_system": "Limba telefonului",
+    "language_fr": "Franceză",
+    "language_en": "Engleză",
+    "language_es": "Spaniolă",
+    "language_de": "Germană",
+    "dialog_removeDevice": "Elimini acest dispozitiv?",
+    "dialog_removeCurrent": "Acest telefon se va deconecta de la VPN și va pierde accesul. Datele conexiunii VPN vor fi eliminate după confirmarea serverului.",
+    "dialog_removeOther": "Accesul VPN pentru „{name}” va fi revocat. Această acțiune nu poate fi anulată.",
+    "dialog_signOut": "Te deconectezi?",
+    "dialog_signOutMessage": "VPN-ul se va opri și va trebui să te autentifici din nou. Cheile tale VPN criptate vor rămâne pe acest telefon pentru următoarea conexiune.",
+    "action_cancel": "Anulează",
+    "action_signOut": "Deconectare",
+    "notice_close": "Închide mesajul",
+    "notice_sessionExpired_title": "Sesiune expirată",
+    "notice_sessionExpired_message": "Sesiunea ta a expirat. Autentifică-te din nou.",
+    "notice_connectionFailed_title": "Conexiunea a eșuat",
+    "notice_invalidCredentials_message": "Adresa de e-mail sau parola este incorectă.",
+    "notice_emailVerification_title": "Este necesară confirmarea e-mailului",
+    "notice_emailVerification_message": "Confirmă-ți adresa de e-mail înainte de a adăuga un dispozitiv VPN.",
+    "notice_rateLimited_title": "Prea multe încercări",
+    "notice_deviceLimit_title": "Limita de 2 dispozitive a fost atinsă",
+    "notice_deviceLimit_message": "Elimină un dispozitiv existent înainte de a adăuga altul.",
+    "notice_identityRenewal_title": "Identitatea VPN trebuie reînnoită",
+    "notice_identityRenewal_message": "Această identitate a fost eliminată. Creează o identitate locală nouă.",
+    "notice_migrationPending_title": "Schimbarea locației este în curs",
+    "notice_migrationPending_message": "O schimbare a locației este deja în curs.",
+    "notice_migrationBlocked_title": "Schimbarea locației este blocată",
+    "notice_migrationBlocked_message": "Schimbarea locației necesită intervenția serverului. Încearcă din nou mai târziu sau contactează serviciul de asistență.",
+    "notice_targetUnavailable_title": "Server indisponibil temporar",
+    "notice_targetUnavailable_message": "Acest server este indisponibil temporar.",
+    "notice_networkUnavailable_title": "Conexiune la internet indisponibilă",
+    "notice_networkUnavailable_message": "Verifică-ți conexiunea și încearcă din nou.",
+    "notice_permissionDenied_title": "Permisiunea VPN a fost refuzată",
+    "notice_permissionDenied_message": "Pornește din nou conexiunea și acceptă solicitarea de permisiune Android.",
+    "notice_wireguardTimeout_title": "Serverul nu răspunde",
+    "notice_wireguardTimeout_message": "Conexiunea WireGuard a durat prea mult. Încearcă din nou sau alege o altă locație.",
+    "notice_tlsFailed_title": "Conexiunea securizată a fost refuzată",
+    "notice_tlsFailed_message": "Serverul nu a acceptat conexiunea OpenVPN. Încearcă din nou. Dacă problema continuă, rulează un diagnostic.",
+    "notice_tunRejected_title": "Android a respins interfața VPN",
+    "notice_tunRejected_message": "Android a respins configurația de rețea solicitată de OpenVPN.",
+    "notice_openvpnStart_title": "OpenVPN nu a putut porni",
+    "notice_openvpnStart_message": "Motorul OpenVPN nu a putut finaliza pornirea. Încearcă din nou. Dacă problema persistă, contactează serviciul de asistență.",
+    "notice_diagnosticCode": "Cod de diagnosticare: {code}",
+    "notice_generic_title": "Conexiunea VPN a eșuat",
+    "notice_generic_message": "A apărut o eroare. Încearcă din nou mai târziu.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Cont creat} password_reset_sent{Solicitarea de resetare a parolei a fost primită} verification_email_sent{E-mailul de verificare a fost trimis} location_migration_pending{Schimbarea locației este în curs} vpn_sign_in_required{Este necesară autentificarea} protocol_unavailable_at_location{Protocol indisponibil} vpn_permission_denied{Permisiunea VPN a fost refuzată} revoked_identity_device_limit{Limita de 2 dispozitive a fost atinsă} tunnel_start_unexpected{VPN-ul nu a putut porni} flutter_disconnect_timeout{Deconectarea nu este confirmată} flutter_disconnect_unexpected{Deconectarea nu a reușit} device_revoked{Dispozitiv eliminat} revoke_unexpected{Dispozitivul nu a putut fi eliminat} identity_renewal_unexpected{Identitatea nu a putut fi reînnoită} openvpn_renewal_unexpected{OpenVPN nu a putut fi reînnoit} location_migration_blocked{Schimbarea locației este blocată} location_migration_slow{Schimbarea locației este încă în curs} location_migration_conflict{Schimbarea locației necesită reîmprospătarea} location_migration_verification_failed{Schimbarea locației nu este confirmată} location_migration_device_changed{Dispozitivul s-a schimbat în timpul schimbării locației} tunnel_stop_failed{Schimbarea locației nu este disponibilă} other{Operațiunea a eșuat}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Contul a fost creat, dar e-mailul de verificare nu a putut fi trimis. Folosește retrimiterea din aplicație.} password_reset_sent{Solicitarea ta a fost primită. Dacă există un cont asociat acestei adrese, este posibil să primești un e-mail. Verifică și dosarul de spam.} verification_email_sent{Un e-mail nou de verificare tocmai a fost trimis.} location_migration_pending{Mutarea la {target} este încă în pregătire. O poți relua fără să recreezi dispozitivul.} vpn_sign_in_required{Autentifică-te în cont înainte de a porni VPN-ul.} protocol_unavailable_at_location{Protocolul selectat nu este oferit de această locație. Reîmprospătează locațiile sau alege un alt protocol.} vpn_permission_denied{Android a refuzat permisiunea VPN. Pornește din nou conexiunea și acceptă solicitarea sistemului.} revoked_identity_device_limit{Accesul VPN al acestui dispozitiv a fost eliminat, iar limita de dispozitive a fost atinsă. Elimină un dispozitiv din Cont → Gestionează dispozitivele mele.} tunnel_start_unexpected{O eroare neașteptată a întrerupt pregătirea tunelului. Verifică codul de diagnosticare și încearcă din nou.} flutter_disconnect_timeout{Android nu a confirmat la timp că VPN-ul s-a oprit. Încearcă să îl oprești din nou.} flutter_disconnect_unexpected{O eroare neașteptată a împiedicat confirmarea opririi tunelului.} device_revoked{Accesul VPN al dispozitivului a fost revocat, iar secretele sale locale au fost eliminate.} revoke_unexpected{Dispozitivul nu a putut fi eliminat. Reîmprospătează lista și încearcă din nou.} identity_renewal_unexpected{Noua identitate VPN nu a putut fi creată. Reîmprospătează dispozitivele și încearcă din nou.} openvpn_renewal_unexpected{Profilul OpenVPN nu a putut fi reînnoit. Încearcă din nou sau verifică codul de diagnosticare.} location_migration_blocked{Serverul nu poate finaliza această schimbare acum. Dispozitivul și identitatea sa locală au fost păstrate.} location_migration_slow{Serverul încă pregătește mutarea la {target}. Folosește Reluare peste câteva momente.} location_migration_conflict{Starea dispozitivului s-a schimbat pe server. Reîmprospătează dispozitivele, apoi reia schimbarea.} location_migration_verification_failed{Serverul nu a confirmat noua locație. Identitatea locală anterioară a fost păstrată.} location_migration_device_changed{Dispozitivul returnat de server nu mai corespunde celui modificat. Reîmprospătează dispozitivele înainte de a încerca din nou.} tunnel_stop_failed{Tunelul anterior trebuie oprit complet înainte de noua conexiune.} other{Operațiunea nu a putut fi finalizată. Încearcă din nou sau trimite codul de diagnosticare serviciului de asistență.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Sesiune expirată} invalid_credentials{Autentificarea a eșuat} email_verification_required{Este necesară confirmarea e-mailului} verification_email_cooldown{E-mailul a fost deja trimis} rate_limited{Prea multe încercări} invalid_registration{Informațiile trebuie corectate} email_exists{Contul există deja} invalid_profile{Profil nevalid} invalid_device{Dispozitiv nevalid} invalid_location{Locație indisponibilă} device_limit{Limita de 2 dispozitive a fost atinsă} device_exists{Identitatea VPN este deja utilizată} device_identity_revoked{Identitatea VPN trebuie reînnoită} device_location_locked{Schimbarea locației necesită reîmprospătarea} location_migration_pending{Schimbarea locației este în curs} location_migration_blocked{Schimbarea locației este blocată} target_ca_mismatch{Server OpenVPN incompatibil} location_migration_conflict{Schimbarea locației necesită reîmprospătarea} server_full{Serverul este plin} capacity_unavailable{Locație indisponibilă temporar} target_unavailable{Server indisponibil temporar} not_found{Element negăsit} invalid_openvpn_csr{Identitate OpenVPN nevalidă} openvpn_profile_exists{Profilul OpenVPN există deja} openvpn_profile_revoked{Profilul OpenVPN a fost revocat} openvpn_operation_pending{Operațiunea OpenVPN este în curs} openvpn_operation_terminal{Operațiunea OpenVPN a fost întreruptă} openvpn_address_unavailable{Adresă OpenVPN indisponibilă} openvpn_profile_conflict{Conflict OpenVPN} openvpn_signer_unavailable{OpenVPN indisponibil} email_delivery_unavailable{E-mail indisponibil} invalid_token{Link nevalid} network_unavailable{Conexiune la internet indisponibilă} invalid_json{Solicitare nevalidă} invalid_api_response{Răspuns nevalid al serverului} ipv6_unavailable{IPv6 indisponibil} invalid_ip_families{Configurarea rețelei a fost respinsă} other{Serviciu indisponibil}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Sesiunea ta a expirat. Autentifică-te din nou.} invalid_credentials{Adresa de e-mail sau parola este incorectă.} email_verification_required{Confirmă-ți adresa de e-mail înainte de a adăuga un dispozitiv VPN.} invalid_registration{Verifică informațiile și consimțămintele solicitate.} email_exists{Un cont folosește deja această adresă de e-mail.} invalid_profile{Verifică informațiile profilului tău.} invalid_device{Numele sau identitatea locală a acestui dispozitiv este nevalidă.} invalid_location{Reîmprospătează lista locațiilor și încearcă din nou.} device_limit{Elimină un dispozitiv existent înainte de a adăuga altul.} device_exists{Această identitate VPN este deja asociată altui cont.} device_identity_revoked{Această identitate a fost eliminată. Trebuie creată o identitate locală nouă.} device_location_locked{Locația acestui dispozitiv tocmai s-a schimbat. Aplicația va relua schimbarea în curs.} location_migration_pending{O schimbare a locației este deja în curs.} location_migration_blocked{Schimbarea locației necesită intervenția serverului. Încearcă din nou mai târziu sau contactează serviciul de asistență.} target_ca_mismatch{Acest server nu este încă compatibil cu profilul OpenVPN actual.} location_migration_conflict{Reîmprospătează dispozitivele, apoi încearcă din nou schimbarea locației.} server_full{Această locație și-a atins limita de conexiuni. Alege o altă locație sau încearcă din nou mai târziu.} capacity_unavailable{Nu putem confirma dacă această locație este disponibilă acum. Alege o altă locație sau încearcă din nou mai târziu.} target_unavailable{Acest server este indisponibil temporar.} not_found{Acest element nu mai este disponibil în contul tău.} invalid_openvpn_csr{Creează o identitate OpenVPN nouă și încearcă din nou.} openvpn_profile_exists{Există deja un profil OpenVPN pentru acest dispozitiv.} openvpn_profile_revoked{Reînnoiește profilul OpenVPN pentru a continua.} openvpn_operation_pending{Schimbarea este încă în curs de propagare. Încearcă din nou mai târziu.} openvpn_operation_terminal{Creează o identitate OpenVPN nouă și încearcă din nou.} openvpn_address_unavailable{Momentan nu este disponibilă nicio adresă OpenVPN.} openvpn_profile_conflict{Profilul s-a schimbat. Reîmprospătează dispozitivele și încearcă din nou.} openvpn_signer_unavailable{Serviciul OpenVPN este indisponibil temporar.} email_delivery_unavailable{E-mailul nu a putut fi trimis. Încearcă din nou mai târziu.} invalid_token{Acest link este nevalid sau a expirat. Solicită unul nou.} network_unavailable{Verifică-ți conexiunea la internet și încearcă din nou.} invalid_json{Verifică informațiile introduse și încearcă din nou.} invalid_api_response{Serverul a returnat un răspuns neașteptat. Încearcă din nou mai târziu.} ipv6_unavailable{Serverul nu poate activa IPv6 momentan. Încearcă din nou mai târziu.} invalid_ip_families{Configurația tunelului este incompletă sau nu corespunde adreselor autorizate. Încearcă din nou din aplicație.} other{A apărut o eroare a serverului. Încearcă din nou mai târziu.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Încearcă din nou peste câteva momente.",
+    "notice_retryAfter": "Încearcă din nou peste {seconds} secunde.",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "Object"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Reluarea VPN-ului de sistem nu este disponibilă} system_vpn_resume_corrupt{Reluare nevalidă a VPN-ului de sistem} system_vpn_resume_session_invalid{Sesiune nevalidă pentru reluarea VPN-ului} system_vpn_resume_identity_changed{Identitatea VPN s-a schimbat} system_vpn_resume_identity_invalid{Identitate nevalidă pentru reluarea VPN-ului} system_vpn_resume_storage_failed{Stocarea pentru reluarea VPN-ului nu este disponibilă} system_vpn_resume_network_timeout{Reluarea VPN-ului nu are acces la rețea} system_vpn_resume_blocked{Reluarea VPN-ului este blocată} system_vpn_resume_failed{Reluarea VPN-ului a eșuat} system_vpn_resume_error_invalid{Eroare nevalidă la reluarea VPN-ului} wireguard_identity_store_failed{Identitatea WireGuard nu a fost salvată} wireguard_identity_unavailable{Identitatea WireGuard nu este disponibilă} vpn_host_destroyed{Gazda VPN Android s-a oprit} vpn_host_unavailable{Gazda VPN Android nu este disponibilă} vpn_permission_required{Este necesară permisiunea VPN} vpn_permission_denied{Permisiunea VPN a fost refuzată} vpn_permission_request_failed{Permisiunea nu a putut fi solicitată} wireguard_foreground_service_unavailable{Serviciul WireGuard nu este disponibil} wireguard_identity_invalid{Cheie locală WireGuard nevalidă} wireguard_identity_in_use{Identitatea WireGuard este deja utilizată} wireguard_configuration_invalid{Configurație WireGuard nevalidă} wireguard_operation_pending{Operațiunea WireGuard este încă activă} wireguard_start_failed{Pornirea WireGuard a fost respinsă} wireguard_stop_timeout{Oprirea WireGuard nu este confirmată} wireguard_handshake_timeout{WireGuard nu a răspuns} openvpn_connection_timeout{OpenVPN nu a răspuns} openvpn_core_unavailable{Motorul OpenVPN nu este disponibil} openvpn_operation_pending{Sesiunea OpenVPN este încă activă} openvpn_stop_timeout{Oprirea OpenVPN nu este confirmată} openvpn_profile_unavailable{Profilul local OpenVPN lipsește} openvpn_native_failed{Apelul OpenVPN nativ a fost întrerupt} openvpn_key_generation_failed{Cheia OpenVPN P-256 nu a putut fi creată} openvpn_csr_generation_failed{CSR-ul OpenVPN nu a putut fi creat} openvpn_identity_store_failed{Identitatea OpenVPN nu a fost salvată} openvpn_identity_clear_failed{Eliminarea OpenVPN a fost incompletă} openvpn_identity_in_use{Identitatea OpenVPN este încă utilizată} openvpn_tls_verification_required{Verificarea TLS OpenVPN lipsește} openvpn_cipher_invalid{Cifrul OpenVPN este nevalid} openvpn_profile_rejected{Profilul OpenVPN a fost respins} openvpn_identity_inconsistent{Identitatea OpenVPN este inconsistentă} tls_handshake_failed{Negocierea OpenVPN a fost respinsă} tls_alert_unknown_ca{Certificatul clientului OpenVPN nu este recunoscut} tls_alert_bad_certificate{Certificatul clientului OpenVPN a fost respins} tls_alert_unsupported_certificate{Certificat OpenVPN incompatibil} tls_client_certificate_required{Este necesar certificatul clientului OpenVPN} tls_alert_misc{Alertă TLS OpenVPN} tls_signature_algorithm_rejected{Semnătură OpenVPN incompatibilă} tls_handshake_rejected{Negocierea TLS OpenVPN a fost respinsă} tls_version_rejected{Versiune TLS OpenVPN incompatibilă} tls_certificate_expired{Certificatul TLS a expirat} tls_certificate_revoked{Certificatul TLS a fost revocat} transport_failed{Serverul OpenVPN nu poate fi accesat} tun_configuration_rejected{Interfața OpenVPN nu a putut fi creată} tun_setup_failed{Configurarea TUN OpenVPN a eșuat} tun_interface_create_failed{Crearea interfeței OpenVPN a eșuat} tun_interface_disabled{Interfața OpenVPN este dezactivată} tun_halted{Interfața OpenVPN a fost întreruptă} tun_already_established{Interfața OpenVPN este deja deschisă} tun_addresses_missing{Adresa OpenVPN lipsește} tun_routes_missing{Rutele OpenVPN lipsesc} tun_dns_missing{DNS-ul OpenVPN lipsește} tun_permission_revoked{Permisiunea VPN a fost revocată} tun_establish_returned_null{Android a respins interfața VPN} openvpn_service_start_failed{Serviciul OpenVPN nu este disponibil} openvpn_operation_timeout{Apelul OpenVPN a expirat} openvpn_start_failed{Pornirea OpenVPN a fost respinsă} openvpn_connection_failed{Conexiunea OpenVPN a fost întreruptă} openvpn_core_status_error{OpenVPN Core s-a încheiat cu o eroare} openvpn_stopped_before_connected{OpenVPN s-a oprit înainte de conectare} openvpn_auth_failed{Autentificarea OpenVPN a fost respinsă} openvpn_client_setup_failed{Configurarea clientului OpenVPN a eșuat} openvpn_client_halted{Clientul OpenVPN a fost întrerupt} openvpn_client_restart{A fost solicitată repornirea OpenVPN} openvpn_inactive_timeout{OpenVPN a fost inactiv prea mult timp} openvpn_session_expired{Sesiunea OpenVPN a expirat} openvpn_credentials_required{Autentificare OpenVPN incompatibilă} openvpn_proxy_failed{Transportul intermediar OpenVPN a eșuat} openvpn_compression_failed{Compresia OpenVPN a fost respinsă} openvpn_ntlm_crypto_unavailable{Criptarea NTLM OpenVPN nu este disponibilă} openvpn_feature_unsupported{Funcție OpenVPN incompatibilă} network_unavailable{Conexiunea la internet nu este disponibilă} network_lost{Rețeaua nu este disponibilă} certificate_validation_failed{Certificatul serverului a fost respins} openvpn_certificate_expired{Certificatul OpenVPN a expirat} tunnel_active_for_another_account{Tunelul altui cont este încă activ} tunnel_already_active{Tunelul nativ este deja activ} tunnel_stop_timeout{Oprirea {protocol} nu este confirmată} tunnel_disconnected{{protocol} a fost întrerupt} native_bridge_unavailable{Puntea Android nu este disponibilă} native_operation_failed{Operațiunea Android a fost întreruptă} invalid_arguments{Parametrii VPN sunt incompleți} invalid_account_id{Cont VPN nevalid} invalid_device_id{Identificator de dispozitiv nevalid} storage_key_not_allowed{Cheia de stocare a fost respinsă} secure_storage_read_failed{Citirea securizată a eșuat} secure_storage_write_failed{Scrierea securizată a eșuat} key_generation_failed{Cheia WireGuard nu a putut fi generată} csr_generation_failed{CSR-ul OpenVPN nu a putut fi generat} other{Eroare VPN nativă neclasificată}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android nu găsește o sesiune VPN care poate fi reluată. Pornește o conexiune nouă din aplicație.} system_vpn_resume_corrupt{Datele salvate pentru reluarea VPN-ului sunt nevalide și nu vor fi folosite. Pornește o conexiune nouă.} system_vpn_resume_session_invalid{Sesiunea salvată nu mai poate relua VPN-ul. Autentifică-te din nou în aplicație.} system_vpn_resume_identity_changed{Identitatea locală VPN s-a schimbat. Reluarea a fost oprită; pornește o conexiune nouă.} system_vpn_resume_identity_invalid{Identitatea pentru reluare este nevalidă. Pornește o conexiune nouă.} system_vpn_resume_storage_failed{Android nu a putut citi sau actualiza datele criptate pentru reluare. Pornește o conexiune nouă.} system_vpn_resume_network_timeout{Android nu a găsit la timp o rețea pentru a relua VPN-ul. Încearcă din nou când este disponibilă o rețea.} system_vpn_resume_blocked{Reluarea VPN-ului este blocată. Verifică setările Android, apoi pornește o conexiune nouă.} system_vpn_resume_failed{Reluarea VPN-ului Android a eșuat. Pornește o conexiune nouă din aplicație.} system_vpn_resume_error_invalid{Android a returnat o eroare de reluare inutilizabilă. Pornește o conexiune nouă.} wireguard_identity_store_failed{Android nu a putut salva identitatea WireGuard criptată a acestui cont.} wireguard_identity_unavailable{Nu este disponibilă nicio identitate WireGuard utilizabilă pentru această conexiune.} vpn_host_destroyed{Componenta Android care găzduia VPN-ul a fost oprită. Pornește o conexiune nouă.} vpn_host_unavailable{Android nu poate crea componenta care găzduiește VPN-ul. Încearcă din nou după ce verifici setările VPN.} openvpn_renewal_required{Certificatul necesită o acțiune în aplicație înainte de conectare.} openvpn_recovery_failed{Recuperarea automată a eșuat. Pornește o conexiune nouă din aplicație.} openvpn_recovery_exhausted{Recuperarea automată a fost deja folosită. Pornește o conexiune nouă din aplicație.} vpn_permission_required{Android necesită o nouă autorizare VPN înainte de pornirea tunelului.} vpn_permission_denied{Permite accesul FuzeVPN în solicitarea Android pentru a continua.} vpn_permission_request_failed{Android nu a putut deschide ecranul permisiunii VPN.} wireguard_foreground_service_unavailable{Android nu a putut menține serviciul WireGuard în prim-plan.} wireguard_identity_invalid{Cheia WireGuard criptată a acestui cont nu poate fi citită sau este nevalidă.} wireguard_identity_in_use{O altă operațiune folosește încă cheia WireGuard a acestui cont.} wireguard_configuration_invalid{Adresa WireGuard, DNS-ul, cheia serverului sau rutele primite sunt nevalide.} wireguard_operation_pending{Operațiunea WireGuard anterioară nu și-a eliberat încă serviciul nativ.} wireguard_start_failed{Motorul WireGuard a respins activarea configurației.} wireguard_stop_timeout{Serviciul WireGuard nu a confirmat eliberarea interfeței VPN în limita de timp.} wireguard_handshake_timeout{Tunelul nu a confirmat la timp schimbul de mesaje cu serverul.} openvpn_connection_timeout{OpenVPN nu a confirmat la timp conexiunea la server.} openvpn_core_unavailable{Această versiune a aplicației nu conține un motor OpenVPN utilizabil.} openvpn_operation_pending{Motorul nativ păstrează încă sesiunea OpenVPN anterioară și refuză să creeze una a doua.} openvpn_stop_timeout{OpenVPN Core nu a confirmat că sesiunea sa nativă s-a oprit și a fost eliminată în limita de timp.} openvpn_profile_unavailable{Nu poate fi citit niciun profil OpenVPN validat pentru această conexiune.} openvpn_native_failed{O eroare a aplicației a întrerupt OpenVPN. Încearcă să te conectezi din nou. Dacă problema continuă, rulează o diagnosticare.} openvpn_key_generation_failed{Android Keystore nu a putut crea sau citi cheia privată P-256 care nu poate fi exportată.} openvpn_csr_generation_failed{Cheia Android Keystore nu a putut semna cererea de certificat OpenVPN.} openvpn_identity_store_failed{Certificatul sau profilul OpenVPN nu a putut fi salvat în stocarea criptată.} openvpn_identity_clear_failed{Android nu a putut elimina întreaga identitate locală OpenVPN a acestui cont.} openvpn_identity_in_use{O sesiune OpenVPN nativă folosește încă cheia sau certificatul acestui dispozitiv.} openvpn_tls_verification_required{Profilul nu solicită explicit verificarea certificatului serverului.} openvpn_cipher_invalid{Serverul a furnizat un algoritm de criptare care nu se află în lista permisă.} openvpn_profile_rejected{Profilul primit de la server este incompatibil. Recreează acest dispozitiv și încearcă din nou.} openvpn_identity_inconsistent{Certificatul nu corespunde identității securizate a acestui telefon. Niciun profil local nu a fost înlocuit.} tls_handshake_failed{Serverul a respins negocierea TLS. Recreează profilul dacă problema persistă.} tls_alert_unknown_ca{Serverul nu recunoaște autoritatea certificatului acestui dispozitiv. Serverul OpenVPN trebuie verificat.} tls_alert_bad_certificate{Serverul a respins certificatul acestui dispozitiv. Recreează dispozitivul înainte de a încerca din nou.} tls_alert_unsupported_certificate{Serverul nu acceptă tipul de certificat securizat folosit de Android.} tls_client_certificate_required{Serverul necesită un certificat de client, dar OpenVPN Core nu a putut prezenta unul.} tls_alert_misc{Serverul a returnat o alertă TLS din afara categoriilor certificat și versiune.} tls_signature_algorithm_rejected{Serverul a respins algoritmul ECDSA P-256 al cheii Android Keystore.} tls_handshake_rejected{Serverul a întrerupt negocierea TLS înainte de conectare.} tls_version_rejected{Clientul și serverul nu au găsit o versiune TLS comună.} tls_certificate_expired{Certificatul prezentat în timpul conectării a expirat.} tls_certificate_revoked{Certificatul prezentat în timpul conectării a fost revocat.} transport_failed{Serverul OpenVPN nu răspunde în rețeaua actuală. Încearcă din nou în scurt timp.} tun_configuration_rejected{Android a respins configurația de rețea solicitată de OpenVPN.} tun_setup_failed{OpenVPN Core a respins planul de rețea înainte de a crea interfața Android.} tun_interface_create_failed{OpenVPN Core nu a putut obține interfața TUN de la Android VpnService.} tun_interface_disabled{Android sau OpenVPN Core a dezactivat interfața TUN în timpul conexiunii.} tun_halted{OpenVPN Core a primit o solicitare de oprire a interfeței TUN.} tun_already_established{OpenVPN a solicitat o a doua interfață în aceeași conexiune. Tunelul a fost oprit pentru siguranță.} tun_addresses_missing{Serverul nu a furnizat o adresă utilizabilă pentru tunel.} tun_routes_missing{Serverul nu a furnizat rute utilizabile pentru tunel.} tun_dns_missing{Serverul nu a furnizat un server DNS utilizabil.} tun_permission_revoked{Android a revocat permisiunea VPN în timpul conexiunii.} tun_establish_returned_null{Android nu a creat interfața, de obicei deoarece un alt VPN este încă activ.} openvpn_service_start_failed{Android nu a putut porni serviciul OpenVPN din prim-plan.} openvpn_operation_timeout{Un apel JNI către OpenVPN Core a depășit durata maximă.} openvpn_start_failed{Serviciul Android este pregătit, dar OpenVPN Core nu a acceptat pornirea profilului.} openvpn_connection_failed{OpenVPN Core s-a oprit înainte de a emite evenimentul CONNECTED.} openvpn_core_status_error{Bucla OpenVPN nativă s-a încheiat cu o eroare și fără un eveniment terminal mai specific.} openvpn_stopped_before_connected{Bucla OpenVPN nativă s-a oprit înainte de CONNECTED, fără o eroare Core explicită.} openvpn_auth_failed{Serverul OpenVPN a respins autentificarea profilului.} openvpn_client_setup_failed{OpenVPN Core nu a putut inițializa clientul înainte de conectarea la rețea.} openvpn_client_halted{OpenVPN Core a primit o comandă terminală de oprire a clientului.} openvpn_client_restart{OpenVPN Core a solicitat repornirea sesiunii de transport.} openvpn_inactive_timeout{OpenVPN Core a închis sesiunea după expirarea intervalului de inactivitate.} openvpn_session_expired{Serverul a raportat că sesiunea OpenVPN a expirat.} openvpn_credentials_required{Serverul sau un proxy solicită date de autentificare interactive care nu fac parte din acest profil de certificat.} openvpn_proxy_failed{OpenVPN Core a raportat o eroare a proxy-ului sau releului configurat.} openvpn_compression_failed{OpenVPN Core a respins modul de comprimare anunțat de profil sau server.} openvpn_ntlm_crypto_unavailable{Profilul solicită criptare NTLM, indisponibilă în această versiune.} openvpn_feature_unsupported{Profilul sau serverul necesită o funcție care lipsește din acest client Android.} network_unavailable{Nu este disponibilă nicio rețea fizică utilizabilă.} network_lost{Tunelul a fost oprit după pierderea rețelei.} certificate_validation_failed{Identitatea serverului OpenVPN nu a putut fi verificată.} openvpn_certificate_expired{Reînnoiește profilul OpenVPN înainte de reconectare.} tunnel_active_for_another_account{Un tunel care aparține altui cont trebuie oprit înainte de această conexiune.} tunnel_already_active{Android raportează că o sesiune VPN anterioară folosește încă interfața.} tunnel_stop_timeout{Motorul {protocol} nu a confirmat eliberarea interfeței VPN în limita de timp.} tunnel_disconnected{Motorul nativ a raportat că tunelul s-a încheiat neașteptat după pornire.} native_bridge_unavailable{Aplicația nu poate accesa serviciul VPN Android. Închide și redeschide aplicația, apoi încearcă din nou.} native_operation_failed{O eroare a aplicației a întrerupt operațiunea VPN. Încearcă din nou. Dacă problema continuă, rulează o diagnosticare.} invalid_arguments{Informațiile necesare pentru această operațiune VPN sunt incomplete. Încearcă din nou. Dacă problema continuă, rulează o diagnosticare.} invalid_account_id{Operațiunea nativă nu este asociată unui identificator de cont valid.} invalid_device_id{Identificatorul dispozitivului trimis motorului nativ lipsește sau este nevalid.} storage_key_not_allowed{Puntea Android a blocat o cheie din afara listei de stocare permise.} secure_storage_read_failed{Android Keystore nu a putut decripta datele locale ale acestui cont.} secure_storage_write_failed{Android Keystore nu a putut cripta sau salva datele locale.} key_generation_failed{Android nu a putut crea sau citi cheia WireGuard din stocarea securizată.} csr_generation_failed{Android Keystore nu a putut crea sau semna CSR-ul OpenVPN P-256.} other{O ramură nativă nedocumentată a eșuat. Trimite codul de diagnosticare afișat mai jos serviciului de asistență.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Solicitarea de permisiune este deja deschisă",
+    "notice_permissionRequestInProgress_message": "Solicitarea de permisiune VPN Android este deja afișată. Finalizeaz-o înainte de a încerca din nou.",
+    "notice_permissionRequestInterrupted_title": "Solicitarea permisiunii VPN a fost întreruptă",
+    "notice_permissionRequestInterrupted_message": "Ecranul permisiunii VPN s-a închis înainte ca aplicația să primească un răspuns.",
+    "notice_openvpnProofMissing_title": "Conexiunea OpenVPN nu este confirmată",
+    "notice_openvpnProofMissing_message": "Conexiunea OpenVPN nu a putut fi confirmată. A fost oprită pentru siguranță. Încearcă din nou.",
+    "openvpnCleanup_title": "Profilul OpenVPN a fost revocat",
+    "openvpnCleanup_working": "Se oprește și se elimină profilul OpenVPN revocat…",
+    "openvpnCleanup_stopFailed": "Oprirea OpenVPN nu a fost confirmată. Încearcă din nou înainte de a crea un profil nou.",
+    "openvpnCleanup_cleanupFailed": "Profilul OpenVPN revocat nu a putut fi eliminat complet. Încearcă din nou curățarea.",
+    "openvpnCleanup_complete": "Profilul OpenVPN revocat a fost eliminat. Apasă Conectare pentru a crea unul nou.",
+    "network_title": "Configurarea rețelei",
+    "network_ipv4Fallback": "IPv6 este indisponibil temporar. Pregătirea continuă cu IPv4.",
+    "network_rejectedTitle": "Configurarea rețelei a fost respinsă",
+    "network_rejectedMessage": "Configurarea tunelului este incompletă sau nu corespunde adreselor autorizate. Încearcă din nou din aplicație.",
+    "network_unreadableTitle": "Configurația locală nu poate fi citită",
+    "network_unreadableMessage": "Configurația de rețea OpenVPN salvată nu poate fi folosită. Reconectează-te din aplicație pentru a o actualiza.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Protecția rețelei",
+    "protection_subtitle": "Blochează accesul direct la internet dacă VPN-ul se deconectează.",
+    "protection_active": "Protecția sistemului este activă",
+    "protection_alwaysOnOnly": "VPN-ul permanent este activat; activează blocarea în afara VPN-ului",
+    "protection_inactive": "Protecția sistemului este inactivă",
+    "protection_unknown": "Verifică protecția sistemului",
+    "protection_openSettings": "Deschide setările Android",
+    "protection_dialogTitle": "Configurează protecția rețelei",
+    "protection_dialogMessage": "Android gestionează VPN-ul permanent și blocarea conexiunilor din afara VPN-ului. Verifică dacă FuzeVPN este selectat și activează blocarea în setările sistemului.",
+    "protection_dialogOpen": "Deschide setările",
+    "session_systemProtectionNote": "Dacă Android încă blochează traficul din afara VPN-ului, deschide setările sistemului pentru a verifica sau modifica această protecție.",
+    "diagnostics_title": "Diagnosticare",
+    "diagnostics_settingsTitle": "Diagnosticarea aplicației",
+    "diagnostics_automaticTitle": "Trimite erorile importante",
+    "diagnostics_automaticDescription": "Partajează un raport tehnic scurt când apare o eroare importantă.",
+    "diagnostics_privacy": "Rapoartele trimise sunt asociate contului autentificat și păstrate timp de 30 de zile. Nu conțin istoricul navigării, parole sau chei VPN.",
+    "diagnostics_manualOpen": "Rulează diagnosticarea",
+    "diagnostics_localDescription": "Creează un raport despre starea aplicației și a VPN-ului. Conexiunea ta rămâne neschimbată.",
+    "diagnostics_sendReport": "Trimite raportul",
+    "diagnostics_sendHint": "Lasă această casetă nebifată pentru a păstra raportul pe acest dispozitiv.",
+    "diagnostics_signedOut": "Autentifică-te în cont pentru a trimite un raport.",
+    "diagnostics_localLifetime": "Salvează acest raport pe telefon pentru a-l păstra după închiderea aplicației.",
+    "diagnostics_run": "Rulează diagnosticarea",
+    "diagnostics_rerun": "Rulează din nou diagnosticarea",
+    "diagnostics_running": "Se verifică…",
+    "diagnostics_sending": "Se trimite raportul…",
+    "diagnostics_prepared": "Raport pregătit pe acest dispozitiv",
+    "diagnostics_queued": "Raport în așteptarea trimiterii",
+    "diagnostics_sent": "Raport primit",
+    "diagnostics_failed": "Trimiterea a eșuat. Raportul local este încă disponibil.",
+    "diagnostics_preparationFailed": "Raportul de diagnosticare nu a putut fi pregătit. Încearcă din nou.",
+    "diagnostics_authenticationRequired": "Autentifică-te din nou pentru a trimite raportul.",
+    "diagnostics_retry": "Încearcă din nou trimiterea",
+    "diagnostics_export": "Salvează raportul",
+    "diagnostics_exportFailed": "Exportul a eșuat. Încearcă din nou din raportul local.",
+    "diagnostics_preferenceFailed": "Această setare nu a putut fi salvată. Încearcă din nou.",
+    "diagnostics_receipt": "Referință: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Primit la {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Păstrat până la {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Acest raport fusese deja primit.",
+    "diagnostics_preview": "Previzualizarea raportului",
+    "diagnostics_eventCount": "{count, plural, one{{count} eveniment tehnic atașat} few{{count} evenimente tehnice atașate} other{{count} de evenimente tehnice atașate}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Detalii tehnice",
+    "diagnostics_empty": "Încă nu a fost pregătit niciun raport de diagnosticare.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Starea tunelului} handshake{Confirmarea conexiunii} certificate{Certificatul VPN} kill_switch{Protecția Android} connectivity{Rețea disponibilă} api_reachability{Acces la serviciu} secure_storage{Stocare securizată} other{Verificare locală}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Verificat} failed{Necesită atenție} skipped{Neverificat — nicio verificare activă} unknown{Informații indisponibile} other{Informații indisponibile}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Bun venit la FuzeVPN",
+    "connection_changeLocation": "Schimbă locația",
+    "connection_details": "Detaliile conexiunii",
+    "locations_searchLabel": "Caută un oraș sau o țară",
+    "locations_clearSearch": "Șterge căutarea",
+    "locations_filterAll": "Toate",
+    "locations_filterFavorites": "Preferate",
+    "locations_results": "{count, plural, one{{count} locație} few{{count} locații} other{{count} de locații}}",
+    "locations_noResults": "Nu a fost găsită nicio locație",
+    "locations_noResultsHint": "Încearcă un alt oraș sau o altă țară.",
+    "locations_noFavorites": "Preferatele tale, la îndemână",
+    "locations_noFavoritesHint": "Apasă steaua de lângă o locație pentru a o salva aici.",
+    "locations_showAll": "Vezi toate locațiile",
+    "locations_addFavorite": "Adaugă {name} la preferate",
+    "locations_removeFavorite": "Elimină {name} din preferate",
+    "locations_favoriteSaveFailed": "Locația preferată nu a putut fi salvată. Încearcă din nou.",
+    "locations_emptyTitle": "Nu există locații disponibile",
+    "locations_emptyHint": "Reîmprospătează lista pentru a încerca din nou.",
+    "devices_manage": "Gestionează dispozitivele mele",
+    "settings_personalization": "Fă-l al tău",
+    "settings_safety": "Protecție",
+    "settings_help": "Ai nevoie de ajutor?",
+    "settings_about": "Despre FuzeVPN",
+    "diagnostics_heading": "Înțelege o problemă de conexiune",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Disponibil} pending{Se pregătește} revoked{Eliminat} expired{Expirat} other{Stare indisponibilă}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Preferința nu a fost salvată",
+    "notice_preferenceSave_message": "Alegerea ta se aplică momentan, dar nu a putut fi salvată. Încearcă din nou pentru a o păstra după închiderea aplicației.",
+    "connection_androidDisconnectHint": "Dacă Android menține VPN-ul activ, dezactivează VPN-ul permanent din setările care se deschid.",
+    "protection_learnMore": "Află mai multe despre protecția Android",
+    "protection_guideWhy": "Această protecție împiedică aplicațiile să folosească direct internetul dacă VPN-ul se deconectează. Este configurată în Android.",
+    "protection_guideAlwaysOnTitle": "VPN permanent",
+    "protection_guideAlwaysOn": "Android menține serviciul VPN în funcțiune și îl poate reporni după repornirea telefonului.",
+    "protection_guideBlockTitle": "Blochează conexiunile fără VPN",
+    "protection_guideBlock": "Această setare împiedică ocolirea VPN-ului de către trafic, inclusiv atunci când conexiunea este întreruptă.",
+    "protection_guideWarning": "Cu această blocare activată, accesul la internet rămâne oprit până când VPN-ul se conectează.",
+    "protection_guideStepsTitle": "Activează protecția",
+    "protection_guideStep1": "Deschide setările VPN Android folosind butonul de mai jos.",
+    "protection_guideStep2": "Deschide opțiunile folosind pictograma rotiță de lângă FuzeVPN.",
+    "protection_guideStep3": "Activează VPN permanent, apoi Blochează conexiunile fără VPN, dacă aceste opțiuni sunt disponibile.",
+    "protection_guideManufacturers": "Denumirile diferă în funcție de telefon. Dacă este necesar, caută VPN în Setări, de obicei la Rețea și internet.",
+    "protection_guideDisableTitle": "Dezactivează această protecție",
+    "protection_guideDisable": "În aceleași setări, dezactivează blocarea fără VPN pentru a permite accesul la internet fără VPN. Dezactivează și VPN-ul permanent dacă nu mai vrei ca Android să îl repornească.",
+    "protection_guideManual": "Alegi aceste setări în Android. FuzeVPN nu le modifică în locul tău.",
+    "locations_changeTitle": "Schimbi locația?",
+    "locations_changeActive": "VPN-ul se va deconecta, apoi va încerca să se conecteze la {name}.",
+    "locations_changeIdle": "VPN-ul va încerca să se conecteze la {name}.",
+    "locations_confirmChange": "Schimbă și conectează-te",
+    "locations_changeBusy": "O schimbare este în curs. Așteaptă înainte de a alege o altă locație.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Selecție automată",
+    "locations_cities": "Orașe",
+    "locations_servers": "Servere",
+    "locations_viewCities": "Vezi orașele din {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Vezi serverele din {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} țară} few{{count} țări} other{{count} de țări}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} oraș} few{{count} orașe} other{{count} de orașe}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} server} few{{count} servere} other{{count} de servere}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Toate țările",
+    "locations_backToCountries": "Înapoi la țări",
+    "locations_backToCities": "Înapoi la orașele din {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Alege {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Alege {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Nu există niciun server compatibil disponibil.",
+    "externalLink_failed": "Acest link nu poate fi deschis. Îl poți copia și deschide în browser.",
+    "externalLink_copy": "Copiază linkul",
+    "externalLink_copied": "Link copiat",
+    "externalLink_copyFailed": "Linkul nu poate fi copiat. Selectează adresa de mai jos.",
+    "settings_deleteAccount": "Șterge contul meu",
+    "settings_deleteAccountDetail": "Vezi cum poți solicita ștergerea contului",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Alege abonamentul VPN.",
+    "billing_subscribe": "Abonează-te",
+    "billing_choosePlan": "Alege un plan pentru a continua.",
+    "billing_monthly": "Lunar",
+    "billing_yearly": "Anual",
+    "billing_continue": "Continuă cu Google Play",
+    "billing_restore": "Restabilește achizițiile",
+    "billing_manage": "Gestionează abonamentul",
+    "billing_deleteAccountWarning": "Dacă ai un abonament Google Play, ștergerea contului FuzeVPN nu anulează reînnoirea acestuia. Gestionează sau anulează reînnoirea separat în Google Play.",
+    "billing_deleteAccountContinue": "Continuă către cererea de ștergere a contului",
+    "billing_refresh": "Actualizează accesul",
+    "billing_loadingPlans": "Se încarcă planurile…",
+    "billing_unavailable": "Nu există planuri disponibile acum. Încearcă mai târziu.",
+    "billing_comingSoon": "Abonamente disponibile în curând.",
+    "billing_priceDisclosure": "Preț furnizat de Google Play. Suma finală este confirmată înainte de plată.",
+    "billing_renewalMonthly": "Se reînnoiește automat în fiecare lună, dacă nu este anulat. Poți anula oricând din abonamentele Google Play.",
+    "billing_renewalYearly": "Se reînnoiește automat în fiecare an, dacă nu este anulat. Poți anula oricând din abonamentele Google Play.",
+    "billing_active": "Accesul tău Premium este activ",
+    "billing_accessUntil": "Acces până la {date}.",
+    "billing_webManaged": "Abonamentul tău este gestionat pe site-ul FuzeVPN.",
+    "billing_playManaged": "Abonamentul tău este gestionat prin Google Play.",
+    "billing_inactive": "Niciun abonament activ.",
+    "billing_checkingAccess": "Se verifică accesul…",
+    "billing_restoring": "Se restabilesc achizițiile…",
+    "billing_pending": "Plata este în așteptare. Accesul se va activa după confirmare.",
+    "billing_cancelled": "Achiziție anulată. Nu a fost activat niciun abonament nou.",
+    "billing_verifying": "Se verifică achiziția…",
+    "billing_success": "Abonament activat. Accesul tău Premium este pregătit.",
+    "billing_restored": "Achizițiile tale au fost restabilite.",
+    "billing_restoreEmpty": "Nu există achiziții de restabilit pentru acest cont Google Play.",
+    "billing_catalogError": "Planurile nu pot fi încărcate. Încearcă din nou.",
+    "billing_purchaseError": "Achiziția nu poate fi inițiată. Încearcă din nou.",
+    "billing_verificationError": "Verificarea achiziției este temporar indisponibilă. Restabilește achizițiile pentru a reîncerca.",
+    "billing_restoreError": "Achizițiile nu pot fi restabilite. Încearcă din nou.",
+    "billing_managementError": "Gestionarea abonamentelor nu poate fi deschisă. Încearcă din nou.",
+    "billing_storeUnavailable": "Google Play nu este disponibil pe acest dispozitiv.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "VPN-ul tău, fără complicații.",
+    "welcome_description": "Protejează-ți conexiunea. Păstrează controlul asupra confidențialității.",
+    "welcome_start": "Începe",
+    "welcome_alreadyPurchased": "Ai cumpărat deja?",
+    "welcome_noAccountRequired": "Nu trebuie să creezi un cont pentru a începe.",
+    "guest_accountTitle": "Cont neasociat",
+    "guest_accountDescription": "Restaurează achizițiile cu același cont Google Play pentru a folosi abonamentul pe alt dispozitiv.",
+    "guest_existingSubscriberSignIn": "Ai deja un abonament? Conectează-te",
+    "guest_claimTitle": "Ia FuzeVPN cu tine",
+    "guest_claimDescription": "Creează un cont pentru a accesa abonamentul pe celelalte dispozitive. Acest pas este opțional.",
+    "guest_skip": "Mai târziu",
+    "guest_activationTitle": "Fuze Premium este activ",
+    "guest_activationDescription": "Abonamentul tău este pregătit. Folosește VPN-ul și creează un cont când dorești.",
+    "guest_useVpn": "Folosește VPN-ul meu",
+    "guest_loginRequired": "Această achiziție este deja asociată unui cont FuzeVPN. Conectează-te la acel cont pentru a accesa abonamentul.",
+    "guest_signOutWarning": "Poți recupera abonamentul restaurând achizițiile cu același cont Google Play.",
+    "guest_profileUnavailable": "Contul tău este deja asociat. Conectează-te pentru a vedea și gestiona informațiile tale.",
+    "billing_acceptance": "Continuând, accepți Condițiile de utilizare și Politica de confidențialitate.",
+    "guest_verifyEmailReminder": "Confirmă adresa de e-mail pentru a-ți proteja contul. Poți continua să folosești VPN-ul.",
+    "guest_serviceUnavailable": "Serviciul este temporar indisponibil. Încearcă din nou în scurt timp.",
+    "guest_restoreError": "Achizițiile nu au putut fi restaurate. Încearcă din nou cu contul Google Play folosit pentru achiziție.",
+    "guest_claimSuccess": "Contul tău a fost creat. Abonamentul și accesul la VPN sunt păstrate.",
+    "guest_emailExists": "Această adresă de e-mail este deja folosită. Alege altă adresă sau conectează-te la contul existent. Achiziția rămâne disponibilă prin Google Play.",
+    "guest_claimError": "Contul tău nu a putut fi creat. Poți continua să folosești VPN-ul și să încerci din nou mai târziu.",
+    "guest_secureStorageError": "Sesiunea nu a putut fi salvată în siguranță pe acest dispozitiv. Încearcă din nou.",
+    "guest_premiumRequired": "Alege un abonament pentru a activa VPN-ul.",
+    "welcome_viewPlans": "Vezi planurile",
+    "google_continue": "Continuă cu Google",
+    "google_or": "sau",
+    "google_title": "Contul tău FuzeVPN",
+    "google_settingUp": "Finalizează contul",
+    "google_country": "Țara de reședință",
+    "google_profileDescription": "Alege țara și citește ambele documente pentru a crea contul FuzeVPN.",
+    "google_claimDescription": "Asociază contul de oaspete cu Google. Abonamentul și dispozitivul rămân asociate acestui cont.",
+    "google_linkTitle": "Asociază Google cu FuzeVPN",
+    "google_linkDescription": "Confirmă accesul la contul FuzeVPN existent. Nu se solicită parola Google.",
+    "google_password": "Parola FuzeVPN",
+    "google_linkAccount": "Confirmă asocierea",
+    "google_requestEmail": "Primește un e-mail de confirmare",
+    "google_emailInstructions": "Deschide e-mailul FuzeVPN și introdu codul de confirmare.",
+    "google_emailCode": "Codul de confirmare din e-mail",
+    "google_confirmEmail": "Confirmă codul",
+    "google_restart": "Alege alt cont Google",
+    "google_resume": "Verifică această încercare",
+    "google_unavailable": "Autentificarea Google nu este disponibilă. Poți folosi e-mailul și parola.",
+    "google_expired": "Această încercare a expirat. Anuleaz-o și începe din nou.",
+    "google_conflict": "Acest cont Google este deja asociat altui cont. Contul și abonamentul actuale sunt păstrate.",
+    "google_error": "Autentificarea Google a eșuat. Încearcă din nou; accesul actual este păstrat.",
+    "google_uncertain": "Rezultatul nu a putut fi confirmat. Verifică această încercare sau anuleaz-o înainte de a reîncepe.",
+    "google_cancelFailed": "Anularea nu a putut fi confirmată. Încearcă să anulezi din nou înainte de a părăsi ecranul.",
+    "google_cancelled": "Autentificare Google anulată.",
+    "google_selecting": "Alege contul Google…",
+    "google_verifying": "Se verifică contul…",
+    "google_emailUnavailable": "E-mailul de confirmare nu a putut fi trimis. Încearcă mai târziu.",
+    "google_emailSent": "E-mail de confirmare trimis. Verifică mesajele primite.",
+    "google_rateLimited": "Așteaptă înainte de a încerca din nou.",
+    "google_invalidPassword": "Parola FuzeVPN este incorectă. Contul actual este păstrat.",
+    "google_invalidCode": "Codul de confirmare este invalid sau a expirat.",
+    "google_accountChanged": "Sesiunea s-a schimbat. Anulează această încercare înainte de a reîncepe.",
+    "google_invalidResponse": "Răspunsul nu a putut fi validat. Accesul actual este păstrat.",
+    "google_invalidRegistration": "Verifică țara și ambele acorduri.",
+    "google_consentRequired": "Alege țara și acceptă ambele documente pentru a continua.",
+    "google_challengeRequired": "Este necesară o verificare suplimentară de securitate. Accesul actual este păstrat.",
+    "google_challengeUnavailable": "Verificarea de securitate nu este disponibilă. Încearcă mai târziu."
+  },
+  "android": {
+    "vpn_notification_channel": "Conexiune VPN",
+    "vpn_notification_channel_description": "Indică atunci când o conexiune FuzeVPN este activă.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "Conexiune %1$s activă",
+    "vpn_notification_connecting": "Conexiune %1$s în curs",
+    "vpn_notification_disconnecting": "Se deconectează %1$s",
+    "vpn_notification_interrupted": "Conexiunea %1$s a fost întreruptă",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Pregătit · %1$s · %2$s",
+    "vpn_tile_connected": "Conectat · %1$s · %2$s",
+    "vpn_tile_connecting": "Se conectează %1$s…",
+    "vpn_tile_disconnecting": "Se deconectează…",
+    "vpn_tile_interrupted": "%1$s a fost întrerupt",
+    "vpn_tile_setup_required": "Deschide mai întâi aplicația",
+    "vpn_tile_working": "Operațiune VPN în curs…",
+    "vpn_notification_reconnecting": "Se reconectează… · %1$s",
+    "vpn_system_action_required": "Este necesară o acțiune în setările Android",
+    "vpn_tile_reconnecting": "Se reconectează… · %1$s"
+  },
+  "countries": {
+    "AC": "Insula Ascension",
+    "AD": "Andorra",
+    "AE": "Emiratele Arabe Unite",
+    "AF": "Afganistan",
+    "AG": "Antigua și Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albania",
+    "AM": "Armenia",
+    "AO": "Angola",
+    "AQ": "Antarctica",
+    "AR": "Argentina",
+    "AS": "Samoa Americană",
+    "AT": "Austria",
+    "AU": "Australia",
+    "AW": "Aruba",
+    "AX": "Insulele Åland",
+    "AZ": "Azerbaidjan",
+    "BA": "Bosnia și Herțegovina",
+    "BB": "Barbados",
+    "BD": "Bangladesh",
+    "BE": "Belgia",
+    "BF": "Burkina Faso",
+    "BG": "Bulgaria",
+    "BH": "Bahrain",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "Saint-Barthélemy",
+    "BM": "Bermude",
+    "BN": "Brunei",
+    "BO": "Bolivia",
+    "BQ": "Țările de Jos din Caraibe",
+    "BR": "Brazilia",
+    "BS": "Bahamas",
+    "BT": "Bhutan",
+    "BV": "Insula Bouvet",
+    "BW": "Botswana",
+    "BY": "Belarus",
+    "BZ": "Belize",
+    "CA": "Canada",
+    "CC": "Insulele Cocos (Keeling)",
+    "CD": "Congo - Kinshasa",
+    "CF": "Republica Centrafricană",
+    "CG": "Congo - Brazzaville",
+    "CH": "Elveția",
+    "CI": "Coasta de Fildeș",
+    "CK": "Insulele Cook",
+    "CL": "Chile",
+    "CM": "Camerun",
+    "CN": "China",
+    "CO": "Columbia",
+    "CP": "Insula Clipperton",
+    "CQ": "Sark",
+    "CR": "Costa Rica",
+    "CU": "Cuba",
+    "CV": "Capul Verde",
+    "CW": "Curaçao",
+    "CX": "Insula Christmas",
+    "CY": "Cipru",
+    "CZ": "Cehia",
+    "DE": "Germania",
+    "DG": "Diego Garcia",
+    "DJ": "Djibouti",
+    "DK": "Danemarca",
+    "DM": "Dominica",
+    "DO": "Republica Dominicană",
+    "DZ": "Algeria",
+    "EA": "Ceuta și Melilla",
+    "EC": "Ecuador",
+    "EE": "Estonia",
+    "EG": "Egipt",
+    "EH": "Sahara Occidentală",
+    "ER": "Eritreea",
+    "ES": "Spania",
+    "ET": "Etiopia",
+    "EU": "Uniunea Europeană",
+    "EZ": "Zona euro",
+    "FI": "Finlanda",
+    "FJ": "Fiji",
+    "FK": "Insulele Falkland",
+    "FM": "Micronezia",
+    "FO": "Insulele Feroe",
+    "FR": "Franța",
+    "GA": "Gabon",
+    "GB": "Regatul Unit",
+    "GD": "Grenada",
+    "GE": "Georgia",
+    "GF": "Guyana Franceză",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GL": "Groenlanda",
+    "GM": "Gambia",
+    "GN": "Guineea",
+    "GP": "Guadelupa",
+    "GQ": "Guineea Ecuatorială",
+    "GR": "Grecia",
+    "GS": "Georgia de Sud și Insulele Sandwich de Sud",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guineea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hong Kong, China (R.A.S.)",
+    "HM": "Insulele Heard și McDonald",
+    "HN": "Honduras",
+    "HR": "Croația",
+    "HT": "Haiti",
+    "HU": "Ungaria",
+    "IC": "Insulele Canare",
+    "ID": "Indonezia",
+    "IE": "Irlanda",
+    "IL": "Israel",
+    "IM": "Insula Man",
+    "IN": "India",
+    "IO": "Teritoriul Britanic din Oceanul Indian",
+    "IQ": "Irak",
+    "IR": "Iran",
+    "IS": "Islanda",
+    "IT": "Italia",
+    "JE": "Jersey",
+    "JM": "Jamaica",
+    "JO": "Iordania",
+    "JP": "Japonia",
+    "KE": "Kenya",
+    "KG": "Kârgâzstan",
+    "KH": "Cambodgia",
+    "KI": "Kiribati",
+    "KM": "Comore",
+    "KN": "Saint Kitts și Nevis",
+    "KP": "Coreea de Nord",
+    "KR": "Coreea de Sud",
+    "KW": "Kuweit",
+    "KY": "Insulele Cayman",
+    "KZ": "Kazahstan",
+    "LA": "Laos",
+    "LB": "Liban",
+    "LC": "Saint Lucia",
+    "LI": "Liechtenstein",
+    "LK": "Sri Lanka",
+    "LR": "Liberia",
+    "LS": "Lesotho",
+    "LT": "Lituania",
+    "LU": "Luxemburg",
+    "LV": "Letonia",
+    "LY": "Libia",
+    "MA": "Maroc",
+    "MC": "Monaco",
+    "MD": "Moldova",
+    "ME": "Muntenegru",
+    "MF": "Saint-Martin",
+    "MG": "Madagascar",
+    "MH": "Insulele Marshall",
+    "MK": "Macedonia de Nord",
+    "ML": "Mali",
+    "MM": "Myanmar (Birmania)",
+    "MN": "Mongolia",
+    "MO": "Macao, China (R.A.S.)",
+    "MP": "Insulele Mariane de Nord",
+    "MQ": "Martinica",
+    "MR": "Mauritania",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Mauritius",
+    "MV": "Maldive",
+    "MW": "Malawi",
+    "MX": "Mexic",
+    "MY": "Malaysia",
+    "MZ": "Mozambic",
+    "NA": "Namibia",
+    "NC": "Noua Caledonie",
+    "NE": "Niger",
+    "NF": "Insula Norfolk",
+    "NG": "Nigeria",
+    "NI": "Nicaragua",
+    "NL": "Țările de Jos",
+    "NO": "Norvegia",
+    "NP": "Nepal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "Noua Zeelandă",
+    "OM": "Oman",
+    "PA": "Panama",
+    "PE": "Peru",
+    "PF": "Polinezia Franceză",
+    "PG": "Papua-Noua Guinee",
+    "PH": "Filipine",
+    "PK": "Pakistan",
+    "PL": "Polonia",
+    "PM": "Saint-Pierre și Miquelon",
+    "PN": "Insulele Pitcairn",
+    "PR": "Puerto Rico",
+    "PS": "Teritoriile Palestiniene",
+    "PT": "Portugalia",
+    "PW": "Palau",
+    "PY": "Paraguay",
+    "QA": "Qatar",
+    "QO": "Oceania îndepărtată",
+    "RE": "Réunion",
+    "RO": "România",
+    "RS": "Serbia",
+    "RU": "Rusia",
+    "RW": "Rwanda",
+    "SA": "Arabia Saudită",
+    "SB": "Insulele Solomon",
+    "SC": "Seychelles",
+    "SD": "Sudan",
+    "SE": "Suedia",
+    "SG": "Singapore",
+    "SH": "Sfânta Elena",
+    "SI": "Slovenia",
+    "SJ": "Svalbard și Jan Mayen",
+    "SK": "Slovacia",
+    "SL": "Sierra Leone",
+    "SM": "San Marino",
+    "SN": "Senegal",
+    "SO": "Somalia",
+    "SR": "Surinam",
+    "SS": "Sudanul de Sud",
+    "ST": "São Tomé și Príncipe",
+    "SV": "El Salvador",
+    "SX": "Sint Maarten",
+    "SY": "Siria",
+    "SZ": "Eswatini",
+    "TA": "Tristan da Cunha",
+    "TC": "Insulele Turks și Caicos",
+    "TD": "Ciad",
+    "TF": "Teritoriile Australe și Antarctice Franceze",
+    "TG": "Togo",
+    "TH": "Thailanda",
+    "TJ": "Tadjikistan",
+    "TK": "Tokelau",
+    "TL": "Timorul de Est",
+    "TM": "Turkmenistan",
+    "TN": "Tunisia",
+    "TO": "Tonga",
+    "TR": "Turcia",
+    "TT": "Trinidad și Tobago",
+    "TV": "Tuvalu",
+    "TW": "Taiwan",
+    "TZ": "Tanzania",
+    "UA": "Ucraina",
+    "UG": "Uganda",
+    "UM": "Insulele periferice ale Statelor Unite",
+    "UN": "Națiunile Unite",
+    "US": "Statele Unite",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VA": "Cetatea Vaticanului",
+    "VC": "Saint Vincent și Grenadinele",
+    "VE": "Venezuela",
+    "VG": "Insulele Virgine Britanice",
+    "VI": "Insulele Virgine Americane",
+    "VN": "Vietnam",
+    "VU": "Vanuatu",
+    "WF": "Wallis și Futuna",
+    "WS": "Samoa",
+    "XA": "Accente pseudo",
+    "XB": "Bidi pseudo",
+    "XK": "Kosovo",
+    "YE": "Yemen",
+    "YT": "Mayotte",
+    "ZA": "Africa de Sud",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "Regiune necunoscută"
+  }
+}

@@ -1,0 +1,931 @@
+{
+  "locale": "sv",
+  "arb": {
+    "accountRestoration_title": "Kontot är tillfälligt otillgängligt",
+    "accountRestoration_message": "Din session har sparats. Försök igen för att återställa kontot; du kan fortfarande hantera VPN-anslutningen här.",
+    "action_retry": "Försök igen",
+    "session_endingTitle": "Sessionen avslutas",
+    "session_ending": "Din session har ogiltigförklarats. VPN stängs av och sessionen rensas…",
+    "session_stopFailed": "VPN-avstängningen har inte bekräftats. Försök igen innan du loggar in på nytt.",
+    "session_cleanupFailed": "VPN är avstängt, men borttagningen av sessionen har inte bekräftats. Försök rensa igen.",
+    "session_retryStop": "Försök stänga av igen",
+    "session_retryCleanup": "Försök rensa igen",
+    "@@locale": "sv",
+    "appTitle": "FuzeVPN",
+    "startup": "Förbereder FuzeVPN säkert…",
+    "nav_connection": "Anslutning",
+    "nav_locations": "Platser",
+    "nav_account": "Konto",
+    "nav_devices": "Enheter",
+    "nav_settings": "Inställningar",
+    "action_refresh": "Uppdatera",
+    "auth_tab_login": "Logga in",
+    "auth_tab_register": "Registrera dig",
+    "auth_stepAccount": "Konto",
+    "auth_stepIdentity": "Identitet",
+    "auth_stepAddress": "Adress och avtal",
+    "auth_stepProgress": "Steg {current} av {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "Ditt VPN, enkelt gjort.",
+    "auth_keysLocal": "Dina privata VPN-nycklar stannar på den här enheten.",
+    "form_email": "E-postadress",
+    "form_password": "Lösenord",
+    "form_showPassword": "Visa lösenord",
+    "form_hidePassword": "Dölj lösenord",
+    "form_passwordMin": "8–72 UTF-8-byte. Vissa tecken använder mer än en byte.",
+    "form_firstName": "Förnamn",
+    "form_lastName": "Efternamn",
+    "form_phone": "Telefon (+33612345678)",
+    "form_address": "Adress",
+    "form_address2": "Adressrad 2 (valfritt)",
+    "form_postalCode": "Postnummer",
+    "form_city": "Ort",
+    "form_country": "Landskod (t.ex. FR)",
+    "action_login": "Logga in",
+    "action_createAccount": "Skapa ett konto",
+    "action_createMyAccount": "Skapa mitt konto",
+    "action_next": "Fortsätt",
+    "action_previous": "Tillbaka",
+    "action_forgotPassword": "Glömt lösenordet?",
+    "auth_noAccount": "Har du inget konto än?",
+    "auth_requiredInformation": "Skapa ditt konto i tre steg.",
+    "auth_termsPrefix": "Jag godkänner ",
+    "auth_termsLink": "användarvillkoren",
+    "auth_privacyPrefix": "Jag godkänner ",
+    "auth_privacyLink": "integritetspolicyn",
+    "auth_consentRequired": "Ditt samtycke krävs för att skapa ett konto.",
+    "validation_required": "Det här fältet är obligatoriskt.",
+    "validation_email": "Ange en giltig e-postadress.",
+    "validation_password": "Lösenordet är för kort: minst 8 UTF-8-byte.",
+    "validation_passwordTooLong": "Lösenordet är för långt: högst 72 UTF-8-byte.",
+    "validation_phone": "Använd internationellt format, till exempel +33612345678.",
+    "validation_country": "Använd en landskod med två bokstäver, till exempel FR.",
+    "passwordReset_title": "Återställ lösenord",
+    "passwordReset_description": "Ange e-postadressen till ditt konto för att begära en länk för återställning av lösenordet.",
+    "passwordReset_send": "Skicka länk",
+    "connection_title": "Din anslutning",
+    "connection_subtitle": "Välj en plats och slå sedan på VPN.",
+    "connection_prepare": "Redo att ansluta?",
+    "connection_advancedOptions": "Avancerade alternativ",
+    "connection_location": "Plats",
+    "connection_chooseLocation": "Välj en plats",
+    "connection_protocol": "Protokoll",
+    "connection_connect": "Anslut",
+    "connection_connecting": "Ansluter…",
+    "connection_disconnect": "Koppla från",
+    "connection_disconnecting": "Kopplar från",
+    "connection_locationChange": "Byter plats…",
+    "connection_unavailable": "{protocol} är inte tillgängligt",
+    "connection_activeLocation": "Aktiv plats",
+    "connection_duration": "Varaktighet",
+    "connection_received": "Mottaget",
+    "connection_sent": "Skickat",
+    "connection_lastHandshake": "Senaste säkra handskakning",
+    "connection_handshakeAgo": "för {duration} sedan",
+    "verification_title": "Bekräfta din e-postadress",
+    "verification_message": "Bekräfta din e-postadress för att använda VPN på den här telefonen.",
+    "verification_resend": "Skicka e-post igen",
+    "migration_title": "Platsbyte",
+    "migration_draining": "Förbereder platsbytet…",
+    "migration_activating": "Aktiverar den nya servern…",
+    "migration_ready": "Platsen har uppdaterats.",
+    "migration_blocked": "Platsbytet kräver en åtgärd på servern. Försök igen senare eller kontakta supporten.",
+    "migration_progress": "Förlopp för platsbyte",
+    "migration_retryDelay": "Fördröjning mellan kontroller: {seconds} sek.",
+    "migration_resume": "Fortsätt platsbytet",
+    "status_authorizing": "Behörighet krävs",
+    "status_authorizingDetail": "Godkänn Android-begäran för att tillåta VPN.",
+    "status_preparing": "Förbereder",
+    "status_preparingDetail": "Förbereder din säkra anslutning.",
+    "status_reconnecting": "Ansluter igen…",
+    "status_reconnectingDetail": "Anslutningen avbröts. VPN försöker ansluta igen.",
+    "status_connecting": "Ansluter",
+    "status_connectingDetail": "Ansluter till VPN-servern…",
+    "status_connected": "Ansluten",
+    "status_connectedDetail": "Din VPN-anslutning är aktiv.",
+    "status_disconnecting": "Kopplar från",
+    "status_disconnectingDetail": "Din VPN-anslutning stängs av.",
+    "status_error": "Anslutningen är inte tillgänglig",
+    "status_errorDetail": "VPN-anslutningen har inte bekräftats. Försök igen.",
+    "status_idle": "Frånkopplad",
+    "status_idleDetail": "Anslut VPN för att skydda din anslutning.",
+    "trust_note": "Att stänga appen stänger inte av VPN. Använd Koppla från för att stänga av det.",
+    "locations_none": "Inga platser är tillgängliga just nu.",
+    "locations_available": "Välj din nästa plats.",
+    "locations_selected": "Vald plats",
+    "locations_select": "Välj den här platsen",
+    "locations_lockedTunnel": "Koppla från VPN för att byta plats.",
+    "locations_lockedMigration": "Vänta tills platsbytet är klart.",
+    "devices_title": "Dina enheter",
+    "devices_used": "{count} / {limit} enheter",
+    "devices_refresh": "Uppdatera enheter",
+    "devices_empty": "Ingen VPN-enhet är registrerad ännu.",
+    "devices_firstConnection": "Din telefon läggs till vid den första anslutningen.",
+    "devices_thisDevice": "Den här enheten",
+    "devices_added": "Tillagd {date}",
+    "action_remove": "Ta bort",
+    "settings_title": "Inställningar",
+    "settings_subtitle": "Dina inställningar och ditt konto på ett och samma ställe.",
+    "settings_appearance": "Utseende",
+    "settings_language": "Språk",
+    "settings_languageDescription": "Det språk du väljer används även i VPN-aviseringar.",
+    "settings_account": "Konto",
+    "settings_signOut": "Logga ut",
+    "settings_privacy": "Integritetspolicy",
+    "settings_terms": "Användarvillkor",
+    "settings_security": "Säkerhet och transparens",
+    "settings_licenses": "Komponentlicenser",
+    "settings_licensesDetail": "Programvara som används i appen",
+    "settings_background": "VPN förblir aktivt när du lämnar appen. Använd Koppla från på fliken Anslutning för att stänga av det.",
+    "theme_system": "System",
+    "theme_light": "Ljust",
+    "theme_dark": "Mörkt",
+    "language_system": "Telefonens språk",
+    "language_fr": "Franska",
+    "language_en": "Engelska",
+    "language_es": "Spanska",
+    "language_de": "Tyska",
+    "dialog_removeDevice": "Ta bort den här enheten?",
+    "dialog_removeCurrent": "Den här telefonen kopplas från VPN och förlorar åtkomsten. Telefonens VPN-anslutningsdata tas bort när servern har bekräftat det.",
+    "dialog_removeOther": "VPN-åtkomsten för ”{name}” återkallas. Det går inte att ångra.",
+    "dialog_signOut": "Logga ut?",
+    "dialog_signOutMessage": "VPN stängs av och du måste logga in igen. Dina krypterade VPN-nycklar stannar på den här telefonen inför nästa anslutning.",
+    "action_cancel": "Avbryt",
+    "action_signOut": "Logga ut",
+    "notice_close": "Stäng meddelandet",
+    "notice_sessionExpired_title": "Sessionen har löpt ut",
+    "notice_sessionExpired_message": "Din session har löpt ut. Logga in igen.",
+    "notice_connectionFailed_title": "Anslutningen misslyckades",
+    "notice_invalidCredentials_message": "E-postadressen eller lösenordet är felaktigt.",
+    "notice_emailVerification_title": "E-postbekräftelse krävs",
+    "notice_emailVerification_message": "Bekräfta din e-postadress innan du lägger till en VPN-enhet.",
+    "notice_rateLimited_title": "För många försök",
+    "notice_deviceLimit_title": "Gränsen på två enheter har nåtts",
+    "notice_deviceLimit_message": "Ta bort en befintlig enhet innan du lägger till en till.",
+    "notice_identityRenewal_title": "VPN-identiteten måste förnyas",
+    "notice_identityRenewal_message": "Den här identiteten har tagits bort. Skapa en ny lokal identitet.",
+    "notice_migrationPending_title": "Platsbyte pågår",
+    "notice_migrationPending_message": "Ett platsbyte pågår redan.",
+    "notice_migrationBlocked_title": "Platsbytet har blockerats",
+    "notice_migrationBlocked_message": "Platsbytet kräver en åtgärd på servern. Försök igen senare eller kontakta supporten.",
+    "notice_targetUnavailable_title": "Servern är tillfälligt otillgänglig",
+    "notice_targetUnavailable_message": "Den här servern är tillfälligt otillgänglig.",
+    "notice_networkUnavailable_title": "Internetanslutningen är inte tillgänglig",
+    "notice_networkUnavailable_message": "Kontrollera anslutningen och försök igen.",
+    "notice_permissionDenied_title": "VPN-behörighet nekades",
+    "notice_permissionDenied_message": "Starta anslutningen igen och godkänn Androids behörighetsbegäran.",
+    "notice_wireguardTimeout_title": "Servern svarar inte",
+    "notice_wireguardTimeout_message": "WireGuard-anslutningen tog för lång tid. Försök igen eller välj en annan plats.",
+    "notice_tlsFailed_title": "Den säkra anslutningen nekades",
+    "notice_tlsFailed_message": "Servern accepterade inte OpenVPN-anslutningen. Försök igen. Om problemet fortsätter, kör en diagnostik.",
+    "notice_tunRejected_title": "Android nekade VPN-gränssnittet",
+    "notice_tunRejected_message": "Android nekade nätverkskonfigurationen som begärdes av OpenVPN.",
+    "notice_openvpnStart_title": "OpenVPN kunde inte starta",
+    "notice_openvpnStart_message": "OpenVPN-motorn kunde inte slutföra starten. Försök igen. Om problemet kvarstår, kontakta supporten.",
+    "notice_diagnosticCode": "Diagnostikkod: {code}",
+    "notice_generic_title": "VPN-anslutningen misslyckades",
+    "notice_generic_message": "Ett fel inträffade. Försök igen senare.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Kontot har skapats} password_reset_sent{Begäran om lösenordsåterställning har tagits emot} verification_email_sent{Verifieringsmeddelandet har skickats} location_migration_pending{Platsbyte pågår} vpn_sign_in_required{Inloggning krävs} protocol_unavailable_at_location{Protokollet är inte tillgängligt} vpn_permission_denied{VPN-behörighet nekades} revoked_identity_device_limit{Gränsen på två enheter har nåtts} tunnel_start_unexpected{VPN kunde inte starta} flutter_disconnect_timeout{Frånkopplingen har inte bekräftats} flutter_disconnect_unexpected{Det gick inte att koppla från} device_revoked{Enheten har tagits bort} revoke_unexpected{Det gick inte att ta bort enheten} identity_renewal_unexpected{Det gick inte att förnya identiteten} openvpn_renewal_unexpected{Det gick inte att förnya OpenVPN} location_migration_blocked{Platsbytet har blockerats} location_migration_slow{Platsbytet pågår fortfarande} location_migration_conflict{Platsbytet behöver uppdateras} location_migration_verification_failed{Platsbytet har inte bekräftats} location_migration_device_changed{Enheten ändrades under platsbytet} tunnel_stop_failed{Platsbyte är inte tillgängligt} other{Åtgärden misslyckades}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Kontot skapades, men verifieringsmeddelandet kunde inte skickas. Använd Skicka igen i appen.} password_reset_sent{Din begäran har tagits emot. Om ett konto matchar den här adressen kan du få ett e-postmeddelande. Kontrollera även skräppostmappen.} verification_email_sent{Ett nytt verifieringsmeddelande har precis skickats.} location_migration_pending{Flytten till {target} förbereds fortfarande. Du kan fortsätta den utan att skapa om enheten.} vpn_sign_in_required{Logga in på ditt konto innan du startar VPN.} protocol_unavailable_at_location{Det valda protokollet erbjuds inte på den här platsen. Uppdatera platserna eller välj ett annat protokoll.} vpn_permission_denied{Android nekade VPN-behörigheten. Starta anslutningen igen och godkänn systembegäran.} revoked_identity_device_limit{Den här enhetens VPN-åtkomst togs bort och enhetsgränsen har nåtts. Ta bort en enhet under Konto → Hantera mina enheter.} tunnel_start_unexpected{Ett oväntat fel avbröt förberedelsen av tunneln. Kontrollera diagnostikkoden och försök igen.} flutter_disconnect_timeout{Android bekräftade inte i tid att VPN stängdes av. Försök stänga av det igen.} flutter_disconnect_unexpected{Ett oväntat fel hindrade bekräftelsen av att tunneln stängdes av.} device_revoked{Enhetens VPN-åtkomst återkallades och dess lokala hemligheter togs bort.} revoke_unexpected{Enheten kunde inte tas bort. Uppdatera listan och försök igen.} identity_renewal_unexpected{Den nya VPN-identiteten kunde inte skapas. Uppdatera enheterna och försök igen.} openvpn_renewal_unexpected{OpenVPN-profilen kunde inte förnyas. Försök igen eller kontrollera diagnostikkoden.} location_migration_blocked{Servern kan inte slutföra det här bytet just nu. Enheten och dess lokala identitet har behållits.} location_migration_slow{Servern förbereder fortfarande flytten till {target}. Använd Fortsätt om en liten stund.} location_migration_conflict{Enhetens status ändrades på servern. Uppdatera enheterna och fortsätt sedan bytet.} location_migration_verification_failed{Servern bekräftade inte den nya platsen. Den tidigare lokala identiteten har behållits.} location_migration_device_changed{Enheten som servern returnerade stämmer inte längre överens med den som ändras. Uppdatera enheterna innan du försöker igen.} tunnel_stop_failed{Den tidigare tunneln måste vara helt avstängd innan den nya anslutningen kan startas.} other{Åtgärden kunde inte slutföras. Försök igen eller skicka diagnostikkoden till supporten.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Sessionen har löpt ut} invalid_credentials{Inloggningen misslyckades} email_verification_required{E-postbekräftelse krävs} verification_email_cooldown{E-postmeddelandet har redan skickats} rate_limited{För många försök} invalid_registration{Informationen måste korrigeras} email_exists{Kontot finns redan} invalid_profile{Ogiltig profil} invalid_device{Ogiltig enhet} invalid_location{Platsen är inte tillgänglig} device_limit{Gränsen på två enheter har nåtts} device_exists{VPN-identiteten används redan} device_identity_revoked{VPN-identiteten måste förnyas} device_location_locked{Platsbytet behöver uppdateras} location_migration_pending{Platsbyte pågår} location_migration_blocked{Platsbytet har blockerats} target_ca_mismatch{OpenVPN-servern är inkompatibel} location_migration_conflict{Platsbytet behöver uppdateras} server_full{Servern är full} capacity_unavailable{Platsen är tillfälligt otillgänglig} target_unavailable{Servern är tillfälligt otillgänglig} not_found{Objektet hittades inte} invalid_openvpn_csr{Ogiltig OpenVPN-identitet} openvpn_profile_exists{OpenVPN-profilen finns redan} openvpn_profile_revoked{OpenVPN-profilen har återkallats} openvpn_operation_pending{OpenVPN-åtgärd pågår} openvpn_operation_terminal{OpenVPN-åtgärden avbröts} openvpn_address_unavailable{OpenVPN-adressen är inte tillgänglig} openvpn_profile_conflict{OpenVPN-konflikt} openvpn_signer_unavailable{OpenVPN är inte tillgängligt} email_delivery_unavailable{E-post är inte tillgänglig} invalid_token{Ogiltig länk} network_unavailable{Internetanslutningen är inte tillgänglig} invalid_json{Ogiltig begäran} invalid_api_response{Ogiltigt serversvar} ipv6_unavailable{IPv6 är inte tillgängligt} invalid_ip_families{Nätverkskonfigurationen nekades} other{Tjänsten är inte tillgänglig}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Din session har löpt ut. Logga in igen.} invalid_credentials{E-postadressen eller lösenordet är felaktigt.} email_verification_required{Bekräfta din e-postadress innan du lägger till en VPN-enhet.} invalid_registration{Kontrollera den begärda informationen och samtyckena.} email_exists{Ett konto använder redan den här e-postadressen.} invalid_profile{Kontrollera profilinformationen.} invalid_device{Enhetens namn eller lokala identitet är ogiltig.} invalid_location{Uppdatera platslistan och försök igen.} device_limit{Ta bort en befintlig enhet innan du lägger till en till.} device_exists{Den här VPN-identiteten är redan kopplad till ett annat konto.} device_identity_revoked{Den här identiteten har tagits bort. En ny lokal identitet måste skapas.} device_location_locked{Den här enhetens plats ändrades precis. Appen fortsätter det pågående bytet.} location_migration_pending{Ett platsbyte pågår redan.} location_migration_blocked{Platsbytet kräver en åtgärd på servern. Försök igen senare eller kontakta supporten.} target_ca_mismatch{Den här servern är ännu inte kompatibel med den aktuella OpenVPN-profilen.} location_migration_conflict{Uppdatera enheterna och försök sedan byta plats igen.} server_full{Den här platsen har nått sin anslutningsgräns. Välj en annan plats eller försök igen senare.} capacity_unavailable{Vi kan inte bekräfta om den här platsen är tillgänglig just nu. Välj en annan plats eller försök igen senare.} target_unavailable{Den här servern är tillfälligt otillgänglig.} not_found{Det här objektet är inte längre tillgängligt på ditt konto.} invalid_openvpn_csr{Skapa en ny OpenVPN-identitet och försök igen.} openvpn_profile_exists{Det finns redan en OpenVPN-profil för den här enheten.} openvpn_profile_revoked{Förnya OpenVPN-profilen för att fortsätta.} openvpn_operation_pending{Ändringen håller fortfarande på att spridas. Försök igen senare.} openvpn_operation_terminal{Skapa en ny OpenVPN-identitet och försök igen.} openvpn_address_unavailable{Ingen OpenVPN-adress är tillgänglig just nu.} openvpn_profile_conflict{Profilen ändrades. Uppdatera enheterna och försök igen.} openvpn_signer_unavailable{OpenVPN-tjänsten är tillfälligt otillgänglig.} email_delivery_unavailable{E-postmeddelandet kunde inte skickas. Försök igen senare.} invalid_token{Den här länken är ogiltig eller har löpt ut. Begär en ny.} network_unavailable{Kontrollera internetanslutningen och försök igen.} invalid_json{Kontrollera den angivna informationen och försök igen.} invalid_api_response{Servern returnerade ett oväntat svar. Försök igen senare.} ipv6_unavailable{Servern kan inte aktivera IPv6 just nu. Försök igen senare.} invalid_ip_families{Tunnelkonfigurationen är ofullständig eller stämmer inte med de godkända adresserna. Försök igen från appen.} other{Ett serverfel inträffade. Försök igen senare.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Försök igen om en liten stund.",
+    "notice_retryAfter": "Försök igen om {seconds} sekunder.",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "Object"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Det går inte att återuppta system-VPN} system_vpn_resume_corrupt{Ogiltigt återupptagande av system-VPN} system_vpn_resume_session_invalid{Ogiltig session för återupptagande av VPN} system_vpn_resume_identity_changed{VPN-identiteten ändrades} system_vpn_resume_identity_invalid{Ogiltig VPN-identitet för återupptagande} system_vpn_resume_storage_failed{Lagring för återupptagande av VPN är inte tillgänglig} system_vpn_resume_network_timeout{Återupptagandet av VPN saknar nätverk} system_vpn_resume_blocked{Återupptagande av VPN blockerades} system_vpn_resume_failed{Det gick inte att återuppta VPN} system_vpn_resume_error_invalid{Ogiltigt fel vid återupptagande av VPN} wireguard_identity_store_failed{WireGuard-identiteten sparades inte} wireguard_identity_unavailable{WireGuard-identiteten är inte tillgänglig} vpn_host_destroyed{Androids VPN-värd stoppades} vpn_host_unavailable{Androids VPN-värd är inte tillgänglig} vpn_permission_required{VPN-behörighet krävs} vpn_permission_denied{VPN-behörighet nekades} vpn_permission_request_failed{Det gick inte att begära behörighet} wireguard_foreground_service_unavailable{WireGuard-tjänsten är inte tillgänglig} wireguard_identity_invalid{Ogiltig lokal WireGuard-nyckel} wireguard_identity_in_use{WireGuard-identiteten används redan} wireguard_configuration_invalid{Ogiltig WireGuard-konfiguration} wireguard_operation_pending{WireGuard-åtgärden är fortfarande aktiv} wireguard_start_failed{WireGuard-starten nekades} wireguard_stop_timeout{WireGuard-avstängningen bekräftades inte} wireguard_handshake_timeout{WireGuard svarade inte} openvpn_connection_timeout{OpenVPN svarade inte} openvpn_core_unavailable{OpenVPN-motorn är inte tillgänglig} openvpn_operation_pending{OpenVPN-sessionen är fortfarande aktiv} openvpn_stop_timeout{OpenVPN-avstängningen bekräftades inte} openvpn_profile_unavailable{Lokal OpenVPN-profil saknas} openvpn_native_failed{Det inbyggda OpenVPN-anropet avbröts} openvpn_key_generation_failed{Det gick inte att skapa OpenVPN P-256-nyckeln} openvpn_csr_generation_failed{Det gick inte att skapa OpenVPN CSR} openvpn_identity_store_failed{OpenVPN-identiteten sparades inte} openvpn_identity_clear_failed{Ofullständig borttagning av OpenVPN} openvpn_identity_in_use{OpenVPN-identiteten används fortfarande} openvpn_tls_verification_required{OpenVPN TLS-verifiering saknas} openvpn_cipher_invalid{Ogiltigt OpenVPN-krypteringschiffer} openvpn_profile_rejected{OpenVPN-profilen nekades} openvpn_identity_inconsistent{OpenVPN-identiteten är inkonsekvent} tls_handshake_failed{OpenVPN-förhandlingen nekades} tls_alert_unknown_ca{OpenVPN-klientcertifikatet känns inte igen} tls_alert_bad_certificate{OpenVPN-klientcertifikatet nekades} tls_alert_unsupported_certificate{OpenVPN-certifikatet stöds inte} tls_client_certificate_required{OpenVPN-klientcertifikat krävs} tls_alert_misc{OpenVPN TLS-varning} tls_signature_algorithm_rejected{OpenVPN-signaturen stöds inte} tls_handshake_rejected{OpenVPN TLS-förhandlingen nekades} tls_version_rejected{OpenVPN TLS-versionen är inkompatibel} tls_certificate_expired{TLS-certifikatet har löpt ut} tls_certificate_revoked{TLS-certifikatet har återkallats} transport_failed{OpenVPN-servern kan inte nås} tun_configuration_rejected{Det gick inte att skapa OpenVPN-gränssnittet} tun_setup_failed{OpenVPN TUN-konfigurationen misslyckades} tun_interface_create_failed{Det gick inte att skapa OpenVPN-gränssnittet} tun_interface_disabled{OpenVPN-gränssnittet är inaktiverat} tun_halted{OpenVPN-gränssnittet avbröts} tun_already_established{OpenVPN-gränssnittet är redan öppet} tun_addresses_missing{OpenVPN-adress saknas} tun_routes_missing{OpenVPN-rutter saknas} tun_dns_missing{OpenVPN-DNS saknas} tun_permission_revoked{VPN-behörigheten återkallades} tun_establish_returned_null{Android nekade VPN-gränssnittet} openvpn_service_start_failed{OpenVPN-tjänsten är inte tillgänglig} openvpn_operation_timeout{OpenVPN-anropet tog för lång tid} openvpn_start_failed{OpenVPN-starten nekades} openvpn_connection_failed{OpenVPN-anslutningen avbröts} openvpn_core_status_error{OpenVPN Core avslutades med ett fel} openvpn_stopped_before_connected{OpenVPN stoppades innan anslutningen upprättades} openvpn_auth_failed{OpenVPN-autentiseringen nekades} openvpn_client_setup_failed{OpenVPN-klientkonfigurationen misslyckades} openvpn_client_halted{OpenVPN-klienten avbröts} openvpn_client_restart{OpenVPN-omstart begärdes} openvpn_inactive_timeout{OpenVPN var inaktivt för länge} openvpn_session_expired{OpenVPN-sessionen har löpt ut} openvpn_credentials_required{OpenVPN-autentiseringen stöds inte} openvpn_proxy_failed{OpenVPN-mellantransporten misslyckades} openvpn_compression_failed{OpenVPN-komprimeringen nekades} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM-kryptering är inte tillgänglig} openvpn_feature_unsupported{OpenVPN-funktionen stöds inte} network_unavailable{Internetanslutningen är inte tillgänglig} network_lost{Nätverket är inte tillgängligt} certificate_validation_failed{Servercertifikatet nekades} openvpn_certificate_expired{OpenVPN-certifikatet har löpt ut} tunnel_active_for_another_account{Ett annat kontos tunnel är fortfarande aktiv} tunnel_already_active{En inbyggd tunnel är redan aktiv} tunnel_stop_timeout{{protocol}-avstängningen bekräftades inte} tunnel_disconnected{{protocol} avbröts} native_bridge_unavailable{Android-bryggan är inte tillgänglig} native_operation_failed{Android-åtgärden avbröts} invalid_arguments{Ofullständiga VPN-parametrar} invalid_account_id{Ogiltigt VPN-konto} invalid_device_id{Ogiltig enhetsidentifierare} storage_key_not_allowed{Lagringsnyckeln nekades} secure_storage_read_failed{Säker läsning misslyckades} secure_storage_write_failed{Säker skrivning misslyckades} key_generation_failed{Det gick inte att skapa WireGuard-nyckeln} csr_generation_failed{Det gick inte att skapa OpenVPN CSR} other{Okategoriserat inbyggt VPN-fel}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android hittar ingen VPN-session som kan återupptas. Starta en ny anslutning i appen.} system_vpn_resume_corrupt{De sparade VPN-data för återupptagande är ogiltiga och kommer inte att användas. Starta en ny anslutning.} system_vpn_resume_session_invalid{Den sparade sessionen kan inte längre återuppta VPN. Logga in igen i appen.} system_vpn_resume_identity_changed{Den lokala VPN-identiteten ändrades. Återupptagandet stoppades; starta en ny anslutning.} system_vpn_resume_identity_invalid{Identiteten för återupptagande är ogiltig. Starta en ny anslutning.} system_vpn_resume_storage_failed{Android kunde inte läsa eller uppdatera krypterade data för återupptagande. Starta en ny anslutning.} system_vpn_resume_network_timeout{Android hittade inget nätverk i tid för att återuppta VPN. Försök igen när ett nätverk är tillgängligt.} system_vpn_resume_blocked{Återupptagande av VPN är blockerat. Kontrollera Android-inställningarna och starta sedan en ny anslutning.} system_vpn_resume_failed{Android kunde inte återuppta VPN. Starta en ny anslutning i appen.} system_vpn_resume_error_invalid{Android returnerade ett oanvändbart fel vid återupptagande. Starta en ny anslutning.} wireguard_identity_store_failed{Android kunde inte spara det här kontots krypterade WireGuard-identitet.} wireguard_identity_unavailable{Ingen användbar WireGuard-identitet är tillgänglig för den här anslutningen.} vpn_host_destroyed{Android-komponenten som är värd för VPN stoppades. Starta en ny anslutning.} vpn_host_unavailable{Android kan inte skapa komponenten som är värd för VPN. Försök igen efter att ha kontrollerat VPN-inställningarna.} openvpn_renewal_required{Certifikatet kräver en åtgärd i appen innan anslutning.} openvpn_recovery_failed{Den automatiska återställningen misslyckades. Starta en ny anslutning i appen.} openvpn_recovery_exhausted{Den automatiska återställningen har redan använts. Starta en ny anslutning i appen.} vpn_permission_required{Android kräver en ny VPN-auktorisering innan tunneln startas.} vpn_permission_denied{Tillåt FuzeVPN i Android-begäran för att fortsätta.} vpn_permission_request_failed{Android kunde inte öppna skärmen för VPN-behörighet.} wireguard_foreground_service_unavailable{Android kunde inte hålla WireGuard-tjänsten i förgrunden.} wireguard_identity_invalid{Det här kontots krypterade WireGuard-nyckel kan inte läsas eller är ogiltig.} wireguard_identity_in_use{En annan åtgärd använder fortfarande det här kontots WireGuard-nyckel.} wireguard_configuration_invalid{Den mottagna WireGuard-adressen, DNS-servern, servernyckeln eller rutterna är ogiltiga.} wireguard_operation_pending{Den tidigare WireGuard-åtgärden har ännu inte släppt sin inbyggda tjänst.} wireguard_start_failed{WireGuard-motorn nekade aktivering av konfigurationen.} wireguard_stop_timeout{WireGuard-tjänsten bekräftade inte att VPN-gränssnittet släpptes inom tidsgränsen.} wireguard_handshake_timeout{Tunneln bekräftade inte en handskakning med servern i tid.} openvpn_connection_timeout{OpenVPN bekräftade inte anslutningen till servern i tid.} openvpn_core_unavailable{Den här appversionen innehåller ingen användbar OpenVPN-motor.} openvpn_operation_pending{Den inbyggda motorn håller fortfarande den tidigare OpenVPN-sessionen och vägrar skapa en till.} openvpn_stop_timeout{OpenVPN Core bekräftade inte att den inbyggda sessionen stoppades och förstördes inom tidsgränsen.} openvpn_profile_unavailable{Ingen validerad OpenVPN-profil kan läsas för den här anslutningen.} openvpn_native_failed{Ett appfel avbröt OpenVPN. Försök ansluta igen. Om problemet fortsätter, kör en diagnostik.} openvpn_key_generation_failed{Android Keystore kunde inte skapa eller läsa den icke-exporterbara privata P-256-nyckeln.} openvpn_csr_generation_failed{Android Keystore-nyckeln kunde inte signera OpenVPN-certifikatbegäran.} openvpn_identity_store_failed{OpenVPN-certifikatet eller profilen kunde inte sparas i krypterad lagring.} openvpn_identity_clear_failed{Android kunde inte ta bort hela den lokala OpenVPN-identiteten för det här kontot.} openvpn_identity_in_use{En inbyggd OpenVPN-session använder fortfarande enhetens nyckel eller certifikat.} openvpn_tls_verification_required{Profilen kräver inte uttryckligen verifiering av servercertifikatet.} openvpn_cipher_invalid{Servern angav en krypteringsalgoritm som inte finns i listan över tillåtna algoritmer.} openvpn_profile_rejected{Profilen från servern är inkompatibel. Skapa om den här enheten och försök igen.} openvpn_identity_inconsistent{Certifikatet stämmer inte med telefonens säkra identitet. Ingen lokal profil ersattes.} tls_handshake_failed{Servern nekade TLS-förhandlingen. Skapa om profilen om problemet kvarstår.} tls_alert_unknown_ca{Servern känner inte igen auktoriteten för det här enhetscertifikatet. OpenVPN-servern måste kontrolleras.} tls_alert_bad_certificate{Servern nekade det här enhetscertifikatet. Skapa om enheten innan du försöker igen.} tls_alert_unsupported_certificate{Servern stöder inte den säkra certifikattyp som Android använder.} tls_client_certificate_required{Servern kräver ett klientcertifikat, men OpenVPN Core kunde inte visa upp något.} tls_alert_misc{Servern returnerade en TLS-varning utanför kategorierna certifikat och version.} tls_signature_algorithm_rejected{Servern nekade Android Keystore-nyckelns ECDSA P-256-algoritm.} tls_handshake_rejected{Servern avbröt TLS-förhandlingen före anslutningen.} tls_version_rejected{Klienten och servern hittade ingen gemensam TLS-version.} tls_certificate_expired{Certifikatet som visades under anslutningen har löpt ut.} tls_certificate_revoked{Certifikatet som visades under anslutningen har återkallats.} transport_failed{OpenVPN-servern svarar inte på det aktuella nätverket. Försök igen snart.} tun_configuration_rejected{Android nekade nätverkskonfigurationen som begärdes av OpenVPN.} tun_setup_failed{OpenVPN Core nekade nätverksplanen innan Android-gränssnittet skapades.} tun_interface_create_failed{OpenVPN Core kunde inte få TUN-gränssnittet från Android VpnService.} tun_interface_disabled{Android eller OpenVPN Core inaktiverade TUN-gränssnittet under anslutningen.} tun_halted{OpenVPN Core tog emot en begäran om att stoppa TUN-gränssnittet.} tun_already_established{OpenVPN begärde ett andra gränssnitt i samma anslutning. Tunneln stoppades av säkerhetsskäl.} tun_addresses_missing{Servern tillhandahöll ingen användbar tunneladress.} tun_routes_missing{Servern tillhandahöll inga användbara tunnelrutter.} tun_dns_missing{Servern tillhandahöll ingen användbar DNS-server.} tun_permission_revoked{Android återkallade VPN-behörigheten under anslutningen.} tun_establish_returned_null{Android skapade inte gränssnittet, vanligtvis eftersom ett annat VPN fortfarande är aktivt.} openvpn_service_start_failed{Android kunde inte starta OpenVPN-tjänsten i förgrunden.} openvpn_operation_timeout{Ett JNI-anrop till OpenVPN Core överskred sin maximala varaktighet.} openvpn_start_failed{Android-tjänsten är klar, men OpenVPN Core godkände inte att profilen startades.} openvpn_connection_failed{OpenVPN Core stoppades innan CONNECTED-händelsen skickades.} openvpn_core_status_error{Den inbyggda OpenVPN-loopen avslutades med ett fel utan någon mer specifik sluthändelse.} openvpn_stopped_before_connected{Den inbyggda OpenVPN-loopen stoppades före CONNECTED utan ett uttryckligt Core-fel.} openvpn_auth_failed{OpenVPN-servern nekade profilens autentisering.} openvpn_client_setup_failed{OpenVPN Core kunde inte initiera klienten före nätverksanslutningen.} openvpn_client_halted{OpenVPN Core tog emot ett slutgiltigt stopp av klienten.} openvpn_client_restart{OpenVPN Core begärde en omstart av transportsessionen.} openvpn_inactive_timeout{OpenVPN Core stängde sessionen efter tidsgränsen för inaktivitet.} openvpn_session_expired{Servern rapporterade att OpenVPN-sessionen har löpt ut.} openvpn_credentials_required{Servern eller en proxy begär interaktiva inloggningsuppgifter som inte ingår i den här certifikatprofilen.} openvpn_proxy_failed{OpenVPN Core rapporterade ett fel i den konfigurerade proxyn eller reläet.} openvpn_compression_failed{OpenVPN Core nekade det komprimeringsläge som profilen eller servern meddelade.} openvpn_ntlm_crypto_unavailable{Profilen begär NTLM-kryptering som inte är tillgänglig i den här versionen.} openvpn_feature_unsupported{Profilen eller servern kräver en funktion som saknas i den här Android-klienten.} network_unavailable{Inget användbart fysiskt nätverk är tillgängligt.} network_lost{Tunneln stoppades efter att nätverket försvann.} certificate_validation_failed{OpenVPN-serverns identitet kunde inte verifieras.} openvpn_certificate_expired{Förnya OpenVPN-profilen innan du ansluter igen.} tunnel_active_for_another_account{En tunnel som tillhör ett annat konto måste stoppas innan den här anslutningen kan startas.} tunnel_already_active{Android rapporterar att en tidigare VPN-session fortfarande använder gränssnittet.} tunnel_stop_timeout{{protocol}-motorn bekräftade inte att VPN-gränssnittet släpptes inom tidsgränsen.} tunnel_disconnected{Den inbyggda motorn rapporterade att tunneln avslutades oväntat efter starten.} native_bridge_unavailable{Appen kan inte komma åt Androids VPN-tjänst. Stäng och öppna appen igen och försök sedan.} native_operation_failed{Ett appfel avbröt VPN-åtgärden. Försök igen. Om problemet fortsätter, kör en diagnostik.} invalid_arguments{Informationen som behövs för den här VPN-åtgärden är ofullständig. Försök igen. Om problemet fortsätter, kör en diagnostik.} invalid_account_id{Den inbyggda åtgärden är inte kopplad till en giltig kontoidentifierare.} invalid_device_id{Enhetsidentifieraren som skickades till den inbyggda motorn saknas eller är ogiltig.} storage_key_not_allowed{Android-bryggan blockerade en nyckel utanför listan över tillåten lagring.} secure_storage_read_failed{Android Keystore kunde inte dekryptera kontots lokala data.} secure_storage_write_failed{Android Keystore kunde inte kryptera eller spara de lokala uppgifterna.} key_generation_failed{Android kunde inte skapa eller läsa WireGuard-nyckeln i säker lagring.} csr_generation_failed{Android Keystore kunde inte skapa eller signera OpenVPN P-256 CSR.} other{En odokumenterad inbyggd gren misslyckades. Skicka diagnostikkoden som visas nedan till supporten.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Behörighetsbegäran redan öppen",
+    "notice_permissionRequestInProgress_message": "Androids begäran om VPN-behörighet visas redan. Slutför den innan du försöker igen.",
+    "notice_permissionRequestInterrupted_title": "VPN-behörighetsbegäran avbröts",
+    "notice_permissionRequestInterrupted_message": "VPN-behörighetsskärmen stängdes innan appen fick ett svar.",
+    "notice_openvpnProofMissing_title": "OpenVPN-anslutningen har inte bekräftats",
+    "notice_openvpnProofMissing_message": "OpenVPN-anslutningen kunde inte bekräftas. Den stoppades av säkerhetsskäl. Försök igen.",
+    "openvpnCleanup_title": "OpenVPN-profilen har återkallats",
+    "openvpnCleanup_working": "Stoppar och tar bort den återkallade OpenVPN-profilen…",
+    "openvpnCleanup_stopFailed": "OpenVPN-avstängningen har inte bekräftats. Försök igen innan du skapar en ny profil.",
+    "openvpnCleanup_cleanupFailed": "Den återkallade OpenVPN-profilen kunde inte tas bort helt. Försök rensa igen.",
+    "openvpnCleanup_complete": "Den återkallade OpenVPN-profilen har tagits bort. Tryck på Anslut för att skapa en ny.",
+    "network_title": "Nätverkskonfiguration",
+    "network_ipv4Fallback": "IPv6 är tillfälligt otillgängligt. Förberedelsen fortsätter med IPv4.",
+    "network_rejectedTitle": "Nätverkskonfigurationen nekades",
+    "network_rejectedMessage": "Tunnelkonfigurationen är ofullständig eller stämmer inte överens med de godkända adresserna. Försök igen från appen.",
+    "network_unreadableTitle": "Den lokala konfigurationen kan inte läsas",
+    "network_unreadableMessage": "Den sparade OpenVPN-nätverkskonfigurationen kan inte användas. Anslut igen från appen för att uppdatera den.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Nätverksskydd",
+    "protection_subtitle": "Blockera direktåtkomst till internet om VPN kopplas från.",
+    "protection_active": "Systemskydd aktivt",
+    "protection_alwaysOnOnly": "VPN alltid på är aktiverat; slå på blockering utanför VPN",
+    "protection_inactive": "Systemskydd inaktivt",
+    "protection_unknown": "Kontrollera systemskyddet",
+    "protection_openSettings": "Öppna Android-inställningar",
+    "protection_dialogTitle": "Konfigurera nätverksskydd",
+    "protection_dialogMessage": "Android hanterar VPN alltid på och blockering av anslutningar utanför VPN. Kontrollera att FuzeVPN är valt och aktivera blockering i systeminställningarna.",
+    "protection_dialogOpen": "Öppna inställningar",
+    "session_systemProtectionNote": "Om Android fortfarande blockerar trafik utanför VPN kan du öppna systeminställningarna för att kontrollera eller ändra det här skyddet.",
+    "diagnostics_title": "Diagnostik",
+    "diagnostics_settingsTitle": "Appdiagnostik",
+    "diagnostics_automaticTitle": "Skicka viktiga fel",
+    "diagnostics_automaticDescription": "Dela en kort teknisk rapport när ett viktigt fel inträffar.",
+    "diagnostics_privacy": "Skickade rapporter kopplas till det inloggade kontot och sparas i 30 dagar. De innehåller ingen webbhistorik, inga lösenord och inga VPN-nycklar.",
+    "diagnostics_manualOpen": "Kör diagnostik",
+    "diagnostics_localDescription": "Skapa en rapport om appens och VPN:s status. Din anslutning påverkas inte.",
+    "diagnostics_sendReport": "Skicka rapporten",
+    "diagnostics_sendHint": "Lämna den här rutan avmarkerad för att behålla rapporten på den här enheten.",
+    "diagnostics_signedOut": "Logga in på ditt konto för att skicka en rapport.",
+    "diagnostics_localLifetime": "Spara rapporten på telefonen så att den finns kvar när appen stängs.",
+    "diagnostics_run": "Kör diagnostik",
+    "diagnostics_rerun": "Kör diagnostik igen",
+    "diagnostics_running": "Kontrollerar…",
+    "diagnostics_sending": "Skickar rapport…",
+    "diagnostics_prepared": "Rapporten är klar på den här enheten",
+    "diagnostics_queued": "Rapporten väntar på att skickas",
+    "diagnostics_sent": "Rapporten har tagits emot",
+    "diagnostics_failed": "Det gick inte att skicka. Din lokala rapport är fortfarande tillgänglig.",
+    "diagnostics_preparationFailed": "Diagnostikrapporten kunde inte förberedas. Försök igen.",
+    "diagnostics_authenticationRequired": "Logga in igen för att skicka rapporten.",
+    "diagnostics_retry": "Försök skicka igen",
+    "diagnostics_export": "Spara rapport",
+    "diagnostics_exportFailed": "Exporten misslyckades. Försök igen från den lokala rapporten.",
+    "diagnostics_preferenceFailed": "Den här inställningen kunde inte sparas. Försök igen.",
+    "diagnostics_receipt": "Referens: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Togs emot {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Sparas till {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Den här rapporten hade redan tagits emot.",
+    "diagnostics_preview": "Förhandsvisning av rapport",
+    "diagnostics_eventCount": "{count, plural, =0{Inga tekniska händelser bifogade} =1{1 teknisk händelse bifogad} other{{count} tekniska händelser bifogade}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Tekniska detaljer",
+    "diagnostics_empty": "Ingen diagnostikrapport har förberetts ännu.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Tunnelstatus} handshake{Anslutningsbekräftelse} certificate{VPN-certifikat} kill_switch{Android-skydd} connectivity{Tillgängligt nätverk} api_reachability{Tjänsteåtkomst} secure_storage{Säker lagring} other{Lokal kontroll}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Kontrollerad} failed{Kräver åtgärd} skipped{Testades inte — ingen aktiv kontroll} unknown{Informationen är inte tillgänglig} other{Informationen är inte tillgänglig}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Välkommen till FuzeVPN",
+    "connection_changeLocation": "Byt plats",
+    "connection_details": "Anslutningsdetaljer",
+    "locations_searchLabel": "Sök efter en stad eller ett land",
+    "locations_clearSearch": "Rensa sökning",
+    "locations_filterAll": "Alla",
+    "locations_filterFavorites": "Favoriter",
+    "locations_results": "{count, plural, one{{count} plats} other{{count} platser}}",
+    "locations_noResults": "Inga platser hittades",
+    "locations_noResultsHint": "Försök med en annan stad eller ett annat land.",
+    "locations_noFavorites": "Dina favoriter nära till hands",
+    "locations_noFavoritesHint": "Tryck på stjärnan bredvid en plats för att spara den här.",
+    "locations_showAll": "Visa alla platser",
+    "locations_addFavorite": "Lägg till {name} i favoriter",
+    "locations_removeFavorite": "Ta bort {name} från favoriter",
+    "locations_favoriteSaveFailed": "Favoriten kunde inte sparas. Försök igen.",
+    "locations_emptyTitle": "Inga platser tillgängliga",
+    "locations_emptyHint": "Uppdatera listan och försök igen.",
+    "devices_manage": "Hantera mina enheter",
+    "settings_personalization": "Gör det till ditt",
+    "settings_safety": "Skydd",
+    "settings_help": "Behöver du hjälp?",
+    "settings_about": "Om FuzeVPN",
+    "diagnostics_heading": "Förstå ett anslutningsproblem",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Tillgänglig} pending{Förbereder} revoked{Borttagen} expired{Utgången} other{Statusen är inte tillgänglig}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Inställningen sparades inte",
+    "notice_preferenceSave_message": "Ditt val används nu, men kunde inte sparas. Försök igen för att behålla det när appen stängs.",
+    "connection_androidDisconnectHint": "Om Android låter VPN vara aktivt kan du stänga av VPN alltid på i inställningarna som öppnas.",
+    "protection_learnMore": "Läs mer om Android-skydd",
+    "protection_guideWhy": "Det här skyddet hindrar appar från att använda internet direkt om VPN kopplas från. Det konfigureras i Android.",
+    "protection_guideAlwaysOnTitle": "VPN alltid på",
+    "protection_guideAlwaysOn": "Android håller VPN-tjänsten igång och kan starta om den efter att telefonen startats om.",
+    "protection_guideBlockTitle": "Blockera anslutningar utan VPN",
+    "protection_guideBlock": "Den här inställningen hindrar trafik från att kringgå VPN, även när anslutningen är avbruten.",
+    "protection_guideWarning": "När den här blockeringen är aktiverad förblir internetåtkomsten avstängd tills VPN är anslutet.",
+    "protection_guideStepsTitle": "Aktivera skyddet",
+    "protection_guideStep1": "Öppna Androids VPN-inställningar med knappen nedan.",
+    "protection_guideStep2": "Öppna alternativen med kugghjulsikonen bredvid FuzeVPN.",
+    "protection_guideStep3": "Aktivera VPN alltid på och sedan Blockera anslutningar utan VPN, om alternativen finns.",
+    "protection_guideManufacturers": "Namnen varierar mellan telefoner. Sök vid behov efter VPN i Inställningar, ofta under Nätverk och internet.",
+    "protection_guideDisableTitle": "Stäng av det här skyddet",
+    "protection_guideDisable": "Stäng av blockering utan VPN i samma inställningar för att tillåta internetåtkomst utan VPN. Stäng också av VPN alltid på om du inte längre vill att Android ska starta om det.",
+    "protection_guideManual": "Du väljer de här inställningarna i Android. FuzeVPN ändrar dem inte åt dig.",
+    "locations_changeTitle": "Byta plats?",
+    "locations_changeActive": "VPN kopplas från och försöker sedan ansluta till {name}.",
+    "locations_changeIdle": "VPN försöker ansluta till {name}.",
+    "locations_confirmChange": "Byt och anslut",
+    "locations_changeBusy": "Ett byte pågår. Vänta innan du väljer en annan plats.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Automatiskt val",
+    "locations_cities": "Städer",
+    "locations_servers": "Servrar",
+    "locations_viewCities": "Visa städer i {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Visa servrar i {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} land} other{{count} länder}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} stad} other{{count} städer}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} server} other{{count} servrar}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Alla länder",
+    "locations_backToCountries": "Tillbaka till länder",
+    "locations_backToCities": "Tillbaka till städer i {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Välj {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Välj {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Ingen kompatibel server är tillgänglig.",
+    "externalLink_failed": "Det gick inte att öppna länken. Du kan kopiera den och öppna den i webbläsaren.",
+    "externalLink_copy": "Kopiera länk",
+    "externalLink_copied": "Länken kopierades",
+    "externalLink_copyFailed": "Det gick inte att kopiera länken. Markera adressen nedan.",
+    "settings_deleteAccount": "Radera mitt konto",
+    "settings_deleteAccountDetail": "Se hur du begär att kontot raderas",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Välj ditt VPN-abonnemang.",
+    "billing_subscribe": "Prenumerera",
+    "billing_choosePlan": "Välj ett abonnemang för att fortsätta.",
+    "billing_monthly": "Månadsvis",
+    "billing_yearly": "Årsvis",
+    "billing_continue": "Fortsätt med Google Play",
+    "billing_restore": "Återställ köp",
+    "billing_manage": "Hantera abonnemang",
+    "billing_deleteAccountWarning": "Om du har ett abonnemang via Google Play stoppar inte radering av ditt FuzeVPN-konto förnyelsen. Hantera eller stoppa förnyelsen separat i Google Play.",
+    "billing_deleteAccountContinue": "Fortsätt till begäran om att radera kontot",
+    "billing_refresh": "Uppdatera åtkomst",
+    "billing_loadingPlans": "Läser in abonnemang…",
+    "billing_unavailable": "Inga abonnemang är tillgängliga just nu. Försök igen senare.",
+    "billing_comingSoon": "Abonnemang kommer snart.",
+    "billing_priceDisclosure": "Priset tillhandahålls av Google Play. Slutbeloppet bekräftas före betalning.",
+    "billing_renewalMonthly": "Förnyas automatiskt varje månad om du inte säger upp det. Du kan säga upp när som helst i Google Play-abonnemang.",
+    "billing_renewalYearly": "Förnyas automatiskt varje år om du inte säger upp det. Du kan säga upp när som helst i Google Play-abonnemang.",
+    "billing_active": "Din Premium-åtkomst är aktiv",
+    "billing_accessUntil": "Åtkomst till {date}.",
+    "billing_webManaged": "Ditt abonnemang hanteras på FuzeVPN:s webbplats.",
+    "billing_playManaged": "Ditt abonnemang hanteras via Google Play.",
+    "billing_inactive": "Inget aktivt abonnemang.",
+    "billing_checkingAccess": "Kontrollerar din åtkomst…",
+    "billing_restoring": "Återställer köp…",
+    "billing_pending": "Betalningen väntar. Din åtkomst aktiveras efter bekräftelse.",
+    "billing_cancelled": "Köpet avbröts. Inget nytt abonnemang aktiverades.",
+    "billing_verifying": "Verifierar köpet…",
+    "billing_success": "Abonnemanget är aktiverat. Din Premium-åtkomst är klar.",
+    "billing_restored": "Dina köp har återställts.",
+    "billing_restoreEmpty": "Inga köp att återställa för detta Google Play-konto.",
+    "billing_catalogError": "Det gick inte att läsa in abonnemang. Försök igen.",
+    "billing_purchaseError": "Det gick inte att starta köpet. Försök igen.",
+    "billing_verificationError": "Köpverifiering är tillfälligt otillgänglig. Återställ köp för att försöka igen.",
+    "billing_restoreError": "Det gick inte att återställa köp. Försök igen.",
+    "billing_managementError": "Det gick inte att öppna abonnemangshantering. Försök igen.",
+    "billing_storeUnavailable": "Google Play är inte tillgängligt på den här enheten.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "Din VPN, enkelt och smidigt.",
+    "welcome_description": "Skydda din anslutning. Behåll kontrollen över din integritet.",
+    "welcome_start": "Kom igång",
+    "welcome_alreadyPurchased": "Har du redan köpt?",
+    "welcome_noAccountRequired": "Du behöver inte skapa ett konto för att börja.",
+    "guest_accountTitle": "Kontot är inte kopplat",
+    "guest_accountDescription": "Återställ dina köp med samma Google Play-konto för att använda prenumerationen på en annan enhet.",
+    "guest_existingSubscriberSignIn": "Har du redan en prenumeration? Logga in",
+    "guest_claimTitle": "Ta med FuzeVPN överallt",
+    "guest_claimDescription": "Skapa ett konto för att använda din prenumeration på fler enheter. Det här steget är valfritt.",
+    "guest_skip": "Senare",
+    "guest_activationTitle": "Fuze Premium är aktivt",
+    "guest_activationDescription": "Din prenumeration är klar. Använd din VPN och skapa ett konto när du vill.",
+    "guest_useVpn": "Använd min VPN",
+    "guest_loginRequired": "Det här köpet är redan kopplat till ett FuzeVPN-konto. Logga in på det kontot för att använda din prenumeration.",
+    "guest_signOutWarning": "Du kan återfå din prenumeration genom att återställa köp med samma Google Play-konto.",
+    "guest_profileUnavailable": "Ditt konto är redan kopplat. Logga in för att visa och hantera dina uppgifter.",
+    "billing_acceptance": "Genom att fortsätta godkänner du Användarvillkoren och Integritetspolicyn.",
+    "guest_verifyEmailReminder": "Bekräfta din e-postadress för att skydda ditt konto. Du kan fortsätta använda din VPN.",
+    "guest_serviceUnavailable": "Tjänsten är tillfälligt otillgänglig. Försök igen om en stund.",
+    "guest_restoreError": "Dina köp kunde inte återställas. Försök igen med Google Play-kontot som användes för köpet.",
+    "guest_claimSuccess": "Ditt konto har skapats. Din prenumeration och VPN-åtkomst är kvar.",
+    "guest_emailExists": "Den här e-postadressen används redan. Välj en annan adress eller logga in på ditt befintliga konto. Ditt köp är fortfarande tillgängligt via Google Play.",
+    "guest_claimError": "Ditt konto kunde inte skapas. Du kan fortsätta använda din VPN och försöka igen senare.",
+    "guest_secureStorageError": "Din session kunde inte sparas säkert på den här enheten. Försök igen.",
+    "guest_premiumRequired": "Välj en prenumeration för att aktivera din VPN.",
+    "welcome_viewPlans": "Visa abonnemang",
+    "google_continue": "Fortsätt med Google",
+    "google_or": "eller",
+    "google_title": "Ditt FuzeVPN-konto",
+    "google_settingUp": "Slutför ditt konto",
+    "google_country": "Bosättningsland",
+    "google_profileDescription": "Välj ditt land och läs båda dokumenten för att skapa ditt FuzeVPN-konto.",
+    "google_claimDescription": "Koppla ditt gästkonto till Google. Abonnemang och enhet förblir kopplade till detta konto.",
+    "google_linkTitle": "Koppla Google till FuzeVPN",
+    "google_linkDescription": "Bekräfta åtkomst till ditt befintliga FuzeVPN-konto. Ditt Google-lösenord efterfrågas inte.",
+    "google_password": "FuzeVPN-lösenord",
+    "google_linkAccount": "Bekräfta kopplingen",
+    "google_requestEmail": "Få ett bekräftelsemejl",
+    "google_emailInstructions": "Öppna mejlet från FuzeVPN och ange bekräftelsekoden.",
+    "google_emailCode": "Bekräftelsekod från mejlet",
+    "google_confirmEmail": "Bekräfta koden",
+    "google_restart": "Välj ett annat Google-konto",
+    "google_resume": "Kontrollera detta försök",
+    "google_unavailable": "Google-inloggning är inte tillgänglig. Du kan använda e-post och lösenord.",
+    "google_expired": "Detta försök har löpt ut. Avbryt och börja om.",
+    "google_conflict": "Detta Google-konto är redan kopplat någon annanstans. Ditt nuvarande konto och abonnemang behålls.",
+    "google_error": "Google-inloggningen misslyckades. Försök igen; din nuvarande åtkomst behålls.",
+    "google_uncertain": "Resultatet kunde inte bekräftas. Kontrollera försöket eller avbryt innan du börjar om.",
+    "google_cancelFailed": "Avbrottet kunde inte bekräftas. Försök avbryta igen innan du lämnar skärmen.",
+    "google_cancelled": "Google-inloggning avbruten.",
+    "google_selecting": "Välj ditt Google-konto…",
+    "google_verifying": "Kontrollerar ditt konto…",
+    "google_emailUnavailable": "Bekräftelsemejlet kunde inte skickas. Försök senare.",
+    "google_emailSent": "Bekräftelsemejl skickat. Kontrollera din inkorg.",
+    "google_rateLimited": "Vänta innan du försöker igen.",
+    "google_invalidPassword": "FuzeVPN-lösenordet är fel. Ditt nuvarande konto behålls.",
+    "google_invalidCode": "Bekräftelsekoden är ogiltig eller har löpt ut.",
+    "google_accountChanged": "Sessionen har ändrats. Avbryt försöket innan du börjar om.",
+    "google_invalidResponse": "Svaret kunde inte valideras. Din nuvarande åtkomst behålls.",
+    "google_invalidRegistration": "Kontrollera landet och båda samtyckena.",
+    "google_consentRequired": "Välj ditt land och godkänn båda dokumenten för att fortsätta.",
+    "google_challengeRequired": "En ytterligare säkerhetskontroll krävs. Din nuvarande åtkomst behålls.",
+    "google_challengeUnavailable": "Säkerhetskontrollen är inte tillgänglig. Försök senare."
+  },
+  "android": {
+    "vpn_notification_channel": "VPN-anslutning",
+    "vpn_notification_channel_description": "Visar när en FuzeVPN-anslutning är aktiv.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s-anslutning aktiv",
+    "vpn_notification_connecting": "%1$s-anslutning pågår",
+    "vpn_notification_disconnecting": "Kopplar från %1$s",
+    "vpn_notification_interrupted": "%1$s-anslutningen avbröts",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Klar · %1$s · %2$s",
+    "vpn_tile_connected": "Ansluten · %1$s · %2$s",
+    "vpn_tile_connecting": "Ansluter %1$s…",
+    "vpn_tile_disconnecting": "Kopplar från…",
+    "vpn_tile_interrupted": "%1$s avbröts",
+    "vpn_tile_setup_required": "Öppna appen först",
+    "vpn_tile_working": "VPN-åtgärd pågår…",
+    "vpn_notification_reconnecting": "Ansluter igen… · %1$s",
+    "vpn_system_action_required": "Åtgärd krävs i Android-inställningarna",
+    "vpn_tile_reconnecting": "Ansluter igen… · %1$s"
+  },
+  "countries": {
+    "AC": "Ascension",
+    "AD": "Andorra",
+    "AE": "Förenade Arabemiraten",
+    "AF": "Afghanistan",
+    "AG": "Antigua och Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albanien",
+    "AM": "Armenien",
+    "AO": "Angola",
+    "AQ": "Antarktis",
+    "AR": "Argentina",
+    "AS": "Amerikanska Samoa",
+    "AT": "Österrike",
+    "AU": "Australien",
+    "AW": "Aruba",
+    "AX": "Åland",
+    "AZ": "Azerbajdzjan",
+    "BA": "Bosnien och Hercegovina",
+    "BB": "Barbados",
+    "BD": "Bangladesh",
+    "BE": "Belgien",
+    "BF": "Burkina Faso",
+    "BG": "Bulgarien",
+    "BH": "Bahrain",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "Saint-Barthélemy",
+    "BM": "Bermuda",
+    "BN": "Brunei",
+    "BO": "Bolivia",
+    "BQ": "Karibiska Nederländerna",
+    "BR": "Brasilien",
+    "BS": "Bahamas",
+    "BT": "Bhutan",
+    "BV": "Bouvetön",
+    "BW": "Botswana",
+    "BY": "Belarus",
+    "BZ": "Belize",
+    "CA": "Kanada",
+    "CC": "Kokosöarna (Keelingöarna)",
+    "CD": "Kongo-Kinshasa",
+    "CF": "Centralafrikanska republiken",
+    "CG": "Kongo-Brazzaville",
+    "CH": "Schweiz",
+    "CI": "Elfenbenskusten",
+    "CK": "Cooköarna",
+    "CL": "Chile",
+    "CM": "Kamerun",
+    "CN": "Kina",
+    "CO": "Colombia",
+    "CP": "Clippertonön",
+    "CQ": "Sark",
+    "CR": "Costa Rica",
+    "CU": "Kuba",
+    "CV": "Kap Verde",
+    "CW": "Curaçao",
+    "CX": "Julön",
+    "CY": "Cypern",
+    "CZ": "Tjeckien",
+    "DE": "Tyskland",
+    "DG": "Diego Garcia",
+    "DJ": "Djibouti",
+    "DK": "Danmark",
+    "DM": "Dominica",
+    "DO": "Dominikanska republiken",
+    "DZ": "Algeriet",
+    "EA": "Ceuta och Melilla",
+    "EC": "Ecuador",
+    "EE": "Estland",
+    "EG": "Egypten",
+    "EH": "Västsahara",
+    "ER": "Eritrea",
+    "ES": "Spanien",
+    "ET": "Etiopien",
+    "EU": "Europeiska unionen",
+    "EZ": "Euroområdet",
+    "FI": "Finland",
+    "FJ": "Fiji",
+    "FK": "Falklandsöarna",
+    "FM": "Mikronesien",
+    "FO": "Färöarna",
+    "FR": "Frankrike",
+    "GA": "Gabon",
+    "GB": "Storbritannien",
+    "GD": "Grenada",
+    "GE": "Georgien",
+    "GF": "Franska Guyana",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GL": "Grönland",
+    "GM": "Gambia",
+    "GN": "Guinea",
+    "GP": "Guadeloupe",
+    "GQ": "Ekvatorialguinea",
+    "GR": "Grekland",
+    "GS": "Sydgeorgien och Sydsandwichöarna",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hongkong SAR Kina",
+    "HM": "Heardön och McDonaldöarna",
+    "HN": "Honduras",
+    "HR": "Kroatien",
+    "HT": "Haiti",
+    "HU": "Ungern",
+    "IC": "Kanarieöarna",
+    "ID": "Indonesien",
+    "IE": "Irland",
+    "IL": "Israel",
+    "IM": "Isle of Man",
+    "IN": "Indien",
+    "IO": "Brittiska territoriet i Indiska oceanen",
+    "IQ": "Irak",
+    "IR": "Iran",
+    "IS": "Island",
+    "IT": "Italien",
+    "JE": "Jersey",
+    "JM": "Jamaica",
+    "JO": "Jordanien",
+    "JP": "Japan",
+    "KE": "Kenya",
+    "KG": "Kirgizistan",
+    "KH": "Kambodja",
+    "KI": "Kiribati",
+    "KM": "Komorerna",
+    "KN": "Saint Kitts och Nevis",
+    "KP": "Nordkorea",
+    "KR": "Sydkorea",
+    "KW": "Kuwait",
+    "KY": "Caymanöarna",
+    "KZ": "Kazakstan",
+    "LA": "Laos",
+    "LB": "Libanon",
+    "LC": "Saint Lucia",
+    "LI": "Liechtenstein",
+    "LK": "Sri Lanka",
+    "LR": "Liberia",
+    "LS": "Lesotho",
+    "LT": "Litauen",
+    "LU": "Luxemburg",
+    "LV": "Lettland",
+    "LY": "Libyen",
+    "MA": "Marocko",
+    "MC": "Monaco",
+    "MD": "Moldavien",
+    "ME": "Montenegro",
+    "MF": "Saint-Martin",
+    "MG": "Madagaskar",
+    "MH": "Marshallöarna",
+    "MK": "Nordmakedonien",
+    "ML": "Mali",
+    "MM": "Myanmar (Burma)",
+    "MN": "Mongoliet",
+    "MO": "Macao SAR Kina",
+    "MP": "Nordmarianerna",
+    "MQ": "Martinique",
+    "MR": "Mauretanien",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Mauritius",
+    "MV": "Maldiverna",
+    "MW": "Malawi",
+    "MX": "Mexiko",
+    "MY": "Malaysia",
+    "MZ": "Moçambique",
+    "NA": "Namibia",
+    "NC": "Nya Kaledonien",
+    "NE": "Niger",
+    "NF": "Norfolkön",
+    "NG": "Nigeria",
+    "NI": "Nicaragua",
+    "NL": "Nederländerna",
+    "NO": "Norge",
+    "NP": "Nepal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "Nya Zeeland",
+    "OM": "Oman",
+    "PA": "Panama",
+    "PE": "Peru",
+    "PF": "Franska Polynesien",
+    "PG": "Papua Nya Guinea",
+    "PH": "Filippinerna",
+    "PK": "Pakistan",
+    "PL": "Polen",
+    "PM": "Saint-Pierre och Miquelon",
+    "PN": "Pitcairnöarna",
+    "PR": "Puerto Rico",
+    "PS": "Palestinska territorierna",
+    "PT": "Portugal",
+    "PW": "Palau",
+    "PY": "Paraguay",
+    "QA": "Qatar",
+    "QO": "Avlägsna Oceanien",
+    "RE": "Réunion",
+    "RO": "Rumänien",
+    "RS": "Serbien",
+    "RU": "Ryssland",
+    "RW": "Rwanda",
+    "SA": "Saudiarabien",
+    "SB": "Salomonöarna",
+    "SC": "Seychellerna",
+    "SD": "Sudan",
+    "SE": "Sverige",
+    "SG": "Singapore",
+    "SH": "S:t Helena",
+    "SI": "Slovenien",
+    "SJ": "Svalbard och Jan Mayen",
+    "SK": "Slovakien",
+    "SL": "Sierra Leone",
+    "SM": "San Marino",
+    "SN": "Senegal",
+    "SO": "Somalia",
+    "SR": "Surinam",
+    "SS": "Sydsudan",
+    "ST": "São Tomé och Príncipe",
+    "SV": "El Salvador",
+    "SX": "Sint Maarten",
+    "SY": "Syrien",
+    "SZ": "Eswatini",
+    "TA": "Tristan da Cunha",
+    "TC": "Turks- och Caicosöarna",
+    "TD": "Tchad",
+    "TF": "Franska sydterritorierna",
+    "TG": "Togo",
+    "TH": "Thailand",
+    "TJ": "Tadzjikistan",
+    "TK": "Tokelau",
+    "TL": "Östtimor",
+    "TM": "Turkmenistan",
+    "TN": "Tunisien",
+    "TO": "Tonga",
+    "TR": "Turkiet",
+    "TT": "Trinidad och Tobago",
+    "TV": "Tuvalu",
+    "TW": "Taiwan",
+    "TZ": "Tanzania",
+    "UA": "Ukraina",
+    "UG": "Uganda",
+    "UM": "USA:s mindre öar",
+    "UN": "Förenta nationerna",
+    "US": "USA",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VA": "Vatikanstaten",
+    "VC": "Saint Vincent och Grenadinerna",
+    "VE": "Venezuela",
+    "VG": "Brittiska Jungfruöarna",
+    "VI": "Amerikanska Jungfruöarna",
+    "VN": "Vietnam",
+    "VU": "Vanuatu",
+    "WF": "Wallis och Futuna",
+    "WS": "Samoa",
+    "XA": "Pseudotecken",
+    "XB": "Pseudo-bidi",
+    "XK": "Kosovo",
+    "YE": "Jemen",
+    "YT": "Mayotte",
+    "ZA": "Sydafrika",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "Okänd region"
+  }
+}

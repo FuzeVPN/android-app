@@ -1,0 +1,46 @@
+{
+  "name": "OpenSSL",
+  "version": "3.5.9",
+  "releaseDate": "2026-09-29",
+  "tag": "openssl-3.5.9",
+  "commit": "45e844fa2a14ec92d146bd8f5778ac130b6625fb",
+  "source": "https://github.com/openssl/openssl/releases/download/openssl-3.5.9/openssl-3.5.9.tar.gz",
+  "sourceSha256": "603f5602e2eef00d77fbd429d34dcd5822bb301757a1bc9cdb24c670f1eb859a",
+  "license": "Apache-2.0",
+  "ndkVersion": "28.2.13676358",
+  "androidApi": 26,
+  "configureOptions": [
+    "no-shared",
+    "no-tests",
+    "no-apps",
+    "no-docs",
+    "no-legacy",
+    "no-module",
+    "no-engine",
+    "no-dso",
+    "no-zlib",
+    "no-quic"
+  ],
+  "archives": {
+    "arm64-v8a": {
+      "configureTarget": "android-arm64",
+      "libcryptoSha256": "2713970bd4496e4615a445e990a1ebf1a750928d09c98f0df11af03e90c1576c",
+      "libsslSha256": "7c596de87acd43f23e8af01d1d6d0573740051985fdfba0e7337ced37111fe5f"
+    },
+    "armeabi-v7a": {
+      "configureTarget": "android-arm",
+      "extraCflags": "-D__ARM_MAX_ARCH__=8",
+      "libcryptoSha256": "34f96d3e4dc8b1633e27ab43db433d871bb2ee06dcfa81886b24e33ecf4a1cc0",
+      "libsslSha256": "8ca239f6eda67cb499f63ce1f420649fafd705e93ae1f215a1005088e1aada2b"
+    },
+    "x86_64": {
+      "configureTarget": "android-x86_64",
+      "debugOnly": true,
+      "libcryptoSha256": "ae82d6ac3d161b712c4a23bccd3287aa9fde0239449a0db137e92c28fa0bda6c",
+      "libsslSha256": "c0fd55025a040643942f009333b261e9698ac7b3bc49a3c24045fe225756d21e"
+    }
+  },
+  "integration": "Official OpenVPN 3 Core OpenSSL XKey provider delegates ECDSA signatures to Android Keystore. No private key is exported and no local cryptographic patch is applied.",
+  "sourceSignature": "source/openssl-3.5.9.tar.gz.asc",
+  "releaseSigningCertificateFingerprint": "B146647E45A7B33947AB226B2A2C87D161692D40"
+}

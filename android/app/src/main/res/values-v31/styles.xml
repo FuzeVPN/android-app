@@ -1,0 +1,8 @@
+<resources>
+    <!-- Keep the launch identity consistent until Flutter restores the user's theme. -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        <item name="android:windowBackground">@color/fuzevpn_paper</item>
+        <item name="android:windowSplashScreenBackground">@color/fuzevpn_paper</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_fuzevpn_launcher_foreground</item>
+    </style>
+</resources>

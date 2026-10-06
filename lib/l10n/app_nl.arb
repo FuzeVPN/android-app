@@ -1,0 +1,642 @@
+{
+  "accountRestoration_title": "Account tijdelijk niet beschikbaar",
+  "accountRestoration_message": "Je sessie is bewaard. Probeer het opnieuw om je account te herstellen; je kunt de VPN-verbinding hier nog steeds beheren.",
+  "action_retry": "Opnieuw proberen",
+  "session_endingTitle": "Sessie wordt beëindigd",
+  "session_ending": "Je sessie is ongeldig gemaakt. De VPN wordt gestopt en de sessie wordt gewist…",
+  "session_stopFailed": "Het afsluiten van de VPN is niet bevestigd. Probeer het opnieuw voordat je je weer aanmeldt.",
+  "session_cleanupFailed": "De VPN is gestopt, maar het verwijderen van de sessie is niet bevestigd. Probeer het opschonen opnieuw.",
+  "session_retryStop": "Afsluiten opnieuw proberen",
+  "session_retryCleanup": "Opschonen opnieuw proberen",
+  "@@locale": "nl",
+  "appTitle": "FuzeVPN",
+  "startup": "FuzeVPN veilig voorbereiden…",
+  "nav_connection": "Verbinding",
+  "nav_locations": "Locaties",
+  "nav_account": "Account",
+  "nav_devices": "Apparaten",
+  "nav_settings": "Instellingen",
+  "action_refresh": "Vernieuwen",
+  "auth_tab_login": "Aanmelden",
+  "auth_tab_register": "Registreren",
+  "auth_stepAccount": "Account",
+  "auth_stepIdentity": "Identiteit",
+  "auth_stepAddress": "Adres en overeenkomsten",
+  "auth_stepProgress": "Stap {current} van {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "Je VPN, eenvoudig gemaakt.",
+  "auth_keysLocal": "Je persoonlijke VPN-sleutels blijven op dit apparaat.",
+  "form_email": "E-mailadres",
+  "form_password": "Wachtwoord",
+  "form_showPassword": "Wachtwoord tonen",
+  "form_hidePassword": "Wachtwoord verbergen",
+  "form_passwordMin": "8–72 UTF-8-bytes. Sommige tekens gebruiken meer dan één byte.",
+  "form_firstName": "Voornaam",
+  "form_lastName": "Achternaam",
+  "form_phone": "Telefoon (+33612345678)",
+  "form_address": "Adres",
+  "form_address2": "Adresregel 2 (optioneel)",
+  "form_postalCode": "Postcode",
+  "form_city": "Plaats",
+  "form_country": "Landcode (bijv. FR)",
+  "action_login": "Aanmelden",
+  "action_createAccount": "Account aanmaken",
+  "action_createMyAccount": "Mijn account aanmaken",
+  "action_next": "Doorgaan",
+  "action_previous": "Terug",
+  "action_forgotPassword": "Wachtwoord vergeten?",
+  "auth_noAccount": "Heb je nog geen account?",
+  "auth_requiredInformation": "Maak je account aan in drie stappen.",
+  "auth_termsPrefix": "Ik accepteer de ",
+  "auth_termsLink": "gebruiksvoorwaarden",
+  "auth_privacyPrefix": "Ik accepteer het ",
+  "auth_privacyLink": "privacybeleid",
+  "auth_consentRequired": "Je toestemming is vereist om een account aan te maken.",
+  "validation_required": "Dit veld is verplicht.",
+  "validation_email": "Voer een geldig e-mailadres in.",
+  "validation_password": "Wachtwoord is te kort: minimaal 8 UTF-8-bytes.",
+  "validation_passwordTooLong": "Wachtwoord is te lang: maximaal 72 UTF-8-bytes.",
+  "validation_phone": "Gebruik de internationale notatie, bijvoorbeeld +33612345678.",
+  "validation_country": "Gebruik een tweeletterige landcode, bijvoorbeeld FR.",
+  "passwordReset_title": "Wachtwoord opnieuw instellen",
+  "passwordReset_description": "Voer het e-mailadres van je account in om een link voor het opnieuw instellen van je wachtwoord aan te vragen.",
+  "passwordReset_send": "Link verzenden",
+  "connection_title": "Je verbinding",
+  "connection_subtitle": "Kies een locatie en zet vervolgens je VPN aan.",
+  "connection_prepare": "Klaar om verbinding te maken?",
+  "connection_advancedOptions": "Geavanceerde opties",
+  "connection_location": "Locatie",
+  "connection_chooseLocation": "Kies een locatie",
+  "connection_protocol": "Protocol",
+  "connection_connect": "Verbinden",
+  "connection_connecting": "Bezig met verbinden…",
+  "connection_disconnect": "Verbinding verbreken",
+  "connection_disconnecting": "Verbinding wordt verbroken",
+  "connection_locationChange": "Locatie wordt gewijzigd…",
+  "connection_unavailable": "{protocol} niet beschikbaar",
+  "connection_activeLocation": "Actieve locatie",
+  "connection_duration": "Duur",
+  "connection_received": "Ontvangen",
+  "connection_sent": "Verzonden",
+  "connection_lastHandshake": "Laatste beveiligde uitwisseling",
+  "connection_handshakeAgo": "{duration} geleden",
+  "verification_title": "Bevestig je e-mailadres",
+  "verification_message": "Bevestig je e-mailadres om de VPN op deze telefoon te gebruiken.",
+  "verification_resend": "E-mail opnieuw verzenden",
+  "migration_title": "Locatie wijzigen",
+  "migration_draining": "Locatiewijziging voorbereiden…",
+  "migration_activating": "Nieuwe server activeren…",
+  "migration_ready": "Locatie bijgewerkt.",
+  "migration_blocked": "Voor de locatiewijziging is ingrijpen op de server nodig. Probeer het later opnieuw of neem contact op met de ondersteuning.",
+  "migration_progress": "Voortgang van locatiewijziging",
+  "migration_retryDelay": "Tijd tussen controles: {seconds}s.",
+  "migration_resume": "Locatiewijziging hervatten",
+  "status_authorizing": "Toestemming vereist",
+  "status_authorizingDetail": "Accepteer het Android-verzoek om de VPN toe te staan.",
+  "status_preparing": "Voorbereiden",
+  "status_preparingDetail": "Je beveiligde verbinding voorbereiden.",
+  "status_reconnecting": "Opnieuw verbinden…",
+  "status_reconnectingDetail": "De verbinding is onderbroken. De VPN probeert opnieuw verbinding te maken.",
+  "status_connecting": "Verbinden",
+  "status_connectingDetail": "Verbinding maken met de VPN-server…",
+  "status_connected": "Verbonden",
+  "status_connectedDetail": "Je VPN-verbinding is actief.",
+  "status_disconnecting": "Verbinding verbreken",
+  "status_disconnectingDetail": "Je VPN-verbinding wordt gestopt.",
+  "status_error": "Verbinding niet beschikbaar",
+  "status_errorDetail": "De VPN-verbinding is niet bevestigd. Probeer het opnieuw.",
+  "status_idle": "Verbinding verbroken",
+  "status_idleDetail": "Maak verbinding met de VPN om je verbinding te beschermen.",
+  "trust_note": "Als je de app sluit, wordt de VPN niet gestopt. Gebruik Verbinding verbreken om de VPN te stoppen.",
+  "locations_none": "Er zijn momenteel geen locaties beschikbaar.",
+  "locations_available": "Kies je volgende locatie.",
+  "locations_selected": "Geselecteerde locatie",
+  "locations_select": "Deze locatie kiezen",
+  "locations_lockedTunnel": "Verbreek de VPN-verbinding om de locatie te wijzigen.",
+  "locations_lockedMigration": "Wacht tot de locatiewijziging is voltooid.",
+  "devices_title": "Je apparaten",
+  "devices_used": "{count} / {limit} apparaten",
+  "devices_refresh": "Apparaten vernieuwen",
+  "devices_empty": "Er is nog geen VPN-apparaat geregistreerd.",
+  "devices_firstConnection": "Je telefoon wordt bij de eerste verbinding toegevoegd.",
+  "devices_thisDevice": "Dit apparaat",
+  "devices_added": "Toegevoegd op {date}",
+  "action_remove": "Verwijderen",
+  "settings_title": "Instellingen",
+  "settings_subtitle": "Je voorkeuren en account, allemaal op één plek.",
+  "settings_appearance": "Weergave",
+  "settings_language": "Taal",
+  "settings_languageDescription": "De taal die je kiest, geldt ook voor VPN-meldingen.",
+  "settings_account": "Account",
+  "settings_signOut": "Afmelden",
+  "settings_privacy": "Privacybeleid",
+  "settings_terms": "Gebruiksvoorwaarden",
+  "settings_security": "Beveiliging en transparantie",
+  "settings_licenses": "Licenties van componenten",
+  "settings_licensesDetail": "Software die in de app wordt gebruikt",
+  "settings_background": "De VPN blijft actief wanneer je de app verlaat. Gebruik Verbinding verbreken op het tabblad Verbinding om de VPN te stoppen.",
+  "theme_system": "Systeem",
+  "theme_light": "Licht",
+  "theme_dark": "Donker",
+  "language_system": "Telefoontaal",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Dit apparaat verwijderen?",
+  "dialog_removeCurrent": "De verbinding van deze telefoon met de VPN wordt verbroken en de toegang gaat verloren. De VPN-verbindingsgegevens worden verwijderd nadat de server dit heeft bevestigd.",
+  "dialog_removeOther": "De VPN-toegang voor ‘{name}’ wordt ingetrokken. Dit kan niet ongedaan worden gemaakt.",
+  "dialog_signOut": "Afmelden?",
+  "dialog_signOutMessage": "De VPN wordt gestopt en je moet je opnieuw aanmelden. Je versleutelde VPN-sleutels blijven op deze telefoon staan voor je volgende verbinding.",
+  "action_cancel": "Annuleren",
+  "action_signOut": "Afmelden",
+  "notice_close": "Melding sluiten",
+  "notice_sessionExpired_title": "Sessie verlopen",
+  "notice_sessionExpired_message": "Je sessie is verlopen. Meld je opnieuw aan.",
+  "notice_connectionFailed_title": "Verbinding mislukt",
+  "notice_invalidCredentials_message": "Het e-mailadres of wachtwoord is onjuist.",
+  "notice_emailVerification_title": "E-mailbevestiging vereist",
+  "notice_emailVerification_message": "Bevestig je e-mailadres voordat je een VPN-apparaat toevoegt.",
+  "notice_rateLimited_title": "Te veel pogingen",
+  "notice_deviceLimit_title": "Limiet van 2 apparaten bereikt",
+  "notice_deviceLimit_message": "Verwijder een bestaand apparaat voordat je een ander apparaat toevoegt.",
+  "notice_identityRenewal_title": "VPN-identiteit moet worden vernieuwd",
+  "notice_identityRenewal_message": "Deze identiteit is verwijderd. Maak een nieuwe lokale identiteit aan.",
+  "notice_migrationPending_title": "Locatiewijziging wordt uitgevoerd",
+  "notice_migrationPending_message": "Er wordt al een locatiewijziging uitgevoerd.",
+  "notice_migrationBlocked_title": "Locatiewijziging geblokkeerd",
+  "notice_migrationBlocked_message": "Voor de locatiewijziging is ingrijpen op de server nodig. Probeer het later opnieuw of neem contact op met de ondersteuning.",
+  "notice_targetUnavailable_title": "Server tijdelijk niet beschikbaar",
+  "notice_targetUnavailable_message": "Deze server is tijdelijk niet beschikbaar.",
+  "notice_networkUnavailable_title": "Internetverbinding niet beschikbaar",
+  "notice_networkUnavailable_message": "Controleer je verbinding en probeer het opnieuw.",
+  "notice_permissionDenied_title": "VPN-toestemming geweigerd",
+  "notice_permissionDenied_message": "Start de verbinding opnieuw en accepteer het Android-toestemmingsverzoek.",
+  "notice_wireguardTimeout_title": "De server reageert niet",
+  "notice_wireguardTimeout_message": "Het maken van de WireGuard-verbinding duurde te lang. Probeer het opnieuw of kies een andere locatie.",
+  "notice_tlsFailed_title": "Beveiligde verbinding geweigerd",
+  "notice_tlsFailed_message": "De server heeft de OpenVPN-verbinding niet geaccepteerd. Probeer het opnieuw. Als het probleem blijft bestaan, voer dan een diagnose uit.",
+  "notice_tunRejected_title": "Android heeft de VPN-interface geweigerd",
+  "notice_tunRejected_message": "Android heeft de door OpenVPN aangevraagde netwerkconfiguratie geweigerd.",
+  "notice_openvpnStart_title": "OpenVPN kon niet starten",
+  "notice_openvpnStart_message": "De OpenVPN-engine kon het opstarten niet voltooien. Probeer het opnieuw. Als het probleem blijft bestaan, neem dan contact op met de ondersteuning.",
+  "notice_diagnosticCode": "Diagnosecode: {code}",
+  "notice_generic_title": "VPN-verbinding mislukt",
+  "notice_generic_message": "Er is een fout opgetreden. Probeer het later opnieuw.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Account aangemaakt} password_reset_sent{Aanvraag voor opnieuw instellen van wachtwoord ontvangen} verification_email_sent{Verificatie-e-mail verzonden} location_migration_pending{Locatiewijziging wordt uitgevoerd} vpn_sign_in_required{Aanmelden vereist} protocol_unavailable_at_location{Protocol niet beschikbaar} vpn_permission_denied{VPN-toestemming geweigerd} revoked_identity_device_limit{Limiet van 2 apparaten bereikt} tunnel_start_unexpected{VPN kon niet starten} flutter_disconnect_timeout{Verbreking niet bevestigd} flutter_disconnect_unexpected{Verbinding kon niet worden verbroken} device_revoked{Apparaat verwijderd} revoke_unexpected{Apparaat kon niet worden verwijderd} identity_renewal_unexpected{Identiteit kon niet worden vernieuwd} openvpn_renewal_unexpected{OpenVPN kon niet worden vernieuwd} location_migration_blocked{Locatiewijziging geblokkeerd} location_migration_slow{Locatiewijziging nog steeds bezig} location_migration_conflict{Locatiewijziging moet worden vernieuwd} location_migration_verification_failed{Locatiewijziging niet bevestigd} location_migration_device_changed{Apparaat gewijzigd tijdens locatiewijziging} tunnel_stop_failed{Locatiewijziging niet beschikbaar} other{Bewerking mislukt}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Het account is aangemaakt, maar de verificatie-e-mail kon niet worden verzonden. Gebruik Opnieuw verzenden in de app.} password_reset_sent{Je aanvraag is ontvangen. Als er een account bij dit adres hoort, ontvang je mogelijk een e-mail. Controleer ook je spammap.} verification_email_sent{Er is zojuist een nieuwe verificatie-e-mail verzonden.} location_migration_pending{De verplaatsing naar {target} wordt nog voorbereid. Je kunt deze hervatten zonder het apparaat opnieuw aan te maken.} vpn_sign_in_required{Meld je aan bij je account voordat je de VPN start.} protocol_unavailable_at_location{Het geselecteerde protocol wordt niet aangeboden op deze locatie. Vernieuw de locaties of kies een ander protocol.} vpn_permission_denied{Android heeft de VPN-toestemming geweigerd. Start de verbinding opnieuw en accepteer het systeemverzoek.} revoked_identity_device_limit{De VPN-toegang van dit apparaat is verwijderd en de apparaatlimiet is bereikt. Verwijder een apparaat via Account → Mijn apparaten beheren.} tunnel_start_unexpected{Een onverwachte fout heeft de voorbereiding van de tunnel onderbroken. Controleer de diagnosecode en probeer het opnieuw.} flutter_disconnect_timeout{Android heeft niet op tijd bevestigd dat de VPN is gestopt. Probeer deze opnieuw te stoppen.} flutter_disconnect_unexpected{Een onverwachte fout verhinderde de bevestiging dat de tunnel is gestopt.} device_revoked{De VPN-toegang van het apparaat is ingetrokken en de lokale geheimen zijn verwijderd.} revoke_unexpected{Het apparaat kon niet worden verwijderd. Vernieuw de lijst en probeer het opnieuw.} identity_renewal_unexpected{De nieuwe VPN-identiteit kon niet worden aangemaakt. Vernieuw de apparaten en probeer het opnieuw.} openvpn_renewal_unexpected{Het OpenVPN-profiel kon niet worden vernieuwd. Probeer het opnieuw of controleer de diagnosecode.} location_migration_blocked{De server kan deze wijziging momenteel niet voltooien. Het apparaat en de lokale identiteit zijn behouden.} location_migration_slow{De server bereidt de verplaatsing naar {target} nog steeds voor. Gebruik Hervatten over enkele ogenblikken.} location_migration_conflict{De apparaatstatus is op de server gewijzigd. Vernieuw de apparaten en hervat daarna de wijziging.} location_migration_verification_failed{De server heeft de nieuwe locatie niet bevestigd. De vorige lokale identiteit is behouden.} location_migration_device_changed{Het apparaat dat door de server is teruggegeven, komt niet meer overeen met het apparaat dat wordt gewijzigd. Vernieuw de apparaten voordat je het opnieuw probeert.} tunnel_stop_failed{De vorige tunnel moet volledig zijn gestopt voordat de nieuwe verbinding wordt gemaakt.} other{De bewerking kon niet worden voltooid. Probeer het opnieuw of stuur de diagnosecode naar de ondersteuning.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Sessie verlopen} invalid_credentials{Aanmelden mislukt} email_verification_required{E-mailbevestiging vereist} verification_email_cooldown{E-mail al verzonden} rate_limited{Te veel pogingen} invalid_registration{Gegevens moeten worden gecorrigeerd} email_exists{Account bestaat al} invalid_profile{Ongeldig profiel} invalid_device{Ongeldig apparaat} invalid_location{Locatie niet beschikbaar} device_limit{Limiet van 2 apparaten bereikt} device_exists{VPN-identiteit al in gebruik} device_identity_revoked{VPN-identiteit moet worden vernieuwd} device_location_locked{Locatiewijziging moet worden vernieuwd} location_migration_pending{Locatiewijziging wordt uitgevoerd} location_migration_blocked{Locatiewijziging geblokkeerd} target_ca_mismatch{Incompatibele OpenVPN-server} location_migration_conflict{Locatiewijziging moet worden vernieuwd} server_full{Server vol} capacity_unavailable{Locatie tijdelijk niet beschikbaar} target_unavailable{Server tijdelijk niet beschikbaar} not_found{Item niet gevonden} invalid_openvpn_csr{Ongeldige OpenVPN-identiteit} openvpn_profile_exists{OpenVPN-profiel bestaat al} openvpn_profile_revoked{OpenVPN-profiel ingetrokken} openvpn_operation_pending{OpenVPN-bewerking wordt uitgevoerd} openvpn_operation_terminal{OpenVPN-bewerking onderbroken} openvpn_address_unavailable{OpenVPN-adres niet beschikbaar} openvpn_profile_conflict{OpenVPN-conflict} openvpn_signer_unavailable{OpenVPN niet beschikbaar} email_delivery_unavailable{E-mail niet beschikbaar} invalid_token{Ongeldige link} network_unavailable{Internetverbinding niet beschikbaar} invalid_json{Ongeldig verzoek} invalid_api_response{Ongeldig serverantwoord} ipv6_unavailable{IPv6 niet beschikbaar} invalid_ip_families{Netwerkconfiguratie geweigerd} other{Service niet beschikbaar}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Je sessie is verlopen. Meld je opnieuw aan.} invalid_credentials{Het e-mailadres of wachtwoord is onjuist.} email_verification_required{Bevestig je e-mailadres voordat je een VPN-apparaat toevoegt.} invalid_registration{Controleer de gevraagde gegevens en toestemmingen.} email_exists{Er is al een account met dit e-mailadres.} invalid_profile{Controleer je profielgegevens.} invalid_device{De naam of lokale identiteit van dit apparaat is ongeldig.} invalid_location{Vernieuw de locatielijst en probeer het opnieuw.} device_limit{Verwijder een bestaand apparaat voordat je een ander apparaat toevoegt.} device_exists{Deze VPN-identiteit is al aan een ander account gekoppeld.} device_identity_revoked{Deze identiteit is verwijderd. Er moet een nieuwe lokale identiteit worden aangemaakt.} device_location_locked{De locatie van dit apparaat is zojuist gewijzigd. De app hervat de lopende wijziging.} location_migration_pending{Er wordt al een locatiewijziging uitgevoerd.} location_migration_blocked{Voor de locatiewijziging is ingrijpen op de server nodig. Probeer het later opnieuw of neem contact op met de ondersteuning.} target_ca_mismatch{Deze server is nog niet compatibel met het huidige OpenVPN-profiel.} location_migration_conflict{Vernieuw de apparaten en probeer de locatiewijziging daarna opnieuw.} server_full{Deze locatie heeft de verbindingslimiet bereikt. Kies een andere locatie of probeer het later opnieuw.} capacity_unavailable{We kunnen momenteel niet bevestigen of deze locatie beschikbaar is. Kies een andere locatie of probeer het later opnieuw.} target_unavailable{Deze server is tijdelijk niet beschikbaar.} not_found{Dit item is niet langer beschikbaar in je account.} invalid_openvpn_csr{Maak een nieuwe OpenVPN-identiteit aan en probeer het opnieuw.} openvpn_profile_exists{Er bestaat al een OpenVPN-profiel voor dit apparaat.} openvpn_profile_revoked{Vernieuw het OpenVPN-profiel om door te gaan.} openvpn_operation_pending{De wijziging wordt nog doorgevoerd. Probeer het later opnieuw.} openvpn_operation_terminal{Maak een nieuwe OpenVPN-identiteit aan en probeer het opnieuw.} openvpn_address_unavailable{Er is momenteel geen OpenVPN-adres beschikbaar.} openvpn_profile_conflict{Het profiel is gewijzigd. Vernieuw de apparaten en probeer het opnieuw.} openvpn_signer_unavailable{De OpenVPN-service is tijdelijk niet beschikbaar.} email_delivery_unavailable{De e-mail kon niet worden verzonden. Probeer het later opnieuw.} invalid_token{Deze link is ongeldig of verlopen. Vraag een nieuwe link aan.} network_unavailable{Controleer je internetverbinding en probeer het opnieuw.} invalid_json{Controleer de ingevoerde gegevens en probeer het opnieuw.} invalid_api_response{De server gaf een onverwacht antwoord. Probeer het later opnieuw.} ipv6_unavailable{De server kan IPv6 momenteel niet activeren. Probeer het later opnieuw.} invalid_ip_families{De tunnelconfiguratie is onvolledig of komt niet overeen met de geautoriseerde adressen. Probeer het opnieuw vanuit de app.} other{Er is een serverfout opgetreden. Probeer het later opnieuw.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Probeer het over enkele ogenblikken opnieuw.",
+  "notice_retryAfter": "Probeer het over {seconds} seconden opnieuw.",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "Object"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Hervatten van systeem-VPN niet beschikbaar} system_vpn_resume_corrupt{Ongeldig hervatten van systeem-VPN} system_vpn_resume_session_invalid{Ongeldige VPN-sessie voor hervatten} system_vpn_resume_identity_changed{VPN-identiteit gewijzigd} system_vpn_resume_identity_invalid{Ongeldige VPN-identiteit voor hervatten} system_vpn_resume_storage_failed{Opslag voor hervatten van VPN niet beschikbaar} system_vpn_resume_network_timeout{Hervatten van VPN heeft geen netwerk} system_vpn_resume_blocked{Hervatten van VPN geblokkeerd} system_vpn_resume_failed{Hervatten van VPN mislukt} system_vpn_resume_error_invalid{Ongeldige fout bij hervatten van VPN} wireguard_identity_store_failed{WireGuard-identiteit niet opgeslagen} wireguard_identity_unavailable{WireGuard-identiteit niet beschikbaar} vpn_host_destroyed{Android-VPN-host gestopt} vpn_host_unavailable{Android-VPN-host niet beschikbaar} vpn_permission_required{VPN-toestemming vereist} vpn_permission_denied{VPN-toestemming geweigerd} vpn_permission_request_failed{Toestemming kon niet worden aangevraagd} wireguard_foreground_service_unavailable{WireGuard-service niet beschikbaar} wireguard_identity_invalid{Ongeldige lokale WireGuard-sleutel} wireguard_identity_in_use{WireGuard-identiteit al in gebruik} wireguard_configuration_invalid{Ongeldige WireGuard-configuratie} wireguard_operation_pending{WireGuard-bewerking nog actief} wireguard_start_failed{Start van WireGuard geweigerd} wireguard_stop_timeout{Stoppen van WireGuard niet bevestigd} wireguard_handshake_timeout{WireGuard reageerde niet} openvpn_connection_timeout{OpenVPN reageerde niet} openvpn_core_unavailable{OpenVPN-engine niet beschikbaar} openvpn_operation_pending{OpenVPN-sessie nog actief} openvpn_stop_timeout{Stoppen van OpenVPN niet bevestigd} openvpn_profile_unavailable{Lokaal OpenVPN-profiel ontbreekt} openvpn_native_failed{Native OpenVPN-aanroep onderbroken} openvpn_key_generation_failed{OpenVPN P-256-sleutel kon niet worden aangemaakt} openvpn_csr_generation_failed{OpenVPN-CSR kon niet worden aangemaakt} openvpn_identity_store_failed{OpenVPN-identiteit niet opgeslagen} openvpn_identity_clear_failed{OpenVPN-verwijdering onvolledig} openvpn_identity_in_use{OpenVPN-identiteit nog in gebruik} openvpn_tls_verification_required{OpenVPN TLS-verificatie ontbreekt} openvpn_cipher_invalid{Ongeldige OpenVPN-versleuteling} openvpn_profile_rejected{OpenVPN-profiel geweigerd} openvpn_identity_inconsistent{Inconsistente OpenVPN-identiteit} tls_handshake_failed{OpenVPN-onderhandeling geweigerd} tls_alert_unknown_ca{OpenVPN-clientcertificaat niet herkend} tls_alert_bad_certificate{OpenVPN-clientcertificaat geweigerd} tls_alert_unsupported_certificate{Niet-ondersteund OpenVPN-certificaat} tls_client_certificate_required{OpenVPN-clientcertificaat vereist} tls_alert_misc{OpenVPN TLS-melding} tls_signature_algorithm_rejected{Niet-ondersteunde OpenVPN-handtekening} tls_handshake_rejected{OpenVPN TLS-onderhandeling geweigerd} tls_version_rejected{Incompatibele OpenVPN TLS-versie} tls_certificate_expired{TLS-certificaat verlopen} tls_certificate_revoked{TLS-certificaat ingetrokken} transport_failed{OpenVPN-server onbereikbaar} tun_configuration_rejected{OpenVPN-interface kon niet worden aangemaakt} tun_setup_failed{OpenVPN TUN-configuratie mislukt} tun_interface_create_failed{Aanmaken van OpenVPN-interface mislukt} tun_interface_disabled{OpenVPN-interface uitgeschakeld} tun_halted{OpenVPN-interface onderbroken} tun_already_established{OpenVPN-interface al geopend} tun_addresses_missing{OpenVPN-adres ontbreekt} tun_routes_missing{OpenVPN-routes ontbreken} tun_dns_missing{OpenVPN-DNS ontbreekt} tun_permission_revoked{VPN-toestemming ingetrokken} tun_establish_returned_null{Android heeft de VPN-interface geweigerd} openvpn_service_start_failed{OpenVPN-service niet beschikbaar} openvpn_operation_timeout{Time-out bij OpenVPN-aanroep} openvpn_start_failed{Start van OpenVPN geweigerd} openvpn_connection_failed{OpenVPN-verbinding onderbroken} openvpn_core_status_error{OpenVPN Core is met een fout beëindigd} openvpn_stopped_before_connected{OpenVPN gestopt voordat verbinding was gemaakt} openvpn_auth_failed{OpenVPN-authenticatie geweigerd} openvpn_client_setup_failed{OpenVPN-clientconfiguratie mislukt} openvpn_client_halted{OpenVPN-client onderbroken} openvpn_client_restart{Herstart van OpenVPN aangevraagd} openvpn_inactive_timeout{OpenVPN te lang inactief} openvpn_session_expired{OpenVPN-sessie verlopen} openvpn_credentials_required{Niet-ondersteunde OpenVPN-authenticatie} openvpn_proxy_failed{Transport via OpenVPN-tussenpersoon mislukt} openvpn_compression_failed{OpenVPN-compressie geweigerd} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM-versleuteling niet beschikbaar} openvpn_feature_unsupported{Niet-ondersteunde OpenVPN-functie} network_unavailable{Internetverbinding niet beschikbaar} network_lost{Netwerk niet beschikbaar} certificate_validation_failed{Servercertificaat geweigerd} openvpn_certificate_expired{OpenVPN-certificaat verlopen} tunnel_active_for_another_account{Tunnel van een ander account nog actief} tunnel_already_active{Native tunnel al actief} tunnel_stop_timeout{Stoppen van {protocol} niet bevestigd} tunnel_disconnected{{protocol} onderbroken} native_bridge_unavailable{Android-bridge niet beschikbaar} native_operation_failed{Android-bewerking onderbroken} invalid_arguments{Onvolledige VPN-parameters} invalid_account_id{Ongeldig VPN-account} invalid_device_id{Ongeldige apparaat-ID} storage_key_not_allowed{Opslagsleutel geweigerd} secure_storage_read_failed{Beveiligd lezen mislukt} secure_storage_write_failed{Beveiligd schrijven mislukt} key_generation_failed{WireGuard-sleutel kon niet worden gegenereerd} csr_generation_failed{OpenVPN-CSR kon niet worden gegenereerd} other{Niet-geclassificeerde native VPN-fout}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android kan geen hervatbare VPN-sessie vinden. Start een nieuwe verbinding in de app.} system_vpn_resume_corrupt{De opgeslagen VPN-gegevens voor hervatten zijn ongeldig en worden niet gebruikt. Start een nieuwe verbinding.} system_vpn_resume_session_invalid{De opgeslagen sessie kan de VPN niet meer hervatten. Meld je opnieuw aan in de app.} system_vpn_resume_identity_changed{De lokale VPN-identiteit is gewijzigd. Hervatten is gestopt; start een nieuwe verbinding.} system_vpn_resume_identity_invalid{De identiteit voor hervatten is ongeldig. Start een nieuwe verbinding.} system_vpn_resume_storage_failed{Android kon de versleutelde gegevens voor hervatten niet lezen of bijwerken. Start een nieuwe verbinding.} system_vpn_resume_network_timeout{Android heeft niet op tijd een netwerk gevonden om de VPN te hervatten. Probeer het opnieuw wanneer er een netwerk beschikbaar is.} system_vpn_resume_blocked{Hervatten van de VPN is geblokkeerd. Controleer de Android-instellingen en start daarna een nieuwe verbinding.} system_vpn_resume_failed{Hervatten van de Android-VPN is mislukt. Start een nieuwe verbinding in de app.} system_vpn_resume_error_invalid{Android gaf een onbruikbare fout bij het hervatten terug. Start een nieuwe verbinding.} wireguard_identity_store_failed{Android kon de versleutelde WireGuard-identiteit van dit account niet opslaan.} wireguard_identity_unavailable{Er is geen bruikbare WireGuard-identiteit beschikbaar voor deze verbinding.} vpn_host_destroyed{Het Android-component dat de VPN hostte, is gestopt. Start een nieuwe verbinding.} vpn_host_unavailable{Android kan het component dat de VPN host niet aanmaken. Probeer het opnieuw nadat je de VPN-instellingen hebt gecontroleerd.} openvpn_renewal_required{Het certificaat vereist een handeling in de app voordat je verbinding maakt.} openvpn_recovery_failed{Automatisch herstel mislukt. Start een nieuwe verbinding in de app.} openvpn_recovery_exhausted{Automatisch herstel is al gebruikt. Start een nieuwe verbinding in de app.} vpn_permission_required{Android vereist nieuwe VPN-autorisatie voordat de tunnel wordt gestart.} vpn_permission_denied{Sta FuzeVPN toe in het Android-verzoek om door te gaan.} vpn_permission_request_failed{Android kon het VPN-toestemmingsscherm niet openen.} wireguard_foreground_service_unavailable{Android kon de WireGuard-service niet op de voorgrond houden.} wireguard_identity_invalid{De versleutelde WireGuard-sleutel van dit account is onleesbaar of ongeldig.} wireguard_identity_in_use{Een andere bewerking gebruikt de WireGuard-sleutel van dit account nog.} wireguard_configuration_invalid{Het ontvangen WireGuard-adres, de DNS, serversleutel of routes zijn ongeldig.} wireguard_operation_pending{De vorige WireGuard-bewerking heeft de native service nog niet vrijgegeven.} wireguard_start_failed{De WireGuard-engine heeft activering van de configuratie geweigerd.} wireguard_stop_timeout{De WireGuard-service heeft niet binnen de tijdslimiet bevestigd dat de VPN-interface is vrijgegeven.} wireguard_handshake_timeout{De tunnel heeft niet op tijd bevestigd dat er een handshake met de server is uitgevoerd.} openvpn_connection_timeout{OpenVPN heeft niet op tijd bevestigd dat er verbinding met de server is gemaakt.} openvpn_core_unavailable{Deze app-versie bevat geen bruikbare OpenVPN-engine.} openvpn_operation_pending{De native engine houdt de vorige OpenVPN-sessie nog vast en weigert een tweede sessie aan te maken.} openvpn_stop_timeout{OpenVPN Core heeft niet binnen de tijdslimiet bevestigd dat de native sessie is gestopt en vernietigd.} openvpn_profile_unavailable{Er kan geen gevalideerd OpenVPN-profiel voor deze verbinding worden gelezen.} openvpn_native_failed{Een app-fout heeft OpenVPN onderbroken. Probeer opnieuw verbinding te maken. Als het probleem blijft bestaan, voer dan een diagnose uit.} openvpn_key_generation_failed{Android Keystore kon de niet-exporteerbare P-256-privésleutel niet aanmaken of lezen.} openvpn_csr_generation_failed{De Android Keystore-sleutel kon de OpenVPN-certificaataanvraag niet ondertekenen.} openvpn_identity_store_failed{Het OpenVPN-certificaat of -profiel kon niet in versleutelde opslag worden opgeslagen.} openvpn_identity_clear_failed{Android kon de volledige lokale OpenVPN-identiteit voor dit account niet verwijderen.} openvpn_identity_in_use{Een native OpenVPN-sessie gebruikt de sleutel of het certificaat van dit apparaat nog.} openvpn_tls_verification_required{Het profiel vereist niet expliciet verificatie van het servercertificaat.} openvpn_cipher_invalid{De server leverde een versleutelingsalgoritme dat niet in de toegestane lijst staat.} openvpn_profile_rejected{Het van de server ontvangen profiel is incompatibel. Maak dit apparaat opnieuw aan en probeer het opnieuw.} openvpn_identity_inconsistent{Het certificaat komt niet overeen met de beveiligde identiteit van deze telefoon. Geen lokaal profiel is vervangen.} tls_handshake_failed{De server heeft de TLS-onderhandeling geweigerd. Maak het profiel opnieuw aan als het probleem blijft bestaan.} tls_alert_unknown_ca{De server herkent de certificaatautoriteit van dit apparaat niet. De OpenVPN-server moet worden gecontroleerd.} tls_alert_bad_certificate{De server heeft dit apparaatcertificaat geweigerd. Maak het apparaat opnieuw aan voordat je het opnieuw probeert.} tls_alert_unsupported_certificate{De server ondersteunt het beveiligde certificaattype dat Android gebruikt niet.} tls_client_certificate_required{De server vereist een clientcertificaat, maar OpenVPN Core kon er geen aanbieden.} tls_alert_misc{De server gaf een TLS-melding buiten de categorieën certificaat en versie terug.} tls_signature_algorithm_rejected{De server heeft het ECDSA P-256-algoritme van de Android Keystore-sleutel geweigerd.} tls_handshake_rejected{De server heeft de TLS-onderhandeling vóór de verbinding onderbroken.} tls_version_rejected{De client en server konden geen gemeenschappelijke TLS-versie vinden.} tls_certificate_expired{Het certificaat dat tijdens de verbinding werd aangeboden, is verlopen.} tls_certificate_revoked{Het certificaat dat tijdens de verbinding werd aangeboden, is ingetrokken.} transport_failed{De OpenVPN-server reageert niet op het huidige netwerk. Probeer het zo opnieuw.} tun_configuration_rejected{Android heeft de door OpenVPN aangevraagde netwerkconfiguratie geweigerd.} tun_setup_failed{OpenVPN Core heeft het netwerkplan geweigerd voordat de Android-interface werd aangemaakt.} tun_interface_create_failed{OpenVPN Core kon de TUN-interface niet verkrijgen van Android VpnService.} tun_interface_disabled{Android of OpenVPN Core heeft de TUN-interface tijdens de verbinding uitgeschakeld.} tun_halted{OpenVPN Core heeft een verzoek ontvangen om de TUN-interface te stoppen.} tun_already_established{OpenVPN vroeg om een tweede interface binnen dezelfde verbinding. De tunnel is om veiligheidsredenen gestopt.} tun_addresses_missing{De server heeft geen bruikbaar tunneladres verstrekt.} tun_routes_missing{De server heeft geen bruikbare tunnelroutes verstrekt.} tun_dns_missing{De server heeft geen bruikbare DNS-server verstrekt.} tun_permission_revoked{Android heeft de VPN-toestemming tijdens de verbinding ingetrokken.} tun_establish_returned_null{Android heeft de interface niet aangemaakt, meestal omdat er nog een andere VPN actief is.} openvpn_service_start_failed{Android kon de OpenVPN-service op de voorgrond niet starten.} openvpn_operation_timeout{Een JNI-aanroep naar OpenVPN Core overschreed de maximale duur.} openvpn_start_failed{De Android-service is klaar, maar OpenVPN Core accepteerde het starten van het profiel niet.} openvpn_connection_failed{OpenVPN Core is gestopt voordat de gebeurtenis CONNECTED werd uitgegeven.} openvpn_core_status_error{De native OpenVPN-lus eindigde met een fout zonder specifiekere eindgebeurtenis.} openvpn_stopped_before_connected{De native OpenVPN-lus stopte vóór CONNECTED, zonder expliciete Core-fout.} openvpn_auth_failed{De OpenVPN-server heeft de profielauthenticatie geweigerd.} openvpn_client_setup_failed{OpenVPN Core kon de client niet initialiseren vóór de netwerkverbinding.} openvpn_client_halted{OpenVPN Core heeft een definitieve clientstop ontvangen.} openvpn_client_restart{OpenVPN Core vroeg om een herstart van de transportsessie.} openvpn_inactive_timeout{OpenVPN Core heeft de sessie gesloten na de time-out wegens inactiviteit.} openvpn_session_expired{De server meldde dat de OpenVPN-sessie is verlopen.} openvpn_credentials_required{De server of een proxy vraagt interactieve inloggegevens die geen deel uitmaken van dit certificaatprofiel.} openvpn_proxy_failed{OpenVPN Core meldde een fout in de geconfigureerde proxy of relay.} openvpn_compression_failed{OpenVPN Core heeft de compressiemodus die door het profiel of de server is aangekondigd geweigerd.} openvpn_ntlm_crypto_unavailable{Het profiel vraagt NTLM-versleuteling die in deze versie niet beschikbaar is.} openvpn_feature_unsupported{Het profiel of de server vereist een functie die in deze Android-client ontbreekt.} network_unavailable{Er is geen bruikbaar fysiek netwerk beschikbaar.} network_lost{De tunnel is gestopt nadat het netwerk verloren ging.} certificate_validation_failed{De identiteit van de OpenVPN-server kon niet worden geverifieerd.} openvpn_certificate_expired{Vernieuw het OpenVPN-profiel voordat je opnieuw verbinding maakt.} tunnel_active_for_another_account{Een tunnel van een ander account moet stoppen voordat deze verbinding kan worden gemaakt.} tunnel_already_active{Android meldt dat een vorige VPN-sessie de interface nog gebruikt.} tunnel_stop_timeout{De {protocol}-engine heeft niet binnen de tijdslimiet bevestigd dat de VPN-interface is vrijgegeven.} tunnel_disconnected{De native engine meldde dat de tunnel na het starten onverwacht is beëindigd.} native_bridge_unavailable{De app heeft geen toegang tot de Android-VPN-service. Sluit de app en open deze opnieuw; probeer het daarna opnieuw.} native_operation_failed{Een app-fout heeft de VPN-bewerking onderbroken. Probeer het opnieuw. Als het probleem blijft bestaan, voer dan een diagnose uit.} invalid_arguments{De informatie die voor deze VPN-bewerking nodig is, is onvolledig. Probeer het opnieuw. Als het probleem blijft bestaan, voer dan een diagnose uit.} invalid_account_id{De native bewerking is niet gekoppeld aan een geldige account-ID.} invalid_device_id{De naar de native engine verzonden apparaat-ID ontbreekt of is ongeldig.} storage_key_not_allowed{De Android-bridge blokkeerde een sleutel buiten de toegestane lijst met opslagsleutels.} secure_storage_read_failed{Android Keystore kon de lokale gegevens van dit account niet ontsleutelen.} secure_storage_write_failed{Android Keystore kon de lokale gegevens niet versleutelen of opslaan.} key_generation_failed{Android kon de WireGuard-sleutel niet aanmaken of uit de beveiligde opslag lezen.} csr_generation_failed{Android Keystore kon de OpenVPN P-256-CSR niet aanmaken of ondertekenen.} other{Een niet-gedocumenteerde native tak is mislukt. Stuur de hieronder weergegeven diagnosecode naar de ondersteuning.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Toestemmingsverzoek al geopend",
+  "notice_permissionRequestInProgress_message": "Het Android-VPN-toestemmingsverzoek wordt al weergegeven. Rond dit eerst af voordat je het opnieuw probeert.",
+  "notice_permissionRequestInterrupted_title": "VPN-toestemmingsverzoek onderbroken",
+  "notice_permissionRequestInterrupted_message": "Het VPN-toestemmingsscherm is gesloten voordat de app een antwoord ontving.",
+  "notice_openvpnProofMissing_title": "OpenVPN-verbinding niet bevestigd",
+  "notice_openvpnProofMissing_message": "De OpenVPN-verbinding kon niet worden bevestigd. Om veiligheidsredenen is deze gestopt. Probeer het opnieuw.",
+  "openvpnCleanup_title": "OpenVPN-profiel ingetrokken",
+  "openvpnCleanup_working": "Ingetrokken OpenVPN-profiel stoppen en verwijderen…",
+  "openvpnCleanup_stopFailed": "Het afsluiten van OpenVPN is niet bevestigd. Probeer het opnieuw voordat je een nieuw profiel aanmaakt.",
+  "openvpnCleanup_cleanupFailed": "Het ingetrokken OpenVPN-profiel kon niet volledig worden verwijderd. Probeer het opschonen opnieuw.",
+  "openvpnCleanup_complete": "Het ingetrokken OpenVPN-profiel is verwijderd. Tik op Verbinden om een nieuw profiel aan te maken.",
+  "network_title": "Netwerkconfiguratie",
+  "network_ipv4Fallback": "IPv6 is tijdelijk niet beschikbaar. De voorbereiding gaat verder met IPv4.",
+  "network_rejectedTitle": "Netwerkconfiguratie geweigerd",
+  "network_rejectedMessage": "De tunnelconfiguratie is onvolledig of komt niet overeen met de geautoriseerde adressen. Probeer het opnieuw vanuit de app.",
+  "network_unreadableTitle": "Lokale configuratie onleesbaar",
+  "network_unreadableMessage": "De opgeslagen OpenVPN-netwerkconfiguratie kan niet worden gebruikt. Maak vanuit de app opnieuw verbinding om deze bij te werken.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Netwerkbeveiliging",
+  "protection_subtitle": "Blokkeer directe internettoegang als de VPN-verbinding wordt verbroken.",
+  "protection_active": "Systeembeveiliging actief",
+  "protection_alwaysOnOnly": "Altijd ingeschakelde VPN actief; schakel blokkeren buiten de VPN in",
+  "protection_inactive": "Systeembeveiliging inactief",
+  "protection_unknown": "Systeembeveiliging controleren",
+  "protection_openSettings": "Android-instellingen openen",
+  "protection_dialogTitle": "Netwerkbeveiliging instellen",
+  "protection_dialogMessage": "Android beheert de altijd ingeschakelde VPN en het blokkeren van verbindingen buiten de VPN. Controleer of FuzeVPN is geselecteerd en schakel blokkeren in via de systeeminstellingen.",
+  "protection_dialogOpen": "Instellingen openen",
+  "session_systemProtectionNote": "Als Android verkeer buiten de VPN nog steeds blokkeert, open dan de systeeminstellingen om deze beveiliging te controleren of te wijzigen.",
+  "diagnostics_title": "Diagnose",
+  "diagnostics_settingsTitle": "App-diagnose",
+  "diagnostics_automaticTitle": "Belangrijke fouten verzenden",
+  "diagnostics_automaticDescription": "Deel een klein technisch rapport wanneer er een belangrijke fout optreedt.",
+  "diagnostics_privacy": "Verzonden rapporten zijn gekoppeld aan het aangemelde account en worden 30 dagen bewaard. Ze bevatten geen browsegeschiedenis, wachtwoorden of VPN-sleutels.",
+  "diagnostics_manualOpen": "Diagnose uitvoeren",
+  "diagnostics_localDescription": "Maak een rapport van de app- en VPN-status. Je verbinding blijft ongewijzigd.",
+  "diagnostics_sendReport": "Rapport verzenden",
+  "diagnostics_sendHint": "Laat dit vakje uitgeschakeld om het rapport op dit apparaat te bewaren.",
+  "diagnostics_signedOut": "Meld je aan bij je account om een rapport te verzenden.",
+  "diagnostics_localLifetime": "Sla dit rapport op je telefoon op om het te bewaren nadat je de app hebt gesloten.",
+  "diagnostics_run": "Diagnose uitvoeren",
+  "diagnostics_rerun": "Diagnose opnieuw uitvoeren",
+  "diagnostics_running": "Controleren…",
+  "diagnostics_sending": "Rapport verzenden…",
+  "diagnostics_prepared": "Rapport klaar op dit apparaat",
+  "diagnostics_queued": "Rapport wacht om te worden verzonden",
+  "diagnostics_sent": "Rapport ontvangen",
+  "diagnostics_failed": "Verzenden mislukt. Je lokale rapport is nog beschikbaar.",
+  "diagnostics_preparationFailed": "Het diagnoserapport kon niet worden voorbereid. Probeer het opnieuw.",
+  "diagnostics_authenticationRequired": "Meld je opnieuw aan om het rapport te verzenden.",
+  "diagnostics_retry": "Verzenden opnieuw proberen",
+  "diagnostics_export": "Rapport opslaan",
+  "diagnostics_exportFailed": "Exporteren mislukt. Probeer het opnieuw vanuit het lokale rapport.",
+  "diagnostics_preferenceFailed": "Deze instelling kon niet worden opgeslagen. Probeer het opnieuw.",
+  "diagnostics_receipt": "Referentie: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "Ontvangen op {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Bewaard tot {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Dit rapport was al ontvangen.",
+  "diagnostics_preview": "Voorbeeld van rapport",
+  "diagnostics_eventCount": "{count, plural, =0{Geen technische gebeurtenissen bijgevoegd} =1{1 technische gebeurtenis bijgevoegd} other{{count} technische gebeurtenissen bijgevoegd}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Technische details",
+  "diagnostics_empty": "Er is nog geen diagnoserapport voorbereid.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Tunnelstatus} handshake{Bevestiging van verbinding} certificate{VPN-certificaat} kill_switch{Android-beveiliging} connectivity{Beschikbaar netwerk} api_reachability{Toegang tot service} secure_storage{Beveiligde opslag} other{Lokale controle}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Gecontroleerd} failed{Aandacht vereist} skipped{Niet getest — geen actieve controle} unknown{Informatie niet beschikbaar} other{Informatie niet beschikbaar}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Welkom bij FuzeVPN",
+  "connection_changeLocation": "Locatie wijzigen",
+  "connection_details": "Verbindingsdetails",
+  "locations_searchLabel": "Zoek een stad of land",
+  "locations_clearSearch": "Zoekopdracht wissen",
+  "locations_filterAll": "Alle",
+  "locations_filterFavorites": "Favorieten",
+  "locations_results": "{count, plural, one{{count} locatie} other{{count} locaties}}",
+  "locations_noResults": "Geen locaties gevonden",
+  "locations_noResultsHint": "Probeer een andere stad of een ander land.",
+  "locations_noFavorites": "Je favorieten binnen handbereik",
+  "locations_noFavoritesHint": "Tik op de ster naast een locatie om deze hier op te slaan.",
+  "locations_showAll": "Alle locaties bekijken",
+  "locations_addFavorite": "{name} aan favorieten toevoegen",
+  "locations_removeFavorite": "{name} uit favorieten verwijderen",
+  "locations_favoriteSaveFailed": "De favoriet kon niet worden opgeslagen. Probeer het opnieuw.",
+  "locations_emptyTitle": "Geen locaties beschikbaar",
+  "locations_emptyHint": "Vernieuw de lijst om het opnieuw te proberen.",
+  "devices_manage": "Mijn apparaten beheren",
+  "settings_personalization": "Maak het persoonlijk",
+  "settings_safety": "Beveiliging",
+  "settings_help": "Hulp nodig?",
+  "settings_about": "Over FuzeVPN",
+  "diagnostics_heading": "Een verbindingsprobleem begrijpen",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Beschikbaar} pending{Voorbereiden} revoked{Verwijderd} expired{Verlopen} other{Status niet beschikbaar}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Voorkeur niet opgeslagen",
+  "notice_preferenceSave_message": "Je keuze is voorlopig toegepast, maar kon niet worden opgeslagen. Probeer het opnieuw om deze te behouden nadat je de app hebt gesloten.",
+  "connection_androidDisconnectHint": "Als Android de VPN actief houdt, schakel dan Altijd ingeschakelde VPN uit in de instellingen die worden geopend.",
+  "protection_learnMore": "Meer informatie over Android-beveiliging",
+  "protection_guideWhy": "Deze beveiliging voorkomt dat apps rechtstreeks internet gebruiken als de VPN-verbinding wordt verbroken. Dit wordt in Android ingesteld.",
+  "protection_guideAlwaysOnTitle": "Altijd ingeschakelde VPN",
+  "protection_guideAlwaysOn": "Android houdt de VPN-service actief en kan deze opnieuw starten nadat de telefoon opnieuw is opgestart.",
+  "protection_guideBlockTitle": "Verbindingen zonder VPN blokkeren",
+  "protection_guideBlock": "Deze instelling voorkomt dat verkeer de VPN omzeilt, ook wanneer de verbinding is onderbroken.",
+  "protection_guideWarning": "Wanneer dit blokkeren is ingeschakeld, blijft internettoegang uitgeschakeld totdat de VPN is verbonden.",
+  "protection_guideStepsTitle": "Beveiliging inschakelen",
+  "protection_guideStep1": "Open de Android-VPN-instellingen met de knop hieronder.",
+  "protection_guideStep2": "Open de opties met het tandwielpictogram naast FuzeVPN.",
+  "protection_guideStep3": "Schakel Altijd ingeschakelde VPN in en daarna Verbindingen zonder VPN blokkeren, als deze opties beschikbaar zijn.",
+  "protection_guideManufacturers": "De namen verschillen per telefoon. Zoek indien nodig naar VPN in Instellingen, meestal onder Netwerk en internet.",
+  "protection_guideDisableTitle": "Deze beveiliging uitschakelen",
+  "protection_guideDisable": "Schakel in dezelfde instellingen het blokkeren zonder VPN uit om internettoegang zonder de VPN toe te staan. Schakel Altijd ingeschakelde VPN ook uit als je niet meer wilt dat Android deze opnieuw start.",
+  "protection_guideManual": "Je kiest deze instellingen in Android. FuzeVPN wijzigt ze niet voor je.",
+  "locations_changeTitle": "Locatie wijzigen?",
+  "locations_changeActive": "De VPN-verbinding wordt verbroken en probeert daarna verbinding te maken met {name}.",
+  "locations_changeIdle": "De VPN probeert verbinding te maken met {name}.",
+  "locations_confirmChange": "Wijzigen en verbinden",
+  "locations_changeBusy": "Er wordt al een wijziging uitgevoerd. Wacht voordat je een andere locatie kiest.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Automatische selectie",
+  "locations_cities": "Steden",
+  "locations_servers": "Servers",
+  "locations_viewCities": "Steden in {name} bekijken",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Servers in {name} bekijken",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} land} other{{count} landen}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} stad} other{{count} steden}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} server} other{{count} servers}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Alle landen",
+  "locations_backToCountries": "Terug naar landen",
+  "locations_backToCities": "Terug naar steden in {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "{name} kiezen",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "{name} kiezen",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Geen compatibele server beschikbaar.",
+  "externalLink_failed": "Deze link kan niet worden geopend. Je kunt hem kopiëren en in je browser openen.",
+  "externalLink_copy": "Link kopiëren",
+  "externalLink_copied": "Link gekopieerd",
+  "externalLink_copyFailed": "De link kan niet worden gekopieerd. Selecteer het adres hieronder.",
+  "settings_deleteAccount": "Mijn account verwijderen",
+  "settings_deleteAccountDetail": "Bekijk hoe je accountverwijdering aanvraagt",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Kies je VPN-abonnement.",
+  "billing_subscribe": "Abonneren",
+  "billing_choosePlan": "Kies een abonnement om door te gaan.",
+  "billing_monthly": "Maandelijks",
+  "billing_yearly": "Jaarlijks",
+  "billing_continue": "Doorgaan met Google Play",
+  "billing_restore": "Aankopen herstellen",
+  "billing_manage": "Abonnement beheren",
+  "billing_deleteAccountWarning": "Als je een abonnement via Google Play hebt, stopt het verwijderen van je FuzeVPN-account de verlenging niet. Beheer of stop de verlenging afzonderlijk in Google Play.",
+  "billing_deleteAccountContinue": "Doorgaan naar het verzoek om accountverwijdering",
+  "billing_refresh": "Toegang vernieuwen",
+  "billing_loadingPlans": "Abonnementen laden…",
+  "billing_unavailable": "Er zijn nu geen abonnementen beschikbaar. Probeer het later opnieuw.",
+  "billing_comingSoon": "Abonnementen zijn binnenkort beschikbaar.",
+  "billing_priceDisclosure": "Prijs verstrekt door Google Play. Het definitieve bedrag wordt vóór betaling bevestigd.",
+  "billing_renewalMonthly": "Wordt elke maand automatisch verlengd, tenzij opgezegd. Je kunt op elk moment opzeggen via Google Play-abonnementen.",
+  "billing_renewalYearly": "Wordt elk jaar automatisch verlengd, tenzij opgezegd. Je kunt op elk moment opzeggen via Google Play-abonnementen.",
+  "billing_active": "Je Premium-toegang is actief",
+  "billing_accessUntil": "Toegang tot {date}.",
+  "billing_webManaged": "Je abonnement wordt beheerd op de FuzeVPN-website.",
+  "billing_playManaged": "Je abonnement wordt beheerd via Google Play.",
+  "billing_inactive": "Geen actief abonnement.",
+  "billing_checkingAccess": "Je toegang controleren…",
+  "billing_restoring": "Aankopen herstellen…",
+  "billing_pending": "De betaling is in behandeling. Je toegang wordt na bevestiging geactiveerd.",
+  "billing_cancelled": "Aankoop geannuleerd. Er is geen nieuw abonnement geactiveerd.",
+  "billing_verifying": "Aankoop controleren…",
+  "billing_success": "Abonnement geactiveerd. Je Premium-toegang is gereed.",
+  "billing_restored": "Je aankopen zijn hersteld.",
+  "billing_restoreEmpty": "Geen aankopen om te herstellen voor dit Google Play-account.",
+  "billing_catalogError": "Abonnementen kunnen niet worden geladen. Probeer het opnieuw.",
+  "billing_purchaseError": "De aankoop kan niet worden gestart. Probeer het opnieuw.",
+  "billing_verificationError": "Aankoopverificatie is tijdelijk niet beschikbaar. Herstel aankopen om het opnieuw te proberen.",
+  "billing_restoreError": "Aankopen kunnen niet worden hersteld. Probeer het opnieuw.",
+  "billing_managementError": "Abonnementbeheer kan niet worden geopend. Probeer het opnieuw.",
+  "billing_storeUnavailable": "Google Play is niet beschikbaar op dit apparaat.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "Je VPN, eenvoudig geregeld.",
+  "welcome_description": "Bescherm je verbinding. Houd controle over je privacy.",
+  "welcome_start": "Aan de slag",
+  "welcome_alreadyPurchased": "Al gekocht?",
+  "welcome_noAccountRequired": "Je hoeft geen account te maken om te beginnen.",
+  "guest_accountTitle": "Account niet gekoppeld",
+  "guest_accountDescription": "Herstel je aankopen met hetzelfde Google Play-account om je abonnement op een ander apparaat te gebruiken.",
+  "guest_existingSubscriberSignIn": "Al een abonnement? Inloggen",
+  "guest_claimTitle": "Neem FuzeVPN overal mee",
+  "guest_claimDescription": "Maak een account om je abonnement op je andere apparaten te gebruiken. Deze stap is optioneel.",
+  "guest_skip": "Later",
+  "guest_activationTitle": "Fuze Premium is actief",
+  "guest_activationDescription": "Je abonnement is klaar. Gebruik je VPN en maak een account wanneer je wilt.",
+  "guest_useVpn": "Mijn VPN gebruiken",
+  "guest_loginRequired": "Deze aankoop is al gekoppeld aan een FuzeVPN-account. Meld je aan bij dat account om je abonnement te gebruiken.",
+  "guest_signOutWarning": "Je kunt je abonnement herstellen door je aankopen met hetzelfde Google Play-account te herstellen.",
+  "guest_profileUnavailable": "Je account is al gekoppeld. Meld je aan om je gegevens te bekijken en te beheren.",
+  "billing_acceptance": "Door verder te gaan, accepteer je de Gebruiksvoorwaarden en het Privacybeleid.",
+  "guest_verifyEmailReminder": "Bevestig je e-mailadres om je account te beveiligen. Je kunt je VPN blijven gebruiken.",
+  "guest_serviceUnavailable": "De dienst is tijdelijk niet beschikbaar. Probeer het zo nog eens.",
+  "guest_restoreError": "Je aankopen konden niet worden hersteld. Probeer het opnieuw met het Google Play-account waarmee je de aankoop hebt gedaan.",
+  "guest_claimSuccess": "Je account is aangemaakt. Je abonnement en VPN-toegang blijven behouden.",
+  "guest_emailExists": "Dit e-mailadres is al in gebruik. Kies een ander adres of meld je aan bij je bestaande account. Je aankoop blijft beschikbaar via Google Play.",
+  "guest_claimError": "Je account kon niet worden aangemaakt. Je kunt je VPN blijven gebruiken en het later opnieuw proberen.",
+  "guest_secureStorageError": "Je sessie kon niet veilig worden opgeslagen op dit apparaat. Probeer het opnieuw.",
+  "guest_premiumRequired": "Kies een abonnement om je VPN te activeren.",
+  "welcome_viewPlans": "Abonnementen bekijken",
+  "google_continue": "Doorgaan met Google",
+  "google_or": "of",
+  "google_title": "Uw FuzeVPN-account",
+  "google_settingUp": "Maak uw account compleet",
+  "google_country": "Woonland",
+  "google_profileDescription": "Kies uw land en lees beide documenten om uw FuzeVPN-account te maken.",
+  "google_claimDescription": "Koppel uw gastaccount aan Google. Uw abonnement en apparaat blijven aan dit account gekoppeld.",
+  "google_linkTitle": "Google aan FuzeVPN koppelen",
+  "google_linkDescription": "Bevestig toegang tot uw bestaande FuzeVPN-account. Uw Google-wachtwoord wordt niet gevraagd.",
+  "google_password": "FuzeVPN-wachtwoord",
+  "google_linkAccount": "Koppeling bevestigen",
+  "google_requestEmail": "Een bevestigingsmail ontvangen",
+  "google_emailInstructions": "Open de e-mail van FuzeVPN en voer de bevestigingscode in.",
+  "google_emailCode": "Bevestigingscode uit e-mail",
+  "google_confirmEmail": "Code bevestigen",
+  "google_restart": "Ander Google-account kiezen",
+  "google_resume": "Deze poging controleren",
+  "google_unavailable": "Aanmelden met Google is niet beschikbaar. U kunt e-mail en wachtwoord gebruiken.",
+  "google_expired": "Deze poging is verlopen. Annuleer en begin opnieuw.",
+  "google_conflict": "Dit Google-account is al elders gekoppeld. Uw huidige account en abonnement blijven behouden.",
+  "google_error": "Aanmelden met Google is mislukt. Probeer opnieuw; uw huidige toegang blijft behouden.",
+  "google_uncertain": "Het resultaat kon niet worden bevestigd. Controleer deze poging of annuleer voordat u opnieuw begint.",
+  "google_cancelFailed": "De annulering kon niet worden bevestigd. Probeer opnieuw te annuleren voordat u dit scherm verlaat.",
+  "google_cancelled": "Aanmelden met Google geannuleerd.",
+  "google_selecting": "Kies uw Google-account…",
+  "google_verifying": "Uw account wordt gecontroleerd…",
+  "google_emailUnavailable": "De bevestigingsmail kon niet worden verzonden. Probeer later opnieuw.",
+  "google_emailSent": "Bevestigingsmail verzonden. Controleer uw inbox.",
+  "google_rateLimited": "Wacht even voordat u opnieuw probeert.",
+  "google_invalidPassword": "Het FuzeVPN-wachtwoord is onjuist. Uw huidige account blijft behouden.",
+  "google_invalidCode": "De bevestigingscode is ongeldig of verlopen.",
+  "google_accountChanged": "De sessie is gewijzigd. Annuleer deze poging voordat u opnieuw begint.",
+  "google_invalidResponse": "Het antwoord kon niet worden gevalideerd. Uw huidige toegang blijft behouden.",
+  "google_invalidRegistration": "Controleer uw land en beide toestemmingen.",
+  "google_consentRequired": "Kies uw land en accepteer beide documenten om door te gaan.",
+  "google_challengeRequired": "Een extra beveiligingscontrole is vereist. Uw huidige toegang blijft behouden.",
+  "google_challengeUnavailable": "De beveiligingscontrole is niet beschikbaar. Probeer later opnieuw."
+}

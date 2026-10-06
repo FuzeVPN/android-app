@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">VPN-forbindelse</string>
+    <string name="vpn_notification_channel_description">Angiver, når en FuzeVPN-forbindelse er aktiv.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s-forbindelse aktiv</string>
+    <string name="vpn_notification_connecting">%1$s-forbindelse i gang</string>
+    <string name="vpn_notification_disconnecting">Afbryder %1$s</string>
+    <string name="vpn_notification_interrupted">%1$s-forbindelse afbrudt</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Klar · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Forbundet · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Opretter forbindelse til %1$s…</string>
+    <string name="vpn_tile_disconnecting">Afbryder forbindelsen…</string>
+    <string name="vpn_tile_interrupted">%1$s afbrudt</string>
+    <string name="vpn_tile_setup_required">Åbn appen først</string>
+    <string name="vpn_tile_working">VPN-handling i gang…</string>
+    <string name="vpn_notification_reconnecting">Opretter forbindelse igen… · %1$s</string>
+    <string name="vpn_system_action_required">Handling påkrævet i Android-indstillinger</string>
+    <string name="vpn_tile_reconnecting">Opretter forbindelse igen… · %1$s</string>
+</resources>

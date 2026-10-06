@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">VPN کنکشن</string>
+    <string name="vpn_notification_channel_description">بتاتا ہے کہ FuzeVPN کنکشن فعال ہے۔</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s کنکشن فعال ہے</string>
+    <string name="vpn_notification_connecting">%1$s کنکشن جاری ہے</string>
+    <string name="vpn_notification_disconnecting">%1$s ڈسکنیکٹ کیا جا رہا ہے</string>
+    <string name="vpn_notification_interrupted">%1$s کنکشن میں خلل پڑا</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">تیار · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">کنیکٹڈ · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s سے کنیکٹ کیا جا رہا ہے…</string>
+    <string name="vpn_tile_disconnecting">ڈسکنیکٹ کیا جا رہا ہے…</string>
+    <string name="vpn_tile_interrupted">%1$s میں خلل پڑا</string>
+    <string name="vpn_tile_setup_required">پہلے ایپ کھولیں</string>
+    <string name="vpn_tile_working">VPN کارروائی جاری ہے…</string>
+    <string name="vpn_notification_reconnecting">دوبارہ کنیکٹ کیا جا رہا ہے… · %1$s</string>
+    <string name="vpn_system_action_required">Android کی ترتیبات میں کارروائی ضروری ہے</string>
+    <string name="vpn_tile_reconnecting">دوبارہ کنیکٹ کیا جا رہا ہے… · %1$s</string>
+</resources>

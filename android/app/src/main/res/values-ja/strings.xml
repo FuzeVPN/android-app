@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">VPN接続</string>
+    <string name="vpn_notification_channel_description">FuzeVPN接続がアクティブなときに表示します。</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s接続がアクティブです</string>
+    <string name="vpn_notification_connecting">%1$s接続中</string>
+    <string name="vpn_notification_disconnecting">%1$sを切断しています</string>
+    <string name="vpn_notification_interrupted">%1$s接続が中断されました</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">準備完了・%1$s・%2$s</string>
+    <string name="vpn_tile_connected">接続済み・%1$s・%2$s</string>
+    <string name="vpn_tile_connecting">%1$sに接続しています…</string>
+    <string name="vpn_tile_disconnecting">切断しています…</string>
+    <string name="vpn_tile_interrupted">%1$sが中断されました</string>
+    <string name="vpn_tile_setup_required">まずアプリを開いてください</string>
+    <string name="vpn_tile_working">VPN操作が進行中です…</string>
+    <string name="vpn_notification_reconnecting">再接続しています…・%1$s</string>
+    <string name="vpn_system_action_required">Android設定で操作が必要です</string>
+    <string name="vpn_tile_reconnecting">再接続しています…・%1$s</string>
+</resources>

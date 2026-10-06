@@ -1,0 +1,2008 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Thai (`th`).
+class AppLocalizationsTh extends AppLocalizations {
+  AppLocalizationsTh([String locale = 'th']) : super(locale);
+
+  @override
+  String get accountRestoration_title => 'บัญชีไม่พร้อมใช้งานชั่วคราว';
+
+  @override
+  String get accountRestoration_message =>
+      'ระบบยังคงเซสชันของคุณไว้ ลองอีกครั้งเพื่อกู้คืนบัญชี และคุณยังจัดการการเชื่อมต่อ VPN ได้ที่นี่';
+
+  @override
+  String get action_retry => 'ลองอีกครั้ง';
+
+  @override
+  String get session_endingTitle => 'กำลังสิ้นสุดเซสชัน';
+
+  @override
+  String get session_ending =>
+      'เซสชันของคุณถูกยกเลิกแล้ว กำลังหยุด VPN และล้างข้อมูลเซสชัน…';
+
+  @override
+  String get session_stopFailed =>
+      'ยังยืนยันการปิด VPN ไม่ได้ ลองปิดอีกครั้งก่อนเข้าสู่ระบบใหม่';
+
+  @override
+  String get session_cleanupFailed =>
+      'หยุด VPN แล้ว แต่ยังยืนยันการลบเซสชันไม่ได้ ลองล้างข้อมูลอีกครั้ง';
+
+  @override
+  String get session_retryStop => 'ลองปิดอีกครั้ง';
+
+  @override
+  String get session_retryCleanup => 'ลองล้างข้อมูลอีกครั้ง';
+
+  @override
+  String get appTitle => 'FuzeVPN';
+
+  @override
+  String get startup => 'กำลังเตรียม FuzeVPN อย่างปลอดภัย…';
+
+  @override
+  String get nav_connection => 'การเชื่อมต่อ';
+
+  @override
+  String get nav_locations => 'ตำแหน่ง';
+
+  @override
+  String get nav_account => 'บัญชี';
+
+  @override
+  String get nav_devices => 'อุปกรณ์';
+
+  @override
+  String get nav_settings => 'การตั้งค่า';
+
+  @override
+  String get action_refresh => 'รีเฟรช';
+
+  @override
+  String get auth_tab_login => 'เข้าสู่ระบบ';
+
+  @override
+  String get auth_tab_register => 'สมัครสมาชิก';
+
+  @override
+  String get auth_stepAccount => 'บัญชี';
+
+  @override
+  String get auth_stepIdentity => 'ข้อมูลระบุตัวตน';
+
+  @override
+  String get auth_stepAddress => 'ที่อยู่และข้อตกลง';
+
+  @override
+  String auth_stepProgress(Object current, Object total) {
+    return 'ขั้นที่ $current จาก $total';
+  }
+
+  @override
+  String get auth_tagline => 'VPN ของคุณ ใช้งานง่าย';
+
+  @override
+  String get auth_keysLocal => 'คีย์ VPN ส่วนตัวของคุณจะอยู่ในอุปกรณ์นี้';
+
+  @override
+  String get form_email => 'ที่อยู่อีเมล';
+
+  @override
+  String get form_password => 'รหัสผ่าน';
+
+  @override
+  String get form_showPassword => 'แสดงรหัสผ่าน';
+
+  @override
+  String get form_hidePassword => 'ซ่อนรหัสผ่าน';
+
+  @override
+  String get form_passwordMin =>
+      '8–72 ไบต์ UTF-8 อักขระบางตัวใช้มากกว่าหนึ่งไบต์';
+
+  @override
+  String get form_firstName => 'ชื่อ';
+
+  @override
+  String get form_lastName => 'นามสกุล';
+
+  @override
+  String get form_phone => 'โทรศัพท์ (+33612345678)';
+
+  @override
+  String get form_address => 'ที่อยู่';
+
+  @override
+  String get form_address2 => 'ที่อยู่บรรทัดที่ 2 (ไม่บังคับ)';
+
+  @override
+  String get form_postalCode => 'รหัสไปรษณีย์';
+
+  @override
+  String get form_city => 'เมือง';
+
+  @override
+  String get form_country => 'รหัสประเทศ (เช่น FR)';
+
+  @override
+  String get action_login => 'เข้าสู่ระบบ';
+
+  @override
+  String get action_createAccount => 'สร้างบัญชี';
+
+  @override
+  String get action_createMyAccount => 'สร้างบัญชีของฉัน';
+
+  @override
+  String get action_next => 'ดำเนินการต่อ';
+
+  @override
+  String get action_previous => 'ย้อนกลับ';
+
+  @override
+  String get action_forgotPassword => 'ลืมรหัสผ่านใช่ไหม';
+
+  @override
+  String get auth_noAccount => 'ยังไม่มีบัญชีใช่ไหม';
+
+  @override
+  String get auth_requiredInformation => 'สร้างบัญชีของคุณในสามขั้นตอน';
+
+  @override
+  String get auth_termsPrefix => 'ฉันยอมรับ';
+
+  @override
+  String get auth_termsLink => 'ข้อกำหนดการใช้งาน';
+
+  @override
+  String get auth_privacyPrefix => 'ฉันยอมรับ';
+
+  @override
+  String get auth_privacyLink => 'นโยบายความเป็นส่วนตัว';
+
+  @override
+  String get auth_consentRequired =>
+      'ต้องได้รับความยินยอมจากคุณจึงจะสร้างบัญชีได้';
+
+  @override
+  String get validation_required => 'ต้องกรอกข้อมูลในช่องนี้';
+
+  @override
+  String get validation_email => 'ป้อนที่อยู่อีเมลที่ถูกต้อง';
+
+  @override
+  String get validation_password =>
+      'รหัสผ่านสั้นเกินไป: ต้องมีอย่างน้อย 8 ไบต์ UTF-8';
+
+  @override
+  String get validation_passwordTooLong =>
+      'รหัสผ่านยาวเกินไป: ต้องมีไม่เกิน 72 ไบต์ UTF-8';
+
+  @override
+  String get validation_phone => 'ใช้รูปแบบสากล เช่น +33612345678';
+
+  @override
+  String get validation_country => 'ใช้รหัสประเทศสองตัวอักษร เช่น FR';
+
+  @override
+  String get passwordReset_title => 'รีเซ็ตรหัสผ่าน';
+
+  @override
+  String get passwordReset_description =>
+      'ป้อนที่อยู่อีเมลของบัญชีเพื่อขอลิงก์รีเซ็ตรหัสผ่าน';
+
+  @override
+  String get passwordReset_send => 'ส่งลิงก์';
+
+  @override
+  String get connection_title => 'การเชื่อมต่อของคุณ';
+
+  @override
+  String get connection_subtitle => 'เลือกตำแหน่ง แล้วเปิด VPN ของคุณ';
+
+  @override
+  String get connection_prepare => 'พร้อมเชื่อมต่อหรือยัง';
+
+  @override
+  String get connection_advancedOptions => 'ตัวเลือกขั้นสูง';
+
+  @override
+  String get connection_location => 'ตำแหน่ง';
+
+  @override
+  String get connection_chooseLocation => 'เลือกตำแหน่ง';
+
+  @override
+  String get connection_protocol => 'โปรโตคอล';
+
+  @override
+  String get connection_connect => 'เชื่อมต่อ';
+
+  @override
+  String get connection_connecting => 'กำลังเชื่อมต่อ…';
+
+  @override
+  String get connection_disconnect => 'ตัดการเชื่อมต่อ';
+
+  @override
+  String get connection_disconnecting => 'กำลังตัดการเชื่อมต่อ';
+
+  @override
+  String get connection_locationChange => 'กำลังเปลี่ยนตำแหน่ง…';
+
+  @override
+  String connection_unavailable(Object protocol) {
+    return 'ไม่พร้อมใช้งานสำหรับ $protocol';
+  }
+
+  @override
+  String get connection_activeLocation => 'ตำแหน่งที่ใช้งานอยู่';
+
+  @override
+  String get connection_duration => 'ระยะเวลา';
+
+  @override
+  String get connection_received => 'รับข้อมูลแล้ว';
+
+  @override
+  String get connection_sent => 'ส่งข้อมูลแล้ว';
+
+  @override
+  String get connection_lastHandshake =>
+      'การแลกเปลี่ยนข้อมูลที่ปลอดภัยครั้งล่าสุด';
+
+  @override
+  String connection_handshakeAgo(Object duration) {
+    return 'เมื่อ $duration ที่แล้ว';
+  }
+
+  @override
+  String get verification_title => 'ยืนยันที่อยู่อีเมลของคุณ';
+
+  @override
+  String get verification_message =>
+      'ยืนยันที่อยู่อีเมลของคุณเพื่อใช้ VPN บนโทรศัพท์เครื่องนี้';
+
+  @override
+  String get verification_resend => 'ส่งอีเมลอีกครั้ง';
+
+  @override
+  String get migration_title => 'การเปลี่ยนตำแหน่ง';
+
+  @override
+  String get migration_draining => 'กำลังเตรียมเปลี่ยนตำแหน่ง…';
+
+  @override
+  String get migration_activating => 'กำลังเปิดใช้งานเซิร์ฟเวอร์ใหม่…';
+
+  @override
+  String get migration_ready => 'อัปเดตตำแหน่งแล้ว';
+
+  @override
+  String get migration_blocked =>
+      'การเปลี่ยนตำแหน่งต้องให้เซิร์ฟเวอร์ดำเนินการ ลองใหม่ภายหลังหรือติดต่อฝ่ายสนับสนุน';
+
+  @override
+  String get migration_progress => 'ความคืบหน้าการเปลี่ยนตำแหน่ง';
+
+  @override
+  String migration_retryDelay(Object seconds) {
+    return 'ระยะเวลาระหว่างการตรวจสอบ: $seconds วินาที';
+  }
+
+  @override
+  String get migration_resume => 'ดำเนินการเปลี่ยนตำแหน่งต่อ';
+
+  @override
+  String get status_authorizing => 'ต้องได้รับอนุญาต';
+
+  @override
+  String get status_authorizingDetail =>
+      'ยอมรับคำขอของ Android เพื่ออนุญาต VPN';
+
+  @override
+  String get status_preparing => 'กำลังเตรียม';
+
+  @override
+  String get status_preparingDetail =>
+      'กำลังเตรียมการเชื่อมต่อที่ปลอดภัยของคุณ';
+
+  @override
+  String get status_reconnecting => 'กำลังเชื่อมต่อใหม่…';
+
+  @override
+  String get status_reconnectingDetail =>
+      'การเชื่อมต่อหยุดชะงัก VPN กำลังพยายามเชื่อมต่อใหม่';
+
+  @override
+  String get status_connecting => 'กำลังเชื่อมต่อ';
+
+  @override
+  String get status_connectingDetail => 'กำลังเชื่อมต่อเซิร์ฟเวอร์ VPN…';
+
+  @override
+  String get status_connected => 'เชื่อมต่อแล้ว';
+
+  @override
+  String get status_connectedDetail => 'การเชื่อมต่อ VPN ของคุณกำลังทำงาน';
+
+  @override
+  String get status_disconnecting => 'กำลังตัดการเชื่อมต่อ';
+
+  @override
+  String get status_disconnectingDetail => 'การเชื่อมต่อ VPN ของคุณกำลังหยุดลง';
+
+  @override
+  String get status_error => 'การเชื่อมต่อไม่พร้อมใช้งาน';
+
+  @override
+  String get status_errorDetail =>
+      'ยังยืนยันการเชื่อมต่อ VPN ไม่ได้ ลองอีกครั้ง';
+
+  @override
+  String get status_idle => 'ตัดการเชื่อมต่อแล้ว';
+
+  @override
+  String get status_idleDetail => 'เชื่อมต่อ VPN เพื่อปกป้องการเชื่อมต่อของคุณ';
+
+  @override
+  String get trust_note =>
+      'การปิดแอปจะไม่หยุด VPN หากต้องการหยุด ให้เลือกตัดการเชื่อมต่อ';
+
+  @override
+  String get locations_none => 'ขณะนี้ไม่มีตำแหน่งที่พร้อมใช้งาน';
+
+  @override
+  String get locations_available => 'เลือกตำแหน่งถัดไปของคุณ';
+
+  @override
+  String get locations_selected => 'ตำแหน่งที่เลือก';
+
+  @override
+  String get locations_select => 'เลือกตำแหน่งนี้';
+
+  @override
+  String get locations_lockedTunnel =>
+      'ตัดการเชื่อมต่อ VPN เพื่อเปลี่ยนตำแหน่ง';
+
+  @override
+  String get locations_lockedMigration => 'รอให้การเปลี่ยนตำแหน่งเสร็จสิ้น';
+
+  @override
+  String get devices_title => 'อุปกรณ์ของคุณ';
+
+  @override
+  String devices_used(Object count, Object limit) {
+    return 'อุปกรณ์ $count / $limit เครื่อง';
+  }
+
+  @override
+  String get devices_refresh => 'รีเฟรชอุปกรณ์';
+
+  @override
+  String get devices_empty => 'ยังไม่มีอุปกรณ์ VPN ที่ลงทะเบียน';
+
+  @override
+  String get devices_firstConnection =>
+      'โทรศัพท์ของคุณจะถูกเพิ่มเมื่อเชื่อมต่อครั้งแรก';
+
+  @override
+  String get devices_thisDevice => 'อุปกรณ์นี้';
+
+  @override
+  String devices_added(Object date) {
+    return 'เพิ่มเมื่อ $date';
+  }
+
+  @override
+  String get action_remove => 'นำออก';
+
+  @override
+  String get settings_title => 'การตั้งค่า';
+
+  @override
+  String get settings_subtitle => 'รวมการตั้งค่าและบัญชีของคุณไว้ในที่เดียว';
+
+  @override
+  String get settings_appearance => 'รูปลักษณ์';
+
+  @override
+  String get settings_language => 'ภาษา';
+
+  @override
+  String get settings_languageDescription =>
+      'ภาษาที่คุณเลือกจะใช้กับการแจ้งเตือน VPN ด้วย';
+
+  @override
+  String get settings_account => 'บัญชี';
+
+  @override
+  String get settings_signOut => 'ออกจากระบบ';
+
+  @override
+  String get settings_privacy => 'นโยบายความเป็นส่วนตัว';
+
+  @override
+  String get settings_terms => 'ข้อกำหนดการใช้งาน';
+
+  @override
+  String get settings_security => 'ความปลอดภัยและความโปร่งใส';
+
+  @override
+  String get settings_licenses => 'ใบอนุญาตส่วนประกอบ';
+
+  @override
+  String get settings_licensesDetail => 'ซอฟต์แวร์ที่ใช้ในแอป';
+
+  @override
+  String get settings_background =>
+      'VPN จะยังทำงานเมื่อคุณออกจากแอป หากต้องการหยุด ให้เลือกตัดการเชื่อมต่อในแท็บการเชื่อมต่อ';
+
+  @override
+  String get theme_system => 'ตามระบบ';
+
+  @override
+  String get theme_light => 'สว่าง';
+
+  @override
+  String get theme_dark => 'มืด';
+
+  @override
+  String get language_system => 'ภาษาของโทรศัพท์';
+
+  @override
+  String get language_fr => 'Français';
+
+  @override
+  String get language_en => 'English';
+
+  @override
+  String get language_es => 'Español';
+
+  @override
+  String get language_de => 'Deutsch';
+
+  @override
+  String get dialog_removeDevice => 'นำอุปกรณ์นี้ออกใช่ไหม';
+
+  @override
+  String get dialog_removeCurrent =>
+      'โทรศัพท์เครื่องนี้จะตัดการเชื่อมต่อจาก VPN และไม่สามารถเข้าถึงได้อีก ข้อมูลการเชื่อมต่อ VPN จะถูกลบหลังจากเซิร์ฟเวอร์ยืนยัน';
+
+  @override
+  String dialog_removeOther(Object name) {
+    return 'การเข้าถึง VPN ของ “$name” จะถูกเพิกถอน การดำเนินการนี้ย้อนกลับไม่ได้';
+  }
+
+  @override
+  String get dialog_signOut => 'ออกจากระบบใช่ไหม';
+
+  @override
+  String get dialog_signOutMessage =>
+      'VPN จะหยุดทำงาน และคุณจะต้องเข้าสู่ระบบอีกครั้ง คีย์ VPN ที่เข้ารหัสของคุณจะยังอยู่ในโทรศัพท์เครื่องนี้เพื่อใช้เชื่อมต่อครั้งถัดไป';
+
+  @override
+  String get action_cancel => 'ยกเลิก';
+
+  @override
+  String get action_signOut => 'ออกจากระบบ';
+
+  @override
+  String get notice_close => 'ปิดข้อความ';
+
+  @override
+  String get notice_sessionExpired_title => 'เซสชันหมดอายุ';
+
+  @override
+  String get notice_sessionExpired_message =>
+      'เซสชันของคุณหมดอายุแล้ว เข้าสู่ระบบอีกครั้ง';
+
+  @override
+  String get notice_connectionFailed_title => 'เชื่อมต่อล้มเหลว';
+
+  @override
+  String get notice_invalidCredentials_message =>
+      'ที่อยู่อีเมลหรือรหัสผ่านไม่ถูกต้อง';
+
+  @override
+  String get notice_emailVerification_title => 'ต้องยืนยันอีเมล';
+
+  @override
+  String get notice_emailVerification_message =>
+      'ยืนยันที่อยู่อีเมลก่อนเพิ่มอุปกรณ์ VPN';
+
+  @override
+  String get notice_rateLimited_title => 'พยายามมากเกินไป';
+
+  @override
+  String get notice_deviceLimit_title => 'ถึงขีดจำกัด 2 อุปกรณ์แล้ว';
+
+  @override
+  String get notice_deviceLimit_message =>
+      'นำอุปกรณ์ที่มีอยู่ออกก่อนเพิ่มอุปกรณ์เครื่องอื่น';
+
+  @override
+  String get notice_identityRenewal_title => 'ต้องต่ออายุข้อมูลระบุตัวตน VPN';
+
+  @override
+  String get notice_identityRenewal_message =>
+      'ข้อมูลระบุตัวตนนี้ถูกนำออกแล้ว สร้างข้อมูลระบุตัวตนภายในเครื่องใหม่';
+
+  @override
+  String get notice_migrationPending_title => 'กำลังเปลี่ยนตำแหน่ง';
+
+  @override
+  String get notice_migrationPending_message =>
+      'การเปลี่ยนตำแหน่งกำลังดำเนินการอยู่';
+
+  @override
+  String get notice_migrationBlocked_title => 'การเปลี่ยนตำแหน่งถูกบล็อก';
+
+  @override
+  String get notice_migrationBlocked_message =>
+      'การเปลี่ยนตำแหน่งต้องให้เซิร์ฟเวอร์ดำเนินการ ลองใหม่ภายหลังหรือติดต่อฝ่ายสนับสนุน';
+
+  @override
+  String get notice_targetUnavailable_title =>
+      'เซิร์ฟเวอร์ไม่พร้อมใช้งานชั่วคราว';
+
+  @override
+  String get notice_targetUnavailable_message =>
+      'เซิร์ฟเวอร์นี้ไม่พร้อมใช้งานชั่วคราว';
+
+  @override
+  String get notice_networkUnavailable_title =>
+      'การเชื่อมต่ออินเทอร์เน็ตไม่พร้อมใช้งาน';
+
+  @override
+  String get notice_networkUnavailable_message =>
+      'ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง';
+
+  @override
+  String get notice_permissionDenied_title => 'ไม่ได้รับอนุญาตให้ใช้ VPN';
+
+  @override
+  String get notice_permissionDenied_message =>
+      'เริ่มการเชื่อมต่ออีกครั้งและยอมรับคำขออนุญาตของ Android';
+
+  @override
+  String get notice_wireguardTimeout_title => 'เซิร์ฟเวอร์ไม่ตอบสนอง';
+
+  @override
+  String get notice_wireguardTimeout_message =>
+      'การเชื่อมต่อ WireGuard ใช้เวลานานเกินไป ลองอีกครั้งหรือเลือกตำแหน่งอื่น';
+
+  @override
+  String get notice_tlsFailed_title => 'การเชื่อมต่อที่ปลอดภัยถูกปฏิเสธ';
+
+  @override
+  String get notice_tlsFailed_message =>
+      'เซิร์ฟเวอร์ไม่ยอมรับการเชื่อมต่อ OpenVPN ลองอีกครั้ง หากยังมีปัญหา ให้เรียกใช้การวินิจฉัย';
+
+  @override
+  String get notice_tunRejected_title => 'Android ปฏิเสธอินเทอร์เฟซ VPN';
+
+  @override
+  String get notice_tunRejected_message =>
+      'Android ปฏิเสธการกำหนดค่าเครือข่ายที่ OpenVPN ร้องขอ';
+
+  @override
+  String get notice_openvpnStart_title => 'ไม่สามารถเริ่ม OpenVPN ได้';
+
+  @override
+  String get notice_openvpnStart_message =>
+      'เอ็นจิน OpenVPN เริ่มทำงานไม่เสร็จ ลองอีกครั้ง หากยังมีปัญหา โปรดติดต่อฝ่ายสนับสนุน';
+
+  @override
+  String notice_diagnosticCode(Object code) {
+    return 'รหัสการวินิจฉัย: $code';
+  }
+
+  @override
+  String get notice_generic_title => 'การเชื่อมต่อ VPN ล้มเหลว';
+
+  @override
+  String get notice_generic_message => 'เกิดข้อผิดพลาด ลองใหม่ภายหลัง';
+
+  @override
+  String notice_controller_title(String code) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'account_created_email_unavailable': 'สร้างบัญชีแล้ว',
+      'password_reset_sent': 'ได้รับคำขอรีเซ็ตรหัสผ่านแล้ว',
+      'verification_email_sent': 'ส่งอีเมลยืนยันแล้ว',
+      'location_migration_pending': 'กำลังเปลี่ยนตำแหน่ง',
+      'vpn_sign_in_required': 'ต้องเข้าสู่ระบบ',
+      'protocol_unavailable_at_location': 'โปรโตคอลไม่พร้อมใช้งาน',
+      'vpn_permission_denied': 'ไม่ได้รับอนุญาตให้ใช้ VPN',
+      'revoked_identity_device_limit': 'ถึงขีดจำกัด 2 อุปกรณ์แล้ว',
+      'tunnel_start_unexpected': 'ไม่สามารถเริ่ม VPN ได้',
+      'flutter_disconnect_timeout': 'ยังยืนยันการตัดการเชื่อมต่อไม่ได้',
+      'flutter_disconnect_unexpected': 'ไม่สามารถตัดการเชื่อมต่อได้',
+      'device_revoked': 'นำอุปกรณ์ออกแล้ว',
+      'revoke_unexpected': 'ไม่สามารถนำอุปกรณ์ออกได้',
+      'identity_renewal_unexpected': 'ไม่สามารถต่ออายุข้อมูลระบุตัวตนได้',
+      'openvpn_renewal_unexpected': 'ไม่สามารถต่ออายุ OpenVPN ได้',
+      'location_migration_blocked': 'การเปลี่ยนตำแหน่งถูกบล็อก',
+      'location_migration_slow': 'การเปลี่ยนตำแหน่งยังดำเนินการอยู่',
+      'location_migration_conflict': 'ต้องรีเฟรชการเปลี่ยนตำแหน่ง',
+      'location_migration_verification_failed':
+          'ยังยืนยันการเปลี่ยนตำแหน่งไม่ได้',
+      'location_migration_device_changed':
+          'อุปกรณ์เปลี่ยนระหว่างเปลี่ยนตำแหน่ง',
+      'tunnel_stop_failed': 'การเปลี่ยนตำแหน่งไม่พร้อมใช้งาน',
+      'other': 'ดำเนินการล้มเหลว',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_controller_message(String code, String target) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'account_created_email_unavailable':
+          'สร้างบัญชีแล้ว แต่ส่งอีเมลยืนยันไม่ได้ ใช้การส่งอีกครั้งในแอป',
+      'password_reset_sent':
+          'ได้รับคำขอของคุณแล้ว หากมีบัญชีที่ตรงกับที่อยู่นี้ คุณอาจได้รับอีเมล โปรดตรวจสอบโฟลเดอร์จดหมายขยะด้วย',
+      'verification_email_sent': 'ส่งอีเมลยืนยันฉบับใหม่แล้ว',
+      'location_migration_pending':
+          'กำลังเตรียมย้ายไปยัง $target คุณสามารถดำเนินการต่อได้โดยไม่ต้องสร้างอุปกรณ์ใหม่',
+      'vpn_sign_in_required': 'เข้าสู่ระบบบัญชีก่อนเริ่ม VPN',
+      'protocol_unavailable_at_location':
+          'ตำแหน่งนี้ไม่มีโปรโตคอลที่เลือก รีเฟรชตำแหน่งหรือเลือกโปรโตคอลอื่น',
+      'vpn_permission_denied':
+          'Android ไม่อนุญาตให้ใช้ VPN เริ่มการเชื่อมต่ออีกครั้งและยอมรับคำขอของระบบ',
+      'revoked_identity_device_limit':
+          'การเข้าถึง VPN ของอุปกรณ์นี้ถูกนำออกแล้ว และถึงขีดจำกัดอุปกรณ์แล้ว นำอุปกรณ์ออกในการตั้งค่าบัญชี → จัดการอุปกรณ์ของฉัน',
+      'tunnel_start_unexpected':
+          'เกิดข้อผิดพลาดที่ไม่คาดคิดระหว่างเตรียมอุโมงค์ ตรวจสอบรหัสการวินิจฉัยแล้วลองอีกครั้ง',
+      'flutter_disconnect_timeout':
+          'Android ไม่ยืนยันว่า VPN หยุดทำงานทันเวลา ลองหยุดอีกครั้ง',
+      'flutter_disconnect_unexpected':
+          'เกิดข้อผิดพลาดที่ไม่คาดคิด ทำให้ยืนยันการหยุดอุโมงค์ไม่ได้',
+      'device_revoked':
+          'การเข้าถึง VPN ของอุปกรณ์ถูกเพิกถอน และข้อมูลลับภายในเครื่องถูกนำออกแล้ว',
+      'revoke_unexpected': 'นำอุปกรณ์ออกไม่ได้ รีเฟรชรายการแล้วลองอีกครั้ง',
+      'identity_renewal_unexpected':
+          'สร้างข้อมูลระบุตัวตน VPN ใหม่ไม่ได้ รีเฟรชอุปกรณ์แล้วลองอีกครั้ง',
+      'openvpn_renewal_unexpected':
+          'ต่ออายุโปรไฟล์ OpenVPN ไม่ได้ ลองอีกครั้งหรือตรวจสอบรหัสการวินิจฉัย',
+      'location_migration_blocked':
+          'เซิร์ฟเวอร์ไม่สามารถดำเนินการเปลี่ยนนี้ได้ในขณะนี้ ระบบยังคงอุปกรณ์และข้อมูลระบุตัวตนภายในเครื่องไว้',
+      'location_migration_slow':
+          'เซิร์ฟเวอร์ยังเตรียมย้ายไปยัง $target อยู่ ใช้ดำเนินการต่อในอีกสักครู่',
+      'location_migration_conflict':
+          'สถานะอุปกรณ์บนเซิร์ฟเวอร์เปลี่ยนไป รีเฟรชอุปกรณ์ แล้วดำเนินการเปลี่ยนต่อ',
+      'location_migration_verification_failed':
+          'เซิร์ฟเวอร์ไม่ยืนยันตำแหน่งใหม่ ระบบยังคงข้อมูลระบุตัวตนภายในเครื่องก่อนหน้าไว้',
+      'location_migration_device_changed':
+          'อุปกรณ์ที่เซิร์ฟเวอร์ส่งกลับมาไม่ตรงกับอุปกรณ์ที่กำลังเปลี่ยน รีเฟรชอุปกรณ์ก่อนลองอีกครั้ง',
+      'tunnel_stop_failed':
+          'ต้องหยุดอุโมงค์ก่อนหน้าให้สมบูรณ์ก่อนเริ่มการเชื่อมต่อใหม่',
+      'other':
+          'ดำเนินการไม่สำเร็จ ลองอีกครั้งหรือส่งรหัสการวินิจฉัยให้ฝ่ายสนับสนุน',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_api_title(String code) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'unauthorized': 'เซสชันหมดอายุ',
+      'invalid_credentials': 'เข้าสู่ระบบล้มเหลว',
+      'email_verification_required': 'ต้องยืนยันอีเมล',
+      'verification_email_cooldown': 'ส่งอีเมลแล้ว',
+      'rate_limited': 'พยายามมากเกินไป',
+      'invalid_registration': 'ต้องแก้ไขข้อมูล',
+      'email_exists': 'มีบัญชีนี้อยู่แล้ว',
+      'invalid_profile': 'โปรไฟล์ไม่ถูกต้อง',
+      'invalid_device': 'อุปกรณ์ไม่ถูกต้อง',
+      'invalid_location': 'ตำแหน่งไม่พร้อมใช้งาน',
+      'device_limit': 'ถึงขีดจำกัด 2 อุปกรณ์แล้ว',
+      'device_exists': 'ข้อมูลระบุตัวตน VPN ถูกใช้งานอยู่แล้ว',
+      'device_identity_revoked': 'ต้องต่ออายุข้อมูลระบุตัวตน VPN',
+      'device_location_locked': 'ต้องรีเฟรชการเปลี่ยนตำแหน่ง',
+      'location_migration_pending': 'กำลังเปลี่ยนตำแหน่ง',
+      'location_migration_blocked': 'การเปลี่ยนตำแหน่งถูกบล็อก',
+      'target_ca_mismatch': 'เซิร์ฟเวอร์ OpenVPN ใช้งานร่วมกันไม่ได้',
+      'location_migration_conflict': 'ต้องรีเฟรชการเปลี่ยนตำแหน่ง',
+      'server_full': 'เซิร์ฟเวอร์เต็ม',
+      'capacity_unavailable': 'ตำแหน่งไม่พร้อมใช้งานชั่วคราว',
+      'target_unavailable': 'เซิร์ฟเวอร์ไม่พร้อมใช้งานชั่วคราว',
+      'not_found': 'ไม่พบรายการ',
+      'invalid_openvpn_csr': 'ข้อมูลระบุตัวตน OpenVPN ไม่ถูกต้อง',
+      'openvpn_profile_exists': 'มีโปรไฟล์ OpenVPN อยู่แล้ว',
+      'openvpn_profile_revoked': 'เพิกถอนโปรไฟล์ OpenVPN แล้ว',
+      'openvpn_operation_pending': 'กำลังดำเนินการ OpenVPN',
+      'openvpn_operation_terminal': 'การดำเนินการ OpenVPN ถูกขัดจังหวะ',
+      'openvpn_address_unavailable': 'ที่อยู่ OpenVPN ไม่พร้อมใช้งาน',
+      'openvpn_profile_conflict': 'OpenVPN ขัดแย้งกัน',
+      'openvpn_signer_unavailable': 'OpenVPN ไม่พร้อมใช้งาน',
+      'email_delivery_unavailable': 'อีเมลไม่พร้อมใช้งาน',
+      'invalid_token': 'ลิงก์ไม่ถูกต้อง',
+      'network_unavailable': 'การเชื่อมต่ออินเทอร์เน็ตไม่พร้อมใช้งาน',
+      'invalid_json': 'คำขอไม่ถูกต้อง',
+      'invalid_api_response': 'การตอบกลับจากเซิร์ฟเวอร์ไม่ถูกต้อง',
+      'ipv6_unavailable': 'IPv6 ไม่พร้อมใช้งาน',
+      'invalid_ip_families': 'การกำหนดค่าเครือข่ายถูกปฏิเสธ',
+      'other': 'บริการไม่พร้อมใช้งาน',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_api_message(String code) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'unauthorized': 'เซสชันของคุณหมดอายุแล้ว เข้าสู่ระบบอีกครั้ง',
+      'invalid_credentials': 'ที่อยู่อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+      'email_verification_required': 'ยืนยันที่อยู่อีเมลก่อนเพิ่มอุปกรณ์ VPN',
+      'invalid_registration': 'ตรวจสอบข้อมูลและความยินยอมที่ร้องขอ',
+      'email_exists': 'มีบัญชีที่ใช้ที่อยู่อีเมลนี้อยู่แล้ว',
+      'invalid_profile': 'ตรวจสอบข้อมูลโปรไฟล์ของคุณ',
+      'invalid_device':
+          'ชื่ออุปกรณ์หรือข้อมูลระบุตัวตนภายในเครื่องนี้ไม่ถูกต้อง',
+      'invalid_location': 'รีเฟรชรายการตำแหน่งแล้วลองอีกครั้ง',
+      'device_limit': 'นำอุปกรณ์ที่มีอยู่ออกก่อนเพิ่มอุปกรณ์เครื่องอื่น',
+      'device_exists': 'ข้อมูลระบุตัวตน VPN นี้เชื่อมโยงกับบัญชีอื่นอยู่แล้ว',
+      'device_identity_revoked':
+          'ข้อมูลระบุตัวตนนี้ถูกนำออกแล้ว ต้องสร้างข้อมูลระบุตัวตนภายในเครื่องใหม่',
+      'device_location_locked':
+          'ตำแหน่งของอุปกรณ์นี้เพิ่งเปลี่ยน แอปจะดำเนินการเปลี่ยนที่ค้างอยู่ต่อ',
+      'location_migration_pending': 'การเปลี่ยนตำแหน่งกำลังดำเนินการอยู่',
+      'location_migration_blocked':
+          'การเปลี่ยนตำแหน่งต้องให้เซิร์ฟเวอร์ดำเนินการ ลองใหม่ภายหลังหรือติดต่อฝ่ายสนับสนุน',
+      'target_ca_mismatch':
+          'เซิร์ฟเวอร์นี้ยังใช้งานร่วมกับโปรไฟล์ OpenVPN ปัจจุบันไม่ได้',
+      'location_migration_conflict':
+          'รีเฟรชอุปกรณ์ แล้วลองเปลี่ยนตำแหน่งอีกครั้ง',
+      'server_full':
+          'ตำแหน่งนี้ถึงขีดจำกัดการเชื่อมต่อแล้ว เลือกตำแหน่งอื่นหรือลองใหม่ภายหลัง',
+      'capacity_unavailable':
+          'ขณะนี้ยืนยันไม่ได้ว่าตำแหน่งนี้พร้อมใช้งานหรือไม่ เลือกตำแหน่งอื่นหรือลองใหม่ภายหลัง',
+      'target_unavailable': 'เซิร์ฟเวอร์นี้ไม่พร้อมใช้งานชั่วคราว',
+      'not_found': 'รายการนี้ไม่มีอยู่ในบัญชีของคุณแล้ว',
+      'invalid_openvpn_csr': 'สร้างข้อมูลระบุตัวตน OpenVPN ใหม่แล้วลองอีกครั้ง',
+      'openvpn_profile_exists': 'มีโปรไฟล์ OpenVPN สำหรับอุปกรณ์นี้อยู่แล้ว',
+      'openvpn_profile_revoked': 'ต่ออายุโปรไฟล์ OpenVPN เพื่อดำเนินการต่อ',
+      'openvpn_operation_pending':
+          'การเปลี่ยนแปลงยังอยู่ระหว่างเผยแพร่ ลองใหม่ภายหลัง',
+      'openvpn_operation_terminal':
+          'สร้างข้อมูลระบุตัวตน OpenVPN ใหม่แล้วลองอีกครั้ง',
+      'openvpn_address_unavailable':
+          'ขณะนี้ไม่มีที่อยู่ OpenVPN ที่พร้อมใช้งาน',
+      'openvpn_profile_conflict':
+          'โปรไฟล์เปลี่ยนไป รีเฟรชอุปกรณ์แล้วลองอีกครั้ง',
+      'openvpn_signer_unavailable': 'บริการ OpenVPN ไม่พร้อมใช้งานชั่วคราว',
+      'email_delivery_unavailable': 'ส่งอีเมลไม่ได้ ลองใหม่ภายหลัง',
+      'invalid_token': 'ลิงก์นี้ไม่ถูกต้องหรือหมดอายุแล้ว ขอลิงก์ใหม่',
+      'network_unavailable': 'ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตแล้วลองอีกครั้ง',
+      'invalid_json': 'ตรวจสอบข้อมูลที่ป้อนแล้วลองอีกครั้ง',
+      'invalid_api_response':
+          'เซิร์ฟเวอร์ส่งการตอบกลับที่ไม่คาดคิด ลองใหม่ภายหลัง',
+      'ipv6_unavailable':
+          'ขณะนี้เซิร์ฟเวอร์ไม่สามารถเปิดใช้งาน IPv6 ได้ ลองใหม่ภายหลัง',
+      'invalid_ip_families':
+          'การกำหนดค่าอุโมงค์ไม่สมบูรณ์หรือไม่ตรงกับที่อยู่ที่ได้รับอนุญาต ลองอีกครั้งจากแอป',
+      'other': 'เกิดข้อผิดพลาดที่เซิร์ฟเวอร์ ลองใหม่ภายหลัง',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get notice_retryLater => 'ลองอีกครั้งในอีกสักครู่';
+
+  @override
+  String notice_retryAfter(Object seconds) {
+    return 'ลองอีกครั้งใน $seconds วินาที';
+  }
+
+  @override
+  String notice_native_title(String code, String protocol) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'system_vpn_resume_unavailable': 'ไม่สามารถกลับมาใช้ VPN ของระบบต่อได้',
+      'system_vpn_resume_corrupt': 'ข้อมูลกลับมาใช้ VPN ของระบบต่อไม่ถูกต้อง',
+      'system_vpn_resume_session_invalid': 'เซสชันกลับมาใช้ VPN ต่อไม่ถูกต้อง',
+      'system_vpn_resume_identity_changed': 'ข้อมูลระบุตัวตน VPN เปลี่ยนไป',
+      'system_vpn_resume_identity_invalid':
+          'ข้อมูลระบุตัวตนสำหรับกลับมาใช้ VPN ต่อไม่ถูกต้อง',
+      'system_vpn_resume_storage_failed':
+          'พื้นที่เก็บข้อมูลสำหรับกลับมาใช้ VPN ต่อไม่พร้อมใช้งาน',
+      'system_vpn_resume_network_timeout':
+          'ไม่มีเครือข่ายสำหรับกลับมาใช้ VPN ต่อ',
+      'system_vpn_resume_blocked': 'การกลับมาใช้ VPN ต่อถูกบล็อก',
+      'system_vpn_resume_failed': 'กลับมาใช้ VPN ต่อไม่สำเร็จ',
+      'system_vpn_resume_error_invalid':
+          'ข้อผิดพลาดในการกลับมาใช้ VPN ต่อไม่ถูกต้อง',
+      'wireguard_identity_store_failed':
+          'ไม่ได้บันทึกข้อมูลระบุตัวตน WireGuard',
+      'wireguard_identity_unavailable':
+          'ข้อมูลระบุตัวตน WireGuard ไม่พร้อมใช้งาน',
+      'vpn_host_destroyed': 'โฮสต์ VPN ของ Android หยุดทำงานแล้ว',
+      'vpn_host_unavailable': 'โฮสต์ VPN ของ Android ไม่พร้อมใช้งาน',
+      'vpn_permission_required': 'ต้องได้รับอนุญาตให้ใช้ VPN',
+      'vpn_permission_denied': 'ไม่ได้รับอนุญาตให้ใช้ VPN',
+      'vpn_permission_request_failed': 'ขออนุญาตไม่ได้',
+      'wireguard_foreground_service_unavailable':
+          'บริการ WireGuard ไม่พร้อมใช้งาน',
+      'wireguard_identity_invalid': 'คีย์ WireGuard ภายในเครื่องไม่ถูกต้อง',
+      'wireguard_identity_in_use':
+          'ข้อมูลระบุตัวตน WireGuard ถูกใช้งานอยู่แล้ว',
+      'wireguard_configuration_invalid': 'การกำหนดค่า WireGuard ไม่ถูกต้อง',
+      'wireguard_operation_pending': 'การดำเนินการ WireGuard ยังทำงานอยู่',
+      'wireguard_start_failed': 'การเริ่ม WireGuard ถูกปฏิเสธ',
+      'wireguard_stop_timeout': 'ยังยืนยันการหยุด WireGuard ไม่ได้',
+      'wireguard_handshake_timeout': 'WireGuard ไม่ตอบสนอง',
+      'openvpn_connection_timeout': 'OpenVPN ไม่ตอบสนอง',
+      'openvpn_core_unavailable': 'เอ็นจิน OpenVPN ไม่พร้อมใช้งาน',
+      'openvpn_operation_pending': 'เซสชัน OpenVPN ยังทำงานอยู่',
+      'openvpn_stop_timeout': 'ยังยืนยันการหยุด OpenVPN ไม่ได้',
+      'openvpn_profile_unavailable': 'ไม่พบโปรไฟล์ OpenVPN ภายในเครื่อง',
+      'openvpn_native_failed': 'การเรียก OpenVPN ภายในเครื่องถูกขัดจังหวะ',
+      'openvpn_key_generation_failed': 'สร้างคีย์ OpenVPN P-256 ไม่ได้',
+      'openvpn_csr_generation_failed': 'สร้าง CSR ของ OpenVPN ไม่ได้',
+      'openvpn_identity_store_failed': 'ไม่ได้บันทึกข้อมูลระบุตัวตน OpenVPN',
+      'openvpn_identity_clear_failed': 'นำ OpenVPN ออกไม่สมบูรณ์',
+      'openvpn_identity_in_use': 'ข้อมูลระบุตัวตน OpenVPN ยังถูกใช้งานอยู่',
+      'openvpn_tls_verification_required': 'ไม่มีการยืนยัน TLS ของ OpenVPN',
+      'openvpn_cipher_invalid': 'รหัสเข้ารหัส OpenVPN ไม่ถูกต้อง',
+      'openvpn_profile_rejected': 'โปรไฟล์ OpenVPN ถูกปฏิเสธ',
+      'openvpn_identity_inconsistent': 'ข้อมูลระบุตัวตน OpenVPN ไม่สอดคล้องกัน',
+      'tls_handshake_failed': 'การเจรจา OpenVPN ถูกปฏิเสธ',
+      'tls_alert_unknown_ca': 'ไม่รู้จักใบรับรองไคลเอ็นต์ OpenVPN',
+      'tls_alert_bad_certificate': 'ใบรับรองไคลเอ็นต์ OpenVPN ถูกปฏิเสธ',
+      'tls_alert_unsupported_certificate': 'ไม่รองรับใบรับรอง OpenVPN',
+      'tls_client_certificate_required': 'ต้องมีใบรับรองไคลเอ็นต์ OpenVPN',
+      'tls_alert_misc': 'การแจ้งเตือน TLS ของ OpenVPN',
+      'tls_signature_algorithm_rejected': 'ไม่รองรับลายเซ็น OpenVPN',
+      'tls_handshake_rejected': 'การเจรจา TLS ของ OpenVPN ถูกปฏิเสธ',
+      'tls_version_rejected': 'เวอร์ชัน TLS ของ OpenVPN ใช้งานร่วมกันไม่ได้',
+      'tls_certificate_expired': 'ใบรับรอง TLS หมดอายุ',
+      'tls_certificate_revoked': 'ใบรับรอง TLS ถูกเพิกถอน',
+      'transport_failed': 'เข้าถึงเซิร์ฟเวอร์ OpenVPN ไม่ได้',
+      'tun_configuration_rejected': 'สร้างอินเทอร์เฟซ OpenVPN ไม่ได้',
+      'tun_setup_failed': 'ตั้งค่า TUN ของ OpenVPN ล้มเหลว',
+      'tun_interface_create_failed': 'สร้างอินเทอร์เฟซ OpenVPN ล้มเหลว',
+      'tun_interface_disabled': 'อินเทอร์เฟซ OpenVPN ถูกปิดใช้งาน',
+      'tun_halted': 'อินเทอร์เฟซ OpenVPN ถูกขัดจังหวะ',
+      'tun_already_established': 'อินเทอร์เฟซ OpenVPN เปิดอยู่แล้ว',
+      'tun_addresses_missing': 'ไม่มีที่อยู่ OpenVPN',
+      'tun_routes_missing': 'ไม่มีเส้นทาง OpenVPN',
+      'tun_dns_missing': 'ไม่มี DNS ของ OpenVPN',
+      'tun_permission_revoked': 'การอนุญาต VPN ถูกเพิกถอน',
+      'tun_establish_returned_null': 'Android ปฏิเสธอินเทอร์เฟซ VPN',
+      'openvpn_service_start_failed': 'บริการ OpenVPN ไม่พร้อมใช้งาน',
+      'openvpn_operation_timeout': 'การเรียก OpenVPN หมดเวลา',
+      'openvpn_start_failed': 'การเริ่ม OpenVPN ถูกปฏิเสธ',
+      'openvpn_connection_failed': 'การเชื่อมต่อ OpenVPN ถูกขัดจังหวะ',
+      'openvpn_core_status_error': 'OpenVPN Core จบการทำงานพร้อมข้อผิดพลาด',
+      'openvpn_stopped_before_connected': 'OpenVPN หยุดก่อนเชื่อมต่อ',
+      'openvpn_auth_failed': 'การยืนยันตัวตน OpenVPN ถูกปฏิเสธ',
+      'openvpn_client_setup_failed': 'ตั้งค่าไคลเอ็นต์ OpenVPN ล้มเหลว',
+      'openvpn_client_halted': 'ไคลเอ็นต์ OpenVPN ถูกขัดจังหวะ',
+      'openvpn_client_restart': 'ขอให้เริ่ม OpenVPN ใหม่',
+      'openvpn_inactive_timeout': 'OpenVPN ไม่ทำงานนานเกินไป',
+      'openvpn_session_expired': 'เซสชัน OpenVPN หมดอายุ',
+      'openvpn_credentials_required': 'ไม่รองรับการยืนยันตัวตน OpenVPN',
+      'openvpn_proxy_failed': 'การส่งผ่านตัวกลาง OpenVPN ล้มเหลว',
+      'openvpn_compression_failed': 'การบีบอัด OpenVPN ถูกปฏิเสธ',
+      'openvpn_ntlm_crypto_unavailable':
+          'การเข้ารหัส NTLM ของ OpenVPN ไม่พร้อมใช้งาน',
+      'openvpn_feature_unsupported': 'ไม่รองรับฟีเจอร์ OpenVPN',
+      'network_unavailable': 'การเชื่อมต่ออินเทอร์เน็ตไม่พร้อมใช้งาน',
+      'network_lost': 'เครือข่ายไม่พร้อมใช้งาน',
+      'certificate_validation_failed': 'ใบรับรองเซิร์ฟเวอร์ถูกปฏิเสธ',
+      'openvpn_certificate_expired': 'ใบรับรอง OpenVPN หมดอายุ',
+      'tunnel_active_for_another_account': 'อุโมงค์ของบัญชีอื่นยังทำงานอยู่',
+      'tunnel_already_active': 'อุโมงค์ภายในเครื่องทำงานอยู่แล้ว',
+      'tunnel_stop_timeout': 'ยังยืนยันการหยุด $protocol ไม่ได้',
+      'tunnel_disconnected': '$protocol ถูกขัดจังหวะ',
+      'native_bridge_unavailable': 'บริดจ์ Android ไม่พร้อมใช้งาน',
+      'native_operation_failed': 'การดำเนินการ Android ถูกขัดจังหวะ',
+      'invalid_arguments': 'พารามิเตอร์ VPN ไม่ครบถ้วน',
+      'invalid_account_id': 'บัญชี VPN ไม่ถูกต้อง',
+      'invalid_device_id': 'ตัวระบุอุปกรณ์ไม่ถูกต้อง',
+      'storage_key_not_allowed': 'คีย์พื้นที่เก็บข้อมูลถูกปฏิเสธ',
+      'secure_storage_read_failed': 'อ่านข้อมูลอย่างปลอดภัยล้มเหลว',
+      'secure_storage_write_failed': 'เขียนข้อมูลอย่างปลอดภัยล้มเหลว',
+      'key_generation_failed': 'สร้างคีย์ WireGuard ไม่ได้',
+      'csr_generation_failed': 'สร้าง CSR ของ OpenVPN ไม่ได้',
+      'other': 'ข้อผิดพลาด VPN ภายในเครื่องที่ไม่จัดประเภท',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_native_message(String code, String protocol) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'system_vpn_resume_unavailable':
+          'Android ไม่พบเซสชัน VPN ที่กลับมาใช้ต่อได้ เริ่มการเชื่อมต่อใหม่ในแอป',
+      'system_vpn_resume_corrupt':
+          'ข้อมูลกลับมาใช้ VPN ต่อที่บันทึกไว้ไม่ถูกต้องและจะไม่ถูกใช้ เริ่มการเชื่อมต่อใหม่',
+      'system_vpn_resume_session_invalid':
+          'เซสชันที่บันทึกไว้ไม่สามารถกลับมาใช้ VPN ต่อได้อีก เข้าสู่ระบบใหม่ในแอป',
+      'system_vpn_resume_identity_changed':
+          'ข้อมูลระบุตัวตน VPN ภายในเครื่องเปลี่ยนไป การกลับมาใช้ต่อถูกหยุดแล้ว เริ่มการเชื่อมต่อใหม่',
+      'system_vpn_resume_identity_invalid':
+          'ข้อมูลระบุตัวตนสำหรับกลับมาใช้ต่อไม่ถูกต้อง เริ่มการเชื่อมต่อใหม่',
+      'system_vpn_resume_storage_failed':
+          'Android อ่านหรืออัปเดตข้อมูลกลับมาใช้ต่อที่เข้ารหัสไม่ได้ เริ่มการเชื่อมต่อใหม่',
+      'system_vpn_resume_network_timeout':
+          'Android ไม่พบเครือข่ายทันเวลาสำหรับกลับมาใช้ VPN ต่อ ลองอีกครั้งเมื่อมีเครือข่ายพร้อมใช้งาน',
+      'system_vpn_resume_blocked':
+          'การกลับมาใช้ VPN ต่อถูกบล็อก ตรวจสอบการตั้งค่า Android แล้วเริ่มการเชื่อมต่อใหม่',
+      'system_vpn_resume_failed':
+          'กลับมาใช้ VPN ของ Android ต่อไม่สำเร็จ เริ่มการเชื่อมต่อใหม่ในแอป',
+      'system_vpn_resume_error_invalid':
+          'Android ส่งข้อผิดพลาดในการกลับมาใช้ต่อที่ใช้ไม่ได้ เริ่มการเชื่อมต่อใหม่',
+      'wireguard_identity_store_failed':
+          'Android บันทึกข้อมูลระบุตัวตน WireGuard ที่เข้ารหัสของบัญชีนี้ไม่ได้',
+      'wireguard_identity_unavailable':
+          'ไม่มีข้อมูลระบุตัวตน WireGuard ที่ใช้งานได้สำหรับการเชื่อมต่อนี้',
+      'vpn_host_destroyed':
+          'ส่วนประกอบ Android ที่โฮสต์ VPN ถูกหยุดแล้ว เริ่มการเชื่อมต่อใหม่',
+      'vpn_host_unavailable':
+          'Android สร้างส่วนประกอบที่โฮสต์ VPN ไม่ได้ ลองอีกครั้งหลังตรวจสอบการตั้งค่า VPN',
+      'openvpn_renewal_required': 'ใบรับรองต้องดำเนินการในแอปก่อนเชื่อมต่อ',
+      'openvpn_recovery_failed':
+          'กู้คืนอัตโนมัติล้มเหลว เริ่มการเชื่อมต่อใหม่ในแอป',
+      'openvpn_recovery_exhausted':
+          'ใช้การกู้คืนอัตโนมัติไปแล้ว เริ่มการเชื่อมต่อใหม่ในแอป',
+      'vpn_permission_required':
+          'Android ต้องได้รับอนุญาต VPN ใหม่ก่อนเริ่มอุโมงค์',
+      'vpn_permission_denied':
+          'อนุญาต FuzeVPN ในคำขอของ Android เพื่อดำเนินการต่อ',
+      'vpn_permission_request_failed': 'Android เปิดหน้าจออนุญาต VPN ไม่ได้',
+      'wireguard_foreground_service_unavailable':
+          'Android ไม่สามารถให้บริการ WireGuard ทำงานเบื้องหน้าได้',
+      'wireguard_identity_invalid':
+          'คีย์ WireGuard ที่เข้ารหัสของบัญชีนี้อ่านไม่ได้หรือไม่ถูกต้อง',
+      'wireguard_identity_in_use':
+          'การดำเนินการอื่นกำลังใช้คีย์ WireGuard ของบัญชีนี้อยู่',
+      'wireguard_configuration_invalid':
+          'ที่อยู่ WireGuard, DNS, คีย์เซิร์ฟเวอร์ หรือเส้นทางที่ได้รับไม่ถูกต้อง',
+      'wireguard_operation_pending':
+          'การดำเนินการ WireGuard ก่อนหน้ายังไม่ปล่อยบริการภายในเครื่อง',
+      'wireguard_start_failed':
+          'เอ็นจิน WireGuard ปฏิเสธการเปิดใช้งานการกำหนดค่า',
+      'wireguard_stop_timeout':
+          'บริการ WireGuard ไม่ยืนยันการปล่อยอินเทอร์เฟซ VPN ภายในเวลาที่กำหนด',
+      'wireguard_handshake_timeout':
+          'อุโมงค์ไม่ยืนยันการจับมือกับเซิร์ฟเวอร์ทันเวลา',
+      'openvpn_connection_timeout':
+          'OpenVPN ไม่ยืนยันการเชื่อมต่อกับเซิร์ฟเวอร์ทันเวลา',
+      'openvpn_core_unavailable':
+          'แอปเวอร์ชันนี้ไม่มีเอ็นจิน OpenVPN ที่ใช้งานได้',
+      'openvpn_operation_pending':
+          'เอ็นจินภายในเครื่องยังถือเซสชัน OpenVPN ก่อนหน้าอยู่และปฏิเสธการสร้างเซสชันที่สอง',
+      'openvpn_stop_timeout':
+          'OpenVPN Core ไม่ยืนยันว่าเซสชันภายในเครื่องหยุดและถูกทำลายภายในเวลาที่กำหนด',
+      'openvpn_profile_unavailable':
+          'ไม่สามารถอ่านโปรไฟล์ OpenVPN ที่ผ่านการตรวจสอบสำหรับการเชื่อมต่อนี้ได้',
+      'openvpn_native_failed':
+          'ข้อผิดพลาดของแอปขัดจังหวะ OpenVPN ลองเชื่อมต่ออีกครั้ง หากยังมีปัญหา ให้เรียกใช้การวินิจฉัย',
+      'openvpn_key_generation_failed':
+          'Android Keystore สร้างหรืออ่านคีย์ส่วนตัว P-256 ที่ส่งออกไม่ได้ไม่สำเร็จ',
+      'openvpn_csr_generation_failed':
+          'คีย์ Android Keystore ไม่สามารถลงนามคำขอใบรับรอง OpenVPN ได้',
+      'openvpn_identity_store_failed':
+          'บันทึกใบรับรองหรือโปรไฟล์ OpenVPN ในพื้นที่เก็บข้อมูลที่เข้ารหัสไม่ได้',
+      'openvpn_identity_clear_failed':
+          'Android ไม่สามารถนำข้อมูลระบุตัวตน OpenVPN ภายในเครื่องทั้งหมดของบัญชีนี้ออกได้',
+      'openvpn_identity_in_use':
+          'เซสชัน OpenVPN ภายในเครื่องยังใช้คีย์หรือใบรับรองของอุปกรณ์นี้อยู่',
+      'openvpn_tls_verification_required':
+          'โปรไฟล์ไม่ได้กำหนดให้ยืนยันใบรับรองเซิร์ฟเวอร์อย่างชัดเจน',
+      'openvpn_cipher_invalid':
+          'เซิร์ฟเวอร์ส่งอัลกอริทึมการเข้ารหัสที่ไม่อยู่ในรายการที่อนุญาต',
+      'openvpn_profile_rejected':
+          'โปรไฟล์ที่ได้รับจากเซิร์ฟเวอร์ใช้งานร่วมกันไม่ได้ สร้างอุปกรณ์นี้ใหม่แล้วลองอีกครั้ง',
+      'openvpn_identity_inconsistent':
+          'ใบรับรองไม่ตรงกับข้อมูลระบุตัวตนที่ปลอดภัยของโทรศัพท์นี้ ไม่มีการแทนที่โปรไฟล์ภายในเครื่อง',
+      'tls_handshake_failed':
+          'เซิร์ฟเวอร์ปฏิเสธการเจรจา TLS สร้างโปรไฟล์ใหม่หากยังมีปัญหา',
+      'tls_alert_unknown_ca':
+          'เซิร์ฟเวอร์ไม่รู้จักผู้ออกใบรับรองของอุปกรณ์นี้ ต้องตรวจสอบเซิร์ฟเวอร์ OpenVPN',
+      'tls_alert_bad_certificate':
+          'เซิร์ฟเวอร์ปฏิเสธใบรับรองอุปกรณ์นี้ สร้างอุปกรณ์ใหม่ก่อนลองอีกครั้ง',
+      'tls_alert_unsupported_certificate':
+          'เซิร์ฟเวอร์ไม่รองรับประเภทใบรับรองที่ปลอดภัยซึ่ง Android ใช้',
+      'tls_client_certificate_required':
+          'เซิร์ฟเวอร์ต้องมีใบรับรองไคลเอ็นต์ แต่ OpenVPN Core นำเสนอใบรับรองไม่ได้',
+      'tls_alert_misc':
+          'เซิร์ฟเวอร์ส่งการแจ้งเตือน TLS ที่ไม่อยู่ในหมวดใบรับรองหรือเวอร์ชัน',
+      'tls_signature_algorithm_rejected':
+          'เซิร์ฟเวอร์ปฏิเสธอัลกอริทึม ECDSA P-256 ของคีย์ Android Keystore',
+      'tls_handshake_rejected':
+          'เซิร์ฟเวอร์ขัดจังหวะการเจรจา TLS ก่อนเชื่อมต่อ',
+      'tls_version_rejected':
+          'ไคลเอ็นต์และเซิร์ฟเวอร์ไม่พบเวอร์ชัน TLS ที่ใช้ร่วมกันได้',
+      'tls_certificate_expired':
+          'ใบรับรองที่นำเสนอระหว่างการเชื่อมต่อหมดอายุแล้ว',
+      'tls_certificate_revoked':
+          'ใบรับรองที่นำเสนอระหว่างการเชื่อมต่อถูกเพิกถอนแล้ว',
+      'transport_failed':
+          'เซิร์ฟเวอร์ OpenVPN ไม่ตอบสนองบนเครือข่ายปัจจุบัน ลองอีกครั้งในอีกสักครู่',
+      'tun_configuration_rejected':
+          'Android ปฏิเสธการกำหนดค่าเครือข่ายที่ OpenVPN ร้องขอ',
+      'tun_setup_failed':
+          'OpenVPN Core ปฏิเสธแผนเครือข่ายก่อนสร้างอินเทอร์เฟซ Android',
+      'tun_interface_create_failed':
+          'OpenVPN Core ขออินเทอร์เฟซ TUN จาก Android VpnService ไม่ได้',
+      'tun_interface_disabled':
+          'Android หรือ OpenVPN Core ปิดใช้งานอินเทอร์เฟซ TUN ระหว่างการเชื่อมต่อ',
+      'tun_halted': 'OpenVPN Core ได้รับคำขอให้หยุดอินเทอร์เฟซ TUN',
+      'tun_already_established':
+          'OpenVPN ขออินเทอร์เฟซที่สองในการเชื่อมต่อเดียวกัน อุโมงค์ถูกหยุดเพื่อความปลอดภัย',
+      'tun_addresses_missing': 'เซิร์ฟเวอร์ไม่ได้ให้ที่อยู่อุโมงค์ที่ใช้งานได้',
+      'tun_routes_missing': 'เซิร์ฟเวอร์ไม่ได้ให้เส้นทางอุโมงค์ที่ใช้งานได้',
+      'tun_dns_missing': 'เซิร์ฟเวอร์ไม่ได้ให้เซิร์ฟเวอร์ DNS ที่ใช้งานได้',
+      'tun_permission_revoked':
+          'Android เพิกถอนการอนุญาต VPN ระหว่างการเชื่อมต่อ',
+      'tun_establish_returned_null':
+          'Android ไม่ได้สร้างอินเทอร์เฟซ ซึ่งมักเกิดจาก VPN อื่นยังทำงานอยู่',
+      'openvpn_service_start_failed':
+          'Android เริ่มบริการ OpenVPN เบื้องหน้าไม่ได้',
+      'openvpn_operation_timeout':
+          'การเรียก JNI ไปยัง OpenVPN Core ใช้เวลานานเกินกำหนด',
+      'openvpn_start_failed':
+          'บริการ Android พร้อมแล้ว แต่ OpenVPN Core ไม่ยอมรับการเริ่มโปรไฟล์',
+      'openvpn_connection_failed':
+          'OpenVPN Core หยุดก่อนส่งเหตุการณ์ CONNECTED',
+      'openvpn_core_status_error':
+          'ลูป OpenVPN ภายในเครื่องจบลงพร้อมข้อผิดพลาดและไม่มีเหตุการณ์สิ้นสุดที่เฉพาะเจาะจงกว่านี้',
+      'openvpn_stopped_before_connected':
+          'ลูป OpenVPN ภายในเครื่องหยุดก่อน CONNECTED โดยไม่มีข้อผิดพลาดจาก Core อย่างชัดเจน',
+      'openvpn_auth_failed':
+          'เซิร์ฟเวอร์ OpenVPN ปฏิเสธการยืนยันตัวตนของโปรไฟล์',
+      'openvpn_client_setup_failed':
+          'OpenVPN Core เริ่มต้นไคลเอ็นต์ไม่ได้ก่อนการเชื่อมต่อเครือข่าย',
+      'openvpn_client_halted':
+          'OpenVPN Core ได้รับคำสั่งหยุดไคลเอ็นต์ขั้นสุดท้าย',
+      'openvpn_client_restart': 'OpenVPN Core ขอให้เริ่มเซสชันการส่งข้อมูลใหม่',
+      'openvpn_inactive_timeout':
+          'OpenVPN Core ปิดเซสชันหลังหมดเวลาที่ไม่มีการทำงาน',
+      'openvpn_session_expired': 'เซิร์ฟเวอร์รายงานว่าเซสชัน OpenVPN หมดอายุ',
+      'openvpn_credentials_required':
+          'เซิร์ฟเวอร์หรือตัวแทนพร็อกซีขอข้อมูลรับรองแบบโต้ตอบ ซึ่งไม่มีอยู่ในโปรไฟล์ใบรับรองนี้',
+      'openvpn_proxy_failed':
+          'OpenVPN Core รายงานว่าพร็อกซีหรือตัวรีเลย์ที่กำหนดค่าไว้ล้มเหลว',
+      'openvpn_compression_failed':
+          'OpenVPN Core ปฏิเสธโหมดการบีบอัดที่โปรไฟล์หรือเซิร์ฟเวอร์ประกาศ',
+      'openvpn_ntlm_crypto_unavailable':
+          'โปรไฟล์ขอการเข้ารหัส NTLM ซึ่งไม่มีในเวอร์ชันนี้',
+      'openvpn_feature_unsupported':
+          'โปรไฟล์หรือเซิร์ฟเวอร์ต้องใช้ฟีเจอร์ที่ไคลเอ็นต์ Android นี้ไม่มี',
+      'network_unavailable': 'ไม่มีเครือข่ายจริงที่ใช้งานได้',
+      'network_lost': 'อุโมงค์ถูกหยุดหลังเครือข่ายขาดหาย',
+      'certificate_validation_failed':
+          'ยืนยันข้อมูลระบุตัวตนของเซิร์ฟเวอร์ OpenVPN ไม่ได้',
+      'openvpn_certificate_expired': 'ต่ออายุโปรไฟล์ OpenVPN ก่อนเชื่อมต่อใหม่',
+      'tunnel_active_for_another_account':
+          'ต้องหยุดอุโมงค์ของบัญชีอื่นก่อนการเชื่อมต่อนี้',
+      'tunnel_already_active':
+          'Android รายงานว่าเซสชัน VPN ก่อนหน้ายังใช้อินเทอร์เฟซอยู่',
+      'tunnel_stop_timeout':
+          'เอ็นจิน $protocol ไม่ยืนยันการปล่อยอินเทอร์เฟซ VPN ภายในเวลาที่กำหนด',
+      'tunnel_disconnected':
+          'เอ็นจินภายในเครื่องรายงานว่าอุโมงค์จบลงโดยไม่คาดคิดหลังเริ่มทำงาน',
+      'native_bridge_unavailable':
+          'แอปเข้าถึงบริการ VPN ของ Android ไม่ได้ ปิดแล้วเปิดแอปใหม่ จากนั้นลองอีกครั้ง',
+      'native_operation_failed':
+          'ข้อผิดพลาดของแอปขัดจังหวะการดำเนินการ VPN ลองอีกครั้ง หากยังมีปัญหา ให้เรียกใช้การวินิจฉัย',
+      'invalid_arguments':
+          'ข้อมูลที่จำเป็นสำหรับการดำเนินการ VPN นี้ไม่ครบถ้วน ลองอีกครั้ง หากยังมีปัญหา ให้เรียกใช้การวินิจฉัย',
+      'invalid_account_id':
+          'การดำเนินการภายในเครื่องไม่เชื่อมโยงกับตัวระบุบัญชีที่ถูกต้อง',
+      'invalid_device_id':
+          'ตัวระบุอุปกรณ์ที่ส่งไปยังเอ็นจินภายในเครื่องไม่มีหรือไม่ถูกต้อง',
+      'storage_key_not_allowed':
+          'บริดจ์ Android บล็อกคีย์ที่อยู่นอกเหนือรายการพื้นที่เก็บข้อมูลที่อนุญาต',
+      'secure_storage_read_failed':
+          'Android Keystore ถอดรหัสข้อมูลภายในเครื่องของบัญชีนี้ไม่ได้',
+      'secure_storage_write_failed':
+          'Android Keystore เข้ารหัสหรือบันทึกข้อมูลภายในเครื่องไม่ได้',
+      'key_generation_failed':
+          'Android สร้างหรืออ่านคีย์ WireGuard ในพื้นที่เก็บข้อมูลที่ปลอดภัยไม่ได้',
+      'csr_generation_failed':
+          'Android Keystore สร้างหรือลงนาม CSR ของ OpenVPN P-256 ไม่ได้',
+      'other':
+          'สาขาภายในเครื่องที่ไม่มีเอกสารล้มเหลว ส่งรหัสการวินิจฉัยด้านล่างให้ฝ่ายสนับสนุน',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get notice_permissionRequestInProgress_title =>
+      'คำขออนุญาตเปิดอยู่แล้ว';
+
+  @override
+  String get notice_permissionRequestInProgress_message =>
+      'คำขออนุญาต VPN ของ Android แสดงอยู่แล้ว ดำเนินการให้เสร็จก่อนลองอีกครั้ง';
+
+  @override
+  String get notice_permissionRequestInterrupted_title =>
+      'คำขออนุญาต VPN ถูกขัดจังหวะ';
+
+  @override
+  String get notice_permissionRequestInterrupted_message =>
+      'หน้าจออนุญาต VPN ปิดลงก่อนที่แอปจะได้รับคำตอบ';
+
+  @override
+  String get notice_openvpnProofMissing_title =>
+      'ยังไม่ยืนยันการเชื่อมต่อ OpenVPN';
+
+  @override
+  String get notice_openvpnProofMissing_message =>
+      'ไม่สามารถยืนยันการเชื่อมต่อ OpenVPN ได้ ระบบหยุดการเชื่อมต่อเพื่อความปลอดภัย ลองอีกครั้ง';
+
+  @override
+  String get openvpnCleanup_title => 'เพิกถอนโปรไฟล์ OpenVPN แล้ว';
+
+  @override
+  String get openvpnCleanup_working =>
+      'กำลังหยุดและนำโปรไฟล์ OpenVPN ที่เพิกถอนออก…';
+
+  @override
+  String get openvpnCleanup_stopFailed =>
+      'ยังยืนยันการปิด OpenVPN ไม่ได้ ลองอีกครั้งก่อนสร้างโปรไฟล์ใหม่';
+
+  @override
+  String get openvpnCleanup_cleanupFailed =>
+      'ไม่สามารถนำโปรไฟล์ OpenVPN ที่เพิกถอนออกได้ทั้งหมด ลองล้างข้อมูลอีกครั้ง';
+
+  @override
+  String get openvpnCleanup_complete =>
+      'นำโปรไฟล์ OpenVPN ที่เพิกถอนออกแล้ว แตะเชื่อมต่อเพื่อสร้างโปรไฟล์ใหม่';
+
+  @override
+  String get network_title => 'การกำหนดค่าเครือข่าย';
+
+  @override
+  String get network_ipv4Fallback =>
+      'IPv6 ไม่พร้อมใช้งานชั่วคราว การเตรียมการจะดำเนินต่อด้วย IPv4';
+
+  @override
+  String get network_rejectedTitle => 'การกำหนดค่าเครือข่ายถูกปฏิเสธ';
+
+  @override
+  String get network_rejectedMessage =>
+      'การกำหนดค่าอุโมงค์ไม่สมบูรณ์หรือไม่ตรงกับที่อยู่ที่ได้รับอนุญาต ลองอีกครั้งจากแอป';
+
+  @override
+  String get network_unreadableTitle => 'อ่านการกำหนดค่าภายในเครื่องไม่ได้';
+
+  @override
+  String get network_unreadableMessage =>
+      'ไม่สามารถใช้การกำหนดค่าเครือข่าย OpenVPN ที่บันทึกไว้ได้ เชื่อมต่อใหม่จากแอปเพื่ออัปเดต';
+
+  @override
+  String get network_ipv4 => 'IPv4';
+
+  @override
+  String get network_dualStack => 'IPv4 + IPv6';
+
+  @override
+  String get protection_title => 'การปกป้องเครือข่าย';
+
+  @override
+  String get protection_subtitle =>
+      'บล็อกการเข้าถึงอินเทอร์เน็ตโดยตรงหาก VPN ตัดการเชื่อมต่อ';
+
+  @override
+  String get protection_active => 'การปกป้องของระบบทำงานอยู่';
+
+  @override
+  String get protection_alwaysOnOnly =>
+      'เปิดใช้ VPN แบบเปิดตลอดเวลาแล้ว เปิดการบล็อกภายนอก VPN';
+
+  @override
+  String get protection_inactive => 'การปกป้องของระบบไม่ทำงาน';
+
+  @override
+  String get protection_unknown => 'ตรวจสอบการปกป้องของระบบ';
+
+  @override
+  String get protection_openSettings => 'เปิดการตั้งค่า Android';
+
+  @override
+  String get protection_dialogTitle => 'ตั้งค่าการปกป้องเครือข่าย';
+
+  @override
+  String get protection_dialogMessage =>
+      'Android จัดการ VPN แบบเปิดตลอดเวลาและการบล็อกการเชื่อมต่อนอก VPN ตรวจสอบว่าเลือก FuzeVPN แล้ว และเปิดการบล็อกในการตั้งค่าระบบ';
+
+  @override
+  String get protection_dialogOpen => 'เปิดการตั้งค่า';
+
+  @override
+  String get session_systemProtectionNote =>
+      'หาก Android ยังคงบล็อกการรับส่งข้อมูลนอก VPN ให้เปิดการตั้งค่าระบบเพื่อตรวจสอบหรือเปลี่ยนการปกป้องนี้';
+
+  @override
+  String get diagnostics_title => 'การวินิจฉัย';
+
+  @override
+  String get diagnostics_settingsTitle => 'การวินิจฉัยแอป';
+
+  @override
+  String get diagnostics_automaticTitle => 'ส่งข้อผิดพลาดสำคัญ';
+
+  @override
+  String get diagnostics_automaticDescription =>
+      'แชร์รายงานทางเทคนิคขนาดเล็กเมื่อเกิดข้อผิดพลาดสำคัญ';
+
+  @override
+  String get diagnostics_privacy =>
+      'รายงานที่ส่งจะเชื่อมโยงกับบัญชีที่เข้าสู่ระบบและเก็บไว้ 30 วัน รายงานไม่มีประวัติการท่องเว็บ รหัสผ่าน หรือคีย์ VPN';
+
+  @override
+  String get diagnostics_manualOpen => 'เรียกใช้การวินิจฉัย';
+
+  @override
+  String get diagnostics_localDescription =>
+      'สร้างรายงานสถานะแอปและ VPN การเชื่อมต่อของคุณจะไม่เปลี่ยนแปลง';
+
+  @override
+  String get diagnostics_sendReport => 'ส่งรายงาน';
+
+  @override
+  String get diagnostics_sendHint =>
+      'ปล่อยให้ไม่เลือกช่องนี้เพื่อเก็บรายงานไว้ในอุปกรณ์นี้';
+
+  @override
+  String get diagnostics_signedOut => 'เข้าสู่ระบบบัญชีเพื่อส่งรายงาน';
+
+  @override
+  String get diagnostics_localLifetime =>
+      'บันทึกรายงานนี้ไว้ในโทรศัพท์เพื่อเก็บไว้หลังปิดแอป';
+
+  @override
+  String get diagnostics_run => 'เรียกใช้การวินิจฉัย';
+
+  @override
+  String get diagnostics_rerun => 'เรียกใช้การวินิจฉัยอีกครั้ง';
+
+  @override
+  String get diagnostics_running => 'กำลังตรวจสอบ…';
+
+  @override
+  String get diagnostics_sending => 'กำลังส่งรายงาน…';
+
+  @override
+  String get diagnostics_prepared => 'รายงานพร้อมใช้งานในอุปกรณ์นี้';
+
+  @override
+  String get diagnostics_queued => 'รายงานกำลังรอส่ง';
+
+  @override
+  String get diagnostics_sent => 'ได้รับรายงานแล้ว';
+
+  @override
+  String get diagnostics_failed =>
+      'ส่งไม่สำเร็จ รายงานภายในเครื่องของคุณยังใช้งานได้';
+
+  @override
+  String get diagnostics_preparationFailed =>
+      'เตรียมรายงานการวินิจฉัยไม่สำเร็จ ลองอีกครั้ง';
+
+  @override
+  String get diagnostics_authenticationRequired =>
+      'เข้าสู่ระบบอีกครั้งเพื่อส่งรายงาน';
+
+  @override
+  String get diagnostics_retry => 'ลองส่งอีกครั้ง';
+
+  @override
+  String get diagnostics_export => 'บันทึกรายงาน';
+
+  @override
+  String get diagnostics_exportFailed =>
+      'ส่งออกไม่สำเร็จ ลองอีกครั้งจากรายงานภายในเครื่อง';
+
+  @override
+  String get diagnostics_preferenceFailed =>
+      'บันทึกการตั้งค่านี้ไม่ได้ ลองอีกครั้ง';
+
+  @override
+  String diagnostics_receipt(Object id) {
+    return 'ข้อมูลอ้างอิง: $id';
+  }
+
+  @override
+  String diagnostics_received(Object date) {
+    return 'ได้รับเมื่อ $date';
+  }
+
+  @override
+  String diagnostics_expires(Object date) {
+    return 'เก็บไว้จนถึง $date';
+  }
+
+  @override
+  String get diagnostics_duplicate => 'ได้รับรายงานนี้แล้ว';
+
+  @override
+  String get diagnostics_preview => 'ดูตัวอย่างรายงาน';
+
+  @override
+  String diagnostics_eventCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'แนบเหตุการณ์ทางเทคนิค $count รายการ',
+      one: 'แนบเหตุการณ์ทางเทคนิค $count รายการ',
+      zero: 'ไม่มีเหตุการณ์ทางเทคนิคแนบมา',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get diagnostics_technical => 'รายละเอียดทางเทคนิค';
+
+  @override
+  String get diagnostics_empty => 'ยังไม่มีรายงานการวินิจฉัยที่เตรียมไว้';
+
+  @override
+  String diagnostics_checkName(String id) {
+    String _temp0 = intl.Intl.selectLogic(id, {
+      'tunnel_connection': 'สถานะอุโมงค์',
+      'handshake': 'การยืนยันการเชื่อมต่อ',
+      'certificate': 'ใบรับรอง VPN',
+      'kill_switch': 'การปกป้องของ Android',
+      'connectivity': 'เครือข่ายที่พร้อมใช้งาน',
+      'api_reachability': 'การเข้าถึงบริการ',
+      'secure_storage': 'พื้นที่เก็บข้อมูลที่ปลอดภัย',
+      'other': 'การตรวจสอบภายในเครื่อง',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String diagnostics_checkResult(String result) {
+    String _temp0 = intl.Intl.selectLogic(result, {
+      'passed': 'ตรวจสอบแล้ว',
+      'failed': 'ต้องดำเนินการ',
+      'skipped': 'ยังไม่ได้ทดสอบ — ไม่มีการตรวจสอบที่ทำงานอยู่',
+      'unknown': 'ข้อมูลไม่พร้อมใช้งาน',
+      'other': 'ข้อมูลไม่พร้อมใช้งาน',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get auth_welcome => 'ยินดีต้อนรับสู่ FuzeVPN';
+
+  @override
+  String get connection_changeLocation => 'เปลี่ยนตำแหน่ง';
+
+  @override
+  String get connection_details => 'รายละเอียดการเชื่อมต่อ';
+
+  @override
+  String get locations_searchLabel => 'ค้นหาเมืองหรือประเทศ';
+
+  @override
+  String get locations_clearSearch => 'ล้างการค้นหา';
+
+  @override
+  String get locations_filterAll => 'ทั้งหมด';
+
+  @override
+  String get locations_filterFavorites => 'รายการโปรด';
+
+  @override
+  String locations_results(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ตำแหน่ง',
+      one: '$count ตำแหน่ง',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get locations_noResults => 'ไม่พบตำแหน่ง';
+
+  @override
+  String get locations_noResultsHint => 'ลองค้นหาเมืองหรือประเทศอื่น';
+
+  @override
+  String get locations_noFavorites => 'รายการโปรดของคุณอยู่ใกล้แค่เอื้อม';
+
+  @override
+  String get locations_noFavoritesHint =>
+      'แตะดาวข้างตำแหน่งเพื่อบันทึกไว้ที่นี่';
+
+  @override
+  String get locations_showAll => 'ดูตำแหน่งทั้งหมด';
+
+  @override
+  String locations_addFavorite(String name) {
+    return 'เพิ่ม $name ในรายการโปรด';
+  }
+
+  @override
+  String locations_removeFavorite(String name) {
+    return 'นำ $name ออกจากรายการโปรด';
+  }
+
+  @override
+  String get locations_favoriteSaveFailed =>
+      'บันทึกรายการโปรดไม่ได้ ลองอีกครั้ง';
+
+  @override
+  String get locations_emptyTitle => 'ไม่มีตำแหน่งที่พร้อมใช้งาน';
+
+  @override
+  String get locations_emptyHint => 'รีเฟรชรายการแล้วลองอีกครั้ง';
+
+  @override
+  String get devices_manage => 'จัดการอุปกรณ์ของฉัน';
+
+  @override
+  String get settings_personalization => 'ปรับให้เป็นแบบของคุณ';
+
+  @override
+  String get settings_safety => 'การปกป้อง';
+
+  @override
+  String get settings_help => 'ต้องการความช่วยเหลือใช่ไหม';
+
+  @override
+  String get settings_about => 'เกี่ยวกับ FuzeVPN';
+
+  @override
+  String get diagnostics_heading => 'ทำความเข้าใจปัญหาการเชื่อมต่อ';
+
+  @override
+  String devices_profileStatus(String status) {
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'active': 'พร้อมใช้งาน',
+      'pending': 'กำลังเตรียม',
+      'revoked': 'นำออกแล้ว',
+      'expired': 'หมดอายุ',
+      'other': 'สถานะไม่พร้อมใช้งาน',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get notice_preferenceSave_title => 'ไม่ได้บันทึกการตั้งค่า';
+
+  @override
+  String get notice_preferenceSave_message =>
+      'ตัวเลือกของคุณมีผลในขณะนี้ แต่บันทึกไม่ได้ ลองอีกครั้งเพื่อให้ตัวเลือกยังคงอยู่หลังปิดแอป';
+
+  @override
+  String get connection_androidDisconnectHint =>
+      'หาก Android ยังคงเปิด VPN อยู่ ให้ปิด VPN แบบเปิดตลอดเวลาในการตั้งค่าที่เปิดขึ้น';
+
+  @override
+  String get protection_learnMore => 'เรียนรู้เกี่ยวกับการปกป้องของ Android';
+
+  @override
+  String get protection_guideWhy =>
+      'การปกป้องนี้ป้องกันไม่ให้แอปใช้อินเทอร์เน็ตโดยตรงหาก VPN ตัดการเชื่อมต่อ โดยกำหนดค่าใน Android';
+
+  @override
+  String get protection_guideAlwaysOnTitle => 'VPN แบบเปิดตลอดเวลา';
+
+  @override
+  String get protection_guideAlwaysOn =>
+      'Android จะให้บริการ VPN ทำงานอยู่เสมอ และสามารถเริ่มบริการใหม่หลังโทรศัพท์รีบูต';
+
+  @override
+  String get protection_guideBlockTitle => 'บล็อกการเชื่อมต่อที่ไม่มี VPN';
+
+  @override
+  String get protection_guideBlock =>
+      'การตั้งค่านี้ป้องกันไม่ให้การรับส่งข้อมูลหลบเลี่ยง VPN รวมถึงระหว่างที่การเชื่อมต่อหยุดชะงัก';
+
+  @override
+  String get protection_guideWarning =>
+      'เมื่อเปิดการบล็อกนี้ การเข้าถึงอินเทอร์เน็ตจะถูกปิดจนกว่า VPN จะเชื่อมต่อ';
+
+  @override
+  String get protection_guideStepsTitle => 'เปิดการปกป้อง';
+
+  @override
+  String get protection_guideStep1 =>
+      'เปิดการตั้งค่า VPN ของ Android ด้วยปุ่มด้านล่าง';
+
+  @override
+  String get protection_guideStep2 =>
+      'เปิดตัวเลือกโดยใช้ไอคอนรูปเฟืองข้าง FuzeVPN';
+
+  @override
+  String get protection_guideStep3 =>
+      'เปิด VPN แบบเปิดตลอดเวลา แล้วเปิดบล็อกการเชื่อมต่อที่ไม่มี VPN หากมีตัวเลือกเหล่านี้';
+
+  @override
+  String get protection_guideManufacturers =>
+      'ชื่อเมนูแตกต่างกันไปตามโทรศัพท์ หากจำเป็น ให้ค้นหา VPN ในการตั้งค่า ซึ่งมักอยู่ในเครือข่ายและอินเทอร์เน็ต';
+
+  @override
+  String get protection_guideDisableTitle => 'ปิดการปกป้องนี้';
+
+  @override
+  String get protection_guideDisable =>
+      'ในการตั้งค่าเดียวกัน ให้ปิดการบล็อกที่ไม่มี VPN เพื่ออนุญาตให้อินเทอร์เน็ตทำงานโดยไม่มี VPN และปิด VPN แบบเปิดตลอดเวลาหากไม่ต้องการให้ Android เริ่มบริการใหม่อีก';
+
+  @override
+  String get protection_guideManual =>
+      'คุณเป็นผู้เลือกการตั้งค่าเหล่านี้ใน Android FuzeVPN จะไม่เปลี่ยนการตั้งค่าให้คุณ';
+
+  @override
+  String get locations_changeTitle => 'เปลี่ยนตำแหน่งใช่ไหม';
+
+  @override
+  String locations_changeActive(String name) {
+    return 'VPN จะตัดการเชื่อมต่อ แล้วพยายามเชื่อมต่อกับ $name';
+  }
+
+  @override
+  String locations_changeIdle(String name) {
+    return 'VPN จะพยายามเชื่อมต่อกับ $name';
+  }
+
+  @override
+  String get locations_confirmChange => 'เปลี่ยนและเชื่อมต่อ';
+
+  @override
+  String get locations_changeBusy =>
+      'กำลังเปลี่ยนตำแหน่งอยู่ รอก่อนเลือกตำแหน่งอื่น';
+
+  @override
+  String get locations_automaticSelection => 'เลือกอัตโนมัติ';
+
+  @override
+  String get locations_cities => 'เมือง';
+
+  @override
+  String get locations_servers => 'เซิร์ฟเวอร์';
+
+  @override
+  String locations_viewCities(String name) {
+    return 'ดูเมืองใน $name';
+  }
+
+  @override
+  String locations_viewServers(String name) {
+    return 'ดูเซิร์ฟเวอร์ใน $name';
+  }
+
+  @override
+  String locations_countryCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ประเทศ',
+      one: '$count ประเทศ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String locations_cityCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count เมือง',
+      one: '$count เมือง',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String locations_serverCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count เซิร์ฟเวอร์',
+      one: '$count เซิร์ฟเวอร์',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get locations_allCountries => 'ทุกประเทศ';
+
+  @override
+  String get locations_backToCountries => 'กลับไปยังประเทศ';
+
+  @override
+  String locations_backToCities(String name) {
+    return 'กลับไปยังเมืองใน $name';
+  }
+
+  @override
+  String locations_chooseCountry(String name) {
+    return 'เลือก $name';
+  }
+
+  @override
+  String locations_chooseCity(String name) {
+    return 'เลือก $name';
+  }
+
+  @override
+  String get locations_noCompatibleServer =>
+      'ไม่มีเซิร์ฟเวอร์ที่เข้ากันได้พร้อมใช้งาน';
+
+  @override
+  String get externalLink_failed =>
+      'ไม่สามารถเปิดลิงก์นี้ได้ คุณสามารถคัดลอกแล้วเปิดในเบราว์เซอร์ได้';
+
+  @override
+  String get externalLink_copy => 'คัดลอกลิงก์';
+
+  @override
+  String get externalLink_copied => 'คัดลอกลิงก์แล้ว';
+
+  @override
+  String get externalLink_copyFailed =>
+      'ไม่สามารถคัดลอกลิงก์ได้ โปรดเลือกที่อยู่ด้านล่าง';
+
+  @override
+  String get settings_deleteAccount => 'ลบบัญชีของฉัน';
+
+  @override
+  String get settings_deleteAccountDetail => 'ดูขั้นตอนการขอลบบัญชี';
+
+  @override
+  String get billing_title => 'Fuze Premium';
+
+  @override
+  String get billing_subtitle => 'เลือกการสมัครใช้บริการ VPN ของคุณ';
+
+  @override
+  String get billing_subscribe => 'สมัครใช้บริการ';
+
+  @override
+  String get billing_choosePlan => 'เลือกแพ็กเกจเพื่อดำเนินการต่อ';
+
+  @override
+  String get billing_monthly => 'รายเดือน';
+
+  @override
+  String get billing_yearly => 'รายปี';
+
+  @override
+  String get billing_continue => 'ดำเนินการต่อด้วย Google Play';
+
+  @override
+  String get billing_restore => 'กู้คืนการซื้อ';
+
+  @override
+  String get billing_manage => 'จัดการการสมัครใช้บริการ';
+
+  @override
+  String get billing_deleteAccountWarning =>
+      'หากคุณสมัครใช้บริการผ่าน Google Play การลบบัญชี FuzeVPN จะไม่ยกเลิกการต่ออายุ โปรดจัดการหรือยกเลิกการต่ออายุแยกต่างหากใน Google Play';
+
+  @override
+  String get billing_deleteAccountContinue => 'ดำเนินการต่อเพื่อส่งคำขอลบบัญชี';
+
+  @override
+  String get billing_refresh => 'รีเฟรชสิทธิ์การเข้าถึง';
+
+  @override
+  String get billing_loadingPlans => 'กำลังโหลดแพ็กเกจ…';
+
+  @override
+  String get billing_unavailable =>
+      'ขณะนี้ไม่มีแพ็กเกจที่พร้อมใช้งาน โปรดลองใหม่ภายหลัง';
+
+  @override
+  String get billing_comingSoon =>
+      'การสมัครใช้บริการจะพร้อมให้ใช้งานเร็ว ๆ นี้';
+
+  @override
+  String get billing_priceDisclosure =>
+      'ราคาแสดงโดย Google Play ยอดชำระสุดท้ายจะได้รับการยืนยันก่อนชำระเงิน';
+
+  @override
+  String get billing_renewalMonthly =>
+      'ต่ออายุอัตโนมัติทุกเดือนเว้นแต่จะยกเลิก คุณยกเลิกได้ทุกเมื่อในการสมัครใช้บริการของ Google Play';
+
+  @override
+  String get billing_renewalYearly =>
+      'ต่ออายุอัตโนมัติทุกปีเว้นแต่จะยกเลิก คุณยกเลิกได้ทุกเมื่อในการสมัครใช้บริการของ Google Play';
+
+  @override
+  String get billing_active => 'สิทธิ์การเข้าถึง Premium ของคุณใช้งานได้';
+
+  @override
+  String billing_accessUntil(String date) {
+    return 'เข้าถึงได้ถึง $date';
+  }
+
+  @override
+  String get billing_webManaged =>
+      'การสมัครใช้บริการของคุณจัดการบนเว็บไซต์ FuzeVPN';
+
+  @override
+  String get billing_playManaged =>
+      'การสมัครใช้บริการของคุณจัดการผ่าน Google Play';
+
+  @override
+  String get billing_inactive => 'ไม่มีการสมัครใช้บริการที่ใช้งานอยู่';
+
+  @override
+  String get billing_checkingAccess => 'กำลังตรวจสอบสิทธิ์การเข้าถึง…';
+
+  @override
+  String get billing_restoring => 'กำลังกู้คืนการซื้อ…';
+
+  @override
+  String get billing_pending =>
+      'การชำระเงินอยู่ระหว่างดำเนินการ สิทธิ์การเข้าถึงจะเปิดใช้งานหลังการยืนยัน';
+
+  @override
+  String get billing_cancelled =>
+      'ยกเลิกการซื้อแล้ว ไม่มีการสมัครใช้บริการใหม่ที่เปิดใช้งาน';
+
+  @override
+  String get billing_verifying => 'กำลังตรวจสอบการซื้อ…';
+
+  @override
+  String get billing_success =>
+      'เปิดใช้งานการสมัครใช้บริการแล้ว สิทธิ์การเข้าถึง Premium พร้อมใช้งาน';
+
+  @override
+  String get billing_restored => 'กู้คืนการซื้อของคุณแล้ว';
+
+  @override
+  String get billing_restoreEmpty =>
+      'ไม่มีการซื้อให้กู้คืนสำหรับบัญชี Google Play นี้';
+
+  @override
+  String get billing_catalogError => 'โหลดแพ็กเกจไม่ได้ โปรดลองอีกครั้ง';
+
+  @override
+  String get billing_purchaseError => 'เริ่มการซื้อไม่ได้ โปรดลองอีกครั้ง';
+
+  @override
+  String get billing_verificationError =>
+      'การตรวจสอบการซื้อไม่พร้อมใช้งานชั่วคราว กู้คืนการซื้อเพื่อลองอีกครั้ง';
+
+  @override
+  String get billing_restoreError => 'กู้คืนการซื้อไม่ได้ โปรดลองอีกครั้ง';
+
+  @override
+  String get billing_managementError =>
+      'เปิดการจัดการการสมัครใช้บริการไม่ได้ โปรดลองอีกครั้ง';
+
+  @override
+  String get billing_storeUnavailable =>
+      'Google Play ไม่พร้อมใช้งานบนอุปกรณ์นี้';
+
+  @override
+  String get welcome_title => 'VPN ของคุณ ใช้งานง่ายกว่าที่เคย';
+
+  @override
+  String get welcome_description =>
+      'ปกป้องการเชื่อมต่อของคุณ ควบคุมความเป็นส่วนตัวได้ด้วยตัวเอง';
+
+  @override
+  String get welcome_start => 'เริ่มต้น';
+
+  @override
+  String get welcome_alreadyPurchased => 'ซื้อแล้วใช่ไหม?';
+
+  @override
+  String get welcome_noAccountRequired => 'เริ่มต้นได้โดยไม่ต้องสร้างบัญชี';
+
+  @override
+  String get guest_accountTitle => 'ยังไม่ได้เชื่อมโยงบัญชี';
+
+  @override
+  String get guest_accountDescription =>
+      'กู้คืนการซื้อด้วยบัญชี Google Play เดิมเพื่อใช้การสมัครสมาชิกบนอุปกรณ์อื่น';
+
+  @override
+  String get guest_existingSubscriberSignIn =>
+      'สมัครสมาชิกแล้วใช่ไหม? เข้าสู่ระบบ';
+
+  @override
+  String get guest_claimTitle => 'ใช้ FuzeVPN ได้ทุกที่';
+
+  @override
+  String get guest_claimDescription =>
+      'สร้างบัญชีเพื่อใช้การสมัครสมาชิกบนอุปกรณ์อื่นของคุณ ขั้นตอนนี้เป็นทางเลือก';
+
+  @override
+  String get guest_skip => 'ไว้ทีหลัง';
+
+  @override
+  String get guest_activationTitle => 'Fuze Premium เปิดใช้งานแล้ว';
+
+  @override
+  String get guest_activationDescription =>
+      'การสมัครสมาชิกของคุณพร้อมแล้ว ใช้ VPN และสร้างบัญชีเมื่อสะดวก';
+
+  @override
+  String get guest_useVpn => 'ใช้ VPN ของฉัน';
+
+  @override
+  String get guest_loginRequired =>
+      'การซื้อนี้เชื่อมโยงกับบัญชี FuzeVPN แล้ว ลงชื่อเข้าใช้บัญชีนั้นเพื่อใช้การสมัครสมาชิก';
+
+  @override
+  String get guest_signOutWarning =>
+      'คุณสามารถกู้คืนการสมัครสมาชิกได้โดยกู้คืนการซื้อด้วยบัญชี Google Play เดิม';
+
+  @override
+  String get guest_profileUnavailable =>
+      'บัญชีของคุณเชื่อมโยงแล้ว ลงชื่อเข้าใช้เพื่อดูและจัดการข้อมูล';
+
+  @override
+  String get billing_acceptance =>
+      'เมื่อดำเนินการต่อ คุณยอมรับข้อกำหนดการใช้งานและนโยบายความเป็นส่วนตัว';
+
+  @override
+  String get guest_verifyEmailReminder =>
+      'ยืนยันที่อยู่อีเมลเพื่อรักษาความปลอดภัยของบัญชี คุณยังใช้ VPN ต่อได้';
+
+  @override
+  String get guest_serviceUnavailable =>
+      'บริการไม่พร้อมใช้งานชั่วคราว โปรดลองอีกครั้งในอีกสักครู่';
+
+  @override
+  String get guest_restoreError =>
+      'ไม่สามารถกู้คืนการซื้อได้ ลองอีกครั้งด้วยบัญชี Google Play ที่ใช้ซื้อ';
+
+  @override
+  String get guest_claimSuccess =>
+      'สร้างบัญชีของคุณแล้ว การสมัครสมาชิกและสิทธิ์ใช้ VPN ยังคงเดิม';
+
+  @override
+  String get guest_emailExists =>
+      'อีเมลนี้ถูกใช้งานแล้ว เลือกที่อยู่อื่นหรือลงชื่อเข้าใช้บัญชีเดิม การซื้อของคุณยังใช้งานได้ผ่าน Google Play';
+
+  @override
+  String get guest_claimError =>
+      'ไม่สามารถสร้างบัญชีได้ คุณยังใช้ VPN ต่อได้และลองอีกครั้งภายหลัง';
+
+  @override
+  String get guest_secureStorageError =>
+      'ไม่สามารถบันทึกเซสชันอย่างปลอดภัยบนอุปกรณ์นี้ได้ โปรดลองอีกครั้ง';
+
+  @override
+  String get guest_premiumRequired =>
+      'เลือกการสมัครสมาชิกเพื่อเปิดใช้งาน VPN ของคุณ';
+
+  @override
+  String get welcome_viewPlans => 'ดูแพ็กเกจ';
+
+  @override
+  String get google_continue => 'ดำเนินการต่อด้วย Google';
+
+  @override
+  String get google_or => 'หรือ';
+
+  @override
+  String get google_title => 'บัญชี FuzeVPN ของคุณ';
+
+  @override
+  String get google_settingUp => 'สร้างบัญชีให้เสร็จสมบูรณ์';
+
+  @override
+  String get google_country => 'ประเทศที่พำนัก';
+
+  @override
+  String get google_profileDescription =>
+      'เลือกประเทศและอ่านเอกสารทั้งสองฉบับเพื่อสร้างบัญชี FuzeVPN';
+
+  @override
+  String get google_claimDescription =>
+      'เชื่อมบัญชีผู้เยี่ยมชมกับ Google การสมัครสมาชิกและอุปกรณ์จะยังคงผูกกับบัญชีนี้';
+
+  @override
+  String get google_linkTitle => 'เชื่อม Google กับ FuzeVPN';
+
+  @override
+  String get google_linkDescription =>
+      'ยืนยันการเข้าถึงบัญชี FuzeVPN ที่มีอยู่ ขั้นตอนนี้ไม่ขอรหัสผ่าน Google';
+
+  @override
+  String get google_password => 'รหัสผ่าน FuzeVPN';
+
+  @override
+  String get google_linkAccount => 'ยืนยันการเชื่อมบัญชี';
+
+  @override
+  String get google_requestEmail => 'รับอีเมลยืนยัน';
+
+  @override
+  String get google_emailInstructions =>
+      'เปิดอีเมลจาก FuzeVPN และป้อนรหัสยืนยัน';
+
+  @override
+  String get google_emailCode => 'รหัสยืนยันทางอีเมล';
+
+  @override
+  String get google_confirmEmail => 'ยืนยันรหัส';
+
+  @override
+  String get google_restart => 'เลือกบัญชี Google อื่น';
+
+  @override
+  String get google_resume => 'ตรวจสอบความพยายามนี้';
+
+  @override
+  String get google_unavailable =>
+      'ไม่สามารถลงชื่อเข้าใช้ Google ได้ คุณสามารถใช้อีเมลและรหัสผ่าน';
+
+  @override
+  String get google_expired => 'ความพยายามนี้หมดอายุแล้ว ยกเลิกแล้วเริ่มใหม่';
+
+  @override
+  String get google_conflict =>
+      'บัญชี Google นี้เชื่อมกับบัญชีอื่นแล้ว บัญชีและการสมัครสมาชิกปัจจุบันจะยังคงอยู่';
+
+  @override
+  String get google_error =>
+      'ลงชื่อเข้าใช้ Google ไม่สำเร็จ ลองอีกครั้ง การเข้าถึงปัจจุบันจะยังคงอยู่';
+
+  @override
+  String get google_uncertain =>
+      'ไม่สามารถยืนยันผลได้ ตรวจสอบความพยายามนี้หรือยกเลิกก่อนเริ่มใหม่';
+
+  @override
+  String get google_cancelFailed =>
+      'ไม่สามารถยืนยันการยกเลิกได้ ลองยกเลิกอีกครั้งก่อนออกจากหน้าจอนี้';
+
+  @override
+  String get google_cancelled => 'ยกเลิกการลงชื่อเข้าใช้ Google แล้ว';
+
+  @override
+  String get google_selecting => 'เลือกบัญชี Google ของคุณ…';
+
+  @override
+  String get google_verifying => 'กำลังตรวจสอบบัญชี…';
+
+  @override
+  String get google_emailUnavailable => 'ส่งอีเมลยืนยันไม่ได้ โปรดลองภายหลัง';
+
+  @override
+  String get google_emailSent => 'ส่งอีเมลยืนยันแล้ว ตรวจสอบกล่องจดหมาย';
+
+  @override
+  String get google_rateLimited => 'โปรดรอก่อนลองอีกครั้ง';
+
+  @override
+  String get google_invalidPassword =>
+      'รหัสผ่าน FuzeVPN ไม่ถูกต้อง บัญชีปัจจุบันจะยังคงอยู่';
+
+  @override
+  String get google_invalidCode => 'รหัสยืนยันไม่ถูกต้องหรือหมดอายุ';
+
+  @override
+  String get google_accountChanged =>
+      'เซสชันเปลี่ยนแล้ว ยกเลิกความพยายามนี้ก่อนเริ่มใหม่';
+
+  @override
+  String get google_invalidResponse =>
+      'ตรวจสอบคำตอบไม่ได้ การเข้าถึงปัจจุบันจะยังคงอยู่';
+
+  @override
+  String get google_invalidRegistration =>
+      'ตรวจสอบประเทศและความยินยอมทั้งสองรายการ';
+
+  @override
+  String get google_consentRequired =>
+      'เลือกประเทศและยอมรับเอกสารทั้งสองฉบับเพื่อดำเนินการต่อ';
+
+  @override
+  String get google_challengeRequired =>
+      'ต้องตรวจสอบความปลอดภัยเพิ่มเติม การเข้าถึงปัจจุบันจะยังคงอยู่';
+
+  @override
+  String get google_challengeUnavailable =>
+      'ไม่สามารถตรวจสอบความปลอดภัยได้ โปรดลองภายหลัง';
+}

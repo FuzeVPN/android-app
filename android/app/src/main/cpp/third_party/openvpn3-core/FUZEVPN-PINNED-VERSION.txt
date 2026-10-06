@@ -1,0 +1,10 @@
+Source: https://github.com/OpenVPN/openvpn3.git
+Commit: 28469efe3ae770268b2b5c6aa607ed1489e101f0
+License option selected: MPL-2.0.
+TLS backend: OpenSSL 3.5.9 (official upstream backend).
+External private key path: OpenVPN 3 Core upstream OpenSSL XKey provider.
+ECDSA contract: XKey Sign supplies a digest with an empty hash name; XKey DigestSign supplies the message and SHA-256/384/512. Android Keystore performs the ECDSA signature without exporting the P-256 key.
+Application cryptographic patches: none.
+OpenSSL source archive SHA-256: 603f5602e2eef00d77fbd429d34dcd5822bb301757a1bc9cdb24c670f1eb859a
+Dependencies manifest SHA-256: 315faa2ea0df0c40f6aed2ce10f8502dc8547a856ef53ee42f8a20d8e8cb9095
+Dependencies metadata SHA-256: a78b4fd2a224d253c969d9a943e0256d50cd739d11eb5a2b2a82add6852b06c2

@@ -1,0 +1,58 @@
+{
+  "go_version": "1.24.3",
+  "reviewed_replacement_rules": 11,
+  "reviewed_sites": 12,
+  "files": [
+    {
+      "path": "runtime/sys_linux_386.s",
+      "original_sha256_lf": "3fac013782d0a965743b9352daea32cd19e15df1df9d0bd10b5d480567f491bd",
+      "reviewed_patched_sha256_lf": "09ba0637eab6a3f3913750408e2d9685dab99b9415af96f84a1ba010b6999874",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "runtime/sys_linux_amd64.s",
+      "original_sha256_lf": "606a963e795a1ed9cfa9393c824f27d02e31cd003ef13329d4424ca7de44a4bf",
+      "reviewed_patched_sha256_lf": "d022f1b216a41124717a58c540c40ce92aef2ec71bab10e517e8b4e551a0ab19",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "runtime/sys_linux_arm.s",
+      "original_sha256_lf": "89c56d14bba450a1098bc8d8a4ccb54028ca5ee3a9d43ab33892bcb3fc32e18d",
+      "reviewed_patched_sha256_lf": "7b7f472ddfd7dada4b94362cd9a030bfff7a25d0e35eff7c86bf82eda68304b2",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "runtime/sys_linux_arm64.s",
+      "original_sha256_lf": "32f44653ca63c5a2dc0c801288d4f1e35366264927c83cb94f14753310752a6e",
+      "reviewed_patched_sha256_lf": "f97e0a7dfa9260f1a3f13c512a8f1e3a6eaa0ab7d8b45bcc9cedd370eaaa4f93",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "runtime/sys_linux_mips64x.s",
+      "original_sha256_lf": "441a9306b505d9747e0e0c2acc98150cbc1767ff64f7d94319ac9ee97df9a92b",
+      "reviewed_patched_sha256_lf": "5f38aef75c0cf29ebd7f1255eb3bfbc3892d5f357b6076c00c1a855124c7c18d",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "runtime/sys_linux_mipsx.s",
+      "original_sha256_lf": "4e5c624718c71a97b3075325873710114d360ce634a962ae61322ac3ecbdf6fd",
+      "reviewed_patched_sha256_lf": "760ab7ee89dc141289d8d17406ea3e1338401193a8b9f4b76c44ab84ff8ca17b",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "runtime/sys_linux_ppc64x.s",
+      "original_sha256_lf": "e16220e5cdf8ee82be06117c355b22cd75162c9fb08a123437b7d84886736efd",
+      "reviewed_patched_sha256_lf": "e1c758d275ef3e7b5b2a00584551fcbeaada6635652ab0a525ff0abbd08a703e",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "runtime/sys_linux_s390x.s",
+      "original_sha256_lf": "100a4b4a754dea661e7852dcb2d8f017db175f22bb4fffaf9376146f8994c229",
+      "reviewed_patched_sha256_lf": "e93753fde545a8f8215742419faa62cc00104dd565a01b1a9056b15b6cf6f527",
+      "matches_installed_runtime": true
+    }
+  ],
+  "source_archive_sha256": "229c08b600b1446798109fae1f569228102c8473caba8104b6418cb5bc032878",
+  "patch_sha256": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395",
+  "patch_application_script_sha256": "de2ce93e7c9a4478b8a971c8b33004d7142c208e002202cb5e5bc5ee6abd45de"
+}

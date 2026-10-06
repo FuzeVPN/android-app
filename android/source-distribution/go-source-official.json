@@ -1,0 +1,9 @@
+{
+  "filename": "go1.24.3.src.tar.gz",
+  "os": "",
+  "arch": "",
+  "version": "go1.24.3",
+  "sha256": "229c08b600b1446798109fae1f569228102c8473caba8104b6418cb5bc032878",
+  "size": 30789282,
+  "kind": "source"
+}

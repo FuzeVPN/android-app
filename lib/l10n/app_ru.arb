@@ -1,0 +1,642 @@
+{
+  "accountRestoration_title": "Учётная запись временно недоступна",
+  "accountRestoration_message": "Ваша сессия сохранена. Повторите попытку, чтобы восстановить учётную запись; здесь вы по-прежнему можете управлять VPN-подключением.",
+  "action_retry": "Повторить",
+  "session_endingTitle": "Завершение сессии",
+  "session_ending": "Ваша сессия признана недействительной. Остановка VPN и очистка сессии…",
+  "session_stopFailed": "Остановка VPN не подтверждена. Повторите попытку перед повторным входом.",
+  "session_cleanupFailed": "VPN остановлен, но удаление сессии не подтверждено. Повторите очистку.",
+  "session_retryStop": "Повторить остановку",
+  "session_retryCleanup": "Повторить очистку",
+  "@@locale": "ru",
+  "appTitle": "FuzeVPN",
+  "startup": "Безопасная подготовка FuzeVPN…",
+  "nav_connection": "Подключение",
+  "nav_locations": "Локации",
+  "nav_account": "Учётная запись",
+  "nav_devices": "Устройства",
+  "nav_settings": "Настройки",
+  "action_refresh": "Обновить",
+  "auth_tab_login": "Войти",
+  "auth_tab_register": "Зарегистрироваться",
+  "auth_stepAccount": "Учётная запись",
+  "auth_stepIdentity": "Личность",
+  "auth_stepAddress": "Адрес и соглашения",
+  "auth_stepProgress": "Шаг {current} из {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "Ваш VPN — это просто.",
+  "auth_keysLocal": "Ваши закрытые ключи VPN остаются на этом устройстве.",
+  "form_email": "Адрес электронной почты",
+  "form_password": "Пароль",
+  "form_showPassword": "Показать пароль",
+  "form_hidePassword": "Скрыть пароль",
+  "form_passwordMin": "8–72 байта UTF-8. Некоторые символы занимают больше одного байта.",
+  "form_firstName": "Имя",
+  "form_lastName": "Фамилия",
+  "form_phone": "Телефон (+33612345678)",
+  "form_address": "Адрес",
+  "form_address2": "Дополнительная строка адреса (необязательно)",
+  "form_postalCode": "Почтовый индекс",
+  "form_city": "Город",
+  "form_country": "Код страны (например, FR)",
+  "action_login": "Войти",
+  "action_createAccount": "Создать учётную запись",
+  "action_createMyAccount": "Создать мою учётную запись",
+  "action_next": "Продолжить",
+  "action_previous": "Назад",
+  "action_forgotPassword": "Забыли пароль?",
+  "auth_noAccount": "У вас ещё нет учётной записи?",
+  "auth_requiredInformation": "Создайте учётную запись за три шага.",
+  "auth_termsPrefix": "Я принимаю ",
+  "auth_termsLink": "условия использования",
+  "auth_privacyPrefix": "Я принимаю ",
+  "auth_privacyLink": "политику конфиденциальности",
+  "auth_consentRequired": "Для создания учётной записи необходимо ваше согласие.",
+  "validation_required": "Это поле обязательно.",
+  "validation_email": "Введите действительный адрес электронной почты.",
+  "validation_password": "Пароль слишком короткий: не менее 8 байт UTF-8.",
+  "validation_passwordTooLong": "Пароль слишком длинный: не более 72 байт UTF-8.",
+  "validation_phone": "Используйте международный формат, например +33612345678.",
+  "validation_country": "Используйте двухбуквенный код страны, например FR.",
+  "passwordReset_title": "Сброс пароля",
+  "passwordReset_description": "Введите адрес электронной почты своей учётной записи, чтобы запросить ссылку для сброса пароля.",
+  "passwordReset_send": "Отправить ссылку",
+  "connection_title": "Ваше подключение",
+  "connection_subtitle": "Выберите локацию, затем включите VPN.",
+  "connection_prepare": "Готовы подключиться?",
+  "connection_advancedOptions": "Расширенные параметры",
+  "connection_location": "Локация",
+  "connection_chooseLocation": "Выберите локацию",
+  "connection_protocol": "Протокол",
+  "connection_connect": "Подключиться",
+  "connection_connecting": "Подключение…",
+  "connection_disconnect": "Отключиться",
+  "connection_disconnecting": "Отключение",
+  "connection_locationChange": "Изменение локации…",
+  "connection_unavailable": "{protocol} недоступен",
+  "connection_activeLocation": "Активная локация",
+  "connection_duration": "Длительность",
+  "connection_received": "Получено",
+  "connection_sent": "Отправлено",
+  "connection_lastHandshake": "Последний защищённый обмен",
+  "connection_handshakeAgo": "{duration} назад",
+  "verification_title": "Подтвердите адрес электронной почты",
+  "verification_message": "Подтвердите адрес электронной почты, чтобы использовать VPN на этом телефоне.",
+  "verification_resend": "Отправить письмо повторно",
+  "migration_title": "Изменение локации",
+  "migration_draining": "Подготовка к изменению локации…",
+  "migration_activating": "Активация нового сервера…",
+  "migration_ready": "Локация обновлена.",
+  "migration_blocked": "Для изменения локации требуется вмешательство сервера. Повторите попытку позже или обратитесь в службу поддержки.",
+  "migration_progress": "Ход изменения локации",
+  "migration_retryDelay": "Задержка между проверками: {seconds} с.",
+  "migration_resume": "Продолжить изменение локации",
+  "status_authorizing": "Требуется разрешение",
+  "status_authorizingDetail": "Примите запрос Android, чтобы разрешить VPN.",
+  "status_preparing": "Подготовка",
+  "status_preparingDetail": "Подготовка защищённого подключения.",
+  "status_reconnecting": "Повторное подключение…",
+  "status_reconnectingDetail": "Подключение прервано. VPN пытается подключиться снова.",
+  "status_connecting": "Подключение",
+  "status_connectingDetail": "Подключение к VPN-серверу…",
+  "status_connected": "Подключено",
+  "status_connectedDetail": "Ваше VPN-подключение активно.",
+  "status_disconnecting": "Отключение",
+  "status_disconnectingDetail": "Остановка вашего VPN-подключения.",
+  "status_error": "Подключение недоступно",
+  "status_errorDetail": "VPN-подключение не подтверждено. Повторите попытку.",
+  "status_idle": "Отключено",
+  "status_idleDetail": "Подключите VPN, чтобы защитить своё подключение.",
+  "trust_note": "Закрытие приложения не останавливает VPN. Чтобы остановить его, нажмите «Отключиться».",
+  "locations_none": "В настоящее время доступных локаций нет.",
+  "locations_available": "Выберите следующую локацию.",
+  "locations_selected": "Выбранная локация",
+  "locations_select": "Выбрать эту локацию",
+  "locations_lockedTunnel": "Отключите VPN, чтобы изменить локацию.",
+  "locations_lockedMigration": "Дождитесь завершения изменения локации.",
+  "devices_title": "Ваши устройства",
+  "devices_used": "Устройств: {count} / {limit}",
+  "devices_refresh": "Обновить устройства",
+  "devices_empty": "Пока нет зарегистрированных VPN-устройств.",
+  "devices_firstConnection": "Ваш телефон будет добавлен при первом подключении.",
+  "devices_thisDevice": "Это устройство",
+  "devices_added": "Добавлено {date}",
+  "action_remove": "Удалить",
+  "settings_title": "Настройки",
+  "settings_subtitle": "Все ваши предпочтения и данные учётной записи в одном месте.",
+  "settings_appearance": "Внешний вид",
+  "settings_language": "Язык",
+  "settings_languageDescription": "Выбранный язык также используется в уведомлениях VPN.",
+  "settings_account": "Учётная запись",
+  "settings_signOut": "Выйти",
+  "settings_privacy": "Политика конфиденциальности",
+  "settings_terms": "Условия использования",
+  "settings_security": "Безопасность и прозрачность",
+  "settings_licenses": "Лицензии компонентов",
+  "settings_licensesDetail": "Программное обеспечение, используемое в приложении",
+  "settings_background": "VPN остаётся включённым, когда вы покидаете приложение. Чтобы остановить его, нажмите «Отключиться» на вкладке «Подключение».",
+  "theme_system": "Системная",
+  "theme_light": "Светлая",
+  "theme_dark": "Тёмная",
+  "language_system": "Язык телефона",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Удалить это устройство?",
+  "dialog_removeCurrent": "Этот телефон отключится от VPN и потеряет доступ. Данные его VPN-подключения будут удалены после подтверждения сервера.",
+  "dialog_removeOther": "Доступ устройства «{name}» к VPN будет отозван. Это действие нельзя отменить.",
+  "dialog_signOut": "Выйти?",
+  "dialog_signOutMessage": "VPN будет остановлен, и вам потребуется войти снова. Ваши зашифрованные ключи VPN останутся на этом телефоне для следующего подключения.",
+  "action_cancel": "Отмена",
+  "action_signOut": "Выйти",
+  "notice_close": "Закрыть сообщение",
+  "notice_sessionExpired_title": "Сессия истекла",
+  "notice_sessionExpired_message": "Срок действия вашей сессии истёк. Войдите снова.",
+  "notice_connectionFailed_title": "Не удалось подключиться",
+  "notice_invalidCredentials_message": "Неверный адрес электронной почты или пароль.",
+  "notice_emailVerification_title": "Требуется подтверждение электронной почты",
+  "notice_emailVerification_message": "Подтвердите адрес электронной почты перед добавлением VPN-устройства.",
+  "notice_rateLimited_title": "Слишком много попыток",
+  "notice_deviceLimit_title": "Достигнут лимит в 2 устройства",
+  "notice_deviceLimit_message": "Удалите существующее устройство перед добавлением другого.",
+  "notice_identityRenewal_title": "Необходимо обновить VPN-идентичность",
+  "notice_identityRenewal_message": "Эта идентичность удалена. Создайте новую локальную идентичность.",
+  "notice_migrationPending_title": "Изменение локации выполняется",
+  "notice_migrationPending_message": "Изменение локации уже выполняется.",
+  "notice_migrationBlocked_title": "Изменение локации заблокировано",
+  "notice_migrationBlocked_message": "Для изменения локации требуется вмешательство сервера. Повторите попытку позже или обратитесь в службу поддержки.",
+  "notice_targetUnavailable_title": "Сервер временно недоступен",
+  "notice_targetUnavailable_message": "Этот сервер временно недоступен.",
+  "notice_networkUnavailable_title": "Подключение к интернету недоступно",
+  "notice_networkUnavailable_message": "Проверьте подключение и повторите попытку.",
+  "notice_permissionDenied_title": "В разрешении VPN отказано",
+  "notice_permissionDenied_message": "Запустите подключение снова и примите запрос разрешения Android.",
+  "notice_wireguardTimeout_title": "Сервер не отвечает",
+  "notice_wireguardTimeout_message": "Подключение WireGuard выполнялось слишком долго. Повторите попытку или выберите другую локацию.",
+  "notice_tlsFailed_title": "В защищённом подключении отказано",
+  "notice_tlsFailed_message": "Сервер не принял подключение OpenVPN. Повторите попытку. Если проблема сохраняется, запустите диагностику.",
+  "notice_tunRejected_title": "Android отклонил VPN-интерфейс",
+  "notice_tunRejected_message": "Android отклонил сетевую конфигурацию, запрошенную OpenVPN.",
+  "notice_openvpnStart_title": "Не удалось запустить OpenVPN",
+  "notice_openvpnStart_message": "Ядро OpenVPN не смогло завершить запуск. Повторите попытку. Если проблема сохраняется, обратитесь в службу поддержки.",
+  "notice_diagnosticCode": "Диагностический код: {code}",
+  "notice_generic_title": "Не удалось подключиться к VPN",
+  "notice_generic_message": "Произошла ошибка. Повторите попытку позже.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Учётная запись создана} password_reset_sent{Запрос на сброс пароля получен} verification_email_sent{Письмо для подтверждения отправлено} location_migration_pending{Изменение локации выполняется} vpn_sign_in_required{Требуется вход} protocol_unavailable_at_location{Протокол недоступен} vpn_permission_denied{В разрешении VPN отказано} revoked_identity_device_limit{Достигнут лимит в 2 устройства} tunnel_start_unexpected{Не удалось запустить VPN} flutter_disconnect_timeout{Отключение не подтверждено} flutter_disconnect_unexpected{Не удалось отключиться} device_revoked{Устройство удалено} revoke_unexpected{Не удалось удалить устройство} identity_renewal_unexpected{Не удалось обновить идентичность} openvpn_renewal_unexpected{Не удалось обновить OpenVPN} location_migration_blocked{Изменение локации заблокировано} location_migration_slow{Изменение локации всё ещё выполняется} location_migration_conflict{Необходимо обновить изменение локации} location_migration_verification_failed{Изменение локации не подтверждено} location_migration_device_changed{Устройство изменилось во время смены локации} tunnel_stop_failed{Изменение локации недоступно} other{Операция не выполнена}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Учётная запись создана, но письмо для подтверждения не удалось отправить. Используйте повторную отправку в приложении.} password_reset_sent{Ваш запрос получен. Если этой почте соответствует учётная запись, вы можете получить письмо. Также проверьте папку со спамом.} verification_email_sent{Новое письмо для подтверждения только что отправлено.} location_migration_pending{Перемещение в {target} всё ещё подготавливается. Вы можете продолжить его без повторного создания устройства.} vpn_sign_in_required{Войдите в свою учётную запись перед запуском VPN.} protocol_unavailable_at_location{Выбранный протокол не предлагается в этой локации. Обновите список локаций или выберите другой протокол.} vpn_permission_denied{Android отклонил разрешение VPN. Запустите подключение снова и примите системный запрос.} revoked_identity_device_limit{Доступ этого устройства к VPN удалён, и лимит устройств достигнут. Удалите устройство в разделе «Учётная запись» → «Управление моими устройствами».} tunnel_start_unexpected{Непредвиденная ошибка прервала подготовку туннеля. Проверьте диагностический код и повторите попытку.} flutter_disconnect_timeout{Android вовремя не подтвердил остановку VPN. Попробуйте остановить его снова.} flutter_disconnect_unexpected{Непредвиденная ошибка не позволила подтвердить остановку туннеля.} device_revoked{Доступ устройства к VPN отозван, а его локальные секреты удалены.} revoke_unexpected{Не удалось удалить устройство. Обновите список и повторите попытку.} identity_renewal_unexpected{Не удалось создать новую VPN-идентичность. Обновите список устройств и повторите попытку.} openvpn_renewal_unexpected{Не удалось обновить профиль OpenVPN. Повторите попытку или проверьте диагностический код.} location_migration_blocked{Сервер не может завершить это изменение сейчас. Устройство и его локальная идентичность сохранены.} location_migration_slow{Сервер всё ещё подготавливает перемещение в {target}. Через несколько минут нажмите «Продолжить».} location_migration_conflict{Состояние устройства изменилось на сервере. Обновите список устройств, затем продолжите изменение.} location_migration_verification_failed{Сервер не подтвердил новую локацию. Предыдущая локальная идентичность сохранена.} location_migration_device_changed{Устройство, возвращённое сервером, больше не совпадает с изменяемым устройством. Обновите список устройств перед новой попыткой.} tunnel_stop_failed{Перед новым подключением предыдущий туннель необходимо полностью остановить.} other{Не удалось завершить операцию. Повторите попытку или отправьте диагностический код в службу поддержки.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Сессия истекла} invalid_credentials{Не удалось войти} email_verification_required{Требуется подтверждение электронной почты} verification_email_cooldown{Письмо уже отправлено} rate_limited{Слишком много попыток} invalid_registration{Необходимо исправить сведения} email_exists{Учётная запись уже существует} invalid_profile{Недействительный профиль} invalid_device{Недействительное устройство} invalid_location{Локация недоступна} device_limit{Достигнут лимит в 2 устройства} device_exists{VPN-идентичность уже используется} device_identity_revoked{Необходимо обновить VPN-идентичность} device_location_locked{Необходимо обновить изменение локации} location_migration_pending{Изменение локации выполняется} location_migration_blocked{Изменение локации заблокировано} target_ca_mismatch{Несовместимый сервер OpenVPN} location_migration_conflict{Необходимо обновить изменение локации} server_full{Сервер заполнен} capacity_unavailable{Локация временно недоступна} target_unavailable{Сервер временно недоступен} not_found{Элемент не найден} invalid_openvpn_csr{Недействительная идентичность OpenVPN} openvpn_profile_exists{Профиль OpenVPN уже существует} openvpn_profile_revoked{Профиль OpenVPN отозван} openvpn_operation_pending{Операция OpenVPN выполняется} openvpn_operation_terminal{Операция OpenVPN прервана} openvpn_address_unavailable{Адрес OpenVPN недоступен} openvpn_profile_conflict{Конфликт OpenVPN} openvpn_signer_unavailable{OpenVPN недоступен} email_delivery_unavailable{Электронная почта недоступна} invalid_token{Недействительная ссылка} network_unavailable{Подключение к интернету недоступно} invalid_json{Недействительный запрос} invalid_api_response{Недействительный ответ сервера} ipv6_unavailable{IPv6 недоступен} invalid_ip_families{Конфигурация сети отклонена} other{Служба недоступна}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Срок действия вашей сессии истёк. Войдите снова.} invalid_credentials{Неверный адрес электронной почты или пароль.} email_verification_required{Подтвердите адрес электронной почты перед добавлением VPN-устройства.} invalid_registration{Проверьте запрошенные сведения и согласия.} email_exists{Этим адресом электронной почты уже пользуется другая учётная запись.} invalid_profile{Проверьте сведения профиля.} invalid_device{Имя или локальная идентичность этого устройства недействительны.} invalid_location{Обновите список локаций и повторите попытку.} device_limit{Удалите существующее устройство перед добавлением другого.} device_exists{Эта VPN-идентичность уже связана с другой учётной записью.} device_identity_revoked{Эта идентичность удалена. Необходимо создать новую локальную идентичность.} device_location_locked{Локация этого устройства только что изменилась. Приложение продолжит выполняющееся изменение.} location_migration_pending{Изменение локации уже выполняется.} location_migration_blocked{Для изменения локации требуется вмешательство сервера. Повторите попытку позже или обратитесь в службу поддержки.} target_ca_mismatch{Этот сервер пока несовместим с текущим профилем OpenVPN.} location_migration_conflict{Обновите список устройств, затем снова попробуйте изменить локацию.} server_full{Эта локация достигла лимита подключений. Выберите другую локацию или повторите попытку позже.} capacity_unavailable{Сейчас мы не можем подтвердить доступность этой локации. Выберите другую локацию или повторите попытку позже.} target_unavailable{Этот сервер временно недоступен.} not_found{Этот элемент больше недоступен в вашей учётной записи.} invalid_openvpn_csr{Создайте новую идентичность OpenVPN и повторите попытку.} openvpn_profile_exists{Для этого устройства уже существует профиль OpenVPN.} openvpn_profile_revoked{Обновите профиль OpenVPN, чтобы продолжить.} openvpn_operation_pending{Изменение всё ещё распространяется. Повторите попытку позже.} openvpn_operation_terminal{Создайте новую идентичность OpenVPN и повторите попытку.} openvpn_address_unavailable{В настоящее время адрес OpenVPN недоступен.} openvpn_profile_conflict{Профиль изменился. Обновите устройства и повторите попытку.} openvpn_signer_unavailable{Служба OpenVPN временно недоступна.} email_delivery_unavailable{Не удалось отправить письмо. Повторите попытку позже.} invalid_token{Эта ссылка недействительна или просрочена. Запросите новую.} network_unavailable{Проверьте подключение к интернету и повторите попытку.} invalid_json{Проверьте введённые сведения и повторите попытку.} invalid_api_response{Сервер вернул неожиданный ответ. Повторите попытку позже.} ipv6_unavailable{Сервер не может активировать IPv6 сейчас. Повторите попытку позже.} invalid_ip_families{Конфигурация туннеля неполна или не соответствует разрешённым адресам. Повторите попытку из приложения.} other{Произошла ошибка сервера. Повторите попытку позже.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Повторите попытку через несколько минут.",
+  "notice_retryAfter": "Повторите попытку через {seconds} секунд.",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "Object"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Возобновление системного VPN недоступно} system_vpn_resume_corrupt{Недействительное возобновление системного VPN} system_vpn_resume_session_invalid{Недействительная сессия возобновления VPN} system_vpn_resume_identity_changed{Идентичность VPN изменилась} system_vpn_resume_identity_invalid{Недействительная идентичность для возобновления VPN} system_vpn_resume_storage_failed{Хранилище возобновления VPN недоступно} system_vpn_resume_network_timeout{Для возобновления VPN нет сети} system_vpn_resume_blocked{Возобновление VPN заблокировано} system_vpn_resume_failed{Не удалось возобновить VPN} system_vpn_resume_error_invalid{Недействительная ошибка возобновления VPN} wireguard_identity_store_failed{Идентичность WireGuard не сохранена} wireguard_identity_unavailable{Идентичность WireGuard недоступна} vpn_host_destroyed{Хост Android VPN остановлен} vpn_host_unavailable{Хост Android VPN недоступен} vpn_permission_required{Требуется разрешение VPN} vpn_permission_denied{В разрешении VPN отказано} vpn_permission_request_failed{Не удалось запросить разрешение} wireguard_foreground_service_unavailable{Служба WireGuard недоступна} wireguard_identity_invalid{Недействительный локальный ключ WireGuard} wireguard_identity_in_use{Идентичность WireGuard уже используется} wireguard_configuration_invalid{Недействительная конфигурация WireGuard} wireguard_operation_pending{Операция WireGuard всё ещё выполняется} wireguard_start_failed{Запуск WireGuard отклонён} wireguard_stop_timeout{Остановка WireGuard не подтверждена} wireguard_handshake_timeout{WireGuard не ответил} openvpn_connection_timeout{OpenVPN не ответил} openvpn_core_unavailable{Ядро OpenVPN недоступно} openvpn_operation_pending{Сессия OpenVPN всё ещё активна} openvpn_stop_timeout{Остановка OpenVPN не подтверждена} openvpn_profile_unavailable{Локальный профиль OpenVPN отсутствует} openvpn_native_failed{Вызов OpenVPN прерван} openvpn_key_generation_failed{Не удалось создать ключ OpenVPN P-256} openvpn_csr_generation_failed{Не удалось создать CSR OpenVPN} openvpn_identity_store_failed{Идентичность OpenVPN не сохранена} openvpn_identity_clear_failed{Неполное удаление OpenVPN} openvpn_identity_in_use{Идентичность OpenVPN всё ещё используется} openvpn_tls_verification_required{Отсутствует проверка TLS OpenVPN} openvpn_cipher_invalid{Недействительный шифр OpenVPN} openvpn_profile_rejected{Профиль OpenVPN отклонён} openvpn_identity_inconsistent{Несогласованная идентичность OpenVPN} tls_handshake_failed{Согласование OpenVPN отклонено} tls_alert_unknown_ca{Сертификат клиента OpenVPN не распознан} tls_alert_bad_certificate{Сертификат клиента OpenVPN отклонён} tls_alert_unsupported_certificate{Неподдерживаемый сертификат OpenVPN} tls_client_certificate_required{Требуется сертификат клиента OpenVPN} tls_alert_misc{Оповещение TLS OpenVPN} tls_signature_algorithm_rejected{Неподдерживаемая подпись OpenVPN} tls_handshake_rejected{Согласование TLS OpenVPN отклонено} tls_version_rejected{Несовместимая версия TLS OpenVPN} tls_certificate_expired{Срок действия сертификата TLS истёк} tls_certificate_revoked{Сертификат TLS отозван} transport_failed{Сервер OpenVPN недоступен} tun_configuration_rejected{Не удалось создать интерфейс OpenVPN} tun_setup_failed{Не удалось настроить TUN OpenVPN} tun_interface_create_failed{Не удалось создать интерфейс OpenVPN} tun_interface_disabled{Интерфейс OpenVPN отключён} tun_halted{Интерфейс OpenVPN прерван} tun_already_established{Интерфейс OpenVPN уже открыт} tun_addresses_missing{Адрес OpenVPN отсутствует} tun_routes_missing{Маршруты OpenVPN отсутствуют} tun_dns_missing{DNS OpenVPN отсутствует} tun_permission_revoked{Разрешение VPN отозвано} tun_establish_returned_null{Android отклонил интерфейс VPN} openvpn_service_start_failed{Служба OpenVPN недоступна} openvpn_operation_timeout{Время ожидания вызова OpenVPN истекло} openvpn_start_failed{Запуск OpenVPN отклонён} openvpn_connection_failed{Подключение OpenVPN прервано} openvpn_core_status_error{Работа ядра OpenVPN завершилась с ошибкой} openvpn_stopped_before_connected{OpenVPN остановлен до подключения} openvpn_auth_failed{Аутентификация OpenVPN отклонена} openvpn_client_setup_failed{Не удалось настроить клиент OpenVPN} openvpn_client_halted{Клиент OpenVPN прерван} openvpn_client_restart{Запрошен перезапуск OpenVPN} openvpn_inactive_timeout{OpenVPN слишком долго бездействовал} openvpn_session_expired{Сессия OpenVPN истекла} openvpn_credentials_required{Неподдерживаемая аутентификация OpenVPN} openvpn_proxy_failed{Промежуточный транспорт OpenVPN не работает} openvpn_compression_failed{Сжатие OpenVPN отклонено} openvpn_ntlm_crypto_unavailable{Шифрование NTLM OpenVPN недоступно} openvpn_feature_unsupported{Неподдерживаемая функция OpenVPN} network_unavailable{Подключение к интернету недоступно} network_lost{Сеть недоступна} certificate_validation_failed{Сертификат сервера отклонён} openvpn_certificate_expired{Сертификат OpenVPN истёк} tunnel_active_for_another_account{Туннель другой учётной записи всё ещё активен} tunnel_already_active{Нативный туннель уже активен} tunnel_stop_timeout{Остановка {protocol} не подтверждена} tunnel_disconnected{{protocol} прерван} native_bridge_unavailable{Мост Android недоступен} native_operation_failed{Операция Android прервана} invalid_arguments{Неполные параметры VPN} invalid_account_id{Недействительная учётная запись VPN} invalid_device_id{Недействительный идентификатор устройства} storage_key_not_allowed{Ключ хранилища отклонён} secure_storage_read_failed{Не удалось безопасно прочитать данные} secure_storage_write_failed{Не удалось безопасно записать данные} key_generation_failed{Не удалось создать ключ WireGuard} csr_generation_failed{Не удалось создать CSR OpenVPN} other{Не классифицированная нативная ошибка VPN}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android не может найти сессию VPN, которую можно возобновить. Запустите новое подключение в приложении.} system_vpn_resume_corrupt{Сохранённые данные для возобновления VPN недействительны и использоваться не будут. Запустите новое подключение.} system_vpn_resume_session_invalid{Сохранённая сессия больше не может возобновить VPN. Войдите снова в приложении.} system_vpn_resume_identity_changed{Локальная идентичность VPN изменилась. Возобновление остановлено; запустите новое подключение.} system_vpn_resume_identity_invalid{Идентичность для возобновления недействительна. Запустите новое подключение.} system_vpn_resume_storage_failed{Android не смог прочитать или обновить зашифрованные данные для возобновления. Запустите новое подключение.} system_vpn_resume_network_timeout{Android не нашёл сеть вовремя, чтобы возобновить VPN. Повторите попытку, когда сеть станет доступна.} system_vpn_resume_blocked{Возобновление VPN заблокировано. Проверьте настройки Android, затем запустите новое подключение.} system_vpn_resume_failed{Не удалось возобновить VPN Android. Запустите новое подключение в приложении.} system_vpn_resume_error_invalid{Android вернул непригодную для использования ошибку возобновления. Запустите новое подключение.} wireguard_identity_store_failed{Android не смог сохранить зашифрованную идентичность WireGuard этой учётной записи.} wireguard_identity_unavailable{Для этого подключения нет пригодной к использованию идентичности WireGuard.} vpn_host_destroyed{Компонент Android, обслуживающий VPN, был остановлен. Запустите новое подключение.} vpn_host_unavailable{Android не может создать компонент, обслуживающий VPN. Повторите попытку после проверки настроек VPN.} openvpn_renewal_required{Перед подключением сертификат требует действия в приложении.} openvpn_recovery_failed{Автоматическое восстановление не удалось. Запустите новое подключение в приложении.} openvpn_recovery_exhausted{Автоматическое восстановление уже использовано. Запустите новое подключение в приложении.} vpn_permission_required{Перед запуском туннеля Android требует нового разрешения VPN.} vpn_permission_denied{Разрешите FuzeVPN в запросе Android, чтобы продолжить.} vpn_permission_request_failed{Android не смог открыть экран разрешения VPN.} wireguard_foreground_service_unavailable{Android не смог оставить службу WireGuard работающей на переднем плане.} wireguard_identity_invalid{Зашифрованный ключ WireGuard этой учётной записи не читается или недействителен.} wireguard_identity_in_use{Другая операция всё ещё использует ключ WireGuard этой учётной записи.} wireguard_configuration_invalid{Полученные адрес WireGuard, DNS, ключ сервера или маршруты недействительны.} wireguard_operation_pending{Предыдущая операция WireGuard ещё не освободила нативную службу.} wireguard_start_failed{Ядро WireGuard отклонило активацию конфигурации.} wireguard_stop_timeout{Служба WireGuard не подтвердила освобождение интерфейса VPN в течение установленного времени.} wireguard_handshake_timeout{Туннель не подтвердил рукопожатие с сервером вовремя.} openvpn_connection_timeout{OpenVPN вовремя не подтвердил подключение к серверу.} openvpn_core_unavailable{Эта версия приложения не содержит пригодного к использованию ядра OpenVPN.} openvpn_operation_pending{Нативное ядро всё ещё удерживает предыдущую сессию OpenVPN и отказывается создавать вторую.} openvpn_stop_timeout{Ядро OpenVPN не подтвердило остановку и уничтожение своей нативной сессии в течение установленного времени.} openvpn_profile_unavailable{Для этого подключения нет проверенного профиля OpenVPN, доступного для чтения.} openvpn_native_failed{Ошибка приложения прервала работу OpenVPN. Попробуйте подключиться снова. Если проблема сохраняется, запустите диагностику.} openvpn_key_generation_failed{Android Keystore не смог создать или прочитать неэкспортируемый закрытый ключ P-256.} openvpn_csr_generation_failed{Ключ Android Keystore не смог подписать запрос сертификата OpenVPN.} openvpn_identity_store_failed{Не удалось сохранить сертификат или профиль OpenVPN в зашифрованном хранилище.} openvpn_identity_clear_failed{Android не смог удалить всю локальную идентичность OpenVPN этой учётной записи.} openvpn_identity_in_use{Нативная сессия OpenVPN всё ещё использует ключ или сертификат этого устройства.} openvpn_tls_verification_required{Профиль явно не требует проверки сертификата сервера.} openvpn_cipher_invalid{Сервер предоставил алгоритм шифрования, которого нет в разрешённом списке.} openvpn_profile_rejected{Профиль, полученный от сервера, несовместим. Создайте это устройство заново и повторите попытку.} openvpn_identity_inconsistent{Сертификат не соответствует защищённой идентичности этого телефона. Локальный профиль не заменён.} tls_handshake_failed{Сервер отклонил согласование TLS. Если проблема сохраняется, создайте профиль заново.} tls_alert_unknown_ca{Сервер не признаёт полномочия центра сертификации сертификата этого устройства. Необходимо проверить сервер OpenVPN.} tls_alert_bad_certificate{Сервер отклонил сертификат этого устройства. Перед новой попыткой создайте устройство заново.} tls_alert_unsupported_certificate{Сервер не поддерживает тип защищённого сертификата, используемый Android.} tls_client_certificate_required{Сервер требует сертификат клиента, но ядро OpenVPN не смогло его предъявить.} tls_alert_misc{Сервер вернул оповещение TLS, не относящееся к категориям сертификата или версии.} tls_signature_algorithm_rejected{Сервер отклонил алгоритм ECDSA P-256 ключа Android Keystore.} tls_handshake_rejected{Сервер прервал согласование TLS до подключения.} tls_version_rejected{Клиент и сервер не нашли общую версию TLS.} tls_certificate_expired{Срок действия сертификата, предъявленного при подключении, истёк.} tls_certificate_revoked{Сертификат, предъявленный при подключении, отозван.} transport_failed{Сервер OpenVPN не отвечает в текущей сети. Повторите попытку через несколько секунд.} tun_configuration_rejected{Android отклонил сетевую конфигурацию, запрошенную OpenVPN.} tun_setup_failed{Ядро OpenVPN отклонило план сети до создания интерфейса Android.} tun_interface_create_failed{Ядро OpenVPN не смогло получить интерфейс TUN от Android VpnService.} tun_interface_disabled{Android или ядро OpenVPN отключило интерфейс TUN во время подключения.} tun_halted{Ядро OpenVPN получило запрос на остановку интерфейса TUN.} tun_already_established{OpenVPN запросил второй интерфейс в том же подключении. В целях безопасности туннель остановлен.} tun_addresses_missing{Сервер не предоставил пригодный адрес туннеля.} tun_routes_missing{Сервер не предоставил пригодные маршруты туннеля.} tun_dns_missing{Сервер не предоставил пригодный DNS-сервер.} tun_permission_revoked{Android отозвал разрешение VPN во время подключения.} tun_establish_returned_null{Android не создал интерфейс, обычно потому, что другой VPN всё ещё активен.} openvpn_service_start_failed{Android не смог запустить фоновую службу OpenVPN.} openvpn_operation_timeout{Вызов JNI к ядру OpenVPN превысил максимально допустимую длительность.} openvpn_start_failed{Служба Android готова, но ядро OpenVPN не приняло запуск профиля.} openvpn_connection_failed{Ядро OpenVPN остановилось до отправки события CONNECTED.} openvpn_core_status_error{Нативный цикл OpenVPN завершился с ошибкой без более конкретного конечного события.} openvpn_stopped_before_connected{Нативный цикл OpenVPN остановился до CONNECTED без явной ошибки ядра.} openvpn_auth_failed{Сервер OpenVPN отклонил аутентификацию профиля.} openvpn_client_setup_failed{Ядро OpenVPN не смогло инициализировать клиент до подключения к сети.} openvpn_client_halted{Ядро OpenVPN получило конечный запрос на остановку клиента.} openvpn_client_restart{Ядро OpenVPN запросило перезапуск транспортной сессии.} openvpn_inactive_timeout{Ядро OpenVPN закрыло сессию после истечения времени бездействия.} openvpn_session_expired{Сервер сообщил, что срок действия сессии OpenVPN истёк.} openvpn_credentials_required{Сервер или прокси запрашивает интерактивные учётные данные, не входящие в этот профиль сертификата.} openvpn_proxy_failed{Ядро OpenVPN сообщило о сбое настроенного прокси или ретранслятора.} openvpn_compression_failed{Ядро OpenVPN отклонило режим сжатия, объявленный профилем или сервером.} openvpn_ntlm_crypto_unavailable{Профиль запрашивает шифрование NTLM, недоступное в этой версии.} openvpn_feature_unsupported{Профиль или сервер требует функцию, отсутствующую в этом клиенте Android.} network_unavailable{Нет доступной пригодной физической сети.} network_lost{Туннель остановлен после потери сети.} certificate_validation_failed{Не удалось проверить идентичность сервера OpenVPN.} openvpn_certificate_expired{Обновите профиль OpenVPN перед повторным подключением.} tunnel_active_for_another_account{Перед этим подключением необходимо остановить туннель другой учётной записи.} tunnel_already_active{Android сообщает, что предыдущая сессия VPN всё ещё использует интерфейс.} tunnel_stop_timeout{Ядро {protocol} не подтвердило освобождение интерфейса VPN в течение установленного времени.} tunnel_disconnected{Нативное ядро сообщило, что после запуска туннель неожиданно завершился.} native_bridge_unavailable{Приложение не может получить доступ к службе Android VPN. Закройте и снова откройте приложение, затем повторите попытку.} native_operation_failed{Ошибка приложения прервала операцию VPN. Повторите попытку. Если проблема сохраняется, запустите диагностику.} invalid_arguments{Сведения, необходимые для этой операции VPN, неполны. Повторите попытку. Если проблема сохраняется, запустите диагностику.} invalid_account_id{Нативная операция не связана с действительным идентификатором учётной записи.} invalid_device_id{Идентификатор устройства, отправленный нативному ядру, отсутствует или недействителен.} storage_key_not_allowed{Мост Android заблокировал ключ, отсутствующий в разрешённом списке хранилища.} secure_storage_read_failed{Android Keystore не смог расшифровать локальные данные этой учётной записи.} secure_storage_write_failed{Android Keystore не смог зашифровать или сохранить локальные данные.} key_generation_failed{Android не смог создать или прочитать ключ WireGuard в защищённом хранилище.} csr_generation_failed{Android Keystore не смог создать или подписать CSR OpenVPN P-256.} other{Не задокументированная нативная ветвь завершилась с ошибкой. Отправьте показанный ниже диагностический код в службу поддержки.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Запрос разрешения уже открыт",
+  "notice_permissionRequestInProgress_message": "Запрос разрешения Android на VPN уже отображается. Завершите его перед новой попыткой.",
+  "notice_permissionRequestInterrupted_title": "Запрос разрешения VPN прерван",
+  "notice_permissionRequestInterrupted_message": "Экран запроса разрешения VPN закрылся до того, как приложение получило ответ.",
+  "notice_openvpnProofMissing_title": "Подключение OpenVPN не подтверждено",
+  "notice_openvpnProofMissing_message": "Не удалось подтвердить подключение OpenVPN. В целях безопасности оно остановлено. Повторите попытку.",
+  "openvpnCleanup_title": "Профиль OpenVPN отозван",
+  "openvpnCleanup_working": "Остановка и удаление отозванного профиля OpenVPN…",
+  "openvpnCleanup_stopFailed": "Остановка OpenVPN не подтверждена. Повторите попытку перед созданием нового профиля.",
+  "openvpnCleanup_cleanupFailed": "Не удалось полностью удалить отозванный профиль OpenVPN. Повторите очистку.",
+  "openvpnCleanup_complete": "Отозванный профиль OpenVPN удалён. Нажмите «Подключиться», чтобы создать новый.",
+  "network_title": "Конфигурация сети",
+  "network_ipv4Fallback": "IPv6 временно недоступен. Подготовка продолжается с IPv4.",
+  "network_rejectedTitle": "Конфигурация сети отклонена",
+  "network_rejectedMessage": "Конфигурация туннеля неполна или не соответствует разрешённым адресам. Повторите попытку из приложения.",
+  "network_unreadableTitle": "Локальная конфигурация не читается",
+  "network_unreadableMessage": "Сохранённую сетевую конфигурацию OpenVPN нельзя использовать. Подключитесь снова из приложения, чтобы обновить её.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Защита сети",
+  "protection_subtitle": "Блокировать прямой доступ к интернету при отключении VPN.",
+  "protection_active": "Системная защита включена",
+  "protection_alwaysOnOnly": "VPN всегда включён; включите блокировку вне VPN",
+  "protection_inactive": "Системная защита отключена",
+  "protection_unknown": "Проверить системную защиту",
+  "protection_openSettings": "Открыть настройки Android",
+  "protection_dialogTitle": "Настройка защиты сети",
+  "protection_dialogMessage": "Android управляет постоянно включённым VPN и блокировкой подключений вне VPN. Убедитесь, что выбран FuzeVPN, и включите блокировку в системных настройках.",
+  "protection_dialogOpen": "Открыть настройки",
+  "session_systemProtectionNote": "Если Android по-прежнему блокирует трафик вне VPN, откройте системные настройки, чтобы проверить или изменить эту защиту.",
+  "diagnostics_title": "Диагностика",
+  "diagnostics_settingsTitle": "Диагностика приложения",
+  "diagnostics_automaticTitle": "Отправлять важные ошибки",
+  "diagnostics_automaticDescription": "Отправлять небольшой технический отчёт при возникновении важной ошибки.",
+  "diagnostics_privacy": "Отправленные отчёты связаны с учётной записью, в которую выполнен вход, и хранятся 30 дней. Они не содержат историю просмотров, пароли или ключи VPN.",
+  "diagnostics_manualOpen": "Запустить диагностику",
+  "diagnostics_localDescription": "Создать отчёт о состоянии приложения и VPN. Ваше подключение не изменится.",
+  "diagnostics_sendReport": "Отправить отчёт",
+  "diagnostics_sendHint": "Оставьте этот флажок снятым, чтобы сохранить отчёт на этом устройстве.",
+  "diagnostics_signedOut": "Войдите в свою учётную запись, чтобы отправить отчёт.",
+  "diagnostics_localLifetime": "Сохраните этот отчёт на телефоне, чтобы он остался после закрытия приложения.",
+  "diagnostics_run": "Запустить диагностику",
+  "diagnostics_rerun": "Запустить диагностику снова",
+  "diagnostics_running": "Проверка…",
+  "diagnostics_sending": "Отправка отчёта…",
+  "diagnostics_prepared": "Отчёт готов на этом устройстве",
+  "diagnostics_queued": "Отчёт ожидает отправки",
+  "diagnostics_sent": "Отчёт получен",
+  "diagnostics_failed": "Не удалось отправить. Локальный отчёт по-прежнему доступен.",
+  "diagnostics_preparationFailed": "Не удалось подготовить диагностический отчёт. Повторите попытку.",
+  "diagnostics_authenticationRequired": "Войдите снова, чтобы отправить отчёт.",
+  "diagnostics_retry": "Повторить отправку",
+  "diagnostics_export": "Сохранить отчёт",
+  "diagnostics_exportFailed": "Не удалось экспортировать. Повторите попытку из локального отчёта.",
+  "diagnostics_preferenceFailed": "Не удалось сохранить эту настройку. Повторите попытку.",
+  "diagnostics_receipt": "Идентификатор: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "Получен {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Хранится до {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Этот отчёт уже был получен.",
+  "diagnostics_preview": "Предварительный просмотр отчёта",
+  "diagnostics_eventCount": "{count, plural, =0{Технические события не прикреплены} one{Прикреплено {count} техническое событие} few{Прикреплено {count} технических события} many{Прикреплено {count} технических событий} other{Прикреплено {count} технического события}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Технические сведения",
+  "diagnostics_empty": "Диагностический отчёт ещё не подготовлен.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Состояние туннеля} handshake{Подтверждение подключения} certificate{Сертификат VPN} kill_switch{Защита Android} connectivity{Доступная сеть} api_reachability{Доступ к службе} secure_storage{Защищённое хранилище} other{Локальная проверка}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Проверено} failed{Требует внимания} skipped{Не проверено — активная проверка отсутствует} unknown{Сведения недоступны} other{Сведения недоступны}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Добро пожаловать в FuzeVPN",
+  "connection_changeLocation": "Изменить локацию",
+  "connection_details": "Сведения о подключении",
+  "locations_searchLabel": "Найти город или страну",
+  "locations_clearSearch": "Очистить поиск",
+  "locations_filterAll": "Все",
+  "locations_filterFavorites": "Избранные",
+  "locations_results": "{count, plural, one{{count} локация} few{{count} локации} many{{count} локаций} other{{count} локации}}",
+  "locations_noResults": "Локации не найдены",
+  "locations_noResultsHint": "Попробуйте другой город или страну.",
+  "locations_noFavorites": "Ваши избранные — всегда под рукой",
+  "locations_noFavoritesHint": "Нажмите на звезду рядом с локацией, чтобы сохранить её здесь.",
+  "locations_showAll": "Показать все локации",
+  "locations_addFavorite": "Добавить {name} в избранное",
+  "locations_removeFavorite": "Удалить {name} из избранного",
+  "locations_favoriteSaveFailed": "Не удалось сохранить локацию в избранное. Повторите попытку.",
+  "locations_emptyTitle": "Нет доступных локаций",
+  "locations_emptyHint": "Обновите список и повторите попытку.",
+  "devices_manage": "Управление моими устройствами",
+  "settings_personalization": "Настроить под себя",
+  "settings_safety": "Защита",
+  "settings_help": "Нужна помощь?",
+  "settings_about": "О FuzeVPN",
+  "diagnostics_heading": "Разобраться с проблемой подключения",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Доступно} pending{Подготовка} revoked{Удалено} expired{Истёк срок действия} other{Статус недоступен}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Настройка не сохранена",
+  "notice_preferenceSave_message": "Ваш выбор пока применён, но сохранить его не удалось. Повторите попытку, чтобы он сохранился после закрытия приложения.",
+  "connection_androidDisconnectHint": "Если Android продолжает поддерживать VPN активным, отключите постоянно включённый VPN в открывшихся настройках.",
+  "protection_learnMore": "Подробнее о защите Android",
+  "protection_guideWhy": "Эта защита не позволяет приложениям использовать интернет напрямую при отключении VPN. Она настраивается в Android.",
+  "protection_guideAlwaysOnTitle": "VPN всегда включён",
+  "protection_guideAlwaysOn": "Android поддерживает работу службы VPN и может перезапустить её после перезагрузки телефона.",
+  "protection_guideBlockTitle": "Блокировать подключения без VPN",
+  "protection_guideBlock": "Эта настройка не позволяет трафику обходить VPN, в том числе при прерывании подключения.",
+  "protection_guideWarning": "При включённой блокировке доступ к интернету остаётся отключённым, пока VPN не подключится.",
+  "protection_guideStepsTitle": "Включить защиту",
+  "protection_guideStep1": "Откройте настройки VPN Android с помощью кнопки ниже.",
+  "protection_guideStep2": "Откройте параметры с помощью значка шестерёнки рядом с FuzeVPN.",
+  "protection_guideStep3": "Включите «VPN всегда включён», а затем «Блокировать подключения без VPN», если эти параметры доступны.",
+  "protection_guideManufacturers": "Названия зависят от телефона. При необходимости найдите VPN в настройках, обычно в разделе «Сеть и интернет».",
+  "protection_guideDisableTitle": "Отключить эту защиту",
+  "protection_guideDisable": "В тех же настройках отключите блокировку подключений без VPN, чтобы разрешить доступ к интернету без VPN. Также отключите «VPN всегда включён», если больше не хотите, чтобы Android перезапускал его.",
+  "protection_guideManual": "Эти настройки выбираются в Android. FuzeVPN не изменяет их за вас.",
+  "locations_changeTitle": "Изменить локацию?",
+  "locations_changeActive": "VPN отключится, затем попытается подключиться к {name}.",
+  "locations_changeIdle": "VPN попытается подключиться к {name}.",
+  "locations_confirmChange": "Изменить и подключиться",
+  "locations_changeBusy": "Изменение уже выполняется. Дождитесь завершения перед выбором другой локации.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Автоматический выбор",
+  "locations_cities": "Города",
+  "locations_servers": "Серверы",
+  "locations_viewCities": "Посмотреть города в {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Посмотреть серверы в {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} страна} few{{count} страны} many{{count} стран} other{{count} страны}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} город} few{{count} города} many{{count} городов} other{{count} города}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} сервер} few{{count} сервера} many{{count} серверов} other{{count} сервера}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Все страны",
+  "locations_backToCountries": "Назад к странам",
+  "locations_backToCities": "Назад к городам в {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Выбрать {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Выбрать {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Нет доступного совместимого сервера.",
+  "externalLink_failed": "Не удалось открыть ссылку. Вы можете скопировать её и открыть в браузере.",
+  "externalLink_copy": "Скопировать ссылку",
+  "externalLink_copied": "Ссылка скопирована",
+  "externalLink_copyFailed": "Не удалось скопировать ссылку. Выделите адрес ниже.",
+  "settings_deleteAccount": "Удалить мой аккаунт",
+  "settings_deleteAccountDetail": "Посмотреть порядок запроса на удаление аккаунта",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Выберите подписку VPN.",
+  "billing_subscribe": "Подписаться",
+  "billing_choosePlan": "Выберите план, чтобы продолжить.",
+  "billing_monthly": "На месяц",
+  "billing_yearly": "На год",
+  "billing_continue": "Продолжить через Google Play",
+  "billing_restore": "Восстановить покупки",
+  "billing_manage": "Управлять подпиской",
+  "billing_deleteAccountWarning": "Если у вас есть подписка Google Play, удаление аккаунта FuzeVPN не отменяет её продление. Управляйте продлением или отмените его отдельно в Google Play.",
+  "billing_deleteAccountContinue": "Перейти к запросу на удаление аккаунта",
+  "billing_refresh": "Обновить доступ",
+  "billing_loadingPlans": "Загрузка планов…",
+  "billing_unavailable": "Сейчас нет доступных планов. Попробуйте позже.",
+  "billing_comingSoon": "Подписки скоро появятся.",
+  "billing_priceDisclosure": "Цена предоставлена Google Play. Итоговая сумма подтверждается перед оплатой.",
+  "billing_renewalMonthly": "Автоматическое продление каждый месяц, если подписка не отменена. Вы можете отменить её в любое время в подписках Google Play.",
+  "billing_renewalYearly": "Автоматическое продление каждый год, если подписка не отменена. Вы можете отменить её в любое время в подписках Google Play.",
+  "billing_active": "Ваш доступ Premium активен",
+  "billing_accessUntil": "Доступ до {date}.",
+  "billing_webManaged": "Ваша подписка управляется на сайте FuzeVPN.",
+  "billing_playManaged": "Ваша подписка управляется через Google Play.",
+  "billing_inactive": "Нет активной подписки.",
+  "billing_checkingAccess": "Проверка доступа…",
+  "billing_restoring": "Восстановление покупок…",
+  "billing_pending": "Платёж ожидает обработки. Доступ будет активирован после подтверждения.",
+  "billing_cancelled": "Покупка отменена. Новая подписка не активирована.",
+  "billing_verifying": "Проверка покупки…",
+  "billing_success": "Подписка активирована. Ваш доступ Premium готов.",
+  "billing_restored": "Ваши покупки восстановлены.",
+  "billing_restoreEmpty": "Для этого аккаунта Google Play нет покупок для восстановления.",
+  "billing_catalogError": "Не удалось загрузить планы. Повторите попытку.",
+  "billing_purchaseError": "Не удалось начать покупку. Повторите попытку.",
+  "billing_verificationError": "Проверка покупки временно недоступна. Восстановите покупки, чтобы повторить попытку.",
+  "billing_restoreError": "Не удалось восстановить покупки. Повторите попытку.",
+  "billing_managementError": "Не удалось открыть управление подписками. Повторите попытку.",
+  "billing_storeUnavailable": "Google Play недоступен на этом устройстве.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "Ваш VPN — это просто.",
+  "welcome_description": "Защитите соединение. Управляйте своей конфиденциальностью.",
+  "welcome_start": "Начать",
+  "welcome_alreadyPurchased": "Уже купили?",
+  "welcome_noAccountRequired": "Для начала не нужно создавать аккаунт.",
+  "guest_accountTitle": "Аккаунт не привязан",
+  "guest_accountDescription": "Восстановите покупки через тот же аккаунт Google Play, чтобы пользоваться подпиской на другом устройстве.",
+  "guest_existingSubscriberSignIn": "Уже подписаны? Войти",
+  "guest_claimTitle": "FuzeVPN всегда с вами",
+  "guest_claimDescription": "Создайте аккаунт, чтобы пользоваться подпиской на других устройствах. Этот шаг необязателен.",
+  "guest_skip": "Позже",
+  "guest_activationTitle": "Fuze Premium активен",
+  "guest_activationDescription": "Подписка готова. Пользуйтесь VPN и создайте аккаунт, когда захотите.",
+  "guest_useVpn": "Использовать VPN",
+  "guest_loginRequired": "Эта покупка уже привязана к аккаунту FuzeVPN. Войдите в него, чтобы получить доступ к подписке.",
+  "guest_signOutWarning": "Вы можете восстановить подписку, восстановив покупки через тот же аккаунт Google Play.",
+  "guest_profileUnavailable": "Ваш аккаунт уже привязан. Войдите, чтобы просматривать свои данные и управлять ими.",
+  "billing_acceptance": "Продолжая, вы принимаете Условия использования и Политику конфиденциальности.",
+  "guest_verifyEmailReminder": "Подтвердите адрес электронной почты для защиты аккаунта. Вы можете продолжать пользоваться VPN.",
+  "guest_serviceUnavailable": "Сервис временно недоступен. Повторите попытку чуть позже.",
+  "guest_restoreError": "Не удалось восстановить покупки. Повторите попытку с аккаунтом Google Play, использованным для покупки.",
+  "guest_claimSuccess": "Ваш аккаунт создан. Подписка и доступ к VPN сохранены.",
+  "guest_emailExists": "Этот адрес электронной почты уже используется. Выберите другой адрес или войдите в существующий аккаунт. Покупка остаётся доступной через Google Play.",
+  "guest_claimError": "Не удалось создать аккаунт. Вы можете продолжать пользоваться VPN и повторить попытку позже.",
+  "guest_secureStorageError": "Не удалось безопасно сохранить сеанс на этом устройстве. Повторите попытку.",
+  "guest_premiumRequired": "Выберите подписку, чтобы активировать VPN.",
+  "welcome_viewPlans": "Посмотреть тарифы",
+  "google_continue": "Продолжить с Google",
+  "google_or": "или",
+  "google_title": "Ваш аккаунт FuzeVPN",
+  "google_settingUp": "Завершите создание аккаунта",
+  "google_country": "Страна проживания",
+  "google_profileDescription": "Выберите страну и ознакомьтесь с двумя документами для создания аккаунта FuzeVPN.",
+  "google_claimDescription": "Свяжите гостевой аккаунт с Google. Подписка и устройство останутся привязаны к этому аккаунту.",
+  "google_linkTitle": "Связать Google с FuzeVPN",
+  "google_linkDescription": "Подтвердите доступ к существующему аккаунту FuzeVPN. Пароль Google не требуется.",
+  "google_password": "Пароль FuzeVPN",
+  "google_linkAccount": "Подтвердить привязку",
+  "google_requestEmail": "Получить письмо подтверждения",
+  "google_emailInstructions": "Откройте письмо от FuzeVPN и введите код подтверждения.",
+  "google_emailCode": "Код из письма",
+  "google_confirmEmail": "Подтвердить код",
+  "google_restart": "Выбрать другой аккаунт Google",
+  "google_resume": "Проверить эту попытку",
+  "google_unavailable": "Вход через Google недоступен. Можно использовать почту и пароль.",
+  "google_expired": "Срок этой попытки истёк. Отмените её и начните снова.",
+  "google_conflict": "Этот аккаунт Google уже связан с другим аккаунтом. Текущий аккаунт и подписка сохраняются.",
+  "google_error": "Вход через Google не удался. Повторите попытку; текущий доступ сохраняется.",
+  "google_uncertain": "Результат не подтверждён. Проверьте эту попытку или отмените её перед повтором.",
+  "google_cancelFailed": "Отмена не подтверждена. Попробуйте отменить ещё раз перед выходом из этого экрана.",
+  "google_cancelled": "Вход через Google отменён.",
+  "google_selecting": "Выберите аккаунт Google…",
+  "google_verifying": "Проверяем ваш аккаунт…",
+  "google_emailUnavailable": "Не удалось отправить письмо подтверждения. Попробуйте позже.",
+  "google_emailSent": "Письмо подтверждения отправлено. Проверьте входящие.",
+  "google_rateLimited": "Подождите перед повторной попыткой.",
+  "google_invalidPassword": "Неверный пароль FuzeVPN. Текущий аккаунт сохраняется.",
+  "google_invalidCode": "Код подтверждения недействителен или просрочен.",
+  "google_accountChanged": "Сессия изменилась. Отмените эту попытку перед повтором.",
+  "google_invalidResponse": "Не удалось проверить ответ. Текущий доступ сохраняется.",
+  "google_invalidRegistration": "Проверьте страну и оба согласия.",
+  "google_consentRequired": "Выберите страну и примите оба документа, чтобы продолжить.",
+  "google_challengeRequired": "Требуется дополнительная проверка безопасности. Текущий доступ сохраняется.",
+  "google_challengeUnavailable": "Проверка безопасности недоступна. Попробуйте позже."
+}

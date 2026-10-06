@@ -1,0 +1,20 @@
+{
+  "schema": "https://fuzevpn.com/schemas/wireguard-android-import-v1.json",
+  "source": {
+    "url": "https://git.zx2c4.com/wireguard-android",
+    "tag": "1.0.20260102",
+    "annotatedTagObject": "3831cab2da844319291459308a6e535d36dde4b3",
+    "commit": "09b75c2bd37f749e2a8c85876394854113c74be7",
+    "license": "Apache-2.0"
+  },
+  "patch": {
+    "path": "patches/fuzevpn/0001-go-backend-real-foreground-service.patch",
+    "sha256": "777a8563e37ca11c4bf084820c3fd69e12280c5dd48af99274cf407dcfacd92c",
+    "purpose": "Expose one foreground GoBackend VpnService host for WireGuard and OpenVPN, including Android system lifecycle events and user-selected Always-On restart, while retaining the reviewed WireGuard native libraries."
+  },
+  "protectedStartPatch": {
+    "path": "patches/fuzevpn/0002-go-backend-protected-start.patch",
+    "sha256": "e6861dba0b06e569b65119029c7d817adc98b4120e36d75c95af7ff4999e1ded",
+    "purpose": "Protect bound UDP sockets before installing WireGuard peers; never rebind during peer activation."
+  }
+}

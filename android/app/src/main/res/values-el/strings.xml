@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">Σύνδεση VPN</string>
+    <string name="vpn_notification_channel_description">Υποδεικνύει πότε είναι ενεργή μια σύνδεση FuzeVPN.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Η σύνδεση %1$s είναι ενεργή</string>
+    <string name="vpn_notification_connecting">Η σύνδεση %1$s βρίσκεται σε εξέλιξη</string>
+    <string name="vpn_notification_disconnecting">Αποσύνδεση του %1$s</string>
+    <string name="vpn_notification_interrupted">Η σύνδεση %1$s διακόπηκε</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Έτοιμο · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Συνδεδεμένο · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Σύνδεση του %1$s…</string>
+    <string name="vpn_tile_disconnecting">Αποσύνδεση…</string>
+    <string name="vpn_tile_interrupted">Το %1$s διακόπηκε</string>
+    <string name="vpn_tile_setup_required">Ανοίξτε πρώτα την εφαρμογή</string>
+    <string name="vpn_tile_working">Η λειτουργία VPN βρίσκεται σε εξέλιξη…</string>
+    <string name="vpn_notification_reconnecting">Επανασύνδεση… · %1$s</string>
+    <string name="vpn_system_action_required">Απαιτείται ενέργεια στις ρυθμίσεις Android</string>
+    <string name="vpn_tile_reconnecting">Επανασύνδεση… · %1$s</string>
+</resources>

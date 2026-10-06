@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# Copyright © 2015-2026 the original authors.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Self-contained wrapper bootstrap. Gradle no longer reliably publishes the
+# small wrapper JAR as a standalone artifact, so this verifies the exact
+# 9.5.0 binary distribution before executing its own Gradle launcher. This is
+# intentionally equivalent to the version/checksum in wrapper.properties.
+
+GRADLE_VERSION=9.5.0
+GRADLE_SHA256=553c78f50dafcd54d65b9a444649057857469edf836431389695608536d6b746
+GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
+GRADLE_HOME_BASE=${GRADLE_USER_HOME:-"$HOME/.gradle"}
+DIST_ROOT="$GRADLE_HOME_BASE/wrapper/dists/fuzevpn-gradle-${GRADLE_VERSION}"
+DIST_HOME="$DIST_ROOT/gradle-${GRADLE_VERSION}"
+ZIP_PATH="$DIST_ROOT/gradle-${GRADLE_VERSION}-bin.zip"
+
+if [ ! -x "$DIST_HOME/bin/gradle" ]; then
+  mkdir -p "$DIST_ROOT" || exit 1
+  TMP_ZIP="$ZIP_PATH.$$"
+  trap 'rm -f "$TMP_ZIP"' EXIT HUP INT TERM
+  if command -v curl >/dev/null 2>&1; then
+    curl --fail --location --retry 3 --output "$TMP_ZIP" "$GRADLE_URL" || exit 1
+  elif command -v wget >/dev/null 2>&1; then
+    wget --https-only --tries=3 --output-document="$TMP_ZIP" "$GRADLE_URL" || exit 1
+  else
+    echo "ERROR: curl or wget is required to download Gradle ${GRADLE_VERSION}." >&2
+    exit 1
+  fi
+  if command -v sha256sum >/dev/null 2>&1; then
+    ACTUAL_SHA256=$(sha256sum "$TMP_ZIP" | awk '{print $1}')
+  elif command -v shasum >/dev/null 2>&1; then
+    ACTUAL_SHA256=$(shasum -a 256 "$TMP_ZIP" | awk '{print $1}')
+  else
+    echo "ERROR: sha256sum or shasum is required to verify Gradle." >&2
+    exit 1
+  fi
+  if [ "$ACTUAL_SHA256" != "$GRADLE_SHA256" ]; then
+    echo "ERROR: Gradle distribution checksum mismatch." >&2
+    exit 1
+  fi
+  mv "$TMP_ZIP" "$ZIP_PATH"
+  unzip -q "$ZIP_PATH" -d "$DIST_ROOT" || exit 1
+  rm -f "$ZIP_PATH"
+  trap - EXIT HUP INT TERM
+fi
+
+exec "$DIST_HOME/bin/gradle" "$@"

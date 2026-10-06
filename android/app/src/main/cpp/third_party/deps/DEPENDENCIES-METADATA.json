@@ -1,0 +1,56 @@
+{
+    "schema":  "https://fuzevpn.com/schemas/openvpn3-android-dependencies-v1.json",
+    "androidApi":  26,
+    "vcpkgSnapshot":  "d7b75fa8a30478ae5b5eb86ac730f851ef036875",
+    "sources":  [
+                    {
+                        "name":  "asio",
+                        "url":  "https://github.com/chriskohlhoff/asio.git",
+                        "ref":  "asio-1-36-0",
+                        "commit":  "231cb29bab30f82712fcd54faaea42424cc6e710",
+                        "license":  "BSL-1.0",
+                        "openvpnPatchDirectory":  "deps/vcpkg-ports/asio"
+                    },
+                    {
+                        "name":  "fmt",
+                        "url":  "https://github.com/fmtlib/fmt.git",
+                        "ref":  "12.1.0",
+                        "commit":  "407c905e45ad75fc29bf0f9bb7c5c2fd3475976f",
+                        "license":  "MIT"
+                    },
+                    {
+                        "name":  "lz4",
+                        "url":  "https://github.com/lz4/lz4.git",
+                        "ref":  "v1.10.0",
+                        "commit":  "ebb370ca83af193212df4dcbadcc5d87bc0de2f0",
+                        "license":  "BSD-2-Clause",
+                        "toolsFeature":  "not-built"
+                    }
+                ],
+    "asioPatches":  [
+                        {
+                            "name":  "0001-Added-Apple-NAT64-support-when-both-ASIO_HAS_GETADDR.patch",
+                            "sha256":  "ec2a1c368b58328bb28a8462457c7aeb889f64212c2b61f415abe0f8dae1b431"
+                        },
+                        {
+                            "name":  "0002-Added-user-code-hook-async_connect_post_open-to-be-c.patch",
+                            "sha256":  "c2a559a0105c65471854c49839238c1aa3b76d1d250f337478a667f9c49bb2dc"
+                        },
+                        {
+                            "name":  "0003-error_code.ipp-Use-English-for-Windows-error-message.patch",
+                            "sha256":  "e998badb8cd925adacbadba902a37a7bfdef359f5895397d8812392cdd27b97a"
+                        },
+                        {
+                            "name":  "0004-Added-kovpn-route_id-support-to-endpoints-for-sendto.patch",
+                            "sha256":  "ee408ae4146eb9a565694e8ceddc80ae48c52097d78723908e5b8d37e0417260"
+                        },
+                        {
+                            "name":  "0005-basic_resolver_results-added-data-and-cdata-members-.patch",
+                            "sha256":  "5e09e4339ab4f41f0a2bc6e8c387afeeba6ce3c4a031d6fef7eb7d3acea5670a"
+                        },
+                        {
+                            "name":  "0006-reactive_socket_service_base-add-constructor-for-bas.patch",
+                            "sha256":  "ec9133d499dd2221dcd1fa388432cb73bd1d6fc0a4a902617016924932354e64"
+                        }
+                    ]
+}

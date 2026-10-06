@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">Připojení VPN</string>
+    <string name="vpn_notification_channel_description">Označuje, kdy je připojení FuzeVPN aktivní.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Připojení %1$s je aktivní</string>
+    <string name="vpn_notification_connecting">Probíhá připojování %1$s</string>
+    <string name="vpn_notification_disconnecting">Odpojování %1$s</string>
+    <string name="vpn_notification_interrupted">Připojení %1$s bylo přerušeno</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Připraveno · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Připojeno · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Připojování %1$s…</string>
+    <string name="vpn_tile_disconnecting">Odpojování…</string>
+    <string name="vpn_tile_interrupted">%1$s bylo přerušeno</string>
+    <string name="vpn_tile_setup_required">Nejprve otevřete aplikaci</string>
+    <string name="vpn_tile_working">Probíhá operace VPN…</string>
+    <string name="vpn_notification_reconnecting">Opětovné připojování… · %1$s</string>
+    <string name="vpn_system_action_required">Je vyžadována akce v nastavení Androidu</string>
+    <string name="vpn_tile_reconnecting">Opětovné připojování… · %1$s</string>
+</resources>

@@ -1,0 +1,59 @@
+# Flutter and Android build outputs
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.gradle/
+build/
+android/.gradle/
+android/app/build/
+android/.kotlin/
+.cxx/
+android/local.properties
+*.iml
+.idea/
+
+# Local deliveries, reports and caches (never source dependencies).
+/artifacts/
+/coverage/
+/reports/
+test/**/failures/
+__pycache__/
+*.py[cod]
+
+# Local signing material must never be committed.
+key.properties
+*.jks
+*.keystore
+*.p12
+*.pfx
+
+# These directories are Java source packages, not generated build output.
+!android/buildSrc/src/main/java/com/fuzevpn/build/
+!android/buildSrc/src/test/java/com/fuzevpn/build/
+!android/buildSrc/src/main/java/com/fuzevpn/build/*.java
+!android/buildSrc/src/test/java/com/fuzevpn/build/*.java
+
+# Private environment, account stores and VM data.
+.env
+.env.*
+*.env
+*.dpapi
+*.db
+*.sqlite
+*.sqlite3
+*.kdbx
+*.ovpn
+credentials.*
+secrets.*
+service-account*.json
+google-services.json
+*.avd/
+/FuzeVPN-VM/
+mot-de-passe*
+code-google-play*
+
+# Upstream public PKI fixtures are included only by the source allowlist.
+*.key
+*.pem
+!android/app/src/main/cpp/third_party/openvpn3-core/test/**/*.key
+!android/app/src/main/cpp/third_party/openvpn3-core/test/**/*.pem

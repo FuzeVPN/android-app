@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">اتصال VPN</string>
+    <string name="vpn_notification_channel_description">يشير إلى أن اتصال FuzeVPN نشط.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">اتصال %1$s نشط</string>
+    <string name="vpn_notification_connecting">جارٍ إنشاء اتصال %1$s</string>
+    <string name="vpn_notification_disconnecting">جارٍ قطع اتصال %1$s</string>
+    <string name="vpn_notification_interrupted">انقطع اتصال %1$s</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">جاهز · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">متصل · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">جارٍ الاتصال بـ %1$s…</string>
+    <string name="vpn_tile_disconnecting">جارٍ قطع الاتصال…</string>
+    <string name="vpn_tile_interrupted">انقطع %1$s</string>
+    <string name="vpn_tile_setup_required">افتح التطبيق أولًا</string>
+    <string name="vpn_tile_working">عملية VPN قيد التنفيذ…</string>
+    <string name="vpn_notification_reconnecting">جارٍ إعادة الاتصال… · %1$s</string>
+    <string name="vpn_system_action_required">يلزم إجراء في إعدادات Android</string>
+    <string name="vpn_tile_reconnecting">جارٍ إعادة الاتصال… · %1$s</string>
+</resources>

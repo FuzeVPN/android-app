@@ -1,0 +1,20 @@
+<resources>
+    <string name="vpn_notification_channel">Conexiune VPN</string>
+    <string name="vpn_notification_channel_description">Indică atunci când o conexiune FuzeVPN este activă.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Conexiune %1$s activă</string>
+    <string name="vpn_notification_connecting">Conexiune %1$s în curs</string>
+    <string name="vpn_notification_disconnecting">Se deconectează %1$s</string>
+    <string name="vpn_notification_interrupted">Conexiunea %1$s a fost întreruptă</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Pregătit · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Conectat · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Se conectează %1$s…</string>
+    <string name="vpn_tile_disconnecting">Se deconectează…</string>
+    <string name="vpn_tile_interrupted">%1$s a fost întrerupt</string>
+    <string name="vpn_tile_setup_required">Deschide mai întâi aplicația</string>
+    <string name="vpn_tile_working">Operațiune VPN în curs…</string>
+    <string name="vpn_notification_reconnecting">Se reconectează… · %1$s</string>
+    <string name="vpn_system_action_required">Este necesară o acțiune în setările Android</string>
+    <string name="vpn_tile_reconnecting">Se reconectează… · %1$s</string>
+</resources>
