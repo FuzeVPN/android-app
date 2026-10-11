@@ -555,7 +555,7 @@
     "billing_loadingPlans": "Se încarcă planurile…",
     "billing_unavailable": "Nu există planuri disponibile acum. Încearcă mai târziu.",
     "billing_comingSoon": "Abonamente disponibile în curând.",
-    "billing_priceDisclosure": "Preț furnizat de Google Play. Suma finală este confirmată înainte de plată.",
+    "billing_priceDisclosure": "Preț furnizat de Google Play. Suma finală și taxele aplicabile sunt confirmate înainte de confirmarea ta.",
     "billing_renewalMonthly": "Se reînnoiește automat în fiecare lună, dacă nu este anulat. Poți anula oricând din abonamentele Google Play.",
     "billing_renewalYearly": "Se reînnoiește automat în fiecare an, dacă nu este anulat. Poți anula oricând din abonamentele Google Play.",
     "billing_active": "Accesul tău Premium este activ",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "Verifică țara și ambele acorduri.",
     "google_consentRequired": "Alege țara și acceptă ambele documente pentru a continua.",
     "google_challengeRequired": "Este necesară o verificare suplimentară de securitate. Accesul actual este păstrat.",
-    "google_challengeUnavailable": "Verificarea de securitate nu este disponibilă. Încearcă mai târziu."
+    "google_challengeUnavailable": "Verificarea de securitate nu este disponibilă. Încearcă mai târziu.",
+    "billing_trialTitle": "Încearcă Fuze Premium gratuit",
+    "billing_trialSubtitle": "Protejează-ți conexiunea începând de azi.",
+    "billing_trialWeeks": "2 săptămâni de probă gratuită",
+    "billing_trialDays": "{days} zile de probă gratuită",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Începe perioada mea de probă gratuită",
+    "billing_trialFirstCharge": "Dacă începi azi, prima debitare este estimată pentru {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Se reînnoiește automat la prețul afișat. Pentru a evita debitarea, anulează în Google Play înainte de sfârșitul perioadei de probă.",
+    "billing_trialThenMonthly": "Apoi {price} pe lună",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Apoi {price} pe an",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Alege-ți planul",
+    "billing_selectionHint": "Selectează un plan pentru a continua.",
+    "billing_benefitConnection": "Conexiune criptată",
+    "billing_benefitPrivacy": "Confidențialitate online",
+    "billing_benefitNoAccount": "Înregistrarea nu este obligatorie",
+    "billing_cancellation": "Anulare în Google Play",
+    "billing_premiumTitle": "Conexiunea ta, mai bine protejată.",
+    "billing_premiumSubtitle": "Protejează conexiunea în ritmul tău.",
+    "billing_priceMonthly": "pe lună",
+    "billing_priceYearly": "pe an",
+    "billing_trialToday": "Azi nu ai nimic de plătit",
+    "billing_trialConfirmation": "Google Play confirmă datele, suma finală și taxele aplicabile înainte de confirmarea ta.",
+    "billing_offerChanged": "Condițiile acestei oferte s-au schimbat. Reîmprospătează planurile și alege din nou."
   },
   "android": {
     "vpn_notification_channel": "Conexiune VPN",

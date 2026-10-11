@@ -555,7 +555,7 @@
     "billing_loadingPlans": "Φόρτωση προγραμμάτων…",
     "billing_unavailable": "Δεν υπάρχουν διαθέσιμα προγράμματα αυτήν τη στιγμή. Δοκιμάστε αργότερα.",
     "billing_comingSoon": "Οι συνδρομές θα είναι σύντομα διαθέσιμες.",
-    "billing_priceDisclosure": "Η τιμή παρέχεται από το Google Play. Το τελικό ποσό επιβεβαιώνεται πριν από την πληρωμή.",
+    "billing_priceDisclosure": "Τιμή από το Google Play. Το τελικό ποσό και οι ισχύοντες φόροι εμφανίζονται πριν από την επιβεβαίωσή σου.",
     "billing_renewalMonthly": "Ανανεώνεται αυτόματα κάθε μήνα, εκτός αν ακυρωθεί. Μπορείτε να ακυρώσετε οποτεδήποτε στις συνδρομές του Google Play.",
     "billing_renewalYearly": "Ανανεώνεται αυτόματα κάθε έτος, εκτός αν ακυρωθεί. Μπορείτε να ακυρώσετε οποτεδήποτε στις συνδρομές του Google Play.",
     "billing_active": "Η πρόσβαση Premium είναι ενεργή",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "Ελέγξτε τη χώρα και τις δύο συγκαταθέσεις.",
     "google_consentRequired": "Επιλέξτε χώρα και αποδεχτείτε τα δύο έγγραφα για να συνεχίσετε.",
     "google_challengeRequired": "Απαιτείται επιπλέον έλεγχος ασφαλείας. Η τρέχουσα πρόσβαση διατηρείται.",
-    "google_challengeUnavailable": "Ο έλεγχος ασφαλείας δεν είναι διαθέσιμος. Δοκιμάστε αργότερα."
+    "google_challengeUnavailable": "Ο έλεγχος ασφαλείας δεν είναι διαθέσιμος. Δοκιμάστε αργότερα.",
+    "billing_trialTitle": "Δοκίμασε το Fuze Premium δωρεάν",
+    "billing_trialSubtitle": "Προστάτευσε τη σύνδεσή σου από σήμερα.",
+    "billing_trialWeeks": "2 εβδομάδες δωρεάν δοκιμής",
+    "billing_trialDays": "{days} ημέρες δωρεάν δοκιμής",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Έναρξη δωρεάν δοκιμής",
+    "billing_trialFirstCharge": "Αν ξεκινήσεις σήμερα, η πρώτη χρέωση αναμένεται στις {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Αυτόματη ανανέωση στην αναγραφόμενη τιμή. Για να αποφύγεις χρέωση, ακύρωσε στο Google Play πριν λήξει η δοκιμή.",
+    "billing_trialThenMonthly": "Έπειτα {price} τον μήνα",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Έπειτα {price} τον χρόνο",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Επίλεξε το πρόγραμμά σου",
+    "billing_selectionHint": "Επίλεξε ένα πρόγραμμα για να συνεχίσεις.",
+    "billing_benefitConnection": "Κρυπτογραφημένη σύνδεση",
+    "billing_benefitPrivacy": "Ιδιωτικότητα στο διαδίκτυο",
+    "billing_benefitNoAccount": "Δεν απαιτείται εγγραφή",
+    "billing_cancellation": "Ακύρωση στο Google Play",
+    "billing_premiumTitle": "Η σύνδεσή σου, καλύτερα προστατευμένη.",
+    "billing_premiumSubtitle": "Προστάτευσε τη σύνδεσή σου με τον δικό σου ρυθμό.",
+    "billing_priceMonthly": "τον μήνα",
+    "billing_priceYearly": "τον χρόνο",
+    "billing_trialToday": "Δεν πληρώνεις τίποτα σήμερα",
+    "billing_trialConfirmation": "Το Google Play επιβεβαιώνει ημερομηνίες, τελικό ποσό και ισχύοντες φόρους πριν από την επιβεβαίωσή σου.",
+    "billing_offerChanged": "Οι όροι αυτής της προσφοράς άλλαξαν. Ανανέωσε τα προγράμματα και επίλεξε ξανά."
   },
   "android": {
     "vpn_notification_channel": "Σύνδεση VPN",

@@ -1717,7 +1717,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'قیمت توسط Google Play ارائه شده است. مبلغ نهایی پیش از پرداخت تأیید می‌شود.';
+      'قیمت را Google Play ارائه می‌کند. مبلغ نهایی و مالیات‌های مربوط پیش از تأیید شما مشخص می‌شوند.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2020,4 +2020,82 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'بررسی امنیتی در دسترس نیست. بعداً دوباره تلاش کنید.';
+
+  @override
+  String get billing_trialTitle => 'Fuze Premium را رایگان امتحان کنید';
+
+  @override
+  String get billing_trialSubtitle => 'از همین امروز از اتصال خود محافظت کنید.';
+
+  @override
+  String get billing_trialWeeks => '۲ هفته دورهٔ آزمایشی رایگان';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days روز دورهٔ آزمایشی رایگان';
+  }
+
+  @override
+  String get billing_trialStart => 'شروع دورهٔ آزمایشی رایگان';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'اگر امروز شروع کنید، اولین برداشت وجه برای $date پیش‌بینی می‌شود.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'با قیمت اعلام‌شده به‌طور خودکار تمدید می‌شود. برای جلوگیری از برداشت وجه، پیش از پایان دورهٔ آزمایشی در Google Play لغو کنید.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'سپس $price در ماه';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'سپس $price در سال';
+  }
+
+  @override
+  String get billing_choosePeriod => 'طرح خود را انتخاب کنید';
+
+  @override
+  String get billing_selectionHint => 'برای ادامه یک طرح انتخاب کنید.';
+
+  @override
+  String get billing_benefitConnection => 'اتصال رمزگذاری‌شده';
+
+  @override
+  String get billing_benefitPrivacy => 'حریم خصوصی آنلاین';
+
+  @override
+  String get billing_benefitNoAccount => 'ثبت‌نام اجباری نیست';
+
+  @override
+  String get billing_cancellation => 'لغو در Google Play';
+
+  @override
+  String get billing_premiumTitle => 'اتصال شما با محافظت بهتر.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'با طرح مناسب خود از اتصال محافظت کنید.';
+
+  @override
+  String get billing_priceMonthly => 'در ماه';
+
+  @override
+  String get billing_priceYearly => 'در سال';
+
+  @override
+  String get billing_trialToday => 'امروز پرداختی ندارید';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play تاریخ‌ها، مبلغ نهایی و مالیات‌های مربوط را پیش از تأیید شما مشخص می‌کند.';
+
+  @override
+  String get billing_offerChanged =>
+      'شرایط این پیشنهاد تغییر کرده است. طرح‌ها را تازه‌سازی کنید و دوباره انتخاب کنید.';
 }

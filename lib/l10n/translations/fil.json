@@ -555,7 +555,7 @@
     "billing_loadingPlans": "Naglo-load ng mga plan…",
     "billing_unavailable": "Walang available na plan ngayon. Subukan ulit mamaya.",
     "billing_comingSoon": "Malapit nang maging available ang mga subscription.",
-    "billing_priceDisclosure": "Ang presyo ay mula sa Google Play. Kinukumpirma ang huling halaga bago magbayad.",
+    "billing_priceDisclosure": "Presyong ibinigay ng Google Play. Kinukumpirma ang huling halaga at naaangkop na buwis bago ka magkumpirma.",
     "billing_renewalMonthly": "Awtomatikong nagre-renew bawat buwan maliban kung kakanselahin. Maaari mong kanselahin anumang oras sa mga subscription ng Google Play.",
     "billing_renewalYearly": "Awtomatikong nagre-renew bawat taon maliban kung kakanselahin. Maaari mong kanselahin anumang oras sa mga subscription ng Google Play.",
     "billing_active": "Aktibo ang iyong Premium access",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "Suriin ang bansa at parehong pahintulot.",
     "google_consentRequired": "Piliin ang bansa at tanggapin ang dalawang dokumento para magpatuloy.",
     "google_challengeRequired": "Kailangan ng karagdagang pagsusuri sa seguridad. Nananatili ang kasalukuyang access.",
-    "google_challengeUnavailable": "Hindi available ang pagsusuri sa seguridad. Subukan sa ibang pagkakataon."
+    "google_challengeUnavailable": "Hindi available ang pagsusuri sa seguridad. Subukan sa ibang pagkakataon.",
+    "billing_trialTitle": "Subukan ang Fuze Premium nang libre",
+    "billing_trialSubtitle": "Protektahan ang koneksyon mo simula ngayon.",
+    "billing_trialWeeks": "2 linggong libreng pagsubok",
+    "billing_trialDays": "{days} araw na libreng pagsubok",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Simulan ang libreng pagsubok ko",
+    "billing_trialFirstCharge": "Kung magsisimula ka ngayon, inaasahan ang unang singil sa {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Awtomatikong nire-renew sa nakasaad na presyo. Para maiwasan ang singil, magkansela sa Google Play bago matapos ang pagsubok.",
+    "billing_trialThenMonthly": "Pagkatapos, {price} bawat buwan",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Pagkatapos, {price} bawat taon",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Piliin ang iyong plano",
+    "billing_selectionHint": "Pumili ng plano para magpatuloy.",
+    "billing_benefitConnection": "Naka-encrypt na koneksyon",
+    "billing_benefitPrivacy": "Privacy online",
+    "billing_benefitNoAccount": "Hindi kailangang magparehistro",
+    "billing_cancellation": "Pagkansela sa Google Play",
+    "billing_premiumTitle": "Mas protektado ang koneksyon mo.",
+    "billing_premiumSubtitle": "Protektahan ang koneksyon sa paraang akma sa iyo.",
+    "billing_priceMonthly": "bawat buwan",
+    "billing_priceYearly": "bawat taon",
+    "billing_trialToday": "Walang babayaran ngayong araw",
+    "billing_trialConfirmation": "Kinukumpirma ng Google Play ang mga petsa, huling halaga at naaangkop na buwis bago ka magkumpirma.",
+    "billing_offerChanged": "Nagbago ang mga kondisyon ng alok na ito. I-refresh ang mga plano at pumili muli."
   },
   "android": {
     "vpn_notification_channel": "Koneksyon ng VPN",

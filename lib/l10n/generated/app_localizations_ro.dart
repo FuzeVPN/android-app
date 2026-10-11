@@ -1776,7 +1776,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Preț furnizat de Google Play. Suma finală este confirmată înainte de plată.';
+      'Preț furnizat de Google Play. Suma finală și taxele aplicabile sunt confirmate înainte de confirmarea ta.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2085,4 +2085,82 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Verificarea de securitate nu este disponibilă. Încearcă mai târziu.';
+
+  @override
+  String get billing_trialTitle => 'Încearcă Fuze Premium gratuit';
+
+  @override
+  String get billing_trialSubtitle =>
+      'Protejează-ți conexiunea începând de azi.';
+
+  @override
+  String get billing_trialWeeks => '2 săptămâni de probă gratuită';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days zile de probă gratuită';
+  }
+
+  @override
+  String get billing_trialStart => 'Începe perioada mea de probă gratuită';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Dacă începi azi, prima debitare este estimată pentru $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Se reînnoiește automat la prețul afișat. Pentru a evita debitarea, anulează în Google Play înainte de sfârșitul perioadei de probă.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Apoi $price pe lună';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Apoi $price pe an';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Alege-ți planul';
+
+  @override
+  String get billing_selectionHint => 'Selectează un plan pentru a continua.';
+
+  @override
+  String get billing_benefitConnection => 'Conexiune criptată';
+
+  @override
+  String get billing_benefitPrivacy => 'Confidențialitate online';
+
+  @override
+  String get billing_benefitNoAccount => 'Înregistrarea nu este obligatorie';
+
+  @override
+  String get billing_cancellation => 'Anulare în Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Conexiunea ta, mai bine protejată.';
+
+  @override
+  String get billing_premiumSubtitle => 'Protejează conexiunea în ritmul tău.';
+
+  @override
+  String get billing_priceMonthly => 'pe lună';
+
+  @override
+  String get billing_priceYearly => 'pe an';
+
+  @override
+  String get billing_trialToday => 'Azi nu ai nimic de plătit';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play confirmă datele, suma finală și taxele aplicabile înainte de confirmarea ta.';
+
+  @override
+  String get billing_offerChanged =>
+      'Condițiile acestei oferte s-au schimbat. Reîmprospătează planurile și alege din nou.';
 }

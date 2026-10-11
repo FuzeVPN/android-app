@@ -1,6 +1,6 @@
 # Google Play Billing — client Android et contrat attendu
 
-Version source **0.2.5+74011**, métadonnées documentaires du **11 octobre 2026**.
+Version source **0.2.6+74012**, métadonnées documentaires du **11 octobre 2026**.
 Le client natif `BillingClient`, son canal Flutter et les actions d’abonnement
 sont intégrés. Package : `com.fuzevpn` ; permission :
 `com.android.vending.BILLING` ; bibliothèque : **9.1.0**.

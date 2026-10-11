@@ -1744,7 +1744,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Fiyat Google Play tarafından sağlanır. Son tutar ödeme öncesinde onaylanır.';
+      'Fiyat Google Play tarafından sağlanır. Son tutar ve geçerli vergiler, onayınızdan önce doğrulanır.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2051,4 +2051,82 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Güvenlik doğrulaması kullanılamıyor. Daha sonra deneyin.';
+
+  @override
+  String get billing_trialTitle => 'Fuze Premium’u ücretsiz deneyin';
+
+  @override
+  String get billing_trialSubtitle => 'Bağlantınızı bugünden itibaren koruyun.';
+
+  @override
+  String get billing_trialWeeks => '2 haftalık ücretsiz deneme';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days günlük ücretsiz deneme';
+  }
+
+  @override
+  String get billing_trialStart => 'Ücretsiz denememi başlat';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Bugün başlarsanız ilk tahsilatın $date tarihinde yapılması beklenir.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Belirtilen fiyatla otomatik olarak yenilenir. Ücret alınmaması için deneme bitmeden Google Play’den iptal edin.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Ardından ayda $price';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Ardından yılda $price';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Planınızı seçin';
+
+  @override
+  String get billing_selectionHint => 'Devam etmek için bir plan seçin.';
+
+  @override
+  String get billing_benefitConnection => 'Şifreli bağlantı';
+
+  @override
+  String get billing_benefitPrivacy => 'Çevrimiçi gizlilik';
+
+  @override
+  String get billing_benefitNoAccount => 'Kayıt zorunlu değil';
+
+  @override
+  String get billing_cancellation => 'Google Play’den iptal';
+
+  @override
+  String get billing_premiumTitle => 'Bağlantınız daha iyi korunsun.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Bağlantınızı size uygun şekilde koruyun.';
+
+  @override
+  String get billing_priceMonthly => 'aylık';
+
+  @override
+  String get billing_priceYearly => 'yıllık';
+
+  @override
+  String get billing_trialToday => 'Bugün ödeme yok';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play, onayınızdan önce tarihleri, son tutarı ve geçerli vergileri doğrular.';
+
+  @override
+  String get billing_offerChanged =>
+      'Bu teklifin koşulları değişti. Planları yenileyip tekrar seçin.';
 }

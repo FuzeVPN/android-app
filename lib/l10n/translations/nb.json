@@ -555,7 +555,7 @@
     "billing_loadingPlans": "Laster abonnementer…",
     "billing_unavailable": "Ingen abonnementer er tilgjengelige nå. Prøv igjen senere.",
     "billing_comingSoon": "Abonnementer kommer snart.",
-    "billing_priceDisclosure": "Prisen leveres av Google Play. Det endelige beløpet bekreftes før betaling.",
+    "billing_priceDisclosure": "Pris fra Google Play. Sluttbeløp og gjeldende avgifter vises før du bekrefter.",
     "billing_renewalMonthly": "Fornyes automatisk hver måned hvis det ikke sies opp. Du kan si opp når som helst under Google Play-abonnementer.",
     "billing_renewalYearly": "Fornyes automatisk hvert år hvis det ikke sies opp. Du kan si opp når som helst under Google Play-abonnementer.",
     "billing_active": "Premium-tilgangen din er aktiv",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "Kontroller landet og begge samtykkene.",
     "google_consentRequired": "Velg landet ditt og godta begge dokumentene for å fortsette.",
     "google_challengeRequired": "En ekstra sikkerhetskontroll kreves. Nåværende tilgang beholdes.",
-    "google_challengeUnavailable": "Sikkerhetskontrollen er ikke tilgjengelig. Prøv senere."
+    "google_challengeUnavailable": "Sikkerhetskontrollen er ikke tilgjengelig. Prøv senere.",
+    "billing_trialTitle": "Prøv Fuze Premium gratis",
+    "billing_trialSubtitle": "Beskytt tilkoblingen din fra i dag.",
+    "billing_trialWeeks": "2 ukers gratis prøveperiode",
+    "billing_trialDays": "{days} dagers gratis prøveperiode",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Start min gratis prøveperiode",
+    "billing_trialFirstCharge": "Hvis du starter i dag, forventes første belastning den {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Fornyes automatisk til oppgitt pris. Avslutt i Google Play før prøveperioden utløper for å unngå en belastning.",
+    "billing_trialThenMonthly": "Deretter {price} per måned",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Deretter {price} per år",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Velg abonnement",
+    "billing_selectionHint": "Velg et abonnement for å fortsette.",
+    "billing_benefitConnection": "Kryptert tilkobling",
+    "billing_benefitPrivacy": "Personvern på nettet",
+    "billing_benefitNoAccount": "Registrering er ikke påkrevd",
+    "billing_cancellation": "Avslutt i Google Play",
+    "billing_premiumTitle": "Tilkoblingen din, bedre beskyttet.",
+    "billing_premiumSubtitle": "Beskytt tilkoblingen i ditt eget tempo.",
+    "billing_priceMonthly": "per måned",
+    "billing_priceYearly": "per år",
+    "billing_trialToday": "Ingenting å betale i dag",
+    "billing_trialConfirmation": "Google Play bekrefter datoer, sluttbeløp og gjeldende avgifter før du bekrefter.",
+    "billing_offerChanged": "Vilkårene for dette tilbudet har endret seg. Oppdater abonnementene og velg på nytt."
   },
   "android": {
     "vpn_notification_channel": "VPN-tilkobling",

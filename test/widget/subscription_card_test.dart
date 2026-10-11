@@ -160,6 +160,173 @@ void main() {
     },
   );
 
+  testWidgets(
+    'eligible trial has a separate choice and clear recurring terms',
+    (tester) async {
+      final fixture = _BillingFixture();
+      fixture.gateway.plans = [_withTrial(_monthly), _withTrial(_yearly)];
+      addTearDown(fixture.controller.dispose);
+      await tester.pumpWidget(_app(fixture.controller));
+      await _openPlans(tester);
+      final copy = AppLocalizations.of(
+        tester.element(find.byKey(const ValueKey('subscription-selection'))),
+      );
+      expect(find.text(copy.billing_trialTitle), findsOneWidget);
+      expect(_continueButton(tester).onPressed, isNull);
+      expect(
+        find.byKey(const ValueKey('subscription-trial-summary')),
+        findsNothing,
+      );
+      expect(fixture.gateway.launchedPlans, isEmpty);
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('subscription-plan-monthly')),
+      );
+      await tester.tap(find.byKey(const ValueKey('subscription-plan-monthly')));
+      await tester.pumpAndSettle();
+      expect(find.text(copy.billing_trialToday), findsOneWidget);
+      expect(
+        find.text(copy.billing_trialThenMonthly(_monthly.formattedPrice)),
+        findsOneWidget,
+      );
+      expect(find.text(copy.billing_trialTerms), findsOneWidget);
+      expect(find.text(copy.billing_trialConfirmation), findsOneWidget);
+      expect(find.byKey(const ValueKey('onboarding-terms')), findsOneWidget);
+      expect(find.byKey(const ValueKey('onboarding-privacy')), findsOneWidget);
+      expect(find.text(copy.billing_trialStart), findsOneWidget);
+      expect(_continueButton(tester).onPressed, isNotNull);
+      expect(fixture.gateway.launchedPlans, isEmpty);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
+  testWidgets(
+    'mixed catalog stops promising a trial for the selected paid plan',
+    (tester) async {
+      final fixture = _BillingFixture();
+      fixture.gateway.plans = [_withTrial(_monthly), _yearly];
+      addTearDown(fixture.controller.dispose);
+      await tester.pumpWidget(_app(fixture.controller));
+      await _openPlans(tester);
+      final copy = AppLocalizations.of(
+        tester.element(find.byKey(const ValueKey('subscription-selection'))),
+      );
+      expect(find.text(copy.billing_trialTitle), findsOneWidget);
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('subscription-plan-yearly')),
+      );
+      await tester.tap(find.byKey(const ValueKey('subscription-plan-yearly')));
+      await tester.pumpAndSettle();
+      expect(find.text(copy.billing_trialTitle), findsNothing);
+      expect(find.text(copy.billing_premiumTitle), findsOneWidget);
+      expect(find.text(copy.billing_trialStart), findsNothing);
+      expect(
+        find.byKey(const ValueKey('subscription-trial-summary')),
+        findsNothing,
+      );
+      expect(_continueButton(tester).onPressed, isNotNull);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'price_changed then an identical catalog requires a fresh choice',
+    (tester) async {
+      final fixture = _BillingFixture();
+      final trialMonthly = _withTrial(_monthly);
+      fixture.gateway.plans = [trialMonthly, _withTrial(_yearly)];
+      addTearDown(fixture.controller.dispose);
+      await tester.pumpWidget(_app(fixture.controller));
+      await _openPlans(tester);
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('subscription-plan-monthly')),
+      );
+      await tester.tap(find.byKey(const ValueKey('subscription-plan-monthly')));
+      await tester.pumpAndSettle();
+      fixture.gateway.priceChangedOnLaunch = true;
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('subscription-continue')),
+      );
+      await tester.tap(find.byKey(const ValueKey('subscription-continue')));
+      await tester.pumpAndSettle();
+      expect(fixture.controller.messageKey, 'billing.offerChanged');
+      expect(fixture.controller.plans, isEmpty);
+      fixture.gateway.priceChangedOnLaunch = false;
+      await tester.ensureVisible(
+        find.byKey(const ValueKey('subscription-retry-plans')),
+      );
+      await tester.tap(find.byKey(const ValueKey('subscription-retry-plans')));
+      await tester.pumpAndSettle();
+      expect(fixture.controller.plans.first.sameOffer(trialMonthly), isTrue);
+      expect(_continueButton(tester).onPressed, isNull);
+      expect(
+        find.byKey(const ValueKey('subscription-trial-summary')),
+        findsNothing,
+      );
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    },
+  );
+
+  testWidgets('catalog without an eligible offer makes no free trial promise', (
+    tester,
+  ) async {
+    final fixture = _BillingFixture();
+    addTearDown(fixture.controller.dispose);
+    await tester.pumpWidget(_app(fixture.controller));
+    await _openPlans(tester);
+    final copy = AppLocalizations.of(
+      tester.element(find.byKey(const ValueKey('subscription-selection'))),
+    );
+    expect(find.text(copy.billing_trialTitle), findsNothing);
+    expect(find.text(copy.billing_premiumTitle), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('subscription-trial-monthly')),
+      findsNothing,
+    );
+    await tester.tap(find.byKey(const ValueKey('subscription-plan-monthly')));
+    await tester.pumpAndSettle();
+    expect(find.text(copy.billing_trialStart), findsNothing);
+    expect(find.text(copy.billing_continue), findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('subscription-first-charge')),
+      findsNothing,
+    );
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('a changed offer invalidates the selected terms before payment', (
+    tester,
+  ) async {
+    final fixture = _BillingFixture();
+    fixture.gateway.plans = [_withTrial(_monthly), _yearly];
+    addTearDown(fixture.controller.dispose);
+    await tester.pumpWidget(_app(fixture.controller));
+    await _openPlans(tester);
+    await tester.ensureVisible(
+      find.byKey(const ValueKey('subscription-plan-monthly')),
+    );
+    await tester.tap(find.byKey(const ValueKey('subscription-plan-monthly')));
+    await tester.pumpAndSettle();
+    expect(_continueButton(tester).onPressed, isNotNull);
+    fixture.gateway.plans = [_monthly, _yearly];
+    await fixture.controller.loadPlans();
+    await tester.pumpAndSettle();
+    expect(_continueButton(tester).onPressed, isNull);
+    expect(
+      find.byKey(const ValueKey('subscription-trial-summary')),
+      findsNothing,
+    );
+    expect(fixture.gateway.launchedPlans, isEmpty);
+    await tester.ensureVisible(
+      find.byKey(const ValueKey('subscription-plan-monthly')),
+    );
+    await tester.tap(find.byKey(const ValueKey('subscription-plan-monthly')));
+    await tester.pumpAndSettle();
+    expect(_continueButton(tester).onPressed, isNotNull);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('store failure has a retry without inventing prices', (
     tester,
   ) async {
@@ -174,6 +341,9 @@ void main() {
       findsOneWidget,
     );
     fixture.gateway.catalogUnavailable = false;
+    await tester.ensureVisible(
+      find.byKey(const ValueKey('subscription-retry-plans')),
+    );
     await tester.tap(find.byKey(const ValueKey('subscription-retry-plans')));
     await tester.pumpAndSettle();
     expect(find.text(_monthly.formattedPrice), findsOneWidget);
@@ -400,6 +570,8 @@ class _Store implements PlayBillingGateway {
   int restoreRequests = 0;
   int managementRequests = 0;
   bool catalogUnavailable = false;
+  bool priceChangedOnLaunch = false;
+  List<PlaySubscriptionPlan> plans = const [_monthly, _yearly];
   final launchedPlans = <PlaySubscriptionPlan>[];
   final launchedOwners = <String>[];
   @override
@@ -408,7 +580,7 @@ class _Store implements PlayBillingGateway {
   Future<List<PlaySubscriptionPlan>> queryPlans() async {
     catalogRequests++;
     if (catalogUnavailable) throw const PlayBillingException('unavailable');
-    return const <PlaySubscriptionPlan>[_monthly, _yearly];
+    return plans;
   }
 
   @override
@@ -416,6 +588,7 @@ class _Store implements PlayBillingGateway {
     required PlaySubscriptionPlan plan,
     required String obfuscatedAccountId,
   }) async {
+    if (priceChangedOnLaunch) throw const PlayBillingException('price_changed');
     launchedPlans.add(plan);
     launchedOwners.add(obfuscatedAccountId);
   }
@@ -431,6 +604,29 @@ class _Store implements PlayBillingGateway {
   @override
   void dispose() => unawaited(_events.close());
 }
+
+PlaySubscriptionPlan _withTrial(PlaySubscriptionPlan recurring) =>
+    PlaySubscriptionPlan(
+      productId: recurring.productId,
+      basePlanId: recurring.basePlanId,
+      offerToken: 'trial-${recurring.offerToken}',
+      formattedPrice: recurring.formattedPrice,
+      currencyCode: recurring.currencyCode,
+      billingPeriod: recurring.billingPeriod,
+      priceAmountMicros: recurring.priceAmountMicros,
+      offerId: 'freetest',
+      pricingPhases: [
+        PlayPricingPhase(
+          formattedPrice: '0',
+          priceAmountMicros: 0,
+          currencyCode: recurring.currencyCode,
+          billingPeriod: 'P2W',
+          billingCycleCount: 1,
+          recurrenceMode: 2,
+        ),
+        ...recurring.pricingPhases,
+      ],
+    );
 
 class _BillingApi implements BillingApiRepository {
   bool contextUnavailable = false;

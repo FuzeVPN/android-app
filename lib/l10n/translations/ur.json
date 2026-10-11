@@ -555,7 +555,7 @@
     "billing_loadingPlans": "پلان لوڈ ہو رہے ہیں…",
     "billing_unavailable": "فی الحال کوئی پلان دستیاب نہیں۔ بعد میں دوبارہ کوشش کریں۔",
     "billing_comingSoon": "رکنیتیں جلد دستیاب ہوں گی۔",
-    "billing_priceDisclosure": "قیمت Google Play سے فراہم کی گئی ہے۔ حتمی رقم کی تصدیق ادائیگی سے پہلے ہوگی۔",
+    "billing_priceDisclosure": "قیمت Google Play فراہم کرتا ہے۔ آخری رقم اور متعلقہ ٹیکس آپ کی تصدیق سے پہلے دکھائے جاتے ہیں۔",
     "billing_renewalMonthly": "منسوخ نہ کرنے پر ہر ماہ خودکار تجدید ہوگی۔ Google Play کی رکنیتوں میں کسی بھی وقت منسوخ کر سکتے ہیں۔",
     "billing_renewalYearly": "منسوخ نہ کرنے پر ہر سال خودکار تجدید ہوگی۔ Google Play کی رکنیتوں میں کسی بھی وقت منسوخ کر سکتے ہیں۔",
     "billing_active": "آپ کی Premium رسائی فعال ہے",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "ملک اور دونوں رضامندیوں کی جانچ کریں۔",
     "google_consentRequired": "جاری رکھنے کے لیے ملک منتخب کریں اور دونوں دستاویزات قبول کریں۔",
     "google_challengeRequired": "اضافی سیکیورٹی جانچ ضروری ہے۔ موجودہ رسائی محفوظ رہے گی۔",
-    "google_challengeUnavailable": "سیکیورٹی جانچ دستیاب نہیں۔ بعد میں کوشش کریں۔"
+    "google_challengeUnavailable": "سیکیورٹی جانچ دستیاب نہیں۔ بعد میں کوشش کریں۔",
+    "billing_trialTitle": "Fuze Premium مفت آزمائیں",
+    "billing_trialSubtitle": "آج سے اپنا کنکشن محفوظ بنائیں۔",
+    "billing_trialWeeks": "2 ہفتے کی مفت آزمائش",
+    "billing_trialDays": "{days} دن کی مفت آزمائش",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "میری مفت آزمائش شروع کریں",
+    "billing_trialFirstCharge": "اگر آج شروع کریں تو پہلی رقم کٹنے کی متوقع تاریخ {date} ہے۔",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "دکھائی گئی قیمت پر خودکار تجدید ہوتی ہے۔ رقم کٹنے سے بچنے کے لیے آزمائش ختم ہونے سے پہلے Google Play میں منسوخ کریں۔",
+    "billing_trialThenMonthly": "اس کے بعد {price} ماہانہ",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "اس کے بعد {price} سالانہ",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "اپنا پلان منتخب کریں",
+    "billing_selectionHint": "آگے بڑھنے کے لیے ایک پلان منتخب کریں۔",
+    "billing_benefitConnection": "خفیہ کردہ کنکشن",
+    "billing_benefitPrivacy": "آن لائن رازداری",
+    "billing_benefitNoAccount": "رجسٹریشن ضروری نہیں",
+    "billing_cancellation": "Google Play میں منسوخی",
+    "billing_premiumTitle": "آپ کے کنکشن کی بہتر حفاظت۔",
+    "billing_premiumSubtitle": "اپنی ضرورت کے مطابق کنکشن محفوظ بنائیں۔",
+    "billing_priceMonthly": "ماہانہ",
+    "billing_priceYearly": "سالانہ",
+    "billing_trialToday": "آج کوئی ادائیگی نہیں",
+    "billing_trialConfirmation": "آپ کی تصدیق سے پہلے Google Play تاریخوں، آخری رقم اور متعلقہ ٹیکسوں کی تصدیق کرتا ہے۔",
+    "billing_offerChanged": "اس پیشکش کی شرائط بدل گئی ہیں۔ پلان ریفریش کریں اور دوبارہ منتخب کریں۔"
   },
   "android": {
     "vpn_notification_channel": "VPN کنکشن",

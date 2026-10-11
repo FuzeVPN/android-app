@@ -555,7 +555,7 @@
     "billing_loadingPlans": "Загрузка планов…",
     "billing_unavailable": "Сейчас нет доступных планов. Попробуйте позже.",
     "billing_comingSoon": "Подписки скоро появятся.",
-    "billing_priceDisclosure": "Цена предоставлена Google Play. Итоговая сумма подтверждается перед оплатой.",
+    "billing_priceDisclosure": "Цена предоставлена Google Play. Итоговая сумма и применимые налоги показываются до вашего подтверждения.",
     "billing_renewalMonthly": "Автоматическое продление каждый месяц, если подписка не отменена. Вы можете отменить её в любое время в подписках Google Play.",
     "billing_renewalYearly": "Автоматическое продление каждый год, если подписка не отменена. Вы можете отменить её в любое время в подписках Google Play.",
     "billing_active": "Ваш доступ Premium активен",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "Проверьте страну и оба согласия.",
     "google_consentRequired": "Выберите страну и примите оба документа, чтобы продолжить.",
     "google_challengeRequired": "Требуется дополнительная проверка безопасности. Текущий доступ сохраняется.",
-    "google_challengeUnavailable": "Проверка безопасности недоступна. Попробуйте позже."
+    "google_challengeUnavailable": "Проверка безопасности недоступна. Попробуйте позже.",
+    "billing_trialTitle": "Попробуйте Fuze Premium бесплатно",
+    "billing_trialSubtitle": "Защитите подключение уже сегодня.",
+    "billing_trialWeeks": "2 недели бесплатного пробного периода",
+    "billing_trialDays": "Бесплатный пробный период: {days} дней",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Начать бесплатный пробный период",
+    "billing_trialFirstCharge": "Если начать сегодня, первое списание ожидается {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Автоматическое продление по указанной цене. Чтобы избежать списания, отмените подписку в Google Play до окончания пробного периода.",
+    "billing_trialThenMonthly": "Затем {price} в месяц",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Затем {price} в год",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Выберите тариф",
+    "billing_selectionHint": "Выберите тариф для продолжения.",
+    "billing_benefitConnection": "Зашифрованное подключение",
+    "billing_benefitPrivacy": "Конфиденциальность в интернете",
+    "billing_benefitNoAccount": "Регистрация необязательна",
+    "billing_cancellation": "Отмена в Google Play",
+    "billing_premiumTitle": "Ваше подключение под лучшей защитой.",
+    "billing_premiumSubtitle": "Защитите подключение на удобных условиях.",
+    "billing_priceMonthly": "в месяц",
+    "billing_priceYearly": "в год",
+    "billing_trialToday": "Сегодня платить не нужно",
+    "billing_trialConfirmation": "Google Play покажет даты, итоговую сумму и применимые налоги до вашего подтверждения.",
+    "billing_offerChanged": "Условия этого предложения изменились. Обновите тарифы и выберите снова."
   },
   "android": {
     "vpn_notification_channel": "VPN-подключение",

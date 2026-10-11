@@ -1733,7 +1733,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Giá do Google Play cung cấp. Số tiền cuối cùng được xác nhận trước khi thanh toán.';
+      'Giá do Google Play cung cấp. Tổng tiền cuối cùng và thuế áp dụng được xác nhận trước khi bạn xác nhận.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2036,4 +2036,81 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Kiểm tra bảo mật không khả dụng. Thử lại sau.';
+
+  @override
+  String get billing_trialTitle => 'Dùng thử Fuze Premium miễn phí';
+
+  @override
+  String get billing_trialSubtitle => 'Bảo vệ kết nối của bạn ngay hôm nay.';
+
+  @override
+  String get billing_trialWeeks => 'Dùng thử miễn phí 2 tuần';
+
+  @override
+  String billing_trialDays(String days) {
+    return 'Dùng thử miễn phí $days ngày';
+  }
+
+  @override
+  String get billing_trialStart => 'Bắt đầu dùng thử miễn phí';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Nếu bắt đầu hôm nay, khoản thanh toán đầu tiên dự kiến vào $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Tự động gia hạn theo giá đã hiển thị. Để tránh bị tính phí, hãy hủy trên Google Play trước khi hết thời gian dùng thử.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Sau đó $price mỗi tháng';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Sau đó $price mỗi năm';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Chọn gói của bạn';
+
+  @override
+  String get billing_selectionHint => 'Chọn một gói để tiếp tục.';
+
+  @override
+  String get billing_benefitConnection => 'Kết nối được mã hóa';
+
+  @override
+  String get billing_benefitPrivacy => 'Quyền riêng tư trực tuyến';
+
+  @override
+  String get billing_benefitNoAccount => 'Không bắt buộc đăng ký tài khoản';
+
+  @override
+  String get billing_cancellation => 'Hủy trên Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Kết nối của bạn được bảo vệ tốt hơn.';
+
+  @override
+  String get billing_premiumSubtitle => 'Bảo vệ kết nối theo nhu cầu của bạn.';
+
+  @override
+  String get billing_priceMonthly => 'mỗi tháng';
+
+  @override
+  String get billing_priceYearly => 'mỗi năm';
+
+  @override
+  String get billing_trialToday => 'Hôm nay không phải thanh toán';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play xác nhận ngày, tổng tiền cuối cùng và thuế áp dụng trước khi bạn xác nhận.';
+
+  @override
+  String get billing_offerChanged =>
+      'Điều kiện của ưu đãi này đã thay đổi. Tải lại các gói và chọn lại.';
 }

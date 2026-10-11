@@ -1741,7 +1741,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Cenu poskytuje Google Play. Konečná částka je potvrzena před platbou.';
+      'Cena poskytovaná službou Google Play. Konečná částka a příslušné daně se zobrazí před vaším potvrzením.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2044,4 +2044,81 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Bezpečnostní kontrola není dostupná. Zkuste to později.';
+
+  @override
+  String get billing_trialTitle => 'Vyzkoušejte Fuze Premium zdarma';
+
+  @override
+  String get billing_trialSubtitle => 'Chraňte své připojení už dnes.';
+
+  @override
+  String get billing_trialWeeks => '2 týdny zkušební doby zdarma';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days dní zkušební doby zdarma';
+  }
+
+  @override
+  String get billing_trialStart => 'Začít zkušební dobu zdarma';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Pokud začnete dnes, první platba se očekává dne $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Automaticky se obnovuje za uvedenou cenu. Aby nedošlo k platbě, zrušte předplatné v Google Play před koncem zkušební doby.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Poté $price měsíčně';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Poté $price ročně';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Vyberte si tarif';
+
+  @override
+  String get billing_selectionHint => 'Pro pokračování vyberte tarif.';
+
+  @override
+  String get billing_benefitConnection => 'Šifrované připojení';
+
+  @override
+  String get billing_benefitPrivacy => 'Soukromí na internetu';
+
+  @override
+  String get billing_benefitNoAccount => 'Registrace není povinná';
+
+  @override
+  String get billing_cancellation => 'Zrušení v Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Vaše připojení, lépe chráněné.';
+
+  @override
+  String get billing_premiumSubtitle => 'Chraňte připojení podle svých potřeb.';
+
+  @override
+  String get billing_priceMonthly => 'měsíčně';
+
+  @override
+  String get billing_priceYearly => 'ročně';
+
+  @override
+  String get billing_trialToday => 'Dnes nic neplatíte';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play před vaším potvrzením potvrdí data, konečnou částku a příslušné daně.';
+
+  @override
+  String get billing_offerChanged =>
+      'Podmínky této nabídky se změnily. Obnovte tarify a vyberte znovu.';
 }

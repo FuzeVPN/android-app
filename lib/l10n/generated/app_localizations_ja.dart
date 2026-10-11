@@ -1604,7 +1604,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      '価格はGoogle Playから提供されます。最終金額はお支払い前に確認できます。';
+      '価格はGoogle Playから提供されます。確定前に最終金額と適用される税金が表示されます。';
 
   @override
   String get billing_renewalMonthly =>
@@ -1881,4 +1881,80 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get google_challengeUnavailable => 'セキュリティ確認を利用できません。後でもう一度お試しください。';
+
+  @override
+  String get billing_trialTitle => 'Fuze Premiumを無料で試す';
+
+  @override
+  String get billing_trialSubtitle => '今日から接続を保護しましょう。';
+
+  @override
+  String get billing_trialWeeks => '2週間の無料トライアル';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days日間の無料トライアル';
+  }
+
+  @override
+  String get billing_trialStart => '無料トライアルを開始';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return '今日開始した場合、初回請求予定日は$dateです。';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      '表示価格で自動更新されます。請求を避けるには、トライアル終了前にGoogle Playで解約してください。';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'その後は月額$price';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'その後は年額$price';
+  }
+
+  @override
+  String get billing_choosePeriod => 'プランを選択';
+
+  @override
+  String get billing_selectionHint => '続行するにはプランを選択してください。';
+
+  @override
+  String get billing_benefitConnection => '暗号化された接続';
+
+  @override
+  String get billing_benefitPrivacy => 'オンラインのプライバシー';
+
+  @override
+  String get billing_benefitNoAccount => 'アカウント登録は任意';
+
+  @override
+  String get billing_cancellation => 'Google Playで解約';
+
+  @override
+  String get billing_premiumTitle => '接続をより安全に。';
+
+  @override
+  String get billing_premiumSubtitle => '自分に合ったプランで接続を保護。';
+
+  @override
+  String get billing_priceMonthly => '月額';
+
+  @override
+  String get billing_priceYearly => '年額';
+
+  @override
+  String get billing_trialToday => '今日の支払いはありません';
+
+  @override
+  String get billing_trialConfirmation =>
+      '確定前にGoogle Playで日付、最終金額、適用される税金をご確認いただけます。';
+
+  @override
+  String get billing_offerChanged => 'このオファーの条件が変更されました。プランを更新し、もう一度選択してください。';
 }

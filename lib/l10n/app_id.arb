@@ -553,7 +553,7 @@
   "billing_loadingPlans": "Memuat paket…",
   "billing_unavailable": "Belum ada paket yang tersedia. Coba lagi nanti.",
   "billing_comingSoon": "Langganan segera tersedia.",
-  "billing_priceDisclosure": "Harga disediakan oleh Google Play. Jumlah akhir dikonfirmasi sebelum pembayaran.",
+  "billing_priceDisclosure": "Harga disediakan oleh Google Play. Jumlah akhir dan pajak yang berlaku dikonfirmasi sebelum Anda mengonfirmasi.",
   "billing_renewalMonthly": "Diperpanjang otomatis setiap bulan kecuali dibatalkan. Anda dapat membatalkan kapan saja di langganan Google Play.",
   "billing_renewalYearly": "Diperpanjang otomatis setiap tahun kecuali dibatalkan. Anda dapat membatalkan kapan saja di langganan Google Play.",
   "billing_active": "Akses Premium Anda aktif",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "Periksa negara dan kedua persetujuan.",
   "google_consentRequired": "Pilih negara Anda dan setujui kedua dokumen untuk melanjutkan.",
   "google_challengeRequired": "Pemeriksaan keamanan tambahan diperlukan. Akses Anda saat ini tetap disimpan.",
-  "google_challengeUnavailable": "Pemeriksaan keamanan tidak tersedia. Coba lagi nanti."
+  "google_challengeUnavailable": "Pemeriksaan keamanan tidak tersedia. Coba lagi nanti.",
+  "billing_trialTitle": "Coba Fuze Premium gratis",
+  "billing_trialSubtitle": "Lindungi koneksi Anda mulai hari ini.",
+  "billing_trialWeeks": "Uji coba gratis 2 minggu",
+  "billing_trialDays": "Uji coba gratis {days} hari",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Mulai uji coba gratis saya",
+  "billing_trialFirstCharge": "Jika dimulai hari ini, tagihan pertama diperkirakan pada {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Diperpanjang otomatis dengan harga yang tertera. Untuk menghindari tagihan, batalkan di Google Play sebelum uji coba berakhir.",
+  "billing_trialThenMonthly": "Lalu {price} per bulan",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Lalu {price} per tahun",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Pilih paket Anda",
+  "billing_selectionHint": "Pilih paket untuk melanjutkan.",
+  "billing_benefitConnection": "Koneksi terenkripsi",
+  "billing_benefitPrivacy": "Privasi online",
+  "billing_benefitNoAccount": "Tidak wajib mendaftar",
+  "billing_cancellation": "Pembatalan di Google Play",
+  "billing_premiumTitle": "Koneksi Anda lebih terlindungi.",
+  "billing_premiumSubtitle": "Lindungi koneksi sesuai kebutuhan Anda.",
+  "billing_priceMonthly": "per bulan",
+  "billing_priceYearly": "per tahun",
+  "billing_trialToday": "Tidak perlu membayar hari ini",
+  "billing_trialConfirmation": "Google Play mengonfirmasi tanggal, jumlah akhir, dan pajak yang berlaku sebelum Anda mengonfirmasi.",
+  "billing_offerChanged": "Ketentuan penawaran ini berubah. Muat ulang paket dan pilih kembali."
 }

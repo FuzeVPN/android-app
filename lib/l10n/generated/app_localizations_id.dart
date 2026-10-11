@@ -1744,7 +1744,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Harga disediakan oleh Google Play. Jumlah akhir dikonfirmasi sebelum pembayaran.';
+      'Harga disediakan oleh Google Play. Jumlah akhir dan pajak yang berlaku dikonfirmasi sebelum Anda mengonfirmasi.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2052,4 +2052,82 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Pemeriksaan keamanan tidak tersedia. Coba lagi nanti.';
+
+  @override
+  String get billing_trialTitle => 'Coba Fuze Premium gratis';
+
+  @override
+  String get billing_trialSubtitle => 'Lindungi koneksi Anda mulai hari ini.';
+
+  @override
+  String get billing_trialWeeks => 'Uji coba gratis 2 minggu';
+
+  @override
+  String billing_trialDays(String days) {
+    return 'Uji coba gratis $days hari';
+  }
+
+  @override
+  String get billing_trialStart => 'Mulai uji coba gratis saya';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Jika dimulai hari ini, tagihan pertama diperkirakan pada $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Diperpanjang otomatis dengan harga yang tertera. Untuk menghindari tagihan, batalkan di Google Play sebelum uji coba berakhir.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Lalu $price per bulan';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Lalu $price per tahun';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Pilih paket Anda';
+
+  @override
+  String get billing_selectionHint => 'Pilih paket untuk melanjutkan.';
+
+  @override
+  String get billing_benefitConnection => 'Koneksi terenkripsi';
+
+  @override
+  String get billing_benefitPrivacy => 'Privasi online';
+
+  @override
+  String get billing_benefitNoAccount => 'Tidak wajib mendaftar';
+
+  @override
+  String get billing_cancellation => 'Pembatalan di Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Koneksi Anda lebih terlindungi.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Lindungi koneksi sesuai kebutuhan Anda.';
+
+  @override
+  String get billing_priceMonthly => 'per bulan';
+
+  @override
+  String get billing_priceYearly => 'per tahun';
+
+  @override
+  String get billing_trialToday => 'Tidak perlu membayar hari ini';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play mengonfirmasi tanggal, jumlah akhir, dan pajak yang berlaku sebelum Anda mengonfirmasi.';
+
+  @override
+  String get billing_offerChanged =>
+      'Ketentuan penawaran ini berubah. Muat ulang paket dan pilih kembali.';
 }

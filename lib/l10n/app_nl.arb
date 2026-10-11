@@ -553,7 +553,7 @@
   "billing_loadingPlans": "Abonnementen laden…",
   "billing_unavailable": "Er zijn nu geen abonnementen beschikbaar. Probeer het later opnieuw.",
   "billing_comingSoon": "Abonnementen zijn binnenkort beschikbaar.",
-  "billing_priceDisclosure": "Prijs verstrekt door Google Play. Het definitieve bedrag wordt vóór betaling bevestigd.",
+  "billing_priceDisclosure": "Prijs van Google Play. Het eindbedrag en de toepasselijke belastingen worden vóór je bevestiging weergegeven.",
   "billing_renewalMonthly": "Wordt elke maand automatisch verlengd, tenzij opgezegd. Je kunt op elk moment opzeggen via Google Play-abonnementen.",
   "billing_renewalYearly": "Wordt elk jaar automatisch verlengd, tenzij opgezegd. Je kunt op elk moment opzeggen via Google Play-abonnementen.",
   "billing_active": "Je Premium-toegang is actief",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "Controleer uw land en beide toestemmingen.",
   "google_consentRequired": "Kies uw land en accepteer beide documenten om door te gaan.",
   "google_challengeRequired": "Een extra beveiligingscontrole is vereist. Uw huidige toegang blijft behouden.",
-  "google_challengeUnavailable": "De beveiligingscontrole is niet beschikbaar. Probeer later opnieuw."
+  "google_challengeUnavailable": "De beveiligingscontrole is niet beschikbaar. Probeer later opnieuw.",
+  "billing_trialTitle": "Probeer Fuze Premium gratis",
+  "billing_trialSubtitle": "Bescherm je verbinding vanaf vandaag.",
+  "billing_trialWeeks": "2 weken gratis proefperiode",
+  "billing_trialDays": "{days} dagen gratis proefperiode",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Mijn gratis proefperiode starten",
+  "billing_trialFirstCharge": "Als je vandaag begint, wordt de eerste afschrijving verwacht op {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Wordt automatisch verlengd tegen de vermelde prijs. Zeg in Google Play op voordat de proefperiode eindigt om een afschrijving te voorkomen.",
+  "billing_trialThenMonthly": "Daarna {price} per maand",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Daarna {price} per jaar",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Kies je abonnement",
+  "billing_selectionHint": "Selecteer een abonnement om door te gaan.",
+  "billing_benefitConnection": "Versleutelde verbinding",
+  "billing_benefitPrivacy": "Online privacy",
+  "billing_benefitNoAccount": "Registratie is niet verplicht",
+  "billing_cancellation": "Opzeggen in Google Play",
+  "billing_premiumTitle": "Je verbinding, beter beschermd.",
+  "billing_premiumSubtitle": "Bescherm je verbinding op jouw manier.",
+  "billing_priceMonthly": "per maand",
+  "billing_priceYearly": "per jaar",
+  "billing_trialToday": "Vandaag hoef je niets te betalen",
+  "billing_trialConfirmation": "Google Play bevestigt de datums, het eindbedrag en de toepasselijke belastingen voordat je bevestigt.",
+  "billing_offerChanged": "De voorwaarden van deze aanbieding zijn gewijzigd. Vernieuw de abonnementen en kies opnieuw."
 }

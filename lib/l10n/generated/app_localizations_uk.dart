@@ -1758,7 +1758,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Ціну надає Google Play. Остаточну суму підтверджують перед оплатою.';
+      'Ціну надано Google Play. Кінцева сума та застосовні податки підтверджуються перед вашим підтвердженням.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2065,4 +2065,82 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Перевірка безпеки недоступна. Спробуйте пізніше.';
+
+  @override
+  String get billing_trialTitle => 'Спробуйте Fuze Premium безкоштовно';
+
+  @override
+  String get billing_trialSubtitle => 'Захистіть з’єднання вже сьогодні.';
+
+  @override
+  String get billing_trialWeeks => '2 тижні безкоштовного пробного періоду';
+
+  @override
+  String billing_trialDays(String days) {
+    return 'Безкоштовний пробний період: $days днів';
+  }
+
+  @override
+  String get billing_trialStart => 'Розпочати безкоштовний пробний період';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Якщо розпочати сьогодні, перше списання очікується $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Автоматичне поновлення за вказаною ціною. Щоб уникнути списання, скасуйте підписку в Google Play до завершення пробного періоду.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Потім $price на місяць';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Потім $price на рік';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Виберіть тариф';
+
+  @override
+  String get billing_selectionHint => 'Виберіть тариф, щоб продовжити.';
+
+  @override
+  String get billing_benefitConnection => 'Зашифроване з’єднання';
+
+  @override
+  String get billing_benefitPrivacy => 'Конфіденційність в інтернеті';
+
+  @override
+  String get billing_benefitNoAccount => 'Реєстрація необов’язкова';
+
+  @override
+  String get billing_cancellation => 'Скасування в Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Ваше з’єднання під кращим захистом.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Захистіть з’єднання на зручних умовах.';
+
+  @override
+  String get billing_priceMonthly => 'на місяць';
+
+  @override
+  String get billing_priceYearly => 'на рік';
+
+  @override
+  String get billing_trialToday => 'Сьогодні платити не потрібно';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play підтвердить дати, кінцеву суму та застосовні податки перед вашим підтвердженням.';
+
+  @override
+  String get billing_offerChanged =>
+      'Умови цієї пропозиції змінилися. Оновіть тарифи та виберіть знову.';
 }

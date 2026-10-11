@@ -1771,7 +1771,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Prijs verstrekt door Google Play. Het definitieve bedrag wordt vóór betaling bevestigd.';
+      'Prijs van Google Play. Het eindbedrag en de toepasselijke belastingen worden vóór je bevestiging weergegeven.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2080,4 +2080,83 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'De beveiligingscontrole is niet beschikbaar. Probeer later opnieuw.';
+
+  @override
+  String get billing_trialTitle => 'Probeer Fuze Premium gratis';
+
+  @override
+  String get billing_trialSubtitle => 'Bescherm je verbinding vanaf vandaag.';
+
+  @override
+  String get billing_trialWeeks => '2 weken gratis proefperiode';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days dagen gratis proefperiode';
+  }
+
+  @override
+  String get billing_trialStart => 'Mijn gratis proefperiode starten';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Als je vandaag begint, wordt de eerste afschrijving verwacht op $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Wordt automatisch verlengd tegen de vermelde prijs. Zeg in Google Play op voordat de proefperiode eindigt om een afschrijving te voorkomen.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Daarna $price per maand';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Daarna $price per jaar';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Kies je abonnement';
+
+  @override
+  String get billing_selectionHint =>
+      'Selecteer een abonnement om door te gaan.';
+
+  @override
+  String get billing_benefitConnection => 'Versleutelde verbinding';
+
+  @override
+  String get billing_benefitPrivacy => 'Online privacy';
+
+  @override
+  String get billing_benefitNoAccount => 'Registratie is niet verplicht';
+
+  @override
+  String get billing_cancellation => 'Opzeggen in Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Je verbinding, beter beschermd.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Bescherm je verbinding op jouw manier.';
+
+  @override
+  String get billing_priceMonthly => 'per maand';
+
+  @override
+  String get billing_priceYearly => 'per jaar';
+
+  @override
+  String get billing_trialToday => 'Vandaag hoef je niets te betalen';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play bevestigt de datums, het eindbedrag en de toepasselijke belastingen voordat je bevestigt.';
+
+  @override
+  String get billing_offerChanged =>
+      'De voorwaarden van deze aanbieding zijn gewijzigd. Vernieuw de abonnementen en kies opnieuw.';
 }

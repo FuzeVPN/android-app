@@ -1745,7 +1745,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'قیمت Google Play سے فراہم کی گئی ہے۔ حتمی رقم کی تصدیق ادائیگی سے پہلے ہوگی۔';
+      'قیمت Google Play فراہم کرتا ہے۔ آخری رقم اور متعلقہ ٹیکس آپ کی تصدیق سے پہلے دکھائے جاتے ہیں۔';
 
   @override
   String get billing_renewalMonthly =>
@@ -2053,4 +2053,82 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'سیکیورٹی جانچ دستیاب نہیں۔ بعد میں کوشش کریں۔';
+
+  @override
+  String get billing_trialTitle => 'Fuze Premium مفت آزمائیں';
+
+  @override
+  String get billing_trialSubtitle => 'آج سے اپنا کنکشن محفوظ بنائیں۔';
+
+  @override
+  String get billing_trialWeeks => '2 ہفتے کی مفت آزمائش';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days دن کی مفت آزمائش';
+  }
+
+  @override
+  String get billing_trialStart => 'میری مفت آزمائش شروع کریں';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'اگر آج شروع کریں تو پہلی رقم کٹنے کی متوقع تاریخ $date ہے۔';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'دکھائی گئی قیمت پر خودکار تجدید ہوتی ہے۔ رقم کٹنے سے بچنے کے لیے آزمائش ختم ہونے سے پہلے Google Play میں منسوخ کریں۔';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'اس کے بعد $price ماہانہ';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'اس کے بعد $price سالانہ';
+  }
+
+  @override
+  String get billing_choosePeriod => 'اپنا پلان منتخب کریں';
+
+  @override
+  String get billing_selectionHint => 'آگے بڑھنے کے لیے ایک پلان منتخب کریں۔';
+
+  @override
+  String get billing_benefitConnection => 'خفیہ کردہ کنکشن';
+
+  @override
+  String get billing_benefitPrivacy => 'آن لائن رازداری';
+
+  @override
+  String get billing_benefitNoAccount => 'رجسٹریشن ضروری نہیں';
+
+  @override
+  String get billing_cancellation => 'Google Play میں منسوخی';
+
+  @override
+  String get billing_premiumTitle => 'آپ کے کنکشن کی بہتر حفاظت۔';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'اپنی ضرورت کے مطابق کنکشن محفوظ بنائیں۔';
+
+  @override
+  String get billing_priceMonthly => 'ماہانہ';
+
+  @override
+  String get billing_priceYearly => 'سالانہ';
+
+  @override
+  String get billing_trialToday => 'آج کوئی ادائیگی نہیں';
+
+  @override
+  String get billing_trialConfirmation =>
+      'آپ کی تصدیق سے پہلے Google Play تاریخوں، آخری رقم اور متعلقہ ٹیکسوں کی تصدیق کرتا ہے۔';
+
+  @override
+  String get billing_offerChanged =>
+      'اس پیشکش کی شرائط بدل گئی ہیں۔ پلان ریفریش کریں اور دوبارہ منتخب کریں۔';
 }

@@ -555,7 +555,7 @@
     "billing_loadingPlans": "Planlar yükleniyor…",
     "billing_unavailable": "Şu anda kullanılabilir plan yok. Daha sonra tekrar deneyin.",
     "billing_comingSoon": "Abonelikler yakında kullanıma sunulacak.",
-    "billing_priceDisclosure": "Fiyat Google Play tarafından sağlanır. Son tutar ödeme öncesinde onaylanır.",
+    "billing_priceDisclosure": "Fiyat Google Play tarafından sağlanır. Son tutar ve geçerli vergiler, onayınızdan önce doğrulanır.",
     "billing_renewalMonthly": "İptal edilmezse her ay otomatik yenilenir. Google Play aboneliklerinden istediğiniz zaman iptal edebilirsiniz.",
     "billing_renewalYearly": "İptal edilmezse her yıl otomatik yenilenir. Google Play aboneliklerinden istediğiniz zaman iptal edebilirsiniz.",
     "billing_active": "Premium erişiminiz etkin",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "Ülkeyi ve iki onayı kontrol edin.",
     "google_consentRequired": "Devam etmek için ülkenizi seçip iki belgeyi kabul edin.",
     "google_challengeRequired": "Ek güvenlik doğrulaması gerekiyor. Mevcut erişiminiz korunur.",
-    "google_challengeUnavailable": "Güvenlik doğrulaması kullanılamıyor. Daha sonra deneyin."
+    "google_challengeUnavailable": "Güvenlik doğrulaması kullanılamıyor. Daha sonra deneyin.",
+    "billing_trialTitle": "Fuze Premium’u ücretsiz deneyin",
+    "billing_trialSubtitle": "Bağlantınızı bugünden itibaren koruyun.",
+    "billing_trialWeeks": "2 haftalık ücretsiz deneme",
+    "billing_trialDays": "{days} günlük ücretsiz deneme",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Ücretsiz denememi başlat",
+    "billing_trialFirstCharge": "Bugün başlarsanız ilk tahsilatın {date} tarihinde yapılması beklenir.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Belirtilen fiyatla otomatik olarak yenilenir. Ücret alınmaması için deneme bitmeden Google Play’den iptal edin.",
+    "billing_trialThenMonthly": "Ardından ayda {price}",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Ardından yılda {price}",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Planınızı seçin",
+    "billing_selectionHint": "Devam etmek için bir plan seçin.",
+    "billing_benefitConnection": "Şifreli bağlantı",
+    "billing_benefitPrivacy": "Çevrimiçi gizlilik",
+    "billing_benefitNoAccount": "Kayıt zorunlu değil",
+    "billing_cancellation": "Google Play’den iptal",
+    "billing_premiumTitle": "Bağlantınız daha iyi korunsun.",
+    "billing_premiumSubtitle": "Bağlantınızı size uygun şekilde koruyun.",
+    "billing_priceMonthly": "aylık",
+    "billing_priceYearly": "yıllık",
+    "billing_trialToday": "Bugün ödeme yok",
+    "billing_trialConfirmation": "Google Play, onayınızdan önce tarihleri, son tutarı ve geçerli vergileri doğrular.",
+    "billing_offerChanged": "Bu teklifin koşulları değişti. Planları yenileyip tekrar seçin."
   },
   "android": {
     "vpn_notification_channel": "VPN bağlantısı",

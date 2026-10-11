@@ -1749,7 +1749,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Harga disediakan oleh Google Play. Jumlah akhir disahkan sebelum pembayaran.';
+      'Harga disediakan oleh Google Play. Jumlah akhir dan cukai yang dikenakan disahkan sebelum pengesahan anda.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2057,4 +2057,82 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Semakan keselamatan tidak tersedia. Cuba lagi kemudian.';
+
+  @override
+  String get billing_trialTitle => 'Cuba Fuze Premium secara percuma';
+
+  @override
+  String get billing_trialSubtitle => 'Lindungi sambungan anda mulai hari ini.';
+
+  @override
+  String get billing_trialWeeks => 'Percubaan percuma 2 minggu';
+
+  @override
+  String billing_trialDays(String days) {
+    return 'Percubaan percuma $days hari';
+  }
+
+  @override
+  String get billing_trialStart => 'Mulakan percubaan percuma saya';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Jika bermula hari ini, caj pertama dijangka pada $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Diperbaharui secara automatik pada harga yang dinyatakan. Untuk mengelakkan caj, batalkan di Google Play sebelum percubaan tamat.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Kemudian $price sebulan';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Kemudian $price setahun';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Pilih pelan anda';
+
+  @override
+  String get billing_selectionHint => 'Pilih pelan untuk meneruskan.';
+
+  @override
+  String get billing_benefitConnection => 'Sambungan disulitkan';
+
+  @override
+  String get billing_benefitPrivacy => 'Privasi dalam talian';
+
+  @override
+  String get billing_benefitNoAccount => 'Pendaftaran tidak diwajibkan';
+
+  @override
+  String get billing_cancellation => 'Pembatalan di Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Sambungan anda lebih terlindung.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Lindungi sambungan mengikut keperluan anda.';
+
+  @override
+  String get billing_priceMonthly => 'sebulan';
+
+  @override
+  String get billing_priceYearly => 'setahun';
+
+  @override
+  String get billing_trialToday => 'Tiada bayaran hari ini';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play mengesahkan tarikh, jumlah akhir dan cukai yang dikenakan sebelum pengesahan anda.';
+
+  @override
+  String get billing_offerChanged =>
+      'Syarat tawaran ini telah berubah. Muat semula pelan dan pilih semula.';
 }

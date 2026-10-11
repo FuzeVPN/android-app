@@ -2,7 +2,7 @@
 
 [Français](README.fr.md)
 
-Source code for the FuzeVPN Android client, version **0.2.5+74011**.
+Source code for the FuzeVPN Android client, version **0.2.6+74012**.
 The app uses Flutter, Kotlin, WireGuard and OpenVPN. Its Android package is
 `com.fuzevpn`; Android 8.0 (API 26) or later is required.
 
@@ -10,10 +10,10 @@ This repository publishes sources and reviewed native build inputs. It does
 not publish APKs, App Bundles or GitHub Releases. The FuzeVPN backend and VPN
 infrastructure are separate services and are not included here.
 
-This update fixes welcome-screen returns after cancelled checkout, preserves
-the **Get started** label, and improves edge-to-edge layouts, large-text
-navigation and unavailable-server recovery. See the
-[release notes](docs/RELEASE_NOTES.md) for changes and validation limits.
+This version redesigns the Premium screen and supports the Google Play
+`freetest` offer for eligible new subscribers, with exact recurring prices,
+renewal terms and an estimated first charge date. See the
+[release notes](docs/RELEASE_NOTES.md) and [trial guide](docs/FREE_TRIAL.md).
 
 ## Features
 
@@ -68,7 +68,7 @@ Most detailed guides are maintained in French.
 
 | Guide | Scope |
 | --- | --- |
-| [Release notes](docs/RELEASE_NOTES.md) | Changes in 0.2.5+74011 and validation limits |
+| [Release notes](docs/RELEASE_NOTES.md) | Changes in 0.2.6+74012 and validation limits |
 | [Development](docs/DEVELOPMENT.md) | Toolchain, build, tests and device qualification |
 | [Architecture](docs/ARCHITECTURE.md) | Client behavior, storage, VPN lifecycle and expected API |
 | [Native dependencies](docs/NATIVE_DEPENDENCIES.md) | Source revisions, patches, integrity and reconstruction |

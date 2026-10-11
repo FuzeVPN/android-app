@@ -49,10 +49,15 @@ class NativePlayBillingGateway
   }) async {
     await _invoke('launchSubscription', <String, Object?>{
       'basePlanId': plan.basePlanId,
+      'offerId': plan.offerId,
       'offerToken': plan.offerToken,
       'formattedPrice': plan.formattedPrice,
       'currencyCode': plan.currencyCode,
       'billingPeriod': plan.billingPeriod,
+      'priceAmountMicros': plan.priceAmountMicros,
+      'pricingPhases': plan.pricingPhases
+          .map((phase) => phase.toJson())
+          .toList(),
       'obfuscatedAccountId': obfuscatedAccountId,
     });
   }

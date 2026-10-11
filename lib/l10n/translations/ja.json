@@ -555,7 +555,7 @@
     "billing_loadingPlans": "プランを読み込み中…",
     "billing_unavailable": "現在利用できるプランはありません。後でもう一度お試しください。",
     "billing_comingSoon": "サブスクリプションは近日公開予定です。",
-    "billing_priceDisclosure": "価格はGoogle Playから提供されます。最終金額はお支払い前に確認できます。",
+    "billing_priceDisclosure": "価格はGoogle Playから提供されます。確定前に最終金額と適用される税金が表示されます。",
     "billing_renewalMonthly": "解約しない限り毎月自動更新されます。Google Playの定期購入からいつでも解約できます。",
     "billing_renewalYearly": "解約しない限り毎年自動更新されます。Google Playの定期購入からいつでも解約できます。",
     "billing_active": "Premiumアクセスは有効です",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "国と2つの同意を確認してください。",
     "google_consentRequired": "続行するには国を選び、2つの文書に同意してください。",
     "google_challengeRequired": "追加のセキュリティ確認が必要です。現在のアクセスは保持されます。",
-    "google_challengeUnavailable": "セキュリティ確認を利用できません。後でもう一度お試しください。"
+    "google_challengeUnavailable": "セキュリティ確認を利用できません。後でもう一度お試しください。",
+    "billing_trialTitle": "Fuze Premiumを無料で試す",
+    "billing_trialSubtitle": "今日から接続を保護しましょう。",
+    "billing_trialWeeks": "2週間の無料トライアル",
+    "billing_trialDays": "{days}日間の無料トライアル",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "無料トライアルを開始",
+    "billing_trialFirstCharge": "今日開始した場合、初回請求予定日は{date}です。",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "表示価格で自動更新されます。請求を避けるには、トライアル終了前にGoogle Playで解約してください。",
+    "billing_trialThenMonthly": "その後は月額{price}",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "その後は年額{price}",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "プランを選択",
+    "billing_selectionHint": "続行するにはプランを選択してください。",
+    "billing_benefitConnection": "暗号化された接続",
+    "billing_benefitPrivacy": "オンラインのプライバシー",
+    "billing_benefitNoAccount": "アカウント登録は任意",
+    "billing_cancellation": "Google Playで解約",
+    "billing_premiumTitle": "接続をより安全に。",
+    "billing_premiumSubtitle": "自分に合ったプランで接続を保護。",
+    "billing_priceMonthly": "月額",
+    "billing_priceYearly": "年額",
+    "billing_trialToday": "今日の支払いはありません",
+    "billing_trialConfirmation": "確定前にGoogle Playで日付、最終金額、適用される税金をご確認いただけます。",
+    "billing_offerChanged": "このオファーの条件が変更されました。プランを更新し、もう一度選択してください。"
   },
   "android": {
     "vpn_notification_channel": "VPN接続",

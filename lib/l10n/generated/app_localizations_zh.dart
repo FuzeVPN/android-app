@@ -1526,7 +1526,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get billing_comingSoon => '订阅即将推出。';
 
   @override
-  String get billing_priceDisclosure => '价格由 Google Play 提供。最终金额将在付款前确认。';
+  String get billing_priceDisclosure => '价格由 Google Play 提供。您确认前会显示最终金额和适用税费。';
 
   @override
   String get billing_renewalMonthly =>
@@ -1788,6 +1788,81 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get google_challengeUnavailable => '安全验证不可用。请稍后重试。';
+
+  @override
+  String get billing_trialTitle => '免费试用 Fuze Premium';
+
+  @override
+  String get billing_trialSubtitle => '从今天起保护您的连接。';
+
+  @override
+  String get billing_trialWeeks => '2 周免费试用';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days 天免费试用';
+  }
+
+  @override
+  String get billing_trialStart => '开始免费试用';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return '如果今天开始，首次扣款预计在 $date。';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      '按所示价格自动续订。如需避免扣款，请在试用结束前通过 Google Play 取消订阅。';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return '之后每月 $price';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return '之后每年 $price';
+  }
+
+  @override
+  String get billing_choosePeriod => '选择您的方案';
+
+  @override
+  String get billing_selectionHint => '请选择方案以继续。';
+
+  @override
+  String get billing_benefitConnection => '加密连接';
+
+  @override
+  String get billing_benefitPrivacy => '在线隐私';
+
+  @override
+  String get billing_benefitNoAccount => '无需强制注册';
+
+  @override
+  String get billing_cancellation => '通过 Google Play 取消';
+
+  @override
+  String get billing_premiumTitle => '让您的连接得到更好的保护。';
+
+  @override
+  String get billing_premiumSubtitle => '按您的需求保护连接。';
+
+  @override
+  String get billing_priceMonthly => '每月';
+
+  @override
+  String get billing_priceYearly => '每年';
+
+  @override
+  String get billing_trialToday => '今天无需付款';
+
+  @override
+  String get billing_trialConfirmation => '您确认前，Google Play 会确认日期、最终金额和适用税费。';
+
+  @override
+  String get billing_offerChanged => '此优惠的条件已更改。请刷新方案并重新选择。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -3312,7 +3387,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get billing_comingSoon => '订阅即将推出。';
 
   @override
-  String get billing_priceDisclosure => '价格由 Google Play 提供。最终金额将在付款前确认。';
+  String get billing_priceDisclosure => '价格由 Google Play 提供。您确认前会显示最终金额和适用税费。';
 
   @override
   String get billing_renewalMonthly =>
@@ -3574,6 +3649,81 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get google_challengeUnavailable => '安全验证不可用。请稍后重试。';
+
+  @override
+  String get billing_trialTitle => '免费试用 Fuze Premium';
+
+  @override
+  String get billing_trialSubtitle => '从今天起保护您的连接。';
+
+  @override
+  String get billing_trialWeeks => '2 周免费试用';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days 天免费试用';
+  }
+
+  @override
+  String get billing_trialStart => '开始免费试用';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return '如果今天开始，首次扣款预计在 $date。';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      '按所示价格自动续订。如需避免扣款，请在试用结束前通过 Google Play 取消订阅。';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return '之后每月 $price';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return '之后每年 $price';
+  }
+
+  @override
+  String get billing_choosePeriod => '选择您的方案';
+
+  @override
+  String get billing_selectionHint => '请选择方案以继续。';
+
+  @override
+  String get billing_benefitConnection => '加密连接';
+
+  @override
+  String get billing_benefitPrivacy => '在线隐私';
+
+  @override
+  String get billing_benefitNoAccount => '无需强制注册';
+
+  @override
+  String get billing_cancellation => '通过 Google Play 取消';
+
+  @override
+  String get billing_premiumTitle => '让您的连接得到更好的保护。';
+
+  @override
+  String get billing_premiumSubtitle => '按您的需求保护连接。';
+
+  @override
+  String get billing_priceMonthly => '每月';
+
+  @override
+  String get billing_priceYearly => '每年';
+
+  @override
+  String get billing_trialToday => '今天无需付款';
+
+  @override
+  String get billing_trialConfirmation => '您确认前，Google Play 会确认日期、最终金额和适用税费。';
+
+  @override
+  String get billing_offerChanged => '此优惠的条件已更改。请刷新方案并重新选择。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5105,7 +5255,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get billing_comingSoon => '訂閱即將推出。';
 
   @override
-  String get billing_priceDisclosure => '價格由 Google Play 提供。最終金額將在付款前確認。';
+  String get billing_priceDisclosure => '價格由 Google Play 提供。您確認前會顯示最終金額及適用稅費。';
 
   @override
   String get billing_renewalMonthly =>
@@ -5367,4 +5517,79 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get google_challengeUnavailable => '安全驗證無法使用。請稍後重試。';
+
+  @override
+  String get billing_trialTitle => '免費試用 Fuze Premium';
+
+  @override
+  String get billing_trialSubtitle => '從今天起保護您的連線。';
+
+  @override
+  String get billing_trialWeeks => '2 週免費試用';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days 天免費試用';
+  }
+
+  @override
+  String get billing_trialStart => '開始免費試用';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return '如果今天開始，首次扣款預計在 $date。';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      '按所示價格自動續訂。如需避免扣款，請在試用結束前透過 Google Play 取消訂閱。';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return '之後每月 $price';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return '之後每年 $price';
+  }
+
+  @override
+  String get billing_choosePeriod => '選擇您的方案';
+
+  @override
+  String get billing_selectionHint => '請選擇方案以繼續。';
+
+  @override
+  String get billing_benefitConnection => '加密連線';
+
+  @override
+  String get billing_benefitPrivacy => '線上隱私';
+
+  @override
+  String get billing_benefitNoAccount => '無需強制註冊';
+
+  @override
+  String get billing_cancellation => '透過 Google Play 取消';
+
+  @override
+  String get billing_premiumTitle => '讓您的連線得到更好的保護。';
+
+  @override
+  String get billing_premiumSubtitle => '按您的需求保護連線。';
+
+  @override
+  String get billing_priceMonthly => '每月';
+
+  @override
+  String get billing_priceYearly => '每年';
+
+  @override
+  String get billing_trialToday => '今天無需付款';
+
+  @override
+  String get billing_trialConfirmation => '您確認前，Google Play 會確認日期、最終金額及適用稅費。';
+
+  @override
+  String get billing_offerChanged => '此優惠的條件已變更。請重新整理方案並重新選擇。';
 }

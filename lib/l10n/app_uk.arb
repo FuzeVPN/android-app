@@ -553,7 +553,7 @@
   "billing_loadingPlans": "Завантаження планів…",
   "billing_unavailable": "Зараз немає доступних планів. Спробуйте пізніше.",
   "billing_comingSoon": "Підписки незабаром з’являться.",
-  "billing_priceDisclosure": "Ціну надає Google Play. Остаточну суму підтверджують перед оплатою.",
+  "billing_priceDisclosure": "Ціну надано Google Play. Кінцева сума та застосовні податки підтверджуються перед вашим підтвердженням.",
   "billing_renewalMonthly": "Автоматичне поновлення щомісяця, якщо не скасовано. Ви можете скасувати будь-коли в підписках Google Play.",
   "billing_renewalYearly": "Автоматичне поновлення щороку, якщо не скасовано. Ви можете скасувати будь-коли в підписках Google Play.",
   "billing_active": "Ваш доступ Premium активний",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "Перевірте країну та обидві згоди.",
   "google_consentRequired": "Виберіть країну та прийміть обидва документи, щоб продовжити.",
   "google_challengeRequired": "Потрібна додаткова перевірка безпеки. Поточний доступ збережено.",
-  "google_challengeUnavailable": "Перевірка безпеки недоступна. Спробуйте пізніше."
+  "google_challengeUnavailable": "Перевірка безпеки недоступна. Спробуйте пізніше.",
+  "billing_trialTitle": "Спробуйте Fuze Premium безкоштовно",
+  "billing_trialSubtitle": "Захистіть з’єднання вже сьогодні.",
+  "billing_trialWeeks": "2 тижні безкоштовного пробного періоду",
+  "billing_trialDays": "Безкоштовний пробний період: {days} днів",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Розпочати безкоштовний пробний період",
+  "billing_trialFirstCharge": "Якщо розпочати сьогодні, перше списання очікується {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Автоматичне поновлення за вказаною ціною. Щоб уникнути списання, скасуйте підписку в Google Play до завершення пробного періоду.",
+  "billing_trialThenMonthly": "Потім {price} на місяць",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Потім {price} на рік",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Виберіть тариф",
+  "billing_selectionHint": "Виберіть тариф, щоб продовжити.",
+  "billing_benefitConnection": "Зашифроване з’єднання",
+  "billing_benefitPrivacy": "Конфіденційність в інтернеті",
+  "billing_benefitNoAccount": "Реєстрація необов’язкова",
+  "billing_cancellation": "Скасування в Google Play",
+  "billing_premiumTitle": "Ваше з’єднання під кращим захистом.",
+  "billing_premiumSubtitle": "Захистіть з’єднання на зручних умовах.",
+  "billing_priceMonthly": "на місяць",
+  "billing_priceYearly": "на рік",
+  "billing_trialToday": "Сьогодні платити не потрібно",
+  "billing_trialConfirmation": "Google Play підтвердить дати, кінцеву суму та застосовні податки перед вашим підтвердженням.",
+  "billing_offerChanged": "Умови цієї пропозиції змінилися. Оновіть тарифи та виберіть знову."
 }

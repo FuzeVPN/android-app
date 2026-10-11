@@ -1797,7 +1797,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Η τιμή παρέχεται από το Google Play. Το τελικό ποσό επιβεβαιώνεται πριν από την πληρωμή.';
+      'Τιμή από το Google Play. Το τελικό ποσό και οι ισχύοντες φόροι εμφανίζονται πριν από την επιβεβαίωσή σου.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2106,4 +2106,83 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Ο έλεγχος ασφαλείας δεν είναι διαθέσιμος. Δοκιμάστε αργότερα.';
+
+  @override
+  String get billing_trialTitle => 'Δοκίμασε το Fuze Premium δωρεάν';
+
+  @override
+  String get billing_trialSubtitle => 'Προστάτευσε τη σύνδεσή σου από σήμερα.';
+
+  @override
+  String get billing_trialWeeks => '2 εβδομάδες δωρεάν δοκιμής';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days ημέρες δωρεάν δοκιμής';
+  }
+
+  @override
+  String get billing_trialStart => 'Έναρξη δωρεάν δοκιμής';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Αν ξεκινήσεις σήμερα, η πρώτη χρέωση αναμένεται στις $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Αυτόματη ανανέωση στην αναγραφόμενη τιμή. Για να αποφύγεις χρέωση, ακύρωσε στο Google Play πριν λήξει η δοκιμή.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Έπειτα $price τον μήνα';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Έπειτα $price τον χρόνο';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Επίλεξε το πρόγραμμά σου';
+
+  @override
+  String get billing_selectionHint =>
+      'Επίλεξε ένα πρόγραμμα για να συνεχίσεις.';
+
+  @override
+  String get billing_benefitConnection => 'Κρυπτογραφημένη σύνδεση';
+
+  @override
+  String get billing_benefitPrivacy => 'Ιδιωτικότητα στο διαδίκτυο';
+
+  @override
+  String get billing_benefitNoAccount => 'Δεν απαιτείται εγγραφή';
+
+  @override
+  String get billing_cancellation => 'Ακύρωση στο Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Η σύνδεσή σου, καλύτερα προστατευμένη.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Προστάτευσε τη σύνδεσή σου με τον δικό σου ρυθμό.';
+
+  @override
+  String get billing_priceMonthly => 'τον μήνα';
+
+  @override
+  String get billing_priceYearly => 'τον χρόνο';
+
+  @override
+  String get billing_trialToday => 'Δεν πληρώνεις τίποτα σήμερα';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Το Google Play επιβεβαιώνει ημερομηνίες, τελικό ποσό και ισχύοντες φόρους πριν από την επιβεβαίωσή σου.';
+
+  @override
+  String get billing_offerChanged =>
+      'Οι όροι αυτής της προσφοράς άλλαξαν. Ανανέωσε τα προγράμματα και επίλεξε ξανά.';
 }

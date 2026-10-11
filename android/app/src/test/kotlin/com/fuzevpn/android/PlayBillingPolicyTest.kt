@@ -60,16 +60,124 @@ class PlayBillingPolicyTest {
 
     @Test
     fun aFreshOfferMustMatchEveryDisplayedSelectionField() {
-        val plan = PlayBillingPlan("monthly", "selected-offer", phase("P1M"))
+        val plan = PlayBillingPlan("monthly", "selected-offer", null, listOf(phase("P1M")))
         val valid = arguments()
-        assertTrue(PlayBillingPolicy.selection(valid).matches(plan))
+        val selection = PlayBillingPolicy.selection(valid)
+        assertTrue(selection.matches(plan))
         for (changed in listOf(
-            valid + ("offerToken" to "replacement-offer"),
-            valid + ("formattedPrice" to "€9.99"),
-            valid + ("currencyCode" to "USD"),
-            valid + ("basePlanId" to "yearly") + ("billingPeriod" to "P1Y"),
+            plan.copy(offerToken = "replacement-offer"),
+            plan.copy(pricingPhases = listOf(plan.phase.copy(formattedPrice = "€9.99"))),
+            plan.copy(pricingPhases = listOf(plan.phase.copy(currencyCode = "USD"))),
+            plan.copy(basePlanId = "yearly", pricingPhases = listOf(plan.phase.copy(billingPeriod = "P1Y"))),
         )) {
-            assertFalse(PlayBillingPolicy.selection(changed).matches(plan))
+            assertFalse(selection.matches(changed))
+        }
+    }
+
+    @Test
+    fun twoWeekFreeTrialsKeepTheirCompleteScheduleAndPaidPrice() {
+        for ((base, period) in listOf("monthly" to "P1M", "yearly" to "P1Y")) {
+            for (freePeriod in listOf("P2W", "P14D")) {
+                val plan = trial(base, period, freePeriod)
+                assertTrue(PlayBillingPolicy.isSupportedOffer(
+                    "premium", base, "freetest", false, plan.pricingPhases,
+                ))
+                assertEquals(4_990_000L, plan.channelValue()["priceAmountMicros"])
+                assertEquals("€4.99", plan.channelValue()["formattedPrice"])
+                assertEquals(2, (plan.channelValue()["pricingPhases"] as List<*>).size)
+                assertTrue(PlayBillingPolicy.selection(plan.channelValue()
+                    .filterKeys { it != "productId" } + ("obfuscatedAccountId" to "opaque"))
+                    .matches(plan))
+            }
+        }
+    }
+
+    @Test
+    fun normalPlanIsFallbackWhenPlayDoesNotReturnAnEligibleTrial() {
+        val normal = PlayBillingPlan("monthly", "normal", null, listOf(phase("P1M")))
+        val trial = trial()
+        assertEquals(listOf(trial), PlayBillingPolicy.preferredPlans(listOf(normal, trial)))
+        assertEquals(listOf(normal), PlayBillingPolicy.preferredPlans(listOf(normal)))
+        assertTrue(PlayBillingPolicy.preferredPlans(emptyList()).isEmpty())
+        val unsupported = trial.copy(offerId = "other-offer")
+        assertEquals(listOf(normal), PlayBillingPolicy.preferredPlans(listOf(normal, unsupported)))
+    }
+
+    @Test
+    fun ambiguousTrialFallsBackWithoutChoosingAnArbitraryOffer() {
+        val normal = PlayBillingPlan("monthly", "normal", null, listOf(phase("P1M")))
+        val trial = trial()
+        assertEquals(listOf(normal), PlayBillingPolicy.preferredPlans(listOf(
+            normal, trial, trial.copy(offerToken = "other-trial"),
+        )))
+        assertTrue(PlayBillingPolicy.preferredPlans(listOf(
+            trial, trial.copy(offerToken = "other-trial"),
+        )).isEmpty())
+        assertTrue(PlayBillingPolicy.preferredPlans(listOf(normal, normal)).isEmpty())
+    }
+
+    @Test
+    fun malformedTrialSchedulesCannotAdvertiseFreeAccess() {
+        val plan = trial()
+        val free = plan.pricingPhases.first()
+        val paid = plan.pricingPhases.last()
+        for (phases in listOf(
+            listOf(free.copy(priceAmountMicros = 1), paid),
+            listOf(free.copy(billingPeriod = "P1W"), paid),
+            listOf(free.copy(billingCycleCount = 2), paid),
+            listOf(free.copy(recurrenceMode = 1), paid),
+            listOf(free.copy(currencyCode = "USD"), paid),
+            listOf(free, paid.copy(priceAmountMicros = 0)),
+            listOf(free, paid.copy(billingPeriod = "P1Y")),
+            listOf(free, paid.copy(billingCycleCount = 1)),
+            listOf(free, paid.copy(recurrenceMode = 3)),
+            listOf(paid, free),
+            listOf(free, paid, paid),
+        )) {
+            assertFalse(PlayBillingPolicy.isSupportedOffer(
+                "premium", "monthly", "freetest", false, phases,
+            ))
+            assertTrue(PlayBillingPolicy.preferredPlans(listOf(plan.copy(pricingPhases = phases))).isEmpty())
+        }
+        assertFalse(PlayBillingPolicy.isSupportedOffer(
+            "premium", "monthly", "freetest", true, plan.pricingPhases,
+        ))
+    }
+
+    @Test
+    fun staleTokenOrChangedScheduleCannotSubstituteCheckout() {
+        val original = trial()
+        val selected = PlayBillingPolicy.selection(original.channelValue()
+            .filterKeys { it != "productId" } + ("obfuscatedAccountId" to "opaque"))
+        val free = original.pricingPhases.first()
+        val paid = original.pricingPhases.last()
+        for (fresh in listOf(
+            original.copy(offerToken = "new-token"),
+            original.copy(offerId = null, pricingPhases = listOf(paid)),
+            original.copy(pricingPhases = listOf(free.copy(billingPeriod = "P14D"), paid)),
+            original.copy(pricingPhases = listOf(free.copy(billingCycleCount = 2), paid)),
+            original.copy(pricingPhases = listOf(free.copy(recurrenceMode = 3, billingCycleCount = 0), paid)),
+            original.copy(pricingPhases = listOf(free, paid.copy(formattedPrice = "€8.99", priceAmountMicros = 8_990_000))),
+        )) assertFalse(selected.matches(fresh))
+    }
+
+    @Test
+    fun trialSelectionRejectsAlteredProjectionAndMalformedPhaseValues() {
+        val plan = trial()
+        val valid = plan.channelValue().filterKeys { it != "productId" } +
+            ("obfuscatedAccountId" to "opaque")
+        for (change in listOf(
+            mapOf("priceAmountMicros" to 0L),
+            mapOf("offerId" to "unsupported"),
+            mapOf("pricingPhases" to emptyList<Any>()),
+            mapOf("pricingPhases" to listOf(plan.pricingPhases.first().channelValue()
+                + ("billingCycleCount" to 1.0), plan.pricingPhases.last().channelValue())),
+            mapOf("pricingPhases" to listOf(plan.pricingPhases.first().channelValue()
+                + ("recurrenceMode" to 4), plan.pricingPhases.last().channelValue())),
+        )) {
+            assertEquals("invalid_request", assertThrows(BillingException::class.java) {
+                PlayBillingPolicy.selection(valid + change)
+            }.code)
         }
     }
 
@@ -142,14 +250,23 @@ class PlayBillingPolicyTest {
         PlayBillingPolicy.isNormalBasePlan("premium", basePlanId, null, false, listOf(phase))
 
     private fun phase(period: String, price: Long = 4_990_000, infinite: Boolean = true) =
-        PlayBillingPhase(period, "€4.99", "EUR", price, infinite)
+        PlayBillingPhase(period, "€4.99", "EUR", price,
+            if (infinite) 0 else 1, if (infinite) 1 else 2)
 
-    private fun arguments(): Map<String, String> = mapOf(
+    private fun trial(base: String = "monthly", period: String = "P1M", freePeriod: String = "P2W") =
+        PlayBillingPlan(base, "trial-token", "freetest", listOf(
+            PlayBillingPhase(freePeriod, "€0.00", "EUR", 0, 1, 2), phase(period),
+        ))
+
+    private fun arguments(): Map<String, Any?> = mapOf(
         "basePlanId" to "monthly",
         "offerToken" to "selected-offer",
         "formattedPrice" to "€4.99",
         "currencyCode" to "EUR",
         "billingPeriod" to "P1M",
+        "offerId" to null,
+        "priceAmountMicros" to 4_990_000L,
+        "pricingPhases" to listOf(phase("P1M").channelValue()),
         "obfuscatedAccountId" to "a".repeat(64),
     )
 }

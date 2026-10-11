@@ -553,7 +553,7 @@
   "billing_loadingPlans": "กำลังโหลดแพ็กเกจ…",
   "billing_unavailable": "ขณะนี้ไม่มีแพ็กเกจที่พร้อมใช้งาน โปรดลองใหม่ภายหลัง",
   "billing_comingSoon": "การสมัครใช้บริการจะพร้อมให้ใช้งานเร็ว ๆ นี้",
-  "billing_priceDisclosure": "ราคาแสดงโดย Google Play ยอดชำระสุดท้ายจะได้รับการยืนยันก่อนชำระเงิน",
+  "billing_priceDisclosure": "ราคาแสดงโดย Google Play ยอดเงินสุดท้ายและภาษีที่เกี่ยวข้องจะได้รับการยืนยันก่อนที่คุณจะยืนยัน",
   "billing_renewalMonthly": "ต่ออายุอัตโนมัติทุกเดือนเว้นแต่จะยกเลิก คุณยกเลิกได้ทุกเมื่อในการสมัครใช้บริการของ Google Play",
   "billing_renewalYearly": "ต่ออายุอัตโนมัติทุกปีเว้นแต่จะยกเลิก คุณยกเลิกได้ทุกเมื่อในการสมัครใช้บริการของ Google Play",
   "billing_active": "สิทธิ์การเข้าถึง Premium ของคุณใช้งานได้",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "ตรวจสอบประเทศและความยินยอมทั้งสองรายการ",
   "google_consentRequired": "เลือกประเทศและยอมรับเอกสารทั้งสองฉบับเพื่อดำเนินการต่อ",
   "google_challengeRequired": "ต้องตรวจสอบความปลอดภัยเพิ่มเติม การเข้าถึงปัจจุบันจะยังคงอยู่",
-  "google_challengeUnavailable": "ไม่สามารถตรวจสอบความปลอดภัยได้ โปรดลองภายหลัง"
+  "google_challengeUnavailable": "ไม่สามารถตรวจสอบความปลอดภัยได้ โปรดลองภายหลัง",
+  "billing_trialTitle": "ทดลองใช้ Fuze Premium ฟรี",
+  "billing_trialSubtitle": "ปกป้องการเชื่อมต่อของคุณตั้งแต่วันนี้",
+  "billing_trialWeeks": "ทดลองใช้ฟรี 2 สัปดาห์",
+  "billing_trialDays": "ทดลองใช้ฟรี {days} วัน",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "เริ่มทดลองใช้ฟรี",
+  "billing_trialFirstCharge": "หากเริ่มวันนี้ คาดว่าจะเรียกเก็บเงินครั้งแรกวันที่ {date}",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "ต่ออายุอัตโนมัติในราคาที่แสดง หากไม่ต้องการให้เรียกเก็บเงิน ให้ยกเลิกใน Google Play ก่อนสิ้นสุดช่วงทดลองใช้",
+  "billing_trialThenMonthly": "จากนั้น {price} ต่อเดือน",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "จากนั้น {price} ต่อปี",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "เลือกแพ็กเกจของคุณ",
+  "billing_selectionHint": "เลือกแพ็กเกจเพื่อดำเนินการต่อ",
+  "billing_benefitConnection": "การเชื่อมต่อที่เข้ารหัส",
+  "billing_benefitPrivacy": "ความเป็นส่วนตัวออนไลน์",
+  "billing_benefitNoAccount": "ไม่จำเป็นต้องสมัครบัญชี",
+  "billing_cancellation": "ยกเลิกใน Google Play",
+  "billing_premiumTitle": "การเชื่อมต่อของคุณได้รับการปกป้องมากขึ้น",
+  "billing_premiumSubtitle": "ปกป้องการเชื่อมต่อตามความต้องการของคุณ",
+  "billing_priceMonthly": "ต่อเดือน",
+  "billing_priceYearly": "ต่อปี",
+  "billing_trialToday": "วันนี้ยังไม่ต้องชำระเงิน",
+  "billing_trialConfirmation": "Google Play ยืนยันวันที่ ยอดเงินสุดท้าย และภาษีที่เกี่ยวข้องก่อนที่คุณจะยืนยัน",
+  "billing_offerChanged": "เงื่อนไขของข้อเสนอนี้เปลี่ยนไปแล้ว รีเฟรชแพ็กเกจและเลือกอีกครั้ง"
 }

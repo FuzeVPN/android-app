@@ -1758,7 +1758,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Prix fourni par Google Play. Le montant final est confirmé avant le paiement.';
+      'Prix fourni par Google Play. Le montant final et les taxes applicables sont confirmés avant votre validation.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2067,4 +2067,84 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'La vérification de sécurité est indisponible. Réessayez plus tard.';
+
+  @override
+  String get billing_trialTitle => 'Essayez Fuze Premium gratuitement';
+
+  @override
+  String get billing_trialSubtitle =>
+      'Protégez votre connexion dès aujourd’hui.';
+
+  @override
+  String get billing_trialWeeks => '2 semaines d’essai gratuit';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days jours d’essai gratuit';
+  }
+
+  @override
+  String get billing_trialStart => 'Commencer mon essai gratuit';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Si vous commencez aujourd’hui, premier débit prévu le $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Renouvellement automatique au tarif indiqué. Pour éviter un débit, annulez dans Google Play avant la fin de l’essai.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Puis $price par mois';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Puis $price par an';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Choisissez votre formule';
+
+  @override
+  String get billing_selectionHint =>
+      'Sélectionnez une formule pour continuer.';
+
+  @override
+  String get billing_benefitConnection => 'Connexion chiffrée';
+
+  @override
+  String get billing_benefitPrivacy => 'Confidentialité en ligne';
+
+  @override
+  String get billing_benefitNoAccount => 'Sans inscription obligatoire';
+
+  @override
+  String get billing_cancellation => 'Annulation dans Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Votre connexion, mieux protégée.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Protégez votre connexion, à votre rythme.';
+
+  @override
+  String get billing_priceMonthly => 'par mois';
+
+  @override
+  String get billing_priceYearly => 'par an';
+
+  @override
+  String get billing_trialToday => 'Aujourd’hui, rien à payer';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play confirme les dates, le montant final et les taxes applicables avant votre validation.';
+
+  @override
+  String get billing_offerChanged =>
+      'Les conditions de cette offre ont changé. Actualisez les formules et choisissez à nouveau.';
 }

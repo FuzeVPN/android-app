@@ -553,7 +553,7 @@
   "billing_loadingPlans": "جارٍ تحميل الخطط…",
   "billing_unavailable": "لا توجد خطط متاحة الآن. حاول لاحقًا.",
   "billing_comingSoon": "الاشتراكات متاحة قريبًا.",
-  "billing_priceDisclosure": "السعر مقدّم من Google Play. يتم تأكيد المبلغ النهائي قبل الدفع.",
+  "billing_priceDisclosure": "السعر مقدّم من Google Play. يتم تأكيد المبلغ النهائي والضرائب المطبقة قبل تأكيدك.",
   "billing_renewalMonthly": "يتجدد تلقائيًا كل شهر ما لم يتم إلغاؤه. يمكنك الإلغاء في أي وقت من اشتراكات Google Play.",
   "billing_renewalYearly": "يتجدد تلقائيًا كل سنة ما لم يتم إلغاؤه. يمكنك الإلغاء في أي وقت من اشتراكات Google Play.",
   "billing_active": "وصولك إلى Premium نشط",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "تحقق من البلد والموافقتين.",
   "google_consentRequired": "اختر بلدك ووافق على المستندين للمتابعة.",
   "google_challengeRequired": "يلزم تحقق أمني إضافي. وصولك الحالي محفوظ.",
-  "google_challengeUnavailable": "التحقق الأمني غير متاح. حاول لاحقًا."
+  "google_challengeUnavailable": "التحقق الأمني غير متاح. حاول لاحقًا.",
+  "billing_trialTitle": "جرّب Fuze Premium مجانًا",
+  "billing_trialSubtitle": "احمِ اتصالك بدءًا من اليوم.",
+  "billing_trialWeeks": "تجربة مجانية لمدة أسبوعين",
+  "billing_trialDays": "تجربة مجانية لمدة {days} يومًا",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "بدء تجربتي المجانية",
+  "billing_trialFirstCharge": "إذا بدأت اليوم، فمن المتوقع أن تكون أول دفعة في {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "يتجدد تلقائيًا بالسعر المذكور. لتجنب أي دفعة، ألغِ الاشتراك في Google Play قبل انتهاء التجربة.",
+  "billing_trialThenMonthly": "ثم {price} شهريًا",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "ثم {price} سنويًا",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "اختر خطتك",
+  "billing_selectionHint": "اختر خطة للمتابعة.",
+  "billing_benefitConnection": "اتصال مشفّر",
+  "billing_benefitPrivacy": "الخصوصية عبر الإنترنت",
+  "billing_benefitNoAccount": "لا يلزم التسجيل",
+  "billing_cancellation": "الإلغاء في Google Play",
+  "billing_premiumTitle": "اتصالك، بحماية أفضل.",
+  "billing_premiumSubtitle": "احمِ اتصالك بالوتيرة التي تناسبك.",
+  "billing_priceMonthly": "شهريًا",
+  "billing_priceYearly": "سنويًا",
+  "billing_trialToday": "لا شيء تدفعه اليوم",
+  "billing_trialConfirmation": "يؤكد Google Play التواريخ والمبلغ النهائي والضرائب المطبقة قبل تأكيدك.",
+  "billing_offerChanged": "تغيّرت شروط هذا العرض. حدّث الخطط واختر من جديد."
 }

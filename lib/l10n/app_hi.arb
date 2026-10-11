@@ -553,7 +553,7 @@
   "billing_loadingPlans": "प्लान लोड हो रहे हैं…",
   "billing_unavailable": "अभी कोई प्लान उपलब्ध नहीं है। बाद में फिर कोशिश करें।",
   "billing_comingSoon": "सदस्यताएँ जल्द उपलब्ध होंगी।",
-  "billing_priceDisclosure": "कीमत Google Play से प्राप्त है। अंतिम राशि की पुष्टि भुगतान से पहले होगी।",
+  "billing_priceDisclosure": "कीमत Google Play से मिलती है। आपकी पुष्टि से पहले अंतिम राशि और लागू कर दिखाए जाते हैं।",
   "billing_renewalMonthly": "रद्द न करने पर हर महीने अपने आप नवीनीकरण होगा। Google Play की सदस्यताओं में किसी भी समय रद्द कर सकते हैं।",
   "billing_renewalYearly": "रद्द न करने पर हर साल अपने आप नवीनीकरण होगा। Google Play की सदस्यताओं में किसी भी समय रद्द कर सकते हैं।",
   "billing_active": "आपकी Premium पहुँच सक्रिय है",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "देश और दोनों सहमतियों की जाँच करें।",
   "google_consentRequired": "जारी रखने के लिए अपना देश चुनें और दोनों दस्तावेज़ स्वीकार करें।",
   "google_challengeRequired": "अतिरिक्त सुरक्षा जाँच आवश्यक है। आपकी मौजूदा पहुँच सुरक्षित है।",
-  "google_challengeUnavailable": "सुरक्षा जाँच उपलब्ध नहीं है। बाद में प्रयास करें।"
+  "google_challengeUnavailable": "सुरक्षा जाँच उपलब्ध नहीं है। बाद में प्रयास करें।",
+  "billing_trialTitle": "Fuze Premium मुफ़्त में आज़माएँ",
+  "billing_trialSubtitle": "आज से ही अपना कनेक्शन सुरक्षित करें।",
+  "billing_trialWeeks": "2 सप्ताह का मुफ़्त ट्रायल",
+  "billing_trialDays": "{days} दिन का मुफ़्त ट्रायल",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "मेरा मुफ़्त ट्रायल शुरू करें",
+  "billing_trialFirstCharge": "अगर आज शुरू करते हैं, तो पहली बार शुल्क लगने की अनुमानित तारीख {date} है।",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "दिखाई गई कीमत पर अपने आप नवीनीकरण होता है। शुल्क से बचने के लिए ट्रायल खत्म होने से पहले Google Play में रद्द करें।",
+  "billing_trialThenMonthly": "इसके बाद {price} प्रति माह",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "इसके बाद {price} प्रति वर्ष",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "अपना प्लान चुनें",
+  "billing_selectionHint": "आगे बढ़ने के लिए एक प्लान चुनें।",
+  "billing_benefitConnection": "एन्क्रिप्ट किया गया कनेक्शन",
+  "billing_benefitPrivacy": "ऑनलाइन निजता",
+  "billing_benefitNoAccount": "रजिस्टर करना ज़रूरी नहीं",
+  "billing_cancellation": "Google Play में रद्द करें",
+  "billing_premiumTitle": "आपके कनेक्शन की बेहतर सुरक्षा।",
+  "billing_premiumSubtitle": "अपनी सुविधा के अनुसार कनेक्शन सुरक्षित करें।",
+  "billing_priceMonthly": "प्रति माह",
+  "billing_priceYearly": "प्रति वर्ष",
+  "billing_trialToday": "आज कोई भुगतान नहीं",
+  "billing_trialConfirmation": "आपकी पुष्टि से पहले Google Play तारीखें, अंतिम राशि और लागू कर दिखाता है।",
+  "billing_offerChanged": "इस ऑफ़र की शर्तें बदल गई हैं। प्लान रीफ़्रेश करें और फिर से चुनें।"
 }

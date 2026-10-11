@@ -1702,7 +1702,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'السعر مقدّم من Google Play. يتم تأكيد المبلغ النهائي قبل الدفع.';
+      'السعر مقدّم من Google Play. يتم تأكيد المبلغ النهائي والضرائب المطبقة قبل تأكيدك.';
 
   @override
   String get billing_renewalMonthly =>
@@ -1998,4 +1998,81 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'التحقق الأمني غير متاح. حاول لاحقًا.';
+
+  @override
+  String get billing_trialTitle => 'جرّب Fuze Premium مجانًا';
+
+  @override
+  String get billing_trialSubtitle => 'احمِ اتصالك بدءًا من اليوم.';
+
+  @override
+  String get billing_trialWeeks => 'تجربة مجانية لمدة أسبوعين';
+
+  @override
+  String billing_trialDays(String days) {
+    return 'تجربة مجانية لمدة $days يومًا';
+  }
+
+  @override
+  String get billing_trialStart => 'بدء تجربتي المجانية';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'إذا بدأت اليوم، فمن المتوقع أن تكون أول دفعة في $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'يتجدد تلقائيًا بالسعر المذكور. لتجنب أي دفعة، ألغِ الاشتراك في Google Play قبل انتهاء التجربة.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'ثم $price شهريًا';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'ثم $price سنويًا';
+  }
+
+  @override
+  String get billing_choosePeriod => 'اختر خطتك';
+
+  @override
+  String get billing_selectionHint => 'اختر خطة للمتابعة.';
+
+  @override
+  String get billing_benefitConnection => 'اتصال مشفّر';
+
+  @override
+  String get billing_benefitPrivacy => 'الخصوصية عبر الإنترنت';
+
+  @override
+  String get billing_benefitNoAccount => 'لا يلزم التسجيل';
+
+  @override
+  String get billing_cancellation => 'الإلغاء في Google Play';
+
+  @override
+  String get billing_premiumTitle => 'اتصالك، بحماية أفضل.';
+
+  @override
+  String get billing_premiumSubtitle => 'احمِ اتصالك بالوتيرة التي تناسبك.';
+
+  @override
+  String get billing_priceMonthly => 'شهريًا';
+
+  @override
+  String get billing_priceYearly => 'سنويًا';
+
+  @override
+  String get billing_trialToday => 'لا شيء تدفعه اليوم';
+
+  @override
+  String get billing_trialConfirmation =>
+      'يؤكد Google Play التواريخ والمبلغ النهائي والضرائب المطبقة قبل تأكيدك.';
+
+  @override
+  String get billing_offerChanged =>
+      'تغيّرت شروط هذا العرض. حدّث الخطط واختر من جديد.';
 }

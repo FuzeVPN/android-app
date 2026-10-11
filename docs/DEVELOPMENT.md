@@ -1,6 +1,6 @@
 # Développer et valider le client Android
 
-Version source **0.2.5+74011**. Le dépôt public contient les sources et entrées
+Version source **0.2.6+74012**. Le dépôt public contient les sources et entrées
 natives nécessaires, sans APK/AAB ni GitHub Releases.
 
 Les commandes de ce guide partent de la racine du dépôt, sauf
@@ -419,7 +419,7 @@ pour cet envoi.
 
 ## Revue de publication des sources
 
-- [ ] Version **0.2.5+74011**, matrice du poste, dépendances et provenance natives
+- [ ] Version **0.2.6+74012**, matrice du poste, dépendances et provenance natives
       décrites ; entrées verrouillées et fixtures amont conservées.
 - [ ] Sources, patches, assets, licences, notices et instructions présentes,
       liens du dépôt utilisables sans historique de rapports locaux.

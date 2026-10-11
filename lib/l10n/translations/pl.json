@@ -555,7 +555,7 @@
     "billing_loadingPlans": "Ładowanie planów…",
     "billing_unavailable": "Obecnie nie ma dostępnych planów. Spróbuj później.",
     "billing_comingSoon": "Subskrypcje będą dostępne wkrótce.",
-    "billing_priceDisclosure": "Cena pochodzi z Google Play. Ostateczna kwota jest potwierdzana przed płatnością.",
+    "billing_priceDisclosure": "Cena z Google Play. Kwota końcowa i obowiązujące podatki są potwierdzane przed Twoim potwierdzeniem.",
     "billing_renewalMonthly": "Automatyczne odnawianie co miesiąc, chyba że anulujesz. Możesz anulować w dowolnym momencie w subskrypcjach Google Play.",
     "billing_renewalYearly": "Automatyczne odnawianie co rok, chyba że anulujesz. Możesz anulować w dowolnym momencie w subskrypcjach Google Play.",
     "billing_active": "Twój dostęp Premium jest aktywny",
@@ -647,7 +647,61 @@
     "google_invalidRegistration": "Sprawdź kraj i obie zgody.",
     "google_consentRequired": "Wybierz kraj i zaakceptuj oba dokumenty, aby kontynuować.",
     "google_challengeRequired": "Wymagana jest dodatkowa kontrola bezpieczeństwa. Obecny dostęp pozostaje zachowany.",
-    "google_challengeUnavailable": "Kontrola bezpieczeństwa jest niedostępna. Spróbuj później."
+    "google_challengeUnavailable": "Kontrola bezpieczeństwa jest niedostępna. Spróbuj później.",
+    "billing_trialTitle": "Wypróbuj Fuze Premium za darmo",
+    "billing_trialSubtitle": "Chroń swoje połączenie już dziś.",
+    "billing_trialWeeks": "2 tygodnie bezpłatnego okresu próbnego",
+    "billing_trialDays": "Bezpłatny okres próbny: {days} dni",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Rozpocznij bezpłatny okres próbny",
+    "billing_trialFirstCharge": "Jeśli zaczniesz dzisiaj, pierwsze obciążenie jest przewidziane na {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Automatyczne odnowienie po podanej cenie. Aby uniknąć opłaty, anuluj w Google Play przed końcem okresu próbnego.",
+    "billing_trialThenMonthly": "Następnie {price} miesięcznie",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Następnie {price} rocznie",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Wybierz plan",
+    "billing_selectionHint": "Wybierz plan, aby kontynuować.",
+    "billing_benefitConnection": "Szyfrowane połączenie",
+    "billing_benefitPrivacy": "Prywatność w internecie",
+    "billing_benefitNoAccount": "Rejestracja nie jest wymagana",
+    "billing_cancellation": "Anulowanie w Google Play",
+    "billing_premiumTitle": "Twoje połączenie, lepiej chronione.",
+    "billing_premiumSubtitle": "Chroń połączenie na własnych zasadach.",
+    "billing_priceMonthly": "miesięcznie",
+    "billing_priceYearly": "rocznie",
+    "billing_trialToday": "Dziś nic nie płacisz",
+    "billing_trialConfirmation": "Google Play potwierdza daty, kwotę końcową i obowiązujące podatki przed Twoim potwierdzeniem.",
+    "billing_offerChanged": "Warunki tej oferty się zmieniły. Odśwież plany i wybierz ponownie."
   },
   "android": {
     "vpn_notification_channel": "Połączenie VPN",

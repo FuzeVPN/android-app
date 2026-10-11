@@ -1,3 +1,47 @@
+# Android 0.2.6+74012 — 2026-10-11
+
+## Français
+
+- L’écran Fuze Premium présente les avantages, les formules et les conditions
+  de renouvellement dans une nouvelle composition adaptée aux différentes tailles
+  d’écran, aux thèmes et au texte agrandi.
+- L’offre Google Play `freetest` est prise en charge sur `monthly` et `yearly`.
+  L’essai de deux semaines apparaît seulement lorsque Google le propose au compte
+  Play éligible. Le forfait normal reste disponible sinon.
+- Le tarif récurrent exact reste affiché avec sa périodicité ; il n’est pas remplacé
+  par le prix nul de l’essai. La date du premier débit est une prévision si l’essai
+  commence aujourd’hui, avec confirmation finale dans Google Play.
+- Une offre modifiée avant validation bloque le lancement avec les anciennes
+  conditions et demande une nouvelle sélection. Aucun forfait n’est présélectionné.
+- Les nouveaux textes sont disponibles dans les trente langues. Les reçus et
+  droits restent vérifiés par le serveur, y compris pendant l’essai.
+
+## English
+
+- The Fuze Premium screen presents benefits, plans and renewal terms in a new
+  layout that adapts to screen size, themes and large text.
+- The Google Play `freetest` offer is supported on `monthly` and `yearly`.
+  The two-week trial is shown only when Google returns it for the eligible
+  Play account. Otherwise the regular base plan remains available.
+- The exact recurring price and period remain visible alongside the free trial.
+  The first charge date is estimated for a trial starting today and the final
+  terms are confirmed by Google Play.
+- Changed offer terms invalidate the old selection instead of silently replacing
+  it. No plan is preselected.
+- New copy is available in all thirty languages. Receipt and access verification
+  remain server-controlled, including during the trial.
+
+## Qualification / Validation
+
+See [free trial integration](FREE_TRIAL.md) for Google configuration, client
+behavior and backend requirements. The source changes and automated regression
+checks do not establish that the live backend grants trial access correctly,
+that Play Console offers are active in every region, or that a new real purchase
+has been completed. No live backend inspection or change was performed for this
+integration. APKs, bundles and signing credentials remain outside this repository.
+
+---
+
 # Android 0.2.5+74011 — 2026-10-11
 
 ## Français

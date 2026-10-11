@@ -224,22 +224,20 @@ internal class PlayBillingBridge private constructor(
                     PlayBillingPhase(
                         phase.billingPeriod, phase.formattedPrice, phase.priceCurrencyCode,
                         phase.priceAmountMicros,
-                        phase.recurrenceMode == ProductDetails.RecurrenceMode.INFINITE_RECURRING,
+                        phase.billingCycleCount, phase.recurrenceMode,
                     )
                 }
-                if (!PlayBillingPolicy.isNormalBasePlan(
+                if (!PlayBillingPolicy.isSupportedOffer(
                         product.productId, offer.basePlanId, offer.offerId,
                         offer.installmentPlanDetails != null, phases,
                     ) || offer.offerToken.isBlank()
                 ) null else NativePlan(
-                    product, PlayBillingPlan(offer.basePlanId, offer.offerToken, phases.single()),
+                    product, PlayBillingPlan(offer.basePlanId, offer.offerToken, offer.offerId, phases),
                 )
             }
         }
-        // An ambiguous configuration cannot silently choose between equivalent offers.
-        val counts = candidates.groupingBy { it.plan.basePlanId }.eachCount()
-        return candidates.filter { counts[it.plan.basePlanId] == 1 }
-            .sortedBy { if (it.plan.basePlanId == "monthly") 0 else 1 }
+        val preferred = PlayBillingPolicy.preferredPlans(candidates.map { it.plan })
+        return preferred.map { selected -> candidates.single { it.plan === selected } }
     }
 
     private fun queryPurchases(

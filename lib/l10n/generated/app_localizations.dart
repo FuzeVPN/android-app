@@ -2227,7 +2227,7 @@ abstract class AppLocalizations {
   /// No description provided for @billing_priceDisclosure.
   ///
   /// In fr, this message translates to:
-  /// **'Prix fourni par Google Play. Le montant final est confirmé avant le paiement.'**
+  /// **'Prix fourni par Google Play. Le montant final et les taxes applicables sont confirmés avant votre validation.'**
   String get billing_priceDisclosure;
 
   /// No description provided for @billing_renewalMonthly.
@@ -2739,6 +2739,138 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'La vérification de sécurité est indisponible. Réessayez plus tard.'**
   String get google_challengeUnavailable;
+
+  /// No description provided for @billing_trialTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Essayez Fuze Premium gratuitement'**
+  String get billing_trialTitle;
+
+  /// No description provided for @billing_trialSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Protégez votre connexion dès aujourd’hui.'**
+  String get billing_trialSubtitle;
+
+  /// No description provided for @billing_trialWeeks.
+  ///
+  /// In fr, this message translates to:
+  /// **'2 semaines d’essai gratuit'**
+  String get billing_trialWeeks;
+
+  /// Free trial duration returned by Google Play, in days.
+  ///
+  /// In fr, this message translates to:
+  /// **'{days} jours d’essai gratuit'**
+  String billing_trialDays(String days);
+
+  /// No description provided for @billing_trialStart.
+  ///
+  /// In fr, this message translates to:
+  /// **'Commencer mon essai gratuit'**
+  String get billing_trialStart;
+
+  /// Estimated first charge date when starting today; Google Play confirms before purchase.
+  ///
+  /// In fr, this message translates to:
+  /// **'Si vous commencez aujourd’hui, premier débit prévu le {date}.'**
+  String billing_trialFirstCharge(String date);
+
+  /// No description provided for @billing_trialTerms.
+  ///
+  /// In fr, this message translates to:
+  /// **'Renouvellement automatique au tarif indiqué. Pour éviter un débit, annulez dans Google Play avant la fin de l’essai.'**
+  String get billing_trialTerms;
+
+  /// Exact localized recurring monthly price returned by Google Play.
+  ///
+  /// In fr, this message translates to:
+  /// **'Puis {price} par mois'**
+  String billing_trialThenMonthly(String price);
+
+  /// Exact localized recurring annual price returned by Google Play.
+  ///
+  /// In fr, this message translates to:
+  /// **'Puis {price} par an'**
+  String billing_trialThenYearly(String price);
+
+  /// No description provided for @billing_choosePeriod.
+  ///
+  /// In fr, this message translates to:
+  /// **'Choisissez votre formule'**
+  String get billing_choosePeriod;
+
+  /// No description provided for @billing_selectionHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sélectionnez une formule pour continuer.'**
+  String get billing_selectionHint;
+
+  /// No description provided for @billing_benefitConnection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Connexion chiffrée'**
+  String get billing_benefitConnection;
+
+  /// No description provided for @billing_benefitPrivacy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confidentialité en ligne'**
+  String get billing_benefitPrivacy;
+
+  /// No description provided for @billing_benefitNoAccount.
+  ///
+  /// In fr, this message translates to:
+  /// **'Sans inscription obligatoire'**
+  String get billing_benefitNoAccount;
+
+  /// No description provided for @billing_cancellation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annulation dans Google Play'**
+  String get billing_cancellation;
+
+  /// No description provided for @billing_premiumTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre connexion, mieux protégée.'**
+  String get billing_premiumTitle;
+
+  /// No description provided for @billing_premiumSubtitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Protégez votre connexion, à votre rythme.'**
+  String get billing_premiumSubtitle;
+
+  /// No description provided for @billing_priceMonthly.
+  ///
+  /// In fr, this message translates to:
+  /// **'par mois'**
+  String get billing_priceMonthly;
+
+  /// No description provided for @billing_priceYearly.
+  ///
+  /// In fr, this message translates to:
+  /// **'par an'**
+  String get billing_priceYearly;
+
+  /// No description provided for @billing_trialToday.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aujourd’hui, rien à payer'**
+  String get billing_trialToday;
+
+  /// No description provided for @billing_trialConfirmation.
+  ///
+  /// In fr, this message translates to:
+  /// **'Google Play confirme les dates, le montant final et les taxes applicables avant votre validation.'**
+  String get billing_trialConfirmation;
+
+  /// No description provided for @billing_offerChanged.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les conditions de cette offre ont changé. Actualisez les formules et choisissez à nouveau.'**
+  String get billing_offerChanged;
 }
 
 class _AppLocalizationsDelegate

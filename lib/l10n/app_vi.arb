@@ -553,7 +553,7 @@
   "billing_loadingPlans": "Đang tải các gói…",
   "billing_unavailable": "Hiện chưa có gói nào. Vui lòng thử lại sau.",
   "billing_comingSoon": "Các gói đăng ký sẽ sớm có mặt.",
-  "billing_priceDisclosure": "Giá do Google Play cung cấp. Số tiền cuối cùng được xác nhận trước khi thanh toán.",
+  "billing_priceDisclosure": "Giá do Google Play cung cấp. Tổng tiền cuối cùng và thuế áp dụng được xác nhận trước khi bạn xác nhận.",
   "billing_renewalMonthly": "Tự động gia hạn mỗi tháng nếu không hủy. Bạn có thể hủy bất kỳ lúc nào trong mục gói đăng ký Google Play.",
   "billing_renewalYearly": "Tự động gia hạn mỗi năm nếu không hủy. Bạn có thể hủy bất kỳ lúc nào trong mục gói đăng ký Google Play.",
   "billing_active": "Quyền truy cập Premium đang hoạt động",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "Kiểm tra quốc gia và cả hai sự đồng ý.",
   "google_consentRequired": "Chọn quốc gia và chấp nhận cả hai tài liệu để tiếp tục.",
   "google_challengeRequired": "Cần kiểm tra bảo mật bổ sung. Quyền truy cập hiện tại được giữ nguyên.",
-  "google_challengeUnavailable": "Kiểm tra bảo mật không khả dụng. Thử lại sau."
+  "google_challengeUnavailable": "Kiểm tra bảo mật không khả dụng. Thử lại sau.",
+  "billing_trialTitle": "Dùng thử Fuze Premium miễn phí",
+  "billing_trialSubtitle": "Bảo vệ kết nối của bạn ngay hôm nay.",
+  "billing_trialWeeks": "Dùng thử miễn phí 2 tuần",
+  "billing_trialDays": "Dùng thử miễn phí {days} ngày",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Bắt đầu dùng thử miễn phí",
+  "billing_trialFirstCharge": "Nếu bắt đầu hôm nay, khoản thanh toán đầu tiên dự kiến vào {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Tự động gia hạn theo giá đã hiển thị. Để tránh bị tính phí, hãy hủy trên Google Play trước khi hết thời gian dùng thử.",
+  "billing_trialThenMonthly": "Sau đó {price} mỗi tháng",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Sau đó {price} mỗi năm",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Chọn gói của bạn",
+  "billing_selectionHint": "Chọn một gói để tiếp tục.",
+  "billing_benefitConnection": "Kết nối được mã hóa",
+  "billing_benefitPrivacy": "Quyền riêng tư trực tuyến",
+  "billing_benefitNoAccount": "Không bắt buộc đăng ký tài khoản",
+  "billing_cancellation": "Hủy trên Google Play",
+  "billing_premiumTitle": "Kết nối của bạn được bảo vệ tốt hơn.",
+  "billing_premiumSubtitle": "Bảo vệ kết nối theo nhu cầu của bạn.",
+  "billing_priceMonthly": "mỗi tháng",
+  "billing_priceYearly": "mỗi năm",
+  "billing_trialToday": "Hôm nay không phải thanh toán",
+  "billing_trialConfirmation": "Google Play xác nhận ngày, tổng tiền cuối cùng và thuế áp dụng trước khi bạn xác nhận.",
+  "billing_offerChanged": "Điều kiện của ưu đãi này đã thay đổi. Tải lại các gói và chọn lại."
 }

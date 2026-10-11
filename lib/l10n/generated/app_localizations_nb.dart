@@ -1748,7 +1748,7 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Prisen leveres av Google Play. Det endelige beløpet bekreftes før betaling.';
+      'Pris fra Google Play. Sluttbeløp og gjeldende avgifter vises før du bekrefter.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2056,4 +2056,82 @@ class AppLocalizationsNb extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Sikkerhetskontrollen er ikke tilgjengelig. Prøv senere.';
+
+  @override
+  String get billing_trialTitle => 'Prøv Fuze Premium gratis';
+
+  @override
+  String get billing_trialSubtitle => 'Beskytt tilkoblingen din fra i dag.';
+
+  @override
+  String get billing_trialWeeks => '2 ukers gratis prøveperiode';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days dagers gratis prøveperiode';
+  }
+
+  @override
+  String get billing_trialStart => 'Start min gratis prøveperiode';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Hvis du starter i dag, forventes første belastning den $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Fornyes automatisk til oppgitt pris. Avslutt i Google Play før prøveperioden utløper for å unngå en belastning.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Deretter $price per måned';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Deretter $price per år';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Velg abonnement';
+
+  @override
+  String get billing_selectionHint => 'Velg et abonnement for å fortsette.';
+
+  @override
+  String get billing_benefitConnection => 'Kryptert tilkobling';
+
+  @override
+  String get billing_benefitPrivacy => 'Personvern på nettet';
+
+  @override
+  String get billing_benefitNoAccount => 'Registrering er ikke påkrevd';
+
+  @override
+  String get billing_cancellation => 'Avslutt i Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Tilkoblingen din, bedre beskyttet.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Beskytt tilkoblingen i ditt eget tempo.';
+
+  @override
+  String get billing_priceMonthly => 'per måned';
+
+  @override
+  String get billing_priceYearly => 'per år';
+
+  @override
+  String get billing_trialToday => 'Ingenting å betale i dag';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Google Play bekrefter datoer, sluttbeløp og gjeldende avgifter før du bekrefter.';
+
+  @override
+  String get billing_offerChanged =>
+      'Vilkårene for dette tilbudet har endret seg. Oppdater abonnementene og velg på nytt.';
 }

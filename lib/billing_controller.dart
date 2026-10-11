@@ -353,9 +353,11 @@ class BillingController extends ChangeNotifier {
     } on PlayBillingException catch (error) {
       if (!_current(revision)) return;
       _waitingOwner = null;
-      messageKey = error.code == 'cancelled'
-          ? 'billing.cancelled'
-          : 'billing.purchaseError';
+      messageKey = switch (error.code) {
+        'cancelled' => 'billing.cancelled',
+        'price_changed' => 'billing.offerChanged',
+        _ => 'billing.purchaseError',
+      };
       if (error.code == 'price_changed') {
         plans = const [];
         catalogLoaded = false;

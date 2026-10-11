@@ -553,7 +553,7 @@
   "billing_loadingPlans": "正在加载方案…",
   "billing_unavailable": "目前没有可用方案。请稍后重试。",
   "billing_comingSoon": "订阅即将推出。",
-  "billing_priceDisclosure": "价格由 Google Play 提供。最终金额将在付款前确认。",
+  "billing_priceDisclosure": "价格由 Google Play 提供。您确认前会显示最终金额和适用税费。",
   "billing_renewalMonthly": "除非取消，否则每月自动续订。您可以随时在 Google Play 订阅中取消。",
   "billing_renewalYearly": "除非取消，否则每年自动续订。您可以随时在 Google Play 订阅中取消。",
   "billing_active": "您的 Premium 访问权限已生效",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "请检查国家或地区及两项同意。",
   "google_consentRequired": "选择居住国家或地区并同意两份文件后继续。",
   "google_challengeRequired": "需要额外的安全验证。当前访问权限将被保留。",
-  "google_challengeUnavailable": "安全验证不可用。请稍后重试。"
+  "google_challengeUnavailable": "安全验证不可用。请稍后重试。",
+  "billing_trialTitle": "免费试用 Fuze Premium",
+  "billing_trialSubtitle": "从今天起保护您的连接。",
+  "billing_trialWeeks": "2 周免费试用",
+  "billing_trialDays": "{days} 天免费试用",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "开始免费试用",
+  "billing_trialFirstCharge": "如果今天开始，首次扣款预计在 {date}。",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "按所示价格自动续订。如需避免扣款，请在试用结束前通过 Google Play 取消订阅。",
+  "billing_trialThenMonthly": "之后每月 {price}",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "之后每年 {price}",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "选择您的方案",
+  "billing_selectionHint": "请选择方案以继续。",
+  "billing_benefitConnection": "加密连接",
+  "billing_benefitPrivacy": "在线隐私",
+  "billing_benefitNoAccount": "无需强制注册",
+  "billing_cancellation": "通过 Google Play 取消",
+  "billing_premiumTitle": "让您的连接得到更好的保护。",
+  "billing_premiumSubtitle": "按您的需求保护连接。",
+  "billing_priceMonthly": "每月",
+  "billing_priceYearly": "每年",
+  "billing_trialToday": "今天无需付款",
+  "billing_trialConfirmation": "您确认前，Google Play 会确认日期、最终金额和适用税费。",
+  "billing_offerChanged": "此优惠的条件已更改。请刷新方案并重新选择。"
 }

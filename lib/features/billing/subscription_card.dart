@@ -12,6 +12,7 @@ import '../../widgets/fuze_brand.dart';
 import '../../widgets/fuze_design.dart';
 import '../auth/auth_page.dart';
 import '../auth/guest_claim_page.dart';
+import 'premium_offer_widgets.dart';
 
 /// Billing listens to its own state, independently of tunnel traffic updates.
 class SubscriptionCard extends StatelessWidget {
@@ -161,13 +162,39 @@ class SubscriptionPaywallPage extends StatefulWidget {
 }
 
 class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
-  String? _selectedBasePlanId;
+  PlaySubscriptionPlan? _selectedOffer;
   bool _purchaseRequested = false;
 
   @override
   void initState() {
     super.initState();
+    widget.controller.billing.addListener(_onBillingChanged);
     unawaited(widget.controller.billing.loadPlans());
+  }
+
+  void _onBillingChanged() {
+    final billing = widget.controller.billing;
+    if (billing.plans.isEmpty ||
+        billing.messageKey == 'billing.offerChanged' ||
+        !billing.plans.any((plan) => _selectedOffer?.sameOffer(plan) == true)) {
+      _selectedOffer = null;
+    }
+  }
+
+  @override
+  void didUpdateWidget(SubscriptionPaywallPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      oldWidget.controller.billing.removeListener(_onBillingChanged);
+      widget.controller.billing.addListener(_onBillingChanged);
+      _selectedOffer = null;
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.controller.billing.removeListener(_onBillingChanged);
+    super.dispose();
   }
 
   Future<void> _purchase(PlaySubscriptionPlan plan) async {
@@ -217,7 +244,7 @@ class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
           hasAccess;
       final busy = controller.isGuestActionBusy || billing.isBusy;
       final selected = billing.plans
-          .where((plan) => plan.basePlanId == _selectedBasePlanId)
+          .where((plan) => _selectedOffer?.sameOffer(plan) == true)
           .firstOrNull;
       final canPurchase =
           !busy &&
@@ -228,163 +255,166 @@ class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
         key: const ValueKey('subscription-paywall-page'),
         appBar: AppBar(title: const FuzeBrand(emblemSize: 28)),
         body: SafeArea(
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 560),
-              child: ListView(
-                key: const ValueKey('subscription-selection'),
-                padding: const EdgeInsets.all(24),
-                children: activated
-                    ? _activation(context)
-                    : [
-                        FuzePageHeader(
-                          title: context.copy('billing.title'),
-                          description: context.copy(
-                            hasAccess ? 'billing.active' : 'billing.choosePlan',
-                          ),
+          child: SingleChildScrollView(
+            key: const ValueKey('subscription-selection'),
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 28),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: activated ? 560 : 1120),
+                child: activated
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: _activation(context),
+                      )
+                    : PremiumOfferLayout(
+                        introduction: PremiumIntroduction(
+                          hasTrial: selected != null
+                              ? selected.freeTrialDays != null
+                              : billing.plans.any(
+                                  (plan) => plan.freeTrialDays != null,
+                                ),
+                          active: hasAccess,
+                          showNoAccount:
+                              !controller.isSignedIn ||
+                              profile?.isGuest == true,
                         ),
-                        if (billing.isLoadingCatalog)
-                          _BillingProgress(
-                            label: context.copy('billing.loadingPlans'),
-                          )
-                        else if (!hasAccess)
-                          ...billing.plans.map(
-                            (plan) => Padding(
-                              padding: const EdgeInsets.only(bottom: 12),
-                              child: _SubscriptionPlanOption(
-                                plan: plan,
-                                selected:
-                                    plan.basePlanId == _selectedBasePlanId,
+                        checkout: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            if (billing.isLoadingCatalog)
+                              _BillingProgress(
+                                label: context.copy('billing.loadingPlans'),
+                              )
+                            else if (!hasAccess)
+                              PremiumPlanChoices(
+                                plans: billing.plans,
+                                selected: selected,
                                 onSelected: busy
                                     ? null
-                                    : () => setState(
-                                        () => _selectedBasePlanId =
-                                            plan.basePlanId,
-                                      ),
+                                    : (plan) =>
+                                          setState(() => _selectedOffer = plan),
+                              ),
+                            if (hasAccess && profile?.canUseVpn != true) ...[
+                              _BillingMessage(
+                                messageKey: 'billing.checkingAccess',
+                              ),
+                              const SizedBox(height: 12),
+                              OutlinedButton.icon(
+                                key: const ValueKey(
+                                  'subscription-access-refresh',
+                                ),
+                                onPressed: busy
+                                    ? null
+                                    : controller.refreshGuestAccount,
+                                icon: const Icon(Icons.refresh),
+                                label: Text(context.copy('billing.refresh')),
+                              ),
+                            ],
+                            if (controller.guestMessageKey != null) ...[
+                              const SizedBox(height: 12),
+                              _BillingMessage(
+                                messageKey: controller.guestMessageKey!,
+                              ),
+                            ],
+                            if (billing.messageKey != null) ...[
+                              const SizedBox(height: 12),
+                              _BillingMessage(messageKey: billing.messageKey!),
+                            ] else if (!billing.isLoadingCatalog &&
+                                !hasAccess &&
+                                billing.plans.isEmpty)
+                              const _BillingMessage(
+                                messageKey: 'billing.unavailable',
+                              ),
+                            if (!billing.isLoadingCatalog &&
+                                !hasAccess &&
+                                billing.plans.isEmpty) ...[
+                              const SizedBox(height: 12),
+                              OutlinedButton.icon(
+                                key: const ValueKey('subscription-retry-plans'),
+                                onPressed: busy ? null : billing.loadPlans,
+                                icon: const Icon(Icons.refresh),
+                                label: Text(context.copy('action.retry')),
+                              ),
+                            ],
+                            if (busy && !billing.isLoadingCatalog) ...[
+                              const SizedBox(height: 16),
+                              _BillingProgress(
+                                label: context.copy(
+                                  billing.isRestoring
+                                      ? 'billing.restoring'
+                                      : 'billing.verifying',
+                                ),
+                              ),
+                            ],
+                            if (!hasAccess && billing.plans.isNotEmpty) ...[
+                              const SizedBox(height: 16),
+                              PremiumCheckoutSummary(plan: selected),
+                              const SizedBox(height: 16),
+                              const PremiumLegalLinks(),
+                              const SizedBox(height: 20),
+                              FilledButton(
+                                key: const ValueKey('subscription-continue'),
+                                onPressed: canPurchase
+                                    ? () => _purchase(selected)
+                                    : null,
+                                child: Text(
+                                  context.copy(
+                                    selected?.freeTrialDays != null
+                                        ? 'billing.trialStart'
+                                        : 'billing.continue',
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                            if (hasAccess && profile?.canUseVpn == true) ...[
+                              const SizedBox(height: 16),
+                              FilledButton(
+                                key: const ValueKey('subscription-use-vpn'),
+                                onPressed: busy
+                                    ? null
+                                    : () => Navigator.of(
+                                        context,
+                                      ).popUntil((route) => route.isFirst),
+                                child: Text(
+                                  context.copy('guest.useVpn'),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                            const SizedBox(height: 8),
+                            TextButton(
+                              key: const ValueKey(
+                                'subscription-selection-restore',
+                              ),
+                              onPressed: busy ? null : _restorePurchases,
+                              child: Text(
+                                context.copy('billing.restore'),
+                                textAlign: TextAlign.center,
                               ),
                             ),
-                          ),
-                        if (hasAccess && profile?.canUseVpn != true) ...[
-                          _BillingMessage(messageKey: 'billing.checkingAccess'),
-                          const SizedBox(height: 12),
-                          OutlinedButton.icon(
-                            key: const ValueKey('subscription-access-refresh'),
-                            onPressed: busy
-                                ? null
-                                : controller.refreshGuestAccount,
-                            icon: const Icon(Icons.refresh),
-                            label: Text(context.copy('billing.refresh')),
-                          ),
-                        ],
-                        if (controller.guestMessageKey != null) ...[
-                          const SizedBox(height: 12),
-                          _BillingMessage(
-                            messageKey: controller.guestMessageKey!,
-                          ),
-                        ],
-                        if (billing.messageKey != null) ...[
-                          const SizedBox(height: 12),
-                          _BillingMessage(messageKey: billing.messageKey!),
-                        ] else if (!billing.isLoadingCatalog &&
-                            !hasAccess &&
-                            billing.plans.isEmpty)
-                          const _BillingMessage(
-                            messageKey: 'billing.unavailable',
-                          ),
-                        if (!billing.isLoadingCatalog &&
-                            !hasAccess &&
-                            billing.plans.isEmpty) ...[
-                          const SizedBox(height: 12),
-                          OutlinedButton.icon(
-                            key: const ValueKey('subscription-retry-plans'),
-                            onPressed: busy ? null : billing.loadPlans,
-                            icon: const Icon(Icons.refresh),
-                            label: Text(context.copy('action.retry')),
-                          ),
-                        ],
-                        if (busy && !billing.isLoadingCatalog) ...[
-                          const SizedBox(height: 16),
-                          _BillingProgress(
-                            label: context.copy(
-                              billing.isRestoring
-                                  ? 'billing.restoring'
-                                  : 'billing.verifying',
-                            ),
-                          ),
-                        ],
-                        if (!hasAccess && billing.plans.isNotEmpty) ...[
-                          const SizedBox(height: 16),
-                          Text(
-                            context.copy('billing.priceDisclosure'),
-                            style: Theme.of(context).textTheme.bodySmall,
-                          ),
-                          if (selected != null) ...[
-                            const SizedBox(height: 10),
-                            Text(
-                              context.copy(
-                                selected.basePlanId == 'yearly'
-                                    ? 'billing.renewalYearly'
-                                    : 'billing.renewalMonthly',
+                            if (controller.guestMessageKey ==
+                                'guest.loginRequired')
+                              OutlinedButton(
+                                key: const ValueKey('subscription-sign-in'),
+                                onPressed: busy ? null : _signIn,
+                                child: Text(
+                                  context.copy('action.login'),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              style: Theme.of(context).textTheme.bodySmall,
-                            ),
+                            if (hasAccess &&
+                                _isGooglePlay(billing.subscription))
+                              OutlinedButton(
+                                onPressed: busy ? null : billing.openManagement,
+                                child: Text(
+                                  context.copy('billing.manage'),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
                           ],
-                          const SizedBox(height: 16),
-                          const OnboardingLegalLinks(),
-                          const SizedBox(height: 20),
-                          FilledButton(
-                            key: const ValueKey('subscription-continue'),
-                            onPressed: canPurchase
-                                ? () => _purchase(selected)
-                                : null,
-                            child: Text(
-                              context.copy('billing.continue'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                        if (hasAccess && profile?.canUseVpn == true) ...[
-                          const SizedBox(height: 16),
-                          FilledButton(
-                            key: const ValueKey('subscription-use-vpn'),
-                            onPressed: busy
-                                ? null
-                                : () => Navigator.of(
-                                    context,
-                                  ).popUntil((route) => route.isFirst),
-                            child: Text(
-                              context.copy('guest.useVpn'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 8),
-                        TextButton(
-                          key: const ValueKey('subscription-selection-restore'),
-                          onPressed: busy ? null : _restorePurchases,
-                          child: Text(
-                            context.copy('billing.restore'),
-                            textAlign: TextAlign.center,
-                          ),
                         ),
-                        if (controller.guestMessageKey == 'guest.loginRequired')
-                          OutlinedButton(
-                            key: const ValueKey('subscription-sign-in'),
-                            onPressed: busy ? null : _signIn,
-                            child: Text(
-                              context.copy('action.login'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        if (hasAccess && _isGooglePlay(billing.subscription))
-                          OutlinedButton(
-                            onPressed: busy ? null : billing.openManagement,
-                            child: Text(
-                              context.copy('billing.manage'),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                      ],
+                      ),
               ),
             ),
           ),
@@ -504,7 +534,7 @@ class _SubscriptionSelection extends StatefulWidget {
 }
 
 class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
-  String? _selectedBasePlanId;
+  PlaySubscriptionPlan? _selectedOffer;
   bool _closing = false;
 
   bool get _currentAccount =>
@@ -517,6 +547,14 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
   }
 
   void _onBillingChanged() {
+    final controller = widget.controller;
+    if (controller.plans.isEmpty ||
+        controller.messageKey == 'billing.offerChanged' ||
+        !controller.plans.any(
+          (plan) => _selectedOffer?.sameOffer(plan) == true,
+        )) {
+      _selectedOffer = null;
+    }
     if (_currentAccount || _closing || !mounted) return;
     _closing = true;
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -542,7 +580,7 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
       final hasAccess = controller.subscription?.hasAccess ?? false;
       final plans = controller.plans;
       final selected = plans
-          .where((plan) => plan.basePlanId == _selectedBasePlanId)
+          .where((plan) => _selectedOffer?.sameOffer(plan) == true)
           .firstOrNull;
       final canPurchase =
           _currentAccount &&
@@ -575,12 +613,13 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
                   ),
                 ],
               ),
-              const SizedBox(height: 8),
-              Text(
-                context.copy(
-                  hasAccess ? 'billing.active' : 'billing.choosePlan',
-                ),
-                style: Theme.of(context).textTheme.bodyLarge,
+              const SizedBox(height: 12),
+              PremiumIntroduction(
+                hasTrial: selected != null
+                    ? selected.freeTrialDays != null
+                    : plans.any((plan) => plan.freeTrialDays != null),
+                active: hasAccess,
+                compact: true,
               ),
               const SizedBox(height: 20),
               if (controller.isLoadingCatalog)
@@ -596,19 +635,12 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
                       : 'billing.comingSoon',
                 )
               else
-                ...plans.map(
-                  (plan) => Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: _SubscriptionPlanOption(
-                      plan: plan,
-                      selected: plan.basePlanId == _selectedBasePlanId,
-                      onSelected: controller.isBusy || !_currentAccount
-                          ? null
-                          : () => setState(
-                              () => _selectedBasePlanId = plan.basePlanId,
-                            ),
-                    ),
-                  ),
+                PremiumPlanChoices(
+                  plans: plans,
+                  selected: selected,
+                  onSelected: controller.isBusy || !_currentAccount
+                      ? null
+                      : (plan) => setState(() => _selectedOffer = plan),
                 ),
               if (!hasAccess &&
                   !controller.isLoadingCatalog &&
@@ -652,21 +684,9 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
               ],
               if (!hasAccess && plans.isNotEmpty) ...<Widget>[
                 const SizedBox(height: 12),
-                Text(
-                  context.copy('billing.priceDisclosure'),
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                if (selected != null) ...<Widget>[
-                  const SizedBox(height: 10),
-                  Text(
-                    context.copy(
-                      selected.basePlanId == 'yearly'
-                          ? 'billing.renewalYearly'
-                          : 'billing.renewalMonthly',
-                    ),
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
+                PremiumCheckoutSummary(plan: selected),
+                const SizedBox(height: 16),
+                const PremiumLegalLinks(),
                 const SizedBox(height: 20),
                 FilledButton(
                   key: const ValueKey('subscription-continue'),
@@ -676,7 +696,11 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
                         }
                       : null,
                   child: Text(
-                    context.copy('billing.continue'),
+                    context.copy(
+                      selected?.freeTrialDays != null
+                          ? 'billing.trialStart'
+                          : 'billing.continue',
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -708,78 +732,6 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
       );
     },
   );
-}
-
-class _SubscriptionPlanOption extends StatelessWidget {
-  const _SubscriptionPlanOption({
-    required this.plan,
-    required this.selected,
-    required this.onSelected,
-  });
-
-  final PlaySubscriptionPlan plan;
-  final bool selected;
-  final VoidCallback? onSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    return Semantics(
-      selected: selected,
-      inMutuallyExclusiveGroup: true,
-      child: Material(
-        color: selected ? scheme.secondaryContainer : scheme.surface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-          side: BorderSide(
-            color: selected ? FuzeVpnTheme.signalDeep : scheme.outlineVariant,
-            width: selected ? 2 : 1,
-          ),
-        ),
-        clipBehavior: Clip.antiAlias,
-        child: InkWell(
-          key: ValueKey('subscription-plan-${plan.basePlanId}'),
-          onTap: onSelected,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        context.copy(
-                          plan.basePlanId == 'yearly'
-                              ? 'billing.yearly'
-                              : 'billing.monthly',
-                        ),
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Icon(
-                      selected
-                          ? Icons.radio_button_checked
-                          : Icons.radio_button_unchecked,
-                      color: scheme.secondary,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  plan.formattedPrice,
-                  key: ValueKey('subscription-price-${plan.basePlanId}'),
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 class _BillingMessage extends StatelessWidget {

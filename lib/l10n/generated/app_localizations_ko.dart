@@ -1613,7 +1613,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Google Play에서 제공하는 가격입니다. 최종 금액은 결제 전에 확인됩니다.';
+      '가격은 Google Play에서 제공합니다. 확정하기 전에 최종 금액 및 적용 세금을 확인할 수 있습니다.';
 
   @override
   String get billing_renewalMonthly =>
@@ -1892,4 +1892,80 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get google_challengeUnavailable => '보안 확인을 사용할 수 없습니다. 나중에 다시 시도하세요.';
+
+  @override
+  String get billing_trialTitle => 'Fuze Premium을 무료로 체험하세요';
+
+  @override
+  String get billing_trialSubtitle => '오늘부터 연결을 보호하세요.';
+
+  @override
+  String get billing_trialWeeks => '2주 무료 체험';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days일 무료 체험';
+  }
+
+  @override
+  String get billing_trialStart => '무료 체험 시작';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return '오늘 시작하면 첫 결제 예정일은 $date입니다.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      '표시된 가격으로 자동 갱신됩니다. 결제를 피하려면 체험이 끝나기 전에 Google Play에서 취소하세요.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return '이후 월 $price';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return '이후 연 $price';
+  }
+
+  @override
+  String get billing_choosePeriod => '요금제 선택';
+
+  @override
+  String get billing_selectionHint => '계속하려면 요금제를 선택하세요.';
+
+  @override
+  String get billing_benefitConnection => '암호화된 연결';
+
+  @override
+  String get billing_benefitPrivacy => '온라인 개인정보 보호';
+
+  @override
+  String get billing_benefitNoAccount => '가입은 선택 사항';
+
+  @override
+  String get billing_cancellation => 'Google Play에서 취소';
+
+  @override
+  String get billing_premiumTitle => '더 안전하게 보호되는 연결.';
+
+  @override
+  String get billing_premiumSubtitle => '나에게 맞는 요금제로 연결을 보호하세요.';
+
+  @override
+  String get billing_priceMonthly => '월';
+
+  @override
+  String get billing_priceYearly => '연';
+
+  @override
+  String get billing_trialToday => '오늘은 결제할 금액이 없습니다';
+
+  @override
+  String get billing_trialConfirmation =>
+      '확정하기 전에 Google Play에서 날짜, 최종 금액 및 적용 세금을 확인할 수 있습니다.';
+
+  @override
+  String get billing_offerChanged => '이 혜택의 조건이 변경되었습니다. 요금제를 새로고침하고 다시 선택하세요.';
 }

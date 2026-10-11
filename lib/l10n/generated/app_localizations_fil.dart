@@ -1799,7 +1799,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get billing_priceDisclosure =>
-      'Ang presyo ay mula sa Google Play. Kinukumpirma ang huling halaga bago magbayad.';
+      'Presyong ibinigay ng Google Play. Kinukumpirma ang huling halaga at naaangkop na buwis bago ka magkumpirma.';
 
   @override
   String get billing_renewalMonthly =>
@@ -2109,4 +2109,83 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Hindi available ang pagsusuri sa seguridad. Subukan sa ibang pagkakataon.';
+
+  @override
+  String get billing_trialTitle => 'Subukan ang Fuze Premium nang libre';
+
+  @override
+  String get billing_trialSubtitle =>
+      'Protektahan ang koneksyon mo simula ngayon.';
+
+  @override
+  String get billing_trialWeeks => '2 linggong libreng pagsubok';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days araw na libreng pagsubok';
+  }
+
+  @override
+  String get billing_trialStart => 'Simulan ang libreng pagsubok ko';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'Kung magsisimula ka ngayon, inaasahan ang unang singil sa $date.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'Awtomatikong nire-renew sa nakasaad na presyo. Para maiwasan ang singil, magkansela sa Google Play bago matapos ang pagsubok.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'Pagkatapos, $price bawat buwan';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'Pagkatapos, $price bawat taon';
+  }
+
+  @override
+  String get billing_choosePeriod => 'Piliin ang iyong plano';
+
+  @override
+  String get billing_selectionHint => 'Pumili ng plano para magpatuloy.';
+
+  @override
+  String get billing_benefitConnection => 'Naka-encrypt na koneksyon';
+
+  @override
+  String get billing_benefitPrivacy => 'Privacy online';
+
+  @override
+  String get billing_benefitNoAccount => 'Hindi kailangang magparehistro';
+
+  @override
+  String get billing_cancellation => 'Pagkansela sa Google Play';
+
+  @override
+  String get billing_premiumTitle => 'Mas protektado ang koneksyon mo.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'Protektahan ang koneksyon sa paraang akma sa iyo.';
+
+  @override
+  String get billing_priceMonthly => 'bawat buwan';
+
+  @override
+  String get billing_priceYearly => 'bawat taon';
+
+  @override
+  String get billing_trialToday => 'Walang babayaran ngayong araw';
+
+  @override
+  String get billing_trialConfirmation =>
+      'Kinukumpirma ng Google Play ang mga petsa, huling halaga at naaangkop na buwis bago ka magkumpirma.';
+
+  @override
+  String get billing_offerChanged =>
+      'Nagbago ang mga kondisyon ng alok na ito. I-refresh ang mga plano at pumili muli.';
 }

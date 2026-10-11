@@ -64,6 +64,35 @@ Future<void> _until(bool Function() ready) async {
 
 void main() {
   test(
+    'changed Play offer clears catalogue and requires a new choice',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      await fixture.controller.loadPlans();
+      fixture.gateway.onLaunch = (_, _) async =>
+          throw const PlayBillingException('price_changed');
+
+      await fixture.controller.purchase(_monthly);
+
+      expect(fixture.controller.messageKey, 'billing.offerChanged');
+      expect(fixture.controller.plans, isEmpty);
+      expect(fixture.controller.catalogLoaded, isFalse);
+      expect(fixture.controller.isBusy, isFalse);
+      expect(fixture.controller.subscription?.hasAccess, isFalse);
+      expect(fixture.gateway.openedOwners, isEmpty);
+      expect(fixture.api.verifications, isEmpty);
+
+      await fixture.controller.purchase(_monthly);
+      expect(fixture.gateway.launchRequests, hasLength(1));
+      fixture.gateway.onLaunch = null;
+      await fixture.controller.loadPlans();
+      expect(fixture.controller.messageKey, isNull);
+      await fixture.controller.purchase(_monthly);
+      expect(fixture.gateway.openedOwners, <String>[_ownerA]);
+    },
+  );
+
+  test(
     'Play acceptance and acknowledgement do not grant access before verification',
     () async {
       final fixture = _Fixture();

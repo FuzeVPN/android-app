@@ -553,7 +553,7 @@
   "billing_loadingPlans": "Načítání tarifů…",
   "billing_unavailable": "Momentálně nejsou dostupné žádné tarify. Zkuste to později.",
   "billing_comingSoon": "Předplatné bude brzy dostupné.",
-  "billing_priceDisclosure": "Cenu poskytuje Google Play. Konečná částka je potvrzena před platbou.",
+  "billing_priceDisclosure": "Cena poskytovaná službou Google Play. Konečná částka a příslušné daně se zobrazí před vaším potvrzením.",
   "billing_renewalMonthly": "Automatické obnovení každý měsíc, pokud předplatné nezrušíte. Zrušit jej můžete kdykoli v předplatných Google Play.",
   "billing_renewalYearly": "Automatické obnovení každý rok, pokud předplatné nezrušíte. Zrušit jej můžete kdykoli v předplatných Google Play.",
   "billing_active": "Váš přístup Premium je aktivní",
@@ -645,5 +645,59 @@
   "google_invalidRegistration": "Zkontrolujte zemi a oba souhlasy.",
   "google_consentRequired": "Vyberte zemi a přijměte oba dokumenty pro pokračování.",
   "google_challengeRequired": "Je nutná další bezpečnostní kontrola. Současný přístup zůstává zachován.",
-  "google_challengeUnavailable": "Bezpečnostní kontrola není dostupná. Zkuste to později."
+  "google_challengeUnavailable": "Bezpečnostní kontrola není dostupná. Zkuste to později.",
+  "billing_trialTitle": "Vyzkoušejte Fuze Premium zdarma",
+  "billing_trialSubtitle": "Chraňte své připojení už dnes.",
+  "billing_trialWeeks": "2 týdny zkušební doby zdarma",
+  "billing_trialDays": "{days} dní zkušební doby zdarma",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Začít zkušební dobu zdarma",
+  "billing_trialFirstCharge": "Pokud začnete dnes, první platba se očekává dne {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Automaticky se obnovuje za uvedenou cenu. Aby nedošlo k platbě, zrušte předplatné v Google Play před koncem zkušební doby.",
+  "billing_trialThenMonthly": "Poté {price} měsíčně",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Poté {price} ročně",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Vyberte si tarif",
+  "billing_selectionHint": "Pro pokračování vyberte tarif.",
+  "billing_benefitConnection": "Šifrované připojení",
+  "billing_benefitPrivacy": "Soukromí na internetu",
+  "billing_benefitNoAccount": "Registrace není povinná",
+  "billing_cancellation": "Zrušení v Google Play",
+  "billing_premiumTitle": "Vaše připojení, lépe chráněné.",
+  "billing_premiumSubtitle": "Chraňte připojení podle svých potřeb.",
+  "billing_priceMonthly": "měsíčně",
+  "billing_priceYearly": "ročně",
+  "billing_trialToday": "Dnes nic neplatíte",
+  "billing_trialConfirmation": "Google Play před vaším potvrzením potvrdí data, konečnou částku a příslušné daně.",
+  "billing_offerChanged": "Podmínky této nabídky se změnily. Obnovte tarify a vyberte znovu."
 }
