@@ -9,6 +9,30 @@ class AppLocalizationsVi extends AppLocalizations {
   AppLocalizationsVi([String locale = 'vi']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Bảo vệ kết nối của bạn';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN sử dụng dịch vụ VPN của Android (VpnService) để tạo đường hầm mã hóa giữa thiết bị này và máy chủ FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Khi VPN hoạt động, lưu lượng Internet của các ứng dụng, địa chỉ đích và yêu cầu DNS đi qua đường hầm này để định tuyến kết nối của bạn, ngay cả khi FuzeVPN chạy trong nền.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Ứng dụng sử dụng trạng thái kết nối, thời lượng và lượng dữ liệu đã truyền để hiển thị kết nối VPN của bạn. Bạn có thể dừng kết nối bất cứ lúc nào.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Quyền riêng tư';
+
+  @override
+  String get vpnDisclosure_accept => 'Đồng ý và tiếp tục';
+
+  @override
+  String get vpnDisclosure_decline => 'Để sau';
+
+  @override
   String get accountRestoration_title => 'Tài khoản tạm thời không khả dụng';
 
   @override
@@ -702,7 +726,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'invalid_profile': 'Hồ sơ không hợp lệ',
       'invalid_device': 'Thiết bị không hợp lệ',
       'invalid_location': 'Vị trí không khả dụng',
-      'device_limit': 'Đã đạt giới hạn 2 thiết bị',
+      'device_limit': 'Đã đạt giới hạn thiết bị',
       'device_exists': 'Danh tính VPN đã được sử dụng',
       'device_identity_revoked': 'Cần gia hạn danh tính VPN',
       'device_location_locked': 'Cần làm mới để thay đổi vị trí',

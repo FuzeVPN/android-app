@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../app_controller.dart';
 import '../app_theme.dart';
@@ -87,6 +88,20 @@ class NoticeCard extends StatelessWidget {
               ),
               style: FuzeVpnTheme.mono(fontSize: 12, color: foreground),
             ),
+          ),
+          TextButton.icon(
+            key: const ValueKey('notice-copy-reference'),
+            onPressed: () async {
+              try {
+                await Clipboard.setData(
+                  ClipboardData(text: current.diagnosticCode!),
+                );
+              } catch (_) {
+                // The selectable reference above remains the manual fallback.
+              }
+            },
+            icon: Icon(Icons.copy_outlined, size: 16, color: foreground),
+            label: Text(MaterialLocalizations.of(context).copyButtonLabel),
           ),
         ],
       ],

@@ -1,6 +1,6 @@
 # Dépendances natives Android
 
-Version source **0.2.4+74010**. Les commandes partent de la racine du dépôt. Les prérequis généraux
+Version source **0.2.5+74011**. Les commandes partent de la racine du dépôt. Les prérequis généraux
 et les commandes de l’application sont dans [DEVELOPMENT.md](DEVELOPMENT.md).
 L’inventaire est dans [SBOM.spdx.json](SBOM.spdx.json) et
 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).

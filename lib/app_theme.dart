@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// FuzeVPN's official ivory, ink and golden signal identity, adapted to Android.
 abstract final class FuzeVpnTheme {
@@ -25,6 +26,24 @@ abstract final class FuzeVpnTheme {
   static ThemeData light() => _theme(Brightness.light);
 
   static ThemeData dark() => _theme(Brightness.dark);
+
+  /// Pages without an AppBar still need legible status/navigation icons when
+  /// the user changes the app theme independently of the Android theme.
+  static SystemUiOverlayStyle systemUiOverlayStyle(Brightness brightness) =>
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: brightness == Brightness.light
+            ? Brightness.dark
+            : Brightness.light,
+        statusBarBrightness: brightness,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarIconBrightness: brightness == Brightness.light
+            ? Brightness.dark
+            : Brightness.light,
+        // Preserve Android's protection behind three-button navigation.
+        systemNavigationBarContrastEnforced: true,
+      );
 
   static TextStyle mono({
     double? fontSize,
@@ -169,6 +188,7 @@ abstract final class FuzeVpnTheme {
         selectionColor: scheme.secondary.withValues(alpha: 0.18),
       ),
       appBarTheme: AppBarTheme(
+        systemOverlayStyle: systemUiOverlayStyle(brightness),
         backgroundColor: background,
         foregroundColor: foreground,
         surfaceTintColor: Colors.transparent,

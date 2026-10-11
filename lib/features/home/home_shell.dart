@@ -155,10 +155,15 @@ class _HomeShellState extends State<HomeShell> {
                     destinations: destinations
                         .map(
                           (_HomeDestination destination) =>
-                              NavigationDestination(
-                                icon: Icon(destination.icon),
-                                selectedIcon: Icon(destination.selectedIcon),
-                                label: destination.label,
+                              DefaultTextStyle.merge(
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                softWrap: false,
+                                child: NavigationDestination(
+                                  icon: Icon(destination.icon),
+                                  selectedIcon: Icon(destination.selectedIcon),
+                                  label: destination.label,
+                                ),
                               ),
                         )
                         .toList(growable: false),

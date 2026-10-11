@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-Sources du client Android FuzeVPN, version **0.2.4+74010**, développé avec
+Sources du client Android FuzeVPN, version **0.2.5+74011**, développé avec
 Flutter, Kotlin, WireGuard et OpenVPN. Package Android : `com.fuzevpn`.
 Android 8.0 (API 26) ou ultérieur est requis.
 
@@ -10,9 +10,16 @@ Ce dépôt publie les sources et les entrées natives de compilation revues.
 Il ne publie aucun APK, App Bundle ni GitHub Release. Le backend et
 l'infrastructure VPN FuzeVPN sont des services distincts, absents de ce dépôt.
 
+Cette mise à jour corrige le retour à l'accueil après un paiement annulé,
+conserve le bouton **Démarrer** et améliore l'affichage de bord à bord, la
+navigation avec texte agrandi et la reprise après indisponibilité d'un serveur.
+Voir les [notes de version](docs/RELEASE_NOTES.md) et leurs limites de validation.
+
 ## Fonctionnalités
 
 - Tunnels WireGuard et OpenVPN intégrés aux services VPN Android.
+- Mention VPN dédiée avec accord explicite avant la permission Android et
+  possibilité de refuser. Voir le [parcours à filmer](docs/VPN_DISCLOSURE.md).
 - Emplacements par pays/ville, recherche, favoris et changement confirmé.
 - Trente langues, thèmes clair/sombre et interfaces de droite à gauche.
 - Diagnostics soumis au consentement et stockage local chiffré.
@@ -59,6 +66,7 @@ Maven/Pub se préparent séparément.
 
 | Guide | Contenu |
 | --- | --- |
+| [Notes de version](docs/RELEASE_NOTES.md) | Changements de 0.2.5+74011 et limites de validation |
 | [Développement](docs/DEVELOPMENT.md) | Outils, compilation, tests et qualification sur appareil |
 | [Architecture](docs/ARCHITECTURE.md) | Comportement, stockage, tunnels et API attendue |
 | [Dépendances natives](docs/NATIVE_DEPENDENCIES.md) | Révisions, patches, intégrité et reconstruction |

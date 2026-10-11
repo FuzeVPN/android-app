@@ -221,7 +221,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
           child: Text(
-            context.copy(restoreFailed ? 'welcome.viewPlans' : 'welcome.start'),
+            context.copy('welcome.start'),
             textAlign: TextAlign.center,
           ),
         ),

@@ -198,6 +198,8 @@ class VpnAppController extends ChangeNotifier {
   bool _guestRecoveryDeferred = false;
   bool? _guestObservedAccess;
   String? _guestMessage;
+  // Presentation only: a checkout's technical guest session is not yet a home.
+  String? _guestHomeUserId;
   bool get isGuestActionBusy =>
       _guestActionOwner != null ||
       _guestRetryTimer != null ||
@@ -582,6 +584,9 @@ class VpnAppController extends ChangeNotifier {
   bool get hasPendingAccountRestoration => _session != null && !isSignedIn;
   bool get isSignedIn =>
       _session != null && profile != null && !isRestoringAccount;
+  bool get canShowHome =>
+      isSignedIn &&
+      (profile?.isGuest == false || _guestHomeUserId == profile?.userId);
   String? get token => _session?.accessToken;
   bool get isTunnelActive =>
       tunnelState.phase != VpnRuntimePhase.idle &&
@@ -1243,6 +1248,11 @@ class VpnAppController extends ChangeNotifier {
             migrationContext?.check();
           },
         );
+      } on VpnDisclosureCancelled {
+        operation.check();
+        networkAttempt.check();
+        migrationContext?.check();
+        // "Not now" leaves the app usable and carries no error notice.
       } on _ControllerFailure catch (failure) {
         operation.check();
         networkAttempt.check();
@@ -1800,6 +1810,10 @@ class VpnAppController extends ChangeNotifier {
               context.check();
             },
           );
+        } on VpnDisclosureCancelled {
+          operation.check();
+          networkAttempt.check();
+          context.check();
         } on _ControllerFailure catch (failure) {
           context.check();
           operation.check();
@@ -1865,6 +1879,7 @@ class VpnAppController extends ChangeNotifier {
     _sessionOperation.invalidate();
     _guestActionOwner = null;
     _guestObservedAccess = null;
+    _guestHomeUserId = null;
     _guestMessage = null;
     _guestRecoveryDeferred = false;
     _guestRetryTimer?.cancel();
@@ -2135,9 +2150,22 @@ class VpnAppController extends ChangeNotifier {
         }
       }
       check();
+      final onboardingStore = _sessionStore;
+      final previouslyActivated =
+          restoredProfile.isGuest &&
+          onboardingStore is GuestOnboardingStore &&
+          await _safe<bool>(
+                (onboardingStore as GuestOnboardingStore)
+                    .readGuestOnboardingCompleted(
+                      userId: restoredProfile.userId,
+                    ),
+              ) ==
+              true;
+      check();
       // Publish one coherent account only after secure binding and all local
       // admission records have been read. The pending page keeps VPN controls.
       profile = restoredProfile;
+      if (previouslyActivated) _guestHomeUserId = restoredProfile.userId;
       currentDeviceId = restoredDevice;
       if (devicesGeneration == _devicesRefreshGeneration) {
         deviceList = restoredDevices;
@@ -3150,6 +3178,7 @@ class VpnAppController extends ChangeNotifier {
   void notifyListeners() {
     if (_disposed) return;
     _billing.syncAccount();
+    _syncGuestHomeAdmission();
     _syncDiagnosticSession();
     super.notifyListeners();
   }

@@ -9,6 +9,30 @@ class AppLocalizationsFa extends AppLocalizations {
   AppLocalizationsFa([String locale = 'fa']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'از اتصال خود محافظت کنید';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN از سرویس VPN اندروید (VpnService) برای ایجاد تونلی رمزگذاری‌شده بین این دستگاه و سرورهای FuzeVPN استفاده می‌کند.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'وقتی VPN فعال است، ترافیک اینترنت برنامه‌های شما، نشانی‌های مقصد و درخواست‌های DNS از این تونل عبور می‌کنند تا اتصال شما مسیریابی شود، حتی وقتی FuzeVPN در پس‌زمینه اجرا می‌شود.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'برنامه از وضعیت اتصال، مدت آن و حجم داده‌های منتقل‌شده برای نمایش اتصال VPN شما استفاده می‌کند. می‌توانید هر زمان آن را متوقف کنید.';
+
+  @override
+  String get vpnDisclosure_privacy => 'حریم خصوصی';
+
+  @override
+  String get vpnDisclosure_accept => 'پذیرش و ادامه';
+
+  @override
+  String get vpnDisclosure_decline => 'الان نه';
+
+  @override
   String get accountRestoration_title => 'حساب موقتاً در دسترس نیست';
 
   @override
@@ -701,7 +725,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'invalid_profile': 'نمایه نامعتبر است',
       'invalid_device': 'دستگاه نامعتبر است',
       'invalid_location': 'مکان در دسترس نیست',
-      'device_limit': 'محدودیت دو دستگاه به پایان رسید',
+      'device_limit': 'محدودیت دستگاه‌ها به پایان رسید',
       'device_exists': 'هویت وی‌پی‌ان از قبل استفاده شده است',
       'device_identity_revoked': 'هویت وی‌پی‌ان باید نوسازی شود',
       'device_location_locked': 'تغییر مکان به تازه‌سازی نیاز دارد',

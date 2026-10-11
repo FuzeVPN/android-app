@@ -9,6 +9,30 @@ class AppLocalizationsRu extends AppLocalizations {
   AppLocalizationsRu([String locale = 'ru']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Защитите своё подключение';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN использует службу VPN Android (VpnService), чтобы создать зашифрованный туннель между этим устройством и серверами FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Когда VPN активен, интернет-трафик ваших приложений, адреса назначения и DNS-запросы проходят через этот туннель для маршрутизации подключения, даже когда FuzeVPN работает в фоновом режиме.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Приложение использует состояние подключения, его длительность и объём переданных данных для отображения вашего VPN-подключения. Вы можете остановить его в любой момент.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Конфиденциальность';
+
+  @override
+  String get vpnDisclosure_accept => 'Принять и продолжить';
+
+  @override
+  String get vpnDisclosure_decline => 'Не сейчас';
+
+  @override
   String get accountRestoration_title => 'Учётная запись временно недоступна';
 
   @override
@@ -712,7 +736,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'invalid_profile': 'Недействительный профиль',
       'invalid_device': 'Недействительное устройство',
       'invalid_location': 'Локация недоступна',
-      'device_limit': 'Достигнут лимит в 2 устройства',
+      'device_limit': 'Достигнут лимит устройств',
       'device_exists': 'VPN-идентичность уже используется',
       'device_identity_revoked': 'Необходимо обновить VPN-идентичность',
       'device_location_locked': 'Необходимо обновить изменение локации',

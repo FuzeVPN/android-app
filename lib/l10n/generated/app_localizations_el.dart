@@ -9,6 +9,30 @@ class AppLocalizationsEl extends AppLocalizations {
   AppLocalizationsEl([String locale = 'el']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Προστατεύστε τη σύνδεσή σας';
+
+  @override
+  String get vpnDisclosure_body =>
+      'Το FuzeVPN χρησιμοποιεί την υπηρεσία VPN του Android (VpnService) για να δημιουργήσει μια κρυπτογραφημένη σήραγγα ανάμεσα σε αυτήν τη συσκευή και τους διακομιστές FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Όταν το VPN είναι ενεργό, η κίνηση Internet των εφαρμογών σας, οι διευθύνσεις προορισμού και τα αιτήματα DNS περνούν από αυτήν τη σήραγγα για τη δρομολόγηση της σύνδεσής σας, ακόμη και όταν το FuzeVPN λειτουργεί στο παρασκήνιο.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Η εφαρμογή χρησιμοποιεί την κατάσταση της σύνδεσης, τη διάρκειά της και τον όγκο των μεταφερόμενων δεδομένων για να εμφανίζει τη σύνδεσή σας VPN. Μπορείτε να τη διακόψετε οποιαδήποτε στιγμή.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Απόρρητο';
+
+  @override
+  String get vpnDisclosure_accept => 'Αποδοχή και συνέχεια';
+
+  @override
+  String get vpnDisclosure_decline => 'Όχι τώρα';
+
+  @override
   String get accountRestoration_title =>
       'Ο λογαριασμός δεν είναι προσωρινά διαθέσιμος';
 
@@ -725,7 +749,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'invalid_profile': 'Μη έγκυρο προφίλ',
       'invalid_device': 'Μη έγκυρη συσκευή',
       'invalid_location': 'Η τοποθεσία δεν είναι διαθέσιμη',
-      'device_limit': 'Συμπληρώθηκε το όριο των 2 συσκευών',
+      'device_limit': 'Συμπληρώθηκε το όριο συσκευών',
       'device_exists': 'Η ταυτότητα VPN χρησιμοποιείται ήδη',
       'device_identity_revoked': 'Απαιτείται ανανέωση της ταυτότητας VPN',
       'device_location_locked': 'Η αλλαγή τοποθεσίας χρειάζεται ανανέωση',

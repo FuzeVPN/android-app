@@ -18,6 +18,11 @@ class NativeVpnException implements Exception {
   String toString() => 'NativeVpnException($code)';
 }
 
+/// A deliberate UI choice, rather than a failed connection or Android denial.
+class VpnDisclosureCancelled implements Exception {
+  const VpnDisclosureCancelled();
+}
+
 /// Typed Android storage boundary. Flutter can request only these business
 /// operations; arbitrary native storage keys never cross the method channel.
 abstract interface class NativeStorageGateway {
@@ -128,12 +133,16 @@ class NativeVpnBridge
         VpnNotificationLocaleGateway,
         NativeStorageGateway,
         NativeGuestStorageGateway,
+        GuestOnboardingStore,
         FavoriteLocationStore,
         DiagnosticPreferenceStore,
         DiagnosticPlatformGateway {
-  NativeVpnBridge({MethodChannel? channel, EventChannel? events})
-    : _channel = channel ?? const MethodChannel(_channelName),
-      _events = events ?? const EventChannel(_eventsName);
+  NativeVpnBridge({
+    MethodChannel? channel,
+    EventChannel? events,
+    this.confirmVpnUse,
+  }) : _channel = channel ?? const MethodChannel(_channelName),
+       _events = events ?? const EventChannel(_eventsName);
 
   static const String _channelName = 'com.fuzevpn/android_vpn';
 
@@ -157,6 +166,8 @@ class NativeVpnBridge
 
   final MethodChannel _channel;
   final EventChannel _events;
+  final Future<bool> Function()? confirmVpnUse;
+  Future<bool>? _permissionRequest;
 
   late final Stream<VpnRuntimeState> _states = _events
       .receiveBroadcastStream()
@@ -260,8 +271,34 @@ class NativeVpnBridge
       _invoke<void>('prepareTunnelRequest', {'account_id': accountId});
 
   @override
-  Future<bool> requestVpnPermission() async =>
-      await _invoke<bool>('requestVpnPermission') ?? false;
+  Future<bool> requestVpnPermission() =>
+      _permissionRequest ??= _requestDisclosedVpnPermission().whenComplete(() {
+        _permissionRequest = null;
+      });
+
+  Future<bool> _requestDisclosedVpnPermission() async {
+    final status = await _invoke<Object?>('getVpnDisclosureStatus');
+    if (status is! Map ||
+        status['accepted'] is! bool ||
+        status['android_permission'] is! bool) {
+      throw const NativeVpnException('invalid_api_response');
+    }
+    final needsDisclosure =
+        status['accepted'] != true || status['android_permission'] != true;
+    if (needsDisclosure) {
+      final confirm = confirmVpnUse;
+      if (confirm == null || !await confirm()) {
+        throw const VpnDisclosureCancelled();
+      }
+    }
+    // Android persists the current disclosure only after permission is granted.
+    // It rechecks the session and both permissions before starting any engine.
+    return await _invoke<bool>(
+          'requestVpnPermission',
+          needsDisclosure ? const {'disclosure_accepted': true} : null,
+        ) ??
+        false;
+  }
 
   @override
   Future<String> getOrCreateWireGuardPublicKey({
@@ -495,6 +532,29 @@ class NativeVpnBridge
   );
 
   @override
+  Future<bool> readGuestOnboardingCompleted({required String userId}) async {
+    _checkGuestOnboardingUserId(userId);
+    final value = await _invokeGuest<Object?>(
+      'storageReadGuestOnboardingCompleted',
+      <String, Object>{'account_id': userId},
+    );
+    if (value == null) return false;
+    if (value is! bool) {
+      throw const NativeVpnException('secure_storage_corrupt');
+    }
+    return value;
+  }
+
+  @override
+  Future<void> writeGuestOnboardingCompleted({required String userId}) async {
+    _checkGuestOnboardingUserId(userId);
+    await _invokeGuest<void>(
+      'storageWriteGuestOnboardingCompleted',
+      <String, Object>{'account_id': userId},
+    );
+  }
+
+  @override
   Future<void> replaceStoredGuestSession({
     required String accountId,
     required String payload,
@@ -689,6 +749,8 @@ class NativeVpnBridge
     'storageClearGuestCredentials' ||
     'storageReadGuestAutoResume' ||
     'storageWriteGuestAutoResume' ||
+    'storageReadGuestOnboardingCompleted' ||
+    'storageWriteGuestOnboardingCompleted' ||
     'storageReplaceGuestSession' ||
     'storageClearSession' ||
     'storageReadCurrentDevice' ||
@@ -726,6 +788,7 @@ class NativeSecureStore
         SecureSessionStore,
         GuestCredentialStore,
         GuestSessionRenewalStore,
+        GuestOnboardingStore,
         AppPreferenceStore,
         FavoriteLocationStore,
         DiagnosticPreferenceStore {
@@ -779,6 +842,28 @@ class NativeSecureStore
   @override
   Future<void> writeGuestAutoResume(bool enabled) async =>
       _guestStore.writeStoredGuestAutoResume(enabled);
+
+  @override
+  Future<bool> readGuestOnboardingCompleted({required String userId}) async {
+    _checkGuestOnboardingUserId(userId);
+    final store = _store;
+    if (store is! GuestOnboardingStore) return false;
+    return (store as GuestOnboardingStore).readGuestOnboardingCompleted(
+      userId: userId,
+    );
+  }
+
+  @override
+  Future<void> writeGuestOnboardingCompleted({required String userId}) async {
+    _checkGuestOnboardingUserId(userId);
+    final store = _store;
+    if (store is! GuestOnboardingStore) {
+      throw const NativeVpnException('native_bridge_unavailable');
+    }
+    await (store as GuestOnboardingStore).writeGuestOnboardingCompleted(
+      userId: userId,
+    );
+  }
 
   @override
   Future<void> replaceGuestSession(
@@ -959,6 +1044,12 @@ class NativeSecureStore
     required String userId,
     required bool value,
   }) => _store.writeStoredVerificationNeeded(accountId: userId, value: value);
+}
+
+void _checkGuestOnboardingUserId(String value) {
+  if (RegExp(r'^[A-Za-z0-9._-]{1,128}$').stringMatch(value) != value) {
+    throw const NativeVpnException('invalid_account_id');
+  }
 }
 
 bool _validGuestCredential(String value) {

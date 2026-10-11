@@ -9,6 +9,30 @@ class AppLocalizationsFil extends AppLocalizations {
   AppLocalizationsFil([String locale = 'fil']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Protektahan ang iyong koneksyon';
+
+  @override
+  String get vpnDisclosure_body =>
+      'Ginagamit ng FuzeVPN ang serbisyo ng VPN ng Android (VpnService) upang gumawa ng naka-encrypt na tunnel sa pagitan ng device na ito at ng mga server ng FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Habang aktibo ang VPN, dumadaan sa tunnel na ito ang trapiko sa Internet ng iyong mga app, mga address ng destinasyon at mga DNS request upang iruta ang iyong koneksyon, kahit nasa background ang FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Ginagamit ng app ang status ng koneksyon, tagal nito at dami ng nailipat na data upang ipakita ang iyong koneksyon sa VPN. Maaari mo itong ihinto anumang oras.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Privacy';
+
+  @override
+  String get vpnDisclosure_accept => 'Tanggapin at magpatuloy';
+
+  @override
+  String get vpnDisclosure_decline => 'Hindi ngayon';
+
+  @override
   String get accountRestoration_title =>
       'Pansamantalang hindi magagamit ang account';
 
@@ -722,7 +746,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'invalid_profile': 'Hindi wastong profile',
       'invalid_device': 'Hindi wastong device',
       'invalid_location': 'Hindi magagamit ang lokasyon',
-      'device_limit': 'Naabot ang limitasyong 2 device',
+      'device_limit': 'Naabot ang limitasyon ng device',
       'device_exists': 'Ginagamit na ang pagkakakilanlan ng VPN',
       'device_identity_revoked':
           'Kailangang i-renew ang pagkakakilanlan ng VPN',

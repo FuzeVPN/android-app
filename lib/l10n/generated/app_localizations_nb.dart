@@ -9,6 +9,30 @@ class AppLocalizationsNb extends AppLocalizations {
   AppLocalizationsNb([String locale = 'nb']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Beskytt forbindelsen din';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN bruker Androids VPN-tjeneste (VpnService) til å opprette en kryptert tunnel mellom denne enheten og FuzeVPN-serverne.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Når VPN er aktiv, går appenes Internett-trafikk, destinasjonsadresser og DNS-forespørsler gjennom denne tunnelen for å rute forbindelsen din, også når FuzeVPN kjører i bakgrunnen.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Appen bruker forbindelsesstatusen, varigheten og mengden overførte data til å vise VPN-forbindelsen din. Du kan stoppe den når som helst.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Personvern';
+
+  @override
+  String get vpnDisclosure_accept => 'Godta og fortsett';
+
+  @override
+  String get vpnDisclosure_decline => 'Ikke nå';
+
+  @override
   String get accountRestoration_title => 'Konto midlertidig utilgjengelig';
 
   @override
@@ -706,7 +730,7 @@ class AppLocalizationsNb extends AppLocalizations {
       'invalid_profile': 'Ugyldig profil',
       'invalid_device': 'Ugyldig enhet',
       'invalid_location': 'Lokasjonen er utilgjengelig',
-      'device_limit': 'Grensen på 2 enheter er nådd',
+      'device_limit': 'Enhetsgrensen er nådd',
       'device_exists': 'VPN-identiteten er allerede i bruk',
       'device_identity_revoked': 'VPN-identiteten må fornyes',
       'device_location_locked': 'Endringen av lokasjon må oppdateres',

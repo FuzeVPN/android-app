@@ -9,6 +9,30 @@ class AppLocalizationsHi extends AppLocalizations {
   AppLocalizationsHi([String locale = 'hi']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'अपने कनेक्शन को सुरक्षित करें';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN इस डिवाइस और FuzeVPN सर्वर के बीच एन्क्रिप्टेड टनल बनाने के लिए Android की VPN सेवा (VpnService) का उपयोग करता है।';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'VPN सक्रिय होने पर आपके ऐप्स का इंटरनेट ट्रैफ़िक, गंतव्य पते और DNS अनुरोध आपके कनेक्शन को रूट करने के लिए इस टनल से होकर गुज़रते हैं, तब भी जब FuzeVPN बैकग्राउंड में चल रहा हो।';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'ऐप आपके VPN कनेक्शन को दिखाने के लिए कनेक्शन की स्थिति, उसकी अवधि और ट्रांसफ़र किए गए डेटा की मात्रा का उपयोग करता है। आप इसे किसी भी समय बंद कर सकते हैं।';
+
+  @override
+  String get vpnDisclosure_privacy => 'गोपनीयता';
+
+  @override
+  String get vpnDisclosure_accept => 'स्वीकार करें और जारी रखें';
+
+  @override
+  String get vpnDisclosure_decline => 'अभी नहीं';
+
+  @override
   String get accountRestoration_title => 'खाता अस्थायी रूप से अनुपलब्ध है';
 
   @override
@@ -706,7 +730,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'invalid_profile': 'अमान्य प्रोफ़ाइल',
       'invalid_device': 'अमान्य डिवाइस',
       'invalid_location': 'स्थान अनुपलब्ध है',
-      'device_limit': '2 डिवाइस की सीमा पूरी हो गई',
+      'device_limit': 'डिवाइस की सीमा पूरी हो गई',
       'device_exists': 'VPN पहचान पहले से उपयोग में है',
       'device_identity_revoked': 'VPN पहचान का नवीनीकरण आवश्यक है',
       'device_location_locked': 'स्थान परिवर्तन के लिए रिफ्रेश आवश्यक है',

@@ -1,4 +1,11 @@
 {
+  "vpnDisclosure_title": "保护您的连接",
+  "vpnDisclosure_body": "FuzeVPN 使用 Android 的 VPN 服务（VpnService）在此设备与 FuzeVPN 服务器之间建立加密隧道。",
+  "vpnDisclosure_dataBody": "VPN 启用时，您应用的互联网流量、目标地址和 DNS 请求会通过此隧道进行连接路由，即使 FuzeVPN 在后台运行也是如此。",
+  "vpnDisclosure_statusBody": "应用使用连接状态、连接时长和已传输的数据量来显示您的 VPN 连接。您可以随时停止连接。",
+  "vpnDisclosure_privacy": "隐私",
+  "vpnDisclosure_accept": "同意并继续",
+  "vpnDisclosure_decline": "暂时不用",
   "accountRestoration_title": "账户暂时不可用",
   "accountRestoration_message": "您的会话已保留。请重试以恢复账户；您仍可在此管理 VPN 连接。",
   "action_retry": "重试",
@@ -211,7 +218,7 @@
       }
     }
   },
-  "notice_api_title": "{code, select, unauthorized{会话已过期} invalid_credentials{登录失败} email_verification_required{需要确认电子邮件} verification_email_cooldown{邮件已发送} rate_limited{尝试次数过多} invalid_registration{必须更正信息} email_exists{账户已存在} invalid_profile{个人资料无效} invalid_device{设备无效} invalid_location{位置不可用} device_limit{已达到 2 台设备的上限} device_exists{VPN 身份已在使用中} device_identity_revoked{必须续订 VPN 身份} device_location_locked{位置更改需要刷新} location_migration_pending{正在更改位置} location_migration_blocked{位置更改被阻止} target_ca_mismatch{OpenVPN 服务器不兼容} location_migration_conflict{位置更改需要刷新} server_full{服务器已满} capacity_unavailable{位置暂时不可用} target_unavailable{服务器暂时不可用} not_found{未找到项目} invalid_openvpn_csr{OpenVPN 身份无效} openvpn_profile_exists{OpenVPN 配置文件已存在} openvpn_profile_revoked{OpenVPN 配置文件已撤销} openvpn_operation_pending{OpenVPN 操作正在进行中} openvpn_operation_terminal{OpenVPN 操作已中断} openvpn_address_unavailable{OpenVPN 地址不可用} openvpn_profile_conflict{OpenVPN 冲突} openvpn_signer_unavailable{OpenVPN 不可用} email_delivery_unavailable{电子邮件不可用} invalid_token{链接无效} network_unavailable{互联网连接不可用} invalid_json{请求无效} invalid_api_response{服务器响应无效} ipv6_unavailable{IPv6 不可用} invalid_ip_families{网络配置被拒绝} other{服务不可用}}",
+  "notice_api_title": "{code, select, unauthorized{会话已过期} invalid_credentials{登录失败} email_verification_required{需要确认电子邮件} verification_email_cooldown{邮件已发送} rate_limited{尝试次数过多} invalid_registration{必须更正信息} email_exists{账户已存在} invalid_profile{个人资料无效} invalid_device{设备无效} invalid_location{位置不可用} device_limit{已达到设备上限} device_exists{VPN 身份已在使用中} device_identity_revoked{必须续订 VPN 身份} device_location_locked{位置更改需要刷新} location_migration_pending{正在更改位置} location_migration_blocked{位置更改被阻止} target_ca_mismatch{OpenVPN 服务器不兼容} location_migration_conflict{位置更改需要刷新} server_full{服务器已满} capacity_unavailable{位置暂时不可用} target_unavailable{服务器暂时不可用} not_found{未找到项目} invalid_openvpn_csr{OpenVPN 身份无效} openvpn_profile_exists{OpenVPN 配置文件已存在} openvpn_profile_revoked{OpenVPN 配置文件已撤销} openvpn_operation_pending{OpenVPN 操作正在进行中} openvpn_operation_terminal{OpenVPN 操作已中断} openvpn_address_unavailable{OpenVPN 地址不可用} openvpn_profile_conflict{OpenVPN 冲突} openvpn_signer_unavailable{OpenVPN 不可用} email_delivery_unavailable{电子邮件不可用} invalid_token{链接无效} network_unavailable{互联网连接不可用} invalid_json{请求无效} invalid_api_response{服务器响应无效} ipv6_unavailable{IPv6 不可用} invalid_ip_families{网络配置被拒绝} other{服务不可用}}",
   "@notice_api_title": {
     "placeholders": {
       "code": {

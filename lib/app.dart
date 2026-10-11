@@ -20,6 +20,7 @@ import 'widgets/fuze_brand.dart';
 import 'widgets/fuze_design.dart';
 import 'widgets/language_settings.dart';
 import 'widgets/notice_card.dart';
+import 'widgets/vpn_disclosure_dialog.dart';
 
 class FuzeVpnApp extends StatefulWidget {
   const FuzeVpnApp({super.key, this.controller, this.autoInitialize = true});
@@ -39,6 +40,21 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
   late final VpnAppController _controller;
   late final bool _ownsController;
   ApiHttpTransport? _diagnosticTransport;
+  var _navigatorKey = GlobalKey<NavigatorState>();
+  String? _navigatorScope;
+
+  GlobalKey<NavigatorState> _currentNavigatorKey() {
+    final scope = _controller.sessionTermination != null
+        ? 'session-cleanup'
+        : _controller.openVpnRevocation != null
+        ? 'openvpn-cleanup'
+        : 'app';
+    if (_navigatorScope != scope) {
+      _navigatorScope = scope;
+      _navigatorKey = GlobalKey<NavigatorState>();
+    }
+    return _navigatorKey;
+  }
 
   @override
   void initState() {
@@ -47,7 +63,14 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
     _registerBundledLicenses();
     _ownsController = widget.controller == null;
     if (_ownsController) {
-      final NativeVpnBridge bridge = NativeVpnBridge();
+      final NativeVpnBridge bridge = NativeVpnBridge(
+        confirmVpnUse: () async {
+          final context = _navigatorKey.currentContext;
+          if (!mounted || context == null) return false;
+          final accepted = await showVpnDisclosureDialog(context);
+          return mounted && context.mounted && accepted;
+        },
+      );
       final NativeSecureStore store = NativeSecureStore(bridge);
       final ApiClient api = ApiClient(baseUri: _debugBaseUri());
       final google = NativeGoogleCredentialGateway();
@@ -101,6 +124,7 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) => AnimatedBuilder(
     animation: _controller,
     builder: (BuildContext context, Widget? child) => MaterialApp(
+      navigatorKey: _currentNavigatorKey(),
       // Dismiss account dialogs too when the mandatory cleanup screen takes over.
       key: ValueKey<String>(
         _controller.sessionTermination != null
@@ -119,6 +143,10 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
       theme: FuzeVpnTheme.light(),
       darkTheme: FuzeVpnTheme.dark(),
       themeMode: _controller.themeMode,
+      builder: (context, child) => AnnotatedRegion<SystemUiOverlayStyle>(
+        value: FuzeVpnTheme.systemUiOverlayStyle(Theme.of(context).brightness),
+        child: child!,
+      ),
       home: _controller.sessionTermination != null
           ? _SessionTerminationPage(controller: _controller)
           : _controller.openVpnRevocation != null
@@ -127,7 +155,7 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
           ? const _StartupPage()
           : _controller.hasPendingAccountRestoration
           ? _AccountRestorationPage(controller: _controller)
-          : _controller.isSignedIn
+          : _controller.canShowHome
           ? HomeShell(controller: _controller)
           : WelcomePage(controller: _controller),
     ),

@@ -138,6 +138,125 @@ void main() {
   auditRegressionTests();
   apiRefreshTests();
   googleControllerTests();
+  group('VPN disclosure cancellation', () {
+    test(
+      'WireGuard cancellation is silent and leaves identity ready for retry',
+      () async {
+        final h = await _restoredHarness(events: []);
+        addTearDown(h.close);
+        h.api.deviceConfiguration = _wireGuardConfigurationFor(
+          'device-current',
+        );
+        final session = h.store.storedSession;
+        final devices = Map<String, String>.from(h.store.deviceIds);
+        final publicKey = h.tunnel.wireGuardPublicKey;
+        final csr = h.tunnel.openVpnCsr;
+        final certificate = h.tunnel.openVpnCertificateStatus;
+        var disclosureRequests = 0;
+        h.tunnel.hooks['requestVpnPermission'] = () async {
+          disclosureRequests += 1;
+          throw const VpnDisclosureCancelled();
+        };
+
+        await h.controller.connect();
+
+        expect(disclosureRequests, 1);
+        expect(h.controller.notice, isNull);
+        expect(h.controller.isConnecting, isFalse);
+        expect(h.controller.isSignedIn, isTrue);
+        expect(h.controller.profile?.userId, 'user-a');
+        expect(h.controller.currentDeviceId, 'device-current');
+        expect(h.store.storedSession, same(session));
+        expect(h.store.deviceIds, devices);
+        expect(h.store.clearSessionCalls, 0);
+        expect(h.tunnel.wireGuardPublicKey, publicKey);
+        expect(h.tunnel.openVpnCsr, csr);
+        expect(h.tunnel.openVpnCertificateStatus, same(certificate));
+        expect(h.tunnel.wireGuardKeyAccounts, isEmpty);
+        expect(h.tunnel.openVpnCsrCalls, isEmpty);
+        expect(h.tunnel.clearedAccountIds, isEmpty);
+        expect(h.tunnel.clearedOpenVpnIdentities, isEmpty);
+        expect(h.api.registerDeviceCalls, isEmpty);
+        expect(h.api.createOpenVpnCalls, isEmpty);
+        expect(h.api.renewOpenVpnCalls, 0);
+        expect(h.tunnel.wireGuardConnections, isEmpty);
+        expect(h.tunnel.openVpnConnections, isEmpty);
+
+        h.tunnel.hooks.remove('requestVpnPermission');
+        await h.controller.connect();
+
+        expect(h.tunnel.wireGuardConnections, hasLength(1));
+        expect(h.tunnel.openVpnConnections, isEmpty);
+        expect(h.tunnel.wireGuardConnections.single.accountId, 'user-a');
+        expect(h.store.deviceIds, devices);
+        expect(h.controller.isConnecting, isFalse);
+      },
+    );
+
+    test(
+      'OpenVPN renewal cancellation is silent and preserves its certificate',
+      () async {
+        final h = await _restoredHarness(
+          events: [],
+          prepare: (api, store, tunnel) {
+            api.openVpnActivation = _openVpnActivation('device-current');
+            tunnel.openVpnCertificateStatus = OpenVpnCertificateStatus(
+              phase: OpenVpnCertificatePhase.expired,
+              notAfter: DateTime.utc(2026, 8, 1),
+              renewalPending: false,
+            );
+          },
+        );
+        addTearDown(h.close);
+        final session = h.store.storedSession;
+        final devices = Map<String, String>.from(h.store.deviceIds);
+        final publicKey = h.tunnel.wireGuardPublicKey;
+        final csr = h.tunnel.openVpnCsr;
+        final certificate = h.tunnel.openVpnCertificateStatus;
+        var disclosureRequests = 0;
+        h.tunnel.hooks['requestVpnPermission'] = () async {
+          disclosureRequests += 1;
+          throw const VpnDisclosureCancelled();
+        };
+
+        await h.controller.renewOpenVpnProfile();
+
+        expect(disclosureRequests, 1);
+        expect(h.controller.notice, isNull);
+        expect(h.controller.isConnecting, isFalse);
+        expect(h.controller.isSignedIn, isTrue);
+        expect(h.controller.profile?.userId, 'user-a');
+        expect(h.controller.currentDeviceId, 'device-current');
+        expect(h.store.storedSession, same(session));
+        expect(h.store.deviceIds, devices);
+        expect(h.store.clearSessionCalls, 0);
+        expect(h.tunnel.wireGuardPublicKey, publicKey);
+        expect(h.tunnel.openVpnCsr, csr);
+        expect(h.tunnel.openVpnCertificateStatus, same(certificate));
+        expect(h.tunnel.openVpnCsrCalls, isEmpty);
+        expect(h.tunnel.clearedAccountIds, isEmpty);
+        expect(h.tunnel.clearedOpenVpnIdentities, isEmpty);
+        expect(h.api.registerDeviceCalls, isEmpty);
+        expect(h.api.createOpenVpnCalls, isEmpty);
+        expect(h.api.renewOpenVpnCalls, 0);
+        expect(h.tunnel.wireGuardConnections, isEmpty);
+        expect(h.tunnel.openVpnConnections, isEmpty);
+
+        h.tunnel.hooks.remove('requestVpnPermission');
+        await h.controller.renewOpenVpnProfile();
+
+        expect(h.api.renewOpenVpnCalls, 1);
+        expect(h.api.createOpenVpnCalls, isEmpty);
+        expect(h.tunnel.openVpnCsrCalls, hasLength(1));
+        expect(h.tunnel.openVpnCsrCalls.single.renewal, isTrue);
+        expect(h.tunnel.openVpnConnections, hasLength(1));
+        expect(h.tunnel.openVpnConnections.single.renewal, isTrue);
+        expect(h.tunnel.wireGuardConnections, isEmpty);
+        expect(h.store.deviceIds, devices);
+        expect(h.controller.isConnecting, isFalse);
+      },
+    );
+  });
   group('system VPN protection handoff', () {
     test(
       'prepares an explicit connection before control-plane activity',

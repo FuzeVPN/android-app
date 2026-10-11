@@ -13,6 +13,7 @@ internal enum class SecureAppPreference(internal val storageKey: String) {
     SELECTED_LOCATION("fuzevpn.preference.ui.selected_location"),
     FAVORITE_LOCATIONS("fuzevpn.preference.ui.favorite_locations"),
     DIAGNOSTICS_AUTOMATIC_OPT_IN("fuzevpn.preference.diagnostics.automatic_opt_in"),
+    VPN_DISCLOSURE_VERSION("fuzevpn.preference.vpn.disclosure_version"),
 }
 
 /**
@@ -34,6 +35,7 @@ internal object SecureStorageKeyPolicy {
     private const val GUEST_CREDENTIAL = "fuzevpn.guest.credential"
     private const val GUEST_PENDING_CREDENTIAL = "fuzevpn.guest.pending_credential"
     private const val GUEST_AUTO_RESUME = "fuzevpn.guest.auto_resume"
+    private const val GUEST_ONBOARDING_COMPLETED = "fuzevpn.preference.guest.onboarding_completed"
     private val safeIdentifier = Regex("[A-Za-z0-9._-]{1,160}")
 
     fun pendingSession() = global(SESSION_PENDING)
@@ -45,6 +47,13 @@ internal object SecureStorageKeyPolicy {
     fun guestCredential() = global(GUEST_CREDENTIAL)
     fun pendingGuestCredential() = global(GUEST_PENDING_CREDENTIAL)
     fun guestAutoResume() = global(GUEST_AUTO_RESUME)
+
+    /** UI history only, retained when session tokens are erased. */
+    fun guestOnboardingCompleted(accountId: String): SecureStorageSlot {
+        val checked = checkedIdentifier(accountId, "invalid_account_id")
+        if (checked.length > 128) throw VpnNativeException("invalid_account_id")
+        return account(checked, GUEST_ONBOARDING_COMPLETED)
+    }
 
     fun accountSession(accountId: String) = account(accountId, SESSION_CURRENT)
 

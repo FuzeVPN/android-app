@@ -9,6 +9,30 @@ class AppLocalizationsDa extends AppLocalizations {
   AppLocalizationsDa([String locale = 'da']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Beskyt din forbindelse';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN bruger Androids VPN-tjeneste (VpnService) til at oprette en krypteret tunnel mellem denne enhed og FuzeVPNs servere.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Når VPN er aktiv, føres dine apps’ internettrafik, destinationsadresser og DNS-anmodninger gennem tunnelen for at videresende din forbindelse, også når FuzeVPN kører i baggrunden.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Appen bruger forbindelsens status, varighed og mængden af overførte data til at vise din VPN-forbindelse. Du kan stoppe den når som helst.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Privatliv';
+
+  @override
+  String get vpnDisclosure_accept => 'Acceptér og fortsæt';
+
+  @override
+  String get vpnDisclosure_decline => 'Ikke nu';
+
+  @override
   String get accountRestoration_title =>
       'Kontoet er midlertidigt utilgængeligt';
 
@@ -708,7 +732,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'invalid_profile': 'Ugyldig profil',
       'invalid_device': 'Ugyldig enhed',
       'invalid_location': 'Placering ikke tilgængelig',
-      'device_limit': 'Grænsen på 2 enheder er nået',
+      'device_limit': 'Enhedsgrænsen er nået',
       'device_exists': 'VPN-identiteten er allerede i brug',
       'device_identity_revoked': 'VPN-identiteten skal fornyes',
       'device_location_locked': 'Skift af placering skal opdateres',

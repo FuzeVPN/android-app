@@ -13,6 +13,7 @@ internal fun quickTileAction(activeProtocol: VpnProtocol?, alwaysOn: Boolean?): 
 internal fun quickTileFailureOpensApplication(code: String?): Boolean = code in setOf(
     "quick_tile_profile_unavailable",
     "vpn_permission_required",
+    "vpn_disclosure_required",
     "system_vpn_resume_session_invalid",
     "system_vpn_resume_identity_changed",
     "session_ending",

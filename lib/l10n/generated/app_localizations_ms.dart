@@ -9,6 +9,30 @@ class AppLocalizationsMs extends AppLocalizations {
   AppLocalizationsMs([String locale = 'ms']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Lindungi sambungan anda';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN menggunakan perkhidmatan VPN Android (VpnService) untuk mewujudkan terowong disulitkan antara peranti ini dengan pelayan FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Semasa VPN aktif, trafik Internet aplikasi anda, alamat destinasi dan permintaan DNS melalui terowong ini untuk menghalakan sambungan anda, walaupun FuzeVPN berjalan di latar belakang.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Aplikasi menggunakan status sambungan, tempohnya dan jumlah data yang dipindahkan untuk memaparkan sambungan VPN anda. Anda boleh menghentikannya pada bila-bila masa.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Privasi';
+
+  @override
+  String get vpnDisclosure_accept => 'Terima dan teruskan';
+
+  @override
+  String get vpnDisclosure_decline => 'Bukan sekarang';
+
+  @override
   String get accountRestoration_title => 'Akaun tidak tersedia buat sementara';
 
   @override
@@ -708,7 +732,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'invalid_profile': 'Profil tidak sah',
       'invalid_device': 'Peranti tidak sah',
       'invalid_location': 'Lokasi tidak tersedia',
-      'device_limit': 'Had 2 peranti dicapai',
+      'device_limit': 'Had peranti dicapai',
       'device_exists': 'Identiti VPN sudah digunakan',
       'device_identity_revoked': 'Identiti VPN mesti diperbaharui',
       'device_location_locked': 'Perubahan lokasi memerlukan penyegaran',

@@ -9,6 +9,30 @@ class AppLocalizationsKo extends AppLocalizations {
   AppLocalizationsKo([String locale = 'ko']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => '연결 보호하기';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN은 Android의 VPN 서비스(VpnService)를 사용하여 이 기기와 FuzeVPN 서버 사이에 암호화된 터널을 만듭니다.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'VPN이 활성화된 동안 앱의 인터넷 트래픽, 목적지 주소 및 DNS 요청은 연결을 라우팅하기 위해 이 터널을 통과합니다. FuzeVPN이 백그라운드에서 실행 중일 때도 마찬가지입니다.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      '앱은 연결 상태, 연결 시간 및 전송된 데이터양을 사용하여 VPN 연결을 표시합니다. 언제든지 연결을 중지할 수 있습니다.';
+
+  @override
+  String get vpnDisclosure_privacy => '개인정보 보호';
+
+  @override
+  String get vpnDisclosure_accept => '동의하고 계속';
+
+  @override
+  String get vpnDisclosure_decline => '나중에';
+
+  @override
   String get accountRestoration_title => '계정을 일시적으로 사용할 수 없습니다';
 
   @override
@@ -672,7 +696,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'invalid_profile': '잘못된 프로필',
       'invalid_device': '잘못된 기기',
       'invalid_location': '위치를 사용할 수 없음',
-      'device_limit': '기기 2대 한도에 도달함',
+      'device_limit': '기기 한도에 도달함',
       'device_exists': 'VPN 신원이 이미 사용 중',
       'device_identity_revoked': 'VPN 신원을 갱신해야 함',
       'device_location_locked': '위치 변경을 새로 고쳐야 함',

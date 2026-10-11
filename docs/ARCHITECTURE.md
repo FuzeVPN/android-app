@@ -1,6 +1,6 @@
 # Architecture et comportement Android
 
-Version source **0.2.4+74010**. Ce guide décrit le comportement implémenté
+Version source **0.2.5+74011**. Ce guide décrit le comportement implémenté
 dans ce client. Les réponses API
 attendues ci-dessous sont les contraintes du client ; ce document ne remplace
 pas le contrat serveur et ne constate pas l'état de la production. Les

@@ -201,6 +201,9 @@ void main() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, (call) async {
           calls.add(call);
+          if (call.method == 'getVpnDisclosureStatus') {
+            return {'accepted': true, 'android_permission': true};
+          }
           if (call.method == 'requestVpnPermission') return true;
           return null;
         });

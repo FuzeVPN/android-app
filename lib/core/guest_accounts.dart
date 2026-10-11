@@ -20,6 +20,14 @@ abstract interface class GuestSessionRenewalStore {
   });
 }
 
+/// Local navigation history for a guest whose access was confirmed by the
+/// server. This marker never grants VPN access or replaces entitlement checks.
+/// It survives session expiration/logout and can only be completed, not reset.
+abstract interface class GuestOnboardingStore {
+  Future<bool> readGuestOnboardingCompleted({required String userId});
+  Future<void> writeGuestOnboardingCompleted({required String userId});
+}
+
 abstract interface class GuestApiRepository {
   Future<GuestSessionResult> createGuestSession({
     required String guestCredential,

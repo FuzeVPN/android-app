@@ -9,6 +9,30 @@ class AppLocalizationsRo extends AppLocalizations {
   AppLocalizationsRo([String locale = 'ro']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Protejează-ți conexiunea';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN folosește serviciul VPN din Android (VpnService) pentru a crea un tunel criptat între acest dispozitiv și serverele FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Cât timp VPN-ul este activ, traficul de Internet al aplicațiilor tale, adresele de destinație și solicitările DNS trec prin acest tunel pentru a ruta conexiunea, chiar și atunci când FuzeVPN rulează în fundal.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Aplicația folosește starea conexiunii, durata acesteia și volumul de date transferate pentru a afișa conexiunea VPN. O poți opri oricând.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Confidențialitate';
+
+  @override
+  String get vpnDisclosure_accept => 'Acceptă și continuă';
+
+  @override
+  String get vpnDisclosure_decline => 'Nu acum';
+
+  @override
   String get accountRestoration_title => 'Cont indisponibil temporar';
 
   @override
@@ -715,7 +739,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'invalid_profile': 'Profil nevalid',
       'invalid_device': 'Dispozitiv nevalid',
       'invalid_location': 'Locație indisponibilă',
-      'device_limit': 'Limita de 2 dispozitive a fost atinsă',
+      'device_limit': 'Limita de dispozitive a fost atinsă',
       'device_exists': 'Identitatea VPN este deja utilizată',
       'device_identity_revoked': 'Identitatea VPN trebuie reînnoită',
       'device_location_locked': 'Schimbarea locației necesită reîmprospătarea',

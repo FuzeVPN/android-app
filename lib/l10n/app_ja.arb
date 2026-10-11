@@ -1,4 +1,11 @@
 {
+  "vpnDisclosure_title": "接続を保護する",
+  "vpnDisclosure_body": "FuzeVPN は Android の VPN サービス（VpnService）を使用して、この端末と FuzeVPN サーバーの間に暗号化されたトンネルを作成します。",
+  "vpnDisclosure_dataBody": "VPN が有効な間、アプリのインターネット通信、宛先アドレス、DNS リクエストは、接続をルーティングするためにこのトンネルを通ります。FuzeVPN がバックグラウンドで動作している場合も同様です。",
+  "vpnDisclosure_statusBody": "アプリは接続状態、接続時間、転送データ量を使用して VPN 接続を表示します。接続はいつでも停止できます。",
+  "vpnDisclosure_privacy": "プライバシー",
+  "vpnDisclosure_accept": "同意して続行",
+  "vpnDisclosure_decline": "今はしない",
   "accountRestoration_title": "アカウントを一時的に利用できません",
   "accountRestoration_message": "セッションは保持されています。再試行してアカウントを復元してください。ここではVPN接続を引き続き管理できます。",
   "action_retry": "再試行",
@@ -211,7 +218,7 @@
       }
     }
   },
-  "notice_api_title": "{code, select, unauthorized{セッションの有効期限が切れました} invalid_credentials{サインインに失敗しました} email_verification_required{メールの確認が必要です} verification_email_cooldown{メールはすでに送信されています} rate_limited{試行回数が多すぎます} invalid_registration{情報を修正する必要があります} email_exists{アカウントはすでに存在します} invalid_profile{無効なプロフィールです} invalid_device{無効なデバイスです} invalid_location{場所を利用できません} device_limit{2台のデバイス上限に達しました} device_exists{VPN IDはすでに使用されています} device_identity_revoked{VPN IDの更新が必要です} device_location_locked{場所の変更には更新が必要です} location_migration_pending{場所を変更しています} location_migration_blocked{場所の変更がブロックされました} target_ca_mismatch{互換性のないOpenVPNサーバーです} location_migration_conflict{場所の変更には更新が必要です} server_full{サーバーが満員です} capacity_unavailable{場所を一時的に利用できません} target_unavailable{サーバーを一時的に利用できません} not_found{項目が見つかりません} invalid_openvpn_csr{無効なOpenVPN IDです} openvpn_profile_exists{OpenVPNプロファイルはすでに存在します} openvpn_profile_revoked{OpenVPNプロファイルが取り消されました} openvpn_operation_pending{OpenVPN操作が進行中です} openvpn_operation_terminal{OpenVPN操作が中断されました} openvpn_address_unavailable{OpenVPNアドレスを利用できません} openvpn_profile_conflict{OpenVPNの競合です} openvpn_signer_unavailable{OpenVPNを利用できません} email_delivery_unavailable{メールを利用できません} invalid_token{無効なリンクです} network_unavailable{インターネット接続を利用できません} invalid_json{無効なリクエストです} invalid_api_response{無効なサーバー応答です} ipv6_unavailable{IPv6を利用できません} invalid_ip_families{ネットワーク設定が拒否されました} other{サービスを利用できません}}",
+  "notice_api_title": "{code, select, unauthorized{セッションの有効期限が切れました} invalid_credentials{サインインに失敗しました} email_verification_required{メールの確認が必要です} verification_email_cooldown{メールはすでに送信されています} rate_limited{試行回数が多すぎます} invalid_registration{情報を修正する必要があります} email_exists{アカウントはすでに存在します} invalid_profile{無効なプロフィールです} invalid_device{無効なデバイスです} invalid_location{場所を利用できません} device_limit{デバイス上限に達しました} device_exists{VPN IDはすでに使用されています} device_identity_revoked{VPN IDの更新が必要です} device_location_locked{場所の変更には更新が必要です} location_migration_pending{場所を変更しています} location_migration_blocked{場所の変更がブロックされました} target_ca_mismatch{互換性のないOpenVPNサーバーです} location_migration_conflict{場所の変更には更新が必要です} server_full{サーバーが満員です} capacity_unavailable{場所を一時的に利用できません} target_unavailable{サーバーを一時的に利用できません} not_found{項目が見つかりません} invalid_openvpn_csr{無効なOpenVPN IDです} openvpn_profile_exists{OpenVPNプロファイルはすでに存在します} openvpn_profile_revoked{OpenVPNプロファイルが取り消されました} openvpn_operation_pending{OpenVPN操作が進行中です} openvpn_operation_terminal{OpenVPN操作が中断されました} openvpn_address_unavailable{OpenVPNアドレスを利用できません} openvpn_profile_conflict{OpenVPNの競合です} openvpn_signer_unavailable{OpenVPNを利用できません} email_delivery_unavailable{メールを利用できません} invalid_token{無効なリンクです} network_unavailable{インターネット接続を利用できません} invalid_json{無効なリクエストです} invalid_api_response{無効なサーバー応答です} ipv6_unavailable{IPv6を利用できません} invalid_ip_families{ネットワーク設定が拒否されました} other{サービスを利用できません}}",
   "@notice_api_title": {
     "placeholders": {
       "code": {

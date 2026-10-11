@@ -1,6 +1,6 @@
 # Développer et valider le client Android
 
-Version source **0.2.4+74010**. Le dépôt public contient les sources et entrées
+Version source **0.2.5+74011**. Le dépôt public contient les sources et entrées
 natives nécessaires, sans APK/AAB ni GitHub Releases.
 
 Les commandes de ce guide partent de la racine du dépôt, sauf
@@ -254,6 +254,19 @@ régénérer les références :
 flutter test --no-pub --update-goldens --tags golden test/widget/app_ui_test.dart test/widget/account_restoration_test.dart
 ```
 
+Le test APP10 de reprise après indisponibilité vérifie ses assertions
+fonctionnelles avec `flutter test` normal. Ses comparaisons visuelles avec les
+polices embarquées sont activées séparément par `FUZEVPN_REVIEW_FONTS=true`.
+Vérifier les références existantes, sans les régénérer :
+
+```powershell
+flutter test --no-pub --dart-define=FUZEVPN_REVIEW_FONTS=true --plain-name "APP10 recovery controls remain reachable at 320dp and 200 percent" test/widget/app_ui_test.dart
+```
+
+Les trois références `helper-app10-*.png` restent dans
+`test/widget/goldens/`, distinctes des captures de revue ci-dessous. Les autres
+références utilisant la police Ahem restent vérifiées par `flutter test` normal.
+
 Les captures de revue avec les polices embarquées utilisent un emplacement
 séparé, `build/reports/ui-previews/` :
 
@@ -406,7 +419,7 @@ pour cet envoi.
 
 ## Revue de publication des sources
 
-- [ ] Version **0.2.4+74010**, matrice du poste, dépendances et provenance natives
+- [ ] Version **0.2.5+74011**, matrice du poste, dépendances et provenance natives
       décrites ; entrées verrouillées et fixtures amont conservées.
 - [ ] Sources, patches, assets, licences, notices et instructions présentes,
       liens du dépôt utilisables sans historique de rapports locaux.

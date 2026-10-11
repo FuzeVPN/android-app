@@ -1,6 +1,6 @@
 # Accueil et abonnements avec compte invité
 
-Version source **0.2.4+74010**. Les contrats ci-dessous sont ceux attendus
+Version source **0.2.5+74011**. Les contrats ci-dessous sont ceux attendus
 par le client ; le backend et son état en production ne sont pas inclus ni
 vérifiés par cette publication.
 
@@ -32,7 +32,12 @@ invitée existante ; elle ne crée pas un second propriétaire de l’abonnement
 - Après un achat vérifié et un accès serveur actif : proposer **Créer mon
   compte** et **Plus tard / Utiliser mon VPN**. Le paiement en attente et une
   fenêtre de paiement simplement fermée ne constituent pas une activation.
-- Une session invitée existante ouvre l’espace VPN. Dans Réglages, son profil
+- Une session invitée ouvre l’espace VPN après une activation confirmée par les
+  droits serveur, ou si une activation antérieure a été conservée pour cette
+  identité. La session technique créée avant le paiement ne suffit pas : sans
+  activation, un paiement annulé suivi d’un retour revient à l’accueil initial.
+  Le bouton **Démarrer** conserve son libellé après un retour depuis la connexion
+  ou les formules. Dans Réglages, le profil invité
   indique **Compte non rattaché**, explique la restauration avec le même compte
   Google Play et propose **Créer mon compte**. Le bloc **Fuze Premium** reste
   disponible, notamment après expiration. La suppression d’un compte inscrit
@@ -43,6 +48,13 @@ invitée existante ; elle ne crée pas un second propriétaire de l’abonnement
   échouer conserve l’invité ; une connexion réussie change de compte et ne
   transforme pas l’invité, ne fusionne pas les droits et ne transfère pas son
   abonnement. **Créer mon compte** conserve son parcours de conversion distinct.
+
+L’historique local d’activation sert uniquement à choisir l’écran d’entrée. Il
+est conservé par identité dans le stockage protégé Android pour garder l’accès
+aux réglages et au réabonnement après expiration, y compris après redémarrage.
+Il n’accorde aucun droit VPN : les permissions serveur restent obligatoires.
+L’annulation du paiement ou le retour n’effacent pas la credential invitée,
+afin de reprendre le même propriétaire lors d’une nouvelle tentative.
 
 ## Contrat HTTP
 

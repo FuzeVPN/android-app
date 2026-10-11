@@ -9,6 +9,30 @@ class AppLocalizationsAr extends AppLocalizations {
   AppLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'احمِ اتصالك';
+
+  @override
+  String get vpnDisclosure_body =>
+      'يستخدم FuzeVPN خدمة VPN في Android ‏(VpnService) لإنشاء نفق مشفّر بين هذا الجهاز وخوادم FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'عندما يكون VPN نشطًا، تمر حركة الإنترنت لتطبيقاتك وعناوين الوجهة وطلبات DNS عبر هذا النفق لتوجيه اتصالك، حتى عندما يعمل FuzeVPN في الخلفية.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'يستخدم التطبيق حالة الاتصال ومدته وحجم البيانات المنقولة لعرض اتصال VPN الخاص بك. يمكنك إيقافه في أي وقت.';
+
+  @override
+  String get vpnDisclosure_privacy => 'الخصوصية';
+
+  @override
+  String get vpnDisclosure_accept => 'الموافقة والمتابعة';
+
+  @override
+  String get vpnDisclosure_decline => 'ليس الآن';
+
+  @override
   String get accountRestoration_title => 'الحساب غير متاح مؤقتًا';
 
   @override
@@ -687,7 +711,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'invalid_profile': 'الملف الشخصي غير صالح',
       'invalid_device': 'الجهاز غير صالح',
       'invalid_location': 'الموقع غير متاح',
-      'device_limit': 'تم بلوغ حد جهازين',
+      'device_limit': 'تم بلوغ حد الأجهزة',
       'device_exists': 'هوية VPN مستخدمة بالفعل',
       'device_identity_revoked': 'يجب تجديد هوية VPN',
       'device_location_locked': 'يحتاج تغيير الموقع إلى تحديث',

@@ -9,6 +9,30 @@ class AppLocalizationsCs extends AppLocalizations {
   AppLocalizationsCs([String locale = 'cs']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Chraňte své připojení';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN využívá službu VPN systému Android (VpnService) k vytvoření šifrovaného tunelu mezi tímto zařízením a servery FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Když je VPN aktivní, internetový provoz vašich aplikací, cílové adresy a požadavky DNS procházejí tímto tunelem, aby bylo vaše připojení směrováno, i když FuzeVPN běží na pozadí.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Aplikace používá stav připojení, jeho délku a objem přenesených dat k zobrazení vašeho připojení VPN. Připojení můžete kdykoli ukončit.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Soukromí';
+
+  @override
+  String get vpnDisclosure_accept => 'Přijmout a pokračovat';
+
+  @override
+  String get vpnDisclosure_decline => 'Teď ne';
+
+  @override
   String get accountRestoration_title => 'Účet je dočasně nedostupný';
 
   @override
@@ -703,7 +727,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'invalid_profile': 'Neplatný profil',
       'invalid_device': 'Neplatné zařízení',
       'invalid_location': 'Lokalita není k dispozici',
-      'device_limit': 'Dosažen limit 2 zařízení',
+      'device_limit': 'Dosažen limit zařízení',
       'device_exists': 'Identita VPN se již používá',
       'device_identity_revoked': 'Identitu VPN je nutné obnovit',
       'device_location_locked': 'Změnu lokality je nutné obnovit',

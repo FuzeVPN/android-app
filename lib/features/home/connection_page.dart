@@ -29,9 +29,39 @@ class ConnectionPage extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         NoticeCard(
+          key: const ValueKey('connection-error-notice'),
           notice: controller.notice,
           onDismiss: controller.clearNotice,
         ),
+        if (controller.notice?.titleKey == 'notice.api.title' &&
+            const {
+              'server_full',
+              'capacity_unavailable',
+              'target_unavailable',
+              'invalid_location',
+            }.contains(controller.notice?.arguments['code'])) ...<Widget>[
+          const SizedBox(height: 8),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              OutlinedButton.icon(
+                key: const ValueKey('connection-error-refresh-locations'),
+                onPressed: controller.isLoadingLocations
+                    ? null
+                    : () => controller.refreshLocations(),
+                icon: const Icon(Icons.refresh),
+                label: Text(context.copy('action.refresh')),
+              ),
+              TextButton.icon(
+                key: const ValueKey('connection-error-choose-location'),
+                onPressed: onBrowseLocations,
+                icon: const Icon(Icons.location_on_outlined),
+                label: Text(context.copy('connection.changeLocation')),
+              ),
+            ],
+          ),
+        ],
         if (controller.notice != null) const SizedBox(height: 12),
         if (controller.mayNeedEmailVerification) ...<Widget>[
           if (controller.profile?.hasSessionCapabilities == true &&

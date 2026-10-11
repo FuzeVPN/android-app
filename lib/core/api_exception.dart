@@ -124,6 +124,7 @@ abstract final class ApiErrorMessages {
     final int? retryAfter = failure.retryAfterSeconds;
     final bool retryMessage = _retryCodes.contains(failure.code);
     final String localizationCode = switch (failure.code) {
+      'node_unavailable' => 'target_unavailable',
       'openvpn_state_signer_unavailable' ||
       'openvpn_signer_invalid_response' => 'openvpn_signer_unavailable',
       'invalid_or_expired_token' || 'invalid_reset' => 'invalid_token',

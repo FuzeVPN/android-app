@@ -82,49 +82,78 @@ class _AuthenticationDialogState extends State<AuthenticationDialog> {
               240.0,
               640.0,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(24, 16, 12, 8),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          context.copy('action.login'),
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                // A fixed multiline title can leave less room than a submit
+                // button with large text once the keyboard reduces the dialog.
+                final scrollTitle =
+                    constraints.maxHeight < 440 ||
+                    MediaQuery.textScalerOf(context).scale(1) > 1.3;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                        24,
+                        16,
+                        12,
+                        8,
                       ),
-                      IconButton(
-                        key: const ValueKey('guest-login-close'),
-                        tooltip: MaterialLocalizations.of(
-                          context,
-                        ).closeButtonTooltip,
-                        onPressed: busy
-                            ? null
-                            : () => Navigator.of(context).pop(),
-                        icon: const Icon(Icons.close),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Visibility(
+                              visible: !scrollTitle,
+                              child: Text(
+                                context.copy('action.login'),
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            key: const ValueKey('guest-login-close'),
+                            tooltip: MaterialLocalizations.of(
+                              context,
+                            ).closeButtonTooltip,
+                            onPressed: busy
+                                ? null
+                                : () => Navigator.of(context).pop(),
+                            icon: const Icon(Icons.close),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                Flexible(
-                  child: ListView(
-                    keyboardDismissBehavior:
-                        ScrollViewKeyboardDismissBehavior.onDrag,
-                    padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-                    children: [
-                      NoticeCard(
-                        notice: widget.controller.notice,
-                        onDismiss: widget.controller.clearNotice,
+                    ),
+                    Flexible(
+                      child: ListView(
+                        keyboardDismissBehavior:
+                            ScrollViewKeyboardDismissBehavior.onDrag,
+                        padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+                        children: [
+                          // Keep this item in place when IME/scale changes so the
+                          // form retains its state and the close action stays fixed.
+                          Visibility(
+                            visible: scrollTitle,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 16),
+                              child: Text(
+                                context.copy('action.login'),
+                                style: Theme.of(context).textTheme.titleLarge,
+                              ),
+                            ),
+                          ),
+                          NoticeCard(
+                            notice: widget.controller.notice,
+                            onDismiss: widget.controller.clearNotice,
+                          ),
+                          if (widget.controller.notice != null)
+                            const SizedBox(height: 16),
+                          _LoginForm(controller: widget.controller, busy: busy),
+                        ],
                       ),
-                      if (widget.controller.notice != null)
-                        const SizedBox(height: 16),
-                      _LoginForm(controller: widget.controller, busy: busy),
-                    ],
-                  ),
-                ),
-              ],
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         ),
@@ -1217,6 +1246,7 @@ Future<void> _showPasswordResetSheet(
 ) => showModalBottomSheet<void>(
   context: context,
   isScrollControlled: true,
+  useSafeArea: true,
   builder: (_) => _PasswordResetSheet(controller: controller),
 );
 

@@ -1,4 +1,11 @@
 {
+  "vpnDisclosure_title": "연결 보호하기",
+  "vpnDisclosure_body": "FuzeVPN은 Android의 VPN 서비스(VpnService)를 사용하여 이 기기와 FuzeVPN 서버 사이에 암호화된 터널을 만듭니다.",
+  "vpnDisclosure_dataBody": "VPN이 활성화된 동안 앱의 인터넷 트래픽, 목적지 주소 및 DNS 요청은 연결을 라우팅하기 위해 이 터널을 통과합니다. FuzeVPN이 백그라운드에서 실행 중일 때도 마찬가지입니다.",
+  "vpnDisclosure_statusBody": "앱은 연결 상태, 연결 시간 및 전송된 데이터양을 사용하여 VPN 연결을 표시합니다. 언제든지 연결을 중지할 수 있습니다.",
+  "vpnDisclosure_privacy": "개인정보 보호",
+  "vpnDisclosure_accept": "동의하고 계속",
+  "vpnDisclosure_decline": "나중에",
   "accountRestoration_title": "계정을 일시적으로 사용할 수 없습니다",
   "accountRestoration_message": "세션은 유지되었습니다. 다시 시도하여 계정을 복구하세요. 여기에서 VPN 연결을 계속 관리할 수 있습니다.",
   "action_retry": "다시 시도",
@@ -211,7 +218,7 @@
       }
     }
   },
-  "notice_api_title": "{code, select, unauthorized{세션 만료} invalid_credentials{로그인 실패} email_verification_required{이메일 확인 필요} verification_email_cooldown{이메일이 이미 전송됨} rate_limited{시도 횟수 초과} invalid_registration{정보 수정 필요} email_exists{계정이 이미 존재함} invalid_profile{잘못된 프로필} invalid_device{잘못된 기기} invalid_location{위치를 사용할 수 없음} device_limit{기기 2대 한도에 도달함} device_exists{VPN 신원이 이미 사용 중} device_identity_revoked{VPN 신원을 갱신해야 함} device_location_locked{위치 변경을 새로 고쳐야 함} location_migration_pending{위치 변경 진행 중} location_migration_blocked{위치 변경 차단됨} target_ca_mismatch{호환되지 않는 OpenVPN 서버} location_migration_conflict{위치 변경을 새로 고쳐야 함} server_full{서버가 가득 참} capacity_unavailable{위치를 일시적으로 사용할 수 없음} target_unavailable{서버를 일시적으로 사용할 수 없음} not_found{항목을 찾을 수 없음} invalid_openvpn_csr{잘못된 OpenVPN 신원} openvpn_profile_exists{OpenVPN 프로필이 이미 존재함} openvpn_profile_revoked{OpenVPN 프로필 취소됨} openvpn_operation_pending{OpenVPN 작업 진행 중} openvpn_operation_terminal{OpenVPN 작업 중단됨} openvpn_address_unavailable{OpenVPN 주소를 사용할 수 없음} openvpn_profile_conflict{OpenVPN 충돌} openvpn_signer_unavailable{OpenVPN을 사용할 수 없음} email_delivery_unavailable{이메일을 사용할 수 없음} invalid_token{잘못된 링크} network_unavailable{인터넷 연결을 사용할 수 없음} invalid_json{잘못된 요청} invalid_api_response{잘못된 서버 응답} ipv6_unavailable{IPv6을 사용할 수 없음} invalid_ip_families{네트워크 구성 거부됨} other{서비스를 사용할 수 없음}}",
+  "notice_api_title": "{code, select, unauthorized{세션 만료} invalid_credentials{로그인 실패} email_verification_required{이메일 확인 필요} verification_email_cooldown{이메일이 이미 전송됨} rate_limited{시도 횟수 초과} invalid_registration{정보 수정 필요} email_exists{계정이 이미 존재함} invalid_profile{잘못된 프로필} invalid_device{잘못된 기기} invalid_location{위치를 사용할 수 없음} device_limit{기기 한도에 도달함} device_exists{VPN 신원이 이미 사용 중} device_identity_revoked{VPN 신원을 갱신해야 함} device_location_locked{위치 변경을 새로 고쳐야 함} location_migration_pending{위치 변경 진행 중} location_migration_blocked{위치 변경 차단됨} target_ca_mismatch{호환되지 않는 OpenVPN 서버} location_migration_conflict{위치 변경을 새로 고쳐야 함} server_full{서버가 가득 참} capacity_unavailable{위치를 일시적으로 사용할 수 없음} target_unavailable{서버를 일시적으로 사용할 수 없음} not_found{항목을 찾을 수 없음} invalid_openvpn_csr{잘못된 OpenVPN 신원} openvpn_profile_exists{OpenVPN 프로필이 이미 존재함} openvpn_profile_revoked{OpenVPN 프로필 취소됨} openvpn_operation_pending{OpenVPN 작업 진행 중} openvpn_operation_terminal{OpenVPN 작업 중단됨} openvpn_address_unavailable{OpenVPN 주소를 사용할 수 없음} openvpn_profile_conflict{OpenVPN 충돌} openvpn_signer_unavailable{OpenVPN을 사용할 수 없음} email_delivery_unavailable{이메일을 사용할 수 없음} invalid_token{잘못된 링크} network_unavailable{인터넷 연결을 사용할 수 없음} invalid_json{잘못된 요청} invalid_api_response{잘못된 서버 응답} ipv6_unavailable{IPv6을 사용할 수 없음} invalid_ip_families{네트워크 구성 거부됨} other{서비스를 사용할 수 없음}}",
   "@notice_api_title": {
     "placeholders": {
       "code": {

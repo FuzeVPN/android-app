@@ -9,6 +9,30 @@ class AppLocalizationsId extends AppLocalizations {
   AppLocalizationsId([String locale = 'id']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Lindungi koneksi Anda';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN menggunakan layanan VPN Android (VpnService) untuk membuat terowongan terenkripsi antara perangkat ini dan server FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Saat VPN aktif, lalu lintas Internet aplikasi Anda, alamat tujuan, dan permintaan DNS melewati terowongan ini untuk merutekan koneksi Anda, bahkan saat FuzeVPN berjalan di latar belakang.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Aplikasi menggunakan status koneksi, durasinya, dan jumlah data yang ditransfer untuk menampilkan koneksi VPN Anda. Anda dapat menghentikannya kapan saja.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Privasi';
+
+  @override
+  String get vpnDisclosure_accept => 'Setujui dan lanjutkan';
+
+  @override
+  String get vpnDisclosure_decline => 'Tidak sekarang';
+
+  @override
   String get accountRestoration_title => 'Akun untuk sementara tidak tersedia';
 
   @override
@@ -707,7 +731,7 @@ class AppLocalizationsId extends AppLocalizations {
       'invalid_profile': 'Profil tidak valid',
       'invalid_device': 'Perangkat tidak valid',
       'invalid_location': 'Lokasi tidak tersedia',
-      'device_limit': 'Batas 2 perangkat tercapai',
+      'device_limit': 'Batas perangkat tercapai',
       'device_exists': 'Identitas VPN sudah digunakan',
       'device_identity_revoked': 'Identitas VPN harus diperbarui',
       'device_location_locked': 'Perubahan lokasi perlu disegarkan',

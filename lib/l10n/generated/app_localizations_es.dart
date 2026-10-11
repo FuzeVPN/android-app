@@ -9,6 +9,30 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Protege tu conexión';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN utiliza el servicio VPN de Android (VpnService) para crear un túnel cifrado entre este dispositivo y los servidores de FuzeVPN.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'Mientras la VPN está activa, el tráfico de Internet de tus aplicaciones, las direcciones de destino y las solicitudes DNS pasan por este túnel para encaminar tu conexión, incluso cuando FuzeVPN está en segundo plano.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'La aplicación utiliza el estado de la conexión, su duración y la cantidad de datos transferidos para mostrar tu conexión VPN. Puedes detenerla en cualquier momento.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Privacidad';
+
+  @override
+  String get vpnDisclosure_accept => 'Aceptar y continuar';
+
+  @override
+  String get vpnDisclosure_decline => 'Ahora no';
+
+  @override
   String get accountRestoration_title => 'Cuenta no disponible temporalmente';
 
   @override
@@ -709,7 +733,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'invalid_profile': 'Perfil no válido',
       'invalid_device': 'Dispositivo no válido',
       'invalid_location': 'Ubicación no disponible',
-      'device_limit': 'Límite de 2 dispositivos alcanzado',
+      'device_limit': 'Límite de dispositivos alcanzado',
       'device_exists': 'Identidad VPN ya utilizada',
       'device_identity_revoked': 'Hay que renovar la identidad VPN',
       'device_location_locked': 'Hay que actualizar el cambio de ubicación',

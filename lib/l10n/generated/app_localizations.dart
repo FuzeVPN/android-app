@@ -154,6 +154,48 @@ abstract class AppLocalizations {
     Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant'),
   ];
 
+  /// No description provided for @vpnDisclosure_title.
+  ///
+  /// In fr, this message translates to:
+  /// **'Protéger votre connexion'**
+  String get vpnDisclosure_title;
+
+  /// No description provided for @vpnDisclosure_body.
+  ///
+  /// In fr, this message translates to:
+  /// **'FuzeVPN utilise le service VPN d’Android (VpnService) pour créer un tunnel chiffré entre cet appareil et les serveurs FuzeVPN.'**
+  String get vpnDisclosure_body;
+
+  /// No description provided for @vpnDisclosure_dataBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Lorsque le VPN est actif, le trafic Internet de vos applications, les adresses de destination et les requêtes DNS transitent par ce tunnel pour acheminer votre connexion, même lorsque FuzeVPN est en arrière-plan.'**
+  String get vpnDisclosure_dataBody;
+
+  /// No description provided for @vpnDisclosure_statusBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'L’application utilise l’état de la connexion, sa durée et le volume de données échangées pour afficher votre connexion VPN. Vous pouvez l’arrêter à tout moment.'**
+  String get vpnDisclosure_statusBody;
+
+  /// No description provided for @vpnDisclosure_privacy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confidentialité'**
+  String get vpnDisclosure_privacy;
+
+  /// No description provided for @vpnDisclosure_accept.
+  ///
+  /// In fr, this message translates to:
+  /// **'Accepter et continuer'**
+  String get vpnDisclosure_accept;
+
+  /// No description provided for @vpnDisclosure_decline.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pas maintenant'**
+  String get vpnDisclosure_decline;
+
   /// No description provided for @accountRestoration_title.
   ///
   /// In fr, this message translates to:
@@ -1261,7 +1303,7 @@ abstract class AppLocalizations {
   /// No description provided for @notice_api_title.
   ///
   /// In fr, this message translates to:
-  /// **'{code, select, unauthorized{Session expirée} invalid_credentials{Connexion impossible} email_verification_required{Adresse e-mail à confirmer} verification_email_cooldown{E-mail déjà envoyé} rate_limited{Trop de tentatives} invalid_registration{Informations à corriger} email_exists{Compte existant} invalid_profile{Profil invalide} invalid_device{Appareil invalide} invalid_location{Emplacement indisponible} device_limit{Limite de 2 appareils atteinte} device_exists{Identité VPN déjà utilisée} device_identity_revoked{Identité VPN à renouveler} device_location_locked{Changement d’emplacement à actualiser} location_migration_pending{Changement d’emplacement en cours} location_migration_blocked{Changement d’emplacement bloqué} target_ca_mismatch{Serveur OpenVPN non compatible} location_migration_conflict{Changement d’emplacement à actualiser} server_full{Serveur complet} capacity_unavailable{Emplacement temporairement indisponible} target_unavailable{Serveur temporairement indisponible} not_found{Élément introuvable} invalid_openvpn_csr{Identité OpenVPN invalide} openvpn_profile_exists{Profil OpenVPN existant} openvpn_profile_revoked{Profil OpenVPN révoqué} openvpn_operation_pending{Opération OpenVPN en cours} openvpn_operation_terminal{Opération OpenVPN interrompue} openvpn_address_unavailable{Adresse OpenVPN indisponible} openvpn_profile_conflict{Conflit OpenVPN} openvpn_signer_unavailable{OpenVPN indisponible} email_delivery_unavailable{E-mail indisponible} invalid_token{Lien invalide} network_unavailable{Connexion Internet indisponible} invalid_json{Demande invalide} invalid_api_response{Réponse serveur invalide} ipv6_unavailable{IPv6 indisponible} invalid_ip_families{Configuration réseau refusée} other{Service indisponible}}'**
+  /// **'{code, select, unauthorized{Session expirée} invalid_credentials{Connexion impossible} email_verification_required{Adresse e-mail à confirmer} verification_email_cooldown{E-mail déjà envoyé} rate_limited{Trop de tentatives} invalid_registration{Informations à corriger} email_exists{Compte existant} invalid_profile{Profil invalide} invalid_device{Appareil invalide} invalid_location{Emplacement indisponible} device_limit{Limite d’appareils atteinte} device_exists{Identité VPN déjà utilisée} device_identity_revoked{Identité VPN à renouveler} device_location_locked{Changement d’emplacement à actualiser} location_migration_pending{Changement d’emplacement en cours} location_migration_blocked{Changement d’emplacement bloqué} target_ca_mismatch{Serveur OpenVPN non compatible} location_migration_conflict{Changement d’emplacement à actualiser} server_full{Serveur complet} capacity_unavailable{Emplacement temporairement indisponible} target_unavailable{Serveur temporairement indisponible} not_found{Élément introuvable} invalid_openvpn_csr{Identité OpenVPN invalide} openvpn_profile_exists{Profil OpenVPN existant} openvpn_profile_revoked{Profil OpenVPN révoqué} openvpn_operation_pending{Opération OpenVPN en cours} openvpn_operation_terminal{Opération OpenVPN interrompue} openvpn_address_unavailable{Adresse OpenVPN indisponible} openvpn_profile_conflict{Conflit OpenVPN} openvpn_signer_unavailable{OpenVPN indisponible} email_delivery_unavailable{E-mail indisponible} invalid_token{Lien invalide} network_unavailable{Connexion Internet indisponible} invalid_json{Demande invalide} invalid_api_response{Réponse serveur invalide} ipv6_unavailable{IPv6 indisponible} invalid_ip_families{Configuration réseau refusée} other{Service indisponible}}'**
   String notice_api_title(String code);
 
   /// No description provided for @notice_api_message.

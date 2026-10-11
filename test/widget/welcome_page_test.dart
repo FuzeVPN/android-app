@@ -105,7 +105,8 @@ void main() {
       await tester.tap(restore);
       await tester.pumpAndSettle();
       expect(controller.restores, 1);
-      expect(find.text('Voir les formules'), findsOneWidget);
+      expect(find.text('Démarrer'), findsOneWidget);
+      expect(find.text('Voir les formules'), findsNothing);
       expect(find.text('Réessayer'), findsOneWidget);
       expect(find.byType(TextFormField), findsNothing);
       expect(controller.purchaseRequests, isEmpty);

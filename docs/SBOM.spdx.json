@@ -2,16 +2,16 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "FuzeVPN-Android-0.2.4-source-inventory",
-  "documentNamespace": "https://fuzevpn.com/sbom/android/0.2.4/74010/2026-10-07-source-inventory",
+  "name": "FuzeVPN-Android-0.2.5-source-inventory",
+  "documentNamespace": "https://fuzevpn.com/sbom/android/0.2.5/74011/2026-10-11-source-inventory",
   "creationInfo": {
-    "created": "2026-10-07T00:00:00Z",
+    "created": "2026-10-11T00:00:00Z",
     "creators": [
       "Tool: FuzeVPN Android source inventory",
       "Organization: FuzeVPN"
     ],
     "licenseListVersion": "3.26",
-    "comment": "Source inventory from pubspec.lock, declared Gradle dependencies, vendored metadata, local font metadata and asset provenance; the Play Billing 9.1.0 preparation adds selected locked transitives, cached artifact checksums and POM license declarations inspected on 2026-10-03. It includes development and non-Android packages resolved by Pub; it is not an AAB-resolved dependency graph or a complete inventory of Flutter engine internals and all Gradle transitives. Custom Android SDK terms are identified by name and official URL; no legal license conclusion is asserted. Update for 0.2.3+74009: three directly declared Google authentication SDKs, six selected locked Google Play services transitives, Google Sans and the official G logo were inspected on 2026-10-05. Public cached POM/AAR and local asset checksums are recorded. Existing entries and their earlier inspection context are retained; this remains a limited source inventory rather than a complete runtime reachability analysis. Update for public source publication 0.2.4+74010 on 2026-10-07: own application code has MPL-2.0 as the root default, with existing file notices, third-party terms and brand exclusions preserved in LICENSING.md. No APK/AAB or backend is distributed or qualified by this inventory. Official Maven POM declarations for AndroidX annotation/collection, javax.inject and selected test dependencies were rechecked; previous artifact checksums and component inspection context are preserved. This is not a claim that a resulting APK is entirely free software. Supplemental source-license inspection on 2026-10-07 confirms retained Go 1.24.3 and all eight module LICENSE files, as well as wireguard-tools and elf-cleaner COPYING. Main Go module license declarations are completed and three supplemental source-only modules are added. A missing full LGPL-2.1 text for the netlink.h SPDX grant is provided outside locked native inputs under licenses/, using the official SPDX v3.26.0 FSF license text with its checksum."
+    "comment": "Source inventory from pubspec.lock, declared Gradle dependencies, vendored metadata, local font metadata and asset provenance; the Play Billing 9.1.0 preparation adds selected locked transitives, cached artifact checksums and POM license declarations inspected on 2026-10-03. It includes development and non-Android packages resolved by Pub; it is not an AAB-resolved dependency graph or a complete inventory of Flutter engine internals and all Gradle transitives. Custom Android SDK terms are identified by name and official URL; no legal license conclusion is asserted. Update for 0.2.3+74009: three directly declared Google authentication SDKs, six selected locked Google Play services transitives, Google Sans and the official G logo were inspected on 2026-10-05. Public cached POM/AAR and local asset checksums are recorded. Existing entries and their earlier inspection context are retained; this remains a limited source inventory rather than a complete runtime reachability analysis. Update for public source publication 0.2.4+74010 on 2026-10-07: own application code has MPL-2.0 as the root default, with existing file notices, third-party terms and brand exclusions preserved in LICENSING.md. No APK/AAB or backend is distributed or qualified by this inventory. Official Maven POM declarations for AndroidX annotation/collection, javax.inject and selected test dependencies were rechecked; previous artifact checksums and component inspection context are preserved. This is not a claim that a resulting APK is entirely free software. Supplemental source-license inspection on 2026-10-07 confirms retained Go 1.24.3 and all eight module LICENSE files, as well as wireguard-tools and elf-cleaner COPYING. Main Go module license declarations are completed and three supplemental source-only modules are added. A missing full LGPL-2.1 text for the netlink.h SPDX grant is provided outside locked native inputs under licenses/, using the official SPDX v3.26.0 FSF license text with its checksum. Release metadata update for 0.2.5+74011 on 2026-10-11: application and document version only. Existing dependency inventories, license declarations, checksums and inspection dates are preserved; no new dependency qualification or Google Play distribution is asserted."
   },
   "documentDescribes": [
     "SPDXRef-Package-FuzeVPNAndroid"
@@ -20,7 +20,7 @@
     {
       "name": "FuzeVPN Android",
       "SPDXID": "SPDXRef-Package-FuzeVPNAndroid",
-      "versionInfo": "0.2.4+74010",
+      "versionInfo": "0.2.5+74011",
       "downloadLocation": "https://github.com/FuzeVPN/android-app",
       "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",

@@ -8,6 +8,7 @@ import 'package:fuzevpn_android/app.dart';
 import 'package:fuzevpn_android/app_controller.dart';
 import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/core/api_exception.dart';
+import 'package:fuzevpn_android/core/guest_accounts.dart';
 import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/play_billing.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
@@ -97,6 +98,219 @@ void main() {
       'MaterialIcons',
     )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
   });
+  for (final code in [
+    'node_unavailable',
+    'server_full',
+    'capacity_unavailable',
+  ]) {
+    testWidgets(
+      'APP10 $code offers manual catalogue recovery without connection',
+      (tester) async {
+        final h = _UiHarness();
+        addTearDown(h.close);
+        h.store.session = _session;
+        await h.controller.initialize();
+        await h.controller.setLocale(const Locale('fr'));
+        final message = ApiErrorMessages.fromFailure(
+          ApiException(
+            statusCode: code == 'server_full' ? 409 : 503,
+            errorCode: code,
+          ),
+        );
+        h.controller.notice = AppNotice(
+          titleKey: message.titleKey,
+          messageKey: message.messageKey,
+          arguments: message.arguments,
+          diagnosticCode: message.diagnosticCode,
+        );
+        await tester.pumpWidget(
+          FuzeVpnApp(controller: h.controller, autoInitialize: false),
+        );
+        await tester.pumpAndSettle();
+        final reads = h.api.catalogueReads;
+        final location = h.controller.selectedLocation;
+        final refresh = find.byKey(
+          const ValueKey('connection-error-refresh-locations'),
+        );
+        await _scrollTo(tester, refresh);
+        await tester.tap(refresh);
+        await tester.pumpAndSettle();
+        expect(h.api.catalogueReads, reads + 1);
+        expect(h.controller.selectedLocation?.id, location?.id);
+        expect(h.controller.isConnecting, isFalse);
+        expect(h.api.enrolledLocation, isNull);
+        final choose = find.byKey(
+          const ValueKey('connection-error-choose-location'),
+        );
+        await _scrollTo(tester, choose);
+        await tester.tap(choose);
+        await tester.pumpAndSettle();
+        expect(h.api.enrolledLocation, isNull);
+        expect(h.controller.profile?.userId, _profile.userId);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets('APP10 expired session does not offer destination recovery', (
+    tester,
+  ) async {
+    final h = _UiHarness();
+    addTearDown(h.close);
+    h.store.session = _session;
+    await h.controller.initialize();
+    h.controller.notice = const AppNotice(
+      titleKey: 'notice.api.title',
+      messageKey: 'notice.api.message',
+      arguments: {'code': 'unauthorized'},
+      diagnosticCode: 'API-HTTP-401 · unauthorized',
+    );
+    await tester.pumpWidget(
+      FuzeVpnApp(controller: h.controller, autoInitialize: false),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      find.byKey(const ValueKey('connection-error-refresh-locations')),
+      findsNothing,
+    );
+    expect(
+      find.byKey(const ValueKey('connection-error-choose-location')),
+      findsNothing,
+    );
+  });
+
+  testWidgets('APP10 copy action sends only safe diagnostic reference', (
+    tester,
+  ) async {
+    final h = _UiHarness();
+    addTearDown(h.close);
+    h.store.session = _session;
+    await h.controller.initialize();
+    h.controller.notice = const AppNotice(
+      titleKey: 'notice.api.title',
+      messageKey: 'notice.api.message',
+      arguments: {'code': 'target_unavailable'},
+      diagnosticCode: 'API-HTTP-503 · node_unavailable',
+    );
+    String? copied;
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(SystemChannels.platform, (call) async {
+          if (call.method == 'Clipboard.setData') {
+            copied = (call.arguments as Map)['text'] as String;
+          }
+          return null;
+        });
+    addTearDown(
+      () => TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(SystemChannels.platform, null),
+    );
+    await tester.pumpWidget(
+      FuzeVpnApp(controller: h.controller, autoInitialize: false),
+    );
+    await tester.pumpAndSettle();
+    final copy = find.byKey(const ValueKey('notice-copy-reference')).first;
+    await _scrollTo(tester, copy);
+    await tester.tap(copy);
+    await tester.pumpAndSettle();
+    expect(copied, 'API-HTTP-503 · node_unavailable');
+  });
+
+  testWidgets(
+    'APP10 recovery controls remain reachable at 320dp and 200 percent',
+    (tester) async {
+      tester.view.devicePixelRatio = 1;
+      tester.view.physicalSize = const Size(320, 640);
+      tester.platformDispatcher.textScaleFactorTestValue = 2;
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+      final h = _UiHarness();
+      addTearDown(h.close);
+      h.store.session = _session;
+      await h.controller.initialize();
+      await h.controller.setLocale(const Locale('fr'));
+      h.controller.notice = const AppNotice(
+        titleKey: 'notice.api.title',
+        messageKey: 'notice.api.message',
+        arguments: {'code': 'target_unavailable'},
+        diagnosticCode: 'API-HTTP-503 · node_unavailable',
+      );
+      await tester.pumpWidget(
+        FuzeVpnApp(controller: h.controller, autoInitialize: false),
+      );
+      await tester.pumpAndSettle();
+      final navigationLabel = find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Emplacements'),
+      );
+      final labelContext = tester.element(navigationLabel);
+      expect(DefaultTextStyle.of(labelContext).maxLines, 1);
+      expect(DefaultTextStyle.of(labelContext).softWrap, isFalse);
+      expect(DefaultTextStyle.of(labelContext).overflow, TextOverflow.ellipsis);
+      final semantics = tester.ensureSemantics();
+      expect(
+        tester.getSemantics(navigationLabel).label,
+        contains('Emplacements'),
+      );
+      semantics.dispose();
+      await tester.runAsync(
+        () => precacheImage(
+          const AssetImage('assets/images/fuzevpn-emblem.png'),
+          tester.element(find.byType(Scaffold).first),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final notice = find.byKey(const ValueKey('connection-error-notice'));
+      await _scrollTo(tester, notice);
+      await Scrollable.ensureVisible(tester.element(notice), alignment: 0);
+      await tester.pumpAndSettle();
+      expect(
+        find.descendant(
+          of: notice,
+          matching: find.text('Serveur temporairement indisponible'),
+        ),
+        findsOneWidget,
+      );
+      if (const bool.fromEnvironment('FUZEVPN_REVIEW_FONTS')) {
+        await expectLater(
+          find.byType(Scaffold).first,
+          matchesGoldenFile('goldens/helper-app10-error-top-320-200.png'),
+        );
+      }
+      final choose = find.byKey(
+        const ValueKey('connection-error-choose-location'),
+      );
+      await _scrollTo(tester, choose);
+      final refresh = find.byKey(
+        const ValueKey('connection-error-refresh-locations'),
+      );
+      await Scrollable.ensureVisible(tester.element(refresh), alignment: 0);
+      await tester.pumpAndSettle();
+      expect(choose.hitTestable(), findsOneWidget);
+      expect(refresh.hitTestable(), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      if (const bool.fromEnvironment('FUZEVPN_REVIEW_FONTS')) {
+        await expectLater(
+          find.byType(Scaffold).first,
+          matchesGoldenFile('goldens/helper-app10-recovery-320-200.png'),
+        );
+      }
+      tester.view.physicalSize = const Size(412, 915);
+      tester.platformDispatcher.textScaleFactorTestValue = 1;
+      await tester.pumpAndSettle();
+      final copy = find.byKey(const ValueKey('notice-copy-reference')).first;
+      await _scrollTo(tester, copy);
+      if (const bool.fromEnvironment('FUZEVPN_REVIEW_FONTS')) {
+        await expectLater(
+          find.byType(Scaffold).first,
+          matchesGoldenFile('goldens/helper-app10-recovery-412-100.png'),
+        );
+      }
+      expect(tester.takeException(), isNull);
+    },
+    tags: 'golden',
+  );
+
   testWidgets('location refresh failures are visible on the locations page', (
     WidgetTester tester,
   ) async {
@@ -984,6 +1198,9 @@ void main() {
         addTearDown(h.close);
         h.store.session = _session;
         h.api.profileResult = guestProfile;
+        // Settings belong to an already activated guest, not a checkout-only
+        // identity that must still see the initial welcome.
+        h.store.admittedGuests.add(guestProfile.userId);
         await h.controller.initialize();
         await h.controller.setLocale(const Locale('fr'));
         await tester.pumpWidget(
@@ -1041,6 +1258,7 @@ void main() {
             canClaimAccount: true,
             canUseVpn: true,
           );
+          h.store.admittedGuests.add('guest-preview');
           await h.controller.initialize();
           await h.controller.setLocale(const Locale('fr'));
           await h.controller.setThemeMode(
@@ -1870,19 +2088,12 @@ void main() {
       await tester.pumpWidget(_legacyAuthentication(harness.controller));
       await tester.pumpAndSettle();
 
-      // Wait for asset decoding also when this golden runs on its own.
-      // pumpAndSettle alone does not await image IO on a cold cache.
-      await tester.runAsync(
-        () => precacheImage(
-          tester.widget<Image>(find.byType(Image).first).image,
-          tester.element(find.byType(Scaffold).first),
-        ),
-      );
-      await tester.pumpAndSettle();
-      expect(
-        tester.widget<RawImage>(find.byType(RawImage).first).image,
-        isNotNull,
-      );
+      // Wait for both the emblem and Google icon on a cold image cache.
+      // pumpAndSettle alone does not await asset decoding.
+      await _settleImages(tester);
+      final decodedImages = tester.widgetList<RawImage>(find.byType(RawImage));
+      expect(decodedImages.length, 2);
+      expect(decodedImages.every((image) => image.image != null), isTrue);
 
       await expectLater(
         find.byType(Scaffold).first,
@@ -2890,8 +3101,17 @@ class _UiApi implements VpnApiRepository {
   Future<bool> verifyEmail(String token) async => true;
 }
 
-class _MemorySessionStore implements SecureSessionStore {
+class _MemorySessionStore implements SecureSessionStore, GuestOnboardingStore {
   AuthSession? session;
+  final admittedGuests = <String>{};
+  @override
+  Future<bool> readGuestOnboardingCompleted({required String userId}) async =>
+      admittedGuests.contains(userId);
+  @override
+  Future<void> writeGuestOnboardingCompleted({required String userId}) async {
+    admittedGuests.add(userId);
+  }
+
   SessionTerminationResult terminationResult =
       const SessionTerminationResult.complete();
   Completer<void>? clearRelease;

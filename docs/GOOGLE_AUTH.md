@@ -1,6 +1,6 @@
 # Connexion Google — Android et contrat API attendu
 
-Version source **0.2.4+74010**, inventaire documentaire du **7 octobre 2026**.
+Version source **0.2.5+74011**, métadonnées documentaires du **11 octobre 2026**.
 Le client Flutter, Android Credential Manager et le stockage des intentions
 Google sont intégrés. **Aucune connexion Google native réelle n’est attestée
 par cette publication**. Les tests avec fakes et les captures d’interface ne

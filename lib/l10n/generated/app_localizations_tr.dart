@@ -9,6 +9,30 @@ class AppLocalizationsTr extends AppLocalizations {
   AppLocalizationsTr([String locale = 'tr']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'Bağlantınızı koruyun';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN, bu cihaz ile FuzeVPN sunucuları arasında şifreli bir tünel oluşturmak için Android’in VPN hizmetini (VpnService) kullanır.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'VPN etkinken uygulamalarınızın İnternet trafiği, hedef adresleri ve DNS istekleri bağlantınızı yönlendirmek için bu tünelden geçer. FuzeVPN arka planda çalışırken de bu işlem devam eder.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'Uygulama, VPN bağlantınızı göstermek için bağlantı durumunu, süresini ve aktarılan veri miktarını kullanır. Bağlantıyı istediğiniz zaman durdurabilirsiniz.';
+
+  @override
+  String get vpnDisclosure_privacy => 'Gizlilik';
+
+  @override
+  String get vpnDisclosure_accept => 'Kabul et ve devam et';
+
+  @override
+  String get vpnDisclosure_decline => 'Şimdi değil';
+
+  @override
   String get accountRestoration_title => 'Hesap geçici olarak kullanılamıyor';
 
   @override
@@ -707,7 +731,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'invalid_profile': 'Geçersiz profil',
       'invalid_device': 'Geçersiz cihaz',
       'invalid_location': 'Konum kullanılamıyor',
-      'device_limit': '2 cihaz sınırına ulaşıldı',
+      'device_limit': 'Cihaz sınırına ulaşıldı',
       'device_exists': 'VPN kimliği zaten kullanımda',
       'device_identity_revoked': 'VPN kimliği yenilenmeli',
       'device_location_locked': 'Konum değişikliğinin yenilenmesi gerekiyor',

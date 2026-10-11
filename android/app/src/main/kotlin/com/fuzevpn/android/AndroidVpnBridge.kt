@@ -62,6 +62,10 @@ internal class AndroidVpnBridge(
         read = { readStrict(it) },
         update = { values, deleted -> store.updateSlotsAtomically(values, deleted) },
     )
+    private val guestOnboarding = GuestOnboardingStorage(
+        read = { readStrict(it) },
+        write = { slot, value -> writeSlot(slot, value) },
+    )
     private val quickTileProfiles = QuickTileProfileStore(store)
     private val resumeRegistry = SystemVpnResumeRegistry(
         readRaw = { SecureStorageKeyPolicy.systemVpnResume().let { store.read(it.scope, it.key, removeCorrupt = false) } },
@@ -124,6 +128,7 @@ internal class AndroidVpnBridge(
     @Volatile
     private var permissionResult: MethodChannel.Result? = null
     private var permissionSessionEpoch = 0L
+    @Volatile private var permissionDisclosureAccepted = false
 
     // Main-thread lifecycle state; never retains the Activity or a file path.
     private var diagnosticExport: DiagnosticExport<MethodChannel.Result>? = null
@@ -394,7 +399,12 @@ internal class AndroidVpnBridge(
                 checkRequest(requestEpoch)
                 invalidateSystemResume()
             } }
-            "requestVpnPermission" -> requestVpnPermission(result, sessionTicket)
+            "getVpnDisclosureStatus" -> launchResult(result) {
+                mapOf("accepted" to vpnDisclosureAccepted(),
+                    "android_permission" to (VpnService.prepare(appContext) == null))
+            }
+            "requestVpnPermission" -> requestVpnPermission(result, sessionTicket,
+                (call.arguments as? Map<*, *>)?.get("disclosure_accepted") == true)
             "connectWireGuard" -> launchTunnelResult(result, sessionTicket, requestEpoch, VpnProtocol.WIREGUARD, timing) {
                 connectWireGuard(call.requireMap().toWireGuardRequest(), sessionTicket, requestEpoch = requestEpoch, timing = timing)
             }
@@ -509,6 +519,14 @@ internal class AndroidVpnBridge(
                 val enabled = call.requireMap()["enabled"] as? Boolean ?: throw VpnNativeException("invalid_arguments")
                 sessionLifecycle.mutate(sessionTicket) { guestCredentials.writeAutoResume(enabled) }
             }
+            "storageReadGuestOnboardingCompleted" -> launchResult(result) {
+                guestOnboarding.readCompleted(call.requireAccountId())
+            }
+            "storageWriteGuestOnboardingCompleted" -> launchVoidResult(result) {
+                sessionLifecycle.mutate(sessionTicket) {
+                    guestOnboarding.complete(call.requireAccountId())
+                }
+            }
             "storageReplaceGuestSession" -> launchVoidResult(result) {
                 val args = call.requireMap()
                 withTunnelOperation { replaceStoredGuestSession(args, sessionTicket) }
@@ -615,19 +633,11 @@ internal class AndroidVpnBridge(
         }
         if (requestCode != VPN_PERMISSION_REQUEST_CODE) return false
         val result = permissionResult ?: return true
+        val ticket = permissionSessionEpoch
+        val disclosed = permissionDisclosureAccepted
         permissionResult = null
-        if (!sessionLifecycle.isCurrent(permissionSessionEpoch)) {
-            result.error("session_operation_cancelled", "session_operation_cancelled", null)
-            return true
-        }
-        val granted = VpnService.prepare(appContext) == null
-        if (granted) {
-            requestNotificationPermissionIfNeeded()
-            if (activeProtocol == null) emitState(VpnStatus.IDLE, null, null)
-        } else {
-            emitState(VpnStatus.ERROR, null, "vpn_permission_denied")
-        }
-        result.success(granted)
+        permissionDisclosureAccepted = false
+        completeVpnPermission(result, ticket, disclosed && resultCode == Activity.RESULT_OK)
         return true
     }
 
@@ -662,6 +672,7 @@ internal class AndroidVpnBridge(
         activityReference = null
         permissionResult?.error("activity_destroyed", "activity_destroyed", null)
         permissionResult = null
+        permissionDisclosureAccepted = false
         abandonDiagnosticExport()
     }
 
@@ -750,7 +761,21 @@ internal class AndroidVpnBridge(
         diagnosticExportRequestCode = null
     }
 
-    private fun requestVpnPermission(result: MethodChannel.Result, ticket: Long) {
+    private fun requestVpnPermission(result: MethodChannel.Result, ticket: Long, disclosed: Boolean) {
+        // Keystore reads remain off the main thread. No disclosure state is
+        // adopted merely because an older installation has Android permission.
+        operationScope.launch {
+            try {
+                val accepted = vpnDisclosureAccepted()
+                withContext(Dispatchers.Main) { beginVpnPermission(result, ticket, disclosed, accepted) }
+            } catch (error: Throwable) {
+                val code = messageCode(error, "secure_storage_read_failed")
+                withContext(Dispatchers.Main) { result.error(code, code, null) }
+            }
+        }
+    }
+
+    private fun beginVpnPermission(result: MethodChannel.Result, ticket: Long, disclosed: Boolean, accepted: Boolean) {
         if (!sessionLifecycle.isCurrent(ticket)) {
             result.error("session_operation_cancelled", "session_operation_cancelled", null)
             return
@@ -760,24 +785,61 @@ internal class AndroidVpnBridge(
             return
         }
         val intent = VpnService.prepare(appContext)
+        if (!VpnDisclosurePolicy.mayRequest(accepted, intent == null, disclosed)) {
+            result.error("vpn_disclosure_required", "vpn_disclosure_required", null)
+            return
+        }
         if (intent == null) {
-            requestNotificationPermissionIfNeeded()
-            if (activeProtocol == null) emitState(VpnStatus.IDLE, null, null)
-            result.success(true)
+            completeVpnPermission(result, ticket, disclosed || accepted)
             return
         }
         permissionResult = result
         permissionSessionEpoch = ticket
+        permissionDisclosureAccepted = disclosed
         emitState(VpnStatus.AUTHORIZING, null, null)
         try {
             val host = currentActivity() ?: throw IllegalStateException("activity_not_available")
             host.startActivityForResult(intent, VPN_PERMISSION_REQUEST_CODE)
         } catch (error: Exception) {
             permissionResult = null
+            permissionDisclosureAccepted = false
             emitState(VpnStatus.ERROR, null, "vpn_permission_request_failed")
             result.error("vpn_permission_request_failed", "vpn_permission_request_failed", null)
         }
     }
+
+    private fun completeVpnPermission(result: MethodChannel.Result, ticket: Long, disclosed: Boolean) {
+        operationScope.launch {
+            try {
+                sessionLifecycle.check(ticket)
+                val granted = disclosed && VpnService.prepare(appContext) == null
+                if (granted) {
+                    // Durable consent must succeed before Dart can start a tunnel.
+                    sessionLifecycle.mutate(ticket) {
+                        writePreference(SecureAppPreference.VPN_DISCLOSURE_VERSION, VpnDisclosurePolicy.CURRENT_VERSION)
+                    }
+                }
+                withContext(Dispatchers.Main) {
+                    if (!sessionLifecycle.isCurrent(ticket)) {
+                        result.error("session_operation_cancelled", "session_operation_cancelled", null)
+                    } else {
+                        if (granted) {
+                            requestNotificationPermissionIfNeeded()
+                            if (activeProtocol == null) emitState(VpnStatus.IDLE, null, null)
+                        } else emitState(VpnStatus.ERROR, null, "vpn_permission_denied")
+                        result.success(granted)
+                    }
+                }
+            } catch (error: Throwable) {
+                val code = messageCode(error, "secure_storage_write_failed")
+                withContext(Dispatchers.Main) { result.error(code, code, null) }
+            }
+        }
+    }
+
+    private fun vpnDisclosureAccepted(): Boolean = VpnDisclosurePolicy.accepted(
+        readStrict(SecureStorageKeyPolicy.preference(SecureAppPreference.VPN_DISCLOSURE_VERSION)),
+    )
 
     private suspend fun connectWireGuard(request: WireGuardRequest, ticket: Long,
         requestEpoch: Long = tunnelRequestEpoch.get(), restoring: Boolean = false,
@@ -1148,7 +1210,8 @@ internal class AndroidVpnBridge(
     }.getOrNull()
 
     internal fun canQuickTileConnect(): Boolean {
-        if (!sessionLifecycle.isCurrent(sessionLifecycle.ticket()) || VpnService.prepare(appContext) != null) return false
+        if (!sessionLifecycle.isCurrent(sessionLifecycle.ticket()) ||
+            !runCatching { VpnDisclosurePolicy.mayStart(vpnDisclosureAccepted(), VpnService.prepare(appContext) == null) }.getOrDefault(false)) return false
         val profile = quickTileProfileSnapshot() ?: return false
         return profile.protocol != VpnProtocol.OPENVPN ||
             !openVpn.isRevocationBlocked(profile.accountId, profile.deviceId)
@@ -1303,6 +1366,7 @@ internal class AndroidVpnBridge(
 
     private fun endSession(expired: Boolean): CompletableDeferred<SessionTermination> = synchronized(sessionEndLock) {
         sessionLifecycle.beginEnd(expired)
+        permissionDisclosureAccepted = false
         sessionEndTask?.takeIf { !it.isCompleted }?.let { return@synchronized it }
         cancelRecovery()
         cancelSystemStart()
@@ -1399,6 +1463,9 @@ internal class AndroidVpnBridge(
     }
 
     private fun ensureVpnAuthorized() {
+        if (!vpnDisclosureAccepted()) {
+            throw VpnNativeException("vpn_disclosure_required")
+        }
         if (VpnService.prepare(appContext) != null) {
             emitState(VpnStatus.ERROR, null, "vpn_permission_required")
             throw VpnNativeException("vpn_permission_required")

@@ -9,6 +9,30 @@ class AppLocalizationsTh extends AppLocalizations {
   AppLocalizationsTh([String locale = 'th']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => 'ปกป้องการเชื่อมต่อของคุณ';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN ใช้บริการ VPN ของ Android (VpnService) เพื่อสร้างอุโมงค์ที่เข้ารหัสระหว่างอุปกรณ์นี้กับเซิร์ฟเวอร์ FuzeVPN';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'ขณะที่ VPN ทำงาน การรับส่งข้อมูลอินเทอร์เน็ตของแอป ที่อยู่ปลายทาง และคำขอ DNS จะผ่านอุโมงค์นี้เพื่อกำหนดเส้นทางการเชื่อมต่อของคุณ แม้ขณะ FuzeVPN ทำงานอยู่เบื้องหลัง';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'แอปใช้สถานะการเชื่อมต่อ ระยะเวลา และปริมาณข้อมูลที่รับส่งเพื่อแสดงการเชื่อมต่อ VPN ของคุณ คุณสามารถหยุดการเชื่อมต่อได้ทุกเมื่อ';
+
+  @override
+  String get vpnDisclosure_privacy => 'ความเป็นส่วนตัว';
+
+  @override
+  String get vpnDisclosure_accept => 'ยอมรับและดำเนินการต่อ';
+
+  @override
+  String get vpnDisclosure_decline => 'ไม่ใช่ตอนนี้';
+
+  @override
   String get accountRestoration_title => 'บัญชีไม่พร้อมใช้งานชั่วคราว';
 
   @override
@@ -701,7 +725,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'invalid_profile': 'โปรไฟล์ไม่ถูกต้อง',
       'invalid_device': 'อุปกรณ์ไม่ถูกต้อง',
       'invalid_location': 'ตำแหน่งไม่พร้อมใช้งาน',
-      'device_limit': 'ถึงขีดจำกัด 2 อุปกรณ์แล้ว',
+      'device_limit': 'ถึงขีดจำกัดอุปกรณ์แล้ว',
       'device_exists': 'ข้อมูลระบุตัวตน VPN ถูกใช้งานอยู่แล้ว',
       'device_identity_revoked': 'ต้องต่ออายุข้อมูลระบุตัวตน VPN',
       'device_location_locked': 'ต้องรีเฟรชการเปลี่ยนตำแหน่ง',

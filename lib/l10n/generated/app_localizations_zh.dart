@@ -9,6 +9,30 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
+  String get vpnDisclosure_title => '保护您的连接';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN 使用 Android 的 VPN 服务（VpnService）在此设备与 FuzeVPN 服务器之间建立加密隧道。';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'VPN 启用时，您应用的互联网流量、目标地址和 DNS 请求会通过此隧道进行连接路由，即使 FuzeVPN 在后台运行也是如此。';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      '应用使用连接状态、连接时长和已传输的数据量来显示您的 VPN 连接。您可以随时停止连接。';
+
+  @override
+  String get vpnDisclosure_privacy => '隐私';
+
+  @override
+  String get vpnDisclosure_accept => '同意并继续';
+
+  @override
+  String get vpnDisclosure_decline => '暂时不用';
+
+  @override
   String get accountRestoration_title => '账户暂时不可用';
 
   @override
@@ -646,7 +670,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'invalid_profile': '个人资料无效',
       'invalid_device': '设备无效',
       'invalid_location': '位置不可用',
-      'device_limit': '已达到 2 台设备的上限',
+      'device_limit': '已达到设备上限',
       'device_exists': 'VPN 身份已在使用中',
       'device_identity_revoked': '必须续订 VPN 身份',
       'device_location_locked': '位置更改需要刷新',
@@ -1771,6 +1795,30 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   AppLocalizationsZhHans() : super('zh_Hans');
 
   @override
+  String get vpnDisclosure_title => '保护您的连接';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN 使用 Android 的 VPN 服务（VpnService）在此设备与 FuzeVPN 服务器之间建立加密隧道。';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'VPN 启用时，您应用的互联网流量、目标地址和 DNS 请求会通过此隧道进行连接路由，即使 FuzeVPN 在后台运行也是如此。';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      '应用使用连接状态、连接时长和已传输的数据量来显示您的 VPN 连接。您可以随时停止连接。';
+
+  @override
+  String get vpnDisclosure_privacy => '隐私';
+
+  @override
+  String get vpnDisclosure_accept => '同意并继续';
+
+  @override
+  String get vpnDisclosure_decline => '暂时不用';
+
+  @override
   String get accountRestoration_title => '账户暂时不可用';
 
   @override
@@ -2408,7 +2456,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'invalid_profile': '个人资料无效',
       'invalid_device': '设备无效',
       'invalid_location': '位置不可用',
-      'device_limit': '已达到 2 台设备的上限',
+      'device_limit': '已达到设备上限',
       'device_exists': 'VPN 身份已在使用中',
       'device_identity_revoked': '必须续订 VPN 身份',
       'device_location_locked': '位置更改需要刷新',
@@ -3533,6 +3581,30 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   AppLocalizationsZhHant() : super('zh_Hant');
 
   @override
+  String get vpnDisclosure_title => '保護您的連線';
+
+  @override
+  String get vpnDisclosure_body =>
+      'FuzeVPN 使用 Android 的 VPN 服務（VpnService），在此裝置與 FuzeVPN 伺服器之間建立加密通道。';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'VPN 啟用時，您應用程式的網際網路流量、目的地位址與 DNS 請求會透過此通道進行連線路由，即使 FuzeVPN 在背景執行也是如此。';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      '應用程式使用連線狀態、連線時間與已傳輸的資料量來顯示您的 VPN 連線。您可以隨時停止連線。';
+
+  @override
+  String get vpnDisclosure_privacy => '隱私權';
+
+  @override
+  String get vpnDisclosure_accept => '同意並繼續';
+
+  @override
+  String get vpnDisclosure_decline => '暫時不要';
+
+  @override
   String get accountRestoration_title => '帳戶暫時無法使用';
 
   @override
@@ -4172,7 +4244,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'invalid_profile': '個人資料無效',
       'invalid_device': '裝置無效',
       'invalid_location': '位置無法使用',
-      'device_limit': '已達 2 部裝置的上限',
+      'device_limit': '已達裝置上限',
       'device_exists': 'VPN 身分已在使用中',
       'device_identity_revoked': '必須更新 VPN 身分',
       'device_location_locked': '位置變更需要重新整理',

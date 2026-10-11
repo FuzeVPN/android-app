@@ -2,6 +2,49 @@ part of 'app_controller.dart';
 
 /// Guest credentials never enter preferences, diagnostics or presentation.
 extension GuestAccountsController on VpnAppController {
+  bool _syncGuestHomeAdmission() {
+    final value = profile;
+    if (!isSignedIn ||
+        value == null ||
+        !value.isGuest ||
+        _guestHomeUserId == value.userId) {
+      return false;
+    }
+    final subscription = _billing.subscription;
+    final verifiedAccess = value.canUseVpn && subscription?.hasAccess == true;
+    // Older installs have no UI marker. An existing VPN identity or an expired
+    // server-confirmed Play subscription also proves a previous activation.
+    final previousSubscription =
+        subscription?.provider == 'google_play' &&
+        subscription?.expiresAt != null &&
+        const {
+          'expired',
+          'canceled',
+          'past_due',
+          'withdrawn',
+        }.contains(subscription?.status);
+    if (!verifiedAccess && currentDeviceId == null && !previousSubscription) {
+      return false;
+    }
+    _guestHomeUserId = value.userId;
+    final store = _sessionStore;
+    if (store is GuestOnboardingStore) {
+      final operation = _sessionOperation;
+      unawaited(() async {
+        try {
+          operation.check();
+          await (store as GuestOnboardingStore).writeGuestOnboardingCompleted(
+            userId: value.userId,
+          );
+        } catch (_) {
+          // This UI marker grants no VPN rights. A valid subscription can
+          // reconstruct it on the next launch even if local persistence fails.
+        }
+      }());
+    }
+    return true;
+  }
+
   GuestApiRepository? get _guestApi =>
       _api is GuestApiRepository ? _api as GuestApiRepository : null;
   GuestCredentialStore? get _guestStore => _sessionStore is GuestCredentialStore
@@ -425,6 +468,11 @@ extension GuestAccountsController on VpnAppController {
 
   void _guestBillingChanged() {
     if (_disposed) return;
+    if (_syncGuestHomeAdmission()) {
+      scheduleMicrotask(() {
+        if (!_disposed) notifyListeners();
+      });
+    }
     final value = profile;
     if (value == null ||
         (!value.isGuest &&
