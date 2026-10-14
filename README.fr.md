@@ -1,5 +1,8 @@
 # FuzeVPN pour Android
 
+Audit de qualification du 14 octobre 2026 : [Q001](docs/VALIDATION.md#q001), [Q002](docs/VALIDATION.md#q002), [Q003](docs/VALIDATION.md#q003), [Q004](docs/VALIDATION.md#q004), [Q006](docs/VALIDATION.md#q006), [Q009](docs/VALIDATION.md#q009), [Q018](docs/VALIDATION.md#q018), [Q019](docs/VALIDATION.md#q019), [Q020](docs/VALIDATION.md#q020), [Q021](docs/VALIDATION.md#q021), [Q023](docs/VALIDATION.md#q023), [Q030](docs/VALIDATION.md#q030), [Q031](docs/VALIDATION.md#q031), [Q032](docs/VALIDATION.md#q032), [Q033](docs/VALIDATION.md#q033).
+
+
 [English](README.md)
 
 Sources du client Android FuzeVPN, version **0.2.10+74016**, développé avec
@@ -29,9 +32,11 @@ Voir les [notes de version](docs/RELEASE_NOTES.md) et le [guide de l’essai](do
   compte après vérification. Elle ne convertit pas l'invité et ne transfère
   aucun abonnement ; la création de compte reste une action distincte.
 
-Google natif, achats Play, RTDN et permissions serveur exigent leur propre
-configuration et qualification. Cette publication de sources n'atteste ni
-l'état de production de ces services ni la qualification d'un APK précis.
+L’audit du 14 octobre documente les résultats par version : tunnels et reprise
+74016 sur les VM Android 14–17, achats/RTDN historiques 74008/API035,
+et blocages Google natif, freetest réel et ARM natif. Voir le
+[registre de qualification](docs/VALIDATION.md). Les preuves d’une version
+ou d’un service ne sont pas attribuées à un autre environnement.
 Release/profile utilisent l'origine API de production ; le remplacement
 d'origine est réservé au debug. Lire les guides avant tout essai réseau.
 

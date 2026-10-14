@@ -1,5 +1,8 @@
 # FuzeVPN for Android
 
+Qualification audit, 14 October 2026: [Q001](docs/VALIDATION.md#q001), [Q002](docs/VALIDATION.md#q002), [Q003](docs/VALIDATION.md#q003), [Q004](docs/VALIDATION.md#q004), [Q006](docs/VALIDATION.md#q006), [Q009](docs/VALIDATION.md#q009), [Q018](docs/VALIDATION.md#q018), [Q019](docs/VALIDATION.md#q019), [Q020](docs/VALIDATION.md#q020), [Q021](docs/VALIDATION.md#q021), [Q023](docs/VALIDATION.md#q023), [Q030](docs/VALIDATION.md#q030), [Q031](docs/VALIDATION.md#q031), [Q032](docs/VALIDATION.md#q032), [Q033](docs/VALIDATION.md#q033).
+
+
 [Français](README.fr.md)
 
 Source code for the FuzeVPN Android client, version **0.2.10+74016**.
@@ -29,9 +32,11 @@ renewal terms and an estimated first charge date. See the
   replaces the session after verification; it does not claim the guest or
   transfer its subscription. Account creation remains a separate action.
 
-Google authentication, Play purchases, RTDN and server permissions require
-their own runtime configuration and qualification. This source publication
-does not attest that those services or a specific APK are ready for production.
+The 14 October audit records results by version: 74016 tunnels and recovery
+on Android 14–17 VMs, historical 74008/API035 test purchases and RTDN,
+and documented blocks for native Google login, live freetest and native ARM.
+See the [qualification registry](docs/VALIDATION.md). Evidence keeps its
+original version, signer and environment.
 Release/profile builds use the production API origin; the API override is
 debug-only. See the integration guides before running network-dependent tests.
 

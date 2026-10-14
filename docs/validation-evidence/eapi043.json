@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "EAPI043",
+  "date": "2026-10-11",
+  "kind": "dated_backend_delivery_receipt",
+  "artifacts": [
+    "api-043"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "schema": "043",
+    "observed_date": "2026-10-11",
+    "api_binary_sha256": "061189ede570a14abf615bd34bd4dbda39982c830a76060eb92f1a86a75933e4",
+    "policy_observation": "Turnstile required for web guest checkout; registration/login/password-reset checks disabled in this dated API observation",
+    "limits": [
+      "Not a live server recheck",
+      "No native Google sign-in qualification",
+      "No audit of server logging, retention, third-party recipients or complete privacy practices"
+    ]
+  },
+  "source_receipts": [
+    {
+      "name": "validation.json",
+      "sha256": "8aa48c09a628a604b3103fe3d3fae16ca3463090880ce9bbc58c998030232e83"
+    },
+    {
+      "name": "etat.md",
+      "sha256": "5b216dcc5d42a8b9bffccb11dac264a66a60ced9ed231bb8a09b891357839d79"
+    }
+  ]
+}

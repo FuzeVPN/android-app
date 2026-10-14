@@ -1,5 +1,8 @@
 # Architecture et comportement Android
 
+Audit de qualification du 14 octobre 2026 : [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q014](VALIDATION.md#q014), [Q017](VALIDATION.md#q017), [Q018](VALIDATION.md#q018), [Q025](VALIDATION.md#q025), [Q026](VALIDATION.md#q026), [Q027](VALIDATION.md#q027), [Q028](VALIDATION.md#q028), [Q029](VALIDATION.md#q029), [Q032](VALIDATION.md#q032).
+
+
 Version source **0.2.10+74016**. Ce guide décrit le comportement implémenté
 dans ce client. Les réponses API
 attendues ci-dessous sont les contraintes du client ; ce document ne remplace
@@ -377,7 +380,9 @@ Android 12 atteignent une assertion de l’optimiseur lors de WireGuard. Cette
 correction isole les parcours inutilisant WireGuard ; elle ne modifie pas Go,
 les moteurs précompilés, les verrous ou les paramètres cryptographiques.
 Le vrai moteur reste initialisé à la connexion WireGuard et les blocages de
-traduction restent à qualifier sur Android 12/13 ARM natif.
+traduction sont reproduits dans les VM : [Q010](VALIDATION.md#q010).
+La recette ARM native est bloquée par l’absence d’environnement :
+[Q011](VALIDATION.md#q011).
 
 ## Statuts lisibles avec texte agrandi 0.2.10+74016
 

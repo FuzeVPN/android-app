@@ -1,5 +1,8 @@
 # Android 0.2.10+74016 — 2026-10-14
 
+Audit de qualification du 14 octobre 2026 : [Q003](VALIDATION.md#q003), [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q018](VALIDATION.md#q018), [Q020](VALIDATION.md#q020), [Q022](VALIDATION.md#q022), [Q023](VALIDATION.md#q023), [Q024](VALIDATION.md#q024), [Q025](VALIDATION.md#q025), [Q032](VALIDATION.md#q032).
+
+
 ## Français
 
 - Le statut de connexion ajuste sa taille de base à la largeur des mots :
@@ -18,11 +21,15 @@
 
 ## Qualification / Validation
 
-The client retest validates 74015 startup and real OpenVPN on Android 13 and
-real WireGuard/OpenVPN recovery on Android 14–17. This update corrects the
-reported status word split; its regression checks and images are generated
-from the new source. Native engines and the Android 12/13 translation limitations
-remain unchanged. One universal signed ARM APK; no AAB, publication or backend change.
+The **74016** client retest completed on eight VM profiles: 252/256 checks
+passed, eight visual reviews and 110 display changes passed. The status word
+fix is observed on Android 12/13 phones at 320/360 dp and 200% text.
+Real OpenVPN passes on all eight profiles; real WireGuard/recovery passes on
+Android 14–17 phones. Four Android 12/13 WireGuard translation crashes remain
+reproduced. See [Q008–Q011](VALIDATION.md#q008) for exact scope.
+The 14 October audit also records failed byte reproduction, isolated VM tests
+and the memory-blocked 16KiB run; these do not alter the delivered APK.
+One universal signed ARM APK; no AAB, Play publication or backend change.
 
 ---
 

@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "id": "EAPI035",
+  "date": "2026-10-04",
+  "kind": "historical_server_receipt",
+  "artifacts": [
+    "api-035"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "schema": "035",
+    "reported_recipe_status": "Reported Android VM/R8 recipe completed; Google test purchase acknowledged and renewed; claim, VPN and restart checks verified; additional gates remain before Android distribution",
+    "scope": "Dated receipt reports Google test-purchase acknowledgement, renewal and RTDN observations; not every subscription lifecycle or current API043 operation",
+    "limits": [
+      "No new provider action",
+      "No production configuration mutation",
+      "Reordering/redelivery and full lifecycle not inferred from a count of received RTDN"
+    ]
+  },
+  "source_receipts": [
+    {
+      "name": "guest-ack-035-deployed.json",
+      "sha256": "eb369db9971cb772d7d500da02da350c0418e7f05746ca42b4e40b24af854479"
+    }
+  ]
+}

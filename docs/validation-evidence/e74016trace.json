@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "id": "E74016TRACE",
+  "date": "2026-10-14",
+  "kind": "source_and_artifact_hashes",
+  "artifacts": [
+    "source-74016",
+    "apk-74016"
+  ],
+  "artifact_sha256": {
+    "apk-74016": "4f1c19706fc4a5da75365ab6148efee1a1a04a6832fdd6d159609853ded59396"
+  },
+  "observations": {
+    "base_commit": "9d8172e2524026c6e471dfca7d15df70c0b03b97",
+    "source_snapshot_commit": "a5eff1ab577be708e0c0c89b5dc98e5fc96f013b",
+    "archived_changed_source_files": 166,
+    "source_patch_sha256": "862d95466954751ccd6d902b6cd1b60d5aea1ebfa1c09e63b0c8b455d4382a75",
+    "native_libraries_identical_to_74015": 12,
+    "mapping_sha256": "8dcf05c42cb32dba27bd8a154a7bdff8a6d467fc054db4b711e952e205b2804f",
+    "claim": "Commit records the checked 74016 source snapshot; evidence does not claim an independently rebuilt signed binary."
+  },
+  "source_receipts": [
+    {
+      "name": "snapshot-inputs.json",
+      "sha256": "47ceb0124e45dd78a8ed56266002aff658e9d701eb586c2d4602104403f08559"
+    },
+    {
+      "name": "source-changes.patch",
+      "sha256": "862d95466954751ccd6d902b6cd1b60d5aea1ebfa1c09e63b0c8b455d4382a75"
+    },
+    {
+      "name": "native-engines-unchanged.json",
+      "sha256": "9389e7377558cbe8216660a1c38236769e25b1f7cbe87727864a79ca2f57466b"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "id": "E74002NETWORK",
+  "date": "2026-10-03",
+  "kind": "historical_network_probe",
+  "artifacts": [
+    "client-74002"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "samples": [
+      {
+        "protocol": "wireguard",
+        "version": 74002,
+        "background_ipv4_ipv6_passed": true,
+        "restored_ipv4_ipv6_passed": true,
+        "diagnostic_samples": 1,
+        "icmp_ipv6_failed_samples": 0,
+        "limits": "Probe UID and sampled instants; not an absence-of-leak proof for all UIDs, destinations, DNS or lockdown."
+      },
+      {
+        "protocol": "openvpn",
+        "version": 74002,
+        "background_ipv4_ipv6_passed": true,
+        "restored_ipv4_ipv6_passed": true,
+        "diagnostic_samples": 2,
+        "icmp_ipv6_failed_samples": 1,
+        "limits": "Probe UID and sampled instants; not an absence-of-leak proof for all UIDs, destinations, DNS or lockdown."
+      }
+    ],
+    "scope": "API36 x86_64 VM, 2026-10-03; no extrapolation to ARM or 74016 leak protection"
+  },
+  "source_receipts": [
+    {
+      "name": "network-review.md",
+      "sha256": "d6d488952f963e7d9a0469e93ffd569722cf614512f780277b6b88669395af3e"
+    }
+  ]
+}

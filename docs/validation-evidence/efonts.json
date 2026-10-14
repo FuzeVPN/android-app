@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "id": "EFONTS",
+  "date": "2026-10-14",
+  "kind": "pinned_upstream_byte_comparison",
+  "artifacts": [
+    "source-74016"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "repository": "https://github.com/google/fonts",
+    "comparison_commit": "e9678a5385322c63730122ba464765baad83cfd8",
+    "scope": "Byte comparison to upstream files at a pinned commit; does not reconstruct historical download provenance",
+    "fonts": [
+      {
+        "local": "assets/fonts/Archivo-Variable.ttf",
+        "sha256": "0e094a7d3c7c4c25cf1310c4b30014f1dae9332220b1c2c88f4fa996f0b05053",
+        "version": "Version 2.001",
+        "upstream_path": "ofl/archivo/Archivo[wdth,wght].ttf",
+        "upstream_url": "https://raw.githubusercontent.com/google/fonts/e9678a5385322c63730122ba464765baad83cfd8/ofl/archivo/Archivo%5Bwdth%2Cwght%5D.ttf",
+        "identical": true,
+        "upstream_sha256": "0e094a7d3c7c4c25cf1310c4b30014f1dae9332220b1c2c88f4fa996f0b05053"
+      },
+      {
+        "local": "assets/fonts/IBMPlexMono-Regular.ttf",
+        "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
+        "version": "Version 2.3",
+        "upstream_path": "ofl/ibmplexmono/IBMPlexMono-Regular.ttf",
+        "upstream_url": "https://raw.githubusercontent.com/google/fonts/e9678a5385322c63730122ba464765baad83cfd8/ofl/ibmplexmono/IBMPlexMono-Regular.ttf",
+        "identical": true,
+        "upstream_sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+      },
+      {
+        "local": "assets/fonts/IBMPlexMono-SemiBold.ttf",
+        "sha256": "d3c38e55c78f5b0f28009fddba4834ec503278936a5986032424c9bd2d23aa46",
+        "version": "Version 2.3",
+        "upstream_path": "ofl/ibmplexmono/IBMPlexMono-SemiBold.ttf",
+        "upstream_url": "https://raw.githubusercontent.com/google/fonts/e9678a5385322c63730122ba464765baad83cfd8/ofl/ibmplexmono/IBMPlexMono-SemiBold.ttf",
+        "identical": true,
+        "upstream_sha256": "d3c38e55c78f5b0f28009fddba4834ec503278936a5986032424c9bd2d23aa46"
+      }
+    ]
+  },
+  "source_receipts": [
+    {
+      "name": "font-origins.json",
+      "sha256": "990e33a5fa8892a9b1360c02561ce084fc6c8edd10ee07fefe3161f24ce566e5"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "id": "E74016QA",
+  "date": "2026-10-14",
+  "kind": "live_vm_retest",
+  "artifacts": [
+    "apk-74016"
+  ],
+  "artifact_sha256": {
+    "apk-74016": "4f1c19706fc4a5da75365ab6148efee1a1a04a6832fdd6d159609853ded59396"
+  },
+  "observations": {
+    "api_profiles": [
+      "31-phone",
+      "31-tablet",
+      "33-phone",
+      "33-tablet",
+      "34-phone",
+      "35-phone",
+      "36-phone",
+      "37-phone"
+    ],
+    "failures": [
+      {
+        "profile": "api33-phone",
+        "check": "WireGuard opérationnel dans cette VM"
+      },
+      {
+        "profile": "api33-tablet",
+        "check": "WireGuard opérationnel dans cette VM"
+      },
+      {
+        "profile": "api31-phone",
+        "check": "WireGuard opérationnel dans cette VM"
+      },
+      {
+        "profile": "api31-tablet",
+        "check": "WireGuard opérationnel dans cette VM"
+      }
+    ],
+    "display_changes": 110,
+    "visual_reviews": 8,
+    "observed_behaviors": [
+      "Real OpenVPN on all eight configurations",
+      "Real WireGuard and recovery on API34-37 phones",
+      "WireGuard waiting state after physical network loss of at least 30 seconds, including background on API34-37",
+      "Persistent favorite after relaunch on API37",
+      "Status word and accessible controls at 320/360 dp and 200 percent on API31/33 phones"
+    ],
+    "limits": [
+      "ARM64 executed through x86_64 native bridge; no native ARM CPU",
+      "No ARM32 execution",
+      "No Google login or Play purchase in this retest",
+      "No DNS-leak, lockdown/reboot or OEM qualification inferred"
+    ]
+  },
+  "source_receipts": [
+    {
+      "name": "REPORT.md",
+      "sha256": "5273eb9fa63a240ba78d8f5673c13b2f69faf5f4ed1feead4bfbdb1725c95de7"
+    },
+    {
+      "name": "checks.json",
+      "sha256": "079aa41b7d972b2ee6c805ee710e69a58c8bc4cf0db5e4e8bc1dd96e7224576a"
+    },
+    {
+      "name": "final-audit.json",
+      "sha256": "b0e47bdcaff22adc6ac650224e21d9664dfd65421fe037b9a0dd3e8ffd8be660"
+    }
+  ],
+  "test_counts": {
+    "total": 256,
+    "passed": 252,
+    "failures": 4,
+    "errors": 0,
+    "skipped": 0
+  }
+}

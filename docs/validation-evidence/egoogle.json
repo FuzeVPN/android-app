@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "EGOOGLE",
+  "date": "2026-10-11",
+  "kind": "historical_qualification_gap",
+  "artifacts": [
+    "source-74016",
+    "api-037"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "native_google_recipe_executed": false,
+    "cloud_package_certificate_associations_inspected": false,
+    "oauth_client_ids": "Public IDs and their stated usage are retained; they do not prove Cloud bindings",
+    "freetest_live_purchase_executed": false,
+    "turnstile_token_in_current_native_form": false,
+    "scope": "Explicit limits recorded in the retained Google and freetest delivery reports; no new Google journey"
+  },
+  "source_receipts": [
+    {
+      "name": "delivery.json",
+      "sha256": "73599c2ffb55b744b749db86a17dd3d244c2fb8b2d424d54aefa1f345d1799ad"
+    },
+    {
+      "name": "trial-billing-review.json",
+      "sha256": "c2f6839391f43694b8f4ea9362bf1161bb80724d4b28dbf346f0317b76400ff7"
+    }
+  ]
+}

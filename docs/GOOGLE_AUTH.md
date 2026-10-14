@@ -1,16 +1,21 @@
 # Connexion Google — Android et contrat API attendu
 
+Audit de qualification du 14 octobre 2026 : [Q018](VALIDATION.md#q018), [Q019](VALIDATION.md#q019), [Q025](VALIDATION.md#q025), [Q029](VALIDATION.md#q029).
+
+
 Version source **0.2.10+74016**, métadonnées documentaires du **11 octobre 2026**.
 Le client Flutter, Android Credential Manager et le stockage des intentions
-Google sont intégrés. **Aucune connexion Google native réelle n’est attestée
-par cette publication**. Les tests avec fakes et les captures d’interface ne
-qualifient pas le sélecteur Google, les associations Cloud ni le backend.
+Google sont intégrés. L’audit des archives du 14 octobre confirme l’absence
+de recette native exécutée : **Q018 bloqué**, compte/parcours Google de
+recette requis. Les associations Cloud sont un blocage distinct **Q019**.
+Les résultats et prérequis sont dans le [registre](VALIDATION.md#q018).
 
 Ce document conserve le contrat client correspondant à l’évolution serveur
 référencée **037**. Le backend n’est pas fourni ici ; vérifier séparément la
 disponibilité des routes, l’audience et la liste des clients autorisés sur
 l’environnement ciblé. Les identifiants publics ci-dessous décrivent la
-configuration du service FuzeVPN, sans attestation indépendante de Cloud.
+configuration déclarée du service FuzeVPN. Les couples package/certificat
+Cloud n’ont pas été inspectés ; voir [Q019](VALIDATION.md#q019).
 
 ## Parcours proposés
 
@@ -191,7 +196,8 @@ nécessite aucun secret dans l’application.
 ## Limites de qualification
 
 Si la politique serveur exige Turnstile pour `register` ou `claim`, un défi
-natif réel reste **à qualifier**. Le formulaire actuel ne fournit pas de token
+natif est **bloqué : Q025** ([preuve et prérequis](VALIDATION.md#q025)).
+Le formulaire actuel ne fournit pas de token
 Turnstile. Sur `turnstile_required`, `turnstile_invalid` ou
 `turnstile_unavailable`, le client conserve le contexte et l’invité et affiche
 le problème ; aucun champ Android ne contourne la protection. Un serveur qui

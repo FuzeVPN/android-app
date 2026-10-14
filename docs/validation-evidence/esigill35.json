@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "id": "ESIGILL35",
+  "date": "2026-10-14",
+  "kind": "isolated_native_bridge_crash",
+  "artifacts": [
+    "fixture-74016"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "signal": "SIGILL",
+    "guest_architecture": "arm64",
+    "host_abi": "x86_64",
+    "image_fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "native_bridge": "libndk_translation.so",
+    "guest_pc": "0xa0e50",
+    "module": "libwg-go.so",
+    "fixture_and_signed_release_module_sha256": "8f74f56c5d0d0ebdaeecabdfc46f2f019249071190466e3f1609251ada75a295",
+    "method": "Only constructor/version query of GoBackend on worker; no Flutter engine or UP request",
+    "reproduced_attempts": 2,
+    "limits": "Different initialization context from real signed-APK retest; no conclusion on native ARM or all Android15 images"
+  },
+  "source_receipts": [
+    {
+      "name": "WireGuardLibrarySmokeInstrumentedTest.crash.txt",
+      "sha256": "c35bf323e9fb7ca40b96e7d4536b733d367d308ef48aa7669ccd6345974b8bd5"
+    },
+    {
+      "name": "result.json",
+      "sha256": "51faf1aa1dcd157f06d05c3a5cca180b90b0a89b9ec0b45d832c4b633259ee11"
+    }
+  ]
+}

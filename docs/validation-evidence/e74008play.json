@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "E74008PLAY",
+  "date": "2026-10-04",
+  "kind": "historical_client_report",
+  "artifacts": [
+    "apk-74008-qa",
+    "api-035"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "date": "2026-10-04",
+    "client": "74008 x86_64 VM/R8 development-certificate QA",
+    "test_payment_only": true,
+    "reported_scenarios": [
+      "cancel",
+      "test card declined",
+      "approved test purchase",
+      "expiration",
+      "repurchase of same guest",
+      "claim while WireGuard remains active",
+      "restart and OpenVPN reconnect"
+    ],
+    "limits": [
+      "No actual pending payment, restoration of a guest on another device, claim while OpenVPN already active, complete revocation/recovery cycle",
+      "Not a freetest purchase or native Google sign-in on 74016"
+    ],
+    "qa_apk_sha256": "c3ee1ac417d197e9f52e05292d41219ac8a27ed580e456468cfc47f02710cd60"
+  },
+  "source_receipts": [
+    {
+      "name": "LIVRAISON-74008.md",
+      "sha256": "85adcc318effeb5cdd34405ae5ae2996360760d4691d882b47d1fc56671a158e"
+    },
+    {
+      "name": "google-test-purchase-steps.jsonl",
+      "sha256": "1d0fe2faa650fa0c265bbf61ff6d40d5c593f3cb984ab66b306bfc99698466d9"
+    }
+  ]
+}

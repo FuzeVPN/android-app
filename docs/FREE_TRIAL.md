@@ -1,6 +1,11 @@
 # Essai gratuit Google Play — Fuze Premium
 
-État documentaire : 11 octobre 2026. Cette note se fonde sur la documentation Google ; l’API FuzeVPN n’a pas été inspectée pour ce travail.
+Audit de qualification du 14 octobre 2026 : [Q023](VALIDATION.md#q023).
+
+
+Contrat client du 11 octobre, réconcilié avec les preuves le 14 octobre 2026.
+L’audit lit les reçus backend historiques, sans accès serveur live. La recette
+freetest réelle est bloquée faute de parcours exécuté : [Q023](VALIDATION.md#q023).
 
 ## Configuration retenue
 
@@ -34,4 +39,6 @@ Vérifier les deux forfaits avec : compte Google éligible, compte déjà abonn�
 
 Avec les testeurs de licence, l’essai est accéléré à environ **trois minutes**, puis le mensuel à environ cinq minutes et l’annuel à environ trente minutes. Play Billing Lab peut permettre de réutiliser une offre de test sans recréer des comptes FuzeVPN. La date commerciale estimée avant achat ne remplace pas ces échéances Google de test. [Tests officiels des abonnements](https://developer.android.com/google/play/billing/test)
 
-Cette note définit les points à prendre en charge ; elle ne certifie pas que l’API déployée les satisfait déjà.
+Les contrôles du client et les prérequis de recette Google/serveur sont
+consignés en [Q023](VALIDATION.md#q023) ; les achats historiques 74008
+([Q020](VALIDATION.md#q020)) ne sont pas des essais freetest 74016.

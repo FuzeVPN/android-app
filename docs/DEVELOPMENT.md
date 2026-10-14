@@ -1,12 +1,16 @@
 # Développer et valider le client Android
 
+Audit de qualification du 14 octobre 2026 : [Q001](VALIDATION.md#q001), [Q003](VALIDATION.md#q003), [Q004](VALIDATION.md#q004), [Q006](VALIDATION.md#q006), [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q012](VALIDATION.md#q012), [Q013](VALIDATION.md#q013), [Q014](VALIDATION.md#q014), [Q015](VALIDATION.md#q015), [Q016](VALIDATION.md#q016), [Q017](VALIDATION.md#q017), [Q026](VALIDATION.md#q026), [Q027](VALIDATION.md#q027), [Q028](VALIDATION.md#q028), [Q032](VALIDATION.md#q032).
+
+
 Version source **0.2.10+74016**. Le dépôt public contient les sources et entrées
 natives nécessaires, sans APK/AAB ni GitHub Releases.
 
 Les commandes de ce guide partent de la racine du dépôt, sauf
-indication contraire. Elles décrivent la procédure à exécuter ; leur présence
-ne signifie pas que la version courante a passé ces contrôles. Les essais sur
-téléphone et la signature de diffusion nécessitent une validation distincte.
+indication contraire. Les contrôles 74016 ont été exécutés : analyse propre,
+1 814 tests Flutter et 219 tests JVM passent, ainsi que les lints Android
+sans Error/Fatal. Les résultats d’instrumentation, de signature et de VM sont
+détaillés dans le [registre daté](VALIDATION.md).
 
 Le comportement attendu est décrit dans [ARCHITECTURE.md](ARCHITECTURE.md).
 Les imports, patches, empreintes et licences natives sont détaillés dans
@@ -452,8 +456,10 @@ L'APK local 74013 est construit directement en release pour les deux ABI ARM,
 sans splits et sans App Bundle. Son signataire est la clé d'envoi conservée hors
 Git ; il ne reproduit pas la signature Play App Signing. Conserver son mapping
 R8, les preuves de contrôle et le diff source avec cette livraison locale.
-Les blocages ARM de ndk_translation Android 12/13 restent à qualifier sur appareil
-ARM physique. Cette correction ne remplace pas les moteurs natifs verrouillés.
+Les quatre crashes ndk_translation Android 12/13 sont reproduits en 74016
+([Q010](VALIDATION.md#q010)). L’exécution sur ARM natif est bloquée par
+l’environnement disponible ([Q011](VALIDATION.md#q011)) ; les moteurs
+natifs verrouillés sont conservés.
 
 ## Régressions réseau 74014
 
@@ -480,9 +486,11 @@ un backend refusant le démarrage sans tunnel réel, puis l’initialisation du
 bridge et du Core OpenVPN sans libwg-go dans /proc/self/maps. Les profils
 ARM traduits et ARM natifs restent des qualifications distinctes.
 
-Sur les VM conservées, une instance à la fois : téléphones 2048 Mo, tablettes
-1536 Mo, avec -qemu -m de même valeur en dernier. Vérifier /proc/meminfo et la
-mémoire du processus hôte ; arrêter avant de dépasser le plafond de 4 Go.
+Sur les VM, une instance à la fois : **1536 Mo pour tous les profils**,
+avec -qemu -m 1536 en dernier. Vérifier /proc/meminfo et la mémoire du
+processus hôte ; le collecteur interrompt la VM au seuil conservateur de
+4 000 000 000 octets. Les essais 16 Kio interrompus à ce seuil sont documentés
+en [Q012](VALIDATION.md#q012), sans verdict applicatif extrapolé.
 Conserver les VM en échec et les preuves existantes.
 
 ## Régressions de statut 74016

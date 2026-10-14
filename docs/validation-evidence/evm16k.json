@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "id": "EVM16K",
+  "date": "2026-10-14",
+  "kind": "isolated_arm64_vm_instrumentation",
+  "artifacts": [
+    "fixture-74016",
+    "apk-74016"
+  ],
+  "artifact_sha256": {
+    "apk-74016": "4f1c19706fc4a5da75365ab6148efee1a1a04a6832fdd6d159609853ded59396"
+  },
+  "observations": {
+    "status": "FAIL",
+    "configured_ram_mb": 1536,
+    "vm_stopped": true,
+    "scope": "Dedicated Android 15 x86_64 VM; ARM64 native bridge; synthetic keys and isolated package; no login, purchase or real VPN tunnel",
+    "classes": [],
+    "abi_list": [
+      "x86_64",
+      "arm64-v8a"
+    ],
+    "native_bridge": "libndk_translation.so",
+    "page_size": 16384,
+    "guest_memtotal_kib": 1503304,
+    "signed_apk_sha256": "4f1c19706fc4a5da75365ab6148efee1a1a04a6832fdd6d159609853ded59396",
+    "signed_apk_running_30s": false,
+    "host_memory": {
+      "limit_bytes": 4000000000,
+      "peak_bytes": 4005191680,
+      "limit_exceeded": true
+    }
+  },
+  "source_receipts": [
+    {
+      "name": "result.json",
+      "sha256": "1988de7d58944ba7ede9d511962f178cfc1b67be08cd5168cc75da4f69e7686c"
+    }
+  ]
+}

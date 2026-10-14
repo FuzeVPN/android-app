@@ -1,5 +1,8 @@
 # Mention VPN et vidéo pour Google Play
 
+Audit de qualification du 14 octobre 2026 : [Q027](VALIDATION.md#q027), [Q029](VALIDATION.md#q029), [Q032](VALIDATION.md#q032).
+
+
 ## Écran présenté dans l’application
 
 Avant d’activer un tunnel VPN, FuzeVPN présente une mention dédiée intitulée

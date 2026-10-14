@@ -1,5 +1,8 @@
 # Verrou de provenance native Android
 
+Audit de qualification du 14 octobre 2026 : [Q004](../../docs/VALIDATION.md#q004), [Q006](../../docs/VALIDATION.md#q006), [Q007](../../docs/VALIDATION.md#q007).
+
+
 `bundle.sha256` fige les 1 848 fichiers du bundle
 `app/src/main/cpp/third_party` : sources Core, en-têtes, bibliothèques statiques,
 archive source OpenSSL, manifestes internes et métadonnées. Le SHA-256 de

@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "id": "E74016CHECKS",
+  "date": "2026-10-14",
+  "kind": "automated_source_checks",
+  "artifacts": [
+    "source-74016"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "flutter_tests": 1814,
+    "flutter_analyze": "PASS",
+    "android_junit": {
+      "total": 219,
+      "passed": 219,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "wireguard_gate_cases": 16,
+    "dependency_integrity_cases": 4,
+    "buildsrc": "PASS",
+    "source_export_and_tests": "PASS",
+    "translations": "30 complete packs",
+    "lint_errors": 0,
+    "lint_existing_issues": 3,
+    "execution_context": "Pinned Flutter 3.44.7, Temurin17, NDK28.2; tests do not authenticate production services"
+  },
+  "source_receipts": [
+    {
+      "name": "flutter-tests.txt",
+      "sha256": "eb334ed06e34dcc2c36d5ddffa4cbb8c74d8a92dfca682fee8ee4e2e9f9651b3"
+    },
+    {
+      "name": "android-tests-lint.txt",
+      "sha256": "9e8fcb5d44158ebd8526519c4997c31f84c46f37fbea278129edff7dc0efb72f"
+    },
+    {
+      "name": "results.json",
+      "sha256": "9c0a882ddda589d4136915ca49470e0b21a39b2f8a0dfd8639f8bfe47d39a881"
+    },
+    {
+      "name": "results.json",
+      "sha256": "cc2bca8720b477060f0a2c680d5e427ae566ac440e8aaa59d5b3f608a3168e77"
+    },
+    {
+      "name": "build-provenance.txt",
+      "sha256": "4d08023f746f7bdbf16c863abc305330a3d9ccaff3d93b665ae95c16b81bf6ca"
+    }
+  ],
+  "test_counts": {
+    "total": 1814,
+    "passed": 1814,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+}

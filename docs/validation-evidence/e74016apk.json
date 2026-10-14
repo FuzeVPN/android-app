@@ -1,0 +1,440 @@
+{
+  "schema": 1,
+  "id": "E74016APK",
+  "date": "2026-10-14",
+  "kind": "binary_static_verification",
+  "artifacts": [
+    "apk-74016"
+  ],
+  "artifact_sha256": {
+    "apk-74016": "4f1c19706fc4a5da75365ab6148efee1a1a04a6832fdd6d159609853ded59396"
+  },
+  "observations": {
+    "package": "com.fuzevpn",
+    "version": "0.2.10+74016",
+    "minSdk": 26,
+    "targetSdk": 36,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a"
+    ],
+    "certificate_sha256": "f6f856a1a5cd9e1041eb84a8757ed6e6c3b746391848dae99cfa930fc2c993e3",
+    "signature_v2_v3": true,
+    "zip_alignment_kib": 16,
+    "elf": [
+      {
+        "path": "lib/arm64-v8a/libapp.so",
+        "sha256": "3daa2bd819ac5bb02fc0ae11e17fc14f3496c0eabfc1c51b2cb8482ea6579f0b",
+        "minimum_alignment": 16384,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 65536
+          },
+          {
+            "offset": 5046272,
+            "vaddr": 5046272,
+            "alignment": 65536
+          },
+          {
+            "offset": 10027008,
+            "vaddr": 10027008,
+            "alignment": 65536
+          }
+        ],
+        "relro_end_remainders": [],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/arm64-v8a/libc++_shared.so",
+        "sha256": "cd61762848882a16c8244c964a6f396c0caa0b440588a210ce9cc4ab0e6d9f0c",
+        "minimum_alignment": 16384,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 16384
+          },
+          {
+            "offset": 624800,
+            "vaddr": 641184,
+            "alignment": 16384
+          },
+          {
+            "offset": 1210520,
+            "vaddr": 1243288,
+            "alignment": 16384
+          },
+          {
+            "offset": 1250352,
+            "vaddr": 1299504,
+            "alignment": 16384
+          }
+        ],
+        "relro_end_remainders": [
+          8192
+        ],
+        "relro_end_aligned": false,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/arm64-v8a/libflutter.so",
+        "sha256": "38f18760a549c9df23506eb82718bd389a5c845f5f274ab5a933f1b9e0f2e888",
+        "minimum_alignment": 16384,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 65536
+          },
+          {
+            "offset": 11186288,
+            "vaddr": 11251824,
+            "alignment": 65536
+          },
+          {
+            "offset": 11554224,
+            "vaddr": 11685296,
+            "alignment": 65536
+          }
+        ],
+        "relro_end_remainders": [
+          4096
+        ],
+        "relro_end_aligned": false,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/arm64-v8a/libfuzevpn_openvpn.so",
+        "sha256": "38a6ef51f164f3916454de095a139c09fd38880cf7ab1abded6903e8bb0ef989",
+        "minimum_alignment": 16384,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 16384
+          },
+          {
+            "offset": 6455648,
+            "vaddr": 6472032,
+            "alignment": 16384
+          },
+          {
+            "offset": 6966424,
+            "vaddr": 6999192,
+            "alignment": 16384
+          }
+        ],
+        "relro_end_remainders": [
+          4096
+        ],
+        "relro_end_aligned": false,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/arm64-v8a/libwg-go.so",
+        "sha256": "8f74f56c5d0d0ebdaeecabdfc46f2f019249071190466e3f1609251ada75a295",
+        "minimum_alignment": 16384,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 16384
+          },
+          {
+            "offset": 637632,
+            "vaddr": 654016,
+            "alignment": 16384
+          },
+          {
+            "offset": 1894016,
+            "vaddr": 1926784,
+            "alignment": 16384
+          },
+          {
+            "offset": 3219168,
+            "vaddr": 3268320,
+            "alignment": 16384
+          }
+        ],
+        "relro_end_remainders": [
+          8192
+        ],
+        "relro_end_aligned": false,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/arm64-v8a/libwg-quick.so",
+        "sha256": "a032456fbd3b8e577f6b4026ae049c4e7c9056cb7511f77c059e059394cb9092",
+        "minimum_alignment": 16384,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 16384
+          },
+          {
+            "offset": 27056,
+            "vaddr": 43440,
+            "alignment": 16384
+          },
+          {
+            "offset": 27968,
+            "vaddr": 60736,
+            "alignment": 16384
+          }
+        ],
+        "relro_end_remainders": [
+          12288
+        ],
+        "relro_end_aligned": false,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/arm64-v8a/libwg.so",
+        "sha256": "f68dfc2c95e0326e04bf427b055f729f3a51e840f78c8ad177259d42ab2722bc",
+        "minimum_alignment": 16384,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 16384
+          },
+          {
+            "offset": 77200,
+            "vaddr": 93584,
+            "alignment": 16384
+          },
+          {
+            "offset": 78664,
+            "vaddr": 111432,
+            "alignment": 16384
+          }
+        ],
+        "relro_end_remainders": [
+          0
+        ],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/armeabi-v7a/libapp.so",
+        "sha256": "eb936013ab929fb70adc341185e20116c23a0155b98d052266eb957e5f322d5f",
+        "minimum_alignment": 4096,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 16384
+          },
+          {
+            "offset": 5931008,
+            "vaddr": 5931008,
+            "alignment": 16384
+          },
+          {
+            "offset": 11272192,
+            "vaddr": 11272192,
+            "alignment": 16384
+          }
+        ],
+        "relro_end_remainders": [],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/armeabi-v7a/libc++_shared.so",
+        "sha256": "e7e20f6e0f3f181e853cea50373ecee2ccfe95c668dce72d0999b2469c92d0e1",
+        "minimum_alignment": 4096,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 4096
+          },
+          {
+            "offset": 429440,
+            "vaddr": 433536,
+            "alignment": 4096
+          },
+          {
+            "offset": 828016,
+            "vaddr": 836208,
+            "alignment": 4096
+          },
+          {
+            "offset": 848192,
+            "vaddr": 860480,
+            "alignment": 4096
+          }
+        ],
+        "relro_end_remainders": [
+          0
+        ],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/armeabi-v7a/libflutter.so",
+        "sha256": "22dbd7ff9c6c30665f06c3be932041c08c7bbdb408ac0743d63c74942292771b",
+        "minimum_alignment": 4096,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 65536
+          },
+          {
+            "offset": 8246384,
+            "vaddr": 8311920,
+            "alignment": 65536
+          },
+          {
+            "offset": 8439552,
+            "vaddr": 8570624,
+            "alignment": 65536
+          }
+        ],
+        "relro_end_remainders": [
+          0
+        ],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/armeabi-v7a/libfuzevpn_openvpn.so",
+        "sha256": "80dbf4d91cf31615d695df0b05edebccaf81d5935900d619c2136915db0edd53",
+        "minimum_alignment": 4096,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 4096
+          },
+          {
+            "offset": 4404448,
+            "vaddr": 4408544,
+            "alignment": 4096
+          },
+          {
+            "offset": 4674808,
+            "vaddr": 4683000,
+            "alignment": 4096
+          }
+        ],
+        "relro_end_remainders": [
+          0
+        ],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/armeabi-v7a/libwg-go.so",
+        "sha256": "54334bc5a337970ff9bda76f654a5a8c26e2c84928c2dd775d6fea4ced925eec",
+        "minimum_alignment": 4096,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 16384
+          },
+          {
+            "offset": 379904,
+            "vaddr": 396288,
+            "alignment": 16384
+          },
+          {
+            "offset": 1894912,
+            "vaddr": 1927680,
+            "alignment": 16384
+          },
+          {
+            "offset": 3044160,
+            "vaddr": 3093312,
+            "alignment": 16384
+          }
+        ],
+        "relro_end_remainders": [
+          0
+        ],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/armeabi-v7a/libwg-quick.so",
+        "sha256": "59277d78315487b5b53d2569131427d1ce9178a5e01f9655d6664cf224242a7a",
+        "minimum_alignment": 4096,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 4096
+          },
+          {
+            "offset": 20768,
+            "vaddr": 24864,
+            "alignment": 4096
+          },
+          {
+            "offset": 21228,
+            "vaddr": 29420,
+            "alignment": 4096
+          }
+        ],
+        "relro_end_remainders": [
+          0
+        ],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      },
+      {
+        "path": "lib/armeabi-v7a/libwg.so",
+        "sha256": "8450177309a4884247736579d22fc84242990d3359bd15cc71a66971258b5ad2",
+        "minimum_alignment": 4096,
+        "loads": [
+          {
+            "offset": 0,
+            "vaddr": 0,
+            "alignment": 4096
+          },
+          {
+            "offset": 43792,
+            "vaddr": 47888,
+            "alignment": 4096
+          },
+          {
+            "offset": 44528,
+            "vaddr": 52720,
+            "alignment": 4096
+          }
+        ],
+        "relro_end_remainders": [
+          0
+        ],
+        "relro_end_aligned": true,
+        "overprotected_writable_load_ranges": []
+      }
+    ],
+    "relro_nonmultiple_16k_ends": [
+      "lib/arm64-v8a/libc++_shared.so",
+      "lib/arm64-v8a/libflutter.so",
+      "lib/arm64-v8a/libfuzevpn_openvpn.so",
+      "lib/arm64-v8a/libwg-go.so",
+      "lib/arm64-v8a/libwg-quick.so"
+    ],
+    "relro_linker_reference": "https://android.googlesource.com/platform/bionic/+/refs/heads/main/linker/linker_phdr.cpp",
+    "limits": "Five ARM64 RELRO ends are not multiples of 16KiB. Independent range inspection finds no writable PT_LOAD bytes outside RELRO caught by Bionic page rounding: separated LOAD ranges leave padding. This static observation is not an executed ARM16KiB compatibility result. Upload signature does not attest Play App Signing."
+  },
+  "source_receipts": [
+    {
+      "name": "apk-signature-check.txt",
+      "sha256": "c51c05ceb1042adc36f0f165727adad554ee0961b12def49e5d08eb62484e96f"
+    },
+    {
+      "name": "apk-zipalign-check.txt",
+      "sha256": "05becd5e840c0cf60a20ad487b7bb7bcc6e689731b323ae30140de42fb6d8d1d"
+    }
+  ]
+}

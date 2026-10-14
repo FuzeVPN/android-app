@@ -1,6 +1,9 @@
 # Notices des composants tiers — FuzeVPN Android
 
-Inventaire de sources **0.2.4+74010**, mis à jour le **7 octobre 2026** à
+Audit de qualification du 14 octobre 2026 : [Q030](docs/VALIDATION.md#q030), [Q031](docs/VALIDATION.md#q031), [Q032](docs/VALIDATION.md#q032), [Q033](docs/VALIDATION.md#q033).
+
+
+Inventaire de sources **0.2.10+74016**, audité le **14 octobre 2026** à
 partir des fichiers conservés et des sources primaires indiquées.
 [LICENSING.md](LICENSING.md) distingue le code propre MPL-2.0, ses exceptions,
 les composants tiers et les marques. [docs/SBOM.spdx.json](docs/SBOM.spdx.json) contient les versions,
@@ -244,15 +247,21 @@ séparément ; leurs distributions ne sont pas copiées dans ce dépôt. Le
 `NOASSERTION` de leurs entrées décrit la limite de cet inventaire et la
 provenance du poste, pas un texte manquant dans les sources redistribuées.
 
-## Limites encore ouvertes
+## Résultats de l’audit du 14 octobre
 
-La révision exacte du téléchargement Archivo/IBM Plex Mono, le fournisseur
-précis du JDK 17 et l’inventaire complet des composants internes Flutter et
-transitifs Gradle ne sont pas établis ici. Les conclusions globales et licences de certains prérequis externes
-(outils et paquets SDK Flutter non redistribués) restent `NOASSERTION`. Les conditions SDK
-Google sont personnalisées ; leur référence ne permet pas d’affirmer qu’un
-APK est entièrement libre. Un rapprochement avec le livrable exact reste
-nécessaire pour une distribution binaire ultérieure.
+Les 106 composants ont un verdict et des preuves dans
+[l’audit SPDX](docs/validation-evidence/licenses.json) et [Q030](docs/VALIDATION.md#q030).
+Il reste une déclaration et 21 conclusions `NOASSERTION`, avec une raison
+explicite par champ ; les copyright agrégés restent distincts des notices
+fichier par fichier. Les accords SDK personnalisés sont identifiés par LicenseRef.
+
+Archivo et les deux IBM Plex Mono sont byte-identiques aux fichiers du commit
+Google Fonts `e9678a5385322c63730122ba464765baad83cfd8`. Le JDK installé est
+Eclipse Adoptium **Temurin 17.0.20.1+1** : [Q031](docs/VALIDATION.md#q031).
+Cette comparaison n’invente pas la provenance du téléchargement historique.
+L’inventaire exhaustif des internes Flutter/transitifs réellement conservés
+dans l’APK optimisé est **bloqué, Q033**, avec ses entrées requises
+([détail](docs/VALIDATION.md#q033)).
 
 ## Diffusion
 

@@ -1,5 +1,8 @@
 # Dépendances natives Android
 
+Audit de qualification du 14 octobre 2026 : [Q001](VALIDATION.md#q001), [Q004](VALIDATION.md#q004), [Q005](VALIDATION.md#q005), [Q006](VALIDATION.md#q006), [Q007](VALIDATION.md#q007), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q012](VALIDATION.md#q012), [Q013](VALIDATION.md#q013), [Q014](VALIDATION.md#q014), [Q015](VALIDATION.md#q015), [Q016](VALIDATION.md#q016), [Q031](VALIDATION.md#q031).
+
+
 Version source **0.2.10+74016**. Les commandes partent de la racine du dépôt. Les prérequis généraux
 et les commandes de l’application sont dans [DEVELOPMENT.md](DEVELOPMENT.md).
 L’inventaire est dans [SBOM.spdx.json](SBOM.spdx.json) et
