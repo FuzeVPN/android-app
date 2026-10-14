@@ -41,11 +41,11 @@ class VpnQuickTileService : TileService() {
                 VpnStatus.CONNECTING,
                 VpnStatus.DISCONNECTING,
             )
-            if (transitional) {
+            if (transitional && !state.isWireGuardRecovery) {
                 updateTile()
                 return@unlockAndRun
             }
-            if (state.status != VpnStatus.CONNECTED && !runtime.canQuickTileConnect()) {
+            if (state.status != VpnStatus.CONNECTED && !state.isWireGuardRecovery && !runtime.canQuickTileConnect()) {
                 openApplication()
                 return@unlockAndRun
             }
@@ -92,7 +92,8 @@ class VpnQuickTileService : TileService() {
             )
             VpnStatus.AUTHORIZING, VpnStatus.PREPARING, VpnStatus.CONNECTING ->
                 localized.getString(
-                    if (state.messageCode in setOf("openvpn_reconnecting", "system_vpn_restoring")) R.string.vpn_tile_reconnecting
+                    if (state.messageCode == "wireguard_waiting_network") R.string.vpn_tile_waiting_network
+                    else if (state.isWireGuardRecovery || state.messageCode in setOf("openvpn_reconnecting", "system_vpn_restoring")) R.string.vpn_tile_reconnecting
                     else R.string.vpn_tile_connecting,
                     protocolLabel,
                 )
@@ -116,7 +117,8 @@ class VpnQuickTileService : TileService() {
         tile.state = when (state.status) {
             VpnStatus.CONNECTED -> Tile.STATE_ACTIVE
             VpnStatus.AUTHORIZING, VpnStatus.PREPARING,
-            VpnStatus.CONNECTING, VpnStatus.DISCONNECTING -> Tile.STATE_UNAVAILABLE
+            VpnStatus.CONNECTING, VpnStatus.DISCONNECTING ->
+                if (state.isWireGuardRecovery) Tile.STATE_ACTIVE else Tile.STATE_UNAVAILABLE
             VpnStatus.IDLE, VpnStatus.ERROR -> Tile.STATE_INACTIVE
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) tile.subtitle = detail

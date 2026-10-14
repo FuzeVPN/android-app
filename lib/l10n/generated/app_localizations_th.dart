@@ -2107,4 +2107,18 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'เงื่อนไขของข้อเสนอนี้เปลี่ยนไปแล้ว รีเฟรชแพ็กเกจและเลือกอีกครั้ง';
+
+  @override
+  String get status_waitingNetwork => 'กำลังรอเครือข่าย';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'ไม่มีเครือข่ายที่พร้อมใช้งาน VPN จะตรวจสอบการเชื่อมต่อเมื่อเครือข่ายกลับมา';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'โหลดรายการโปรดไม่ได้ โปรดลองอีกครั้ง';
+
+  @override
+  String get locations_favoritesLoading => 'กำลังโหลดรายการโปรด…';
 }

@@ -73,6 +73,20 @@ internal class AndroidVpnBridge(
     )
     private val tunnelRequestEpoch = AtomicLong()
     private val tunnelInstanceEpoch = AtomicLong()
+    private val physicalNetworks = PhysicalNetworkTracker<Network>()
+    private val connectivity = appContext.getSystemService(ConnectivityManager::class.java)
+    private val physicalNetworkRequest = NetworkRequest.Builder()
+        .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+        .addCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN)
+        .apply {
+            // A VPN owner must observe physical networks even when its UID is
+            // routed through the VPN. getAllNetworks and UID-filtered callbacks
+            // otherwise describe different sets, leaving stale startup entries.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) setIncludeOtherUidNetworks(true)
+        }.build()
+    private val wireGuardRecovery = WireGuardRecoveryPolicy()
+    private var wireGuardRecoveryJob: Job? = null
+    private var wireGuardRecoveryInstance = -1L
     private val systemStartLock = Any()
     @Volatile private var systemStartJob: Job? = null
     @Volatile private var resumeState = "unavailable"
@@ -160,17 +174,121 @@ internal class AndroidVpnBridge(
         observeOpenVpnStates()
         // Observe physical network loss even before Core's keepalive expires.
         // A VPN's own disappearance must not trigger another recovery.
-        appContext.getSystemService(ConnectivityManager::class.java).registerNetworkCallback(
-            NetworkRequest.Builder()
-                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-                .addCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN).build(),
+        connectivity.registerNetworkCallback(
+            physicalNetworkRequest,
             object : ConnectivityManager.NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    physicalNetworkChanged(network, false)
+                }
+
+                override fun onCapabilitiesChanged(network: Network, capabilities: NetworkCapabilities) {
+                    physicalNetworkChanged(network, physicalNetworkUsable(capabilities))
+                }
+
                 override fun onLost(network: Network) {
+                    physicalNetworkChanged(network, false)
                     if (activeProtocol == VpnProtocol.OPENVPN && currentState.status == VpnStatus.CONNECTED &&
                         !openVpn.hasUsableNetwork()) openVpn.networkLost()
                 }
             },
         )
+    }
+
+    private fun physicalNetworkUsable(capabilities: NetworkCapabilities?): Boolean = capabilities?.let {
+        it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+            it.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN) &&
+            it.hasCapability(NetworkCapabilities.NET_CAPABILITY_TRUSTED) &&
+            it.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_RESTRICTED)
+    } == true
+
+    private fun physicalNetworkChanged(network: Network, usable: Boolean) {
+        physicalNetworks.update(network, usable)
+        operationScope.launch {
+            withTunnelOperation {
+                refreshWireGuardRecoveryLocked(sample = false)
+                startWireGuardRecoveryObserverLocked()
+            }
+        }
+    }
+
+    private fun wireGuardRecoveryIsCurrent(): Boolean = activeProtocol == VpnProtocol.WIREGUARD &&
+        wireGuardRecoveryInstance == tunnelInstanceEpoch.get() &&
+        // Request epochs cancel command preparation, not a still-live tunnel.
+        // Session and tunnel-instance fences remain authoritative until stop.
+        sessionLifecycle.isCurrent(activeSessionEpoch) &&
+        (currentState.status == VpnStatus.CONNECTED || currentState.isWireGuardRecovery)
+
+    /** Called under the tunnel mutex; network generations reject a sample
+     * that raced loss/return even while the backend worker was blocked. */
+    private fun refreshWireGuardRecoveryLocked(sample: Boolean): TunnelStatistics? {
+        if (!wireGuardRecoveryIsCurrent()) return null
+        val physical = reconcilePhysicalNetworksLocked()
+        wireGuardRecovery.updateNetwork(physical)
+        val statistics = if (sample && physical.available) try {
+            wireGuard.statistics()
+        } catch (_: Exception) { null } else null
+        val after = reconcilePhysicalNetworksLocked()
+        wireGuardRecovery.updateNetwork(after)
+        if (!wireGuardRecoveryIsCurrent()) return null
+        if (physical.generation == after.generation) {
+            wireGuardRecovery.observe(wireGuardRecoveryInstance, after.generation, statistics)
+        }
+        val status = if (wireGuardRecovery.state == WireGuardRecoveryPolicy.State.CONNECTED)
+            VpnStatus.CONNECTED else VpnStatus.CONNECTING
+        val code = wireGuardRecovery.state.messageCode
+        if (currentState.status != status || currentState.messageCode != code) {
+            synchronized(sessionLifecycle) {
+                if (wireGuardRecoveryIsCurrent()) {
+                    emitState(status, VpnProtocol.WIREGUARD, code)
+                    try {
+                        WireGuardForegroundNotifier.update(appContext, status,
+                            isReconnecting = status == VpnStatus.CONNECTING,
+                            isWaitingForNetwork = wireGuardRecovery.state == WireGuardRecoveryPolicy.State.WAITING_NETWORK)
+                    } catch (_: Exception) { /* Keep peer proof independent of notification refresh. */ }
+                }
+            }
+        }
+        return statistics.takeIf { physical.generation == after.generation }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun reconcilePhysicalNetworksLocked(): PhysicalNetworkSnapshot {
+        val before = physicalNetworks.snapshot()
+        // Runs on the IO worker, never in NetworkCallback. This bounded local
+        // fallback also covers Android 8–11, where include-other-UID is absent.
+        val inventory = try {
+            connectivity.allNetworks.filterTo(mutableSetOf()) {
+                physicalNetworkUsable(connectivity.getNetworkCapabilities(it))
+            }
+        } catch (_: Exception) { null }
+        if (inventory != null) physicalNetworks.reconcile(before.generation, inventory)
+        return physicalNetworks.snapshot()
+    }
+
+    private fun startWireGuardRecoveryObserverLocked() {
+        if (!wireGuardRecoveryIsCurrent() ||
+            wireGuardRecoveryJob?.isActive == true) return
+        val instance = wireGuardRecoveryInstance
+        wireGuardRecoveryJob = observerScope.launch {
+            while (true) {
+                delay(1_000L)
+                val pending = withTunnelOperation {
+                    if (wireGuardRecoveryInstance != instance || !wireGuardRecoveryIsCurrent()) false
+                    else {
+                        refreshWireGuardRecoveryLocked(sample = currentState.isWireGuardRecovery)
+                        wireGuardRecoveryIsCurrent()
+                    }
+                }
+                if (!pending) break
+            }
+        }
+    }
+
+    private fun stopWireGuardRecoveryLocked() {
+        wireGuardRecoveryJob?.cancel()
+        wireGuardRecoveryJob = null
+        wireGuardRecovery.stop()
+        wireGuardRecoveryInstance = -1L
     }
 
     private fun checkRequest(epoch: Long) {
@@ -914,6 +1032,10 @@ internal class AndroidVpnBridge(
                 connectedAtMillis = System.currentTimeMillis()
                 emitState(VpnStatus.CONNECTED, VpnProtocol.WIREGUARD, null)
                 WireGuardForegroundNotifier.update(appContext, VpnStatus.CONNECTED)
+                wireGuardRecoveryInstance = tunnelInstanceEpoch.get()
+                wireGuardRecovery.start(wireGuardRecoveryInstance, reconcilePhysicalNetworksLocked())
+                refreshWireGuardRecoveryLocked(sample = false)
+                startWireGuardRecoveryObserverLocked()
             } }
         } catch (error: Exception) {
             val stopped = wireGuard.disconnect(timing)
@@ -997,6 +1119,7 @@ internal class AndroidVpnBridge(
     }
 
     private fun clearWireGuardActiveLocked() {
+        stopWireGuardRecoveryLocked()
         WireGuardForegroundNotifier.stop(appContext)
         activeProtocol = null
         clearActiveMetadata()
@@ -1030,6 +1153,7 @@ internal class AndroidVpnBridge(
     }
 
     private suspend fun disconnectLocked(userInitiated: Boolean, timing: NativeConnectionTiming.TraceContext? = null): Boolean {
+        stopWireGuardRecoveryLocked()
         val protocol = activeProtocol
         if (protocol == null) {
             clearActiveMetadata()
@@ -1769,6 +1893,15 @@ internal class AndroidVpnBridge(
         val device = account?.let { readSlot(SecureStorageKeyPolicy.currentDevice(it)) }
         revocationState = if (account != null && device != null) openVpn.pendingRevocation(account, device) else null
         val snapshot = synchronized(stateLock) { currentState }
+        if (activeProtocol == VpnProtocol.WIREGUARD && wireGuardRecoveryIsCurrent()) {
+            val statistics = refreshWireGuardRecoveryLocked(sample = true)
+            startWireGuardRecoveryObserverLocked()
+            return@withTunnelOperation synchronized(stateLock) {
+                currentState = currentState.withTunnelStatistics(statistics).copy(
+                    systemProtection = protection, timestampMillis = System.currentTimeMillis())
+                currentState.toChannelMap()
+            }
+        }
         if (snapshot.status != VpnStatus.CONNECTED || activeProtocol == null) {
             return@withTunnelOperation snapshot.copy(sessionTermination = sessionLifecycle.termination, openVpnRevocation = revocationState,
                 systemProtection = protection).toChannelMap()
@@ -1814,6 +1947,7 @@ internal class AndroidVpnBridge(
     }
 
     private fun clearActiveMetadata() {
+        stopWireGuardRecoveryLocked()
         provenConnectionProfile = null
         recoveryOwnsSession = false
         activeAccountId = null

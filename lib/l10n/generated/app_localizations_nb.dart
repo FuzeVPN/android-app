@@ -2134,4 +2134,18 @@ class AppLocalizationsNb extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Vilkårene for dette tilbudet har endret seg. Oppdater abonnementene og velg på nytt.';
+
+  @override
+  String get status_waitingNetwork => 'Venter på nettverk';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Ingen nettverk tilgjengelig. VPN kontrollerer tilkoblingen når nettverket kommer tilbake.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Favoritter kunne ikke lastes inn. Prøv igjen.';
+
+  @override
+  String get locations_favoritesLoading => 'Laster inn favoritter…';
 }

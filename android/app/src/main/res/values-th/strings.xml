@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">กำลังเชื่อมต่อใหม่… · %1$s</string>
     <string name="vpn_system_action_required">ต้องดำเนินการในการตั้งค่า Android</string>
     <string name="vpn_tile_reconnecting">กำลังเชื่อมต่อใหม่… · %1$s</string>
+    <string name="vpn_notification_waiting_network">กำลังรอเครือข่าย · %1$s</string>
+    <string name="vpn_tile_waiting_network">กำลังรอเครือข่าย · %1$s</string>
 </resources>

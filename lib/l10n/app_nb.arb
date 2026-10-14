@@ -699,5 +699,9 @@
   "billing_priceYearly": "per år",
   "billing_trialToday": "Ingenting å betale i dag",
   "billing_trialConfirmation": "Google Play bekrefter datoer, sluttbeløp og gjeldende avgifter før du bekrefter.",
-  "billing_offerChanged": "Vilkårene for dette tilbudet har endret seg. Oppdater abonnementene og velg på nytt."
+  "billing_offerChanged": "Vilkårene for dette tilbudet har endret seg. Oppdater abonnementene og velg på nytt.",
+  "status_waitingNetwork": "Venter på nettverk",
+  "status_waitingNetworkDetail": "Ingen nettverk tilgjengelig. VPN kontrollerer tilkoblingen når nettverket kommer tilbake.",
+  "locations_favoriteLoadFailed": "Favoritter kunne ikke lastes inn. Prøv igjen.",
+  "locations_favoritesLoading": "Laster inn favoritter…"
 }

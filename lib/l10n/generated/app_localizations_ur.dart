@@ -2131,4 +2131,18 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'اس پیشکش کی شرائط بدل گئی ہیں۔ پلان ریفریش کریں اور دوبارہ منتخب کریں۔';
+
+  @override
+  String get status_waitingNetwork => 'نیٹ ورک کا انتظار';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'کوئی نیٹ ورک دستیاب نہیں۔ نیٹ ورک واپس آنے پر VPN کنکشن کی جانچ کرے گا۔';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'پسندیدہ مقامات لوڈ نہیں ہو سکے۔ دوبارہ کوشش کریں۔';
+
+  @override
+  String get locations_favoritesLoading => 'پسندیدہ مقامات لوڈ ہو رہے ہیں…';
 }

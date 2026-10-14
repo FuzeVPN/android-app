@@ -2113,4 +2113,18 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Điều kiện của ưu đãi này đã thay đổi. Tải lại các gói và chọn lại.';
+
+  @override
+  String get status_waitingNetwork => 'Đang chờ mạng';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Không có mạng khả dụng. VPN sẽ kiểm tra kết nối khi mạng trở lại.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Không thể tải mục yêu thích. Hãy thử lại.';
+
+  @override
+  String get locations_favoritesLoading => 'Đang tải mục yêu thích…';
 }

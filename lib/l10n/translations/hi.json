@@ -701,7 +701,11 @@
     "billing_priceYearly": "प्रति वर्ष",
     "billing_trialToday": "आज कोई भुगतान नहीं",
     "billing_trialConfirmation": "आपकी पुष्टि से पहले Google Play तारीखें, अंतिम राशि और लागू कर दिखाता है।",
-    "billing_offerChanged": "इस ऑफ़र की शर्तें बदल गई हैं। प्लान रीफ़्रेश करें और फिर से चुनें।"
+    "billing_offerChanged": "इस ऑफ़र की शर्तें बदल गई हैं। प्लान रीफ़्रेश करें और फिर से चुनें।",
+    "status_waitingNetwork": "नेटवर्क की प्रतीक्षा",
+    "status_waitingNetworkDetail": "कोई नेटवर्क उपलब्ध नहीं है। नेटवर्क लौटने पर VPN कनेक्शन की जाँच करेगा।",
+    "locations_favoriteLoadFailed": "पसंदीदा लोड नहीं हो सके। फिर से कोशिश करें।",
+    "locations_favoritesLoading": "पसंदीदा लोड हो रहे हैं…"
   },
   "android": {
     "vpn_notification_channel": "VPN कनेक्शन",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN ऑपरेशन जारी है…",
     "vpn_notification_reconnecting": "फिर से कनेक्ट किया जा रहा है… · %1$s",
     "vpn_system_action_required": "Android सेटिंग में कार्रवाई आवश्यक है",
-    "vpn_tile_reconnecting": "फिर से कनेक्ट किया जा रहा है… · %1$s"
+    "vpn_tile_reconnecting": "फिर से कनेक्ट किया जा रहा है… · %1$s",
+    "vpn_notification_waiting_network": "नेटवर्क की प्रतीक्षा · %1$s",
+    "vpn_tile_waiting_network": "नेटवर्क की प्रतीक्षा · %1$s"
   },
   "countries": {
     "AC": "असेंशन द्वीप",

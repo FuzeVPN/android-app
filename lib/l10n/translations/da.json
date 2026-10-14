@@ -701,7 +701,11 @@
     "billing_priceYearly": "pr. år",
     "billing_trialToday": "Intet at betale i dag",
     "billing_trialConfirmation": "Google Play bekræfter datoer, slutbeløb og gældende afgifter, før du bekræfter.",
-    "billing_offerChanged": "Vilkårene for dette tilbud har ændret sig. Opdater abonnementerne, og vælg igen."
+    "billing_offerChanged": "Vilkårene for dette tilbud har ændret sig. Opdater abonnementerne, og vælg igen.",
+    "status_waitingNetwork": "Venter på netværk",
+    "status_waitingNetworkDetail": "Intet netværk tilgængeligt. VPN kontrollerer forbindelsen, når netværket vender tilbage.",
+    "locations_favoriteLoadFailed": "Favoritter kunne ikke indlæses. Prøv igen.",
+    "locations_favoritesLoading": "Indlæser favoritter…"
   },
   "android": {
     "vpn_notification_channel": "VPN-forbindelse",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN-handling i gang…",
     "vpn_notification_reconnecting": "Opretter forbindelse igen… · %1$s",
     "vpn_system_action_required": "Handling påkrævet i Android-indstillinger",
-    "vpn_tile_reconnecting": "Opretter forbindelse igen… · %1$s"
+    "vpn_tile_reconnecting": "Opretter forbindelse igen… · %1$s",
+    "vpn_notification_waiting_network": "Venter på netværk · %1$s",
+    "vpn_tile_waiting_network": "Venter på netværk · %1$s"
   },
   "countries": {
     "AC": "Ascension",

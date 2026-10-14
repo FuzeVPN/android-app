@@ -699,5 +699,9 @@
   "billing_priceYearly": "pe an",
   "billing_trialToday": "Azi nu ai nimic de plătit",
   "billing_trialConfirmation": "Google Play confirmă datele, suma finală și taxele aplicabile înainte de confirmarea ta.",
-  "billing_offerChanged": "Condițiile acestei oferte s-au schimbat. Reîmprospătează planurile și alege din nou."
+  "billing_offerChanged": "Condițiile acestei oferte s-au schimbat. Reîmprospătează planurile și alege din nou.",
+  "status_waitingNetwork": "Se așteaptă rețeaua",
+  "status_waitingNetworkDetail": "Nicio rețea disponibilă. VPN va verifica conexiunea când revine rețeaua.",
+  "locations_favoriteLoadFailed": "Favoritele nu au putut fi încărcate. Încercați din nou.",
+  "locations_favoritesLoading": "Se încarcă favoritele…"
 }

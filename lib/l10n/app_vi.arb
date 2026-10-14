@@ -699,5 +699,9 @@
   "billing_priceYearly": "mỗi năm",
   "billing_trialToday": "Hôm nay không phải thanh toán",
   "billing_trialConfirmation": "Google Play xác nhận ngày, tổng tiền cuối cùng và thuế áp dụng trước khi bạn xác nhận.",
-  "billing_offerChanged": "Điều kiện của ưu đãi này đã thay đổi. Tải lại các gói và chọn lại."
+  "billing_offerChanged": "Điều kiện của ưu đãi này đã thay đổi. Tải lại các gói và chọn lại.",
+  "status_waitingNetwork": "Đang chờ mạng",
+  "status_waitingNetworkDetail": "Không có mạng khả dụng. VPN sẽ kiểm tra kết nối khi mạng trở lại.",
+  "locations_favoriteLoadFailed": "Không thể tải mục yêu thích. Hãy thử lại.",
+  "locations_favoritesLoading": "Đang tải mục yêu thích…"
 }

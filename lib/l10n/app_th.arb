@@ -699,5 +699,9 @@
   "billing_priceYearly": "ต่อปี",
   "billing_trialToday": "วันนี้ยังไม่ต้องชำระเงิน",
   "billing_trialConfirmation": "Google Play ยืนยันวันที่ ยอดเงินสุดท้าย และภาษีที่เกี่ยวข้องก่อนที่คุณจะยืนยัน",
-  "billing_offerChanged": "เงื่อนไขของข้อเสนอนี้เปลี่ยนไปแล้ว รีเฟรชแพ็กเกจและเลือกอีกครั้ง"
+  "billing_offerChanged": "เงื่อนไขของข้อเสนอนี้เปลี่ยนไปแล้ว รีเฟรชแพ็กเกจและเลือกอีกครั้ง",
+  "status_waitingNetwork": "กำลังรอเครือข่าย",
+  "status_waitingNetworkDetail": "ไม่มีเครือข่ายที่พร้อมใช้งาน VPN จะตรวจสอบการเชื่อมต่อเมื่อเครือข่ายกลับมา",
+  "locations_favoriteLoadFailed": "โหลดรายการโปรดไม่ได้ โปรดลองอีกครั้ง",
+  "locations_favoritesLoading": "กำลังโหลดรายการโปรด…"
 }

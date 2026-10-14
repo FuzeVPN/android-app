@@ -699,5 +699,9 @@
   "billing_priceYearly": "al año",
   "billing_trialToday": "Hoy no pagas nada",
   "billing_trialConfirmation": "Google Play confirma las fechas, el importe final y los impuestos aplicables antes de que confirmes.",
-  "billing_offerChanged": "Las condiciones de esta oferta han cambiado. Actualiza los planes y vuelve a elegir."
+  "billing_offerChanged": "Las condiciones de esta oferta han cambiado. Actualiza los planes y vuelve a elegir.",
+  "status_waitingNetwork": "Esperando la red",
+  "status_waitingNetworkDetail": "No hay ninguna red disponible. La VPN comprobará la conexión cuando vuelva la red.",
+  "locations_favoriteLoadFailed": "No se pudieron cargar los favoritos. Inténtalo de nuevo.",
+  "locations_favoritesLoading": "Cargando favoritos…"
 }

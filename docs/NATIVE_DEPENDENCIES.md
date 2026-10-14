@@ -1,6 +1,6 @@
 # Dépendances natives Android
 
-Version source **0.2.6+74012**. Les commandes partent de la racine du dépôt. Les prérequis généraux
+Version source **0.2.10+74016**. Les commandes partent de la racine du dépôt. Les prérequis généraux
 et les commandes de l’application sont dans [DEVELOPMENT.md](DEVELOPMENT.md).
 L’inventaire est dans [SBOM.spdx.json](SBOM.spdx.json) et
 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md).
@@ -228,3 +228,22 @@ décrit outils, ABI et commandes ; un `SHA256SUMS` couvre sources et archives
 statiques. Fournir tout nouveau correctif comme diff ordonné et haché.
 Le SBOM et les notices doivent décrire le livrable distribué ; faire vérifier
 le paquet et la mise à disposition des sources avant publication.
+
+## Limites des ponts ARM x86_64 Android 12/13 (retests 74014)
+
+Le retest utilisateur confirme les tunnels réels WireGuard/OpenVPN et la reprise
+réseau de 74014 sur Android 14/17. Les quatre VM Android 12/13 conservées
+exécutent les bibliothèques ARM64 via ndk_translation, sans CPU ARM natif.
+Android 12 échoue dans HeavyOptimizerFrontend::StoreRegMappings ; Android 13
+rejette MRS MIDR_EL1 (0xd5380000), présent dans libwg-go à l’adresse ELF 0xa0e50.
+Go 1.24.3 exécute cette lecture sous HWCAP_CPUID lors de l’initialisation CPU.
+Le runtime possède ce contrôle ; supprimer des capacités CPU ou modifier le
+moteur sans preuve sur ARM physique ne constitue pas une correction établie.
+
+74015 reporte uniquement le chargement WireGuard au premier démarrage du tunnel.
+Les empreintes de l’AAR approuvé, du bundle natif et des dépendances restent
+identiques. Un test ARM traduit prouve seulement les parcours qu’il exécute.
+La qualification exige un appareil ARM64 Android 12 et un Android 13 (ou un
+émulateur ARM64 natif sur hôte ARM), avec l’APK universel signé, les deux
+protocoles, trafic, coupures/reprise, arrière-plan et arrêt. Un APK x86_64
+contourne ce pont et ne qualifie pas les bibliothèques ARM.

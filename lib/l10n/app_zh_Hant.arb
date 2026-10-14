@@ -699,5 +699,9 @@
   "billing_priceYearly": "每年",
   "billing_trialToday": "今天無需付款",
   "billing_trialConfirmation": "您確認前，Google Play 會確認日期、最終金額及適用稅費。",
-  "billing_offerChanged": "此優惠的條件已變更。請重新整理方案並重新選擇。"
+  "billing_offerChanged": "此優惠的條件已變更。請重新整理方案並重新選擇。",
+  "status_waitingNetwork": "等待網路",
+  "status_waitingNetworkDetail": "沒有可用網路。網路恢復後，VPN 將驗證連線。",
+  "locations_favoriteLoadFailed": "無法載入收藏。請重試。",
+  "locations_favoritesLoading": "正在載入收藏…"
 }

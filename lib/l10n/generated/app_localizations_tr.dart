@@ -2129,4 +2129,18 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Bu teklifin koşulları değişti. Planları yenileyip tekrar seçin.';
+
+  @override
+  String get status_waitingNetwork => 'Ağ bekleniyor';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Kullanılabilir ağ yok. Ağ geri geldiğinde VPN bağlantıyı doğrulayacak.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Favoriler yüklenemedi. Tekrar deneyin.';
+
+  @override
+  String get locations_favoritesLoading => 'Favoriler yükleniyor…';
 }

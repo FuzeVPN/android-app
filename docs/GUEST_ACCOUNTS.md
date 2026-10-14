@@ -1,6 +1,6 @@
 # Accueil et abonnements avec compte invité
 
-Version source **0.2.6+74012**. Les contrats ci-dessous sont ceux attendus
+Version source **0.2.10+74016**. Les contrats ci-dessous sont ceux attendus
 par le client ; le backend et son état en production ne sont pas inclus ni
 vérifiés par cette publication.
 

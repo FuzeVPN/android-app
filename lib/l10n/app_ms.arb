@@ -699,5 +699,9 @@
   "billing_priceYearly": "setahun",
   "billing_trialToday": "Tiada bayaran hari ini",
   "billing_trialConfirmation": "Google Play mengesahkan tarikh, jumlah akhir dan cukai yang dikenakan sebelum pengesahan anda.",
-  "billing_offerChanged": "Syarat tawaran ini telah berubah. Muat semula pelan dan pilih semula."
+  "billing_offerChanged": "Syarat tawaran ini telah berubah. Muat semula pelan dan pilih semula.",
+  "status_waitingNetwork": "Menunggu rangkaian",
+  "status_waitingNetworkDetail": "Tiada rangkaian tersedia. VPN akan menyemak sambungan apabila rangkaian kembali.",
+  "locations_favoriteLoadFailed": "Kegemaran tidak dapat dimuatkan. Cuba lagi.",
+  "locations_favoritesLoading": "Memuatkan kegemaran…"
 }

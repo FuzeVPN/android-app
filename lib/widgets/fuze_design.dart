@@ -119,7 +119,7 @@ class FuzePageHeader extends StatelessWidget {
             Expanded(
               child: Semantics(
                 header: true,
-                child: Text(
+                child: FuzeAdaptiveText(
                   title,
                   style: compact
                       ? Theme.of(context).textTheme.headlineSmall
@@ -144,6 +144,98 @@ class FuzePageHeader extends StatelessWidget {
         ],
       ],
     ),
+  );
+}
+
+/// Fit whole words using the actual font and accessibility scale. The user's
+/// TextScaler is never clamped; only the base style can become compact.
+class FuzeAdaptiveText extends StatelessWidget {
+  const FuzeAdaptiveText(
+    this.text, {
+    super.key,
+    required this.style,
+    this.minimumFontSize = 20,
+    this.textAlign,
+  }) : assert(minimumFontSize > 0);
+
+  final String text;
+  final TextStyle? style;
+  final double minimumFontSize;
+  final TextAlign? textAlign;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, constraints) {
+      final resolved = DefaultTextStyle.of(context).style.merge(style);
+      final scaler = MediaQuery.textScalerOf(context);
+      final direction = Directionality.of(context);
+      final locale = Localizations.maybeLocaleOf(context);
+      final original = resolved.fontSize ?? 32;
+      final words = <String>[];
+      final boundaries = TextPainter(
+        text: TextSpan(text: text, style: resolved),
+        textDirection: direction,
+        locale: locale,
+        textScaler: scaler,
+      )..layout();
+      final punctuation = RegExp(r'\p{P}', unicode: true);
+      for (var offset = 0; offset < text.length;) {
+        final range = boundaries.getWordBoundary(TextPosition(offset: offset));
+        var end = range.end > offset ? range.end : offset + 1;
+        // Keep attached punctuation (notably reconnecting's ellipsis) in the
+        // width measurement so it cannot force the preceding word to split.
+        if (text.substring(offset, end).trim().isNotEmpty) {
+          while (end < text.length &&
+              punctuation.hasMatch(text.substring(end, end + 1))) {
+            end++;
+          }
+        }
+        final word = text.substring(offset, end).trim();
+        if (word.isNotEmpty) words.add(word);
+        offset = end;
+      }
+      boundaries.dispose();
+      bool fits(double size) {
+        for (final word in words) {
+          final painter = TextPainter(
+            text: TextSpan(
+              text: word,
+              style: resolved.copyWith(fontSize: size),
+            ),
+            textDirection: direction,
+            locale: locale,
+            textScaler: scaler,
+          )..layout();
+          final width = painter.width;
+          painter.dispose();
+          if (width > constraints.maxWidth) return false;
+        }
+        return true;
+      }
+
+      var size = original;
+      if (!fits(original) && original > minimumFontSize) {
+        var lower = minimumFontSize;
+        var upper = original;
+        for (var step = 0; step < 12; step++) {
+          final middle = (lower + upper) / 2;
+          if (fits(middle)) {
+            lower = middle;
+          } else {
+            upper = middle;
+          }
+        }
+        size = lower;
+      }
+      return Text(
+        text,
+        style: resolved.copyWith(fontSize: size),
+        textScaler: scaler,
+        locale: locale,
+        textAlign: textAlign,
+        softWrap: true,
+      );
+    },
   );
 }
 

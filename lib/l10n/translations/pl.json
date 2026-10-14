@@ -701,7 +701,11 @@
     "billing_priceYearly": "rocznie",
     "billing_trialToday": "Dziś nic nie płacisz",
     "billing_trialConfirmation": "Google Play potwierdza daty, kwotę końcową i obowiązujące podatki przed Twoim potwierdzeniem.",
-    "billing_offerChanged": "Warunki tej oferty się zmieniły. Odśwież plany i wybierz ponownie."
+    "billing_offerChanged": "Warunki tej oferty się zmieniły. Odśwież plany i wybierz ponownie.",
+    "status_waitingNetwork": "Oczekiwanie na sieć",
+    "status_waitingNetworkDetail": "Brak dostępnej sieci. VPN sprawdzi połączenie po przywróceniu sieci.",
+    "locations_favoriteLoadFailed": "Nie udało się wczytać ulubionych. Spróbuj ponownie.",
+    "locations_favoritesLoading": "Wczytywanie ulubionych…"
   },
   "android": {
     "vpn_notification_channel": "Połączenie VPN",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "Trwa operacja VPN…",
     "vpn_notification_reconnecting": "Ponowne łączenie… · %1$s",
     "vpn_system_action_required": "Wymagane działanie w ustawieniach Androida",
-    "vpn_tile_reconnecting": "Ponowne łączenie… · %1$s"
+    "vpn_tile_reconnecting": "Ponowne łączenie… · %1$s",
+    "vpn_notification_waiting_network": "Oczekiwanie na sieć · %1$s",
+    "vpn_tile_waiting_network": "Oczekiwanie na sieć · %1$s"
   },
   "countries": {
     "AC": "Wyspa Wniebowstąpienia",

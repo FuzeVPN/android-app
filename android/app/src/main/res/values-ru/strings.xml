@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Повторное подключение… · %1$s</string>
     <string name="vpn_system_action_required">Требуется действие в настройках Android</string>
     <string name="vpn_tile_reconnecting">Повторное подключение… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Ожидание сети · %1$s</string>
+    <string name="vpn_tile_waiting_network">Ожидание сети · %1$s</string>
 </resources>

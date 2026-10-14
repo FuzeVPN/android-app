@@ -87,10 +87,16 @@ _StatusPresentation _statusPresentation(
     ),
     VpnRuntimePhase.connecting => _StatusPresentation(
       label: context.copy(
-        state.isReconnecting ? 'status.reconnecting' : 'status.connecting',
+        state.isWaitingForNetwork
+            ? 'status.waitingNetwork'
+            : state.isReconnecting
+            ? 'status.reconnecting'
+            : 'status.connecting',
       ),
       detail: context.copy(
-        state.isReconnecting
+        state.isWaitingForNetwork
+            ? 'status.waitingNetworkDetail'
+            : state.isReconnecting
             ? 'status.reconnectingDetail'
             : 'status.connectingDetail',
       ),

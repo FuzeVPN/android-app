@@ -701,7 +701,11 @@
     "billing_priceYearly": "pe an",
     "billing_trialToday": "Azi nu ai nimic de plătit",
     "billing_trialConfirmation": "Google Play confirmă datele, suma finală și taxele aplicabile înainte de confirmarea ta.",
-    "billing_offerChanged": "Condițiile acestei oferte s-au schimbat. Reîmprospătează planurile și alege din nou."
+    "billing_offerChanged": "Condițiile acestei oferte s-au schimbat. Reîmprospătează planurile și alege din nou.",
+    "status_waitingNetwork": "Se așteaptă rețeaua",
+    "status_waitingNetworkDetail": "Nicio rețea disponibilă. VPN va verifica conexiunea când revine rețeaua.",
+    "locations_favoriteLoadFailed": "Favoritele nu au putut fi încărcate. Încercați din nou.",
+    "locations_favoritesLoading": "Se încarcă favoritele…"
   },
   "android": {
     "vpn_notification_channel": "Conexiune VPN",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "Operațiune VPN în curs…",
     "vpn_notification_reconnecting": "Se reconectează… · %1$s",
     "vpn_system_action_required": "Este necesară o acțiune în setările Android",
-    "vpn_tile_reconnecting": "Se reconectează… · %1$s"
+    "vpn_tile_reconnecting": "Se reconectează… · %1$s",
+    "vpn_notification_waiting_network": "Se așteaptă rețeaua · %1$s",
+    "vpn_tile_waiting_network": "Se așteaptă rețeaua · %1$s"
   },
   "countries": {
     "AC": "Insula Ascension",

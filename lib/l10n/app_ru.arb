@@ -699,5 +699,9 @@
   "billing_priceYearly": "в год",
   "billing_trialToday": "Сегодня платить не нужно",
   "billing_trialConfirmation": "Google Play покажет даты, итоговую сумму и применимые налоги до вашего подтверждения.",
-  "billing_offerChanged": "Условия этого предложения изменились. Обновите тарифы и выберите снова."
+  "billing_offerChanged": "Условия этого предложения изменились. Обновите тарифы и выберите снова.",
+  "status_waitingNetwork": "Ожидание сети",
+  "status_waitingNetworkDetail": "Нет доступной сети. VPN проверит соединение после восстановления сети.",
+  "locations_favoriteLoadFailed": "Не удалось загрузить избранное. Повторите попытку.",
+  "locations_favoritesLoading": "Загрузка избранного…"
 }

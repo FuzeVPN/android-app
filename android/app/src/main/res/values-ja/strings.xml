@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">再接続しています…・%1$s</string>
     <string name="vpn_system_action_required">Android設定で操作が必要です</string>
     <string name="vpn_tile_reconnecting">再接続しています…・%1$s</string>
+    <string name="vpn_notification_waiting_network">ネットワークを待機中 · %1$s</string>
+    <string name="vpn_tile_waiting_network">ネットワークを待機中 · %1$s</string>
 </resources>

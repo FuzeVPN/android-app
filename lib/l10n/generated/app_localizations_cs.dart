@@ -2121,4 +2121,18 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Podmínky této nabídky se změnily. Obnovte tarify a vyberte znovu.';
+
+  @override
+  String get status_waitingNetwork => 'Čekání na síť';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Žádná síť není dostupná. VPN ověří připojení po obnovení sítě.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Oblíbené se nepodařilo načíst. Zkuste to znovu.';
+
+  @override
+  String get locations_favoritesLoading => 'Načítání oblíbených…';
 }

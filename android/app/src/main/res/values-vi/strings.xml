@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Đang kết nối lại… · %1$s</string>
     <string name="vpn_system_action_required">Cần thao tác trong cài đặt Android</string>
     <string name="vpn_tile_reconnecting">Đang kết nối lại… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Đang chờ mạng · %1$s</string>
+    <string name="vpn_tile_waiting_network">Đang chờ mạng · %1$s</string>
 </resources>

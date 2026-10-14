@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">دوبارہ کنیکٹ کیا جا رہا ہے… · %1$s</string>
     <string name="vpn_system_action_required">Android کی ترتیبات میں کارروائی ضروری ہے</string>
     <string name="vpn_tile_reconnecting">دوبارہ کنیکٹ کیا جا رہا ہے… · %1$s</string>
+    <string name="vpn_notification_waiting_network">نیٹ ورک کا انتظار · %1$s</string>
+    <string name="vpn_tile_waiting_network">نیٹ ورک کا انتظار · %1$s</string>
 </resources>

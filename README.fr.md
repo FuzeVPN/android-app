@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-Sources du client Android FuzeVPN, version **0.2.6+74012**, développé avec
+Sources du client Android FuzeVPN, version **0.2.10+74016**, développé avec
 Flutter, Kotlin, WireGuard et OpenVPN. Package Android : `com.fuzevpn`.
 Android 8.0 (API 26) ou ultérieur est requis.
 
@@ -66,7 +66,7 @@ Maven/Pub se préparent séparément.
 
 | Guide | Contenu |
 | --- | --- |
-| [Notes de version](docs/RELEASE_NOTES.md) | Changements de 0.2.6+74012 et limites de validation |
+| [Notes de version](docs/RELEASE_NOTES.md) | Changements de 0.2.10+74016 et limites de validation |
 | [Développement](docs/DEVELOPMENT.md) | Outils, compilation, tests et qualification sur appareil |
 | [Architecture](docs/ARCHITECTURE.md) | Comportement, stockage, tunnels et API attendue |
 | [Dépendances natives](docs/NATIVE_DEPENDENCIES.md) | Révisions, patches, intégrité et reconstruction |

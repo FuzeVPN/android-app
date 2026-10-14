@@ -699,5 +699,9 @@
   "billing_priceYearly": "pro Jahr",
   "billing_trialToday": "Heute nichts bezahlen",
   "billing_trialConfirmation": "Google Play bestätigt vor deiner Bestätigung die Termine, den Endbetrag und anfallende Steuern.",
-  "billing_offerChanged": "Die Bedingungen dieses Angebots haben sich geändert. Aktualisiere die Abos und wähle erneut."
+  "billing_offerChanged": "Die Bedingungen dieses Angebots haben sich geändert. Aktualisiere die Abos und wähle erneut.",
+  "status_waitingNetwork": "Warten auf Netzwerk",
+  "status_waitingNetworkDetail": "Kein Netzwerk verfügbar. Das VPN prüft die Verbindung, sobald das Netzwerk zurückkehrt.",
+  "locations_favoriteLoadFailed": "Favoriten konnten nicht geladen werden. Erneut versuchen.",
+  "locations_favoritesLoading": "Favoriten werden geladen…"
 }

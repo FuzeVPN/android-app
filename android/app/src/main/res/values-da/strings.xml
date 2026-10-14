@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Opretter forbindelse igen… · %1$s</string>
     <string name="vpn_system_action_required">Handling påkrævet i Android-indstillinger</string>
     <string name="vpn_tile_reconnecting">Opretter forbindelse igen… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Venter på netværk · %1$s</string>
+    <string name="vpn_tile_waiting_network">Venter på netværk · %1$s</string>
 </resources>

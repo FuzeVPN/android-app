@@ -701,7 +701,11 @@
     "billing_priceYearly": "年額",
     "billing_trialToday": "今日の支払いはありません",
     "billing_trialConfirmation": "確定前にGoogle Playで日付、最終金額、適用される税金をご確認いただけます。",
-    "billing_offerChanged": "このオファーの条件が変更されました。プランを更新し、もう一度選択してください。"
+    "billing_offerChanged": "このオファーの条件が変更されました。プランを更新し、もう一度選択してください。",
+    "status_waitingNetwork": "ネットワークを待機中",
+    "status_waitingNetworkDetail": "利用可能なネットワークがありません。復帰後にVPN接続を確認します。",
+    "locations_favoriteLoadFailed": "お気に入りを読み込めませんでした。再試行してください。",
+    "locations_favoritesLoading": "お気に入りを読み込み中…"
   },
   "android": {
     "vpn_notification_channel": "VPN接続",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN操作が進行中です…",
     "vpn_notification_reconnecting": "再接続しています…・%1$s",
     "vpn_system_action_required": "Android設定で操作が必要です",
-    "vpn_tile_reconnecting": "再接続しています…・%1$s"
+    "vpn_tile_reconnecting": "再接続しています…・%1$s",
+    "vpn_notification_waiting_network": "ネットワークを待機中 · %1$s",
+    "vpn_tile_waiting_network": "ネットワークを待機中 · %1$s"
   },
   "countries": {
     "AC": "アセンション島",

@@ -1,6 +1,7 @@
 package com.fuzevpn.android
 
 import android.content.Context
+import com.wireguard.android.backend.Backend
 import com.wireguard.android.backend.GoBackend
 import com.wireguard.android.backend.Tunnel
 import com.wireguard.config.Config
@@ -45,9 +46,13 @@ internal class WireGuardController(
     context: Context,
     private val secureStore: SecureKeystoreStore,
     private val onUnexpectedTunnelDown: () -> Unit,
+    backendFactory: (() -> Backend)? = null,
 ) {
     private val appContext = context.applicationContext
-    private val backend = GoBackend(appContext)
+    // GoBackend loads libwg-go, whose Go runtime probes the CPU immediately.
+    // Keep idle/startup/OpenVPN paths independent of that native engine. The
+    // first UP operation evaluates this thread-safe lazy value on our worker.
+    private val backend: Backend by lazy { backendFactory?.invoke() ?: GoBackend(appContext) }
     private val backendExecutor = Executors.newSingleThreadExecutor { runnable ->
         Thread(runnable, "fuzevpn-wireguard").apply { isDaemon = true }
     }
@@ -143,7 +148,11 @@ internal class WireGuardController(
         }
         try {
             NativeConnectionTiming.span(timing, "wireguard_native_start") {
-                backend.setState(tunnel, Tunnel.State.UP, configuration)
+                val initializedBackend = backend
+                // The first library load can take time. A request cancelled
+                // during initialization must never start its prepared tunnel.
+                if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
+                initializedBackend.setState(tunnel, Tunnel.State.UP, configuration)
             }
             activeTunnel = tunnel
         } catch (error: Exception) {

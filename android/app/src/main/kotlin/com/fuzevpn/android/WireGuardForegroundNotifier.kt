@@ -17,6 +17,7 @@ internal object WireGuardForegroundNotifier {
     @Volatile private var protocol: VpnProtocol? = null
     @Volatile private var reconnecting = false
     @Volatile private var actionRequired = false
+    @Volatile private var waitingForNetwork = false
 
     @Volatile
     private var patchedApi: PatchedApi? = null
@@ -34,6 +35,7 @@ internal object WireGuardForegroundNotifier {
         status = newStatus
         reconnecting = isReconnecting
         actionRequired = requiresAction
+        waitingForNetwork = false
         if (BuildConfig.USE_PATCHED_WIREGUARD_AAR) {
             installPatchedApi()
             refreshPatchedNotification()
@@ -44,6 +46,7 @@ internal object WireGuardForegroundNotifier {
         protocol = VpnProtocol.WIREGUARD
         reconnecting = false
         actionRequired = false
+        waitingForNetwork = false
         status = initialStatus
         if (useCompanionService()) {
             VpnForegroundService.start(context, VpnProtocol.WIREGUARD, initialStatus)
@@ -53,10 +56,14 @@ internal object WireGuardForegroundNotifier {
         refreshPatchedNotification()
     }
 
-    fun update(context: Context, newStatus: VpnStatus) {
+    fun update(context: Context, newStatus: VpnStatus,
+               isReconnecting: Boolean = false, isWaitingForNetwork: Boolean = false) {
         status = newStatus
+        reconnecting = isReconnecting
+        waitingForNetwork = isWaitingForNetwork
         if (useCompanionService()) {
-            VpnForegroundService.update(context, VpnProtocol.WIREGUARD, newStatus)
+            VpnForegroundService.update(context, VpnProtocol.WIREGUARD, newStatus,
+                isReconnecting, isWaitingForNetwork)
             return
         }
         refreshPatchedNotification()
@@ -121,7 +128,7 @@ internal object WireGuardForegroundNotifier {
     private object NotificationFactoryInvocationHandler : InvocationHandler {
         override fun invoke(proxy: Any, method: Method, arguments: Array<out Any?>?): Any? = when (method.name) {
             "create" -> (arguments?.firstOrNull() as? Context)?.let { context ->
-                VpnForegroundService.notificationFor(context, protocol, status, reconnecting, actionRequired)
+                VpnForegroundService.notificationFor(context, protocol, status, reconnecting, actionRequired, waitingForNetwork)
             }
             "toString" -> "FuzeVPN WireGuard foreground notification factory"
             "hashCode" -> System.identityHashCode(proxy)

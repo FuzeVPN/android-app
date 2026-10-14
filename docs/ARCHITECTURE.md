@@ -1,6 +1,6 @@
 # Architecture et comportement Android
 
-Version source **0.2.6+74012**. Ce guide décrit le comportement implémenté
+Version source **0.2.10+74016**. Ce guide décrit le comportement implémenté
 dans ce client. Les réponses API
 attendues ci-dessous sont les contraintes du client ; ce document ne remplace
 pas le contrat serveur et ne constate pas l'état de la production. Les
@@ -309,3 +309,86 @@ sondes Internet, DNS, routage et certificat restent non exécutées. L'état
 « connecté » ne prouve donc ni l'efficacité du blocage hors VPN, ni l'accès
 Internet, ni la fraîcheur du handshake. Ces propriétés nécessitent les essais
 sur appareil décrits dans [DEVELOPMENT.md](DEVELOPMENT.md).
+
+## Corrections de reprise 0.2.7+74013
+
+Un tunnel WireGuard déjà établi reste créé quand tous les réseaux physiques
+INTERNET/NOT_VPN disparaissent. Son état public devient `connecting` avec
+`wireguard_waiting_network`. Le retour du réseau produit `wireguard_recovering` :
+une première mesure fixe le compteur reçu et le handshake de référence ; seul un
+handshake plus récent ou une augmentation des octets reçus confirme la reprise.
+L'envoi de paquets et un ancien handshake ne constituent pas cette preuve.
+Une lecture échouée conserve l'attente. Aucun endpoint de contrôle ni appel API
+n'est ajouté ; cette preuve du pair ne certifie pas toutes les destinations Internet.
+La surveillance native continue sans interface Flutter, avec une mesure par seconde
+pendant la reprise. Les événements d'une ancienne session ou instance sont rejetés.
+Application, notification et tuile suivent ces états ; l'arrêt reste accessible.
+
+Le chargement des favoris est indépendant de leur sauvegarde. Le démarrage attend
+au plus quatre secondes, mais accepte une lecture tardive ; la nouvelle tentative
+réutilise une lecture encore en cours. Avant une lecture réussie, les modifications
+sont bloquées pour ne pas écraser des identifiants enregistrés mais inconnus.
+Une erreur de lecture possède son propre message et une action de nouvelle tentative.
+Les erreurs d'écriture conservent le retour au dernier ensemble durable.
+
+Les formulaires conservent e-mail et mot de passe en mémoire après une erreur et
+la fermeture de sa notice. Les titres adaptent leur taille de base à la largeur
+des mots avec les polices et la langue actives, jusqu'à 20 points minimum, sans
+limiter le TextScaler d'accessibilité ni tronquer le texte.
+
+## Observation réseau WireGuard 0.2.8+74014
+
+À partir d’Android 12, la requête INTERNET/NOT_VPN inclut les réseaux des autres
+UID (`setIncludeOtherUidNetworks(true)`). Android filtre autrement les callbacks
+aux réseaux applicables à l’UID appelant, ce qui peut masquer le réseau physique
+pendant un VPN. L’observation utilise les capacités reçues par callback, sans
+lecture synchrone dans le callback. Le filtre conserve INTERNET, NOT_VPN,
+TRUSTED et NOT_RESTRICTED.
+
+Un observateur natif continue chaque seconde pendant toute la durée du tunnel
+WireGuard établi. Il recoupe le cache des événements avec l’inventaire local
+Android sur un worker IO ; une génération empêche ce recoupement d’écraser un
+callback plus récent. Une lecture d’inventaire échouée conserve le cache. Cette
+mesure couvre aussi les événements manqués et Android 8–11, où l’inclusion des
+autres UID n’est pas disponible. Les statistiques du pair sont lues pendant la
+reprise ; aucun trafic de sondage ni appel API n’est ajouté.
+
+La durée de cet observateur dépend de la session et de l’instance du tunnel,
+pas du compteur des commandes de préparation. Une commande annulée ne retire
+pas la surveillance d’un tunnel encore actif. Un arrêt ou un remplacement
+annule l’observateur et empêche une publication tardive. Les conditions de
+preuve de reprise et les trois affichages introduits en 74013 restent identiques.
+
+Références Android : [état réseau](https://developer.android.com/develop/connectivity/network-ops/reading-network-state),
+[portée des UID](https://developer.android.com/reference/android/net/NetworkRequest.Builder#setIncludeOtherUidNetworks(boolean)).
+
+## Chargement WireGuard différé 0.2.9+74015
+
+Le contrôleur conserve un backend lazy synchronisé. La construction de GoBackend
+charge libwg-go et initialise le runtime Go ; elle se produit désormais sur le
+worker WireGuard lors du premier démarrage natif. La construction du bridge, les
+lectures d’état au repos, les statistiques sans tunnel, l’arrêt sans tunnel et
+les opérations de clé publique n’initialisent pas ce moteur. OpenVPN et
+l’interface ne dépendent donc pas de sa compatibilité avec un pont ARM de VM.
+
+Le runtime Go ARM64 1.24.3 lit MIDR_EL1 lorsque HWCAP_CPUID est annoncé. Le pont
+ndk_translation 0.2.3 des VM Android 13 rejette cette instruction ; les VM
+Android 12 atteignent une assertion de l’optimiseur lors de WireGuard. Cette
+correction isole les parcours inutilisant WireGuard ; elle ne modifie pas Go,
+les moteurs précompilés, les verrous ou les paramètres cryptographiques.
+Le vrai moteur reste initialisé à la connexion WireGuard et les blocages de
+traduction restent à qualifier sur Android 12/13 ARM natif.
+
+## Statuts lisibles avec texte agrandi 0.2.10+74016
+
+FuzeAdaptiveText partage la mesure des mots entre les titres et le statut de
+connexion. Le statut conserve sa taille de base lorsqu’il tient, y compris
+avec le scaleur non linéaire Android 14 et suivants. Si un mot dépasse la
+largeur intérieure de la carte, sa taille de base est réduite, au minimum
+14 points pour les statuts ; les titres gardent leur minimum de 20 points.
+La police, les fallbacks, la langue et le TextScaler actifs sont utilisés.
+Le TextScaler n’est pas plafonné ou remplacé ; les espaces et retours à la
+ligne restent naturels, sans ellipse ajoutée. La ponctuation accolée, notamment
+l’ellipse déjà traduite de Reconnexion, participe à la largeur du mot.
+Le libellé, la région sémantique live et les actions de connexion/arrêt restent
+identiques. Les neuf statuts utilisent cette même présentation.

@@ -701,7 +701,11 @@
     "billing_priceYearly": "per year",
     "billing_trialToday": "Nothing to pay today",
     "billing_trialConfirmation": "Google Play confirms the dates, final amount and applicable taxes before you confirm.",
-    "billing_offerChanged": "The terms of this offer have changed. Refresh the plans and choose again."
+    "billing_offerChanged": "The terms of this offer have changed. Refresh the plans and choose again.",
+    "status_waitingNetwork": "Waiting for network",
+    "status_waitingNetworkDetail": "No network is available. The VPN will verify the connection when the network returns.",
+    "locations_favoriteLoadFailed": "Favorites could not be loaded. Try again.",
+    "locations_favoritesLoading": "Loading favorites…"
   },
   "android": {
     "vpn_notification_channel": "VPN connection",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN operation in progress…",
     "vpn_notification_reconnecting": "Reconnecting… · %1$s",
     "vpn_system_action_required": "Action required in Android settings",
-    "vpn_tile_reconnecting": "Reconnecting… · %1$s"
+    "vpn_tile_reconnecting": "Reconnecting… · %1$s",
+    "vpn_notification_waiting_network": "Waiting for network · %1$s",
+    "vpn_tile_waiting_network": "Waiting for network · %1$s"
   },
   "countries": {
     "AC": "Ascension Island",

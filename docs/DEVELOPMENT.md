@@ -1,6 +1,6 @@
 # Développer et valider le client Android
 
-Version source **0.2.6+74012**. Le dépôt public contient les sources et entrées
+Version source **0.2.10+74016**. Le dépôt public contient les sources et entrées
 natives nécessaires, sans APK/AAB ni GitHub Releases.
 
 Les commandes de ce guide partent de la racine du dépôt, sauf
@@ -419,7 +419,7 @@ pour cet envoi.
 
 ## Revue de publication des sources
 
-- [ ] Version **0.2.6+74012**, matrice du poste, dépendances et provenance natives
+- [ ] Version **0.2.10+74016**, matrice du poste, dépendances et provenance natives
       décrites ; entrées verrouillées et fixtures amont conservées.
 - [ ] Sources, patches, assets, licences, notices et instructions présentes,
       liens du dépôt utilisables sans historique de rapports locaux.
@@ -436,3 +436,75 @@ valider localement. Les résultats vont sous `build/` et ne sont pas publiés
 avec ce dépôt. Pour une diffusion binaire ultérieure, ajouter une recette
 sur les appareils/signatures ciblés, l’inventaire du livrable exact et les
 sources correspondantes ; voir [SOURCE_DISTRIBUTION.md](SOURCE_DISTRIBUTION.md).
+
+## Régressions 74013
+
+Les cas `WireGuardRecoveryPolicyTest` couvrent plusieurs réseaux physiques,
+les coupures rapides/répétées, les preuves anciennes et les instances arrêtées.
+Les cas Flutter couvrent les champs après erreur, les favoris après lecture
+lente/échouée et la déconnexion pendant l'attente WireGuard.
+`test/widget/header_accessibility_test.dart` charge les polices embarquées et
+contrôle les titres à 320/360/800 dp, 100/200 %, français/anglais/arabe,
+clair/sombre. Ses 36 captures sont écrites sous `build/reports/74013-ui/`,
+hors des références golden maintenues ; les examiner avant livraison.
+
+L'APK local 74013 est construit directement en release pour les deux ABI ARM,
+sans splits et sans App Bundle. Son signataire est la clé d'envoi conservée hors
+Git ; il ne reproduit pas la signature Play App Signing. Conserver son mapping
+R8, les preuves de contrôle et le diff source avec cette livraison locale.
+Les blocages ARM de ndk_translation Android 12/13 restent à qualifier sur appareil
+ARM physique. Cette correction ne remplace pas les moteurs natifs verrouillés.
+
+## Régressions réseau 74014
+
+`WireGuardRecoveryPolicyTest` ajoute le recoupement d’une entrée initiale
+périmée, le conflit avec un callback plus récent, la coupure et le retour sans
+callback, et la conservation de la mesure de référence sur un inventaire inchangé.
+
+`WireGuardNetworkObservationInstrumentedTest` exerce le bridge natif sans
+Flutter : entrée périmée, commande annulée, coupure Wi-Fi/mobile de plus de
+trente secondes et retour sans nouvelle preuve du pair. Il requiert le package
+`com.fuzevpn.recoverytest` et passe en skipped avec le package de production.
+Le build isolé remplace applicationId et testApplicationId via un init script
+Gradle externe ; aucun changement de package ne fait partie du build release.
+Il utilise x86_64 pour éviter la traduction ARM, sans créer de vrai tunnel ni
+appeler FuzeVPN. Exécuter une VM à la fois et restaurer les réglages réseau.
+La qualification réelle de l’APK ARM reste distincte de ce test synthétique.
+
+## Régressions chargement natif 74015
+
+WireGuardDeferredLoadingInstrumentedTest requiert le paquet isolé
+com.fuzevpn.recoverytest. Il vérifie les opérations au repos et d’identité sans
+construction du backend, la création unique sur le worker au premier UP avec
+un backend refusant le démarrage sans tunnel réel, puis l’initialisation du
+bridge et du Core OpenVPN sans libwg-go dans /proc/self/maps. Les profils
+ARM traduits et ARM natifs restent des qualifications distinctes.
+
+Sur les VM conservées, une instance à la fois : téléphones 2048 Mo, tablettes
+1536 Mo, avec -qemu -m de même valeur en dernier. Vérifier /proc/meminfo et la
+mémoire du processus hôte ; arrêter avant de dépasser le plafond de 4 Go.
+Conserver les VM en échec et les preuves existantes.
+
+## Régressions de statut 74016
+
+status_accessibility_test.dart charge les polices embarquées et teste les neuf
+statuts dans trente langues, à 320/360 dp, à 100 %, avec un scaleur linéaire
+200 % et avec la courbe Android 14 à 200 % (180 cas). Les sélections des mots
+partagent une bande verticale, sans confondre les métriques des fallbacks avec
+une véritable coupure. Les fixtures grecque et cyrilliques utilisent Google Sans en fallback
+de test ; le fallback système Android dépend du matériel.
+Les captures sont sous build/reports/74016-ui/, hors des références golden.
+
+Les six cas app_ui_test "disconnected status keeps its word" vérifient région
+live, taille d’accessibilité et bouton utilisable, à 320/360/800 dp et clair/sombre.
+Leur exécution obligatoire avec FUZEVPN_REVIEW_FONTS=true vérifie également le
+mot complet avec Archivo et écrit les captures de l’application :
+
+```powershell
+flutter test --no-pub --dart-define=FUZEVPN_REVIEW_FONTS=true --plain-name 'disconnected status keeps its word' test/widget/app_ui_test.dart
+```
+
+L’exécution standard de cette suite garde sa police synthétique pour les goldens
+existants ; cette police ne valide pas la géométrie des mots dans ces six cas.
+Examiner les nouvelles captures avant livraison ou changement d’une référence.
+Aucune traduction ni moteur natif supplémentaire n’est introduit.

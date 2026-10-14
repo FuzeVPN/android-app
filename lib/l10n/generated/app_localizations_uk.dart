@@ -2143,4 +2143,18 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Умови цієї пропозиції змінилися. Оновіть тарифи та виберіть знову.';
+
+  @override
+  String get status_waitingNetwork => 'Очікування мережі';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Немає доступної мережі. VPN перевірить з’єднання після відновлення мережі.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Не вдалося завантажити обране. Спробуйте ще раз.';
+
+  @override
+  String get locations_favoritesLoading => 'Завантаження обраного…';
 }

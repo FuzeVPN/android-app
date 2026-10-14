@@ -701,7 +701,11 @@
     "billing_priceYearly": "bawat taon",
     "billing_trialToday": "Walang babayaran ngayong araw",
     "billing_trialConfirmation": "Kinukumpirma ng Google Play ang mga petsa, huling halaga at naaangkop na buwis bago ka magkumpirma.",
-    "billing_offerChanged": "Nagbago ang mga kondisyon ng alok na ito. I-refresh ang mga plano at pumili muli."
+    "billing_offerChanged": "Nagbago ang mga kondisyon ng alok na ito. I-refresh ang mga plano at pumili muli.",
+    "status_waitingNetwork": "Naghihintay ng network",
+    "status_waitingNetworkDetail": "Walang available na network. Susuriin ng VPN ang koneksyon kapag bumalik ang network.",
+    "locations_favoriteLoadFailed": "Hindi ma-load ang mga paborito. Subukan muli.",
+    "locations_favoritesLoading": "Nilo-load ang mga paborito…"
   },
   "android": {
     "vpn_notification_channel": "Koneksyon ng VPN",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "Isinasagawa ang operasyon ng VPN…",
     "vpn_notification_reconnecting": "Muling kumokonekta… · %1$s",
     "vpn_system_action_required": "Kailangan ng aksyon sa mga setting ng Android",
-    "vpn_tile_reconnecting": "Muling kumokonekta… · %1$s"
+    "vpn_tile_reconnecting": "Muling kumokonekta… · %1$s",
+    "vpn_notification_waiting_network": "Naghihintay ng network · %1$s",
+    "vpn_tile_waiting_network": "Naghihintay ng network · %1$s"
   },
   "countries": {
     "AC": "Pulo ng Ascension",

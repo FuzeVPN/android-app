@@ -2157,4 +2157,18 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Le condizioni di questa offerta sono cambiate. Aggiorna i piani e scegli di nuovo.';
+
+  @override
+  String get status_waitingNetwork => 'In attesa della rete';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Nessuna rete disponibile. La VPN verificherà la connessione al ritorno della rete.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Impossibile caricare i preferiti. Riprova.';
+
+  @override
+  String get locations_favoritesLoading => 'Caricamento dei preferiti…';
 }

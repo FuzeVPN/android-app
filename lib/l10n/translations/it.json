@@ -701,7 +701,11 @@
     "billing_priceYearly": "all’anno",
     "billing_trialToday": "Oggi non paghi nulla",
     "billing_trialConfirmation": "Google Play conferma le date, l’importo finale e le imposte applicabili prima della tua conferma.",
-    "billing_offerChanged": "Le condizioni di questa offerta sono cambiate. Aggiorna i piani e scegli di nuovo."
+    "billing_offerChanged": "Le condizioni di questa offerta sono cambiate. Aggiorna i piani e scegli di nuovo.",
+    "status_waitingNetwork": "In attesa della rete",
+    "status_waitingNetworkDetail": "Nessuna rete disponibile. La VPN verificherà la connessione al ritorno della rete.",
+    "locations_favoriteLoadFailed": "Impossibile caricare i preferiti. Riprova.",
+    "locations_favoritesLoading": "Caricamento dei preferiti…"
   },
   "android": {
     "vpn_notification_channel": "Connessione VPN",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "Operazione VPN in corso…",
     "vpn_notification_reconnecting": "Riconnessione in corso… · %1$s",
     "vpn_system_action_required": "Azione richiesta nelle impostazioni di Android",
-    "vpn_tile_reconnecting": "Riconnessione in corso… · %1$s"
+    "vpn_tile_reconnecting": "Riconnessione in corso… · %1$s",
+    "vpn_notification_waiting_network": "In attesa della rete · %1$s",
+    "vpn_tile_waiting_network": "In attesa della rete · %1$s"
   },
   "countries": {
     "AC": "Isola di Ascensione",

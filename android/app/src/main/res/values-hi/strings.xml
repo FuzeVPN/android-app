@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">फिर से कनेक्ट किया जा रहा है… · %1$s</string>
     <string name="vpn_system_action_required">Android सेटिंग में कार्रवाई आवश्यक है</string>
     <string name="vpn_tile_reconnecting">फिर से कनेक्ट किया जा रहा है… · %1$s</string>
+    <string name="vpn_notification_waiting_network">नेटवर्क की प्रतीक्षा · %1$s</string>
+    <string name="vpn_tile_waiting_network">नेटवर्क की प्रतीक्षा · %1$s</string>
 </resources>

@@ -1863,6 +1863,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get billing_offerChanged => '此优惠的条件已更改。请刷新方案并重新选择。';
+
+  @override
+  String get status_waitingNetwork => '等待网络';
+
+  @override
+  String get status_waitingNetworkDetail => '没有可用网络。网络恢复后，VPN 将验证连接。';
+
+  @override
+  String get locations_favoriteLoadFailed => '无法加载收藏。请重试。';
+
+  @override
+  String get locations_favoritesLoading => '正在加载收藏…';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -3724,6 +3736,18 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get billing_offerChanged => '此优惠的条件已更改。请刷新方案并重新选择。';
+
+  @override
+  String get status_waitingNetwork => '等待网络';
+
+  @override
+  String get status_waitingNetworkDetail => '没有可用网络。网络恢复后，VPN 将验证连接。';
+
+  @override
+  String get locations_favoriteLoadFailed => '无法加载收藏。请重试。';
+
+  @override
+  String get locations_favoritesLoading => '正在加载收藏…';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5592,4 +5616,16 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get billing_offerChanged => '此優惠的條件已變更。請重新整理方案並重新選擇。';
+
+  @override
+  String get status_waitingNetwork => '等待網路';
+
+  @override
+  String get status_waitingNetworkDetail => '沒有可用網路。網路恢復後，VPN 將驗證連線。';
+
+  @override
+  String get locations_favoriteLoadFailed => '無法載入收藏。請重試。';
+
+  @override
+  String get locations_favoritesLoading => '正在載入收藏…';
 }

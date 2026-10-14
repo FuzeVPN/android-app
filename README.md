@@ -2,7 +2,7 @@
 
 [Français](README.fr.md)
 
-Source code for the FuzeVPN Android client, version **0.2.6+74012**.
+Source code for the FuzeVPN Android client, version **0.2.10+74016**.
 The app uses Flutter, Kotlin, WireGuard and OpenVPN. Its Android package is
 `com.fuzevpn`; Android 8.0 (API 26) or later is required.
 
@@ -68,7 +68,7 @@ Most detailed guides are maintained in French.
 
 | Guide | Scope |
 | --- | --- |
-| [Release notes](docs/RELEASE_NOTES.md) | Changes in 0.2.6+74012 and validation limits |
+| [Release notes](docs/RELEASE_NOTES.md) | Changes in 0.2.10+74016 and validation limits |
 | [Development](docs/DEVELOPMENT.md) | Toolchain, build, tests and device qualification |
 | [Architecture](docs/ARCHITECTURE.md) | Client behavior, storage, VPN lifecycle and expected API |
 | [Native dependencies](docs/NATIVE_DEPENDENCIES.md) | Source revisions, patches, integrity and reconstruction |

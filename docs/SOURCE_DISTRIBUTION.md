@@ -1,6 +1,6 @@
 # Publication et paquet de sources Android
 
-Le dépôt public **FuzeVPN/android-app**, version **0.2.6+74012**, publie les
+Le dépôt public **FuzeVPN/android-app**, version **0.2.10+74016**, publie les
 sources avec leurs entrées natives revues. Il ne publie ni APK, ni AAB, ni
 GitHub Releases. Les archives natives incluses sont des dépendances de
 construction ; elles ne constituent pas une application installable.
@@ -42,7 +42,7 @@ extraction et les chemins sortants, doublons et liens sont refusés.
 À la racine du dépôt :
 
 ```powershell
-python tools/package_android_sources.py --output build/FuzeVPN-Android-sources-v74012.tar.gz
+python tools/package_android_sources.py --output build/FuzeVPN-Android-sources-v74016.tar.gz
 ```
 
 Sans `--apk`, le README généré indique que l’archive n’est rattachée à aucun

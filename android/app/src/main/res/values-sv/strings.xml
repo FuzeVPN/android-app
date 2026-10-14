@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Ansluter igen… · %1$s</string>
     <string name="vpn_system_action_required">Åtgärd krävs i Android-inställningarna</string>
     <string name="vpn_tile_reconnecting">Ansluter igen… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Väntar på nätverk · %1$s</string>
+    <string name="vpn_tile_waiting_network">Väntar på nätverk · %1$s</string>
 </resources>

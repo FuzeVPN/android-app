@@ -699,5 +699,9 @@
   "billing_priceYearly": "τον χρόνο",
   "billing_trialToday": "Δεν πληρώνεις τίποτα σήμερα",
   "billing_trialConfirmation": "Το Google Play επιβεβαιώνει ημερομηνίες, τελικό ποσό και ισχύοντες φόρους πριν από την επιβεβαίωσή σου.",
-  "billing_offerChanged": "Οι όροι αυτής της προσφοράς άλλαξαν. Ανανέωσε τα προγράμματα και επίλεξε ξανά."
+  "billing_offerChanged": "Οι όροι αυτής της προσφοράς άλλαξαν. Ανανέωσε τα προγράμματα και επίλεξε ξανά.",
+  "status_waitingNetwork": "Αναμονή δικτύου",
+  "status_waitingNetworkDetail": "Δεν υπάρχει διαθέσιμο δίκτυο. Το VPN θα ελέγξει τη σύνδεση όταν επιστρέψει το δίκτυο.",
+  "locations_favoriteLoadFailed": "Δεν ήταν δυνατή η φόρτωση των αγαπημένων. Δοκιμάστε ξανά.",
+  "locations_favoritesLoading": "Φόρτωση αγαπημένων…"
 }

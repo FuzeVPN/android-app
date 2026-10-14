@@ -701,7 +701,11 @@
     "billing_priceYearly": "در سال",
     "billing_trialToday": "امروز پرداختی ندارید",
     "billing_trialConfirmation": "Google Play تاریخ‌ها، مبلغ نهایی و مالیات‌های مربوط را پیش از تأیید شما مشخص می‌کند.",
-    "billing_offerChanged": "شرایط این پیشنهاد تغییر کرده است. طرح‌ها را تازه‌سازی کنید و دوباره انتخاب کنید."
+    "billing_offerChanged": "شرایط این پیشنهاد تغییر کرده است. طرح‌ها را تازه‌سازی کنید و دوباره انتخاب کنید.",
+    "status_waitingNetwork": "در انتظار شبکه",
+    "status_waitingNetworkDetail": "شبکه‌ای در دسترس نیست. VPN پس از بازگشت شبکه اتصال را بررسی می‌کند.",
+    "locations_favoriteLoadFailed": "موارد دلخواه بارگیری نشدند. دوباره تلاش کنید.",
+    "locations_favoritesLoading": "در حال بارگیری موارد دلخواه…"
   },
   "android": {
     "vpn_notification_channel": "اتصال وی‌پی‌ان",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "عملیات وی‌پی‌ان در حال انجام است…",
     "vpn_notification_reconnecting": "در حال اتصال دوباره… · %1$s",
     "vpn_system_action_required": "اقدام در تنظیمات Android لازم است",
-    "vpn_tile_reconnecting": "در حال اتصال دوباره… · %1$s"
+    "vpn_tile_reconnecting": "در حال اتصال دوباره… · %1$s",
+    "vpn_notification_waiting_network": "در انتظار شبکه · %1$s",
+    "vpn_tile_waiting_network": "در انتظار شبکه · %1$s"
   },
   "countries": {
     "AC": "جزیره اسنشن",

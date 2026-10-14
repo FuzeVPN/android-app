@@ -37,6 +37,9 @@ internal data class VpnState(
     val openVpnRevocation: com.fuzevpn.android.openvpn.OpenVpnRevocationState? = null,
     val systemProtection: Map<String, Any?> = emptyMap(),
 ) {
+    val isWireGuardRecovery: Boolean get() = protocol == VpnProtocol.WIREGUARD &&
+        status == VpnStatus.CONNECTING && messageCode in setOf("wireguard_waiting_network", "wireguard_recovering")
+
     /** A failed read preserves an unknown first sample or the last successful one. */
     fun withTunnelStatistics(statistics: TunnelStatistics?): VpnState = statistics?.let {
         copy(

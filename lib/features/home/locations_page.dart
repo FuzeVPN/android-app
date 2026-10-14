@@ -352,6 +352,32 @@ class _LocationsPageState extends State<LocationsPage> {
               ),
               const SizedBox(height: 12),
             ],
+            if (controller.favoritesLoadFailed) ...[
+              Semantics(
+                liveRegion: true,
+                child: Text(
+                  context.copy('locations.favoriteLoadFailed'),
+                  key: const ValueKey('locations-favorite-load-error'),
+                  style: TextStyle(color: scheme.error),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton.icon(
+                  key: const ValueKey('locations-favorite-retry'),
+                  onPressed: () => controller.reloadFavoriteLocations(),
+                  icon: const Icon(Icons.refresh),
+                  label: Text(context.copy('action.retry')),
+                ),
+              ),
+              const SizedBox(height: 12),
+            ] else if (controller.favoritesLoading) ...[
+              Text(
+                context.copy('locations.favoritesLoading'),
+                key: const ValueKey('locations-favorites-loading'),
+              ),
+              const SizedBox(height: 12),
+            ],
             if (controller.favoritesSaveFailed) ...[
               Semantics(
                 liveRegion: true,
@@ -936,7 +962,8 @@ class LocationRow extends StatelessWidget {
                       : 'locations.addFavorite',
                   arguments: {'name': location.displayName},
                 ),
-                onPressed: controller.favoritesSaving
+                onPressed:
+                    controller.favoritesSaving || !controller.canChangeFavorites
                     ? null
                     : () => controller.toggleFavoriteLocation(location),
                 constraints: const BoxConstraints(minWidth: 48, minHeight: 48),

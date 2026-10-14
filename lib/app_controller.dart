@@ -177,6 +177,9 @@ class VpnAppController extends ChangeNotifier {
   int _favoriteEpoch = 0;
   int _favoriteWritesPending = 0;
   bool favoritesSaveFailed = false;
+  bool favoritesLoadFailed = false;
+  bool _favoritesLoaded = false;
+  Future<void>? _favoriteRead;
   late final StreamSubscription<VpnRuntimeState> _tunnelSubscription;
   Timer? _tunnelMetricsTimer;
   bool _tunnelMetricsRefreshInFlight = false;
@@ -2957,7 +2960,8 @@ class VpnAppController extends ChangeNotifier {
   }
 
   void _syncTunnelMetricsTimer() {
-    if (tunnelState.phase != VpnRuntimePhase.connected) {
+    if (tunnelState.phase != VpnRuntimePhase.connected &&
+        !tunnelState.isWireGuardRecovery) {
       _tunnelMetricsTimer?.cancel();
       _tunnelMetricsTimer = null;
       return;
@@ -2971,7 +2975,8 @@ class VpnAppController extends ChangeNotifier {
   Future<void> _refreshTunnelMetrics() async {
     if (isConnecting ||
         _tunnelMetricsRefreshInFlight ||
-        tunnelState.phase != VpnRuntimePhase.connected) {
+        (tunnelState.phase != VpnRuntimePhase.connected &&
+            !tunnelState.isWireGuardRecovery)) {
       return;
     }
     _tunnelMetricsRefreshInFlight = true;

@@ -701,7 +701,11 @@
     "billing_priceYearly": "每年",
     "billing_trialToday": "今天无需付款",
     "billing_trialConfirmation": "您确认前，Google Play 会确认日期、最终金额和适用税费。",
-    "billing_offerChanged": "此优惠的条件已更改。请刷新方案并重新选择。"
+    "billing_offerChanged": "此优惠的条件已更改。请刷新方案并重新选择。",
+    "status_waitingNetwork": "等待网络",
+    "status_waitingNetworkDetail": "没有可用网络。网络恢复后，VPN 将验证连接。",
+    "locations_favoriteLoadFailed": "无法加载收藏。请重试。",
+    "locations_favoritesLoading": "正在加载收藏…"
   },
   "android": {
     "vpn_notification_channel": "VPN 连接",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN 操作进行中…",
     "vpn_notification_reconnecting": "正在重新连接… · %1$s",
     "vpn_system_action_required": "需要在 Android 设置中执行操作",
-    "vpn_tile_reconnecting": "正在重新连接… · %1$s"
+    "vpn_tile_reconnecting": "正在重新连接… · %1$s",
+    "vpn_notification_waiting_network": "等待网络 · %1$s",
+    "vpn_tile_waiting_network": "等待网络 · %1$s"
   },
   "countries": {
     "AC": "阿森松岛",

@@ -2075,4 +2075,17 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'تغيّرت شروط هذا العرض. حدّث الخطط واختر من جديد.';
+
+  @override
+  String get status_waitingNetwork => 'بانتظار الشبكة';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'لا توجد شبكة متاحة. سيتحقق VPN من الاتصال عند عودة الشبكة.';
+
+  @override
+  String get locations_favoriteLoadFailed => 'تعذر تحميل المفضلة. حاول مجددًا.';
+
+  @override
+  String get locations_favoritesLoading => 'جارٍ تحميل المفضلة…';
 }
