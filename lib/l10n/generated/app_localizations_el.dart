@@ -2185,4 +2185,18 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Οι όροι αυτής της προσφοράς άλλαξαν. Ανανέωσε τα προγράμματα και επίλεξε ξανά.';
+
+  @override
+  String get status_waitingNetwork => 'Αναμονή δικτύου';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Δεν υπάρχει διαθέσιμο δίκτυο. Το VPN θα ελέγξει τη σύνδεση όταν επιστρέψει το δίκτυο.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Δεν ήταν δυνατή η φόρτωση των αγαπημένων. Δοκιμάστε ξανά.';
+
+  @override
+  String get locations_favoritesLoading => 'Φόρτωση αγαπημένων…';
 }

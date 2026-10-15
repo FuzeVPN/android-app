@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "id": "EVMINSTRUMENT",
+  "date": "2026-10-14",
+  "kind": "isolated_arm64_vm_instrumentation",
+  "artifacts": [
+    "fixture-74016"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "status": "FAIL",
+    "configured_ram_mb": 1536,
+    "vm_stopped": true,
+    "scope": "Dedicated Android 15 x86_64 VM; ARM64 native bridge; synthetic keys and isolated package; no login, purchase or real VPN tunnel",
+    "classes": [
+      {
+        "class": "SecureKeystoreStoreInstrumentedTest",
+        "total": 5,
+        "skipped": 0,
+        "passed": 5,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "QuickTileProfileInstrumentedTest",
+        "total": 2,
+        "skipped": 0,
+        "passed": 2,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "Ipv6StorageInstrumentedTest",
+        "total": 4,
+        "skipped": 0,
+        "passed": 4,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "openvpn.Pkcs10CsrInstrumentedTest",
+        "total": 1,
+        "skipped": 0,
+        "passed": 1,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "openvpn.OpenSslXKeyExternalPkiInstrumentedTest",
+        "total": 2,
+        "skipped": 0,
+        "passed": 2,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "openvpn.OpenVpnIdentityReleaseInstrumentedTest",
+        "total": 5,
+        "skipped": 0,
+        "passed": 5,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "openvpn.OpenVpnNativeInstrumentedTest",
+        "total": 2,
+        "skipped": 0,
+        "passed": 2,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "WireGuardDeferredLoadingInstrumentedTest",
+        "total": 4,
+        "skipped": 0,
+        "passed": 4,
+        "failed": false,
+        "exit_code": 0
+      },
+      {
+        "class": "WireGuardLibrarySmokeInstrumentedTest",
+        "total": 1,
+        "skipped": 0,
+        "passed": 0,
+        "failed": true,
+        "exit_code": 0,
+        "count_method": "One declared test started; process crashed before JUnit completion"
+      }
+    ],
+    "abi_list": [
+      "x86_64",
+      "arm64-v8a"
+    ],
+    "native_bridge": "libndk_translation.so",
+    "page_size": 4096,
+    "guest_memtotal_kib": 1503304,
+    "fixture_apk_sha256": "00b12d966ff974ab0f4e4bdae8048ce58936f4a5d4e8485cf2dee692e8d24901",
+    "test_apk_sha256": "c28637c0e9538c51620dfbb254ca06b7bab6a3be2b2d11317d69873f5ca0c53c",
+    "host_memory": {
+      "limit_bytes": 4000000000,
+      "peak_bytes": 2749755392,
+      "limit_exceeded": false
+    }
+  },
+  "source_receipts": [
+    {
+      "name": "result.json",
+      "sha256": "b3f412f9a8140bca5653b87ff9e12f109b4ae0783958188df5259086f65eae98"
+    }
+  ],
+  "test_counts": {
+    "total": 26,
+    "passed": 25,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  }
+}

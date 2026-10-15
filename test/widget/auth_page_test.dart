@@ -16,6 +16,48 @@ import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 
 void main() {
+  for (final width in [360.0, 1000.0]) {
+    testWidgets(
+      'failed login retains both fields after notice dismissal at $width',
+      (tester) async {
+        tester.view.physicalSize = Size(width, 900);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        final controller = _controller(api: _RejectedLoginApi());
+        addTearDown(controller.dispose);
+        await tester.pumpWidget(_testApp(controller));
+        const emailKey = ValueKey('auth-login-email');
+        const passwordKey = ValueKey('auth-login-password');
+        await tester.enterText(find.byKey(emailKey), 'fixture@example.invalid');
+        await tester.enterText(find.byKey(passwordKey), 'fixture password');
+        final submit = find.byKey(const ValueKey('auth-login-submit'));
+        await tester.ensureVisible(submit);
+        await tester.pumpAndSettle();
+        await tester.tap(submit);
+        await tester.pumpAndSettle();
+        expect(controller.notice, isNotNull);
+        for (final dismiss in [false, true]) {
+          if (dismiss) {
+            controller.clearNotice();
+            await tester.pumpAndSettle();
+          }
+          expect(
+            tester.widget<TextFormField>(find.byKey(emailKey)).controller!.text,
+            'fixture@example.invalid',
+          );
+          expect(
+            tester
+                .widget<TextFormField>(find.byKey(passwordKey))
+                .controller!
+                .text,
+            'fixture password',
+          );
+        }
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
   final passwordCases = <(String, String, PasswordLengthIssue?)>[
     ('ASCII 7 bytes', 'a' * 7, PasswordLengthIssue.tooShort),
     ('ASCII 8 bytes', 'a' * 8, null),
@@ -472,6 +514,17 @@ class _RecordingRegistrationApi extends _UnusedApi {
     // Stop before session storage. This is a fake repository, with no network.
     throw const ApiException(statusCode: 500, errorCode: 'server_error');
   }
+}
+
+class _RejectedLoginApi extends _UnusedApi {
+  @override
+  Future<AuthSession> login({
+    required String email,
+    required String password,
+  }) async => throw const ApiException(
+    statusCode: 401,
+    errorCode: 'invalid_credentials',
+  );
 }
 
 class _UnusedStore implements SecureSessionStore {

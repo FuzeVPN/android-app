@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/app.dart';
@@ -78,6 +81,52 @@ const UserProfile _profile = UserProfile(
 );
 
 void main() {
+  for (final code in ['wireguard_waiting_network', 'wireguard_recovering']) {
+    testWidgets(
+      '$code keeps disconnect accessible and never claims connected',
+      (tester) async {
+        final h = _UiHarness();
+        addTearDown(h.close);
+        h.store.session = _session;
+        h.tunnel.initialState = const VpnRuntimeState(
+          phase: VpnRuntimePhase.connected,
+          protocol: VpnProtocol.wireGuard,
+        );
+        await h.controller.initialize();
+        await h.controller.setLocale(const Locale('fr'));
+        await tester.pumpWidget(
+          FuzeVpnApp(controller: h.controller, autoInitialize: false),
+        );
+        await tester.pumpAndSettle();
+        final interrupted = VpnRuntimeState(
+          phase: VpnRuntimePhase.connecting,
+          protocol: VpnProtocol.wireGuard,
+          messageCode: code,
+        );
+        h.tunnel.initialState = interrupted;
+        h.tunnel._states.add(interrupted);
+        await tester.pump();
+        await tester.pump();
+        expect(h.controller.tunnelState.isReconnecting, isTrue);
+        expect(find.text('Connecté'), findsNothing);
+        expect(
+          find.text(
+            code == 'wireguard_waiting_network'
+                ? 'En attente de réseau'
+                : 'Reconnexion…',
+          ),
+          findsOneWidget,
+        );
+        final cancel = find.widgetWithText(FilledButton, 'Annuler');
+        await _scrollTo(tester, cancel);
+        expect(cancel.hitTestable(), findsOneWidget);
+        await tester.tap(cancel);
+        await tester.pumpAndSettle();
+        expect(h.controller.tunnelState.phase, VpnRuntimePhase.idle);
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
   setUpAll(() async {
     if (!const bool.fromEnvironment('FUZEVPN_REVIEW_FONTS')) return;
     TestWidgetsFlutterBinding.ensureInitialized();
@@ -2136,6 +2185,95 @@ void main() {
       expect(harness.tunnel.disconnectCalls, 1);
       expect(tester.takeException(), isNull);
     }, tags: 'golden');
+
+    for (final width in [320.0, 360.0, 800.0]) {
+      for (final dark in [false, true]) {
+        final name = '${width.toInt()}-${dark ? 'dark' : 'light'}';
+        testWidgets('disconnected status keeps its word $name at linear 200%', (
+          tester,
+        ) async {
+          tester.view.devicePixelRatio = 1;
+          tester.view.physicalSize = Size(width, width == 800 ? 1280 : 800);
+          tester.platformDispatcher.textScaleFactorTestValue = 2;
+          addTearDown(tester.view.resetDevicePixelRatio);
+          addTearDown(tester.view.resetPhysicalSize);
+          addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+          final harness = _UiHarness();
+          addTearDown(harness.close);
+          harness.store.session = _session;
+          harness.preferences.themeMode = dark ? 'dark' : 'light';
+          await harness.controller.initialize();
+          await harness.controller.setLocale(const Locale('fr'));
+          const capture = ValueKey('status-app-capture');
+          await tester.pumpWidget(
+            RepaintBoundary(
+              key: capture,
+              child: FuzeVpnApp(
+                controller: harness.controller,
+                autoInitialize: false,
+              ),
+            ),
+          );
+          await tester.pumpAndSettle();
+          await _settleImages(tester);
+          final status = find.text('Déconnecté');
+          final paragraph = tester.renderObject<RenderParagraph>(status);
+          if (const bool.fromEnvironment('FUZEVPN_REVIEW_FONTS')) {
+            // Ahem is a synthetic square font. The mandatory font-review
+            // run checks geometry with the actual bundled display font.
+            expect(
+              paragraph.getBoxesForSelection(
+                const TextSelection(baseOffset: 0, extentOffset: 10),
+              ),
+              hasLength(1),
+            );
+          }
+          expect(MediaQuery.textScalerOf(tester.element(status)).scale(16), 32);
+          expect(
+            find.ancestor(
+              of: status,
+              matching: find.byWidgetPredicate(
+                (widget) =>
+                    widget is Semantics && widget.properties.liveRegion == true,
+              ),
+            ),
+            findsOneWidget,
+          );
+          if (width == 800 &&
+              const bool.fromEnvironment('FUZEVPN_REVIEW_FONTS')) {
+            expect(tester.widget<Text>(status).style!.fontSize, 28);
+          }
+          await Scrollable.ensureVisible(
+            tester.element(status),
+            alignment: 0.4,
+          );
+          await tester.pumpAndSettle();
+          if (const bool.fromEnvironment('FUZEVPN_REVIEW_FONTS')) {
+            final boundary = tester.renderObject<RenderRepaintBoundary>(
+              find.byKey(capture),
+            );
+            await tester.runAsync(() async {
+              final image = await boundary.toImage();
+              final bytes = await image.toByteData(
+                format: ui.ImageByteFormat.png,
+              );
+              image.dispose();
+              final file = File(
+                'build/reports/74016-ui/app-fr-$name-linear200.png',
+              );
+              await file.parent.create(recursive: true);
+              await file.writeAsBytes(bytes!.buffer.asUint8List());
+            });
+          }
+          final action = find.widgetWithText(FilledButton, 'Se connecter');
+          await tester.ensureVisible(action);
+          await tester.pumpAndSettle();
+          expect(action.hitTestable(), findsOneWidget);
+          expect(tester.widget<FilledButton>(action).onPressed, isNotNull);
+          expect(tester.takeException(), isNull);
+        });
+      }
+    }
 
     testWidgets('goldens connexion déconnectée et connectée', (
       WidgetTester tester,

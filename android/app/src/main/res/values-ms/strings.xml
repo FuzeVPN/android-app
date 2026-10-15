@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Menyambung semula… · %1$s</string>
     <string name="vpn_system_action_required">Tindakan diperlukan dalam tetapan Android</string>
     <string name="vpn_tile_reconnecting">Menyambung semula… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Menunggu rangkaian · %1$s</string>
+    <string name="vpn_tile_waiting_network">Menunggu rangkaian · %1$s</string>
 </resources>

@@ -701,7 +701,11 @@
     "billing_priceYearly": "pro Jahr",
     "billing_trialToday": "Heute nichts bezahlen",
     "billing_trialConfirmation": "Google Play bestätigt vor deiner Bestätigung die Termine, den Endbetrag und anfallende Steuern.",
-    "billing_offerChanged": "Die Bedingungen dieses Angebots haben sich geändert. Aktualisiere die Abos und wähle erneut."
+    "billing_offerChanged": "Die Bedingungen dieses Angebots haben sich geändert. Aktualisiere die Abos und wähle erneut.",
+    "status_waitingNetwork": "Warten auf Netzwerk",
+    "status_waitingNetworkDetail": "Kein Netzwerk verfügbar. Das VPN prüft die Verbindung, sobald das Netzwerk zurückkehrt.",
+    "locations_favoriteLoadFailed": "Favoriten konnten nicht geladen werden. Erneut versuchen.",
+    "locations_favoritesLoading": "Favoriten werden geladen…"
   },
   "android": {
     "vpn_notification_channel": "VPN-Verbindung",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN-Vorgang läuft…",
     "vpn_notification_reconnecting": "Verbindung wird wiederhergestellt… · %1$s",
     "vpn_system_action_required": "Aktion in den Android-Einstellungen erforderlich",
-    "vpn_tile_reconnecting": "Verbindung wird wiederhergestellt… · %1$s"
+    "vpn_tile_reconnecting": "Verbindung wird wiederhergestellt… · %1$s",
+    "vpn_notification_waiting_network": "Warten auf Netzwerk · %1$s",
+    "vpn_tile_waiting_network": "Warten auf Netzwerk · %1$s"
   },
   "countries": {
     "AC": "Ascension",

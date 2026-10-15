@@ -701,7 +701,11 @@
     "billing_priceYearly": "setahun",
     "billing_trialToday": "Tiada bayaran hari ini",
     "billing_trialConfirmation": "Google Play mengesahkan tarikh, jumlah akhir dan cukai yang dikenakan sebelum pengesahan anda.",
-    "billing_offerChanged": "Syarat tawaran ini telah berubah. Muat semula pelan dan pilih semula."
+    "billing_offerChanged": "Syarat tawaran ini telah berubah. Muat semula pelan dan pilih semula.",
+    "status_waitingNetwork": "Menunggu rangkaian",
+    "status_waitingNetworkDetail": "Tiada rangkaian tersedia. VPN akan menyemak sambungan apabila rangkaian kembali.",
+    "locations_favoriteLoadFailed": "Kegemaran tidak dapat dimuatkan. Cuba lagi.",
+    "locations_favoritesLoading": "Memuatkan kegemaran…"
   },
   "android": {
     "vpn_notification_channel": "Sambungan VPN",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "Operasi VPN sedang dijalankan…",
     "vpn_notification_reconnecting": "Menyambung semula… · %1$s",
     "vpn_system_action_required": "Tindakan diperlukan dalam tetapan Android",
-    "vpn_tile_reconnecting": "Menyambung semula… · %1$s"
+    "vpn_tile_reconnecting": "Menyambung semula… · %1$s",
+    "vpn_notification_waiting_network": "Menunggu rangkaian · %1$s",
+    "vpn_tile_waiting_network": "Menunggu rangkaian · %1$s"
   },
   "countries": {
     "AC": "Pulau Ascension",

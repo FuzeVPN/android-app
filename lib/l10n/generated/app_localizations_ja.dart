@@ -1957,4 +1957,17 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get billing_offerChanged => 'このオファーの条件が変更されました。プランを更新し、もう一度選択してください。';
+
+  @override
+  String get status_waitingNetwork => 'ネットワークを待機中';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      '利用可能なネットワークがありません。復帰後にVPN接続を確認します。';
+
+  @override
+  String get locations_favoriteLoadFailed => 'お気に入りを読み込めませんでした。再試行してください。';
+
+  @override
+  String get locations_favoritesLoading => 'お気に入りを読み込み中…';
 }

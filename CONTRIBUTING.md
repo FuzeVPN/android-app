@@ -1,5 +1,8 @@
 # Contributing
 
+Qualification audit, 14 October 2026: [Q003](docs/VALIDATION.md#q003), [Q009](docs/VALIDATION.md#q009), [Q018](docs/VALIDATION.md#q018), [Q032](docs/VALIDATION.md#q032).
+
+
 Use issues for reproducible bugs and scoped feature proposals. Report security
 issues privately as described in [SECURITY.md](SECURITY.md).
 

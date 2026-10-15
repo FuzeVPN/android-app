@@ -1,0 +1,4279 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "reference_version": "0.2.10+74016",
+  "base_commit": "9d8172e2524026c6e471dfca7d15df70c0b03b97",
+  "source_snapshot_commit": "a5eff1ab577be708e0c0c89b5dc98e5fc96f013b",
+  "artifacts": {
+    "source-74016": {
+      "version": "0.2.10+74016",
+      "source_commit": "a5eff1ab577be708e0c0c89b5dc98e5fc96f013b"
+    },
+    "apk-74016": {
+      "version": "0.2.10+74016",
+      "sha256": "4f1c19706fc4a5da75365ab6148efee1a1a04a6832fdd6d159609853ded59396"
+    },
+    "fixture-74016": {
+      "version": "74016 isolated instrumentation",
+      "abi": "arm64-v8a translated",
+      "signer": "development"
+    },
+    "apk-74008-qa": {
+      "version": "0.2.2+74008",
+      "sha256": "c3ee1ac417d197e9f52e05292d41219ac8a27ed580e456468cfc47f02710cd60",
+      "abi": "x86_64",
+      "signer": "development"
+    },
+    "api-035": {
+      "version": "schema035 observation 2026-10-04"
+    },
+    "api-037": {
+      "version": "schema037 historical OAuth deployment"
+    },
+    "api-043": {
+      "version": "schema043 observation 2026-10-11"
+    },
+    "client-74002": {
+      "version": "74002 historical x86_64 probes"
+    },
+    "toolchain": {
+      "version": "Flutter3.44.7/Temurin17.0.20.1+1/NDK28.2"
+    }
+  },
+  "evidence": [
+    {
+      "id": "E74016QA",
+      "path": "docs/validation-evidence/e74016qa.json",
+      "sha256": "45e7aeafcb9a7efab6c9ad295d6423cff108bef528f836d5093d49396b720c7c",
+      "kind": "live_vm_retest",
+      "artifacts": [
+        "apk-74016"
+      ]
+    },
+    {
+      "id": "E74016CHECKS",
+      "path": "docs/validation-evidence/e74016checks.json",
+      "sha256": "72080e98f478f2e93f3a3a967d0a322aa9a4025305c204c8e01b6e24289dc37f",
+      "kind": "automated_source_checks",
+      "artifacts": [
+        "source-74016"
+      ]
+    },
+    {
+      "id": "E74016TRACE",
+      "path": "docs/validation-evidence/e74016trace.json",
+      "sha256": "270a6d29e3fce500205aaec48f821bd93d03bac07f26e509d982c81c4a50aa2f",
+      "kind": "source_and_artifact_hashes",
+      "artifacts": [
+        "source-74016",
+        "apk-74016"
+      ]
+    },
+    {
+      "id": "E74016APK",
+      "path": "docs/validation-evidence/e74016apk.json",
+      "sha256": "94e51d6b7ae24be2d55c9f9ad38ba1ce972a685f51456294d2785df60b0e4e1c",
+      "kind": "binary_static_verification",
+      "artifacts": [
+        "apk-74016"
+      ]
+    },
+    {
+      "id": "EREBUILD",
+      "path": "docs/validation-evidence/erebuild.json",
+      "sha256": "be71f84c12e839193aabdfc3ed2de948e5c307f613f18cb7b39b694de1fa479c",
+      "kind": "clean_reconstruction_comparison",
+      "artifacts": [
+        "source-74016"
+      ]
+    },
+    {
+      "id": "EFONTS",
+      "path": "docs/validation-evidence/efonts.json",
+      "sha256": "aecda5eade15f356bb733ab457e97b9512007292880c6acc2c003f0de0bcd813",
+      "kind": "pinned_upstream_byte_comparison",
+      "artifacts": [
+        "source-74016"
+      ]
+    },
+    {
+      "id": "EJDK",
+      "path": "docs/validation-evidence/ejdk.json",
+      "sha256": "38d70c88efcec61023d29cb47a5ec4cb24e7d1ce151ff7952a2866c4547110d3",
+      "kind": "installed_prerequisite_metadata",
+      "artifacts": [
+        "toolchain"
+      ]
+    },
+    {
+      "id": "EPROVENANCE",
+      "path": "docs/validation-evidence/eprovenance.json",
+      "sha256": "03fcc28b97bf2643ea9e77ff189783350b22671e9837e225676f90cf3a46dbe0",
+      "kind": "cryptographic_and_hash_verification",
+      "artifacts": [
+        "source-74016"
+      ]
+    },
+    {
+      "id": "E74008PLAY",
+      "path": "docs/validation-evidence/e74008play.json",
+      "sha256": "e5ab4844da0cbc68ff97228dafd0fbd52a5df4e32c96f49cb7caa8637246d69f",
+      "kind": "historical_client_report",
+      "artifacts": [
+        "apk-74008-qa",
+        "api-035"
+      ]
+    },
+    {
+      "id": "EAPI035",
+      "path": "docs/validation-evidence/eapi035.json",
+      "sha256": "c7500c1390c2fd36e3adbfda0392ed21ea4b0ec73b60a7d71a6ce29f782fe684",
+      "kind": "historical_server_receipt",
+      "artifacts": [
+        "api-035"
+      ]
+    },
+    {
+      "id": "EAPI043",
+      "path": "docs/validation-evidence/eapi043.json",
+      "sha256": "fc3abfd61f05c02a05c56d241bff359e09fc55ba7b6874f312240066375b3158",
+      "kind": "dated_backend_delivery_receipt",
+      "artifacts": [
+        "api-043"
+      ]
+    },
+    {
+      "id": "EGOOGLE",
+      "path": "docs/validation-evidence/egoogle.json",
+      "sha256": "0300b090d8f7a6865ddf25f655daab2111196719f6283a345c03256c5ec0166b",
+      "kind": "historical_qualification_gap",
+      "artifacts": [
+        "source-74016",
+        "api-037"
+      ]
+    },
+    {
+      "id": "E74002NETWORK",
+      "path": "docs/validation-evidence/e74002network.json",
+      "sha256": "d55783892d88e4304ad90d1dfb594da90ccd8abc37e6b917a21b12cb4344db83",
+      "kind": "historical_network_probe",
+      "artifacts": [
+        "client-74002"
+      ]
+    },
+    {
+      "id": "EVMINSTRUMENT",
+      "path": "docs/validation-evidence/evminstrument.json",
+      "sha256": "f919402cdfe8b9094a1cdf39d0f2dc9f2f3c020151d3f7c1a93dae01d261a6ca",
+      "kind": "isolated_arm64_vm_instrumentation",
+      "artifacts": [
+        "fixture-74016"
+      ]
+    },
+    {
+      "id": "EVM16K",
+      "path": "docs/validation-evidence/evm16k.json",
+      "sha256": "0097dc8d7cdbac093b674fd69aaf06737211626ce76db9458e22277d4502ad65",
+      "kind": "isolated_arm64_vm_instrumentation",
+      "artifacts": [
+        "fixture-74016",
+        "apk-74016"
+      ]
+    },
+    {
+      "id": "ESIGILL35",
+      "path": "docs/validation-evidence/esigill35.json",
+      "sha256": "eacbff28c8d85024282f4edcbda11e6728631db55ec35af66ac50274cea44d92",
+      "kind": "isolated_native_bridge_crash",
+      "artifacts": [
+        "fixture-74016"
+      ]
+    },
+    {
+      "id": "ELICENSES",
+      "path": "docs/validation-evidence/licenses.json",
+      "sha256": "6fa0050766d2edaf0720ac9b2d1ac19301b05f83f798566afd7a5026fccfcb03",
+      "kind": "component_license_inspection",
+      "artifacts": [
+        "source-74016"
+      ]
+    },
+    {
+      "id": "EPERIMETER",
+      "path": "docs/validation-evidence/eperimeter.json",
+      "sha256": "494c7263b6158e06eb44d85a4d3f1fc5e791192b722912e4a4c9a5c16d31371e",
+      "kind": "documentation_and_source_boundaries",
+      "artifacts": [
+        "source-74016"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "Q001",
+      "claim": "Identité, signature et alignements de l’APK",
+      "verdict": "validated",
+      "result": "Package, version, deux ABI, certificat, ZIP et segments LOAD contrôlés.",
+      "scope": "APK local 74016 signé avec la clé d’envoi ; ARM64 LOAD ≥16 Kio, ARM32 ≥4 Kio. Pas de signature Play attestée.",
+      "evidence": [
+        "E74016APK"
+      ],
+      "artifacts": [
+        "apk-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md"
+      ]
+    },
+    {
+      "id": "Q002",
+      "claim": "Correspondance des sources conservées et de la livraison",
+      "verdict": "validated",
+      "result": "Les 166 fichiers archivés correspondent au snapshot Git 74016 ; APK et mapping identifiés par SHA-256.",
+      "scope": "Traçabilité de la construction conservée, sans affirmation de reconstruction indépendante bit à bit.",
+      "evidence": [
+        "E74016TRACE"
+      ],
+      "artifacts": [
+        "source-74016",
+        "apk-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/SOURCE_DISTRIBUTION.md"
+      ]
+    },
+    {
+      "id": "Q003",
+      "claim": "Analyse et suites applicatives",
+      "verdict": "validated",
+      "result": "1 814 tests Flutter et 219 tests JVM passent ; analyse propre, aucun lint Android Error/Fatal.",
+      "scope": "Contrôles automatisés du client. Trois constats lint existants restent distincts d’erreurs bloquantes.",
+      "evidence": [
+        "E74016CHECKS"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/DEVELOPMENT.md",
+        "docs/RELEASE_NOTES.md",
+        "CONTRIBUTING.md"
+      ]
+    },
+    {
+      "id": "Q004",
+      "claim": "Intégrité des dépendances et authentification OpenSSL",
+      "verdict": "validated",
+      "result": "Gate WireGuard : 16 cas ; intégrité : quatre cas ; signature OpenSSL revérifiée dans un trousseau isolé.",
+      "scope": "Validité cryptographique contre les clés publiques conservées et intégrité contre les verrous revus.",
+      "evidence": [
+        "EPROVENANCE",
+        "E74016CHECKS"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md",
+        "docs/SOURCE_DISTRIBUTION.md",
+        "android/native-provenance/README.md",
+        "android/source-distribution/README.md"
+      ]
+    },
+    {
+      "id": "Q005",
+      "claim": "Préservation des moteurs natifs",
+      "verdict": "validated",
+      "result": "Douze bibliothèques système/VPN identiques entre les livraisons 74015 et 74016.",
+      "scope": "Exclut libapp.so, qui contient le correctif Dart 74016.",
+      "evidence": [
+        "E74016TRACE"
+      ],
+      "artifacts": [
+        "apk-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/NATIVE_DEPENDENCIES.md"
+      ]
+    },
+    {
+      "id": "Q006",
+      "claim": "Reconstruction APK bit à bit",
+      "verdict": "failed",
+      "result": "Deux reconstructions propres donnent des APK différents ; quatre bibliothèques diffèrent, mapping R8 identique.",
+      "scope": "Même snapshot, outils épinglés et entrées natives précompilées ; sorties séparées, caches de téléchargement partagés.",
+      "evidence": [
+        "EREBUILD"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Stabiliser les chemins et autres entrées de compilation, puis répéter deux builds propres. Aucun moteur ou APK livré n’a été remplacé.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md",
+        "docs/SOURCE_DISTRIBUTION.md",
+        "android/native-provenance/README.md",
+        "android/source-distribution/README.md"
+      ]
+    },
+    {
+      "id": "Q007",
+      "claim": "Reconstruction complète des moteurs depuis leurs sources",
+      "verdict": "blocked",
+      "result": "Les archives, patches et preuves historiques sont conservés ; aucune reconstruction indépendante complète des moteurs n’a été exécutée dans cet audit.",
+      "scope": "La double reconstruction Q006 réutilise les entrées natives verrouillées.",
+      "evidence": [
+        "EPROVENANCE",
+        "EREBUILD"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Reconstituer les outils/options exacts de préparation OpenSSL/Go et reconstruire les préfixes et l’AAR dans une recette distincte.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/NATIVE_DEPENDENCIES.md",
+        "docs/SOURCE_DISTRIBUTION.md",
+        "android/native-provenance/README.md",
+        "android/source-distribution/README.md"
+      ]
+    },
+    {
+      "id": "Q008",
+      "claim": "Formulaires, favoris, titres et statuts accessibles",
+      "verdict": "validated",
+      "result": "Les corrections 74013–74016 sont testées ; huit revues visuelles et 110 changements d’affichage passent.",
+      "scope": "Retest 74016 en VM ; mots des statuts à 320/360 dp et 200 %, thèmes clair/sombre. Aucun engagement sur toutes les légendes longues.",
+      "evidence": [
+        "E74016QA",
+        "E74016CHECKS"
+      ],
+      "artifacts": [
+        "apk-74016",
+        "source-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q009",
+      "claim": "Tunnels et reprise réseau Android 14–17",
+      "verdict": "validated",
+      "result": "WireGuard/OpenVPN réels, trafic, coupures d’au moins trente secondes et retour d’arrière-plan passent sur les quatre profils modernes testés.",
+      "scope": "APK 74016 ARM64 traduit, Android 14–17 téléphone ; périmètre exact du retest.",
+      "evidence": [
+        "E74016QA"
+      ],
+      "artifacts": [
+        "apk-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "docs/RELEASE_NOTES.md",
+        "CONTRIBUTING.md"
+      ]
+    },
+    {
+      "id": "Q010",
+      "claim": "WireGuard dans les VM Android 12/13",
+      "verdict": "failed",
+      "result": "Quatre échecs reproduits : assertion du traducteur sur Android 12, SIGILL/MIDR_EL1 sur Android 13.",
+      "scope": "Pont ARM sur hôte x86_64 ; ces résultats ne démontrent pas un défaut sur CPU ARM natif.",
+      "evidence": [
+        "E74016QA"
+      ],
+      "artifacts": [
+        "apk-74016"
+      ],
+      "prerequisites": "Exécuter la même livraison sur un environnement ARM natif Android 12/13 ; les quatre reproductions originales restent arrêtées et intactes.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q011",
+      "claim": "Exécution ARM native et ARM32",
+      "verdict": "blocked",
+      "result": "Aucun CPU ARM natif ni exécution ARM32 dans les images utilisées.",
+      "scope": "Les contrôles ELF des deux ABI sont validés ; les parcours dynamiques décrits exécutent ARM64 traduit.",
+      "evidence": [
+        "E74016QA",
+        "E74016APK"
+      ],
+      "artifacts": [
+        "apk-74016"
+      ],
+      "prerequisites": "Environnement local exécutant ARM32 et environnement ARM64 natif Android 12/13 ; indisponibles dans le périmètre VM retenu.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q012",
+      "claim": "Exécution complète à pages de 16 Kio",
+      "verdict": "blocked",
+      "result": "La VM expose PAGE_SIZE=16384 et ARM64, mais deux essais ont atteint la limite mémoire hôte ; aucun verdict applicatif n’en découle.",
+      "scope": "1536 Mo invités, QEMU arrêté au seuil conservateur de 4 000 000 000 octets ; lancement tenté hors ligne avec l’APK signé.",
+      "evidence": [
+        "EVM16K",
+        "E74016APK"
+      ],
+      "artifacts": [
+        "apk-74016"
+      ],
+      "prerequisites": "VM 16 Kio exécutant ARM64 et tenant sous le plafond mémoire, puis tests de démarrage, chargement natif et tunnels. Pas de qualification dynamique complète déclarée.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md"
+      ]
+    },
+    {
+      "id": "Q013",
+      "claim": "RELRO et protection des segments ELF",
+      "verdict": "validated",
+      "result": "Aucune plage PT_LOAD writable hors RELRO n’est prise par l’arrondi des pages ; cinq fins RELRO ARM64 ont néanmoins un modulo 16 Kio non nul.",
+      "scope": "Inspection indépendante des plages ELF, selon l’arrondi du linker Bionic ; padding entre LOAD séparés. Le seul modulo ne prouve pas un chevauchement.",
+      "evidence": [
+        "E74016APK"
+      ],
+      "artifacts": [
+        "apk-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Décodage ELF des quatorze bibliothèques, calcul des pages protégées et intersection avec les plages LOAD writable ; comparaison au code Bionic cité dans la preuve.",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md"
+      ]
+    },
+    {
+      "id": "Q014",
+      "claim": "Stockage chiffré, CSR et XKey",
+      "verdict": "validated",
+      "result": "25 cas d’instrumentation passent : scopes chiffrés, profils, IPv6 stocké, CSR, signatures, renouvellement/révocation locaux, Core et chargement différé.",
+      "scope": "APK de test isolé com.fuzevpn.recoverytest ; Android 15, ARM64 traduit, pages 4 Kio. Clés synthétiques non exportables ; aucun tunnel réel.",
+      "evidence": [
+        "EVMINSTRUMENT"
+      ],
+      "artifacts": [
+        "fixture-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Exécution des huit classes existantes ; le diagnostic de chargement WireGuard supplémentaire est séparé en Q015.",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md"
+      ]
+    },
+    {
+      "id": "Q015",
+      "claim": "Chargement WireGuard direct dans le package isolé",
+      "verdict": "failed",
+      "result": "Le chargement direct de GoBackend sans Flutter produit un SIGILL sur la VM Android 15 dédiée, à l’adresse ARM64 0xa0e50.",
+      "scope": "Diagnostic isolé via pont ARM ; ne remplace ni n’invalide par extrapolation les tunnels de l’APK signé attestés par Q009.",
+      "evidence": [
+        "EVMINSTRUMENT",
+        "ESIGILL35"
+      ],
+      "artifacts": [
+        "fixture-74016"
+      ],
+      "prerequisites": "Contrôler ce parcours sur CPU ARM natif et comparer l’initialisation du processus isolé au parcours Flutter ; aucun patch moteur fondé sur ce seul pont.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md"
+      ]
+    },
+    {
+      "id": "Q016",
+      "claim": "Protection matérielle Keystore et variantes constructeur",
+      "verdict": "blocked",
+      "result": "Les tests VM confirment les contrats cryptographiques, sans démontrer StrongBox/TEE ni des politiques OEM.",
+      "scope": "Q014 est une preuve fonctionnelle en VM, sans attestation matérielle ou HyperOS/One UI.",
+      "evidence": [
+        "EVMINSTRUMENT"
+      ],
+      "artifacts": [
+        "fixture-74016"
+      ],
+      "prerequisites": "Environnement disposant de l’implémentation matérielle/OEM ciblée et inspection de KeyInfo/attestation adaptée.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/DEVELOPMENT.md",
+        "docs/NATIVE_DEPENDENCIES.md"
+      ]
+    },
+    {
+      "id": "Q017",
+      "claim": "DNS, IPv6 et absence de fuite",
+      "verdict": "blocked",
+      "result": "Les probes 74002 transportent IPv4/IPv6 et résolvent DNS pour leur UID ; aucune recette 74016 complète d’absence de fuite n’est fournie.",
+      "scope": "Résultats historiques API36 x86_64, instants échantillonnés. Les échecs ICMP IPv6 intermédiaires restent visibles dans l’extrait.",
+      "evidence": [
+        "E74002NETWORK",
+        "E74016QA"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Recette 74016 dédiée aux résolveurs, UID, routes IPv4/IPv6 et trafic hors tunnel ; ne pas assimiler ping réussi et absence de fuite.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md"
+      ]
+    },
+    {
+      "id": "Q018",
+      "claim": "Connexion Google native réelle",
+      "verdict": "blocked",
+      "result": "Les archives Google documentent explicitement l’absence de connexion, inscription et reprise natives réelles.",
+      "scope": "Code, SDK et tests simulés présents ; aucune nouvelle interaction Google autorisée pour cet audit.",
+      "evidence": [
+        "EGOOGLE"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Compte Google de recette et parcours Credential Manager réels sur l’APK/signature ciblés.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/ARCHITECTURE.md",
+        "docs/GOOGLE_AUTH.md",
+        "docs/RELEASE_NOTES.md",
+        "CONTRIBUTING.md"
+      ]
+    },
+    {
+      "id": "Q019",
+      "claim": "Associations OAuth dans Google Cloud",
+      "verdict": "blocked",
+      "result": "Identifiants publics, certificats et audience attendue sont documentés ; les associations Cloud n’ont pas été inspectées.",
+      "scope": "Un certificat ou un client ID fourni par le propriétaire ne démontre pas la configuration Cloud correspondante.",
+      "evidence": [
+        "EGOOGLE"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Export ou lecture autorisée des associations package/certificat et audience de chaque signature ciblée.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/GOOGLE_AUTH.md"
+      ]
+    },
+    {
+      "id": "Q020",
+      "claim": "Achats Google de test historiques",
+      "verdict": "validated",
+      "result": "Annulation, carte refusée, achat approuvé, expiration et réachat sont rapportés pour la recette 74008 du 4 octobre.",
+      "scope": "APK QA x86_64/R8 signé avec certificat de développement et paiements explicitement de test ; pas une recette 74016.",
+      "evidence": [
+        "E74008PLAY"
+      ],
+      "artifacts": [
+        "apk-74008-qa",
+        "api-035"
+      ],
+      "prerequisites": "",
+      "environment": "VM Android historique, recette Google testeur de licence",
+      "method": "Rapprochement du rapport client, étapes de paiement conservées et empreinte de l’APK QA.",
+      "date": "2026-10-04",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/PLAY_BILLING.md",
+        "docs/GUEST_ACCOUNTS.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q021",
+      "claim": "Acquittement, renouvellement et RTDN historiques",
+      "verdict": "validated",
+      "result": "Le reçu API035 rapporte acquittement durable, renouvellement et observations RTDN après la recette de test.",
+      "scope": "Observation datée du 4 octobre ; pas de preuve de tous les cycles financiers ni de l’état actuel API043.",
+      "evidence": [
+        "EAPI035",
+        "E74008PLAY"
+      ],
+      "artifacts": [
+        "api-035"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-04",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/PLAY_BILLING.md"
+      ]
+    },
+    {
+      "id": "Q022",
+      "claim": "RTDN répétés/désordonnés et cycles d’achat complets",
+      "verdict": "blocked",
+      "result": "Pas de preuve réelle complète pour pending, restauration invitée sur un autre appareil, ordre inversé/redélivrance et cycle de révocation.",
+      "scope": "Les tests simulés et compteurs RTDN ne remplacent pas ces parcours.",
+      "evidence": [
+        "EAPI035",
+        "E74008PLAY"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Recette Google de test dédiée et preuves serveur expurgées pour chaque transition ; aucune nouvelle opération fournisseur dans cet audit.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/PLAY_BILLING.md",
+        "docs/GUEST_ACCOUNTS.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q023",
+      "claim": "Offre freetest réelle et éligibilité Play",
+      "verdict": "blocked",
+      "result": "Sélection et phases sont testées côté client ; aucune souscription freetest réelle ne figure dans la livraison du 11 octobre.",
+      "scope": "Deux semaines gratuites reçues de Play, fallback normal et jeton exact : contrat client ; pas de disponibilité commerciale attestée.",
+      "evidence": [
+        "EGOOGLE",
+        "E74016CHECKS"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Configuration Play inspectée et recette testeur éligible/inéligible, deux plans, prix/offre absents et transitions serveur.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/PLAY_BILLING.md",
+        "docs/FREE_TRIAL.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q024",
+      "claim": "Claim invité et continuité VPN historiques",
+      "verdict": "validated",
+      "result": "Le rapport 74008 décrit un claim réel conservant session, appareil et WireGuard, puis une reconnexion OpenVPN après redémarrage.",
+      "scope": "Recette historique ; le claim pendant OpenVPN déjà actif n’a pas été exécuté.",
+      "evidence": [
+        "E74008PLAY",
+        "EAPI035"
+      ],
+      "artifacts": [
+        "apk-74008-qa",
+        "api-035"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-04",
+      "documents": [
+        "docs/PLAY_BILLING.md",
+        "docs/GUEST_ACCOUNTS.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q025",
+      "claim": "Turnstile natif et finalisation sous défi obligatoire",
+      "verdict": "blocked",
+      "result": "Le formulaire Android ne fournit pas de token Turnstile ; le défi obligatoire n’est pas un parcours natif qualifié.",
+      "scope": "L’absence de défi dans les observations serveur datées ne prouve pas son support Android lorsqu’il est exigé.",
+      "evidence": [
+        "EGOOGLE",
+        "EAPI043"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Parcours natif du défi, politique serveur ciblée connue et recette de finalisation sans contournement.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/GOOGLE_AUTH.md",
+        "docs/GUEST_ACCOUNTS.md",
+        "docs/RELEASE_NOTES.md"
+      ]
+    },
+    {
+      "id": "Q026",
+      "claim": "Tuile et reconnexion du profil validé",
+      "verdict": "blocked",
+      "result": "Les profils de tuile sont testés en stockage ; aucune recette système 74016 complète des deux protocoles n’est identifiée.",
+      "scope": "Les deux tests QuickTileProfile passent en VM ; ils n’actionnent pas la tuile Android avec un tunnel réel.",
+      "evidence": [
+        "EVMINSTRUMENT",
+        "E74016QA"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Recette 74016 de la tuile : reprise et arrêt des deux protocoles, Flutter détaché et absence d’appel API de préparation.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md"
+      ]
+    },
+    {
+      "id": "Q027",
+      "claim": "VPN permanent, lockdown, redémarrage et Doze",
+      "verdict": "blocked",
+      "result": "Les tests d’arrière-plan passent ; aucune preuve complète 74016 de lockdown, redémarrage/déverrouillage et veille prolongée.",
+      "scope": "HOME et coupure réseau ne suffisent pas à établir un kill switch ou une reprise après démarrage système.",
+      "evidence": [
+        "E74016QA",
+        "E74002NETWORK"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Recette système dédiée en VM avec observation du trafic hors tunnel, verrouillage, redémarrage et Doze.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "docs/VPN_DISCLOSURE.md"
+      ]
+    },
+    {
+      "id": "Q028",
+      "claim": "Révocation et renouvellement OpenVPN réels",
+      "verdict": "blocked",
+      "result": "Les cinq scénarios d’identité locaux passent ; le certificat J-7/expiré et /renew réels ne sont pas exercés pour 74016.",
+      "scope": "Tests d’instrumentation sur données synthétiques, sans appel serveur ni annulation de droits.",
+      "evidence": [
+        "EVMINSTRUMENT"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Identité et serveur de recette contrôlés pour expiration, CSR repris, panne API et révocation réelle.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md"
+      ]
+    },
+    {
+      "id": "Q029",
+      "claim": "Backend, déploiement et traitements serveur",
+      "verdict": "blocked",
+      "result": "Le reçu API043 atteste une livraison datée du 11 octobre ; pas de recontrôle live ni d’audit des journaux, conservation et destinataires serveur.",
+      "scope": "Lecture seule des contrats et reçus locaux. Turnstile des inscriptions était désactivé dans cet état daté ; le Web guest checkout avait sa politique distincte.",
+      "evidence": [
+        "EAPI043",
+        "EPERIMETER"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Preuves opérateur actuelles et audit ciblé des traitements du service complet ; aucun déploiement ou changement de configuration dans ce chantier.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "docs/ARCHITECTURE.md",
+        "docs/GOOGLE_AUTH.md",
+        "docs/PLAY_BILLING.md",
+        "docs/GUEST_ACCOUNTS.md",
+        "docs/VPN_DISCLOSURE.md",
+        "SECURITY.md"
+      ]
+    },
+    {
+      "id": "Q030",
+      "claim": "Licences des 106 composants et NOASSERTION",
+      "verdict": "validated",
+      "result": "106 composants examinés ; 23 déclarations/93 conclusions initialement inconnues deviennent une déclaration et 21 conclusions NOASSERTION expliquées.",
+      "scope": "Déclarations de composants, sources et prérequis. Les résidus désignent des agrégats/custom terms ou l’expression non établie de Public Domain ; copyright agrégé séparé.",
+      "evidence": [
+        "ELICENSES"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/SOURCE_DISTRIBUTION.md",
+        "THIRD_PARTY_NOTICES.md",
+        "LICENSING.md",
+        "android/source-distribution/README.md",
+        "assets/fonts/GoogleSans-TRADEMARKS.md"
+      ]
+    },
+    {
+      "id": "Q031",
+      "claim": "Polices et fournisseur JDK",
+      "verdict": "validated",
+      "result": "Archivo et les deux IBM Plex Mono sont identiques au commit Google Fonts e9678a5… ; le JDK est Temurin 17.0.20.1+1.",
+      "scope": "Comparaison d’octets et métadonnées installées ; ne reconstitue pas la date/révision historique du téléchargement initial.",
+      "evidence": [
+        "EFONTS",
+        "EJDK"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/NATIVE_DEPENDENCIES.md",
+        "THIRD_PARTY_NOTICES.md"
+      ]
+    },
+    {
+      "id": "Q032",
+      "claim": "Déclarations de périmètre, licences et marques",
+      "verdict": "not_applicable",
+      "result": "Les limites de publication de sources, de marque et de valeur probante d’un test sont des frontières documentaires, pas des tests manquants.",
+      "scope": "Pas de certificat juridique global, de permission de marque ou d’approbation Play déduits de l’audit. Les constats historiques conservent leurs versions.",
+      "evidence": [
+        "EPERIMETER",
+        "ELICENSES"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/ARCHITECTURE.md",
+        "docs/DEVELOPMENT.md",
+        "docs/SOURCE_DISTRIBUTION.md",
+        "docs/RELEASE_NOTES.md",
+        "docs/VPN_DISCLOSURE.md",
+        "THIRD_PARTY_NOTICES.md",
+        "LICENSING.md",
+        "SECURITY.md",
+        "CONTRIBUTING.md",
+        "assets/fonts/GoogleSans-TRADEMARKS.md"
+      ]
+    },
+    {
+      "id": "Q033",
+      "claim": "Inventaire complet de l’APK optimisé",
+      "verdict": "blocked",
+      "result": "L’inventaire de sources est rapproché des entrées et notices ; la présence exhaustive des transitifs et internes Flutter dans l’APK n’est pas établie.",
+      "scope": "Les 106 composants incluent tests et prérequis non embarqués ; résolution Gradle/Pub et reachability R8 sont distinctes.",
+      "evidence": [
+        "ELICENSES",
+        "E74016APK"
+      ],
+      "artifacts": [
+        "source-74016"
+      ],
+      "prerequisites": "Inventaire du livrable optimisé avec classes conservées, liaisons natives, internes du moteur Flutter et notices correspondantes.",
+      "environment": "Poste de reconstruction Windows ; preuves datées conservées",
+      "method": "Inspection des entrées et des preuves indiquées",
+      "date": "2026-10-14",
+      "documents": [
+        "README.md",
+        "README.fr.md",
+        "docs/SOURCE_DISTRIBUTION.md",
+        "THIRD_PARTY_NOTICES.md",
+        "LICENSING.md"
+      ]
+    }
+  ],
+  "inventory": [
+    {
+      "path": "CONTRIBUTING.md",
+      "line": 21,
+      "original_text": "   does not approve a new binary.",
+      "items": [
+        "Q003",
+        "Q009",
+        "Q018",
+        "Q032"
+      ]
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "line": 29,
+      "original_text": "local test. Network/device qualification requires a suitable test account,",
+      "items": [
+        "Q003",
+        "Q009",
+        "Q018",
+        "Q032"
+      ]
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "line": 31,
+      "original_text": "compilation are not a qualification of real Google sign-in or VPN behavior.",
+      "items": [
+        "Q003",
+        "Q009",
+        "Q018",
+        "Q032"
+      ]
+    },
+    {
+      "path": "LICENSING.md",
+      "line": 10,
+      "original_text": "retain their upstream licenses. This publication does not relicense any",
+      "items": [
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "LICENSING.md",
+      "line": 31,
+      "original_text": "inventory is not a complete license conclusion for an optimized APK.",
+      "items": [
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "LICENSING.md",
+      "line": 34,
+      "original_text": "Its Java license does not cover all native executables. MPL is a file-level",
+      "items": [
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "LICENSING.md",
+      "line": 46,
+      "original_text": "attribution and descriptive references remain subject to applicable law.",
+      "items": [
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "LICENSING.md",
+      "line": 56,
+      "original_text": "dependencies and brand assets. It does not claim that every downloaded SDK",
+      "items": [
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "LICENSING.md",
+      "line": 63,
+      "original_text": "alone does not establish that a binary was built from those sources.",
+      "items": [
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.fr.md",
+      "line": 33,
+      "original_text": "configuration et qualification. Cette publication de sources n'atteste ni",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.fr.md",
+      "line": 34,
+      "original_text": "l'état de production de ces services ni la qualification d'un APK précis.",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.fr.md",
+      "line": 61,
+      "original_text": "Les contrôles natifs attestent l'intégrité face aux manifestes revus. Ils",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.fr.md",
+      "line": 70,
+      "original_text": "| [Développement](docs/DEVELOPMENT.md) | Outils, compilation, tests et qualification sur appareil |",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "README.md",
+      "line": 29,
+      "original_text": "  replaces the session after verification; it does not claim the guest or",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 30,
+      "original_text": "  transfer its subscription. Account creation remains a separate action.",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 33,
+      "original_text": "their own runtime configuration and qualification. This source publication",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 34,
+      "original_text": "does not attest that those services or a specific APK are ready for production.",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 72,
+      "original_text": "| [Development](docs/DEVELOPMENT.md) | Toolchain, build, tests and device qualification |",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "README.md",
+      "line": 88,
+      "original_text": "repository does not claim that the complete APK is entirely free software.",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "README.md",
+      "line": 91,
+      "original_text": "license does not grant a right to present a fork as an official FuzeVPN app.",
+      "items": [
+        "Q001",
+        "Q002",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q009",
+        "Q018",
+        "Q019",
+        "Q020",
+        "Q021",
+        "Q023",
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "SECURITY.md",
+      "line": 28,
+      "original_text": "accounts or unauthorized infrastructure. A local test result does not establish",
+      "items": [
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 9,
+      "original_text": "résolus par Pub. Il ne constitue pas un relevé des composants d’un APK donné.",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 44,
+      "original_text": "en-têtes et métadonnées conservés dans le projet. `NOASSERTION` dans le SBOM",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 53,
+      "original_text": "Gradle ne prouve pas la présence d’un composant dans l’application optimisée.",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 85,
+      "original_text": "`NOASSERTION` pour ces nouveaux paquets.",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 94,
+      "original_text": "SPDX reste `NOASSERTION`, avec cette déclaration et son URL dans le SBOM.",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 196,
+      "original_text": "ne signifie pas qu’elles sont embarquées dans l’APK. Il recense aussi les",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 228,
+      "original_text": "complètes de WireGuard ; leur présence ne constitue pas une inclusion Android.",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 244,
+      "original_text": "`NOASSERTION` de leurs entrées décrit la limite de cet inventaire et la",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 251,
+      "original_text": "transitifs Gradle ne sont pas établis ici. Les conclusions globales et licences de certains prérequis externes",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 252,
+      "original_text": "(outils et paquets SDK Flutter non redistribués) restent `NOASSERTION`. Les conditions SDK",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 263,
+      "original_text": "une AAR ne remplace pas ce travail de remise.",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "line": 267,
+      "original_text": "Compléter les entrées `NOASSERTION` à partir des artefacts et licences effectifs,",
+      "items": [
+        "Q030",
+        "Q031",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "android/native-provenance/README.md",
+      "line": 41,
+      "original_text": "Ce verrou détecte la dérive d’un bundle revu ; il ne démontre pas à lui seul",
+      "items": [
+        "Q004",
+        "Q006",
+        "Q007"
+      ]
+    },
+    {
+      "path": "android/native-provenance/README.md",
+      "line": 59,
+      "original_text": "ne remplacent pas les entrées et empreintes du verrou courant.",
+      "items": [
+        "Q004",
+        "Q006",
+        "Q007"
+      ]
+    },
+    {
+      "path": "assets/fonts/GoogleSans-TRADEMARKS.md",
+      "line": 5,
+      "original_text": "However, Google also does not include within the Open Font License ([OFL.txt](OFL.txt)) any Reserved Font Names (RFNs) within the copyright statement. ",
+      "items": [
+        "Q030",
+        "Q032"
+      ]
+    },
+    {
+      "path": "assets/fonts/GoogleSans-TRADEMARKS.md",
+      "line": 9,
+      "original_text": "Use of any version of this Font Software does not allow you to use the “Google” trademark on its own or as part of any other trademarks, terms, or source identifiers.",
+      "items": [
+        "Q030",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 6,
+      "original_text": "pas le contrat serveur et ne constate pas l'état de la production. Les",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 7,
+      "original_text": "propriétés décrites à partir du code ne constituent pas un résultat d'essai",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 26,
+      "original_text": "et des symboles JNI ; les composants du manifeste sont entièrement qualifiés.",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 109,
+      "original_text": "[GOOGLE_AUTH.md](GOOGLE_AUTH.md) pour les contrats et limites de qualification.",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 169,
+      "original_text": "L'adresse IPv4 d'activation reste le CIDR `/32` reçu. La validation TLS impose",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 214,
+      "original_text": "active dans les paramètres système. Une notification persistante ne prouve pas",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 309,
+      "original_text": "« connecté » ne prouve donc ni l'efficacité du blocage hors VPN, ni l'accès",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 320,
+      "original_text": "L'envoi de paquets et un ancien handshake ne constituent pas cette preuve.",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 322,
+      "original_text": "n'est ajouté ; cette preuve du pair ne certifie pas toutes les destinations Internet.",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "line": 380,
+      "original_text": "traduction restent à qualifier sur Android 12/13 ARM natif.",
+      "items": [
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q014",
+        "Q017",
+        "Q018",
+        "Q025",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 8,
+      "original_text": "ne signifie pas que la version courante a passé ces contrôles. Les essais sur",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 59,
+      "original_text": "`--offline` impose le cache Gradle ; ces options ne remplacent pas une",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 84,
+      "original_text": "elles assurent la stabilité des téléchargements suivants et ne constituent",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 85,
+      "original_text": "pas une certification indépendante de chacun de leurs éditeurs.",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 116,
+      "original_text": "Une modification d'empreinte ne constitue pas une approbation de provenance.",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 143,
+      "original_text": "ils ne valident pas les services de production. Les tests JVM couvrent les",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 194,
+      "original_text": "reste un APK de test et ne doit pas être présenté comme une livraison signée",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 226,
+      "original_text": "cycle de vie sur Android. La réussite de la compilation seule ne garantit pas",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 236,
+      "original_text": "### Signature et qualification des builds locaux",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 239,
+      "original_text": "release non signé ou signé avec une clé de test ne constitue pas une",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 263,
+      "original_text": "flutter test --no-pub --dart-define=FUZEVPN_REVIEW_FONTS=true --plain-name \"APP10 recovery controls remain reachable at 320dp and 200 percent\" test/widget/app_ui_test.dart",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 268,
+      "original_text": "références utilisant la police Ahem restent vérifiées par `flutter test` normal.",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 316,
+      "original_text": "et arguments Android. Une validation structurelle ne garantit pas la qualité",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 345,
+      "original_text": "Les tests locaux ne prouvent pas le fonctionnement d'un VPN réel, du stockage",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 357,
+      "original_text": "Le namespace des classes Kotlin reste `com.fuzevpn.android` ; les tests sont",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 360,
+      "original_text": "notifications. L'autorisation de notification ne remplace pas le consentement",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 455,
+      "original_text": "Les blocages ARM de ndk_translation Android 12/13 restent à qualifier sur appareil",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 456,
+      "original_text": "ARM physique. Cette correction ne remplace pas les moteurs natifs verrouillés.",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 472,
+      "original_text": "La qualification réelle de l’APK ARM reste distincte de ce test synthétique.",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 481,
+      "original_text": "ARM traduits et ARM natifs restent des qualifications distinctes.",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "line": 508,
+      "original_text": "existants ; cette police ne valide pas la géométrie des mots dans ces six cas.",
+      "items": [
+        "Q001",
+        "Q003",
+        "Q004",
+        "Q006",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q017",
+        "Q026",
+        "Q027",
+        "Q028",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/FREE_TRIAL.md",
+      "line": 3,
+      "original_text": "État documentaire : 11 octobre 2026. Cette note se fonde sur la documentation Google ; l’API FuzeVPN n’a pas été inspectée pour ce travail.",
+      "items": [
+        "Q023"
+      ]
+    },
+    {
+      "path": "docs/FREE_TRIAL.md",
+      "line": 31,
+      "original_text": "La formule affichée précise la durée gratuite, le prix suivant et sa fréquence. Après sélection, l’écran annonce « Aujourd’hui, rien à payer », la date prévue, le renouvellement automatique et l’annulation dans Google Play avant la fin de l’essai. Les conditions et la confidentialité restent accessibles avant validation. Il n’affirme ni gratuité permanente ni absence de paiement ultérieur.",
+      "items": [
+        "Q023"
+      ]
+    },
+    {
+      "path": "docs/FREE_TRIAL.md",
+      "line": 35,
+      "original_text": "Avec les testeurs de licence, l’essai est accéléré à environ **trois minutes**, puis le mensuel à environ cinq minutes et l’annuel à environ trente minutes. Play Billing Lab peut permettre de réutiliser une offre de test sans recréer des comptes FuzeVPN. La date commerciale estimée avant achat ne remplace pas ces échéances Google de test. [Tests officiels des abonnements](https://developer.android.com/google/play/billing/test)",
+      "items": [
+        "Q023"
+      ]
+    },
+    {
+      "path": "docs/FREE_TRIAL.md",
+      "line": 37,
+      "original_text": "Cette note définit les points à prendre en charge ; elle ne certifie pas que l’API déployée les satisfait déjà.",
+      "items": [
+        "Q023"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 5,
+      "original_text": "Google sont intégrés. **Aucune connexion Google native réelle n’est attestée",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 7,
+      "original_text": "qualifient pas le sélecteur Google, les associations Cloud ni le backend.",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 13,
+      "original_text": "configuration du service FuzeVPN, sans attestation indépendante de Cloud.",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 26,
+      "original_text": "1.2.1). L’ouverture du SDK peut donc sélectionner un compte ; elle ne garantit pas",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 28,
+      "original_text": "la qualification.",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 117,
+      "original_text": "affiche un état incertain ; il ne la remplace pas silencieusement par un nouveau",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 155,
+      "original_text": "Ces identifiants ne prouvent pas les associations package/certificat enregistrées",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 183,
+      "original_text": "d’envoi locale ne remplace pas les certificats de signature des APK distribués",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 191,
+      "original_text": "## Limites de qualification",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 194,
+      "original_text": "natif réel reste **à qualifier**. Le formulaire actuel ne fournit pas de token",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "line": 205,
+      "original_text": "associations Cloud, ni Turnstile. La présence du code ou la disponibilité des routes ne remplace pas la",
+      "items": [
+        "Q018",
+        "Q019",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GUEST_ACCOUNTS.md",
+      "line": 34,
+      "original_text": "  fenêtre de paiement simplement fermée ne constituent pas une activation.",
+      "items": [
+        "Q020",
+        "Q022",
+        "Q024",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/GUEST_ACCOUNTS.md",
+      "line": 189,
+      "original_text": "## Qualification",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/GUEST_ACCOUNTS.md",
+      "line": 206,
+      "original_text": "Les tests simulés ne prouvent ni un achat Play réel ni l’état du backend.",
+      "items": [
+        "Q020",
+        "Q022",
+        "Q024",
+        "Q025",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/NATIVE_DEPENDENCIES.md",
+      "line": 83,
+      "original_text": "autres bibliothèques restent celles de l’AAR officiel vérifié. Il retire",
+      "items": [
+        "Q001",
+        "Q004",
+        "Q005",
+        "Q006",
+        "Q007",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q031"
+      ]
+    },
+    {
+      "path": "docs/NATIVE_DEPENDENCIES.md",
+      "line": 114,
+      "original_text": "préparés, écrivent sous `build/` et ne remplacent pas les essais sur appareil.",
+      "items": [
+        "Q001",
+        "Q004",
+        "Q005",
+        "Q006",
+        "Q007",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q031"
+      ]
+    },
+    {
+      "path": "docs/NATIVE_DEPENDENCIES.md",
+      "line": 180,
+      "original_text": "au verrou ne prouve pas une reconstruction aux mêmes octets.",
+      "items": [
+        "Q001",
+        "Q004",
+        "Q005",
+        "Q006",
+        "Q007",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q031"
+      ]
+    },
+    {
+      "path": "docs/NATIVE_DEPENDENCIES.md",
+      "line": 241,
+      "original_text": "moteur sans preuve sur ARM physique ne constitue pas une correction établie.",
+      "items": [
+        "Q001",
+        "Q004",
+        "Q005",
+        "Q006",
+        "Q007",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q031"
+      ]
+    },
+    {
+      "path": "docs/NATIVE_DEPENDENCIES.md",
+      "line": 246,
+      "original_text": "La qualification exige un appareil ARM64 Android 12 et un Android 13 (ou un",
+      "items": [
+        "Q001",
+        "Q004",
+        "Q005",
+        "Q006",
+        "Q007",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q031"
+      ]
+    },
+    {
+      "path": "docs/NATIVE_DEPENDENCIES.md",
+      "line": 249,
+      "original_text": "contourne ce pont et ne qualifie pas les bibliothèques ARM.",
+      "items": [
+        "Q001",
+        "Q004",
+        "Q005",
+        "Q006",
+        "Q007",
+        "Q010",
+        "Q011",
+        "Q012",
+        "Q013",
+        "Q014",
+        "Q015",
+        "Q016",
+        "Q031"
+      ]
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "line": 15,
+      "original_text": "ne sont pas attestés par cette publication de sources. Une lecture de",
+      "items": [
+        "Q020",
+        "Q021",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "line": 50,
+      "original_text": "test** ; elles ne prouvent pas la disponibilité d’offres Google réelles.",
+      "items": [
+        "Q020",
+        "Q021",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "line": 227,
+      "original_text": "bouton local ne prouve ni paiement ni annulation.",
+      "items": [
+        "Q020",
+        "Q021",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "line": 257,
+      "original_text": "La configuration Pub/Sub et le cycle RTDN réel restent à qualifier pour",
+      "items": [
+        "Q020",
+        "Q021",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "line": 262,
+      "original_text": "Une notification seule ne prouve jamais l’état actuel d’un abonnement.",
+      "items": [
+        "Q020",
+        "Q021",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "line": 264,
+      "original_text": "## Qualification avant activation des ventes",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "line": 279,
+      "original_text": "À qualifier sur l’appareil et le serveur effectivement ciblés : achat",
+      "items": [
+        "Q020",
+        "Q021",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q029"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 19,
+      "original_text": "## Qualification / Validation",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 25,
+      "original_text": "remain unchanged. One universal signed ARM APK; no AAB, publication or backend change.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 39,
+      "original_text": "  une limite de traduction ARM ; elle doit être qualifiée sur matériel ARM.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 47,
+      "original_text": "  WireGuard on the Android 12/13 VMs still requires native ARM qualification.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 49,
+      "original_text": "## Qualification / Validation",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 76,
+      "original_text": "  Android 12 and later. While a tunnel remains active, the event cache is",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 83,
+      "original_text": "## Qualification / Validation",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 89,
+      "original_text": "compte ni backend ; ils ne qualifient pas une connexion VPN réelle du nouvel APK.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 121,
+      "original_text": "## Qualification / Validation",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 127,
+      "original_text": "x86_64 emulators remain a qualification limitation for physical ARM devices.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 147,
+      "original_text": "  droits restent vérifiés par le serveur, y compris pendant l’essai.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 155,
+      "original_text": "  Play account. Otherwise the regular base plan remains available.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 156,
+      "original_text": "- The exact recurring price and period remain visible alongside the free trial.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 162,
+      "original_text": "  remain server-controlled, including during the trial.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 164,
+      "original_text": "## Qualification / Validation",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 171,
+      "original_text": "integration. APKs, bundles and signing credentials remain outside this repository.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 206,
+      "original_text": "  location. Recovery remains manual and does not recreate the device.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 211,
+      "original_text": "## Qualification / Validation",
+      "items": [],
+      "excluded_reason": "Heading, navigation, command or qualified class-name terminology; no unverified behavior is claimed here."
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 213,
+      "original_text": "This is a source update and a new local Android delivery. It does not establish",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 222,
+      "original_text": "No current test counts or live service qualification are asserted here.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "line": 228,
+      "original_text": "connected, and complete revocation remain unconfirmed for **74011**.",
+      "items": [
+        "Q003",
+        "Q008",
+        "Q009",
+        "Q010",
+        "Q011",
+        "Q018",
+        "Q020",
+        "Q022",
+        "Q023",
+        "Q024",
+        "Q025",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 6,
+      "original_text": "construction ; elles ne constituent pas une application installable.",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 15,
+      "original_text": "désignés lors de l’export ; elle ne démontre pas à elle seule qu’un APK a été",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 16,
+      "original_text": "compilé avec ces sources. Cette publication de sources n’atteste aucun binaire.",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 57,
+      "original_text": "livrable distribué. Les guides de ce dépôt ne remplacent pas cette qualification.",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 109,
+      "original_text": "restent incluses uniquement dans les chemins de tests du Core et leurs octets",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 112,
+      "original_text": "exclusions de chemins et formats ; il ne certifie pas une détection universelle",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 160,
+      "original_text": "concernés. Elle ne constitue pas une certification juridique, une vérification",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "line": 175,
+      "original_text": "de récupération documentées ; il ne remplace pas la mise à disposition des",
+      "items": [
+        "Q002",
+        "Q004",
+        "Q006",
+        "Q007",
+        "Q030",
+        "Q032",
+        "Q033"
+      ]
+    },
+    {
+      "path": "docs/VPN_DISCLOSURE.md",
+      "line": 58,
+      "original_text": "n’inclut pas le backend ni l’infrastructure VPN. Il ne qualifie pas les journaux,",
+      "items": [
+        "Q027",
+        "Q029",
+        "Q032"
+      ]
+    },
+    {
+      "path": "docs/VPN_DISCLOSURE.md",
+      "line": 67,
+      "original_text": "Les tests de l’écran et de son refus ne constituent pas une recette réseau ou",
+      "items": [
+        "Q027",
+        "Q029",
+        "Q032"
+      ]
+    }
+  ],
+  "original_sbom_unknown_fields": [
+    {
+      "id": "SPDXRef-Package-FuzeVPNAndroid",
+      "name": "FuzeVPN Android",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-FuzeVPNAndroid",
+      "name": "FuzeVPN Android",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Flutter",
+      "name": "Flutter SDK",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-UrlLauncher",
+      "name": "url_launcher",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardAndroidTunnel",
+      "name": "WireGuard Android Tunnel",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardAndroidTunnel",
+      "name": "WireGuard Android Tunnel",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardAndroidTunnel",
+      "name": "WireGuard Android Tunnel",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardGo",
+      "name": "wireguard-go",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-OpenVPN3Core",
+      "name": "OpenVPN 3 Core",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-OpenSSL",
+      "name": "OpenSSL",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Asio",
+      "name": "Asio",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-fmt",
+      "name": "fmt",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-lz4",
+      "name": "lz4",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidXCoreKtx",
+      "name": "androidx.core:core-ktx",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidXCoreKtx",
+      "name": "androidx.core:core-ktx",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Kotlin",
+      "name": "Kotlin",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-KotlinCoroutinesAndroid",
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-android",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-KotlinCoroutinesAndroid",
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-android",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidGradlePlugin",
+      "name": "Android Gradle Plugin",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Gradle",
+      "name": "Gradle",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidNDK",
+      "name": "Android NDK",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidNDK",
+      "name": "Android NDK",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidNDK",
+      "name": "Android NDK",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-JDK17",
+      "name": "JDK",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-JDK17",
+      "name": "JDK",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-JDK17",
+      "name": "JDK",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-JDK17",
+      "name": "JDK",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-async",
+      "name": "async",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-async",
+      "name": "async",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-boolean-selector",
+      "name": "boolean_selector",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-boolean-selector",
+      "name": "boolean_selector",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-characters",
+      "name": "characters",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-characters",
+      "name": "characters",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-clock",
+      "name": "clock",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-clock",
+      "name": "clock",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-collection",
+      "name": "collection",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-collection",
+      "name": "collection",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-crypto",
+      "name": "crypto",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-crypto",
+      "name": "crypto",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-fake-async",
+      "name": "fake_async",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-fake-async",
+      "name": "fake_async",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-lints",
+      "name": "flutter_lints",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-lints",
+      "name": "flutter_lints",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-localizations",
+      "name": "flutter_localizations",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-localizations",
+      "name": "flutter_localizations",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-localizations",
+      "name": "flutter_localizations",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-test",
+      "name": "flutter_test",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-test",
+      "name": "flutter_test",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-test",
+      "name": "flutter_test",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-web-plugins",
+      "name": "flutter_web_plugins",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-web-plugins",
+      "name": "flutter_web_plugins",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-web-plugins",
+      "name": "flutter_web_plugins",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-intl",
+      "name": "intl",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-intl",
+      "name": "intl",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker",
+      "name": "leak_tracker",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker",
+      "name": "leak_tracker",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker-flutter-testing",
+      "name": "leak_tracker_flutter_testing",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker-flutter-testing",
+      "name": "leak_tracker_flutter_testing",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker-testing",
+      "name": "leak_tracker_testing",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker-testing",
+      "name": "leak_tracker_testing",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-lints",
+      "name": "lints",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-lints",
+      "name": "lints",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-matcher",
+      "name": "matcher",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-matcher",
+      "name": "matcher",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-material-color-utilities",
+      "name": "material_color_utilities",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-material-color-utilities",
+      "name": "material_color_utilities",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-meta",
+      "name": "meta",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-meta",
+      "name": "meta",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-path",
+      "name": "path",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-path",
+      "name": "path",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-plugin-platform-interface",
+      "name": "plugin_platform_interface",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-plugin-platform-interface",
+      "name": "plugin_platform_interface",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-sky-engine",
+      "name": "sky_engine",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-sky-engine",
+      "name": "sky_engine",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-sky-engine",
+      "name": "sky_engine",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-source-span",
+      "name": "source_span",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-source-span",
+      "name": "source_span",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-stack-trace",
+      "name": "stack_trace",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-stack-trace",
+      "name": "stack_trace",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-stream-channel",
+      "name": "stream_channel",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-stream-channel",
+      "name": "stream_channel",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-string-scanner",
+      "name": "string_scanner",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-string-scanner",
+      "name": "string_scanner",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-term-glyph",
+      "name": "term_glyph",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-term-glyph",
+      "name": "term_glyph",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-test-api",
+      "name": "test_api",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-test-api",
+      "name": "test_api",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-typed-data",
+      "name": "typed_data",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-typed-data",
+      "name": "typed_data",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-android",
+      "name": "url_launcher_android",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-android",
+      "name": "url_launcher_android",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-ios",
+      "name": "url_launcher_ios",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-ios",
+      "name": "url_launcher_ios",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-linux",
+      "name": "url_launcher_linux",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-linux",
+      "name": "url_launcher_linux",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-macos",
+      "name": "url_launcher_macos",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-macos",
+      "name": "url_launcher_macos",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-platform-interface",
+      "name": "url_launcher_platform_interface",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-platform-interface",
+      "name": "url_launcher_platform_interface",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-web",
+      "name": "url_launcher_web",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-web",
+      "name": "url_launcher_web",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-windows",
+      "name": "url_launcher_windows",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-windows",
+      "name": "url_launcher_windows",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-vector-math",
+      "name": "vector_math",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-vector-math",
+      "name": "vector_math",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-vm-service",
+      "name": "vm_service",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-vm-service",
+      "name": "vm_service",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-web",
+      "name": "web",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Pub-web",
+      "name": "web",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.annotation-annotation",
+      "name": "androidx.annotation:annotation",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.annotation-annotation",
+      "name": "androidx.annotation:annotation",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.annotation-annotation",
+      "name": "androidx.annotation:annotation",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.collection-collection",
+      "name": "androidx.collection:collection",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.collection-collection",
+      "name": "androidx.collection:collection",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.collection-collection",
+      "name": "androidx.collection:collection",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-junit-junit",
+      "name": "junit:junit",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-junit-junit",
+      "name": "junit:junit",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-junit-junit",
+      "name": "junit:junit",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.json-json",
+      "name": "org.json:json",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.json-json",
+      "name": "org.json:json",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.json-json",
+      "name": "org.json:json",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.json-json",
+      "name": "org.json:json",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.jetbrains.kotlinx-kotlinx-coroutines-test",
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-test",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.jetbrains.kotlinx-kotlinx-coroutines-test",
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-test",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.jetbrains.kotlinx-kotlinx-coroutines-test",
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-test",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-core-ktx",
+      "name": "androidx.test:core-ktx",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-core-ktx",
+      "name": "androidx.test:core-ktx",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-core-ktx",
+      "name": "androidx.test:core-ktx",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.ext-junit",
+      "name": "androidx.test.ext:junit",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.ext-junit",
+      "name": "androidx.test.ext:junit",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.ext-junit",
+      "name": "androidx.test.ext:junit",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-runner",
+      "name": "androidx.test:runner",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-runner",
+      "name": "androidx.test:runner",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-runner",
+      "name": "androidx.test:runner",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.uiautomator-uiautomator",
+      "name": "androidx.test.uiautomator:uiautomator",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.uiautomator-uiautomator",
+      "name": "androidx.test.uiautomator:uiautomator",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.uiautomator-uiautomator",
+      "name": "androidx.test.uiautomator:uiautomator",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go",
+      "name": "Go toolchain",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Go",
+      "name": "Go toolchain",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go",
+      "name": "Go toolchain",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidSDKPlatform",
+      "name": "Android SDK Platform",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidSDKPlatform",
+      "name": "Android SDK Platform",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidSDKPlatform",
+      "name": "Android SDK Platform",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-AndroidSDKPlatform",
+      "name": "Android SDK Platform",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-CMake",
+      "name": "CMake",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-CMake",
+      "name": "CMake",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-CMake",
+      "name": "CMake",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-CMake",
+      "name": "CMake",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go-sys",
+      "name": "golang.org/x/sys",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Go-sys",
+      "name": "golang.org/x/sys",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go-sys",
+      "name": "golang.org/x/sys",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go-crypto",
+      "name": "golang.org/x/crypto",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Go-crypto",
+      "name": "golang.org/x/crypto",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go-crypto",
+      "name": "golang.org/x/crypto",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go-net",
+      "name": "golang.org/x/net",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Go-net",
+      "name": "golang.org/x/net",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go-net",
+      "name": "golang.org/x/net",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go-wintun",
+      "name": "golang.zx2c4.com/wintun",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-Go-wintun",
+      "name": "golang.zx2c4.com/wintun",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go-wintun",
+      "name": "golang.zx2c4.com/wintun",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardTools",
+      "name": "wireguard-tools",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardTools",
+      "name": "wireguard-tools",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardTools",
+      "name": "wireguard-tools",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-ElfCleaner",
+      "name": "termux-elf-cleaner",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-ElfCleaner",
+      "name": "termux-elf-cleaner",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-ElfCleaner",
+      "name": "termux-elf-cleaner",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Archivo",
+      "name": "Archivo",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Archivo",
+      "name": "Archivo",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-IBMPlexMono",
+      "name": "IBM Plex Mono",
+      "field": "downloadLocation"
+    },
+    {
+      "id": "SPDXRef-Package-IBMPlexMono",
+      "name": "IBM Plex Mono",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-IBMPlexMono",
+      "name": "IBM Plex Mono",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-NotoSansArabic",
+      "name": "Noto Sans Arabic",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Twemoji",
+      "name": "Twemoji flag artwork",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Twemoji",
+      "name": "Twemoji flag artwork",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-CLDR",
+      "name": "Unicode CLDR country names",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-CLDR",
+      "name": "Unicode CLDR country names",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "name": "com.android.billingclient:billing",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "name": "com.android.billingclient:billing",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "name": "com.android.billingclient:billing",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api",
+      "name": "com.google.android.datatransport:transport-api",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api",
+      "name": "com.google.android.datatransport:transport-api",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "name": "com.google.android.datatransport:transport-backend-cct",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "name": "com.google.android.datatransport:transport-backend-cct",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "name": "com.google.android.datatransport:transport-runtime",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "name": "com.google.android.datatransport:transport-runtime",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "name": "com.google.android.gms:play-services-base",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "name": "com.google.android.gms:play-services-base",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "name": "com.google.android.gms:play-services-base",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "name": "com.google.android.gms:play-services-basement",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "name": "com.google.android.gms:play-services-basement",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "name": "com.google.android.gms:play-services-basement",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "name": "com.google.android.gms:play-services-location",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "name": "com.google.android.gms:play-services-location",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "name": "com.google.android.gms:play-services-location",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-places-placereport",
+      "name": "com.google.android.gms:play-services-places-placereport",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-places-placereport",
+      "name": "com.google.android.gms:play-services-places-placereport",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-places-placereport",
+      "name": "com.google.android.gms:play-services-places-placereport",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "name": "com.google.android.gms:play-services-tasks",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "name": "com.google.android.gms:play-services-tasks",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "name": "com.google.android.gms:play-services-tasks",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders",
+      "name": "com.google.firebase:firebase-encoders",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders",
+      "name": "com.google.firebase:firebase-encoders",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-json",
+      "name": "com.google.firebase:firebase-encoders-json",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-json",
+      "name": "com.google.firebase:firebase-encoders-json",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-proto",
+      "name": "com.google.firebase:firebase-encoders-proto",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-proto",
+      "name": "com.google.firebase:firebase-encoders-proto",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-javax.inject-javax.inject",
+      "name": "javax.inject:javax.inject",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-javax.inject-javax.inject",
+      "name": "javax.inject:javax.inject",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.credentials-credentials",
+      "name": "androidx.credentials:credentials",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.credentials-credentials",
+      "name": "androidx.credentials:credentials",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "name": "androidx.credentials:credentials-play-services-auth",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "name": "androidx.credentials:credentials-play-services-auth",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid",
+      "name": "com.google.android.libraries.identity.googleid:googleid",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid",
+      "name": "com.google.android.libraries.identity.googleid:googleid",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid",
+      "name": "com.google.android.libraries.identity.googleid:googleid",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "name": "com.google.android.gms:play-services-auth",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "name": "com.google.android.gms:play-services-auth",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "name": "com.google.android.gms:play-services-auth",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "name": "com.google.android.gms:play-services-auth-api-phone",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "name": "com.google.android.gms:play-services-auth-api-phone",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "name": "com.google.android.gms:play-services-auth-api-phone",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "name": "com.google.android.gms:play-services-auth-base",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "name": "com.google.android.gms:play-services-auth-base",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "name": "com.google.android.gms:play-services-auth-base",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "name": "com.google.android.gms:play-services-auth-blockstore",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "name": "com.google.android.gms:play-services-auth-blockstore",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "name": "com.google.android.gms:play-services-auth-blockstore",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "name": "com.google.android.gms:play-services-fido",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "name": "com.google.android.gms:play-services-fido",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "name": "com.google.android.gms:play-services-fido",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "name": "com.google.android.gms:play-services-identity-credentials",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "name": "com.google.android.gms:play-services-identity-credentials",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "name": "com.google.android.gms:play-services-identity-credentials",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-GoogleSans",
+      "name": "Google Sans",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-GoogleGLogo",
+      "name": "Google G official sign-in logo",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-GoogleGLogo",
+      "name": "Google G official sign-in logo",
+      "field": "licenseDeclared"
+    },
+    {
+      "id": "SPDXRef-Package-GoogleGLogo",
+      "name": "Google G official sign-in logo",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go-btree",
+      "name": "github.com/google/btree",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go-btree",
+      "name": "github.com/google/btree",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go-time",
+      "name": "golang.org/x/time",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go-time",
+      "name": "golang.org/x/time",
+      "field": "copyrightText"
+    },
+    {
+      "id": "SPDXRef-Package-Go-gvisor",
+      "name": "gvisor.dev/gvisor",
+      "field": "licenseConcluded"
+    },
+    {
+      "id": "SPDXRef-Package-Go-gvisor",
+      "name": "gvisor.dev/gvisor",
+      "field": "copyrightText"
+    }
+  ],
+  "baseline_documents": [
+    {
+      "path": "android/native-provenance/README.md",
+      "sha256": "ba66864a41723a22650926d3d5a0477cc384df8a5e5a5dac652984a36ab3df84"
+    },
+    {
+      "path": "android/source-distribution/README.md",
+      "sha256": "5ea5203fbf56abada7b1cd61a44853079078efb2da31eda817093cf92a74c6c7"
+    },
+    {
+      "path": "assets/fonts/GoogleSans-TRADEMARKS.md",
+      "sha256": "215bc8c1ce46d1b81531f33ebb5af201e7a5da76b8f3ae4c705336fd70fc89e1"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "359e2a1014e4338c5997fc8b6bbbd09e21780371bc148161870b6297b8edb4fb"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "83de58ff722856d68535475c38d3bb272e5486d41c98049df8f233aab5fcfd41"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "sha256": "a65a89e96713dcca787ed3236e3c23f4e59bb54aa8d30f9f20caf27882815197"
+    },
+    {
+      "path": "docs/FREE_TRIAL.md",
+      "sha256": "03f05a4cbdfcad8b8469f0a1b0fad6dc89fbf86dc70c4c77c6c0217634f9401e"
+    },
+    {
+      "path": "docs/GOOGLE_AUTH.md",
+      "sha256": "fe7e5ae8b67e84948ec6aa7b5ddb338d9e97ba37708ce2389db1dd91cb4e4d02"
+    },
+    {
+      "path": "docs/GUEST_ACCOUNTS.md",
+      "sha256": "55879fb50799ab4129308cbcdb222bc352e5396bcf563240c8b0e5fed977836d"
+    },
+    {
+      "path": "docs/NATIVE_DEPENDENCIES.md",
+      "sha256": "04dc45d02c19b6e962e29f09cc9faced89f64c13d0c7b42df6f5050c98cdbc86"
+    },
+    {
+      "path": "docs/PLAY_BILLING.md",
+      "sha256": "bbb4d26dce743169dc171cd87891e6fd774dad6e0785be9b02ef71596bfe6d8d"
+    },
+    {
+      "path": "docs/RELEASE_NOTES.md",
+      "sha256": "932f3f46ced4ac1a40aa5396192b6308a90213abda592ba5943e3790c490ae08"
+    },
+    {
+      "path": "docs/SOURCE_DISTRIBUTION.md",
+      "sha256": "6fa87b7899eac4a6554070425c86865772de9a5dfc84416f7f3d945be38e2218"
+    },
+    {
+      "path": "docs/VPN_DISCLOSURE.md",
+      "sha256": "ccb2cb5872000975ba84be45eeeee5c79d96738b35def435971d60f91dc677f5"
+    },
+    {
+      "path": "LICENSING.md",
+      "sha256": "95dcb96a30ba85f5127f1f8ae8f98d26d92e663ff18871081b89c9f0789c2544"
+    },
+    {
+      "path": "README.fr.md",
+      "sha256": "5ca53f6bcf9f58f3cf3635152d53d7da8a97a01cb6de011fe39bebd025b14899"
+    },
+    {
+      "path": "README.md",
+      "sha256": "5040a911b2a0cfb2b7dc36d49ac2f097577b9fbaa450385103bb41b420448c8b"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "d308e0649888d285ac5f28572507f5a2db3379e43ae3b644fff8996dfa6d4890"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "7b7648415ffafa9c77e0dafc3956a16efff07bb492751db829b3a392e0cd7ecc"
+    }
+  ]
+}

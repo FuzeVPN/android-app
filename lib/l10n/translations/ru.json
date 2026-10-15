@@ -701,7 +701,11 @@
     "billing_priceYearly": "в год",
     "billing_trialToday": "Сегодня платить не нужно",
     "billing_trialConfirmation": "Google Play покажет даты, итоговую сумму и применимые налоги до вашего подтверждения.",
-    "billing_offerChanged": "Условия этого предложения изменились. Обновите тарифы и выберите снова."
+    "billing_offerChanged": "Условия этого предложения изменились. Обновите тарифы и выберите снова.",
+    "status_waitingNetwork": "Ожидание сети",
+    "status_waitingNetworkDetail": "Нет доступной сети. VPN проверит соединение после восстановления сети.",
+    "locations_favoriteLoadFailed": "Не удалось загрузить избранное. Повторите попытку.",
+    "locations_favoritesLoading": "Загрузка избранного…"
   },
   "android": {
     "vpn_notification_channel": "VPN-подключение",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "Операция VPN выполняется…",
     "vpn_notification_reconnecting": "Повторное подключение… · %1$s",
     "vpn_system_action_required": "Требуется действие в настройках Android",
-    "vpn_tile_reconnecting": "Повторное подключение… · %1$s"
+    "vpn_tile_reconnecting": "Повторное подключение… · %1$s",
+    "vpn_notification_waiting_network": "Ожидание сети · %1$s",
+    "vpn_tile_waiting_network": "Ожидание сети · %1$s"
   },
   "countries": {
     "AC": "Остров Вознесения",

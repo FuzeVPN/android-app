@@ -699,5 +699,9 @@
   "billing_priceYearly": "per jaar",
   "billing_trialToday": "Vandaag hoef je niets te betalen",
   "billing_trialConfirmation": "Google Play bevestigt de datums, het eindbedrag en de toepasselijke belastingen voordat je bevestigt.",
-  "billing_offerChanged": "De voorwaarden van deze aanbieding zijn gewijzigd. Vernieuw de abonnementen en kies opnieuw."
+  "billing_offerChanged": "De voorwaarden van deze aanbieding zijn gewijzigd. Vernieuw de abonnementen en kies opnieuw.",
+  "status_waitingNetwork": "Wachten op netwerk",
+  "status_waitingNetworkDetail": "Geen netwerk beschikbaar. De VPN controleert de verbinding zodra het netwerk terug is.",
+  "locations_favoriteLoadFailed": "Favorieten konden niet worden geladen. Probeer opnieuw.",
+  "locations_favoritesLoading": "Favorieten laden…"
 }

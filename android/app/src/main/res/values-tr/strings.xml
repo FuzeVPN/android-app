@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Yeniden bağlanıyor… · %1$s</string>
     <string name="vpn_system_action_required">Android ayarlarında işlem gerekiyor</string>
     <string name="vpn_tile_reconnecting">Yeniden bağlanıyor… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Ağ bekleniyor · %1$s</string>
+    <string name="vpn_tile_waiting_network">Ağ bekleniyor · %1$s</string>
 </resources>

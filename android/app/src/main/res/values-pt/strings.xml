@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Reconectando… · %1$s</string>
     <string name="vpn_system_action_required">Ação necessária nas configurações do Android</string>
     <string name="vpn_tile_reconnecting">Reconectando… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Aguardando rede · %1$s</string>
+    <string name="vpn_tile_waiting_network">Aguardando rede · %1$s</string>
 </resources>

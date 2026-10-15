@@ -12,6 +12,7 @@ import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
 import androidx.core.content.edit
+import androidx.core.content.ContextCompat
 import java.util.Locale
 
 /**
@@ -22,6 +23,8 @@ import java.util.Locale
 class VpnForegroundService : Service() {
     private var protocol: VpnProtocol? = null
     private var status: VpnStatus = VpnStatus.CONNECTING
+    private var reconnecting = false
+    private var waitingForNetwork = false
 
     override fun onCreate() {
         super.onCreate()
@@ -42,6 +45,8 @@ class VpnForegroundService : Service() {
                 protocol = VpnProtocol.fromWireValue(intent?.getStringExtra(EXTRA_PROTOCOL))
                 status = VpnStatus.entries.firstOrNull { it.wireValue == intent?.getStringExtra(EXTRA_STATUS) }
                     ?: VpnStatus.CONNECTING
+                reconnecting = intent?.getBooleanExtra("reconnecting", false) == true
+                waitingForNetwork = intent?.getBooleanExtra("waiting_network", false) == true
                 showForeground(protocol, status)
             }
             ACTION_RELOCALIZE -> showForeground(protocol, status)
@@ -53,7 +58,8 @@ class VpnForegroundService : Service() {
 
     private fun showForeground(protocol: VpnProtocol?, status: VpnStatus) {
         ensureChannel(this)
-        val notification = notificationFor(this, protocol, status)
+        val notification = notificationFor(this, protocol, status, reconnecting = reconnecting,
+            waitingForNetwork = waitingForNetwork)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
         } else {
@@ -85,8 +91,12 @@ class VpnForegroundService : Service() {
             dispatch(context, ACTION_START, protocol, status)
         }
 
-        internal fun update(context: Context, protocol: VpnProtocol?, status: VpnStatus) {
-            dispatch(context, ACTION_UPDATE, protocol, status)
+        internal fun update(context: Context, protocol: VpnProtocol?, status: VpnStatus,
+                            reconnecting: Boolean = false, waitingForNetwork: Boolean = false) {
+            ContextCompat.startForegroundService(context, Intent(context, VpnForegroundService::class.java)
+                .setAction(ACTION_UPDATE).putExtra(EXTRA_PROTOCOL, protocol?.wireValue)
+                .putExtra(EXTRA_STATUS, status.wireValue).putExtra("reconnecting", reconnecting)
+                .putExtra("waiting_network", waitingForNetwork))
         }
 
         internal fun stop(context: Context) {
@@ -123,6 +133,7 @@ class VpnForegroundService : Service() {
             status: VpnStatus,
             reconnecting: Boolean = false,
             actionRequired: Boolean = false,
+            waitingForNetwork: Boolean = false,
         ): Notification {
             val localized = localizedContext(context)
             ensureChannel(localized)
@@ -141,7 +152,9 @@ class VpnForegroundService : Service() {
                 VpnProtocol.OPENVPN -> "OpenVPN"
                 null -> "VPN"
             }
-            val detail = if (actionRequired) localized.getString(R.string.vpn_system_action_required) else when (status) {
+            val detail = if (actionRequired) localized.getString(R.string.vpn_system_action_required)
+                else if (waitingForNetwork) localized.getString(R.string.vpn_notification_waiting_network, protocolLabel)
+                else when (status) {
                 VpnStatus.CONNECTED -> localized.getString(R.string.vpn_notification_connected, protocolLabel)
                 VpnStatus.CONNECTING, VpnStatus.PREPARING, VpnStatus.AUTHORIZING -> localized.getString(
                     if (reconnecting) R.string.vpn_notification_reconnecting else R.string.vpn_notification_connecting,

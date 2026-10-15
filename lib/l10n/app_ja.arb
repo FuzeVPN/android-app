@@ -699,5 +699,9 @@
   "billing_priceYearly": "年額",
   "billing_trialToday": "今日の支払いはありません",
   "billing_trialConfirmation": "確定前にGoogle Playで日付、最終金額、適用される税金をご確認いただけます。",
-  "billing_offerChanged": "このオファーの条件が変更されました。プランを更新し、もう一度選択してください。"
+  "billing_offerChanged": "このオファーの条件が変更されました。プランを更新し、もう一度選択してください。",
+  "status_waitingNetwork": "ネットワークを待機中",
+  "status_waitingNetworkDetail": "利用可能なネットワークがありません。復帰後にVPN接続を確認します。",
+  "locations_favoriteLoadFailed": "お気に入りを読み込めませんでした。再試行してください。",
+  "locations_favoritesLoading": "お気に入りを読み込み中…"
 }

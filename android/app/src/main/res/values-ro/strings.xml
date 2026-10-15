@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Se reconectează… · %1$s</string>
     <string name="vpn_system_action_required">Este necesară o acțiune în setările Android</string>
     <string name="vpn_tile_reconnecting">Se reconectează… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Se așteaptă rețeaua · %1$s</string>
+    <string name="vpn_tile_waiting_network">Se așteaptă rețeaua · %1$s</string>
 </resources>

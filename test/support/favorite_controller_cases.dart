@@ -92,20 +92,59 @@ void favoriteControllerTests() {
         expect(controller.favoritesSaveFailed, isFalse);
       },
     );
-    test('late initialization never undoes a newer user choice', () async {
-      preferences.readGate = Completer<Set<String>>();
-      final init = controller.initialize();
-      await controller.toggleFavoriteLocation(_frankfurt);
-      preferences.readGate!.complete({'old-location'});
-      await init;
-      expect(controller.favoriteLocationIds, {'frankfurt-01'});
-    });
+    test(
+      'favorites cannot overwrite stored IDs before their read completes',
+      () async {
+        preferences.readGate = Completer<Set<String>>();
+        final init = controller.initialize();
+        await controller.toggleFavoriteLocation(_frankfurt);
+        expect(preferences.writes, isEmpty);
+        preferences.readGate!.complete({'old-location'});
+        await init;
+        expect(controller.favoriteLocationIds, {'old-location'});
+        await controller.toggleFavoriteLocation(_frankfurt);
+        expect(preferences.saved, {'old-location', 'frankfurt-01'});
+      },
+    );
     test('corrupt favorites do not block app initialization', () async {
       preferences.saved = {'../invalid'};
       await controller.initialize();
       expect(controller.favoriteLocationIds, isEmpty);
-      expect(controller.favoritesSaveFailed, isTrue);
+      expect(controller.favoritesLoadFailed, isTrue);
+      expect(controller.favoritesSaveFailed, isFalse);
+      expect(controller.canChangeFavorites, isFalse);
       expect(controller.isInitializing, isFalse);
+    });
+    test(
+      'a timed-out read accepts its late result and retries share it',
+      () async {
+        preferences.readGate = Completer<Set<String>>();
+        await controller.initialize();
+        expect(controller.favoritesLoadFailed, isTrue);
+        expect(controller.favoritesSaveFailed, isFalse);
+        expect(controller.favoritesLoading, isTrue);
+        final retry = controller.reloadFavoriteLocations();
+        expect(preferences.reads, 1);
+        await controller.toggleFavoriteLocation(_frankfurt);
+        expect(preferences.writes, isEmpty);
+        preferences.readGate!.complete({'old-location'});
+        await retry;
+        expect(controller.favoriteLocationIds, {'old-location'});
+        expect(controller.canChangeFavorites, isTrue);
+        expect(controller.favoritesLoadFailed, isFalse);
+      },
+    );
+    test('failed reads can be retried without a save error', () async {
+      preferences.failRead = true;
+      await controller.initialize();
+      expect(controller.favoritesLoadFailed, isTrue);
+      expect(controller.favoritesSaveFailed, isFalse);
+      preferences.failRead = false;
+      preferences.saved = {'old-location'};
+      await controller.reloadFavoriteLocations();
+      expect(preferences.reads, 2);
+      expect(controller.favoriteLocationIds, {'old-location'});
+      expect(controller.canChangeFavorites, isTrue);
     });
     test(
       'settings remain usable with an explicit notice if storage fails',
@@ -188,6 +227,8 @@ class _FavoritesPreferences extends _FakePreferences
   Completer<void>? writeGate;
   Completer<Set<String>>? readGate;
   bool failWrite = false;
+  bool failRead = false;
+  int reads = 0;
   final Set<String> failedChoices = {};
   final List<String> choiceWrites = [];
   Completer<void>? choiceGate;
@@ -223,8 +264,11 @@ class _FavoritesPreferences extends _FakePreferences
   }
 
   @override
-  Future<Set<String>> readFavoriteLocations() async =>
-      readGate == null ? saved : readGate!.future;
+  Future<Set<String>> readFavoriteLocations() async {
+    reads++;
+    if (failRead) throw StateError('read_failed');
+    return readGate == null ? saved : readGate!.future;
+  }
 
   @override
   Future<void> writeFavoriteLocations(Set<String> locationIds) async {

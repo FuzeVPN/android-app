@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">در حال اتصال دوباره… · %1$s</string>
     <string name="vpn_system_action_required">اقدام در تنظیمات Android لازم است</string>
     <string name="vpn_tile_reconnecting">در حال اتصال دوباره… · %1$s</string>
+    <string name="vpn_notification_waiting_network">در انتظار شبکه · %1$s</string>
+    <string name="vpn_tile_waiting_network">در انتظار شبکه · %1$s</string>
 </resources>

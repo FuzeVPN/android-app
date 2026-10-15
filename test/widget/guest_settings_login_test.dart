@@ -187,6 +187,24 @@ void main() {
     expect(find.byKey(_dialogKey), findsOneWidget);
     expect(controller.notice?.messageKey, 'notice.invalidCredentials.message');
     expect(
+      tester.widget<TextFormField>(find.byKey(_emailKey)).controller!.text,
+      ' member@example.invalid ',
+    );
+    expect(
+      tester.widget<TextFormField>(find.byKey(_passwordKey)).controller!.text,
+      'fixture password',
+    );
+    controller.clearNotice();
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextFormField>(find.byKey(_emailKey)).controller!.text,
+      ' member@example.invalid ',
+    );
+    expect(
+      tester.widget<TextFormField>(find.byKey(_passwordKey)).controller!.text,
+      'fixture password',
+    );
+    expect(
       tester.widget<IconButton>(find.byKey(_closeKey)).onPressed,
       isNotNull,
     );

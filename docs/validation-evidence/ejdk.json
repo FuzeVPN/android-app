@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "id": "EJDK",
+  "date": "2026-10-14",
+  "kind": "installed_prerequisite_metadata",
+  "artifacts": [
+    "toolchain"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "implementor": "Eclipse Adoptium",
+    "version": "Temurin 17.0.20.1+1",
+    "architecture": "Windows x86_64",
+    "engine_revision": "69c8c61792f04cc809dfef0c910414fb9afc06cd",
+    "scope": "Metadata of installed tools, not a dependency embedded in the APK"
+  },
+  "source_receipts": [
+    {
+      "name": "release",
+      "sha256": "171abb6be50980aeed01365f3032cb7a1bc6126ca48a5eed5ba87ac3e000f7a5"
+    }
+  ]
+}

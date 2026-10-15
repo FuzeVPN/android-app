@@ -2135,4 +2135,18 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Syarat tawaran ini telah berubah. Muat semula pelan dan pilih semula.';
+
+  @override
+  String get status_waitingNetwork => 'Menunggu rangkaian';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Tiada rangkaian tersedia. VPN akan menyemak sambungan apabila rangkaian kembali.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Kegemaran tidak dapat dimuatkan. Cuba lagi.';
+
+  @override
+  String get locations_favoritesLoading => 'Memuatkan kegemaran…';
 }

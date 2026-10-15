@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "id": "EPERIMETER",
+  "date": "2026-10-14",
+  "kind": "documentation_and_source_boundaries",
+  "artifacts": [
+    "source-74016"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "code_and_source_publication": "A source declaration is distinct from a live service result, legal certification, or distributed-APK approval",
+    "historical_receipts": "Dates, version, ABI and signer delimit all conclusions",
+    "privacy_scope": "Only Android client consent/export behavior and consent-scoped test reports are supplied; no server practice attestation is added",
+    "readme_source_scope": "Source archives include public upstream fixtures; such fixtures are not production credentials",
+    "second_lexical_pass": "130 original document lines; every retained occurrence is mapped or excluded with a reason"
+  },
+  "source_receipts": [
+    {
+      "name": "original-reservations.json",
+      "sha256": "9294238fdeedb68e0bf9b5fad6fbbf4b83052516fdcea1467cf79825e7cbc7e6"
+    },
+    {
+      "name": "extended-reservations.json",
+      "sha256": "e3199f1ce58d8ac50b876c6782bd2557b92184902fa6f6ff04c17d354aea9e7f"
+    }
+  ]
+}

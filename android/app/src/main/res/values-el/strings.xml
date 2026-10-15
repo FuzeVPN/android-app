@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Επανασύνδεση… · %1$s</string>
     <string name="vpn_system_action_required">Απαιτείται ενέργεια στις ρυθμίσεις Android</string>
     <string name="vpn_tile_reconnecting">Επανασύνδεση… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Αναμονή δικτύου · %1$s</string>
+    <string name="vpn_tile_waiting_network">Αναμονή δικτύου · %1$s</string>
 </resources>

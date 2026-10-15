@@ -1,6 +1,9 @@
 # Google Play Billing — client Android et contrat attendu
 
-Version source **0.2.6+74012**, métadonnées documentaires du **11 octobre 2026**.
+Audit de qualification du 14 octobre 2026 : [Q020](VALIDATION.md#q020), [Q021](VALIDATION.md#q021), [Q022](VALIDATION.md#q022), [Q023](VALIDATION.md#q023), [Q024](VALIDATION.md#q024), [Q029](VALIDATION.md#q029).
+
+
+Version source **0.2.10+74016**, métadonnées documentaires du **11 octobre 2026**.
 Le client natif `BillingClient`, son canal Flutter et les actions d’abonnement
 sont intégrés. Package : `com.fuzevpn` ; permission :
 `com.android.vending.BILLING` ; bibliothèque : **9.1.0**.
@@ -11,9 +14,11 @@ reste facultative. Voir [GUEST_ACCOUNTS.md](GUEST_ACCOUNTS.md).
 
 Ce guide décrit les routes et réponses attendues par le code Android. Le
 backend, ses migrations, flags, credentials et configuration Pub/Sub ne sont
-pas inclus dans ce dépôt. Leur présence et leur fonctionnement en production
-ne sont pas attestés par cette publication de sources. Une lecture de
-catalogue ou un test simulé ne valide ni un achat ni un droit durable.
+pas inclus dans ce dépôt. Les reçus API035 et le rapport client 74008
+établissent des achats Google de test, acquittements, renouvellements et
+observations RTDN datés du 4 octobre ([Q020–Q021](VALIDATION.md#q020)).
+Les cycles incomplets et l’essai freetest 74016 ont leurs propres blocages
+([Q022–Q023](VALIDATION.md#q022)).
 
 ## Catalogue et prix
 
@@ -30,9 +35,11 @@ doit les autoriser explicitement :
 Android interroge Google Play `ProductDetails` pour `premium`. Il affiche les
 plans disponibles et utilise le jeton d’offre retourné par Play pour le
 lancement. Le parcours actuel accepte les plans de base à renouvellement
-automatique avec une seule phase de prix standard. Il écarte les promotions,
-essais, prépaiements et versements échelonnés. Leur ajout demanderait d’afficher
-toutes les phases et conditions avant le paiement.
+automatique avec une phase standard, ainsi que l’offre **freetest** composée
+de deux semaines gratuites puis de cette phase récurrente. Il affiche toutes
+les phases et relit l’offre avant le paiement. Les autres promotions,
+prépaiements et versements échelonnés sont écartés. Voir [FREE_TRIAL.md](FREE_TRIAL.md)
+et le blocage de recette réelle [Q023](VALIDATION.md#q023).
 [Intégration officielle](https://developer.android.com/google/play/billing/integrate).
 
 Le montant affiché est exactement `PricingPhase.formattedPrice`, sans
@@ -254,8 +261,10 @@ utilisateur FuzeVPN. Valider le JWT, son audience, l’identité attendue et le
 package avant de traiter l’événement.
 [Authentification Pub/Sub](https://docs.cloud.google.com/pubsub/docs/authenticate-push-subscriptions).
 
-La configuration Pub/Sub et le cycle RTDN réel restent à qualifier pour
-l’environnement ciblé. Le serveur doit conserver et dédupliquer les
+Le reçu API035 documente des RTDN, un acquittement et un renouvellement
+réels de test le 4 octobre ([Q021](VALIDATION.md#q021)). La redélivrance,
+l’ordre inversé et le cycle exhaustif sont **bloqués faute de preuve dédiée**
+([Q022](VALIDATION.md#q022)). Le serveur doit conserver et dédupliquer les
 événements, relire Google avant toute modification de droit et supporter les
 notifications répétées ou désordonnées. La reprise des acquittements et le
 rapprochement des achats doivent fonctionner lorsque l’application est fermée.
@@ -276,7 +285,8 @@ l’application configurée. Les utilisateurs d’une piste de test qui ne sont
 pas testeurs de licence peuvent être facturés.
 [Tests Billing officiels](https://developer.android.com/google/play/billing/test).
 
-À qualifier sur l’appareil et le serveur effectivement ciblés : achat
+Matrice de recette ciblée, dont les résultats historiques et les lacunes
+sont explicités en [Q020–Q023](VALIDATION.md#q020) : achat
 approuvé/refusé/annulé, pending puis finalisation, processing puis reprise
 bornée, panne API, restauration sur le même appareil et un nouvel appareil,
 changement de compte, renouvellement, annulation, expiration et révocation.

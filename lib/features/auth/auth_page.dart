@@ -145,9 +145,14 @@ class _AuthenticationDialogState extends State<AuthenticationDialog> {
                             notice: widget.controller.notice,
                             onDismiss: widget.controller.clearNotice,
                           ),
-                          if (widget.controller.notice != null)
-                            const SizedBox(height: 16),
-                          _LoginForm(controller: widget.controller, busy: busy),
+                          SizedBox(
+                            height: widget.controller.notice != null ? 16 : 0,
+                          ),
+                          _LoginForm(
+                            key: const ValueKey('guest-login-form'),
+                            controller: widget.controller,
+                            busy: busy,
+                          ),
                         ],
                       ),
                     ),
@@ -396,7 +401,7 @@ class _AuthPanel extends StatelessWidget {
         ),
       ],
       NoticeCard(notice: controller.notice, onDismiss: controller.clearNotice),
-      if (controller.notice != null) const SizedBox(height: 20),
+      SizedBox(height: controller.notice != null ? 20 : 0),
       if (!loginOnly)
         DecoratedBox(
           decoration: BoxDecoration(
@@ -428,19 +433,26 @@ class _AuthPanel extends StatelessWidget {
         ),
       const SizedBox(height: 28),
       if (loginOnly)
-        _LoginForm(controller: controller, busy: busy)
+        _LoginForm(
+          key: const ValueKey('auth-login-form'),
+          controller: controller,
+          busy: busy,
+        )
       else
         AnimatedBuilder(
+          key: const ValueKey('auth-forms'),
           animation: tabs,
           builder: (BuildContext context, Widget? child) => IndexedStack(
             index: tabs.index,
             children: <Widget>[
               _LoginForm(
+                key: const ValueKey('auth-login-form'),
                 controller: controller,
                 busy: busy,
                 onCreateAccount: () => tabs.animateTo(1),
               ),
               _RegistrationForm(
+                key: const ValueKey('auth-registration-form'),
                 controller: controller,
                 busy: busy,
                 active: tabs.index == 1,
@@ -488,6 +500,7 @@ class _AuthPanel extends StatelessWidget {
 
 class _LoginForm extends StatefulWidget {
   const _LoginForm({
+    super.key,
     required this.controller,
     required this.busy,
     this.onCreateAccount,
@@ -632,6 +645,7 @@ class _LoginFormState extends State<_LoginForm> {
 
 class _RegistrationForm extends StatefulWidget {
   const _RegistrationForm({
+    super.key,
     required this.controller,
     required this.busy,
     required this.active,

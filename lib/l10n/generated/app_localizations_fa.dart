@@ -2098,4 +2098,18 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'شرایط این پیشنهاد تغییر کرده است. طرح‌ها را تازه‌سازی کنید و دوباره انتخاب کنید.';
+
+  @override
+  String get status_waitingNetwork => 'در انتظار شبکه';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'شبکه‌ای در دسترس نیست. VPN پس از بازگشت شبکه اتصال را بررسی می‌کند.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'موارد دلخواه بارگیری نشدند. دوباره تلاش کنید.';
+
+  @override
+  String get locations_favoritesLoading => 'در حال بارگیری موارد دلخواه…';
 }

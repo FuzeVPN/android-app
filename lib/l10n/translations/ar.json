@@ -701,7 +701,11 @@
     "billing_priceYearly": "سنويًا",
     "billing_trialToday": "لا شيء تدفعه اليوم",
     "billing_trialConfirmation": "يؤكد Google Play التواريخ والمبلغ النهائي والضرائب المطبقة قبل تأكيدك.",
-    "billing_offerChanged": "تغيّرت شروط هذا العرض. حدّث الخطط واختر من جديد."
+    "billing_offerChanged": "تغيّرت شروط هذا العرض. حدّث الخطط واختر من جديد.",
+    "status_waitingNetwork": "بانتظار الشبكة",
+    "status_waitingNetworkDetail": "لا توجد شبكة متاحة. سيتحقق VPN من الاتصال عند عودة الشبكة.",
+    "locations_favoriteLoadFailed": "تعذر تحميل المفضلة. حاول مجددًا.",
+    "locations_favoritesLoading": "جارٍ تحميل المفضلة…"
   },
   "android": {
     "vpn_notification_channel": "اتصال VPN",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "عملية VPN قيد التنفيذ…",
     "vpn_notification_reconnecting": "جارٍ إعادة الاتصال… · %1$s",
     "vpn_system_action_required": "يلزم إجراء في إعدادات Android",
-    "vpn_tile_reconnecting": "جارٍ إعادة الاتصال… · %1$s"
+    "vpn_tile_reconnecting": "جارٍ إعادة الاتصال… · %1$s",
+    "vpn_notification_waiting_network": "بانتظار الشبكة · %1$s",
+    "vpn_tile_waiting_network": "بانتظار الشبكة · %1$s"
   },
   "countries": {
     "AC": "جزيرة أسينشين",

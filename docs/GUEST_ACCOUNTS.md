@@ -1,6 +1,9 @@
 # Accueil et abonnements avec compte invité
 
-Version source **0.2.6+74012**. Les contrats ci-dessous sont ceux attendus
+Audit de qualification du 14 octobre 2026 : [Q020](VALIDATION.md#q020), [Q022](VALIDATION.md#q022), [Q024](VALIDATION.md#q024), [Q025](VALIDATION.md#q025), [Q029](VALIDATION.md#q029).
+
+
+Version source **0.2.10+74016**. Les contrats ci-dessous sont ceux attendus
 par le client ; le backend et son état en production ne sont pas inclus ni
 vérifiés par cette publication.
 
@@ -203,4 +206,7 @@ continuité des tunnels WireGuard et OpenVPN pendant la conversion.
 La fenêtre de connexion des Réglages doit conserver l’invité à la fermeture,
 l’annulation Google et l’échec. Une connexion à un autre compte doit remplacer
 le scope après vérification du profil cible et refuser tout transfert implicite.
-Les tests simulés ne prouvent ni un achat Play réel ni l’état du backend.
+Le claim réel 74008 conservant WireGuard est documenté en
+[Q024](VALIDATION.md#q024). Les parcours OpenVPN déjà actif, restauration
+sur autre appareil et cycles d’achat manquants ont leurs prérequis en
+[Q022](VALIDATION.md#q022), sans extrapolation des tests simulés.

@@ -701,7 +701,11 @@
     "billing_priceYearly": "per jaar",
     "billing_trialToday": "Vandaag hoef je niets te betalen",
     "billing_trialConfirmation": "Google Play bevestigt de datums, het eindbedrag en de toepasselijke belastingen voordat je bevestigt.",
-    "billing_offerChanged": "De voorwaarden van deze aanbieding zijn gewijzigd. Vernieuw de abonnementen en kies opnieuw."
+    "billing_offerChanged": "De voorwaarden van deze aanbieding zijn gewijzigd. Vernieuw de abonnementen en kies opnieuw.",
+    "status_waitingNetwork": "Wachten op netwerk",
+    "status_waitingNetworkDetail": "Geen netwerk beschikbaar. De VPN controleert de verbinding zodra het netwerk terug is.",
+    "locations_favoriteLoadFailed": "Favorieten konden niet worden geladen. Probeer opnieuw.",
+    "locations_favoritesLoading": "Favorieten laden…"
   },
   "android": {
     "vpn_notification_channel": "VPN-verbinding",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN-bewerking wordt uitgevoerd…",
     "vpn_notification_reconnecting": "Opnieuw verbinden… · %1$s",
     "vpn_system_action_required": "Actie vereist in de Android-instellingen",
-    "vpn_tile_reconnecting": "Opnieuw verbinden… · %1$s"
+    "vpn_tile_reconnecting": "Opnieuw verbinden… · %1$s",
+    "vpn_notification_waiting_network": "Wachten op netwerk · %1$s",
+    "vpn_tile_waiting_network": "Wachten op netwerk · %1$s"
   },
   "countries": {
     "AC": "Ascension",

@@ -1,7 +1,7 @@
 name: fuzevpn_android
 description: Client Android officiel de FuzeVPN.
 publish_to: none
-version: 0.2.6+74012
+version: 0.2.10+74016
 
 environment:
   sdk: '>=3.12.0 <4.0.0'

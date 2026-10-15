@@ -1968,4 +1968,17 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get billing_offerChanged => '이 혜택의 조건이 변경되었습니다. 요금제를 새로고침하고 다시 선택하세요.';
+
+  @override
+  String get status_waitingNetwork => '네트워크 대기 중';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      '사용 가능한 네트워크가 없습니다. 네트워크가 복구되면 VPN 연결을 확인합니다.';
+
+  @override
+  String get locations_favoriteLoadFailed => '즐겨찾기를 불러오지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get locations_favoritesLoading => '즐겨찾기 불러오는 중…';
 }

@@ -1,3 +1,140 @@
+# Android 0.2.10+74016 — 2026-10-14
+
+Audit de qualification du 14 octobre 2026 : [Q003](VALIDATION.md#q003), [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q018](VALIDATION.md#q018), [Q020](VALIDATION.md#q020), [Q022](VALIDATION.md#q022), [Q023](VALIDATION.md#q023), [Q024](VALIDATION.md#q024), [Q025](VALIDATION.md#q025), [Q032](VALIDATION.md#q032).
+
+
+## Français
+
+- Le statut de connexion ajuste sa taille de base à la largeur des mots :
+  Déconnecté reste entier sur les téléphones à texte 200 %, notamment avec
+  les scaleurs linéaires Android 12/13. Les autres statuts suivent cette règle.
+- L’agrandissement demandé et les libellés restent complets ; les statuts qui
+  tiennent déjà gardent leur taille, y compris avec le scaleur non linéaire
+  Android 14 et suivants. La région live et les boutons sont conservés.
+
+## English
+
+- Connection status labels fit whole words on narrow phones with 200% text,
+  including Android 12/13 linear scaling. Labels keep the full accessibility
+  scaler and their original size whenever they already fit. Live semantics
+  and connection/stop actions are retained.
+
+## Qualification / Validation
+
+The **74016** client retest completed on eight VM profiles: 252/256 checks
+passed, eight visual reviews and 110 display changes passed. The status word
+fix is observed on Android 12/13 phones at 320/360 dp and 200% text.
+Real OpenVPN passes on all eight profiles; real WireGuard/recovery passes on
+Android 14–17 phones. Four Android 12/13 WireGuard translation crashes remain
+reproduced. See [Q008–Q011](VALIDATION.md#q008) for exact scope.
+The 14 October audit also records failed byte reproduction, isolated VM tests
+and the memory-blocked 16KiB run; these do not alter the delivered APK.
+One universal signed ARM APK; no AAB, Play publication or backend change.
+
+---
+
+# Android 0.2.9+74015 — 2026-10-14
+
+## Français
+
+- WireGuard charge son moteur natif au premier démarrage du tunnel, sur son
+  worker. L’interface, les lectures d’état au repos et OpenVPN ne chargent
+  plus ce moteur au démarrage. Cela isole ces parcours du SIGILL du runtime
+  Go ARM64 traduit dans les VM Android 13.
+- Les moteurs natifs et les corrections réseau/interface/favoris de 74014
+  restent inchangés. La connexion WireGuard dans les VM Android 12/13 garde
+  une limite de traduction ARM ; elle doit être qualifiée sur matériel ARM.
+
+## English
+
+- WireGuard loads its native engine on its worker when first starting a tunnel.
+  Startup, idle state reads and OpenVPN no longer load that engine, isolating
+  those paths from the translated ARM64 Go runtime SIGILL on Android 13 VMs.
+- Native engines and the 74014 network/UI/favorites corrections are unchanged.
+  WireGuard on the Android 12/13 VMs still requires native ARM qualification.
+
+## Qualification / Validation
+
+The user retest validates 74014 real WireGuard/OpenVPN tunnels and network recovery
+on Android 14/17. This release fixes eager loading of the unused WireGuard engine;
+isolated ARM tests cover initialization, idle operations and deferred worker use.
+They do not establish real ARM hardware or live VPN compatibility on Android 12/13.
+One universal signed ARM release APK; no AAB, Play publication or backend changes.
+
+---
+
+# Android 0.2.8+74014 — 2026-10-13
+
+## Français
+
+- L’observation des réseaux physiques WireGuard inclut les réseaux des autres
+  UID sur Android 12 et suivants. Le cache des événements est recoupé chaque
+  seconde avec l’inventaire local tant que le tunnel reste actif, y compris
+  sans Flutter. Une entrée périmée ne peut plus maintenir « Connecté » après
+  une coupure complète ; une commande de préparation ne suspend plus cette
+  observation.
+- Le retour du réseau exige toujours une nouvelle preuve du pair avant
+  « Connecté ». Les moteurs natifs, les traductions et les corrections
+  d’interface/favoris de 74013 sont conservés.
+
+## English
+
+- WireGuard physical network observation includes other UID networks on
+  Android 12 and later. While a tunnel remains active, the event cache is
+  reconciled with Android’s local inventory every second, including without
+  Flutter. Stale entries cannot retain Connected after a complete outage;
+  preparation commands no longer suspend observation.
+- Network return still requires fresh peer evidence before Connected. Native
+  engines, translations and the 74013 interface/favorites corrections are retained.
+
+## Qualification / Validation
+
+Le retest utilisateur de 74013 confirme les corrections du formulaire, des titres
+et des favoris, ainsi que la coupure WireGuard sur Android 15/16 ; il constate
+encore « Connecté » hors réseau sur Android 14/17. Les régressions 74014 portent
+sur l’observation native. Les tests isolés injectent un tunnel synthétique sans
+compte ni backend ; ils ne qualifient pas une connexion VPN réelle du nouvel APK.
+Les crashes de traduction ARM Android 12/13 restent ouverts. Un APK universel
+ARM32/ARM64 est construit et signé localement ; aucun AAB ni publication.
+
+---
+
+# Android 0.2.7+74013 — 2026-10-13
+
+## Français
+
+- WireGuard affiche l'attente de réseau après une coupure complète et confirme
+  la reprise avec une nouvelle preuve du pair, en conservant le tunnel local.
+  La notification et la tuile Android suivent l'état ; l'arrêt reste accessible.
+- Les champs de connexion restent renseignés après une erreur et sa fermeture,
+  y compris dans la fenêtre de connexion depuis les réglages invités.
+- Les titres s'adaptent aux mots sur les écrans étroits avec du texte agrandi,
+  sans limiter l'agrandissement d'accessibilité ni tronquer les libellés.
+- Le chargement lent ou échoué des favoris possède un état distinct de la
+  sauvegarde. Une lecture tardive peut aboutir et une erreur peut être retentée
+  sans écraser les favoris enregistrés avant leur chargement.
+
+## English
+
+- WireGuard shows network waiting after complete network loss and requires
+  fresh peer evidence before reporting recovery, retaining the local tunnel.
+  Android notifications and the quick tile follow the state; stopping stays available.
+- Login fields survive an error and its dismissal, including guest settings login.
+- Headings fit whole words on narrow screens with enlarged text while retaining
+  the user's accessibility scale and complete labels.
+- Slow or failed favorites loading is separate from saving. Late reads can
+  complete, and retry never overwrites saved favorites before they are loaded.
+
+## Qualification / Validation
+
+Local source corrections and regression checks; one signed ARM32/ARM64 release
+APK is prepared separately. No App Bundle, Play publication, backend change or
+new real VPN campaign is part of this update. Test counts and binary fingerprints
+belong to the local delivery report. Android 12/13 ARM translation failures in
+x86_64 emulators remain a qualification limitation for physical ARM devices.
+
+---
+
 # Android 0.2.6+74012 — 2026-10-11
 
 ## Français

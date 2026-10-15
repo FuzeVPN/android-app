@@ -2126,4 +2126,18 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'इस ऑफ़र की शर्तें बदल गई हैं। प्लान रीफ़्रेश करें और फिर से चुनें।';
+
+  @override
+  String get status_waitingNetwork => 'नेटवर्क की प्रतीक्षा';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'कोई नेटवर्क उपलब्ध नहीं है। नेटवर्क लौटने पर VPN कनेक्शन की जाँच करेगा।';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'पसंदीदा लोड नहीं हो सके। फिर से कोशिश करें।';
+
+  @override
+  String get locations_favoritesLoading => 'पसंदीदा लोड हो रहे हैं…';
 }

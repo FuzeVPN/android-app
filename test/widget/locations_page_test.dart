@@ -59,6 +59,35 @@ const _profile = UserProfile(
 
 void main() {
   _locationsTest(
+    'favorites read failure is distinct from saving and retry preserves saved IDs',
+    (tester, h) async {
+      await h.mount(tester);
+      final error = find.byKey(const ValueKey('locations-favorite-load-error'));
+      await _ensureVisible(tester, error);
+      expect(error, findsOneWidget);
+      expect(
+        find.byKey(const ValueKey('locations-favorite-error')),
+        findsNothing,
+      );
+      final favorite = find.byKey(
+        const ValueKey('favorite-location-sao-paulo-01'),
+      );
+      await _ensureVisible(tester, favorite);
+      expect(tester.widget<IconButton>(favorite).onPressed, isNull);
+      h.preferences.failRead = false;
+      await _tap(tester, 'locations-favorite-retry');
+      await tester.pumpAndSettle();
+      expect(h.controller.favoriteLocationIds, {'paris-01'});
+      await _ensureVisible(tester, favorite);
+      expect(tester.widget<IconButton>(favorite).onPressed, isNotNull);
+      expect(h.controller.favoritesLoadFailed, isFalse);
+    },
+    setup: (h) {
+      h.preferences.failRead = true;
+      h.preferences.favorites = {'paris-01'};
+    },
+  );
+  _locationsTest(
     'hierarchy starts with one card per country and two separate actions',
     (tester, h) async {
       await h.mount(tester, searchAll: false);
@@ -1517,9 +1546,14 @@ class _LocationsPreferences
   Future<void>? writeGate;
   Future<void>? selectedGate;
   bool failWrite = false;
+  bool failRead = false;
   bool failSelectedWrite = false;
   @override
-  Future<Set<String>> readFavoriteLocations() async => Set.of(favorites);
+  Future<Set<String>> readFavoriteLocations() async {
+    if (failRead) throw const NativeVpnException('fixture_read_failed');
+    return Set.of(favorites);
+  }
+
   @override
   Future<void> writeFavoriteLocations(Set<String> locationIds) async {
     if (writeGate != null) await writeGate;

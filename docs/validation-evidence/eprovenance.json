@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "EPROVENANCE",
+  "date": "2026-10-14",
+  "kind": "cryptographic_and_hash_verification",
+  "artifacts": [
+    "source-74016"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "openssl_archive_signature_valid": true,
+    "signing_subkey": "C46ED3F2CBEFDA1FDAADA44264ED7B1DCCE71CB2",
+    "primary_key": "B146647E45A7B33947AB226B2A2C87D161692D40",
+    "signature_date": "2026-09-29",
+    "gpg_keyring": "Isolated keyring imported from retained OpenSSL public keys",
+    "native_bundle_policy": "PASS",
+    "wireguard_aar_gate": "16 cases passed",
+    "limits": "Cryptographic validity against reviewed retained keys and bundle manifests; not blanket independent publisher certification or source-to-native bit reproducibility."
+  },
+  "source_receipts": [
+    {
+      "name": "gpg-native-verification.txt",
+      "sha256": "e5535b819e63ecd10b8fa93a6de1512b375fcf6d2dda9d36558d6b915672e4dc"
+    },
+    {
+      "name": "build-provenance.txt",
+      "sha256": "4d08023f746f7bdbf16c863abc305330a3d9ccaff3d93b665ae95c16b81bf6ca"
+    }
+  ]
+}

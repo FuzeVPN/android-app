@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Verbindung wird wiederhergestellt… · %1$s</string>
     <string name="vpn_system_action_required">Aktion in den Android-Einstellungen erforderlich</string>
     <string name="vpn_tile_reconnecting">Verbindung wird wiederhergestellt… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Warten auf Netzwerk · %1$s</string>
+    <string name="vpn_tile_waiting_network">Warten auf Netzwerk · %1$s</string>
 </resources>

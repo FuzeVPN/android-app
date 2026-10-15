@@ -701,7 +701,11 @@
     "billing_priceYearly": "سالانہ",
     "billing_trialToday": "آج کوئی ادائیگی نہیں",
     "billing_trialConfirmation": "آپ کی تصدیق سے پہلے Google Play تاریخوں، آخری رقم اور متعلقہ ٹیکسوں کی تصدیق کرتا ہے۔",
-    "billing_offerChanged": "اس پیشکش کی شرائط بدل گئی ہیں۔ پلان ریفریش کریں اور دوبارہ منتخب کریں۔"
+    "billing_offerChanged": "اس پیشکش کی شرائط بدل گئی ہیں۔ پلان ریفریش کریں اور دوبارہ منتخب کریں۔",
+    "status_waitingNetwork": "نیٹ ورک کا انتظار",
+    "status_waitingNetworkDetail": "کوئی نیٹ ورک دستیاب نہیں۔ نیٹ ورک واپس آنے پر VPN کنکشن کی جانچ کرے گا۔",
+    "locations_favoriteLoadFailed": "پسندیدہ مقامات لوڈ نہیں ہو سکے۔ دوبارہ کوشش کریں۔",
+    "locations_favoritesLoading": "پسندیدہ مقامات لوڈ ہو رہے ہیں…"
   },
   "android": {
     "vpn_notification_channel": "VPN کنکشن",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN کارروائی جاری ہے…",
     "vpn_notification_reconnecting": "دوبارہ کنیکٹ کیا جا رہا ہے… · %1$s",
     "vpn_system_action_required": "Android کی ترتیبات میں کارروائی ضروری ہے",
-    "vpn_tile_reconnecting": "دوبارہ کنیکٹ کیا جا رہا ہے… · %1$s"
+    "vpn_tile_reconnecting": "دوبارہ کنیکٹ کیا جا رہا ہے… · %1$s",
+    "vpn_notification_waiting_network": "نیٹ ورک کا انتظار · %1$s",
+    "vpn_tile_waiting_network": "نیٹ ورک کا انتظار · %1$s"
   },
   "countries": {
     "AC": "جزیرہ اسینشن",

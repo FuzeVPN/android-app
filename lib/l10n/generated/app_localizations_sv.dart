@@ -2145,4 +2145,18 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Villkoren för erbjudandet har ändrats. Uppdatera abonnemangen och välj igen.';
+
+  @override
+  String get status_waitingNetwork => 'Väntar på nätverk';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Inget nätverk tillgängligt. VPN kontrollerar anslutningen när nätverket återkommer.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Favoriterna kunde inte läsas in. Försök igen.';
+
+  @override
+  String get locations_favoritesLoading => 'Läser in favoriter…';
 }

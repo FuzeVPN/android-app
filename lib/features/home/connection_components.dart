@@ -133,8 +133,10 @@ class TunnelHero extends StatelessWidget {
                     liveRegion: true,
                     child: Column(
                       children: <Widget>[
-                        Text(
+                        FuzeAdaptiveText(
                           presentation.label,
+                          key: const ValueKey('tunnel-status'),
+                          minimumFontSize: 14,
                           textAlign: TextAlign.center,
                           style:
                               (compact

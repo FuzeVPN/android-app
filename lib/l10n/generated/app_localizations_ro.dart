@@ -2163,4 +2163,18 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Condițiile acestei oferte s-au schimbat. Reîmprospătează planurile și alege din nou.';
+
+  @override
+  String get status_waitingNetwork => 'Se așteaptă rețeaua';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Nicio rețea disponibilă. VPN va verifica conexiunea când revine rețeaua.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Favoritele nu au putut fi încărcate. Încercați din nou.';
+
+  @override
+  String get locations_favoritesLoading => 'Se încarcă favoritele…';
 }

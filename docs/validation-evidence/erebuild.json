@@ -1,0 +1,308 @@
+{
+  "schema": 1,
+  "id": "EREBUILD",
+  "date": "2026-10-14",
+  "kind": "clean_reconstruction_comparison",
+  "artifacts": [
+    "source-74016"
+  ],
+  "artifact_sha256": {},
+  "observations": {
+    "source_commit": "a5eff1ab577be708e0c0c89b5dc98e5fc96f013b",
+    "version": "0.2.10+74016",
+    "scope": "Two separate clean Git checkouts; separate project outputs; same pinned toolchain and reviewed native prebuilts; shared downloaded Pub/Maven/Flutter caches; no release signing",
+    "a_sha256": "d71ff9e23aed174587b0a096e95487e764fcf9779f399cefee63ec5a3086ca56",
+    "b_sha256": "447f9d7de1d16c7175f4a932847e6ffe6cab16913b993e111dca021b65082697",
+    "byte_identical": false,
+    "zip_entries": 660,
+    "entry_differences": [
+      {
+        "path": "lib/arm64-v8a/libapp.so",
+        "a": {
+          "sha256": "020a90407fcf2e9afe379d40144363d6a9d8e551aa676465766ba3453ab669ab",
+          "bytes": 10027920,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "b": {
+          "sha256": "233e975f9e5c6baf9d5a19be851dcf208e85422bb13fc3fb26681f4e10869f67",
+          "bytes": 10027920,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "path": "lib/arm64-v8a/libfuzevpn_openvpn.so",
+        "a": {
+          "sha256": "ca1de494120336ca0399dead68afa39dbd0cafe1baff27e0ff21f6531af25d1c",
+          "bytes": 6993960,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "b": {
+          "sha256": "00545121072c060cada460df4c7ac083263eb2d027f6bbc19d6cbfc097d089b1",
+          "bytes": 6993960,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "path": "lib/armeabi-v7a/libapp.so",
+        "a": {
+          "sha256": "1b86ed0265dd4ebeb2f7569f06861c7b0a4b7d57f13735caf7f8e9da0eb17ad2",
+          "bytes": 11272780,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "b": {
+          "sha256": "0cd9580b22e17c5ab0d3fc17c132f6f453a010b536f1ec770e67e97ebdd0cbd6",
+          "bytes": 11272780,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      },
+      {
+        "path": "lib/armeabi-v7a/libfuzevpn_openvpn.so",
+        "a": {
+          "sha256": "0d1f892199ab9de047955326627a41bb206e086494b4b5b5186f0bd27c6af2f5",
+          "bytes": 4693660,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "b": {
+          "sha256": "8806ee8c1de647d49ae0d095be09422a482952a0bcb7d93ec191357cb3c4d74d",
+          "bytes": 4693660,
+          "method": 0,
+          "timestamp": [
+            1981,
+            1,
+            1,
+            1,
+            1,
+            2
+          ],
+          "flags": 0,
+          "extra_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "payload_identical": false,
+    "mapping_identical": true,
+    "elf_analysis": [
+      {
+        "path": "lib/arm64-v8a/libapp.so",
+        "text_section_identical": true,
+        "differing_sections": [
+          {
+            "section": ".note.gnu.build-id",
+            "a_sha256": "72df807f6b1bb1c5122f0e7554329e839ead063f8b06fd7fd9590a2579ad84fb",
+            "b_sha256": "482116a79c59a87ba186d1fd13c13d404a6b67aa7e7f90cc4c1fe3831841dbde",
+            "bytes_a": 32,
+            "bytes_b": 32,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".rodata",
+            "a_sha256": "7efed743ccba49c9ee9acbad83411afcf828d5b982c18110b096fc6c9960dc50",
+            "b_sha256": "2c5dab4cbcefa8ee95b16c5cd5b6fe5396de502dae3241d18ac147c27483b8ec",
+            "bytes_a": 4980752,
+            "bytes_b": 4980752,
+            "equal_after_checkout_name_normalization": false
+          }
+        ],
+        "checkout_specific_strings_a": 1,
+        "checkout_specific_strings_b": 1
+      },
+      {
+        "path": "lib/arm64-v8a/libfuzevpn_openvpn.so",
+        "text_section_identical": false,
+        "differing_sections": [
+          {
+            "section": ".note.gnu.build-id",
+            "a_sha256": "37d625f41a6be279d8b8275c8cd3059971bbadee3b4f2121211ac20d5d8f7635",
+            "b_sha256": "34c37c1e68d79431e9e74652d6640758a1ae0f229bd4daef6397350e251b2e27",
+            "bytes_a": 36,
+            "bytes_b": 36,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".rela.dyn",
+            "a_sha256": "bb7fa75ab00ef62d7f06d78282a11e2a8f588d53018786f2dab57312e6d7d2db",
+            "b_sha256": "bab5a64d2370968286bf1ea9288a32485838c65843c2edaccaf2c55a8f22ef67",
+            "bytes_a": 708072,
+            "bytes_b": 708072,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".rodata",
+            "a_sha256": "778ad3245dbc5d39084c9fad76fb8867888fc58823027779de0688270646944f",
+            "b_sha256": "de9ebad83f0e0abec5c7eb4d1c722033d99e9ff8a7680b032dcfb981fffa312d",
+            "bytes_a": 1184824,
+            "bytes_b": 1184824,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".text",
+            "a_sha256": "792d5b99dedb9283f365b6ddf440e71ca0b3387d00000868ec95e57b9961dd92",
+            "b_sha256": "f61c538cfdbd843f54a4e42d312a5474ce3047628e2e111b978e0e98bc5c81b5",
+            "bytes_a": 3562104,
+            "bytes_b": 3562104,
+            "equal_after_checkout_name_normalization": false
+          }
+        ],
+        "checkout_specific_strings_a": 5,
+        "checkout_specific_strings_b": 5
+      },
+      {
+        "path": "lib/armeabi-v7a/libapp.so",
+        "text_section_identical": true,
+        "differing_sections": [
+          {
+            "section": ".note.gnu.build-id",
+            "a_sha256": "307efc3921a5b839ebfc439fe72f75f93f8d3ac2f659e334b1acdec731edffad",
+            "b_sha256": "a4aa106400dc9d23f0513df880355f923369060f233b89d62b4a24eca03d4756",
+            "bytes_a": 32,
+            "bytes_b": 32,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".rodata",
+            "a_sha256": "42a3da4343b437a63e861a10d8fc6a646000ff43987f26960a122a55659fd6ef",
+            "b_sha256": "cde0866351672b5e8378bff64a0471e7f09a49ed4b7ddb53b497bd40042c98be",
+            "bytes_a": 5915240,
+            "bytes_b": 5915240,
+            "equal_after_checkout_name_normalization": false
+          }
+        ],
+        "checkout_specific_strings_a": 1,
+        "checkout_specific_strings_b": 1
+      },
+      {
+        "path": "lib/armeabi-v7a/libfuzevpn_openvpn.so",
+        "text_section_identical": false,
+        "differing_sections": [
+          {
+            "section": ".data",
+            "a_sha256": "bcf836a5b160cf03cbe79efb45be05d3a02022d5f36e6dddbfb72b558285184f",
+            "b_sha256": "a58060cb33db3597284f19dd1045f63147ef0351114899e2309a385279d4b380",
+            "bytes_a": 17080,
+            "bytes_b": 17080,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".data.rel.ro",
+            "a_sha256": "b5758e7c7052f661af9c38b843b585e724fc1c81987100f4fade08557f92fcc0",
+            "b_sha256": "34b36500546691a5b97112aec74600df7a7a6050b38ba4a03165b0ae9eb5eff3",
+            "bytes_a": 266164,
+            "bytes_b": 266164,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".note.gnu.build-id",
+            "a_sha256": "57b00243571c16b440b068c1466b73022826a30ced8d339b9ec0683f45124765",
+            "b_sha256": "4b9a2bcacb46756a869c2e128606c1e0e953d3ae8a0b3b5cc79e50fa3245351d",
+            "bytes_a": 36,
+            "bytes_b": 36,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".rodata",
+            "a_sha256": "5b4dd672fe65c3b2bf09a4651e9cfcbad95163b0118862580f131a094974fc45",
+            "b_sha256": "43b123d42ca13394a4c11b7932cd33ff74512c119f1b175243d0e32860750fab",
+            "bytes_a": 634008,
+            "bytes_b": 634008,
+            "equal_after_checkout_name_normalization": false
+          },
+          {
+            "section": ".text",
+            "a_sha256": "8f9e48122a44240b14b68d7086b7d94711d2bd6f3e1981caaacb95c23c058d40",
+            "b_sha256": "ffef9a714f110946fd8944f9a82a40fffd3231ce23471ee908b9ebdb526f61ef",
+            "bytes_a": 3325648,
+            "bytes_b": 3325648,
+            "equal_after_checkout_name_normalization": false
+          }
+        ],
+        "checkout_specific_strings_a": 5,
+        "checkout_specific_strings_b": 5
+      }
+    ],
+    "interpretation": "Byte-for-byte reproduction failed. Section comparisons and checkout-path normalization identify observed differences; no blanket assertion of semantic equivalence or native-source reproducibility is made."
+  },
+  "source_receipts": [
+    {
+      "name": "reconstruction.json",
+      "sha256": "259951fdf82572f744214fe9bb31eaabad841807204f3810d9ea63d605645a01"
+    },
+    {
+      "name": "rebuild-a.txt",
+      "sha256": "41d9d8357d00874fb1e6b6c3e36f6e3299bb60c8f42f86c824167fc90b107734"
+    },
+    {
+      "name": "rebuild-b.txt",
+      "sha256": "fdac44f162474ea19c5e731fb0dd045e595375e4749ca759a7a8e2ead41b6c36"
+    }
+  ]
+}

@@ -1,5 +1,8 @@
 # Security reporting
 
+Qualification audit, 14 October 2026: [Q029](docs/VALIDATION.md#q029), [Q032](docs/VALIDATION.md#q032).
+
+
 Report vulnerabilities through the repository's private reporting page:
 
 [Report a vulnerability privately](https://github.com/FuzeVPN/android-app/security/advisories/new)
@@ -18,7 +21,10 @@ If the page is unavailable, do not post details publicly; wait for the private
 channel to be available. No unverified security email address or response-time
 commitment is listed here.
 
-The current source baseline is **0.2.4+74010**. There is no public binary
+The current source baseline is **0.2.10+74016**, preserved by commit
+`a5eff1ab577be708e0c0c89b5dc98e5fc96f013b`. The dated
+[qualification registry](docs/VALIDATION.md) identifies tested versions and
+open prerequisites. There is no public binary
 release or formal support lifecycle declared by this repository. Older code
 should not be assumed to receive security updates. Report issues against the
 current source when possible, and identify older affected versions if known.

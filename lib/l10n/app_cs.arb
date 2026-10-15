@@ -699,5 +699,9 @@
   "billing_priceYearly": "ročně",
   "billing_trialToday": "Dnes nic neplatíte",
   "billing_trialConfirmation": "Google Play před vaším potvrzením potvrdí data, konečnou částku a příslušné daně.",
-  "billing_offerChanged": "Podmínky této nabídky se změnily. Obnovte tarify a vyberte znovu."
+  "billing_offerChanged": "Podmínky této nabídky se změnily. Obnovte tarify a vyberte znovu.",
+  "status_waitingNetwork": "Čekání na síť",
+  "status_waitingNetworkDetail": "Žádná síť není dostupná. VPN ověří připojení po obnovení sítě.",
+  "locations_favoriteLoadFailed": "Oblíbené se nepodařilo načíst. Zkuste to znovu.",
+  "locations_favoritesLoading": "Načítání oblíbených…"
 }

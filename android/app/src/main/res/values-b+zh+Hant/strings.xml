@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">正在重新連線… · %1$s</string>
     <string name="vpn_system_action_required">需要在 Android 設定中採取動作</string>
     <string name="vpn_tile_reconnecting">正在重新連線… · %1$s</string>
+    <string name="vpn_notification_waiting_network">等待網路 · %1$s</string>
+    <string name="vpn_tile_waiting_network">等待網路 · %1$s</string>
 </resources>

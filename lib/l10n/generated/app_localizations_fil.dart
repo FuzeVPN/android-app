@@ -2188,4 +2188,18 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Nagbago ang mga kondisyon ng alok na ito. I-refresh ang mga plano at pumili muli.';
+
+  @override
+  String get status_waitingNetwork => 'Naghihintay ng network';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Walang available na network. Susuriin ng VPN ang koneksyon kapag bumalik ang network.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Hindi ma-load ang mga paborito. Subukan muli.';
+
+  @override
+  String get locations_favoritesLoading => 'Nilo-load ang mga paborito…';
 }

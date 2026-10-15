@@ -1,5 +1,8 @@
 # Licensing scope
 
+Qualification audit, 14 October 2026: [Q030](docs/VALIDATION.md#q030), [Q032](docs/VALIDATION.md#q032), [Q033](docs/VALIDATION.md#q033).
+
+
 The original FuzeVPN application source in this repository is licensed under
 the **Mozilla Public License 2.0** in [LICENSE](LICENSE), except where an
 existing file or directory notice states different terms. This declaration

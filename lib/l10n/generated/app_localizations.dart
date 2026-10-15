@@ -2871,6 +2871,30 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Les conditions de cette offre ont changé. Actualisez les formules et choisissez à nouveau.'**
   String get billing_offerChanged;
+
+  /// No description provided for @status_waitingNetwork.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de réseau'**
+  String get status_waitingNetwork;
+
+  /// No description provided for @status_waitingNetworkDetail.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun réseau disponible. Le VPN vérifiera la connexion au retour du réseau.'**
+  String get status_waitingNetworkDetail;
+
+  /// No description provided for @locations_favoriteLoadFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les favoris n’ont pas pu être chargés. Réessayez.'**
+  String get locations_favoriteLoadFailed;
+
+  /// No description provided for @locations_favoritesLoading.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chargement des favoris…'**
+  String get locations_favoritesLoading;
 }
 
 class _AppLocalizationsDelegate

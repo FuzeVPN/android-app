@@ -699,5 +699,9 @@
   "billing_priceYearly": "per tahun",
   "billing_trialToday": "Tidak perlu membayar hari ini",
   "billing_trialConfirmation": "Google Play mengonfirmasi tanggal, jumlah akhir, dan pajak yang berlaku sebelum Anda mengonfirmasi.",
-  "billing_offerChanged": "Ketentuan penawaran ini berubah. Muat ulang paket dan pilih kembali."
+  "billing_offerChanged": "Ketentuan penawaran ini berubah. Muat ulang paket dan pilih kembali.",
+  "status_waitingNetwork": "Menunggu jaringan",
+  "status_waitingNetworkDetail": "Tidak ada jaringan tersedia. VPN akan memeriksa koneksi saat jaringan kembali.",
+  "locations_favoriteLoadFailed": "Favorit tidak dapat dimuat. Coba lagi.",
+  "locations_favoritesLoading": "Memuat favorit…"
 }

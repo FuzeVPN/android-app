@@ -701,7 +701,11 @@
     "billing_priceYearly": "yıllık",
     "billing_trialToday": "Bugün ödeme yok",
     "billing_trialConfirmation": "Google Play, onayınızdan önce tarihleri, son tutarı ve geçerli vergileri doğrular.",
-    "billing_offerChanged": "Bu teklifin koşulları değişti. Planları yenileyip tekrar seçin."
+    "billing_offerChanged": "Bu teklifin koşulları değişti. Planları yenileyip tekrar seçin.",
+    "status_waitingNetwork": "Ağ bekleniyor",
+    "status_waitingNetworkDetail": "Kullanılabilir ağ yok. Ağ geri geldiğinde VPN bağlantıyı doğrulayacak.",
+    "locations_favoriteLoadFailed": "Favoriler yüklenemedi. Tekrar deneyin.",
+    "locations_favoritesLoading": "Favoriler yükleniyor…"
   },
   "android": {
     "vpn_notification_channel": "VPN bağlantısı",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN işlemi sürüyor…",
     "vpn_notification_reconnecting": "Yeniden bağlanıyor… · %1$s",
     "vpn_system_action_required": "Android ayarlarında işlem gerekiyor",
-    "vpn_tile_reconnecting": "Yeniden bağlanıyor… · %1$s"
+    "vpn_tile_reconnecting": "Yeniden bağlanıyor… · %1$s",
+    "vpn_notification_waiting_network": "Ağ bekleniyor · %1$s",
+    "vpn_tile_waiting_network": "Ağ bekleniyor · %1$s"
   },
   "countries": {
     "AC": "Ascension Adası",

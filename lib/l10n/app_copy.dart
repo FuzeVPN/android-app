@@ -263,6 +263,9 @@ abstract final class AppCopy {
       ),
       'locations.favoriteSaveFailed' =>
         localizations.locations_favoriteSaveFailed,
+      'locations.favoriteLoadFailed' =>
+        localizations.locations_favoriteLoadFailed,
+      'locations.favoritesLoading' => localizations.locations_favoritesLoading,
       'locations.emptyTitle' => localizations.locations_emptyTitle,
       'locations.emptyHint' => localizations.locations_emptyHint,
       'diagnostics.title' => localizations.diagnostics_title,
@@ -443,6 +446,9 @@ abstract final class AppCopy {
       'session.retryCleanup' => localizations.session_retryCleanup,
       'status.connecting' => localizations.status_connecting,
       'status.reconnecting' => localizations.status_reconnecting,
+      'status.waitingNetwork' => localizations.status_waitingNetwork,
+      'status.waitingNetworkDetail' =>
+        localizations.status_waitingNetworkDetail,
       'status.reconnectingDetail' => localizations.status_reconnectingDetail,
       'status.connectingDetail' => localizations.status_connectingDetail,
       'status.connected' => localizations.status_connected,

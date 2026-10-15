@@ -701,7 +701,11 @@
     "billing_priceYearly": "per år",
     "billing_trialToday": "Ingenting å betale i dag",
     "billing_trialConfirmation": "Google Play bekrefter datoer, sluttbeløp og gjeldende avgifter før du bekrefter.",
-    "billing_offerChanged": "Vilkårene for dette tilbudet har endret seg. Oppdater abonnementene og velg på nytt."
+    "billing_offerChanged": "Vilkårene for dette tilbudet har endret seg. Oppdater abonnementene og velg på nytt.",
+    "status_waitingNetwork": "Venter på nettverk",
+    "status_waitingNetworkDetail": "Ingen nettverk tilgjengelig. VPN kontrollerer tilkoblingen når nettverket kommer tilbake.",
+    "locations_favoriteLoadFailed": "Favoritter kunne ikke lastes inn. Prøv igjen.",
+    "locations_favoritesLoading": "Laster inn favoritter…"
   },
   "android": {
     "vpn_notification_channel": "VPN-tilkobling",
@@ -721,7 +725,9 @@
     "vpn_tile_working": "VPN-operasjon pågår…",
     "vpn_notification_reconnecting": "Kobler til på nytt… · %1$s",
     "vpn_system_action_required": "Handling kreves i Android-innstillingene",
-    "vpn_tile_reconnecting": "Kobler til på nytt… · %1$s"
+    "vpn_tile_reconnecting": "Kobler til på nytt… · %1$s",
+    "vpn_notification_waiting_network": "Venter på nettverk · %1$s",
+    "vpn_tile_waiting_network": "Venter på nettverk · %1$s"
   },
   "countries": {
     "AC": "Ascensionøya",

@@ -2148,4 +2148,18 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Условия этого предложения изменились. Обновите тарифы и выберите снова.';
+
+  @override
+  String get status_waitingNetwork => 'Ожидание сети';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Нет доступной сети. VPN проверит соединение после восстановления сети.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Не удалось загрузить избранное. Повторите попытку.';
+
+  @override
+  String get locations_favoritesLoading => 'Загрузка избранного…';
 }

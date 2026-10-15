@@ -17,4 +17,6 @@
     <string name="vpn_notification_reconnecting">Muling kumokonekta… · %1$s</string>
     <string name="vpn_system_action_required">Kailangan ng aksyon sa mga setting ng Android</string>
     <string name="vpn_tile_reconnecting">Muling kumokonekta… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Naghihintay ng network · %1$s</string>
+    <string name="vpn_tile_waiting_network">Naghihintay ng network · %1$s</string>
 </resources>

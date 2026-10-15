@@ -1,0 +1,2569 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "baseline_packages": 106,
+  "baseline_licenseDeclared_unknown": 23,
+  "baseline_licenseConcluded_unknown": 93,
+  "packages": [
+    {
+      "id": "SPDXRef-Package-FuzeVPNAndroid",
+      "name": "FuzeVPN Android",
+      "version": "0.2.10+74016",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "MPL-2.0",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "LICENSE",
+          "sha256": "9303ea1cfbf049945652668089d753fb1a7e1f2e52c680615c3d2cea7515c118"
+        },
+        {
+          "source": "LICENSING.md",
+          "sha256": "dc9a8923bc928b40b36f7081e86f7be91e87b206edb08a3fabb8bb8f362faf4b"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Flutter",
+      "name": "Flutter SDK",
+      "version": "3.44.7",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Flutter 3.44.7 LICENSE",
+          "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-UrlLauncher",
+      "name": "url_launcher",
+      "version": "6.3.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher@6.3.2 LICENSE",
+          "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardAndroidTunnel",
+      "name": "WireGuard Android Tunnel",
+      "version": "1.0.20260102-fuzevpn-fgs",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "android/third_party/wireguard-android/COPYING",
+          "sha256": "3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardGo",
+      "name": "wireguard-go",
+      "version": "v0.0.0-20250521234502-f333402bd9cb",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "MIT",
+      "licenseConcluded": "MIT",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.zip!/golang.zx2c4.com/wireguard@v0.0.0-20250521234502-f333402bd9cb/LICENSE",
+          "sha256": "91276db973f25602d1aa43491f59cbc84cb88e6f151e1d0cc82a755563ce0195"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-OpenVPN3Core",
+      "name": "OpenVPN 3 Core",
+      "version": "28469efe3ae770268b2b5c6aa607ed1489e101f0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "MPL-2.0",
+      "licenseConcluded": "MPL-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/app/src/main/cpp/third_party/openvpn3-core/LICENSE.md",
+          "sha256": "c53a1922d16a7052f2cc8395d0e72f8b3c43328b6b1071c21db9f1a1db10bb00"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-OpenSSL",
+      "name": "OpenSSL",
+      "version": "3.5.9",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/app/src/main/cpp/third_party/openssl/LICENSE.txt",
+          "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Asio",
+      "name": "Asio",
+      "version": "1.36.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSL-1.0",
+      "licenseConcluded": "BSL-1.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/asio-1.36.0-231cb29bab30f82712fcd54faaea42424cc6e710.tar.gz!/asio-231cb29bab30f82712fcd54faaea42424cc6e710/asio/COPYING",
+          "sha256": "062cc14c4448f675ab92e647fef5435197b6419ed89f8002adb33c18d35c5219"
+        },
+        {
+          "source": "android/source-distribution/archives/asio-1.36.0-231cb29bab30f82712fcd54faaea42424cc6e710.tar.gz!/asio-231cb29bab30f82712fcd54faaea42424cc6e710/asio/LICENSE_1_0.txt",
+          "sha256": "c9bff75738922193e67fa726fa225535870d2aa1059f91452c411736284ad566"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-fmt",
+      "name": "fmt",
+      "version": "12.1.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "MIT",
+      "licenseConcluded": "MIT",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/fmt-12.1.0-407c905e45ad75fc29bf0f9bb7c5c2fd3475976f.tar.gz!/fmt-407c905e45ad75fc29bf0f9bb7c5c2fd3475976f/LICENSE",
+          "sha256": "07580f2a3b35709ce703d523f447b242f6dfec7582a8c0df102c7fa2849375f8"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-lz4",
+      "name": "lz4",
+      "version": "1.10.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-2-Clause",
+      "licenseConcluded": "BSD-2-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/lz4-1.10.0-ebb370ca83af193212df4dcbadcc5d87bc0de2f0.tar.gz!/lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/LICENSE",
+          "sha256": "4bc9c403f6b679cc076dee210e0e21c27b4e8f6d3fb43d85364c76657bfaaac5"
+        },
+        {
+          "source": "android/source-distribution/archives/lz4-1.10.0-ebb370ca83af193212df4dcbadcc5d87bc0de2f0.tar.gz!/lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/examples/COPYING",
+          "sha256": "609b910ef05c9c855ecc1da155a36ed0f57514eac452cf93446530b5ea4b3bc3"
+        },
+        {
+          "source": "android/source-distribution/archives/lz4-1.10.0-ebb370ca83af193212df4dcbadcc5d87bc0de2f0.tar.gz!/lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/lib/LICENSE",
+          "sha256": "8b58c446121a109ccf32edc094bba3010a3d85e4ee3702950db55e4d3e87736c"
+        },
+        {
+          "source": "android/source-distribution/archives/lz4-1.10.0-ebb370ca83af193212df4dcbadcc5d87bc0de2f0.tar.gz!/lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/programs/COPYING",
+          "sha256": "609b910ef05c9c855ecc1da155a36ed0f57514eac452cf93446530b5ea4b3bc3"
+        },
+        {
+          "source": "android/source-distribution/archives/lz4-1.10.0-ebb370ca83af193212df4dcbadcc5d87bc0de2f0.tar.gz!/lz4-ebb370ca83af193212df4dcbadcc5d87bc0de2f0/tests/COPYING",
+          "sha256": "609b910ef05c9c855ecc1da155a36ed0f57514eac452cf93446530b5ea4b3bc3"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-AndroidXCoreKtx",
+      "name": "androidx.core:core-ktx",
+      "version": "1.16.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.core:core-ktx:1.16.0 POM",
+          "sha256": "4660cfb606ed89828ba3e10f79b29809ffb677ee5d2346fe9bcb03dfc4b9b645"
+        },
+        {
+          "source": "Maven androidx.core:core-ktx:1.16.0 aar!/META-INF/androidx/core/core-ktx/LICENSE.txt",
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Kotlin",
+      "name": "Kotlin",
+      "version": "2.3.20",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven org.jetbrains.kotlin:kotlin-stdlib:2.3.20 POM",
+          "sha256": "c83c02d9a7e2e954730491c33c2f1dc03c27662e27b566ec2b44d2d018639b98"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Apache-2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-KotlinCoroutinesAndroid",
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-android",
+      "version": "1.10.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2 POM",
+          "sha256": "b92d3672e7f9e8f4c4e2ab187c3e31fecc506496396f4a5f27ee1c957a42b319"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Apache-2.0",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-AndroidGradlePlugin",
+      "name": "Android Gradle Plugin",
+      "version": "9.3.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven com.android.tools.build:gradle:9.3.0 POM",
+          "sha256": "56c0bac054960c7e2de42c083f9129c48bfe212d823f00212fd91d00c414cedc"
+        },
+        {
+          "source": "Maven com.android.tools.build:gradle:9.3.0 jar!/NOTICE",
+          "sha256": "4842d6b86dc14afab28106d484946e1f927974896772c4644030be8758405ae0"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Gradle",
+      "name": "Gradle",
+      "version": "9.5.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Gradle 9.5.0 LICENSE",
+          "sha256": "cf234c4188d773406f640bf89be680d9288f40ff96901c70d643fcea96ad46df"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-AndroidNDK",
+      "name": "Android NDK",
+      "version": "28.2.13676358",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Android SDK ndk/28.2.13676358/package.xml",
+          "sha256": "67a8c301a21e0a9430fc7236c8c7f3955fb05cffecdbe7ce66316632af7b48b8"
+        },
+        {
+          "source": "NDK 28.2.13676358 NOTICE",
+          "sha256": "faf0dc52cf6ce9ab09a04b0c074a378dd2565ee1ed9bc1179d83793bcdba012e"
+        },
+        {
+          "source": "NDK 28.2.13676358 NOTICE.toolchain",
+          "sha256": "789714a9076571c580cf531bdcebec776a4d889c12c3c1108adafc6e4338710a"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "android-sdk-license",
+          "url": "https://developer.android.com/studio/terms"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-JDK17",
+      "name": "JDK",
+      "version": "Temurin 17.0.20.1+1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "GPL-2.0-only WITH Classpath-exception-2.0",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Temurin 17.0.20.1+1 legal/java.base/LICENSE",
+          "sha256": "4b9abebc4338048a7c2dc184e9f800deb349366bdf28eb23c2677a77b4c87726"
+        },
+        {
+          "source": "Temurin 17.0.20.1+1 legal/java.base/ADDITIONAL_LICENSE_INFO",
+          "sha256": "a69bce275ba7a3570af6579cb0f55682cd75fedfcd49e0e8e9022270c447c916"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-async",
+      "name": "async",
+      "version": "2.13.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub async@2.13.1 LICENSE",
+          "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-boolean-selector",
+      "name": "boolean_selector",
+      "version": "2.1.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub boolean_selector@2.1.2 LICENSE",
+          "sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-characters",
+      "name": "characters",
+      "version": "1.4.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub characters@1.4.1 LICENSE",
+          "sha256": "0371d1da6a57fb791db29d29b95333429205f51f3cb2eb3a0c12d91838a38744"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-clock",
+      "name": "clock",
+      "version": "1.1.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub clock@1.1.2 LICENSE",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-collection",
+      "name": "collection",
+      "version": "1.19.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub collection@1.19.1 LICENSE",
+          "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-crypto",
+      "name": "crypto",
+      "version": "3.0.7",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub crypto@3.0.7 LICENSE",
+          "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-fake-async",
+      "name": "fake_async",
+      "version": "1.3.3",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub fake_async@1.3.3 LICENSE",
+          "sha256": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-lints",
+      "name": "flutter_lints",
+      "version": "5.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub flutter_lints@5.0.0 LICENSE",
+          "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-localizations",
+      "name": "flutter_localizations",
+      "version": "3.44.7",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Flutter 3.44.7 root LICENSE",
+          "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9"
+        },
+        {
+          "source": "Flutter 3.44.7 packages/flutter_localizations/lib/flutter_localizations.dart: BSD license header",
+          "sha256": "d8ee03168401cc688c46a8d3c550348b26c090224ae088baad117dcdfd490fe4"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-test",
+      "name": "flutter_test",
+      "version": "3.44.7",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Flutter 3.44.7 root LICENSE",
+          "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9"
+        },
+        {
+          "source": "Flutter 3.44.7 packages/flutter_test/lib/flutter_test.dart: BSD license header",
+          "sha256": "a712721e71742a9abf11976db7b7c24406cc35853ee16a4111719c31f060b7c7"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-flutter-web-plugins",
+      "name": "flutter_web_plugins",
+      "version": "3.44.7",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Flutter 3.44.7 root LICENSE",
+          "sha256": "a3a9fd82f800a47377f7d3f60c60a5c91cae0495be8f329031e1448ce0f5dab9"
+        },
+        {
+          "source": "Flutter 3.44.7 packages/flutter_web_plugins/lib/flutter_web_plugins.dart: BSD license header",
+          "sha256": "fefe8fbf7c1c9c4230865d0a1b47d3bad3d43748afd9c0a7f87bf0e1815b4135"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-intl",
+      "name": "intl",
+      "version": "0.20.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub intl@0.20.2 LICENSE",
+          "sha256": "7e124af6a556f045cb3a20cafbdaa31602ac2c82cbcb3c3b15faaaf514b06028"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker",
+      "name": "leak_tracker",
+      "version": "11.0.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub leak_tracker@11.0.2 LICENSE",
+          "sha256": "08a004aa8956c3cf3b24f7f69c966247233953e18e6afaa61191ea47b7eb70f6"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker-flutter-testing",
+      "name": "leak_tracker_flutter_testing",
+      "version": "3.0.10",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub leak_tracker_flutter_testing@3.0.10 LICENSE",
+          "sha256": "08a004aa8956c3cf3b24f7f69c966247233953e18e6afaa61191ea47b7eb70f6"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-leak-tracker-testing",
+      "name": "leak_tracker_testing",
+      "version": "3.0.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub leak_tracker_testing@3.0.2 LICENSE",
+          "sha256": "08a004aa8956c3cf3b24f7f69c966247233953e18e6afaa61191ea47b7eb70f6"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-lints",
+      "name": "lints",
+      "version": "5.1.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub lints@5.1.1 LICENSE",
+          "sha256": "421fe78c3b5df297f8b4ab2c74f2450a274ee6d245a113091f6b9f90570af193"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-matcher",
+      "name": "matcher",
+      "version": "0.12.19",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub matcher@0.12.19 LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-material-color-utilities",
+      "name": "material_color_utilities",
+      "version": "0.13.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub material_color_utilities@0.13.0 LICENSE",
+          "sha256": "d103f246ef4c18dab8af0c1dcf6a8af884e5cff554da7261a48ac43c17d98f2e"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-meta",
+      "name": "meta",
+      "version": "1.18.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub meta@1.18.0 LICENSE",
+          "sha256": "b71519245009a3b8f126196a5408ec031e216e8e0d985085958c6543f82a8a2a"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-path",
+      "name": "path",
+      "version": "1.9.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub path@1.9.1 LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-plugin-platform-interface",
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub plugin_platform_interface@2.1.8 LICENSE",
+          "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-sky-engine",
+      "name": "sky_engine",
+      "version": "3.44.7",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Flutter engine sky_engine/license",
+          "sha256": "82a5f93f918f99ff82af18c8be176c709dc812cb3f5e1e1cd93847bdeb0f9369"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-source-span",
+      "name": "source_span",
+      "version": "1.10.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub source_span@1.10.2 LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-stack-trace",
+      "name": "stack_trace",
+      "version": "1.12.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub stack_trace@1.12.1 LICENSE",
+          "sha256": "ff0b91d4f3c32b25cb6ec84985e8da89b0ba2a2b2f7eef353cda5e5423a20390"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-stream-channel",
+      "name": "stream_channel",
+      "version": "2.1.4",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub stream_channel@2.1.4 LICENSE",
+          "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-string-scanner",
+      "name": "string_scanner",
+      "version": "1.4.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub string_scanner@1.4.1 LICENSE",
+          "sha256": "3c32b53167c7dae9190c38dab5dd9fe1789c53623ebc7d1babcb29914c5b3f16"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-term-glyph",
+      "name": "term_glyph",
+      "version": "1.2.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub term_glyph@1.2.2 LICENSE",
+          "sha256": "ea97a7558a7bd7cee4e2355f7529e3cbebb0dcbb546ddb9a90f10c9eb6b08da5"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-test-api",
+      "name": "test_api",
+      "version": "0.7.11",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub test_api@0.7.11 LICENSE",
+          "sha256": "ff1b9f0df9036c04be424b1e3ce12789bea880ad5ffc3a48e069ae2d40a087a4"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-typed-data",
+      "name": "typed_data",
+      "version": "1.4.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub typed_data@1.4.0 LICENSE",
+          "sha256": "ff15faa32a2e638107b7789592b14426162a75ba620044ee2340a20ec6ce5e73"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-android",
+      "name": "url_launcher_android",
+      "version": "6.3.32",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher_android@6.3.32 LICENSE",
+          "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-ios",
+      "name": "url_launcher_ios",
+      "version": "6.4.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher_ios@6.4.1 LICENSE",
+          "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-linux",
+      "name": "url_launcher_linux",
+      "version": "3.2.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher_linux@3.2.2 LICENSE",
+          "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-macos",
+      "name": "url_launcher_macos",
+      "version": "3.2.5",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher_macos@3.2.5 LICENSE",
+          "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-platform-interface",
+      "name": "url_launcher_platform_interface",
+      "version": "2.3.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher_platform_interface@2.3.2 LICENSE",
+          "sha256": "89519eca6f7b9529b35bdddd623a58c3af06a88c458dbd6531ddb4675acf75a9"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-web",
+      "name": "url_launcher_web",
+      "version": "2.4.3",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher_web@2.4.3 LICENSE",
+          "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-url-launcher-windows",
+      "name": "url_launcher_windows",
+      "version": "3.1.5",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub url_launcher_windows@3.1.5 LICENSE",
+          "sha256": "420f7739f169097f0aad1242045169cd643c8f1d94e62866fad265ae4c369b7d"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-vector-math",
+      "name": "vector_math",
+      "version": "2.2.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub vector_math@2.2.0 LICENSE",
+          "sha256": "b5d856a1e27e9ebea4957fc3526f1c65782a04894b113c6b3b0fb1321dbdec55"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-vm-service",
+      "name": "vm_service",
+      "version": "15.2.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub vm_service@15.2.0 LICENSE",
+          "sha256": "ad6a71997da90924b2cfb1fb47ec46537f70faf469efe016168794ae45ed6888"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Pub-web",
+      "name": "web",
+      "version": "1.1.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Pub web@1.1.1 LICENSE",
+          "sha256": "aa913ff50d7542eb8cc35b9f48a80928ac6819ba9057f85d424655e3e8dc271c"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.annotation-annotation",
+      "name": "androidx.annotation:annotation",
+      "version": "1.9.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.annotation:annotation:1.9.1 POM",
+          "sha256": "c733881c2e17d5f7c8661cc02a9159cb160b7b2094a27d593916c87d3e250636"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.collection-collection",
+      "name": "androidx.collection:collection",
+      "version": "1.5.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.collection:collection:1.5.0 POM",
+          "sha256": "2d65c8d0b36d4b4faadc44aff9bade23d871d7159eedf2b3f02d802b34b77a57"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-junit-junit",
+      "name": "junit:junit",
+      "version": "4.13.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "EPL-1.0",
+      "licenseConcluded": "EPL-1.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven junit:junit:4.13.2 POM",
+          "sha256": "569b6977ee4603c965c1c46c3058fa6e969291b0160eb6964dd092cd89eadd94"
+        },
+        {
+          "source": "Maven junit:junit:4.13.2 jar!/LICENSE-junit.txt",
+          "sha256": "9648bb2891b9813970bddb68d4be8a5e6ec8280d0180a53dfb29236b579c55bb"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Eclipse Public License 1.0",
+          "url": "http://www.eclipse.org/legal/epl-v10.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.json-json",
+      "name": "org.json:json",
+      "version": "20240303",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "NOASSERTION",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Exact-version POM declares Public Domain. No standardized SPDX expression or full version-pinned grant text was established; NOASSERTION retains that distinction rather than inventing CC0 or another license.",
+      "evidence": [
+        {
+          "source": "Maven org.json:json:20240303 POM",
+          "sha256": "994baf5d89bf4caa5ce968e4c4eab135c8f9783ecf4d2b7b0e9d1c8a4ddf1e4f"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Public Domain",
+          "url": "https://github.com/stleary/JSON-java/blob/master/LICENSE"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "licenseConcluded": "Exact-version POM declares Public Domain. No standardized SPDX expression or full version-pinned grant text was established; NOASSERTION retains that distinction rather than inventing CC0 or another license.",
+        "licenseDeclared": "Exact-version POM declares Public Domain. No standardized SPDX expression or full version-pinned grant text was established; NOASSERTION retains that distinction rather than inventing CC0 or another license.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-org.jetbrains.kotlinx-kotlinx-coroutines-test",
+      "name": "org.jetbrains.kotlinx:kotlinx-coroutines-test",
+      "version": "1.10.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2 POM",
+          "sha256": "bf25c8df0ec9f3eac7bbee539b601b6019b7e99f5f3f3011e2e8178b140750db"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Apache-2.0",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-core-ktx",
+      "name": "androidx.test:core-ktx",
+      "version": "1.6.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.test:core-ktx:1.6.1 POM",
+          "sha256": "c0350ba347ba9b6c80af12f069beda3d8da5ee49f0c9787d6ee6ac86df7fb336"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.ext-junit",
+      "name": "androidx.test.ext:junit",
+      "version": "1.2.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.test.ext:junit:1.2.1 POM",
+          "sha256": "983e474e47aafea0d078c4bd0b72aab1a292aceac198856371a02e1e1cb51751"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test-runner",
+      "name": "androidx.test:runner",
+      "version": "1.6.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.test:runner:1.6.2 POM",
+          "sha256": "e6abf0cb643a79f3e120b3d6a03dd8906f8d6a9edb73cfbb7a64048d073a4f16"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.test.uiautomator-uiautomator",
+      "name": "androidx.test.uiautomator:uiautomator",
+      "version": "2.3.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.test.uiautomator:uiautomator:2.3.0 POM",
+          "sha256": "9608320331d20afcf2f79bcd8ae1bc3d8fd8ee95c8b7ae77f0b4b36b42bee472"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go",
+      "name": "Go toolchain",
+      "version": "1.24.3",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/go1.24.3.src.tar.gz!/go/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-AndroidSDKPlatform",
+      "name": "Android SDK Platform",
+      "version": "36",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Android SDK platforms/android-36/package.xml",
+          "sha256": "a37640981003e35d5210f2d5f505a91e9711203e1ffbabccedd696aeab490cda"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "android-sdk-license",
+          "url": "https://developer.android.com/studio/terms"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-CMake",
+      "name": "CMake",
+      "version": "3.22.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Android SDK cmake/3.22.1/package.xml",
+          "sha256": "e6821ad8995aec83b86f40130e283f0994fa6ab7f198dd8bbd1d14ad72d6d621"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "android-sdk-license",
+          "url": "https://developer.android.com/studio/terms"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go-sys",
+      "name": "golang.org/x/sys",
+      "version": "v0.33.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/golang.org_x_sys@v0.33.0.zip!/golang.org/x/sys@v0.33.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go-crypto",
+      "name": "golang.org/x/crypto",
+      "version": "v0.38.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/golang.org_x_crypto@v0.38.0.zip!/golang.org/x/crypto@v0.38.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go-net",
+      "name": "golang.org/x/net",
+      "version": "v0.40.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/golang.org_x_net@v0.40.0.zip!/golang.org/x/net@v0.40.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go-wintun",
+      "name": "golang.zx2c4.com/wintun",
+      "version": "v0.0.0-20230126152724-0fa3db229ce2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "MIT",
+      "licenseConcluded": "MIT",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/golang.zx2c4.com_wintun@v0.0.0-20230126152724-0fa3db229ce2.zip!/golang.zx2c4.com/wintun@v0.0.0-20230126152724-0fa3db229ce2/LICENSE",
+          "sha256": "91276db973f25602d1aa43491f59cbc84cb88e6f151e1d0cc82a755563ce0195"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-WireGuardTools",
+      "name": "wireguard-tools",
+      "version": "e2ecaaa739144997ccff89d6ad6ec81698ea6ced",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "GPL-2.0-only",
+      "licenseConcluded": "GPL-2.0-only",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/third_party/wireguard-android/tunnel/tools/wireguard-tools/COPYING",
+          "sha256": "189b1af95d661151e054cea10c91b3d754e4de4d3fecfb074c1fb29476f7167b"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-ElfCleaner",
+      "name": "termux-elf-cleaner",
+      "version": "7efc05090675ec6161b7def862728086a26c3b1f",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "GPL-3.0-or-later",
+      "licenseConcluded": "GPL-3.0-or-later",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/third_party/wireguard-android/tunnel/tools/elf-cleaner/COPYING",
+          "sha256": "53927bd0b739d38c87a0a82236fd9b070c2dfff11c0c119be50372005d5047ad"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Archivo",
+      "name": "Archivo",
+      "version": "2.001",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "OFL-1.1",
+      "licenseConcluded": "OFL-1.1",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "assets/fonts/Archivo-OFL.txt",
+          "sha256": "7e603ed57dc27243a2061d87612009973529889edcd8a173cc69cf67692c0ee3"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-IBMPlexMono",
+      "name": "IBM Plex Mono",
+      "version": "2.3",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "OFL-1.1",
+      "licenseConcluded": "OFL-1.1",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "assets/fonts/IBMPlexMono-OFL.txt",
+          "sha256": "2d312004c0b70e8774b609a7ece73e862332eca004d7efa85891230c06bfcb93"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "downloadLocation": "The initial inventory did not record the exact download origin. Exact-version retained components are inspected, without inventing an attestation of their historical fetch location.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-NotoSansArabic",
+      "name": "Noto Sans Arabic",
+      "version": "2.012",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "OFL-1.1",
+      "licenseConcluded": "OFL-1.1",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "assets/fonts/NotoSansArabic-OFL.txt",
+          "sha256": "07fc70bfeb985cc1a87a8587d0a0c80bab11c86c9dc3fd95b6f0cb332f983e96"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {}
+    },
+    {
+      "id": "SPDXRef-Package-Twemoji",
+      "name": "Twemoji flag artwork",
+      "version": "v14.0.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "CC-BY-4.0",
+      "licenseConcluded": "CC-BY-4.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "assets/licenses/TWEMOJI.txt",
+          "sha256": "8ae9438818c26e4873b91d8c6ad620526c011e27e125677f13031eda903f007c"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-CLDR",
+      "name": "Unicode CLDR country names",
+      "version": "47.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Unicode-3.0",
+      "licenseConcluded": "Unicode-3.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "assets/licenses/UNICODE.txt",
+          "sha256": "220ba0e1c43b99530d2d5bdb892a99dca0989414f51ab695ecd90163eaa1ec3b"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.android.billingclient-billing",
+      "name": "com.android.billingclient:billing",
+      "version": "9.1.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.android.billingclient:billing:9.1.0 POM",
+          "sha256": "99b89f5001a3df1971e5c5b8c3742f1c5197848a64c8105bbc81b4fa6299a545"
+        },
+        {
+          "source": "Maven com.android.billingclient:billing:9.1.0 aar!/third_party_licenses.json",
+          "sha256": "24cc3013b45a588136eee31a2b2252db279d74d1874c9e728e36d2ecf6f71240"
+        },
+        {
+          "source": "Maven com.android.billingclient:billing:9.1.0 aar!/third_party_licenses.txt",
+          "sha256": "c3f2bd185ed538fd885940ed40ea18f7caf7202cbc28ecdff2be9b6f123c0e27"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-api",
+      "name": "com.google.android.datatransport:transport-api",
+      "version": "3.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.datatransport:transport-api:3.0.0 POM",
+          "sha256": "1537bebd44da2eb7e3be73fc4259e1116f2a68a5305f4fe23c6cea9a6f84f791"
+        },
+        {
+          "source": "Maven com.google.android.datatransport:transport-api:3.0.0 aar!/third_party_licenses.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "source": "Maven com.google.android.datatransport:transport-api:3.0.0 aar!/third_party_licenses.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-backend-cct",
+      "name": "com.google.android.datatransport:transport-backend-cct",
+      "version": "3.1.8",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.datatransport:transport-backend-cct:3.1.8 POM",
+          "sha256": "42698696ebd5af1eb33f917e582baa416e289a21cd83ee329c255852216b8a78"
+        },
+        {
+          "source": "Maven com.google.android.datatransport:transport-backend-cct:3.1.8 aar!/third_party_licenses.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "source": "Maven com.google.android.datatransport:transport-backend-cct:3.1.8 aar!/third_party_licenses.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.datatransport-transport-runtime",
+      "name": "com.google.android.datatransport:transport-runtime",
+      "version": "3.1.8",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.datatransport:transport-runtime:3.1.8 POM",
+          "sha256": "d6ff762251fb35594afe5efe860b5871064e18c0bd1bdb77084e3573f90e4e8f"
+        },
+        {
+          "source": "Maven com.google.android.datatransport:transport-runtime:3.1.8 aar!/third_party_licenses.json",
+          "sha256": "ca9b2e984212979d947d460c8da1e1ac6adee64961784b513b453dcb634298c6"
+        },
+        {
+          "source": "Maven com.google.android.datatransport:transport-runtime:3.1.8 aar!/third_party_licenses.txt",
+          "sha256": "00bdeca73c2a7724261eb7443713e3b4b913ba0907dfe5c4d67d87f3920c1e6e"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-base",
+      "name": "com.google.android.gms:play-services-base",
+      "version": "18.5.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-base:18.5.0 POM",
+          "sha256": "2570b515c2717af386c890e97f644782e3f86da7b677a4ff1036147e7ea622a4"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-base:18.5.0 aar!/third_party_licenses.json",
+          "sha256": "f49b0d3754fe9430ca8e1d7578b98f9c74c912fa5182bee2db86f0c386ab7970"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-base:18.5.0 aar!/third_party_licenses.txt",
+          "sha256": "653d2e7a2bb02c79b897e826df9c3b2d8e8b1a3b2cef5e29585124fa455ddaf5"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-basement",
+      "name": "com.google.android.gms:play-services-basement",
+      "version": "18.9.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-basement:18.9.0 POM",
+          "sha256": "601ef047167c6c280b8b190942d9e94a0463e891acd9c6ccf532eb298a5efe5b"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-basement:18.9.0 aar!/third_party_licenses.json",
+          "sha256": "c24c8840650fb045069d5b9d37bae5a0e58338c546a6845053d933741ed77878"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-basement:18.9.0 aar!/third_party_licenses.txt",
+          "sha256": "ce8b3284215b312d3aaeb2ca73228b1b52557ca5151bd8725b47e11a707ccf77"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-location",
+      "name": "com.google.android.gms:play-services-location",
+      "version": "19.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-location:19.0.0 POM",
+          "sha256": "cce60a0c4250e5be6d33f46505ba7269048a68d478862c87bf761c69ef84da3e"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-location:19.0.0 aar!/third_party_licenses.json",
+          "sha256": "00e7208dad893362fe51520a5fca416cba179b1f0b8249553fbdb1f78580f28c"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-location:19.0.0 aar!/third_party_licenses.txt",
+          "sha256": "a344fdfbc3f94c9a41cd14d413bc9075a468eda20b2a0308b35929a572f07e71"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-places-placereport",
+      "name": "com.google.android.gms:play-services-places-placereport",
+      "version": "17.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-places-placereport:17.0.0 POM",
+          "sha256": "23604d3a278bd430af4f204105e48492f71501516201d8a2a8e72253fb9396f7"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-places-placereport:17.0.0 aar!/third_party_licenses.json",
+          "sha256": "35e32e56d0a3ca9700cc65ac093af901a525c039088c122427ccb033c8effc30"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-places-placereport:17.0.0 aar!/third_party_licenses.txt",
+          "sha256": "af106893a5827deaa5ded6f7ad9db71a8d6cc21b4e814627334acabe07634b65"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-tasks",
+      "name": "com.google.android.gms:play-services-tasks",
+      "version": "18.2.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-tasks:18.2.0 POM",
+          "sha256": "6b99c48a895d155e58abcee66cc22146db83abd5d84caf6c8f7a2aea9b1bcd21"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-tasks:18.2.0 aar!/third_party_licenses.json",
+          "sha256": "f49b0d3754fe9430ca8e1d7578b98f9c74c912fa5182bee2db86f0c386ab7970"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-tasks:18.2.0 aar!/third_party_licenses.txt",
+          "sha256": "653d2e7a2bb02c79b897e826df9c3b2d8e8b1a3b2cef5e29585124fa455ddaf5"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders",
+      "name": "com.google.firebase:firebase-encoders",
+      "version": "17.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven com.google.firebase:firebase-encoders:17.0.0 POM",
+          "sha256": "423575e3500e9910e3aa83f9d7a6d755b5f76ac591823baf67570fb6ce7ea816"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-json",
+      "name": "com.google.firebase:firebase-encoders-json",
+      "version": "18.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven com.google.firebase:firebase-encoders-json:18.0.0 POM",
+          "sha256": "3a7d59795a799683afa6435931066c5bb634adfebd2883a08b4765f38cdd3ea1"
+        },
+        {
+          "source": "Maven com.google.firebase:firebase-encoders-json:18.0.0 aar!/third_party_licenses.json",
+          "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+        },
+        {
+          "source": "Maven com.google.firebase:firebase-encoders-json:18.0.0 aar!/third_party_licenses.txt",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.firebase-firebase-encoders-proto",
+      "name": "com.google.firebase:firebase-encoders-proto",
+      "version": "16.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven com.google.firebase:firebase-encoders-proto:16.0.0 POM",
+          "sha256": "5f5fb74af3fff0e1f961fcb5f3f99267c103b16a23c89b556c8cb4a711a8dcb2"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-javax.inject-javax.inject",
+      "name": "javax.inject:javax.inject",
+      "version": "1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven javax.inject:javax.inject:1 POM",
+          "sha256": "943e12b100627804638fa285805a0ab788a680266531e650921ebfe4621a8bfa"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.credentials-credentials",
+      "name": "androidx.credentials:credentials",
+      "version": "1.6.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.credentials:credentials:1.6.0 POM",
+          "sha256": "3193f02566989b0e59334e374d9982d8f30a12fae907d7719efbc4d0054f9b04"
+        },
+        {
+          "source": "Maven androidx.credentials:credentials:1.6.0 aar!/META-INF/androidx/credentials/credentials/LICENSE.txt",
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-androidx.credentials-credentials-play-services-auth",
+      "name": "androidx.credentials:credentials-play-services-auth",
+      "version": "1.6.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "Maven androidx.credentials:credentials-play-services-auth:1.6.0 POM",
+          "sha256": "9f748f8992ba5de9f9d62973a04f8ab71744b8ac486ee84b88a7e98be9bdd913"
+        },
+        {
+          "source": "Maven androidx.credentials:credentials-play-services-auth:1.6.0 aar!/META-INF/androidx/credentials/credentials-play-services-auth/LICENSE.txt",
+          "sha256": "809fa1ed21450f59827d1e9aec720bbc4b687434fa22283c6cb5dd82a47ab9c0"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "The Apache Software License, Version 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.libraries.identity.googleid-googleid",
+      "name": "com.google.android.libraries.identity.googleid:googleid",
+      "version": "1.2.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.libraries.identity.googleid:googleid:1.2.1 POM",
+          "sha256": "9ffc2c92d69916121738a94a6d367beff451a180e8b66d2d115149e1d39e72eb"
+        },
+        {
+          "source": "Maven com.google.android.libraries.identity.googleid:googleid:1.2.1 aar!/third_party_licenses.json",
+          "sha256": "eaa13d36bec4c034519149d648482a4a36cb4fe3840439e376d5eda292a8e7fe"
+        },
+        {
+          "source": "Maven com.google.android.libraries.identity.googleid:googleid:1.2.1 aar!/third_party_licenses.txt",
+          "sha256": "2f3c85e7d82f3b84bf9ebe238fb6452e0727f2f82797dc3b12fb2e389c058381"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth",
+      "name": "com.google.android.gms:play-services-auth",
+      "version": "21.1.1",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-auth:21.1.1 POM",
+          "sha256": "de931d61f566f280edf691240059151612c86cfb18384e2eb9cf1ed56e00436c"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth:21.1.1 aar!/third_party_licenses.json",
+          "sha256": "8a31046da819774578cf3265e78110d46078111b8bde36095a3bc4fa9eb1b6b2"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth:21.1.1 aar!/third_party_licenses.txt",
+          "sha256": "13fec28edc6c6e70ee62617b75bd215c802105c5dad3b33993df518074742a24"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-api-phone",
+      "name": "com.google.android.gms:play-services-auth-api-phone",
+      "version": "18.0.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-api-phone:18.0.2 POM",
+          "sha256": "9e0b47a568a8deb9cb0b82f3c176d69c14d603bca78bb367bb37010b4a64b184"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-api-phone:18.0.2 aar!/third_party_licenses.json",
+          "sha256": "f49b0d3754fe9430ca8e1d7578b98f9c74c912fa5182bee2db86f0c386ab7970"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-api-phone:18.0.2 aar!/third_party_licenses.txt",
+          "sha256": "653d2e7a2bb02c79b897e826df9c3b2d8e8b1a3b2cef5e29585124fa455ddaf5"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-base",
+      "name": "com.google.android.gms:play-services-auth-base",
+      "version": "18.0.10",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-base:18.0.10 POM",
+          "sha256": "853ea5c46999d5435c923f7021b033bd5ec0a2f37f995b9b7a13a565518d700a"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-base:18.0.10 aar!/third_party_licenses.json",
+          "sha256": "de5f2db3626d3d298f024b4ce6f5585752fcd421b04f3844d47149fe07e42720"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-base:18.0.10 aar!/third_party_licenses.txt",
+          "sha256": "483d00a5adc8beaa92a98379044b4734bd635072611cc5165ae0e1956bab0800"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-auth-blockstore",
+      "name": "com.google.android.gms:play-services-auth-blockstore",
+      "version": "16.4.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-blockstore:16.4.0 POM",
+          "sha256": "0b2d13c0ad3d5142085c3a455f239419dffd4867cb41fce313d5c2c0de5cc475"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-blockstore:16.4.0 aar!/third_party_licenses.json",
+          "sha256": "92a50c578cf856b6af441b7fd53a2f84a4a6349fcd22f14fdd261a0ecff9faa1"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-auth-blockstore:16.4.0 aar!/third_party_licenses.txt",
+          "sha256": "6ad96c63a0e188ed4b1451cf136a8ff8a8d5d1d8ab2f5d4684881e47d323465d"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-fido",
+      "name": "com.google.android.gms:play-services-fido",
+      "version": "21.0.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-fido:21.0.0 POM",
+          "sha256": "232d7f09fb0e5975796eaaa4576d0b3728b36563ac537ec21dd381d773932fa6"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-fido:21.0.0 aar!/third_party_licenses.json",
+          "sha256": "f74d0242e0aa6b99db46a0b9acaea49dfa145a66ec5699c584f09553b7fc3600"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-fido:21.0.0 aar!/third_party_licenses.txt",
+          "sha256": "c7852b98a25e2e4fb0cf6edeaf83dfddd2849bbee69e9e2269ceeb5306ab9cda"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Maven-com.google.android.gms-play-services-identity-credentials",
+      "name": "com.google.android.gms:play-services-identity-credentials",
+      "version": "16.0.0-alpha08",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Android-SDK-Agreement",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "Maven com.google.android.gms:play-services-identity-credentials:16.0.0-alpha08 POM",
+          "sha256": "a3346239aee96fafca045a68b794b0527248425e189aa1f7bb85a817f0d2d9d0"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-identity-credentials:16.0.0-alpha08 aar!/third_party_licenses.json",
+          "sha256": "c24c8840650fb045069d5b9d37bae5a0e58338c546a6845053d933741ed77878"
+        },
+        {
+          "source": "Maven com.google.android.gms:play-services-identity-credentials:16.0.0-alpha08 aar!/third_party_licenses.txt",
+          "sha256": "ce8b3284215b312d3aaeb2ca73228b1b52557ca5151bd8725b47e11a707ccf77"
+        }
+      ],
+      "pom_declarations": [
+        {
+          "name": "Android Software Development Kit License",
+          "url": "https://developer.android.com/studio/terms.html"
+        }
+      ],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-GoogleSans",
+      "name": "Google Sans",
+      "version": "14.000",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "OFL-1.1",
+      "licenseConcluded": "OFL-1.1",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "assets/fonts/GoogleSans-OFL.txt",
+          "sha256": "2b75ef20f13d83a7514aee452c4782c20cdc9ff2dee17600f44d37a06d4fb958"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {}
+    },
+    {
+      "id": "SPDXRef-Package-GoogleGLogo",
+      "name": "Google G official sign-in logo",
+      "version": "Retrieved 2026-10-05",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "LicenseRef-Google-Brand-Rules",
+      "licenseConcluded": "NOASSERTION",
+      "reason": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+      "evidence": [
+        {
+          "source": "LICENSING.md: Google brand asset boundaries",
+          "sha256": "dc9a8923bc928b40b36f7081e86f7be91e87b206edb08a3fabb8bb8f362faf4b"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "licenseConcluded": "Package mixes file/component terms or external tool distributions; retained notices and package declaration are verified where present, without a package-wide legal conclusion.",
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go-btree",
+      "name": "github.com/google/btree",
+      "version": "v1.1.2",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/github.com_google_btree@v1.1.2.zip!/github.com/google/btree@v1.1.2/LICENSE",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go-time",
+      "name": "golang.org/x/time",
+      "version": "v0.7.0",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "BSD-3-Clause",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/golang.org_x_time@v0.7.0.zip!/golang.org/x/time@v0.7.0/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    },
+    {
+      "id": "SPDXRef-Package-Go-gvisor",
+      "name": "gvisor.dev/gvisor",
+      "version": "v0.0.0-20250503011706-39ed1f5ac29c",
+      "verdict": "validated",
+      "scope": "source component or prerequisite; not optimized-APK reachability",
+      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "Apache-2.0",
+      "reason": "Component declaration matched to retained license text or exact-version Maven POM.",
+      "evidence": [
+        {
+          "source": "android/source-distribution/archives/gvisor.dev_gvisor@v0.0.0-20250503011706-39ed1f5ac29c.zip!/gvisor.dev/gvisor@v0.0.0-20250503011706-39ed1f5ac29c/LICENSE",
+          "sha256": "5af94223052169198cfa2195455b7d87209d9aa0fff4705822f328b4b272facb"
+        }
+      ],
+      "pom_declarations": [],
+      "remaining_unknown_fields": {
+        "copyrightText": "No aggregate copyright summary supplied; applicable file-level notices are retained in the evidence."
+      }
+    }
+  ],
+  "id": "ELICENSES",
+  "kind": "component_license_inspection",
+  "artifacts": [
+    "source-74016"
+  ]
+}

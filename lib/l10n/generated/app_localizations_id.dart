@@ -2130,4 +2130,18 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get billing_offerChanged =>
       'Ketentuan penawaran ini berubah. Muat ulang paket dan pilih kembali.';
+
+  @override
+  String get status_waitingNetwork => 'Menunggu jaringan';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'Tidak ada jaringan tersedia. VPN akan memeriksa koneksi saat jaringan kembali.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'Favorit tidak dapat dimuat. Coba lagi.';
+
+  @override
+  String get locations_favoritesLoading => 'Memuat favorit…';
 }

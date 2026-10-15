@@ -360,7 +360,15 @@ class VpnRuntimeState {
   bool get isReconnecting =>
       phase == VpnRuntimePhase.connecting &&
       (messageCode == 'openvpn_reconnecting' ||
-          messageCode == 'system_vpn_restoring');
+          messageCode == 'system_vpn_restoring' ||
+          isWireGuardRecovery);
+  bool get isWaitingForNetwork =>
+      isWireGuardRecovery && messageCode == 'wireguard_waiting_network';
+  bool get isWireGuardRecovery =>
+      phase == VpnRuntimePhase.connecting &&
+      protocol == VpnProtocol.wireGuard &&
+      (messageCode == 'wireguard_waiting_network' ||
+          messageCode == 'wireguard_recovering');
 
   factory VpnRuntimeState.fromWire(Map<Object?, Object?> value) {
     final Object? rawPhase = value['phase'] ?? value['status'];
