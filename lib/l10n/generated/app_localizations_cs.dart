@@ -47,7 +47,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Vaše relace je neplatná. Zastavuji VPN a odstraňuji relaci…';
+      'Ukončování relace: zastavuji VPN a odstraňuji data relace…';
 
   @override
   String get session_stopFailed =>
@@ -427,6 +427,9 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Nepojmenované zařízení';
+
+  @override
   String get action_remove => 'Odebrat';
 
   @override
@@ -465,6 +468,11 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Software použitý v aplikaci';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Zdrojový kód aplikace a jejích komponent pod licencí MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -547,7 +555,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get notice_rateLimited_title => 'Příliš mnoho pokusů';
 
   @override
-  String get notice_deviceLimit_title => 'Dosažen limit 2 zařízení';
+  String get notice_deviceLimit_title => 'Dosažen limit zařízení';
 
   @override
   String get notice_deviceLimit_message =>
@@ -644,7 +652,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'vpn_sign_in_required': 'Vyžadováno přihlášení',
       'protocol_unavailable_at_location': 'Protokol není k dispozici',
       'vpn_permission_denied': 'Oprávnění VPN zamítnuto',
-      'revoked_identity_device_limit': 'Dosažen limit 2 zařízení',
+      'revoked_identity_device_limit': 'Dosažen limit zařízení',
       'tunnel_start_unexpected': 'VPN se nepodařilo spustit',
       'flutter_disconnect_timeout': 'Odpojení nebylo potvrzeno',
       'flutter_disconnect_unexpected': 'Odpojení se nezdařilo',
@@ -660,6 +668,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'location_migration_device_changed':
           'Během změny lokality se zařízení změnilo',
       'tunnel_stop_failed': 'Změna lokality není k dispozici',
+      'device_clock_ahead': 'Hodiny zařízení se předbíhají',
       'other': 'Operace se nezdařila',
     });
     return '$_temp0';
@@ -708,6 +717,8 @@ class AppLocalizationsCs extends AppLocalizations {
           'Zařízení vrácené serverem již neodpovídá zařízení, u kterého probíhá změna. Před dalším pokusem obnovte zařízení.',
       'tunnel_stop_failed':
           'Předchozí tunel musí být před novým připojením zcela zastaven.',
+      'device_clock_ahead':
+          'Zdá se, že hodiny tohoto zařízení se předbíhají. Zapněte automatické datum a čas, abyste zůstali přihlášeni.',
       'other':
           'Operaci se nepodařilo dokončit. Zkuste to znovu nebo odešlete diagnostický kód podpoře.',
     });
@@ -827,8 +838,39 @@ class AppLocalizationsCs extends AppLocalizations {
   String get notice_retryLater => 'Zkuste to znovu za chvíli.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Zkuste to znovu za $seconds sekund.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Zkuste to znovu za $seconds sekund.',
+      few: 'Zkuste to znovu za $seconds sekundy.',
+      one: 'Zkuste to znovu za $seconds sekundu.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Zkuste to znovu za $minutes minut.',
+      few: 'Zkuste to znovu za $minutes minuty.',
+      one: 'Zkuste to znovu za $minutes minutu.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Zkuste to znovu za $hours hodin.',
+      few: 'Zkuste to znovu za $hours hodiny.',
+      one: 'Zkuste to znovu za $hours hodinu.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -939,6 +981,9 @@ class AppLocalizationsCs extends AppLocalizations {
       'secure_storage_write_failed': 'Bezpečný zápis se nezdařil',
       'key_generation_failed': 'Klíč WireGuard se nepodařilo vygenerovat',
       'csr_generation_failed': 'CSR OpenVPN se nepodařilo vygenerovat',
+      'openvpn_recovery_exhausted': 'Obnovení OpenVPN již bylo použito',
+      'openvpn_recovery_failed': 'Obnovení OpenVPN se nezdařilo',
+      'openvpn_renewal_required': 'Je nutné obnovit certifikát OpenVPN',
       'other': 'Neklasifikovaná nativní chyba VPN',
     });
     return '$_temp0';
@@ -1768,6 +1813,14 @@ class AppLocalizationsCs extends AppLocalizations {
       'Vaše předplatné se spravuje přes Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Vaše předplatné Google Play je pozastavené nebo čeká na platbu. Otevřete „Spravovat předplatné“ a vyřešte to v Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Tento účet Google Play už má předplatné Fuze Premium, které není aktivní pro tento účet FuzeVPN. Otevřete „Spravovat předplatné“ a zkontrolujte ho v Google Play.';
+
+  @override
   String get billing_inactive => 'Žádné aktivní předplatné.';
 
   @override
@@ -2016,6 +2069,10 @@ class AppLocalizationsCs extends AppLocalizations {
   String get google_rateLimited => 'Před dalším pokusem vyčkejte.';
 
   @override
+  String get google_busy =>
+      'Google není k dispozici, dokud probíhá jiná operace (připojení VPN, účet nebo host). Zkuste to znovu po jejím dokončení; váš současný přístup zůstane zachován.';
+
+  @override
   String get google_invalidPassword =>
       'Heslo FuzeVPN je nesprávné. Současný účet zůstává zachován.';
 
@@ -2044,6 +2101,36 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Bezpečnostní kontrola není dostupná. Zkuste to později.';
+
+  @override
+  String get google_intentMismatch =>
+      'Předchozí pokus o přihlášení přes Google stále čeká na dokončení. Před zahájením této operace jej zrušte.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Požadované bezpečnostní ověření není v této aplikaci dostupné. Tuto operaci nyní nelze dokončit.';
+
+  @override
+  String get google_solveChallenge => 'Provést bezpečnostní ověření';
+
+  @override
+  String get google_challengeTitle => 'Bezpečnostní ověření';
+
+  @override
+  String get google_challengeReady =>
+      'Ověření bylo dokončeno. Nyní můžete potvrdit vytvoření účtu.';
+
+  @override
+  String get google_challengeExpired =>
+      'Platnost ověření vypršela. Před potvrzením je proveďte znovu.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Ověření bylo zrušeno. Můžete je provést znovu.';
+
+  @override
+  String get google_challengeFailed =>
+      'Bezpečnostní ověření se nezdařilo. Zkuste to znovu.';
 
   @override
   String get billing_trialTitle => 'Vyzkoušejte Fuze Premium zdarma';

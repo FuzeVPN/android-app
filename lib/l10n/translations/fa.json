@@ -12,7 +12,7 @@
     "accountRestoration_message": "نشست شما حفظ شده است. برای بازیابی حساب دوباره تلاش کنید؛ همچنان می‌توانید اتصال وی‌پی‌ان را از اینجا مدیریت کنید.",
     "action_retry": "دوباره تلاش کنید",
     "session_endingTitle": "در حال پایان دادن به نشست",
-    "session_ending": "نشست شما باطل شده است. وی‌پی‌ان متوقف و نشست پاک می‌شود…",
+    "session_ending": "در حال پایان دادن به نشست: توقف وی‌پی‌ان و پاک کردن داده‌های نشست…",
     "session_stopFailed": "خاموش شدن وی‌پی‌ان تأیید نشد. پیش از ورود دوباره تلاش کنید.",
     "session_cleanupFailed": "وی‌پی‌ان متوقف شده است، اما حذف نشست تأیید نشد. پاک‌سازی را دوباره انجام دهید.",
     "session_retryStop": "تلاش دوباره برای خاموش کردن",
@@ -139,6 +139,7 @@
     "devices_firstConnection": "تلفن شما در نخستین اتصال اضافه می‌شود.",
     "devices_thisDevice": "این دستگاه",
     "devices_added": "در {date} اضافه شد",
+    "devices_unnamed": "دستگاه بدون نام",
     "action_remove": "حذف",
     "settings_title": "تنظیمات",
     "settings_subtitle": "ترجیحات و حساب شما، همه در یک مکان.",
@@ -152,6 +153,14 @@
     "settings_security": "امنیت و شفافیت",
     "settings_licenses": "مجوزهای مؤلفه‌ها",
     "settings_licensesDetail": "نرم‌افزار استفاده‌شده در برنامه",
+    "settings_licensesLegalese": "کد منبع برنامه و مؤلفه‌های آن با مجوز MPL-2.0: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
     "settings_background": "وقتی برنامه را ترک می‌کنید، وی‌پی‌ان روشن می‌ماند. برای توقف آن، در زبانه اتصال گزینه «قطع اتصال» را بزنید.",
     "theme_system": "سیستم",
     "theme_light": "روشن",
@@ -176,7 +185,7 @@
     "notice_emailVerification_title": "تأیید ایمیل لازم است",
     "notice_emailVerification_message": "پیش از افزودن دستگاه وی‌پی‌ان، نشانی ایمیل خود را تأیید کنید.",
     "notice_rateLimited_title": "تلاش‌های بیش از حد",
-    "notice_deviceLimit_title": "محدودیت دو دستگاه به پایان رسید",
+    "notice_deviceLimit_title": "محدودیت دستگاه‌ها به پایان رسید",
     "notice_deviceLimit_message": "پیش از افزودن دستگاه دیگر، یک دستگاه موجود را حذف کنید.",
     "notice_identityRenewal_title": "هویت وی‌پی‌ان باید نوسازی شود",
     "notice_identityRenewal_message": "این هویت حذف شده است. یک هویت محلی جدید ایجاد کنید.",
@@ -201,7 +210,7 @@
     "notice_diagnosticCode": "کد تشخیص: {code}",
     "notice_generic_title": "اتصال وی‌پی‌ان ناموفق بود",
     "notice_generic_message": "خطایی رخ داد. بعداً دوباره تلاش کنید.",
-    "notice_controller_title": "{code, select, account_created_email_unavailable{حساب ایجاد شد} password_reset_sent{درخواست بازنشانی گذرواژه دریافت شد} verification_email_sent{ایمیل تأیید ارسال شد} location_migration_pending{تغییر مکان در حال انجام است} vpn_sign_in_required{ورود لازم است} protocol_unavailable_at_location{پروتکل در دسترس نیست} vpn_permission_denied{اجازه وی‌پی‌ان رد شد} revoked_identity_device_limit{محدودیت دو دستگاه به پایان رسید} tunnel_start_unexpected{وی‌پی‌ان شروع نشد} flutter_disconnect_timeout{قطع اتصال تأیید نشد} flutter_disconnect_unexpected{قطع اتصال ممکن نشد} device_revoked{دستگاه حذف شد} revoke_unexpected{دستگاه حذف نشد} identity_renewal_unexpected{نوسازی هویت ممکن نشد} openvpn_renewal_unexpected{OpenVPN نوسازی نشد} location_migration_blocked{تغییر مکان مسدود شد} location_migration_slow{تغییر مکان همچنان در حال انجام است} location_migration_conflict{تغییر مکان به تازه‌سازی نیاز دارد} location_migration_verification_failed{تغییر مکان تأیید نشد} location_migration_device_changed{دستگاه هنگام تغییر مکان عوض شد} tunnel_stop_failed{تغییر مکان در دسترس نیست} other{عملیات ناموفق بود}}",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{حساب ایجاد شد} password_reset_sent{درخواست بازنشانی گذرواژه دریافت شد} verification_email_sent{ایمیل تأیید ارسال شد} location_migration_pending{تغییر مکان در حال انجام است} vpn_sign_in_required{ورود لازم است} protocol_unavailable_at_location{پروتکل در دسترس نیست} vpn_permission_denied{اجازه وی‌پی‌ان رد شد} revoked_identity_device_limit{محدودیت دستگاه‌ها به پایان رسید} tunnel_start_unexpected{وی‌پی‌ان شروع نشد} flutter_disconnect_timeout{قطع اتصال تأیید نشد} flutter_disconnect_unexpected{قطع اتصال ممکن نشد} device_revoked{دستگاه حذف شد} revoke_unexpected{دستگاه حذف نشد} identity_renewal_unexpected{نوسازی هویت ممکن نشد} openvpn_renewal_unexpected{OpenVPN نوسازی نشد} location_migration_blocked{تغییر مکان مسدود شد} location_migration_slow{تغییر مکان همچنان در حال انجام است} location_migration_conflict{تغییر مکان به تازه‌سازی نیاز دارد} location_migration_verification_failed{تغییر مکان تأیید نشد} location_migration_device_changed{دستگاه هنگام تغییر مکان عوض شد} tunnel_stop_failed{تغییر مکان در دسترس نیست} device_clock_ahead{ساعت دستگاه جلو است} other{عملیات ناموفق بود}}",
     "@notice_controller_title": {
       "placeholders": {
         "code": {
@@ -209,7 +218,7 @@
         }
       }
     },
-    "notice_controller_message": "{code, select, account_created_email_unavailable{حساب ایجاد شد، اما ایمیل تأیید ارسال نشد. از گزینه ارسال دوباره در برنامه استفاده کنید.} password_reset_sent{درخواست شما دریافت شد. اگر حسابی با این نشانی مطابقت داشته باشد، ممکن است ایمیلی دریافت کنید. پوشه هرزنامه را هم بررسی کنید.} verification_email_sent{یک ایمیل تأیید جدید همین حالا ارسال شد.} location_migration_pending{انتقال به {target} همچنان در حال آماده‌سازی است. می‌توانید بدون ایجاد دوباره دستگاه، آن را ادامه دهید.} vpn_sign_in_required{پیش از راه‌اندازی وی‌پی‌ان وارد حساب خود شوید.} protocol_unavailable_at_location{پروتکل انتخاب‌شده در این مکان ارائه نمی‌شود. مکان‌ها را تازه‌سازی کنید یا پروتکل دیگری انتخاب کنید.} vpn_permission_denied{Android اجازه وی‌پی‌ان را رد کرد. اتصال را دوباره آغاز و درخواست سیستم را بپذیرید.} revoked_identity_device_limit{دسترسی وی‌پی‌ان این دستگاه حذف شده و محدودیت دستگاه‌ها به پایان رسیده است. یک دستگاه را از مسیر حساب ← مدیریت دستگاه‌های من حذف کنید.} tunnel_start_unexpected{خطایی پیش‌بینی‌نشده آماده‌سازی تونل را قطع کرد. کد تشخیص را بررسی و دوباره تلاش کنید.} flutter_disconnect_timeout{Android به‌موقع توقف وی‌پی‌ان را تأیید نکرد. دوباره تلاش کنید آن را متوقف کنید.} flutter_disconnect_unexpected{خطایی پیش‌بینی‌نشده مانع تأیید توقف تونل شد.} device_revoked{دسترسی وی‌پی‌ان دستگاه لغو شد و اسرار محلی آن حذف شدند.} revoke_unexpected{دستگاه حذف نشد. فهرست را تازه‌سازی و دوباره تلاش کنید.} identity_renewal_unexpected{هویت جدید وی‌پی‌ان ایجاد نشد. دستگاه‌ها را تازه‌سازی و دوباره تلاش کنید.} openvpn_renewal_unexpected{نمایه OpenVPN نوسازی نشد. دوباره تلاش کنید یا کد تشخیص را بررسی کنید.} location_migration_blocked{سرور فعلاً نمی‌تواند این تغییر را کامل کند. دستگاه و هویت محلی آن حفظ شدند.} location_migration_slow{سرور همچنان در حال آماده‌سازی انتقال به {target} است. چند لحظه دیگر از گزینه ادامه استفاده کنید.} location_migration_conflict{وضعیت دستگاه در سرور تغییر کرده است. دستگاه‌ها را تازه‌سازی و سپس تغییر را ادامه دهید.} location_migration_verification_failed{سرور مکان جدید را تأیید نکرد. هویت محلی قبلی حفظ شد.} location_migration_device_changed{دستگاهی که سرور برگردانده با دستگاه در حال تغییر مطابقت ندارد. پیش از تلاش دوباره دستگاه‌ها را تازه‌سازی کنید.} tunnel_stop_failed{پیش از اتصال جدید، تونل قبلی باید کاملاً متوقف شود.} other{عملیات کامل نشد. دوباره تلاش کنید یا کد تشخیص را برای پشتیبانی ارسال کنید.}}",
+    "notice_controller_message": "{code, select, account_created_email_unavailable{حساب ایجاد شد، اما ایمیل تأیید ارسال نشد. از گزینه ارسال دوباره در برنامه استفاده کنید.} password_reset_sent{درخواست شما دریافت شد. اگر حسابی با این نشانی مطابقت داشته باشد، ممکن است ایمیلی دریافت کنید. پوشه هرزنامه را هم بررسی کنید.} verification_email_sent{یک ایمیل تأیید جدید همین حالا ارسال شد.} location_migration_pending{انتقال به {target} همچنان در حال آماده‌سازی است. می‌توانید بدون ایجاد دوباره دستگاه، آن را ادامه دهید.} vpn_sign_in_required{پیش از راه‌اندازی وی‌پی‌ان وارد حساب خود شوید.} protocol_unavailable_at_location{پروتکل انتخاب‌شده در این مکان ارائه نمی‌شود. مکان‌ها را تازه‌سازی کنید یا پروتکل دیگری انتخاب کنید.} vpn_permission_denied{Android اجازه وی‌پی‌ان را رد کرد. اتصال را دوباره آغاز و درخواست سیستم را بپذیرید.} revoked_identity_device_limit{دسترسی وی‌پی‌ان این دستگاه حذف شده و محدودیت دستگاه‌ها به پایان رسیده است. یک دستگاه را از مسیر حساب ← مدیریت دستگاه‌های من حذف کنید.} tunnel_start_unexpected{خطایی پیش‌بینی‌نشده آماده‌سازی تونل را قطع کرد. کد تشخیص را بررسی و دوباره تلاش کنید.} flutter_disconnect_timeout{Android به‌موقع توقف وی‌پی‌ان را تأیید نکرد. دوباره تلاش کنید آن را متوقف کنید.} flutter_disconnect_unexpected{خطایی پیش‌بینی‌نشده مانع تأیید توقف تونل شد.} device_revoked{دسترسی وی‌پی‌ان دستگاه لغو شد و اسرار محلی آن حذف شدند.} revoke_unexpected{دستگاه حذف نشد. فهرست را تازه‌سازی و دوباره تلاش کنید.} identity_renewal_unexpected{هویت جدید وی‌پی‌ان ایجاد نشد. دستگاه‌ها را تازه‌سازی و دوباره تلاش کنید.} openvpn_renewal_unexpected{نمایه OpenVPN نوسازی نشد. دوباره تلاش کنید یا کد تشخیص را بررسی کنید.} location_migration_blocked{سرور فعلاً نمی‌تواند این تغییر را کامل کند. دستگاه و هویت محلی آن حفظ شدند.} location_migration_slow{سرور همچنان در حال آماده‌سازی انتقال به {target} است. چند لحظه دیگر از گزینه ادامه استفاده کنید.} location_migration_conflict{وضعیت دستگاه در سرور تغییر کرده است. دستگاه‌ها را تازه‌سازی و سپس تغییر را ادامه دهید.} location_migration_verification_failed{سرور مکان جدید را تأیید نکرد. هویت محلی قبلی حفظ شد.} location_migration_device_changed{دستگاهی که سرور برگردانده با دستگاه در حال تغییر مطابقت ندارد. پیش از تلاش دوباره دستگاه‌ها را تازه‌سازی کنید.} tunnel_stop_failed{پیش از اتصال جدید، تونل قبلی باید کاملاً متوقف شود.} device_clock_ahead{به نظر می‌رسد ساعت این دستگاه جلو است. برای اینکه وارد حساب خود بمانید، تاریخ و زمان خودکار را روشن کنید.} other{عملیات کامل نشد. دوباره تلاش کنید یا کد تشخیص را برای پشتیبانی ارسال کنید.}}",
     "@notice_controller_message": {
       "placeholders": {
         "code": {
@@ -237,15 +246,31 @@
       }
     },
     "notice_retryLater": "چند لحظه دیگر دوباره تلاش کنید.",
-    "notice_retryAfter": "پس از {seconds} ثانیه دوباره تلاش کنید.",
+    "notice_retryAfter": "{seconds, plural, one{پس از {seconds} ثانیه دوباره تلاش کنید.} other{پس از {seconds} ثانیه دوباره تلاش کنید.}}",
     "@notice_retryAfter": {
       "placeholders": {
         "seconds": {
-          "type": "Object"
+          "type": "int"
         }
       }
     },
-    "notice_native_title": "{code, select, system_vpn_resume_unavailable{ادامه وی‌پی‌ان سیستمی در دسترس نیست} system_vpn_resume_corrupt{ادامه وی‌پی‌ان سیستمی نامعتبر است} system_vpn_resume_session_invalid{نشست ادامه وی‌پی‌ان نامعتبر است} system_vpn_resume_identity_changed{هویت وی‌پی‌ان تغییر کرده است} system_vpn_resume_identity_invalid{هویت ادامه وی‌پی‌ان نامعتبر است} system_vpn_resume_storage_failed{فضای ذخیره ادامه وی‌پی‌ان در دسترس نیست} system_vpn_resume_network_timeout{ادامه وی‌پی‌ان شبکه ندارد} system_vpn_resume_blocked{ادامه وی‌پی‌ان مسدود شد} system_vpn_resume_failed{ادامه وی‌پی‌ان ناموفق بود} system_vpn_resume_error_invalid{خطای ادامه وی‌پی‌ان نامعتبر است} wireguard_identity_store_failed{هویت WireGuard ذخیره نشد} wireguard_identity_unavailable{هویت WireGuard در دسترس نیست} vpn_host_destroyed{میزبان وی‌پی‌ان Android متوقف شد} vpn_host_unavailable{میزبان وی‌پی‌ان Android در دسترس نیست} vpn_permission_required{اجازه وی‌پی‌ان لازم است} vpn_permission_denied{اجازه وی‌پی‌ان رد شد} vpn_permission_request_failed{درخواست اجازه ممکن نشد} wireguard_foreground_service_unavailable{سرویس WireGuard در دسترس نیست} wireguard_identity_invalid{کلید محلی WireGuard نامعتبر است} wireguard_identity_in_use{هویت WireGuard از قبل در حال استفاده است} wireguard_configuration_invalid{پیکربندی WireGuard نامعتبر است} wireguard_operation_pending{عملیات WireGuard همچنان فعال است} wireguard_start_failed{شروع WireGuard رد شد} wireguard_stop_timeout{توقف WireGuard تأیید نشد} wireguard_handshake_timeout{WireGuard پاسخ نداد} openvpn_connection_timeout{OpenVPN پاسخ نداد} openvpn_core_unavailable{موتور OpenVPN در دسترس نیست} openvpn_operation_pending{نشست OpenVPN همچنان فعال است} openvpn_stop_timeout{توقف OpenVPN تأیید نشد} openvpn_profile_unavailable{نمایه محلی OpenVPN وجود ندارد} openvpn_native_failed{فراخوانی محلی OpenVPN قطع شد} openvpn_key_generation_failed{ایجاد کلید P-256 برای OpenVPN ممکن نشد} openvpn_csr_generation_failed{ایجاد CSR برای OpenVPN ممکن نشد} openvpn_identity_store_failed{هویت OpenVPN ذخیره نشد} openvpn_identity_clear_failed{حذف OpenVPN کامل نشد} openvpn_identity_in_use{هویت OpenVPN همچنان در حال استفاده است} openvpn_tls_verification_required{تأیید TLS برای OpenVPN وجود ندارد} openvpn_cipher_invalid{رمزنگار OpenVPN نامعتبر است} openvpn_profile_rejected{نمایه OpenVPN رد شد} openvpn_identity_inconsistent{هویت OpenVPN ناسازگار است} tls_handshake_failed{مذاکره OpenVPN رد شد} tls_alert_unknown_ca{گواهی کلاینت OpenVPN شناخته نشد} tls_alert_bad_certificate{گواهی کلاینت OpenVPN رد شد} tls_alert_unsupported_certificate{گواهی OpenVPN پشتیبانی نمی‌شود} tls_client_certificate_required{گواهی کلاینت OpenVPN لازم است} tls_alert_misc{هشدار TLS در OpenVPN} tls_signature_algorithm_rejected{امضای OpenVPN پشتیبانی نمی‌شود} tls_handshake_rejected{مذاکره TLS در OpenVPN رد شد} tls_version_rejected{نسخه TLS در OpenVPN ناسازگار است} tls_certificate_expired{گواهی TLS منقضی شده است} tls_certificate_revoked{گواهی TLS لغو شده است} transport_failed{سرور OpenVPN در دسترس نیست} tun_configuration_rejected{ایجاد رابط OpenVPN ممکن نشد} tun_setup_failed{راه‌اندازی TUN در OpenVPN ناموفق بود} tun_interface_create_failed{ایجاد رابط OpenVPN ناموفق بود} tun_interface_disabled{رابط OpenVPN غیرفعال شد} tun_halted{رابط OpenVPN قطع شد} tun_already_established{رابط OpenVPN از قبل باز است} tun_addresses_missing{نشانی OpenVPN وجود ندارد} tun_routes_missing{مسیری برای OpenVPN وجود ندارد} tun_dns_missing{DNS برای OpenVPN وجود ندارد} tun_permission_revoked{اجازه وی‌پی‌ان لغو شد} tun_establish_returned_null{Android رابط وی‌پی‌ان را رد کرد} openvpn_service_start_failed{سرویس OpenVPN در دسترس نیست} openvpn_operation_timeout{زمان فراخوانی OpenVPN تمام شد} openvpn_start_failed{شروع OpenVPN رد شد} openvpn_connection_failed{اتصال OpenVPN قطع شد} openvpn_core_status_error{هسته OpenVPN با خطا پایان یافت} openvpn_stopped_before_connected{OpenVPN پیش از اتصال متوقف شد} openvpn_auth_failed{احراز هویت OpenVPN رد شد} openvpn_client_setup_failed{راه‌اندازی کلاینت OpenVPN ناموفق بود} openvpn_client_halted{کلاینت OpenVPN قطع شد} openvpn_client_restart{درخواست راه‌اندازی دوباره OpenVPN صادر شد} openvpn_inactive_timeout{OpenVPN بیش از حد غیرفعال بود} openvpn_session_expired{نشست OpenVPN منقضی شد} openvpn_credentials_required{احراز هویت OpenVPN پشتیبانی نمی‌شود} openvpn_proxy_failed{انتقال واسط OpenVPN ناموفق بود} openvpn_compression_failed{فشرده‌سازی OpenVPN رد شد} openvpn_ntlm_crypto_unavailable{رمزگذاری NTLM در OpenVPN در دسترس نیست} openvpn_feature_unsupported{قابلیت OpenVPN پشتیبانی نمی‌شود} network_unavailable{اتصال اینترنت در دسترس نیست} network_lost{شبکه در دسترس نیست} certificate_validation_failed{گواهی سرور رد شد} openvpn_certificate_expired{گواهی OpenVPN منقضی شده است} tunnel_active_for_another_account{تونل حساب دیگری همچنان فعال است} tunnel_already_active{تونل محلی از قبل فعال است} tunnel_stop_timeout{توقف {protocol} تأیید نشد} tunnel_disconnected{{protocol} قطع شد} native_bridge_unavailable{پل Android در دسترس نیست} native_operation_failed{عملیات Android قطع شد} invalid_arguments{پارامترهای وی‌پی‌ان ناقص‌اند} invalid_account_id{حساب وی‌پی‌ان نامعتبر است} invalid_device_id{شناسه دستگاه نامعتبر است} storage_key_not_allowed{کلید ذخیره‌سازی رد شد} secure_storage_read_failed{خواندن امن ناموفق بود} secure_storage_write_failed{نوشتن امن ناموفق بود} key_generation_failed{ایجاد کلید WireGuard ممکن نشد} csr_generation_failed{ایجاد CSR برای OpenVPN ممکن نشد} other{خطای طبقه‌بندی‌نشده وی‌پی‌ان محلی}}",
+    "notice_retryAfterMinutes": "{minutes, plural, one{پس از {minutes} دقیقه دوباره تلاش کنید.} other{پس از {minutes} دقیقه دوباره تلاش کنید.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{پس از {hours} ساعت دوباره تلاش کنید.} other{پس از {hours} ساعت دوباره تلاش کنید.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{ادامه وی‌پی‌ان سیستمی در دسترس نیست} system_vpn_resume_corrupt{ادامه وی‌پی‌ان سیستمی نامعتبر است} system_vpn_resume_session_invalid{نشست ادامه وی‌پی‌ان نامعتبر است} system_vpn_resume_identity_changed{هویت وی‌پی‌ان تغییر کرده است} system_vpn_resume_identity_invalid{هویت ادامه وی‌پی‌ان نامعتبر است} system_vpn_resume_storage_failed{فضای ذخیره ادامه وی‌پی‌ان در دسترس نیست} system_vpn_resume_network_timeout{ادامه وی‌پی‌ان شبکه ندارد} system_vpn_resume_blocked{ادامه وی‌پی‌ان مسدود شد} system_vpn_resume_failed{ادامه وی‌پی‌ان ناموفق بود} system_vpn_resume_error_invalid{خطای ادامه وی‌پی‌ان نامعتبر است} wireguard_identity_store_failed{هویت WireGuard ذخیره نشد} wireguard_identity_unavailable{هویت WireGuard در دسترس نیست} vpn_host_destroyed{میزبان وی‌پی‌ان Android متوقف شد} vpn_host_unavailable{میزبان وی‌پی‌ان Android در دسترس نیست} vpn_permission_required{اجازه وی‌پی‌ان لازم است} vpn_permission_denied{اجازه وی‌پی‌ان رد شد} vpn_permission_request_failed{درخواست اجازه ممکن نشد} wireguard_foreground_service_unavailable{سرویس WireGuard در دسترس نیست} wireguard_identity_invalid{کلید محلی WireGuard نامعتبر است} wireguard_identity_in_use{هویت WireGuard از قبل در حال استفاده است} wireguard_configuration_invalid{پیکربندی WireGuard نامعتبر است} wireguard_operation_pending{عملیات WireGuard همچنان فعال است} wireguard_start_failed{شروع WireGuard رد شد} wireguard_stop_timeout{توقف WireGuard تأیید نشد} wireguard_handshake_timeout{WireGuard پاسخ نداد} openvpn_connection_timeout{OpenVPN پاسخ نداد} openvpn_core_unavailable{موتور OpenVPN در دسترس نیست} openvpn_operation_pending{نشست OpenVPN همچنان فعال است} openvpn_stop_timeout{توقف OpenVPN تأیید نشد} openvpn_profile_unavailable{نمایه محلی OpenVPN وجود ندارد} openvpn_native_failed{فراخوانی محلی OpenVPN قطع شد} openvpn_key_generation_failed{ایجاد کلید P-256 برای OpenVPN ممکن نشد} openvpn_csr_generation_failed{ایجاد CSR برای OpenVPN ممکن نشد} openvpn_identity_store_failed{هویت OpenVPN ذخیره نشد} openvpn_identity_clear_failed{حذف OpenVPN کامل نشد} openvpn_identity_in_use{هویت OpenVPN همچنان در حال استفاده است} openvpn_tls_verification_required{تأیید TLS برای OpenVPN وجود ندارد} openvpn_cipher_invalid{رمزنگار OpenVPN نامعتبر است} openvpn_profile_rejected{نمایه OpenVPN رد شد} openvpn_identity_inconsistent{هویت OpenVPN ناسازگار است} tls_handshake_failed{مذاکره OpenVPN رد شد} tls_alert_unknown_ca{گواهی کلاینت OpenVPN شناخته نشد} tls_alert_bad_certificate{گواهی کلاینت OpenVPN رد شد} tls_alert_unsupported_certificate{گواهی OpenVPN پشتیبانی نمی‌شود} tls_client_certificate_required{گواهی کلاینت OpenVPN لازم است} tls_alert_misc{هشدار TLS در OpenVPN} tls_signature_algorithm_rejected{امضای OpenVPN پشتیبانی نمی‌شود} tls_handshake_rejected{مذاکره TLS در OpenVPN رد شد} tls_version_rejected{نسخه TLS در OpenVPN ناسازگار است} tls_certificate_expired{گواهی TLS منقضی شده است} tls_certificate_revoked{گواهی TLS لغو شده است} transport_failed{سرور OpenVPN در دسترس نیست} tun_configuration_rejected{ایجاد رابط OpenVPN ممکن نشد} tun_setup_failed{راه‌اندازی TUN در OpenVPN ناموفق بود} tun_interface_create_failed{ایجاد رابط OpenVPN ناموفق بود} tun_interface_disabled{رابط OpenVPN غیرفعال شد} tun_halted{رابط OpenVPN قطع شد} tun_already_established{رابط OpenVPN از قبل باز است} tun_addresses_missing{نشانی OpenVPN وجود ندارد} tun_routes_missing{مسیری برای OpenVPN وجود ندارد} tun_dns_missing{DNS برای OpenVPN وجود ندارد} tun_permission_revoked{اجازه وی‌پی‌ان لغو شد} tun_establish_returned_null{Android رابط وی‌پی‌ان را رد کرد} openvpn_service_start_failed{سرویس OpenVPN در دسترس نیست} openvpn_operation_timeout{زمان فراخوانی OpenVPN تمام شد} openvpn_start_failed{شروع OpenVPN رد شد} openvpn_connection_failed{اتصال OpenVPN قطع شد} openvpn_core_status_error{هسته OpenVPN با خطا پایان یافت} openvpn_stopped_before_connected{OpenVPN پیش از اتصال متوقف شد} openvpn_auth_failed{احراز هویت OpenVPN رد شد} openvpn_client_setup_failed{راه‌اندازی کلاینت OpenVPN ناموفق بود} openvpn_client_halted{کلاینت OpenVPN قطع شد} openvpn_client_restart{درخواست راه‌اندازی دوباره OpenVPN صادر شد} openvpn_inactive_timeout{OpenVPN بیش از حد غیرفعال بود} openvpn_session_expired{نشست OpenVPN منقضی شد} openvpn_credentials_required{احراز هویت OpenVPN پشتیبانی نمی‌شود} openvpn_proxy_failed{انتقال واسط OpenVPN ناموفق بود} openvpn_compression_failed{فشرده‌سازی OpenVPN رد شد} openvpn_ntlm_crypto_unavailable{رمزگذاری NTLM در OpenVPN در دسترس نیست} openvpn_feature_unsupported{قابلیت OpenVPN پشتیبانی نمی‌شود} network_unavailable{اتصال اینترنت در دسترس نیست} network_lost{شبکه در دسترس نیست} certificate_validation_failed{گواهی سرور رد شد} openvpn_certificate_expired{گواهی OpenVPN منقضی شده است} tunnel_active_for_another_account{تونل حساب دیگری همچنان فعال است} tunnel_already_active{تونل محلی از قبل فعال است} tunnel_stop_timeout{توقف {protocol} تأیید نشد} tunnel_disconnected{{protocol} قطع شد} native_bridge_unavailable{پل Android در دسترس نیست} native_operation_failed{عملیات Android قطع شد} invalid_arguments{پارامترهای وی‌پی‌ان ناقص‌اند} invalid_account_id{حساب وی‌پی‌ان نامعتبر است} invalid_device_id{شناسه دستگاه نامعتبر است} storage_key_not_allowed{کلید ذخیره‌سازی رد شد} secure_storage_read_failed{خواندن امن ناموفق بود} secure_storage_write_failed{نوشتن امن ناموفق بود} key_generation_failed{ایجاد کلید WireGuard ممکن نشد} csr_generation_failed{ایجاد CSR برای OpenVPN ممکن نشد} openvpn_recovery_exhausted{بازیابی OpenVPN قبلاً استفاده شده است} openvpn_recovery_failed{بازیابی OpenVPN ناموفق بود} openvpn_renewal_required{تمدید گواهی OpenVPN لازم است} other{خطای طبقه‌بندی‌نشده وی‌پی‌ان محلی}}",
     "@notice_native_title": {
       "placeholders": {
         "code": {
@@ -562,6 +587,8 @@
     "billing_accessUntil": "دسترسی تا {date}.",
     "billing_webManaged": "اشتراک شما در وب‌سایت FuzeVPN مدیریت می‌شود.",
     "billing_playManaged": "اشتراک شما از طریق Google Play مدیریت می‌شود.",
+    "billing_playOnHold": "اشتراک Google Play شما معلق است یا در انتظار پرداخت است. برای رفع آن در Google Play، «مدیریت اشتراک» را باز کنید.",
+    "billing_playReceiptUnlinked": "این حساب Google Play از قبل یک اشتراک Fuze Premium دارد که برای این حساب FuzeVPN فعال نیست. برای بررسی آن در Google Play، «مدیریت اشتراک» را باز کنید.",
     "billing_inactive": "اشتراک فعالی وجود ندارد.",
     "billing_checkingAccess": "در حال بررسی دسترسی شما…",
     "billing_restoring": "در حال بازیابی خریدها…",
@@ -640,6 +667,7 @@
     "google_emailUnavailable": "ایمیل تأیید ارسال نشد. بعداً دوباره تلاش کنید.",
     "google_emailSent": "ایمیل تأیید ارسال شد. صندوق ورودی خود را بررسی کنید.",
     "google_rateLimited": "پیش از تلاش دوباره کمی صبر کنید.",
+    "google_busy": "تا وقتی عملیات دیگری در جریان است (اتصال وی‌پی‌ان، حساب یا مهمان)، ورود با Google در دسترس نیست. پس از پایان آن دوباره تلاش کنید؛ دسترسی فعلی شما حفظ می‌شود.",
     "google_invalidPassword": "گذرواژه FuzeVPN نادرست است. حساب فعلی شما حفظ می‌شود.",
     "google_invalidCode": "کد تأیید نامعتبر یا منقضی شده است.",
     "google_accountChanged": "نشست تغییر کرده است. پیش از شروع دوباره این تلاش را لغو کنید.",
@@ -648,6 +676,14 @@
     "google_consentRequired": "برای ادامه کشور خود را انتخاب کنید و هر دو سند را بپذیرید.",
     "google_challengeRequired": "بررسی امنیتی دیگری لازم است. دسترسی فعلی شما حفظ می‌شود.",
     "google_challengeUnavailable": "بررسی امنیتی در دسترس نیست. بعداً دوباره تلاش کنید.",
+    "google_intentMismatch": "یک تلاش قبلی برای ورود با Google هنوز در انتظار است. پیش از شروع این عملیات، آن را لغو کنید.",
+    "google_challengeBlocked": "بررسی امنیتی لازم در این برنامه در دسترس نیست. این عملیات در حال حاضر قابل تکمیل نیست.",
+    "google_solveChallenge": "انجام بررسی امنیتی",
+    "google_challengeTitle": "بررسی امنیتی",
+    "google_challengeReady": "بررسی کامل شد. اکنون می‌توانید ایجاد حساب خود را تأیید کنید.",
+    "google_challengeExpired": "اعتبار بررسی به پایان رسیده است. پیش از تأیید، آن را دوباره انجام دهید.",
+    "google_challengeCancelled": "بررسی لغو شد. می‌توانید آن را دوباره انجام دهید.",
+    "google_challengeFailed": "بررسی امنیتی ناموفق بود. دوباره تلاش کنید.",
     "billing_trialTitle": "Fuze Premium را رایگان امتحان کنید",
     "billing_trialSubtitle": "از همین امروز از اتصال خود محافظت کنید.",
     "billing_trialWeeks": "۲ هفته دورهٔ آزمایشی رایگان",

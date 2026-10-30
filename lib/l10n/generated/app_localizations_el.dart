@@ -48,7 +48,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Η συνεδρία σας έχει ακυρωθεί. Διακοπή του VPN και εκκαθάριση της συνεδρίας…';
+      'Τερματισμός συνεδρίας σε εξέλιξη: διακοπή του VPN και εκκαθάριση των δεδομένων συνεδρίας…';
 
   @override
   String get session_stopFailed =>
@@ -435,6 +435,9 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Συσκευή χωρίς όνομα';
+
+  @override
   String get action_remove => 'Αφαίρεση';
 
   @override
@@ -475,6 +478,11 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get settings_licensesDetail =>
       'Λογισμικό που χρησιμοποιείται στην εφαρμογή';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Πηγαίος κώδικας της εφαρμογής και των στοιχείων της με άδεια MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -558,7 +566,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get notice_rateLimited_title => 'Υπερβολικά πολλές προσπάθειες';
 
   @override
-  String get notice_deviceLimit_title => 'Συμπληρώθηκε το όριο των 2 συσκευών';
+  String get notice_deviceLimit_title => 'Συμπληρώθηκε το όριο συσκευών';
 
   @override
   String get notice_deviceLimit_message =>
@@ -662,7 +670,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'vpn_sign_in_required': 'Απαιτείται σύνδεση',
       'protocol_unavailable_at_location': 'Το πρωτόκολλο δεν είναι διαθέσιμο',
       'vpn_permission_denied': 'Η άδεια VPN απορρίφθηκε',
-      'revoked_identity_device_limit': 'Συμπληρώθηκε το όριο των 2 συσκευών',
+      'revoked_identity_device_limit': 'Συμπληρώθηκε το όριο συσκευών',
       'tunnel_start_unexpected': 'Δεν ήταν δυνατή η εκκίνηση του VPN',
       'flutter_disconnect_timeout': 'Η αποσύνδεση δεν επιβεβαιώθηκε',
       'flutter_disconnect_unexpected': 'Δεν ήταν δυνατή η αποσύνδεση',
@@ -680,6 +688,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'location_migration_device_changed':
           'Η συσκευή άλλαξε κατά την αλλαγή τοποθεσίας',
       'tunnel_stop_failed': 'Η αλλαγή τοποθεσίας δεν είναι διαθέσιμη',
+      'device_clock_ahead': 'Το ρολόι της συσκευής πάει μπροστά',
       'other': 'Η λειτουργία απέτυχε',
     });
     return '$_temp0';
@@ -729,6 +738,8 @@ class AppLocalizationsEl extends AppLocalizations {
           'Η συσκευή που επέστρεψε ο διακομιστής δεν αντιστοιχεί πλέον σε αυτή που αλλάζει. Ανανεώστε τις συσκευές πριν δοκιμάσετε ξανά.',
       'tunnel_stop_failed':
           'Η προηγούμενη σήραγγα πρέπει να σταματήσει πλήρως πριν από τη νέα σύνδεση.',
+      'device_clock_ahead':
+          'Το ρολόι αυτής της συσκευής φαίνεται να πηγαίνει μπροστά. Ενεργοποιήστε την αυτόματη ημερομηνία και ώρα για να παραμείνετε συνδεδεμένοι.',
       'other':
           'Δεν ήταν δυνατή η ολοκλήρωση της λειτουργίας. Δοκιμάστε ξανά ή στείλτε τον κωδικό διαγνωστικού ελέγχου στην υποστήριξη.',
     });
@@ -860,8 +871,36 @@ class AppLocalizationsEl extends AppLocalizations {
   String get notice_retryLater => 'Δοκιμάστε ξανά σε λίγα λεπτά.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Δοκιμάστε ξανά σε $seconds δευτερόλεπτα.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Δοκιμάστε ξανά σε $seconds δευτερόλεπτα.',
+      one: 'Δοκιμάστε ξανά σε $seconds δευτερόλεπτο.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Δοκιμάστε ξανά σε $minutes λεπτά.',
+      one: 'Δοκιμάστε ξανά σε $minutes λεπτό.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Δοκιμάστε ξανά σε $hours ώρες.',
+      one: 'Δοκιμάστε ξανά σε $hours ώρα.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -987,6 +1026,11 @@ class AppLocalizationsEl extends AppLocalizations {
       'key_generation_failed':
           'Δεν ήταν δυνατή η δημιουργία κλειδιού WireGuard',
       'csr_generation_failed': 'Δεν ήταν δυνατή η δημιουργία CSR OpenVPN',
+      'openvpn_recovery_exhausted':
+          'Η ανάκτηση OpenVPN έχει ήδη χρησιμοποιηθεί',
+      'openvpn_recovery_failed': 'Η ανάκτηση OpenVPN απέτυχε',
+      'openvpn_renewal_required':
+          'Απαιτείται ανανέωση του πιστοποιητικού OpenVPN',
       'other': 'Μη ταξινομημένο εγγενές σφάλμα VPN',
     });
     return '$_temp0';
@@ -1824,6 +1868,14 @@ class AppLocalizationsEl extends AppLocalizations {
       'Η συνδρομή σας διαχειρίζεται μέσω Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Η συνδρομή σας στο Google Play είναι σε αναστολή ή αναμένει πληρωμή. Ανοίξτε τη «Διαχείριση συνδρομής» για να το διορθώσετε στο Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Αυτός ο λογαριασμός Google Play έχει ήδη συνδρομή Fuze Premium που δεν είναι ενεργή για αυτόν τον λογαριασμό FuzeVPN. Ανοίξτε τη «Διαχείριση συνδρομής» για να την ελέγξετε στο Google Play.';
+
+  @override
   String get billing_inactive => 'Καμία ενεργή συνδρομή.';
 
   @override
@@ -2076,6 +2128,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get google_rateLimited => 'Περιμένετε πριν δοκιμάσετε ξανά.';
 
   @override
+  String get google_busy =>
+      'Το Google δεν είναι διαθέσιμο όσο εκτελείται άλλη λειτουργία (σύνδεση VPN, λογαριασμός ή επισκέπτης). Δοκιμάστε ξανά μόλις ολοκληρωθεί· η τρέχουσα πρόσβασή σας διατηρείται.';
+
+  @override
   String get google_invalidPassword =>
       'Ο κωδικός FuzeVPN είναι λανθασμένος. Ο τρέχων λογαριασμός διατηρείται.';
 
@@ -2106,6 +2162,36 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Ο έλεγχος ασφαλείας δεν είναι διαθέσιμος. Δοκιμάστε αργότερα.';
+
+  @override
+  String get google_intentMismatch =>
+      'Μια προηγούμενη προσπάθεια σύνδεσης με το Google εκκρεμεί ακόμη. Ακυρώστε την πριν ξεκινήσετε αυτή την ενέργεια.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Ο απαιτούμενος έλεγχος ασφαλείας δεν είναι διαθέσιμος σε αυτή την εφαρμογή. Αυτή η ενέργεια δεν μπορεί να ολοκληρωθεί αυτή τη στιγμή.';
+
+  @override
+  String get google_solveChallenge => 'Ολοκλήρωση του ελέγχου ασφαλείας';
+
+  @override
+  String get google_challengeTitle => 'Έλεγχος ασφαλείας';
+
+  @override
+  String get google_challengeReady =>
+      'Η επαλήθευση ολοκληρώθηκε. Μπορείτε τώρα να επιβεβαιώσετε τη δημιουργία του λογαριασμού σας.';
+
+  @override
+  String get google_challengeExpired =>
+      'Η επαλήθευση έληξε. Επαναλάβετε τον έλεγχο πριν από την επιβεβαίωση.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Η επαλήθευση ακυρώθηκε. Μπορείτε να την επαναλάβετε.';
+
+  @override
+  String get google_challengeFailed =>
+      'Ο έλεγχος ασφαλείας απέτυχε. Δοκιμάστε ξανά.';
 
   @override
   String get billing_trialTitle => 'Δοκίμασε το Fuze Premium δωρεάν';

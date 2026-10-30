@@ -19,11 +19,15 @@ param(
     [string]$ForegroundServicePatch = (Join-Path $PSScriptRoot '..\patches\wireguard-android\0001-go-backend-real-foreground-service.patch'),
 
     [ValidateScript({ Test-Path -LiteralPath $_ -PathType Leaf })]
-    [string]$ProtectedStartPatch = (Join-Path $PSScriptRoot '..\patches\wireguard-android\0002-go-backend-protected-start.patch')
+    [string]$ProtectedStartPatch = (Join-Path $PSScriptRoot '..\patches\wireguard-android\0002-go-backend-protected-start.patch'),
+
+    [ValidateScript({ Test-Path -LiteralPath $_ -PathType Leaf })]
+    [string]$NativeRuntimePatch = (Join-Path $PSScriptRoot '..\patches\wireguard-android\0003-go-runtime-and-handshake-update.patch')
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
+. (Join-Path $PSScriptRoot 'wireguard_patch_series.ps1')
 
 $expectedCommit = '09b75c2bd37f749e2a8c85876394854113c74be7'
 $expectedTag = '1.0.20260102'
@@ -101,7 +105,8 @@ try {
     # the latter can be parsed by Git as an archive tree-ish (C:\...) instead
     # of an option value.
     $archivePath = Join-Path $stage 'wireguard.zip'
-    & git -C $WireGuardAndroidSource archive --format=zip -o $archivePath $expectedCommit
+    # Export the committed bytes whatever the workstation's core.autocrlf is.
+    & git -C $WireGuardAndroidSource -c core.autocrlf=false -c core.eol=lf archive --format=zip -o $archivePath $expectedCommit
     if ($LASTEXITCODE -ne 0) { throw 'Unable to archive the pinned WireGuard source.' }
     Expand-Archive -LiteralPath (Join-Path $stage 'wireguard.zip') -DestinationPath $stage -Force
 
@@ -126,15 +131,21 @@ try {
     }
     & git -C $stagedSource init --quiet
     if ($LASTEXITCODE -ne 0) { throw 'Unable to initialise staged source tree.' }
+    # Runtime patches carry byte-exact LF manifests. A workstation-wide
+    # core.autocrlf=true must not rewrite their reviewed hashes during import.
+    & git -C $stagedSource config core.autocrlf false
+    if ($LASTEXITCODE -ne 0) { throw 'Unable to preserve reviewed patch line endings.' }
+    & git -C $stagedSource config core.eol lf
+    if ($LASTEXITCODE -ne 0) { throw 'Unable to select reviewed LF source line endings.' }
     $patches = @(
         [ordered]@{ path = $ForegroundServicePatch; purpose = 'Expose the shared Android VPN host, its foreground notification and lifecycle callbacks.' },
-        [ordered]@{ path = $ProtectedStartPatch; purpose = 'Start wireguard-go without peers, protect its bound sockets, then install peer-only configuration.' }
+        [ordered]@{ path = $ProtectedStartPatch; purpose = 'Start wireguard-go without peers, protect its bound sockets, then install peer-only configuration.' },
+        [ordered]@{ path = $NativeRuntimePatch; purpose = 'Update the pinned Go toolchain, reviewed CLOCK_BOOTTIME adaptation and upstream WireGuard handshake concurrency and IPv6 length fixes.' }
     )
+    # The reviewed patches mix CRLF and LF preimages: apply them independently of
+    # line endings (tools/wireguard_patch_series.ps1). Files they touch end in LF.
+    Invoke-WireGuardPatchSeries -StagedSource $stagedSource -Patches @($patches | ForEach-Object { $_.path })
     foreach ($patch in $patches) {
-        & git -C $stagedSource apply --check $patch.path
-        if ($LASTEXITCODE -ne 0) { throw "The required patch does not apply cleanly: $($patch.path)" }
-        & git -C $stagedSource apply $patch.path
-        if ($LASTEXITCODE -ne 0) { throw "Unable to apply required patch: $($patch.path)" }
         $patch.name = [IO.Path]::GetFileName((Resolve-Path -LiteralPath $patch.path))
         $patch.sha256 = (Get-FileHash -LiteralPath $patch.path -Algorithm SHA256).Hash.ToLowerInvariant()
     }
@@ -162,6 +173,23 @@ try {
             path = "patches/fuzevpn/$($patches[1].name)"
             sha256 = $patches[1].sha256
             purpose = $patches[1].purpose
+        }
+        nativeRuntimePatch = [ordered]@{
+            path = "patches/fuzevpn/$($patches[2].name)"
+            sha256 = $patches[2].sha256
+            purpose = $patches[2].purpose
+        }
+        nativeRuntime = [ordered]@{
+            goVersion = '1.26.9'
+            wireguardModule = 'v0.0.0-20261024220952-b3bc704ef0ee'
+            wireguardCommit = 'b3bc704ef0ee21a36298601a9e1e5ff90377ac52'
+            reviewedAt = '2026-10-29'
+            reviewedChanges = @('device: noise: reject response consumption after intermediate initiation', 'tun: clear virtioNetHdr when deleting item from tcpGROTable', "device: don't overflow uint16 when adding v4 header length")
+            runtimePatch = 'tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.diff'
+            runtimePatchSha256 = 'd0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a'
+            runtimePatchManifest = 'tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.json'
+            runtimePatchManifestSha256 = '9580d03064a6c0247bd543ae6311991b330dd94ff6352e2fd0e09761ab9d0127'
+            purpose = 'Use a maintained Go release and the upstream handshake concurrency and IPv6 length corrections while preserving the reviewed CLOCK_BOOTTIME semantics, extended to time.now on linux/amd64, and protected-start JNI.'
         }
     } | ConvertTo-Json -Depth 5
     [IO.File]::WriteAllText((Join-Path $stagedSource 'FUZEVPN-IMPORT-METADATA.json'), "$metadata`n", [Text.UTF8Encoding]::new($false))

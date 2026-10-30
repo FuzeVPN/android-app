@@ -19,7 +19,7 @@ abstract final class AppCopy {
     String key, {
     Map<String, Object?> arguments = const <String, Object?>{},
   }) {
-    String value = switch (key) {
+    return switch (key) {
       'google.continue' => localizations.google_continue,
       'google.or' => localizations.google_or,
       'google.title' => localizations.google_title,
@@ -50,6 +50,7 @@ abstract final class AppCopy {
       'google.emailUnavailable' => localizations.google_emailUnavailable,
       'google.emailSent' => localizations.google_emailSent,
       'google.rateLimited' => localizations.google_rateLimited,
+      'google.busy' => localizations.google_busy,
       'google.invalidPassword' => localizations.google_invalidPassword,
       'google.invalidCode' => localizations.google_invalidCode,
       'google.accountChanged' => localizations.google_accountChanged,
@@ -59,6 +60,14 @@ abstract final class AppCopy {
       'google.challengeRequired' => localizations.google_challengeRequired,
       'google.challengeUnavailable' =>
         localizations.google_challengeUnavailable,
+      'google.intentMismatch' => localizations.google_intentMismatch,
+      'google.challengeBlocked' => localizations.google_challengeBlocked,
+      'google.solveChallenge' => localizations.google_solveChallenge,
+      'google.challengeTitle' => localizations.google_challengeTitle,
+      'google.challengeReady' => localizations.google_challengeReady,
+      'google.challengeExpired' => localizations.google_challengeExpired,
+      'google.challengeCancelled' => localizations.google_challengeCancelled,
+      'google.challengeFailed' => localizations.google_challengeFailed,
       'welcome.title' => localizations.welcome_title,
       'welcome.description' => localizations.welcome_description,
       'welcome.start' => localizations.welcome_start,
@@ -144,6 +153,9 @@ abstract final class AppCopy {
       ),
       'billing.webManaged' => localizations.billing_webManaged,
       'billing.playManaged' => localizations.billing_playManaged,
+      'billing.playOnHold' => localizations.billing_playOnHold,
+      'billing.playReceiptUnlinked' =>
+        localizations.billing_playReceiptUnlinked,
       'billing.inactive' => localizations.billing_inactive,
       'billing.checkingAccess' => localizations.billing_checkingAccess,
       'billing.restoring' => localizations.billing_restoring,
@@ -476,6 +488,7 @@ abstract final class AppCopy {
       'devices.firstConnection' => localizations.devices_firstConnection,
       'devices.thisDevice' => localizations.devices_thisDevice,
       'devices.added' => localizations.devices_added(arguments['date'] ?? ''),
+      'devices.unnamed' => localizations.devices_unnamed,
       'action.remove' => localizations.action_remove,
       'settings.title' => localizations.settings_title,
       'settings.subtitle' => localizations.settings_subtitle,
@@ -490,6 +503,9 @@ abstract final class AppCopy {
       'settings.security' => localizations.settings_security,
       'settings.licenses' => localizations.settings_licenses,
       'settings.licensesDetail' => localizations.settings_licensesDetail,
+      'settings.licensesLegalese' => localizations.settings_licensesLegalese(
+        (arguments['url'] ?? '').toString(),
+      ),
       'settings.background' => localizations.settings_background,
       'theme.system' => localizations.theme_system,
       'theme.light' => localizations.theme_light,
@@ -586,17 +602,33 @@ abstract final class AppCopy {
         (arguments['code'] ?? '').toString(),
       ),
       'notice.retryLater' => localizations.notice_retryLater,
-      'notice.retryAfter' => localizations.notice_retryAfter(
-        arguments['seconds'] ?? '',
+      'notice.retryAfter' => _retryAfter(
+        localizations,
+        _wholeNumber(arguments['seconds']),
       ),
       'notice.generic.title' => localizations.notice_generic_title,
       'notice.generic.message' => localizations.notice_generic_message,
       _ => key,
     };
-    arguments.forEach((String name, Object? argument) {
-      value = value.replaceAll('{}', argument?.toString() ?? '');
-    });
-    return value;
+  }
+
+  /// Plural messages need an integer; stored notices may carry another type.
+  static int _wholeNumber(Object? value) => switch (value) {
+    final int number => number,
+    final num number when number.isFinite => number.round(),
+    final String text => int.tryParse(text.trim()) ?? 0,
+    _ => 0,
+  };
+
+  /// Server delays reach 24 hours: beyond 120 seconds they read in minutes,
+  /// beyond 120 minutes in hours, rounded up so that the message never invites
+  /// a retry before the server allows it.
+  static String _retryAfter(AppLocalizations localizations, int seconds) {
+    if (seconds <= 120) return localizations.notice_retryAfter(seconds);
+    if (seconds <= 7200) {
+      return localizations.notice_retryAfterMinutes((seconds + 59) ~/ 60);
+    }
+    return localizations.notice_retryAfterHours((seconds + 3599) ~/ 3600);
   }
 
   static String _nativeTitle(

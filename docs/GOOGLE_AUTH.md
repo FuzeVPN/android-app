@@ -44,10 +44,17 @@ serveur peut retourner :
 | `link_required` | Proposer une preuve explicite de propriété du compte FuzeVPN existant. |
 
 Les prénom et nom sont **facultatifs** dans le contrat. Le formulaire Android
-demande le pays et les deux consentements, pas un nom obligatoire. Le contexte
-peut contenir les noms issus de Google ; une connexion ultérieure ne remplace
-pas le profil existant. Une éventuelle vérification email FuzeVPN reste décidée
-par le serveur.
+demande le pays et les deux consentements, pas un nom obligatoire. La liste des
+pays suit l’alphabet de la langue affichée, comme les Emplacements : casse et
+accents ne déplacent aucun pays après « Z », et les lettres distinctes d’une
+langue gardent leur rang (`Ö` après `Z` en suédois, `Ch` après `H` en tchèque,
+`І` après `И` en ukrainien, voyelles initiales thaïes rangées à leur consonne),
+tandis qu’une simple variante reste avec sa lettre (`أ` et `إ` avec `ا` en
+arabe, où `آ` précède ce bloc comme dans CLDR). Ce tri est embarqué : il ne
+dépend ni du réseau ni de la version d’Android. Le contexte peut contenir les
+noms issus de Google ; une connexion ultérieure ne remplace pas le profil
+existant. Une éventuelle vérification email FuzeVPN reste décidée par le
+serveur.
 
 L’association requiert soit le **mot de passe actuel FuzeVPN**, soit un code
 envoyé par email puis confirmé par l’utilisateur. Elle ne demande pas le mot de
@@ -100,6 +107,20 @@ confond pas ces réponses et n’utilise jamais un ticket pour accéder au VPN.
 L’envoi du code d’association retourne **202 sans corps** ; les délais de
 renvoi et les réponses `Retry-After` sont respectés.
 
+Un délai `Retry-After` ou une vérification Turnstile exigés pour une intention
+restent appliqués même si la réponse arrive pendant un Retour dont l’annulation
+échoue, ou si la relecture `/v1/me` d’un claim refusé échoue. Tant que le délai
+court, le formulaire rouvert par la reprise, ou le bouton de vérification, reste
+désactivé, explique la limitation et affiche le temps restant. À l’échéance, ce
+message devenu caduc disparaît (l’écran rappelle alors la vérification si elle
+est exigée) ; un nouveau refus sans délai, ou avec un délai nul, reste expliqué
+sans bloquer. Quand l’échec d’annulation a fait perdre le contexte du
+formulaire, le bouton « Résoudre la vérification » ou la reprise le recharge
+avant d’ouvrir le défi ; si le ticket a expiré entre-temps, l’écran l’indique
+sans appel serveur. Ces gardes appartiennent à l’intention : une annulation
+confirmée, une conversion reconnue ou une nouvelle intention les efface, et
+elles ne survivent pas à l’arrêt du processus.
+
 Ces réponses sont exigées par le client Android. Le contrat et la
 configuration du serveur doivent être contrôlés dans son propre projet ;
 aucun fichier backend externe n’est requis pour lire ce guide. La route
@@ -120,8 +141,62 @@ Le bouton Retour ou Annuler interrompt la sélection native et annule l’intent
 exacte côté API. Une réponse tardive ne s’applique pas à une autre session. Si
 l’annulation serveur ne peut pas être confirmée, Android garde l’intention et
 affiche un état incertain ; il ne la remplace pas silencieusement par un nouveau
-choix Google. La destruction du processus conserve les tickets pour une
-reprise explicite, sans conserver le JWT.
+choix Google. Les refus `google_context_expired` et `google_context_consumed`
+(contexte déjà consommé par une finalisation dont la réponse a été perdue)
+confirment en revanche qu’il ne reste rien à annuler : le ticket est effacé,
+après la relecture `/v1/me` décrite ci-dessous pour un claim. Ce traitement de
+`google_context_consumed` est une hypothèse du client, à confirmer dans le
+contrat serveur. Une fois l’annulation confirmée par l’API (succès ou l’un de
+ces deux refus), l’écran se ferme même si l’effacement local du ticket échoue,
+comme après une connexion admise. Le contrôleur Google, qui vit autant que le
+processus de l’application, retient alors ce ticket : s’il relit la copie
+périmée restée sur le disque (ouverture de l’écran, reprise, Retour ou
+Annuler), il ne la présente plus à l’API, ni pour la décrire ni pour
+l’annuler (ni pour la relecture `/v1/me` d’un claim : une conversion déjà
+commise est reconnue par la session), et retente seulement son effacement.
+Il retient le ticket lui-même : si l’enregistrement d’un ticket renouvelé
+avait échoué plus tôt, la copie du disque est l’ancien ticket de la même
+tentative, qu’il présente encore à l’API, avec la même limite que ci-dessous. Retour et Annuler quittent
+l’écran ; l’ouverture lance un nouveau choix Google, dont l’enregistrement
+remplace cette copie. Cette mémoire disparaît avec le processus. Après un
+redémarrage, la réouverture d’une copie périmée affiche l’état incertain, qui
+propose la reprise (« Vérifier cette tentative ») ou Annuler, puisque l’API ne
+la décrit plus ; la reprise l’interroge de nouveau sans l’annuler, et seuls
+Annuler ou Retour la réannulent côté API, puis retentent son effacement. Le
+client attend alors du serveur un succès ou l’un de ces deux refus ; toute
+autre réponse à cette deuxième annulation (par exemple 401 ou 404) reste une
+annulation non confirmée : l’écran reste ouvert et indique que l’annulation
+n’a pas pu être confirmée. C’est la limite qui reste, entre deux processus
+seulement : la réponse du serveur à une deuxième annulation d’un même ticket
+est à fixer dans le contrat serveur. La
+destruction du processus conserve les tickets pour une reprise explicite, sans
+conserver le JWT.
+
+Un ticket conservé par un processus précédent peut ne pas avoir été relu : par
+exemple quand l’écran Google est ouvert pendant une connexion VPN ou une autre
+opération de compte, ce que l’écran indique sans lire ni remplacer le ticket.
+Annuler, ou « Continuer avec Google », relit alors ce ticket. Pour un claim du
+même invité, la relecture de `/v1/me` reconnaît d’abord une conversion déjà
+commise ; sinon l’intention est annulée côté API avant d’être effacée. Si
+l’annulation n’est pas confirmée, le ticket est conservé et chargé : l’écran
+reste incertain et propose la reprise. Si le stockage chiffré est
+temporairement indisponible (`secure_storage_failed`), rien n’est chargé ni
+effacé : l’écran peut être quitté, le ticket reste pour une relecture
+ultérieure et, tant qu’il reste illisible, l’écran Google indique que Google
+est indisponible sans lancer de nouveau choix. Dès que la lecture réussit,
+rouvrir l’écran reprend la même intention, tandis que « Continuer avec
+Google » l’annule d’abord côté API (ou la garde chargée si l’annulation
+échoue) avant un nouveau choix. Seul un ticket invalide, qu’aucune annulation
+API ne peut viser, est supprimé sans appel serveur : charge non conforme, ou
+entrée que le stockage natif signale `secure_storage_corrupt` parce qu’elle ne
+pourra plus jamais être déchiffrée (authentification AES-GCM en échec, format
+invalide, clé Keystore disparue).
+L’ouverture de l’écran Google, la vérification d’une tentative ou Annuler
+l’effacent alors. À l’ouverture ou à la vérification, l’écran indique que la
+connexion Google a échoué et propose « Continuer avec Google », qui lance un
+nouveau choix ; Annuler quitte l’écran. Si cet effacement échoue, le message
+est le même et la prochaine annulation le retente : l’écran n’est jamais
+bloqué.
 
 Après une réponse de claim perdue, la lecture de `/v1/me` avec le **même bearer**
 permet de reconnaître la conversion déjà commise. Le client ne rejoue pas
@@ -193,22 +268,71 @@ Pour les APK locaux et la VM, contrôler séparément les associations existante
 avec le certificat qui signe réellement chaque APK. Cette vérification ne
 nécessite aucun secret dans l’application.
 
+## État des sources du 19 octobre 2026 — défi Turnstile Google
+
+Le contrat API existant et sa clé publique ont été retrouvés dans les sources
+locales du projet serveur. La résolution native est maintenant implémentée
+pour les finalisations Google **`register` et `claim` uniquement** ; cette
+évolution ne décrit pas les formulaires classiques d’inscription ou de
+réinitialisation. Aucune modification de politique ni déploiement serveur
+n’a été effectué pour la correction.
+
+Après un refus serveur `turnstile_required`, `turnstile_invalid` ou
+`turnstile_unavailable`, le client conserve le contexte et l’invité et propose
+une action explicite de vérification. Il ne lance pas le widget avant ce
+refus. Une résolution réussie permet de confirmer manuellement le formulaire ;
+elle ne rejoue pas automatiquement la finalisation.
+
+La fenêtre native charge un document HTML local avec l’origine fixe
+`https://app.fuzevpn.com/`, une clé de site publique fixe et l’action `signup`.
+Aucun bearer, JWT Google, ticket de continuation ou donnée de compte n’est
+injecté dans ce document. Les navigations du cadre principal sont refusées ;
+les ressources externes sont limitées à HTTPS sur `challenges.cloudflare.com`.
+Une erreur TLS interrompt la résolution ; les nouvelles fenêtres, fichiers
+locaux et permissions de géolocalisation sont refusés. La réponse est lue
+depuis le seul cadre principal et validée comme un jeton ASCII imprimable
+sans espace, non vide, de 2 048 caractères maximum. Les paramètres du canal ne choisissent ni URL ni clé de
+site. Voir la [politique native](../android/app/src/main/kotlin/com/fuzevpn/android/TurnstilePolicy.kt)
+et le [résolveur WebView](../android/app/src/main/kotlin/com/fuzevpn/android/NativeTurnstileBridge.kt).
+
+Le jeton reste en mémoire, avec une durée conservatrice de quatre minutes
+comptée depuis le début de la résolution. Il est consommé et oublié avant
+l’appel de finalisation, et effacé après chaque erreur. Le corps JSON de
+`register` ou `claim` l’ajoute comme champ facultatif `turnstile_token` ; il
+ne devient ni un droit d’accès ni une identité. Les gardes de finalité, cycle,
+identité et contexte restent applicables. Annulation, fin, destruction et
+changement d’identité empêchent un résultat tardif d’être admis ; le passage
+en arrière-plan de l’Activity interrompt la résolution native.
+
+Délais (corrections du 29 octobre 2026). La fenêtre native a une échéance de
+240 s (`TurnstilePolicy.TIMEOUT_MS`), au terme de laquelle la résolution se
+termine par `unavailable`. Un échec de démarrage du fournisseur est détecté
+plus tôt : dès que le document embarqué est observé, le script Turnstile doit
+signaler qu’il est prêt dans les 30 s de `TurnstilePolicy.STARTUP_TIMEOUT_MS`,
+sinon la résolution se termine par `provider_error`. Une erreur de chargement
+du script `challenges.cloudflare.com` donne aussitôt le même code. Côté Dart,
+la garde `NativeSecurityChallengeGateway.defaultSolveTimeout` (4 min 20 s,
+injectable par `solveTimeout`) couvre seulement un côté natif qui ne
+répondrait jamais : elle dépasse volontairement l’échéance native de 240 s.
+À son expiration, elle demande l’annulation native et remonte
+`provider_error`, et non `interrupted`, puisque l’utilisateur n’a rien annulé.
+
 ## Limites de qualification
 
-Si la politique serveur exige Turnstile pour `register` ou `claim`, un défi
-natif est **bloqué : Q025** ([preuve et prérequis](VALIDATION.md#q025)).
-Le formulaire actuel ne fournit pas de token
-Turnstile. Sur `turnstile_required`, `turnstile_invalid` ou
-`turnstile_unavailable`, le client conserve le contexte et l’invité et affiche
-le problème ; aucun champ Android ne contourne la protection. Un serveur qui
-exige ce défi bloque donc la finalisation tant que ce parcours n’est pas prêt.
+Q025 conserve son verdict historique **bloqué au 14 octobre** dans le
+[registre daté](VALIDATION.md#q025), qui n’est pas réécrit. Au 19 octobre, le
+statut courant est **implémenté dans les sources et couvert par des tests
+locaux ; recette native réelle à effectuer**. Le contrat serveur n’est plus
+un prérequis manquant. Une résolution effective Cloudflare/WebView, les
+associations OAuth et les parcours Google réels n’ont pas été exécutés ou
+qualifiés par cette modification.
 
 La recette doit confirmer la configuration OAuth de chaque signature ciblée,
 le serveur compatible 037, puis la connexion, l’inscription, les deux preuves
 d’association, la conversion de l’invité sans changement de bearer/appareil/VPN,
 l’annulation, la réponse perdue et la reprise après arrêt du processus. Les tests
 avec fakes ne valident ni une sélection Credential Manager réelle, ni les
-associations Cloud, ni Turnstile. La présence du code ou la disponibilité des routes ne remplace pas la
+associations Cloud, ni une résolution Turnstile réelle. La présence du code ou la disponibilité des routes ne remplace pas la
 vérification de la configuration Cloud ni la recette Google réelle.
 
 [Implémentation officielle Credential Manager](https://developer.android.com/identity/sign-in/credential-manager-siwg-implementation).

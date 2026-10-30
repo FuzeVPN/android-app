@@ -1,0 +1,61 @@
+name: Android source validation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      prepare_dependencies:
+        description: Explicitly allow online cache preparation before offline validation
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    # A self-hosted machine must never execute an untrusted fork automatically.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: [self-hosted, Windows, X64, fuzevpn-android-36]
+    timeout-minutes: 90
+    env:
+      FLUTTER_ROOT: ${{ vars.FUZEVPN_FLUTTER_ROOT }}
+      JAVA_HOME: ${{ vars.FUZEVPN_JAVA_HOME }}
+      ANDROID_SDK_ROOT: ${{ vars.FUZEVPN_ANDROID_SDK_ROOT }}
+      # go.exe for the offline wireguard-go test; when empty, the first go on the runner's PATH.
+      FUZEVPN_GO: ${{ vars.FUZEVPN_GO }}
+      FUZEVPN_CACHE_ROOT: ${{ vars.FUZEVPN_CACHE_ROOT }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Validate with the pinned prepared toolchain
+        shell: pwsh
+        env:
+          PREPARE_DEPENDENCIES: ${{ github.event_name == 'workflow_dispatch' && inputs.prepare_dependencies && 'true' || 'false' }}
+        run: |
+          if (-not $env:FUZEVPN_CACHE_ROOT) { throw 'Configure FUZEVPN_CACHE_ROOT outside the checkout.' }
+          $cache = [IO.Path]::GetFullPath($env:FUZEVPN_CACHE_ROOT)
+          $checkout = [IO.Path]::GetFullPath($env:GITHUB_WORKSPACE).TrimEnd('\') + '\'
+          if (($cache.TrimEnd('\') + '\').StartsWith($checkout, [StringComparison]::OrdinalIgnoreCase)) {
+            throw 'Cache root must be outside the checkout cleaned by actions/checkout.'
+          }
+          ./tools/validate_project.ps1 `
+            -PubCache (Join-Path $cache 'pub') `
+            -GradleUserHome (Join-Path $cache 'gradle') `
+            -OutputDirectory (Join-Path $env:GITHUB_WORKSPACE 'build/reports/ci') `
+            -PrepareDependencies:($env:PREPARE_DEPENDENCIES -eq 'true')
+      - name: Preserve executed counts and failure logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: validation-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build/reports/ci
+          if-no-files-found: warn
+          retention-days: 14

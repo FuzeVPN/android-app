@@ -32,7 +32,11 @@ abstract interface class NativeStorageGateway {
     required String accountId,
     required String payload,
   });
-  Future<SessionTerminationResult> clearStoredSession({bool expired = false});
+  /// [cause] is sent as "reason"; the expired flag stays for older bridges.
+  Future<SessionTerminationResult> clearStoredSession({
+    bool expired = false,
+    SessionEndCause? cause,
+  });
 
   Future<String?> readStoredCurrentDeviceId({required String accountId});
   Future<void> writeStoredCurrentDeviceId({
@@ -86,6 +90,13 @@ abstract interface class NativeGuestStorageGateway {
   });
 }
 
+/// Optional: which native slot holds the stored session. "pending" is an
+/// explicit admission never bound to its account, "account" is account-bound
+/// and null means that no session is stored.
+abstract interface class NativeSessionBindingGateway {
+  Future<String?> readStoredSessionBinding();
+}
+
 /// Non-sensitive settings still use the native encrypted store, but are
 /// exposed as typed preferences instead of caller-selected key strings.
 abstract interface class AppPreferenceStore {
@@ -133,6 +144,7 @@ class NativeVpnBridge
         VpnNotificationLocaleGateway,
         NativeStorageGateway,
         NativeGuestStorageGateway,
+        NativeSessionBindingGateway,
         GuestOnboardingStore,
         FavoriteLocationStore,
         DiagnosticPreferenceStore,
@@ -450,17 +462,20 @@ class NativeVpnBridge
     'expected_device_id': expectedDeviceId,
   });
 
+  /// A null code is explicit: it means "system language" on the native side.
   @override
   Future<void> setNotificationLocale(String? languageCode) => _invoke<void>(
     'setNotificationLocale',
-    languageCode == null
-        ? const <String, Object?>{}
-        : <String, Object?>{'language_code': languageCode},
+    <String, Object?>{'language_code': languageCode},
   );
 
   @override
   Future<String?> readStoredSessionPayload() =>
       _invoke<String>('storageReadSession');
+
+  @override
+  Future<String?> readStoredSessionBinding() =>
+      _invoke<String>('storageReadSessionBinding');
 
   @override
   Future<void> writePendingSessionPayload(String payload) => _invoke<void>(
@@ -566,8 +581,12 @@ class NativeVpnBridge
   @override
   Future<SessionTerminationResult> clearStoredSession({
     bool expired = false,
+    SessionEndCause? cause,
   }) async => SessionTerminationResult.fromWire(
-    await _invoke<Object?>('storageClearSession', {'session_expired': expired}),
+    await _invoke<Object?>('storageClearSession', <String, Object>{
+      'session_expired': expired,
+      if (cause != null) 'reason': cause.name,
+    }),
   );
 
   @override
@@ -740,6 +759,7 @@ class NativeVpnBridge
     'clearAccountIdentity' ||
     'setNotificationLocale' ||
     'storageReadSession' ||
+    'storageReadSessionBinding' ||
     'storageWritePendingSession' ||
     'storageWriteAccountSession' ||
     'storageReadGuestCredential' ||
@@ -786,6 +806,8 @@ class NativeVpnBridge
 class NativeSecureStore
     implements
         SecureSessionStore,
+        PendingAdmissionStore,
+        SessionEndCauseStore,
         GuestCredentialStore,
         GuestSessionRenewalStore,
         GuestOnboardingStore,
@@ -793,6 +815,12 @@ class NativeSecureStore
         FavoriteLocationStore,
         DiagnosticPreferenceStore {
   NativeSecureStore(this._store);
+
+  // Marks this version's own unscoped writes for bridges without a binding
+  // read. Native code treats the pending slot as opaque; bound payloads keep
+  // their exact two-key format.
+  static const String _admissionKey = 'admission';
+  static const String _registeredAdmission = 'registered';
 
   final NativeStorageGateway _store;
 
@@ -928,12 +956,18 @@ class NativeSecureStore
 
   @override
   Future<void> writeSession(AuthSession session, {String? userId}) async {
-    final String encoded = jsonEncode(<String, String>{
+    final Map<String, String> fields = <String, String>{
       'access_token': session.accessToken,
       'expires_at': session.expiresAt.toUtc().toIso8601String(),
-    });
+    };
+    final String encoded = jsonEncode(fields);
     if (userId == null) {
-      await _store.writePendingSessionPayload(encoded);
+      await _store.writePendingSessionPayload(
+        jsonEncode(<String, String>{
+          ...fields,
+          _admissionKey: _registeredAdmission,
+        }),
+      );
       return;
     }
     await _store.writeAccountSessionPayload(
@@ -943,8 +977,39 @@ class NativeSecureStore
   }
 
   @override
+  Future<bool> readStoredSessionIsPendingAdmission() async {
+    final store = _store;
+    if (store is NativeSessionBindingGateway) {
+      try {
+        final String? binding = await (store as NativeSessionBindingGateway)
+            .readStoredSessionBinding();
+        return binding == 'pending';
+      } on NativeVpnException catch (error) {
+        // A bridge without this read falls back to the marker below.
+        if (error.code != 'native_bridge_unavailable') rethrow;
+      }
+    }
+    final String? raw = await _store.readStoredSessionPayload();
+    if (raw == null) return false;
+    try {
+      final Object? decoded = jsonDecode(raw);
+      return decoded is Map && decoded[_admissionKey] == _registeredAdmission;
+    } on FormatException {
+      return false;
+    }
+  }
+
+  @override
   Future<SessionTerminationResult> clearSession({bool expired = false}) =>
       _store.clearStoredSession(expired: expired);
+
+  /// The legacy flag keeps an older bridge's behaviour: true unless voluntary.
+  @override
+  Future<SessionTerminationResult> clearSessionFor(SessionEndCause cause) =>
+      _store.clearStoredSession(
+        expired: cause != SessionEndCause.voluntary,
+        cause: cause,
+      );
 
   @override
   Future<String?> readCurrentDeviceId({required String userId}) =>

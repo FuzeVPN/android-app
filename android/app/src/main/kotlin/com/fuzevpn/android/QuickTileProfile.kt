@@ -130,7 +130,11 @@ internal data class QuickTileProfile(
     }
 }
 
-internal class QuickTileProfileStore(private val secureStore: SecureKeystoreStore) {
+internal class QuickTileProfileStore(
+    private val secureStore: SecureKeystoreStore,
+    // An active tile is refreshed only on request (A09-services-01).
+    private val onChanged: () -> Unit = {},
+) {
     private val slot = SecureStorageKeyPolicy.quickTileProfile()
 
     fun read(): QuickTileProfile? {
@@ -143,10 +147,12 @@ internal class QuickTileProfileStore(private val secureStore: SecureKeystoreStor
 
     fun write(profile: QuickTileProfile) {
         secureStore.write(slot.scope, slot.key, profile.encode())
+        onChanged()
     }
 
     fun clear() {
         secureStore.delete(slot.scope, slot.key)
+        onChanged()
     }
 
     fun clearIf(

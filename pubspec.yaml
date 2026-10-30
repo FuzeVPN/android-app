@@ -5,6 +5,9 @@ version: 0.2.10+74016
 
 environment:
   sdk: '>=3.12.0 <4.0.0'
+  # GHSA-frr6-h895-5pxp: Flutter < 3.47.8 (Dart < 3.13.7) trusts compromised
+  # eMudhra intermediates in dart:io on Android. Refuse older SDKs.
+  flutter: '>=3.47.8'
 
 dependencies:
   flutter:

@@ -10,7 +10,7 @@
   "accountRestoration_message": "세션은 유지되었습니다. 다시 시도하여 계정을 복구하세요. 여기에서 VPN 연결을 계속 관리할 수 있습니다.",
   "action_retry": "다시 시도",
   "session_endingTitle": "세션 종료 중",
-  "session_ending": "세션이 무효화되었습니다. VPN을 중지하고 세션을 삭제하는 중입니다…",
+  "session_ending": "세션 종료 중: VPN을 중지하고 세션 데이터를 삭제하는 중입니다…",
   "session_stopFailed": "VPN 종료가 확인되지 않았습니다. 다시 로그인하기 전에 다시 시도하세요.",
   "session_cleanupFailed": "VPN은 중지되었지만 세션 삭제가 확인되지 않았습니다. 정리를 다시 시도하세요.",
   "session_retryStop": "종료 다시 시도",
@@ -137,6 +137,7 @@
   "devices_firstConnection": "처음 연결할 때 휴대전화가 추가됩니다.",
   "devices_thisDevice": "이 기기",
   "devices_added": "{date}에 추가됨",
+  "devices_unnamed": "이름 없는 기기",
   "action_remove": "삭제",
   "settings_title": "설정",
   "settings_subtitle": "환경설정과 계정을 한곳에서 관리하세요.",
@@ -150,6 +151,14 @@
   "settings_security": "보안 및 투명성",
   "settings_licenses": "구성 요소 라이선스",
   "settings_licensesDetail": "앱에서 사용하는 소프트웨어",
+  "settings_licensesLegalese": "앱 및 MPL-2.0 라이선스 구성 요소의 소스 코드: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
   "settings_background": "앱을 나가도 VPN은 켜져 있습니다. 중지하려면 연결 탭에서 연결 해제를 사용하세요.",
   "theme_system": "시스템 설정",
   "theme_light": "밝게",
@@ -174,7 +183,7 @@
   "notice_emailVerification_title": "이메일 확인 필요",
   "notice_emailVerification_message": "VPN 기기를 추가하기 전에 이메일 주소를 확인하세요.",
   "notice_rateLimited_title": "시도 횟수 초과",
-  "notice_deviceLimit_title": "기기 2대 한도에 도달함",
+  "notice_deviceLimit_title": "기기 한도에 도달함",
   "notice_deviceLimit_message": "다른 기기를 추가하기 전에 기존 기기를 삭제하세요.",
   "notice_identityRenewal_title": "VPN 신원을 갱신해야 함",
   "notice_identityRenewal_message": "이 신원은 삭제되었습니다. 새로운 로컬 신원을 만드세요.",
@@ -199,7 +208,7 @@
   "notice_diagnosticCode": "진단 코드: {code}",
   "notice_generic_title": "VPN 연결 실패",
   "notice_generic_message": "오류가 발생했습니다. 나중에 다시 시도하세요.",
-  "notice_controller_title": "{code, select, account_created_email_unavailable{계정 생성됨} password_reset_sent{비밀번호 재설정 요청 수신됨} verification_email_sent{확인 이메일 전송됨} location_migration_pending{위치 변경 진행 중} vpn_sign_in_required{로그인 필요} protocol_unavailable_at_location{프로토콜을 사용할 수 없음} vpn_permission_denied{VPN 권한 거부됨} revoked_identity_device_limit{기기 2대 한도에 도달함} tunnel_start_unexpected{VPN을 시작할 수 없음} flutter_disconnect_timeout{연결 해제가 확인되지 않음} flutter_disconnect_unexpected{연결을 해제할 수 없음} device_revoked{기기 삭제됨} revoke_unexpected{기기를 삭제할 수 없음} identity_renewal_unexpected{신원을 갱신할 수 없음} openvpn_renewal_unexpected{OpenVPN을 갱신할 수 없음} location_migration_blocked{위치 변경 차단됨} location_migration_slow{위치 변경이 아직 진행 중} location_migration_conflict{위치 변경을 새로 고쳐야 함} location_migration_verification_failed{위치 변경이 확인되지 않음} location_migration_device_changed{위치 변경 중 기기가 변경됨} tunnel_stop_failed{위치를 변경할 수 없음} other{작업 실패}}",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{계정 생성됨} password_reset_sent{비밀번호 재설정 요청 수신됨} verification_email_sent{확인 이메일 전송됨} location_migration_pending{위치 변경 진행 중} vpn_sign_in_required{로그인 필요} protocol_unavailable_at_location{프로토콜을 사용할 수 없음} vpn_permission_denied{VPN 권한 거부됨} revoked_identity_device_limit{기기 한도에 도달함} tunnel_start_unexpected{VPN을 시작할 수 없음} flutter_disconnect_timeout{연결 해제가 확인되지 않음} flutter_disconnect_unexpected{연결을 해제할 수 없음} device_revoked{기기 삭제됨} revoke_unexpected{기기를 삭제할 수 없음} identity_renewal_unexpected{신원을 갱신할 수 없음} openvpn_renewal_unexpected{OpenVPN을 갱신할 수 없음} location_migration_blocked{위치 변경 차단됨} location_migration_slow{위치 변경이 아직 진행 중} location_migration_conflict{위치 변경을 새로 고쳐야 함} location_migration_verification_failed{위치 변경이 확인되지 않음} location_migration_device_changed{위치 변경 중 기기가 변경됨} tunnel_stop_failed{위치를 변경할 수 없음} device_clock_ahead{기기 시계가 빠름} other{작업 실패}}",
   "@notice_controller_title": {
     "placeholders": {
       "code": {
@@ -207,7 +216,7 @@
       }
     }
   },
-  "notice_controller_message": "{code, select, account_created_email_unavailable{계정은 생성되었지만 확인 이메일을 보내지 못했습니다. 앱에서 다시 보내기를 사용하세요.} password_reset_sent{요청을 받았습니다. 이 주소와 일치하는 계정이 있으면 이메일을 받을 수 있습니다. 스팸 폴더도 확인하세요.} verification_email_sent{새 확인 이메일을 방금 보냈습니다.} location_migration_pending{{target}(으)로 이동을 아직 준비 중입니다. 기기를 다시 만들지 않고 재개할 수 있습니다.} vpn_sign_in_required{VPN을 시작하기 전에 계정에 로그인하세요.} protocol_unavailable_at_location{선택한 위치에서 해당 프로토콜을 제공하지 않습니다. 위치를 새로 고치거나 다른 프로토콜을 선택하세요.} vpn_permission_denied{Android에서 VPN 권한을 거부했습니다. 연결을 다시 시작하고 시스템 요청을 승인하세요.} revoked_identity_device_limit{이 기기의 VPN 접근 권한이 삭제되었고 기기 한도에 도달했습니다. 계정 → 내 기기 관리에서 기기를 삭제하세요.} tunnel_start_unexpected{예기치 않은 오류로 터널 준비가 중단되었습니다. 진단 코드를 확인하고 다시 시도하세요.} flutter_disconnect_timeout{Android에서 제때 VPN 중지를 확인하지 못했습니다. 다시 중지해 보세요.} flutter_disconnect_unexpected{예기치 않은 오류로 터널 중지 확인에 실패했습니다.} device_revoked{기기의 VPN 접근 권한이 취소되고 로컬 보안 정보가 삭제되었습니다.} revoke_unexpected{기기를 삭제하지 못했습니다. 목록을 새로 고치고 다시 시도하세요.} identity_renewal_unexpected{새 VPN 신원을 만들지 못했습니다. 기기를 새로 고치고 다시 시도하세요.} openvpn_renewal_unexpected{OpenVPN 프로필을 갱신하지 못했습니다. 다시 시도하거나 진단 코드를 확인하세요.} location_migration_blocked{현재 서버에서 이 변경을 완료할 수 없습니다. 기기와 로컬 신원은 유지되었습니다.} location_migration_slow{서버에서 아직 {target}(으)로 이동을 준비 중입니다. 잠시 후 재개를 사용하세요.} location_migration_conflict{서버에서 기기 상태가 변경되었습니다. 기기를 새로 고친 후 변경을 재개하세요.} location_migration_verification_failed{서버에서 새 위치를 확인하지 않았습니다. 이전 로컬 신원은 유지되었습니다.} location_migration_device_changed{서버가 반환한 기기가 변경 중인 기기와 더 이상 일치하지 않습니다. 다시 시도하기 전에 기기를 새로 고치세요.} tunnel_stop_failed{새 연결을 시작하기 전에 이전 터널을 완전히 중지해야 합니다.} other{작업을 완료하지 못했습니다. 다시 시도하거나 진단 코드를 지원팀에 보내세요.}}",
+  "notice_controller_message": "{code, select, account_created_email_unavailable{계정은 생성되었지만 확인 이메일을 보내지 못했습니다. 앱에서 다시 보내기를 사용하세요.} password_reset_sent{요청을 받았습니다. 이 주소와 일치하는 계정이 있으면 이메일을 받을 수 있습니다. 스팸 폴더도 확인하세요.} verification_email_sent{새 확인 이메일을 방금 보냈습니다.} location_migration_pending{{target}(으)로 이동을 아직 준비 중입니다. 기기를 다시 만들지 않고 재개할 수 있습니다.} vpn_sign_in_required{VPN을 시작하기 전에 계정에 로그인하세요.} protocol_unavailable_at_location{선택한 위치에서 해당 프로토콜을 제공하지 않습니다. 위치를 새로 고치거나 다른 프로토콜을 선택하세요.} vpn_permission_denied{Android에서 VPN 권한을 거부했습니다. 연결을 다시 시작하고 시스템 요청을 승인하세요.} revoked_identity_device_limit{이 기기의 VPN 접근 권한이 삭제되었고 기기 한도에 도달했습니다. 계정 → 내 기기 관리에서 기기를 삭제하세요.} tunnel_start_unexpected{예기치 않은 오류로 터널 준비가 중단되었습니다. 진단 코드를 확인하고 다시 시도하세요.} flutter_disconnect_timeout{Android에서 제때 VPN 중지를 확인하지 못했습니다. 다시 중지해 보세요.} flutter_disconnect_unexpected{예기치 않은 오류로 터널 중지 확인에 실패했습니다.} device_revoked{기기의 VPN 접근 권한이 취소되고 로컬 보안 정보가 삭제되었습니다.} revoke_unexpected{기기를 삭제하지 못했습니다. 목록을 새로 고치고 다시 시도하세요.} identity_renewal_unexpected{새 VPN 신원을 만들지 못했습니다. 기기를 새로 고치고 다시 시도하세요.} openvpn_renewal_unexpected{OpenVPN 프로필을 갱신하지 못했습니다. 다시 시도하거나 진단 코드를 확인하세요.} location_migration_blocked{현재 서버에서 이 변경을 완료할 수 없습니다. 기기와 로컬 신원은 유지되었습니다.} location_migration_slow{서버에서 아직 {target}(으)로 이동을 준비 중입니다. 잠시 후 재개를 사용하세요.} location_migration_conflict{서버에서 기기 상태가 변경되었습니다. 기기를 새로 고친 후 변경을 재개하세요.} location_migration_verification_failed{서버에서 새 위치를 확인하지 않았습니다. 이전 로컬 신원은 유지되었습니다.} location_migration_device_changed{서버가 반환한 기기가 변경 중인 기기와 더 이상 일치하지 않습니다. 다시 시도하기 전에 기기를 새로 고치세요.} tunnel_stop_failed{새 연결을 시작하기 전에 이전 터널을 완전히 중지해야 합니다.} device_clock_ahead{이 기기의 시계가 실제보다 빠른 것 같습니다. 로그인 상태를 유지하려면 자동 날짜 및 시간을 켜세요.} other{작업을 완료하지 못했습니다. 다시 시도하거나 진단 코드를 지원팀에 보내세요.}}",
   "@notice_controller_message": {
     "placeholders": {
       "code": {
@@ -235,15 +244,31 @@
     }
   },
   "notice_retryLater": "잠시 후 다시 시도하세요.",
-  "notice_retryAfter": "{seconds}초 후 다시 시도하세요.",
+  "notice_retryAfter": "{seconds, plural, one{{seconds}초 후 다시 시도하세요.} other{{seconds}초 후 다시 시도하세요.}}",
   "@notice_retryAfter": {
     "placeholders": {
       "seconds": {
-        "type": "Object"
+        "type": "int"
       }
     }
   },
-  "notice_native_title": "{code, select, system_vpn_resume_unavailable{시스템 VPN 재개를 사용할 수 없음} system_vpn_resume_corrupt{잘못된 시스템 VPN 재개} system_vpn_resume_session_invalid{잘못된 VPN 재개 세션} system_vpn_resume_identity_changed{VPN 신원 변경됨} system_vpn_resume_identity_invalid{잘못된 VPN 재개 신원} system_vpn_resume_storage_failed{VPN 재개 저장소를 사용할 수 없음} system_vpn_resume_network_timeout{VPN 재개에 네트워크 없음} system_vpn_resume_blocked{VPN 재개 차단됨} system_vpn_resume_failed{VPN 재개 실패} system_vpn_resume_error_invalid{잘못된 VPN 재개 오류} wireguard_identity_store_failed{WireGuard 신원이 저장되지 않음} wireguard_identity_unavailable{WireGuard 신원을 사용할 수 없음} vpn_host_destroyed{Android VPN 호스트 중지됨} vpn_host_unavailable{Android VPN 호스트를 사용할 수 없음} vpn_permission_required{VPN 권한 필요} vpn_permission_denied{VPN 권한 거부됨} vpn_permission_request_failed{권한을 요청할 수 없음} wireguard_foreground_service_unavailable{WireGuard 서비스를 사용할 수 없음} wireguard_identity_invalid{잘못된 로컬 WireGuard 키} wireguard_identity_in_use{WireGuard 신원이 이미 사용 중} wireguard_configuration_invalid{잘못된 WireGuard 구성} wireguard_operation_pending{WireGuard 작업이 아직 활성 상태} wireguard_start_failed{WireGuard 시작 거부됨} wireguard_stop_timeout{WireGuard 중지가 확인되지 않음} wireguard_handshake_timeout{WireGuard가 응답하지 않음} openvpn_connection_timeout{OpenVPN이 응답하지 않음} openvpn_core_unavailable{OpenVPN 엔진을 사용할 수 없음} openvpn_operation_pending{OpenVPN 세션이 아직 활성 상태} openvpn_stop_timeout{OpenVPN 중지가 확인되지 않음} openvpn_profile_unavailable{로컬 OpenVPN 프로필 없음} openvpn_native_failed{네이티브 OpenVPN 호출 중단됨} openvpn_key_generation_failed{OpenVPN P-256 키를 만들 수 없음} openvpn_csr_generation_failed{OpenVPN CSR을 만들 수 없음} openvpn_identity_store_failed{OpenVPN 신원이 저장되지 않음} openvpn_identity_clear_failed{OpenVPN 삭제가 불완전함} openvpn_identity_in_use{OpenVPN 신원이 아직 사용 중} openvpn_tls_verification_required{OpenVPN TLS 확인 누락} openvpn_cipher_invalid{잘못된 OpenVPN 암호화 방식} openvpn_profile_rejected{OpenVPN 프로필 거부됨} openvpn_identity_inconsistent{일관되지 않은 OpenVPN 신원} tls_handshake_failed{OpenVPN 협상 거부됨} tls_alert_unknown_ca{OpenVPN 클라이언트 인증서를 인식하지 못함} tls_alert_bad_certificate{OpenVPN 클라이언트 인증서 거부됨} tls_alert_unsupported_certificate{지원되지 않는 OpenVPN 인증서} tls_client_certificate_required{OpenVPN 클라이언트 인증서 필요} tls_alert_misc{OpenVPN TLS 경고} tls_signature_algorithm_rejected{지원되지 않는 OpenVPN 서명} tls_handshake_rejected{OpenVPN TLS 협상 거부됨} tls_version_rejected{호환되지 않는 OpenVPN TLS 버전} tls_certificate_expired{TLS 인증서 만료됨} tls_certificate_revoked{TLS 인증서 취소됨} transport_failed{OpenVPN 서버에 연결할 수 없음} tun_configuration_rejected{OpenVPN 인터페이스를 만들 수 없음} tun_setup_failed{OpenVPN TUN 설정 실패} tun_interface_create_failed{OpenVPN 인터페이스 생성 실패} tun_interface_disabled{OpenVPN 인터페이스 비활성화됨} tun_halted{OpenVPN 인터페이스 중단됨} tun_already_established{OpenVPN 인터페이스가 이미 열려 있음} tun_addresses_missing{OpenVPN 주소 누락} tun_routes_missing{OpenVPN 라우팅 누락} tun_dns_missing{OpenVPN DNS 누락} tun_permission_revoked{VPN 권한 취소됨} tun_establish_returned_null{Android에서 VPN 인터페이스를 거부함} openvpn_service_start_failed{OpenVPN 서비스를 사용할 수 없음} openvpn_operation_timeout{OpenVPN 호출 시간 초과} openvpn_start_failed{OpenVPN 시작 거부됨} openvpn_connection_failed{OpenVPN 연결 중단됨} openvpn_core_status_error{OpenVPN Core가 오류로 종료됨} openvpn_stopped_before_connected{연결 전에 OpenVPN이 중지됨} openvpn_auth_failed{OpenVPN 인증 거부됨} openvpn_client_setup_failed{OpenVPN 클라이언트 설정 실패} openvpn_client_halted{OpenVPN 클라이언트 중단됨} openvpn_client_restart{OpenVPN 다시 시작 요청됨} openvpn_inactive_timeout{OpenVPN이 너무 오래 비활성 상태} openvpn_session_expired{OpenVPN 세션 만료됨} openvpn_credentials_required{지원되지 않는 OpenVPN 인증} openvpn_proxy_failed{OpenVPN 중간 전송 실패} openvpn_compression_failed{OpenVPN 압축 거부됨} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM 암호화를 사용할 수 없음} openvpn_feature_unsupported{지원되지 않는 OpenVPN 기능} network_unavailable{인터넷 연결을 사용할 수 없음} network_lost{네트워크를 사용할 수 없음} certificate_validation_failed{서버 인증서 거부됨} openvpn_certificate_expired{OpenVPN 인증서 만료됨} tunnel_active_for_another_account{다른 계정의 터널이 아직 활성 상태} tunnel_already_active{네이티브 터널이 이미 활성 상태} tunnel_stop_timeout{{protocol} 중지가 확인되지 않음} tunnel_disconnected{{protocol} 중단됨} native_bridge_unavailable{Android 브리지를 사용할 수 없음} native_operation_failed{Android 작업 중단됨} invalid_arguments{VPN 매개변수가 불완전함} invalid_account_id{잘못된 VPN 계정} invalid_device_id{잘못된 기기 식별자} storage_key_not_allowed{저장소 키 거부됨} secure_storage_read_failed{보안 읽기 실패} secure_storage_write_failed{보안 쓰기 실패} key_generation_failed{WireGuard 키를 생성할 수 없음} csr_generation_failed{OpenVPN CSR을 생성할 수 없음} other{분류되지 않은 네이티브 VPN 오류}}",
+  "notice_retryAfterMinutes": "{minutes, plural, one{{minutes}분 후 다시 시도하세요.} other{{minutes}분 후 다시 시도하세요.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{{hours}시간 후 다시 시도하세요.} other{{hours}시간 후 다시 시도하세요.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{시스템 VPN 재개를 사용할 수 없음} system_vpn_resume_corrupt{잘못된 시스템 VPN 재개} system_vpn_resume_session_invalid{잘못된 VPN 재개 세션} system_vpn_resume_identity_changed{VPN 신원 변경됨} system_vpn_resume_identity_invalid{잘못된 VPN 재개 신원} system_vpn_resume_storage_failed{VPN 재개 저장소를 사용할 수 없음} system_vpn_resume_network_timeout{VPN 재개에 네트워크 없음} system_vpn_resume_blocked{VPN 재개 차단됨} system_vpn_resume_failed{VPN 재개 실패} system_vpn_resume_error_invalid{잘못된 VPN 재개 오류} wireguard_identity_store_failed{WireGuard 신원이 저장되지 않음} wireguard_identity_unavailable{WireGuard 신원을 사용할 수 없음} vpn_host_destroyed{Android VPN 호스트 중지됨} vpn_host_unavailable{Android VPN 호스트를 사용할 수 없음} vpn_permission_required{VPN 권한 필요} vpn_permission_denied{VPN 권한 거부됨} vpn_permission_request_failed{권한을 요청할 수 없음} wireguard_foreground_service_unavailable{WireGuard 서비스를 사용할 수 없음} wireguard_identity_invalid{잘못된 로컬 WireGuard 키} wireguard_identity_in_use{WireGuard 신원이 이미 사용 중} wireguard_configuration_invalid{잘못된 WireGuard 구성} wireguard_operation_pending{WireGuard 작업이 아직 활성 상태} wireguard_start_failed{WireGuard 시작 거부됨} wireguard_stop_timeout{WireGuard 중지가 확인되지 않음} wireguard_handshake_timeout{WireGuard가 응답하지 않음} openvpn_connection_timeout{OpenVPN이 응답하지 않음} openvpn_core_unavailable{OpenVPN 엔진을 사용할 수 없음} openvpn_operation_pending{OpenVPN 세션이 아직 활성 상태} openvpn_stop_timeout{OpenVPN 중지가 확인되지 않음} openvpn_profile_unavailable{로컬 OpenVPN 프로필 없음} openvpn_native_failed{네이티브 OpenVPN 호출 중단됨} openvpn_key_generation_failed{OpenVPN P-256 키를 만들 수 없음} openvpn_csr_generation_failed{OpenVPN CSR을 만들 수 없음} openvpn_identity_store_failed{OpenVPN 신원이 저장되지 않음} openvpn_identity_clear_failed{OpenVPN 삭제가 불완전함} openvpn_identity_in_use{OpenVPN 신원이 아직 사용 중} openvpn_tls_verification_required{OpenVPN TLS 확인 누락} openvpn_cipher_invalid{잘못된 OpenVPN 암호화 방식} openvpn_profile_rejected{OpenVPN 프로필 거부됨} openvpn_identity_inconsistent{일관되지 않은 OpenVPN 신원} tls_handshake_failed{OpenVPN 협상 거부됨} tls_alert_unknown_ca{OpenVPN 클라이언트 인증서를 인식하지 못함} tls_alert_bad_certificate{OpenVPN 클라이언트 인증서 거부됨} tls_alert_unsupported_certificate{지원되지 않는 OpenVPN 인증서} tls_client_certificate_required{OpenVPN 클라이언트 인증서 필요} tls_alert_misc{OpenVPN TLS 경고} tls_signature_algorithm_rejected{지원되지 않는 OpenVPN 서명} tls_handshake_rejected{OpenVPN TLS 협상 거부됨} tls_version_rejected{호환되지 않는 OpenVPN TLS 버전} tls_certificate_expired{TLS 인증서 만료됨} tls_certificate_revoked{TLS 인증서 취소됨} transport_failed{OpenVPN 서버에 연결할 수 없음} tun_configuration_rejected{OpenVPN 인터페이스를 만들 수 없음} tun_setup_failed{OpenVPN TUN 설정 실패} tun_interface_create_failed{OpenVPN 인터페이스 생성 실패} tun_interface_disabled{OpenVPN 인터페이스 비활성화됨} tun_halted{OpenVPN 인터페이스 중단됨} tun_already_established{OpenVPN 인터페이스가 이미 열려 있음} tun_addresses_missing{OpenVPN 주소 누락} tun_routes_missing{OpenVPN 라우팅 누락} tun_dns_missing{OpenVPN DNS 누락} tun_permission_revoked{VPN 권한 취소됨} tun_establish_returned_null{Android에서 VPN 인터페이스를 거부함} openvpn_service_start_failed{OpenVPN 서비스를 사용할 수 없음} openvpn_operation_timeout{OpenVPN 호출 시간 초과} openvpn_start_failed{OpenVPN 시작 거부됨} openvpn_connection_failed{OpenVPN 연결 중단됨} openvpn_core_status_error{OpenVPN Core가 오류로 종료됨} openvpn_stopped_before_connected{연결 전에 OpenVPN이 중지됨} openvpn_auth_failed{OpenVPN 인증 거부됨} openvpn_client_setup_failed{OpenVPN 클라이언트 설정 실패} openvpn_client_halted{OpenVPN 클라이언트 중단됨} openvpn_client_restart{OpenVPN 다시 시작 요청됨} openvpn_inactive_timeout{OpenVPN이 너무 오래 비활성 상태} openvpn_session_expired{OpenVPN 세션 만료됨} openvpn_credentials_required{지원되지 않는 OpenVPN 인증} openvpn_proxy_failed{OpenVPN 중간 전송 실패} openvpn_compression_failed{OpenVPN 압축 거부됨} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM 암호화를 사용할 수 없음} openvpn_feature_unsupported{지원되지 않는 OpenVPN 기능} network_unavailable{인터넷 연결을 사용할 수 없음} network_lost{네트워크를 사용할 수 없음} certificate_validation_failed{서버 인증서 거부됨} openvpn_certificate_expired{OpenVPN 인증서 만료됨} tunnel_active_for_another_account{다른 계정의 터널이 아직 활성 상태} tunnel_already_active{네이티브 터널이 이미 활성 상태} tunnel_stop_timeout{{protocol} 중지가 확인되지 않음} tunnel_disconnected{{protocol} 중단됨} native_bridge_unavailable{Android 브리지를 사용할 수 없음} native_operation_failed{Android 작업 중단됨} invalid_arguments{VPN 매개변수가 불완전함} invalid_account_id{잘못된 VPN 계정} invalid_device_id{잘못된 기기 식별자} storage_key_not_allowed{저장소 키 거부됨} secure_storage_read_failed{보안 읽기 실패} secure_storage_write_failed{보안 쓰기 실패} key_generation_failed{WireGuard 키를 생성할 수 없음} csr_generation_failed{OpenVPN CSR을 생성할 수 없음} openvpn_recovery_exhausted{OpenVPN 복구 이미 사용됨} openvpn_recovery_failed{OpenVPN 복구 실패} openvpn_renewal_required{OpenVPN 인증서 갱신 필요} other{분류되지 않은 네이티브 VPN 오류}}",
   "@notice_native_title": {
     "placeholders": {
       "code": {
@@ -560,6 +585,8 @@
   "billing_accessUntil": "{date}까지 이용할 수 있습니다.",
   "billing_webManaged": "구독은 FuzeVPN 웹사이트에서 관리됩니다.",
   "billing_playManaged": "구독은 Google Play에서 관리됩니다.",
+  "billing_playOnHold": "Google Play 구독이 보류되었거나 결제 대기 중입니다. Google Play에서 해결하려면 “구독 관리”를 여세요.",
+  "billing_playReceiptUnlinked": "이 Google Play 계정에는 이 FuzeVPN 계정에서 활성화되지 않은 Fuze Premium 구독이 이미 있습니다. Google Play에서 확인하려면 “구독 관리”를 여세요.",
   "billing_inactive": "활성 구독이 없습니다.",
   "billing_checkingAccess": "이용 권한 확인 중…",
   "billing_restoring": "구매 복원 중…",
@@ -638,6 +665,7 @@
   "google_emailUnavailable": "확인 이메일을 보내지 못했습니다. 나중에 다시 시도하세요.",
   "google_emailSent": "확인 이메일을 보냈습니다. 받은편지함을 확인하세요.",
   "google_rateLimited": "잠시 기다린 후 다시 시도하세요.",
+  "google_busy": "다른 작업(VPN 연결, 계정 또는 게스트)이 진행 중일 때는 Google을 사용할 수 없습니다. 작업이 끝난 후 다시 시도하세요. 현재 액세스는 유지됩니다.",
   "google_invalidPassword": "FuzeVPN 비밀번호가 올바르지 않습니다. 현재 계정은 유지됩니다.",
   "google_invalidCode": "확인 코드가 올바르지 않거나 만료되었습니다.",
   "google_accountChanged": "세션이 변경되었습니다. 이번 시도를 취소한 후 다시 시작하세요.",
@@ -646,6 +674,14 @@
   "google_consentRequired": "계속하려면 국가를 선택하고 두 문서에 동의하세요.",
   "google_challengeRequired": "추가 보안 확인이 필요합니다. 현재 접근 권한은 유지됩니다.",
   "google_challengeUnavailable": "보안 확인을 사용할 수 없습니다. 나중에 다시 시도하세요.",
+  "google_intentMismatch": "이전 Google 로그인 시도가 아직 대기 중입니다. 이 작업을 시작하기 전에 해당 시도를 취소하세요.",
+  "google_challengeBlocked": "필요한 보안 확인을 이 앱에서 사용할 수 없습니다. 지금은 이 작업을 완료할 수 없습니다.",
+  "google_solveChallenge": "보안 확인 진행",
+  "google_challengeTitle": "보안 확인",
+  "google_challengeReady": "확인이 완료되었습니다. 이제 계정 만들기를 확정할 수 있습니다.",
+  "google_challengeExpired": "확인 유효 시간이 만료되었습니다. 확정하기 전에 다시 확인해 주세요.",
+  "google_challengeCancelled": "확인이 취소되었습니다. 다시 진행할 수 있습니다.",
+  "google_challengeFailed": "보안 확인에 실패했습니다. 다시 시도하세요.",
   "billing_trialTitle": "Fuze Premium을 무료로 체험하세요",
   "billing_trialSubtitle": "오늘부터 연결을 보호하세요.",
   "billing_trialWeeks": "2주 무료 체험",

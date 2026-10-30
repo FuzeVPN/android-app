@@ -10,6 +10,18 @@ PACKS = ROOT / 'lib/l10n/translations'
 LANGUAGES = 'en es pt de fr ar tr ja id ru it ko pl nl hi vi uk th zh-Hans zh-Hant fa ur fil ms ro cs sv da nb el'.split()
 # These catalogues include localized descriptions for translator metadata.
 LOCALIZED_METADATA = {'en', 'es', 'de', 'fr'}
+# Each select case of the message needs its own title case (A16-ui-l10n-03).
+PAIRED_SELECTS = (('notice_native_title', 'notice_native_message'),)
+
+
+class TranslationError(ValueError):
+    """A pack violates the translation contract (kept under python -O)."""
+
+
+def require(condition, message):
+    # Never use assert for validation: python -O and PYTHONOPTIMIZE remove it.
+    if not condition:
+        raise TranslationError(message)
 
 
 def read(path):
@@ -45,7 +57,7 @@ def icu_contract(message):
             body = text[start + 1:end]
             parts = body.split(',', 2)
             name = parts[0].strip()
-            assert re.fullmatch(r'[A-Za-z_]\w*', name), f'Invalid ICU name {name}'
+            require(re.fullmatch(r'[A-Za-z_]\w*', name), f'Invalid ICU name {name}')
             variables.add(name)
             if len(parts) == 3 and parts[1].strip() in ('select', 'plural', 'selectordinal'):
                 choices = parts[2].strip()
@@ -53,9 +65,9 @@ def icu_contract(message):
                 index, keys = 0, set()
                 while index < len(choices):
                     match = re.match(r'\s*([\w=]+)\s*\{', choices[index:])
-                    assert match, f'Invalid ICU choices: {choices[index:]}'
+                    require(match, f'Invalid ICU choices: {choices[index:]}')
                     key = match.group(1)
-                    assert key not in keys, f'Duplicate ICU case {key}'
+                    require(key not in keys, f'Duplicate ICU case {key}')
                     keys.add(key)
                     child_start = index + match.end() - 1
                     child_end = closing(choices, child_start)
@@ -63,7 +75,7 @@ def icu_contract(message):
                     index = child_end + 1
                     while index < len(choices) and choices[index].isspace():
                         index += 1
-                assert 'other' in keys, 'ICU other case missing'
+                require('other' in keys, 'ICU other case missing')
                 if parts[1].strip() == 'select':
                     selects[name] = keys
             pos = end + 1
@@ -71,28 +83,43 @@ def icu_contract(message):
     return variables, selects
 
 
+def validate_source(source):
+    # Every language must repeat the source select cases, so checking the source suffices.
+    for title_key, message_key in PAIRED_SELECTS:
+        if title_key in source['arb'] and message_key in source['arb']:
+            titles = icu_contract(source['arb'][title_key])[1]
+            for variable, cases in icu_contract(source['arb'][message_key])[1].items():
+                missing = sorted(cases - titles.get(variable, set()))
+                require(not missing, f'en.{title_key}: no title case for {message_key} cases {missing}')
+
+
 def validate(pack, source, language):
-    assert set(pack) == set(source), f'{language}: unexpected pack structure'
-    assert pack['locale'].replace('_', '-') == language, f'{language}: locale'
-    assert pack['arb']['@@locale'].replace('_', '-') == language, f'{language}: ARB locale'
+    require(set(pack) == set(source), f'{language}: unexpected pack structure')
+    require(pack['locale'].replace('_', '-') == language, f'{language}: locale')
+    require(pack['arb']['@@locale'].replace('_', '-') == language, f'{language}: ARB locale')
     for section in ('arb', 'android', 'countries'):
         target_keys, source_keys = set(pack[section]), set(source[section])
         if section == 'arb' and language in LOCALIZED_METADATA:
             target_keys = {key for key in target_keys if not key.startswith('@')}
             source_keys = {key for key in source_keys if not key.startswith('@')}
-        assert target_keys == source_keys, f'{language}: missing/extra {section} keys: {target_keys ^ source_keys}'
+        require(target_keys == source_keys, f'{language}: missing/extra {section} keys: {target_keys ^ source_keys}')
         for key, text in pack[section].items():
             if key.startswith('@'):
                 if key != '@@locale' and language not in LOCALIZED_METADATA:
-                    assert text == source[section][key], f'{language}.{key}: metadata changed'
+                    require(text == source[section][key], f'{language}.{key}: metadata changed')
                 continue
-            assert isinstance(text, str) and text.strip(), f'{language}.{key}: empty text'
-            assert '\ufffd' not in text, f'{language}.{key}: invalid Unicode'
+            require(isinstance(text, str) and text.strip(), f'{language}.{key}: empty text')
+            require('\ufffd' not in text, f'{language}.{key}: invalid Unicode')
             original = source[section][key]
             if section == 'android':
-                assert sorted(re.findall(r'%\d+\$[sd]', text)) == sorted(re.findall(r'%\d+\$[sd]', original)), f'{language}.{key}: Android arguments'
+                require(sorted(re.findall(r'%\d+\$[sd]', text)) == sorted(re.findall(r'%\d+\$[sd]', original)), f'{language}.{key}: Android arguments')
             if section == 'arb':
-                assert icu_contract(text) == icu_contract(original), f'{language}.{key}: ICU arguments/select cases'
+                require(icu_contract(text) == icu_contract(original), f'{language}.{key}: ICU arguments/select cases')
+    names = {}
+    for code, name in pack['countries'].items():
+        normalized = ' '.join(name.casefold().split())
+        require(normalized not in names, f'{language}: countries {names.get(normalized)} and {code} share the name {name!r}')
+        names[normalized] = code
 
 
 def main():
@@ -100,12 +127,20 @@ def main():
     parser.add_argument('--require-all', action='store_true', help='Compatibility option; all 30 packs are always required.')
     parser.add_argument('--check', action='store_true', help='Validate all packs and check generated files without writing.')
     args = parser.parse_args()
+    try:
+        generate(args, parser)
+    except (TranslationError, ValueError, KeyError, TypeError, AttributeError) as error:
+        parser.exit(1, f'Translation validation failed: {type(error).__name__}: {error}\n')
+
+
+def generate(args, parser):
     source = read(PACKS / 'en.json')
+    validate_source(source)
     countries = {}
     outputs = {}
     for language in LANGUAGES:
         path = PACKS / f'{language}.json'
-        assert path.exists(), f'Missing translation: {language}'
+        require(path.exists(), f'Missing translation: {language}')
         pack = read(path)
         validate(pack, source, language)
         countries[language] = pack['countries']

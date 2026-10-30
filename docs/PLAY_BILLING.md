@@ -20,6 +20,70 @@ observations RTDN datés du 4 octobre ([Q020–Q021](VALIDATION.md#q020)).
 Les cycles incomplets et l’essai freetest 74016 ont leurs propres blocages
 ([Q022–Q023](VALIDATION.md#q022)).
 
+### Correction des sources du 19 octobre 2026 : achats suspendus
+
+Les lectures natives des achats détenus demandent désormais
+`includeSuspendedSubscriptions(true)` : restauration, découverte de l’identité
+invitée et contrôle avant paiement utilisent cette même lecture. Chaque reçu
+transmis au canal conserve son état `purchased` ou `pending`, son
+`obfuscatedAccountId` d’origine et `acknowledged`, et ajoute le booléen strict
+`suspended` fourni par `Purchase.isSuspended`. Un ancien message sans ce champ
+est interprété comme `false` ; une combinaison `pending` et `suspended: true`
+est refusée.
+
+Un reçu acheté suspendu reste une preuve à soumettre au serveur pour vérifier
+son propriétaire ou retrouver son invité ; il ne donne aucun accès local.
+La vérification et la restauration ne transmettent pas cet état comme un
+droit : leurs corps conservent le jeton Play et, pour la restauration invitée,
+la preuve de récupération requise. Le droit commun renvoyé par le serveur
+reste la seule autorité. Les reçus `premium` existants, y compris pending,
+suspendus ou rattachés à un autre propriétaire, bloquent un nouveau checkout
+natif. La gestion de l’abonnement chez Play permet la reprise du paiement.
+
+Ce changement est couvert par des tests ciblés de sources ; aucun achat réel,
+parcours account hold/pause, ni nouvelle qualification Play n’est exécuté ou
+déduit. Les preuves et blocages historiques ci-dessus restent applicables.
+
+### Correction des sources du 29 octobre 2026 : reçus qui bloquent le paiement
+
+La dernière lecture des achats détenus de la session (restauration, retour au
+premier plan, refus `already_owned` d’un lancement) mémorise si un reçu
+`premium` existe, et s’il appartient au compte connecté. Un reçu sans
+`obfuscatedAccountId` ou d’un autre propriétaire n’est jamais vérifié pour ce
+compte ; sans droit actif, la restauration n’affiche plus « Aucun achat à
+restaurer » mais la raison du blocage affichée par la carte (abonnement Google
+Play existant sans être actif pour ce compte, ou suspension signalée par le
+serveur). Avec un droit actif (web ou Google Play), ce reçu ne bloque aucun
+achat proposé : la restauration garde « Aucun achat à restaurer », sans raison
+Google Play ni action de gestion qu’un abonné web ne pourrait pas utiliser.
+Un reçu suspendu du compte, ou un droit serveur `past_due` fourni par
+`google_play` avant toute lecture, est présenté comme un abonnement suspendu à
+régulariser. Dans ces cas, sans droit actif et sans achat en attente, la carte,
+la page Premium et la sélection des offres ne proposent plus un paiement que
+Play refuserait : elles affichent « Gérer l’abonnement », qui ouvre les
+abonnements Google Play. Cette mémoire ne décide que de l’offre affichée :
+l’interface masque l’achat tant que la dernière lecture de la session montre
+un tel reçu, mais `purchase()` ne refuse jamais lui-même un lancement à partir
+d’elle, car le contrôle natif relit les reçus avant tout paiement.
+
+La mémoire est remise à zéro par une nouvelle lecture (restauration, retour au
+premier plan, refus `already_owned`), par un changement de compte, et, pour un
+reçu rattaché au compte, dès qu’un droit serveur plus récent diffère de celui
+observé avec la lecture (statut, accès, fournisseur ou échéance : expiration,
+remboursement, fin de suspension). Ce reçu étant l’abonnement du compte lui-même,
+Play peut ne plus le détenir : l’achat redevient proposé, sauf si la même
+lecture montrait aussi un reçu d’un autre propriétaire ou si le serveur
+signale encore `past_due` pour `google_play`. Un reçu sans propriétaire ou
+d’un autre compte n’est pas lié au droit de ce compte et reste bloquant
+jusqu’à la lecture suivante. Un abonnement Play expiré, sans reçu détenu,
+reste réabonnable.
+
+Le message d’échec tardif d’une opération (contexte d’achat indisponible,
+restauration vide, catalogue) ne remplace plus un message publié après le
+début de cette opération, par exemple la vérification d’un événement Play.
+La date « Accès jusqu’au » suit la région réelle du système, mois en toutes
+lettres, comme la date du premier débit de l’essai.
+
 ## Catalogue et prix
 
 Les identifiants configurés dans ce client sont fixes. Le serveur compatible
@@ -105,7 +169,7 @@ Avant chaque paiement, Android relit le contexte et vérifie la continuité du
 compte. Réponse invalide, indisponibilité réseau ou serveur, route introuvable
 ou `purchase_allowed: false` empêchent `launchBillingFlow`. Un ancien contexte
 en mémoire ne contourne pas cette règle. Le contrôle natif interroge aussi les
-achats détenus : un achat `premium` déjà acheté ou pending bloque une seconde
+achats détenus : un achat `premium` déjà acheté, suspendu ou pending bloque une seconde
 charge. Les prix Play peuvent rester visibles lorsque le contexte API est
 indisponible, avec « Abonnements bientôt disponibles » et le bouton de paiement
 désactivé.

@@ -7,8 +7,11 @@ import 'package:flutter/foundation.dart';
 import 'core/api_exception.dart';
 import 'core/google_auth.dart';
 import 'core/google_credentials.dart';
+import 'core/security_challenge.dart';
 
 enum GoogleAuthPurpose { authenticate, claim, link }
+
+enum GoogleAuthBlock { intentMismatch, securityChallenge }
 
 enum GoogleAuthStep {
   idle,
@@ -29,13 +32,27 @@ class GoogleAuthState {
     this.context,
     this.emailRequested = false,
     this.retryAfter,
+    this.emailRetryAfter,
+    this.block,
+    this.securityChallengeRequired = false,
+    this.challengeExpiresAt,
   });
 
   final GoogleAuthStep step;
   final String? messageKey;
   final GoogleAuthContext? context;
   final bool emailRequested;
+
+  /// A server-imposed delay shared by finalization operations for this intent,
+  /// published only while it was still in force: an expired or zero delay is
+  /// null, so a later refusal without delay is never mistaken for a stale one.
   final DateTime? retryAfter;
+
+  /// Resending an email waits locally; entering its code remains permitted.
+  final DateTime? emailRetryAfter;
+  final GoogleAuthBlock? block;
+  final bool securityChallengeRequired;
+  final DateTime? challengeExpiresAt;
 }
 
 /// An opaque anchor to the locally known Fuze session, never a Google identity.
@@ -82,6 +99,8 @@ class GoogleAuthController extends ChangeNotifier {
     bool Function(GoogleAuthPurpose)? canBegin,
     GoogleSessionAdmission? admitSession,
     GoogleClaimAdmission? admitClaim,
+    DateTime Function()? now,
+    SecurityChallengeGateway? challengeGateway,
   }) : // Public named injection deliberately keeps implementation fields private.
        // ignore: prefer_initializing_formals
        _api = api,
@@ -92,7 +111,9 @@ class GoogleAuthController extends ChangeNotifier {
        _identityMatches = identityMatches ?? ((_) => true),
        _canBegin = canBegin ?? ((_) => true),
        _admitSession = admitSession ?? ((_, _, _) async => false),
-       _admitClaim = admitClaim ?? ((_, _) async => false);
+       _admitClaim = admitClaim ?? ((_, _) async => false),
+       _now = now ?? DateTime.now,
+       _challengeGateway = challengeGateway ?? NativeSecurityChallengeGateway();
 
   static const serverClientId =
       '77017033563-bs6rpo2dro8mi19guaoq4ppdb9khqj6q.apps.googleusercontent.com';
@@ -105,9 +126,19 @@ class GoogleAuthController extends ChangeNotifier {
   final bool Function(GoogleAuthPurpose) _canBegin;
   final GoogleSessionAdmission _admitSession;
   final GoogleClaimAdmission _admitClaim;
+  final DateTime Function() _now;
+  final SecurityChallengeGateway _challengeGateway;
+  DateTime get now => _now();
   GoogleAuthState _state = const GoogleAuthState();
   GoogleAuthState get state => _state;
   _PendingGoogleIntent? _pending;
+  GoogleAuthPurpose? _requestedPurpose;
+  DateTime? _retryAfter;
+  DateTime? _emailRetryAfter;
+  bool _securityChallengeBlocked = false;
+  String? _securityRequestId;
+  _SecurityProof? _securityProof;
+  Timer? _securityExpiryTimer;
   GoogleIdentitySnapshot? _before;
   Future<void>? _action;
   Future<void> _storageWrites = Future<void>.value();
@@ -116,11 +147,60 @@ class GoogleAuthController extends ChangeNotifier {
   bool _admitted = false;
   int _epoch = 0;
 
+  /// Server intents (browser context, ticket) whose cancellation the API
+  /// confirmed in this process while the local removal failed. The reply to a
+  /// second cancellation of the same ticket is unspecified, so a stale copy
+  /// read again is never presented to the API: only its removal is retried.
+  /// Emptied once the slot is cleared or overwritten; a new process starts
+  /// empty (docs/GOOGLE_AUTH.md).
+  final Set<(String, String)> _confirmedCancellations = <(String, String)>{};
+
   bool get isBusy => _action != null || _cancelling;
   bool get hasPendingIntent => _pending != null || isBusy;
 
+  bool get _hasIntentMismatch =>
+      _pending != null &&
+      _requestedPurpose != null &&
+      _pending!.purpose != _requestedPurpose;
+
+  bool get _retryBlocked => _retryAfter?.isAfter(now) ?? false;
+
+  bool get _finalizationBlocked =>
+      _hasIntentMismatch ||
+      (_securityChallengeBlocked && !_hasSecurityProof) ||
+      _retryBlocked;
+
+  bool get _hasSecurityProof => _securityProof?.expiresAt.isAfter(now) == true;
+
+  bool get _registrationContextMatches =>
+      switch ((_pending?.purpose, _state.context?.status)) {
+        (GoogleAuthPurpose.authenticate, 'registration_required') ||
+        (GoogleAuthPurpose.claim, 'guest_claim_required') => true,
+        _ => false,
+      };
+
   void _emit(GoogleAuthState value) {
-    _state = value;
+    _state = GoogleAuthState(
+      step:
+          _hasIntentMismatch ||
+              (_securityChallengeBlocked && !_hasSecurityProof)
+          ? GoogleAuthStep.uncertain
+          : value.step,
+      messageKey: _hasIntentMismatch
+          ? 'google.intentMismatch'
+          : value.messageKey,
+      context: _hasIntentMismatch ? null : value.context,
+      emailRequested: value.emailRequested,
+      retryAfter: _retryBlocked ? _retryAfter : null,
+      emailRetryAfter: _emailRetryAfter,
+      block: _hasIntentMismatch
+          ? GoogleAuthBlock.intentMismatch
+          : _securityChallengeBlocked && !_hasSecurityProof
+          ? GoogleAuthBlock.securityChallenge
+          : null,
+      securityChallengeRequired: _securityChallengeBlocked,
+      challengeExpiresAt: _securityProof?.expiresAt,
+    );
     if (!_disposed) notifyListeners();
   }
 
@@ -131,6 +211,9 @@ class GoogleAuthController extends ChangeNotifier {
 
   void _check(int epoch) {
     if (!_anchored(epoch)) throw const _GoogleIntentCancelled();
+    if (_hasIntentMismatch) {
+      throw const _GooglePublicFailure('google.intentMismatch');
+    }
   }
 
   Future<void> _run(Future<void> Function(int epoch) action) {
@@ -142,6 +225,7 @@ class GoogleAuthController extends ChangeNotifier {
       try {
         await action(epoch);
       } on _GoogleIntentCancelled {
+        _discardSecurityProof();
         // A deliberate cancellation or changed Fuze session owns the UI now.
         if (_current(epoch)) {
           _emit(
@@ -152,7 +236,13 @@ class GoogleAuthController extends ChangeNotifier {
           );
         }
       } catch (error) {
-        if (_current(epoch)) _failure(error);
+        if (_current(epoch)) {
+          _failure(error);
+        } else if (!_disposed) {
+          // A reply raced by Back still binds this intent if its cancellation
+          // fails; a confirmed cancellation clears these blocks.
+          _rememberFailureBlocks(error);
+        }
       } finally {
         if (identical(_action, done.future)) _action = null;
         done.complete();
@@ -166,6 +256,8 @@ class GoogleAuthController extends ChangeNotifier {
     final future = _storageWrites.then((_) async {
       _check(epoch);
       await _store!.writePendingAuthentication(pending.encode());
+      // The slot now holds this intent: no stale cancelled copy remains.
+      _confirmedCancellations.clear();
       _check(epoch);
     });
     _storageWrites = future.then<void>((_) {}, onError: (Object _) {});
@@ -182,6 +274,10 @@ class GoogleAuthController extends ChangeNotifier {
       );
       return;
     }
+    if (_requestedPurpose != null && _requestedPurpose != purpose) {
+      _discardSecurityProof();
+    }
+    _requestedPurpose = purpose;
     if (_pending != null) {
       _emit(
         const GoogleAuthState(
@@ -191,16 +287,24 @@ class GoogleAuthController extends ChangeNotifier {
       );
       return;
     }
-    if (!_canBegin(purpose)) return;
+    if (!_canBegin(purpose)) {
+      // Another account, VPN or guest operation owns the session. A persisted
+      // ticket stays unread here; cancel() still cancels it on the server.
+      _emit(const GoogleAuthState(messageKey: 'google.busy'));
+      return;
+    }
+    _retryAfter = null;
+    _emailRetryAfter = null;
+    _securityChallengeBlocked = false;
     _before = _identity();
     _admitted = false;
     _emit(const GoogleAuthState(step: GoogleAuthStep.selectingAccount));
     // Read before creating an intent: process death must never replace an
     // unresolved server intent with another account selection.
-    final saved = await _store.readPendingAuthentication();
+    final saved = await _readPersistedTicket();
     _check(epoch);
     if (saved != null) {
-      _pending = _PendingGoogleIntent.decode(saved);
+      _pending = saved;
       await _resume(epoch);
       return;
     }
@@ -331,17 +435,29 @@ class GoogleAuthController extends ChangeNotifier {
       'link_required' => GoogleAuthStep.linkRequired,
       _ => throw const _GooglePublicFailure('google.invalidResponse'),
     };
-    _emit(GoogleAuthState(step: step, context: context));
+    _emit(
+      GoogleAuthState(
+        step: step,
+        // A reopened form must say why finalization is still unavailable.
+        messageKey: _retryBlocked
+            ? 'google.rateLimited'
+            : _securityChallengeBlocked && !_hasSecurityProof
+            ? 'google.challengeRequired'
+            : null,
+        context: context,
+        emailRequested: _state.emailRequested,
+      ),
+    );
   }
 
   Future<void> resume() => _run((epoch) async {
     if (_api == null || _store == null) return;
     _before ??= _identity();
     if (_pending == null) {
-      final saved = await _store.readPendingAuthentication();
+      final saved = await _readPersistedTicket();
       _check(epoch);
       if (saved == null) return;
-      _pending = _PendingGoogleIntent.decode(saved);
+      _pending = saved;
     } else {
       // Memory may contain a rotated ticket whose atomic disk commit failed.
       // Never replace it with the superseded challenge ticket from disk.
@@ -351,7 +467,23 @@ class GoogleAuthController extends ChangeNotifier {
   });
 
   Future<void> _resume(int epoch) async {
+    _check(epoch);
+    expireSecurityChallenge();
     final pending = _pending!;
+    if (_securityChallengeBlocked && !_hasSecurityProof) {
+      // A failed cancellation does not keep the form context; reload it so
+      // the required challenge remains solvable instead of only cancellable.
+      if (_state.context == null && pending.stage == 'continuation') {
+        // An expired ticket is reported, as by solveSecurityChallenge.
+        if (!pending.expiresAt.isAfter(now)) {
+          throw const _GooglePublicFailure('google.expired');
+        }
+        await _loadContext(epoch);
+      } else {
+        _emit(_state);
+      }
+      return;
+    }
     if (pending.userId != _before?.userId) {
       throw const _GooglePublicFailure('google.accountChanged');
     }
@@ -367,8 +499,7 @@ class GoogleAuthController extends ChangeNotifier {
         // the initiating bearer is expired or /me is temporarily unavailable.
       }
     }
-    if (pending.stage != 'continuation' ||
-        !pending.expiresAt.isAfter(DateTime.now())) {
+    if (pending.stage != 'continuation' || !pending.expiresAt.isAfter(now)) {
       _emit(
         const GoogleAuthState(
           step: GoogleAuthStep.uncertain,
@@ -385,7 +516,10 @@ class GoogleAuthController extends ChangeNotifier {
     required bool termsAccepted,
     required bool privacyAccepted,
   }) => _run((epoch) async {
+    expireSecurityChallenge();
     if (_pending == null ||
+        _finalizationBlocked ||
+        !_registrationContextMatches ||
         !const <GoogleAuthStep>{
           GoogleAuthStep.registrationRequired,
           GoogleAuthStep.guestClaimRequired,
@@ -406,6 +540,8 @@ class GoogleAuthController extends ChangeNotifier {
       ),
     );
     final pending = _pending!;
+    // Move the token out before any await: one proof authorizes one attempt.
+    final turnstileToken = _consumeSecurityProof();
     if (pending.purpose == GoogleAuthPurpose.claim) {
       Object? failure;
       try {
@@ -415,6 +551,7 @@ class GoogleAuthController extends ChangeNotifier {
           countryCode: countryCode,
           termsAccepted: termsAccepted,
           privacyAccepted: privacyAccepted,
+          turnstileToken: turnstileToken,
         );
         _check(epoch);
         if (result.userId != _before!.userId ||
@@ -423,6 +560,12 @@ class GoogleAuthController extends ChangeNotifier {
         }
       } catch (error) {
         failure = error;
+      }
+      // Capture the original response's deadline and challenge requirement
+      // before Back or a slow/failing /me can replace its error. Successful
+      // reconciliation still completes the claim and clears both.
+      if (failure != null && identical(_pending, pending)) {
+        _rememberFailureBlocks(failure);
       }
       _check(epoch);
       // Re-read with the unchanged initiating bearer even after a lost reply.
@@ -434,6 +577,7 @@ class GoogleAuthController extends ChangeNotifier {
         _emit(previous);
         _failure(
           failure ?? const _GooglePublicFailure('google.invalidResponse'),
+          rememberRetryAfter: false,
         );
       }
       return;
@@ -445,10 +589,12 @@ class GoogleAuthController extends ChangeNotifier {
         countryCode: countryCode,
         termsAccepted: termsAccepted,
         privacyAccepted: privacyAccepted,
+        turnstileToken: turnstileToken,
       );
       _check(epoch);
       await _accept(result, epoch);
     } catch (error) {
+      if (identical(_pending, pending)) _rememberFailureBlocks(error);
       _check(epoch);
       _emit(previous);
       _failure(error);
@@ -474,9 +620,14 @@ class GoogleAuthController extends ChangeNotifier {
   Future<void> _link(
     Future<GoogleAuthenticatedResult> Function(_PendingGoogleIntent) action,
   ) => _run((epoch) async {
-    if (_pending == null || _state.step != GoogleAuthStep.linkRequired) return;
+    if (_pending == null ||
+        _finalizationBlocked ||
+        _state.step != GoogleAuthStep.linkRequired) {
+      return;
+    }
     _check(epoch);
     final previous = _state;
+    final pending = _pending!;
     _emit(
       GoogleAuthState(
         step: GoogleAuthStep.verifying,
@@ -484,10 +635,11 @@ class GoogleAuthController extends ChangeNotifier {
       ),
     );
     try {
-      final result = await action(_pending!);
+      final result = await action(pending);
       _check(epoch);
       await _accept(result, epoch);
     } catch (error) {
+      if (identical(_pending, pending)) _rememberFailureBlocks(error);
       _check(epoch);
       _emit(previous);
       _failure(error);
@@ -496,8 +648,9 @@ class GoogleAuthController extends ChangeNotifier {
 
   Future<void> requestEmailLink() => _run((epoch) async {
     if (_pending == null ||
+        _finalizationBlocked ||
         _state.step != GoogleAuthStep.linkRequired ||
-        (_state.retryAfter?.isAfter(DateTime.now()) ?? false)) {
+        (_emailRetryAfter?.isAfter(now) ?? false)) {
       return;
     }
     _check(epoch);
@@ -507,12 +660,12 @@ class GoogleAuthController extends ChangeNotifier {
       contextToken: _pending!.ticket,
     );
     _check(epoch);
+    _emailRetryAfter = now.add(const Duration(seconds: 60));
     _emit(
       GoogleAuthState(
         step: GoogleAuthStep.linkRequired,
         context: previous.context,
         emailRequested: true,
-        retryAfter: DateTime.now().add(const Duration(seconds: 60)),
       ),
     );
   });
@@ -527,6 +680,7 @@ class GoogleAuthController extends ChangeNotifier {
       // Only encrypted short-lived tickets may remain, never a Google ID token.
     }
     _pending = null;
+    _clearBlocks();
     _emit(const GoogleAuthState(step: GoogleAuthStep.authenticated));
   }
 
@@ -537,6 +691,14 @@ class GoogleAuthController extends ChangeNotifier {
     ++_epoch;
     if (!_disposed) notifyListeners();
     try {
+      final securityRequestId = _securityRequestId;
+      _securityRequestId = null;
+      _discardSecurityProof();
+      if (securityRequestId != null) {
+        try {
+          await _challengeGateway.cancel(requestId: securityRequestId);
+        } catch (_) {}
+      }
       final pending = _pending;
       if (pending != null && _gateway != null) {
         try {
@@ -547,9 +709,23 @@ class GoogleAuthController extends ChangeNotifier {
       }
       await _action;
       await _storageWrites;
-      // If cancellation raced a committed guest claim, keep that same account.
-      if (_pending?.purpose == GoogleAuthPurpose.claim &&
+      // A ticket persisted by an earlier process may never have been loaded
+      // (begin refused, or its read failed). Load it so that it gets the same
+      // /me reconciliation and exact server cancellation as a loaded one.
+      if (_pending == null && !await _loadPersistedTicket()) {
+        // Nothing is loaded and nothing can be: leaving cannot be trapped.
+        _clearBlocks();
+        _emit(const GoogleAuthState());
+        return true;
+      }
+      final claim = _pending?.purpose == GoogleAuthPurpose.claim;
+      if (claim) _before ??= _identity();
+      // If cancellation raced a committed guest claim, or a persisted claim
+      // lost its reply, keep that same account; another user's ticket is
+      // only cancelled.
+      if (claim &&
           _before != null &&
+          _pending!.userId == _before!.userId &&
           _identityMatches(_before!)) {
         try {
           if (await _admitClaim(
@@ -589,6 +765,64 @@ class GoogleAuthController extends ChangeNotifier {
     }
   }
 
+  /// Loads the ticket persisted by an earlier process into [_pending] and
+  /// returns whether an intent is now loaded. An unreadable store confirms
+  /// nothing: its ticket stays on disk for a later read and server
+  /// cancellation, while begin() keeps refusing to replace it. Only a ticket
+  /// that no server call can cancel or resume is removed.
+  Future<bool> _loadPersistedTicket() async {
+    if (_store == null) return false;
+    try {
+      // Keep it loaded: an unconfirmed cancellation leaves an explicit,
+      // recoverable intent that begin() never replaces with a new choice.
+      _pending = await _readPersistedTicket();
+    } catch (_) {
+      return false;
+    }
+    return _pending != null;
+  }
+
+  /// Reads the ticket persisted by an earlier process, or null if there is
+  /// none. A temporarily unreadable store (secure_storage_failed, or any other
+  /// error) rethrows and keeps the ticket for a later read. A ticket that can
+  /// never be read again (secure_storage_corrupt: failed AES-GCM
+  /// authentication, invalid format or lost Keystore key) or decoded is
+  /// unusable: no API call can cancel or resume it, so it is removed without
+  /// one and reported as a failed attempt that may be started again. A stale
+  /// copy of a cancellation that the API confirmed in this process counts as
+  /// none: only its removal is retried, without any API call.
+  Future<_PendingGoogleIntent?> _readPersistedTicket() async {
+    final String? saved;
+    try {
+      saved = await _store!.readPendingAuthentication();
+    } on GoogleCredentialException catch (error) {
+      if (error.code != 'secure_storage_corrupt') rethrow;
+      await _dropUnusableTicket();
+      throw const _GooglePublicFailure('google.error');
+    }
+    if (saved == null) return null;
+    final _PendingGoogleIntent intent;
+    try {
+      intent = _PendingGoogleIntent.decode(saved);
+    } on _GooglePublicFailure {
+      await _dropUnusableTicket();
+      throw const _GooglePublicFailure('google.error');
+    }
+    if (_confirmedCancellations.contains(intent.serverIntent)) {
+      await _removeCancelledTicket(intent);
+      return null;
+    }
+    return intent;
+  }
+
+  Future<void> _dropUnusableTicket() async {
+    try {
+      await _clearPending();
+    } catch (_) {
+      // Nothing is loaded: a failed removal is retried by the next cancel.
+    }
+  }
+
   Future<bool> _cancelServer() async {
     final pending = _pending;
     if (pending != null) {
@@ -601,39 +835,112 @@ class GoogleAuthController extends ChangeNotifier {
               : null,
         );
       } on ApiFailure catch (error) {
-        if (error.code != 'google_context_expired') return false;
+        // Expired or already consumed by a finalization: the server holds no
+        // pending intent for this ticket, so nothing is left to cancel. A
+        // claim was reconciled through /me before this call.
+        if (error.code != 'google_context_expired' &&
+            error.code != 'google_context_consumed') {
+          return false;
+        }
       } catch (_) {
         return false;
       }
     }
-    await _store?.clearPendingAuthentication();
+    // The server holds no pending intent for this ticket any more. As in
+    // _complete(), a failed local removal cannot trap Back. A stale copy read
+    // later in this process only has its removal retried; a new process,
+    // which no longer knows this confirmation, cancels it again on the server.
+    await _removeCancelledTicket(pending);
     _pending = null;
+    _clearBlocks();
     return true;
   }
 
-  void _failure(Object error) {
+  /// Best-effort removal of a ticket that the server no longer holds. While
+  /// it fails, [cancelled] is remembered so that this process never asks the
+  /// API about it again.
+  Future<void> _removeCancelledTicket(_PendingGoogleIntent? cancelled) async {
+    try {
+      await _store?.clearPendingAuthentication();
+      _confirmedCancellations.clear();
+    } catch (_) {
+      // Only an encrypted ticket that the server no longer holds may remain.
+      if (cancelled != null) {
+        _confirmedCancellations.add(cancelled.serverIntent);
+      }
+    }
+  }
+
+  Future<bool> _clearPending() async {
+    await _store?.clearPendingAuthentication();
+    _pending = null;
+    _clearBlocks();
+    return true;
+  }
+
+  void _clearBlocks() {
+    _retryAfter = null;
+    _emailRetryAfter = null;
+    _securityChallengeBlocked = false;
+    _discardSecurityProof();
+  }
+
+  void _rememberRetryAfter(Object error) {
     final serverRetry = error is ApiFailure ? error.retryAfterSeconds : null;
-    final retryAfter = serverRetry == null
-        ? _state.retryAfter
-        : DateTime.now().add(Duration(seconds: serverRetry.clamp(1, 3600)));
-    final message = switch (error) {
-      _GooglePublicFailure(:final key) => key,
-      ApiFailure(code: 'google_identity_conflict') => 'google.conflict',
-      ApiFailure(code: 'invalid_current_password') => 'google.invalidPassword',
-      ApiFailure(code: 'google_invalid_email_code') => 'google.invalidCode',
-      ApiFailure(code: 'google_context_expired') => 'google.expired',
-      ApiFailure(code: 'account_context_changed') => 'google.accountChanged',
-      ApiFailure(code: 'invalid_registration') => 'google.invalidRegistration',
-      ApiFailure(code: 'rate_limited') => 'google.rateLimited',
-      ApiFailure(code: 'google_auth_disabled') => 'google.unavailable',
-      ApiFailure(code: 'google_unavailable') => 'google.unavailable',
-      ApiFailure(code: 'turnstile_required') ||
-      ApiFailure(code: 'turnstile_invalid') => 'google.challengeRequired',
-      ApiFailure(code: 'turnstile_unavailable') =>
-        'google.challengeUnavailable',
-      GoogleCredentialException() => 'google.unavailable',
-      _ => _pending != null ? 'google.uncertain' : 'google.unavailable',
-    };
+    if (serverRetry != null) {
+      final next = now.add(Duration(seconds: serverRetry.clamp(0, 86400)));
+      if (_retryAfter == null || next.isAfter(_retryAfter!)) _retryAfter = next;
+    }
+  }
+
+  static bool _isTurnstileFailure(Object error) =>
+      error is ApiFailure &&
+      const {
+        'turnstile_required',
+        'turnstile_invalid',
+        'turnstile_unavailable',
+      }.contains(error.code);
+
+  /// Server decisions about the current intent (Retry-After, required
+  /// challenge) outlive a Back press, a failed cancellation or a failing /me.
+  void _rememberFailureBlocks(Object error) {
+    _rememberRetryAfter(error);
+    if (_isTurnstileFailure(error) && _registrationContextMatches) {
+      _securityChallengeBlocked = true;
+    }
+  }
+
+  void _failure(Object error, {bool rememberRetryAfter = true}) {
+    _discardSecurityProof();
+    if (rememberRetryAfter) _rememberRetryAfter(error);
+    final isTurnstileFailure = _isTurnstileFailure(error);
+    if (isTurnstileFailure && _registrationContextMatches) {
+      _securityChallengeBlocked = true;
+    }
+    final message = isTurnstileFailure && !_registrationContextMatches
+        ? 'google.invalidResponse'
+        : switch (error) {
+            _GooglePublicFailure(:final key) => key,
+            ApiFailure(code: 'google_identity_conflict') => 'google.conflict',
+            ApiFailure(code: 'invalid_current_password') =>
+              'google.invalidPassword',
+            ApiFailure(code: 'google_invalid_email_code') =>
+              'google.invalidCode',
+            ApiFailure(code: 'google_context_expired') => 'google.expired',
+            ApiFailure(code: 'account_context_changed') =>
+              'google.accountChanged',
+            ApiFailure(code: 'invalid_registration') =>
+              'google.invalidRegistration',
+            ApiFailure(code: 'rate_limited') => 'google.rateLimited',
+            ApiFailure(code: 'google_auth_disabled') => 'google.unavailable',
+            ApiFailure(code: 'google_unavailable') => 'google.unavailable',
+            ApiFailure(code: 'turnstile_required') ||
+            ApiFailure(code: 'turnstile_invalid') => 'google.challengeRequired',
+            ApiFailure(code: 'turnstile_unavailable') =>
+              'google.challengeUnavailable',
+            GoogleCredentialException() => 'google.unavailable',
+            _ => _pending != null ? 'google.uncertain' : 'google.unavailable',
+          };
     final recoverableForm =
         const <String>{
           'google.invalidPassword',
@@ -642,8 +949,6 @@ class GoogleAuthController extends ChangeNotifier {
           'google.consentRequired',
           'google.rateLimited',
           'google.conflict',
-          'google.challengeRequired',
-          'google.challengeUnavailable',
         }.contains(message) &&
         _state.context != null;
     _emit(
@@ -660,7 +965,6 @@ class GoogleAuthController extends ChangeNotifier {
         messageKey: message,
         context: _state.context,
         emailRequested: _state.emailRequested,
-        retryAfter: retryAfter,
       ),
     );
   }
@@ -671,10 +975,138 @@ class GoogleAuthController extends ChangeNotifier {
     } catch (_) {}
   }
 
+  Future<void> solveSecurityChallenge({
+    required String title,
+    required String cancelLabel,
+  }) => _run((epoch) async {
+    if (_pending == null ||
+        !_securityChallengeBlocked ||
+        _hasIntentMismatch ||
+        _retryBlocked) {
+      return;
+    }
+    _check(epoch);
+    final pending = _pending!;
+    if (_state.context == null) {
+      // A failed cancellation publishes no form context. Reload it so the
+      // challenge action shown for this intent proceeds instead of no-op.
+      if (pending.stage != 'continuation') return;
+      if (!pending.expiresAt.isAfter(now)) {
+        throw const _GooglePublicFailure('google.expired');
+      }
+      await _loadContext(epoch);
+    }
+    if (!_registrationContextMatches || _state.context == null) return;
+    final context = _state.context!;
+    final requestId = _requestId();
+    _securityRequestId = requestId;
+    _discardSecurityProof();
+    final expiresAt = now.add(const Duration(minutes: 4));
+    try {
+      _emit(
+        GoogleAuthState(
+          step: GoogleAuthStep.verifying,
+          context: context,
+          messageKey: 'google.verifying',
+        ),
+      );
+      _check(epoch);
+      final proof = await _challengeGateway.solve(
+        requestId: requestId,
+        title: title,
+        cancelLabel: cancelLabel,
+      );
+      _check(epoch);
+      if (_securityRequestId != requestId ||
+          !identical(_pending, pending) ||
+          proof.requestId != requestId ||
+          proof.token.isEmpty ||
+          proof.token.length > 2048 ||
+          !RegExp(r'^[\x21-\x7e]+$').hasMatch(proof.token) ||
+          proof.token.contains('\n')) {
+        throw SecurityChallengeException('invalid_response');
+      }
+      if (!expiresAt.isAfter(now)) {
+        _emit(
+          GoogleAuthState(
+            step: GoogleAuthStep.uncertain,
+            context: context,
+            messageKey: 'google.challengeExpired',
+          ),
+        );
+        return;
+      }
+      _securityProof = _SecurityProof(proof.token, expiresAt);
+      _securityExpiryTimer = Timer(
+        expiresAt.difference(now),
+        expireSecurityChallenge,
+      );
+      _emit(
+        GoogleAuthState(
+          step: context.status == 'guest_claim_required'
+              ? GoogleAuthStep.guestClaimRequired
+              : GoogleAuthStep.registrationRequired,
+          context: context,
+          messageKey: 'google.challengeReady',
+        ),
+      );
+    } on SecurityChallengeException catch (error) {
+      _check(epoch);
+      _emit(
+        GoogleAuthState(
+          step: GoogleAuthStep.uncertain,
+          context: context,
+          messageKey: error.code == 'cancelled' || error.code == 'interrupted'
+              ? 'google.challengeCancelled'
+              : error.code == 'unavailable'
+              ? 'google.challengeBlocked'
+              : 'google.challengeFailed',
+        ),
+      );
+    } finally {
+      if (_securityRequestId == requestId) _securityRequestId = null;
+    }
+  });
+
+  void expireSecurityChallenge() {
+    final proof = _securityProof;
+    if (proof == null || proof.expiresAt.isAfter(now)) return;
+    _discardSecurityProof();
+    _emit(
+      GoogleAuthState(
+        step: GoogleAuthStep.uncertain,
+        context: _state.context,
+        messageKey: 'google.challengeExpired',
+      ),
+    );
+  }
+
+  String? _consumeSecurityProof() {
+    final proof = _securityProof;
+    _discardSecurityProof();
+    return proof?.token;
+  }
+
+  void _discardSecurityProof() {
+    _securityProof = null;
+    _securityExpiryTimer?.cancel();
+    _securityExpiryTimer = null;
+  }
+
   @override
   void dispose() {
     _disposed = true;
     ++_epoch;
+    _discardSecurityProof();
+    final securityRequestId = _securityRequestId;
+    _securityRequestId = null;
+    if (securityRequestId != null) {
+      unawaited(
+        _challengeGateway
+            .cancel(requestId: securityRequestId)
+            .catchError((Object _) {}),
+      );
+    }
     final pending = _pending;
     if (pending != null) {
       unawaited(
@@ -696,6 +1128,14 @@ class GoogleAuthController extends ChangeNotifier {
   }
 }
 
+class _SecurityProof {
+  const _SecurityProof(this.token, this.expiresAt);
+  final String token;
+  final DateTime expiresAt;
+  @override
+  String toString() => '_SecurityProof(redacted: true)';
+}
+
 class _PendingGoogleIntent {
   const _PendingGoogleIntent({
     required this.requestId,
@@ -715,6 +1155,9 @@ class _PendingGoogleIntent {
   final DateTime expiresAt;
   final String? challengeId;
   final String? userId;
+
+  /// The server intent that a cancellation of this ticket targets.
+  (String, String) get serverIntent => (browser.browserContextToken, ticket);
 
   _PendingGoogleIntent continuation(String token, DateTime expiry) =>
       _PendingGoogleIntent(

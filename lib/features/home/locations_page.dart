@@ -633,23 +633,13 @@ class _LocationGroupRow extends StatelessWidget {
                       ? Row(
                           children: [
                             Expanded(child: countLabel),
-                            Icon(
-                              Directionality.of(context) == TextDirection.rtl
-                                  ? Icons.chevron_left_rounded
-                                  : Icons.chevron_right_rounded,
-                              size: 20,
-                            ),
+                            const Icon(Icons.chevron_right_rounded, size: 20),
                           ],
                         )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Directionality.of(context) == TextDirection.rtl
-                                  ? Icons.chevron_left_rounded
-                                  : Icons.chevron_right_rounded,
-                              size: 20,
-                            ),
+                            const Icon(Icons.chevron_right_rounded, size: 20),
                             const SizedBox(height: 8),
                             countLabel,
                           ],

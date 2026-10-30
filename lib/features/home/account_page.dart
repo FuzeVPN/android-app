@@ -381,7 +381,10 @@ class DeviceRow extends StatelessWidget {
       icon: current ? Icons.phone_android : Icons.devices_other,
       size: 36,
     );
-    final Widget name = Text(device.name, style: theme.textTheme.titleMedium);
+    final Widget name = Text(
+      _deviceName(context, device.name),
+      style: theme.textTheme.titleMedium,
+    );
     final Widget? currentLabel = current
         ? Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -905,14 +908,39 @@ class _LegalCard extends StatelessWidget {
           const Divider(height: 1),
         ],
         ListTile(
+          key: const ValueKey('account-licenses'),
           leading: const _AccountIcon(icon: Icons.info_outline, size: 36),
           title: Text(context.copy('settings.licenses')),
           subtitle: Text(context.copy('settings.licensesDetail')),
           trailing: const Icon(Icons.chevron_right),
-          onTap: () =>
-              showLicensePage(context: context, applicationName: 'FuzeVPN'),
+          onTap: () => _showLicenses(context, controller),
         ),
       ],
+    ),
+  );
+}
+
+/// MPL-2.0 components require telling recipients where the corresponding
+/// source is available: the `v<version>` tag of the installed version when it
+/// is known, otherwise the repository itself.
+Future<void> _showLicenses(
+  BuildContext context,
+  VpnAppController controller,
+) async {
+  final String? version = await controller.installedVersionLabel();
+  if (!context.mounted) return;
+  // The label is `<version> (<build>)` or `<version>`: a version never
+  // contains a space.
+  final String source = version == null
+      ? sourceCodeRepository
+      : '$sourceCodeRepository/tree/v${version.split(' ').first}';
+  showLicensePage(
+    context: context,
+    applicationName: 'FuzeVPN',
+    applicationVersion: version,
+    applicationLegalese: context.copy(
+      'settings.licensesLegalese',
+      arguments: <String, Object?>{'url': source},
     ),
   );
 }

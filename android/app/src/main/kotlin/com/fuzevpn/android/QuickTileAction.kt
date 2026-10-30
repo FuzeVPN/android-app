@@ -9,8 +9,15 @@ internal fun quickTileAction(activeProtocol: VpnProtocol?, alwaysOn: Boolean?): 
     else -> QuickTileAction.DISCONNECT
 }
 
+/** Tile outcome asking the tile service to open Android's VPN settings itself (C2-03). */
+internal const val QUICK_TILE_OPEN_SETTINGS = "quick_tile_open_settings"
+
+/** No account session: the tile's "open the app first" opens the app (A11-03). */
+internal const val QUICK_TILE_SESSION_REQUIRED = "quick_tile_session_required"
+
 /** These local-only refusals require an explicit account or profile repair in the app. */
 internal fun quickTileFailureOpensApplication(code: String?): Boolean = code in setOf(
+    QUICK_TILE_SESSION_REQUIRED,
     "quick_tile_profile_unavailable",
     "vpn_permission_required",
     "vpn_disclosure_required",

@@ -16,5 +16,26 @@
     "path": "patches/fuzevpn/0002-go-backend-protected-start.patch",
     "sha256": "e6861dba0b06e569b65119029c7d817adc98b4120e36d75c95af7ff4999e1ded",
     "purpose": "Protect bound UDP sockets before installing WireGuard peers; never rebind during peer activation."
+  },
+  "nativeRuntime": {
+    "goVersion": "1.26.9",
+    "wireguardModule": "v0.0.0-20261024220952-b3bc704ef0ee",
+    "wireguardCommit": "b3bc704ef0ee21a36298601a9e1e5ff90377ac52",
+    "reviewedAt": "2026-10-29",
+    "reviewedChanges": [
+      "device: noise: reject response consumption after intermediate initiation",
+      "tun: clear virtioNetHdr when deleting item from tcpGROTable",
+      "device: don't overflow uint16 when adding v4 header length"
+    ],
+    "runtimePatch": "tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.diff",
+    "runtimePatchSha256": "d0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a",
+    "runtimePatchManifest": "tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.json",
+    "runtimePatchManifestSha256": "9580d03064a6c0247bd543ae6311991b330dd94ff6352e2fd0e09761ab9d0127",
+    "purpose": "Use a maintained Go release and the upstream handshake concurrency and IPv6 length corrections while preserving the reviewed CLOCK_BOOTTIME semantics, extended to time.now on linux/amd64, and protected-start JNI."
+  },
+  "nativeRuntimePatch": {
+    "path": "patches/fuzevpn/0003-go-runtime-and-handshake-update.patch",
+    "sha256": "cc6624be2e950edef4e15c9d232581e1242525d96f437e693e82f03f9310ffd4",
+    "purpose": "Update the pinned Go toolchain, reviewed CLOCK_BOOTTIME adaptation and upstream WireGuard handshake concurrency and IPv6 length fixes."
   }
 }

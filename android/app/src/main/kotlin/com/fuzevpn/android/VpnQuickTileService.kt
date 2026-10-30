@@ -9,17 +9,57 @@ import android.os.Build
 import android.provider.Settings
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+
+internal data class QuickTileSnapshot(
+    val state: VpnState,
+    val profile: QuickTileProfile?,
+    val canConnect: Boolean,
+)
 
 /** User-controlled reconnect/disconnect entry point with no API access. */
 class VpnQuickTileService : TileService() {
+    private val tileScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+    private var destroyed = false
+    private val snapshotLoader by lazy {
+        QuickTileSnapshotLoader(
+            scope = tileScope,
+            load = {
+                val runtime = AndroidVpnBridge.obtain(applicationContext)
+                try {
+                    runtime.quickTileSnapshot()
+                } catch (_: Exception) {
+                    QuickTileSnapshot(runtime.quickTileState(), null, false)
+                }
+            },
+            deliver = ::renderTile,
+        )
+    }
+
     override fun onStartListening() {
         super.onStartListening()
-        updateTile()
+        snapshotLoader.startListening()
+    }
+
+    override fun onStopListening() {
+        snapshotLoader.stopListening()
+        super.onStopListening()
+    }
+
+    override fun onDestroy() {
+        destroyed = true
+        snapshotLoader.stopListening()
+        tileScope.cancel()
+        super.onDestroy()
     }
 
     override fun onClick() {
         super.onClick()
         unlockAndRun {
+            if (destroyed) return@unlockAndRun
             val runtime = AndroidVpnBridge.obtain(applicationContext)
             val state = runtime.quickTileState()
             // An active (or Android 8–9 unverifiable) permanent VPN cannot be stopped by
@@ -45,16 +85,15 @@ class VpnQuickTileService : TileService() {
                 updateTile()
                 return@unlockAndRun
             }
-            if (state.status != VpnStatus.CONNECTED && !state.isWireGuardRecovery && !runtime.canQuickTileConnect()) {
-                openApplication()
-                return@unlockAndRun
-            }
             markBusy()
+            // The bridge captures this click's request epoch before dispatching
+            // its storage checks; those checks must never block the UI thread.
             runtime.toggleFromQuickTile { failureCode ->
-                if (quickTileFailureOpensApplication(failureCode)) {
-                    openApplication()
-                } else {
-                    updateTile()
+                if (destroyed) return@toggleFromQuickTile
+                when {
+                    failureCode == QUICK_TILE_OPEN_SETTINGS -> openVpnSettings()
+                    quickTileFailureOpensApplication(failureCode) -> openApplication()
+                    else -> updateTile()
                 }
             }
         }
@@ -71,11 +110,12 @@ class VpnQuickTileService : TileService() {
         }
     }
 
-    private fun updateTile() {
+    private fun updateTile() = snapshotLoader.refresh()
+
+    private fun renderTile(snapshot: QuickTileSnapshot) {
         val tile = qsTile ?: return
-        val runtime = AndroidVpnBridge.obtain(applicationContext)
-        val state = runtime.quickTileState()
-        val profile = runtime.quickTileProfileSnapshot()
+        val state = snapshot.state
+        val profile = snapshot.profile
         val localized = VpnForegroundService.localizedContext(this)
         val protocol = state.protocol ?: profile?.protocol
         val location = state.locationName ?: profile?.locationName
@@ -103,7 +143,7 @@ class VpnQuickTileService : TileService() {
             } else {
                 localized.getString(R.string.vpn_tile_interrupted, protocolLabel)
             }
-            VpnStatus.IDLE -> if (profile == null || !runtime.canQuickTileConnect()) {
+            VpnStatus.IDLE -> if (profile == null || !snapshot.canConnect) {
                 localized.getString(R.string.vpn_tile_setup_required)
             } else {
                 localized.getString(
@@ -131,17 +171,21 @@ class VpnQuickTileService : TileService() {
         val launch = packageManager.getLaunchIntentForPackage(packageName)
             ?.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
             ?: return
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            val pending = PendingIntent.getActivity(
-                this,
-                41,
-                launch,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
-            )
-            startActivityAndCollapse(pending)
-        } else {
-            @Suppress("DEPRECATION")
-            startActivityAndCollapse(launch)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                val pending = PendingIntent.getActivity(
+                    this,
+                    41,
+                    launch,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+                )
+                startActivityAndCollapse(pending)
+            } else {
+                @Suppress("DEPRECATION")
+                startActivityAndCollapse(launch)
+            }
+        } catch (_: RuntimeException) {
+            updateTile()
         }
     }
 
@@ -149,26 +193,38 @@ class VpnQuickTileService : TileService() {
     private fun openVpnSettings() {
         val settings = Intent(Settings.ACTION_VPN_SETTINGS)
             .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            val pending = PendingIntent.getActivity(
-                this,
-                42,
-                settings,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
-            )
-            startActivityAndCollapse(pending)
-        } else {
-            @Suppress("DEPRECATION")
-            startActivityAndCollapse(settings)
+        // Some devices have no VPN settings activity (Settings.ACTION_VPN_SETTINGS).
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+                val pending = PendingIntent.getActivity(
+                    this,
+                    42,
+                    settings,
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+                )
+                startActivityAndCollapse(pending)
+            } else {
+                @Suppress("DEPRECATION")
+                startActivityAndCollapse(settings)
+            }
+        } catch (_: RuntimeException) {
+            updateTile()
         }
     }
 
     companion object {
+        /** Never throws: a tile refresh must not break a VPN state publication. */
         internal fun requestUpdate(context: Context) {
-            requestListeningState(
-                context.applicationContext,
-                ComponentName(context, VpnQuickTileService::class.java),
-            )
+            try {
+                requestListeningState(
+                    context.applicationContext,
+                    ComponentName(context, VpnQuickTileService::class.java),
+                )
+            } catch (_: RuntimeException) {
+                // Android 13 before QPR3 throws IllegalArgumentException for a
+                // process outside the current user (C2-02); the tile then
+                // refreshes on its next onStartListening.
+            }
         }
     }
 }

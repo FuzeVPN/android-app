@@ -144,6 +144,10 @@ android {
     packaging {
         jniLibs {
             pickFirsts += "lib/**/libc++_shared.so"
+            // GoBackend loads only libwg-go. The AAR's wireguard-tools executables
+            // (GPL-2.0, netlink LGPL-2.1) serve only WgQuickBackend and its root shell,
+            // which this app never uses, so they are not shipped (A17-supply-chain-05).
+            excludes += setOf("lib/**/libwg.so", "lib/**/libwg-quick.so")
         }
         resources {
             excludes += setOf("META-INF/DEPENDENCIES", "META-INF/LICENSE*", "META-INF/NOTICE*")
@@ -188,7 +192,7 @@ androidComponents.onVariants { variant ->
         // Inputs establish the dependency on manifest merging. No outputs keeps
         // the permission check active on warm builds and direct packaging calls.
         doLast {
-            com.fuzevpn.build.AndroidManifestPolicy.verify(mergedManifest.get().asFile.toPath())
+            com.fuzevpn.build.AndroidManifestPolicy.verify(mergedManifest.get().asFile.toPath(), variant.applicationId.get())
         }
     }
     tasks.matching { it.name in setOf("package$suffix", "package${suffix}Bundle", "bundle$suffix", "assemble$suffix") }

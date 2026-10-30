@@ -12,7 +12,7 @@
     "accountRestoration_message": "لقد حُفظت جلستك. أعد المحاولة لاستعادة حسابك؛ ولا يزال بإمكانك إدارة اتصال VPN من هنا.",
     "action_retry": "إعادة المحاولة",
     "session_endingTitle": "إنهاء الجلسة",
-    "session_ending": "أُبطلت جلستك. جارٍ إيقاف VPN ومسح الجلسة…",
+    "session_ending": "جارٍ إنهاء الجلسة: إيقاف VPN ومسح بيانات الجلسة…",
     "session_stopFailed": "لم يُؤكَّد إيقاف VPN. أعد المحاولة قبل تسجيل الدخول مرة أخرى.",
     "session_cleanupFailed": "تم إيقاف VPN، لكن لم يُؤكَّد حذف الجلسة. أعد محاولة التنظيف.",
     "session_retryStop": "إعادة محاولة الإيقاف",
@@ -139,6 +139,7 @@
     "devices_firstConnection": "ستتم إضافة هاتفك عند أول اتصال.",
     "devices_thisDevice": "هذا الجهاز",
     "devices_added": "أُضيف في {date}",
+    "devices_unnamed": "جهاز بدون اسم",
     "action_remove": "إزالة",
     "settings_title": "الإعدادات",
     "settings_subtitle": "تفضيلاتك وحسابك، كلها في مكان واحد.",
@@ -152,6 +153,14 @@
     "settings_security": "الأمان والشفافية",
     "settings_licenses": "تراخيص المكونات",
     "settings_licensesDetail": "البرامج المستخدمة في التطبيق",
+    "settings_licensesLegalese": "الشفرة المصدرية للتطبيق ولمكوناته المرخّصة بموجب MPL-2.0: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
     "settings_background": "يبقى VPN قيد التشغيل عند مغادرة التطبيق. لإيقافه، استخدم «قطع الاتصال» في علامة تبويب الاتصال.",
     "theme_system": "النظام",
     "theme_light": "فاتح",
@@ -176,7 +185,7 @@
     "notice_emailVerification_title": "تأكيد البريد الإلكتروني مطلوب",
     "notice_emailVerification_message": "أكّد عنوان بريدك الإلكتروني قبل إضافة جهاز VPN.",
     "notice_rateLimited_title": "محاولات كثيرة جدًا",
-    "notice_deviceLimit_title": "تم بلوغ حد جهازين",
+    "notice_deviceLimit_title": "تم بلوغ حد الأجهزة",
     "notice_deviceLimit_message": "أزل جهازًا موجودًا قبل إضافة جهاز آخر.",
     "notice_identityRenewal_title": "يجب تجديد هوية VPN",
     "notice_identityRenewal_message": "أُزيلت هذه الهوية. أنشئ هوية محلية جديدة.",
@@ -201,7 +210,7 @@
     "notice_diagnosticCode": "رمز التشخيص: {code}",
     "notice_generic_title": "فشل اتصال VPN",
     "notice_generic_message": "حدث خطأ. حاول مرة أخرى لاحقًا.",
-    "notice_controller_title": "{code, select, account_created_email_unavailable{تم إنشاء الحساب} password_reset_sent{تم استلام طلب إعادة تعيين كلمة المرور} verification_email_sent{تم إرسال رسالة التحقق} location_migration_pending{تغيير الموقع قيد التنفيذ} vpn_sign_in_required{تسجيل الدخول مطلوب} protocol_unavailable_at_location{البروتوكول غير متاح} vpn_permission_denied{رُفض إذن VPN} revoked_identity_device_limit{تم بلوغ حد جهازين} tunnel_start_unexpected{تعذر تشغيل VPN} flutter_disconnect_timeout{لم يُؤكَّد قطع الاتصال} flutter_disconnect_unexpected{تعذر قطع الاتصال} device_revoked{أُزيل الجهاز} revoke_unexpected{تعذرت إزالة الجهاز} identity_renewal_unexpected{تعذر تجديد الهوية} openvpn_renewal_unexpected{تعذر تجديد OpenVPN} location_migration_blocked{تغيير الموقع محظور} location_migration_slow{لا يزال تغيير الموقع قيد التنفيذ} location_migration_conflict{يحتاج تغيير الموقع إلى تحديث} location_migration_verification_failed{لم يُؤكَّد تغيير الموقع} location_migration_device_changed{تغيّر الجهاز أثناء تغيير الموقع} tunnel_stop_failed{تغيير الموقع غير متاح} other{فشلت العملية}}",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{تم إنشاء الحساب} password_reset_sent{تم استلام طلب إعادة تعيين كلمة المرور} verification_email_sent{تم إرسال رسالة التحقق} location_migration_pending{تغيير الموقع قيد التنفيذ} vpn_sign_in_required{تسجيل الدخول مطلوب} protocol_unavailable_at_location{البروتوكول غير متاح} vpn_permission_denied{رُفض إذن VPN} revoked_identity_device_limit{تم بلوغ حد الأجهزة} tunnel_start_unexpected{تعذر تشغيل VPN} flutter_disconnect_timeout{لم يُؤكَّد قطع الاتصال} flutter_disconnect_unexpected{تعذر قطع الاتصال} device_revoked{أُزيل الجهاز} revoke_unexpected{تعذرت إزالة الجهاز} identity_renewal_unexpected{تعذر تجديد الهوية} openvpn_renewal_unexpected{تعذر تجديد OpenVPN} location_migration_blocked{تغيير الموقع محظور} location_migration_slow{لا يزال تغيير الموقع قيد التنفيذ} location_migration_conflict{يحتاج تغيير الموقع إلى تحديث} location_migration_verification_failed{لم يُؤكَّد تغيير الموقع} location_migration_device_changed{تغيّر الجهاز أثناء تغيير الموقع} tunnel_stop_failed{تغيير الموقع غير متاح} device_clock_ahead{ساعة الجهاز متقدّمة} other{فشلت العملية}}",
     "@notice_controller_title": {
       "placeholders": {
         "code": {
@@ -209,7 +218,7 @@
         }
       }
     },
-    "notice_controller_message": "{code, select, account_created_email_unavailable{تم إنشاء الحساب، لكن تعذر إرسال رسالة التحقق. استخدم خيار إعادة الإرسال في التطبيق.} password_reset_sent{تم استلام طلبك. إذا كان هناك حساب مرتبط بهذا العنوان، فقد تصلك رسالة إلكترونية. يُرجى التحقق أيضًا من مجلد البريد العشوائي.} verification_email_sent{أُرسلت للتو رسالة تحقق جديدة.} location_migration_pending{لا يزال الانتقال إلى {target} قيد التحضير. يمكنك استئنافه دون إعادة إنشاء الجهاز.} vpn_sign_in_required{سجّل الدخول إلى حسابك قبل تشغيل VPN.} protocol_unavailable_at_location{البروتوكول المحدد غير مقدم في هذا الموقع. حدّث المواقع أو اختر بروتوكولًا آخر.} vpn_permission_denied{رفض Android إذن VPN. ابدأ الاتصال مرة أخرى ووافق على طلب النظام.} revoked_identity_device_limit{أُزيل وصول VPN لهذا الجهاز وتم بلوغ حد الأجهزة. أزل جهازًا من «الحساب ← إدارة أجهزتي».} tunnel_start_unexpected{أوقف خطأ غير متوقع إعداد النفق. تحقق من رمز التشخيص وحاول مرة أخرى.} flutter_disconnect_timeout{لم يؤكد Android إيقاف VPN في الوقت المحدد. حاول إيقافه مرة أخرى.} flutter_disconnect_unexpected{منع خطأ غير متوقع تأكيد توقف النفق.} device_revoked{أُلغي وصول VPN للجهاز وأُزيلت أسراره المحلية.} revoke_unexpected{تعذرت إزالة الجهاز. حدّث القائمة وحاول مرة أخرى.} identity_renewal_unexpected{تعذر إنشاء هوية VPN الجديدة. حدّث الأجهزة وحاول مرة أخرى.} openvpn_renewal_unexpected{تعذر تجديد ملف OpenVPN. حاول مرة أخرى أو تحقق من رمز التشخيص.} location_migration_blocked{لا يستطيع الخادم إكمال هذا التغيير الآن. تم الاحتفاظ بالجهاز وهويته المحلية.} location_migration_slow{لا يزال الخادم يجهز الانتقال إلى {target}. استخدم «استئناف» بعد لحظات.} location_migration_conflict{تغيرت حالة الجهاز على الخادم. حدّث الأجهزة، ثم استأنف التغيير.} location_migration_verification_failed{لم يؤكد الخادم الموقع الجديد. تم الاحتفاظ بالهوية المحلية السابقة.} location_migration_device_changed{لم يعد الجهاز الذي أعاده الخادم مطابقًا للجهاز الجاري تغييره. حدّث الأجهزة قبل المحاولة مرة أخرى.} tunnel_stop_failed{يجب إيقاف النفق السابق بالكامل قبل الاتصال الجديد.} other{تعذر إكمال العملية. حاول مرة أخرى أو أرسل رمز التشخيص إلى الدعم.}}",
+    "notice_controller_message": "{code, select, account_created_email_unavailable{تم إنشاء الحساب، لكن تعذر إرسال رسالة التحقق. استخدم خيار إعادة الإرسال في التطبيق.} password_reset_sent{تم استلام طلبك. إذا كان هناك حساب مرتبط بهذا العنوان، فقد تصلك رسالة إلكترونية. يُرجى التحقق أيضًا من مجلد البريد العشوائي.} verification_email_sent{أُرسلت للتو رسالة تحقق جديدة.} location_migration_pending{لا يزال الانتقال إلى {target} قيد التحضير. يمكنك استئنافه دون إعادة إنشاء الجهاز.} vpn_sign_in_required{سجّل الدخول إلى حسابك قبل تشغيل VPN.} protocol_unavailable_at_location{البروتوكول المحدد غير مقدم في هذا الموقع. حدّث المواقع أو اختر بروتوكولًا آخر.} vpn_permission_denied{رفض Android إذن VPN. ابدأ الاتصال مرة أخرى ووافق على طلب النظام.} revoked_identity_device_limit{أُزيل وصول VPN لهذا الجهاز وتم بلوغ حد الأجهزة. أزل جهازًا من «الحساب ← إدارة أجهزتي».} tunnel_start_unexpected{أوقف خطأ غير متوقع إعداد النفق. تحقق من رمز التشخيص وحاول مرة أخرى.} flutter_disconnect_timeout{لم يؤكد Android إيقاف VPN في الوقت المحدد. حاول إيقافه مرة أخرى.} flutter_disconnect_unexpected{منع خطأ غير متوقع تأكيد توقف النفق.} device_revoked{أُلغي وصول VPN للجهاز وأُزيلت أسراره المحلية.} revoke_unexpected{تعذرت إزالة الجهاز. حدّث القائمة وحاول مرة أخرى.} identity_renewal_unexpected{تعذر إنشاء هوية VPN الجديدة. حدّث الأجهزة وحاول مرة أخرى.} openvpn_renewal_unexpected{تعذر تجديد ملف OpenVPN. حاول مرة أخرى أو تحقق من رمز التشخيص.} location_migration_blocked{لا يستطيع الخادم إكمال هذا التغيير الآن. تم الاحتفاظ بالجهاز وهويته المحلية.} location_migration_slow{لا يزال الخادم يجهز الانتقال إلى {target}. استخدم «استئناف» بعد لحظات.} location_migration_conflict{تغيرت حالة الجهاز على الخادم. حدّث الأجهزة، ثم استأنف التغيير.} location_migration_verification_failed{لم يؤكد الخادم الموقع الجديد. تم الاحتفاظ بالهوية المحلية السابقة.} location_migration_device_changed{لم يعد الجهاز الذي أعاده الخادم مطابقًا للجهاز الجاري تغييره. حدّث الأجهزة قبل المحاولة مرة أخرى.} tunnel_stop_failed{يجب إيقاف النفق السابق بالكامل قبل الاتصال الجديد.} device_clock_ahead{يبدو أن ساعة هذا الجهاز متقدّمة. فعّل ضبط التاريخ والوقت تلقائيًا للبقاء مسجّلًا الدخول.} other{تعذر إكمال العملية. حاول مرة أخرى أو أرسل رمز التشخيص إلى الدعم.}}",
     "@notice_controller_message": {
       "placeholders": {
         "code": {
@@ -237,15 +246,31 @@
       }
     },
     "notice_retryLater": "حاول مرة أخرى بعد لحظات.",
-    "notice_retryAfter": "حاول مرة أخرى بعد {seconds} ثانية.",
+    "notice_retryAfter": "{seconds, plural, zero{حاول مرة أخرى بعد {seconds} ثانية.} one{حاول مرة أخرى بعد {seconds} ثانية.} two{حاول مرة أخرى بعد {seconds} ثانيتين.} few{حاول مرة أخرى بعد {seconds} ثوانٍ.} many{حاول مرة أخرى بعد {seconds} ثانية.} other{حاول مرة أخرى بعد {seconds} ثانية.}}",
     "@notice_retryAfter": {
       "placeholders": {
         "seconds": {
-          "type": "Object"
+          "type": "int"
         }
       }
     },
-    "notice_native_title": "{code, select, system_vpn_resume_unavailable{استئناف VPN النظام غير متاح} system_vpn_resume_corrupt{استئناف VPN النظام غير صالح} system_vpn_resume_session_invalid{جلسة استئناف VPN غير صالحة} system_vpn_resume_identity_changed{تغيرت هوية VPN} system_vpn_resume_identity_invalid{هوية استئناف VPN غير صالحة} system_vpn_resume_storage_failed{تخزين استئناف VPN غير متاح} system_vpn_resume_network_timeout{لا توجد شبكة لاستئناف VPN} system_vpn_resume_blocked{استئناف VPN محظور} system_vpn_resume_failed{فشل استئناف VPN} system_vpn_resume_error_invalid{خطأ استئناف VPN غير صالح} wireguard_identity_store_failed{لم تُحفظ هوية WireGuard} wireguard_identity_unavailable{هوية WireGuard غير متاحة} vpn_host_destroyed{أوقف Android مضيف VPN} vpn_host_unavailable{مضيف VPN في Android غير متاح} vpn_permission_required{إذن VPN مطلوب} vpn_permission_denied{رُفض إذن VPN} vpn_permission_request_failed{تعذر طلب الإذن} wireguard_foreground_service_unavailable{خدمة WireGuard غير متاحة} wireguard_identity_invalid{مفتاح WireGuard المحلي غير صالح} wireguard_identity_in_use{هوية WireGuard مستخدمة بالفعل} wireguard_configuration_invalid{إعداد WireGuard غير صالح} wireguard_operation_pending{لا تزال عملية WireGuard نشطة} wireguard_start_failed{رُفض تشغيل WireGuard} wireguard_stop_timeout{لم يُؤكَّد إيقاف WireGuard} wireguard_handshake_timeout{لم يستجب WireGuard} openvpn_connection_timeout{لم يستجب OpenVPN} openvpn_core_unavailable{محرك OpenVPN غير متاح} openvpn_operation_pending{لا تزال جلسة OpenVPN نشطة} openvpn_stop_timeout{لم يُؤكَّد إيقاف OpenVPN} openvpn_profile_unavailable{ملف OpenVPN المحلي مفقود} openvpn_native_failed{انقطع استدعاء OpenVPN الأصلي} openvpn_key_generation_failed{تعذر إنشاء مفتاح OpenVPN ‏P-256} openvpn_csr_generation_failed{تعذر إنشاء CSR لـ OpenVPN} openvpn_identity_store_failed{لم تُحفظ هوية OpenVPN} openvpn_identity_clear_failed{إزالة OpenVPN غير مكتملة} openvpn_identity_in_use{لا تزال هوية OpenVPN قيد الاستخدام} openvpn_tls_verification_required{التحقق من OpenVPN TLS مفقود} openvpn_cipher_invalid{شفرة OpenVPN غير صالحة} openvpn_profile_rejected{رُفض ملف OpenVPN} openvpn_identity_inconsistent{هوية OpenVPN غير متسقة} tls_handshake_failed{رُفض تفاوض OpenVPN} tls_alert_unknown_ca{لم يتم التعرف على شهادة عميل OpenVPN} tls_alert_bad_certificate{رُفضت شهادة عميل OpenVPN} tls_alert_unsupported_certificate{شهادة OpenVPN غير مدعومة} tls_client_certificate_required{شهادة عميل OpenVPN مطلوبة} tls_alert_misc{تنبيه OpenVPN TLS} tls_signature_algorithm_rejected{توقيع OpenVPN غير مدعوم} tls_handshake_rejected{رُفض تفاوض OpenVPN TLS} tls_version_rejected{إصدار OpenVPN TLS غير متوافق} tls_certificate_expired{انتهت صلاحية شهادة TLS} tls_certificate_revoked{أُلغيت شهادة TLS} transport_failed{لا يمكن الوصول إلى خادم OpenVPN} tun_configuration_rejected{تعذر إنشاء واجهة OpenVPN} tun_setup_failed{فشل إعداد TUN لـ OpenVPN} tun_interface_create_failed{فشل إنشاء واجهة OpenVPN} tun_interface_disabled{عُطّلت واجهة OpenVPN} tun_halted{انقطعت واجهة OpenVPN} tun_already_established{واجهة OpenVPN مفتوحة بالفعل} tun_addresses_missing{عنوان OpenVPN مفقود} tun_routes_missing{مسارات OpenVPN مفقودة} tun_dns_missing{DNS الخاص بـ OpenVPN مفقود} tun_permission_revoked{أُلغي إذن VPN} tun_establish_returned_null{رفض Android واجهة VPN} openvpn_service_start_failed{خدمة OpenVPN غير متاحة} openvpn_operation_timeout{انتهت مهلة استدعاء OpenVPN} openvpn_start_failed{رُفض تشغيل OpenVPN} openvpn_connection_failed{انقطع اتصال OpenVPN} openvpn_core_status_error{انتهى OpenVPN Core بخطأ} openvpn_stopped_before_connected{توقف OpenVPN قبل الاتصال} openvpn_auth_failed{رُفضت مصادقة OpenVPN} openvpn_client_setup_failed{فشل إعداد عميل OpenVPN} openvpn_client_halted{انقطع عميل OpenVPN} openvpn_client_restart{طُلب إعادة تشغيل OpenVPN} openvpn_inactive_timeout{ظل OpenVPN غير نشط مدة طويلة جدًا} openvpn_session_expired{انتهت جلسة OpenVPN} openvpn_credentials_required{مصادقة OpenVPN غير مدعومة} openvpn_proxy_failed{فشل النقل الوسيط لـ OpenVPN} openvpn_compression_failed{رُفض ضغط OpenVPN} openvpn_ntlm_crypto_unavailable{تشفير OpenVPN ‏NTLM غير متاح} openvpn_feature_unsupported{ميزة OpenVPN غير مدعومة} network_unavailable{اتصال الإنترنت غير متاح} network_lost{الشبكة غير متاحة} certificate_validation_failed{رُفضت شهادة الخادم} openvpn_certificate_expired{انتهت صلاحية شهادة OpenVPN} tunnel_active_for_another_account{لا يزال نفق حساب آخر نشطًا} tunnel_already_active{النفق الأصلي نشط بالفعل} tunnel_stop_timeout{لم يُؤكَّد إيقاف {protocol}} tunnel_disconnected{انقطع {protocol}} native_bridge_unavailable{جسر Android غير متاح} native_operation_failed{انقطعت عملية Android} invalid_arguments{معلمات VPN غير مكتملة} invalid_account_id{حساب VPN غير صالح} invalid_device_id{معرّف الجهاز غير صالح} storage_key_not_allowed{رُفض مفتاح التخزين} secure_storage_read_failed{فشلت القراءة الآمنة} secure_storage_write_failed{فشلت الكتابة الآمنة} key_generation_failed{تعذر إنشاء مفتاح WireGuard} csr_generation_failed{تعذر إنشاء CSR لـ OpenVPN} other{خطأ غير مصنف في VPN الأصلي}}",
+    "notice_retryAfterMinutes": "{minutes, plural, zero{حاول مرة أخرى بعد {minutes} دقيقة.} one{حاول مرة أخرى بعد {minutes} دقيقة.} two{حاول مرة أخرى بعد {minutes} دقيقتين.} few{حاول مرة أخرى بعد {minutes} دقائق.} many{حاول مرة أخرى بعد {minutes} دقيقة.} other{حاول مرة أخرى بعد {minutes} دقيقة.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, zero{حاول مرة أخرى بعد {hours} ساعة.} one{حاول مرة أخرى بعد {hours} ساعة.} two{حاول مرة أخرى بعد {hours} ساعتين.} few{حاول مرة أخرى بعد {hours} ساعات.} many{حاول مرة أخرى بعد {hours} ساعة.} other{حاول مرة أخرى بعد {hours} ساعة.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{استئناف VPN النظام غير متاح} system_vpn_resume_corrupt{استئناف VPN النظام غير صالح} system_vpn_resume_session_invalid{جلسة استئناف VPN غير صالحة} system_vpn_resume_identity_changed{تغيرت هوية VPN} system_vpn_resume_identity_invalid{هوية استئناف VPN غير صالحة} system_vpn_resume_storage_failed{تخزين استئناف VPN غير متاح} system_vpn_resume_network_timeout{لا توجد شبكة لاستئناف VPN} system_vpn_resume_blocked{استئناف VPN محظور} system_vpn_resume_failed{فشل استئناف VPN} system_vpn_resume_error_invalid{خطأ استئناف VPN غير صالح} wireguard_identity_store_failed{لم تُحفظ هوية WireGuard} wireguard_identity_unavailable{هوية WireGuard غير متاحة} vpn_host_destroyed{أوقف Android مضيف VPN} vpn_host_unavailable{مضيف VPN في Android غير متاح} vpn_permission_required{إذن VPN مطلوب} vpn_permission_denied{رُفض إذن VPN} vpn_permission_request_failed{تعذر طلب الإذن} wireguard_foreground_service_unavailable{خدمة WireGuard غير متاحة} wireguard_identity_invalid{مفتاح WireGuard المحلي غير صالح} wireguard_identity_in_use{هوية WireGuard مستخدمة بالفعل} wireguard_configuration_invalid{إعداد WireGuard غير صالح} wireguard_operation_pending{لا تزال عملية WireGuard نشطة} wireguard_start_failed{رُفض تشغيل WireGuard} wireguard_stop_timeout{لم يُؤكَّد إيقاف WireGuard} wireguard_handshake_timeout{لم يستجب WireGuard} openvpn_connection_timeout{لم يستجب OpenVPN} openvpn_core_unavailable{محرك OpenVPN غير متاح} openvpn_operation_pending{لا تزال جلسة OpenVPN نشطة} openvpn_stop_timeout{لم يُؤكَّد إيقاف OpenVPN} openvpn_profile_unavailable{ملف OpenVPN المحلي مفقود} openvpn_native_failed{انقطع استدعاء OpenVPN الأصلي} openvpn_key_generation_failed{تعذر إنشاء مفتاح OpenVPN ‏P-256} openvpn_csr_generation_failed{تعذر إنشاء CSR لـ OpenVPN} openvpn_identity_store_failed{لم تُحفظ هوية OpenVPN} openvpn_identity_clear_failed{إزالة OpenVPN غير مكتملة} openvpn_identity_in_use{لا تزال هوية OpenVPN قيد الاستخدام} openvpn_tls_verification_required{التحقق من OpenVPN TLS مفقود} openvpn_cipher_invalid{شفرة OpenVPN غير صالحة} openvpn_profile_rejected{رُفض ملف OpenVPN} openvpn_identity_inconsistent{هوية OpenVPN غير متسقة} tls_handshake_failed{رُفض تفاوض OpenVPN} tls_alert_unknown_ca{لم يتم التعرف على شهادة عميل OpenVPN} tls_alert_bad_certificate{رُفضت شهادة عميل OpenVPN} tls_alert_unsupported_certificate{شهادة OpenVPN غير مدعومة} tls_client_certificate_required{شهادة عميل OpenVPN مطلوبة} tls_alert_misc{تنبيه OpenVPN TLS} tls_signature_algorithm_rejected{توقيع OpenVPN غير مدعوم} tls_handshake_rejected{رُفض تفاوض OpenVPN TLS} tls_version_rejected{إصدار OpenVPN TLS غير متوافق} tls_certificate_expired{انتهت صلاحية شهادة TLS} tls_certificate_revoked{أُلغيت شهادة TLS} transport_failed{لا يمكن الوصول إلى خادم OpenVPN} tun_configuration_rejected{تعذر إنشاء واجهة OpenVPN} tun_setup_failed{فشل إعداد TUN لـ OpenVPN} tun_interface_create_failed{فشل إنشاء واجهة OpenVPN} tun_interface_disabled{عُطّلت واجهة OpenVPN} tun_halted{انقطعت واجهة OpenVPN} tun_already_established{واجهة OpenVPN مفتوحة بالفعل} tun_addresses_missing{عنوان OpenVPN مفقود} tun_routes_missing{مسارات OpenVPN مفقودة} tun_dns_missing{DNS الخاص بـ OpenVPN مفقود} tun_permission_revoked{أُلغي إذن VPN} tun_establish_returned_null{رفض Android واجهة VPN} openvpn_service_start_failed{خدمة OpenVPN غير متاحة} openvpn_operation_timeout{انتهت مهلة استدعاء OpenVPN} openvpn_start_failed{رُفض تشغيل OpenVPN} openvpn_connection_failed{انقطع اتصال OpenVPN} openvpn_core_status_error{انتهى OpenVPN Core بخطأ} openvpn_stopped_before_connected{توقف OpenVPN قبل الاتصال} openvpn_auth_failed{رُفضت مصادقة OpenVPN} openvpn_client_setup_failed{فشل إعداد عميل OpenVPN} openvpn_client_halted{انقطع عميل OpenVPN} openvpn_client_restart{طُلب إعادة تشغيل OpenVPN} openvpn_inactive_timeout{ظل OpenVPN غير نشط مدة طويلة جدًا} openvpn_session_expired{انتهت جلسة OpenVPN} openvpn_credentials_required{مصادقة OpenVPN غير مدعومة} openvpn_proxy_failed{فشل النقل الوسيط لـ OpenVPN} openvpn_compression_failed{رُفض ضغط OpenVPN} openvpn_ntlm_crypto_unavailable{تشفير OpenVPN ‏NTLM غير متاح} openvpn_feature_unsupported{ميزة OpenVPN غير مدعومة} network_unavailable{اتصال الإنترنت غير متاح} network_lost{الشبكة غير متاحة} certificate_validation_failed{رُفضت شهادة الخادم} openvpn_certificate_expired{انتهت صلاحية شهادة OpenVPN} tunnel_active_for_another_account{لا يزال نفق حساب آخر نشطًا} tunnel_already_active{النفق الأصلي نشط بالفعل} tunnel_stop_timeout{لم يُؤكَّد إيقاف {protocol}} tunnel_disconnected{انقطع {protocol}} native_bridge_unavailable{جسر Android غير متاح} native_operation_failed{انقطعت عملية Android} invalid_arguments{معلمات VPN غير مكتملة} invalid_account_id{حساب VPN غير صالح} invalid_device_id{معرّف الجهاز غير صالح} storage_key_not_allowed{رُفض مفتاح التخزين} secure_storage_read_failed{فشلت القراءة الآمنة} secure_storage_write_failed{فشلت الكتابة الآمنة} key_generation_failed{تعذر إنشاء مفتاح WireGuard} csr_generation_failed{تعذر إنشاء CSR لـ OpenVPN} openvpn_recovery_exhausted{استعادة OpenVPN مستخدمة بالفعل} openvpn_recovery_failed{فشلت استعادة OpenVPN} openvpn_renewal_required{يلزم تجديد شهادة OpenVPN} other{خطأ غير مصنف في VPN الأصلي}}",
     "@notice_native_title": {
       "placeholders": {
         "code": {
@@ -562,6 +587,8 @@
     "billing_accessUntil": "الوصول حتى {date}.",
     "billing_webManaged": "تتم إدارة اشتراكك على موقع FuzeVPN.",
     "billing_playManaged": "تتم إدارة اشتراكك عبر Google Play.",
+    "billing_playOnHold": "اشتراكك في Google Play معلّق أو بانتظار الدفع. افتح «إدارة الاشتراك» لتسويته في Google Play.",
+    "billing_playReceiptUnlinked": "يملك حساب Google Play هذا اشتراكًا في Fuze Premium غير نشط لحساب FuzeVPN هذا. افتح «إدارة الاشتراك» لمراجعته في Google Play.",
     "billing_inactive": "لا يوجد اشتراك نشط.",
     "billing_checkingAccess": "جارٍ التحقق من وصولك…",
     "billing_restoring": "جارٍ استعادة المشتريات…",
@@ -640,6 +667,7 @@
     "google_emailUnavailable": "تعذر إرسال رسالة التأكيد. حاول لاحقًا.",
     "google_emailSent": "أُرسلت رسالة التأكيد. تحقق من بريدك الوارد.",
     "google_rateLimited": "يرجى الانتظار قبل المحاولة مجددًا.",
+    "google_busy": "تسجيل الدخول باستخدام Google غير متاح أثناء تنفيذ عملية أخرى (اتصال VPN أو الحساب أو الضيف). أعد المحاولة بعد انتهائها؛ سيبقى وصولك الحالي كما هو.",
     "google_invalidPassword": "كلمة مرور FuzeVPN غير صحيحة. حسابك الحالي محفوظ.",
     "google_invalidCode": "رمز التأكيد غير صالح أو انتهت صلاحيته.",
     "google_accountChanged": "تغيرت الجلسة. ألغ هذه المحاولة قبل البدء من جديد.",
@@ -648,6 +676,14 @@
     "google_consentRequired": "اختر بلدك ووافق على المستندين للمتابعة.",
     "google_challengeRequired": "يلزم تحقق أمني إضافي. وصولك الحالي محفوظ.",
     "google_challengeUnavailable": "التحقق الأمني غير متاح. حاول لاحقًا.",
+    "google_intentMismatch": "لا تزال محاولة سابقة لتسجيل الدخول باستخدام Google معلّقة. ألغِها قبل بدء هذه العملية.",
+    "google_challengeBlocked": "التحقق الأمني المطلوب غير متاح في هذا التطبيق. لا يمكن إكمال هذه العملية حاليًا.",
+    "google_solveChallenge": "إجراء التحقق الأمني",
+    "google_challengeTitle": "التحقق الأمني",
+    "google_challengeReady": "اكتمل التحقق. يمكنك الآن تأكيد إنشاء حسابك.",
+    "google_challengeExpired": "انتهت صلاحية التحقق. أجرِه مرة أخرى قبل التأكيد.",
+    "google_challengeCancelled": "أُلغي التحقق. يمكنك إجراؤه مرة أخرى.",
+    "google_challengeFailed": "فشل التحقق الأمني. حاول مرة أخرى.",
     "billing_trialTitle": "جرّب Fuze Premium مجانًا",
     "billing_trialSubtitle": "احمِ اتصالك بدءًا من اليوم.",
     "billing_trialWeeks": "تجربة مجانية لمدة أسبوعين",

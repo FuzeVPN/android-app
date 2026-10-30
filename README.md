@@ -13,6 +13,16 @@ This repository publishes sources and reviewed native build inputs. It does
 not publish APKs, App Bundles or GitHub Releases. The FuzeVPN backend and VPN
 infrastructure are separate services and are not included here.
 
+The [corrections of the full audit of 28 October 2026](docs/AUDIT_CORRECTIONS_20261029.md) (in French)
+address 81 findings (1 P1, 9 P2, 71 P3) and move the toolchain to Flutter 3.47.8 and
+Gradle 9.8.2, keeping version **0.2.10+74016**.
+The [re-audit corrections of 28 October 2026](docs/AUDIT_CORRECTIONS_20261028.md)
+fix eleven source and tooling findings and keep version **0.2.10+74016**.
+Control builds remain local. The [19 October corrections](docs/AUDIT_CORRECTIONS_20261019.md)
+and earlier qualification evidence retain their original dates and limits.
+See the [evidence limits and maintained release tools](docs/RELEASE_EVIDENCE.md),
+including the two historical originals that could not be recovered.
+
 This version redesigns the Premium screen and supports the Google Play
 `freetest` offer for eligible new subscribers, with exact recurring prices,
 renewal terms and an estimated first charge date. See the
@@ -42,8 +52,8 @@ debug-only. See the integration guides before running network-dependent tests.
 
 ## Build
 
-The reviewed toolchain is Flutter **3.44.7**, JDK **17**, Android Platform **36**,
-NDK **28.2.13676358** and CMake **3.22.1**. Gradle **9.5.0**, Android Gradle
+The reviewed toolchain is Flutter **3.47.8** (Dart **3.13.7**), JDK **17**, Android Platform **36**,
+NDK **28.2.13676358** and CMake **3.22.1**. Gradle **9.8.2**, Android Gradle
 Plugin **9.3.0** and Kotlin **2.3.20** are pinned by the project.
 
 Install the tools, set `JAVA_HOME` and `ANDROID_HOME`, and create your own
@@ -74,6 +84,9 @@ Most detailed guides are maintained in French.
 | Guide | Scope |
 | --- | --- |
 | [Release notes](docs/RELEASE_NOTES.md) | Changes in 0.2.10+74016 and validation limits |
+| [Full-audit corrections](docs/AUDIT_CORRECTIONS_20261029.md) | 81 findings, toolchain, two local validations and limits (in French) |
+| [Re-audit corrections](docs/AUDIT_CORRECTIONS_20261028.md) | Eleven findings, local validation and control-build identities |
+| [Latest release SPDX (28/10)](docs/SBOM.release.corrections-20261028.spdx.json) | Dependency resolution and the exact unsigned worktree AAB, produced before native components were listed ([release SBOM guide](docs/SBOM.release.md)) |
 | [Development](docs/DEVELOPMENT.md) | Toolchain, build, tests and device qualification |
 | [Architecture](docs/ARCHITECTURE.md) | Client behavior, storage, VPN lifecycle and expected API |
 | [Native dependencies](docs/NATIVE_DEPENDENCIES.md) | Source revisions, patches, integrity and reconstruction |
@@ -83,7 +96,7 @@ Most detailed guides are maintained in French.
 | [Google authentication](docs/GOOGLE_AUTH.md) | Credential Manager and OAuth server contract |
 | [Licensing](LICENSING.md) | MPL scope, existing exceptions and trademarks |
 | [Third-party notices](THIRD_PARTY_NOTICES.md) | Component licenses and provenance |
-| [SPDX inventory](docs/SBOM.spdx.json) | Source-level inventory and its limitations |
+| [Historical SPDX inventory (14/10)](docs/SBOM.spdx.json) | Source-level inventory of 14/10 with the former WireGuard engine; current versions in the [release SBOM guide](docs/SBOM.release.md) and [third-party notices](THIRD_PARTY_NOTICES.md) |
 
 ## License and contributions
 

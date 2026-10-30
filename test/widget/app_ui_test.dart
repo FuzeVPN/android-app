@@ -1777,7 +1777,6 @@ void main() {
           'OpenSSL',
           'WireGuard Android tunnel library',
           'wireguard-go',
-          'wireguard-tools',
           'Asio',
           'fmt',
           'LZ4',
@@ -1787,9 +1786,10 @@ void main() {
           'golang.org/x/sys',
         ]),
       );
+      // wireguard-tools is not shipped: its licence is no longer listed.
+      expect(packages, isNot(contains('wireguard-tools')));
       for (final name in <String>[
         'OpenSSL',
-        'wireguard-tools',
         'wireguard-go',
         'Noto Sans Arabic',
       ]) {

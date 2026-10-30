@@ -7,6 +7,7 @@ import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/billing_controller.dart';
 import 'package:fuzevpn_android/core/play_billing.dart';
 import 'package:fuzevpn_android/features/billing/subscription_card.dart';
+import 'package:fuzevpn_android/l10n/app_copy.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 
@@ -398,6 +399,33 @@ void main() {
     expect(fixture.gateway.launchedPlans, isEmpty);
   });
 
+  // Review round 2 (probe W1): a web subscriber whose device holds another
+  // account's Play receipt is never told Google Play manages the subscription.
+  testWidgets('H-R13-01-01 web access with a foreign Play receipt restores '
+      'without a Google Play reason', (tester) async {
+    final fixture = _BillingFixture()
+      ..api.subscription = const BillingSubscription(
+        status: 'active',
+        hasAccess: true,
+        provider: 'sumup',
+      )
+      ..gateway.owned = [_receipt('foreign', owner: 'other-owner')];
+    addTearDown(fixture.controller.dispose);
+    await tester.pumpWidget(_app(fixture.controller));
+    await tester.tap(find.byKey(const ValueKey('subscription-restore')));
+    await tester.pumpAndSettle();
+    final copy = AppLocalizations.of(
+      tester.element(find.byType(SubscriptionCard)),
+    );
+    expect(find.text(copy.billing_restoreEmpty), findsOneWidget);
+    expect(find.text(copy.billing_playManaged), findsNothing);
+    expect(find.text(copy.billing_webManaged), findsOneWidget);
+    expect(find.byKey(const ValueKey('subscription-manage')), findsNothing);
+    expect(find.byKey(const ValueKey('subscription-play-block')), findsNothing);
+    expect(fixture.gateway.launchedPlans, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('Google subscribers can open management and restore purchases', (
     tester,
   ) async {
@@ -422,6 +450,172 @@ void main() {
     );
     expect(find.text(copy.billing_restoreEmpty), findsOneWidget);
   });
+
+  for (final (label, server, receipt)
+      in <(String, BillingSubscription, PlayPurchase)>[
+        (
+          'A07-billing-02 suspended Play subscription',
+          const BillingSubscription(
+            status: 'past_due',
+            hasAccess: false,
+            provider: 'google_play',
+          ),
+          _receipt('held', suspended: true),
+        ),
+        (
+          'H-R13-01-01 receipt without owner',
+          const BillingSubscription(status: 'inactive', hasAccess: false),
+          _receipt('unbound', owner: null),
+        ),
+        (
+          'H-R13-01-01 receipt of another account',
+          const BillingSubscription(status: 'inactive', hasAccess: false),
+          _receipt('foreign', owner: 'other-owner'),
+        ),
+      ]) {
+    testWidgets('$label offers Play management instead of a refused '
+        'purchase', (tester) async {
+      final fixture = _BillingFixture()
+        ..api.subscription = server
+        ..gateway.owned = [receipt];
+      addTearDown(fixture.controller.dispose);
+      await tester.pumpWidget(_app(fixture.controller));
+      await tester.tap(find.byKey(const ValueKey('subscription-restore')));
+      await tester.pumpAndSettle();
+      final context = tester.element(find.byType(SubscriptionCard));
+      final message = fixture.controller.messageKey;
+      expect(message, isNot('billing.restoreEmpty'));
+      expect(message, isNot('billing.inactive'));
+      expect(find.text(context.copy(message!)), findsOneWidget);
+      expect(find.byKey(const ValueKey('subscription-open')), findsNothing);
+      expect(find.byKey(const ValueKey('subscription-manage')), findsOneWidget);
+      // The explanation stays once a later action clears the message.
+      await fixture.controller.loadPlans();
+      await tester.pumpAndSettle();
+      expect(fixture.controller.messageKey, isNull);
+      expect(
+        find.descendant(
+          of: find.byKey(const ValueKey('subscription-play-block')),
+          matching: find.text(context.copy(message)),
+        ),
+        findsOneWidget,
+      );
+      await tester.tap(find.byKey(const ValueKey('subscription-manage')));
+      await tester.pumpAndSettle();
+      expect(fixture.gateway.managementRequests, 1);
+      expect(fixture.gateway.launchedPlans, isEmpty);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('A07-billing-02 a refused checkout turns the plan sheet into '
+      'Play management', (tester) async {
+    final fixture = _BillingFixture()
+      ..gateway.launchError = const PlayBillingException('already_owned');
+    addTearDown(fixture.controller.dispose);
+    await tester.pumpWidget(_app(fixture.controller));
+    await _openPlans(tester);
+    expect(
+      find.byKey(const ValueKey('subscription-selection-manage')),
+      findsNothing,
+    );
+    fixture.gateway.owned = [_receipt('unbound', owner: null)];
+    await tester.tap(find.byKey(const ValueKey('subscription-plan-monthly')));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(
+      find.byKey(const ValueKey('subscription-continue')),
+    );
+    await tester.tap(find.byKey(const ValueKey('subscription-continue')));
+    await tester.pumpAndSettle();
+    expect(fixture.gateway.restoreRequests, 1);
+    expect(_continueButton(tester).onPressed, isNull);
+    final copy = AppLocalizations.of(
+      tester.element(find.byKey(const ValueKey('subscription-selection'))),
+    );
+    expect(find.text(copy.billing_comingSoon), findsNothing);
+    expect(find.text(copy.billing_restoreEmpty), findsNothing);
+    final manage = find.byKey(const ValueKey('subscription-selection-manage'));
+    await tester.ensureVisible(manage);
+    await tester.tap(manage);
+    await tester.pumpAndSettle();
+    expect(fixture.gateway.managementRequests, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('A07-billing-02 review: after a lapse in the session the card '
+      'offers Subscribe again', (tester) async {
+    final fixture = _BillingFixture()
+      ..api.subscription = const BillingSubscription(
+        status: 'active',
+        hasAccess: true,
+        provider: 'google_play',
+      )
+      ..gateway.owned = [_receipt('mine')];
+    addTearDown(fixture.controller.dispose);
+    await tester.pumpWidget(_app(fixture.controller));
+    await tester.tap(find.byKey(const ValueKey('subscription-restore')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('subscription-manage')), findsOneWidget);
+    expect(find.byKey(const ValueKey('subscription-open')), findsNothing);
+    // Expiry or refund: Play drops the receipt, the server reports it.
+    fixture.gateway.owned = const [];
+    fixture.api.subscription = const BillingSubscription(
+      status: 'expired',
+      hasAccess: false,
+      provider: 'google_play',
+    );
+    await tester.tap(find.byKey(const ValueKey('subscription-refresh')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('subscription-open')), findsOneWidget);
+    expect(find.byKey(const ValueKey('subscription-manage')), findsNothing);
+    expect(find.byKey(const ValueKey('subscription-play-block')), findsNothing);
+    expect(fixture.gateway.restoreRequests, 1);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('A07-billing-02 witness: an expired Play subscription can '
+      'subscribe again', (tester) async {
+    final fixture = _BillingFixture()
+      ..api.subscription = const BillingSubscription(
+        status: 'expired',
+        hasAccess: false,
+        provider: 'google_play',
+      );
+    addTearDown(fixture.controller.dispose);
+    await tester.pumpWidget(_app(fixture.controller));
+    await tester.tap(find.byKey(const ValueKey('subscription-restore')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('subscription-open')), findsOneWidget);
+    expect(find.byKey(const ValueKey('subscription-manage')), findsNothing);
+    expect(find.byKey(const ValueKey('subscription-play-block')), findsNothing);
+  });
+
+  for (final (locale, system, date) in <(Locale, Locale, String)>[
+    (const Locale('en'), const Locale('en', 'GB'), '2 November 2026'),
+    (const Locale('en'), const Locale('en', 'US'), 'November 2, 2026'),
+    (const Locale('fr'), const Locale('fr', 'FR'), '2 novembre 2026'),
+  ]) {
+    testWidgets('A16-01 access date follows the ${system.toLanguageTag()} '
+        'region', (tester) async {
+      tester.platformDispatcher.localesTestValue = [system];
+      addTearDown(tester.platformDispatcher.clearLocalesTestValue);
+      final fixture = _BillingFixture()
+        ..api.subscription = BillingSubscription(
+          status: 'active',
+          hasAccess: true,
+          provider: 'google_play',
+          expiresAt: DateTime(2026, 11, 2, 12),
+        );
+      addTearDown(fixture.controller.dispose);
+      await tester.pumpWidget(_app(fixture.controller, locale: locale));
+      await tester.tap(find.byKey(const ValueKey('subscription-refresh')));
+      await tester.pumpAndSettle();
+      expect(find.textContaining(date), findsOneWidget);
+      expect(find.textContaining('11/2/2026'), findsNothing);
+      expect(find.textContaining('02/11/2026'), findsNothing);
+      expect(tester.takeException(), isNull);
+    });
+  }
 
   for (final language in AppLanguages.all) {
     testWidgets(
@@ -564,6 +758,19 @@ class _BillingFixture {
   late final BillingController controller;
 }
 
+PlayPurchase _receipt(
+  String token, {
+  String? owner = 'opaque-owner',
+  bool suspended = false,
+}) => PlayPurchase(
+  productId: 'premium',
+  purchaseToken: token,
+  state: 'purchased',
+  obfuscatedAccountId: owner,
+  acknowledged: true,
+  suspended: suspended,
+);
+
 class _Store implements PlayBillingGateway {
   final _events = StreamController<PlayBillingEvent>.broadcast();
   int catalogRequests = 0;
@@ -571,6 +778,8 @@ class _Store implements PlayBillingGateway {
   int managementRequests = 0;
   bool catalogUnavailable = false;
   bool priceChangedOnLaunch = false;
+  PlayBillingException? launchError;
+  List<PlayPurchase> owned = const <PlayPurchase>[];
   List<PlaySubscriptionPlan> plans = const [_monthly, _yearly];
   final launchedPlans = <PlaySubscriptionPlan>[];
   final launchedOwners = <String>[];
@@ -589,6 +798,8 @@ class _Store implements PlayBillingGateway {
     required String obfuscatedAccountId,
   }) async {
     if (priceChangedOnLaunch) throw const PlayBillingException('price_changed');
+    final error = launchError;
+    if (error != null) throw error;
     launchedPlans.add(plan);
     launchedOwners.add(obfuscatedAccountId);
   }
@@ -596,7 +807,7 @@ class _Store implements PlayBillingGateway {
   @override
   Future<List<PlayPurchase>> queryOwnedPurchases() async {
     restoreRequests++;
-    return const <PlayPurchase>[];
+    return List.of(owned);
   }
 
   @override

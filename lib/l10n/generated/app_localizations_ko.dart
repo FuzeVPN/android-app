@@ -46,7 +46,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get session_endingTitle => '세션 종료 중';
 
   @override
-  String get session_ending => '세션이 무효화되었습니다. VPN을 중지하고 세션을 삭제하는 중입니다…';
+  String get session_ending => '세션 종료 중: VPN을 중지하고 세션 데이터를 삭제하는 중입니다…';
 
   @override
   String get session_stopFailed => 'VPN 종료가 확인되지 않았습니다. 다시 로그인하기 전에 다시 시도하세요.';
@@ -410,6 +410,9 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => '이름 없는 기기';
+
+  @override
   String get action_remove => '삭제';
 
   @override
@@ -447,6 +450,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => '앱에서 사용하는 소프트웨어';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return '앱 및 MPL-2.0 라이선스 구성 요소의 소스 코드: $url';
+  }
 
   @override
   String get settings_background =>
@@ -527,7 +535,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get notice_rateLimited_title => '시도 횟수 초과';
 
   @override
-  String get notice_deviceLimit_title => '기기 2대 한도에 도달함';
+  String get notice_deviceLimit_title => '기기 한도에 도달함';
 
   @override
   String get notice_deviceLimit_message => '다른 기기를 추가하기 전에 기존 기기를 삭제하세요.';
@@ -620,7 +628,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'vpn_sign_in_required': '로그인 필요',
       'protocol_unavailable_at_location': '프로토콜을 사용할 수 없음',
       'vpn_permission_denied': 'VPN 권한 거부됨',
-      'revoked_identity_device_limit': '기기 2대 한도에 도달함',
+      'revoked_identity_device_limit': '기기 한도에 도달함',
       'tunnel_start_unexpected': 'VPN을 시작할 수 없음',
       'flutter_disconnect_timeout': '연결 해제가 확인되지 않음',
       'flutter_disconnect_unexpected': '연결을 해제할 수 없음',
@@ -634,6 +642,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'location_migration_verification_failed': '위치 변경이 확인되지 않음',
       'location_migration_device_changed': '위치 변경 중 기기가 변경됨',
       'tunnel_stop_failed': '위치를 변경할 수 없음',
+      'device_clock_ahead': '기기 시계가 빠름',
       'other': '작업 실패',
     });
     return '$_temp0';
@@ -678,6 +687,8 @@ class AppLocalizationsKo extends AppLocalizations {
       'location_migration_device_changed':
           '서버가 반환한 기기가 변경 중인 기기와 더 이상 일치하지 않습니다. 다시 시도하기 전에 기기를 새로 고치세요.',
       'tunnel_stop_failed': '새 연결을 시작하기 전에 이전 터널을 완전히 중지해야 합니다.',
+      'device_clock_ahead':
+          '이 기기의 시계가 실제보다 빠른 것 같습니다. 로그인 상태를 유지하려면 자동 날짜 및 시간을 켜세요.',
       'other': '작업을 완료하지 못했습니다. 다시 시도하거나 진단 코드를 지원팀에 보내세요.',
     });
     return '$_temp0';
@@ -777,8 +788,36 @@ class AppLocalizationsKo extends AppLocalizations {
   String get notice_retryLater => '잠시 후 다시 시도하세요.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return '$seconds초 후 다시 시도하세요.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '$seconds초 후 다시 시도하세요.',
+      one: '$seconds초 후 다시 시도하세요.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes분 후 다시 시도하세요.',
+      one: '$minutes분 후 다시 시도하세요.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours시간 후 다시 시도하세요.',
+      one: '$hours시간 후 다시 시도하세요.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -882,6 +921,9 @@ class AppLocalizationsKo extends AppLocalizations {
       'secure_storage_write_failed': '보안 쓰기 실패',
       'key_generation_failed': 'WireGuard 키를 생성할 수 없음',
       'csr_generation_failed': 'OpenVPN CSR을 생성할 수 없음',
+      'openvpn_recovery_exhausted': 'OpenVPN 복구 이미 사용됨',
+      'openvpn_recovery_failed': 'OpenVPN 복구 실패',
+      'openvpn_renewal_required': 'OpenVPN 인증서 갱신 필요',
       'other': '분류되지 않은 네이티브 VPN 오류',
     });
     return '$_temp0';
@@ -1638,6 +1680,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get billing_playManaged => '구독은 Google Play에서 관리됩니다.';
 
   @override
+  String get billing_playOnHold =>
+      'Google Play 구독이 보류되었거나 결제 대기 중입니다. Google Play에서 해결하려면 “구독 관리”를 여세요.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      '이 Google Play 계정에는 이 FuzeVPN 계정에서 활성화되지 않은 Fuze Premium 구독이 이미 있습니다. Google Play에서 확인하려면 “구독 관리”를 여세요.';
+
+  @override
   String get billing_inactive => '활성 구독이 없습니다.';
 
   @override
@@ -1870,6 +1920,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get google_rateLimited => '잠시 기다린 후 다시 시도하세요.';
 
   @override
+  String get google_busy =>
+      '다른 작업(VPN 연결, 계정 또는 게스트)이 진행 중일 때는 Google을 사용할 수 없습니다. 작업이 끝난 후 다시 시도하세요. 현재 액세스는 유지됩니다.';
+
+  @override
   String get google_invalidPassword => 'FuzeVPN 비밀번호가 올바르지 않습니다. 현재 계정은 유지됩니다.';
 
   @override
@@ -1892,6 +1946,33 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get google_challengeUnavailable => '보안 확인을 사용할 수 없습니다. 나중에 다시 시도하세요.';
+
+  @override
+  String get google_intentMismatch =>
+      '이전 Google 로그인 시도가 아직 대기 중입니다. 이 작업을 시작하기 전에 해당 시도를 취소하세요.';
+
+  @override
+  String get google_challengeBlocked =>
+      '필요한 보안 확인을 이 앱에서 사용할 수 없습니다. 지금은 이 작업을 완료할 수 없습니다.';
+
+  @override
+  String get google_solveChallenge => '보안 확인 진행';
+
+  @override
+  String get google_challengeTitle => '보안 확인';
+
+  @override
+  String get google_challengeReady => '확인이 완료되었습니다. 이제 계정 만들기를 확정할 수 있습니다.';
+
+  @override
+  String get google_challengeExpired =>
+      '확인 유효 시간이 만료되었습니다. 확정하기 전에 다시 확인해 주세요.';
+
+  @override
+  String get google_challengeCancelled => '확인이 취소되었습니다. 다시 진행할 수 있습니다.';
+
+  @override
+  String get google_challengeFailed => '보안 확인에 실패했습니다. 다시 시도하세요.';
 
   @override
   String get billing_trialTitle => 'Fuze Premium을 무료로 체험하세요';

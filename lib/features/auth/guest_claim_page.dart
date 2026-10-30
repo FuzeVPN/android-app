@@ -11,6 +11,7 @@ import '../../widgets/fuze_brand.dart';
 import '../../widgets/fuze_design.dart';
 import '../../widgets/google_sign_in_button.dart';
 import '../../widgets/notice_card.dart';
+import '../../widgets/validation_error.dart';
 import 'auth_page.dart';
 import 'google_auth_page.dart';
 
@@ -132,6 +133,7 @@ class _GuestClaimPageState extends State<GuestClaimPage> {
                                   ).hasMatch(value?.trim() ?? '')
                                   ? null
                                   : context.copy('validation.email'),
+                              errorBuilder: buildValidationError,
                             ),
                             const SizedBox(height: 16),
                             TextFormField(
@@ -175,6 +177,7 @@ class _GuestClaimPageState extends State<GuestClaimPage> {
                                     ),
                                     null => null,
                                   },
+                              errorBuilder: buildValidationError,
                             ),
                             const SizedBox(height: 20),
                             const OnboardingLegalLinks(),

@@ -28,7 +28,7 @@ void main() {
       expect(error.retryAfterSeconds, 42);
     });
 
-    test('rejette les codes et délais non fiables', () {
+    test('rejette les codes non fiables et borne les délais excessifs', () {
       final ApiException error = ApiException.fromResponse(
         statusCode: 500,
         retryAfterHeader: '-1',
@@ -37,6 +37,18 @@ void main() {
       );
 
       expect(error.errorCode, 'api_error');
+      // C5-04: an excessive delay is bounded to 24 h instead of being lost.
+      expect(error.retryAfterSeconds, 86400);
+    });
+
+    test('ignore les délais illisibles', () {
+      final ApiException error = ApiException.fromResponse(
+        statusCode: 503,
+        retryAfterHeader: 'later',
+        body: '{"error":"server_error","retry_after_seconds":-5}',
+      );
+
+      expect(error.errorCode, 'server_error');
       expect(error.retryAfterSeconds, isNull);
     });
   });

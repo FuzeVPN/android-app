@@ -14,8 +14,10 @@ import '../../widgets/fuze_design.dart';
 import '../../widgets/google_sign_in_button.dart';
 import '../../widgets/language_settings.dart';
 import '../../widgets/notice_card.dart';
+import '../../widgets/validation_error.dart';
 import '../home/home_shell.dart' show DiagnosticsPage;
 import 'google_auth_page.dart';
+import 'welcome_page.dart' show GuestActionMessage;
 
 /// Separate account login. Dismissing an idle dialog never ends the guest session.
 class AuthenticationDialog extends StatefulWidget {
@@ -68,6 +70,13 @@ class _AuthenticationDialogState extends State<AuthenticationDialog> {
   @override
   Widget build(BuildContext context) {
     final busy = widget.controller.isAuthenticating;
+    // A separate login is refused while guest, identity or connection work
+    // runs: the form is disabled and says why (A01-auth-03).
+    final bool guestBusy = widget.controller.isGuestActionBusy;
+    final bool blocked =
+        guestBusy ||
+        widget.controller.isIdentityBusy ||
+        widget.controller.isConnecting;
     return PopScope(
       // A submitted login must not replace the account after a silent dismissal.
       canPop: !busy,
@@ -148,10 +157,21 @@ class _AuthenticationDialogState extends State<AuthenticationDialog> {
                           SizedBox(
                             height: widget.controller.notice != null ? 16 : 0,
                           ),
+                          if (blocked) ...<Widget>[
+                            GuestActionMessage(
+                              key: const ValueKey('guest-login-busy-message'),
+                              messageKey: guestBusy
+                                  ? widget.controller.guestMessageKey ??
+                                        'notice.retryLater'
+                                  : 'notice.retryLater',
+                            ),
+                            const SizedBox(height: 16),
+                          ],
                           _LoginForm(
                             key: const ValueKey('guest-login-form'),
                             controller: widget.controller,
-                            busy: busy,
+                            // That work would refuse the login.
+                            busy: busy || blocked,
                           ),
                         ],
                       ),
@@ -184,6 +204,9 @@ class AuthenticationPage extends StatefulWidget {
 class _AuthenticationPageState extends State<AuthenticationPage>
     with SingleTickerProviderStateMixin {
   late final TabController _tabs;
+  // The responsive panel changes parents at 840 dp. Keep its forms, focus and
+  // text controllers alive when a rotation or window resize moves the panel.
+  final _authPanelKey = GlobalKey(debugLabel: 'auth-panel');
 
   @override
   void initState() {
@@ -196,6 +219,7 @@ class _AuthenticationPageState extends State<AuthenticationPage>
     if (!mounted) return;
     setState(() {});
     if (!widget.loginOnly ||
+        widget.controller.isAuthenticating ||
         !widget.controller.isSignedIn ||
         widget.controller.profile?.isGuest != false ||
         widget.controller.profile?.profileRedacted != false) {
@@ -218,36 +242,63 @@ class _AuthenticationPageState extends State<AuthenticationPage>
   @override
   Widget build(BuildContext context) {
     final bool busy = widget.controller.isAuthenticating;
-    return Scaffold(
-      appBar: widget.loginOnly
-          ? AppBar(title: Text(context.copy('action.login')))
-          : null,
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-            final bool wide = constraints.maxWidth >= 840;
-            final Widget authPanel = _AuthPanel(
-              controller: widget.controller,
-              tabs: _tabs,
-              busy: busy,
-              showCompactBrand: !wide,
-              loginOnly: widget.loginOnly,
-            );
-            return Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1120),
-                child: wide
-                    ? Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: <Widget>[
-                          const Expanded(child: _BrandIntroduction()),
-                          Expanded(child: authPanel),
-                        ],
+    // Background guest work (a resume, a renewal or its Retry-After delay)
+    // would refuse these actions: disable them and say why, without trapping
+    // the user on this page.
+    final bool guestBusy = widget.controller.isGuestActionBusy;
+    return PopScope(
+      canPop: !busy,
+      child: Scaffold(
+        appBar: widget.loginOnly
+            ? AppBar(
+                title: Text(context.copy('action.login')),
+                leading:
+                    busy &&
+                        (ModalRoute.of(context)?.impliesAppBarDismissal ??
+                            false)
+                    ? IconButton(
+                        tooltip: MaterialLocalizations.of(
+                          context,
+                        ).backButtonTooltip,
+                        onPressed: null,
+                        icon: const BackButtonIcon(),
                       )
-                    : authPanel,
-              ),
-            );
-          },
+                    : null,
+              )
+            : null,
+        body: SafeArea(
+          child: LayoutBuilder(
+            builder: (BuildContext context, BoxConstraints constraints) {
+              final bool wide = constraints.maxWidth >= 840;
+              final Widget authPanel = _AuthPanel(
+                key: _authPanelKey,
+                controller: widget.controller,
+                tabs: _tabs,
+                busy: busy || guestBusy,
+                // Disabled actions are always explained, even before the
+                // background guest work has a message of its own.
+                guestMessageKey: guestBusy
+                    ? widget.controller.guestMessageKey ?? 'notice.retryLater'
+                    : null,
+                showCompactBrand: !wide,
+                loginOnly: widget.loginOnly,
+              );
+              return Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1120),
+                  child: wide
+                      ? Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: <Widget>[
+                            const Expanded(child: _BrandIntroduction()),
+                            Expanded(child: authPanel),
+                          ],
+                        )
+                      : authPanel,
+                ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -312,11 +363,13 @@ class _BrandIntroduction extends StatelessWidget {
 
 class _AuthPanel extends StatelessWidget {
   const _AuthPanel({
+    super.key,
     required this.controller,
     required this.tabs,
     required this.busy,
     required this.showCompactBrand,
     required this.loginOnly,
+    this.guestMessageKey,
   });
 
   final VpnAppController controller;
@@ -324,6 +377,7 @@ class _AuthPanel extends StatelessWidget {
   final bool busy;
   final bool showCompactBrand;
   final bool loginOnly;
+  final String? guestMessageKey;
 
   @override
   Widget build(BuildContext context) => ListView(
@@ -402,6 +456,13 @@ class _AuthPanel extends StatelessWidget {
       ],
       NoticeCard(notice: controller.notice, onDismiss: controller.clearNotice),
       SizedBox(height: controller.notice != null ? 20 : 0),
+      if (guestMessageKey case final String messageKey) ...<Widget>[
+        GuestActionMessage(
+          key: const ValueKey('auth-guest-busy-message'),
+          messageKey: messageKey,
+        ),
+        const SizedBox(height: 20),
+      ],
       if (!loginOnly)
         DecoratedBox(
           decoration: BoxDecoration(
@@ -569,6 +630,7 @@ class _LoginFormState extends State<_LoginForm> {
             textInputAction: TextInputAction.next,
             decoration: InputDecoration(labelText: context.copy('form.email')),
             validator: (String? value) => _emailValidator(context, value),
+            errorBuilder: buildValidationError,
           ),
           const SizedBox(height: 14),
           TextFormField(
@@ -599,12 +661,14 @@ class _LoginFormState extends State<_LoginForm> {
             validator: (String? value) => value == null || value.isEmpty
                 ? context.copy('validation.required')
                 : null,
+            errorBuilder: buildValidationError,
           ),
           const SizedBox(height: 18),
           FilledButton.icon(
             key: const ValueKey('auth-login-submit'),
             onPressed: widget.busy ? null : _submit,
-            icon: widget.busy
+            // Progress belongs to a sign-in; guest work only disables it.
+            icon: widget.controller.isAuthenticating
                 ? const SizedBox(
                     width: 18,
                     height: 18,
@@ -782,6 +846,7 @@ class _RegistrationFormState extends State<_RegistrationForm> {
             _RegistrationActions(
               step: _step,
               busy: widget.busy,
+              working: widget.controller.isAuthenticating,
               onPrevious: _previous,
               onNext: _next,
               onSubmit: _submit,
@@ -849,12 +914,7 @@ class _RegistrationFormState extends State<_RegistrationForm> {
             ),
             null => null,
           },
-          errorBuilder: (BuildContext context, String message) => Text(
-            message,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.error,
-            ),
-          ),
+          errorBuilder: buildValidationError,
         ),
       ],
     ),
@@ -1011,6 +1071,7 @@ class _RegistrationFormState extends State<_RegistrationForm> {
     autofillHints: autofillHints,
     decoration: InputDecoration(labelText: label),
     validator: validator,
+    errorBuilder: buildValidationError,
   );
 }
 
@@ -1084,6 +1145,7 @@ class _RegistrationActions extends StatelessWidget {
   const _RegistrationActions({
     required this.step,
     required this.busy,
+    required this.working,
     required this.onPrevious,
     required this.onNext,
     required this.onSubmit,
@@ -1091,6 +1153,8 @@ class _RegistrationActions extends StatelessWidget {
 
   final int step;
   final bool busy;
+  // Progress belongs to the submitted registration, not to guest work.
+  final bool working;
   final VoidCallback onPrevious;
   final VoidCallback onNext;
   final VoidCallback onSubmit;
@@ -1103,7 +1167,7 @@ class _RegistrationActions extends StatelessWidget {
           : step == 2
           ? onSubmit
           : onNext,
-      icon: busy && step == 2
+      icon: working && step == 2
           ? const SizedBox(
               width: 18,
               height: 18,
@@ -1292,6 +1356,7 @@ class _PasswordResetSheetState extends State<_PasswordResetSheet> {
       _sending = true;
       _notice = null;
     });
+    final AppNotice? before = widget.controller.notice;
     final bool sent = await widget.controller.requestPasswordReset(
       _email.text.trim(),
     );
@@ -1299,9 +1364,19 @@ class _PasswordResetSheetState extends State<_PasswordResetSheet> {
     if (sent) {
       Navigator.of(context).pop();
     } else {
+      final AppNotice? after = widget.controller.notice;
       setState(() {
         _sending = false;
-        _notice = widget.controller.notice;
+        // A refused request leaves an older notice in place: never present it
+        // as this result. Background guest work explains the refusal.
+        _notice = !identical(after, before)
+            ? after
+            : widget.controller.isGuestActionBusy
+            ? const AppNotice(
+                titleKey: 'billing.title',
+                messageKey: 'guest.serviceUnavailable',
+              )
+            : null;
       });
       // The modal owns this failure while it is open. A response received
       // after dismissal stays on the authentication page instead.
@@ -1352,6 +1427,7 @@ class _PasswordResetSheetState extends State<_PasswordResetSheet> {
                 labelText: context.copy('form.email'),
               ),
               validator: (String? value) => _emailValidator(context, value),
+              errorBuilder: buildValidationError,
             ),
             const SizedBox(height: 18),
             FilledButton(

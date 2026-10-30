@@ -42,6 +42,24 @@ void main() {
     expect(countryName('XY', 'fr'), 'XY');
     expect(countryName('FR', 'unsupported'), 'France');
   });
+  test('UK and GB catalogue aliases match either country code in search', () {
+    for (final code in ['UK', 'GB', ' uk ', ' gb ']) {
+      final london = Location(
+        id: 'london-01',
+        city: 'London',
+        countryCode: code,
+        displayName: 'London 01',
+      );
+      expect(locationCountryName(london, 'fr'), 'Royaume-Uni');
+      for (final query in ['UK', 'GB', 'uk London', 'gB London', 'Britain']) {
+        expect(
+          locationMatchesQuery(london, query, 'fr'),
+          isTrue,
+          reason: '$code must match $query',
+        );
+      }
+    }
+  });
   test('Latin ligatures and composed or decomposed accents match', () {
     expect(
       normalizeLocationSearch('São-Paulo, ŁÓDŹ / œ Æ Straße'),

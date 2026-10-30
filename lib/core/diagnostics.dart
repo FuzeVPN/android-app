@@ -252,7 +252,13 @@ class DiagnosticService extends ChangeNotifier {
 
   bool get automaticConsent => _automaticConsent;
   DiagnosticSendStatus get status => _status;
-  DiagnosticReport? get preparedReport => _preparedReport;
+  DiagnosticReport? get preparedReport {
+    // Local-only reports have no delivery timer. Enforce their lifetime on
+    // every preview/export access as well as while draining the send queue.
+    _prune();
+    return _preparedReport;
+  }
+
   DiagnosticReceipt? get lastReceipt => _lastReceipt;
   DiagnosticFailure? get lastFailure => _lastFailure;
   bool get isSending =>
@@ -755,16 +761,19 @@ class DiagnosticService extends ChangeNotifier {
     final now = _tick();
     _pruneEvents(now);
     final manual = _lastManual;
-    if (manual != null &&
-        now - manual._collectedAt >= queueTtlMs &&
-        manual._delivery.receipt == null) {
+    if (manual != null && now - manual._collectedAt >= queueTtlMs) {
       _lastManual = null;
-      _lastFailure = const DiagnosticFailure('report_expired');
-      _status = DiagnosticSendStatus.failed;
+      if (manual._delivery.receipt == null) {
+        _lastFailure = const DiagnosticFailure('report_expired');
+        _status = DiagnosticSendStatus.failed;
+      }
     }
     final prepared = _preparedReport;
     if (prepared != null && now - prepared._collectedAt >= queueTtlMs) {
       _preparedReport = null;
+      if (_status == DiagnosticSendStatus.prepared) {
+        _status = DiagnosticSendStatus.idle;
+      }
     }
     _queue.removeWhere(
       (report) =>

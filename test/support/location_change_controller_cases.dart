@@ -720,4 +720,45 @@ void locationChangeControllerTests() {
       expect(find.text('0 B'), findsNWidgets(2));
     });
   });
+
+  group('A16-ui-l10n-02 slow location migration notice', () {
+    test('names the destination of a migration still draining', () async {
+      final api = _FakeApi()
+        ..profilesByToken['session-a'] = _profile('user-a')
+        ..locationsResult = [_frankfurt, _frankfurt02]
+        ..deviceListResult = _devices('device-current')
+        ..deviceConfiguration = _wireGuardConfigurationFor('device-current')
+        ..openVpnActivation = _openVpnActivation('device-current');
+      final store = _FakeSessionStore()
+        ..storedSession = _session('session-a')
+        ..deviceIds['user-a'] = 'device-current';
+      final tunnel = _FakeTunnel();
+      final controller = VpnAppController(
+        api: api,
+        sessionStore: store..tunnel = tunnel,
+        preferences: _FakePreferences(),
+        tunnel: tunnel,
+        migrationDelay: (_) => Future<void>.value(),
+        migrationMaxPollAttempts: 1,
+      );
+      addTearDown(() async {
+        controller.dispose();
+        await tunnel.close();
+      });
+      await controller.initialize();
+      await controller.selectProtocol(VpnProtocol.openVpn);
+      await controller.selectLocation(_frankfurt02);
+      api.migrationStartResult = _locationMigration(
+        status: LocationMigrationStatus.draining,
+      );
+      api.migrationPollResults.add(
+        _locationMigration(status: LocationMigrationStatus.draining),
+      );
+      await controller.connect();
+      expect(controller.notice?.arguments['code'], 'location_migration_slow');
+      expect(controller.notice?.arguments['target'], _frankfurt02.displayName);
+      expect(controller.locationMigration?.targetLocationId, _frankfurt02.id);
+      expect(tunnel.openVpnConnections, isEmpty);
+    });
+  });
 }

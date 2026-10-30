@@ -1,5 +1,6 @@
 package com.fuzevpn.android.openvpn
 
+import com.fuzevpn.android.VpnNativeException
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -40,5 +41,24 @@ class OpenVpnNetworkProfileTest {
     @Test fun foreignDeviceOrDisabledTlsCannotUseDualActivation() {
         assertThrows(Exception::class.java) { OpenVpnController.OpenVpnActivation.from(activation(true), "account", "other") }
         assertThrows(Exception::class.java) { OpenVpnController.OpenVpnActivation.from(activation(true).apply { put("remote_cert_tls_server", false) }, "account", "device") }
+    }
+    // C5-05 (root decisions): endpoint, DNS and address are read as sent and take
+    // only the canonical form of TunnelNetworkSpec.numericAddress, with the Dart
+    // vectors of test/core/corrections_20261029_models_test.dart: never trimmed or normalized.
+    @Test fun ipv4FieldsAreRefusedUnlessCanonical() {
+        val text = canonical(false).canonical
+        assertTrue(text.contains("remote 198.51.100.1 1194"))
+        assertTrue(text.contains("dhcp-option DNS 1.1.1.1"))
+        val refused = listOf("+1.1.1.1", "1.1.1.+1", "-0.1.1.1", "1.1.1. 1", "1.1.1.1 ", " 1.1.1.1",
+            "1.1.1.\u00a01", "1.1.1.1\u2003", "\u20031.1.1.1", "1.1.1.\t1", "\u0661.\u0661.\u0661.\u0661",
+            "1.1.1.01", "1.1.1.256", "1.1.1.1.", "1.1.1", "0x1.1.1.1", "1.1.1.1/32")
+        val cases = refused.flatMap { listOf("endpoint" to it, "dns" to listOf(it), "address" to "$it/32") } +
+            listOf("10.20.0.3/32 ", "10.20.0.3/32\u2003", "10.20.0.3/ 32").map { "address" to it }
+        for ((key, supplied) in cases) {
+            val error = assertThrows(VpnNativeException::class.java) {
+                OpenVpnController.OpenVpnActivation.from(activation(false).apply { put(key, supplied) }, "account", "device")
+            }
+            assertEquals("$key $supplied", "openvpn_activation_invalid", error.code)
+        }
     }
 }

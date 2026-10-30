@@ -12,7 +12,7 @@
     "accountRestoration_message": "آپ کا سیشن محفوظ رکھا گیا ہے۔ اپنا اکاؤنٹ بحال کرنے کے لیے دوبارہ کوشش کریں؛ آپ یہاں VPN کنکشن کا انتظام اب بھی کر سکتے ہیں۔",
     "action_retry": "دوبارہ کوشش کریں",
     "session_endingTitle": "سیشن ختم کیا جا رہا ہے",
-    "session_ending": "آپ کا سیشن غیر مؤثر کر دیا گیا ہے۔ VPN روکا جا رہا ہے اور سیشن صاف کیا جا رہا ہے…",
+    "session_ending": "سیشن ختم کیا جا رہا ہے: VPN روکا جا رہا ہے اور سیشن کا ڈیٹا صاف کیا جا رہا ہے…",
     "session_stopFailed": "VPN بند ہونے کی تصدیق نہیں ہوئی۔ دوبارہ سائن اِن کرنے سے پہلے دوبارہ کوشش کریں۔",
     "session_cleanupFailed": "VPN رک گیا ہے، لیکن سیشن ہٹانے کی تصدیق نہیں ہوئی۔ صفائی کے لیے دوبارہ کوشش کریں۔",
     "session_retryStop": "بند کرنے کے لیے دوبارہ کوشش کریں",
@@ -139,6 +139,7 @@
     "devices_firstConnection": "پہلی بار کنیکٹ ہونے پر آپ کا فون شامل کر دیا جائے گا۔",
     "devices_thisDevice": "یہ ڈیوائس",
     "devices_added": "{date} کو شامل کیا گیا",
+    "devices_unnamed": "بے نام ڈیوائس",
     "action_remove": "ہٹائیں",
     "settings_title": "ترتیبات",
     "settings_subtitle": "آپ کی ترجیحات اور اکاؤنٹ، سب ایک ہی جگہ۔",
@@ -152,6 +153,14 @@
     "settings_security": "سکیورٹی اور شفافیت",
     "settings_licenses": "اجزا کے لائسنس",
     "settings_licensesDetail": "ایپ میں استعمال ہونے والا سافٹ ویئر",
+    "settings_licensesLegalese": "ایپ اور اس کے MPL-2.0 لائسنس والے اجزا کا سورس کوڈ: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
     "settings_background": "ایپ سے باہر جانے پر VPN چلتا رہتا ہے۔ اسے روکنے کے لیے کنکشن ٹیب میں ڈسکنیکٹ استعمال کریں۔",
     "theme_system": "سسٹم کے مطابق",
     "theme_light": "روشن",
@@ -176,7 +185,7 @@
     "notice_emailVerification_title": "ای میل کی تصدیق ضروری ہے",
     "notice_emailVerification_message": "VPN ڈیوائس شامل کرنے سے پہلے اپنے ای میل پتے کی تصدیق کریں۔",
     "notice_rateLimited_title": "بہت زیادہ کوششیں",
-    "notice_deviceLimit_title": "2 ڈیوائسز کی حد پوری ہو گئی",
+    "notice_deviceLimit_title": "ڈیوائسز کی حد پوری ہو گئی",
     "notice_deviceLimit_message": "دوسری ڈیوائس شامل کرنے سے پہلے کوئی موجودہ ڈیوائس ہٹائیں۔",
     "notice_identityRenewal_title": "VPN شناخت کی تجدید ضروری ہے",
     "notice_identityRenewal_message": "یہ شناخت ہٹا دی گئی ہے۔ نئی مقامی شناخت بنائیں۔",
@@ -201,7 +210,7 @@
     "notice_diagnosticCode": "تشخیصی کوڈ: {code}",
     "notice_generic_title": "VPN کنکشن ناکام ہو گیا",
     "notice_generic_message": "ایک خرابی پیش آ گئی۔ بعد میں دوبارہ کوشش کریں۔",
-    "notice_controller_title": "{code, select, account_created_email_unavailable{اکاؤنٹ بن گیا} password_reset_sent{پاس ورڈ دوبارہ ترتیب دینے کی درخواست موصول ہو گئی} verification_email_sent{تصدیقی ای میل بھیج دی گئی} location_migration_pending{مقام کی تبدیلی جاری ہے} vpn_sign_in_required{سائن اِن ضروری ہے} protocol_unavailable_at_location{پروٹوکول دستیاب نہیں ہے} vpn_permission_denied{VPN کی اجازت مسترد کر دی گئی} revoked_identity_device_limit{2 ڈیوائسز کی حد پوری ہو گئی} tunnel_start_unexpected{VPN شروع نہیں ہو سکا} flutter_disconnect_timeout{ڈسکنکشن کی تصدیق نہیں ہوئی} flutter_disconnect_unexpected{ڈسکنیکٹ نہیں ہو سکا} device_revoked{ڈیوائس ہٹا دی گئی} revoke_unexpected{ڈیوائس ہٹائی نہیں جا سکی} identity_renewal_unexpected{شناخت کی تجدید نہیں ہو سکی} openvpn_renewal_unexpected{OpenVPN کی تجدید نہیں ہو سکی} location_migration_blocked{مقام کی تبدیلی روک دی گئی} location_migration_slow{مقام کی تبدیلی اب بھی جاری ہے} location_migration_conflict{مقام کی تبدیلی کے لیے تازہ کاری ضروری ہے} location_migration_verification_failed{مقام کی تبدیلی کی تصدیق نہیں ہوئی} location_migration_device_changed{مقام کی تبدیلی کے دوران ڈیوائس بدل گئی} tunnel_stop_failed{مقام کی تبدیلی دستیاب نہیں ہے} other{کارروائی ناکام ہو گئی}}",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{اکاؤنٹ بن گیا} password_reset_sent{پاس ورڈ دوبارہ ترتیب دینے کی درخواست موصول ہو گئی} verification_email_sent{تصدیقی ای میل بھیج دی گئی} location_migration_pending{مقام کی تبدیلی جاری ہے} vpn_sign_in_required{سائن اِن ضروری ہے} protocol_unavailable_at_location{پروٹوکول دستیاب نہیں ہے} vpn_permission_denied{VPN کی اجازت مسترد کر دی گئی} revoked_identity_device_limit{ڈیوائسز کی حد پوری ہو گئی} tunnel_start_unexpected{VPN شروع نہیں ہو سکا} flutter_disconnect_timeout{ڈسکنکشن کی تصدیق نہیں ہوئی} flutter_disconnect_unexpected{ڈسکنیکٹ نہیں ہو سکا} device_revoked{ڈیوائس ہٹا دی گئی} revoke_unexpected{ڈیوائس ہٹائی نہیں جا سکی} identity_renewal_unexpected{شناخت کی تجدید نہیں ہو سکی} openvpn_renewal_unexpected{OpenVPN کی تجدید نہیں ہو سکی} location_migration_blocked{مقام کی تبدیلی روک دی گئی} location_migration_slow{مقام کی تبدیلی اب بھی جاری ہے} location_migration_conflict{مقام کی تبدیلی کے لیے تازہ کاری ضروری ہے} location_migration_verification_failed{مقام کی تبدیلی کی تصدیق نہیں ہوئی} location_migration_device_changed{مقام کی تبدیلی کے دوران ڈیوائس بدل گئی} tunnel_stop_failed{مقام کی تبدیلی دستیاب نہیں ہے} device_clock_ahead{آلے کی گھڑی آگے ہے} other{کارروائی ناکام ہو گئی}}",
     "@notice_controller_title": {
       "placeholders": {
         "code": {
@@ -209,7 +218,7 @@
         }
       }
     },
-    "notice_controller_message": "{code, select, account_created_email_unavailable{اکاؤنٹ بن گیا، لیکن تصدیقی ای میل نہیں بھیجی جا سکی۔ ایپ میں دوبارہ بھیجنے کا اختیار استعمال کریں۔} password_reset_sent{آپ کی درخواست موصول ہو گئی۔ اگر اس پتے سے کوئی اکاؤنٹ منسلک ہے تو آپ کو ای میل موصول ہو سکتی ہے۔ اپنا اسپیم فولڈر بھی چیک کریں۔} verification_email_sent{نئی تصدیقی ای میل ابھی بھیجی گئی ہے۔} location_migration_pending{{target} پر منتقلی ابھی تیار کی جا رہی ہے۔ ڈیوائس دوبارہ بنائے بغیر اسے جاری رکھ سکتے ہیں۔} vpn_sign_in_required{VPN شروع کرنے سے پہلے اپنے اکاؤنٹ میں سائن اِن کریں۔} protocol_unavailable_at_location{منتخب پروٹوکول اس مقام پر پیش نہیں کیا جاتا۔ مقامات تازہ کریں یا کوئی دوسرا پروٹوکول منتخب کریں۔} vpn_permission_denied{Android نے VPN کی اجازت مسترد کر دی۔ کنکشن دوبارہ شروع کریں اور سسٹم کی درخواست قبول کریں۔} revoked_identity_device_limit{اس ڈیوائس کی VPN رسائی ہٹا دی گئی ہے اور ڈیوائس کی حد پوری ہو گئی ہے۔ اکاؤنٹ → میرے آلات کا انتظام کریں میں جا کر کوئی ڈیوائس ہٹائیں۔} tunnel_start_unexpected{ایک غیر متوقع خرابی نے ٹَنل کی تیاری میں خلل ڈالا۔ تشخیصی کوڈ چیک کریں اور دوبارہ کوشش کریں۔} flutter_disconnect_timeout{Android نے بروقت VPN کے رکنے کی تصدیق نہیں کی۔ اسے دوبارہ روکنے کی کوشش کریں۔} flutter_disconnect_unexpected{ایک غیر متوقع خرابی نے ٹَنل کے رکنے کی تصدیق روک دی۔} device_revoked{ڈیوائس کی VPN رسائی منسوخ کر دی گئی اور اس کے مقامی راز ہٹا دیے گئے۔} revoke_unexpected{ڈیوائس ہٹائی نہیں جا سکی۔ فہرست تازہ کریں اور دوبارہ کوشش کریں۔} identity_renewal_unexpected{نئی VPN شناخت نہیں بنائی جا سکی۔ آلات تازہ کریں اور دوبارہ کوشش کریں۔} openvpn_renewal_unexpected{OpenVPN پروفائل کی تجدید نہیں ہو سکی۔ دوبارہ کوشش کریں یا تشخیصی کوڈ چیک کریں۔} location_migration_blocked{سرور اس وقت یہ تبدیلی مکمل نہیں کر سکتا۔ ڈیوائس اور اس کی مقامی شناخت محفوظ رکھی گئی ہے۔} location_migration_slow{سرور اب بھی {target} پر منتقلی تیار کر رہا ہے۔ چند لمحوں بعد جاری رکھیں استعمال کریں۔} location_migration_conflict{سرور پر ڈیوائس کی حالت بدل گئی ہے۔ آلات تازہ کریں، پھر تبدیلی جاری رکھیں۔} location_migration_verification_failed{سرور نے نئے مقام کی تصدیق نہیں کی۔ پچھلی مقامی شناخت محفوظ رکھی گئی ہے۔} location_migration_device_changed{سرور کی جانب سے واپس کی گئی ڈیوائس تبدیل کی جانے والی ڈیوائس سے مطابقت نہیں رکھتی۔ دوبارہ کوشش سے پہلے آلات تازہ کریں۔} tunnel_stop_failed{نیا کنکشن شروع کرنے سے پہلے پچھلا ٹَنل مکمل طور پر رکنا ضروری ہے۔} other{کارروائی مکمل نہیں کی جا سکی۔ دوبارہ کوشش کریں یا تشخیصی کوڈ معاونت کو بھیجیں۔}}",
+    "notice_controller_message": "{code, select, account_created_email_unavailable{اکاؤنٹ بن گیا، لیکن تصدیقی ای میل نہیں بھیجی جا سکی۔ ایپ میں دوبارہ بھیجنے کا اختیار استعمال کریں۔} password_reset_sent{آپ کی درخواست موصول ہو گئی۔ اگر اس پتے سے کوئی اکاؤنٹ منسلک ہے تو آپ کو ای میل موصول ہو سکتی ہے۔ اپنا اسپیم فولڈر بھی چیک کریں۔} verification_email_sent{نئی تصدیقی ای میل ابھی بھیجی گئی ہے۔} location_migration_pending{{target} پر منتقلی ابھی تیار کی جا رہی ہے۔ ڈیوائس دوبارہ بنائے بغیر اسے جاری رکھ سکتے ہیں۔} vpn_sign_in_required{VPN شروع کرنے سے پہلے اپنے اکاؤنٹ میں سائن اِن کریں۔} protocol_unavailable_at_location{منتخب پروٹوکول اس مقام پر پیش نہیں کیا جاتا۔ مقامات تازہ کریں یا کوئی دوسرا پروٹوکول منتخب کریں۔} vpn_permission_denied{Android نے VPN کی اجازت مسترد کر دی۔ کنکشن دوبارہ شروع کریں اور سسٹم کی درخواست قبول کریں۔} revoked_identity_device_limit{اس ڈیوائس کی VPN رسائی ہٹا دی گئی ہے اور ڈیوائس کی حد پوری ہو گئی ہے۔ اکاؤنٹ → میرے آلات کا انتظام کریں میں جا کر کوئی ڈیوائس ہٹائیں۔} tunnel_start_unexpected{ایک غیر متوقع خرابی نے ٹَنل کی تیاری میں خلل ڈالا۔ تشخیصی کوڈ چیک کریں اور دوبارہ کوشش کریں۔} flutter_disconnect_timeout{Android نے بروقت VPN کے رکنے کی تصدیق نہیں کی۔ اسے دوبارہ روکنے کی کوشش کریں۔} flutter_disconnect_unexpected{ایک غیر متوقع خرابی نے ٹَنل کے رکنے کی تصدیق روک دی۔} device_revoked{ڈیوائس کی VPN رسائی منسوخ کر دی گئی اور اس کے مقامی راز ہٹا دیے گئے۔} revoke_unexpected{ڈیوائس ہٹائی نہیں جا سکی۔ فہرست تازہ کریں اور دوبارہ کوشش کریں۔} identity_renewal_unexpected{نئی VPN شناخت نہیں بنائی جا سکی۔ آلات تازہ کریں اور دوبارہ کوشش کریں۔} openvpn_renewal_unexpected{OpenVPN پروفائل کی تجدید نہیں ہو سکی۔ دوبارہ کوشش کریں یا تشخیصی کوڈ چیک کریں۔} location_migration_blocked{سرور اس وقت یہ تبدیلی مکمل نہیں کر سکتا۔ ڈیوائس اور اس کی مقامی شناخت محفوظ رکھی گئی ہے۔} location_migration_slow{سرور اب بھی {target} پر منتقلی تیار کر رہا ہے۔ چند لمحوں بعد جاری رکھیں استعمال کریں۔} location_migration_conflict{سرور پر ڈیوائس کی حالت بدل گئی ہے۔ آلات تازہ کریں، پھر تبدیلی جاری رکھیں۔} location_migration_verification_failed{سرور نے نئے مقام کی تصدیق نہیں کی۔ پچھلی مقامی شناخت محفوظ رکھی گئی ہے۔} location_migration_device_changed{سرور کی جانب سے واپس کی گئی ڈیوائس تبدیل کی جانے والی ڈیوائس سے مطابقت نہیں رکھتی۔ دوبارہ کوشش سے پہلے آلات تازہ کریں۔} tunnel_stop_failed{نیا کنکشن شروع کرنے سے پہلے پچھلا ٹَنل مکمل طور پر رکنا ضروری ہے۔} device_clock_ahead{لگتا ہے اس آلے کی گھڑی آگے چل رہی ہے۔ سائن اِن رہنے کے لیے خودکار تاریخ اور وقت آن کریں۔} other{کارروائی مکمل نہیں کی جا سکی۔ دوبارہ کوشش کریں یا تشخیصی کوڈ معاونت کو بھیجیں۔}}",
     "@notice_controller_message": {
       "placeholders": {
         "code": {
@@ -237,15 +246,31 @@
       }
     },
     "notice_retryLater": "چند لمحوں بعد دوبارہ کوشش کریں۔",
-    "notice_retryAfter": "{seconds} سیکنڈ بعد دوبارہ کوشش کریں۔",
+    "notice_retryAfter": "{seconds, plural, one{{seconds} سیکنڈ بعد دوبارہ کوشش کریں۔} other{{seconds} سیکنڈ بعد دوبارہ کوشش کریں۔}}",
     "@notice_retryAfter": {
       "placeholders": {
         "seconds": {
-          "type": "Object"
+          "type": "int"
         }
       }
     },
-    "notice_native_title": "{code, select, system_vpn_resume_unavailable{سسٹم VPN دوبارہ شروع کرنا دستیاب نہیں ہے} system_vpn_resume_corrupt{سسٹم VPN دوبارہ شروع کرنے کا ڈیٹا غلط ہے} system_vpn_resume_session_invalid{VPN دوبارہ شروع کرنے کا سیشن غلط ہے} system_vpn_resume_identity_changed{VPN شناخت تبدیل ہو گئی} system_vpn_resume_identity_invalid{VPN دوبارہ شروع کرنے کی شناخت غلط ہے} system_vpn_resume_storage_failed{VPN دوبارہ شروع کرنے کا ذخیرہ دستیاب نہیں ہے} system_vpn_resume_network_timeout{VPN دوبارہ شروع کرنے کے لیے نیٹ ورک موجود نہیں ہے} system_vpn_resume_blocked{VPN دوبارہ شروع کرنا روک دیا گیا} system_vpn_resume_failed{VPN دوبارہ شروع نہیں ہو سکا} system_vpn_resume_error_invalid{VPN دوبارہ شروع کرنے کی خرابی غلط ہے} wireguard_identity_store_failed{WireGuard شناخت محفوظ نہیں ہوئی} wireguard_identity_unavailable{WireGuard شناخت دستیاب نہیں ہے} vpn_host_destroyed{Android VPN میزبان رک گیا} vpn_host_unavailable{Android VPN میزبان دستیاب نہیں ہے} vpn_permission_required{VPN کی اجازت ضروری ہے} vpn_permission_denied{VPN کی اجازت مسترد کر دی گئی} vpn_permission_request_failed{اجازت طلب نہیں کی جا سکی} wireguard_foreground_service_unavailable{WireGuard سروس دستیاب نہیں ہے} wireguard_identity_invalid{مقامی WireGuard کلید غلط ہے} wireguard_identity_in_use{WireGuard شناخت پہلے ہی استعمال میں ہے} wireguard_configuration_invalid{WireGuard کی ترتیب غلط ہے} wireguard_operation_pending{WireGuard کارروائی اب بھی فعال ہے} wireguard_start_failed{WireGuard شروع کرنا مسترد کر دیا گیا} wireguard_stop_timeout{WireGuard کے رکنے کی تصدیق نہیں ہوئی} wireguard_handshake_timeout{WireGuard نے جواب نہیں دیا} openvpn_connection_timeout{OpenVPN نے جواب نہیں دیا} openvpn_core_unavailable{OpenVPN انجن دستیاب نہیں ہے} openvpn_operation_pending{OpenVPN سیشن اب بھی فعال ہے} openvpn_stop_timeout{OpenVPN کے رکنے کی تصدیق نہیں ہوئی} openvpn_profile_unavailable{مقامی OpenVPN پروفائل موجود نہیں ہے} openvpn_native_failed{مقامی OpenVPN کال میں خلل پڑا} openvpn_key_generation_failed{OpenVPN P-256 کلید نہیں بنائی جا سکی} openvpn_csr_generation_failed{OpenVPN CSR نہیں بنایا جا سکا} openvpn_identity_store_failed{OpenVPN شناخت محفوظ نہیں ہوئی} openvpn_identity_clear_failed{OpenVPN کو مکمل طور پر ہٹایا نہیں جا سکا} openvpn_identity_in_use{OpenVPN شناخت اب بھی استعمال میں ہے} openvpn_tls_verification_required{OpenVPN TLS تصدیق موجود نہیں ہے} openvpn_cipher_invalid{OpenVPN سائفر غلط ہے} openvpn_profile_rejected{OpenVPN پروفائل مسترد کر دیا گیا} openvpn_identity_inconsistent{OpenVPN شناخت میں تضاد ہے} tls_handshake_failed{OpenVPN مذاکرات مسترد کر دیے گئے} tls_alert_unknown_ca{OpenVPN کلائنٹ سرٹیفکیٹ پہچانا نہیں گیا} tls_alert_bad_certificate{OpenVPN کلائنٹ سرٹیفکیٹ مسترد کر دیا گیا} tls_alert_unsupported_certificate{OpenVPN سرٹیفکیٹ معاونت یافتہ نہیں ہے} tls_client_certificate_required{OpenVPN کلائنٹ سرٹیفکیٹ ضروری ہے} tls_alert_misc{OpenVPN TLS انتباہ} tls_signature_algorithm_rejected{OpenVPN دستخط معاونت یافتہ نہیں ہیں} tls_handshake_rejected{OpenVPN TLS مذاکرات مسترد کر دیے گئے} tls_version_rejected{OpenVPN TLS ورژن مطابقت نہیں رکھتا} tls_certificate_expired{TLS سرٹیفکیٹ کی میعاد ختم ہو گئی} tls_certificate_revoked{TLS سرٹیفکیٹ منسوخ کر دیا گیا} transport_failed{OpenVPN سرور تک رسائی نہیں ہو سکی} tun_configuration_rejected{OpenVPN انٹرفیس نہیں بنایا جا سکا} tun_setup_failed{OpenVPN TUN ترتیب ناکام ہو گئی} tun_interface_create_failed{OpenVPN انٹرفیس نہیں بنایا جا سکا} tun_interface_disabled{OpenVPN انٹرفیس غیر فعال ہے} tun_halted{OpenVPN انٹرفیس میں خلل پڑا} tun_already_established{OpenVPN انٹرفیس پہلے ہی کھلا ہے} tun_addresses_missing{OpenVPN پتہ موجود نہیں ہے} tun_routes_missing{OpenVPN راستے موجود نہیں ہیں} tun_dns_missing{OpenVPN DNS موجود نہیں ہے} tun_permission_revoked{VPN کی اجازت منسوخ کر دی گئی} tun_establish_returned_null{Android نے VPN انٹرفیس مسترد کر دیا} openvpn_service_start_failed{OpenVPN سروس دستیاب نہیں ہے} openvpn_operation_timeout{OpenVPN کال کا وقت ختم ہو گیا} openvpn_start_failed{OpenVPN شروع کرنا مسترد کر دیا گیا} openvpn_connection_failed{OpenVPN کنکشن میں خلل پڑا} openvpn_core_status_error{OpenVPN Core خرابی کے ساتھ ختم ہوا} openvpn_stopped_before_connected{OpenVPN کنیکٹ ہونے سے پہلے رک گیا} openvpn_auth_failed{OpenVPN تصدیق مسترد کر دی گئی} openvpn_client_setup_failed{OpenVPN کلائنٹ ترتیب ناکام ہو گئی} openvpn_client_halted{OpenVPN کلائنٹ میں خلل پڑا} openvpn_client_restart{OpenVPN دوبارہ شروع کرنے کی درخواست کی گئی} openvpn_inactive_timeout{OpenVPN بہت دیر تک غیر فعال رہا} openvpn_session_expired{OpenVPN سیشن کی میعاد ختم ہو گئی} openvpn_credentials_required{OpenVPN تصدیق معاونت یافتہ نہیں ہے} openvpn_proxy_failed{OpenVPN درمیانی ترسیل ناکام ہو گئی} openvpn_compression_failed{OpenVPN کمپریشن مسترد کر دی گئی} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM خفیہ کاری دستیاب نہیں ہے} openvpn_feature_unsupported{OpenVPN خصوصیت معاونت یافتہ نہیں ہے} network_unavailable{انٹرنیٹ کنکشن دستیاب نہیں ہے} network_lost{نیٹ ورک دستیاب نہیں ہے} certificate_validation_failed{سرور سرٹیفکیٹ مسترد کر دیا گیا} openvpn_certificate_expired{OpenVPN سرٹیفکیٹ کی میعاد ختم ہو گئی} tunnel_active_for_another_account{دوسرے اکاؤنٹ کا ٹَنل اب بھی فعال ہے} tunnel_already_active{مقامی ٹَنل پہلے ہی فعال ہے} tunnel_stop_timeout{{protocol} کے رکنے کی تصدیق نہیں ہوئی} tunnel_disconnected{{protocol} میں خلل پڑا} native_bridge_unavailable{Android برج دستیاب نہیں ہے} native_operation_failed{Android کارروائی میں خلل پڑا} invalid_arguments{VPN پیرامیٹرز نامکمل ہیں} invalid_account_id{VPN اکاؤنٹ درست نہیں ہے} invalid_device_id{ڈیوائس شناخت کنندہ درست نہیں ہے} storage_key_not_allowed{ذخیرے کی کلید مسترد کر دی گئی} secure_storage_read_failed{محفوظ پڑھائی ناکام ہو گئی} secure_storage_write_failed{محفوظ تحریر ناکام ہو گئی} key_generation_failed{WireGuard کلید نہیں بنائی جا سکی} csr_generation_failed{OpenVPN CSR نہیں بنایا جا سکا} other{غیر درجہ بند مقامی VPN خرابی}}",
+    "notice_retryAfterMinutes": "{minutes, plural, one{{minutes} منٹ بعد دوبارہ کوشش کریں۔} other{{minutes} منٹ بعد دوبارہ کوشش کریں۔}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{{hours} گھنٹے بعد دوبارہ کوشش کریں۔} other{{hours} گھنٹے بعد دوبارہ کوشش کریں۔}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{سسٹم VPN دوبارہ شروع کرنا دستیاب نہیں ہے} system_vpn_resume_corrupt{سسٹم VPN دوبارہ شروع کرنے کا ڈیٹا غلط ہے} system_vpn_resume_session_invalid{VPN دوبارہ شروع کرنے کا سیشن غلط ہے} system_vpn_resume_identity_changed{VPN شناخت تبدیل ہو گئی} system_vpn_resume_identity_invalid{VPN دوبارہ شروع کرنے کی شناخت غلط ہے} system_vpn_resume_storage_failed{VPN دوبارہ شروع کرنے کا ذخیرہ دستیاب نہیں ہے} system_vpn_resume_network_timeout{VPN دوبارہ شروع کرنے کے لیے نیٹ ورک موجود نہیں ہے} system_vpn_resume_blocked{VPN دوبارہ شروع کرنا روک دیا گیا} system_vpn_resume_failed{VPN دوبارہ شروع نہیں ہو سکا} system_vpn_resume_error_invalid{VPN دوبارہ شروع کرنے کی خرابی غلط ہے} wireguard_identity_store_failed{WireGuard شناخت محفوظ نہیں ہوئی} wireguard_identity_unavailable{WireGuard شناخت دستیاب نہیں ہے} vpn_host_destroyed{Android VPN میزبان رک گیا} vpn_host_unavailable{Android VPN میزبان دستیاب نہیں ہے} vpn_permission_required{VPN کی اجازت ضروری ہے} vpn_permission_denied{VPN کی اجازت مسترد کر دی گئی} vpn_permission_request_failed{اجازت طلب نہیں کی جا سکی} wireguard_foreground_service_unavailable{WireGuard سروس دستیاب نہیں ہے} wireguard_identity_invalid{مقامی WireGuard کلید غلط ہے} wireguard_identity_in_use{WireGuard شناخت پہلے ہی استعمال میں ہے} wireguard_configuration_invalid{WireGuard کی ترتیب غلط ہے} wireguard_operation_pending{WireGuard کارروائی اب بھی فعال ہے} wireguard_start_failed{WireGuard شروع کرنا مسترد کر دیا گیا} wireguard_stop_timeout{WireGuard کے رکنے کی تصدیق نہیں ہوئی} wireguard_handshake_timeout{WireGuard نے جواب نہیں دیا} openvpn_connection_timeout{OpenVPN نے جواب نہیں دیا} openvpn_core_unavailable{OpenVPN انجن دستیاب نہیں ہے} openvpn_operation_pending{OpenVPN سیشن اب بھی فعال ہے} openvpn_stop_timeout{OpenVPN کے رکنے کی تصدیق نہیں ہوئی} openvpn_profile_unavailable{مقامی OpenVPN پروفائل موجود نہیں ہے} openvpn_native_failed{مقامی OpenVPN کال میں خلل پڑا} openvpn_key_generation_failed{OpenVPN P-256 کلید نہیں بنائی جا سکی} openvpn_csr_generation_failed{OpenVPN CSR نہیں بنایا جا سکا} openvpn_identity_store_failed{OpenVPN شناخت محفوظ نہیں ہوئی} openvpn_identity_clear_failed{OpenVPN کو مکمل طور پر ہٹایا نہیں جا سکا} openvpn_identity_in_use{OpenVPN شناخت اب بھی استعمال میں ہے} openvpn_tls_verification_required{OpenVPN TLS تصدیق موجود نہیں ہے} openvpn_cipher_invalid{OpenVPN سائفر غلط ہے} openvpn_profile_rejected{OpenVPN پروفائل مسترد کر دیا گیا} openvpn_identity_inconsistent{OpenVPN شناخت میں تضاد ہے} tls_handshake_failed{OpenVPN مذاکرات مسترد کر دیے گئے} tls_alert_unknown_ca{OpenVPN کلائنٹ سرٹیفکیٹ پہچانا نہیں گیا} tls_alert_bad_certificate{OpenVPN کلائنٹ سرٹیفکیٹ مسترد کر دیا گیا} tls_alert_unsupported_certificate{OpenVPN سرٹیفکیٹ معاونت یافتہ نہیں ہے} tls_client_certificate_required{OpenVPN کلائنٹ سرٹیفکیٹ ضروری ہے} tls_alert_misc{OpenVPN TLS انتباہ} tls_signature_algorithm_rejected{OpenVPN دستخط معاونت یافتہ نہیں ہیں} tls_handshake_rejected{OpenVPN TLS مذاکرات مسترد کر دیے گئے} tls_version_rejected{OpenVPN TLS ورژن مطابقت نہیں رکھتا} tls_certificate_expired{TLS سرٹیفکیٹ کی میعاد ختم ہو گئی} tls_certificate_revoked{TLS سرٹیفکیٹ منسوخ کر دیا گیا} transport_failed{OpenVPN سرور تک رسائی نہیں ہو سکی} tun_configuration_rejected{OpenVPN انٹرفیس نہیں بنایا جا سکا} tun_setup_failed{OpenVPN TUN ترتیب ناکام ہو گئی} tun_interface_create_failed{OpenVPN انٹرفیس نہیں بنایا جا سکا} tun_interface_disabled{OpenVPN انٹرفیس غیر فعال ہے} tun_halted{OpenVPN انٹرفیس میں خلل پڑا} tun_already_established{OpenVPN انٹرفیس پہلے ہی کھلا ہے} tun_addresses_missing{OpenVPN پتہ موجود نہیں ہے} tun_routes_missing{OpenVPN راستے موجود نہیں ہیں} tun_dns_missing{OpenVPN DNS موجود نہیں ہے} tun_permission_revoked{VPN کی اجازت منسوخ کر دی گئی} tun_establish_returned_null{Android نے VPN انٹرفیس مسترد کر دیا} openvpn_service_start_failed{OpenVPN سروس دستیاب نہیں ہے} openvpn_operation_timeout{OpenVPN کال کا وقت ختم ہو گیا} openvpn_start_failed{OpenVPN شروع کرنا مسترد کر دیا گیا} openvpn_connection_failed{OpenVPN کنکشن میں خلل پڑا} openvpn_core_status_error{OpenVPN Core خرابی کے ساتھ ختم ہوا} openvpn_stopped_before_connected{OpenVPN کنیکٹ ہونے سے پہلے رک گیا} openvpn_auth_failed{OpenVPN تصدیق مسترد کر دی گئی} openvpn_client_setup_failed{OpenVPN کلائنٹ ترتیب ناکام ہو گئی} openvpn_client_halted{OpenVPN کلائنٹ میں خلل پڑا} openvpn_client_restart{OpenVPN دوبارہ شروع کرنے کی درخواست کی گئی} openvpn_inactive_timeout{OpenVPN بہت دیر تک غیر فعال رہا} openvpn_session_expired{OpenVPN سیشن کی میعاد ختم ہو گئی} openvpn_credentials_required{OpenVPN تصدیق معاونت یافتہ نہیں ہے} openvpn_proxy_failed{OpenVPN درمیانی ترسیل ناکام ہو گئی} openvpn_compression_failed{OpenVPN کمپریشن مسترد کر دی گئی} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM خفیہ کاری دستیاب نہیں ہے} openvpn_feature_unsupported{OpenVPN خصوصیت معاونت یافتہ نہیں ہے} network_unavailable{انٹرنیٹ کنکشن دستیاب نہیں ہے} network_lost{نیٹ ورک دستیاب نہیں ہے} certificate_validation_failed{سرور سرٹیفکیٹ مسترد کر دیا گیا} openvpn_certificate_expired{OpenVPN سرٹیفکیٹ کی میعاد ختم ہو گئی} tunnel_active_for_another_account{دوسرے اکاؤنٹ کا ٹَنل اب بھی فعال ہے} tunnel_already_active{مقامی ٹَنل پہلے ہی فعال ہے} tunnel_stop_timeout{{protocol} کے رکنے کی تصدیق نہیں ہوئی} tunnel_disconnected{{protocol} میں خلل پڑا} native_bridge_unavailable{Android برج دستیاب نہیں ہے} native_operation_failed{Android کارروائی میں خلل پڑا} invalid_arguments{VPN پیرامیٹرز نامکمل ہیں} invalid_account_id{VPN اکاؤنٹ درست نہیں ہے} invalid_device_id{ڈیوائس شناخت کنندہ درست نہیں ہے} storage_key_not_allowed{ذخیرے کی کلید مسترد کر دی گئی} secure_storage_read_failed{محفوظ پڑھائی ناکام ہو گئی} secure_storage_write_failed{محفوظ تحریر ناکام ہو گئی} key_generation_failed{WireGuard کلید نہیں بنائی جا سکی} csr_generation_failed{OpenVPN CSR نہیں بنایا جا سکا} openvpn_recovery_exhausted{OpenVPN بحالی پہلے ہی استعمال ہو چکی ہے} openvpn_recovery_failed{OpenVPN بحالی ناکام ہو گئی} openvpn_renewal_required{OpenVPN سرٹیفکیٹ کی تجدید ضروری ہے} other{غیر درجہ بند مقامی VPN خرابی}}",
     "@notice_native_title": {
       "placeholders": {
         "code": {
@@ -562,6 +587,8 @@
     "billing_accessUntil": "{date} تک رسائی۔",
     "billing_webManaged": "آپ کی رکنیت کا انتظام FuzeVPN ویب سائٹ پر ہوتا ہے۔",
     "billing_playManaged": "آپ کی رکنیت کا انتظام Google Play سے ہوتا ہے۔",
+    "billing_playOnHold": "آپ کی Google Play رکنیت معطل ہے یا ادائیگی کی منتظر ہے۔ Google Play میں اسے درست کرنے کے لیے “رکنیت کا انتظام کریں” کھولیں۔",
+    "billing_playReceiptUnlinked": "اس Google Play اکاؤنٹ میں پہلے سے ایک Fuze Premium رکنیت موجود ہے جو اس FuzeVPN اکاؤنٹ کے لیے فعال نہیں۔ Google Play میں اس کا جائزہ لینے کے لیے “رکنیت کا انتظام کریں” کھولیں۔",
     "billing_inactive": "کوئی فعال رکنیت نہیں۔",
     "billing_checkingAccess": "آپ کی رسائی کی جانچ ہو رہی ہے…",
     "billing_restoring": "خریداریاں بحال ہو رہی ہیں…",
@@ -640,6 +667,7 @@
     "google_emailUnavailable": "تصدیقی ای میل نہیں بھیجی جا سکی۔ بعد میں کوشش کریں۔",
     "google_emailSent": "تصدیقی ای میل بھیج دی گئی۔ اپنا ان باکس دیکھیں۔",
     "google_rateLimited": "دوبارہ کوشش کرنے سے پہلے انتظار کریں۔",
+    "google_busy": "کسی دوسری کارروائی (VPN کنکشن، اکاؤنٹ یا مہمان) کے جاری رہنے تک Google سائن ان دستیاب نہیں۔ اس کے مکمل ہونے کے بعد دوبارہ کوشش کریں؛ آپ کی موجودہ رسائی برقرار رہے گی۔",
     "google_invalidPassword": "FuzeVPN پاس ورڈ غلط ہے۔ موجودہ اکاؤنٹ محفوظ رہے گا۔",
     "google_invalidCode": "تصدیقی کوڈ غلط ہے یا اس کی مدت ختم ہو گئی ہے۔",
     "google_accountChanged": "سیشن بدل گیا ہے۔ دوبارہ شروع کرنے سے پہلے اس کوشش کو منسوخ کریں۔",
@@ -648,6 +676,14 @@
     "google_consentRequired": "جاری رکھنے کے لیے ملک منتخب کریں اور دونوں دستاویزات قبول کریں۔",
     "google_challengeRequired": "اضافی سیکیورٹی جانچ ضروری ہے۔ موجودہ رسائی محفوظ رہے گی۔",
     "google_challengeUnavailable": "سیکیورٹی جانچ دستیاب نہیں۔ بعد میں کوشش کریں۔",
+    "google_intentMismatch": "Google کے ساتھ سائن اِن کی ایک پچھلی کوشش ابھی زیر التوا ہے۔ یہ کارروائی شروع کرنے سے پہلے اسے منسوخ کریں۔",
+    "google_challengeBlocked": "مطلوبہ سیکیورٹی کی تصدیق اس ایپ میں دستیاب نہیں ہے۔ یہ کارروائی اس وقت مکمل نہیں کی جا سکتی۔",
+    "google_solveChallenge": "سیکیورٹی کی تصدیق مکمل کریں",
+    "google_challengeTitle": "سیکیورٹی کی تصدیق",
+    "google_challengeReady": "تصدیق مکمل ہو گئی۔ اب آپ اپنے اکاؤنٹ کی تخلیق کی تصدیق کر سکتے ہیں۔",
+    "google_challengeExpired": "تصدیق کی مدت ختم ہو گئی ہے۔ توثیق کرنے سے پہلے اسے دوبارہ مکمل کریں۔",
+    "google_challengeCancelled": "تصدیق منسوخ کر دی گئی۔ آپ اسے دوبارہ کر سکتے ہیں۔",
+    "google_challengeFailed": "سیکیورٹی کی تصدیق ناکام ہو گئی۔ دوبارہ کوشش کریں۔",
     "billing_trialTitle": "Fuze Premium مفت آزمائیں",
     "billing_trialSubtitle": "آج سے اپنا کنکشن محفوظ بنائیں۔",
     "billing_trialWeeks": "2 ہفتے کی مفت آزمائش",
@@ -949,7 +985,7 @@
     "SS": "جنوبی سوڈان",
     "ST": "ساؤ تومے اور پرنسپے",
     "SV": "ال سلواڈور",
-    "SX": "سینٹ مارٹن",
+    "SX": "سنٹ مارٹن (نیدرلینڈز)",
     "SY": "شام",
     "SZ": "ایسواتینی",
     "TA": "ٹرسٹان دا کونہا",

@@ -283,7 +283,10 @@ class _DiagnosticsPageState extends State<DiagnosticsPage> {
                 const SizedBox(height: 12),
                 OutlinedButton.icon(
                   key: const ValueKey('export-diagnostic-report'),
-                  onPressed: busy || !controller.canExportDiagnosticReport
+                  onPressed:
+                      busy ||
+                          controller.diagnosticExporting ||
+                          !controller.canExportDiagnosticReport
                       ? null
                       : controller.exportDiagnosticReport,
                   icon: const Icon(Icons.save_alt),

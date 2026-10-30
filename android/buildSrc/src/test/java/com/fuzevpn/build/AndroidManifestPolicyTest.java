@@ -6,7 +6,7 @@ import java.nio.file.Path;
 public final class AndroidManifestPolicyTest {
     public static void main(String[] args) throws Exception {
         Path manifest = Files.createTempFile("fuzevpn-merged-manifest-", ".xml");
-        String start = "<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">";
+        String start = "<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\" package=\"com.fuzevpn\">";
         Files.writeString(manifest, start + "<uses-permission android:name=\"android.permission.INTERNET\"/></manifest>");
         AndroidManifestPolicy.verify(manifest);
         int passed = 1;
@@ -41,6 +41,30 @@ public final class AndroidManifestPolicyTest {
                 }
                 throw new AssertionError("Unexpected permission accepted: " + permission);
             }
+        }
+        for (String expected : new String[]{"com.fuzevpn", "com.fuzevpn.recoverytest"}) {
+            for (String declared : new String[]{"com.fuzevpn", "com.fuzevpn.recoverytest", "com.fuzevpn.unreviewed"}) {
+                for (String permissionOwner : new String[]{"com.fuzevpn", "com.fuzevpn.recoverytest"}) {
+                    Files.writeString(manifest, start.replace("package=\"com.fuzevpn\"", "package=\"" + declared + "\"")
+                            + "<uses-permission android:name=\"" + permissionOwner + ".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION\"/></manifest>");
+                    boolean shouldPass = expected.equals(declared) && expected.equals(permissionOwner);
+                    try {
+                        AndroidManifestPolicy.verify(manifest, expected);
+                        if (!shouldPass) throw new AssertionError("Cross-package manifest/permission accepted");
+                    } catch (IllegalStateException rejected) {
+                        if (shouldPass) throw rejected;
+                    }
+                    passed++;
+                }
+            }
+        }
+        Files.writeString(manifest, start + "</manifest>");
+        try {
+            AndroidManifestPolicy.verify(manifest, "com.fuzevpn.unreviewed");
+            throw new AssertionError("Unreviewed expected package accepted");
+        } catch (IllegalStateException expected) {
+            if (!expected.getMessage().startsWith("ANDROID_APPLICATION_ID_UNREVIEWED:")) throw expected;
+            passed++;
         }
         System.out.println("AndroidManifestPolicy: " + passed + " checks passed.");
     }

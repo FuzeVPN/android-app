@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io' show HttpDate;
 
 /// Failures returned by the public FuzeVPN API or raised before a response
 /// can be parsed.  None of these types retain an HTTP body, URL query, token,
@@ -34,13 +35,19 @@ class ApiException extends ApiFailure {
   final String errorCode;
 
   /// Parses the documented public error envelope without retaining its body.
+  /// [dateHeader] is the response `Date`, the reference of an HTTP-date
+  /// `Retry-After`.
   factory ApiException.fromResponse({
     required int statusCode,
     required String body,
     String? retryAfterHeader,
+    String? dateHeader,
   }) {
     var errorCode = 'api_error';
-    var retryAfterSeconds = _parseRetryAfter(retryAfterHeader);
+    var retryAfterSeconds = ApiRetryAfter.parseHeader(
+      retryAfterHeader,
+      dateHeader: dateHeader,
+    );
     try {
       final dynamic decoded = jsonDecode(body);
       if (decoded is Map<String, dynamic>) {
@@ -48,7 +55,7 @@ class ApiException extends ApiFailure {
         if (candidate is String && _isStableCode(candidate)) {
           errorCode = candidate;
         }
-        retryAfterSeconds ??= _parseRetryAfterValue(
+        retryAfterSeconds ??= ApiRetryAfter.parseSeconds(
           decoded['retry_after_seconds'],
         );
       }
@@ -156,15 +163,109 @@ abstract final class ApiErrorMessages {
 bool _isStableCode(String value) =>
     RegExp(r'^[a-z0-9_]{1,64}$').hasMatch(value);
 
-int? _parseRetryAfter(String? value) =>
-    value == null ? null : _parseRetryAfterValue(value);
+/// Server retry delays (RFC 9110 §10.2.3), shared by error envelopes and
+/// accepted location migrations.
+///
+/// A delay is advisory: a readable value is honoured and bounded to the
+/// caller's maximum instead of being discarded, and an unreadable one is
+/// ignored. It never turns an otherwise valid response into a rejection.
+/// Only finite, integral, non-negative numbers reach an integer conversion.
+abstract final class ApiRetryAfter {
+  /// Longest delay applied to a failure (24 hours).
+  static const int maximumSeconds = 86400;
 
-int? _parseRetryAfterValue(Object? value) {
-  final int? seconds = switch (value) {
-    final int value => value,
-    final num value when value == value.roundToDouble() => value.toInt(),
-    final String value => int.tryParse(value.trim()),
+  static final RegExp _delaySeconds = RegExp(r'^\+?([0-9]+)$');
+  static final RegExp _dayName = RegExp(r'^[A-Za-z]{3,9}$');
+
+  /// Parses a `Retry-After` field: delay-seconds or an HTTP-date. An HTTP-date
+  /// is measured from the response [dateHeader] so that the device clock does
+  /// not matter; [now] (default: the local clock) is used only when that
+  /// header is missing or invalid. Repeated fields, joined with commas by the
+  /// transport, keep their longest readable delay.
+  static int? parseHeader(
+    String? value, {
+    String? dateHeader,
+    DateTime? now,
+    int maximum = maximumSeconds,
+  }) {
+    if (value == null || value.length > 512) return null;
+    final parts = value.split(',');
+    DateTime? reference;
+    int? untilDate(String text) {
+      final DateTime? date = _httpDate(text);
+      if (date == null) return null;
+      reference ??=
+          _httpDate(dateHeader ?? '') ?? (now ?? DateTime.now()).toUtc();
+      final int milliseconds = date.difference(reference!).inMilliseconds;
+      if (milliseconds <= 0) return 0;
+      final int seconds = (milliseconds + 999) ~/ 1000;
+      return seconds > maximum ? maximum : seconds;
+    }
+
+    int? longest;
+    for (var index = 0; index < parts.length; index++) {
+      final String member = parts[index].trim();
+      var seconds = _parseDelaySeconds(member, maximum);
+      // IMF-fixdate and rfc850-date carry one comma after the day name.
+      if (seconds == null &&
+          _dayName.hasMatch(member) &&
+          index + 1 < parts.length) {
+        seconds = untilDate('$member,${parts[index + 1].trimRight()}');
+        if (seconds != null) index++;
+      }
+      seconds ??= untilDate(member);
+      if (seconds != null && (longest == null || seconds > longest)) {
+        longest = seconds;
+      }
+    }
+    return longest;
+  }
+
+  /// Parses a JSON `retry_after_seconds` value.
+  static int? parseSeconds(
+    Object? value, {
+    int maximum = maximumSeconds,
+  }) => switch (value) {
+    final int value => value < 0 ? null : (value > maximum ? maximum : value),
+    final num value
+        when value.isFinite && value >= 0 && value == value.roundToDouble() =>
+      value > maximum ? maximum : value.toInt(),
+    final String value => _parseDelaySeconds(value.trim(), maximum),
     _ => null,
   };
-  return seconds != null && seconds >= 0 && seconds <= 86400 ? seconds : null;
+
+  static int? _parseDelaySeconds(String value, int maximum) {
+    final String? digits = _delaySeconds.firstMatch(value)?.group(1);
+    if (digits == null) return null;
+    final String significant = digits.replaceFirst(RegExp(r'^0+(?=.)'), '');
+    // Longer than nine digits is above every bound; avoid int overflow.
+    if (significant.length > 9) return maximum;
+    final int seconds = int.parse(significant);
+    return seconds > maximum ? maximum : seconds;
+  }
+
+  static DateTime? _httpDate(String value) {
+    final String text = value.trim();
+    if (text.isEmpty || text.length > 64) return null;
+    final DateTime date;
+    try {
+      date = HttpDate.parse(text);
+    } catch (_) {
+      return null;
+    }
+    if (date.year >= 100) return date;
+    // rfc850-date has a two-digit year: RFC 9110 §5.6.7 picks the most
+    // recent matching year that is not more than 50 years in the future.
+    final int current = DateTime.now().toUtc().year;
+    var year = current - current % 100 + date.year;
+    if (year > current + 50) year -= 100;
+    return DateTime.utc(
+      year,
+      date.month,
+      date.day,
+      date.hour,
+      date.minute,
+      date.second,
+    );
+  }
 }

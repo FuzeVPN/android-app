@@ -1,5 +1,82 @@
 // Closed registry from diagnostics v1, client-diagnostics-20260916.
 // A dynamic application error is never added to this list automatically.
+// New native categories map explicitly onto the existing wire vocabulary;
+// raw codes and exception messages never extend the server contract.
+// Every failure code produced by Kotlin, the OpenVPN C++ layer or the Dart
+// bridge is inventoried by diagnostics_native_producers_regression_test.dart:
+// a new producer must get an alias here (or a justified exclusion there).
+// The table applies to every recorded code: an alias key is never an API
+// machine code, and a controller code shares one only with the same meaning
+// (diagnostics_alias_collision_test.dart). Exception messages that never
+// leave the native layer get no alias.
+const diagnosticCodeAliases = <String, String>{
+  'activity_destroyed': 'vpn_permission_request_failed',
+  'connection_failed': 'openvpn_connection_failed',
+  'core_unavailable': 'openvpn_core_unavailable',
+  'invalid_account_id': 'invalid_configuration',
+  'invalid_arguments': 'invalid_configuration',
+  'invalid_device_id': 'invalid_configuration',
+  'invalid_guest_credential': 'invalid_configuration',
+  'invalid_identity_alias': 'profile_rejected',
+  'network_lost': 'network_unavailable',
+  'openvpn_cipher_invalid': 'profile_invalid_cipher',
+  'openvpn_client_restart': 'openvpn_connection_failed',
+  'openvpn_compression_failed': 'openvpn_profile_rejected',
+  'openvpn_connection_proof_missing': 'openvpn_connection_failed',
+  'openvpn_credentials_required': 'openvpn_auth_failed',
+  'openvpn_csr_required': 'openvpn_identity_unavailable',
+  'openvpn_dynamic_challenge_required': 'openvpn_auth_failed',
+  'openvpn_feature_unsupported': 'openvpn_profile_rejected',
+  'openvpn_identity_in_use': 'openvpn_operation_pending',
+  'openvpn_inactive_timeout': 'request_timeout',
+  'openvpn_ntlm_crypto_unavailable': 'openvpn_profile_crypto_failed',
+  'openvpn_profile_revoked_cleaned': 'device_identity_revoked',
+  'openvpn_proxy_credentials_required': 'proxy_authentication_failed',
+  'openvpn_proxy_failed': 'proxy_unavailable',
+  'openvpn_reconnect_required': 'openvpn_transport_failed',
+  'openvpn_recovery_failed': 'openvpn_connection_failed',
+  'openvpn_relay_failed': 'openvpn_transport_failed',
+  'openvpn_renewal_required': 'openvpn_certificate_expired',
+  // Controller notice whose reference is APP-OVPN-RENEW · renewal_unexpected.
+  'openvpn_renewal_unexpected': 'renewal_unexpected',
+  'openvpn_session_expired': 'session_expired',
+  'openvpn_stopped_before_connected': 'openvpn_connection_failed',
+  'openvpn_tls_verification_required': 'profile_missing_required_directive',
+  'permission_request_in_progress': 'vpn_permission_request_failed',
+  'platform_callback_failed': 'openvpn_external_pki_failed',
+  'platform_identity_unavailable': 'openvpn_identity_unavailable',
+  'platform_signature_failed': 'openvpn_external_pki_failed',
+  'profile_invalid_dns': 'profile_rejected',
+  'profile_invalid_encoding': 'profile_rejected',
+  'profile_invalid_identity_alias': 'profile_rejected',
+  'profile_too_large': 'profile_rejected',
+  'quick_tile_operation_failed': 'native_operation_failed',
+  'quick_tile_profile_unavailable': 'tunnel_start_failed',
+  'session_busy': 'openvpn_operation_pending',
+  'system_vpn_resume_blocked': 'system_vpn_resume_failed',
+  'system_vpn_resume_error_invalid': 'system_vpn_resume_corrupt',
+  'system_vpn_resume_unavailable': 'system_vpn_resume_failed',
+  'transport_failed': 'openvpn_transport_failed',
+  'tun_addresses_missing': 'openvpn_network_configuration_failed',
+  'tun_already_established': 'tun_failed',
+  'tun_configuration_rejected': 'openvpn_network_configuration_failed',
+  'tun_dns_missing': 'openvpn_dns_configuration_failed',
+  'tun_establish_failed': 'tun_failed',
+  'tun_permission_revoked': 'permission_denied',
+  'tun_plan_rejected': 'openvpn_network_configuration_failed',
+  'tun_routes_missing': 'openvpn_network_configuration_failed',
+  'tunnel_active_for_another_account': 'tunnel_start_failed',
+  'tunnel_already_active': 'tunnel_start_failed',
+  'tunnel_disconnected': 'tunnel_failure',
+  'vpn_disclosure_required': 'permission_denied',
+  'vpn_permission_denied': 'permission_denied',
+  'vpn_permission_required': 'permission_denied',
+  // A user stop under always-on whose Android VPN settings cannot open.
+  'vpn_settings_unavailable': 'tunnel_stop_failed',
+  'wireguard_identity_in_use': 'cleanup_failed',
+  'wireguard_operation_pending': 'tunnel_start_failed',
+};
+
 const diagnosticCodes = <String>{
   'api_bootstrap_unavailable',
   'api_error',

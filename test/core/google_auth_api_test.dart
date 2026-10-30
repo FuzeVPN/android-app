@@ -116,141 +116,241 @@ Future<dynamic> _call(String name, ApiClient api) => switch (name) {
 };
 
 void main() {
-  test('browser context reserves an anonymous or bound attempt with no secret URL',
-      () async {
-    final transport = _Transport()
-      ..statusCode = 200
-      ..response = _browserJson;
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    final result = await api.createGoogleBrowserContext();
-    expect(result.authGeneration, 7);
-    expect(transport.request.uri.path, '/v1/auth/browser/context');
-    expect(transport.request.uri.query, isEmpty);
-    expect(jsonDecode(transport.request.body!), isEmpty);
-    expect(transport.request.headers['authorization'], isNull);
-    expect(transport.request.headers['x-fuze-browser-context'], isNull);
+  test(
+    'browser context reserves an anonymous or bound attempt with no secret URL',
+    () async {
+      final transport = _Transport()
+        ..statusCode = 200
+        ..response = _browserJson;
+      final api = ApiClient(transport: transport);
+      addTearDown(api.close);
+      final result = await api.createGoogleBrowserContext();
+      expect(result.authGeneration, 7);
+      expect(transport.request.uri.path, '/v1/auth/browser/context');
+      expect(transport.request.uri.query, isEmpty);
+      expect(jsonDecode(transport.request.body!), isEmpty);
+      expect(transport.request.headers['authorization'], isNull);
+      expect(transport.request.headers['x-fuze-browser-context'], isNull);
 
-    await api.createGoogleBrowserContext(
-      token: 'guest-fixture-private',
-      browserContextToken: _browser.browserContextToken,
-    );
-    expect(transport.request.headers['authorization'], 'Bearer guest-fixture-private');
-    expect(transport.request.headers['x-fuze-browser-context'], 'bct-fixture-private');
-    expect(transport.request.headers['x-fuze-auth-generation'], isNull);
-  });
-
-  test('challenge purpose controls bearer and carries the reserved generation',
-      () async {
-    final transport = _Transport()..response = _challenge;
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    for (final purpose in googleAuthPurposes) {
-      final result = await api.createGoogleChallenge(
-        browserContext: _browser,
-        purpose: purpose,
-        token: purpose == 'authenticate' ? null : 'principal-fixture-private',
+      await api.createGoogleBrowserContext(
+        token: 'guest-fixture-private',
+        browserContextToken: _browser.browserContextToken,
       );
-      expect(result.nonce, 'nonce-fixture');
-      expect(jsonDecode(transport.request.body!), {'purpose': purpose});
-      expect(transport.request.headers['x-fuze-auth-generation'], '7');
-      expect(transport.request.headers['x-fuze-browser-context'], _browser.browserContextToken);
-      expect(transport.request.headers['authorization'],
-          purpose == 'authenticate' ? null : 'Bearer principal-fixture-private');
-    }
-    final count = transport.requests.length;
-    for (final purpose in ['delete', 'claim', 'link']) {
-      await expectLater(
-        api.createGoogleChallenge(browserContext: _browser, purpose: purpose),
-        throwsA(isA<ApiProtocolException>()),
+      expect(
+        transport.request.headers['authorization'],
+        'Bearer guest-fixture-private',
       );
-    }
-    expect(transport.requests, hasLength(count));
-  });
+      expect(
+        transport.request.headers['x-fuze-browser-context'],
+        'bct-fixture-private',
+      );
+      expect(transport.request.headers['x-fuze-auth-generation'], isNull);
+    },
+  );
 
-  test('verify keeps challenge and native credential in POST and separates tickets',
-      () async {
-    final transport = _Transport();
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    final authenticated = await _call('verify', api);
-    expect(authenticated, isA<GoogleAuthenticatedResult>());
-    expect((authenticated as GoogleAuthenticatedResult).session.accessToken,
-        'fuze-fixture-private');
-    expect(transport.request.headers['authorization'], 'Bearer $_ticket');
-    expect(transport.request.uri.query, isEmpty);
-    expect(jsonDecode(transport.request.body!), {
-      'challenge_id': 'challenge-fixture',
-      'credential': 'jwt-fixture-private',
-    });
-    for (final status in [
-      'registration_required', 'link_required', 'guest_claim_required',
-    ]) {
+  test(
+    'challenge purpose controls bearer and carries the reserved generation',
+    () async {
+      final transport = _Transport()..response = _challenge;
+      final api = ApiClient(transport: transport);
+      addTearDown(api.close);
+      for (final purpose in googleAuthPurposes) {
+        final result = await api.createGoogleChallenge(
+          browserContext: _browser,
+          purpose: purpose,
+          token: purpose == 'authenticate' ? null : 'principal-fixture-private',
+        );
+        expect(result.nonce, 'nonce-fixture');
+        expect(jsonDecode(transport.request.body!), {'purpose': purpose});
+        expect(transport.request.headers['x-fuze-auth-generation'], '7');
+        expect(
+          transport.request.headers['x-fuze-browser-context'],
+          _browser.browserContextToken,
+        );
+        expect(
+          transport.request.headers['authorization'],
+          purpose == 'authenticate' ? null : 'Bearer principal-fixture-private',
+        );
+      }
+      final count = transport.requests.length;
+      for (final purpose in ['delete', 'claim', 'link']) {
+        await expectLater(
+          api.createGoogleChallenge(browserContext: _browser, purpose: purpose),
+          throwsA(isA<ApiProtocolException>()),
+        );
+      }
+      expect(transport.requests, hasLength(count));
+    },
+  );
+
+  test(
+    'verify keeps challenge and native credential in POST and separates tickets',
+    () async {
+      final transport = _Transport();
+      final api = ApiClient(transport: transport);
+      addTearDown(api.close);
+      final authenticated = await _call('verify', api);
+      expect(authenticated, isA<GoogleAuthenticatedResult>());
+      expect(
+        (authenticated as GoogleAuthenticatedResult).session.accessToken,
+        'fuze-fixture-private',
+      );
+      expect(transport.request.headers['authorization'], 'Bearer $_ticket');
+      expect(transport.request.uri.query, isEmpty);
+      expect(jsonDecode(transport.request.body!), {
+        'challenge_id': 'challenge-fixture',
+        'credential': 'jwt-fixture-private',
+      });
+      for (final status in [
+        'registration_required',
+        'link_required',
+        'guest_claim_required',
+      ]) {
+        transport.statusCode = 200;
+        transport.response = {
+          'status': status,
+          'context_token': 'replacement-fixture-private',
+          'expires_at': '2099-01-01T00:00:00Z',
+        };
+        final continuation =
+            await _call('verify', api) as GoogleContinuationResult;
+        expect(continuation.status, status);
+        expect(continuation.contextToken, 'replacement-fixture-private');
+        expect(continuation, isNot(isA<GoogleAuthenticatedResult>()));
+      }
+    },
+  );
+
+  test(
+    'verify refuses a success status paired with another HTTP outcome',
+    () async {
+      final transport = _Transport();
+      final api = ApiClient(transport: transport);
+      addTearDown(api.close);
+      for (final fixture in [
+        (200, _authenticated),
+        (
+          201,
+          <String, Object?>{
+            'status': 'registration_required',
+            'context_token': _ticket,
+            'expires_at': '2099-01-01T00:00:00Z',
+          },
+        ),
+        (
+          200,
+          <String, Object?>{
+            'status': 'reauthenticated',
+            'reauth_token': 'proof-fixture-private',
+            'expires_at': '2099-01-01T00:00:00Z',
+          },
+        ),
+      ]) {
+        transport.statusCode = fixture.$1;
+        transport.response = fixture.$2;
+        await expectLater(
+          _call('verify', api),
+          throwsA(isA<ApiProtocolException>()),
+        );
+      }
+    },
+  );
+
+  test(
+    'Google finalization sends country and deliberate consent, never a password',
+    () async {
+      final transport = _Transport();
+      final api = ApiClient(transport: transport);
+      addTearDown(api.close);
+      await _call('register', api);
+      expect(transport.request.uri.path, '/v1/auth/google/register');
+      expect(jsonDecode(transport.request.body!), {
+        'country_code': 'BE',
+        'terms_accepted': true,
+        'privacy_accepted': true,
+      });
       transport.statusCode = 200;
-      transport.response = {
-        'status': status,
-        'context_token': 'replacement-fixture-private',
-        'expires_at': '2099-01-01T00:00:00Z',
-      };
-      final continuation = await _call('verify', api) as GoogleContinuationResult;
-      expect(continuation.status, status);
-      expect(continuation.contextToken, 'replacement-fixture-private');
-      expect(continuation, isNot(isA<GoogleAuthenticatedResult>()));
-    }
-  });
+      transport.response = _claim;
+      final claimed = await _call('claim', api) as GoogleGuestClaimResult;
+      expect(claimed.userId, 'guest-fixture');
+      expect(claimed.identityKind, 'registered');
+      expect(claimed.emailVerified, isTrue);
+      expect(transport.request.uri.path, '/v1/auth/google/claim');
+      expect(transport.request.headers['authorization'], 'Bearer $_ticket');
+      expect(jsonDecode(transport.request.body!), {
+        'country_code': 'BE',
+        'terms_accepted': true,
+        'privacy_accepted': true,
+      });
+      for (final key in ['access_token', 'expires_at']) {
+        transport.response = {..._claim, key: 'unexpected-fixture-private'};
+        await expectLater(
+          _call('claim', api),
+          throwsA(isA<ApiProtocolException>()),
+        );
+      }
+      transport.response = Map<String, Object?>.from(_claim)
+        ..remove('verification_email_sent');
+      final optionalEmail = await _call('claim', api) as GoogleGuestClaimResult;
+      expect(optionalEmail.emailVerified, isTrue);
+      expect(optionalEmail.verificationEmailSent, isNull);
+    },
+  );
 
-  test('verify refuses a success status paired with another HTTP outcome', () async {
-    final transport = _Transport();
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    for (final fixture in [
-      (200, _authenticated),
-      (201, <String, Object?>{
-        'status': 'registration_required', 'context_token': _ticket,
-        'expires_at': '2099-01-01T00:00:00Z',
-      }),
-      (200, <String, Object?>{
-        'status': 'reauthenticated', 'reauth_token': 'proof-fixture-private',
-        'expires_at': '2099-01-01T00:00:00Z',
-      }),
-    ]) {
-      transport.statusCode = fixture.$1;
-      transport.response = fixture.$2;
-      await expectLater(_call('verify', api), throwsA(isA<ApiProtocolException>()));
-    }
-  });
-
-  test('Google finalization sends country and deliberate consent, never a password',
+  for (final claim in [false, true]) {
+    test(
+      'Google ${claim ? 'claim' : 'register'} transports only a nonempty security proof in JSON',
       () async {
-    final transport = _Transport();
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    await _call('register', api);
-    expect(transport.request.uri.path, '/v1/auth/google/register');
-    expect(jsonDecode(transport.request.body!), {
-      'country_code': 'BE', 'terms_accepted': true, 'privacy_accepted': true,
-    });
-    transport.statusCode = 200;
-    transport.response = _claim;
-    final claimed = await _call('claim', api) as GoogleGuestClaimResult;
-    expect(claimed.userId, 'guest-fixture');
-    expect(claimed.identityKind, 'registered');
-    expect(claimed.emailVerified, isTrue);
-    expect(transport.request.uri.path, '/v1/auth/google/claim');
-    expect(transport.request.headers['authorization'], 'Bearer $_ticket');
-    expect(jsonDecode(transport.request.body!), {
-      'country_code': 'BE', 'terms_accepted': true, 'privacy_accepted': true,
-    });
-    for (final key in ['access_token', 'expires_at']) {
-      transport.response = {..._claim, key: 'unexpected-fixture-private'};
-      await expectLater(_call('claim', api), throwsA(isA<ApiProtocolException>()));
-    }
-    transport.response = Map<String, Object?>.from(_claim)
-      ..remove('verification_email_sent');
-    final optionalEmail = await _call('claim', api) as GoogleGuestClaimResult;
-    expect(optionalEmail.emailVerified, isTrue);
-    expect(optionalEmail.verificationEmailSent, isNull);
-  });
+        final transport = _Transport()
+          ..statusCode = claim ? 200 : 201
+          ..response = claim ? _claim : _authenticated;
+        final api = ApiClient(transport: transport);
+        addTearDown(api.close);
+        Future<Object> submit(String? token) => claim
+            ? api.claimGuestWithGoogle(
+                browserContext: _browser,
+                contextToken: _ticket,
+                countryCode: 'FR',
+                termsAccepted: true,
+                privacyAccepted: true,
+                turnstileToken: token,
+              )
+            : api.registerGoogleAccount(
+                browserContext: _browser,
+                contextToken: _ticket,
+                countryCode: 'FR',
+                termsAccepted: true,
+                privacyAccepted: true,
+                turnstileToken: token,
+              );
+        for (final token in [null, '', 'security-proof-fixture']) {
+          await submit(token);
+          final body = jsonDecode(transport.request.body!) as Map;
+          expect(
+            body.containsKey('turnstile_token'),
+            token?.isNotEmpty == true,
+          );
+          if (token?.isNotEmpty == true) expect(body['turnstile_token'], token);
+          expect(
+            transport.request.uri.toString(),
+            isNot(contains('security-proof-fixture')),
+          );
+          expect(
+            transport.request.headers.values,
+            isNot(contains('security-proof-fixture')),
+          );
+        }
+        final calls = transport.requests.length;
+        for (final malformed in [' ', 'private\nproof', 'a' * 2049]) {
+          await expectLater(
+            submit(malformed),
+            throwsA(isA<ApiProtocolException>()),
+          );
+        }
+        expect(transport.requests, hasLength(calls));
+      },
+    );
+  }
 
   test('context resumes the screen without replaying a credential', () async {
     final transport = _Transport()
@@ -271,131 +371,203 @@ void main() {
     expect(transport.request.uri.query, isEmpty);
   });
 
-  test('explicit linking proofs and cancellation stay scoped to the same ticket',
-      () async {
-    final transport = _Transport();
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    await _call('link', api);
-    expect(jsonDecode(transport.request.body!), {'current_password': 'password-fixture-private'});
-    transport.statusCode = 202;
-    await _call('email-request', api);
-    expect(jsonDecode(transport.request.body!), isEmpty);
-    transport.statusCode = 201;
-    await _call('email-confirm', api);
-    expect(jsonDecode(transport.request.body!), {'code': 'ABCD-EFGH-IJKL-MNOP'});
-    transport.statusCode = 204;
-    await _call('cancel', api);
-    expect(jsonDecode(transport.request.body!), isEmpty);
-    await api.cancelGoogleAuth(
-      browserContext: _browser,
-      contextToken: _ticket,
-      challengeId: 'challenge-fixture',
-    );
-    expect(jsonDecode(transport.request.body!), {'challenge_id': 'challenge-fixture'});
-    expect(transport.request.headers['authorization'], 'Bearer $_ticket');
-    expect(transport.request.headers['x-fuze-auth-generation'], '7');
-  });
-
-  test('classical contextual login leaves the old repository contract unchanged',
-      () async {
-    final transport = _Transport();
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    await _call('login', api);
-    expect(transport.request.uri.path, '/v1/auth/login');
-    expect(transport.request.headers['x-fuze-auth-generation'], '7');
-    expect(jsonDecode(transport.request.body!), {
-      'email': 'fixture@example.test', 'password': 'password-fixture-private',
-    });
-    await api.login(email: 'fixture@example.test', password: 'fixture');
-    expect(transport.request.headers['x-fuze-auth-generation'], isNull);
-    expect(transport.request.headers['x-fuze-browser-context'], isNull);
-  });
-
-  for (final endpoint in <(String, int, Object)>[
-    ('browser', 200, _browserJson), ('challenge', 201, _challenge),
-    ('verify', 201, _authenticated), ('context', 200, _context),
-    ('register', 201, _authenticated), ('claim', 200, _claim),
-    ('link', 201, _authenticated), ('email-request', 202, <String, Object?>{}),
-    ('email-confirm', 201, _authenticated), ('cancel', 204, <String, Object?>{}),
-    ('login', 201, _authenticated),
-  ]) {
-    test('${endpoint.$1} enforces its exact HTTP outcome and response no-store',
-        () async {
-      final transport = _Transport()
-        ..statusCode = endpoint.$2
-        ..response = endpoint.$3;
+  test(
+    'explicit linking proofs and cancellation stay scoped to the same ticket',
+    () async {
+      final transport = _Transport();
       final api = ApiClient(transport: transport);
       addTearDown(api.close);
-      await _call(endpoint.$1, api);
-      transport.headers = {'cache-control': 'public, max-age=600'};
-      await expectLater(_call(endpoint.$1, api), throwsA(isA<ApiProtocolException>()));
-      transport.headers = {'cache-control': 'no-store'};
-      transport.statusCode = 203;
-      await expectLater(_call(endpoint.$1, api), throwsA(isA<ApiException>()));
-    });
+      await _call('link', api);
+      expect(jsonDecode(transport.request.body!), {
+        'current_password': 'password-fixture-private',
+      });
+      transport.statusCode = 202;
+      await _call('email-request', api);
+      expect(jsonDecode(transport.request.body!), isEmpty);
+      transport.statusCode = 201;
+      await _call('email-confirm', api);
+      expect(jsonDecode(transport.request.body!), {
+        'code': 'ABCD-EFGH-IJKL-MNOP',
+      });
+      transport.statusCode = 204;
+      await _call('cancel', api);
+      expect(jsonDecode(transport.request.body!), isEmpty);
+      await api.cancelGoogleAuth(
+        browserContext: _browser,
+        contextToken: _ticket,
+        challengeId: 'challenge-fixture',
+      );
+      expect(jsonDecode(transport.request.body!), {
+        'challenge_id': 'challenge-fixture',
+      });
+      expect(transport.request.headers['authorization'], 'Bearer $_ticket');
+      expect(transport.request.headers['x-fuze-auth-generation'], '7');
+    },
+  );
+
+  test(
+    'classical contextual login leaves the old repository contract unchanged',
+    () async {
+      final transport = _Transport();
+      final api = ApiClient(transport: transport);
+      addTearDown(api.close);
+      await _call('login', api);
+      expect(transport.request.uri.path, '/v1/auth/login');
+      expect(transport.request.headers['x-fuze-auth-generation'], '7');
+      expect(jsonDecode(transport.request.body!), {
+        'email': 'fixture@example.test',
+        'password': 'password-fixture-private',
+      });
+      await api.login(email: 'fixture@example.test', password: 'fixture');
+      expect(transport.request.headers['x-fuze-auth-generation'], isNull);
+      expect(transport.request.headers['x-fuze-browser-context'], isNull);
+    },
+  );
+
+  for (final endpoint in <(String, int, Object)>[
+    ('browser', 200, _browserJson),
+    ('challenge', 201, _challenge),
+    ('verify', 201, _authenticated),
+    ('context', 200, _context),
+    ('register', 201, _authenticated),
+    ('claim', 200, _claim),
+    ('link', 201, _authenticated),
+    ('email-request', 202, <String, Object?>{}),
+    ('email-confirm', 201, _authenticated),
+    ('cancel', 204, <String, Object?>{}),
+    ('login', 201, _authenticated),
+  ]) {
+    test(
+      '${endpoint.$1} enforces its exact HTTP outcome and response no-store',
+      () async {
+        final transport = _Transport()
+          ..statusCode = endpoint.$2
+          ..response = endpoint.$3;
+        final api = ApiClient(transport: transport);
+        addTearDown(api.close);
+        await _call(endpoint.$1, api);
+        transport.headers = {'cache-control': 'public, max-age=600'};
+        await expectLater(
+          _call(endpoint.$1, api),
+          throwsA(isA<ApiProtocolException>()),
+        );
+        transport.headers = {'cache-control': 'no-store'};
+        transport.statusCode = 203;
+        await expectLater(
+          _call(endpoint.$1, api),
+          throwsA(isA<ApiException>()),
+        );
+      },
+    );
   }
 
-  test('closed public errors preserve retries and never expose provider details',
-      () async {
-    final transport = _Transport()..statusCode = 503
-      ..response = {'error': 'google_unavailable', 'detail': 'private-provider-detail'}
-      ..headers = {'retry-after': '60'};
-    final api = ApiClient(transport: transport);
-    addTearDown(api.close);
-    await expectLater(_call('verify', api), throwsA(isA<ApiException>()
-      .having((e) => e.code, 'code', 'google_unavailable')
-      .having((e) => e.retryAfterSeconds, 'retry', 60)
-      .having((e) => e.toString(), 'redacted', isNot(contains('private-provider-detail')))));
-    transport.response = {'error': 'provider_private_secret'};
-    await expectLater(_call('verify', api), throwsA(isA<ApiException>()
-      .having((e) => e.code, 'unknown closed error', 'api_error')));
-    for (final error in ['turnstile_required', 'turnstile_invalid', 'turnstile_unavailable']) {
-      transport.statusCode = error == 'turnstile_unavailable' ? 503 : 403;
-      transport.response = {'error': error};
-      await expectLater(_call('claim', api), throwsA(isA<ApiException>()
-        .having((e) => e.code, 'anti-abuse error retained', error)));
-    }
-  });
+  test(
+    'closed public errors preserve retries and never expose provider details',
+    () async {
+      final transport = _Transport()
+        ..statusCode = 503
+        ..response = {
+          'error': 'google_unavailable',
+          'detail': 'private-provider-detail',
+        }
+        ..headers = {'retry-after': '60'};
+      final api = ApiClient(transport: transport);
+      addTearDown(api.close);
+      await expectLater(
+        _call('verify', api),
+        throwsA(
+          isA<ApiException>()
+              .having((e) => e.code, 'code', 'google_unavailable')
+              .having((e) => e.retryAfterSeconds, 'retry', 60)
+              .having(
+                (e) => e.toString(),
+                'redacted',
+                isNot(contains('private-provider-detail')),
+              ),
+        ),
+      );
+      transport.response = {'error': 'provider_private_secret'};
+      await expectLater(
+        _call('verify', api),
+        throwsA(
+          isA<ApiException>().having(
+            (e) => e.code,
+            'unknown closed error',
+            'api_error',
+          ),
+        ),
+      );
+      for (final error in [
+        'turnstile_required',
+        'turnstile_invalid',
+        'turnstile_unavailable',
+      ]) {
+        transport.statusCode = error == 'turnstile_unavailable' ? 503 : 403;
+        transport.response = {'error': error};
+        await expectLater(
+          _call('claim', api),
+          throwsA(
+            isA<ApiException>().having(
+              (e) => e.code,
+              'anti-abuse error retained',
+              error,
+            ),
+          ),
+        );
+      }
+    },
+  );
 
   test('untrusted context headers are rejected before transport', () async {
     final transport = _Transport()..response = _challenge;
     final api = ApiClient(transport: transport);
     addTearDown(api.close);
-    await expectLater(api.createGoogleChallenge(
-      browserContext: GoogleBrowserContext(
-        browserContextToken: 'fixture\r\nInjected: private', authGeneration: 1,
-        expiresAt: DateTime.utc(2099),
+    await expectLater(
+      api.createGoogleChallenge(
+        browserContext: GoogleBrowserContext(
+          browserContextToken: 'fixture\r\nInjected: private',
+          authGeneration: 1,
+          expiresAt: DateTime.utc(2099),
+        ),
+        purpose: 'authenticate',
       ),
-      purpose: 'authenticate',
-    ), throwsA(isA<ApiProtocolException>()));
+      throwsA(isA<ApiProtocolException>()),
+    );
     expect(transport.requests, isEmpty);
   });
 
-  test('all Google DTO diagnostics omit tickets, sessions, proofs and identity', () {
-    final values = <Object>[
-      GoogleBrowserContext.fromJson(Map<String, dynamic>.from(_browserJson)),
-      GoogleAuthChallenge.fromJson(Map<String, dynamic>.from(_challenge)),
-      GoogleAuthenticatedResult.fromJson(Map<String, dynamic>.from(_authenticated)),
-      GoogleContinuationResult.fromJson({
-        'status': 'registration_required', 'context_token': _ticket,
-        'expires_at': '2099-01-01T00:00:00Z',
-      }),
-      GoogleAuthContext.fromJson(Map<String, dynamic>.from(_context)),
-      GoogleGuestClaimResult.fromJson(Map<String, dynamic>.from(_claim)),
-    ];
-    for (final value in values) {
-      final diagnostic = value.toString();
-      expect(diagnostic, contains('redacted: true'));
-      for (final secret in [
-        _ticket, 'bct-fixture-private', 'fuze-fixture-private',
-        'fixture@example.test', 'guest-fixture',
-      ]) {
-        expect(diagnostic, isNot(contains(secret)));
+  test(
+    'all Google DTO diagnostics omit tickets, sessions, proofs and identity',
+    () {
+      final values = <Object>[
+        GoogleBrowserContext.fromJson(Map<String, dynamic>.from(_browserJson)),
+        GoogleAuthChallenge.fromJson(Map<String, dynamic>.from(_challenge)),
+        GoogleAuthenticatedResult.fromJson(
+          Map<String, dynamic>.from(_authenticated),
+        ),
+        GoogleContinuationResult.fromJson({
+          'status': 'registration_required',
+          'context_token': _ticket,
+          'expires_at': '2099-01-01T00:00:00Z',
+        }),
+        GoogleAuthContext.fromJson(Map<String, dynamic>.from(_context)),
+        GoogleGuestClaimResult.fromJson(Map<String, dynamic>.from(_claim)),
+      ];
+      for (final value in values) {
+        final diagnostic = value.toString();
+        expect(diagnostic, contains('redacted: true'));
+        for (final secret in [
+          _ticket,
+          'bct-fixture-private',
+          'fuze-fixture-private',
+          'fixture@example.test',
+          'guest-fixture',
+        ]) {
+          expect(diagnostic, isNot(contains(secret)));
+        }
       }
-    }
-  });
+    },
+  );
 
   test('malformed and combined Google outcomes cannot become sessions', () {
     for (final invalid in <Map<String, dynamic>>[
@@ -405,22 +577,41 @@ void main() {
       {..._authenticated, 'identity_kind': 'guest'},
       {..._authenticated, 'expires_at': 'invalid'},
     ]) {
-      expect(() => GoogleAuthenticatedResult.fromJson(invalid), throwsFormatException);
+      expect(
+        () => GoogleAuthenticatedResult.fromJson(invalid),
+        throwsFormatException,
+      );
     }
     for (final generation in <Object?>[null, '1', 1.5, 0, -1]) {
-      expect(() => GoogleBrowserContext.fromJson({
-        ..._browserJson, 'auth_generation': generation,
-      }), throwsFormatException);
+      expect(
+        () => GoogleBrowserContext.fromJson({
+          ..._browserJson,
+          'auth_generation': generation,
+        }),
+        throwsFormatException,
+      );
     }
-    expect(() => GoogleContinuationResult.fromJson({
-      'status': 'guest_claim_required', 'context_token': _ticket,
-      'expires_at': '2099-01-01T00:00:00Z', 'access_token': 'unsafe',
-    }), throwsFormatException);
-    expect(() => GoogleAuthContext.fromJson({..._context, 'purpose': 'delete'}),
-        throwsFormatException);
-    expect(() => GoogleAuthContext.fromJson({..._context, 'email_verified': 'true'}),
-        throwsFormatException);
-    expect(() => GoogleGuestClaimResult.fromJson({..._claim, 'email_verified': null}),
-        throwsFormatException);
+    expect(
+      () => GoogleContinuationResult.fromJson({
+        'status': 'guest_claim_required',
+        'context_token': _ticket,
+        'expires_at': '2099-01-01T00:00:00Z',
+        'access_token': 'unsafe',
+      }),
+      throwsFormatException,
+    );
+    expect(
+      () => GoogleAuthContext.fromJson({..._context, 'purpose': 'delete'}),
+      throwsFormatException,
+    );
+    expect(
+      () => GoogleAuthContext.fromJson({..._context, 'email_verified': 'true'}),
+      throwsFormatException,
+    );
+    expect(
+      () =>
+          GoogleGuestClaimResult.fromJson({..._claim, 'email_verified': null}),
+      throwsFormatException,
+    );
   });
 }

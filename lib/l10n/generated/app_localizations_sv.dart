@@ -47,7 +47,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Din session har ogiltigförklarats. VPN stängs av och sessionen rensas…';
+      'Sessionen avslutas: VPN stängs av och sessionsdata rensas…';
 
   @override
   String get session_stopFailed =>
@@ -424,6 +424,9 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Namnlös enhet';
+
+  @override
   String get action_remove => 'Ta bort';
 
   @override
@@ -463,6 +466,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Programvara som används i appen';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Källkod för appen och dess komponenter under MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -545,7 +553,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get notice_rateLimited_title => 'För många försök';
 
   @override
-  String get notice_deviceLimit_title => 'Gränsen på två enheter har nåtts';
+  String get notice_deviceLimit_title => 'Enhetsgränsen har nåtts';
 
   @override
   String get notice_deviceLimit_message =>
@@ -645,7 +653,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'vpn_sign_in_required': 'Inloggning krävs',
       'protocol_unavailable_at_location': 'Protokollet är inte tillgängligt',
       'vpn_permission_denied': 'VPN-behörighet nekades',
-      'revoked_identity_device_limit': 'Gränsen på två enheter har nåtts',
+      'revoked_identity_device_limit': 'Enhetsgränsen har nåtts',
       'tunnel_start_unexpected': 'VPN kunde inte starta',
       'flutter_disconnect_timeout': 'Frånkopplingen har inte bekräftats',
       'flutter_disconnect_unexpected': 'Det gick inte att koppla från',
@@ -660,6 +668,7 @@ class AppLocalizationsSv extends AppLocalizations {
           'Platsbytet har inte bekräftats',
       'location_migration_device_changed': 'Enheten ändrades under platsbytet',
       'tunnel_stop_failed': 'Platsbyte är inte tillgängligt',
+      'device_clock_ahead': 'Enhetens klocka går före',
       'other': 'Åtgärden misslyckades',
     });
     return '$_temp0';
@@ -709,6 +718,8 @@ class AppLocalizationsSv extends AppLocalizations {
           'Enheten som servern returnerade stämmer inte längre överens med den som ändras. Uppdatera enheterna innan du försöker igen.',
       'tunnel_stop_failed':
           'Den tidigare tunneln måste vara helt avstängd innan den nya anslutningen kan startas.',
+      'device_clock_ahead':
+          'Klockan på den här enheten verkar gå före. Aktivera automatiskt datum och tid för att förbli inloggad.',
       'other':
           'Åtgärden kunde inte slutföras. Försök igen eller skicka diagnostikkoden till supporten.',
     });
@@ -831,8 +842,36 @@ class AppLocalizationsSv extends AppLocalizations {
   String get notice_retryLater => 'Försök igen om en liten stund.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Försök igen om $seconds sekunder.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Försök igen om $seconds sekunder.',
+      one: 'Försök igen om $seconds sekund.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Försök igen om $minutes minuter.',
+      one: 'Försök igen om $minutes minut.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Försök igen om $hours timmar.',
+      one: 'Försök igen om $hours timme.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -950,6 +989,9 @@ class AppLocalizationsSv extends AppLocalizations {
       'secure_storage_write_failed': 'Säker skrivning misslyckades',
       'key_generation_failed': 'Det gick inte att skapa WireGuard-nyckeln',
       'csr_generation_failed': 'Det gick inte att skapa OpenVPN CSR',
+      'openvpn_recovery_exhausted': 'OpenVPN-återställning redan använd',
+      'openvpn_recovery_failed': 'OpenVPN-återställningen misslyckades',
+      'openvpn_renewal_required': 'OpenVPN-certifikatet måste förnyas',
       'other': 'Okategoriserat inbyggt VPN-fel',
     });
     return '$_temp0';
@@ -1784,6 +1826,14 @@ class AppLocalizationsSv extends AppLocalizations {
   String get billing_playManaged => 'Ditt abonnemang hanteras via Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Ditt Google Play-abonnemang är pausat eller väntar på betalning. Öppna ”Hantera abonnemang” för att åtgärda det i Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Det här Google Play-kontot har redan ett Fuze Premium-abonnemang som inte är aktivt för det här FuzeVPN-kontot. Öppna ”Hantera abonnemang” för att granska det i Google Play.';
+
+  @override
   String get billing_inactive => 'Inget aktivt abonnemang.';
 
   @override
@@ -2036,6 +2086,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get google_rateLimited => 'Vänta innan du försöker igen.';
 
   @override
+  String get google_busy =>
+      'Google är inte tillgängligt medan en annan åtgärd pågår (VPN-anslutning, konto eller gäst). Försök igen när den är klar; din nuvarande åtkomst behålls.';
+
+  @override
   String get google_invalidPassword =>
       'FuzeVPN-lösenordet är fel. Ditt nuvarande konto behålls.';
 
@@ -2066,6 +2120,36 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Säkerhetskontrollen är inte tillgänglig. Försök senare.';
+
+  @override
+  String get google_intentMismatch =>
+      'Ett tidigare inloggningsförsök med Google väntar fortfarande. Avbryt det innan du startar den här åtgärden.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Den säkerhetskontroll som krävs är inte tillgänglig i den här appen. Åtgärden kan inte slutföras just nu.';
+
+  @override
+  String get google_solveChallenge => 'Genomför säkerhetskontrollen';
+
+  @override
+  String get google_challengeTitle => 'Säkerhetskontroll';
+
+  @override
+  String get google_challengeReady =>
+      'Verifieringen är klar. Du kan nu bekräfta att ditt konto ska skapas.';
+
+  @override
+  String get google_challengeExpired =>
+      'Verifieringen har gått ut. Genomför den igen innan du bekräftar.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Verifieringen avbröts. Du kan göra om den.';
+
+  @override
+  String get google_challengeFailed =>
+      'Säkerhetskontrollen misslyckades. Försök igen.';
 
   @override
   String get billing_trialTitle => 'Prova Fuze Premium gratis';

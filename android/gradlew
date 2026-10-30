@@ -3,13 +3,14 @@
 # Copyright © 2015-2026 the original authors.
 # SPDX-License-Identifier: Apache-2.0
 #
-# Self-contained wrapper bootstrap. Gradle no longer reliably publishes the
-# small wrapper JAR as a standalone artifact, so this verifies the exact
-# 9.5.0 binary distribution before executing its own Gradle launcher. This is
+# Self-contained wrapper bootstrap. It verifies the exact 9.8.2 binary
+# distribution before executing its own Gradle launcher. This is
 # intentionally equivalent to the version/checksum in wrapper.properties.
+# gradle/wrapper/gradle-wrapper.jar is the unmodified official 9.8.2 wrapper
+# JAR (gradle-9.8.2-wrapper.jar.sha256); this script does not execute it.
 
-GRADLE_VERSION=9.5.0
-GRADLE_SHA256=553c78f50dafcd54d65b9a444649057857469edf836431389695608536d6b746
+GRADLE_VERSION=9.8.2
+GRADLE_SHA256=21bd5da2de49b642904077f38c0efdc7778e92b3ed0889392dca61b97e389607
 GRADLE_URL="https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
 GRADLE_HOME_BASE=${GRADLE_USER_HOME:-"$HOME/.gradle"}
 DIST_ROOT="$GRADLE_HOME_BASE/wrapper/dists/fuzevpn-gradle-${GRADLE_VERSION}"

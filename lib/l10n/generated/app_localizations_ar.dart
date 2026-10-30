@@ -46,7 +46,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get session_endingTitle => 'إنهاء الجلسة';
 
   @override
-  String get session_ending => 'أُبطلت جلستك. جارٍ إيقاف VPN ومسح الجلسة…';
+  String get session_ending =>
+      'جارٍ إنهاء الجلسة: إيقاف VPN ومسح بيانات الجلسة…';
 
   @override
   String get session_stopFailed =>
@@ -417,6 +418,9 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'جهاز بدون اسم';
+
+  @override
   String get action_remove => 'إزالة';
 
   @override
@@ -455,6 +459,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'البرامج المستخدمة في التطبيق';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'الشفرة المصدرية للتطبيق ولمكوناته المرخّصة بموجب MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -537,7 +546,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notice_rateLimited_title => 'محاولات كثيرة جدًا';
 
   @override
-  String get notice_deviceLimit_title => 'تم بلوغ حد جهازين';
+  String get notice_deviceLimit_title => 'تم بلوغ حد الأجهزة';
 
   @override
   String get notice_deviceLimit_message =>
@@ -633,7 +642,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'vpn_sign_in_required': 'تسجيل الدخول مطلوب',
       'protocol_unavailable_at_location': 'البروتوكول غير متاح',
       'vpn_permission_denied': 'رُفض إذن VPN',
-      'revoked_identity_device_limit': 'تم بلوغ حد جهازين',
+      'revoked_identity_device_limit': 'تم بلوغ حد الأجهزة',
       'tunnel_start_unexpected': 'تعذر تشغيل VPN',
       'flutter_disconnect_timeout': 'لم يُؤكَّد قطع الاتصال',
       'flutter_disconnect_unexpected': 'تعذر قطع الاتصال',
@@ -647,6 +656,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'location_migration_verification_failed': 'لم يُؤكَّد تغيير الموقع',
       'location_migration_device_changed': 'تغيّر الجهاز أثناء تغيير الموقع',
       'tunnel_stop_failed': 'تغيير الموقع غير متاح',
+      'device_clock_ahead': 'ساعة الجهاز متقدّمة',
       'other': 'فشلت العملية',
     });
     return '$_temp0';
@@ -692,6 +702,8 @@ class AppLocalizationsAr extends AppLocalizations {
           'لم يعد الجهاز الذي أعاده الخادم مطابقًا للجهاز الجاري تغييره. حدّث الأجهزة قبل المحاولة مرة أخرى.',
       'tunnel_stop_failed':
           'يجب إيقاف النفق السابق بالكامل قبل الاتصال الجديد.',
+      'device_clock_ahead':
+          'يبدو أن ساعة هذا الجهاز متقدّمة. فعّل ضبط التاريخ والوقت تلقائيًا للبقاء مسجّلًا الدخول.',
       'other':
           'تعذر إكمال العملية. حاول مرة أخرى أو أرسل رمز التشخيص إلى الدعم.',
     });
@@ -803,8 +815,48 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notice_retryLater => 'حاول مرة أخرى بعد لحظات.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'حاول مرة أخرى بعد $seconds ثانية.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'حاول مرة أخرى بعد $seconds ثانية.',
+      many: 'حاول مرة أخرى بعد $seconds ثانية.',
+      few: 'حاول مرة أخرى بعد $seconds ثوانٍ.',
+      two: 'حاول مرة أخرى بعد $seconds ثانيتين.',
+      one: 'حاول مرة أخرى بعد $seconds ثانية.',
+      zero: 'حاول مرة أخرى بعد $seconds ثانية.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'حاول مرة أخرى بعد $minutes دقيقة.',
+      many: 'حاول مرة أخرى بعد $minutes دقيقة.',
+      few: 'حاول مرة أخرى بعد $minutes دقائق.',
+      two: 'حاول مرة أخرى بعد $minutes دقيقتين.',
+      one: 'حاول مرة أخرى بعد $minutes دقيقة.',
+      zero: 'حاول مرة أخرى بعد $minutes دقيقة.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'حاول مرة أخرى بعد $hours ساعة.',
+      many: 'حاول مرة أخرى بعد $hours ساعة.',
+      few: 'حاول مرة أخرى بعد $hours ساعات.',
+      two: 'حاول مرة أخرى بعد $hours ساعتين.',
+      one: 'حاول مرة أخرى بعد $hours ساعة.',
+      zero: 'حاول مرة أخرى بعد $hours ساعة.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -908,6 +960,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'secure_storage_write_failed': 'فشلت الكتابة الآمنة',
       'key_generation_failed': 'تعذر إنشاء مفتاح WireGuard',
       'csr_generation_failed': 'تعذر إنشاء CSR لـ OpenVPN',
+      'openvpn_recovery_exhausted': 'استعادة OpenVPN مستخدمة بالفعل',
+      'openvpn_recovery_failed': 'فشلت استعادة OpenVPN',
+      'openvpn_renewal_required': 'يلزم تجديد شهادة OpenVPN',
       'other': 'خطأ غير مصنف في VPN الأصلي',
     });
     return '$_temp0';
@@ -1727,6 +1782,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get billing_playManaged => 'تتم إدارة اشتراكك عبر Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'اشتراكك في Google Play معلّق أو بانتظار الدفع. افتح «إدارة الاشتراك» لتسويته في Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'يملك حساب Google Play هذا اشتراكًا في Fuze Premium غير نشط لحساب FuzeVPN هذا. افتح «إدارة الاشتراك» لمراجعته في Google Play.';
+
+  @override
   String get billing_inactive => 'لا يوجد اشتراك نشط.';
 
   @override
@@ -1970,6 +2033,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get google_rateLimited => 'يرجى الانتظار قبل المحاولة مجددًا.';
 
   @override
+  String get google_busy =>
+      'تسجيل الدخول باستخدام Google غير متاح أثناء تنفيذ عملية أخرى (اتصال VPN أو الحساب أو الضيف). أعد المحاولة بعد انتهائها؛ سيبقى وصولك الحالي كما هو.';
+
+  @override
   String get google_invalidPassword =>
       'كلمة مرور FuzeVPN غير صحيحة. حسابك الحالي محفوظ.';
 
@@ -1998,6 +2065,35 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'التحقق الأمني غير متاح. حاول لاحقًا.';
+
+  @override
+  String get google_intentMismatch =>
+      'لا تزال محاولة سابقة لتسجيل الدخول باستخدام Google معلّقة. ألغِها قبل بدء هذه العملية.';
+
+  @override
+  String get google_challengeBlocked =>
+      'التحقق الأمني المطلوب غير متاح في هذا التطبيق. لا يمكن إكمال هذه العملية حاليًا.';
+
+  @override
+  String get google_solveChallenge => 'إجراء التحقق الأمني';
+
+  @override
+  String get google_challengeTitle => 'التحقق الأمني';
+
+  @override
+  String get google_challengeReady =>
+      'اكتمل التحقق. يمكنك الآن تأكيد إنشاء حسابك.';
+
+  @override
+  String get google_challengeExpired =>
+      'انتهت صلاحية التحقق. أجرِه مرة أخرى قبل التأكيد.';
+
+  @override
+  String get google_challengeCancelled =>
+      'أُلغي التحقق. يمكنك إجراؤه مرة أخرى.';
+
+  @override
+  String get google_challengeFailed => 'فشل التحقق الأمني. حاول مرة أخرى.';
 
   @override
   String get billing_trialTitle => 'جرّب Fuze Premium مجانًا';

@@ -31,11 +31,9 @@ import java.security.cert.X509Certificate
 import java.security.spec.ECGenParameterSpec
 import java.time.Instant
 import java.util.Locale
-import java.util.concurrent.Callable
-import java.util.concurrent.ExecutionException
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
+import java.util.concurrent.atomic.AtomicLong
 
 /**
  * Android-specific OpenVPN 3 Core host. It retains no private key outside the
@@ -74,6 +72,9 @@ internal class OpenVpnController(context: Context) {
     // late-created handle before another session or identity edit is admitted.
     private var pendingCreation: OwnedNativeHandleCreation? = null
 
+    private var pendingDestruction: OwnedNativeHandleDestruction? = null
+    private val cancellationEpoch = AtomicLong()
+
     @Volatile
     private var activeSession: ActiveSession? = null
 
@@ -92,6 +93,19 @@ internal class OpenVpnController(context: Context) {
     /** A timed-out native call means a later call must not start another TUN. */
     @Volatile
     private var operationUncertain = false
+
+    // Late JNI completions are reconciled against the fields above before any
+    // caller concludes that a native session may still be running (A09-01).
+    private val ownedNative = OwnedNativeOperations(object : OwnedNativeOperations.Owner {
+        override var nativeHandle by this@OpenVpnController::nativeHandle
+        override var operationUncertain by this@OpenVpnController::operationUncertain
+        override var pendingCreation by this@OpenVpnController::pendingCreation
+        override var pendingDestruction by this@OpenVpnController::pendingDestruction
+        override fun released(destroyed: Boolean) {
+            activeSession = null
+            if (destroyed) sessionEvents.finish()
+        }
+    }, DESTROY_TIMEOUT_MS)
 
     @Volatile
     var provenNetworkFamilies: List<String> = emptyList()
@@ -153,8 +167,9 @@ internal class OpenVpnController(context: Context) {
     }
 
     fun cancelPendingConnection() {
+        cancellationEpoch.incrementAndGet()
         clearConnectionIdentity()
-        sessionEvents.interrupt("session_operation_cancelled", requireProof = false)
+        sessionEvents.cancelPendingConnection()
     }
 
     fun isCoreAvailable(): Boolean = OpenVpnNative.isCoreAvailable()
@@ -301,11 +316,11 @@ internal class OpenVpnController(context: Context) {
      */
     suspend fun getOrCreateCsr(accountId: String, deviceId: String, renewal: Boolean = false): String =
         operationMutex.withLock {
-            clearConnectionIdentity()
             revocations.requireUsable(accountId, deviceId)
-            if (!reconcilePendingCreationLocked() || nativeHandle != 0L || operationUncertain) {
+            if (ownedNative.nativeSessionInUse()) {
                 throw VpnNativeException("openvpn_identity_in_use")
             }
+            clearConnectionIdentity()
             val identity = if (renewal) {
                 pendingRenewalIdentityFor(accountId, deviceId)
             } else {
@@ -401,8 +416,10 @@ internal class OpenVpnController(context: Context) {
         timing: NativeConnectionTiming.TraceContext? = null,
         isCurrent: () -> Boolean = { true },
     ): OpenVpnStartResult = operationMutex.withLock {
+        val cancellation = cancellationEpoch.get()
+        fun requestIsCurrent() = cancellationEpoch.get() == cancellation && isCurrent()
         clearConnectionIdentity()
-        if (!isCurrent()) return@withLock failed("session_operation_cancelled")
+        if (!requestIsCurrent()) return@withLock failed("session_operation_cancelled")
         revocations.requireUsable(accountId, deviceId)
         val renewal = activation["renewal"] as? Boolean ?: false
         val previousIdentity = try {
@@ -478,7 +495,7 @@ internal class OpenVpnController(context: Context) {
             ) {
                 return@withLock failed("openvpn_migration_certificate_mismatch")
             }
-            if (!isCurrent()) return@withLock failed("session_operation_cancelled")
+            if (!requestIsCurrent()) return@withLock failed("session_operation_cancelled")
             NativeConnectionTiming.span(timing, "openvpn_identity_profile_persist") {
                 persistActivation(identity, validatedProfile, renewal)
             }
@@ -505,7 +522,7 @@ internal class OpenVpnController(context: Context) {
         // ready profile and is intentionally no longer used.
         if (!hasUsableNetwork()) return@withLock failed("network_unavailable")
 
-        val started = startValidatedProfileLocked(identity, profile.canonical, profile.network, isCurrent, timing)
+        val started = startValidatedProfileLocked(identity, profile.canonical, profile.network, ::requestIsCurrent, timing)
         if (started.isConnected()) {
             lastValidatedSession = identity
             if (renewal && previousIdentity.identityAlias != identity.identityAlias) {
@@ -523,8 +540,10 @@ internal class OpenVpnController(context: Context) {
      */
     suspend fun reconnectLocal(accountId: String, deviceId: String, expectedNetwork: TunnelNetworkSpec? = null, isCurrent: () -> Boolean = { true }): OpenVpnStartResult =
         operationMutex.withLock {
+        val cancellation = cancellationEpoch.get()
+        fun requestIsCurrent() = cancellationEpoch.get() == cancellation && isCurrent()
         clearConnectionIdentity()
-        if (!isCurrent()) return@withLock failed("session_operation_cancelled")
+        if (!requestIsCurrent()) return@withLock failed("session_operation_cancelled")
         revocations.requireUsable(accountId, deviceId)
         // Recheck under the identity mutex: renewal can begin after the bridge
         // preflight while it is preparing the foreground service.
@@ -592,7 +611,7 @@ internal class OpenVpnController(context: Context) {
             return@withLock failed("openvpn_network_metadata_invalid")
         }
         if (expectedNetwork != null && expectedNetwork != network) return@withLock failed("openvpn_network_metadata_invalid")
-        val started = startValidatedProfileLocked(identity, canonicalProfile, network, isCurrent)
+        val started = startValidatedProfileLocked(identity, canonicalProfile, network, ::requestIsCurrent)
         if (started.isConnected()) {
             connectionIdentity = newConnectionIdentity(
                 identity = identity,
@@ -639,7 +658,6 @@ internal class OpenVpnController(context: Context) {
         clearTile: () -> Unit,
         publish: (OpenVpnRevocationState) -> Unit,
     ): OpenVpnRevocationState = operationMutex.withLock {
-        clearConnectionIdentity()
         revocations.clean(target, checkCurrent,
             matchesCsr = {
                 // Only the active CSR and the current pending renewal may authorize cleanup.
@@ -651,11 +669,15 @@ internal class OpenVpnController(context: Context) {
                     secureStore.read(identity.scope, csrSlot(identity.identityId))?.let(::sha256) == target.csrSha256
                 }
             },
-            admitted = admitted,
+            admitted = {
+                admitted()
+                clearConnectionIdentity()
+            },
             stop = {
                 val active = activeSession
-                if ((nativeHandle != 0L || operationUncertain) &&
-                    (active?.accountId != target.accountId || active.deviceId != target.deviceId)) false
+                // Only a session that may still run blocks another device's cleanup (A09-01).
+                if ((active?.accountId != target.accountId || active.deviceId != target.deviceId) &&
+                    ownedNative.nativeSessionInUse()) false
                 else stopCurrentLocked()
             },
             clearIdentity = { clearIdentityLocked(target.accountId, target.deviceId) },
@@ -670,7 +692,7 @@ internal class OpenVpnController(context: Context) {
     }
 
     private fun clearIdentityLocked(accountId: String, deviceId: String) {
-        if (!reconcilePendingCreationLocked() || nativeHandle != 0L || operationUncertain) {
+        if (ownedNative.nativeSessionInUse()) {
             throw VpnNativeException("openvpn_identity_in_use")
         }
         try {
@@ -698,7 +720,7 @@ internal class OpenVpnController(context: Context) {
         } catch (error: Exception) {
             throw VpnNativeException("invalid_account_id", error)
         }
-        if (!reconcilePendingCreationLocked() || nativeHandle != 0L || operationUncertain) {
+        if (ownedNative.nativeSessionInUse()) {
             throw VpnNativeException("openvpn_identity_in_use")
         }
         try {
@@ -722,6 +744,7 @@ internal class OpenVpnController(context: Context) {
             publish(OpenVpnNativeState.error("openvpn_stop_timeout"))
             return false
         }
+        if (pendingDestruction != null) return finishNativeDestructionLocked(timing)
         val handle = nativeHandle
         if (handle == 0L) {
             activeSession = null
@@ -738,24 +761,28 @@ internal class OpenVpnController(context: Context) {
                 publish(OpenVpnNativeState.error("openvpn_stop_timeout"))
                 false
             } else {
-                val destroyed = NativeConnectionTiming.span(timing, "openvpn_stop_worker") {
-                    callNative(DESTROY_TIMEOUT_MS) { OpenVpnNative.destroy(handle) }
-                }
-                if (!destroyed) {
-                    operationUncertain = true
-                    publish(OpenVpnNativeState.error("openvpn_stop_timeout"))
-                    return false
-                }
-                nativeHandle = 0L
-                activeSession = null
-                operationUncertain = false
-                sessionEvents.finish()
-                true
+                pendingDestruction = OwnedNativeHandleDestruction(nativeExecutor, handle, OpenVpnNative::destroy)
+                finishNativeDestructionLocked(timing)
             }
         } catch (error: VpnNativeException) {
             publish(OpenVpnNativeState.error(error.code))
             false
         }
+    }
+
+    private fun finishNativeDestructionLocked(timing: NativeConnectionTiming.TraceContext? = null): Boolean {
+        val outcome = ownedNative.reconcileDestruction { destruction ->
+            NativeConnectionTiming.span(timing, "openvpn_stop_worker") { destruction.awaitCompleted(DESTROY_TIMEOUT_MS) }
+        }
+        val failure = when (outcome) {
+            OwnedNativeOperations.Destruction.DESTROYED -> return true
+            OwnedNativeOperations.Destruction.NONE -> return false
+            OwnedNativeOperations.Destruction.REFUSED -> "openvpn_stop_timeout"
+            // The same future is kept until it supplies an actual completion proof.
+            OwnedNativeOperations.Destruction.PENDING -> "openvpn_operation_timeout"
+        }
+        publish(OpenVpnNativeState.error(failure))
+        return false
     }
 
     private suspend fun startValidatedProfileLocked(
@@ -807,6 +834,7 @@ internal class OpenVpnController(context: Context) {
             stopCurrentLocked()
             throw cancelled
         }
+        if (!isCurrent()) return failAndStopLocked("session_operation_cancelled")
         if (terminal?.isConnected() == true && isConnected()) {
             return OpenVpnStartResult.connected()
         }
@@ -1041,41 +1069,10 @@ internal class OpenVpnController(context: Context) {
     }
 
     /** Called with the identity mutex held; success is a proof of destruction. */
-    private fun reconcilePendingCreationLocked(): Boolean {
-        val creation = pendingCreation ?: return true
-        return try {
-            if (!creation.awaitReleased(DESTROY_TIMEOUT_MS)) {
-                operationUncertain = true
-                false
-            } else {
-                pendingCreation = null
-                operationUncertain = false
-                activeSession = null
-                true
-            }
-        } catch (error: Exception) {
-            if (error is InterruptedException) Thread.currentThread().interrupt()
-            operationUncertain = true
-            false
-        }
-    }
+    private fun reconcilePendingCreationLocked(): Boolean = ownedNative.reconcileCreation()
 
-    private fun <T> callNative(timeoutMillis: Long, block: () -> T): T {
-        val future = nativeExecutor.submit(Callable { block() })
-        return try {
-            future.get(timeoutMillis, TimeUnit.MILLISECONDS)
-        } catch (error: TimeoutException) {
-            future.cancel(true)
-            operationUncertain = true
-            throw VpnNativeException("openvpn_operation_timeout", error)
-        } catch (error: ExecutionException) {
-            throw VpnNativeException("openvpn_native_failed", error.cause ?: error)
-        } catch (error: InterruptedException) {
-            Thread.currentThread().interrupt()
-            operationUncertain = true
-            throw VpnNativeException("openvpn_operation_timeout", error)
-        }
-    }
+    private fun <T> callNative(timeoutMillis: Long, block: () -> T): T =
+        callBoundedNative(nativeExecutor, timeoutMillis, { operationUncertain = true }, block)
 
     private fun publish(state: OpenVpnNativeState) {
         sessionEvents.publish(sessionGeneration, state)
@@ -1339,12 +1336,13 @@ internal class OpenVpnController(context: Context) {
                 val certificate = requiredPem(values, "certificate_pem", MAX_CERTIFICATE_LENGTH)
                 val ca = requiredPem(values, "ca_certificate_pem", MAX_CERTIFICATE_LENGTH)
                 val tlsCrypt = requiredPrintable(values, "tls_crypt_v2_client_key", MAX_TLS_CRYPT_LENGTH)
-                val endpoint = requiredIpv4(requiredText(values, "endpoint", MAX_IPV4_LENGTH))
-                val address = requiredAddress32(requiredText(values, "address", MAX_ADDRESS_LENGTH))
+                // IPv4 fields are read as sent: surrounding spaces are refused as in Dart (C5-05).
+                val endpoint = requiredIpv4(requiredText(values, "endpoint", MAX_IPV4_LENGTH, trim = false))
+                val address = requiredAddress32(requiredText(values, "address", MAX_ADDRESS_LENGTH, trim = false))
                 val serverName = requiredText(values, "server_name", MAX_SERVER_NAME_LENGTH)
                 if (!SERVER_NAME_PATTERN.matches(serverName)) throw VpnNativeException("openvpn_activation_invalid")
                 if (values["remote_cert_tls_server"] != true) throw VpnNativeException("openvpn_tls_verification_required")
-                val dns = requiredStringList(values, "dns", 1, MAX_DNS_SERVERS).map(::requiredIpv4)
+                val dns = requiredStringList(values, "dns", 1, MAX_DNS_SERVERS, trim = false).map(::requiredIpv4)
                 val ciphers = requiredStringList(values, "ciphers", 1, MAX_CIPHERS)
                 if (ciphers.any { it !in MODERN_CIPHERS } || ciphers.distinct().size != ciphers.size) {
                     throw VpnNativeException("openvpn_cipher_invalid")
@@ -1359,8 +1357,8 @@ internal class OpenVpnController(context: Context) {
                     TunnelNetworkSpec.from(values, legacyOpenVpn = true))
             }
 
-            private fun requiredText(values: Map<String, Any?>, name: String, maximum: Int): String =
-                (values[name] as? String)?.trim()?.takeIf { it.isNotEmpty() && it.length <= maximum }
+            private fun requiredText(values: Map<String, Any?>, name: String, maximum: Int, trim: Boolean = true): String =
+                (values[name] as? String)?.let { if (trim) it.trim() else it }?.takeIf { it.isNotEmpty() && it.length <= maximum }
                     ?: throw VpnNativeException("openvpn_activation_invalid")
 
             private fun requiredPrintable(values: Map<String, Any?>, name: String, maximum: Int): String {
@@ -1377,26 +1375,26 @@ internal class OpenVpnController(context: Context) {
                 return value
             }
 
-            private fun requiredStringList(values: Map<String, Any?>, name: String, minimum: Int, maximum: Int): List<String> {
+            private fun requiredStringList(values: Map<String, Any?>, name: String, minimum: Int, maximum: Int, trim: Boolean = true): List<String> {
                 val list = values[name] as? List<*> ?: throw VpnNativeException("openvpn_activation_invalid")
                 if (list.size !in minimum..maximum) throw VpnNativeException("openvpn_activation_invalid")
                 return list.map { value ->
-                    (value as? String)?.trim()?.takeIf { it.isNotEmpty() && it.length <= MAX_LIST_ITEM_LENGTH }
+                    (value as? String)?.let { if (trim) it.trim() else it }?.takeIf { it.isNotEmpty() && it.length <= MAX_LIST_ITEM_LENGTH }
                         ?: throw VpnNativeException("openvpn_activation_invalid")
                 }
             }
 
+            // Only the canonical dotted decimal of TunnelNetworkSpec.numericAddress,
+            // which Dart requires too: other forms are refused, never normalized (C5-05).
             private fun requiredIpv4(value: String): String {
-                val octets = value.split('.')
-                if (octets.size != 4) throw VpnNativeException("openvpn_activation_invalid")
-                val parsed = octets.map { octet ->
-                    if (octet.isEmpty() || octet.length > 3 || octet.any { !it.isDigit() }) {
-                        throw VpnNativeException("openvpn_activation_invalid")
-                    }
-                    octet.toIntOrNull()?.takeIf { it in 0..255 }
-                        ?: throw VpnNativeException("openvpn_activation_invalid")
+                val canonical = ':' !in value && try {
+                    TunnelNetworkSpec.numericAddress(value)
+                    true
+                } catch (_: Exception) {
+                    false
                 }
-                return parsed.joinToString(".")
+                if (!canonical) throw VpnNativeException("openvpn_activation_invalid")
+                return value
             }
 
             private fun requiredAddress32(value: String): String {

@@ -63,14 +63,63 @@ bool ClearException(JNIEnv* env) {
   return true;
 }
 
+template <typename T>
+class LocalRef final {
+ public:
+  LocalRef(JNIEnv* env, T value) noexcept : env_(env), value_(value) {}
+  ~LocalRef() { if (value_ != nullptr) env_->DeleteLocalRef(value_); }
+  T get() const noexcept { return value_; }
+  T release() noexcept { return std::exchange(value_, nullptr); }
+  LocalRef(const LocalRef&) = delete;
+  LocalRef& operator=(const LocalRef&) = delete;
+
+ private:
+  JNIEnv* env_;
+  T value_;
+};
+
+jstring NewUtfString(JNIEnv* env, const char* value) {
+  LocalRef<jstring> result(env, env->NewStringUTF(value));
+  if (ClearException(env)) return nullptr;
+  return result.release();
+}
+
+template <typename T, typename Function>
+T JniGuard(JNIEnv* env, T failure, Function&& operation, bool unreadable_state = false) noexcept {
+  try {
+    return operation();
+  } catch (...) {
+    // C++ exceptions cannot cross a JNI transition. Never expose their text.
+    ClearException(env);
+    if (unreadable_state && env != nullptr) {
+      // A failed proof query must reach Kotlin as unknown, never as a false
+      // assertion that the engine stopped. Throw only a stable category.
+      LocalRef<jclass> type(env, env->FindClass("java/lang/IllegalStateException"));
+      if (type.get() != nullptr && !env->ExceptionCheck()) {
+        env->ThrowNew(type.get(), "openvpn_native_state_unavailable");
+      }
+    }
+    return failure;
+  }
+}
+
 std::optional<std::string> ReadUtf8(JNIEnv* env, jstring value, size_t maximum) {
   if (env == nullptr || value == nullptr) return std::nullopt;
   const jsize bytes = env->GetStringUTFLength(value);
+  if (ClearException(env)) return std::nullopt;
   if (bytes < 0 || static_cast<size_t>(bytes) > maximum) return std::nullopt;
   const char* chars = env->GetStringUTFChars(value, nullptr);
-  if (chars == nullptr || ClearException(env)) return std::nullopt;
+  // Always clear/check before testing a null result: || in the other order
+  // skips this operation exactly when JNI leaves OutOfMemoryError pending.
+  const bool failed = ClearException(env);
+  struct Lease {
+    JNIEnv* env;
+    jstring value;
+    const char* chars;
+    ~Lease() { if (chars != nullptr) env->ReleaseStringUTFChars(value, chars); }
+  } lease{env, value, chars};
+  if (failed || chars == nullptr) return std::nullopt;
   std::string result(chars, static_cast<size_t>(bytes));
-  env->ReleaseStringUTFChars(value, chars);
   return result;
 }
 
@@ -170,30 +219,25 @@ class JniPlatformCallbacks final : public PlatformCallbacks {
       return;
     }
     callback_ = env->NewGlobalRef(callback);
-    if (callback_ == nullptr || ClearException(env)) {
+    if (ClearException(env) || callback_ == nullptr) {
+      if (callback_ != nullptr) env->DeleteGlobalRef(callback_);
       callback_ = nullptr;
       return;
     }
-    jclass callback_class = env->GetObjectClass(callback);
-    if (callback_class == nullptr || ClearException(env)) {
+    LocalRef<jclass> callback_class(env, env->GetObjectClass(callback));
+    if (ClearException(env) || callback_class.get() == nullptr) {
       Release(env);
       return;
     }
-    on_state_ = env->GetMethodID(callback_class, "onNativeState",
-                                 "(Ljava/lang/String;Ljava/lang/String;)V");
-    on_tun_ = env->GetMethodID(callback_class, "onTunConfiguration",
-                               "(Ljava/lang/String;)I");
-    on_protect_ = env->GetMethodID(callback_class, "onProtectSocket", "(I)Z");
-    on_certificate_ = env->GetMethodID(callback_class, "onPkiCertificate",
-                                       "(Ljava/lang/String;)Ljava/lang/String;");
-    on_sign_ = env->GetMethodID(
-        callback_class, "onPkiSign",
-        "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;");
-    env->DeleteLocalRef(callback_class);
-    if (ClearException(env) || on_state_ == nullptr || on_tun_ == nullptr ||
-        on_protect_ == nullptr || on_certificate_ == nullptr || on_sign_ == nullptr) {
-      Release(env);
-    }
+    const auto method = [&](const char* name, const char* signature) {
+      const auto result = env->GetMethodID(callback_class.get(), name, signature);
+      return ClearException(env) ? nullptr : result;
+    };
+    if ((on_state_ = method("onNativeState", "(Ljava/lang/String;Ljava/lang/String;)V")) == nullptr ||
+        (on_tun_ = method("onTunConfiguration", "(Ljava/lang/String;)I")) == nullptr ||
+        (on_protect_ = method("onProtectSocket", "(I)Z")) == nullptr ||
+        (on_certificate_ = method("onPkiCertificate", "(Ljava/lang/String;)Ljava/lang/String;")) == nullptr ||
+        (on_sign_ = method("onPkiSign", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;")) == nullptr) Release(env);
   }
 
   ~JniPlatformCallbacks() override {
@@ -209,14 +253,12 @@ class JniPlatformCallbacks final : public PlatformCallbacks {
     ScopedEnv scoped(vm_);
     JNIEnv* env = scoped.get();
     if (env == nullptr || callback_ == nullptr) return;
-    jstring state_value = env->NewStringUTF(std::string(state).c_str());
-    jstring reason_value = env->NewStringUTF(std::string(reason).c_str());
-    if (state_value != nullptr && reason_value != nullptr && !ClearException(env)) {
-      env->CallVoidMethod(callback_, on_state_, state_value, reason_value);
-      ClearException(env);
-    }
-    if (state_value != nullptr) env->DeleteLocalRef(state_value);
-    if (reason_value != nullptr) env->DeleteLocalRef(reason_value);
+    LocalRef<jstring> state_value(env, NewUtfString(env, std::string(state).c_str()));
+    if (state_value.get() == nullptr) return;
+    LocalRef<jstring> reason_value(env, NewUtfString(env, std::string(reason).c_str()));
+    if (reason_value.get() == nullptr) return;
+    env->CallVoidMethod(callback_, on_state_, state_value.get(), reason_value.get());
+    ClearException(env);
   }
 
   int EstablishTun(const TunPlan& plan) override {
@@ -225,12 +267,11 @@ class JniPlatformCallbacks final : public PlatformCallbacks {
     ScopedEnv scoped(vm_);
     JNIEnv* env = scoped.get();
     if (env == nullptr || callback_ == nullptr) return -1;
-    jstring value = env->NewStringUTF(json.c_str());
+    LocalRef<jstring> value(env, NewUtfString(env, json.c_str()));
     SecureErase(&json);
-    if (value == nullptr || ClearException(env)) return -1;
-    const jint descriptor = env->CallIntMethod(callback_, on_tun_, value);
+    if (value.get() == nullptr) return -1;
+    const jint descriptor = env->CallIntMethod(callback_, on_tun_, value.get());
     const bool failed = ClearException(env);
-    env->DeleteLocalRef(value);
     return failed ? -1 : descriptor;
   }
 
@@ -277,33 +318,25 @@ class JniPlatformCallbacks final : public PlatformCallbacks {
     ScopedEnv scoped(vm_);
     JNIEnv* env = scoped.get();
     if (env == nullptr || callback_ == nullptr || method == nullptr) return std::nullopt;
-    jstring alias_value = env->NewStringUTF(std::string(alias).c_str());
-    if (alias_value == nullptr || ClearException(env)) return std::nullopt;
+    LocalRef<jstring> alias_value(env, NewUtfString(env, std::string(alias).c_str()));
+    if (alias_value.get() == nullptr) return std::nullopt;
 
     jobject returned = nullptr;
-    jstring data_value = nullptr;
-    jstring algorithm_value = nullptr;
-    jstring hash_value = nullptr;
-    jstring salt_value = nullptr;
     if (signature) {
-      data_value = env->NewStringUTF(std::string(data).c_str());
-      algorithm_value = env->NewStringUTF(std::string(algorithm).c_str());
-      hash_value = env->NewStringUTF(std::string(hash_algorithm).c_str());
-      salt_value = env->NewStringUTF(std::string(salt_length).c_str());
-      if (data_value == nullptr || algorithm_value == nullptr || hash_value == nullptr ||
-          salt_value == nullptr || ClearException(env)) {
-        if (data_value != nullptr) env->DeleteLocalRef(data_value);
-        if (algorithm_value != nullptr) env->DeleteLocalRef(algorithm_value);
-        if (hash_value != nullptr) env->DeleteLocalRef(hash_value);
-        if (salt_value != nullptr) env->DeleteLocalRef(salt_value);
-        env->DeleteLocalRef(alias_value);
-        return std::nullopt;
-      }
-      returned = env->CallObjectMethod(callback_, method, alias_value, data_value,
-                                       algorithm_value, hash_value, salt_value);
+      LocalRef<jstring> data_value(env, NewUtfString(env, std::string(data).c_str()));
+      if (data_value.get() == nullptr) return std::nullopt;
+      LocalRef<jstring> algorithm_value(env, NewUtfString(env, std::string(algorithm).c_str()));
+      if (algorithm_value.get() == nullptr) return std::nullopt;
+      LocalRef<jstring> hash_value(env, NewUtfString(env, std::string(hash_algorithm).c_str()));
+      if (hash_value.get() == nullptr) return std::nullopt;
+      LocalRef<jstring> salt_value(env, NewUtfString(env, std::string(salt_length).c_str()));
+      if (salt_value.get() == nullptr) return std::nullopt;
+      returned = env->CallObjectMethod(callback_, method, alias_value.get(), data_value.get(),
+                                       algorithm_value.get(), hash_value.get(), salt_value.get());
     } else {
-      returned = env->CallObjectMethod(callback_, method, alias_value);
+      returned = env->CallObjectMethod(callback_, method, alias_value.get());
     }
+    LocalRef<jobject> returned_ref(env, returned);
     const bool failed = ClearException(env);
     std::optional<std::string> result;
     if (!failed && returned != nullptr) {
@@ -313,12 +346,6 @@ class JniPlatformCallbacks final : public PlatformCallbacks {
         result.reset();
       }
     }
-    if (returned != nullptr) env->DeleteLocalRef(returned);
-    if (data_value != nullptr) env->DeleteLocalRef(data_value);
-    if (algorithm_value != nullptr) env->DeleteLocalRef(algorithm_value);
-    if (hash_value != nullptr) env->DeleteLocalRef(hash_value);
-    if (salt_value != nullptr) env->DeleteLocalRef(salt_value);
-    env->DeleteLocalRef(alias_value);
     return result;
   }
 
@@ -350,8 +377,10 @@ class NativeSession final {
   bool valid() const { return callbacks_ != nullptr && callbacks_->valid() && core_ != nullptr; }
 
   bool Start(std::string profile, std::string alias, NetworkPolicy network) {
+    ScopedStringErase erase_profile(profile);
+    ScopedStringErase erase_alias(alias);
     std::lock_guard<std::mutex> lock(mutex_);
-    if (!valid()) return false;
+    if (!valid() || destroying_) return false;
     if (started_) {
       callbacks_->OnCoreState("error", "session_busy");
       SecureErase(&profile);
@@ -380,13 +409,35 @@ class NativeSession final {
 
   void Stop() {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (!started_) return;
-    callbacks_->OnCoreState("disconnecting", "disconnecting");
-    core_->Stop();
-    started_ = false;
-    callbacks_->OnCoreState("idle", "disconnected");
+    StopLocked();
   }
 
+  bool Destroy() {
+    std::lock_guard<std::mutex> lock(mutex_);
+    if (destroyed_) return true;
+    // An already admitted Start must finish before this lock is acquired;
+    // a later Start cannot revive the object after it leaves the registry.
+    destroying_ = true;
+    StopLocked();
+    destroyed_ = true;
+    return true;
+  }
+
+ private:
+  void Emit(std::string_view state, std::string_view reason) noexcept {
+    try { callbacks_->OnCoreState(state, reason); } catch (...) {}
+  }
+
+  void StopLocked() {
+    if (started_) Emit("disconnecting", "disconnecting");
+    // Also clean a partially initialized client after a failed Start.
+    core_->Stop();
+    const bool was_started = started_;
+    started_ = false;
+    if (was_started) Emit("idle", "disconnected");
+  }
+
+ public:
   bool IsConnected() const {
     std::lock_guard<std::mutex> lock(mutex_);
     return started_ && core_->IsConnected();
@@ -402,6 +453,8 @@ class NativeSession final {
   std::unique_ptr<JniPlatformCallbacks> callbacks_;
   std::unique_ptr<CoreSession> core_;
   bool started_ = false;
+  bool destroying_ = false;
+  bool destroyed_ = false;
 };
 
 std::mutex sessions_mutex;
@@ -414,90 +467,93 @@ std::shared_ptr<NativeSession> FindSession(jlong handle) {
   return found == sessions.end() ? std::shared_ptr<NativeSession>{} : found->second;
 }
 
-jboolean NativeIsCoreAvailable(JNIEnv*, jobject) {
-  return IsCoreAvailable() ? JNI_TRUE : JNI_FALSE;
+jboolean NativeIsCoreAvailable(JNIEnv* env, jobject) noexcept {
+  return JniGuard(env, static_cast<jboolean>(JNI_FALSE), [] {
+    return static_cast<jboolean>(IsCoreAvailable() ? JNI_TRUE : JNI_FALSE);
+  });
 }
 
-jlong NativeCreate(JNIEnv* env, jobject, jobject callback) {
-  try {
+jlong NativeCreate(JNIEnv* env, jobject, jobject callback) noexcept {
+  return JniGuard(env, static_cast<jlong>(0), [&] {
     auto callbacks = std::make_unique<JniPlatformCallbacks>(env, callback);
     auto session = std::make_shared<NativeSession>(std::move(callbacks));
-    if (!session->valid()) return 0;
+    if (!session->valid()) return static_cast<jlong>(0);
     const jlong handle = reinterpret_cast<jlong>(session.get());
     std::lock_guard<std::mutex> lock(sessions_mutex);
     sessions.emplace(handle, std::move(session));
     return handle;
-  } catch (...) {
-    // Do not expose native exception text across the security boundary.
-    return 0;
-  }
+  });
 }
 
-jboolean NativeDestroy(JNIEnv*, jobject, jlong handle) {
-  std::shared_ptr<NativeSession> session;
-  {
+jboolean NativeDestroy(JNIEnv* env, jobject, jlong handle) noexcept {
+  return JniGuard(env, static_cast<jboolean>(JNI_FALSE), [&] {
+    const auto session = FindSession(handle);
+    if (!session || !session->Destroy()) return static_cast<jboolean>(JNI_FALSE);
+    // Retain the registry's ownership until Stop has joined the worker. If
+    // Stop throws, a subsequent call can still find and finish this session.
     std::lock_guard<std::mutex> lock(sessions_mutex);
     const auto found = sessions.find(handle);
-    if (found == sessions.end()) return JNI_FALSE;
-    session = std::move(found->second);
-    sessions.erase(found);
-  }
-  session->Stop();
-  // Return success only after Stop joined Core's worker and the privileged
-  // native session is no longer reachable from the process registry.
-  return FindSession(handle) == nullptr ? JNI_TRUE : JNI_FALSE;
+    if (found != sessions.end() && found->second == session) sessions.erase(found);
+    return static_cast<jboolean>(JNI_TRUE);
+  });
 }
 
 jboolean NativeStart(JNIEnv* env, jobject, jlong handle, jstring profile,
-                     jstring alias, jstring expected_ipv4, jstring expected_ipv6) {
-  auto session = FindSession(handle);
-  if (!session) return JNI_FALSE;
-  auto profile_value = ReadUtf8(env, profile, kMaxProfileUtf8Bytes);
-  auto alias_value = ReadUtf8(env, alias, kMaxAliasUtf8Bytes);
-  auto ipv4_value = ReadUtf8(env, expected_ipv4, 15);
-  auto ipv6_value = ReadUtf8(env, expected_ipv6, 45);
-  if (!profile_value || !alias_value || !ipv4_value || !ipv6_value) {
-    if (profile_value) SecureErase(&*profile_value);
-    if (alias_value) SecureErase(&*alias_value);
-    return JNI_FALSE;
-  }
-  const bool started = session->Start(std::move(*profile_value), std::move(*alias_value),
-      NetworkPolicy{std::move(*ipv4_value), std::move(*ipv6_value)});
-  return started ? JNI_TRUE : JNI_FALSE;
+                     jstring alias, jstring expected_ipv4, jstring expected_ipv6) noexcept {
+  return JniGuard(env, static_cast<jboolean>(JNI_FALSE), [&] {
+    auto session = FindSession(handle);
+    if (!session) return static_cast<jboolean>(JNI_FALSE);
+    auto profile_value = ReadUtf8(env, profile, kMaxProfileUtf8Bytes);
+    if (!profile_value) return static_cast<jboolean>(JNI_FALSE);
+    ScopedStringErase erase_profile(*profile_value);
+    auto alias_value = ReadUtf8(env, alias, kMaxAliasUtf8Bytes);
+    if (!alias_value) return static_cast<jboolean>(JNI_FALSE);
+    ScopedStringErase erase_alias(*alias_value);
+    auto ipv4_value = ReadUtf8(env, expected_ipv4, 15);
+    if (!ipv4_value) return static_cast<jboolean>(JNI_FALSE);
+    auto ipv6_value = ReadUtf8(env, expected_ipv6, 45);
+    if (!ipv6_value) return static_cast<jboolean>(JNI_FALSE);
+    const bool started = session->Start(std::move(*profile_value), std::move(*alias_value),
+        NetworkPolicy{std::move(*ipv4_value), std::move(*ipv6_value)});
+    return static_cast<jboolean>(started ? JNI_TRUE : JNI_FALSE);
+  });
 }
 
-jboolean NativeStop(JNIEnv*, jobject, jlong handle) {
-  if (auto session = FindSession(handle)) {
-    session->Stop();
-    return session->IsConnected() ? JNI_FALSE : JNI_TRUE;
-  }
-  return JNI_FALSE;
+jboolean NativeStop(JNIEnv* env, jobject, jlong handle) noexcept {
+  return JniGuard(env, static_cast<jboolean>(JNI_FALSE), [&] {
+    if (auto session = FindSession(handle)) {
+      session->Stop();
+      return static_cast<jboolean>(session->IsConnected() ? JNI_FALSE : JNI_TRUE);
+    }
+    return static_cast<jboolean>(JNI_FALSE);
+  });
 }
 
-jboolean NativeIsConnected(JNIEnv*, jobject, jlong handle) {
-  if (auto session = FindSession(handle)) {
-    return session->IsConnected() ? JNI_TRUE : JNI_FALSE;
-  }
-  return JNI_FALSE;
+jboolean NativeIsConnected(JNIEnv* env, jobject, jlong handle) noexcept {
+  return JniGuard(env, static_cast<jboolean>(JNI_FALSE), [&] {
+    if (auto session = FindSession(handle)) {
+      return static_cast<jboolean>(session->IsConnected() ? JNI_TRUE : JNI_FALSE);
+    }
+    return static_cast<jboolean>(JNI_FALSE);
+  }, true);
 }
 
-jlongArray NativeStatistics(JNIEnv* env, jobject, jlong handle) {
-  if (env == nullptr) return nullptr;
-  const auto session = FindSession(handle);
-  if (!session) return nullptr;
-  const CoreStatistics stats = session->Statistics();
-  const jlong values[] = {
-      static_cast<jlong>(std::max<long long>(0, stats.received_bytes)),
-      static_cast<jlong>(std::max<long long>(0, stats.sent_bytes)),
-  };
-  jlongArray result = env->NewLongArray(2);
-  if (result == nullptr || ClearException(env)) return nullptr;
-  env->SetLongArrayRegion(result, 0, 2, values);
-  if (ClearException(env)) {
-    env->DeleteLocalRef(result);
-    return nullptr;
-  }
-  return result;
+jlongArray NativeStatistics(JNIEnv* env, jobject, jlong handle) noexcept {
+  return JniGuard(env, static_cast<jlongArray>(nullptr), [&]() -> jlongArray {
+    if (env == nullptr) return nullptr;
+    const auto session = FindSession(handle);
+    if (!session) return nullptr;
+    const CoreStatistics stats = session->Statistics();
+    const jlong values[] = {
+        static_cast<jlong>(std::max<long long>(0, stats.received_bytes)),
+        static_cast<jlong>(std::max<long long>(0, stats.sent_bytes)),
+    };
+    LocalRef<jlongArray> result(env, env->NewLongArray(2));
+    if (ClearException(env) || result.get() == nullptr) return nullptr;
+    env->SetLongArrayRegion(result.get(), 0, 2, values);
+    if (ClearException(env)) return nullptr;
+    return result.release();
+  });
 }
 
 const JNINativeMethod kMethods[] = {

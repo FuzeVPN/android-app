@@ -15,9 +15,45 @@ import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class OpenVpnRecoveryTest {
+    @Test fun commandCancellationWakesStartupWithoutWaitingForAnInFlightPkiCallback() = runTest {
+        val events = OpenVpnSessionEvents()
+        val generation = events.begin()
+        val waiting = events.firstOutcome(generation)
+        val signing = CountDownLatch(1)
+        val releaseSigning = CountDownLatch(1)
+        val callback = Thread {
+            events.callback(generation, false) {
+                signing.countDown()
+                assertTrue(releaseSigning.await(2, TimeUnit.SECONDS))
+                true
+            }
+        }.apply { isDaemon = true; start() }
+        try {
+            assertTrue(signing.await(2, TimeUnit.SECONDS))
+            // The monitor is held by signing. Cancellation must still complete here.
+            events.cancelPendingConnection()
+            assertTrue(waiting.isCompleted)
+            assertEquals("session_operation_cancelled", waiting.await().messageCode())
+        } finally {
+            releaseSigning.countDown()
+            callback.join(2_000)
+        }
+        assertFalse(callback.isAlive)
+        assertEquals(-1, events.callback(generation, -1) { fail("TUN created after cancellation"); 0 })
+        events.publish(generation, OpenVpnNativeState.fromNative("connected", ""))
+        assertFalse(events.confirmConnected(generation) { fail("Cancelled startup published protection") })
+        events.requestStop()
+        events.finish()
+        val fresh = events.begin()
+        assertFalse(events.firstOutcome(fresh).isCompleted)
+        assertEquals(7, events.callback(fresh, -1) { 7 })
+    }
+
     @Test fun permissionRevocationDuringStartupCannotPublishConnected() {
         val events = OpenVpnSessionEvents()
         val generation = events.begin()

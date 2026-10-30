@@ -57,6 +57,17 @@ class SharedVpnHostInstrumentedTest {
     }
 
     @Test
+    fun quickTileCanReceiveRuntimeRequestedStateUpdates() {
+        val info = context.packageManager.getServiceInfo(
+            ComponentName(context, VpnQuickTileService::class.java),
+            PackageManager.GET_META_DATA,
+        )
+        assertTrue(info.metaData?.getBoolean("android.service.quicksettings.ACTIVE_TILE") == true)
+        assertTrue(info.exported)
+        assertEquals("android.permission.BIND_QUICK_SETTINGS_TILE", info.permission)
+    }
+
+    @Test
     fun patchedHostStartsWithoutFlutterAndExposesTheSameVpnService() {
         // The official debug fallback deliberately lacks this API. Release and
         // explicitly patched debug instrumented runs execute the host contract.

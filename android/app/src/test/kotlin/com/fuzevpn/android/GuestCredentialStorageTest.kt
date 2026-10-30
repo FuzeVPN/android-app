@@ -68,6 +68,8 @@ class GuestCredentialStorageTest {
         assertTrue(store.readAutoResume())
         store.writeAutoResume(false)
         assertFalse(store.readAutoResume())
+        assertEquals(emptyMap<SecureStorageSlot, String>(), memory.updates.last().first)
+        assertEquals(setOf(SecureStorageKeyPolicy.guestAutoResume()), memory.updates.last().second)
         assertEquals(credential, store.readCredential())
         for (invalid in listOf("TRUE", "1", " true ", "yes")) {
             memory.values[SecureStorageKeyPolicy.guestAutoResume()] = invalid

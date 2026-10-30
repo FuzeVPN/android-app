@@ -138,6 +138,33 @@ void main() {
     },
   );
 
+  for (final (region, date) in [
+    ('GB', '2 November 2026'),
+    ('US', 'November 2, 2026'),
+  ]) {
+    testWidgets('trial first charge spells out the month in en-$region', (
+      tester,
+    ) async {
+      tester.platformDispatcher.localesTestValue = [Locale('en', region)];
+      addTearDown(tester.platformDispatcher.clearLocalesTestValue);
+      await tester.pumpWidget(
+        _localized(
+          Scaffold(
+            body: PremiumCheckoutSummary(
+              plan: _monthly,
+              clock: () => DateTime(2026, 10, 19),
+            ),
+          ),
+          locale: const Locale('en'),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.textContaining(date), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    });
+  }
+
   testWidgets('trial date refreshes at local midnight', (tester) async {
     var now = DateTime(2026, 10, 11, 23, 59, 59);
     await tester.pumpWidget(
@@ -148,11 +175,11 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(find.textContaining('25/10/2026'), findsOneWidget);
+    expect(find.textContaining('25 octobre 2026'), findsOneWidget);
     now = DateTime(2026, 10, 12);
     await tester.pump(const Duration(seconds: 1));
-    expect(find.textContaining('26/10/2026'), findsOneWidget);
-    expect(find.textContaining('25/10/2026'), findsNothing);
+    expect(find.textContaining('26 octobre 2026'), findsOneWidget);
+    expect(find.textContaining('25 octobre 2026'), findsNothing);
     await tester.pumpWidget(const SizedBox.shrink());
     expect(tester.takeException(), isNull);
   });
@@ -179,10 +206,10 @@ void main() {
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
     now = DateTime(2026, 10, 15, 12);
     await tester.pump(const Duration(hours: 24));
-    expect(find.textContaining('25/10/2026'), findsOneWidget);
+    expect(find.textContaining('25 octobre 2026'), findsOneWidget);
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     await tester.pump();
-    expect(find.textContaining('29/10/2026'), findsOneWidget);
+    expect(find.textContaining('29 octobre 2026'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
     final readsAfterDispose = reads;
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);

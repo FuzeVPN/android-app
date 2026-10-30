@@ -10,7 +10,7 @@
   "accountRestoration_message": "您的会话已保留。请重试以恢复账户；您仍可在此管理 VPN 连接。",
   "action_retry": "重试",
   "session_endingTitle": "正在结束会话",
-  "session_ending": "您的会话已失效。正在停止 VPN 并清除会话…",
+  "session_ending": "正在结束会话：正在停止 VPN 并清除会话数据…",
   "session_stopFailed": "尚未确认 VPN 已关闭。请在再次登录前重试。",
   "session_cleanupFailed": "VPN 已停止，但尚未确认会话已移除。请重试清理。",
   "session_retryStop": "重试关闭",
@@ -137,6 +137,7 @@
   "devices_firstConnection": "您的手机将在首次连接时添加。",
   "devices_thisDevice": "此设备",
   "devices_added": "添加于 {date}",
+  "devices_unnamed": "未命名设备",
   "action_remove": "移除",
   "settings_title": "设置",
   "settings_subtitle": "在同一处管理您的偏好设置和账户。",
@@ -150,6 +151,14 @@
   "settings_security": "安全与透明度",
   "settings_licenses": "组件许可证",
   "settings_licensesDetail": "应用中使用的软件",
+  "settings_licensesLegalese": "本应用及其采用 MPL-2.0 许可的组件的源代码：{url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
   "settings_background": "离开应用后 VPN 仍会保持开启。如需停止，请在“连接”选项卡中使用“断开连接”。",
   "theme_system": "跟随系统",
   "theme_light": "浅色",
@@ -174,7 +183,7 @@
   "notice_emailVerification_title": "需要确认电子邮件",
   "notice_emailVerification_message": "请先确认您的电子邮件地址，然后再添加 VPN 设备。",
   "notice_rateLimited_title": "尝试次数过多",
-  "notice_deviceLimit_title": "已达到 2 台设备的上限",
+  "notice_deviceLimit_title": "已达到设备上限",
   "notice_deviceLimit_message": "请先移除现有设备，然后再添加其他设备。",
   "notice_identityRenewal_title": "必须续订 VPN 身份",
   "notice_identityRenewal_message": "此身份已被移除。请创建新的本地身份。",
@@ -199,7 +208,7 @@
   "notice_diagnosticCode": "诊断代码：{code}",
   "notice_generic_title": "VPN 连接失败",
   "notice_generic_message": "发生错误。请稍后重试。",
-  "notice_controller_title": "{code, select, account_created_email_unavailable{账户已创建} password_reset_sent{已收到密码重置请求} verification_email_sent{验证邮件已发送} location_migration_pending{正在更改位置} vpn_sign_in_required{需要登录} protocol_unavailable_at_location{协议不可用} vpn_permission_denied{VPN 权限被拒绝} revoked_identity_device_limit{已达到 2 台设备的上限} tunnel_start_unexpected{VPN 无法启动} flutter_disconnect_timeout{未确认断开连接} flutter_disconnect_unexpected{无法断开连接} device_revoked{设备已移除} revoke_unexpected{无法移除设备} identity_renewal_unexpected{无法续订身份} openvpn_renewal_unexpected{无法续订 OpenVPN} location_migration_blocked{位置更改被阻止} location_migration_slow{位置更改仍在进行中} location_migration_conflict{位置更改需要刷新} location_migration_verification_failed{未确认位置更改} location_migration_device_changed{位置更改期间设备发生变化} tunnel_stop_failed{位置更改不可用} other{操作失败}}",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{账户已创建} password_reset_sent{已收到密码重置请求} verification_email_sent{验证邮件已发送} location_migration_pending{正在更改位置} vpn_sign_in_required{需要登录} protocol_unavailable_at_location{协议不可用} vpn_permission_denied{VPN 权限被拒绝} revoked_identity_device_limit{已达到设备上限} tunnel_start_unexpected{VPN 无法启动} flutter_disconnect_timeout{未确认断开连接} flutter_disconnect_unexpected{无法断开连接} device_revoked{设备已移除} revoke_unexpected{无法移除设备} identity_renewal_unexpected{无法续订身份} openvpn_renewal_unexpected{无法续订 OpenVPN} location_migration_blocked{位置更改被阻止} location_migration_slow{位置更改仍在进行中} location_migration_conflict{位置更改需要刷新} location_migration_verification_failed{未确认位置更改} location_migration_device_changed{位置更改期间设备发生变化} tunnel_stop_failed{位置更改不可用} device_clock_ahead{设备时钟偏快} other{操作失败}}",
   "@notice_controller_title": {
     "placeholders": {
       "code": {
@@ -207,7 +216,7 @@
       }
     }
   },
-  "notice_controller_message": "{code, select, account_created_email_unavailable{账户已创建，但无法发送验证邮件。请在应用中使用重新发送功能。} password_reset_sent{已收到您的请求。如果有账户使用此地址，您可能会收到一封邮件。也请检查垃圾邮件文件夹。} verification_email_sent{新的验证邮件刚刚发送。} location_migration_pending{正在准备迁移到 {target}。您可以继续迁移，无需重新创建设备。} vpn_sign_in_required{启动 VPN 前请登录您的账户。} protocol_unavailable_at_location{所选协议在此位置不可用。请刷新位置列表或选择其他协议。} vpn_permission_denied{Android 拒绝了 VPN 权限。请重新开始连接，并接受系统请求。} revoked_identity_device_limit{此设备的 VPN 访问权限已被移除，并且已达到设备上限。请在“账户”→“管理我的设备”中移除一台设备。} tunnel_start_unexpected{意外错误中断了隧道准备。请查看诊断代码并重试。} flutter_disconnect_timeout{Android 未及时确认 VPN 已停止。请再次尝试停止。} flutter_disconnect_unexpected{意外错误导致无法确认隧道已停止。} device_revoked{设备的 VPN 访问权限已被撤销，其本地密钥已移除。} revoke_unexpected{无法移除设备。请刷新列表后重试。} identity_renewal_unexpected{无法创建新的 VPN 身份。请刷新设备后重试。} openvpn_renewal_unexpected{无法续订 OpenVPN 配置文件。请重试或查看诊断代码。} location_migration_blocked{服务器目前无法完成此更改。设备及其本地身份已保留。} location_migration_slow{服务器仍在准备迁移到 {target}。请稍后片刻使用“继续”。} location_migration_conflict{服务器上的设备状态发生了变化。请刷新设备，然后继续更改。} location_migration_verification_failed{服务器未确认新位置。之前的本地身份已保留。} location_migration_device_changed{服务器返回的设备与正在更改的设备不再匹配。请刷新设备后重试。} tunnel_stop_failed{建立新连接前，必须完全停止之前的隧道。} other{无法完成操作。请重试，或将诊断代码发送给支持人员。}}",
+  "notice_controller_message": "{code, select, account_created_email_unavailable{账户已创建，但无法发送验证邮件。请在应用中使用重新发送功能。} password_reset_sent{已收到您的请求。如果有账户使用此地址，您可能会收到一封邮件。也请检查垃圾邮件文件夹。} verification_email_sent{新的验证邮件刚刚发送。} location_migration_pending{正在准备迁移到 {target}。您可以继续迁移，无需重新创建设备。} vpn_sign_in_required{启动 VPN 前请登录您的账户。} protocol_unavailable_at_location{所选协议在此位置不可用。请刷新位置列表或选择其他协议。} vpn_permission_denied{Android 拒绝了 VPN 权限。请重新开始连接，并接受系统请求。} revoked_identity_device_limit{此设备的 VPN 访问权限已被移除，并且已达到设备上限。请在“账户”→“管理我的设备”中移除一台设备。} tunnel_start_unexpected{意外错误中断了隧道准备。请查看诊断代码并重试。} flutter_disconnect_timeout{Android 未及时确认 VPN 已停止。请再次尝试停止。} flutter_disconnect_unexpected{意外错误导致无法确认隧道已停止。} device_revoked{设备的 VPN 访问权限已被撤销，其本地密钥已移除。} revoke_unexpected{无法移除设备。请刷新列表后重试。} identity_renewal_unexpected{无法创建新的 VPN 身份。请刷新设备后重试。} openvpn_renewal_unexpected{无法续订 OpenVPN 配置文件。请重试或查看诊断代码。} location_migration_blocked{服务器目前无法完成此更改。设备及其本地身份已保留。} location_migration_slow{服务器仍在准备迁移到 {target}。请稍后片刻使用“继续”。} location_migration_conflict{服务器上的设备状态发生了变化。请刷新设备，然后继续更改。} location_migration_verification_failed{服务器未确认新位置。之前的本地身份已保留。} location_migration_device_changed{服务器返回的设备与正在更改的设备不再匹配。请刷新设备后重试。} tunnel_stop_failed{建立新连接前，必须完全停止之前的隧道。} device_clock_ahead{此设备的时钟似乎偏快。请开启自动设置日期和时间，以保持登录状态。} other{无法完成操作。请重试，或将诊断代码发送给支持人员。}}",
   "@notice_controller_message": {
     "placeholders": {
       "code": {
@@ -235,15 +244,31 @@
     }
   },
   "notice_retryLater": "请过一会儿再重试。",
-  "notice_retryAfter": "请在 {seconds} 秒后重试。",
+  "notice_retryAfter": "{seconds, plural, one{请在 {seconds} 秒后重试。} other{请在 {seconds} 秒后重试。}}",
   "@notice_retryAfter": {
     "placeholders": {
       "seconds": {
-        "type": "Object"
+        "type": "int"
       }
     }
   },
-  "notice_native_title": "{code, select, system_vpn_resume_unavailable{系统 VPN 恢复不可用} system_vpn_resume_corrupt{系统 VPN 恢复无效} system_vpn_resume_session_invalid{VPN 恢复会话无效} system_vpn_resume_identity_changed{VPN 身份已更改} system_vpn_resume_identity_invalid{VPN 恢复身份无效} system_vpn_resume_storage_failed{VPN 恢复存储不可用} system_vpn_resume_network_timeout{VPN 恢复时没有网络} system_vpn_resume_blocked{VPN 恢复被阻止} system_vpn_resume_failed{VPN 恢复失败} system_vpn_resume_error_invalid{VPN 恢复错误无效} wireguard_identity_store_failed{WireGuard 身份未保存} wireguard_identity_unavailable{WireGuard 身份不可用} vpn_host_destroyed{Android VPN 主机已停止} vpn_host_unavailable{Android VPN 主机不可用} vpn_permission_required{需要 VPN 权限} vpn_permission_denied{VPN 权限被拒绝} vpn_permission_request_failed{无法请求权限} wireguard_foreground_service_unavailable{WireGuard 服务不可用} wireguard_identity_invalid{本地 WireGuard 密钥无效} wireguard_identity_in_use{WireGuard 身份已在使用中} wireguard_configuration_invalid{WireGuard 配置无效} wireguard_operation_pending{WireGuard 操作仍处于活动状态} wireguard_start_failed{WireGuard 启动被拒绝} wireguard_stop_timeout{未确认 WireGuard 已停止} wireguard_handshake_timeout{WireGuard 没有响应} openvpn_connection_timeout{OpenVPN 没有响应} openvpn_core_unavailable{OpenVPN 引擎不可用} openvpn_operation_pending{OpenVPN 会话仍处于活动状态} openvpn_stop_timeout{未确认 OpenVPN 已停止} openvpn_profile_unavailable{缺少本地 OpenVPN 配置文件} openvpn_native_failed{原生 OpenVPN 调用已中断} openvpn_key_generation_failed{无法创建 OpenVPN P-256 密钥} openvpn_csr_generation_failed{无法创建 OpenVPN CSR} openvpn_identity_store_failed{OpenVPN 身份未保存} openvpn_identity_clear_failed{OpenVPN 移除不完整} openvpn_identity_in_use{OpenVPN 身份仍在使用中} openvpn_tls_verification_required{缺少 OpenVPN TLS 验证} openvpn_cipher_invalid{OpenVPN 加密算法无效} openvpn_profile_rejected{OpenVPN 配置文件被拒绝} openvpn_identity_inconsistent{OpenVPN 身份不一致} tls_handshake_failed{OpenVPN 协商被拒绝} tls_alert_unknown_ca{OpenVPN 客户端证书未被识别} tls_alert_bad_certificate{OpenVPN 客户端证书被拒绝} tls_alert_unsupported_certificate{不支持的 OpenVPN 证书} tls_client_certificate_required{需要 OpenVPN 客户端证书} tls_alert_misc{OpenVPN TLS 警报} tls_signature_algorithm_rejected{不支持的 OpenVPN 签名} tls_handshake_rejected{OpenVPN TLS 协商被拒绝} tls_version_rejected{不兼容的 OpenVPN TLS 版本} tls_certificate_expired{TLS 证书已过期} tls_certificate_revoked{TLS 证书已撤销} transport_failed{无法访问 OpenVPN 服务器} tun_configuration_rejected{无法创建 OpenVPN 接口} tun_setup_failed{OpenVPN TUN 设置失败} tun_interface_create_failed{OpenVPN 接口创建失败} tun_interface_disabled{OpenVPN 接口已禁用} tun_halted{OpenVPN 接口已中断} tun_already_established{OpenVPN 接口已经打开} tun_addresses_missing{缺少 OpenVPN 地址} tun_routes_missing{缺少 OpenVPN 路由} tun_dns_missing{缺少 OpenVPN DNS} tun_permission_revoked{VPN 权限已撤销} tun_establish_returned_null{Android 拒绝了 VPN 接口} openvpn_service_start_failed{OpenVPN 服务不可用} openvpn_operation_timeout{OpenVPN 调用超时} openvpn_start_failed{OpenVPN 启动被拒绝} openvpn_connection_failed{OpenVPN 连接已中断} openvpn_core_status_error{OpenVPN Core 以错误结束} openvpn_stopped_before_connected{OpenVPN 在连接前停止} openvpn_auth_failed{OpenVPN 身份验证被拒绝} openvpn_client_setup_failed{OpenVPN 客户端设置失败} openvpn_client_halted{OpenVPN 客户端已中断} openvpn_client_restart{已请求重启 OpenVPN} openvpn_inactive_timeout{OpenVPN 长时间未活动} openvpn_session_expired{OpenVPN 会话已过期} openvpn_credentials_required{不支持的 OpenVPN 身份验证} openvpn_proxy_failed{OpenVPN 中间传输失败} openvpn_compression_failed{OpenVPN 压缩被拒绝} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM 加密不可用} openvpn_feature_unsupported{不支持的 OpenVPN 功能} network_unavailable{互联网连接不可用} network_lost{网络不可用} certificate_validation_failed{服务器证书被拒绝} openvpn_certificate_expired{OpenVPN 证书已过期} tunnel_active_for_another_account{另一个账户的隧道仍处于活动状态} tunnel_already_active{原生隧道已处于活动状态} tunnel_stop_timeout{未确认 {protocol} 已停止} tunnel_disconnected{{protocol} 已中断} native_bridge_unavailable{Android 桥接不可用} native_operation_failed{Android 操作已中断} invalid_arguments{VPN 参数不完整} invalid_account_id{VPN 账户无效} invalid_device_id{设备标识符无效} storage_key_not_allowed{存储密钥被拒绝} secure_storage_read_failed{安全读取失败} secure_storage_write_failed{安全写入失败} key_generation_failed{无法生成 WireGuard 密钥} csr_generation_failed{无法生成 OpenVPN CSR} other{未分类的原生 VPN 错误}}",
+  "notice_retryAfterMinutes": "{minutes, plural, one{请在 {minutes} 分钟后重试。} other{请在 {minutes} 分钟后重试。}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{请在 {hours} 小时后重试。} other{请在 {hours} 小时后重试。}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{系统 VPN 恢复不可用} system_vpn_resume_corrupt{系统 VPN 恢复无效} system_vpn_resume_session_invalid{VPN 恢复会话无效} system_vpn_resume_identity_changed{VPN 身份已更改} system_vpn_resume_identity_invalid{VPN 恢复身份无效} system_vpn_resume_storage_failed{VPN 恢复存储不可用} system_vpn_resume_network_timeout{VPN 恢复时没有网络} system_vpn_resume_blocked{VPN 恢复被阻止} system_vpn_resume_failed{VPN 恢复失败} system_vpn_resume_error_invalid{VPN 恢复错误无效} wireguard_identity_store_failed{WireGuard 身份未保存} wireguard_identity_unavailable{WireGuard 身份不可用} vpn_host_destroyed{Android VPN 主机已停止} vpn_host_unavailable{Android VPN 主机不可用} vpn_permission_required{需要 VPN 权限} vpn_permission_denied{VPN 权限被拒绝} vpn_permission_request_failed{无法请求权限} wireguard_foreground_service_unavailable{WireGuard 服务不可用} wireguard_identity_invalid{本地 WireGuard 密钥无效} wireguard_identity_in_use{WireGuard 身份已在使用中} wireguard_configuration_invalid{WireGuard 配置无效} wireguard_operation_pending{WireGuard 操作仍处于活动状态} wireguard_start_failed{WireGuard 启动被拒绝} wireguard_stop_timeout{未确认 WireGuard 已停止} wireguard_handshake_timeout{WireGuard 没有响应} openvpn_connection_timeout{OpenVPN 没有响应} openvpn_core_unavailable{OpenVPN 引擎不可用} openvpn_operation_pending{OpenVPN 会话仍处于活动状态} openvpn_stop_timeout{未确认 OpenVPN 已停止} openvpn_profile_unavailable{缺少本地 OpenVPN 配置文件} openvpn_native_failed{原生 OpenVPN 调用已中断} openvpn_key_generation_failed{无法创建 OpenVPN P-256 密钥} openvpn_csr_generation_failed{无法创建 OpenVPN CSR} openvpn_identity_store_failed{OpenVPN 身份未保存} openvpn_identity_clear_failed{OpenVPN 移除不完整} openvpn_identity_in_use{OpenVPN 身份仍在使用中} openvpn_tls_verification_required{缺少 OpenVPN TLS 验证} openvpn_cipher_invalid{OpenVPN 加密算法无效} openvpn_profile_rejected{OpenVPN 配置文件被拒绝} openvpn_identity_inconsistent{OpenVPN 身份不一致} tls_handshake_failed{OpenVPN 协商被拒绝} tls_alert_unknown_ca{OpenVPN 客户端证书未被识别} tls_alert_bad_certificate{OpenVPN 客户端证书被拒绝} tls_alert_unsupported_certificate{不支持的 OpenVPN 证书} tls_client_certificate_required{需要 OpenVPN 客户端证书} tls_alert_misc{OpenVPN TLS 警报} tls_signature_algorithm_rejected{不支持的 OpenVPN 签名} tls_handshake_rejected{OpenVPN TLS 协商被拒绝} tls_version_rejected{不兼容的 OpenVPN TLS 版本} tls_certificate_expired{TLS 证书已过期} tls_certificate_revoked{TLS 证书已撤销} transport_failed{无法访问 OpenVPN 服务器} tun_configuration_rejected{无法创建 OpenVPN 接口} tun_setup_failed{OpenVPN TUN 设置失败} tun_interface_create_failed{OpenVPN 接口创建失败} tun_interface_disabled{OpenVPN 接口已禁用} tun_halted{OpenVPN 接口已中断} tun_already_established{OpenVPN 接口已经打开} tun_addresses_missing{缺少 OpenVPN 地址} tun_routes_missing{缺少 OpenVPN 路由} tun_dns_missing{缺少 OpenVPN DNS} tun_permission_revoked{VPN 权限已撤销} tun_establish_returned_null{Android 拒绝了 VPN 接口} openvpn_service_start_failed{OpenVPN 服务不可用} openvpn_operation_timeout{OpenVPN 调用超时} openvpn_start_failed{OpenVPN 启动被拒绝} openvpn_connection_failed{OpenVPN 连接已中断} openvpn_core_status_error{OpenVPN Core 以错误结束} openvpn_stopped_before_connected{OpenVPN 在连接前停止} openvpn_auth_failed{OpenVPN 身份验证被拒绝} openvpn_client_setup_failed{OpenVPN 客户端设置失败} openvpn_client_halted{OpenVPN 客户端已中断} openvpn_client_restart{已请求重启 OpenVPN} openvpn_inactive_timeout{OpenVPN 长时间未活动} openvpn_session_expired{OpenVPN 会话已过期} openvpn_credentials_required{不支持的 OpenVPN 身份验证} openvpn_proxy_failed{OpenVPN 中间传输失败} openvpn_compression_failed{OpenVPN 压缩被拒绝} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM 加密不可用} openvpn_feature_unsupported{不支持的 OpenVPN 功能} network_unavailable{互联网连接不可用} network_lost{网络不可用} certificate_validation_failed{服务器证书被拒绝} openvpn_certificate_expired{OpenVPN 证书已过期} tunnel_active_for_another_account{另一个账户的隧道仍处于活动状态} tunnel_already_active{原生隧道已处于活动状态} tunnel_stop_timeout{未确认 {protocol} 已停止} tunnel_disconnected{{protocol} 已中断} native_bridge_unavailable{Android 桥接不可用} native_operation_failed{Android 操作已中断} invalid_arguments{VPN 参数不完整} invalid_account_id{VPN 账户无效} invalid_device_id{设备标识符无效} storage_key_not_allowed{存储密钥被拒绝} secure_storage_read_failed{安全读取失败} secure_storage_write_failed{安全写入失败} key_generation_failed{无法生成 WireGuard 密钥} csr_generation_failed{无法生成 OpenVPN CSR} openvpn_recovery_exhausted{OpenVPN 自动恢复已使用} openvpn_recovery_failed{OpenVPN 自动恢复失败} openvpn_renewal_required{需要更新 OpenVPN 证书} other{未分类的原生 VPN 错误}}",
   "@notice_native_title": {
     "placeholders": {
       "code": {
@@ -560,6 +585,8 @@
   "billing_accessUntil": "可使用至 {date}。",
   "billing_webManaged": "您的订阅在 FuzeVPN 网站上管理。",
   "billing_playManaged": "您的订阅通过 Google Play 管理。",
+  "billing_playOnHold": "您的 Google Play 订阅已暂停或正在等待付款。请打开“管理订阅”，在 Google Play 中解决此问题。",
+  "billing_playReceiptUnlinked": "此 Google Play 账户已有一项 Fuze Premium 订阅，但该订阅未在此 FuzeVPN 账户中生效。请打开“管理订阅”，在 Google Play 中查看。",
   "billing_inactive": "没有生效的订阅。",
   "billing_checkingAccess": "正在检查您的访问权限…",
   "billing_restoring": "正在恢复购买…",
@@ -638,6 +665,7 @@
   "google_emailUnavailable": "无法发送确认邮件。请稍后重试。",
   "google_emailSent": "已发送确认邮件。请检查收件箱。",
   "google_rateLimited": "请稍等后重试。",
+  "google_busy": "有其他操作（VPN 连接、账户或访客）正在进行时，无法使用 Google。请在操作完成后重试；您当前的访问权限会保留。",
   "google_invalidPassword": "FuzeVPN 密码不正确。当前账户将被保留。",
   "google_invalidCode": "确认码无效或已过期。",
   "google_accountChanged": "会话已更改。请取消此次尝试后重新开始。",
@@ -646,6 +674,14 @@
   "google_consentRequired": "选择居住国家或地区并同意两份文件后继续。",
   "google_challengeRequired": "需要额外的安全验证。当前访问权限将被保留。",
   "google_challengeUnavailable": "安全验证不可用。请稍后重试。",
+  "google_intentMismatch": "之前的一次 Google 登录尝试仍在等待处理。请先取消该尝试，然后再开始此操作。",
+  "google_challengeBlocked": "此应用不支持所需的安全验证。目前无法完成此操作。",
+  "google_solveChallenge": "进行安全验证",
+  "google_challengeTitle": "安全验证",
+  "google_challengeReady": "验证已完成。现在可以确认创建账户。",
+  "google_challengeExpired": "验证已过期。请重新验证后再确认。",
+  "google_challengeCancelled": "验证已取消。您可以重新验证。",
+  "google_challengeFailed": "安全验证失败。请重试。",
   "billing_trialTitle": "免费试用 Fuze Premium",
   "billing_trialSubtitle": "从今天起保护您的连接。",
   "billing_trialWeeks": "2 周免费试用",

@@ -140,7 +140,13 @@ String _themeLabel(BuildContext context, ThemeMode mode) => switch (mode) {
 };
 
 String _formatDate(BuildContext context, DateTime date) =>
-    DateFormat.yMd(Localizations.localeOf(context).toString()).format(date);
+    AppFormats.date(context, date);
+
+/// The API may omit a device name; the fallback follows the interface language.
+String _deviceName(BuildContext context, String? name) =>
+    name == null || name.trim().isEmpty
+    ? context.copy('devices.unnamed')
+    : name;
 
 Future<void> _confirmRevocation(
   BuildContext context,
@@ -161,7 +167,9 @@ Future<void> _confirmRevocation(
             ? context.copy('dialog.removeCurrent')
             : context.copy(
                 'dialog.removeOther',
-                arguments: <String, Object?>{'name': device.name},
+                arguments: <String, Object?>{
+                  'name': _deviceName(context, device.name),
+                },
               ),
       ),
       actions: <Widget>[

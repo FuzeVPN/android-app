@@ -46,7 +46,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get session_endingTitle => 'セッションを終了しています';
 
   @override
-  String get session_ending => 'セッションが無効になりました。VPNを停止し、セッションを消去しています…';
+  String get session_ending => 'セッションを終了しています。VPNを停止し、セッションデータを消去しています…';
 
   @override
   String get session_stopFailed => 'VPNが停止したことを確認できません。もう一度サインインする前に再試行してください。';
@@ -409,6 +409,9 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => '名前のないデバイス';
+
+  @override
   String get action_remove => '削除';
 
   @override
@@ -446,6 +449,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'アプリで使用しているソフトウェア';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'アプリおよび MPL-2.0 ライセンスのコンポーネントのソースコード: $url';
+  }
 
   @override
   String get settings_background =>
@@ -527,7 +535,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get notice_rateLimited_title => '試行回数が多すぎます';
 
   @override
-  String get notice_deviceLimit_title => '2台のデバイス上限に達しました';
+  String get notice_deviceLimit_title => 'デバイス上限に達しました';
 
   @override
   String get notice_deviceLimit_message => '別のデバイスを追加する前に、既存のデバイスを削除してください。';
@@ -620,7 +628,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'vpn_sign_in_required': 'サインインが必要です',
       'protocol_unavailable_at_location': 'プロトコルを利用できません',
       'vpn_permission_denied': 'VPN権限が拒否されました',
-      'revoked_identity_device_limit': '2台のデバイス上限に達しました',
+      'revoked_identity_device_limit': 'デバイス上限に達しました',
       'tunnel_start_unexpected': 'VPNを起動できませんでした',
       'flutter_disconnect_timeout': '切断を確認できません',
       'flutter_disconnect_unexpected': '切断できませんでした',
@@ -634,6 +642,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'location_migration_verification_failed': '場所の変更を確認できません',
       'location_migration_device_changed': '場所の変更中にデバイスが変更されました',
       'tunnel_stop_failed': '場所を変更できません',
+      'device_clock_ahead': '端末の時計が進んでいます',
       'other': '操作に失敗しました',
     });
     return '$_temp0';
@@ -676,6 +685,8 @@ class AppLocalizationsJa extends AppLocalizations {
       'location_migration_device_changed':
           'サーバーから返されたデバイスが、変更中のデバイスと一致しません。もう一度試す前にデバイスを更新してください。',
       'tunnel_stop_failed': '新しい接続を開始する前に、以前のトンネルを完全に停止する必要があります。',
+      'device_clock_ahead':
+          'この端末の時計が進んでいるようです。サインインしたままにするには、日付と時刻の自動設定をオンにしてください。',
       'other': '操作を完了できませんでした。もう一度試すか、診断コードをサポートに送信してください。',
     });
     return '$_temp0';
@@ -775,8 +786,36 @@ class AppLocalizationsJa extends AppLocalizations {
   String get notice_retryLater => 'しばらくしてからもう一度試してください。';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return '$seconds秒後にもう一度試してください。';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '$seconds秒後にもう一度試してください。',
+      one: '$seconds秒後にもう一度試してください。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes分後にもう一度試してください。',
+      one: '$minutes分後にもう一度試してください。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours時間後にもう一度試してください。',
+      one: '$hours時間後にもう一度試してください。',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -880,6 +919,9 @@ class AppLocalizationsJa extends AppLocalizations {
       'secure_storage_write_failed': '安全な書き込みに失敗しました',
       'key_generation_failed': 'WireGuardキーを生成できませんでした',
       'csr_generation_failed': 'OpenVPN CSRを生成できませんでした',
+      'openvpn_recovery_exhausted': 'OpenVPNの自動復旧は使用済みです',
+      'openvpn_recovery_failed': 'OpenVPNの自動復旧に失敗しました',
+      'openvpn_renewal_required': 'OpenVPN証明書の更新が必要です',
       'other': '分類されていないネイティブVPNエラー',
     });
     return '$_temp0';
@@ -1629,6 +1671,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get billing_playManaged => 'サブスクリプションはGoogle Playで管理できます。';
 
   @override
+  String get billing_playOnHold =>
+      'Google Playのサブスクリプションが保留中か、支払い待ちになっています。Google Playで解決するには「サブスクリプションを管理」を開いてください。';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'このGoogle Playアカウントには、このFuzeVPNアカウントでは有効になっていないFuze Premiumのサブスクリプションがすでにあります。Google Playで確認するには「サブスクリプションを管理」を開いてください。';
+
+  @override
   String get billing_inactive => '有効なサブスクリプションはありません。';
 
   @override
@@ -1858,6 +1908,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get google_rateLimited => 'しばらく待ってから再試行してください。';
 
   @override
+  String get google_busy =>
+      '別の操作（VPN接続、アカウント、ゲスト）の実行中はGoogleを利用できません。完了してからもう一度試してください。現在のアクセスはそのまま維持されます。';
+
+  @override
   String get google_invalidPassword =>
       'FuzeVPN のパスワードが正しくありません。現在のアカウントは保持されます。';
 
@@ -1881,6 +1935,32 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get google_challengeUnavailable => 'セキュリティ確認を利用できません。後でもう一度お試しください。';
+
+  @override
+  String get google_intentMismatch =>
+      '以前の Google ログインの試行がまだ保留中です。この操作を開始する前にキャンセルしてください。';
+
+  @override
+  String get google_challengeBlocked =>
+      '必要なセキュリティ確認はこのアプリでは利用できません。現在、この操作を完了できません。';
+
+  @override
+  String get google_solveChallenge => 'セキュリティ確認を行う';
+
+  @override
+  String get google_challengeTitle => 'セキュリティ確認';
+
+  @override
+  String get google_challengeReady => '確認が完了しました。アカウントの作成を確定できます。';
+
+  @override
+  String get google_challengeExpired => '確認の有効期限が切れました。確定する前にもう一度確認を行ってください。';
+
+  @override
+  String get google_challengeCancelled => '確認がキャンセルされました。もう一度行うことができます。';
+
+  @override
+  String get google_challengeFailed => 'セキュリティ確認に失敗しました。もう一度お試しください。';
 
   @override
   String get billing_trialTitle => 'Fuze Premiumを無料で試す';

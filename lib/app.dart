@@ -42,6 +42,27 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
   ApiHttpTransport? _diagnosticTransport;
   var _navigatorKey = GlobalKey<NavigatorState>();
   String? _navigatorScope;
+  bool _pendingSettled = false;
+
+  /// A pending account restoration is owned by the restoration page, whatever
+  /// produced it: a sign-in accepted by the server, or an automatic guest
+  /// admission on resume. Once it appears and settles, drop the routes that
+  /// would hide it.
+  bool get _pendingRestorationSettled =>
+      _controller.hasPendingAccountRestoration &&
+      !_controller.isRestoringAccount &&
+      !_controller.isAuthenticating;
+
+  void _revealPendingRestoration() {
+    final bool settled = _pendingRestorationSettled;
+    final bool appeared = settled && !_pendingSettled;
+    _pendingSettled = settled;
+    if (!appeared) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !_controller.hasPendingAccountRestoration) return;
+      _navigatorKey.currentState?.popUntil((route) => route.isFirst);
+    });
+  }
 
   GlobalKey<NavigatorState> _currentNavigatorKey() {
     final scope = _controller.sessionTermination != null
@@ -91,6 +112,8 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
     } else {
       _controller = widget.controller!;
     }
+    _pendingSettled = _pendingRestorationSettled;
+    _controller.addListener(_revealPendingRestoration);
     if (widget.autoInitialize) unawaited(_controller.initialize());
   }
 
@@ -106,6 +129,7 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _controller.removeListener(_revealPendingRestoration);
     if (_ownsController) _controller.dispose();
     _diagnosticTransport?.close();
     super.dispose();
@@ -216,7 +240,9 @@ class _AccountRestorationPage extends StatelessWidget {
         const SizedBox(height: 20),
         FilledButton.icon(
           key: const ValueKey('retry-account-restoration'),
-          onPressed: controller.isRestoringAccount
+          // A running guest recovery or its Retry-After delay owns the retry.
+          onPressed:
+              controller.isRestoringAccount || controller.isGuestActionBusy
               ? null
               : controller.retryAccountRestoration,
           icon: controller.isRestoringAccount
@@ -228,6 +254,11 @@ class _AccountRestorationPage extends StatelessWidget {
               : const Icon(Icons.refresh),
           label: Text(context.copy('action.retry')),
         ),
+        if (controller.isGuestActionBusy && controller.guestRetryAfter != null)
+          ...[
+            const SizedBox(height: 8),
+            _RetryCountdown(deadline: controller.guestRetryAfter!),
+          ],
         if (phase != VpnRuntimePhase.idle) ...[
           const SizedBox(height: 12),
           OutlinedButton.icon(
@@ -271,6 +302,50 @@ class _AccountRestorationPage extends StatelessWidget {
           ),
         ],
       ],
+    );
+  }
+}
+
+/// Remaining guest Retry-After delay, refreshed every second.
+class _RetryCountdown extends StatefulWidget {
+  const _RetryCountdown({required this.deadline});
+
+  final DateTime deadline;
+
+  @override
+  State<_RetryCountdown> createState() => _RetryCountdownState();
+}
+
+class _RetryCountdownState extends State<_RetryCountdown> {
+  late final Timer _tick;
+
+  @override
+  void initState() {
+    super.initState();
+    _tick = Timer.periodic(const Duration(seconds: 1), (_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _tick.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final int milliseconds = widget.deadline
+        .difference(DateTime.now())
+        .inMilliseconds;
+    // Not a live region: it changes every second.
+    return Text(
+      context.copy(
+        'notice.retryAfter',
+        arguments: <String, Object?>{
+          'seconds': ((milliseconds + 999) ~/ 1000).clamp(1, 60),
+        },
+      ),
+      key: const ValueKey('restoration-retry-countdown'),
+      textAlign: TextAlign.center,
     );
   }
 }
@@ -591,7 +666,6 @@ void _registerBundledLicenses() {
       'OpenSSL': 'OPENSSL',
       'WireGuard Android tunnel library': 'WIREGUARD',
       'wireguard-go': 'WIREGUARD-GO',
-      'wireguard-tools': 'WIREGUARD-TOOLS',
       'Asio': 'ASIO',
       'fmt': 'FMT',
       'LZ4': 'LZ4',

@@ -9,6 +9,7 @@ class MainActivity : FlutterActivity() {
     private var vpnBridge: AndroidVpnBridge? = null
     private var billingBridge: PlayBillingBridge? = null
     private var googleAuthBridge: GoogleAuthBridge? = null
+    private var turnstileBridge: NativeTurnstileBridge? = null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -22,21 +23,26 @@ class MainActivity : FlutterActivity() {
             flutterEngine.dartExecutor.binaryMessenger,
         )
         googleAuthBridge = GoogleAuthBridge(this, flutterEngine.dartExecutor.binaryMessenger)
+        turnstileBridge = NativeTurnstileBridge(this, flutterEngine.dartExecutor.binaryMessenger)
     }
 
     override fun onResume() {
         super.onResume()
         billingBridge?.onActivityResumed()
         googleAuthBridge?.onActivityResumed()
+        turnstileBridge?.onActivityResumed()
     }
 
     override fun onPause() {
+        turnstileBridge?.onActivityPaused()
         googleAuthBridge?.onActivityPaused()
         billingBridge?.onActivityPaused()
         super.onPause()
     }
 
     override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
+        turnstileBridge?.close()
+        turnstileBridge = null
         googleAuthBridge?.close()
         googleAuthBridge = null
         billingBridge?.close()
@@ -60,6 +66,8 @@ class MainActivity : FlutterActivity() {
     }
 
     override fun onDestroy() {
+        turnstileBridge?.close()
+        turnstileBridge = null
         googleAuthBridge?.close()
         googleAuthBridge = null
         billingBridge?.close()

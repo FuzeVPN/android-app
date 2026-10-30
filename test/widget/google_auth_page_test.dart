@@ -3,13 +3,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fuzevpn_android/core/api_exception.dart';
 import 'package:fuzevpn_android/core/google_auth.dart';
+import 'package:fuzevpn_android/core/google_credentials.dart';
+import 'package:fuzevpn_android/core/models.dart';
+import 'package:fuzevpn_android/core/security_challenge.dart';
 import 'package:fuzevpn_android/features/auth/auth_page.dart';
 import 'package:fuzevpn_android/features/auth/google_auth_page.dart';
 import 'package:fuzevpn_android/features/auth/guest_claim_page.dart';
 import 'package:fuzevpn_android/features/auth/welcome_page.dart';
 import 'package:fuzevpn_android/google_auth_controller.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 
 import '../support/welcome_ui_fixture.dart';
 
@@ -366,6 +371,212 @@ void main() {
     },
   );
 
+  for (final purpose in [
+    GoogleAuthPurpose.authenticate,
+    GoogleAuthPurpose.claim,
+  ]) {
+    testWidgets(
+      'security challenge ${purpose.name} resolves explicitly without automatic finalization',
+      (tester) async {
+        final step = purpose == GoogleAuthPurpose.claim
+            ? GoogleAuthStep.guestClaimRequired
+            : GoogleAuthStep.registrationRequired;
+        final now = DateTime.utc(2026, 10, 19);
+        final auth = _GoogleUiFake(step: step)..clockNow = now;
+        auth.current = GoogleAuthState(
+          step: GoogleAuthStep.uncertain,
+          context: auth.current.context,
+          block: GoogleAuthBlock.securityChallenge,
+          securityChallengeRequired: true,
+          messageKey: 'google.challengeRequired',
+        );
+        final app = WelcomeUiController(googleAuth: auth);
+        addTearDown(app.dispose);
+        await _open(tester, app, purpose: purpose);
+        expect(auth.securitySolves, 0);
+        final solve = find.byKey(const ValueKey('google-solve-challenge'));
+        await _reveal(tester, solve);
+        await tester.tap(solve);
+        await tester.pumpAndSettle();
+        expect(auth.securitySolves, 1);
+        expect(auth.profileCalls, 0);
+        final submit = find.byKey(const ValueKey('google-profile-submit'));
+        await _reveal(tester, submit);
+        expect(tester.widget<ButtonStyleButton>(submit).onPressed, isNotNull);
+        // Expiration alone removes the completed proof, without a submission.
+        auth.clockNow = now.add(const Duration(minutes: 4));
+        await tester.pump(const Duration(minutes: 4));
+        await tester.pump();
+        expect(auth.profileCalls, 0);
+        expect(auth.current.messageKey, 'google.challengeExpired');
+        expect(
+          find.byKey(const ValueKey('google-profile-submit')),
+          findsNothing,
+        );
+        expect(
+          find.byKey(const ValueKey('google-solve-challenge')),
+          findsOneWidget,
+        );
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'security challenge button respects Retry-After then becomes available',
+    (tester) async {
+      final now = DateTime.utc(2026, 10, 19);
+      final deadline = now.add(const Duration(seconds: 30));
+      final auth = _GoogleUiFake()..clockNow = now;
+      auth.current = GoogleAuthState(
+        step: GoogleAuthStep.uncertain,
+        context: auth.current.context,
+        block: GoogleAuthBlock.securityChallenge,
+        securityChallengeRequired: true,
+        retryAfter: deadline,
+        messageKey: 'google.challengeUnavailable',
+      );
+      final app = WelcomeUiController(googleAuth: auth);
+      addTearDown(app.dispose);
+      await _open(tester, app);
+      final solve = find.byKey(const ValueKey('google-solve-challenge'));
+      await _reveal(tester, solve);
+      expect(tester.widget<ButtonStyleButton>(solve).onPressed, isNull);
+      auth.clockNow = deadline;
+      await tester.pump(const Duration(seconds: 30));
+      await tester.pump();
+      expect(tester.widget<ButtonStyleButton>(solve).onPressed, isNotNull);
+      expect(auth.securitySolves, 0);
+    },
+  );
+
+  for (final block in GoogleAuthBlock.values) {
+    testWidgets('blocked Google $block only permits explicit cancellation', (
+      tester,
+    ) async {
+      final auth = _GoogleUiFake(step: GoogleAuthStep.uncertain)
+        ..pending = true
+        ..current = GoogleAuthState(
+          step: GoogleAuthStep.uncertain,
+          block: block,
+          messageKey: block == GoogleAuthBlock.intentMismatch
+              ? 'google.intentMismatch'
+              : 'google.challengeBlocked',
+        );
+      final app = WelcomeUiController(googleAuth: auth)
+        ..profile = guestUiProfile(canUseVpn: true);
+      addTearDown(app.dispose);
+      await _open(tester, app, purpose: GoogleAuthPurpose.claim);
+      expect(find.byKey(const ValueKey('google-resume')), findsNothing);
+      expect(find.byKey(const ValueKey('google-profile-submit')), findsNothing);
+      expect(find.byKey(const ValueKey('google-restart')), findsNothing);
+      expect(find.byKey(const ValueKey('google-fuze-password')), findsNothing);
+      expect(auth.pickerRequests, 0);
+      expect(auth.resumes, 0);
+      expect(auth.profileCalls, 0);
+      final cancel = find.byKey(const ValueKey('google-cancel'));
+      await _reveal(tester, cancel);
+      await tester.tap(cancel);
+      await tester.pumpAndSettle();
+      expect(auth.cancels, 1);
+      expect(find.byType(GoogleAuthenticationPage), findsNothing);
+      expect(app.profile?.isGuest, isTrue);
+    });
+  }
+
+  for (final (step, emailRequested, key) in [
+    (GoogleAuthStep.registrationRequired, false, 'google-profile-submit'),
+    (GoogleAuthStep.guestClaimRequired, false, 'google-profile-submit'),
+    (GoogleAuthStep.linkRequired, false, 'google-password-confirm'),
+    (GoogleAuthStep.linkRequired, true, 'google-email-confirm'),
+  ]) {
+    testWidgets(
+      'Retry-After disables $step/$emailRequested until timer expiry',
+      (tester) async {
+        final now = DateTime.utc(2026, 10, 19);
+        final deadline = now.add(const Duration(seconds: 120));
+        final auth = _GoogleUiFake(step: step, emailRequested: emailRequested)
+          ..clockNow = now;
+        auth.current = GoogleAuthState(
+          step: step,
+          context: auth.current.context,
+          emailRequested: emailRequested,
+          messageKey: 'google.rateLimited',
+          retryAfter: deadline,
+        );
+        final app = WelcomeUiController(googleAuth: auth);
+        addTearDown(app.dispose);
+        await _open(tester, app);
+        final submit = find.byKey(ValueKey(key));
+        await _reveal(tester, submit);
+        expect(tester.widget<ButtonStyleButton>(submit).onPressed, isNull);
+        if (step == GoogleAuthStep.linkRequired) {
+          expect(
+            tester
+                .widget<ButtonStyleButton>(
+                  find.byKey(const ValueKey('google-email-request')),
+                )
+                .onPressed,
+            isNull,
+          );
+        }
+        auth.clockNow = deadline;
+        await tester.pump(const Duration(seconds: 120));
+        await tester.pump();
+        expect(tester.widget<ButtonStyleButton>(submit).onPressed, isNotNull);
+        if (step == GoogleAuthStep.linkRequired) {
+          expect(
+            tester
+                .widget<ButtonStyleButton>(
+                  find.byKey(const ValueKey('google-email-request')),
+                )
+                .onPressed,
+            isNotNull,
+          );
+        }
+        expect(tester.takeException(), isNull);
+      },
+    );
+  }
+
+  testWidgets(
+    'email resend deadline is separate and refreshed after server cooldown',
+    (tester) async {
+      final now = DateTime.utc(2026, 10, 19);
+      final serverDeadline = now.add(const Duration(seconds: 30));
+      final emailDeadline = now.add(const Duration(seconds: 60));
+      final auth = _GoogleUiFake(
+        step: GoogleAuthStep.linkRequired,
+        emailRequested: true,
+      )..clockNow = now;
+      auth.current = GoogleAuthState(
+        step: GoogleAuthStep.linkRequired,
+        context: auth.current.context,
+        emailRequested: true,
+        retryAfter: serverDeadline,
+        emailRetryAfter: emailDeadline,
+      );
+      final app = WelcomeUiController(googleAuth: auth);
+      addTearDown(app.dispose);
+      await _open(tester, app);
+      final confirm = find.byKey(const ValueKey('google-email-confirm'));
+      final resend = find.byKey(const ValueKey('google-email-request'));
+      await _reveal(tester, resend);
+      expect(tester.widget<ButtonStyleButton>(confirm).onPressed, isNull);
+      expect(tester.widget<ButtonStyleButton>(resend).onPressed, isNull);
+      auth.clockNow = serverDeadline;
+      await tester.pump(const Duration(seconds: 30));
+      await tester.pump();
+      expect(tester.widget<ButtonStyleButton>(confirm).onPressed, isNotNull);
+      expect(tester.widget<ButtonStyleButton>(resend).onPressed, isNull);
+      auth.clockNow = emailDeadline;
+      await tester.pump(const Duration(seconds: 30));
+      await tester.pump();
+      expect(tester.widget<ButtonStyleButton>(resend).onPressed, isNotNull);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   for (final language in AppLanguages.all) {
     for (final state in [
       GoogleAuthStep.registrationRequired,
@@ -560,6 +771,239 @@ void main() {
       }, tags: 'google-preview');
     }
   }
+  _confirmedCancellationTests();
+}
+
+/// Final minors of 30/10 (R2-cancel, checks/review-R2-final PPR1): the real
+/// controller behind the real page. Once the API has confirmed the
+/// cancellation, a failing removal of the local ticket must not keep the page.
+void _confirmedCancellationTests() {
+  for (final exit in ['AppBar Back', 'system Back']) {
+    testWidgets('$exit leaves once the API confirmed the cancellation, '
+        'although the local removal fails', (tester) async {
+      final f = _RealGoogle();
+      addTearDown(f.app.dispose);
+      await _open(tester, f.app);
+      expect(f.auth.state.step, GoogleAuthStep.registrationRequired);
+      f.store.clearFailure = GoogleCredentialException('secure_storage_failed');
+      await _exitGoogle(tester, exit);
+      expect(find.byType(GoogleAuthenticationPage), findsNothing);
+      expect(find.byKey(const ValueKey('google-parent')), findsOneWidget);
+      expect(f.api.cancelledTickets, ['rotated-ticket-fixture']);
+      expect(f.store.clears, 1);
+      expect(f.auth.hasPendingIntent, isFalse);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('control: a failed API cancellation keeps the page and explains '
+      'it, without touching the store; once confirmed, Back leaves', (
+    tester,
+  ) async {
+    final f = _RealGoogle();
+    addTearDown(f.app.dispose);
+    await _open(tester, f.app);
+    f.store.clearFailure = GoogleCredentialException('secure_storage_failed');
+    f.api.cancelFailure = const ApiNetworkException(code: 'network_timeout');
+    final cancelFailed = lookupAppLocalizations(
+      const Locale('fr'),
+    ).google_cancelFailed;
+    for (final exit in ['AppBar Back', 'system Back']) {
+      await _exitGoogle(tester, exit);
+      expect(find.byType(GoogleAuthenticationPage), findsOneWidget);
+      expect(find.text(cancelFailed), findsOneWidget);
+      expect(f.auth.hasPendingIntent, isTrue);
+    }
+    expect(f.store.clears, 0);
+    expect(f.store.payload, contains('rotated-ticket-fixture'));
+    f.api.cancelFailure = null;
+    f.store.clearFailure = null;
+    await _exitGoogle(tester, 'system Back');
+    expect(find.byType(GoogleAuthenticationPage), findsNothing);
+    expect(f.api.cancelledTickets, hasLength(3));
+    expect(f.store.payload, isNull);
+    expect(f.auth.hasPendingIntent, isFalse);
+    expect(tester.takeException(), isNull);
+  });
+}
+
+Future<void> _exitGoogle(WidgetTester tester, String exit) async {
+  if (exit == 'system Back') {
+    await tester.binding.handlePopRoute();
+  } else {
+    await tester.tap(find.byType(BackButton));
+  }
+  await tester.pumpAndSettle();
+}
+
+/// A real [GoogleAuthController] over a simulated API, picker and store.
+class _RealGoogle {
+  _RealGoogle() {
+    auth = GoogleAuthController(
+      api: api,
+      gateway: _RealPicker(),
+      pendingStore: store,
+      challengeGateway: _NoChallenge(),
+      identity: () => const GoogleIdentitySnapshot(),
+      identityMatches: (_) => true,
+      canBegin: (_) => true,
+      admitSession: (result, before, isCurrent) async => isCurrent(),
+    );
+    app = WelcomeUiController(googleAuth: auth);
+  }
+
+  final api = _CancelApi();
+  final store = _PendingStore();
+  late final GoogleAuthController auth;
+  late final WelcomeUiController app;
+}
+
+class _PendingStore implements GooglePendingAuthStore {
+  String? payload;
+  Object? clearFailure;
+  int clears = 0;
+  @override
+  Future<String?> readPendingAuthentication() async => payload;
+  @override
+  Future<void> writePendingAuthentication(String value) async {
+    payload = value;
+  }
+
+  @override
+  Future<void> clearPendingAuthentication() async {
+    clears++;
+    final failure = clearFailure;
+    if (failure != null) throw failure;
+    payload = null;
+  }
+}
+
+class _RealPicker implements GoogleCredentialGateway {
+  @override
+  Future<GoogleCredentialCapabilities> getCapabilities() async =>
+      const GoogleCredentialCapabilities(supported: true);
+  @override
+  Future<GoogleCredentialResult> signIn({
+    required String requestId,
+    required String serverClientId,
+    required String nonce,
+  }) async =>
+      GoogleCredentialResult(requestId: requestId, idToken: 'jwt-fixture');
+  @override
+  Future<void> cancelSignIn({required String requestId}) async {}
+  @override
+  Future<void> clearCredentialState() async {}
+}
+
+class _NoChallenge implements SecurityChallengeGateway {
+  @override
+  Future<SecurityChallengeResult> solve({
+    required String requestId,
+    required String title,
+    required String cancelLabel,
+  }) => throw UnimplementedError();
+  @override
+  Future<void> cancel({required String requestId}) async {}
+}
+
+class _CancelApi implements GoogleAuthApiRepository {
+  static final _expiry = DateTime.utc(2099);
+  Object? cancelFailure;
+  final cancelledTickets = <String>[];
+
+  @override
+  Future<GoogleBrowserContext> createGoogleBrowserContext({
+    String? token,
+    String? browserContextToken,
+  }) async => GoogleBrowserContext(
+    browserContextToken: 'browser-fixture',
+    authGeneration: 1,
+    expiresAt: _expiry,
+  );
+  @override
+  Future<GoogleAuthChallenge> createGoogleChallenge({
+    required GoogleBrowserContext browserContext,
+    required String purpose,
+    String? token,
+  }) async => GoogleAuthChallenge(
+    challengeId: 'challenge-fixture',
+    nonce: 'nonce-fixture',
+    contextToken: 'initial-ticket-fixture',
+    expiresAt: _expiry,
+  );
+  @override
+  Future<GoogleAuthResult> verifyGoogleCredential({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+    required String challengeId,
+    required String credential,
+  }) async => GoogleContinuationResult(
+    status: 'registration_required',
+    contextToken: 'rotated-ticket-fixture',
+    expiresAt: _expiry,
+  );
+  @override
+  Future<GoogleAuthContext> getGoogleContext({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+  }) async => GoogleAuthContext(
+    status: 'registration_required',
+    purpose: 'authenticate',
+    expiresAt: _expiry,
+    email: 'fixture@example.invalid',
+  );
+  @override
+  Future<void> cancelGoogleAuth({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+    String? challengeId,
+  }) async {
+    cancelledTickets.add(contextToken);
+    final failure = cancelFailure;
+    if (failure != null) throw failure;
+  }
+
+  @override
+  Future<GoogleAuthenticatedResult> registerGoogleAccount({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+    required String countryCode,
+    required bool termsAccepted,
+    required bool privacyAccepted,
+    String? turnstileToken,
+  }) => throw UnimplementedError();
+  @override
+  Future<GoogleGuestClaimResult> claimGuestWithGoogle({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+    required String countryCode,
+    required bool termsAccepted,
+    required bool privacyAccepted,
+    String? turnstileToken,
+  }) => throw UnimplementedError();
+  @override
+  Future<GoogleAuthenticatedResult> linkGoogleWithPassword({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+    required String currentPassword,
+  }) => throw UnimplementedError();
+  @override
+  Future<void> requestGoogleLinkEmail({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+  }) => throw UnimplementedError();
+  @override
+  Future<GoogleAuthenticatedResult> confirmGoogleLinkEmail({
+    required GoogleBrowserContext browserContext,
+    required String contextToken,
+    required String code,
+  }) => throw UnimplementedError();
+  @override
+  Future<AuthSession> loginWithAuthContext({
+    required GoogleBrowserContext browserContext,
+    required String email,
+    required String password,
+  }) => throw UnimplementedError();
 }
 
 Future<void> _open(
@@ -610,8 +1054,12 @@ class _GoogleUiFake extends GoogleAuthController {
   GoogleAuthState current;
   int begins = 0, cancels = 0, profileCalls = 0, emailConfirms = 0;
   int pickerRequests = 0, resumes = 0;
+  int securitySolves = 0;
   bool cancelSucceeds = true, completeDuringCancel = false;
   bool pending = false, providerBusy = false;
+  DateTime? clockNow;
+  @override
+  DateTime get now => clockNow ?? super.now;
   GoogleAuthPurpose? purpose;
   String? country, password, code;
   bool? terms, privacy;
@@ -634,6 +1082,37 @@ class _GoogleUiFake extends GoogleAuthController {
   @override
   Future<void> resume() async {
     resumes++;
+    notifyListeners();
+  }
+
+  @override
+  Future<void> solveSecurityChallenge({
+    required String title,
+    required String cancelLabel,
+  }) async {
+    securitySolves++;
+    current = GoogleAuthState(
+      step: current.context?.status == 'guest_claim_required'
+          ? GoogleAuthStep.guestClaimRequired
+          : GoogleAuthStep.registrationRequired,
+      context: current.context,
+      securityChallengeRequired: true,
+      challengeExpiresAt: now.add(const Duration(minutes: 4)),
+      messageKey: 'google.challengeReady',
+    );
+    notifyListeners();
+  }
+
+  @override
+  void expireSecurityChallenge() {
+    if (current.challengeExpiresAt?.isAfter(now) != false) return;
+    current = GoogleAuthState(
+      step: GoogleAuthStep.uncertain,
+      context: current.context,
+      securityChallengeRequired: true,
+      block: GoogleAuthBlock.securityChallenge,
+      messageKey: 'google.challengeExpired',
+    );
     notifyListeners();
   }
 

@@ -31,6 +31,7 @@ abstract interface class GoogleAuthApiRepository {
     required String countryCode,
     required bool termsAccepted,
     required bool privacyAccepted,
+    String? turnstileToken,
   });
 
   Future<GoogleGuestClaimResult> claimGuestWithGoogle({
@@ -39,6 +40,7 @@ abstract interface class GoogleAuthApiRepository {
     required String countryCode,
     required bool termsAccepted,
     required bool privacyAccepted,
+    String? turnstileToken,
   });
 
   Future<GoogleAuthenticatedResult> linkGoogleWithPassword({
@@ -278,8 +280,12 @@ class GoogleGuestClaimResult {
         userId is! String ||
         !RegExp(r'^[A-Za-z0-9_-]{3,128}$').hasMatch(userId) ||
         emailVerified is! bool ||
-        const ['access_token', 'expires_at', 'context_token', 'reauth_token']
-            .any(json.containsKey)) {
+        const [
+          'access_token',
+          'expires_at',
+          'context_token',
+          'reauth_token',
+        ].any(json.containsKey)) {
       throw const FormatException('invalid_google_guest_claim');
     }
     return GoogleGuestClaimResult(

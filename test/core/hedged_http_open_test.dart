@@ -7,6 +7,47 @@ import 'package:fuzevpn_android/core/api_client.dart';
 import 'package:fuzevpn_android/core/hedged_http_open.dart';
 
 void main() {
+  test('selection cancels only the pending losing opening', () async {
+    final primary = Completer<String>();
+    var cancelledPrimary = 0;
+    var cancelledAlternate = 0;
+    final result = const HedgedHttpOpen(hedgeDelay: Duration(milliseconds: 1))
+        .open<String>(
+          primary: () => primary.future,
+          alternate: () async => 'selected',
+          abort: (_) {},
+          timeout: const Duration(seconds: 1),
+          cancelPrimary: () => cancelledPrimary++,
+          cancelAlternate: () => cancelledAlternate++,
+        );
+    expect(await result, 'selected');
+    expect(cancelledPrimary, 1);
+    expect(cancelledAlternate, 0);
+    primary.completeError(const SocketException('cancelled losing opening'));
+  });
+
+  test(
+    'deadline cancels both pending openings and tolerates cleanup errors',
+    () async {
+      final primary = Completer<String>();
+      final alternate = Completer<String>();
+      var alternateCancelled = false;
+      final result = const HedgedHttpOpen(hedgeDelay: Duration(milliseconds: 1))
+          .open<String>(
+            primary: () => primary.future,
+            alternate: () => alternate.future,
+            abort: (_) {},
+            timeout: const Duration(milliseconds: 20),
+            cancelPrimary: () => throw StateError('synthetic cleanup error'),
+            cancelAlternate: () => alternateCancelled = true,
+          );
+      await expectLater(result, throwsA(isA<TimeoutException>()));
+      expect(alternateCancelled, isTrue);
+      primary.completeError(const SocketException('cancelled primary'));
+      alternate.completeError(const SocketException('cancelled alternate'));
+    },
+  );
+
   test('une ouverture primaire rapide ne lance pas la seconde', () async {
     var primaryCalls = 0;
     var alternateCalls = 0;

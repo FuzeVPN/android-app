@@ -4,12 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
-import android.util.Base64
-import androidx.core.content.edit
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import java.security.KeyStore
 import java.security.MessageDigest
+import java.util.Base64
 import javax.crypto.AEADBadTagException
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -26,10 +25,15 @@ import javax.crypto.spec.GCMParameterSpec
  * typed method-channel contract in [AndroidVpnBridge] exposes only dedicated
  * business operations; native slot names are never accepted from Dart.
  */
-internal class SecureKeystoreStore(context: Context) {
-    private val preferences: SharedPreferences = context.getSharedPreferences(
-        PREFERENCES_NAME,
-        Context.MODE_PRIVATE,
+internal class SecureKeystoreStore(
+    private val preferences: SharedPreferences,
+    private val privacyPreferences: SharedPreferences,
+    private val keyProvider: (createIfAbsent: Boolean) -> SecretKey,
+) {
+    constructor(context: Context) : this(
+        context.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE),
+        context.getSharedPreferences(PRIVACY_PREFERENCES_NAME, Context.MODE_PRIVATE),
+        ::getKey,
     )
 
     @Synchronized
@@ -39,11 +43,12 @@ internal class SecureKeystoreStore(context: Context) {
         return try {
             decrypt(storageKey, encoded)
         } catch (error: SecureStorageException) {
-            // A corrupt or invalidated record must not be treated as a secret
-            // belonging to another account. Remove only this record and make
-            // the caller present an actionable storage error.
+            // Only a failed authentication/format check proves corruption.
+            // A temporarily unavailable Keystore must never destroy valid data.
             // Admission markers must survive a failed read: absence would unlock enrollment.
-            if (removeCorrupt) preferences.edit { remove(storageKey) }
+            if (removeCorrupt && error.code == "secure_storage_corrupt") {
+                preferences.edit().remove(storageKey).commitOrThrow()
+            }
             throw error
         }
     }
@@ -110,8 +115,9 @@ internal class SecureKeystoreStore(context: Context) {
         val editor = preferences.edit()
         if (disableGuestAutoResume) {
             val slot = SecureStorageKeyPolicy.guestAutoResume()
-            val storageKey = storageKey(slot.scope, slot.key)
-            editor.putString(storageKey, encrypt(storageKey, "false"))
+            // Absence already means false. Revocation must not depend on a
+            // working Keystore, and must be committed with the session purge.
+            editor.remove(storageKey(slot.scope, slot.key))
         }
         preferences.all.keys.forEach { record ->
             val parts = record.split(':', limit = 3)
@@ -119,6 +125,43 @@ internal class SecureKeystoreStore(context: Context) {
                 SecureStorageKeyPolicy.isSessionSlot(parts[1], parts[2])) editor.remove(record)
         }
         editor.commitOrThrow()
+    }
+
+    /** Refusal is durable independently of the encrypted store/Keystore. */
+    fun readAutomaticDiagnosticsConsent(): Boolean = synchronized(consentLock) {
+        val denied = try {
+            privacyPreferences.getBoolean(DIAGNOSTICS_DENIED_KEY, false)
+        } catch (_: ClassCastException) {
+            true
+        }
+        if (denied) return@synchronized false
+        val slot = SecureStorageKeyPolicy.preference(SecureAppPreference.DIAGNOSTICS_AUTOMATIC_OPT_IN)
+        SecureStorageKeyPolicy.automaticDiagnosticsEnabled(read(slot.scope, slot.key, removeCorrupt = false))
+    }
+
+    /** A new explicit opt-in must persist before removing a previous refusal. */
+    fun writeAutomaticDiagnosticsConsent(enabled: Boolean): Unit = synchronized(consentLock) {
+        val slot = SecureStorageKeyPolicy.preference(SecureAppPreference.DIAGNOSTICS_AUTOMATIC_OPT_IN)
+        if (!enabled) {
+            privacyPreferences.edit().putBoolean(DIAGNOSTICS_DENIED_KEY, true).commitOrThrow()
+            // The independently committed refusal is sufficient. A cleanup
+            // failure cannot re-enable diagnostics or turn this into a failure.
+            runCatching { delete(slot.scope, slot.key) }
+            Unit
+        } else {
+            // Also cover a first opt-in: a failed encrypted commit may already
+            // have published true in SharedPreferences memory.
+            privacyPreferences.edit().putBoolean(DIAGNOSTICS_DENIED_KEY, true).commitOrThrow()
+            write(slot.scope, slot.key, "true")
+            try {
+                privacyPreferences.edit().remove(DIAGNOSTICS_DENIED_KEY).commitOrThrow()
+            } catch (error: Exception) {
+                // SharedPreferences changes memory before reporting a failed
+                // disk commit. Keep this process denied as well as the disk.
+                runCatching { privacyPreferences.edit().putBoolean(DIAGNOSTICS_DENIED_KEY, true).commit() }
+                throw error
+            }
+        }
     }
 
     /** One durable commit across native-owned slots, including account and
@@ -183,7 +226,7 @@ internal class SecureKeystoreStore(context: Context) {
 
     private fun encrypt(storageKey: String, value: String): String = try {
         val cipher = Cipher.getInstance(CIPHER_TRANSFORMATION)
-        cipher.init(Cipher.ENCRYPT_MODE, getOrCreateKey())
+        cipher.init(Cipher.ENCRYPT_MODE, keyProvider(true))
         cipher.updateAAD(storageKey.toByteArray(StandardCharsets.UTF_8))
         val iv = cipher.iv
         val ciphertext = cipher.doFinal(value.toByteArray(StandardCharsets.UTF_8))
@@ -192,19 +235,23 @@ internal class SecureKeystoreStore(context: Context) {
             .put(iv)
             .put(ciphertext)
             .array()
-        Base64.encodeToString(packed, Base64.NO_WRAP)
+        Base64.getEncoder().encodeToString(packed)
     } catch (error: Exception) {
         throw SecureStorageException("secure_storage_write_failed", error)
     }
 
     private fun decrypt(storageKey: String, encoded: String): String = try {
-        val packed = Base64.decode(encoded, Base64.NO_WRAP)
+        val packed = try {
+            Base64.getDecoder().decode(encoded)
+        } catch (_: IllegalArgumentException) {
+            throw SecureStorageException("secure_storage_corrupt")
+        }
         if (packed.size < 1 + GCM_TAG_BYTES) {
             throw SecureStorageException("secure_storage_corrupt")
         }
         val buffer = ByteBuffer.wrap(packed)
         val ivLength = buffer.get().toInt() and 0xff
-        if (ivLength !in 12..16 || buffer.remaining() <= GCM_TAG_BYTES) {
+        if (ivLength !in 12..16 || buffer.remaining() < ivLength + GCM_TAG_BYTES) {
             throw SecureStorageException("secure_storage_corrupt")
         }
         val iv = ByteArray(ivLength)
@@ -212,7 +259,7 @@ internal class SecureKeystoreStore(context: Context) {
         val ciphertext = ByteArray(buffer.remaining())
         buffer.get(ciphertext)
         val cipher = Cipher.getInstance(CIPHER_TRANSFORMATION)
-        cipher.init(Cipher.DECRYPT_MODE, getOrCreateKey(), GCMParameterSpec(GCM_TAG_BITS, iv))
+        cipher.init(Cipher.DECRYPT_MODE, keyProvider(false), GCMParameterSpec(GCM_TAG_BITS, iv))
         cipher.updateAAD(storageKey.toByteArray(StandardCharsets.UTF_8))
         String(cipher.doFinal(ciphertext), StandardCharsets.UTF_8)
     } catch (error: SecureStorageException) {
@@ -223,35 +270,14 @@ internal class SecureKeystoreStore(context: Context) {
         throw SecureStorageException("secure_storage_read_failed", error)
     }
 
-    private fun getOrCreateKey(): SecretKey = synchronized(keyCreationLock) {
-        // OpenVPN and the Flutter session store intentionally use separate
-        // SecureKeystoreStore instances, so this lock must be process-wide.
-        val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
-        val existing = keyStore.getKey(KEY_ALIAS, null) as? SecretKey
-        if (existing != null) return@synchronized existing
-
-        val generator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEYSTORE)
-        generator.init(
-            KeyGenParameterSpec.Builder(
-                KEY_ALIAS,
-                KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT,
-            )
-                .setKeySize(256)
-                .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
-                .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
-                .setRandomizedEncryptionRequired(true)
-                .setUserAuthenticationRequired(false)
-                .build(),
-        )
-        generator.generateKey()
-    }
-
     private fun SharedPreferences.Editor.commitOrThrow() {
         if (!commit()) throw SecureStorageException("secure_storage_write_failed")
     }
 
     companion object {
         private const val PREFERENCES_NAME = "fuzevpn.secure.v1"
+        private const val PRIVACY_PREFERENCES_NAME = "fuzevpn.privacy.v1"
+        private const val DIAGNOSTICS_DENIED_KEY = "automatic_diagnostics_denied"
         private const val FORMAT_VERSION = "v1"
         private const val KEY_ALIAS = "fuzevpn.android.aesgcm.v1"
         private const val ANDROID_KEYSTORE = "AndroidKeyStore"
@@ -260,8 +286,34 @@ internal class SecureKeystoreStore(context: Context) {
         private const val GCM_TAG_BYTES = 16
         private const val MAX_VALUE_CHARS = 256 * 1024
         private val SCOPE_PATTERN = Regex("[a-z0-9_-]{1,80}")
-        private val KEY_PATTERN = Regex("[A-Za-z0-9_.-]{1,192}")
+        // Typed dynamic suffixes accept up to 160 characters; a location
+        // migration slot is 194 characters. Keep existing slot names stable.
+        private val KEY_PATTERN = Regex("[A-Za-z0-9_.-]{1,256}")
         private val keyCreationLock = Any()
+        private val consentLock = Any()
+
+        private fun getKey(createIfAbsent: Boolean): SecretKey = synchronized(keyCreationLock) {
+            // Separate store instances still share the same process-owned key.
+            val keyStore = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
+            val existing = keyStore.getKey(KEY_ALIAS, null) as? SecretKey
+            if (existing != null) return@synchronized existing
+            if (!createIfAbsent) throw SecureStorageException("secure_storage_read_failed", keyMissing = true)
+
+            val generator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEYSTORE)
+            generator.init(
+                KeyGenParameterSpec.Builder(
+                    KEY_ALIAS,
+                    KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT,
+                )
+                    .setKeySize(256)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_GCM)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_NONE)
+                    .setRandomizedEncryptionRequired(true)
+                    .setUserAuthenticationRequired(false)
+                    .build(),
+            )
+            generator.generateKey()
+        }
 
         const val GLOBAL_SCOPE = "global"
 
@@ -282,4 +334,6 @@ internal class SecureKeystoreStore(context: Context) {
 internal class SecureStorageException(
     val code: String,
     cause: Throwable? = null,
+    /** The Keystore key is gone: no value stored before it can be decrypted again. */
+    val keyMissing: Boolean = false,
 ) : Exception(code, cause)

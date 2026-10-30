@@ -13,6 +13,16 @@ Ce dépôt publie les sources et les entrées natives de compilation revues.
 Il ne publie aucun APK, App Bundle ni GitHub Release. Le backend et
 l'infrastructure VPN FuzeVPN sont des services distincts, absents de ce dépôt.
 
+Les [corrections de l’audit complet du 28 octobre 2026](docs/AUDIT_CORRECTIONS_20261029.md)
+traitent 81 écarts (1 P1, 9 P2, 71 P3) et portent la chaîne d’outils à Flutter 3.47.8 et
+Gradle 9.8.2, avec le numéro **0.2.10+74016** inchangé.
+Les [corrections du réaudit du 28 octobre 2026](docs/AUDIT_CORRECTIONS_20261028.md)
+corrigent onze écarts de sources et d’outillage, avec le numéro **0.2.10+74016**
+inchangé. Les compilations de contrôle restent locales. Les [corrections du 19 octobre](docs/AUDIT_CORRECTIONS_20261019.md)
+et les preuves de qualification antérieures gardent leurs dates et limites.
+Voir les [limites des preuves et outils maintenus](docs/RELEASE_EVIDENCE.md),
+dont la réserve sur les deux originaux historiques non retrouvés.
+
 Cette version refond l’écran Premium et prend en charge l’offre Google Play
 `freetest` pour les nouveaux abonnés éligibles, avec le tarif récurrent exact,
 les conditions de renouvellement et une date de premier débit estimée.
@@ -42,8 +52,8 @@ d'origine est réservé au debug. Lire les guides avant tout essai réseau.
 
 ## Compiler
 
-Matrice revue : Flutter **3.44.7**, JDK **17**, Android Platform **36**,
-NDK **28.2.13676358** et CMake **3.22.1**. Le projet épingle Gradle **9.5.0**,
+Matrice revue : Flutter **3.47.8** (Dart **3.13.7**), JDK **17**, Android Platform **36**,
+NDK **28.2.13676358** et CMake **3.22.1**. Le projet épingle Gradle **9.8.2**,
 Android Gradle Plugin **9.3.0** et Kotlin **2.3.20**.
 
 Installer les outils, définir `JAVA_HOME` et `ANDROID_HOME`, puis créer son
@@ -72,6 +82,9 @@ Maven/Pub se préparent séparément.
 | Guide | Contenu |
 | --- | --- |
 | [Notes de version](docs/RELEASE_NOTES.md) | Changements de 0.2.10+74016 et limites de validation |
+| [Corrections de l’audit complet](docs/AUDIT_CORRECTIONS_20261029.md) | 81 écarts, chaîne d’outils, deux validations locales et limites |
+| [Corrections du réaudit](docs/AUDIT_CORRECTIONS_20261028.md) | Onze écarts, validation locale et identité des compilations de contrôle |
+| [Dernier SPDX release (28/10)](docs/SBOM.release.corrections-20261028.spdx.json) | Résolution des dépendances et AAB exact non signé de l’arbre de travail, produit avant l’inventaire des composants natifs ([guide des SBOM release](docs/SBOM.release.md)) |
 | [Développement](docs/DEVELOPMENT.md) | Outils, compilation, tests et qualification sur appareil |
 | [Architecture](docs/ARCHITECTURE.md) | Comportement, stockage, tunnels et API attendue |
 | [Dépendances natives](docs/NATIVE_DEPENDENCIES.md) | Révisions, patches, intégrité et reconstruction |
@@ -81,7 +94,7 @@ Maven/Pub se préparent séparément.
 | [Connexion Google](docs/GOOGLE_AUTH.md) | Credential Manager et contrat OAuth serveur |
 | [Licences](LICENSING.md) | Périmètre MPL, exceptions et marques |
 | [Notices tierces](THIRD_PARTY_NOTICES.md) | Licences et provenance des composants |
-| [Inventaire SPDX](docs/SBOM.spdx.json) | Inventaire de sources et limites |
+| [Inventaire SPDX historique (14/10)](docs/SBOM.spdx.json) | Inventaire de sources du 14/10, avec l’ancien moteur WireGuard ; versions actuelles dans le [guide des SBOM release](docs/SBOM.release.md) et les [notices tierces](THIRD_PARTY_NOTICES.md) |
 
 ## Licence et contributions
 

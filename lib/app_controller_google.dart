@@ -71,8 +71,9 @@ extension _GoogleAccountOperations on VpnAppController {
     bool Function() isCurrent,
   ) async {
     if (!_googleIdentityMatches(before) || !isCurrent()) return false;
+    // The server owns the expiry of the session it just delivered; /me below
+    // proves it valid even if the device clock runs ahead.
     final candidate = result.session;
-    if (!candidate.expiresAt.isAfter(DateTime.now())) return false;
     final verified = await _api.me(candidate.accessToken);
     if (!_googleIdentityMatches(before) || !isCurrent()) return false;
     if (verified.isGuest ||

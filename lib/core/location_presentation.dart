@@ -8,9 +8,15 @@ final localizedCountryNames = Map<String, Map<String, String>>.unmodifiable({
   ...translatedCountryNames,
 });
 
+/// Canonical catalogue code shared by grouping, labels and local search.
+String normalizeLocationCountryCode(String value) {
+  final code = value.trim().toUpperCase();
+  return code == 'UK' ? 'GB' : code;
+}
+
 String countryName(String countryCode, String languageCode) {
   final code = countryCode.trim().toUpperCase();
-  final normalized = code == 'UK' ? 'GB' : code;
+  final normalized = normalizeLocationCountryCode(code);
   final names =
       localizedCountryNames[languageCode] ??
       localizedCountryNames[AppLanguages.parse(languageCode)?.toLanguageTag()];
@@ -31,17 +37,18 @@ bool locationMatchesQuery(
     query,
   ).split(' ').where((s) => s.isNotEmpty);
   if (terms.isEmpty) return true;
+  final countryCode = normalizeLocationCountryCode(location.countryCode);
   final haystack = normalizeLocationSearch(
     [
       location.city,
       location.displayName,
       location.countryCode,
+      countryCode,
       locationCountryName(location, languageCode),
       for (final language in localizedCountryNames.keys)
         locationCountryName(location, language),
-      if (location.countryCode.toUpperCase() == 'GB') 'UK Britain',
-      if (location.countryCode.toUpperCase() == 'US')
-        'USA United States America',
+      if (countryCode == 'GB') 'UK Britain',
+      if (countryCode == 'US') 'USA United States America',
     ].join(' '),
   );
   return terms.every(haystack.contains);

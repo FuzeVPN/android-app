@@ -10,10 +10,12 @@ import com.wireguard.crypto.KeyPair
 import java.io.ByteArrayInputStream
 import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
+import java.util.concurrent.CancellationException
 import java.util.concurrent.Executors
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
+import java.util.concurrent.atomic.AtomicInteger
 
 /** Remote configuration passed by Flutter only for the duration of a connect. */
 internal data class WireGuardRequest(
@@ -47,7 +49,16 @@ internal class WireGuardController(
     private val secureStore: SecureKeystoreStore,
     private val onUnexpectedTunnelDown: () -> Unit,
     backendFactory: (() -> Backend)? = null,
+    private val timeouts: Timeouts = Timeouts(),
 ) {
+    /** Upper bound of each call on the engine worker; tests may shorten them. */
+    internal data class Timeouts(
+        val connectMillis: Long = CONNECT_TIMEOUT_MS,
+        val stopMillis: Long = STOP_TIMEOUT_MS,
+        val statisticsMillis: Long = STATISTICS_TIMEOUT_MS,
+        val identityMillis: Long = IDENTITY_TIMEOUT_MS,
+    )
+
     private val appContext = context.applicationContext
     // GoBackend loads libwg-go, whose Go runtime probes the CPU immediately.
     // Keep idle/startup/OpenVPN paths independent of that native engine. The
@@ -62,16 +73,25 @@ internal class WireGuardController(
     @Volatile
     private var activePeerKey: Key? = null
 
+    @Volatile
+    private var activationStatistics: TunnelStatistics? = null
+
+    @Volatile
     private var connectedIdentity: Pair<String, String>? = null
 
     @Volatile
     private var stopping = false
 
-    /** A cancelled worker call may still own the Go backend/TUN. */
+    /** A start or stop that did not confirm DOWN may still own the Go backend/TUN. */
     @Volatile
     private var operationUncertain = false
 
-    fun getOrCreatePublicKey(accountId: String): String = runBackend(NO_TIMEOUT_MS) {
+    /** The call now executing on the engine worker, if any. */
+    @Volatile
+    private var runningCall: WorkerCall? = null
+
+    /** Bounded, and refused at once behind an abandoned start or stop. */
+    fun getOrCreatePublicKey(accountId: String): String = runBackend(timeouts.identityMillis, expiredCode = "wireguard_operation_pending") {
         val scope = SecureKeystoreStore.accountScope(accountId)
         val saved = secureStore.read(scope, PRIVATE_KEY_SLOT)
         val pair = if (saved == null) {
@@ -91,8 +111,9 @@ internal class WireGuardController(
      * Fingerprint an already enrolled WireGuard identity without creating,
      * deleting, or repairing any local material.  System resume uses this to
      * reject a snapshot when its account key changed after it was armed.
+     * A storage read on the caller thread: it never waits for the engine.
      */
-    fun existingIdentityFingerprint(accountId: String): String = runBackend(NO_TIMEOUT_MS) {
+    fun existingIdentityFingerprint(accountId: String): String = run {
         val scope = try {
             SecureKeystoreStore.accountScope(accountId)
         } catch (error: Exception) {
@@ -111,10 +132,10 @@ internal class WireGuardController(
         fingerprint(publicKey)
     }
 
-    /** Evidence from the key actually loaded into this proven tunnel. */
-    fun currentConnectionIdentityFingerprint(accountId: String): String = runBackend(NO_TIMEOUT_MS) {
+    /** Evidence from the key actually loaded into this proven tunnel; never waits for the engine. */
+    fun currentConnectionIdentityFingerprint(accountId: String): String = run {
         val identity = connectedIdentity
-        if (operationUncertain || !isConnected() || identity?.first != accountId) {
+        if (isOperationUncertain() || !isConnected() || identity?.first != accountId) {
             throw VpnNativeException("wireguard_identity_unavailable")
         }
         identity.second
@@ -129,10 +150,15 @@ internal class WireGuardController(
         isCurrent: () -> Boolean = { true },
         requireExistingIdentity: Boolean = false,
         timing: NativeConnectionTiming.TraceContext? = null,
-    ): Boolean = runBackend(CONNECT_TIMEOUT_MS) {
+    ): Boolean = runBackend(timeouts.connectMillis, ownsTunnel = true) {
         if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
         if (operationUncertain) throw VpnNativeException("wireguard_operation_pending")
+        // Refuse before touching the active tunnel's proof.
+        activeTunnel?.let {
+            throw VpnNativeException("tunnel_already_active")
+        }
         connectedIdentity = null
+        activationStatistics = null
         val privateKey = NativeConnectionTiming.span(timing, "wireguard_identity_config") {
             privateKeyFor(request.accountId, requireExistingIdentity)
         }
@@ -143,16 +169,9 @@ internal class WireGuardController(
         val tunnel = ManagedTunnel(TUNNEL_NAME) {
             if (!stopping && isCurrent()) onUnexpectedTunnelDown()
         }
-        activeTunnel?.let {
-            throw VpnNativeException("tunnel_already_active")
-        }
         try {
             NativeConnectionTiming.span(timing, "wireguard_native_start") {
-                val initializedBackend = backend
-                // The first library load can take time. A request cancelled
-                // during initialization must never start its prepared tunnel.
-                if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
-                initializedBackend.setState(tunnel, Tunnel.State.UP, configuration)
+                activateBackend(tunnel, configuration, isCurrent)
             }
             activeTunnel = tunnel
         } catch (error: Exception) {
@@ -170,7 +189,6 @@ internal class WireGuardController(
             throw error
         }
 
-        val afterStart = System.currentTimeMillis()
         val peerKey = try {
             Key.fromBase64(request.serverPublicKey)
         } catch (error: Exception) {
@@ -178,7 +196,7 @@ internal class WireGuardController(
             throw VpnNativeException("wireguard_configuration_invalid", error)
         }
         val connected = NativeConnectionTiming.span(timing, "wireguard_handshake_wait") {
-            waitForHandshake(tunnel, peerKey, afterStart, isCurrent)
+            waitForHandshake(tunnel, peerKey, isCurrent)
         }
         if (!connected) {
             safeStop(tunnel)
@@ -193,18 +211,16 @@ internal class WireGuardController(
 
     /** Does not start a second tunnel when the existing backend cannot stop. */
     fun disconnect(timing: NativeConnectionTiming.TraceContext? = null): Boolean {
-        val tunnel = activeTunnel ?: return !operationUncertain
+        val tunnel = activeTunnel ?: return !isOperationUncertain()
         return try {
-            NativeConnectionTiming.span(timing, "wireguard_stop_worker") { runBackend(STOP_TIMEOUT_MS) {
+            NativeConnectionTiming.span(timing, "wireguard_stop_worker") { runBackend(timeouts.stopMillis, ownsTunnel = true) {
                 connectedIdentity = null
                 stopping = true
                 try {
                     backend.setState(tunnel, Tunnel.State.DOWN, null)
                     val stopped = backend.getState(tunnel) == Tunnel.State.DOWN
                     if (stopped) {
-                        activeTunnel = null
-                        activePeerKey = null
-                        operationUncertain = false
+                        releaseTunnel()
                     } else {
                         // Never permit a different VPN to start unless the
                         // GoBackend has positively confirmed TUN teardown.
@@ -215,21 +231,25 @@ internal class WireGuardController(
                     stopping = false
                 }
             } }
-        } catch (_: TimeoutException) {
-            operationUncertain = true
-            false
         } catch (_: Exception) {
-            operationUncertain = true
+            // Refused, expired or failed: unconfirmed unless released since.
+            markStopUnconfirmed(tunnel)
             false
         }
     }
 
     fun isConnected(): Boolean = activeTunnel?.let { backend.getState(it) == Tunnel.State.UP } == true
 
+    /** The successful activation read, scoped to the active instance/peer. */
+    fun recoveryBaseline(): TunnelStatistics? = activationStatistics.takeIf {
+        activeTunnel != null && activePeerKey != null && !isOperationUncertain()
+    }
+
+    /** A read never owns the TUN: its expiry leaves the tunnel's proof intact. */
     fun statistics(): TunnelStatistics {
         val tunnel = activeTunnel ?: return TunnelStatistics()
         val peerKey = activePeerKey ?: return TunnelStatistics()
-        return runBackend(STATISTICS_TIMEOUT_MS) {
+        return runBackend(timeouts.statisticsMillis) {
             val peer = backend.getStatistics(tunnel).peer(peerKey)
                 ?: return@runBackend TunnelStatistics()
             TunnelStatistics(
@@ -241,7 +261,7 @@ internal class WireGuardController(
     }
 
     fun clearAccountIdentity(accountId: String) {
-        if (activeTunnel != null || operationUncertain) {
+        if (activeTunnel != null || isOperationUncertain()) {
             throw VpnNativeException("wireguard_identity_in_use")
         }
         val scope = SecureKeystoreStore.accountScope(accountId)
@@ -317,16 +337,33 @@ internal class WireGuardController(
         }
     }
 
-    private fun waitForHandshake(tunnel: ManagedTunnel, peerKey: Key, afterStartMillis: Long, isCurrent: () -> Boolean): Boolean {
+    private fun activateBackend(tunnel: ManagedTunnel, configuration: Config, isCurrent: () -> Boolean) {
+        val initializedBackend = backend
+        // The first library load can take time. A request cancelled during
+        // initialization must never start its prepared tunnel.
+        if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
+        initializedBackend.setState(tunnel, Tunnel.State.UP, configuration)
+    }
+
+    private fun waitForHandshake(tunnel: ManagedTunnel, peerKey: Key, isCurrent: () -> Boolean): Boolean {
         val deadline = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(HANDSHAKE_TIMEOUT_MS)
         while (System.nanoTime() < deadline) {
             if (!isCurrent()) return false
             val stats = backend.getStatistics(tunnel).peer(peerKey)
             val latestHandshake = stats?.latestHandshakeEpochMillis() ?: 0L
-            // A newly-created GoBackend tunnel cannot reuse an old peer
-            // handshake. The small skew grace avoids rejecting a valid server
-            // timestamp that is just behind the device clock.
-            if (latestHandshake >= afterStartMillis - HANDSHAKE_CLOCK_SKEW_MS) return true
+            // connect rejects an active/uncertain tunnel before activation, so
+            // this new native instance cannot contain an earlier handshake.
+            // Its statistics are scoped to this tunnel and the requested peer.
+            // Any positive handshake proves this instance even if the local
+            // wall clock moved or activation returned long after negotiation.
+            if (latestHandshake > 0L) {
+                activationStatistics = TunnelStatistics(
+                    receivedBytes = stats!!.rxBytes().coerceAtLeast(0L),
+                    sentBytes = stats.txBytes().coerceAtLeast(0L),
+                    latestHandshakeMillis = latestHandshake,
+                )
+                return true
+            }
             try {
                 Thread.sleep(HANDSHAKE_POLL_MS)
             } catch (_: InterruptedException) {
@@ -356,31 +393,94 @@ internal class WireGuardController(
             stopping = false
         }
         if (stopped) {
-            activeTunnel = null
-            activePeerKey = null
-            operationUncertain = false
+            releaseTunnel()
         } else {
             activeTunnel = tunnel
             operationUncertain = true
         }
     }
 
-    private fun <T> runBackend(timeoutMillis: Long, block: () -> T): T {
-        val future = backendExecutor.submit<T> { block() }
-        return try {
-            if (timeoutMillis == NO_TIMEOUT_MS) {
-                future.get()
-            } else {
-                future.get(timeoutMillis, TimeUnit.MILLISECONDS)
+    /** Positive DOWN confirmation; atomic with [markStopUnconfirmed]. */
+    private fun releaseTunnel() = synchronized(this) {
+        activeTunnel = null
+        activePeerKey = null
+        activationStatistics = null
+        operationUncertain = false
+    }
+
+    private fun markStopUnconfirmed(tunnel: ManagedTunnel) = synchronized(this) {
+        if (activeTunnel === tunnel) operationUncertain = true
+    }
+
+    /** An unconfirmed start or stop, or an abandoned one still on the worker. */
+    private fun isOperationUncertain(): Boolean =
+        operationUncertain || runningCall?.blocksWorker() == true
+
+    /**
+     * Runs [block] on the single engine worker for at most [timeoutMillis].
+     * GoBackend's JNI calls ignore interruption, so an abandoned call may keep
+     * the worker busy. Only a start or stop can own the TUN: while an expired
+     * one runs, the instance is uncertain and new calls are refused at once
+     * instead of queueing behind it. An expired read or key operation is only
+     * slow: later calls wait for it within their own bound. A call that never
+     * started is withdrawn and never runs.
+     */
+    private fun <T> runBackend(
+        timeoutMillis: Long,
+        ownsTunnel: Boolean = false,
+        expiredCode: String? = null,
+        block: () -> T,
+    ): T {
+        if (runningCall?.blocksWorker() == true) throw VpnNativeException("wireguard_operation_pending")
+        val call = WorkerCall(ownsTunnel)
+        val future = backendExecutor.submit<T> {
+            if (!call.start()) throw CancellationException("wireguard_call_withdrawn")
+            runningCall = call
+            try {
+                block()
+            } finally {
+                runningCall = null
+                call.finish()
             }
-        } catch (error: TimeoutException) {
-            future.cancel(true)
-            operationUncertain = true
-            throw error
+        }
+        return try {
+            try {
+                future.get(timeoutMillis, TimeUnit.MILLISECONDS)
+            } catch (error: TimeoutException) {
+                if (call.withdraw()) {
+                    future.cancel(false)
+                    throw VpnNativeException("wireguard_operation_pending", error)
+                }
+                // It finished exactly at the deadline: report its own outcome.
+                if (!call.expire()) return future.get()
+                future.cancel(true)
+                throw if (expiredCode == null) error else VpnNativeException(expiredCode, error)
+            }
         } catch (error: ExecutionException) {
             val cause = error.cause
             if (cause is Exception) throw cause
             throw VpnNativeException("wireguard_start_failed", cause)
+        }
+    }
+
+    /** One worker call, shared by its caller and the worker thread. */
+    private class WorkerCall(private val ownsTunnel: Boolean) {
+        private val state = AtomicInteger(QUEUED)
+
+        fun start() = state.compareAndSet(QUEUED, RUNNING)
+        fun finish() = state.set(FINISHED)
+        fun withdraw() = state.compareAndSet(QUEUED, WITHDRAWN)
+        fun expire() = state.compareAndSet(RUNNING, EXPIRED)
+
+        /** An abandoned start or stop may still own the TUN. */
+        fun blocksWorker() = ownsTunnel && state.get() == EXPIRED
+
+        private companion object {
+            const val QUEUED = 0
+            const val RUNNING = 1
+            const val EXPIRED = 2
+            const val FINISHED = 3
+            const val WITHDRAWN = 4
         }
     }
 
@@ -409,8 +509,7 @@ internal class WireGuardController(
         private const val CONNECT_TIMEOUT_MS = 45_000L
         private const val HANDSHAKE_TIMEOUT_MS = 30_000L
         private const val HANDSHAKE_POLL_MS = 100L
-        private const val HANDSHAKE_CLOCK_SKEW_MS = 2_000L
-        private const val NO_TIMEOUT_MS = -1L
+        private const val IDENTITY_TIMEOUT_MS = 10_000L
     }
 }
 
