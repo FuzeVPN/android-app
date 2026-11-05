@@ -3,7 +3,7 @@
 Audit de qualification du 14 octobre 2026 : [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q014](VALIDATION.md#q014), [Q017](VALIDATION.md#q017), [Q018](VALIDATION.md#q018), [Q025](VALIDATION.md#q025), [Q026](VALIDATION.md#q026), [Q027](VALIDATION.md#q027), [Q028](VALIDATION.md#q028), [Q029](VALIDATION.md#q029), [Q032](VALIDATION.md#q032).
 
 
-Version source **0.2.10+74016**. Ce guide décrit le comportement implémenté
+Version source **0.2.11+74018**. Ce guide décrit le comportement implémenté
 dans ce client. Les réponses API
 attendues ci-dessous sont les contraintes du client ; ce document ne remplace
 pas le contrat serveur et ne constate pas l'état de la production. Les

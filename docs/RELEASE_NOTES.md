@@ -1,3 +1,67 @@
+# Android 0.2.11+74018 — 2026-11-05
+
+## Français
+
+- La carte de connexion indique « Préparation » dès le tap sur « Se connecter »,
+  au lieu de rester sur « Déconnecté » jusqu'à la réponse du tunnel. Chaque
+  changement d'emplacement OpenVPN affiche sa progression : préparation,
+  activation du nouveau serveur, emplacement mis à jour.
+- VPN permanent : depuis Android 11, le tunnel revient seul après un arrêt de
+  l'app par un plantage ou par Android, même quand la tuile des réglages
+  rapides ou un autre composant relance l'app en premier. Jamais après un arrêt
+  forcé, un arrêt par l'utilisateur ou une mise à jour.
+- OpenVPN : une reprise automatique réutilise l'interface du tunnel, et les
+  transferts ne sont plus coupés au retour du Wi-Fi (Android 11 à 16).
+- Android 11 : plus de plantage au démarrage. Android 8 à 11 : plus de
+  plantage quand le service VPN est arrêté juste après son démarrage.
+- Texte agrandi à 200 % : les dialogues de confirmation ne coupent plus les
+  mots. La page des
+  licences s'intitule « Licences des composants ».
+- Moins de travail pendant la connexion : les compteurs ne redessinent plus
+  toute l'application, et le relevé WireGuard s'arrête quand l'app est cachée.
+  L'onglet Compte ne relit plus l'abonnement à chaque visite.
+
+Limite : Android 10 n'a pas été testé. Si la tuile ou un autre composant de
+l'app (une tâche planifiée, par exemple) relance l'app avant le service de
+reprise, le VPN permanent peut ne pas être rétabli : Android 10 n'indique pas
+la cause de l'arrêt.
+
+## English
+
+- The connection card says "Preparing" as soon as Connect is tapped, instead of
+  "Disconnected" until the tunnel answers. Every OpenVPN location change shows
+  its progress: preparing, activating the new server, location updated.
+- Always-on VPN: from Android 11, the tunnel comes back on its own after the
+  app is stopped by a crash or by Android, even when the quick settings tile or
+  another component restarts the app first. Never after a force stop, a user
+  stop or an update.
+- OpenVPN: an automatic recovery reuses the tunnel interface, so transfers are
+  no longer cut when Wi-Fi comes back (Android 11 to 16).
+- Android 11: no more crash at startup. Android 8 to 11: no more crash when the
+  VPN service is stopped right after it starts.
+- 200 % text: confirmation dialogs no longer cut words. The licenses page is
+  titled
+  "Component licenses".
+- Less work while connected: counters no longer redraw the whole app, and the
+  WireGuard sample stops while the app is hidden. The Account tab no longer
+  rereads the subscription on every visit.
+
+Limit: Android 10 was not tested. There, if the quick settings tile or another
+app component (for example a scheduled job) restarts the app before the
+recovery service, always-on VPN may not be restored: Android 10 does not
+report why the app stopped.
+
+## Qualification / Validation
+
+Local validation: 24 steps passed (2,894 Flutter, 464 JVM, 237 Python and 94
+bridge-host tests; lint without errors). The always-on and OpenVPN fixes were
+verified on Android 11 to 17 emulators (x86_64) with the previous internal
+build, which has the same recovery code. The published build ran on an Android
+14 emulator (x86_64) and on a phone (arm64-v8a). The armeabi-v7a build comes
+from the same sources but was not tried on a device.
+
+---
+
 # Android 0.2.10+74016 — 2026-10-14
 
 Audit de qualification du 14 octobre 2026 : [Q003](VALIDATION.md#q003), [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q018](VALIDATION.md#q018), [Q020](VALIDATION.md#q020), [Q022](VALIDATION.md#q022), [Q023](VALIDATION.md#q023), [Q024](VALIDATION.md#q024), [Q025](VALIDATION.md#q025), [Q032](VALIDATION.md#q032).

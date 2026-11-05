@@ -112,9 +112,10 @@ dependencies and brand assets. It does not claim that every downloaded SDK
 or the entire resulting APK is free software. Do not redistribute SDK caches
 under MPL or remove their license notices.
 
-No APK, App Bundle, signing key or GitHub Release is published by this
-repository. If you distribute binaries, assess their exact included components
-and follow their individual terms. The presence of a source archive or hash
+No App Bundle or signing key is published by this repository. Signed APKs are
+attached to its GitHub Releases with the matching source archive (see
+[docs/APK.md](docs/APK.md)). If you distribute binaries, assess their exact
+included components and follow their individual terms. The presence of a source archive or hash
 alone does not establish that a binary was built from those sources.
 
 Primary references: [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/),

@@ -3,13 +3,14 @@
 Audit de qualification du 14 octobre 2026 : [Q001](VALIDATION.md#q001), [Q003](VALIDATION.md#q003), [Q004](VALIDATION.md#q004), [Q006](VALIDATION.md#q006), [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q012](VALIDATION.md#q012), [Q013](VALIDATION.md#q013), [Q014](VALIDATION.md#q014), [Q015](VALIDATION.md#q015), [Q016](VALIDATION.md#q016), [Q017](VALIDATION.md#q017), [Q026](VALIDATION.md#q026), [Q027](VALIDATION.md#q027), [Q028](VALIDATION.md#q028), [Q032](VALIDATION.md#q032).
 
 
-Version source **0.2.10+74016**. Le dépôt public contient les sources et entrées
-natives nécessaires, sans APK/AAB ni GitHub Releases.
+Version source **0.2.11+74018**. Le dépôt public contient les sources et entrées
+natives nécessaires. Les APK signés sont joints aux GitHub Releases, sans AAB :
+voir le [guide des APK](APK.fr.md).
 
 Les commandes de ce guide partent de la racine du dépôt, sauf
-indication contraire. Les contrôles 74016 ont été exécutés : analyse propre,
-1 814 tests Flutter et 219 tests JVM passent, ainsi que les lints Android
-sans Error/Fatal. Les résultats d’instrumentation, de signature et de VM sont
+indication contraire. La validation locale de 0.2.11+74018 passe ses 24 étapes :
+2 894 tests Flutter, 464 JVM, 237 Python et 94 bridge-host, lint sans erreur.
+Les contrôles historiques 74016 restent dans le [registre daté](VALIDATION.md). Les résultats d’instrumentation, de signature et de VM sont
 détaillés dans le [registre daté](VALIDATION.md).
 
 Le [bilan des corrections de l'audit complet du 28 octobre 2026](AUDIT_CORRECTIONS_20261029.md)
@@ -204,6 +205,29 @@ choisir explicitement le nom et le numéro de version, avec `--build-name` et
 `--build-number` si nécessaire. Les splits Flutter peuvent produire des
 `versionCode` différents du numéro de base : vérifier les métadonnées de chaque
 APK au lieu de déduire sa version de son nom de fichier.
+
+Les APK joints aux GitHub Releases sont compilés une ABI à la fois, sans
+`--split-per-abi`, pour garder le `versionCode` de `pubspec.yaml` :
+
+```powershell
+flutter build apk --release --no-pub --target-platform android-arm64 --android-project-arg=fuzevpn.usePatchedWireGuardAar=true
+```
+
+Répéter avec `android-arm` et `android-x64`, en copiant
+`build/app/outputs/flutter-apk/app-release.apk` après chaque compilation.
+Cet APK n'est pas signé : signer chaque copie avec le magasin de clés de
+diffusion, conservé hors du dépôt (`apksigner sign`, schémas v2 et v3 ;
+v1 inutile avec minSdk 26), sous le nom `FuzeVPN-<version>-<abi>.apk`.
+Vérifier ensuite `apksigner verify --print-certs` (empreinte du
+[guide des APK](APK.fr.md)) et `aapt2 dump badging` (`versionCode` de
+`pubspec.yaml`, `native-code` de l'ABI). Produire enfin l'archive de sources
+avec `python tools/package_android_sources.py --apk <chaque APK>` et le
+fichier `SHA256SUMS.txt` des fichiers joints à la release.
+
+Les APK GitHub sont signés avec la clé d'envoi Google Play. Toutes leurs mises
+à jour doivent garder cette clé : une réinitialisation de la clé d'envoi auprès
+de Google Play obligerait les utilisateurs GitHub à désinstaller puis
+réinstaller l'application.
 
 Le build release ne possède actuellement aucune configuration de signature
 dans Gradle. `key.properties` est ignoré, mais n'est pas lu par le projet :
@@ -441,7 +465,7 @@ pour cet envoi.
 
 ## Revue de publication des sources
 
-- [ ] Version **0.2.10+74016**, matrice du poste, dépendances et provenance natives
+- [ ] Version de `pubspec.yaml` (**0.2.11+74018**), matrice du poste, dépendances et provenance natives
       décrites ; entrées verrouillées et fixtures amont conservées.
 - [ ] Sources, patches, assets, licences, notices et instructions présentes,
       liens du dépôt utilisables sans historique de rapports locaux.

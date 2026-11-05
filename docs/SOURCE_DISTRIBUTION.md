@@ -3,10 +3,12 @@
 Audit de qualification du 14 octobre 2026 : [Q002](VALIDATION.md#q002), [Q004](VALIDATION.md#q004), [Q006](VALIDATION.md#q006), [Q007](VALIDATION.md#q007), [Q030](VALIDATION.md#q030), [Q032](VALIDATION.md#q032), [Q033](VALIDATION.md#q033).
 
 
-Le dépôt public **FuzeVPN/android-app**, version **0.2.10+74016**, publie les
-sources avec leurs entrées natives revues. Il ne publie ni APK, ni AAB, ni
-GitHub Releases. Les archives natives incluses sont des dépendances de
-construction ; elles ne constituent pas une application installable.
+Le dépôt public **FuzeVPN/android-app**, version **0.2.11+74018**, publie les
+sources avec leurs entrées natives revues. Les APK signés sont joints aux
+GitHub Releases avec l’archive de sources produite pour eux par ce guide
+(option `--apk`) ; aucun AAB n’est publié. Les archives natives incluses sont
+des dépendances de construction ; elles ne constituent pas une application
+installable.
 
 `tools/package_android_sources.py` prépare une archive `.tar.gz` des sources
 de l’application et des entrées natives revues. Python **3.10 ou supérieur**

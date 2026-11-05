@@ -1612,7 +1612,7 @@ not repeat an OpenPGP trust decision.
    `{wireguard_go}` (FUZEVPN-IMPORT-METADATA.json, nativeRuntime) and adds the Go
    runtime CLOCK_BOOTTIME patch kept in tunnel/tools/libwg-go. Both copies of
    each WireGuard patch and all build scripts are included.
-5. Build ARM64 and ARMv7 using the release commands in docs/DEVELOPMENT.md with
+5. Build ARM64, ARMv7 and x86_64 using the release commands in docs/DEVELOPMENT.md with
    `-Pfuzevpn.usePatchedWireGuardAar=true`. Keep dependency locking and checksum
    verification enabled. Signing is supplied separately in the release environment.
 
