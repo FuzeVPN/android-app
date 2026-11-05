@@ -1441,7 +1441,7 @@ def collect_versions(root: Path) -> dict:
         "wireguard_aar_sha256": aar["sha256"],
         "go_toolchain": aar["nativeBuild"]["go"].split()[2].removeprefix("go"),
         "go_modules": go_sums,
-        "release_abis": ["arm64-v8a", "armeabi-v7a"],
+        "release_abis": ["arm64-v8a", "armeabi-v7a", "x86_64"],
     }
 
 
@@ -1587,7 +1587,7 @@ remain separately installed build prerequisites. No signing key is included.
 """
     text += "".join(f"| {name} | `{version}` |\n" for name, version in rows)
     text += f"""
-Release ABIs: arm64-v8a and armeabi-v7a. Minimum Android API:
+Release ABIs: arm64-v8a, armeabi-v7a and x86_64. Minimum Android API:
 {versions['android_min_sdk']}. OpenSSL prefix API: {native['androidApi']}.
 OpenSSL archive SHA-256: `{native['sourceSha256']}`.
 OpenSSL detached signature and official public certificates are included;

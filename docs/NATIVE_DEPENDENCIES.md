@@ -223,7 +223,7 @@ OpenSSL se construit séparément avec NDK **28.2.13676358**, API **26**,
 | --- | --- | --- |
 | `arm64-v8a` | `android-arm64` | release et debug |
 | `armeabi-v7a` | `android-arm`, avec `-D__ARM_MAX_ARCH__=8` | release et debug |
-| `x86_64` | `android-x86_64` | debug émulateur |
+| `x86_64` | `android-x86_64` | release et debug |
 
 Options communes : `no-shared no-tests no-apps no-docs no-legacy no-module
 no-engine no-dso no-zlib no-quic`. Le préfixe fournit `include/<ABI>/openssl/`
@@ -306,3 +306,12 @@ La qualification exige un appareil ARM64 Android 12 et un Android 13 (ou un
 émulateur ARM64 natif sur hôte ARM), avec l’APK universel signé, les deux
 protocoles, trafic, coupures/reprise, arrière-plan et arrêt. Un APK x86_64
 contourne ce pont et ne qualifie pas les bibliothèques ARM.
+
+Go 1.26.9 ajoute une seconde limite (campagne VM du 31/10/2026) : le
+`runtime.procyieldAsm` ARM64 lit `CNTFRQ_EL0` dès que le runtime attend un
+verrou. ndk_translation 0.2.3 (Android 12 à 14) rejette cette instruction :
+la release ARM64 plante dans WireGuard à chaque connexion, alors que Berberis
+16.0.0 (Android 16 à 17.2) l'exécute. Sur un CPU ARM, cette lecture est
+autorisée en espace utilisateur. Depuis 0.2.11, la release livre aussi
+`x86_64` : un appareil x86 charge alors la bibliothèque native et n'exécute
+plus jamais `libwg-go` ARM sous traduction. Le runtime ARM n'est pas modifié.

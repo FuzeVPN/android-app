@@ -15,6 +15,10 @@ internal class SecureKeystoreStore(@Suppress("UNUSED_PARAMETER") context: Contex
         if (scope == resume.scope && key == resume.key) {
             HarnessControl.resumeReadGate?.let { gate -> HarnessControl.resumeReadGate = null; gate.hold() }
         }
+        val tileProfile = SecureStorageKeyPolicy.quickTileProfile()
+        if (scope == tileProfile.scope && key == tileProfile.key) {
+            HarnessControl.tileProfileReadGate?.let { gate -> HarnessControl.tileProfileReadGate = null; gate.hold() }
+        }
         return synchronized(VALUES) { VALUES[scope to key] }
     }
     fun write(scope: String, key: String, value: String) { synchronized(VALUES) { VALUES[scope to key] = value } }

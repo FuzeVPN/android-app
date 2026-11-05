@@ -10,7 +10,7 @@ registre durable, la session et les moteurs. Il ne démarre pas de TUN et ne lit
 aucun Keystore réel. Les deux connexions conservent leur vrai préfixe de garde
 dans le mutex de transition du harness.
 
-Exécution (26 tests JUnit) avec les dépendances déjà en cache :
+Exécution (27 tests JUnit) avec les dépendances déjà en cache :
 
 ```powershell
 & android/app/src/test/command-epoch/run.ps1 -OutputDirectory C:/temp/vpn-command-epoch

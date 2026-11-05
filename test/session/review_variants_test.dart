@@ -110,6 +110,8 @@ void main() {
       await dismissAndResume(h);
       expect(h.controller.tunnelState.phase, VpnRuntimePhase.error);
       expect(isNative(h), isTrue, reason: observe(h));
+      // The resume loads the catalogue missed at startup, quietly.
+      expect(h.controller.locations, isNotEmpty, reason: observe(h));
       await dismissAndResume(h);
       expect(h.controller.notice, isNull, reason: observe(h));
     });

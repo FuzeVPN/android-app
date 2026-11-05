@@ -1086,6 +1086,32 @@ void main() {
     }
 
     test(
+      'following a server migration alone never presents a connection',
+      () async {
+        final delayEntered = Completer<void>();
+        final delay = Completer<void>();
+        final h = await _blockedMigrationHarness(
+          migrationDelay: (_) {
+            if (!delayEntered.isCompleted) delayEntered.complete();
+            return delay.future;
+          },
+        );
+        addTearDown(h.close);
+        h.api.migrationPollResults.add(
+          _locationMigration(status: LocationMigrationStatus.draining),
+        );
+        final following = h.controller.resumeLocationMigration();
+        await delayEntered.future;
+        expect(h.controller.isConnecting, isTrue);
+        // No tunnel follows this work: the card keeps the native phase.
+        expect(h.controller.presentedTunnelPhase, VpnRuntimePhase.idle);
+        delay.complete();
+        await following;
+        expect(h.tunnel.openVpnConnections, isEmpty);
+      },
+    );
+
+    test(
       'device replacement cancels the wait and preserves a new connection busy flag',
       () async {
         final delayEntered = Completer<void>();
@@ -2153,6 +2179,66 @@ void main() {
       },
     );
 
+    test(
+      'sans délai du serveur, la migration est revérifiée après 0,5 s, 1 s puis 2 s',
+      () async {
+        final List<Duration> waits = <Duration>[];
+        final _FakeApi api = _FakeApi()
+          ..profilesByToken['session-a'] = _profile('user-a')
+          ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+          ..deviceListResult = _devices('device-current')
+          ..deviceConfiguration = _wireGuardConfigurationFor('device-current')
+          ..openVpnActivation = _openVpnActivation('device-current')
+          ..migrationStartResult = _locationMigration(
+            status: LocationMigrationStatus.draining,
+          );
+        api.migrationPollResults.addAll(<DeviceLocationMigration>[
+          _locationMigration(status: LocationMigrationStatus.draining),
+          _locationMigration(status: LocationMigrationStatus.draining),
+          // A server hint always wins.
+          _locationMigration(
+            status: LocationMigrationStatus.activating,
+            retryAfterSeconds: 3,
+          ),
+          _locationMigration(status: LocationMigrationStatus.ready),
+        ]);
+        final _FakeSessionStore store = _FakeSessionStore()
+          ..storedSession = _session('session-a')
+          ..deviceIds['user-a'] = 'device-current';
+        final _FakeTunnel tunnel = _FakeTunnel();
+        final VpnAppController controller = _controller(
+          api: api,
+          store: store,
+          preferences: _FakePreferences(),
+          tunnel: tunnel,
+          migrationDelay: (Duration wait) async => waits.add(wait),
+        );
+        addTearDown(() async {
+          controller.dispose();
+          await tunnel.close();
+        });
+        await controller.initialize();
+        api.listDeviceResults.addAll(<DeviceList>[
+          _devices('device-current'),
+          _devices('device-current', location: _frankfurt02),
+        ]);
+        await controller.selectLocation(_frankfurt02);
+        await controller.selectProtocol(VpnProtocol.openVpn);
+
+        await controller.connect();
+
+        expect(waits, const <Duration>[
+          Duration(milliseconds: 500),
+          Duration(seconds: 1),
+          Duration(seconds: 2),
+          Duration(seconds: 3),
+        ]);
+        expect(api.migrationPollCalls, hasLength(4));
+        expect(tunnel.openVpnConnections, hasLength(1));
+        expect(controller.locationMigration, isNull);
+      },
+    );
+
     test('conserve la migration bloquée, sans boucle ni révocation', () async {
       final _RestoredHarness harness = await _restoredHarness(
         events: <String>[],
@@ -2452,6 +2538,341 @@ void main() {
       },
     );
   });
+
+  group('catalogue after a deferred account restoration '
+      '(OFFLINE-RESTORE-CATALOGUE-01)', () {
+    _FakePreferences savedFrankfurt02OpenVpn() => _FakePreferences()
+      ..selectedLocation = _frankfurt02.id
+      ..selectedProtocol = VpnProtocol.openVpn.apiValue;
+
+    test('Retry after a failed startup catalogue reloads destinations and '
+        'reselects the saved location', () async {
+      final _RestoredHarness h = await _restoredHarness(
+        events: <String>[],
+        preferences: savedFrankfurt02OpenVpn(),
+        prepare: (api, store, tunnel) {
+          api
+            ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+            ..locationsFailure = const ApiNetworkException()
+            ..hooks['me'] = () async => throw const ApiNetworkException();
+        },
+      );
+      addTearDown(h.close);
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      expect(h.controller.locations, isEmpty);
+      expect(h.controller.selectedLocation, isNull);
+
+      h.api.locationsFailure = null;
+      h.api.hooks.remove('me');
+      await h.controller.retryAccountRestoration();
+      await pumpEventQueue();
+
+      expect(h.controller.isSignedIn, isTrue);
+      expect(h.controller.locations, const <Location>[
+        _frankfurt,
+        _frankfurt02,
+      ]);
+      expect(h.controller.selectedLocation?.id, _frankfurt02.id);
+      expect(h.controller.selectedProtocol, VpnProtocol.openVpn);
+      expect(
+        h.controller.selectedLocation!.supports(VpnProtocol.openVpn),
+        isTrue,
+      );
+    });
+
+    test('stopping the tunnel from the pending restoration then Retry leaves a '
+        'usable saved location, and connecting starts no migration', () async {
+      final _RestoredHarness h = await _restoredHarness(
+        events: <String>[],
+        preferences: savedFrankfurt02OpenVpn(),
+        prepare: (api, store, tunnel) {
+          api
+            ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+            ..locationsFailure = const ApiNetworkException()
+            ..deviceListResult = _devices(
+              'device-current',
+              location: _frankfurt02,
+            )
+            ..openVpnActivation = _openVpnActivation('device-current')
+            ..hooks['me'] = () async => throw const ApiNetworkException();
+          tunnel
+            ..systemProtection = const SystemVpnProtection(
+              alwaysOn: false,
+              lockdown: false,
+            )
+            ..state = VpnRuntimeState(
+              phase: VpnRuntimePhase.connected,
+              protocol: VpnProtocol.openVpn,
+              locationId: _frankfurt02.id,
+            );
+        },
+      );
+      addTearDown(h.close);
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      await h.controller.requestUserDisconnect();
+      expect(h.controller.tunnelState.phase, VpnRuntimePhase.idle);
+
+      h.api.locationsFailure = null;
+      h.api.hooks.remove('me');
+      await h.controller.retryAccountRestoration();
+      await pumpEventQueue();
+
+      expect(h.controller.isSignedIn, isTrue);
+      expect(h.controller.locations, const <Location>[
+        _frankfurt,
+        _frankfurt02,
+      ]);
+      expect(h.controller.selectedLocation?.id, _frankfurt02.id);
+      expect(h.controller.selectedProtocol, VpnProtocol.openVpn);
+
+      await h.controller.connect();
+
+      expect(
+        h.controller.notice?.arguments['code'],
+        isNot('protocol_unavailable_at_location'),
+      );
+      expect(h.api.startMigrationCalls, isEmpty);
+      expect(h.tunnel.openVpnConnections, hasLength(1));
+    });
+
+    test('a failed startup catalogue is reloaded once the account is restored '
+        'at startup', () async {
+      var catalogueCalls = 0;
+      final _RestoredHarness h = await _restoredHarness(
+        events: <String>[],
+        preferences: _FakePreferences()..selectedLocation = _frankfurt02.id,
+        prepare: (api, store, tunnel) {
+          api
+            ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+            ..hooks['locations'] = () async {
+              catalogueCalls++;
+              if (catalogueCalls == 1) throw const ApiNetworkException();
+            };
+        },
+      );
+      addTearDown(h.close);
+      await pumpEventQueue();
+
+      expect(h.controller.isSignedIn, isTrue);
+      expect(h.controller.locations, const <Location>[
+        _frankfurt,
+        _frankfurt02,
+      ]);
+      expect(h.controller.selectedLocation?.id, _frankfurt02.id);
+      expect(catalogueCalls, 2);
+    });
+
+    for (final (String how, bool resume) in <(String, bool)>[
+      ('a manual refresh', false),
+      ('a resume', true),
+    ]) {
+      test('after a failed startup catalogue, $how selects the saved location, '
+          'not the first entry', () async {
+        final _RestoredHarness h = await _restoredHarness(
+          events: <String>[],
+          preferences: _FakePreferences()..selectedLocation = _frankfurt02.id,
+          prepare: (api, store, tunnel) {
+            api
+              ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+              ..locationsFailure = const ApiNetworkException();
+          },
+        );
+        addTearDown(h.close);
+        await pumpEventQueue();
+        expect(h.controller.isSignedIn, isTrue);
+        expect(h.controller.locations, isEmpty);
+
+        h.api.locationsFailure = null;
+        if (resume) {
+          await h.controller.onAppResumed();
+          await pumpEventQueue();
+        } else {
+          await h.controller.refreshLocations();
+        }
+
+        expect(h.controller.locations, const <Location>[
+          _frankfurt,
+          _frankfurt02,
+        ]);
+        expect(h.controller.selectedLocation?.id, _frankfurt02.id);
+      });
+    }
+
+    test('a successful startup catalogue is not requested again by Retry, '
+        'sign-in, resume or a stopped tunnel', () async {
+      var catalogueCalls = 0;
+      final _RestoredHarness h = await _restoredHarness(
+        events: <String>[],
+        prepare: (api, store, tunnel) {
+          api
+            ..hooks['locations'] = () async {
+              catalogueCalls++;
+            }
+            ..hooks['me'] = () async => throw const ApiNetworkException();
+          tunnel.state = const VpnRuntimeState(
+            phase: VpnRuntimePhase.connected,
+            protocol: VpnProtocol.wireGuard,
+          );
+        },
+      );
+      addTearDown(h.close);
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      h.api.hooks.remove('me');
+      await h.controller.retryAccountRestoration();
+      await h.controller.onAppResumed();
+      await h.controller.disconnect();
+      await pumpEventQueue();
+      expect(h.controller.isSignedIn, isTrue);
+      expect(h.controller.tunnelState.phase, VpnRuntimePhase.idle);
+      expect(catalogueCalls, 1);
+
+      var signInCatalogueCalls = 0;
+      final _FakeApi api = _FakeApi()
+        ..loginResult = _session('session-b')
+        ..profilesByToken['session-b'] = _profile('user-b')
+        ..hooks['locations'] = () async {
+          signInCatalogueCalls++;
+        };
+      final _FakeTunnel tunnel = _FakeTunnel();
+      final VpnAppController controller = _controller(
+        api: api,
+        store: _FakeSessionStore(),
+        preferences: _FakePreferences(),
+        tunnel: tunnel,
+      );
+      addTearDown(() async {
+        controller.dispose();
+        await tunnel.close();
+      });
+      await controller.initialize();
+      expect(
+        await controller.signIn(
+          email: 'client@example.test',
+          password: 'secret',
+        ),
+        isTrue,
+      );
+      await controller.onAppResumed();
+      await pumpEventQueue();
+      expect(signInCatalogueCalls, 1);
+    });
+  });
+
+  group('startup catalogue beside the account restoration (D1 phase 1a)', () {
+    test('requests the stored account while the catalogue is pending, then '
+        'publishes both before leaving the startup page', () async {
+      final Completer<void> release = Completer<void>();
+      final _FakeApi api = _FakeApi()
+        ..profilesByToken['session-a'] = _profile('user-a')
+        ..deviceListResult = _devices('device-current')
+        ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+        ..hooks['locations'] = () => release.future;
+      final _FakeSessionStore store = _FakeSessionStore()
+        ..storedSession = _session('session-a')
+        ..deviceIds['user-a'] = 'device-current';
+      final _FakeTunnel tunnel = _FakeTunnel()
+        ..state = const VpnRuntimeState(
+          phase: VpnRuntimePhase.connected,
+          protocol: VpnProtocol.wireGuard,
+        );
+      final VpnAppController controller = _controller(
+        api: api,
+        store: store,
+        preferences: _FakePreferences()..selectedLocation = _frankfurt02.id,
+        tunnel: tunnel,
+      );
+      addTearDown(() async {
+        controller.dispose();
+        await tunnel.close();
+      });
+
+      final Future<void> starting = controller.initialize();
+      await pumpEventQueue();
+
+      expect(api.meTokens, <String>['session-a']);
+      expect(controller.isInitializing, isTrue);
+      release.complete();
+      await starting;
+      expect(controller.isInitializing, isFalse);
+      expect(controller.isSignedIn, isTrue);
+      expect(controller.locations, const <Location>[_frankfurt, _frankfurt02]);
+      expect(controller.selectedLocation?.id, _frankfurt02.id);
+    });
+
+    for (final failing in <bool>[false, true]) {
+      test('a transient Keystore read publishes a catalogue that answers '
+          'after it, without an uncaught error (failing=$failing)', () async {
+        final Completer<void> release = Completer<void>();
+        final _FakeApi api = _FakeApi()
+          ..profilesByToken['session-a'] = _profile('user-a')
+          ..deviceListResult = _devices('device-current')
+          ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+          ..locationsFailure = failing ? const ApiNetworkException() : null
+          ..hooks['locations'] = () => release.future;
+        final _FakeSessionStore store = _FakeSessionStore()
+          ..storedSession = _session('session-a')
+          ..deviceIds['user-a'] = 'device-current'
+          ..readFailure = const NativeVpnException(
+            'secure_storage_read_failed',
+          );
+        final _FakeTunnel tunnel = _FakeTunnel();
+        final VpnAppController controller = _controller(
+          api: api,
+          store: store,
+          preferences: _FakePreferences()..selectedLocation = _frankfurt02.id,
+          tunnel: tunnel,
+        );
+        addTearDown(() async {
+          controller.dispose();
+          await tunnel.close();
+        });
+
+        final Future<void> starting = controller.initialize();
+        await pumpEventQueue();
+        expect(controller.hasPendingAccountRestoration, isTrue);
+        release.complete();
+        await starting;
+        await pumpEventQueue();
+
+        expect(controller.isInitializing, isFalse);
+        expect(controller.notice?.titleKey, 'notice.native.title');
+        expect(
+          controller.selectedLocation?.id,
+          failing ? isNull : _frankfurt02.id,
+        );
+        api
+          ..locationsFailure = null
+          ..hooks.remove('locations');
+        store.readFailure = null;
+        await controller.retryAccountRestoration();
+        await pumpEventQueue();
+        expect(controller.isSignedIn, isTrue);
+        expect(controller.locations, const <Location>[
+          _frankfurt,
+          _frankfurt02,
+        ]);
+        expect(controller.selectedLocation?.id, _frankfurt02.id);
+      });
+    }
+
+    test('a saved location absent from the catalogue still selects the first '
+        'entry when a stored migration is restored', () async {
+      final _RestoredHarness h = await _restoredHarness(
+        events: <String>[],
+        preferences: _FakePreferences()..selectedLocation = 'paris-01',
+        prepare: (api, store, tunnel) {
+          api.locationsResult = const <Location>[_frankfurt, _frankfurt02];
+          store.migrations['user-a/device-current'] = _locationMigration(
+            status: LocationMigrationStatus.blocked,
+          );
+        },
+      );
+      addTearDown(h.close);
+      expect(h.controller.isLocationMigrationLocked, isTrue);
+      expect(h.controller.selectedLocation?.id, _frankfurt.id);
+      expect(h.api.startMigrationCalls, isEmpty);
+    });
+  });
 }
 
 VpnAppController _controller({
@@ -2500,6 +2921,7 @@ Future<_RestoredHarness> _restoredHarness({
   required List<String> events,
   void Function(_FakeApi, _FakeSessionStore, _FakeTunnel)? prepare,
   Future<void> Function(Duration)? migrationDelay,
+  _FakePreferences? preferences,
 }) async {
   final _FakeApi api = _FakeApi(events: events)
     ..profilesByToken['session-a'] = _profile('user-a')
@@ -2512,7 +2934,7 @@ Future<_RestoredHarness> _restoredHarness({
   final VpnAppController controller = _controller(
     api: api,
     store: store,
-    preferences: _FakePreferences(),
+    preferences: preferences ?? _FakePreferences(),
     tunnel: tunnel,
     migrationDelay: migrationDelay,
   );
@@ -3128,6 +3550,11 @@ class _FakeTunnel implements VpnTunnelGateway, VpnSystemProtectionGateway {
     _stateEvents.add(state);
   }
 
+  void emitState(VpnRuntimeState next) {
+    state = next;
+    _stateEvents.add(next);
+  }
+
   @override
   Future<void> connectOpenVpn({
     required String accountId,
@@ -3213,8 +3640,13 @@ class _FakeTunnel implements VpnTunnelGateway, VpnSystemProtectionGateway {
     return wireGuardPublicKey;
   }
 
+  int getStateCalls = 0;
+
   @override
-  Future<VpnRuntimeState> getState() async => state;
+  Future<VpnRuntimeState> getState() async {
+    getStateCalls += 1;
+    return state;
+  }
 
   @override
   Future<SystemVpnProtection> getSystemVpnProtection() async =>

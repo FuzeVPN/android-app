@@ -17,8 +17,10 @@ import '../../widgets/external_link.dart';
 import '../../widgets/fuze_brand.dart';
 import '../../widgets/fuze_design.dart';
 import '../../widgets/language_settings.dart';
+import '../../widgets/licenses_title.dart';
 import '../../widgets/notice_card.dart';
 import '../../widgets/third_party_notices.dart';
+import '../../widgets/whole_words.dart';
 import '../auth/auth_page.dart';
 import '../auth/guest_claim_page.dart';
 import '../billing/subscription_card.dart';
@@ -63,7 +65,7 @@ class _HomeShellState extends State<HomeShell> {
     FocusManager.instance.primaryFocus?.unfocus();
     setState(() => _index = index);
     if (index == 2) {
-      unawaited(widget.controller.billing.refreshSubscription());
+      unawaited(widget.controller.billing.refreshSubscriptionIfStale());
     }
   }
 

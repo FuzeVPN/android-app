@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart'
+    show ValueListenable, listEquals, mapEquals;
 import 'package:flutter/material.dart';
 
 import 'billing_controller.dart';
@@ -184,7 +186,20 @@ class VpnAppController extends ChangeNotifier {
   late final StreamSubscription<VpnRuntimeState> _tunnelSubscription;
   Timer? _tunnelMetricsTimer;
   bool _tunnelMetricsRefreshInFlight = false;
+  bool _appInBackground = false;
+  // Each tunnel sample, counters included. The metrics card listens to it, so
+  // a sample that only moves counters (the 1 s poll while connected) no longer
+  // rebuilds the whole app.
+  final ValueNotifier<VpnRuntimeState?> _tunnelSamples = ValueNotifier(null);
   int _tunnelStateRevision = 0;
+  // The tunnel state when the current connection work began, and whether
+  // native code has reported another step since (a resume snapshot or a
+  // protection refresh repeating that state is not one).
+  VpnRuntimeState? _attemptBaseState;
+  bool _attemptStateMoved = false;
+  // The owner of connection work that starts a tunnel (a connect, a location
+  // change, a profile renewal); following a server migration alone is not.
+  Object? _tunnelAttemptOwner;
   int _tunnelSnapshotGeneration = 0;
   SessionOperation _sessionOperation = SessionOperation();
   Future<void> _sessionWrites = Future<void>.value();
@@ -240,6 +255,12 @@ class VpnAppController extends ChangeNotifier {
   }) => _claimGuestAccount(email: email, password: password);
   Future<bool> refreshGuestAccount() => _refreshGuestAccount();
   int _locationsRefreshGeneration = 0;
+  // A non-empty catalogue is published. One that failed or came back empty is
+  // loaded again once an account is restored, the app resumes or the tunnel
+  // stops (OFFLINE-RESTORE-CATALOGUE-01).
+  bool _catalogueLoaded = false;
+  // The saved destination outlives a startup catalogue that failed.
+  String? _preferredLocationId;
   int _capacityRejectionGeneration = 0;
   final Map<String, int> _capacityRejectedLocations = {};
   int _devicesRefreshGeneration = 0;
@@ -490,6 +511,7 @@ class VpnAppController extends ChangeNotifier {
       attempt.check();
       if (generation == _locationsRefreshGeneration) {
         locations = _filterCapacityRejections(received, capacityGeneration);
+        _catalogueLoaded = locations.isNotEmpty;
       }
       final matching = received.where((item) => item.id == locationId);
       attempt.requestIpv6 = matching.isNotEmpty && matching.first.supportsIpv6;
@@ -582,6 +604,8 @@ class VpnAppController extends ChangeNotifier {
     final Object owner = Object();
     _connectionOwner = owner;
     isConnecting = true;
+    _attemptBaseState = tunnelState;
+    _attemptStateMoved = false;
     return owner;
   }
 
@@ -702,6 +726,40 @@ class VpnAppController extends ChangeNotifier {
           tunnelState.phase == VpnRuntimePhase.authorizing ||
           tunnelState.phase == VpnRuntimePhase.preparing ||
           tunnelState.phase == VpnRuntimePhase.connecting);
+
+  /// The phase the connection card shows. Native code reports its first phase
+  /// only once the API and identity steps are done (up to seconds with
+  /// OpenVPN), while the button already offers Cancel. Until then an attempt
+  /// this controller started shows « Préparation » instead of a stale
+  /// « Déconnecté » or the previous attempt's error. Any phase native code
+  /// reports wins, so the card never claims a tunnel it has not reported.
+  VpnRuntimePhase get presentedTunnelPhase {
+    final VpnRuntimePhase phase = tunnelState.phase;
+    if (!canCancelConnectionAttempt) return phase;
+    final bool startsTunnel =
+        isChangingLocation ||
+        (_connectionOwner != null &&
+            identical(_connectionOwner, _tunnelAttemptOwner));
+    if (!startsTunnel) return phase;
+    final VpnRuntimeState? base = _attemptBaseState;
+    if (phase == VpnRuntimePhase.idle ||
+        (phase == VpnRuntimePhase.error &&
+            isConnecting &&
+            !_attemptStateMoved &&
+            base != null &&
+            _sameRuntimeStep(tunnelState, base))) {
+      return VpnRuntimePhase.preparing;
+    }
+    return phase;
+  }
+
+  // The controller records its own start failures without a protocol, while
+  // native code keeps the same error with one: a missing protocol matches.
+  static bool _sameRuntimeStep(VpnRuntimeState a, VpnRuntimeState b) =>
+      a.phase == b.phase &&
+      a.messageCode == b.messageCode &&
+      (a.protocol == null || b.protocol == null || a.protocol == b.protocol);
+
   bool get isLocationMigrationPending =>
       locationMigration?.status.isPending ?? false;
   bool get isLocationMigrationLocked =>
@@ -756,6 +814,7 @@ class VpnAppController extends ChangeNotifier {
         _preferences.readSelectedLocation(),
       );
       operation.check();
+      _preferredLocationId = savedLocation;
       final VpnRuntimeState? restoredState = await _safe<VpnRuntimeState?>(
         _tunnel.getState(),
       );
@@ -778,10 +837,17 @@ class VpnAppController extends ChangeNotifier {
         return;
       }
       _syncTunnelMetricsTimer();
-      await refreshLocations(savedLocation: savedLocation, notify: false);
-      operation.check();
-
-      if (!await _restoreStoredSession(operation)) return;
+      // The public catalogue is requested before the stored account and
+      // published after it: the startup page lasts the longer of the two
+      // requests, not their sum.
+      final Future<void> Function() publishCatalogue = _startStartupCatalogue(
+        savedLocation,
+      );
+      try {
+        if (!await _restoreStoredSession(operation)) return;
+      } finally {
+        await publishCatalogue();
+      }
       if (_session == null && pending?.isComplete == true && _sessionExpired) {
         _showSessionExpiredNotice();
       }
@@ -950,9 +1016,12 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
+  /// A [quiet] reload leaves the shared notice slot alone: a native error or a
+  /// restoration notice shown there is never replaced by a background failure.
   Future<void> refreshLocations({
     String? savedLocation,
     bool notify = true,
+    bool quiet = false,
   }) async {
     final SessionOperation operation = _sessionOperation;
     if (_disposed || !operation.isCurrent) return;
@@ -968,33 +1037,139 @@ class VpnAppController extends ChangeNotifier {
     try {
       final List<Location> received = await _api.locations();
       if (!isCurrent()) return;
-      locations = _filterCapacityRejections(received, capacityGeneration);
-      final bool selectionChanged =
-          selectionGeneration != _locationSelectionGeneration;
-      final String? preferredId = selectionChanged
-          ? selectedLocation?.id
-          : savedLocation ?? selectedLocation?.id;
-      selectedLocation = locations.cast<Location?>().firstWhere(
-        (Location? location) => location?.id == preferredId,
-        // A catalogue cannot replace an explicit newer choice or the target of
-        // ongoing connection/migration work. An omitted target is no longer a
-        // selectable row, but that omission does not cancel or restart work.
-        orElse: () =>
-            selectionChanged || isConnecting || isLocationMigrationLocked
-            ? selectedLocation
-            : locations.isEmpty
-            ? null
-            : locations.first,
+      _publishLocations(
+        received,
+        capacityGeneration: capacityGeneration,
+        selectionGeneration: selectionGeneration,
+        savedLocation: savedLocation,
+        keepSelection: isConnecting || isLocationMigrationLocked,
       );
     } on ApiFailure catch (error) {
       if (!isCurrent()) return;
-      _setNotice(ApiErrorMessages.fromFailure(error));
+      if (!quiet) _setNotice(ApiErrorMessages.fromFailure(error));
     } finally {
       if (isCurrent()) {
         isLoadingLocations = false;
         if (notify) notifyListeners();
       }
     }
+  }
+
+  void _publishLocations(
+    List<Location> received, {
+    required int capacityGeneration,
+    required int selectionGeneration,
+    required String? savedLocation,
+    required bool keepSelection,
+  }) {
+    locations = _filterCapacityRejections(received, capacityGeneration);
+    _catalogueLoaded = locations.isNotEmpty;
+    final bool selectionChanged =
+        selectionGeneration != _locationSelectionGeneration;
+    final String? preferredId = selectionChanged
+        ? selectedLocation?.id
+        : savedLocation ?? selectedLocation?.id ?? _preferredLocationId;
+    selectedLocation = locations.cast<Location?>().firstWhere(
+      (Location? location) => location?.id == preferredId,
+      // A catalogue cannot replace an explicit newer choice or the target of
+      // ongoing connection/migration work. An omitted target is no longer a
+      // selectable row, but that omission does not cancel or restart work.
+      orElse: () => selectionChanged || keepSelection
+          ? selectedLocation
+          : locations.isEmpty
+          ? null
+          : locations.first,
+    );
+  }
+
+  /// Starts the startup catalogue request. The returned call publishes it
+  /// once the stored account is restored, on every path, with the startup
+  /// rule (the saved location, else the first) and the state seen before
+  /// that restoration, which may publish a migration or end the session.
+  Future<void> Function() _startStartupCatalogue(String? savedLocation) {
+    final int capacityGeneration = _capacityRejectionGeneration;
+    final int selectionGeneration = _locationSelectionGeneration;
+    final bool keepSelection = isConnecting || isLocationMigrationLocked;
+    final int terminationGeneration = _terminationGeneration;
+    final Future<List<Location>> request = Future<List<Location>>.sync(
+      _api.locations,
+    );
+    // Observed at once: an early return never leaves an uncaught failure.
+    unawaited(request.then<void>((_) {}, onError: (Object _, StackTrace _) {}));
+    // The restoration does not start a second request meanwhile.
+    isLoadingLocations = true;
+    return () async {
+      if (_disposed) return;
+      // Taken after the restoration: a session end or a new guest scope
+      // meanwhile does not drop this public catalogue.
+      final int generation = ++_locationsRefreshGeneration;
+      bool isCurrent() =>
+          !_disposed && generation == _locationsRefreshGeneration;
+      AppNotice? failureNotice;
+      isLoadingLocations = true;
+      try {
+        final List<Location> received = await request;
+        if (!isCurrent()) return;
+        _publishLocations(
+          received,
+          capacityGeneration: capacityGeneration,
+          selectionGeneration: selectionGeneration,
+          savedLocation: savedLocation,
+          keepSelection: keepSelection,
+        );
+      } on ApiFailure catch (error) {
+        // The restoration's notice, or the end that cleared it, wins as it
+        // did when this failure was reported first.
+        if (isCurrent() &&
+            notice == null &&
+            terminationGeneration == _terminationGeneration) {
+          _setNotice(ApiErrorMessages.fromFailure(error));
+          failureNotice = notice;
+        }
+      } catch (_) {
+        // Like a failure: a later restoration, resume or refresh loads it.
+      } finally {
+        if (isCurrent()) {
+          isLoadingLocations = false;
+          // A session ended or replaced meanwhile leaves no later notify: a
+          // home admitted while this request was pending repaints here.
+          notifyListeners();
+        }
+      }
+      if (isSignedIn) _reloadCatalogueIfMissing(staleNotice: failureNotice);
+    };
+  }
+
+  /// Loads again, in the background, a catalogue that failed or came back
+  /// empty. A failure of any kind is never shown: the next restoration,
+  /// resume or stopped tunnel tries again (OFFLINE-RESTORE-CATALOGUE-01).
+  /// It never counts as a stage of the connection or disconnection traced
+  /// around its caller. A [staleNotice] (the startup failure notice) still
+  /// shown once this reload publishes a catalogue is cleared; no other is.
+  void _reloadCatalogueIfMissing({AppNotice? staleNotice}) {
+    if (_disposed ||
+        _catalogueLoaded ||
+        isLoadingLocations ||
+        !_sessionOperation.isCurrent) {
+      return;
+    }
+    final Future<void> reload = ConnectionTiming.unobserved(
+      () => refreshLocations(quiet: true),
+    );
+    // Taken by the reload before its first await.
+    final int generation = _locationsRefreshGeneration;
+    unawaited(
+      reload.then<void>((_) {
+        if (staleNotice != null &&
+            !_disposed &&
+            _catalogueLoaded &&
+            generation == _locationsRefreshGeneration &&
+            identical(notice, staleNotice)) {
+          notice = null;
+          notifyListeners();
+        }
+      }, onError: (Object _, StackTrace _) {}),
+    );
   }
 
   Future<bool> signIn({required String email, required String password}) async {
@@ -1208,6 +1383,7 @@ class VpnAppController extends ChangeNotifier {
       return;
     }
     selectedLocation = location;
+    _preferredLocationId = location.id;
     _locationSelectionGeneration++;
     await _persistUiPreference(
       'location',
@@ -1331,6 +1507,7 @@ class VpnAppController extends ChangeNotifier {
       }
 
       final Object owner = _beginConnectionWork();
+      _tunnelAttemptOwner = owner;
       final networkAttempt = _networkAttempt();
       attemptEpoch = _networkAttemptEpoch;
       _MigrationContext? migrationContext;
@@ -1614,6 +1791,7 @@ class VpnAppController extends ChangeNotifier {
           );
         }
         _syncTunnelMetricsTimer();
+        if (!isTunnelActive && isSignedIn) _reloadCatalogueIfMissing();
         notifyListeners();
       } on SessionOperationCancelled {
         return;
@@ -1628,8 +1806,18 @@ class VpnAppController extends ChangeNotifier {
   /// before Flutter has observed a tunnel state. Accepted remote migrations
   /// remain tracked, but can never continue this cancelled tunnel attempt.
   Future<void> cancelConnectionAttempt() async {
-    if (!canCancelConnectionAttempt) return;
-    await disconnect(forceNativeStop: true);
+    if (canCancelConnectionAttempt) {
+      await disconnect(forceNativeStop: true);
+      return;
+    }
+    // The attempt completed while the last frame still showed Cancel: the
+    // tap must not be dropped with the tunnel left up, so it stops it.
+    if (!_disposed &&
+        _sessionOperation.isCurrent &&
+        !isDisconnecting &&
+        isConnected) {
+      await requestUserDisconnect();
+    }
   }
 
   /// The visible Disconnect control respects Android's system-owned
@@ -1701,10 +1889,19 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
-  void onAppPaused() => _billing.onAppPaused();
+  /// [hidden]: the app is no longer on screen. An inactive app (split
+  /// screen, the notification shade over it) is still visible.
+  void onAppPaused({bool hidden = true}) {
+    // Each state decides: hidden -> inactive is the app on screen again.
+    _appInBackground = hidden;
+    if (!_disposed) _syncTunnelMetricsTimer();
+    _billing.onAppPaused();
+  }
 
   Future<void> onAppResumed() async {
     if (_disposed) return;
+    _appInBackground = false;
+    _syncTunnelMetricsTimer();
     final resumedOperation = _sessionOperation;
     final authenticationGeneration = _authenticationGeneration;
     final mayResumeGuest = !isAuthenticating;
@@ -1734,6 +1931,8 @@ class VpnAppController extends ChangeNotifier {
         await _resumeGuestSession(_sessionOperation);
       }
     }
+    // Started before the slower work below, which cannot hold or skip it.
+    if (isSignedIn) _reloadCatalogueIfMissing();
     unawaited(_billing.onAppResumed());
     await refreshSystemProtection();
     _syncDiagnosticSession();
@@ -2025,6 +2224,7 @@ class VpnAppController extends ChangeNotifier {
         }
         final context = _identityScope(deviceId);
         final Object owner = _beginConnectionWork();
+        _tunnelAttemptOwner = owner;
         final networkAttempt = _networkAttempt();
         notice = null;
         notifyListeners();
@@ -2463,10 +2663,14 @@ class VpnAppController extends ChangeNotifier {
           _storedSessionReading = false;
           notifyListeners();
         }
+        // These paths may end without _restoreAccount: the catalogue is
+        // still owed.
+        _reloadCatalogueIfMissing();
         return;
       }
       if (_guestRecoveryDeferredHere) {
         await _resumeGuestSession(_sessionOperation, previous: _session);
+        _reloadCatalogueIfMissing();
         notifyListeners();
         return;
       }
@@ -2667,6 +2871,9 @@ class VpnAppController extends ChangeNotifier {
         unawaited(_followLocationMigration(context, refreshFirst: false));
       }
       _noticeClockAhead(session);
+      // Every account publication ends here: a catalogue missed before it
+      // (offline start, failed reload) is loaded now, in the background.
+      _reloadCatalogueIfMissing();
       return true;
     } on ApiFailure catch (error) {
       check();
@@ -2956,6 +3163,7 @@ class VpnAppController extends ChangeNotifier {
       context.check();
     }
     final DeviceLocationMigration migration;
+    bool recordStored = false;
     if (saved != null && saved.targetLocationId == location.id) {
       migration = saved;
     } else {
@@ -2970,6 +3178,7 @@ class VpnAppController extends ChangeNotifier {
           locationId: location.id,
         );
         await _retainAcceptedMigration(context, migration, location.id);
+        recordStored = true;
       } finally {
         if (identical(_migrationStartRequest, context)) {
           _migrationStartRequest = null;
@@ -2979,7 +3188,11 @@ class VpnAppController extends ChangeNotifier {
     }
     context.check();
     _validateMigration(context, migration, targetLocationId: location.id);
-    return _waitForLocationMigration(context, migration);
+    return _waitForLocationMigration(
+      context,
+      migration,
+      recordStored: recordStored,
+    );
   }
 
   /// Executes the documented WireGuard transition for a logical device whose
@@ -3094,14 +3307,27 @@ class VpnAppController extends ChangeNotifier {
     context.value = null;
   }
 
+  /// [recordStored]: [migration] was just written successfully (the accepted
+  /// POST), so its first pending cycle need not write it again.
   Future<bool> _waitForLocationMigration(
     _MigrationContext context,
-    DeviceLocationMigration migration,
-  ) => ConnectionTiming.measure('migration.total', () async {
+    DeviceLocationMigration migration, {
+    bool recordStored = false,
+  }) => ConnectionTiming.measure('migration.total', () async {
     _validateMigration(context, migration);
     DeviceLocationMigration current = migration;
+    // The record this loop knows to be stored. A poll that repeats it is not
+    // written again: each write is an encrypted record and a full-file commit.
+    Map<String, Object?>? written = recordStored
+        ? migration.toStorageJson()
+        : null;
+    int unhintedWaits = 0;
     for (int attempt = 0; ; attempt++) {
       context.check();
+      if (current.status == LocationMigrationStatus.activating ||
+          current.status == LocationMigrationStatus.ready) {
+        _noteLocationChangeActivation();
+      }
       if (current.status == LocationMigrationStatus.blocked) {
         await _storeLocationMigration(context, current);
         context.check();
@@ -3132,14 +3358,30 @@ class VpnAppController extends ChangeNotifier {
         return true;
       }
       if (attempt >= _migrationMaxPollAttempts) break;
-      await _storeLocationMigration(context, current);
+      final Map<String, Object?> record = current.toStorageJson();
+      if (written != null && mapEquals(written, record)) {
+        _validateMigration(context, current);
+        context.value = current;
+      } else {
+        await _storeLocationMigration(context, current);
+        written = record;
+      }
       context.check();
       notifyListeners();
+      // A server hint is always honoured. Without one, check again after
+      // 0.5 s and 1 s before settling on 2 s, so a migration that finishes
+      // quickly does not hold the change for whole periods.
+      final int? hint = current.retryAfterSeconds;
+      final Duration wait = hint != null
+          ? Duration(seconds: hint)
+          : switch (unhintedWaits++) {
+              0 => const Duration(milliseconds: 500),
+              1 => const Duration(seconds: 1),
+              _ => const Duration(seconds: 2),
+            };
       await ConnectionTiming.measure(
         'migration.retry_wait',
-        () => context.wait(
-          _migrationDelay(Duration(seconds: current.retryAfterSeconds ?? 2)),
-        ),
+        () => context.wait(_migrationDelay(wait)),
       );
       context.check();
       current = await _pollLocationMigration(context, current);
@@ -3434,6 +3676,10 @@ class VpnAppController extends ChangeNotifier {
   void _onTunnelState(VpnRuntimeState state) {
     if (_disposed) return;
     _tunnelStateRevision++;
+    final VpnRuntimeState? attemptBase = _attemptBaseState;
+    if (attemptBase != null && !_sameRuntimeStep(attemptBase, state)) {
+      _attemptStateMoved = true;
+    }
     _recordDiagnosticState(state);
     final cleanup = state.openVpnRevocation;
     if (cleanup != null &&
@@ -3467,11 +3713,39 @@ class VpnAppController extends ChangeNotifier {
       notifyListeners();
       return;
     }
+    final bool countersOnly = _differsOnlyInCounters(tunnelState, state);
     tunnelState = state;
+    _tunnelSamples.value = state;
     _syncTunnelMetricsTimer();
     _noticeNativeError(state);
-    notifyListeners();
+    // An active tunnel hid a missing catalogue; a stopped one would show it.
+    if (!isTunnelActive && isSignedIn) _reloadCatalogueIfMissing();
+    if (!countersOnly) notifyListeners();
   }
+
+  /// Every tunnel sample, for the widgets that show its counters.
+  ValueListenable<VpnRuntimeState?> get tunnelSamples => _tunnelSamples;
+
+  // Two samples of the same connected tunnel where only bytes and the latest
+  // handshake moved: nothing outside the metrics card depends on them. Any
+  // other event still notifies, even when nothing changed, as before.
+  static bool _differsOnlyInCounters(VpnRuntimeState a, VpnRuntimeState b) =>
+      a.phase == VpnRuntimePhase.connected &&
+      b.phase == VpnRuntimePhase.connected &&
+      a.protocol == b.protocol &&
+      a.messageCode == b.messageCode &&
+      a.connectedAt == b.connectedAt &&
+      a.locationId == b.locationId &&
+      a.locationName == b.locationName &&
+      a.sessionTermination == null &&
+      b.sessionTermination == null &&
+      a.openVpnRevocation == null &&
+      b.openVpnRevocation == null &&
+      listEquals(a.ipFamilies, b.ipFamilies) &&
+      a.systemProtection.alwaysOn == b.systemProtection.alwaysOn &&
+      a.systemProtection.lockdown == b.systemProtection.lockdown &&
+      a.systemProtection.resumeState == b.systemProtection.resumeState &&
+      a.systemProtection.resumeError == b.systemProtection.resumeError;
 
   /// Each native error is shown once: a resume snapshot of an error already
   /// shown, then dismissed, does not bring it back; a new error does. An error
@@ -3501,8 +3775,16 @@ class VpnAppController extends ChangeNotifier {
   }
 
   void _syncTunnelMetricsTimer() {
-    if (tunnelState.phase != VpnRuntimePhase.connected &&
-        !tunnelState.isWireGuardRecovery) {
+    // While nothing is on screen, a steady WireGuard tunnel needs no sample
+    // (the resume reconciles its state). OpenVPN keeps it: the sample is one
+    // of the paths that detect its failures. A recovery keeps it too.
+    final bool hiddenSteadyWireGuard =
+        _appInBackground &&
+        tunnelState.phase == VpnRuntimePhase.connected &&
+        tunnelState.protocol == VpnProtocol.wireGuard;
+    if (hiddenSteadyWireGuard ||
+        (tunnelState.phase != VpnRuntimePhase.connected &&
+            !tunnelState.isWireGuardRecovery)) {
       _tunnelMetricsTimer?.cancel();
       _tunnelMetricsTimer = null;
       return;
@@ -3776,6 +4058,7 @@ class VpnAppController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _tunnelSamples.dispose();
     _authenticationOwner = null;
     _isAuthenticating = false;
     _googleAuth.removeListener(_googleChanged);

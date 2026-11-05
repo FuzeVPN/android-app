@@ -115,6 +115,11 @@ class SessionApi extends Fake implements VpnApiRepository, GuestApiRepository {
   /// Thrown by the catalogue until reset to null.
   Object? locationsFailure;
 
+  /// Catalogue requests, the answer, and an optional pause before it.
+  int locationCalls = 0;
+  List<Location> catalogue = const <Location>[frankfurt, paris];
+  Future<void> Function()? onLocations;
+
   /// Device revocations: (token, deviceId).
   final revokedDevices = <(String, String)>[];
   Future<void> Function(String token, String deviceId)? onRevoke;
@@ -165,9 +170,11 @@ class SessionApi extends Fake implements VpnApiRepository, GuestApiRepository {
 
   @override
   Future<List<Location>> locations() async {
+    locationCalls++;
+    if (onLocations != null) await onLocations!();
     final failure = locationsFailure;
     if (failure != null) throw failure;
-    return const <Location>[frankfurt, paris];
+    return catalogue;
   }
 
   @override

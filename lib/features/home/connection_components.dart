@@ -74,14 +74,16 @@ class TunnelHero extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bool compact = _compactConnectionLayout(context);
+    final VpnRuntimePhase phase = controller.presentedTunnelPhase;
     final _StatusPresentation presentation = _statusPresentation(
       context,
       controller.tunnelState,
+      phase,
     );
     final VpnProtocol displayedProtocol = controller.isTunnelActive
         ? controller.tunnelState.protocol ?? controller.selectedProtocol
         : controller.selectedProtocol;
-    final Color statusColor = switch (controller.tunnelState.phase) {
+    final Color statusColor = switch (phase) {
       VpnRuntimePhase.connected => FuzeVpnTheme.successDark,
       VpnRuntimePhase.error => FuzeVpnTheme.errorDark,
       VpnRuntimePhase.authorizing ||
@@ -177,7 +179,7 @@ class TunnelHero extends StatelessWidget {
 }
 
 /// A restrained echo of the official website's network diagram. Its grid is
-/// decorative: only the native tunnel state controls the status and its colour.
+/// decorative: only the connection state controls the status and its colour.
 class _ConnectionGridPainter extends CustomPainter {
   const _ConnectionGridPainter();
 
@@ -496,11 +498,17 @@ class TunnelMetricsCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
         ],
-        _TunnelMetrics(
-          state: controller.tunnelState,
-          fallbackLocation:
-              controller.activeDeviceLocation?.displayName ??
-              controller.selectedLocation?.displayName,
+        // Rebuilt on every sample: counter-only samples do not notify the
+        // controller's listeners.
+        ValueListenableBuilder<VpnRuntimeState?>(
+          valueListenable: controller.tunnelSamples,
+          builder: (BuildContext context, VpnRuntimeState? sample, Widget? _) =>
+              _TunnelMetrics(
+                state: controller.tunnelState,
+                fallbackLocation:
+                    controller.activeDeviceLocation?.displayName ??
+                    controller.selectedLocation?.displayName,
+              ),
         ),
       ],
     ),
@@ -674,41 +682,73 @@ class LocationMigrationBanner extends StatelessWidget {
 
   final VpnAppController controller;
 
+  String _locationName(String id) =>
+      controller.locations
+          .cast<Location?>()
+          .firstWhere(
+            (Location? location) => location?.id == id,
+            orElse: () => null,
+          )
+          ?.displayName ??
+      (controller.activeDeviceLocation?.id == id
+          ? controller.activeDeviceLocation!.displayName
+          : id);
+
   @override
   Widget build(BuildContext context) {
-    final DeviceLocationMigration migration = controller.locationMigration!;
-    final Location? sourceLocation = controller.locations
-        .cast<Location?>()
-        .firstWhere(
-          (Location? location) => location?.id == migration.sourceLocationId,
-          orElse: () => null,
-        );
-    final String active =
-        sourceLocation?.displayName ??
-        (controller.activeDeviceLocation?.id == migration.sourceLocationId
-            ? controller.activeDeviceLocation!.displayName
-            : migration.sourceLocationId);
-    final String target =
-        controller.locations
-            .cast<Location?>()
-            .firstWhere(
-              (Location? location) =>
-                  location?.id == migration.targetLocationId,
-              orElse: () => null,
-            )
-            ?.displayName ??
-        migration.targetLocationId;
-    final String message = switch (migration.status) {
-      LocationMigrationStatus.draining => context.copy('migration.draining'),
-      LocationMigrationStatus.activating => context.copy(
-        'migration.activating',
-      ),
-      LocationMigrationStatus.ready => context.copy('migration.ready'),
-      LocationMigrationStatus.blocked => context.copy('migration.blocked'),
-    };
-    final bool pending = migration.status.isPending;
-    final bool activelyChecking = pending && controller.isConnecting;
-    final double progress = switch (migration.status) {
+    // A server migration shows its own record. Without one (before it, after
+    // it, or an OpenVPN change to where the device already is), the card shows
+    // the step the change is at, never going back once the server reported
+    // its new node activating: preparation, activation, then done once native
+    // code reports the tunnel (before the change itself returns).
+    final DeviceLocationMigration? migration = controller.locationMigration;
+    final LocationChangeProgress? change = controller.locationChangeProgress;
+    // Read once: a lazily rebuilt list child can outlive the check its page
+    // made, for instance when a session expires without a notification.
+    if (migration == null && change == null) return const SizedBox.shrink();
+    final VpnRuntimePhase phase = controller.presentedTunnelPhase;
+    // During a change, a server 'ready' only ends the migration: the change
+    // is done once native code reports the tunnel.
+    final bool serverStatus =
+        migration != null &&
+        (change == null || migration.status != LocationMigrationStatus.ready);
+    final LocationMigrationStatus status = serverStatus
+        ? migration.status
+        : switch (phase) {
+            VpnRuntimePhase.connected => LocationMigrationStatus.ready,
+            VpnRuntimePhase.connecting => LocationMigrationStatus.activating,
+            _ =>
+              (change?.activating ?? false) || migration != null
+                  ? LocationMigrationStatus.activating
+                  : LocationMigrationStatus.draining,
+          };
+    final String? sourceId =
+        migration?.sourceLocationId ?? change?.sourceLocationId;
+    final String targetId =
+        migration?.targetLocationId ?? change!.targetLocationId;
+    final String target = _locationName(targetId);
+    final String route = sourceId == null || sourceId == targetId
+        ? target
+        : '${_locationName(sourceId)} → $target';
+    final String message =
+        migration == null && phase == VpnRuntimePhase.authorizing
+        ? context.copy('status.authorizingDetail')
+        : switch (status) {
+            LocationMigrationStatus.draining => context.copy(
+              'migration.draining',
+            ),
+            LocationMigrationStatus.activating => context.copy(
+              'migration.activating',
+            ),
+            LocationMigrationStatus.ready => context.copy('migration.ready'),
+            LocationMigrationStatus.blocked => context.copy(
+              'migration.blocked',
+            ),
+          };
+    final bool pending = status.isPending;
+    final bool activelyChecking =
+        pending && (controller.isConnecting || migration == null);
+    final double progress = switch (status) {
       LocationMigrationStatus.draining => 0.35,
       LocationMigrationStatus.activating => 0.75,
       LocationMigrationStatus.ready => 1,
@@ -716,7 +756,7 @@ class LocationMigrationBanner extends StatelessWidget {
     };
     final ColorScheme scheme = Theme.of(context).colorScheme;
     return Card(
-      color: migration.status == LocationMigrationStatus.blocked
+      color: status == LocationMigrationStatus.blocked
           ? scheme.errorContainer
           : pending
           ? scheme.secondaryContainer
@@ -724,7 +764,7 @@ class LocationMigrationBanner extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
         side: BorderSide(
-          color: migration.status == LocationMigrationStatus.blocked
+          color: status == LocationMigrationStatus.blocked
               ? scheme.error.withValues(alpha: 0.45)
               : scheme.outlineVariant,
         ),
@@ -740,7 +780,7 @@ class LocationMigrationBanner extends StatelessWidget {
                     height: 24,
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
-                : Icon(switch (migration.status) {
+                : Icon(switch (status) {
                     LocationMigrationStatus.draining =>
                       Icons.hourglass_top_rounded,
                     LocationMigrationStatus.activating => Icons.sync,
@@ -758,15 +798,14 @@ class LocationMigrationBanner extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '$active → $target',
+                    route,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   const SizedBox(height: 6),
                   Text(message),
-                  if (migration.status !=
-                      LocationMigrationStatus.blocked) ...<Widget>[
+                  if (status != LocationMigrationStatus.blocked) ...<Widget>[
                     const SizedBox(height: 12),
                     Semantics(
                       label: context.copy('migration.progress'),
@@ -780,21 +819,22 @@ class LocationMigrationBanner extends StatelessWidget {
                       ),
                     ),
                   ],
-                  if (pending) ...<Widget>[
+                  if (migration?.retryAfterSeconds != null &&
+                      pending) ...<Widget>[
                     const SizedBox(height: 8),
                     Text(
                       context.copy(
                         'migration.retryDelay',
                         arguments: <String, Object?>{
-                          'seconds': migration.retryAfterSeconds ?? 2,
+                          'seconds': migration!.retryAfterSeconds,
                         },
                       ),
                       style: Theme.of(context).textTheme.bodySmall,
                     ),
                   ],
-                  if (!controller.isConnecting &&
-                      migration.status !=
-                          LocationMigrationStatus.ready) ...<Widget>[
+                  if (migration != null &&
+                      !controller.isConnecting &&
+                      status != LocationMigrationStatus.ready) ...<Widget>[
                     const SizedBox(height: 12),
                     OutlinedButton.icon(
                       onPressed: controller.resumeLocationMigration,

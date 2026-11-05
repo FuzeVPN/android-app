@@ -32,92 +32,123 @@ const _profile = UserProfile(
 );
 
 void main() {
-  for (final (label, metadata, version, url)
-      in <(String, Object, String?, String)>[
-        (
-          'version installée connue',
-          <String, Object?>{'app_version': '0.2.10', 'app_build': 74016},
-          '0.2.10 (74016)',
-          '$_repository/tree/v0.2.10',
-        ),
-        (
-          'version sans numéro de build',
-          <String, Object?>{'app_version': '0.2.10'},
-          '0.2.10',
-          '$_repository/tree/v0.2.10',
-        ),
-        ('témoin : métadonnée sans version', <String, Object?>{}, null, _repository),
-        (
-          'témoin : métadonnée illisible',
-          StateError('unavailable'),
-          null,
-          _repository,
-        ),
-      ]) {
-    testWidgets('écran de licences : version et sources ($label)', (
-      tester,
-    ) async {
-      tester.view.physicalSize = const Size(700, 1400);
-      tester.view.devicePixelRatio = 1;
-      addTearDown(tester.view.resetPhysicalSize);
-      addTearDown(tester.view.resetDevicePixelRatio);
-      final h = _Harness(metadata);
-      await h.controller.initialize();
-      final copy = lookupAppLocalizations(const Locale('fr'));
-      try {
-        await tester.pumpWidget(
-          AnimatedBuilder(
-            animation: h.controller,
-            builder: (context, _) => MaterialApp(
-              locale: const Locale('fr'),
-              supportedLocales: AppLanguages.supportedLocales,
-              localeListResolutionCallback: AppLanguages.resolve,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
-              theme: FuzeVpnTheme.light(),
-              home: HomeShell(controller: h.controller),
-            ),
+  for (final locale in const <Locale>[Locale('fr'), Locale('en')]) {
+    for (final (label, metadata, version, url)
+        in <(String, Object, String?, String)>[
+          (
+            'version installée connue',
+            <String, Object?>{'app_version': '0.2.10', 'app_build': 74016},
+            '0.2.10 (74016)',
+            '$_repository/tree/v0.2.10',
           ),
-        );
-        await tester.pumpAndSettle();
-        await tester.tap(find.text(copy.nav_account).last);
-        await tester.pumpAndSettle();
-        final tile = find.text(copy.settings_licenses);
-        await tester.scrollUntilVisible(
-          tile,
-          300,
-          scrollable: find
-              .descendant(
-                of: find.byType(AccountPage),
-                matching: find.byType(Scrollable),
-              )
-              .first,
-          maxScrolls: 80,
-        );
-        await tester.pumpAndSettle();
-        await tester.tap(tile);
-        // The license registry animates while it loads: advance a few frames.
-        for (var i = 0; i < 10; i++) {
-          await tester.pump(const Duration(milliseconds: 100));
-        }
-        expect(find.byType(LicensePage), findsOneWidget);
-        if (version != null) {
-          expect(h.tunnel.metadataReads, 1);
-          expect(find.text(version), findsWidgets);
-        } else {
-          expect(find.textContaining('0.2.10'), findsNothing);
-        }
-        final legalese = AppCopy.resolve(
-          copy,
-          'settings.licensesLegalese',
-          arguments: {'url': url},
-        );
-        expect(find.text(legalese), findsWidgets);
-      } finally {
-        await tester.pumpWidget(const SizedBox.shrink());
-        h.controller.dispose();
-        await h.tunnel.dispose();
-      }
-    });
+          (
+            'version sans numéro de build',
+            <String, Object?>{'app_version': '0.2.10'},
+            '0.2.10',
+            '$_repository/tree/v0.2.10',
+          ),
+          (
+            'témoin : métadonnée sans version',
+            <String, Object?>{},
+            null,
+            _repository,
+          ),
+          (
+            'témoin : métadonnée illisible',
+            StateError('unavailable'),
+            null,
+            _repository,
+          ),
+        ]) {
+      testWidgets(
+        'écran de licences : version et sources ($label, ${locale.languageCode})',
+        (tester) async {
+          tester.view.physicalSize = const Size(700, 1400);
+          tester.view.devicePixelRatio = 1;
+          addTearDown(tester.view.resetPhysicalSize);
+          addTearDown(tester.view.resetDevicePixelRatio);
+          final h = _Harness(metadata);
+          await h.controller.initialize();
+          final copy = lookupAppLocalizations(locale);
+          try {
+            await tester.pumpWidget(
+              AnimatedBuilder(
+                animation: h.controller,
+                builder: (context, _) => MaterialApp(
+                  locale: locale,
+                  supportedLocales: AppLanguages.supportedLocales,
+                  localeListResolutionCallback: AppLanguages.resolve,
+                  localizationsDelegates:
+                      AppLocalizations.localizationsDelegates,
+                  theme: FuzeVpnTheme.light(),
+                  home: HomeShell(controller: h.controller),
+                ),
+              ),
+            );
+            await tester.pumpAndSettle();
+            await tester.tap(find.text(copy.nav_account).last);
+            await tester.pumpAndSettle();
+            final tile = find.text(copy.settings_licenses);
+            await tester.scrollUntilVisible(
+              tile,
+              300,
+              scrollable: find
+                  .descendant(
+                    of: find.byType(AccountPage),
+                    matching: find.byType(Scrollable),
+                  )
+                  .first,
+              maxScrolls: 80,
+            );
+            await tester.pumpAndSettle();
+            await tester.tap(tile);
+            // The license registry animates while it loads: advance a few frames.
+            for (var i = 0; i < 10; i++) {
+              await tester.pump(const Duration(milliseconds: 100));
+            }
+            expect(find.byType(LicensePage), findsOneWidget);
+            // The page bears the menu entry's title ("Component licenses"), not
+            // Flutter's own "Licenses"; every other Material text is unchanged.
+            expect(
+              find.descendant(
+                of: find.byType(AppBar),
+                matching: find.text(copy.settings_licenses),
+              ),
+              findsOneWidget,
+            );
+            final page = MaterialLocalizations.of(
+              tester.element(find.byType(LicensePage)),
+            );
+            final app = MaterialLocalizations.of(
+              tester.element(find.byType(HomeShell, skipOffstage: false)),
+            );
+            expect(page.licensesPageTitle, copy.settings_licenses);
+            expect(app.licensesPageTitle, isNot(copy.settings_licenses));
+            expect(page.backButtonTooltip, app.backButtonTooltip);
+            expect(
+              page.licensesPackageDetailText(2),
+              app.licensesPackageDetailText(2),
+            );
+            if (version != null) {
+              expect(h.tunnel.metadataReads, 1);
+              expect(find.text(version), findsWidgets);
+            } else {
+              expect(find.textContaining('0.2.10'), findsNothing);
+            }
+            final legalese = AppCopy.resolve(
+              copy,
+              'settings.licensesLegalese',
+              arguments: {'url': url},
+            );
+            expect(find.text(legalese), findsWidgets);
+          } finally {
+            await tester.pumpWidget(const SizedBox.shrink());
+            h.controller.dispose();
+            await h.tunnel.dispose();
+          }
+        },
+      );
+    }
   }
 }
 

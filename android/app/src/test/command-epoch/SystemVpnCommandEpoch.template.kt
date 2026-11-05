@@ -26,12 +26,30 @@ internal class UserManager {
 }
 internal class ContextFixture {
     val userManager = UserManager()
+    val contentResolver = Any()
+    val packageName = "com.fuzevpn"
     fun <T> getSystemService(type: Class<T>): UserManager = userManager
     fun startActivity(intent: Any) {}
 }
 internal object SharedVpnHost {
     fun systemFlags(): Pair<Boolean?, Boolean?> = false to false
     fun settingsIntent(): Any = Any()
+    fun start(context: Any) {}
+}
+// The process-restart branch of the extracted restore reads these; the boot path never does.
+internal object Log { fun i(tag: String, message: String): Int = 0 }
+internal object NetworkCapabilities { const val TRANSPORT_VPN = 4 }
+internal object ConnectivityManager { const val TYPE_VPN = 17 }
+internal class CapabilitiesFixture { fun hasTransport(transport: Int): Boolean = false }
+internal class NetworkInfoFixture(val type: Int)
+internal class ConnectivityFixture {
+    val activeNetwork: Any? = null
+    fun getNetworkCapabilities(network: Any?): CapabilitiesFixture? = null
+    // Legacy-type fallback of foreignVpnPresent when capabilities throw SecurityException.
+    fun getNetworkInfo(network: Any?): NetworkInfoFixture? = null
+}
+internal object Settings {
+    object Secure { fun getString(resolver: Any?, name: String): String? = throw SecurityException(name) }
 }
 internal object WireGuardForegroundNotifier {
     fun startProtocol(context: Any, protocol: VpnProtocol?, status: VpnStatus,
@@ -69,6 +87,11 @@ internal class RegistryFixture(var profile: QuickTileProfile) {
     fun block(code: String) {
         if (!missing) { blocked = true; reserved = false }
         blocks += code
+    }
+    fun complete(session: String, identity: String): ResumeFixture? {
+        if (!reserved) return null
+        reserved = false
+        return ResumeFixture(profile)
     }
     fun invalidate() { missing = true; blocked = false; reserved = false }
     fun arm() { missing = false; blocked = false; reserved = false }
@@ -153,6 +176,12 @@ internal class SystemEpochBridge(private val operationScope: CoroutineScope, pro
     var afterTransition: () -> Unit = {}
     val beforeLock = AtomicReference<(() -> Unit)?>(null)
     private val transition = Mutex()
+    private val connectivity = ConnectivityFixture()
+    private var processRestartUnreserved = false
+    private fun syncProcessRestart() {}
+    // The extracted tile click holds the process-restart arming until its work ends.
+    private fun holdProcessRestart(): () -> Unit = {}
+    private fun vpnDisclosureAccepted(): Boolean = true
     fun holdsSystemStartLock(): Boolean = Thread.holdsLock(systemStartLock)
     fun systemJob(): Job? = synchronized(systemStartLock) { systemStartJob }
     private fun checkRequest(epoch: Long) {
@@ -294,6 +323,13 @@ internal class SystemEpochBridge(private val operationScope: CoroutineScope, pro
 /* PRODUCTION_CANCEL */
 /* PRODUCTION_SYSTEM */
 /* PRODUCTION_TILE */
+
+    private companion object {
+        const val LOG_TAG = "FuzeVpnBridge"
+        const val ANOTHER_VPN_ACTIVE = "another VPN is active"
+        const val NOT_PERMANENT_VPN = "the permanent VPN is no longer this app"
+        const val ALWAYS_ON_VPN_APP_SETTING = "always_on_vpn_app"
+    }
 }
 
 internal fun requireSignal(signal: CountDownLatch) {

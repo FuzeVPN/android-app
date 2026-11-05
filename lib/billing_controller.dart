@@ -87,6 +87,11 @@ class BillingController extends ChangeNotifier {
   int _appliedEntitlementSequence = 0;
   BillingAccount? _account;
   BillingPurchaseContext? _context;
+  // When the subscription and purchase context were last read successfully,
+  // for which account, and the entitlement then applied.
+  DateTime? _contextReadAt;
+  int? _contextReadRevision;
+  int? _contextReadSequence;
   BillingSubscription? subscription;
   List<PlaySubscriptionPlan> plans = const [];
   int accountRevision = 0;
@@ -419,6 +424,9 @@ class BillingController extends ChangeNotifier {
         return false;
       }
       _context = contextResult;
+      _contextReadAt = DateTime.now();
+      _contextReadRevision = revision;
+      _contextReadSequence = _appliedEntitlementSequence;
       return true;
     } catch (_) {
       return false;
@@ -471,6 +479,30 @@ class BillingController extends ChangeNotifier {
         _emit();
       }
     }
+  }
+
+  /// For a visit of the account tab: a subscription read in the last minute
+  /// for this account is kept, so the tab does not show its check every time,
+  /// unless an entitlement change (purchase, recovery) was applied since: only
+  /// a fresh server context may then allow checkout again. The refresh button
+  /// still reads it every time.
+  Future<void> refreshSubscriptionIfStale() {
+    syncAccount();
+    final DateTime? readAt = _contextReadAt;
+    if (_context != null &&
+        readAt != null &&
+        _contextReadRevision == accountRevision &&
+        _contextReadSequence == _appliedEntitlementSequence &&
+        DateTime.now().difference(readAt) < const Duration(minutes: 1)) {
+      // Only the read is skipped: a visit still clears the previous message,
+      // as a refresh does (an automatic restore may have published one).
+      if (!isBusy) {
+        messageKey = null;
+        _emit();
+      }
+      return Future<void>.value();
+    }
+    return refreshSubscription();
   }
 
   Future<void> refreshSubscription() async {

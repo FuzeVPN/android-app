@@ -37,8 +37,7 @@ Les imports, patches, empreintes et licences natives sont détaillés dans
 | NDK | 28.2.13676358 |
 | CMake | 3.22.1 |
 | Application | `minSdk=26`, `compileSdk=36`, `targetSdk=36` |
-| ABI de diffusion | `arm64-v8a`, `armeabi-v7a` |
-| ABI supplémentaire de test | `x86_64` pour émulateur debug |
+| ABI de diffusion | `arm64-v8a`, `armeabi-v7a`, `x86_64` |
 
 Installer ces outils sur le poste ou l'image de CI, puis vérifier les versions
 de Flutter et Java. Le projet ne télécharge pas lui-même le SDK Flutter.
@@ -197,7 +196,7 @@ en fonctionnement sur téléphone.
 
 ```powershell
 flutter build apk --debug --no-pub --split-per-abi --target-platform android-arm64,android-arm,android-x64 --android-project-arg=fuzevpn.usePatchedWireGuardAar=true
-flutter build apk --release --no-pub --split-per-abi --target-platform android-arm64,android-arm --android-project-arg=fuzevpn.usePatchedWireGuardAar=true
+flutter build apk --release --no-pub --split-per-abi --target-platform android-arm64,android-arm,android-x64 --android-project-arg=fuzevpn.usePatchedWireGuardAar=true
 ```
 
 Les APK sont écrits dans `build/app/outputs/flutter-apk/`. Pour une livraison,
@@ -216,8 +215,12 @@ pour publication.
 ### Construire l'App Bundle
 
 ```powershell
-flutter build appbundle --release --no-pub --target-platform android-arm64,android-arm --android-project-arg=fuzevpn.usePatchedWireGuardAar=true
+flutter build appbundle --release --no-pub --target-platform android-arm64,android-arm,android-x64 --android-project-arg=fuzevpn.usePatchedWireGuardAar=true
 ```
+
+`x86_64` est livré pour que les appareils x86 (Chromebooks, par exemple)
+n'exécutent jamais le runtime Go ARM de WireGuard sous traduction : voir
+`docs/NATIVE_DEPENDENCIES.md`, « Limites des ponts ARM ».
 
 Le bundle est écrit dans `build/app/outputs/bundle/release/app-release.aab`.
 Son `versionCode` est le numéro de base de `pubspec.yaml`, sans l'incrément
@@ -486,6 +489,10 @@ callback, et la conservation de la mesure de référence sur un inventaire incha
 Flutter : entrée périmée, commande annulée, coupure Wi-Fi/mobile de plus de
 trente secondes et retour sans nouvelle preuve du pair. Il requiert le package
 `com.fuzevpn.recoverytest` et passe en skipped avec le package de production.
+Il passe aussi en skipped dans un processus Android 11 touché par la course de
+liaison du ConnectivityManager (callback physique refusé). La validation des
+preuves refuse ce skip : répéter simplement l’exécution dans un nouveau
+processus.
 Le build isolé remplace applicationId et testApplicationId via un init script
 Gradle externe ; aucun changement de package ne fait partie du build release.
 Il utilise x86_64 pour éviter la traduction ARM, sans créer de vrai tunnel ni
@@ -637,7 +644,8 @@ découvertes par les tests JVM Gradle ; leurs reçus restent séparés et
 obligatoires. L'agrégateur exige au moins les cas exécutés le 30 octobre 2026
 (`HOST_JUNIT_MINIMUMS` de `tools/validation_support.py`) : 44 tests JUnit et
 20 scénarios JavaScript pour `turnstile-bridge`, 27 tests pour
-`command-epochs` et 43 pour `bridge-host`. Chaque plancher JUnit est égal au
+`command-epochs` et 94 pour `bridge-host` (2 novembre 2026). Chaque plancher
+JUnit est égal au
 nombre de `@Test` des sources de sa suite (contrôlé par `tools/tests`) : un
 cas ajouté doit relever le plancher dans le même changement. Aucun de ces
 contrôles hôtes n'exécute de WebView ou de tunnel Android réel. Pour

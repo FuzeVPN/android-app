@@ -16,6 +16,9 @@ class HedgedHttpOpen {
     required Duration timeout,
     void Function()? cancelPrimary,
     void Function()? cancelAlternate,
+    // When both openings fail, the error ranked higher is reported; ties and
+    // an absent ranking keep the primary's.
+    int Function(Object error)? errorRank,
   }) {
     final Completer<T> result = Completer<T>();
     Timer? hedgeTimer;
@@ -63,8 +66,17 @@ class HedgedHttpOpen {
       }
     }
 
+    int rank(Object? error) {
+      if (error == null || errorRank == null) return 0;
+      try {
+        return errorRank(error);
+      } catch (_) {
+        return 0;
+      }
+    }
+
     void finishBothFailures() {
-      if (primaryError != null) {
+      if (primaryError != null && rank(primaryError) >= rank(alternateError)) {
         finishError(primaryError!, primaryStackTrace);
       } else {
         finishError(alternateError!, alternateStackTrace);

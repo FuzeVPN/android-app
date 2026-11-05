@@ -116,7 +116,7 @@ class PowerShellReceiptInstantTests(unittest.TestCase):
             data = self.support.summarize(directory)
         self.assertEqual("passed", data["status"])
         self.assertEqual(44, data["checks"]["turnstile-bridge"]["junit"]["passed"])
-        self.assertEqual(43, data["checks"]["bridge-host"]["junit"]["passed"])
+        self.assertEqual(94, data["checks"]["bridge-host"]["junit"]["passed"])
         (directory / "summary.json").write_text(json.dumps(data), encoding="utf-8")
         release = self.fixture.module
         # local_validation() loads its own copy of validation_support.py: patch the

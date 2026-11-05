@@ -184,7 +184,8 @@ OpenVPN utilise les états `draining`, `activating`, `ready` et `blocked` de la
 migration asynchrone. L'identifiant opaque, l'appareil, la destination et l'état
 sont chiffrés avec une portée compte/appareil. `Retry-After` (secondes ou
 HTTP-date, mesurée depuis l'en-tête `Date` de la réponse) prime sur
-`retry_after_seconds` ; sans valeur lisible, l'attente est de deux secondes. Un
+`retry_after_seconds` ; sans valeur lisible, l'attente est de 0,5 s, puis 1 s,
+puis deux secondes, et l'écran n'affiche pas de délai. Un
 délai supérieur à 300 s est ramené à 300 s et un délai illisible est ignoré : il
 ne fait jamais perdre une migration acceptée. Le nombre de vérifications est
 borné. Après `ready`, une lecture des appareils doit confirmer la destination
@@ -251,6 +252,13 @@ locale et de la libération du service. Le démarrage WireGuard protège les
 sockets avant d'ajouter les pairs ; le détail des patches est dans
 [NATIVE_DEPENDENCIES.md](NATIVE_DEPENDENCIES.md).
 
+`SharedVpnHost` démarre et arrête ce service sur le fil principal, où ses
+`onCreate()` et `onDestroy()` s'exécutent d'un bloc : publié juste avant
+`startForeground()`, un hôte arrêté entre les deux fait tuer l'application par
+Android 8 à 11, et un démarrage tombé au milieu de `onDestroy()` ne démarre rien.
+Un arrêt attend la fin de `onDestroy()` ; un passage au fil principal expiré est
+annulé, il ne démarre ni n'arrête plus rien ensuite.
+
 Le tunnel peut rester actif en arrière-plan. Le VPN permanent et le blocage
 des connexions sans VPN sont deux réglages Android distincts que l'utilisateur
 active dans les paramètres système. Une notification persistante ne prouve pas
@@ -264,6 +272,49 @@ Keystore peut nécessiter le premier déverrouillage après redémarrage. Un éc
 de reprise reste bloqué jusqu'à une nouvelle connexion explicite. La reprise
 OpenVPN après perte de transport possède un budget borné, conservé avec l'état
 de reprise ; elle ne contourne pas révocation, expiration ou renouvellement.
+Quand elle reconnecte avec le même plan réseau, elle réutilise l'interface TUN
+conservée au lieu d'en établir une nouvelle : sur Android 11 à 16, chaque
+nouvelle interface fait couper par le système les connexions TCP en cours.
+L'interface conservée est identifiée par `ioctl(TUNGETIFF)` sur son descripteur :
+une app release n'est pas « dumpable » et, sur Android 11, son propre
+`/proc/self/fdinfo` lui est illisible.
+
+Sur Android 11 seulement, le `ConnectivityManager` est unique par processus. Une
+mise à jour de proxy que le système envoie à tous les processus (à chaque fin de
+réseau VPN, par exemple) et qui arrive pendant le démarrage du processus le lie
+au paquet « android » jusqu'à la mort du processus : l'abonnement réseau et la
+lecture des capacités lèvent alors `SecurityException`. Le démarrage ne doit pas
+en mourir. Le pont journalise une fois « Physical network callback refused by
+Android » et continue sans abonnement : WireGuard ne suit plus les pertes de
+réseau ; tant qu'OpenVPN est actif, les réseaux physiques sont relus chaque
+seconde et un réseau disparu déclenche la reprise comme l'abonnement l'aurait
+fait ; toute autre interruption garde la reprise unique. Le réseau par défaut, le
+type VPN et les interfaces se lisent par les appels sans contrôle de paquet
+(`getAllNetworks`, `getActiveNetworkInfo`, `getNetworkInfo`, `getLinkProperties`).
+Android 12 a corrigé la cause.
+
+Après la mort du processus, Android ne relance pas le service VPN qu'il a déjà
+délié. Un service sans liaison ni premier plan, `SystemVpnResumeSentinel`
+(START_STICKY), est donc démarré tant qu'une mort serait suivie d'une reprise :
+Android 10 ou plus, état de reprise prêt, VPN permanent constaté pendant que le
+tunnel est connecté, et aucune commande d'arrêt ni perte du service en cours.
+Une commande d'arrêt le désarme dès sa réception. Relancé par Android, il
+vérifie d'abord sans rien écrire ni afficher l'état, la session, l'identité,
+le consentement, l'absence d'un autre VPN et un réseau physique (30 s au plus).
+Il réserve ensuite l'état, démarre le service VPN puis suit la reprise système.
+Rien n'est restauré sans VPN permanent, sur Android 8 et 9, ni dans le runtime
+de debug ; une reprise interrompue par une nouvelle mort n'est pas retentée.
+
+Android 10 à 13 abandonnent parfois ce redémarrage quand un autre composant (la
+tuile, une tâche d'une bibliothèque) relance d'abord le processus (observé sur
+Android 11 à 13). Tant que la sentinelle est armée, une tâche JobScheduler en
+attente (`SystemVpnRestartMark`, jamais exécutée avant 30 jours) la marque.
+Chaque démarrage du processus consomme cette marque et lance la même reprise,
+sur Android 11 ou plus, si le processus principal vient de mourir (2 min au
+plus) d'une mort qu'Android fait suivre d'un redémarrage : plantage, signal,
+mémoire, ANR, ressources, permission retirée ou fournisseur mort. Un arrêt forcé
+annule la marque, même processus déjà mort ; un démarrage d'appareil l'efface.
+Android 10 n'enregistre pas la raison d'une mort : seule la sentinelle y reprend.
 
 La tuile Réglages rapides reconnecte ce dernier profil validé sans accès API.
 Elle ouvre l'application lorsqu'une préparation, un consentement VPN ou un

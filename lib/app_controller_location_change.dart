@@ -6,6 +6,32 @@ extension VpnLocationChange on VpnAppController {
 
   bool get isChangingLocation => _locationChangeOperation != null;
 
+  /// The confirmed location change still running, for its progress card.
+  LocationChangeProgress? get locationChangeProgress {
+    final change = _locationChangeOperation;
+    if (change == null || change.finished || !change.isCurrent) return null;
+    return LocationChangeProgress(
+      sourceLocationId: change.sourceLocationId,
+      targetLocationId: change.targetLocationId,
+      protocol: change.protocol,
+      activating: change.activating,
+    );
+  }
+
+  /// Whether the connection page shows the location-change card: a server
+  /// migration, or any OpenVPN change, with or without one. A WireGuard change
+  /// takes under a second and the connection card already states it.
+  bool get showsLocationChangeProgress =>
+      locationMigration != null ||
+      locationChangeProgress?.protocol == VpnProtocol.openVpn;
+
+  // The server reported its new node activating, or ready, during this change:
+  // the card never goes back to its preparation step afterwards.
+  void _noteLocationChangeActivation() {
+    final change = _locationChangeOperation;
+    if (change != null && !change.finished) change.activating = true;
+  }
+
   bool get canChangeLocation =>
       !_disposed &&
       _sessionOperation.isCurrent &&
@@ -91,7 +117,10 @@ extension VpnLocationChange on VpnAppController {
     // A guest token renewal keeps the account lineage: the confirmed change
     // continues with the new token. Any other session change cancels it.
     change = _LocationChangeOperation(
-      () =>
+      sourceLocationId: activeLocation,
+      targetLocationId: target.id,
+      protocol: protocol,
+      matches: () =>
           !_disposed &&
           _sessionOperation.isCurrent &&
           identical(lineage, _sessionOperation.lineage) &&
@@ -165,9 +194,34 @@ extension VpnLocationChange on VpnAppController {
   }
 }
 
+/// Where a confirmed location change goes, with which protocol, and whether
+/// the server already reported the new node activating.
+class LocationChangeProgress {
+  const LocationChangeProgress({
+    required this.sourceLocationId,
+    required this.targetLocationId,
+    required this.protocol,
+    this.activating = false,
+  });
+
+  final String? sourceLocationId;
+  final String targetLocationId;
+  final VpnProtocol protocol;
+  final bool activating;
+}
+
 class _LocationChangeOperation extends SessionOperation {
-  _LocationChangeOperation(this.matches);
+  _LocationChangeOperation({
+    required this.sourceLocationId,
+    required this.targetLocationId,
+    required this.protocol,
+    required this.matches,
+  });
+  final String? sourceLocationId;
+  final String targetLocationId;
+  final VpnProtocol protocol;
   final bool Function() matches;
+  bool activating = false;
   bool connecting = false;
   bool finished = false;
 

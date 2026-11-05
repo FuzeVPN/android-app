@@ -62,6 +62,16 @@ class TunnelNetworkSpecTest {
         dual().validateTun(addresses, listOf("0.0.0.0/1", "128.0.0.0/1", "::/0"), dns, 1500)
         rejects { dual().validateTun(addresses, listOf("0.0.0.0/1", "::/0"), dns, 1500) }
     }
+    // The validated plan keys OpenVPN's TUN reuse: a pushed plan that changes in any way
+    // establishes a new interface instead of reusing the retained one.
+    @Test fun equalInputsGiveAnEqualReuseKeyAndAnyChangeDoesNot() {
+        val key = dual().validateTun(addresses, routes, dns, 1400)
+        assertEquals(key, dual().validateTun(addresses, routes, dns, 1400))
+        assertEquals(key.hashCode(), dual().validateTun(addresses, routes, dns, 1400).hashCode())
+        assertNotEquals(key, dual().validateTun(addresses, routes, listOf("1.1.1.1"), 1400))
+        assertNotEquals(key, dual().validateTun(addresses, routes, dns, 1380))
+        assertNotEquals(key, dual().validateTun(addresses, listOf("0.0.0.0/1", "128.0.0.0/1", "::/0"), dns, 1400))
+    }
     @Test fun dualMtuMustBeAtLeast1280() {
         rejects { dual().validateTun(addresses, routes, dns, 1279) }
         rejects { dual().validateTun(addresses, routes, dns, 9001) }

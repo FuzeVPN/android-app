@@ -934,13 +934,23 @@ Future<void> _showLicenses(
   final String source = version == null
       ? sourceCodeRepository
       : '$sourceCodeRepository/tree/v${version.split(' ').first}';
-  showLicensePage(
-    context: context,
-    applicationName: 'FuzeVPN',
-    applicationVersion: version,
-    applicationLegalese: context.copy(
-      'settings.licensesLegalese',
-      arguments: <String, Object?>{'url': source},
+  unawaited(
+    Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        // Read in the page's own context: a language change while it is open
+        // updates the title and the legalese with the rest of the page.
+        builder: (pageContext) => LicensesTitle(
+          title: pageContext.copy('settings.licenses'),
+          child: LicensePage(
+            applicationName: 'FuzeVPN',
+            applicationVersion: version,
+            applicationLegalese: pageContext.copy(
+              'settings.licensesLegalese',
+              arguments: <String, Object?>{'url': source},
+            ),
+          ),
+        ),
+      ),
     ),
   );
 }
@@ -952,38 +962,48 @@ Future<void> _showAccountDeletionRequest(BuildContext context) async {
       key: const ValueKey('delete-account-warning'),
       constraints: const BoxConstraints(maxWidth: 560),
       scrollable: true,
-      title: Text(dialogContext.copy('settings.deleteAccount')),
+      title: WholeWords(
+        child: Text(dialogContext.copy('settings.deleteAccount')),
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(dialogContext.copy('billing.deleteAccountWarning')),
+          WholeWords(
+            child: Text(dialogContext.copy('billing.deleteAccountWarning')),
+          ),
           const SizedBox(height: 20),
           OutlinedButton(
             key: const ValueKey('delete-account-manage-play'),
             onPressed: () =>
                 openExternalLink(dialogContext, PublicLinks.playSubscriptions),
-            child: Text(
-              dialogContext.copy('billing.manage'),
-              textAlign: TextAlign.center,
+            child: WholeWords(
+              child: Text(
+                dialogContext.copy('billing.manage'),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           const SizedBox(height: 12),
           FilledButton(
             key: const ValueKey('delete-account-continue'),
             onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: Text(
-              dialogContext.copy('billing.deleteAccountContinue'),
-              textAlign: TextAlign.center,
+            child: WholeWords(
+              child: Text(
+                dialogContext.copy('billing.deleteAccountContinue'),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           const SizedBox(height: 8),
           TextButton(
             key: const ValueKey('delete-account-cancel'),
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(
-              dialogContext.copy('action.cancel'),
-              textAlign: TextAlign.center,
+            child: WholeWords(
+              child: Text(
+                dialogContext.copy('action.cancel'),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ],

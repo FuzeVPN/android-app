@@ -65,6 +65,36 @@ Future<void> _until(bool Function() ready) async {
 }
 
 void main() {
+  test('a tab visit keeps a subscription read in the last minute', () async {
+    final fixture = _Fixture();
+    addTearDown(fixture.dispose);
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads, ['session-a']);
+    // A visit within the minute still clears a message left by an
+    // automatic restore, like a refresh, without reading again.
+    fixture.controller.messageKey = 'billing.restoreEmpty';
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads, ['session-a']);
+    expect(fixture.controller.messageKey, isNull);
+    // The refresh button always reads.
+    await fixture.controller.refreshSubscription();
+    expect(fixture.api.contextReads, ['session-a', 'session-a']);
+    // A failed read is never kept.
+    fixture.api.onContext = (_) async => throw const ApiException(
+      statusCode: 503,
+      errorCode: 'google_play_unavailable',
+    );
+    await fixture.controller.refreshSubscription();
+    fixture.api.onContext = null;
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads, hasLength(4));
+    // Another account never reuses the previous account's read.
+    fixture.switchToB();
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads.last, 'session-b');
+    expect(fixture.api.contextReads, hasLength(5));
+  });
+
   test(
     'changed Play offer clears catalogue and requires a new choice',
     () async {

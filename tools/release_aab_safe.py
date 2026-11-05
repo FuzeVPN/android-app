@@ -17,6 +17,7 @@ import shutil
 import stat
 import subprocess
 import sys
+import tempfile
 import types
 import zipfile
 import xml.etree.ElementTree as ET
@@ -195,12 +196,66 @@ def save(name, data):
 def git(*args):
     return subprocess.check_output(['git', *args], cwd=REPO, env=ENV, encoding='utf-8').strip()
 
+PUBLIC_TAG_TIMEOUT = 60  # seconds; the anonymous ls-remote is this tool's only network call
+
+def git_network(*args, env, cwd):
+    """git bounded by PUBLIC_TAG_TIMEOUT. Git for Windows' cmd\\git.exe starts the real git.exe, which keeps
+    the output pipe open after the wrapper is killed: a timeout stops the whole process tree."""
+    command = ['git', *args]
+    with subprocess.Popen(command, cwd=cwd, env=env, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, encoding='utf-8') as process:
+        try:
+            output = process.communicate(timeout=PUBLIC_TAG_TIMEOUT)[0]
+        except subprocess.TimeoutExpired:
+            if os.name == 'nt':
+                subprocess.run(['taskkill', '/T', '/F', '/PID', str(process.pid)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            process.kill()
+            process.communicate()
+            raise
+    if process.returncode:
+        raise subprocess.CalledProcessError(process.returncode, command)
+    return output.strip()
+
 def source_guard():
     require(git('rev-parse', 'HEAD') == PIN, 'Source commit changed')
     require(not git('status', '--porcelain'), 'Source is not clean')
     require(git('remote', 'get-url', 'origin') == CONFIG['source_repository'], 'Source repository changed')
     require(CONFIG['source_commit'] == PIN, 'Select the intended release in config-build.json first')
     require(re.search('^version:\\s*' + re.escape(VERSION_NAME) + '\\+' + str(VERSION_CODE) + '\\s*$', (REPO / 'pubspec.yaml').read_text(), re.M) is not None, 'Source version changed')
+
+def public_tag_guard():
+    """Read-only and anonymous: the repository the app links must already publish tag v<version> on PIN.
+
+    Never creates or pushes a tag; the owner publishes it. Annotated tags are compared by their peeled commit.
+    """
+    repository = CONFIG['source_repository']
+    require(repository.startswith('https://'), 'Public source tag check needs an HTTPS source repository')
+    linked = re.findall("^const String sourceCodeRepository = '([^']*)';\\s*$", (REPO / 'lib/widgets/third_party_notices.dart').read_text(encoding='utf-8'), re.M)
+    require(linked == [repository.removesuffix('.git')], 'Source repository is not the one the application links')
+    tag = 'refs/tags/v' + VERSION_NAME
+    with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as empty:
+        # Origin's URL (pinned by source_guard) from an empty directory: no system, global or repository
+        # configuration, operator GIT_* variable or .netrc can authenticate the read.
+        root = Path(empty).resolve()
+        home, config = root / 'home', root / 'gitconfig'
+        home.mkdir()
+        config.write_bytes(b'')
+        isolated = {'GIT_TERMINAL_PROMPT': '0', 'GCM_INTERACTIVE': 'Never', 'GIT_CONFIG_NOSYSTEM': '1', 'GIT_CONFIG_GLOBAL': str(config),
+                    'GIT_CEILING_DIRECTORIES': str(root), 'HOME': str(home), 'USERPROFILE': str(home)}
+        dropped = {'SSH_ASKPASS', *isolated}
+        anonymous = {k: v for k, v in ENV.items() if not k.upper().startswith('GIT_') and k.upper() not in dropped} | isolated
+        try:
+            listing = git_network('-c', 'credential.helper=', '-c', 'credential.https://github.com.helper=', '-c', 'core.askPass=', '-c', 'http.extraHeader=',
+                                  'ls-remote', '--tags', repository, tag, tag + '^{}', env=anonymous, cwd=home)
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired) as error:
+            raise RuntimeError('Anonymous read of the source repository failed; it must be public') from error
+    refs = {}
+    for line in listing.splitlines():
+        commit, _, name = line.partition('\t')
+        require(re.fullmatch('[0-9a-f]{40}', commit) is not None and name in {tag, tag + '^{}'} and name not in refs,
+                'Unexpected public tag listing')
+        refs[name] = commit
+    require(tag in refs, f'Public source tag v{VERSION_NAME} is not published; the owner must publish it on {PIN}')
+    require(refs.get(tag + '^{}', refs[tag]) == PIN, f'Public source tag v{VERSION_NAME} points to another commit; a published version cannot be reused')
 
 def run(name, args, cwd=None, extra_env=None):
     cwd = REPO if cwd is None else cwd
@@ -229,7 +284,9 @@ def build():
     run('translations', [sys.executable, 'tools/generate_translations.py', '--check', '--require-all'])
     run('validation-docs', [sys.executable, 'tools/check_validation.py'])
     run('source-integrity', [sys.executable, 'tools/package_android_sources.py', '--check'])
-    run('build-aab', [FLUTTER, 'build', 'appbundle', '--release', '--no-pub', '--target-platform', 'android-arm64,android-arm', '--android-project-arg=fuzevpn.usePatchedWireGuardAar=true'])
+    # x86_64 is shipped so x86 devices never run the ARM WireGuard runtime under translation
+    # (Go 1.26.9 procyieldAsm reads CNTFRQ_EL0, which ndk_translation 0.2.3 rejects).
+    run('build-aab', [FLUTTER, 'build', 'appbundle', '--release', '--no-pub', '--target-platform', 'android-arm64,android-arm,android-x64', '--android-project-arg=fuzevpn.usePatchedWireGuardAar=true'])
     source_guard()
     shutil.copyfile(REPO / 'build/app/outputs/bundle/release/app-release.aab', DELIVERY / f'FuzeVPN-Android-v{VERSION_CODE}-release-unsigned.aab')
     shutil.copyfile(REPO / 'build/app/outputs/mapping/release/mapping.txt', DELIVERY / f'FuzeVPN-Android-v{VERSION_CODE}-aab-mapping.txt')
@@ -358,6 +415,7 @@ def export():
 
 def finalize():
     source_guard()
+    public_tag_guard()
     output_guard()
     evidence = release_evidence()
     expected = ['flutter-version', 'java-version', 'pub-get', 'translations', 'validation-docs',

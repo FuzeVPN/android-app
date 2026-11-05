@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: Apache-2.0
 """Synthetic fixtures only. No build, signing, VM, production, or private kit."""
 import ast
+import contextlib
 from datetime import datetime, timedelta, timezone
 import hashlib
 import importlib.util
+import io
 import json
 import os
 from pathlib import Path
@@ -49,6 +51,10 @@ class MaintainedReleaseTest(unittest.TestCase):
         self.module.CONFIG = {'source_commit': 'a'*40, 'source_repository': 'https://example.invalid/repository.git'}
         self.module.ENV = {}
         (self.root/'pubspec.yaml').write_text('version: 1.2.3+123\n', encoding='utf-8')
+        # The licences page link: source_repository without .git must be this repository.
+        (self.root/'lib/widgets').mkdir(parents=True)
+        (self.root/'lib/widgets/third_party_notices.dart').write_text(
+            "const String sourceCodeRepository = 'https://example.invalid/repository';\n", encoding='utf-8')
 
     def canonical_fixture(self):
         (self.root/'tools').mkdir()
@@ -94,7 +100,7 @@ class MaintainedReleaseTest(unittest.TestCase):
         (directory/'dependency-integrity').mkdir()
         (directory/'dependency-integrity/results.json').write_text(json.dumps([{'passed': True}]*4), encoding='utf-8')
         # Cases executed by each host suite on 30/10/2026 (validation_support minimums).
-        for name, count in [('turnstile-bridge', 44), ('command-epochs', 27), ('bridge-host', 43)]:
+        for name, count in [('turnstile-bridge', 44), ('command-epochs', 27), ('bridge-host', 94)]:
             folder = directory/name
             folder.mkdir()
             (folder/'compile.log').write_text('synthetic compilation success', encoding='utf-8')
@@ -208,11 +214,204 @@ class MaintainedReleaseTest(unittest.TestCase):
         log.write_text('synthetic failure', encoding='utf-8')
         (self.module.REPORT/'flutter-version.result.json').write_text(json.dumps({
             'name': 'flutter-version', 'exit_code': 1, 'log': log.name, 'log_sha256': self.module.sha(log)}), encoding='utf-8')
+        # The published tag is faked so that only the failed receipt can refuse.
         with (mock.patch.object(self.module, 'source_guard'), mock.patch.object(self.module, 'release_evidence', return_value={}),
+              mock.patch.object(self.module, 'git', return_value='a'*40+'\trefs/tags/v1.2.3'),
+              mock.patch.object(self.module, 'git_network', return_value='a'*40+'\trefs/tags/v1.2.3'),
               mock.patch.object(subprocess, 'run', side_effect=AssertionError('external action'))):
-            with self.assertRaises(RuntimeError):
+            with self.assertRaisesRegex(RuntimeError, 'Required command failed: flutter-version'):
                 self.module.finalize()
         self.assertFalse((self.module.REPORT/'release-validation.json').exists())
+
+    def finalize_with_tag_listing(self, listing):
+        """finalize() on accepted synthetic receipts; only the anonymous tag listing varies."""
+        self.ls_remote = []
+        def fake_git(*args, **options):
+            if 'ls-remote' not in args:
+                return self.git_reply(*args)
+            self.ls_remote.append((args, options))
+            if isinstance(listing, Exception):
+                raise listing
+            return listing
+        validation = {'scope': 'synthetic', 'checks': {'fixture': True}}
+        evidence = {'tree': 'c'*40, 'signed_aab_sha256': 'e'*64, 'comparison': {'identical_entries': 1},
+                    'qualification': {'checks': [{'status': 'PASS'}], 'certificate_sha256': 'f'*64, 'limitations': []}}
+        for path in self.module.REPORT.iterdir():
+            path.unlink()
+        coverage = self.module.REPORT/'project-validation.coverage.json'
+        coverage.write_text(json.dumps({'status': 'PASS', 'commit': 'a'*40, 'checks': validation['checks'], 'proof': []}), encoding='utf-8')
+        with (mock.patch.object(self.module, 'git', side_effect=fake_git),
+              mock.patch.object(self.module, 'git_network', side_effect=fake_git),
+              mock.patch.object(self.module, 'release_evidence', return_value=evidence),
+              mock.patch.object(self.module, 'success_receipt', side_effect=lambda name: {'name': name, 'exit_code': 0}),
+              mock.patch.object(self.module, 'local_validation', return_value=(validation, [])),
+              mock.patch.object(subprocess, 'run', side_effect=AssertionError('external action')),
+              contextlib.redirect_stdout(io.StringIO())):
+            self.module.finalize()
+
+    def assert_refused_before_any_receipt(self):
+        self.assertEqual(['project-validation.coverage.json'], [path.name for path in self.module.REPORT.iterdir()])
+
+    def test_finalize_refuses_unpublished_source_tag(self):
+        # D4 PUBLIC-SOURCE-TAG-404: the licences page links tree/v<versionName>.
+        with self.assertRaisesRegex(RuntimeError, 'v1.2.3 is not published'):
+            self.finalize_with_tag_listing('')
+        self.assert_refused_before_any_receipt()
+
+    def test_finalize_refuses_source_tag_on_another_commit(self):
+        listings = {'lightweight': 'b'*40+'\trefs/tags/v1.2.3',
+                    'annotated': 'd'*40+'\trefs/tags/v1.2.3\n'+'b'*40+'\trefs/tags/v1.2.3^{}'}
+        for kind, listing in listings.items():
+            with self.subTest(kind=kind):
+                with self.assertRaisesRegex(RuntimeError, 'another commit'):
+                    self.finalize_with_tag_listing(listing)
+                self.assert_refused_before_any_receipt()
+
+    def test_finalize_refuses_when_anonymous_read_fails(self):
+        # Not public (git exits 128), or a stalled HTTPS read stopped after PUBLIC_TAG_TIMEOUT.
+        for error in (subprocess.CalledProcessError(128, ['git', 'ls-remote']), subprocess.TimeoutExpired(['git', 'ls-remote'], 60)):
+            with self.subTest(error=type(error).__name__):
+                with self.assertRaisesRegex(RuntimeError, 'Anonymous read'):
+                    self.finalize_with_tag_listing(error)
+                self.assert_refused_before_any_receipt()
+
+    def test_finalize_refuses_unexpected_public_tag_listing(self):
+        # Only '<40 hex>\t<requested ref>' lines, once each; nothing is skipped or guessed.
+        published = 'a'*40+'\trefs/tags/v1.2.3'
+        listings = {'decoy tag': published+'\n'+'a'*40+'\trefs/tags/v1.2.30',
+                    'short SHA': published+'\n'+'a'*39+'\trefs/tags/v1.2.3^{}',
+                    'non-hex SHA': 'g'*40+'\trefs/tags/v1.2.3',
+                    'duplicate line': published+'\n'+published,
+                    'space separated': 'a'*40+' refs/tags/v1.2.3'}
+        for kind, listing in listings.items():
+            with self.subTest(kind=kind):
+                with self.assertRaisesRegex(RuntimeError, 'Unexpected public tag listing'):
+                    self.finalize_with_tag_listing(listing)
+                self.assert_refused_before_any_receipt()
+
+    def test_finalize_refuses_repository_the_application_does_not_link(self):
+        # A mirror or fork can carry the tag while the licences page link (tree/v<version>) stays 404.
+        notices = self.root/'lib/widgets/third_party_notices.dart'
+        mirror = 'https://example.invalid/mirror.git'
+        cases = {'mirror': (mirror, notices.read_text(encoding='utf-8')),
+                 'no declaration': ('https://example.invalid/repository.git', "// sourceCodeRepository = 'https://example.invalid/repository';\n")}
+        for kind, (repository, dart) in cases.items():
+            with self.subTest(kind=kind):
+                self.module.CONFIG['source_repository'] = repository
+                self.git_reply = lambda *args: {'rev-parse': 'a'*40, 'status': '', 'remote': repository}[args[0]]
+                notices.write_text(dart, encoding='utf-8')
+                with self.assertRaisesRegex(RuntimeError, 'the one the application links'):
+                    self.finalize_with_tag_listing('a'*40+'\trefs/tags/v1.2.3')
+                self.assertEqual([], self.ls_remote)
+                self.assert_refused_before_any_receipt()
+
+    def test_linked_repository_is_read_from_the_application_source(self):
+        # lib/widgets/third_party_notices.dart as shipped: only its repository, with or without .git, is accepted.
+        self.module.REPO = TOOLS.parent
+        listing = 'a'*40+'\trefs/tags/v1.2.3'
+        with (mock.patch.object(self.module, 'git', return_value=listing), mock.patch.object(self.module, 'git_network', return_value=listing),
+              mock.patch.object(subprocess, 'check_output', side_effect=AssertionError('external action'))):
+            for repository in ('https://github.com/FuzeVPN/android-app.git', 'https://github.com/FuzeVPN/android-app'):
+                self.module.CONFIG['source_repository'] = repository
+                self.module.public_tag_guard()
+            for repository in ('https://github.com/other/android-app.git', 'https://github.com/FuzeVPN/android-app.git.git',
+                               'https://github.com/FuzeVPN/android-app/'):
+                self.module.CONFIG['source_repository'] = repository
+                with self.subTest(repository=repository), self.assertRaisesRegex(RuntimeError, 'the one the application links'):
+                    self.module.public_tag_guard()
+
+    def test_anonymous_read_ignores_operator_git_settings(self):
+        # Origin's URL from an empty directory: no system, global or repository configuration, operator GIT_*
+        # variable (GIT_DIR, GIT_CONFIG_*), askpass or .netrc (HOME/USERPROFILE) can authenticate the read.
+        self.module.ENV = {'PATH': 'synthetic', 'HOME': 'operator-home', 'USERPROFILE': 'operator-profile',
+                           'GIT_DIR': 'operator-repository', 'GIT_ASKPASS': 'synthetic', 'SSH_ASKPASS': 'synthetic',
+                           'GIT_CONFIG_PARAMETERS': "'http.extraheader'='synthetic'", 'GIT_CONFIG_COUNT': '1',
+                           'GIT_CONFIG_KEY_0': 'http.extraHeader', 'GIT_CONFIG_VALUE_0': 'synthetic'}
+        started = []
+        class Git:
+            """subprocess.Popen stand-in: records how git is started and answers with a published tag."""
+            returncode = 0
+            def __init__(self, command, **options):
+                home = Path(options['env']['HOME'])
+                started.append((command, options, sorted(home.iterdir()), Path(options['env']['GIT_CONFIG_GLOBAL']).read_bytes()))
+            def __enter__(self):
+                return self
+            def __exit__(self, *error):
+                return False
+            def communicate(self, timeout=None):
+                started.append(timeout)
+                return 'a'*40+'\trefs/tags/v1.2.3\n', None
+        with (mock.patch.object(subprocess, 'Popen', Git),
+              mock.patch.object(subprocess, 'check_output', side_effect=AssertionError('untimed git'))):
+            self.module.public_tag_guard()
+        (command, options, home_entries, global_config), timeout = started
+        home = Path(options['env']['HOME'])
+        self.assertEqual(['git', '-c', 'credential.helper=', '-c', 'credential.https://github.com.helper=', '-c', 'core.askPass=',
+                          '-c', 'http.extraHeader=', 'ls-remote', '--tags', 'https://example.invalid/repository.git',
+                          'refs/tags/v1.2.3', 'refs/tags/v1.2.3^{}'], command)
+        self.assertEqual({'PATH': 'synthetic', 'GIT_TERMINAL_PROMPT': '0', 'GCM_INTERACTIVE': 'Never', 'GIT_CONFIG_NOSYSTEM': '1',
+                          'GIT_CONFIG_GLOBAL': str(home.parent/'gitconfig'), 'GIT_CEILING_DIRECTORIES': str(home.parent),
+                          'HOME': str(home), 'USERPROFILE': str(home)}, options['env'])
+        self.assertEqual(([], b''), (home_entries, global_config))
+        self.assertEqual((home, subprocess.DEVNULL, subprocess.PIPE), (options['cwd'], options['stdin'], options['stdout']))
+        self.assertEqual(60, timeout)
+        self.assertFalse(home.parent.exists())
+
+    def test_anonymous_read_timeout_stops_the_git_process_tree(self):
+        # Git for Windows' cmd\git.exe runs the real git.exe; killing only the wrapper leaves the pipe open.
+        events = []
+        class Git:
+            """subprocess.Popen stand-in for a stalled HTTPS read."""
+            pid, returncode = 4242, None
+            def __init__(self, command, **options):
+                events.append('start')
+            def __enter__(self):
+                return self
+            def __exit__(self, *error):
+                return False
+            def communicate(self, timeout=None):
+                if timeout is not None:
+                    raise subprocess.TimeoutExpired('git', timeout)
+                events.append('drained')
+                return '', None
+            def kill(self):
+                events.append('kill')
+        with (mock.patch.object(subprocess, 'Popen', Git),
+              mock.patch.object(subprocess, 'check_output', side_effect=AssertionError('untimed git')),
+              mock.patch.object(subprocess, 'run', side_effect=lambda command, **options: events.append(command))):
+            with self.assertRaisesRegex(RuntimeError, 'Anonymous read') as refused:
+                self.module.public_tag_guard()
+        self.assertIsInstance(refused.exception.__cause__, subprocess.TimeoutExpired)
+        tree = [['taskkill', '/T', '/F', '/PID', '4242']] if os.name == 'nt' else []
+        self.assertEqual(['start', *tree, 'kill', 'drained'], events)
+
+    def test_finalize_refuses_origin_without_anonymous_https_read(self):
+        ssh = 'git@example.invalid:repository.git'
+        self.module.CONFIG['source_repository'] = ssh
+        self.git_reply = lambda *args: {'rev-parse': 'a'*40, 'status': '', 'remote': ssh}[args[0]]
+        with self.assertRaisesRegex(RuntimeError, 'HTTPS'):
+            self.finalize_with_tag_listing('a'*40+'\trefs/tags/v1.2.3')
+        self.assertEqual([], self.ls_remote)
+        self.assert_refused_before_any_receipt()
+
+    def test_finalize_accepts_annotated_tag_peeled_to_pinned_commit(self):
+        self.module.ENV = {'PATH': 'synthetic', 'GIT_ASKPASS': 'synthetic-askpass', 'SSH_ASKPASS': 'synthetic-askpass'}
+        self.finalize_with_tag_listing('d'*40+'\trefs/tags/v1.2.3\n'+'a'*40+'\trefs/tags/v1.2.3^{}\n')
+        self.assertEqual('PASS', json.loads((self.module.REPORT/'release-validation.json').read_text(encoding='utf-8'))['status'])
+        self.assertEqual(1, len(self.ls_remote))
+        args, options = self.ls_remote[0]
+        # One read-only query of origin's URL; no credential helper, askpass, extra header or prompt may authenticate it.
+        self.assertEqual(('-c', 'credential.helper=', '-c', 'credential.https://github.com.helper=', '-c', 'core.askPass=',
+                          '-c', 'http.extraHeader=', 'ls-remote', '--tags', 'https://example.invalid/repository.git',
+                          'refs/tags/v1.2.3', 'refs/tags/v1.2.3^{}'), args)
+        temporary = {'GIT_CONFIG_GLOBAL', 'GIT_CEILING_DIRECTORIES', 'HOME', 'USERPROFILE'}
+        self.assertEqual({'PATH': 'synthetic', 'GIT_TERMINAL_PROMPT': '0', 'GCM_INTERACTIVE': 'Never', 'GIT_CONFIG_NOSYSTEM': '1'},
+                         {k: v for k, v in options['env'].items() if k not in temporary})
+
+    def test_finalize_accepts_lightweight_tag_on_pinned_commit(self):
+        self.finalize_with_tag_listing('a'*40+'\trefs/tags/v1.2.3')
+        self.assertEqual('PASS', json.loads((self.module.REPORT/'release-validation.json').read_text(encoding='utf-8'))['status'])
+        self.assertEqual(1, len(self.ls_remote))
 
     def test_run_uses_configured_repository_and_refuses_existing_log(self):
         with mock.patch.object(subprocess, 'run', return_value=SimpleNamespace(returncode=0)) as command:
@@ -249,7 +448,7 @@ class MaintainedReleaseTest(unittest.TestCase):
         self.assertEqual(44, data['checks']['turnstile-bridge']['junit']['passed'])
         self.assertEqual(20, data['checks']['turnstile-bridge']['javascript']['passed'])
         self.assertEqual(27, data['checks']['command-epochs']['junit']['passed'])
-        self.assertEqual(43, data['checks']['bridge-host']['junit']['passed'])
+        self.assertEqual(94, data['checks']['bridge-host']['junit']['passed'])
         self.assertEqual(17, data['checks']['wireguard-gate']['passed'])
         self.assertTrue({'turnstile-bridge/result.json',
                          'turnstile-bridge/junit.log', 'turnstile-bridge/javascript.log',

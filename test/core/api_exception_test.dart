@@ -91,5 +91,31 @@ void main() {
       expect(message.arguments['code'], 'network_unavailable');
       expect(message.diagnosticCode, 'API-NETWORK · network_timeout');
     });
+
+    test('ajoute la couche réseau au seul code diagnostic', () {
+      final ApiErrorMessage plain = ApiErrorMessages.fromFailure(
+        const ApiNetworkException(),
+      );
+      final ApiErrorMessage message = ApiErrorMessages.fromFailure(
+        const ApiNetworkException(stage: 'tls', family: 'ipv6'),
+      );
+      final ApiErrorMessage defect = ApiErrorMessages.fromFailure(
+        const ApiNetworkException(stage: 'client'),
+      );
+
+      expect(plain.diagnosticCode, 'API-NETWORK · network_unavailable');
+      expect(
+        message.diagnosticCode,
+        'API-NETWORK · network_unavailable/tls/ipv6',
+      );
+      expect(defect.diagnosticCode, 'API-NETWORK · network_unavailable/client');
+      for (final ApiErrorMessage staged in <ApiErrorMessage>[message, defect]) {
+        expect(staged.titleKey, plain.titleKey);
+        expect(staged.messageKey, plain.messageKey);
+        expect(staged.arguments, plain.arguments);
+        expect(staged.machineCode, 'network_unavailable');
+        expect(staged.httpStatus, isNull);
+      }
+    });
   });
 }

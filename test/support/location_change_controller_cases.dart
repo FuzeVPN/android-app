@@ -17,6 +17,311 @@ Future<_SignedInHarness> _switchHarness({VpnProtocol? active}) async {
 
 void locationChangeControllerTests() {
   group('location switching', () {
+    test('a WireGuard change keeps its card to the connection card', () async {
+      final h = await _switchHarness(active: VpnProtocol.wireGuard);
+      addTearDown(h.close);
+      final entered = Completer<void>(), release = Completer<void>();
+      h.api.hooks['registerDevice'] = () async {
+        entered.complete();
+        await release.future;
+      };
+      final changing = h.controller.changeLocationAndConnect(_frankfurt02);
+      await entered.future;
+      expect(
+        h.controller.locationChangeProgress?.protocol,
+        VpnProtocol.wireGuard,
+      );
+      expect(h.controller.showsLocationChangeProgress, isFalse);
+      expect(h.controller.presentedTunnelPhase, VpnRuntimePhase.preparing);
+      release.complete();
+      await changing;
+      expect(h.controller.locationChangeProgress, isNull);
+    });
+
+    testWidgets('an OpenVPN change without server migration shows its card', (
+      tester,
+    ) async {
+      final h = await _switchHarness(active: VpnProtocol.openVpn);
+      addTearDown(h.close);
+      final entered = Completer<void>(), release = Completer<void>();
+      h.api.hooks['registerDevice'] = () async {
+        entered.complete();
+        await release.future;
+      };
+      final changing = h.controller.changeLocationAndConnect(_frankfurt02);
+      await tester.pump();
+      await entered.future;
+      // No server migration here: the card comes from the change itself.
+      expect(h.controller.locationMigration, isNull);
+      final progress = h.controller.locationChangeProgress!;
+      expect(progress.sourceLocationId, _frankfurt.id);
+      expect(progress.targetLocationId, _frankfurt02.id);
+      expect(progress.activating, isFalse);
+      expect(h.controller.showsLocationChangeProgress, isTrue);
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: FuzeVpnTheme.light(),
+          locale: const Locale('fr'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: LocationMigrationBanner(controller: h.controller),
+            ),
+          ),
+        ),
+      );
+      expect(find.text('Changement d’emplacement'), findsOneWidget);
+      expect(find.text('Frankfurt 1 → Frankfurt 2'), findsOneWidget);
+      expect(
+        find.text('Préparation du changement d’emplacement…'),
+        findsOneWidget,
+      );
+      expect(find.text('Reprendre le changement'), findsNothing);
+      expect(
+        find.textContaining('Délai entre deux vérifications'),
+        findsNothing,
+      );
+      h.controller.tunnelState = const VpnRuntimeState(
+        phase: VpnRuntimePhase.connecting,
+        protocol: VpnProtocol.openVpn,
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: FuzeVpnTheme.light(),
+          locale: const Locale('fr'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: LocationMigrationBanner(controller: h.controller),
+            ),
+          ),
+        ),
+      );
+      expect(find.text('Activation du nouveau serveur…'), findsOneWidget);
+      // Native code reports the tunnel before the change itself returns.
+      h.controller.tunnelState = const VpnRuntimeState(
+        phase: VpnRuntimePhase.connected,
+        protocol: VpnProtocol.openVpn,
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: FuzeVpnTheme.light(),
+          locale: const Locale('fr'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: LocationMigrationBanner(controller: h.controller),
+            ),
+          ),
+        ),
+      );
+      expect(find.text('Emplacement mis à jour.'), findsOneWidget);
+      h.controller.tunnelState = const VpnRuntimeState(
+        phase: VpnRuntimePhase.idle,
+      );
+      release.complete();
+      await changing;
+      expect(h.controller.showsLocationChangeProgress, isFalse);
+    });
+
+    testWidgets(
+      'after the server activated the node, the card never goes back',
+      (tester) async {
+        final _FakeApi api = _FakeApi()
+          ..profilesByToken['session-a'] = _profile('user-a')
+          ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+          ..deviceListResult = _devices('device-current')
+          ..deviceConfiguration = _wireGuardConfigurationFor('device-current')
+          ..openVpnActivation = _openVpnActivation('device-current')
+          ..migrationStartResult = _locationMigration(
+            status: LocationMigrationStatus.activating,
+          );
+        api.migrationPollResults.add(
+          _locationMigration(status: LocationMigrationStatus.ready),
+        );
+        final _FakeSessionStore store = _FakeSessionStore()
+          ..storedSession = _session('session-a')
+          ..deviceIds['user-a'] = 'device-current';
+        final _FakeTunnel tunnel = _FakeTunnel()
+          ..state = VpnRuntimeState(
+            phase: VpnRuntimePhase.connected,
+            protocol: VpnProtocol.openVpn,
+            locationId: _frankfurt.id,
+          );
+        final VpnAppController controller = _controller(
+          api: api,
+          store: store,
+          preferences: _FakePreferences(),
+          tunnel: tunnel,
+          migrationDelay: (_) async {},
+        );
+        final h = _SignedInHarness(
+          api: api,
+          store: store,
+          tunnel: tunnel,
+          controller: controller,
+        );
+        addTearDown(h.close);
+        await controller.initialize();
+        controller.tunnelState = tunnel.state;
+        api.listDeviceResults.addAll(<DeviceList>[
+          _devices('device-current'),
+          _devices('device-current', location: _frankfurt02),
+        ]);
+        final entered = Completer<void>(), release = Completer<void>();
+        api.hooks['registerDevice'] = () async {
+          entered.complete();
+          await release.future;
+        };
+        final changing = controller.changeLocationAndConnect(_frankfurt02);
+        await tester.pump();
+        await entered.future;
+        // The server record is cleared at 'ready'; the change goes on.
+        expect(h.controller.locationMigration, isNull);
+        expect(h.controller.locationChangeProgress!.activating, isTrue);
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: FuzeVpnTheme.light(),
+            locale: const Locale('fr'),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: LocationMigrationBanner(controller: h.controller),
+              ),
+            ),
+          ),
+        );
+        expect(find.text('Activation du nouveau serveur…'), findsOneWidget);
+        expect(
+          find.text('Préparation du changement d’emplacement…'),
+          findsNothing,
+        );
+        release.complete();
+        await changing;
+      },
+    );
+
+    testWidgets('a server ready answer is not shown as the end of the change', (
+      tester,
+    ) async {
+      final _FakeApi api = _FakeApi()
+        ..profilesByToken['session-a'] = _profile('user-a')
+        ..locationsResult = const <Location>[_frankfurt, _frankfurt02]
+        ..deviceListResult = _devices('device-current')
+        ..deviceConfiguration = _wireGuardConfigurationFor('device-current')
+        ..openVpnActivation = _openVpnActivation('device-current')
+        ..migrationStartResult = _locationMigration(
+          status: LocationMigrationStatus.ready,
+        );
+      final _FakeSessionStore store = _FakeSessionStore()
+        ..storedSession = _session('session-a')
+        ..deviceIds['user-a'] = 'device-current';
+      final _FakeTunnel tunnel = _FakeTunnel()
+        ..state = VpnRuntimeState(
+          phase: VpnRuntimePhase.connected,
+          protocol: VpnProtocol.openVpn,
+          locationId: _frankfurt.id,
+        );
+      final VpnAppController controller = _controller(
+        api: api,
+        store: store,
+        preferences: _FakePreferences(),
+        tunnel: tunnel,
+        migrationDelay: (_) async {},
+      );
+      addTearDown(() async {
+        controller.dispose();
+        await tunnel.close();
+      });
+      await controller.initialize();
+      controller.tunnelState = tunnel.state;
+      api.listDeviceResults.addAll(<DeviceList>[
+        _devices('device-current'),
+        _devices('device-current', location: _frankfurt02),
+      ]);
+      // Hold the device read that verifies the ready migration: its record
+      // is published, the change has not connected anything yet.
+      var reads = 0;
+      final entered = Completer<void>(), release = Completer<void>();
+      api.hooks['listDevices'] = () async {
+        if (++reads != 2) return;
+        entered.complete();
+        await release.future;
+      };
+      final changing = controller.changeLocationAndConnect(_frankfurt02);
+      await tester.pump();
+      await entered.future;
+      expect(
+        controller.locationMigration?.status,
+        LocationMigrationStatus.ready,
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: FuzeVpnTheme.light(),
+          locale: const Locale('fr'),
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: LocationMigrationBanner(controller: controller),
+            ),
+          ),
+        ),
+      );
+      expect(find.text('Activation du nouveau serveur…'), findsOneWidget);
+      expect(find.text('Emplacement mis à jour.'), findsNothing);
+      release.complete();
+      await changing;
+    });
+
+    test('a retry shows its own progress, not the previous error', () async {
+      final h = await _signedInHarness();
+      addTearDown(h.close);
+      h.controller.tunnelState = const VpnRuntimeState(
+        phase: VpnRuntimePhase.error,
+        messageCode: 'tunnel_start_failed',
+      );
+      final entered = Completer<void>(), release = Completer<void>();
+      h.api.hooks['locations'] = () async {
+        entered.complete();
+        await release.future;
+      };
+      final connecting = h.controller.connect();
+      await entered.future;
+      expect(h.controller.tunnelState.phase, VpnRuntimePhase.error);
+      expect(h.controller.presentedTunnelPhase, VpnRuntimePhase.preparing);
+      // A resume repeats native code's stored error (with the protocol the
+      // controller's own copy lacks) and refreshes the system protection:
+      // neither is a step of this attempt.
+      h.tunnel.emitState(
+        const VpnRuntimeState(
+          phase: VpnRuntimePhase.error,
+          protocol: VpnProtocol.wireGuard,
+          messageCode: 'tunnel_start_failed',
+        ),
+      );
+      await Future<void>.delayed(Duration.zero);
+      await h.controller.refreshSystemProtection();
+      expect(h.controller.presentedTunnelPhase, VpnRuntimePhase.preparing);
+      // A new error, from native code or from this attempt, shows at once.
+      h.controller.tunnelState = const VpnRuntimeState(
+        phase: VpnRuntimePhase.error,
+        messageCode: 'openvpn_tls_failed',
+      );
+      expect(h.controller.presentedTunnelPhase, VpnRuntimePhase.error);
+      h.controller.tunnelState = const VpnRuntimeState(
+        phase: VpnRuntimePhase.idle,
+      );
+      release.complete();
+      await connecting;
+      expect(h.controller.isConnecting, isFalse);
+      expect(h.controller.presentedTunnelPhase, h.controller.tunnelState.phase);
+    });
+
     test(
       'last stop notification immediately unlocks location changes',
       () async {
@@ -588,6 +893,15 @@ void locationChangeControllerTests() {
               protocol: protocol,
             );
           }
+          // The card states the attempt from the tap, like the Cancel button.
+          expect(
+            h.controller.presentedTunnelPhase,
+            stage == 'requestVpnPermission'
+                ? VpnRuntimePhase.authorizing
+                : stage.startsWith('connect')
+                ? VpnRuntimePhase.connecting
+                : VpnRuntimePhase.preparing,
+          );
           await showControls(tester, h.controller);
           final cancel = find.widgetWithText(FilledButton, 'Annuler');
           expect(tester.widget<FilledButton>(cancel).onPressed, isNotNull);
@@ -654,6 +968,40 @@ void locationChangeControllerTests() {
       });
     }
 
+    // VM 31/10, Android 14 tablet: the tunnel connected while the last frame
+    // still showed Annuler; the tap then hit a controller already connected.
+    testWidgets(
+      'a stale Annuler tap after the tunnel connected still stops it',
+      (tester) async {
+        final h = await _signedInHarness();
+        addTearDown(h.close);
+        h.tunnel.systemProtection = const SystemVpnProtection(
+          alwaysOn: false,
+          lockdown: false,
+        );
+        h.controller.tunnelState = const VpnRuntimeState(
+          phase: VpnRuntimePhase.connecting,
+          protocol: VpnProtocol.wireGuard,
+        );
+        await showControls(tester, h.controller);
+        final cancel = find.widgetWithText(FilledButton, 'Annuler');
+        expect(cancel, findsOneWidget);
+        h.controller.tunnelState = const VpnRuntimeState(
+          phase: VpnRuntimePhase.connected,
+          protocol: VpnProtocol.wireGuard,
+        );
+        expect(h.controller.canCancelConnectionAttempt, isFalse);
+        // No pump: the tap hits the frame that still shows Annuler.
+        await tester.tap(cancel);
+        await tester.pump();
+        await tester.pump();
+        expect(h.tunnel.openVpnSettingsCalls, 0);
+        expect(h.tunnel.disconnectByUserCalls, 1);
+        expect(h.tunnel.disconnectCalls, 1);
+        expect(h.controller.tunnelState.phase, VpnRuntimePhase.idle);
+      },
+    );
+
     test(
       'a failed cancellation keeps the native stop error actionable',
       () async {
@@ -676,6 +1024,81 @@ void locationChangeControllerTests() {
         expect(h.controller.tunnelState.messageCode, 'wireguard_stop_timeout');
         expect(h.controller.notice, isNotNull);
         expect(h.tunnel.wireGuardConnections, isEmpty);
+      },
+    );
+
+    for (final protocol in VpnProtocol.values) {
+      testWidgets('a hidden app samples $protocol only when needed', (
+        tester,
+      ) async {
+        final h = await _signedInHarness();
+        addTearDown(h.close);
+        h.tunnel.emitState(
+          VpnRuntimeState(phase: VpnRuntimePhase.connected, protocol: protocol),
+        );
+        await tester.pump();
+        // Inactive (split screen, notification shade): still on screen.
+        h.controller.onAppPaused(hidden: false);
+        final visible = h.tunnel.getStateCalls;
+        await tester.pump(const Duration(seconds: 3));
+        expect(h.tunnel.getStateCalls - visible, greaterThan(1));
+        h.controller.onAppPaused();
+        // Shown again without focus (hidden -> inactive): sampling resumes.
+        h.controller.onAppPaused(hidden: false);
+        final shown = h.tunnel.getStateCalls;
+        await tester.pump(const Duration(seconds: 3));
+        expect(h.tunnel.getStateCalls - shown, greaterThan(1));
+        h.controller.onAppPaused();
+        final before = h.tunnel.getStateCalls;
+        await tester.pump(const Duration(seconds: 5));
+        // OpenVPN keeps sampling: it is one of its failure detection paths.
+        expect(
+          h.tunnel.getStateCalls - before,
+          protocol == VpnProtocol.openVpn ? greaterThan(3) : 0,
+        );
+        await h.controller.onAppResumed();
+        final resumed = h.tunnel.getStateCalls;
+        await tester.pump(const Duration(seconds: 3));
+        expect(h.tunnel.getStateCalls - resumed, greaterThan(1));
+        h.tunnel.emitState(const VpnRuntimeState(phase: VpnRuntimePhase.idle));
+        await tester.pump();
+      });
+    }
+
+    test(
+      'a sample that only moves counters notifies only the metrics',
+      () async {
+        final h = await _signedInHarness();
+        addTearDown(h.close);
+        h.tunnel.emitState(
+          const VpnRuntimeState(
+            phase: VpnRuntimePhase.connected,
+            protocol: VpnProtocol.wireGuard,
+            receivedBytes: 1,
+            sentBytes: 1,
+          ),
+        );
+        await Future<void>.delayed(Duration.zero);
+        var notified = 0, samples = 0;
+        h.controller.addListener(() => notified++);
+        h.controller.tunnelSamples.addListener(() => samples++);
+        h.tunnel.emitState(
+          const VpnRuntimeState(
+            phase: VpnRuntimePhase.connected,
+            protocol: VpnProtocol.wireGuard,
+            receivedBytes: 2048,
+            sentBytes: 512,
+          ),
+        );
+        await Future<void>.delayed(Duration.zero);
+        expect(h.controller.tunnelState.receivedBytes, 2048);
+        expect(samples, 1);
+        expect(notified, 0);
+        // Anything else (here the end of the tunnel) still notifies everyone.
+        h.tunnel.emitState(const VpnRuntimeState(phase: VpnRuntimePhase.idle));
+        await Future<void>.delayed(Duration.zero);
+        expect(samples, 2);
+        expect(notified, greaterThan(0));
       },
     );
 

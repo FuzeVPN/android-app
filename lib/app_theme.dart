@@ -23,9 +23,14 @@ abstract final class FuzeVpnTheme {
   static const List<String> fontFallback = <String>['Noto Sans Arabic'];
   static const double cornerRadius = 8;
 
-  static ThemeData light() => _theme(Brightness.light);
+  // Built once: the app root rebuilds on every controller notification, and
+  // an identical theme need not be rebuilt each time.
+  static final ThemeData _light = _theme(Brightness.light);
+  static final ThemeData _dark = _theme(Brightness.dark);
 
-  static ThemeData dark() => _theme(Brightness.dark);
+  static ThemeData light() => _light;
+
+  static ThemeData dark() => _dark;
 
   /// Pages without an AppBar still need legible status/navigation icons when
   /// the user changes the app theme independently of the Android theme.

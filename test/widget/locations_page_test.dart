@@ -695,6 +695,51 @@ void main() {
     expect(find.byType(CountryFlag), findsNWidgets(3));
   });
 
+  // On Android 16 the first keystroke puts Flutter's back callback above the
+  // keyboard's, so back reaches the page while the keyboard is still shown.
+  _locationsTest('back with the keyboard shown only closes it and keeps the search', (
+    tester,
+    h,
+  ) async {
+    await h.mount(tester);
+    final search = find.byKey(const ValueKey('locations-search'));
+    await tester.tap(search);
+    await tester.enterText(search, 'Paris');
+    await tester.pumpAndSettle();
+    tester.view.viewInsets = const FakeViewPadding(bottom: 300);
+    addTearDown(tester.view.resetViewInsets);
+    await tester.pump();
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    final field = tester.widget<TextField>(search);
+    expect(field.controller!.text, 'Paris');
+    expect(field.focusNode!.hasFocus, isFalse);
+    expect(find.byKey(const ValueKey('location-paris-01')), findsOneWidget);
+    tester.view.resetViewInsets();
+    await tester.pump();
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
+    expect(find.byType(CountryFlag), findsNWidgets(3));
+  });
+
+  _locationsTest('back in a focused search without keyboard clears it at once', (
+    tester,
+    h,
+  ) async {
+    // A hardware keyboard sets no inset: there is no keyboard to close first.
+    await h.mount(tester);
+    final search = find.byKey(const ValueKey('locations-search'));
+    await tester.tap(search);
+    await tester.enterText(search, 'Paris');
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(search).focusNode!.hasFocus, isTrue);
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
+    expect(find.byType(CountryFlag), findsNWidgets(3));
+  });
+
   _locationsTest(
     'favorites filter adds removes and explains the empty state without selecting',
     (tester, h) async {

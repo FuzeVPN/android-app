@@ -70,9 +70,10 @@ enum _SchemeColor {
 
 _StatusPresentation _statusPresentation(
   BuildContext context,
-  VpnRuntimeState state,
-) {
-  return switch (state.phase) {
+  VpnRuntimeState state, [
+  VpnRuntimePhase? phase,
+]) {
+  return switch (phase ?? state.phase) {
     VpnRuntimePhase.authorizing => _StatusPresentation(
       label: context.copy('status.authorizing'),
       detail: context.copy('status.authorizingDetail'),
@@ -161,21 +162,23 @@ Future<void> _confirmRevocation(
         Icons.devices_other,
         color: Theme.of(context).colorScheme.error,
       ),
-      title: Text(context.copy('dialog.removeDevice')),
-      content: Text(
-        device.deviceId == controller.currentDeviceId
-            ? context.copy('dialog.removeCurrent')
-            : context.copy(
-                'dialog.removeOther',
-                arguments: <String, Object?>{
-                  'name': _deviceName(context, device.name),
-                },
-              ),
+      title: WholeWords(child: Text(context.copy('dialog.removeDevice'))),
+      content: WholeWords(
+        child: Text(
+          device.deviceId == controller.currentDeviceId
+              ? context.copy('dialog.removeCurrent')
+              : context.copy(
+                  'dialog.removeOther',
+                  arguments: <String, Object?>{
+                    'name': _deviceName(context, device.name),
+                  },
+                ),
+        ),
       ),
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: Text(context.copy('action.cancel')),
+          child: WholeWords(child: Text(context.copy('action.cancel'))),
         ),
         FilledButton(
           style: FilledButton.styleFrom(
@@ -183,7 +186,7 @@ Future<void> _confirmRevocation(
             foregroundColor: Theme.of(context).colorScheme.onError,
           ),
           onPressed: () => Navigator.of(context).pop(true),
-          child: Text(context.copy('action.remove')),
+          child: WholeWords(child: Text(context.copy('action.remove'))),
         ),
       ],
     ),
@@ -200,16 +203,16 @@ Future<void> _confirmSignOut(
     builder: (BuildContext context) => AlertDialog(
       scrollable: true,
       icon: Icon(Icons.logout, color: Theme.of(context).colorScheme.secondary),
-      title: Text(context.copy('dialog.signOut')),
-      content: Text(context.copy('dialog.signOutMessage')),
+      title: WholeWords(child: Text(context.copy('dialog.signOut'))),
+      content: WholeWords(child: Text(context.copy('dialog.signOutMessage'))),
       actions: <Widget>[
         TextButton(
           onPressed: () => Navigator.of(context).pop(false),
-          child: Text(context.copy('action.cancel')),
+          child: WholeWords(child: Text(context.copy('action.cancel'))),
         ),
         FilledButton(
           onPressed: () => Navigator.of(context).pop(true),
-          child: Text(context.copy('action.signOut')),
+          child: WholeWords(child: Text(context.copy('action.signOut'))),
         ),
       ],
     ),

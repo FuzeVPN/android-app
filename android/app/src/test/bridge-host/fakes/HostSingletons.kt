@@ -25,13 +25,25 @@ internal object SharedVpnHost {
     fun userStopOpensSettings(): Boolean = userStopRequiresSettings(systemFlags().first)
     fun settingsIntent() = Intent(android.provider.Settings.ACTION_VPN_SETTINGS)
     fun stopIfNotPermanent() {}
-    fun start(context: Context) {}
+    fun start(context: Context) {
+        HarnessControl.hostStartFailure?.let { throw VpnNativeException(it) }
+        HarnessControl.hostStarts++
+    }
+}
+
+/** The restart anchor: records every arming decision (true = armed). */
+class SystemVpnResumeSentinel {
+    companion object {
+        fun sync(context: Context, armed: Boolean) { HarnessControl.sentinel += armed }
+    }
 }
 
 internal object OpenVpnService {
-    internal fun start(context: Context, reconnecting: Boolean = false) {}
+    internal fun start(context: Context, reconnecting: Boolean = false) {
+        HarnessControl.openVpnService += "start(reconnecting=$reconnecting)"
+    }
     internal fun update(context: Context, status: VpnStatus, reconnecting: Boolean = false) {}
-    internal fun stop(context: Context) {}
+    internal fun stop(context: Context) { HarnessControl.openVpnService += "stop" }
     internal fun awaitReady(timeoutMillis: Long): Boolean = true
 }
 

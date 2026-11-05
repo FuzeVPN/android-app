@@ -3,7 +3,11 @@ package com.fuzevpn.android
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.CellularNetwork
 import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkInfo
+import android.net.SystemPackageConnectivityManager
 import android.net.VpnService
 import android.os.UserManager
 import android.service.quicksettings.TileService
@@ -12,6 +16,7 @@ import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import java.util.Collections
+import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.ExecutionException
 import java.util.concurrent.TimeUnit
@@ -40,9 +45,10 @@ internal class ResultProbe : MethodChannel.Result {
     val pending: Boolean get() = done.count > 0
 }
 
+/** Read by the test thread while the main thread delivers: iterations take a snapshot. */
 internal class EventProbe : EventChannel.EventSink {
-    val events: MutableList<String> = Collections.synchronizedList(mutableListOf())
-    val terminations: MutableList<Map<*, *>> = Collections.synchronizedList(mutableListOf())
+    val events: MutableList<String> = CopyOnWriteArrayList()
+    val terminations: MutableList<Map<*, *>> = CopyOnWriteArrayList()
     override fun success(event: Any?) {
         val map = event as Map<*, *>
         events += "${map["status"]}/${map["protocol"]}/${map["message_code"]}"
@@ -76,6 +82,8 @@ class AndroidVpnBridgeHostTest {
         com.fuzevpn.android.openvpn.OpenVpnController.network = true
         android.os.Build.VERSION.SDK_INT = 34
         context.services[ConnectivityManager::class.java] = ConnectivityManager()
+        ConnectivityManager.reset()
+        android.provider.Settings.Secure.reset()
         context.services[UserManager::class.java] = UserManager()
         retained(null)
         bridge = AndroidVpnBridge.obtain(context)
@@ -287,6 +295,8 @@ class AndroidVpnBridgeHostTest {
         assertEquals(eventsBefore, settledEvents())
         assertEquals(notificationsBefore, HarnessControl.notifications.toList())
         assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        // QT-REVOKE-OVPN-01 precondition: VpnService.prepare would revoke another app's VPN.
+        assertEquals(0, VpnService.prepareCalls.get())
     }
 
     @Test fun tileEngineFailureStillPublishesItsError() {
@@ -796,11 +806,1036 @@ class AndroidVpnBridgeHostTest {
         assertNull(SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
     }
 
+    // QT-REVOKE-OVPN-01 (VM campaign of bc30a13): the active tile re-reads the
+    // bridge only in onStartListening. SystemUI drops a START while the tile
+    // listens and stops it after each updateTile, so a host-loss burst froze it
+    // on "Disconnecting..." (UNAVAILABLE: SystemUI drops its clicks).
+    @Test fun hostLossBurstWhileTheTileListensStillReachesTheTile() {
+        signIn()
+        storeTileProfile()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        TileService.systemUi = true
+        TileService.holdStops = true
+        val service = VpnQuickTileService()
+        val stop = Gate("engine stop").also { HarnessControl.wireGuardStopGate = it }
+        try {
+            HarnessMain.run { bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first) }
+            stop.awaitReached()
+            assertEquals(VpnStatus.DISCONNECTING, bridge.quickTileState().status)
+            // The tile reads the bridge inside the DISCONNECTING window and stays listening.
+            TileService.bound = service
+            HarnessMain.run { service.dispatchStartListening() }
+            eventually("disconnecting tile") { TileService.updates.lastOrNull() == TILE_DISCONNECTING }
+        } finally { stop.open() }
+        eventually("final host-loss error") { bridge.quickTileState().status == VpnStatus.ERROR }
+        HarnessMain.drain()
+        TileService.holdStops = false
+        TileService.releaseStops()
+        eventually("tile shows the interruption") { TileService.updates.lastOrNull() == TILE_INTERRUPTED }
+        settleTile()
+        assertEquals(TILE_INTERRUPTED, TileService.updates.last())
+        assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+    }
+
+    // Same race on a tile disconnect (api31): the IDLE request is dropped while
+    // the tile still listens, then SystemUI stops it before the click completes.
+    @Test fun tileDisconnectClickReachesTheFinalStateAfterTheStop() {
+        signIn()
+        storeTileProfile()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        val service = listeningTile(TILE_CONNECTED)
+        TileService.holdStopAfterUpdate = TILE_DISCONNECTING
+        TileService.afterListeningRequest = {
+            if (bridge.quickTileState().status == VpnStatus.IDLE) {
+                TileService.holdStopAfterUpdate = null
+                TileService.releaseStops()
+            }
+        }
+        val stop = Gate("engine stop").also { HarnessControl.wireGuardStopGate = it }
+        try {
+            HarnessMain.run { service.dispatchClick() }
+            eventually("disconnecting tile") { TileService.updates.lastOrNull() == TILE_DISCONNECTING }
+        } finally { stop.open() }
+        eventually("tile shows ready") { TileService.updates.lastOrNull() == TILE_READY }
+        settleTile()
+        assertEquals(TILE_READY, TileService.updates.last())
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        assertEquals(1, HarnessControl.wireGuardStops)
+    }
+
+    // A refused click publishes nothing: its busy render must not stay on the
+    // tile once SystemUI has stopped it (the read started before the click is discarded).
+    @Test fun refusedTileClickDoesNotLeaveTheBusyTile() {
+        signIn()
+        val service = VpnQuickTileService()
+        TileService.systemUi = true
+        TileService.bound = service
+        val read = Gate("tile profile read").also { HarnessControl.tileProfileReadGate = it }
+        try {
+            HarnessMain.run { service.dispatchStartListening() }
+            read.awaitReached()
+            HarnessMain.run { service.onClick() }
+            eventually("application opened") { TileService.launches.isNotEmpty() }
+            assertEquals(listOf("pending:launch:com.fuzevpn.android"), TileService.launches.toList())
+        } finally { read.open() }
+        eventually("tile leaves the busy state") { TileService.updates.lastOrNull() == TILE_SETUP }
+        settleTile()
+        assertEquals(TILE_SETUP, TileService.updates.last())
+    }
+
+    // QT-REVOKE-OVPN-01 precondition: a click that can only open the app must
+    // not call VpnService.prepare, which revokes another app's VPN (C2-01).
+    @Test fun refusedTileClickNeverCallsVpnServicePrepare() {
+        signIn()
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>("quick_tile_profile_unavailable"), tileCallbacks.toList())
+        assertEquals("a click without profile prepared the VPN service", 0, VpnService.prepareCalls.get())
+        storeTileProfile()
+        HarnessControl.identityFailure = "wireguard_identity_unavailable"
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>("quick_tile_profile_unavailable", "wireguard_identity_unavailable"),
+            tileCallbacks.toList())
+        assertEquals("a click without identity prepared the VPN service", 0, VpnService.prepareCalls.get())
+        assertEquals(0, HarnessControl.wireGuardConnects)
+    }
+
+    // A STOP (shade closed) that discards the tile's read must not lose the update.
+    @Test fun stopThatDiscardsTheTileReadIsReconciled() {
+        signIn()
+        storeTileProfile()
+        val service = listeningTile(TILE_READY)
+        val read = Gate("tile profile read").also { HarnessControl.tileProfileReadGate = it }
+        try {
+            SecureKeystoreStore.remove(SecureStorageKeyPolicy.quickTileProfile())
+            VpnQuickTileService.requestUpdate(context)
+            read.awaitReached()
+            HarnessMain.run { service.dispatchStopListening() }
+        } finally { read.open() }
+        eventually("tile shows the missing profile") { TileService.updates.lastOrNull() == TILE_SETUP }
+        settleTile()
+        assertEquals(TILE_SETUP, TileService.updates.last())
+    }
+
+    // Android 17 Compose QS or an OEM SystemUI may never stop the tile after an
+    // update: every later START is dropped, so the listening instance must refresh itself.
+    @Test fun tileThatSystemUiNeverStopsStillReceivesTheUpdates() {
+        signIn()
+        storeTileProfile()
+        TileService.noStopAfterUpdate = true
+        val service = listeningTile(TILE_READY)
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("tile shows connected") { TileService.updates.lastOrNull() == TILE_CONNECTED }
+        settleTile()
+        assertEquals(TILE_CONNECTED, TileService.updates.last())
+        assertTrue(TileService.swallowedStarts.get() > 0)
+        // A destroyed instance is never reloaded.
+        TileService.bound = null
+        HarnessMain.run { service.onDestroy() }
+        val rendered = TileService.updates.toList()
+        assertNull(call("disconnect").await().error)
+        settleTile()
+        assertEquals(rendered, TileService.updates.toList())
+    }
+
+    // Double-tap guard: until the first publication of a click the tile stays
+    // busy (UNAVAILABLE), so SystemUI drops a second click.
+    @Test fun busyTileDropsASecondClickBeforeTheFirstPublication() {
+        signIn()
+        storeTileProfile()
+        val service = listeningTile(TILE_READY)
+        // Connect: the first click waits in its identity read.
+        val reads = Gate("tile identity").also { HarnessControl.identityGate = it }
+        try {
+            HarnessMain.run { service.dispatchClick() }
+            reads.awaitReached()
+            settleTile()
+            assertEquals(TILE_BUSY, TileService.updates.last())
+            HarnessMain.run { service.dispatchClick() }
+        } finally { reads.open() }
+        eventually("tile shows connected") { TileService.updates.lastOrNull() == TILE_CONNECTED }
+        settleTile()
+        assertEquals(1, TileService.droppedClicks.get())
+        assertEquals(1, TileService.updates.count { it == TILE_BUSY })
+        assertEquals(1, HarnessControl.wireGuardConnects)
+        // Disconnect: the first click waits for the tunnel mutex held by a key request.
+        val key = Gate("public key").also { HarnessControl.publicKeyGate = it }
+        val keyRequest = call("getOrCreateWireGuardPublicKey", mapOf("account_id" to ACCOUNT))
+        try {
+            key.awaitReached()
+            HarnessMain.run { service.dispatchClick() }
+            settleTile()
+            assertEquals(TILE_BUSY, TileService.updates.last())
+            HarnessMain.run { service.dispatchClick() }
+        } finally { key.open() }
+        assertNull(keyRequest.await().error)
+        eventually("tile shows ready") { TileService.updates.lastOrNull() == TILE_READY }
+        settleTile()
+        assertEquals(2, TileService.droppedClicks.get())
+        assertEquals(2, TileService.updates.count { it == TILE_BUSY })
+        assertEquals(1, HarnessControl.wireGuardStops)
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+    }
+
+    // No loop: each publication costs at most one reconciling request, and the
+    // requests stop once the tile shows the bridge state.
+    @Test fun continuousPublicationsKeepTheTileRequestsBounded() {
+        signIn()
+        storeTileProfile()
+        val service = listeningTile(TILE_READY)
+        val before = TileService.listeningRequests.get()
+        repeat(PUBLICATIONS) { VpnQuickTileService.requestUpdate(context) }
+        settleTile()
+        val requests = TileService.listeningRequests.get() - before
+        assertTrue("listening requests: $requests", requests in PUBLICATIONS..2 * PUBLICATIONS)
+        assertEquals(TILE_READY, TileService.updates.last())
+        // Without a Tile object nothing renders; a STOP must not restart the cycle.
+        TileService.tile = null
+        val withoutTile = TileService.listeningRequests.get()
+        repeat(PUBLICATIONS) { VpnQuickTileService.requestUpdate(context) }
+        HarnessMain.run { service.dispatchStopListening() }
+        settleTile()
+        val settled = TileService.listeningRequests.get()
+        assertTrue("listening requests: ${settled - withoutTile}", settled - withoutTile in PUBLICATIONS..2 * PUBLICATIONS + 1)
+        Thread.sleep(500)
+        HarnessMain.drain()
+        assertEquals("tile requests kept growing", settled, TileService.listeningRequests.get())
+    }
+
+    // Busy guard: the read that the click's own START began completes while
+    // SystemUI still holds the STOP after the busy render; it must not make
+    // the tile clickable again before the click's first publication.
+    @Test fun busyTileIgnoresTheReadItsOwnClickStarted() {
+        signIn()
+        storeTileProfile()
+        val service = listeningTile(TILE_READY)
+        TileService.holdStopAfterUpdate = TILE_BUSY
+        val identity = Gate("tile identity").also { HarnessControl.identityGate = it }
+        try {
+            val read = HarnessMain.run { service.dispatchClick(); pendingTileRead(service) }
+            identity.awaitReached()
+            kotlinx.coroutines.runBlocking { kotlinx.coroutines.withTimeout(20_000) { read.join() } }
+            assertFalse("the click's own read was cancelled", read.isCancelled)
+            settleTile()
+            assertEquals(TILE_BUSY, TileService.updates.last())
+            HarnessMain.run { service.dispatchClick() }
+            assertEquals(1, TileService.droppedClicks.get())
+        } finally { identity.open() }
+        eventually("tile shows connected") { TileService.updates.lastOrNull() == TILE_CONNECTED }
+        settleTile()
+        assertEquals(1, TileService.updates.count { it == TILE_BUSY })
+        assertEquals(1, HarnessControl.wireGuardConnects)
+    }
+
+    // SystemUI unbinds the listening tile without a STOP: the publication it
+    // missed while its read was held reaches the instance bound after it.
+    @Test fun destroyedTileHandsAMissedPublicationToTheNextInstance() {
+        signIn()
+        storeTileProfile()
+        val old = listeningTile(TILE_READY)
+        val next = VpnQuickTileService()
+        val before = TileService.listeningRequests.get()
+        val read = Gate("tile profile read").also { HarnessControl.tileProfileReadGate = it }
+        try {
+            HarnessMain.run { old.dispatchStartListening() }
+            read.awaitReached()
+            SecureKeystoreStore.remove(SecureStorageKeyPolicy.quickTileProfile())
+            // One main-thread turn: no read of the old tile can deliver before its destroy.
+            HarnessMain.run {
+                VpnQuickTileService.requestUpdate(context)
+                TileService.bound = next
+                old.onDestroy()
+            }
+        } finally { read.open() }
+        eventually("next tile shows the missing profile") { TileService.updates.lastOrNull() == TILE_SETUP }
+        settleTile()
+        assertEquals(TILE_SETUP, TileService.updates.last())
+        assertEquals("SystemUI dropped the publication's START", 1, TileService.swallowedStarts.get())
+        assertEquals("the publication plus one request from the destroy", before + 2, TileService.listeningRequests.get())
+    }
+
+    // Without a Tile object, a read begun before the click must not move the
+    // rendered revision back: the next STOP would request listening in vain.
+    @Test fun staleReadWithoutATileRequestsNoListeningAgain() {
+        signIn()
+        storeTileProfile()
+        val service = listeningTile(TILE_READY)
+        TileService.tile = null
+        val read = Gate("tile profile read").also { HarnessControl.tileProfileReadGate = it }
+        val identity = Gate("tile identity").also { HarnessControl.identityGate = it }
+        try {
+            val stale = HarnessMain.run { service.dispatchStartListening(); pendingTileRead(service) }
+            read.awaitReached()
+            // A publication after that read began, then a click before the tile refreshes itself.
+            TileService.afterListeningRequest = {
+                TileService.afterListeningRequest = null
+                HarnessMain.post { service.onClick() }
+            }
+            VpnQuickTileService.requestUpdate(context)
+            identity.awaitReached()
+            read.open()
+            kotlinx.coroutines.runBlocking { kotlinx.coroutines.withTimeout(20_000) { stale.join() } }
+            assertFalse("the stale read was cancelled", stale.isCancelled)
+            val requests = TileService.listeningRequests.get()
+            HarnessMain.run { service.dispatchStopListening() }
+            settleTile()
+            assertEquals("a STOP requested listening again", requests, TileService.listeningRequests.get())
+        } finally { read.open(); identity.open() }
+        eventually("click connected") { bridge.quickTileState().status == VpnStatus.CONNECTED }
+        settleTile()
+    }
+
+    // OpenVPN network loss (Android 16 VM): onLost decides alone. getAllNetworks
+    // can still list the departing network as VALIDATED while the callback runs.
+    @Test fun openVpnLossIsHandledWhileTheFrameworkStillListsTheLostNetwork() {
+        connectOpenVpn()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = true
+        loseNetwork()
+        loseNetwork()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        eventually("reconnecting published") { sink.events.contains(RECONNECTING) }
+        Thread.sleep(2_500) // past the 2 s delay, inside the network wait
+        assertEquals(sink.events.toString(), 1, settledEvents().count { it == RECONNECTING })
+        assertEquals(0, HarnessControl.openVpnReconnects)
+        assertFalse("the TUN hold was released during the wait", "stop" in HarnessControl.openVpnService)
+        assertNull(call("disconnect").await().error)
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        assertEquals("stop", HarnessControl.openVpnService.lastOrNull())
+        assertEquals(0, HarnessControl.openVpnReconnects)
+    }
+
+    // Wi-Fi to cellular handover: another validated network remains, but Core's
+    // socket was connected through the lost one. The restart keeps the TUN held.
+    @Test fun openVpnReconnectsWhenWifiIsLostAndCellularRemains() {
+        connectOpenVpn()
+        loseNetwork()
+        eventually("reconnected") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf(RECONNECTING, OPENVPN_CONNECTED), events.takeLast(2))
+        assertEquals(1, HarnessControl.openVpnReconnects)
+        assertFalse(registry().snapshot()!!.recoveryConsumed)
+        assertEquals(listOf("start(reconnecting=false)", "start(reconnecting=true)"),
+            HarnessControl.openVpnService.toList())
+    }
+
+    // Repeated outages: each proven reconnect makes the next network change possible.
+    @Test fun repeatedNetworkChangesNeverExhaustOpenVpnRecovery() {
+        connectOpenVpn()
+        for (cycle in 1..3) {
+            loseNetwork()
+            eventually("reconnect $cycle") { sink.events.count { it == OPENVPN_CONNECTED } == cycle + 1 }
+        }
+        assertEquals(3, HarnessControl.openVpnReconnects)
+        val events = settledEvents()
+        assertFalse(events.toString(), events.any { it.endsWith("/openvpn_recovery_exhausted") })
+        assertFalse(registry().snapshot()!!.recoveryConsumed)
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    // A network change never re-arms Core's own failure retry: one per explicit connection.
+    @Test fun coreInterruptionsKeepASingleRetryAfterNetworkChanges() {
+        connectOpenVpn()
+        loseNetwork()
+        eventually("network reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertFalse(registry().snapshot()!!.recoveryConsumed)
+        engine().coreReconnectRequired()
+        eventually("failure retry") { sink.events.count { it == OPENVPN_CONNECTED } == 3 }
+        assertTrue(registry().snapshot()!!.recoveryConsumed)
+        engine().coreReconnectRequired()
+        eventually("exhausted recovery stopped") { HarnessControl.openVpnService.lastOrNull() == "stop" }
+        eventually("exhausted recovery published") { bridge.quickTileState().status == VpnStatus.ERROR }
+        val events = settledEvents()
+        assertEquals(events.toString(), "error/openvpn/openvpn_recovery_exhausted", events.last())
+        assertEquals(2, HarnessControl.openVpnReconnects)
+    }
+
+    // A loss between Core's start and the published CONNECTED is acted on at the proof.
+    @Test fun lossDuringOpenVpnStartIsDeliveredOnceProven() {
+        signIn()
+        val start = Gate("openvpn start").also { HarnessControl.openVpnStartGate = it }
+        val connecting = call("connectOpenVpn", openVpnArguments())
+        start.awaitReached()
+        loseNetwork()
+        start.open()
+        assertNull(connecting.await().error)
+        eventually("reconnected after the proof") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf(OPENVPN_CONNECTED, RECONNECTING, OPENVPN_CONNECTED),
+            events.filter { it == OPENVPN_CONNECTED || it == RECONNECTING })
+        assertEquals(1, HarnessControl.openVpnReconnects)
+    }
+
+    // Test plan 8.6 is kept: 2 s, then 30 s without a validated network end the
+    // session with a notice, and only then is the TUN released (about 33 s).
+    @Test fun openVpnOutageWithoutNetworkStillEndsInNetworkUnavailable() {
+        connectOpenVpn()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = true
+        loseNetwork()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        eventually("reconnecting published") { sink.events.contains(RECONNECTING) }
+        eventually("network wait expired", seconds = 40) { HarnessControl.openVpnService.lastOrNull() == "stop" }
+        eventually("error published") { bridge.quickTileState().messageCode == "network_unavailable" }
+        val events = settledEvents()
+        assertEquals(events.toString(), "error/openvpn/network_unavailable", events.last())
+        assertTrue(HarnessControl.notifications.toString(),
+            HarnessControl.notifications.contains("startProtocol(OPENVPN,ERROR,reconnecting=false,action=true)"))
+        assertEquals(0, HarnessControl.openVpnReconnects)
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.BLOCKED, record.status)
+        assertEquals("network_unavailable", record.errorCode)
+    }
+
+    @Test fun wireGuardSessionNeverTriggersOpenVpnLoss() {
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        loseNetwork()
+        Thread.sleep(300)
+        HarnessMain.drain()
+        assertEquals(0, HarnessControl.openVpnNetworkLosses)
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(VpnProtocol.WIREGUARD, bridge.quickTileState().protocol)
+    }
+
     /**
      * A tile click waits in its reads while a restore is admitted and waits for
      * the network; a key request then holds the mutex, the network returns, the
      * restore queues on the mutex and the tile queues behind it.
      */
+    // Campaign 74018 (P2): the permanent VPN came back neither after a SIGKILL nor after
+    // am crash. Android unbinds the dead VPN host and then never restarts it; an unbound
+    // sticky service is restarted instead, and it restores only what Android would.
+    @Test fun alwaysOnEnabledAfterConnectArmsTheRestartAnchor() {
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        Thread.sleep(300)
+        assertFalse(HarnessControl.sentinel.toString(), HarnessControl.sentinel.contains(true))
+        // Android sends no event when the permanent VPN is enabled for a connected app.
+        SharedVpnHost.flags = true to false
+        eventually("armed after the late enable", seconds = 6) { HarnessControl.sentinel.lastOrNull() == true }
+    }
+
+    @Test fun processRestartRestoresTheReadyWireGuardTunnel() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        // Android answers isAlwaysOn() again once the restored VPN is established.
+        SharedVpnHost.flags = true to false
+        processRestart()
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        val restoring = sink.events.indexOf("connecting/wireguard/system_vpn_restoring")
+        assertTrue(sink.events.toString(), restoring >= 0 && restoring < sink.events.indexOf(WIREGUARD_CONNECTED))
+        assertEquals(2, HarnessControl.wireGuardConnects)
+        assertEquals(1, HarnessControl.hostStarts)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        eventually("re-armed once Android reports the permanent VPN", seconds = 6) {
+            HarnessControl.sentinel.lastOrNull() == true
+        }
+    }
+
+    @Test fun processRestartRestoresTheReadyOpenVpnTunnel() {
+        armed { connectOpenVpn(); OPENVPN_CONNECTED }
+        processDeath()
+        processRestart()
+        eventually("restored", seconds = 10) { sink.events.contains(OPENVPN_CONNECTED) }
+        assertEquals(1, HarnessControl.openVpnReconnects)
+        assertEquals(1, HarnessControl.hostStarts)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+    }
+
+    @Test fun userDisconnectDisarmsAtReceiptAndTheRestartRestoresNothing() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        val keyHoldsMutex = Gate("public key").also { HarnessControl.publicKeyGate = it }
+        val key = call("getOrCreateWireGuardPublicKey", mapOf("account_id" to ACCOUNT))
+        keyHoldsMutex.awaitReached()
+        val stop = call("disconnect")
+        // Disarmed at receipt while the stop still waits for the mutex.
+        assertEquals(false, HarnessControl.sentinel.lastOrNull())
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        keyHoldsMutex.open()
+        key.await()
+        assertNull(stop.await().error)
+        assertNull("tombstone", registry().snapshot())
+        assertEquals(false, HarnessControl.sentinel.lastOrNull())
+        processDeath()
+        processRestart()
+        settleSystemJob()
+        assertEquals(0, HarnessControl.hostStarts)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+    }
+
+    @Test fun nothingReArmsWhileAStopIsPending() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        val keyHoldsMutex = Gate("public key").also { HarnessControl.publicKeyGate = it }
+        val key = call("getOrCreateWireGuardPublicKey", mapOf("account_id" to ACCOUNT))
+        keyHoldsMutex.awaitReached()
+        val stop = call("disconnect")
+        val atReceipt = HarnessControl.sentinel.size
+        // The tunnel is still CONNECTED behind the mutex: new samples must not re-arm.
+        SharedVpnHost.flags = false to false
+        Thread.sleep(2_500)
+        SharedVpnHost.flags = true to false
+        Thread.sleep(2_500)
+        val duringStop = HarnessControl.sentinel.subList(atReceipt, HarnessControl.sentinel.size).toList()
+        assertFalse(duringStop.toString(), duringStop.contains(true))
+        keyHoldsMutex.open()
+        key.await()
+        assertNull(stop.await().error)
+        assertEquals(false, HarnessControl.sentinel.lastOrNull())
+        assertNull("tombstone", registry().snapshot())
+    }
+
+    @Test fun revokedHostDisarmsAndTheRestartRestoresNothing() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first)
+        eventually("blocked") { registry().snapshot()?.status == SystemVpnResumeStatus.BLOCKED }
+        eventually("disarmed") { HarnessControl.sentinel.lastOrNull() == false }
+        processDeath()
+        processRestart()
+        settleSystemJob()
+        assertEquals(0, HarnessControl.hostStarts)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+    }
+
+    @Test fun restoreInterruptedByDeathIsNotRetried() {
+        signIn()
+        armResume()
+        assertNotNull(registry().reserve(SESSION, WireGuardController.IDENTITY))
+        processDeath()
+        processRestart()
+        settleSystemJob()
+        assertEquals(0, HarnessControl.hostStarts)
+        assertEquals(SystemVpnResumeStatus.RESERVED, registry().snapshot()!!.status)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+        assertEquals(false, HarnessControl.sentinel.lastOrNull())
+    }
+
+    @Test fun refusedHostStartKeepsTheRecordReadyAndShowsNothing() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        HarnessControl.hostStartFailure = "vpn_host_unavailable"
+        processRestart()
+        settleSystemJob()
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertEquals(0, HarnessControl.hostStarts)
+        assertEquals(1, HarnessControl.wireGuardConnects)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+        assertFalse(HarnessControl.notifications.toString(), HarnessControl.notifications.any { it.contains(",ERROR,") })
+    }
+
+    @Test fun foreignVpnOrMissingConsentSkipsWithoutSideEffects() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        // prepare() would take the VPN over from the app the user chose meanwhile.
+        ConnectivityManager.vpn = Network()
+        VpnService.reset()
+        processRestart()
+        settleSystemJob()
+        assertEquals(0, VpnService.prepareCalls.get())
+        assertEquals(0, HarnessControl.hostStarts)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+        ConnectivityManager.vpn = null
+        VpnService.consentIntent = Intent()
+        processRestart()
+        settleSystemJob()
+        assertEquals(1, VpnService.prepareCalls.get())
+        assertEquals(0, HarnessControl.hostStarts)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertFalse(settledEvents().toString(), settledEvents().any { it.startsWith("error/") })
+    }
+
+    @Test fun noNetworkAtRestartLeavesTheRecordReadyAndStartsNothing() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        processRestart()
+        Thread.sleep(1_000)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+        assertTrue(HarnessControl.notifications.toString(), HarnessControl.notifications.isEmpty())
+        settleSystemJob(timeoutMillis = 40_000)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertEquals(0, HarnessControl.hostStarts)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+        assertEquals(false, HarnessControl.sentinel.lastOrNull())
+    }
+
+    @Test fun handshakeFailureAfterTheHostStartBlocksLikeTheBootPath() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        HarnessControl.wireGuardConnect = { false }
+        processRestart()
+        settleSystemJob()
+        assertEquals(SystemVpnResumeStatus.BLOCKED, registry().snapshot()!!.status)
+        assertTrue(settledEvents().toString(), settledEvents().contains("error/wireguard/wireguard_handshake_timeout"))
+        assertTrue(HarnessControl.notifications.toString(),
+            HarnessControl.notifications.contains("startProtocol(WIREGUARD,ERROR,reconnecting=false,action=true)"))
+        assertEquals(1, HarnessControl.hostStarts)
+    }
+
+    @Test fun androidSystemStartSupersedesAPendingProcessRestart() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        processRestart()
+        Thread.sleep(500)
+        systemStart()
+        Thread.sleep(500)
+        com.fuzevpn.android.openvpn.OpenVpnController.network = true
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        settleSystemJob()
+        assertEquals(settledEvents().toString(), 1, settledEvents().count { it == WIREGUARD_CONNECTED })
+        assertEquals(2, HarnessControl.wireGuardConnects)
+        assertEquals(0, HarnessControl.hostStarts)
+    }
+
+    @Test fun processRestartDefersToARunningSystemStart() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        systemStart()
+        eventually("restoring published") { bridge.quickTileState().messageCode == "system_vpn_restoring" }
+        processRestart()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = true
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        settleSystemJob()
+        assertEquals(settledEvents().toString(), 1, settledEvents().count { it == WIREGUARD_CONNECTED })
+        assertEquals(2, HarnessControl.wireGuardConnects)
+        assertEquals(0, HarnessControl.hostStarts)
+    }
+
+    @Test fun alwaysOnOffNeverArms() {
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        Thread.sleep(2_500)
+        assertFalse(HarnessControl.sentinel.toString(), HarnessControl.sentinel.contains(true))
+    }
+
+    @Test fun android9NeverArms() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        Thread.sleep(2_500)
+        assertFalse(HarnessControl.sentinel.toString(), HarnessControl.sentinel.contains(true))
+    }
+
+    @Test fun aVpnOfAnotherProfileDoesNotBlockTheRestore() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        ConnectivityManager.vpn = Network()
+        ConnectivityManager.vpnCoversApp = false
+        SharedVpnHost.flags = true to false
+        processRestart()
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        assertEquals(1, HarnessControl.hostStarts)
+    }
+
+    @Test fun aPermanentVpnMovedToAnotherAppIsNotTakenOverWhereAndroidSaysSo() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        android.provider.Settings.Secure.readable = true
+        android.provider.Settings.Secure.alwaysOnVpnApp = "com.example.othervpn"
+        VpnService.reset()
+        processRestart()
+        settleSystemJob()
+        assertEquals(0, VpnService.prepareCalls.get())
+        assertEquals(0, HarnessControl.hostStarts)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+        android.provider.Settings.Secure.alwaysOnVpnApp = context.packageName
+        SharedVpnHost.flags = true to false
+        processRestart()
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        assertEquals(1, HarnessControl.hostStarts)
+    }
+
+    @Test fun androidStartDuringTheRestartReservationRestoresOnce() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        processDeath()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        processRestart()
+        Thread.sleep(500) // the read-only checks passed; the restart waits for a network
+        val identity = Gate("restart identity").also { HarnessControl.identityGate = it }
+        com.fuzevpn.android.openvpn.OpenVpnController.network = true
+        identity.awaitReached() // inside the reservation step, holding the tunnel mutex
+        systemStart()
+        identity.open()
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        settleSystemJob()
+        assertEquals(settledEvents().toString(), 1, settledEvents().count { it == WIREGUARD_CONNECTED })
+        assertFalse(settledEvents().toString(), settledEvents().any { it.startsWith("error/") })
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertEquals(0, HarnessControl.hostStarts)
+    }
+
+    // Campaign vm31i (Android 11 VM, release build: 10 crashes in 40 cold starts): a proxy
+    // update left the process-wide ConnectivityManager on package android. The bridge is built
+    // in Application.onCreate, and no decision may wait for a network the process cannot observe.
+    @Test fun systemPackageManagerStillBuildsTheBridgeAndKeepsWireGuardConnected() {
+        poisonedProcessDeath()
+        signIn()
+        storeTileProfile()
+        val tile = bridge.quickTileSnapshot()
+        assertEquals(VpnStatus.IDLE, tile.state.status)
+        assertTrue(tile.canConnect)
+        assertEquals("idle", (call("getState").await().value as Map<*, *>)["status"])
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        Thread.sleep(2_500) // past two runs of the 1 Hz recovery observer
+        val events = settledEvents()
+        assertFalse(events.toString(), events.any { it.endsWith("/wireguard_waiting_network") })
+        assertEquals(events.toString(), WIREGUARD_CONNECTED, events.last())
+        assertEquals("connected", (call("getState").await().value as Map<*, *>)["status"])
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileSnapshot().state.status)
+        assertNull(call("disconnect").await().error)
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+    }
+
+    @Test fun processRestartIntoASystemPackageManagerRestoresThePermanentVpn() {
+        android.os.Build.VERSION.SDK_INT = 30
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        poisonedProcessDeath()
+        // Android 11 still lets the app read which app is the permanent VPN.
+        android.provider.Settings.Secure.readable = true
+        android.provider.Settings.Secure.alwaysOnVpnApp = context.packageName
+        SharedVpnHost.flags = true to false
+        processRestart()
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        settleSystemJob()
+        assertEquals(1, HarnessControl.hostStarts)
+        assertEquals(2, HarnessControl.wireGuardConnects)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        Thread.sleep(1_500) // past the 1 Hz recovery observer
+        assertFalse(settledEvents().toString(), settledEvents().any { it.endsWith("/wireguard_waiting_network") })
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    @Test fun systemPackageManagerStillRefusesAnotherAppsVpnAtRestart() {
+        android.os.Build.VERSION.SDK_INT = 30
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        poisonedProcessDeath()
+        // Capabilities throw here; the legacy type of the default network still names the VPN.
+        // Settings stay unreadable, so only that network check can refuse.
+        ConnectivityManager.vpn = Network()
+        VpnService.reset()
+        processRestart()
+        settleSystemJob()
+        assertEquals(0, VpnService.prepareCalls.get())
+        assertEquals(0, HarnessControl.hostStarts)
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+        // A VPN of another profile does not carry this app: its default network is physical again.
+        ConnectivityManager.vpnCoversApp = false
+        SharedVpnHost.flags = true to false
+        processRestart()
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        assertEquals(1, HarnessControl.hostStarts)
+    }
+
+    // Campaign vm31j (Android 11 VM: OpenVPN downloads timed out on Wi-Fi loss and return, Core
+    // noticing only at its keepalive). Without the callback, the default physical network read with
+    // no package check shows the loss: when its network vanishes, it is followed within a look as
+    // onLost would be, by a reconnect that leaves the failure retry unused, each time.
+    @Test fun systemPackageManagerFollowsEachVanishedPhysicalNetwork() {
+        poisonedProcessDeath()
+        ConnectivityManager.physicalNetworks += ConnectivityManager.cellular
+        connectOpenVpn()
+        awaitNetworkLook()
+        val departures = listOf<() -> Unit>(
+            // Wi-Fi lost: the cellular network remains, as the default.
+            { ConnectivityManager.change { physicalNetworks -= physical; defaultNetwork = cellular } },
+            // The cellular network is lost in turn, a new Wi-Fi network taking its place in one change.
+            { val wifi = Network(); ConnectivityManager.change { physicalNetworks.replaceAll { wifi }; defaultNetwork = wifi } },
+        )
+        for ((index, departure) in departures.withIndex()) {
+            val cycle = index + 1
+            departure()
+            eventually("loss $cycle signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == cycle }
+            eventually("reconnect $cycle") { sink.events.count { it == OPENVPN_CONNECTED } == cycle + 1 }
+            assertFalse("loss $cycle consumed the failure retry", registry().snapshot()!!.recoveryConsumed)
+        }
+        val events = settledEvents()
+        assertFalse(events.toString(), events.any { it.endsWith("/openvpn_recovery_exhausted") })
+        assertEquals(events.toString(), listOf(OPENVPN_CONNECTED, RECONNECTING, OPENVPN_CONNECTED, RECONNECTING, OPENVPN_CONNECTED),
+            events.filter { it == OPENVPN_CONNECTED || it == RECONNECTING })
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(2, HarnessControl.openVpnReconnects)
+        assertEquals(listOf("start(reconnecting=false)", "start(reconnecting=true)", "start(reconnecting=true)"),
+            HarnessControl.openVpnService.toList())
+    }
+
+    // Campaign vm31k (Android 11 VM: downloads timed out once the Wi-Fi returned). The returning
+    // Wi-Fi becomes the default while the cellular network stays listed: it lingers, then runs in the
+    // background where Core's traffic stops (the callback's onLost, about 30 s later). That change of
+    // the default is the loss, followed within a look by a reconnect that keeps the failure retry;
+    // the lingering network's later teardown is no second loss.
+    @Test fun systemPackageManagerFollowsTheWiFiReturnOverALingeringCellularNetwork() {
+        poisonedProcessDeath()
+        listNetworks(ConnectivityManager.cellular)
+        connectOpenVpn()
+        awaitNetworkLook()
+        val wifi = Network()
+        ConnectivityManager.change { physicalNetworks += wifi; defaultNetwork = wifi }
+        eventually("loss signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == 1 }
+        eventually("reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertFalse("the loss consumed the failure retry", registry().snapshot()!!.recoveryConsumed)
+        ConnectivityManager.physicalNetworks -= ConnectivityManager.cellular
+        awaitNetworkLook(3) // one began without it; the next began after that one's signal, if any
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf(OPENVPN_CONNECTED, RECONNECTING, OPENVPN_CONNECTED),
+            events.filter { it == OPENVPN_CONNECTED || it == RECONNECTING })
+        assertEquals(1, HarnessControl.openVpnNetworkLosses)
+        assertEquals(1, HarnessControl.openVpnReconnects)
+        assertEquals(listOf("start(reconnecting=false)", "start(reconnecting=true)"), HarnessControl.openVpnService.toList())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    // VoLTE (Android 11): an IMS network of the cellular type, with its own APN, stays listed beside
+    // the cellular data network. That data network replaced by a new one of the same APN (mobile data
+    // off and on, data stall recovery: a gap shorter than the poll's second goes unseen) is a loss,
+    // which the IMS network never hides, followed within a look by a reconnect that keeps the failure
+    // retry.
+    @Test fun systemPackageManagerFollowsTheCellularDataNetworkReplacedBesideAnImsNetwork() {
+        poisonedProcessDeath()
+        listNetworks(ConnectivityManager.cellular, CellularNetwork("ims"))
+        connectOpenVpn()
+        awaitNetworkLook()
+        val replacement = CellularNetwork()
+        ConnectivityManager.change { physicalNetworks -= cellular; physicalNetworks += replacement; defaultNetwork = replacement }
+        eventually("loss signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == 1 }
+        eventually("reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertFalse("the loss consumed the failure retry", registry().snapshot()!!.recoveryConsumed)
+        awaitNetworkLook(3) // the replacement stays the default, the IMS network listed beside it
+        assertFollowedNetworkLosses(1)
+    }
+
+    // Dual SIM (Android 11): mobile data moves to the other SIM, whose cellular network has another
+    // APN. It comes up behind the default, then becomes the default while the first SIM's network
+    // stays listed, lingering: that change of the default is the loss; the lingering network's later
+    // teardown is no second loss.
+    @Test fun systemPackageManagerFollowsMobileDataMovingToTheOtherSim() {
+        poisonedProcessDeath()
+        val first = CellularNetwork("a")
+        val second = CellularNetwork("b")
+        listNetworks(first)
+        connectOpenVpn()
+        ConnectivityManager.physicalNetworks += second
+        awaitNetworkLook(2) // one began with it listed behind the default
+        assertEquals("a network listed behind the default was a loss", 0, HarnessControl.openVpnNetworkLosses)
+        ConnectivityManager.defaultNetwork = second
+        eventually("loss signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == 1 }
+        eventually("reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertFalse("the loss consumed the failure retry", registry().snapshot()!!.recoveryConsumed)
+        ConnectivityManager.physicalNetworks -= first
+        awaitNetworkLook(3) // one began without it; the next began after that one's signal, if any
+        assertFollowedNetworkLosses(1)
+    }
+
+    // Dual SIM (Android 11): the default cellular data network is SUSPENDED (out of data service, a
+    // call without concurrent voice and data), its APN kept, while the other SIM's IMS network stays
+    // connected beside it. Still the default, it is no loss, and the IMS network never stands in for
+    // it: its teardown, leaving no default network for a moment, is the one loss; the reconnect waits
+    // for the new data network that becomes the default.
+    @Test fun systemPackageManagerFollowsASuspendedDefaultNetworkUntilItsTeardown() {
+        poisonedProcessDeath()
+        val data = CellularNetwork()
+        listNetworks(data, CellularNetwork("ims"))
+        connectOpenVpn()
+        awaitNetworkLook()
+        ConnectivityManager.states[data] = NetworkInfo.DetailedState.SUSPENDED
+        awaitNetworkLook(3) // one began with it suspended; the next began after that one's signal, if any
+        assertEquals("a suspended default network was a loss", 0, HarnessControl.openVpnNetworkLosses)
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        ConnectivityManager.change { physicalNetworks -= data; states -= data; defaultNetwork = null }
+        eventually("loss signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == 1 }
+        val next = CellularNetwork()
+        ConnectivityManager.change { physicalNetworks += next; defaultNetwork = next }
+        com.fuzevpn.android.openvpn.OpenVpnController.network = true
+        eventually("reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        awaitNetworkLook(3) // the new default stays, the IMS network listed beside it
+        assertFollowedNetworkLosses(1)
+    }
+
+    // Data Saver or a power restriction (Android 11): the default network reads BLOCKED for this app,
+    // which clears its APN in both readings, then connected again. It never left: no loss, no reconnect.
+    @Test fun systemPackageManagerKeepsTheDefaultNetworkWhileItIsBlockedForThisApp() {
+        poisonedProcessDeath()
+        listNetworks(ConnectivityManager.cellular)
+        connectOpenVpn()
+        awaitNetworkLook()
+        ConnectivityManager.states[ConnectivityManager.cellular] = NetworkInfo.DetailedState.BLOCKED
+        awaitNetworkLook(2) // one began with it blocked
+        ConnectivityManager.states -= ConnectivityManager.cellular
+        awaitNetworkLook(3) // one began with it connected again; the next began after that one's signal, if any
+        assertFollowedNetworkLosses(0)
+    }
+
+    // Same APN, make before break (Android 11): a new data network of the default's APN comes up,
+    // connected, behind it, then becomes the default while the old one stays listed. Core's traffic
+    // stays on the network it was followed on: the move of the default is no loss, the old network's
+    // departure is the one loss.
+    @Test fun systemPackageManagerFollowsTheOldNetworkUntilItLeavesAfterASameApnReplacement() {
+        poisonedProcessDeath()
+        val old = CellularNetwork()
+        val replacement = CellularNetwork()
+        listNetworks(old)
+        connectOpenVpn()
+        awaitNetworkLook()
+        ConnectivityManager.physicalNetworks += replacement
+        awaitNetworkLook(2) // one began with it listed behind the default
+        ConnectivityManager.defaultNetwork = replacement
+        awaitNetworkLook(3) // one began with it as the default; the next began after that one's signal, if any
+        assertEquals("a replacement of the same APN was a loss while the old network stayed", 0,
+            HarnessControl.openVpnNetworkLosses)
+        ConnectivityManager.physicalNetworks -= old
+        eventually("loss signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == 1 }
+        eventually("reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertFalse("the loss consumed the failure retry", registry().snapshot()!!.recoveryConsumed)
+        awaitNetworkLook(3) // the replacement stays the default
+        assertFollowedNetworkLosses(1)
+    }
+
+    // Wi-Fi only: the Wi-Fi network is lost, leaving no default network for a moment, then a new
+    // Wi-Fi network is listed while it obtains its address, then becomes the default. The departure is
+    // the one loss: the reconnect waits for a network, and the new default is no second loss.
+    @Test fun systemPackageManagerFollowsAWiFiNetworkLostThenReplaced() {
+        poisonedProcessDeath()
+        connectOpenVpn()
+        awaitNetworkLook()
+        com.fuzevpn.android.openvpn.OpenVpnController.network = false
+        ConnectivityManager.change { physicalNetworks -= physical; defaultNetwork = null }
+        eventually("loss signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == 1 }
+        val wifi = Network()
+        ConnectivityManager.change { states[wifi] = NetworkInfo.DetailedState.CONNECTING; physicalNetworks += wifi }
+        awaitNetworkLook(2) // one began with it listed, still without an address
+        ConnectivityManager.change { states -= wifi; defaultNetwork = wifi }
+        com.fuzevpn.android.openvpn.OpenVpnController.network = true
+        eventually("reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        awaitNetworkLook(3) // the new default stays
+        assertFollowedNetworkLosses(1)
+    }
+
+    // Only a connected (or suspended) network stands for the default: a Wi-Fi network listed behind the
+    // default Wi-Fi while it still obtains its address, with its type and extra information, does not
+    // hide the default's departure when it takes its place, connected, in one change.
+    @Test fun systemPackageManagerFollowsTheDefaultReplacedByANetworkThatWasStillConnecting() {
+        poisonedProcessDeath()
+        val next = Network()
+        ConnectivityManager.change { states[next] = NetworkInfo.DetailedState.CONNECTING; physicalNetworks += next }
+        connectOpenVpn()
+        awaitNetworkLook()
+        ConnectivityManager.change { physicalNetworks -= physical; states -= next; defaultNetwork = next }
+        eventually("loss signalled", seconds = 3) { HarnessControl.openVpnNetworkLosses == 1 }
+        eventually("reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        awaitNetworkLook(3) // the new default stays
+        assertFollowedNetworkLosses(1)
+    }
+
+    // Only the default physical network carries Core's traffic, as only it reaches the callback's
+    // request: a network listed behind it (an IMS or MMS network of its type, with its own APN, a
+    // Wi-Fi still without an address) comes and goes with no loss and no reconnect.
+    @Test fun systemPackageManagerIgnoresNetworksListedBehindTheDefault() {
+        poisonedProcessDeath()
+        listNetworks(ConnectivityManager.cellular)
+        connectOpenVpn()
+        val connecting = Network().also { ConnectivityManager.states[it] = NetworkInfo.DetailedState.CONNECTING }
+        for (behind in listOf(CellularNetwork("ims"), CellularNetwork("mms"), connecting)) {
+            ConnectivityManager.physicalNetworks += behind
+            awaitNetworkLook(2) // one began with it listed
+            ConnectivityManager.physicalNetworks -= behind
+            awaitNetworkLook(3) // one began without it; the next began after that one's signal, if any
+        }
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf(OPENVPN_CONNECTED), events.filter { it == OPENVPN_CONNECTED || it == RECONNECTING })
+        assertEquals(0, HarnessControl.openVpnNetworkLosses)
+        assertEquals(0, HarnessControl.openVpnReconnects)
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    // A server failing after its handshake interrupts while the default network stays listed (one
+    // listed behind it that came and went is no loss, even for the interruption's own look): as with
+    // the callback, one failure retry, then openvpn_recovery_exhausted.
+    @Test fun systemPackageManagerKeepsTheSingleRetryForCoreInterruptions() {
+        poisonedProcessDeath()
+        connectOpenVpn()
+        ConnectivityManager.physicalNetworks += ConnectivityManager.cellular
+        awaitNetworkLook(2) // one began with it listed; the next look is a second away
+        ConnectivityManager.physicalNetworks -= ConnectivityManager.cellular
+        engine().coreReconnectRequired()
+        eventually("failure retry") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertTrue("the interruption was followed as a network change", registry().snapshot()!!.recoveryConsumed)
+        engine().coreReconnectRequired()
+        eventually("exhausted recovery stopped") { HarnessControl.openVpnService.lastOrNull() == "stop" }
+        eventually("exhausted recovery published") { bridge.quickTileState().status == VpnStatus.ERROR }
+        val events = settledEvents()
+        assertEquals(events.toString(), "error/openvpn/openvpn_recovery_exhausted", events.last())
+        assertEquals(1, HarnessControl.openVpnReconnects)
+        assertEquals(0, HarnessControl.openVpnNetworkLosses)
+    }
+
+    // Core can notice the loss before the poll's next look: a default network that vanished since
+    // the previous look still makes that interruption the network change, counted once.
+    @Test fun systemPackageManagerTakesACoreInterruptionAfterAVanishedNetworkAsANetworkChange() {
+        poisonedProcessDeath()
+        ConnectivityManager.physicalNetworks += ConnectivityManager.cellular
+        connectOpenVpn()
+        awaitNetworkLook() // the next look is a second away
+        ConnectivityManager.change { physicalNetworks -= physical; defaultNetwork = cellular }
+        engine().coreReconnectRequired()
+        eventually("network reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertFalse("the interruption consumed the failure retry", registry().snapshot()!!.recoveryConsumed)
+        awaitNetworkLook(3) // past the poll's next looks, which must not follow the same loss again
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf(OPENVPN_CONNECTED, RECONNECTING, OPENVPN_CONNECTED),
+            events.filter { it == OPENVPN_CONNECTED || it == RECONNECTING })
+        assertEquals(1, HarnessControl.openVpnReconnects)
+        assertEquals("the poll signalled the loss before Core", 0, HarnessControl.openVpnNetworkLosses)
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    /** Connected through [connect] with the permanent VPN off, then on: the restart is armed. */
+    private fun armed(connect: () -> String) {
+        signIn()
+        val connected = connect()
+        eventually("connected delivered") { sink.events.contains(connected) }
+        SharedVpnHost.flags = true to false
+        eventually("restart armed", seconds = 6) { HarnessControl.sentinel.lastOrNull() == true }
+    }
+
+    /** The process dies: its scopes and engines go, the stored records stay. */
+    private fun processDeath() {
+        for (name in listOf("operationScope", "observerScope")) {
+            (AndroidVpnBridge::class.java.getDeclaredField(name).apply { isAccessible = true }.get(bridge) as CoroutineScope).cancel()
+        }
+        HarnessMain.drain()
+        HarnessControl.wireGuardUp = false
+        SharedVpnHost.flags = null to null
+        retained(null)
+        bridge = AndroidVpnBridge.obtain(context)
+        HarnessMain.run { AndroidVpnBridge.obtain(context, activity, object : BinaryMessenger {}) }
+        HarnessMain.run { bridge.onListen(null, sink) }
+        HarnessMain.drain()
+        sink.events.clear()
+        HarnessControl.notifications.clear()
+        HarnessControl.sentinel.clear()
+    }
+
+    /** Android 11: the next process starts with its ConnectivityManager on package android. */
+    private fun poisonedProcessDeath() {
+        android.os.Build.VERSION.SDK_INT = 30
+        context.services[ConnectivityManager::class.java] = SystemPackageConnectivityManager()
+        try { processDeath() }
+        catch (error: SecurityException) { throw AssertionError("building the bridge threw in Application.onCreate", error) }
+    }
+
+    /** ActivityManager's sticky restart of the anchor. Reflective: the entry point is new. */
+    private fun processRestart() {
+        val entry = AndroidVpnBridge::class.java.declaredMethods.firstOrNull {
+            it.name == "onProcessRestart" || it.name.startsWith("onProcessRestart$")
+        } ?: throw AssertionError("no process-restart entry point")
+        HarnessMain.run { entry.invoke(bridge) }
+    }
+
     private fun queueTileBehindARestoreHeldByAKeyRequest(): Pair<CountDownLatch, ResultProbe> {
         signIn()
         storeTileProfile()
@@ -835,10 +1870,43 @@ class AndroidVpnBridgeHostTest {
 
     private fun settledEvents(): List<String> { HarnessMain.drain(); return sink.events.toList() }
 
-    private fun settleSystemJob() {
+    /** An active tile bound in the SystemUI model, rendered once and quiet. */
+    private fun listeningTile(expected: String): VpnQuickTileService {
+        val service = VpnQuickTileService()
+        TileService.systemUi = true
+        TileService.bound = service
+        HarnessMain.run { service.dispatchStartListening() }
+        eventually("tile rendered $expected") { TileService.updates.lastOrNull() == expected }
+        settleTile()
+        return service
+    }
+
+    /** Waits until no render and no listening request happened for 200 ms. */
+    private fun settleTile() {
+        val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(8)
+        var previous: Pair<Int, Int>? = null
+        while (true) {
+            HarnessMain.drain()
+            val current = TileService.updates.size to TileService.listeningRequests.get()
+            if (current == previous) return
+            check(System.nanoTime() < deadline) { "tile never settled: ${TileService.updates}" }
+            previous = current
+            Thread.sleep(200)
+        }
+    }
+
+    /** The tile's latest snapshot read (main thread only): its completion includes its delivery. */
+    private fun pendingTileRead(service: VpnQuickTileService): kotlinx.coroutines.Job {
+        val loader = (VpnQuickTileService::class.java.getDeclaredField("snapshotLoader\$delegate")
+            .apply { isAccessible = true }.get(service) as Lazy<*>).value
+        return QuickTileSnapshotLoader::class.java.getDeclaredField("pending").apply { isAccessible = true }
+            .get(loader) as kotlinx.coroutines.Job
+    }
+
+    private fun settleSystemJob(timeoutMillis: Long = 20_000) {
         val job = AndroidVpnBridge::class.java.getDeclaredField("systemStartJob").apply { isAccessible = true }
             .get(bridge) as kotlinx.coroutines.Job?
-        if (job != null) kotlinx.coroutines.runBlocking { kotlinx.coroutines.withTimeout(20_000) { job.join() } }
+        if (job != null) kotlinx.coroutines.runBlocking { kotlinx.coroutines.withTimeout(timeoutMillis) { job.join() } }
         Thread.sleep(100)
         HarnessMain.drain()
     }
@@ -864,8 +1932,8 @@ class AndroidVpnBridgeHostTest {
     private fun await(latch: CountDownLatch, what: String) =
         check(latch.await(20, TimeUnit.SECONDS)) { "$what never happened" }
 
-    private fun eventually(what: String, condition: () -> Boolean) {
-        val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(8)
+    private fun eventually(what: String, seconds: Long = 8, condition: () -> Boolean) {
+        val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(seconds)
         while (!condition()) {
             check(System.nanoTime() < deadline) { "timeout: $what" }
             Thread.sleep(10)
@@ -895,11 +1963,71 @@ class AndroidVpnBridgeHostTest {
         "endpoint" to "203.0.113.10:51820", "allowed_ips" to listOf("0.0.0.0/0"),
     )
 
+    private fun openVpnArguments() = mapOf(
+        "account_id" to ACCOUNT, "device_id" to DEVICE, "location_id" to "location-1", "location_name" to "Paris",
+        "address" to "10.9.0.2/32",
+    )
+
+    /** An explicit OpenVPN connection whose CONNECTED reached Flutter. */
+    private fun connectOpenVpn() {
+        signIn()
+        assertNull(call("connectOpenVpn", openVpnArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(OPENVPN_CONNECTED) }
+    }
+
+    /** Every registered physical-network callback sees one network leave. */
+    private fun loseNetwork() {
+        (context.services[ConnectivityManager::class.java] as ConnectivityManager).callbacks.forEach { it.onLost(Network()) }
+    }
+
+    /** Lists [default] as the system default physical network and [behind] behind it, in one change. */
+    private fun listNetworks(default: Network, vararg behind: Network) = ConnectivityManager.change {
+        physicalNetworks.apply { clear(); add(default); addAll(behind) }
+        defaultNetwork = default
+    }
+
+    /** Settled after [losses] signalled losses, each followed by a reconnect that kept the failure retry. */
+    private fun assertFollowedNetworkLosses(losses: Int) {
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf(OPENVPN_CONNECTED) + List(losses) { listOf(RECONNECTING, OPENVPN_CONNECTED) }.flatten(),
+            events.filter { it == OPENVPN_CONNECTED || it == RECONNECTING })
+        assertEquals(losses, HarnessControl.openVpnNetworkLosses)
+        assertEquals(losses, HarnessControl.openVpnReconnects)
+        assertFalse("a loss consumed the failure retry", registry().snapshot()!!.recoveryConsumed)
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    /**
+     * Without the callback: up to 3 s for each of [completed] looks of the bridge (its poll while
+     * OpenVPN is active, an interruption's own) to end. A look reads activeNetworkInfo last and holds
+     * recoveryLock throughout: a change made after one wait is compared with that look, never read
+     * inside it, and the look awaited by a second wait began after a change made before the first.
+     * Not asserted here: a bridge that never looks fails on the loss it never follows.
+     */
+    private fun awaitNetworkLook(completed: Int = 1) = repeat(completed) {
+        val answered = ConnectivityManager.defaultReads.get()
+        val deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(3)
+        while (ConnectivityManager.defaultReads.get() == answered && System.nanoTime() < deadline) Thread.sleep(10)
+    }
+
+    private fun engine() = com.fuzevpn.android.openvpn.OpenVpnController.current!!
+
     private companion object {
         const val ACCOUNT = "account-1"
         const val DEVICE = "device-1"
         const val SESSION = """{"access_token":"host-test-token","expires_at":"2099-01-01T00:00:00Z"}"""
         const val EMOJI = "\uD83C\uDF0D"
+        const val PUBLICATIONS = 20
+        const val OPENVPN_CONNECTED = "connected/openvpn/null"
+        const val WIREGUARD_CONNECTED = "connected/wireguard/null"
+        const val RECONNECTING = "connecting/openvpn/openvpn_reconnecting"
+        // Tile renders are "state:subtitle" (string ids of fakes/BuildConfig.kt).
+        const val TILE_BUSY = "0:string#3"
+        const val TILE_CONNECTED = "2:string#4[WireGuard, Paris]"
+        const val TILE_DISCONNECTING = "0:string#8"
+        const val TILE_SETUP = "1:string#9"
+        const val TILE_INTERRUPTED = "1:string#10[WireGuard]"
+        const val TILE_READY = "1:string#11[WireGuard, Paris]"
         val ACCEPTED_LABELS = mapOf(
             "96 characters" to "P".repeat(96), "48 emoji" to EMOJI.repeat(48), "no-break space" to "Paris\u00A01",
             "accents" to "S\u00E3o Paulo \u2014 Z\u00FCrich", "zero-width space" to "Paris\u00A0\u200B\u00AD",

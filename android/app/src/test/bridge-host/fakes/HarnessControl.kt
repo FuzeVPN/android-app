@@ -42,8 +42,28 @@ internal object HarnessControl {
     @Volatile var wireGuardStops = 0
     @Volatile var wireGuardUp = false
     @Volatile var wireGuardStopResult = true
+    /** Holds the next engine stop, after the bridge published DISCONNECTING. */
+    @Volatile var wireGuardStopGate: Gate? = null
+    /** Holds the next read of the tile profile, as a slow Keystore decrypt would. */
+    @Volatile var tileProfileReadGate: Gate? = null
     /** Makes an ERROR notification refresh throw, as a missing patched AAR would. */
     @Volatile var errorNotificationFailure: String? = null
+    @Volatile var openVpnConnects = 0
+    @Volatile var openVpnReconnects = 0
+    @Volatile var openVpnStops = 0
+    @Volatile var openVpnNetworkLosses = 0
+    /** False makes a local OpenVPN restart end without CONNECTED, as a handshake timeout would. */
+    @Volatile var openVpnReconnect: () -> Boolean = { true }
+    /** Holds the next OpenVPN start once Core began, before its CONNECTED. */
+    @Volatile var openVpnStartGate: Gate? = null
+    /** OpenVpnService calls: "start(reconnecting=…)" and "stop" (the TUN hold release). */
+    val openVpnService: MutableList<String> = Collections.synchronizedList(mutableListOf())
+    /** SystemVpnResumeSentinel.sync decisions, in order (true = armed). */
+    val sentinel: MutableList<Boolean> = Collections.synchronizedList(mutableListOf())
+    /** VPN host starts the bridge itself requested (a process-restart restore). */
+    @Volatile var hostStarts = 0
+    /** SharedVpnHost.start throws this code, as a refused foreground start would. */
+    @Volatile var hostStartFailure: String? = null
 
     fun reset() {
         notifications.clear(); locales.clear(); purges.clear()
@@ -52,5 +72,9 @@ internal object HarnessControl {
         wireGuardConnect = { true }; wireGuardConnectGate = null
         wireGuardConnects = 0; wireGuardStops = 0; wireGuardUp = false
         wireGuardStopResult = true; errorNotificationFailure = null
+        wireGuardStopGate = null; tileProfileReadGate = null
+        openVpnConnects = 0; openVpnReconnects = 0; openVpnStops = 0; openVpnNetworkLosses = 0
+        openVpnReconnect = { true }; openVpnStartGate = null; openVpnService.clear()
+        sentinel.clear(); hostStarts = 0; hostStartFailure = null
     }
 }

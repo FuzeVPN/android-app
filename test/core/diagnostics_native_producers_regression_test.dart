@@ -190,6 +190,7 @@ const _nativeWireFields = <String>{
   'account_id',
   'allowed_ips',
   'always_on',
+  'always_on_vpn_app',
   'android_permission',
   'android_sdk',
   'app_build',

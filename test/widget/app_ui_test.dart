@@ -360,6 +360,65 @@ void main() {
     tags: 'golden',
   );
 
+  testWidgets(
+    'sign-out dialog keeps every word whole with 200% text at 320 dp',
+    (tester) async {
+      tester.view.physicalSize = const Size(320, 640);
+      tester.view.devicePixelRatio = 1;
+      tester.platformDispatcher.textScaleFactorTestValue = 2;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+      final h = _UiHarness();
+      addTearDown(h.close);
+      h.store.session = _session;
+      await h.controller.initialize();
+      await h.controller.setLocale(const Locale('fr'));
+      await tester.pumpWidget(
+        FuzeVpnApp(controller: h.controller, autoInitialize: false),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Compte'));
+      await tester.pumpAndSettle();
+      final signOut = find.byKey(const ValueKey('account-sign-out'));
+      await _scrollTo(tester, signOut);
+      await tester.tap(signOut);
+      await tester.pumpAndSettle();
+      final dialog = find.byType(AlertDialog);
+      expect(dialog, findsOneWidget);
+      // The AlertDialog itself fills the screen; its card is the first Material.
+      final card = tester.getRect(
+        find.descendant(of: dialog, matching: find.byType(Material)).first,
+      );
+      final copy = lookupAppLocalizations(const Locale('fr'));
+      for (final text in <String>[
+        copy.dialog_signOut,
+        copy.dialog_signOutMessage,
+        copy.action_cancel,
+        copy.action_signOut,
+      ]) {
+        final label = find.descendant(of: dialog, matching: find.text(text));
+        final paragraph = tester.renderObject<RenderParagraph>(label);
+        // A paragraph narrower than its widest word cuts that word in two.
+        expect(
+          paragraph.size.width,
+          greaterThanOrEqualTo(
+            paragraph.getMinIntrinsicWidth(double.infinity) - 0.01,
+          ),
+          reason: text,
+        );
+        final drawn = tester.getRect(label);
+        expect(drawn.left, greaterThanOrEqualTo(card.left - 0.01), reason: text);
+        expect(drawn.right, lessThanOrEqualTo(card.right + 0.01), reason: text);
+      }
+      await tester.tap(find.descendant(of: dialog, matching: find.text(copy.action_cancel)));
+      await tester.pumpAndSettle();
+      expect(dialog, findsNothing);
+      expect(h.controller.isSignedIn, isTrue);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
   testWidgets('location refresh failures are visible on the locations page', (
     WidgetTester tester,
   ) async {
@@ -2150,6 +2209,42 @@ void main() {
       );
     }, tags: 'golden');
 
+    testWidgets('la carte annonce la préparation dès que Annuler apparaît', (
+      tester,
+    ) async {
+      final harness = _UiHarness();
+      addTearDown(harness.close);
+      harness.store.session = _session;
+      await harness.controller.initialize();
+      await harness.controller.setLocale(const Locale('fr'));
+      await tester.pumpWidget(
+        FuzeVpnApp(controller: harness.controller, autoInitialize: false),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Déconnecté'), findsOneWidget);
+      // The attempt waits on its first API read: native code has not
+      // reported a phase yet.
+      final release = Completer<void>();
+      harness.api.locationsRelease = release;
+      unawaited(harness.controller.connect());
+      await tester.pump();
+      expect(harness.controller.isConnecting, isTrue);
+      expect(harness.controller.tunnelState.phase, VpnRuntimePhase.idle);
+      final cancel = find.widgetWithText(FilledButton, 'Annuler');
+      expect(cancel, findsOneWidget);
+      expect(find.text('Préparation'), findsOneWidget);
+      expect(find.text('Déconnecté'), findsNothing);
+      await tester.tap(cancel);
+      await tester.pump();
+      expect(harness.controller.isConnecting, isFalse);
+      // The cancelled attempt's catalogue read may now end: nothing restarts.
+      release.complete();
+      await tester.pumpAndSettle();
+      expect(find.text('Déconnecté'), findsOneWidget);
+      expect(find.text('Préparation'), findsNothing);
+      expect(harness.controller.tunnelState.phase, VpnRuntimePhase.idle);
+    });
+
     testWidgets('golden connexion initiale annulable', (tester) async {
       tester.view.devicePixelRatio = 1;
       tester.view.physicalSize = const Size(412, 915);
@@ -3119,9 +3214,12 @@ class _UiApi implements VpnApiRepository {
   }) async =>
       const DeviceProfiles(deviceId: 'device-test', profiles: <VpnProfile>[]);
 
+  Completer<void>? locationsRelease;
+
   @override
   Future<List<Location>> locations() async {
     catalogueReads++;
+    await locationsRelease?.future;
     if (locationsFailure case final ApiFailure failure) throw failure;
     return catalogue;
   }

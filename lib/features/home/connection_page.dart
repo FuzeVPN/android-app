@@ -86,7 +86,7 @@ class ConnectionPage extends StatelessWidget {
             VerificationBanner(controller: controller),
           const SizedBox(height: 12),
         ],
-        if (controller.locationMigration != null) ...<Widget>[
+        if (controller.showsLocationChangeProgress) ...<Widget>[
           LocationMigrationBanner(controller: controller),
           const SizedBox(height: 12),
         ],

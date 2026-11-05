@@ -300,6 +300,14 @@ int main() {
     assert(!ProfileValidator::Validate(oversized, alias.text, &failure));
     assert(failure == ProfileFailure::kInvalidTlsCryptV2); ++cases;
   }
+  {
+    // No TUN on this host: no name, and no Java string is ever made.
+    mock.ResetFailures();
+    assert(NativeTunInterfaceName(&environment, nullptr, -1) == nullptr);
+    assert(NativeTunInterfaceName(&environment, nullptr, 0) == nullptr);
+    assert(NativeTunInterfaceName(nullptr, nullptr, 0) == nullptr);
+    assert(!mock.pending && mock.strings == 0); ++cases;
+  }
   assert(sessions.empty() && !mock.pending && mock.globals == 0 && mock.string_refs.empty() && mock.array_refs.empty());
   std::cout << cases << " original-JNI injected failure/lifecycle cases passed\n";
 }

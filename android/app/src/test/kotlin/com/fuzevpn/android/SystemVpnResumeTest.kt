@@ -106,6 +106,44 @@ class SystemVpnResumeTest {
         assertTrue(completed.recoveryConsumed)
     }
 
+    @Test fun networkRecoveryAdmissionNeitherNeedsNorSpendsTheFailureBudget() {
+        val memory = Memory()
+        var writes = 0
+        val registry = countedRegistry(memory) { writes += 1 }
+        registry.arm(openVpnProfile(), session(), identity)
+        assertFalse(notNull(registry.admitNetworkRecovery(session(), identity)).recoveryConsumed)
+        notNull(registry.consumeRecovery(session(), identity))
+        val raw = memory.value
+        val before = writes
+        val admitted = notNull(registry.admitNetworkRecovery(session(), identity))
+        assertTrue(admitted.recoveryConsumed)
+        assertEquals(raw, memory.value)
+        assertEquals(before, writes)
+        // A restored session (RESERVED) is admitted too, and still without a write.
+        notNull(registry.reserve(session(), identity))
+        val reserved = memory.value
+        assertEquals(SystemVpnResumeStatus.RESERVED, notNull(registry.admitNetworkRecovery(session(), identity)).status)
+        assertEquals(reserved, memory.value)
+    }
+
+    @Test fun networkRecoveryAdmissionRefusesBlockedInvalidatedOtherExpiredOrWireGuard() {
+        val registry = registry()
+        assertNull(registry.admitNetworkRecovery(session(), identity)) // No record.
+        registry.arm(openVpnProfile(), session(), identity)
+        assertNull(registry.admitNetworkRecovery(expiredSession(), identity))
+        assertNull(registry.admitNetworkRecovery(otherSession(), identity))
+        assertNull(registry.admitNetworkRecovery(session(), otherIdentity))
+        registry.block("network_unavailable")
+        assertNull(registry.admitNetworkRecovery(session(), identity))
+        registry.arm(openVpnProfile(), session(), identity)
+        registry.invalidate()
+        assertNull(registry.admitNetworkRecovery(session(), identity))
+        registry.arm(profile(), session(), identity)
+        assertNull(registry.admitNetworkRecovery(session(), identity))
+        registry.arm(openVpnProfile(), session(), identity)
+        assertNotNull(registry.admitNetworkRecovery(session(), identity))
+    }
+
     @Test fun invalidateWritesAnUnusableDurableRecord() {
         val memory = Memory()
         val registry = registry(memory)
@@ -170,8 +208,12 @@ class SystemVpnResumeTest {
         replaceWithReady()
         registry.invalidate()
 
+        assertNull(registry.admitNetworkRecovery(session(), identity))
+        replaceWithReady()
+        registry.invalidate()
+
         // One initial tombstone and one new tombstone after each admission.
-        assertEquals(5, writes)
+        assertEquals(6, writes)
         assertNull(registry.snapshot())
     }
 
@@ -358,6 +400,38 @@ class SystemVpnResumeTest {
         }
         assertFalse(committed)
         assertEquals(SystemVpnResumeStatus.READY, registry.snapshot()!!.status)
+    }
+
+    // Campaign 74018 (P2): a process death is followed by a restore only from a READY record.
+    @Test fun processRestartIsKeptOnlyForAReadyRecord() {
+        val memory = Memory()
+        val registry = registry(memory)
+        registry.arm(profile(), session(), identity)
+        assertTrue(systemVpnResumeKeepsProcessRestart(memory.value))
+        registry.reserve(session(), identity)
+        assertFalse("an interrupted restore is never retried", systemVpnResumeKeepsProcessRestart(memory.value))
+        registry.complete(session(), identity)
+        assertTrue(systemVpnResumeKeepsProcessRestart(memory.value))
+        registry.block("system_vpn_resume_failed")
+        assertFalse(systemVpnResumeKeepsProcessRestart(memory.value))
+        registry.arm(profile(), session(), identity)
+        registry.invalidate()
+        assertFalse("tombstone", systemVpnResumeKeepsProcessRestart(memory.value))
+        assertFalse(systemVpnResumeKeepsProcessRestart(null))
+        assertFalse(systemVpnResumeKeepsProcessRestart("{}"))
+        assertFalse(systemVpnResumeKeepsProcessRestart("not json"))
+    }
+
+    @Test fun processRestartArmedTruthTable() {
+        var armed = 0
+        for (sdk in listOf(28, 29, 36)) for (patched in listOf(false, true)) for (holds in listOf(0, 1, 2))
+            for (resumable in listOf(false, true)) for (alwaysOn in listOf(null, false, true)) {
+                val expected = sdk >= 29 && patched && holds == 0 && resumable && alwaysOn == true
+                assertEquals("$sdk $patched $holds $resumable $alwaysOn", expected,
+                    processRestartArmed(sdk, patched, holds, resumable, alwaysOn))
+                if (expected) armed += 1
+            }
+        assertEquals(2, armed)
     }
 
     private fun registryWithRaw(raw: String): SystemVpnResumeRegistry =

@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart'
+    show debugPrintSynchronously, kDebugMode;
+
 import 'api_exception.dart';
 import 'api_socket_open.dart';
 import 'connection_timing.dart';
@@ -120,6 +123,8 @@ class IoApiHttpTransport extends ApiHttpTransport {
     ApiHttpResponse? withoutBody;
     var expired = false;
     HttpClient? requestClient;
+    // Diagnostics only: the address family of the selected connection.
+    String? openedFamily;
 
     bool deadlineReached() => expired || elapsed.elapsed >= requestTimeout;
 
@@ -175,9 +180,11 @@ class IoApiHttpTransport extends ApiHttpTransport {
             cancelAlternate: alternateOpening.cancel,
             abort: (HttpClientRequest pending) => pending.abort(),
             timeout: requestTimeout - elapsed.elapsed,
+            errorRank: _openingRank,
           ),
         );
         selectedRequest = outgoing;
+        openedFamily = _connectionFamily(outgoing);
         // Control-plane credentials and response budgets belong to the API
         // origin. Implicit redirects can copy custom authentication headers
         // elsewhere and drain intermediate bodies outside our byte limit.
@@ -297,16 +304,17 @@ class IoApiHttpTransport extends ApiHttpTransport {
       rethrow;
     } on TimeoutException {
       throw const ApiNetworkException(code: 'network_timeout');
-    } on SocketException {
-      throw const ApiNetworkException();
-    } on HttpException {
-      throw const ApiNetworkException();
-    } on IOException {
-      throw const ApiNetworkException();
     } on FormatException {
       throw const ApiProtocolException();
-    } catch (_) {
-      throw const ApiNetworkException();
+    } catch (error) {
+      if (!_isTransportError(error)) {
+        throw const ApiNetworkException(stage: 'client');
+      }
+      // An opening reports the layer it reached; any later failure is HTTP.
+      if (selectedRequest != null) {
+        throw ApiNetworkException(stage: 'http', family: openedFamily);
+      }
+      throw apiSocketOpenFailure(error) ?? const ApiNetworkException();
     }
   }
 
@@ -1152,6 +1160,7 @@ class ApiClient
       encodedBody = jsonEncode(body);
     }
     final String? timingStage = _connectionApiTimingStage(method, relativePath);
+    final Stopwatch elapsed = Stopwatch()..start();
     final ApiHttpResponse response;
     try {
       Future<ApiHttpResponse> send() => _transport.send(
@@ -1165,10 +1174,15 @@ class ApiClient
       response = timingStage == null
           ? await send()
           : await ConnectionTiming.measure(timingStage, send);
-    } on ApiFailure {
+    } on ApiFailure catch (failure) {
+      _debugApiFailure(method, relativePath, failure, elapsed);
       rethrow;
-    } catch (_) {
-      throw const ApiNetworkException();
+    } catch (error) {
+      final ApiNetworkException failure = _isTransportError(error)
+          ? const ApiNetworkException()
+          : const ApiNetworkException(stage: 'client');
+      _debugApiFailure(method, relativePath, failure, elapsed);
+      throw failure;
     }
     if (timingStage != null) {
       ConnectionTiming.event(timingStage, status: response.statusCode);
@@ -1242,6 +1256,9 @@ String? _connectionApiTimingStage(String method, String relativePath) {
   if (method == 'GET' && _sameParts(parts, const <String>['v1', 'locations'])) {
     return 'api.locations';
   }
+  if (method == 'GET' && _sameParts(parts, const <String>['v1', 'me'])) {
+    return 'api.me';
+  }
   if (method == 'GET' && _sameParts(parts, const <String>['v1', 'devices'])) {
     return 'api.devices.list';
   }
@@ -1277,4 +1294,68 @@ bool _sameParts(List<String> actual, List<String> expected) {
     if (actual[index] != expected[index]) return false;
   }
   return true;
+}
+
+/// Only a socket, IO or timeout failure is a network failure. Anything else,
+/// a Dart Error in particular, is a client defect and must not look like one.
+bool _isTransportError(Object error) =>
+    error is IOException || error is OSError || error is TimeoutException;
+
+/// When both hedged openings fail, the one that went furthest is reported.
+int _openingRank(Object error) => switch (apiSocketOpenFailure(error)?.stage) {
+  'tls' => 3,
+  'connect' => 2,
+  'dns' => 1,
+  _ => 0,
+};
+
+/// Address family of an opened request, or `null` when it has no socket.
+String? _connectionFamily(HttpClientRequest request) {
+  try {
+    return apiAddressFamily(request.connectionInfo?.remoteAddress);
+  } catch (_) {
+    return null;
+  }
+}
+
+final RegExp _fixedPathSegment = RegExp(r'^[a-z]+(?:-[a-z]+)*$');
+
+/// [relativePath] with identifiers and queries removed: device and migration
+/// identifiers, and any segment that is not a fixed lowercase name.
+String _apiPathTemplate(String relativePath) {
+  final List<String> parts = relativePath.split('?').first.split('/');
+  for (var index = 1; index < parts.length; index++) {
+    final String previous = parts[index - 1];
+    if (previous == 'devices' ||
+        previous == 'location-migrations' ||
+        !_fixedPathSegment.hasMatch(parts[index])) {
+      parts[index] = ':id';
+    }
+  }
+  return parts.join('/');
+}
+
+/// Debug builds only: one line per failed request with its method, path
+/// template, failing layer and duration. No host, address, identifier, query
+/// or token is ever written.
+void _debugApiFailure(
+  String method,
+  String relativePath,
+  ApiFailure failure,
+  Stopwatch elapsed,
+) {
+  if (!kDebugMode) return;
+  final (String? stage, String? family) = switch (failure) {
+    ApiNetworkException(:final stage, :final family) => (stage, family),
+    _ => (null, null),
+  };
+  final Map<String, Object?> record = <String, Object?>{
+    'method': method,
+    'path': _apiPathTemplate(relativePath),
+    'code': failure.code,
+    if (stage != null) 'stage': stage,
+    if (family != null) 'family': family,
+    'elapsed_ms': elapsed.elapsedMilliseconds,
+  };
+  debugPrintSynchronously('FuzeVpnApi ${jsonEncode(record)}');
 }

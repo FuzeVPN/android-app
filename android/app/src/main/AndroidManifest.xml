@@ -78,9 +78,23 @@
                 tools:replace="android:value" />
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="Hosts WireGuard or OpenVPN and restores a validated local VPN when Android starts the permanent VPN."
+                android:value="Hosts WireGuard or OpenVPN and restores a validated local VPN while Android's permanent VPN is enabled."
                 tools:replace="android:value" />
         </service>
+
+        <!-- Restarted by Android after a process death; never bound, never in the
+             foreground. Started only while the permanent VPN would restore the tunnel. -->
+        <service
+            android:name="com.fuzevpn.android.SystemVpnResumeSentinel"
+            android:exported="false"
+            android:stopWithTask="false" />
+
+        <!-- Its pending job marks the sentinel as armed; a force stop cancels it. Never runs
+             before 30 days. -->
+        <service
+            android:name="com.fuzevpn.android.SystemVpnRestartMark"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <service
             android:name="com.fuzevpn.android.VpnQuickTileService"

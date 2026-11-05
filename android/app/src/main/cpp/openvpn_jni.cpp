@@ -20,6 +20,12 @@
 #include <unordered_map>
 #include <utility>
 
+#if defined(__ANDROID__)
+#include <linux/if_tun.h>
+#include <net/if.h>
+#include <sys/ioctl.h>
+#endif
+
 namespace fuzevpn::openvpn {
 namespace {
 
@@ -556,6 +562,31 @@ jlongArray NativeStatistics(JNIEnv* env, jobject, jlong handle) noexcept {
   });
 }
 
+// The interface a TUN descriptor of this process is attached to. Release builds
+// are not dumpable, so /proc/self/fdinfo can be unreadable to the app itself
+// (Android 11); the ioctl on the descriptor is not.
+std::optional<std::string> TunInterfaceName(jint fd) {
+#if defined(__ANDROID__)
+  if (fd < 0) return std::nullopt;
+  ifreq request{};
+  if (ioctl(fd, TUNGETIFF, &request) != 0) return std::nullopt;
+  request.ifr_name[IFNAMSIZ - 1] = '\0';
+  if (request.ifr_name[0] == '\0') return std::nullopt;
+  return std::string(request.ifr_name);
+#else
+  static_cast<void>(fd);
+  return std::nullopt;
+#endif
+}
+
+jstring NativeTunInterfaceName(JNIEnv* env, jobject, jint fd) noexcept {
+  return JniGuard(env, static_cast<jstring>(nullptr), [&]() -> jstring {
+    if (env == nullptr) return nullptr;
+    const auto name = TunInterfaceName(fd);
+    return name ? NewUtfString(env, name->c_str()) : nullptr;
+  });
+}
+
 const JNINativeMethod kMethods[] = {
     {const_cast<char*>("nativeIsCoreAvailable"), const_cast<char*>("()Z"),
      reinterpret_cast<void*>(NativeIsCoreAvailable)},
@@ -573,6 +604,8 @@ const JNINativeMethod kMethods[] = {
      reinterpret_cast<void*>(NativeIsConnected)},
     {const_cast<char*>("nativeStatistics"), const_cast<char*>("(J)[J"),
      reinterpret_cast<void*>(NativeStatistics)},
+    {const_cast<char*>("nativeTunInterfaceName"), const_cast<char*>("(I)Ljava/lang/String;"),
+     reinterpret_cast<void*>(NativeTunInterfaceName)},
 };
 
 }  // namespace

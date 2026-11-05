@@ -5,6 +5,7 @@ import com.fuzevpn.android.TunnelNetworkSpec
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
 import android.util.Base64
@@ -13,6 +14,7 @@ import com.fuzevpn.android.NativeConnectionTiming
 import com.fuzevpn.android.SecureKeystoreStore
 import com.fuzevpn.android.TunnelStatistics
 import com.fuzevpn.android.VpnNativeException
+import com.fuzevpn.android.legacyDefaultNetworkUsable
 import com.fuzevpn.android.VpnStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.CancellationException
@@ -301,12 +303,23 @@ internal class OpenVpnController(context: Context) {
         return confirmed && published
     }
 
-    fun hasUsableNetwork(): Boolean = connectivityManager.allNetworks.any { network ->
-        connectivityManager.getNetworkCapabilities(network)?.let { capabilities ->
-            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN) &&
-                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
-        } == true
+    @Suppress("DEPRECATION")
+    fun hasUsableNetwork(): Boolean = try {
+        connectivityManager.allNetworks.any { network ->
+            connectivityManager.getNetworkCapabilities(network)?.let { capabilities ->
+                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN) &&
+                    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+            } == true
+        }
+    } catch (_: SecurityException) {
+        // Android 11 can leave this process's ConnectivityManager on package android until it dies
+        // (AndroidVpnBridge.physicalCallbackRegistered). The active network info has no package
+        // check and describes the system default network: never a restricted one (IMS), nor our
+        // VPN (its underlying networks are null). Validation is not visible there.
+        val info = connectivityManager.activeNetworkInfo
+        legacyDefaultNetworkUsable(present = info != null, vpn = info?.type == ConnectivityManager.TYPE_VPN,
+            connected = info?.isConnected == true, blocked = info?.detailedState == NetworkInfo.DetailedState.BLOCKED)
     }
 
     /**
@@ -534,9 +547,9 @@ internal class OpenVpnController(context: Context) {
     }
 
     /**
-     * Performs the single automatic recovery allowed after a physical-network
-     * loss. It uses only the authenticated local profile/identity; no API
-     * request, CSR regeneration, or new certificate is attempted here.
+     * Restarts from the authenticated local profile/identity for a recovery, a
+     * tile start or a system restore; no API request, CSR regeneration, or new
+     * certificate is attempted here. The bridge bounds how often it is used.
      */
     suspend fun reconnectLocal(accountId: String, deviceId: String, expectedNetwork: TunnelNetworkSpec? = null, isCurrent: () -> Boolean = { true }): OpenVpnStartResult =
         operationMutex.withLock {
@@ -738,7 +751,13 @@ internal class OpenVpnController(context: Context) {
         return failed(code)
     }
 
-    private fun stopCurrentLocked(timing: NativeConnectionTiming.TraceContext? = null): Boolean {
+    // An unconfirmed stop leaves Core holding its own fd, which keeps the interface
+    // fail-closed. Dropping the recovery duplicate lets a late Core exit remove the
+    // interface, as before, instead of blackholing every app until the next stop.
+    private fun stopCurrentLocked(timing: NativeConnectionTiming.TraceContext? = null): Boolean =
+        stopNativeLocked(timing).also { stopped -> if (!stopped) OpenVpnService.releaseRetainedTun() }
+
+    private fun stopNativeLocked(timing: NativeConnectionTiming.TraceContext? = null): Boolean {
         clearConnectionIdentity()
         if (!reconcilePendingCreationLocked()) {
             publish(OpenVpnNativeState.error("openvpn_stop_timeout"))

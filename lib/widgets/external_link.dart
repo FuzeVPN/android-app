@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../app_theme.dart';
 import '../l10n/app_copy.dart';
 import 'fuze_design.dart';
+import 'whole_words.dart';
 
 /// Offers a usable address when Android cannot open the public page.
 Future<void> openExternalLink(BuildContext context, Uri url) async {
@@ -68,9 +69,11 @@ class _ExternalLinkFailureDialogState
         ),
       ),
     ),
-    title: Text(
-      context.copy('externalLink.failed'),
-      style: Theme.of(context).textTheme.titleMedium,
+    title: WholeWords(
+      child: Text(
+        context.copy('externalLink.failed'),
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
     ),
     content: Column(
       mainAxisSize: MainAxisSize.min,
@@ -108,13 +111,15 @@ class _ExternalLinkFailureDialogState
     actions: <Widget>[
       TextButton(
         onPressed: () => Navigator.of(context).pop(),
-        child: Text(MaterialLocalizations.of(context).closeButtonLabel),
+        child: WholeWords(
+          child: Text(MaterialLocalizations.of(context).closeButtonLabel),
+        ),
       ),
       FilledButton.icon(
         key: const ValueKey('copy-external-link'),
         onPressed: _copying ? null : _copy,
         icon: const Icon(Icons.copy_outlined),
-        label: Text(context.copy('externalLink.copy')),
+        label: WholeWords(child: Text(context.copy('externalLink.copy'))),
       ),
     ],
   );

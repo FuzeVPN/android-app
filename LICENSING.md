@@ -59,10 +59,17 @@ The in-app "Component licenses" page (Account, `showLicensePage`) shows:
   <https://github.com/FuzeVPN/android-app> (localized
   `settings.licensesLegalese` text).
 
-Every version that FuzeVPN distributes is published in that repository as the
-tag `v<version>`, named after the application version that the licences page
-shows (`applicationVersion`), so that recipients can reach the exact
-corresponding source of their build.
+Every version that FuzeVPN distributes must be published in that repository as
+the tag `v<version>`, named after the application version that the licences
+page shows (`applicationVersion`), so that recipients can reach the exact
+corresponding source of their build. The repository owner publishes that tag
+on the exact commit the binary was built from, before distributing it; no
+repository tool creates or pushes tags. The `finalize` stage of
+`tools/release_aab_safe.py` checks it read-only: an anonymous `git ls-remote`
+of the HTTPS repository, without credential helper or prompt, must show
+`v<version>` on the pinned build commit (the peeled commit of an annotated
+tag). It refuses a missing tag, a tag on another commit (a reused version) and
+a repository that cannot be read anonymously.
 
 That URL tells recipients where the corresponding source is published. It is
 not, by itself, a GPL-2.0 section 3(b) written offer, and the application

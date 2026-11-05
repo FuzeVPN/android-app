@@ -93,10 +93,26 @@ class ApiProtocolException extends ApiFailure {
 /// A connection, TLS, timeout, or other transport failure that did not yield a
 /// trusted API response. The source exception is deliberately not exposed.
 class ApiNetworkException extends ApiFailure {
-  const ApiNetworkException({super.code = 'network_unavailable'});
+  const ApiNetworkException({
+    super.code = 'network_unavailable',
+    this.stage,
+    this.family,
+  });
+
+  /// Layer that failed, when known: `dns`, `connect`, `tls`, `http`, or
+  /// `client` for a defect of the client itself. Diagnostic only: it never
+  /// changes [code] or its localized text.
+  final String? stage;
+
+  /// Address family of the failed connection when known: `ipv4` or `ipv6`.
+  /// No host, address, port or message is ever kept.
+  final String? family;
 
   @override
-  String toString() => 'ApiNetworkException(code: $code)';
+  String toString() =>
+      'ApiNetworkException(code: $code'
+      '${stage == null ? '' : ', stage: $stage'}'
+      '${family == null ? '' : ', family: $family'})';
 }
 
 /// Presentation-safe localization contract for a public API failure.
@@ -141,6 +157,12 @@ abstract final class ApiErrorMessages {
     final String origin = failure.statusCode == null
         ? 'NETWORK'
         : 'HTTP-${failure.statusCode}';
+    // The failing layer is appended to the diagnostic code only.
+    final String layer = switch (failure) {
+      ApiNetworkException(stage: final String stage, :final family) =>
+        '/$stage${family == null ? '' : '/$family'}',
+      _ => '',
+    };
     return ApiErrorMessage(
       titleKey: 'notice.api.title',
       messageKey: retryMessage
@@ -153,7 +175,7 @@ abstract final class ApiErrorMessages {
         if (retryAfter != null) 'seconds': retryAfter,
       },
       retryAfterSeconds: retryAfter,
-      diagnosticCode: 'API-$origin · ${failure.code}',
+      diagnosticCode: 'API-$origin · ${failure.code}$layer',
       machineCode: failure.code,
       httpStatus: failure.statusCode,
     );

@@ -9,31 +9,52 @@ import android.os.Build
 import android.provider.Settings
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
+import android.util.Log
+import java.lang.ref.WeakReference
+import java.util.concurrent.atomic.AtomicLong
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 internal data class QuickTileSnapshot(
     val state: VpnState,
     val profile: QuickTileProfile?,
     val canConnect: Boolean,
+    /** Tile revision requested before this snapshot read any state. */
+    val revision: Long = 0L,
 )
+
+/** Debug builds only: tile states and revisions, never account or location data. */
+private inline fun tileDebug(message: () -> String) {
+    if (BuildConfig.DEBUG) Log.d("FuzeVpnTile", message())
+}
 
 /** User-controlled reconnect/disconnect entry point with no API access. */
 class VpnQuickTileService : TileService() {
     private val tileScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var destroyed = false
+    // Main thread only. SystemUI drops a START while this active tile listens
+    // and stops it after each updateTile, so a publication can miss every read
+    // (QT-REVOKE-OVPN-01): each STOP compares the rendered and requested revisions.
+    private var renderedRevision = -1L
+    // A busy render stands for the requests made before its click; a snapshot
+    // read before it would bring back the clickable pre-click state (double tap).
+    private var busyRevision = -1L
     private val snapshotLoader by lazy {
         QuickTileSnapshotLoader(
             scope = tileScope,
             load = {
+                // Captured before any read: a later publication is newer than this snapshot.
+                val requested = requestedRevision.get()
                 val runtime = AndroidVpnBridge.obtain(applicationContext)
-                try {
+                val snapshot = try {
                     runtime.quickTileSnapshot()
                 } catch (_: Exception) {
                     QuickTileSnapshot(runtime.quickTileState(), null, false)
                 }
+                snapshot.copy(revision = requested)
             },
             deliver = ::renderTile,
         )
@@ -41,19 +62,42 @@ class VpnQuickTileService : TileService() {
 
     override fun onStartListening() {
         super.onStartListening()
+        listeningInstance = WeakReference(this)
+        tileDebug { "start listening" }
         snapshotLoader.startListening()
     }
 
     override fun onStopListening() {
         snapshotLoader.stopListening()
+        if (listeningInstance?.get() === this) listeningInstance = null
+        tileDebug { "stop listening rendered=$renderedRevision requested=${requestedRevision.get()}" }
+        if (!destroyed) reconcile()
         super.onStopListening()
     }
 
     override fun onDestroy() {
         destroyed = true
         snapshotLoader.stopListening()
+        if (listeningInstance?.get() === this) listeningInstance = null
+        reconcile()
         tileScope.cancel()
         super.onDestroy()
+    }
+
+    /**
+     * Never throws. A request this instance missed opens a new listening
+     * window; it cannot loop, since each START reads the latest revision.
+     */
+    private fun reconcile() {
+        if (renderedRevision < requestedRevision.get()) requestListening(applicationContext)
+    }
+
+    /** Any thread: reloads on the main thread, never on a destroyed or stopped instance. */
+    private fun refreshWhileListening() {
+        tileScope.launch(Dispatchers.Main) {
+            if (!destroyed && listeningInstance?.get() === this@VpnQuickTileService &&
+                renderedRevision < requestedRevision.get()) updateTile()
+        }
     }
 
     override fun onClick() {
@@ -89,17 +133,24 @@ class VpnQuickTileService : TileService() {
             // The bridge captures this click's request epoch before dispatching
             // its storage checks; those checks must never block the UI thread.
             runtime.toggleFromQuickTile { failureCode ->
-                if (destroyed) return@toggleFromQuickTile
-                when {
+                if (!destroyed) when {
                     failureCode == QUICK_TILE_OPEN_SETTINGS -> openVpnSettings()
                     quickTileFailureOpensApplication(failureCode) -> openApplication()
-                    else -> updateTile()
                 }
+                // SystemUI stopped the tile after the busy render, so updateTile()
+                // would do nothing: every outcome, also a refusal that published
+                // nothing, requests the bridge state in place of the busy render.
+                requestUpdate(applicationContext)
             }
         }
     }
 
     private fun markBusy() {
+        // Takes the current revision instead of resetting it: the STOP after
+        // this render re-requests only for a later publication, never the
+        // clickable pre-click state while the click is being processed.
+        busyRevision = requestedRevision.get()
+        renderedRevision = busyRevision
         val localized = VpnForegroundService.localizedContext(this)
         qsTile?.apply {
             state = Tile.STATE_UNAVAILABLE
@@ -113,7 +164,11 @@ class VpnQuickTileService : TileService() {
     private fun updateTile() = snapshotLoader.refresh()
 
     private fun renderTile(snapshot: QuickTileSnapshot) {
-        val tile = qsTile ?: return
+        // Read before the click: the busy render stays until a later request,
+        // and the rendered revision never moves back to it, even without a tile.
+        if (snapshot.revision <= busyRevision) return
+        // Without a tile nothing can be drawn, and another START would not change that.
+        val tile = qsTile ?: run { renderedRevision = snapshot.revision; return }
         val state = snapshot.state
         val profile = snapshot.profile
         val localized = VpnForegroundService.localizedContext(this)
@@ -164,6 +219,8 @@ class VpnQuickTileService : TileService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) tile.subtitle = detail
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) tile.stateDescription = detail
         tile.updateTile()
+        renderedRevision = snapshot.revision
+        tileDebug { "render status=${state.status} revision=${snapshot.revision}" }
     }
 
     @SuppressLint("StartActivityAndCollapseDeprecated")
@@ -213,8 +270,24 @@ class VpnQuickTileService : TileService() {
     }
 
     companion object {
+        private val requestedRevision = AtomicLong()
+        // Set and cleared on the main thread; weak, a service must not leak.
+        @Volatile private var listeningInstance: WeakReference<VpnQuickTileService>? = null
+
         /** Never throws: a tile refresh must not break a VPN state publication. */
         internal fun requestUpdate(context: Context) {
+            // Every caller changed its state first, so a load that captures
+            // this revision reads that state.
+            val revision = requestedRevision.incrementAndGet()
+            tileDebug { "request update revision=$revision" }
+            requestListening(context)
+            // SystemUI drops this START while the tile listens, and some
+            // SystemUIs (Android 17 Compose QS, OEMs) never send the STOP that
+            // reconciles it: the listening instance reads the update itself.
+            listeningInstance?.get()?.refreshWhileListening()
+        }
+
+        private fun requestListening(context: Context) {
             try {
                 requestListeningState(
                     context.applicationContext,

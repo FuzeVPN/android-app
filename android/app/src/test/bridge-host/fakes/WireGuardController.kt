@@ -58,6 +58,7 @@ internal class WireGuardController(
         return connected
     }
     fun disconnect(timing: NativeConnectionTiming.TraceContext? = null): Boolean {
+        HarnessControl.wireGuardStopGate?.let { gate -> HarnessControl.wireGuardStopGate = null; gate.hold() }
         HarnessControl.wireGuardStops++
         if (!HarnessControl.wireGuardStopResult) return false
         HarnessControl.wireGuardUp = false

@@ -140,7 +140,7 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
     if (state == AppLifecycleState.resumed) {
       unawaited(_controller.onAppResumed());
     } else {
-      _controller.onAppPaused();
+      _controller.onAppPaused(hidden: state != AppLifecycleState.inactive);
     }
   }
 
@@ -193,7 +193,7 @@ class _AccountRestorationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final VpnRuntimePhase phase = controller.tunnelState.phase;
+    final VpnRuntimePhase phase = controller.presentedTunnelPhase;
     final bool compactDisconnect =
         MediaQuery.sizeOf(context).width < 360 &&
         MediaQuery.textScalerOf(context).scale(16) > 24;

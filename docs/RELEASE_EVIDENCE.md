@@ -92,6 +92,28 @@ Pour une future livraison locale décidée séparément, l’outil exige :
   Le kit externe de qualification/signature demeure un prérequis explicite ;
   la nouvelle version ne le remplace pas et ne lit pas ses valeurs secrètes.
   Le statut final reste local : la fonction de publication n’existe pas.
+- Le tag public des sources, vérifié en lecture seule par `finalize` juste
+  après les contrôles de source et avant toute synthèse. La page Licences de
+  l’application renvoie vers `sourceCodeRepository/tree/v<version>`
+  (`lib/widgets/third_party_notices.dart`) : `source_repository`, sans
+  `.git`, doit être ce dépôt ; un miroir ou un fork est refusé. Un
+  `git ls-remote --tags` anonyme de cette URL, égale à l’origine, est lancé
+  depuis un dossier temporaire vide, sans configuration système, globale ni
+  de dépôt (`GIT_CONFIG_NOSYSTEM=1`, `GIT_CONFIG_GLOBAL` vide, `HOME` et
+  `USERPROFILE` vides, donc sans `.netrc`), sans variable `GIT_*` de
+  l’opérateur, assistant d’identifiants, askpass ni `http.extraHeader`, avec
+  `GIT_TERMINAL_PROMPT=0` et une origine HTTPS. Sa réponse pour
+  `refs/tags/v<version>` et `refs/tags/v<version>^{}` doit montrer ce tag sur
+  le commit épinglé, après déréférencement pour un tag annoté. Cette seule
+  requête réseau est limitée à 60 s ; à l’échéance, tout l’arbre de
+  processus `git` est arrêté. Un tag absent, un tag sur un autre commit
+  (version réutilisée), un listing inattendu, un dépôt illisible sans
+  identifiants (non public) ou muet dans le délai est refusé. L’outil ne
+  crée ni ne pousse aucun tag : avant `finalize`, le propriétaire publie ce
+  tag sur le commit construit (`git tag -a v<version> <commit>` puis
+  `git push origin refs/tags/v<version>`).
+  Ce contrôle n’est pas dans `validate_project.ps1` ni la CI, où les commits
+  de développement n’ont pas de tag.
 
 La finalisation relie les entrées de construction au commit, à l’arbre et à
 la version courants, puis rapproche les empreintes des sorties, de la
@@ -130,7 +152,15 @@ refusés et le nettoyage limité à la nouvelle copie en échec.
 Ils couvrent aussi la substitution de commit, de binaire ou d’archive dans les
 reçus, les inventaires vides/partiels/dupliqués et l’absence de marqueur de fin
 d’export. Le calcul des empreintes par blocs ne dépend pas de l’API
-`hashlib.file_digest` apparue après Python 3.10.
+`hashlib.file_digest` apparue après Python 3.10. Pour le tag public, avec
+`git` simulé : tag absent, tag sur un autre commit (léger ou annoté), tag
+annoté déréférencé vers le commit épinglé, tag léger sur ce commit, origine
+non HTTPS, dépôt autre que celui que lie l’application (lu dans sa source
+réelle), listing inattendu (tag leurre, SHA court ou non hexadécimal, ligne
+dupliquée, séparateur espace), échec ou délai dépassé de la lecture
+anonyme ; la commande reste un seul `ls-remote` sans identifiants, isolé de
+la configuration et des variables `GIT_*` de l’opérateur, et un délai
+dépassé arrête tout l’arbre de processus `git`.
 
 Le contrôleur historique [check_validation.py](../tools/check_validation.py)
 reste un vérificateur de structure, liens et empreintes publiques. Son `PASS`

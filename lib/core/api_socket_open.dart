@@ -3,7 +3,64 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'api_exception.dart';
+
 final Object _attemptKey = Object();
+
+/// Failure of an owned opening, reduced to the layer it reached and the
+/// address family. Host, address, port and message are never retained: they
+/// would reach exported diagnostics. It stays an [IOException] so that route
+/// fallback treats it as before.
+final class _ApiSocketOpenFailure implements IOException {
+  const _ApiSocketOpenFailure(this.stage, [this.family]);
+
+  /// Before a TCP connection exists, the SDK reports a failed host lookup
+  /// without an address and a failed connection with the address attempted.
+  factory _ApiSocketOpenFailure.beforeConnection(
+    Object error, {
+    required bool resolving,
+  }) => switch (error) {
+    SocketException(address: null) when resolving =>
+      const _ApiSocketOpenFailure('dns'),
+    SocketException(:final address) => _ApiSocketOpenFailure(
+      'connect',
+      apiAddressFamily(address),
+    ),
+    _ => const _ApiSocketOpenFailure('connect'),
+  };
+
+  final String stage;
+  final String? family;
+
+  @override
+  String toString() => 'ApiSocketOpenFailure(stage: $stage, family: $family)';
+}
+
+/// `ipv4` or `ipv6` for diagnostics, never the address itself.
+String? apiAddressFamily(InternetAddress? address) => switch (address?.type) {
+  InternetAddressType.IPv4 => 'ipv4',
+  InternetAddressType.IPv6 => 'ipv6',
+  _ => null,
+};
+
+/// The layer an API connection opening reached when it failed, or `null` when
+/// it cannot be told reliably. The owned factory reports its own layer. For an
+/// injected client, only SDK failures that carry their own evidence are
+/// classified: an attempted address (connect), an OS host lookup error (dns)
+/// or a TLS error (tls).
+ApiNetworkException? apiSocketOpenFailure(Object error) => switch (error) {
+  _ApiSocketOpenFailure(:final stage, :final family) => ApiNetworkException(
+    stage: stage,
+    family: family,
+  ),
+  SocketException(address: final InternetAddress address) =>
+    ApiNetworkException(stage: 'connect', family: apiAddressFamily(address)),
+  SocketException(osError: OSError(), :final message)
+      when message.startsWith('Failed host lookup') =>
+    const ApiNetworkException(stage: 'dns'),
+  TlsException() => const ApiNetworkException(stage: 'tls'),
+  _ => null,
+};
 
 /// Owns only connections being opened by one attempt, never pooled sockets.
 class ApiSocketOpenAttempt {
@@ -93,8 +150,12 @@ Future<ConnectionTask<Socket>> openApiSocketWithProxyConfiguration(
   RawSocket? raw;
   Socket? established;
   var cancelled = false;
+  // A local close during the TLS handshake never completes the SDK's pending
+  // handshake, so cancellation completes that phase itself.
+  final cancellation = Completer<RawSecureSocket?>();
   void cancel() {
     cancelled = true;
+    if (!cancellation.isCompleted) cancellation.complete(null);
     task?.cancel();
     established?.destroy();
     final pending = raw;
@@ -112,16 +173,23 @@ Future<ConnectionTask<Socket>> openApiSocketWithProxyConfiguration(
     for (var index = 0; index < routes.length; index++) {
       checkCancelled();
       final route = routes[index];
+      // Diagnostics keep only the layer reached and the address family.
+      var resolving = false;
+      String? reached;
+      String? family;
       try {
         if (route.port != null && (route.port! < 1 || route.port! > 65535)) {
           throw const SocketException('Invalid API proxy port');
         }
+        resolving = true;
         task = await RawSocket.startConnect(
           route.host ?? uri.host,
           route.port ?? uri.port,
         );
         if (cancelled) task!.cancel();
         final value = raw = await task!.socket;
+        reached = 'connect';
+        family = _remoteFamily(value);
         checkCancelled();
         // Ownership is transferred to RawSecureSocket.secure below.
         // ignore: cancel_subscriptions
@@ -129,24 +197,49 @@ Future<ConnectionTask<Socket>> openApiSocketWithProxyConfiguration(
             ? null
             : await _connectApiProxyTunnel(value, uri, route);
         checkCancelled();
+        reached = 'tls';
         // This is always the destination host, never the proxy. No permissive
         // certificate callback or alternate trust context is installed.
-        final secure = await RawSecureSocket.secure(
+        final handshake = RawSecureSocket.secure(
           value,
           subscription: subscription,
           host: uri.host,
         );
+        final secure = await Future.any<RawSecureSocket?>([
+          handshake,
+          cancellation.future,
+        ]);
+        if (secure == null) {
+          // Cancelled during the handshake: a late secure socket is closed.
+          unawaited(
+            handshake.then<void>(
+              (orphan) =>
+                  orphan.close().then<void>((_) {}, onError: (Object _) {}),
+              onError: (Object _) {},
+            ),
+          );
+          throw const SocketException('API socket opening cancelled');
+        }
         if (cancelled) {
           await secure.close();
           checkCancelled();
         }
         return established = _ApiSecureSocket(secure);
       } catch (error) {
+        // Classified before the socket is closed and forgotten.
+        final failure = reached == null
+            ? _ApiSocketOpenFailure.beforeConnection(
+                error,
+                resolving: resolving,
+              )
+            : _ApiSocketOpenFailure(reached, family);
         await raw?.close();
         raw = null;
+        // An OS error still ends the routes at once, with its layer kept.
+        if (error is OSError) throw failure;
         if (error is! IOException) rethrow;
         checkCancelled();
-        if (index == routes.length - 1) rethrow;
+        if (index == routes.length - 1) throw failure;
       }
     }
     throw const HttpException('No API proxy route configured');
@@ -158,6 +251,15 @@ Future<ConnectionTask<Socket>> openApiSocketWithProxyConfiguration(
   // delivers the same error to the SDK once it attaches its own listener.
   socket.ignore();
   return ConnectionTask.fromSocket(socket, cancel);
+}
+
+/// The family of a connected socket, or `null` once it is closed.
+String? _remoteFamily(RawSocket socket) {
+  try {
+    return apiAddressFamily(socket.remoteAddress);
+  } catch (_) {
+    return null;
+  }
 }
 
 class _ApiProxyRoute {
