@@ -406,8 +406,16 @@ class RedmiVpnLifecycleInstrumentedTest {
         objectFound.click()
     }
 
+    // `am instrument` can start this process right after a VPN teardown: on Android 11 its
+    // ConnectivityManager may then answer for package android (bind race, campaign vm31i) and
+    // refuse capabilities until the process dies. The legacy type of a network has no such check.
+    @Suppress("DEPRECATION")
     private fun hasVpnNetwork(): Boolean = connectivity.allNetworks.any { network ->
-        connectivity.getNetworkCapabilities(network)?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true
+        try {
+            connectivity.getNetworkCapabilities(network)?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true
+        } catch (_: SecurityException) {
+            connectivity.getNetworkInfo(network)?.type == ConnectivityManager.TYPE_VPN
+        }
     }
 
     private fun hasTunnelInterface(): Boolean = runCatching {

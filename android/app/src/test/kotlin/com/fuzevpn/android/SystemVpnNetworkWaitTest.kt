@@ -97,6 +97,20 @@ class SystemVpnNetworkWaitTest {
         assertEquals(1, probes)
     }
 
+    // Android 11 fallback of OpenVpnController.hasUsableNetwork: only the default network's info.
+    @Test fun legacyDefaultNetworkNeedsAPresentPhysicalDefault() {
+        assertFalse(legacyDefaultNetworkUsable(present = false, vpn = false, connected = false, blocked = false))
+        assertFalse(legacyDefaultNetworkUsable(present = true, vpn = true, connected = true, blocked = false))
+        assertFalse(legacyDefaultNetworkUsable(present = true, vpn = true, connected = false, blocked = true))
+    }
+
+    @Test fun legacyDefaultNetworkIsUsableWhenConnectedOrOnlyBlockedForThisApp() {
+        assertTrue(legacyDefaultNetworkUsable(present = true, vpn = false, connected = true, blocked = false))
+        // Doze, Battery Saver and Data Saver block the uid, not the network.
+        assertTrue(legacyDefaultNetworkUsable(present = true, vpn = false, connected = false, blocked = true))
+        assertFalse(legacyDefaultNetworkUsable(present = true, vpn = false, connected = false, blocked = false))
+    }
+
     @Test fun userStopRequiresSettingsForAlwaysOnAndUnknownOnly() {
         assertTrue(userStopRequiresSettings(true))
         assertTrue(userStopRequiresSettings(null))

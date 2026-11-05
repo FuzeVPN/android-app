@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/app_controller.dart';
 import 'package:fuzevpn_android/app_theme.dart';
+import 'package:fuzevpn_android/core/api_client.dart'
+    show ApiClient, ApiHttpRequest, ApiHttpResponse, ApiHttpTransport;
 import 'package:fuzevpn_android/core/api_exception.dart';
 import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
@@ -58,6 +61,71 @@ const _profile = UserProfile(
 );
 
 void main() {
+  _locationsTest(
+    'a rejected duplicate catalogue preserves the exact confirmed destination',
+    (tester, h) async {
+      await h.mount(tester, searchAll: false);
+      final previousCatalogue = h.controller.locations;
+      final previousSelection = h.controller.selectedLocation;
+      final client = ApiClient(transport: _DuplicateCatalogueTransport());
+      h.api.catalogueLoader = client.locations;
+
+      await h.controller.refreshLocations();
+      await tester.pumpAndSettle();
+
+      expect(h.controller.locations, same(previousCatalogue));
+      expect(h.controller.selectedLocation, same(previousSelection));
+      expect(h.controller.notice, isNotNull);
+      expect(h.api.registeredLocations, isEmpty);
+      expect(h.tunnel.actions, isEmpty);
+      expect(
+        find.byKey(const ValueKey('location-change-dialog')),
+        findsNothing,
+      );
+
+      await _tap(tester, 'select-country-BR');
+      await tester.pumpAndSettle();
+      expect(find.textContaining('São Paulo'), findsOneWidget);
+      expect(find.textContaining('Shared'), findsNothing);
+      await _tap(tester, 'location-change-confirm');
+      await tester.pumpAndSettle();
+
+      expect(h.controller.selectedLocation, same(_saoPaulo));
+      expect(h.api.registeredLocations, [_saoPaulo.id]);
+      expect(h.tunnel.actions, ['permission', 'connect:${_saoPaulo.id}']);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  for (final language in ['en', 'ar']) {
+    for (final stacked in [false, true]) {
+      _locationsTest(
+        'browse chevrons follow reading direction once ($language, stacked=$stacked)',
+        (tester, h) async {
+          tester.view.physicalSize = stacked
+              ? const Size(320, 640)
+              : const Size(900, 1400);
+          tester.platformDispatcher.textScaleFactorTestValue = stacked ? 2 : 1;
+          addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
+          await h.mount(tester, searchAll: false, locale: Locale(language));
+          final rtl = language == 'ar';
+          final countryBrowse = find.byKey(const ValueKey('browse-country-DE'));
+          await _ensureVisible(tester, countryBrowse);
+          _expectForwardBrowseChevron(tester, countryBrowse, rtl: rtl);
+
+          await _tap(tester, 'browse-country-DE');
+          await tester.pumpAndSettle();
+          final cityBrowse = find.byKey(
+            const ValueKey('browse-city-DE-frankfurt'),
+          );
+          await _ensureVisible(tester, cityBrowse);
+          _expectForwardBrowseChevron(tester, cityBrowse, rtl: rtl);
+          expect(tester.takeException(), isNull);
+        },
+      );
+    }
+  }
+
   _locationsTest(
     'favorites read failure is distinct from saving and retry preserves saved IDs',
     (tester, h) async {
@@ -624,6 +692,51 @@ void main() {
     await tester.pumpAndSettle();
     await _tap(tester, 'locations-clear-search');
     await tester.pumpAndSettle();
+    expect(find.byType(CountryFlag), findsNWidgets(3));
+  });
+
+  // On Android 16 the first keystroke puts Flutter's back callback above the
+  // keyboard's, so back reaches the page while the keyboard is still shown.
+  _locationsTest('back with the keyboard shown only closes it and keeps the search', (
+    tester,
+    h,
+  ) async {
+    await h.mount(tester);
+    final search = find.byKey(const ValueKey('locations-search'));
+    await tester.tap(search);
+    await tester.enterText(search, 'Paris');
+    await tester.pumpAndSettle();
+    tester.view.viewInsets = const FakeViewPadding(bottom: 300);
+    addTearDown(tester.view.resetViewInsets);
+    await tester.pump();
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    final field = tester.widget<TextField>(search);
+    expect(field.controller!.text, 'Paris');
+    expect(field.focusNode!.hasFocus, isFalse);
+    expect(find.byKey(const ValueKey('location-paris-01')), findsOneWidget);
+    tester.view.resetViewInsets();
+    await tester.pump();
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
+    expect(find.byType(CountryFlag), findsNWidgets(3));
+  });
+
+  _locationsTest('back in a focused search without keyboard clears it at once', (
+    tester,
+    h,
+  ) async {
+    // A hardware keyboard sets no inset: there is no keyboard to close first.
+    await h.mount(tester);
+    final search = find.byKey(const ValueKey('locations-search'));
+    await tester.tap(search);
+    await tester.enterText(search, 'Paris');
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(search).focusNode!.hasFocus, isTrue);
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
     expect(find.byType(CountryFlag), findsNWidgets(3));
   });
 
@@ -1380,6 +1493,27 @@ void _expectSingleLineCount(WidgetTester tester, Finder browse, String label) {
   }
 }
 
+void _expectForwardBrowseChevron(
+  WidgetTester tester,
+  Finder browse, {
+  required bool rtl,
+}) {
+  final iconFinder = find.descendant(of: browse, matching: find.byType(Icon));
+  final icon = tester.widget<Icon>(iconFinder);
+  expect(icon.icon, Icons.chevron_right_rounded);
+  expect(icon.icon!.matchTextDirection, isTrue);
+  final mirror = find.descendant(
+    of: iconFinder,
+    matching: find.byType(Transform),
+  );
+  if (rtl) {
+    expect(mirror, findsOneWidget);
+    expect(tester.widget<Transform>(mirror).transform.entry(0, 0), -1);
+  } else {
+    expect(mirror, findsNothing);
+  }
+}
+
 Future<void> _ensureVisible(WidgetTester tester, Finder finder) async {
   if (finder.evaluate().isEmpty) {
     final scrollable = find.byType(Scrollable).first;
@@ -1462,6 +1596,7 @@ class _LocationsHarness {
 
 class _LocationsApi implements VpnApiRepository {
   List<Location> catalog = _catalog;
+  Future<List<Location>> Function()? catalogueLoader;
   Future<List<Location>>? next;
   ApiException? registrationFailure;
   List<Location>? catalogAfterRegistration;
@@ -1470,6 +1605,7 @@ class _LocationsApi implements VpnApiRepository {
   @override
   Future<List<Location>> locations() async {
     reads++;
+    if (catalogueLoader != null) return catalogueLoader!();
     return next == null ? catalog : await next!;
   }
 
@@ -1510,6 +1646,29 @@ class _LocationsApi implements VpnApiRepository {
 
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+class _DuplicateCatalogueTransport extends ApiHttpTransport {
+  @override
+  Future<ApiHttpResponse> send(ApiHttpRequest request) async => ApiHttpResponse(
+    statusCode: 200,
+    headers: const {},
+    body: jsonEncode({
+      'locations': [
+        for (final (country, city) in [
+          ('DE', 'Frankfurt'),
+          ('BR', 'Sao Paulo'),
+        ])
+          {
+            'id': 'shared-01',
+            'city': city,
+            'country_code': country,
+            'display_name': '$city Shared',
+            'supported_protocols': ['wireguard'],
+          },
+      ],
+    }),
+  );
 }
 
 class _LocationsSession implements SecureSessionStore {

@@ -47,7 +47,7 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'آپ کا سیشن غیر مؤثر کر دیا گیا ہے۔ VPN روکا جا رہا ہے اور سیشن صاف کیا جا رہا ہے…';
+      'سیشن ختم کیا جا رہا ہے: VPN روکا جا رہا ہے اور سیشن کا ڈیٹا صاف کیا جا رہا ہے…';
 
   @override
   String get session_stopFailed =>
@@ -427,6 +427,9 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'بے نام ڈیوائس';
+
+  @override
   String get action_remove => 'ہٹائیں';
 
   @override
@@ -465,6 +468,11 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'ایپ میں استعمال ہونے والا سافٹ ویئر';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'ایپ اور اس کے MPL-2.0 لائسنس والے اجزا کا سورس کوڈ: $url';
+  }
 
   @override
   String get settings_background =>
@@ -547,7 +555,7 @@ class AppLocalizationsUr extends AppLocalizations {
   String get notice_rateLimited_title => 'بہت زیادہ کوششیں';
 
   @override
-  String get notice_deviceLimit_title => '2 ڈیوائسز کی حد پوری ہو گئی';
+  String get notice_deviceLimit_title => 'ڈیوائسز کی حد پوری ہو گئی';
 
   @override
   String get notice_deviceLimit_message =>
@@ -647,7 +655,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'vpn_sign_in_required': 'سائن اِن ضروری ہے',
       'protocol_unavailable_at_location': 'پروٹوکول دستیاب نہیں ہے',
       'vpn_permission_denied': 'VPN کی اجازت مسترد کر دی گئی',
-      'revoked_identity_device_limit': '2 ڈیوائسز کی حد پوری ہو گئی',
+      'revoked_identity_device_limit': 'ڈیوائسز کی حد پوری ہو گئی',
       'tunnel_start_unexpected': 'VPN شروع نہیں ہو سکا',
       'flutter_disconnect_timeout': 'ڈسکنکشن کی تصدیق نہیں ہوئی',
       'flutter_disconnect_unexpected': 'ڈسکنیکٹ نہیں ہو سکا',
@@ -663,6 +671,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'location_migration_device_changed':
           'مقام کی تبدیلی کے دوران ڈیوائس بدل گئی',
       'tunnel_stop_failed': 'مقام کی تبدیلی دستیاب نہیں ہے',
+      'device_clock_ahead': 'آلے کی گھڑی آگے ہے',
       'other': 'کارروائی ناکام ہو گئی',
     });
     return '$_temp0';
@@ -712,6 +721,8 @@ class AppLocalizationsUr extends AppLocalizations {
           'سرور کی جانب سے واپس کی گئی ڈیوائس تبدیل کی جانے والی ڈیوائس سے مطابقت نہیں رکھتی۔ دوبارہ کوشش سے پہلے آلات تازہ کریں۔',
       'tunnel_stop_failed':
           'نیا کنکشن شروع کرنے سے پہلے پچھلا ٹَنل مکمل طور پر رکنا ضروری ہے۔',
+      'device_clock_ahead':
+          'لگتا ہے اس آلے کی گھڑی آگے چل رہی ہے۔ سائن اِن رہنے کے لیے خودکار تاریخ اور وقت آن کریں۔',
       'other':
           'کارروائی مکمل نہیں کی جا سکی۔ دوبارہ کوشش کریں یا تشخیصی کوڈ معاونت کو بھیجیں۔',
     });
@@ -832,8 +843,36 @@ class AppLocalizationsUr extends AppLocalizations {
   String get notice_retryLater => 'چند لمحوں بعد دوبارہ کوشش کریں۔';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return '$seconds سیکنڈ بعد دوبارہ کوشش کریں۔';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '$seconds سیکنڈ بعد دوبارہ کوشش کریں۔',
+      one: '$seconds سیکنڈ بعد دوبارہ کوشش کریں۔',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes منٹ بعد دوبارہ کوشش کریں۔',
+      one: '$minutes منٹ بعد دوبارہ کوشش کریں۔',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours گھنٹے بعد دوبارہ کوشش کریں۔',
+      one: '$hours گھنٹے بعد دوبارہ کوشش کریں۔',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -947,6 +986,9 @@ class AppLocalizationsUr extends AppLocalizations {
       'secure_storage_write_failed': 'محفوظ تحریر ناکام ہو گئی',
       'key_generation_failed': 'WireGuard کلید نہیں بنائی جا سکی',
       'csr_generation_failed': 'OpenVPN CSR نہیں بنایا جا سکا',
+      'openvpn_recovery_exhausted': 'OpenVPN بحالی پہلے ہی استعمال ہو چکی ہے',
+      'openvpn_recovery_failed': 'OpenVPN بحالی ناکام ہو گئی',
+      'openvpn_renewal_required': 'OpenVPN سرٹیفکیٹ کی تجدید ضروری ہے',
       'other': 'غیر درجہ بند مقامی VPN خرابی',
     });
     return '$_temp0';
@@ -1772,6 +1814,14 @@ class AppLocalizationsUr extends AppLocalizations {
       'آپ کی رکنیت کا انتظام Google Play سے ہوتا ہے۔';
 
   @override
+  String get billing_playOnHold =>
+      'آپ کی Google Play رکنیت معطل ہے یا ادائیگی کی منتظر ہے۔ Google Play میں اسے درست کرنے کے لیے “رکنیت کا انتظام کریں” کھولیں۔';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'اس Google Play اکاؤنٹ میں پہلے سے ایک Fuze Premium رکنیت موجود ہے جو اس FuzeVPN اکاؤنٹ کے لیے فعال نہیں۔ Google Play میں اس کا جائزہ لینے کے لیے “رکنیت کا انتظام کریں” کھولیں۔';
+
+  @override
   String get billing_inactive => 'کوئی فعال رکنیت نہیں۔';
 
   @override
@@ -2023,6 +2073,10 @@ class AppLocalizationsUr extends AppLocalizations {
   String get google_rateLimited => 'دوبارہ کوشش کرنے سے پہلے انتظار کریں۔';
 
   @override
+  String get google_busy =>
+      'کسی دوسری کارروائی (VPN کنکشن، اکاؤنٹ یا مہمان) کے جاری رہنے تک Google سائن ان دستیاب نہیں۔ اس کے مکمل ہونے کے بعد دوبارہ کوشش کریں؛ آپ کی موجودہ رسائی برقرار رہے گی۔';
+
+  @override
   String get google_invalidPassword =>
       'FuzeVPN پاس ورڈ غلط ہے۔ موجودہ اکاؤنٹ محفوظ رہے گا۔';
 
@@ -2053,6 +2107,36 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'سیکیورٹی جانچ دستیاب نہیں۔ بعد میں کوشش کریں۔';
+
+  @override
+  String get google_intentMismatch =>
+      'Google کے ساتھ سائن اِن کی ایک پچھلی کوشش ابھی زیر التوا ہے۔ یہ کارروائی شروع کرنے سے پہلے اسے منسوخ کریں۔';
+
+  @override
+  String get google_challengeBlocked =>
+      'مطلوبہ سیکیورٹی کی تصدیق اس ایپ میں دستیاب نہیں ہے۔ یہ کارروائی اس وقت مکمل نہیں کی جا سکتی۔';
+
+  @override
+  String get google_solveChallenge => 'سیکیورٹی کی تصدیق مکمل کریں';
+
+  @override
+  String get google_challengeTitle => 'سیکیورٹی کی تصدیق';
+
+  @override
+  String get google_challengeReady =>
+      'تصدیق مکمل ہو گئی۔ اب آپ اپنے اکاؤنٹ کی تخلیق کی تصدیق کر سکتے ہیں۔';
+
+  @override
+  String get google_challengeExpired =>
+      'تصدیق کی مدت ختم ہو گئی ہے۔ توثیق کرنے سے پہلے اسے دوبارہ مکمل کریں۔';
+
+  @override
+  String get google_challengeCancelled =>
+      'تصدیق منسوخ کر دی گئی۔ آپ اسے دوبارہ کر سکتے ہیں۔';
+
+  @override
+  String get google_challengeFailed =>
+      'سیکیورٹی کی تصدیق ناکام ہو گئی۔ دوبارہ کوشش کریں۔';
 
   @override
   String get billing_trialTitle => 'Fuze Premium مفت آزمائیں';

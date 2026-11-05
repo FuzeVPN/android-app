@@ -1123,16 +1123,22 @@ Sikkerhetskontrollen er ikke tilgjengelig. Prøv senere.''',
 Ο έλεγχος ασφαλείας δεν είναι διαθέσιμος. Δοκιμάστε αργότερα.''',
 }
 
-assert len(KEYS) == 37
-assert len(TEXTS) == 30
+def require(condition, message):
+    # Explicit checks survive python -O and PYTHONOPTIMIZE; assert does not.
+    if not condition:
+        raise SystemExit(f'Google translation update refused: {message}')
+
+
+require(len(KEYS) == 37, f'{len(KEYS)} keys instead of 37')
+require(len(TEXTS) == 30, f'{len(TEXTS)} languages instead of 30')
 updates = {}
 for language, authored in TEXTS.items():
     texts = authored.splitlines()
-    assert len(texts) == len(KEYS), (language, len(texts))
+    require(len(texts) == len(KEYS), f'{language}: {len(texts)} texts for {len(KEYS)} keys')
     path = ROOT / f'lib/l10n/translations/{language}.json'
     pack = json.loads(path.read_text(encoding='utf-8-sig'))
     for key, text in zip(KEYS, texts, strict=True):
-        assert text.strip()
+        require(text.strip(), f'{language}.google_{key}: empty text')
         pack['arb'][f'google_{key}'] = text
     updates[path] = json.dumps(pack, ensure_ascii=False, indent=2) + '\n'
 for path, content in updates.items():

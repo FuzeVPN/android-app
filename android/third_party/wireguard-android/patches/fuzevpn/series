@@ -1,2 +1,3 @@
 0001-go-backend-real-foreground-service.patch
 0002-go-backend-protected-start.patch
+0003-go-runtime-and-handshake-update.patch

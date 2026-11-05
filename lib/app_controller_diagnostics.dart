@@ -16,19 +16,28 @@ extension VpnDiagnostics on VpnAppController {
   bool get canExportDiagnosticReport =>
       diagnosticReport != null && _tunnel is DiagnosticPlatformGateway;
 
+  /// The native picker accepts one export at a time; a second request is
+  /// ignored until the first one has completed.
+  bool get diagnosticExporting => _diagnosticExports[this] != null;
+
   void _diagnosticsChanged() {
     if (!_disposed) _notifyDiagnosticListeners();
   }
 
   void _syncDiagnosticSession() {
-    final valid =
-        isSignedIn &&
-        sessionTermination == null &&
-        _session!.expiresAt.isAfter(DateTime.now());
+    // The server owns the expiry of a session it delivered here: a device
+    // clock running ahead must not take its account and token away (C4-04).
+    final AuthSession? session = isSignedIn && sessionTermination == null
+        ? _session
+        : null;
+    final bool valid = session != null && _sessionLive(session);
     _diagnostics?.setSession(
       accountId: valid ? profile!.userId : null,
       token: valid ? token : null,
-      expiresAt: valid ? _session!.expiresAt : null,
+      // That clock cannot judge a session it already places in the past.
+      expiresAt: valid && !identical(session, _clockAheadSession)
+          ? session.expiresAt
+          : null,
     );
   }
 
@@ -63,6 +72,27 @@ extension VpnDiagnostics on VpnAppController {
         .diagnosticMetadata()
         .timeout(const Duration(seconds: 3));
     if (!_disposed) _diagnostics?.setMetadata(metadata);
+  }
+
+  /// The installed version as the license page shows it, read from the native
+  /// diagnostic metadata (versionName, versionCode): `<version> (<build>)`, the
+  /// version alone, or null when it is unknown. Never throws.
+  Future<String?> installedVersionLabel() async {
+    final platform = _tunnel;
+    if (platform is! DiagnosticPlatformGateway) return null;
+    try {
+      final metadata = DiagnosticMetadata.fromJson(
+        await (platform as DiagnosticPlatformGateway)
+            .diagnosticMetadata()
+            .timeout(const Duration(seconds: 2)),
+      );
+      final version = metadata.appVersion;
+      if (version == null) return null;
+      final build = metadata.appBuild;
+      return build == null ? version : '$version ($build)';
+    } catch (_) {
+      return null;
+    }
   }
 
   Future<void> setAutomaticDiagnostics(bool enabled) async {
@@ -238,16 +268,37 @@ extension VpnDiagnostics on VpnAppController {
   Future<void> exportDiagnosticReport() async {
     final report = diagnosticReport;
     final platform = _tunnel;
-    if (report == null || platform is! DiagnosticPlatformGateway) return;
+    if (_disposed ||
+        report == null ||
+        platform is! DiagnosticPlatformGateway ||
+        diagnosticExporting) {
+      return;
+    }
+    final export = _DiagnosticExport(_diagnosticCollectionEpoch);
+    _diagnosticExports[this] = export;
     diagnosticExportFailed = false;
+    notifyListeners();
+    var failed = false;
     try {
       await (platform as DiagnosticPlatformGateway).exportDiagnosticReport(
         report.json,
       );
+    } on NativeVpnException catch (error) {
+      // Another export still owns the picker: this request did not fail.
+      failed = error.code != 'diagnostic_export_in_progress';
     } catch (_) {
-      if (!_disposed) diagnosticExportFailed = true;
+      failed = true;
+    } finally {
+      if (identical(_diagnosticExports[this], export)) {
+        _diagnosticExports[this] = null;
+      }
     }
-    if (!_disposed) notifyListeners();
+    if (_disposed) return;
+    // A new run or a cleared report supersedes the outcome of this export.
+    if (failed && export.collectionEpoch == _diagnosticCollectionEpoch) {
+      diagnosticExportFailed = true;
+    }
+    notifyListeners();
   }
 
   void clearDiagnosticReport() {
@@ -335,6 +386,17 @@ extension VpnDiagnostics on VpnAppController {
       httpStatus: status,
     );
   }
+}
+
+/// In-flight export per controller. An extension cannot declare fields, so the
+/// state is attached here without widening the controller's own declaration.
+final Expando<_DiagnosticExport> _diagnosticExports =
+    Expando<_DiagnosticExport>('diagnosticExport');
+
+final class _DiagnosticExport {
+  _DiagnosticExport(this.collectionEpoch);
+
+  final int collectionEpoch;
 }
 
 String _diagnosticState(VpnRuntimeState state) => state.isReconnecting

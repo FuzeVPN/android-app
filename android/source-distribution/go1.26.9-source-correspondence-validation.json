@@ -1,0 +1,21 @@
+{
+  "go_version": "1.26.9",
+  "official_source_sha256": "9735d7dcdb65b35d3fa577f04064737c03b89cf1a2b71e6e69fe2f3c6f9fd4ca",
+  "matching_source_files": 11468,
+  "changed_files": [
+    "src/runtime/sys_linux_386.s",
+    "src/runtime/sys_linux_amd64.s",
+    "src/runtime/sys_linux_arm.s",
+    "src/runtime/sys_linux_arm64.s",
+    "src/runtime/sys_linux_mips64x.s",
+    "src/runtime/sys_linux_mipsx.s",
+    "src/runtime/sys_linux_ppc64x.s",
+    "src/runtime/sys_linux_s390x.s",
+    "src/runtime/time_linux_amd64.s"
+  ],
+  "missing_files": [],
+  "patch": "android/third_party/wireguard-android/tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.diff",
+  "patch_sha256": "d0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a",
+  "patch_application": "tools/build_wireguard_native.ps1",
+  "reviewed_sites": 14
+}

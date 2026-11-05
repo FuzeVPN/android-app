@@ -47,7 +47,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Phiên của bạn đã bị vô hiệu hóa. Đang dừng VPN và xóa phiên…';
+      'Đang kết thúc phiên: đang dừng VPN và xóa dữ liệu phiên…';
 
   @override
   String get session_stopFailed =>
@@ -423,6 +423,9 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Thiết bị chưa đặt tên';
+
+  @override
   String get action_remove => 'Xóa';
 
   @override
@@ -462,6 +465,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Phần mềm được sử dụng trong ứng dụng';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Mã nguồn của ứng dụng và các thành phần theo giấy phép MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -544,7 +552,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get notice_rateLimited_title => 'Quá nhiều lần thử';
 
   @override
-  String get notice_deviceLimit_title => 'Đã đạt giới hạn 2 thiết bị';
+  String get notice_deviceLimit_title => 'Đã đạt giới hạn thiết bị';
 
   @override
   String get notice_deviceLimit_message =>
@@ -643,7 +651,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'vpn_sign_in_required': 'Cần đăng nhập',
       'protocol_unavailable_at_location': 'Giao thức không khả dụng',
       'vpn_permission_denied': 'Quyền VPN bị từ chối',
-      'revoked_identity_device_limit': 'Đã đạt giới hạn 2 thiết bị',
+      'revoked_identity_device_limit': 'Đã đạt giới hạn thiết bị',
       'tunnel_start_unexpected': 'Không thể khởi động VPN',
       'flutter_disconnect_timeout': 'Chưa xác nhận ngắt kết nối',
       'flutter_disconnect_unexpected': 'Không thể ngắt kết nối',
@@ -658,6 +666,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'location_migration_device_changed':
           'Thiết bị đã thay đổi trong quá trình thay đổi vị trí',
       'tunnel_stop_failed': 'Thay đổi vị trí không khả dụng',
+      'device_clock_ahead': 'Đồng hồ thiết bị chạy nhanh',
       'other': 'Thao tác thất bại',
     });
     return '$_temp0';
@@ -707,6 +716,8 @@ class AppLocalizationsVi extends AppLocalizations {
           'Thiết bị do máy chủ trả về không còn khớp với thiết bị đang được thay đổi. Hãy làm mới danh sách thiết bị trước khi thử lại.',
       'tunnel_stop_failed':
           'Phải dừng hoàn toàn đường hầm trước đó trước khi tạo kết nối mới.',
+      'device_clock_ahead':
+          'Đồng hồ của thiết bị này có vẻ đang chạy nhanh. Hãy bật ngày và giờ tự động để duy trì trạng thái đăng nhập.',
       'other':
           'Không thể hoàn tất thao tác. Hãy thử lại hoặc gửi mã chẩn đoán cho bộ phận hỗ trợ.',
     });
@@ -824,8 +835,36 @@ class AppLocalizationsVi extends AppLocalizations {
   String get notice_retryLater => 'Hãy thử lại sau ít phút.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Hãy thử lại sau $seconds giây.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Hãy thử lại sau $seconds giây.',
+      one: 'Hãy thử lại sau $seconds giây.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Hãy thử lại sau $minutes phút.',
+      one: 'Hãy thử lại sau $minutes phút.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Hãy thử lại sau $hours giờ.',
+      one: 'Hãy thử lại sau $hours giờ.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -934,6 +973,9 @@ class AppLocalizationsVi extends AppLocalizations {
       'secure_storage_write_failed': 'Ghi bộ nhớ bảo mật thất bại',
       'key_generation_failed': 'Không thể tạo khóa WireGuard',
       'csr_generation_failed': 'Không thể tạo CSR OpenVPN',
+      'openvpn_recovery_exhausted': 'Đã dùng khôi phục OpenVPN',
+      'openvpn_recovery_failed': 'Khôi phục OpenVPN thất bại',
+      'openvpn_renewal_required': 'Cần gia hạn chứng chỉ OpenVPN',
       'other': 'Lỗi VPN gốc chưa được phân loại',
     });
     return '$_temp0';
@@ -1760,6 +1802,14 @@ class AppLocalizationsVi extends AppLocalizations {
       'Gói đăng ký của bạn được quản lý qua Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Gói đăng ký Google Play của bạn đang bị tạm ngưng hoặc chờ thanh toán. Hãy mở “Quản lý gói đăng ký” để khắc phục trong Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Tài khoản Google Play này đã có gói đăng ký Fuze Premium không hoạt động cho tài khoản FuzeVPN này. Hãy mở “Quản lý gói đăng ký” để xem lại trong Google Play.';
+
+  @override
   String get billing_inactive => 'Không có gói đăng ký đang hoạt động.';
 
   @override
@@ -2007,6 +2057,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get google_rateLimited => 'Vui lòng đợi trước khi thử lại.';
 
   @override
+  String get google_busy =>
+      'Google không khả dụng khi một thao tác khác đang diễn ra (kết nối VPN, tài khoản hoặc khách). Hãy thử lại khi thao tác đó hoàn tất; quyền truy cập hiện tại của bạn vẫn được giữ.';
+
+  @override
   String get google_invalidPassword =>
       'Mật khẩu FuzeVPN không đúng. Tài khoản hiện tại được giữ nguyên.';
 
@@ -2036,6 +2090,36 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Kiểm tra bảo mật không khả dụng. Thử lại sau.';
+
+  @override
+  String get google_intentMismatch =>
+      'Một lần đăng nhập bằng Google trước đó vẫn đang chờ xử lý. Hãy hủy lần đăng nhập đó trước khi bắt đầu thao tác này.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Quy trình kiểm tra bảo mật bắt buộc không có trong ứng dụng này. Hiện không thể hoàn tất thao tác này.';
+
+  @override
+  String get google_solveChallenge => 'Thực hiện kiểm tra bảo mật';
+
+  @override
+  String get google_challengeTitle => 'Kiểm tra bảo mật';
+
+  @override
+  String get google_challengeReady =>
+      'Đã hoàn tất xác minh. Giờ bạn có thể xác nhận tạo tài khoản.';
+
+  @override
+  String get google_challengeExpired =>
+      'Xác minh đã hết hạn. Hãy thực hiện lại trước khi xác nhận.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Đã hủy xác minh. Bạn có thể thực hiện lại.';
+
+  @override
+  String get google_challengeFailed =>
+      'Kiểm tra bảo mật không thành công. Hãy thử lại.';
 
   @override
   String get billing_trialTitle => 'Dùng thử Fuze Premium miễn phí';

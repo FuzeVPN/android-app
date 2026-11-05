@@ -38,6 +38,8 @@ $projectPatch = Join-Path $root 'patches\wireguard-android\0001-go-backend-real-
 $copiedPatch = Join-Path $sourceRoot 'patches\fuzevpn\0001-go-backend-real-foreground-service.patch'
 $startupPatch = Join-Path $root 'patches\wireguard-android\0002-go-backend-protected-start.patch'
 $copiedStartupPatch = Join-Path $sourceRoot 'patches\fuzevpn\0002-go-backend-protected-start.patch'
+$runtimeUpdatePatch = Join-Path $root 'patches\wireguard-android\0003-go-runtime-and-handshake-update.patch'
+$copiedRuntimeUpdatePatch = Join-Path $sourceRoot 'patches\fuzevpn\0003-go-runtime-and-handshake-update.patch'
 $outputDirectory = Join-Path $sourceRoot 'dist'
 $outputAar = Join-Path $outputDirectory "tunnel-$version-fuzevpn-fgs.aar"
 $outputMetadata = Join-Path $outputDirectory "tunnel-$version-fuzevpn-fgs.metadata.json"
@@ -65,10 +67,18 @@ Require-Path $projectPatch 'WireGuard patch'
 Require-Path $copiedPatch 'Copied WireGuard patch'
 Require-Path $startupPatch 'Protected-start WireGuard patch'
 Require-Path $copiedStartupPatch 'Copied protected-start patch'
+Require-Path $runtimeUpdatePatch 'Go runtime and handshake update patch'
+Require-Path $copiedRuntimeUpdatePatch 'Copied Go runtime and handshake update patch'
 
 $importMetadata = Get-Content -LiteralPath $importMetadataPath -Raw | ConvertFrom-Json
 if ($importMetadata.source.commit -ne $expectedCommit) {
     throw "Unexpected WireGuard source commit: $($importMetadata.source.commit)"
+}
+$runtimeUpdatePatchHash = (Get-FileHash -LiteralPath $runtimeUpdatePatch -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($runtimeUpdatePatchHash -ne 'cc6624be2e950edef4e15c9d232581e1242525d96f437e693e82f03f9310ffd4' -or
+    $runtimeUpdatePatchHash -ne $importMetadata.nativeRuntimePatch.sha256 -or
+    $runtimeUpdatePatchHash -ne (Get-FileHash -LiteralPath $copiedRuntimeUpdatePatch -Algorithm SHA256).Hash.ToLowerInvariant()) {
+    throw 'Go runtime and handshake source patch does not match its reviewed metadata.'
 }
 
 $startupPatchHash = (Get-FileHash -LiteralPath $startupPatch -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -80,6 +90,11 @@ if (-not $NativeDirectory) { $NativeDirectory = Join-Path $root 'build\wireguard
 $nativeMetadataPath = Join-Path $NativeDirectory 'metadata.json'
 Require-Path $nativeMetadataPath 'Rebuilt WireGuard native metadata'
 $nativeMetadata = Get-Content -LiteralPath $nativeMetadataPath -Raw | ConvertFrom-Json
+if ($nativeMetadata.go -ne 'go version go1.26.9 windows/amd64' -or
+    $nativeMetadata.module -ne 'golang.zx2c4.com/wireguard v0.0.0-20261024220952-b3bc704ef0ee' -or
+    $nativeMetadata.runtimePatchManifestSha256 -ne '9580d03064a6c0247bd543ae6311991b330dd94ff6352e2fd0e09761ab9d0127') {
+    throw 'Native metadata does not identify the reviewed Go 1.26.9 runtime and WireGuard handshake and IPv6 length corrections.'
+}
 foreach ($inputFile in $nativeMetadata.sourceHashes.PSObject.Properties) {
     $inputPath = Join-Path $sourceRoot ("tunnel\tools\libwg-go\" + $inputFile.Name)
     Require-Path $inputPath 'Native source input'
@@ -262,13 +277,14 @@ try {
         sourceCommit = $expectedCommit
         patchSha256 = $expectedPatchSha256
         protectedStartPatchSha256 = $startupPatchHash
+        nativeRuntimePatchSha256 = $runtimeUpdatePatchHash
         jdk = (& (Join-Path $JavaHome 'bin\java.exe') -version 2>&1 | Select-Object -First 1).ToString()
         nativeLibraries = 'libwg-go rebuilt from pinned source with protected-start JNI; other libraries unchanged from official AAR.'
         nativeBuild = $nativeMetadata
         emptyRTxt = 'Excluded because AGP 9.3 fails transforming a local AAR with empty R.txt.'
         abi = @('arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64')
     } | ConvertTo-Json -Depth 8
-    [IO.File]::WriteAllText($outputMetadata, "$result`n", [Text.UTF8Encoding]::new($false))
+    [IO.File]::WriteAllText($outputMetadata, ($result.Replace("`r`n", "`n") + "`n"), [Text.UTF8Encoding]::new($false))
     Write-Host "Built audited WireGuard AAR: $outputAar"
 } finally {
     if (Test-Path -LiteralPath $stage) {

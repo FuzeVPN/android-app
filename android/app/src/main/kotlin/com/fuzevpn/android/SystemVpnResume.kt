@@ -138,9 +138,10 @@ internal class SystemVpnResumeRegistry(
     }
 
     /**
-     * Persist the OpenVPN automatic-recovery budget before a restart begins.
+     * Persist the OpenVPN failure-recovery budget before such a restart begins.
      * It is deliberately never reset here: only [arm] after a new explicit,
-     * proven connection may reset it.
+     * proven connection may reset it. Network-change restarts use
+     * [admitNetworkRecovery] and neither need nor spend it.
      */
     @Synchronized
     fun consumeRecovery(sessionPayload: String, identityFingerprint: String): SystemVpnResumeRecord? {
@@ -153,6 +154,21 @@ internal class SystemVpnResumeRegistry(
         val consumed = current.copy(recoveryConsumed = true)
         writeRaw(consumed.encode())
         return consumed
+    }
+
+    /**
+     * Same admission as [consumeRecovery], without requiring or spending the
+     * failure budget: a physical network change is not a failure retry. Never writes.
+     */
+    @Synchronized
+    fun admitNetworkRecovery(sessionPayload: String, identityFingerprint: String): SystemVpnResumeRecord? {
+        confirmedInvalidation = false
+        val current = readRecord() ?: return null
+        if (current.status !in setOf(SystemVpnResumeStatus.READY, SystemVpnResumeStatus.RESERVED) ||
+            !matchesCurrentSession(current, sessionPayload, identityFingerprint) ||
+            current.profile.protocol != VpnProtocol.OPENVPN
+        ) return null
+        return current
     }
 
     /**
@@ -342,3 +358,15 @@ private const val MAX_PROFILE_PAYLOAD_CHARS = 16_384
 private const val MAX_RECORD_CHARS = 32_768
 private val FINGERPRINT = Regex("[a-f0-9]{64}")
 private val ERROR_CODE = Regex("[a-z0-9_]{1,96}")
+
+/** A process death is followed by a restore only from READY: RESERVED is an interrupted restore, never retried. */
+internal fun systemVpnResumeKeepsProcessRestart(raw: String?): Boolean =
+    raw != null && SystemVpnResumeRecord.decode(raw)?.isResumable == true
+
+/**
+ * Whether SystemVpnResumeSentinel stays started, so a process death is followed by a restore:
+ * Android 10+ (isAlwaysOn), the patched VPN host, no stop or host loss in progress, a READY
+ * record and the permanent VPN seen on while our tunnel was established.
+ */
+internal fun processRestartArmed(sdk: Int, patchedHost: Boolean, holds: Int, resumable: Boolean, alwaysOn: Boolean?): Boolean =
+    sdk >= 29 && patchedHost && holds == 0 && resumable && alwaysOn == true

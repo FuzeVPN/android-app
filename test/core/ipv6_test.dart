@@ -72,10 +72,11 @@ void main() {
     expect(VpnNetworkConfiguration.advertisedIpv6(null), isFalse);
     expect(VpnNetworkConfiguration.advertisedIpv6(['ipv4']), isFalse);
     expect(VpnNetworkConfiguration.advertisedIpv6(['ipv4', 'ipv6']), isTrue);
-    expect(
-      () => VpnNetworkConfiguration.advertisedIpv6(['ipv6']),
-      throwsFormatException,
-    );
+    // A capability hint (C5-01): order, duplicates and unknown families do not
+    // invalidate the row; IPv6 is offered only alongside IPv4.
+    expect(VpnNetworkConfiguration.advertisedIpv6(['ipv6', 'ipv4']), isTrue);
+    expect(VpnNetworkConfiguration.advertisedIpv6(['ipv6']), isFalse);
+    expect(VpnNetworkConfiguration.advertisedIpv6(['ipv4', 'ipv7']), isFalse);
   });
 
   for (final ipv6 in [false, true]) {

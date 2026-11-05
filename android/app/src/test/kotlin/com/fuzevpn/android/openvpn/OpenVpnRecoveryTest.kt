@@ -15,9 +15,45 @@ import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Test
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class OpenVpnRecoveryTest {
+    @Test fun commandCancellationWakesStartupWithoutWaitingForAnInFlightPkiCallback() = runTest {
+        val events = OpenVpnSessionEvents()
+        val generation = events.begin()
+        val waiting = events.firstOutcome(generation)
+        val signing = CountDownLatch(1)
+        val releaseSigning = CountDownLatch(1)
+        val callback = Thread {
+            events.callback(generation, false) {
+                signing.countDown()
+                assertTrue(releaseSigning.await(2, TimeUnit.SECONDS))
+                true
+            }
+        }.apply { isDaemon = true; start() }
+        try {
+            assertTrue(signing.await(2, TimeUnit.SECONDS))
+            // The monitor is held by signing. Cancellation must still complete here.
+            events.cancelPendingConnection()
+            assertTrue(waiting.isCompleted)
+            assertEquals("session_operation_cancelled", waiting.await().messageCode())
+        } finally {
+            releaseSigning.countDown()
+            callback.join(2_000)
+        }
+        assertFalse(callback.isAlive)
+        assertEquals(-1, events.callback(generation, -1) { fail("TUN created after cancellation"); 0 })
+        events.publish(generation, OpenVpnNativeState.fromNative("connected", ""))
+        assertFalse(events.confirmConnected(generation) { fail("Cancelled startup published protection") })
+        events.requestStop()
+        events.finish()
+        val fresh = events.begin()
+        assertFalse(events.firstOutcome(fresh).isCompleted)
+        assertEquals(7, events.callback(fresh, -1) { 7 })
+    }
+
     @Test fun permissionRevocationDuringStartupCannotPublishConnected() {
         val events = OpenVpnSessionEvents()
         val generation = events.begin()
@@ -59,6 +95,54 @@ class OpenVpnRecoveryTest {
         policy.connected(7)
         assertTrue(policy.isCurrent(request))
         assertNull(policy.claim(7))
+    }
+
+    @Test fun networkChangeIsFollowedOncePerProvenSessionAndKeepsTheFailureRetry() {
+        val policy = OpenVpnRecoveryPolicy()
+        val request = policy.newRequest()
+        assertFalse(policy.networkLost(1)) // No native proof yet.
+        assertNull(policy.claimNetworkChange(1))
+        policy.connected(1)
+        assertNull(policy.claimNetworkChange(1)) // No OS loss for this session.
+        assertFalse(policy.networkLost(2)) // Stale or unrelated session.
+        assertNull(policy.claimNetworkChange(2))
+        assertTrue(policy.networkLost(1))
+        assertEquals(request, policy.claimNetworkChange(1))
+        assertTrue(policy.networkLost(1)) // A second callback for the same session...
+        assertNull(policy.claimNetworkChange(1)) // ...claims nothing more.
+        policy.connected(2) // The network recovery was proven.
+        assertNull(policy.claimNetworkChange(2))
+        assertTrue(policy.networkLost(2))
+        assertEquals(request, policy.claimNetworkChange(2))
+        assertNull(policy.claimNetworkChange(2))
+        assertEquals(request, policy.claim(2)) // The failure retry was never spent.
+        assertNull(policy.claim(2))
+        assertTrue(policy.isCurrent(request))
+    }
+
+    @Test fun aRestoredConsumedBudgetStillFollowsANetworkChange() {
+        val policy = OpenVpnRecoveryPolicy()
+        val request = policy.newRequest(recoveryConsumed = true)
+        policy.connected(7)
+        assertTrue(policy.networkLost(7))
+        assertEquals(request, policy.claimNetworkChange(7))
+        policy.connected(8)
+        assertNull(policy.claim(8))
+    }
+
+    @Test fun cancellationRefusesNetworkLossAndClaim() {
+        val policy = OpenVpnRecoveryPolicy()
+        policy.newRequest()
+        policy.connected(1)
+        assertTrue(policy.networkLost(1))
+        policy.cancel()
+        assertFalse(policy.networkLost(1))
+        assertNull(policy.claimNetworkChange(1))
+        assertNull(policy.claim(1))
+        // A new request starts without the cancelled session's loss.
+        policy.newRequest()
+        policy.connected(1)
+        assertNull(policy.claimNetworkChange(1))
     }
 
     @Test fun rapidControlEventsAreOrderedAndCannotRestoreOldProof() = runTest {

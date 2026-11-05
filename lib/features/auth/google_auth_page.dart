@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../app_controller.dart';
 import '../../core/country_data.dart';
+import '../../core/location_grouping.dart';
 import '../../core/public_links.dart';
 import '../../google_auth_controller.dart';
 import '../../l10n/app_copy.dart';
@@ -11,6 +12,7 @@ import '../../widgets/external_link.dart';
 import '../../widgets/fuze_brand.dart';
 import '../../widgets/fuze_design.dart';
 import '../../widgets/google_sign_in_button.dart';
+import '../../widgets/validation_error.dart';
 
 Future<void> openGoogleAuthentication(
   BuildContext context,
@@ -48,9 +50,21 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   bool _terms = false, _privacy = false, _showConsentErrors = false;
   bool _obscure = true, _closing = false, _allowPop = false, _finishing = false;
   String? _exitMessage;
+  // The state shown when the exit failed: any later state replaces the notice.
+  GoogleAuthState? _exitState;
   Timer? _retryTimer;
+  String? _countryOrderLocale;
+  List<String>? _countryOrder;
 
   GoogleAuthController get _auth => widget.controller.googleAuth;
+
+  bool get _canFinalize =>
+      !_closing &&
+      !_auth.isBusy &&
+      _auth.state.block == null &&
+      (!_auth.state.securityChallengeRequired ||
+          _auth.state.challengeExpiresAt?.isAfter(_auth.now) == true) &&
+      _auth.state.retryAfter?.isAfter(_auth.now) != true;
 
   @override
   void initState() {
@@ -67,15 +81,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
     if (!mounted) {
       return;
     }
-    _retryTimer?.cancel();
-    final retry = _auth.state.retryAfter;
-    if (retry != null && retry.isAfter(DateTime.now())) {
-      _retryTimer = Timer(retry.difference(DateTime.now()), () {
-        if (mounted) {
-          setState(() {});
-        }
-      });
-    }
+    _scheduleRetryRefresh();
     setState(() {});
     if (_auth.state.step == GoogleAuthStep.authenticated && !_finishing) {
       _finishing = true;
@@ -88,6 +94,52 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
         }
       });
     }
+  }
+
+  void _scheduleRetryRefresh() {
+    _retryTimer?.cancel();
+    final now = _auth.now;
+    final retryAfter = _auth.state.retryAfter;
+    final countdownShown =
+        _auth.state.securityChallengeRequired ||
+        const {
+          GoogleAuthStep.registrationRequired,
+          GoogleAuthStep.guestClaimRequired,
+          GoogleAuthStep.linkRequired,
+        }.contains(_auth.state.step);
+    // While finalization waits, refresh each time the countdown changes.
+    DateTime? countdownTick;
+    if (countdownShown && retryAfter != null && retryAfter.isAfter(now)) {
+      final fraction =
+          retryAfter.difference(now).inMicroseconds %
+          Duration.microsecondsPerSecond;
+      countdownTick = now.add(
+        Duration(
+          microseconds: fraction == 0
+              ? Duration.microsecondsPerSecond
+              : fraction,
+        ),
+      );
+    }
+    final deadlines =
+        [
+              retryAfter,
+              _auth.state.emailRetryAfter,
+              _auth.state.challengeExpiresAt,
+              countdownTick,
+            ]
+            .whereType<DateTime>()
+            .where((deadline) => deadline.isAfter(now))
+            .toList()
+          ..sort();
+    if (deadlines.isEmpty) return;
+    _retryTimer = Timer(deadlines.first.difference(now), () {
+      if (mounted) {
+        _auth.expireSecurityChallenge();
+        setState(() {});
+        _scheduleRetryRefresh();
+      }
+    });
   }
 
   @override
@@ -121,6 +173,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
       setState(() {
         _closing = false;
         _exitMessage = 'google.cancelFailed';
+        _exitState = _auth.state;
       });
       return;
     }
@@ -133,6 +186,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   }
 
   Future<void> _completeProfile() async {
+    if (!_canFinalize) return;
     final valid = _profileForm.currentState?.validate() == true;
     if (!valid || !_terms || !_privacy) {
       setState(() => _showConsentErrors = true);
@@ -147,6 +201,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   }
 
   Future<void> _provePassword() async {
+    if (!_canFinalize) return;
     if (_proofForm.currentState?.validate() != true) {
       return;
     }
@@ -155,6 +210,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   }
 
   Future<void> _confirmEmail() async {
+    if (!_canFinalize) return;
     if (_proofForm.currentState?.validate() != true) {
       return;
     }
@@ -162,10 +218,21 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
     await _auth.confirmEmailLink(_emailCode.text.trim());
   }
 
+  Future<void> _solveSecurityChallenge() async {
+    FocusScope.of(context).unfocus();
+    await _auth.solveSecurityChallenge(
+      title: context.copy('google.challengeTitle'),
+      cancelLabel: context.copy('action.cancel'),
+    );
+  }
+
   Future<void> _restart() async {
     if (!await _auth.cancel() || !mounted) {
       if (mounted) {
-        setState(() => _exitMessage = 'google.cancelFailed');
+        setState(() {
+          _exitMessage = 'google.cancelFailed';
+          _exitState = _auth.state;
+        });
       }
       return;
     }
@@ -188,6 +255,36 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
     final profileStep =
         state.step == GoogleAuthStep.registrationRequired ||
         state.step == GoogleAuthStep.guestClaimRequired;
+    final formStep = profileStep || state.step == GoogleAuthStep.linkRequired;
+    final retryAfter = state.retryAfter;
+    final retryWait = retryAfter?.difference(_auth.now);
+    final retryPending = retryWait != null && retryWait > Duration.zero;
+    // A failed exit is reported until the controller publishes a newer state.
+    final exitMessage = identical(state, _exitState) ? _exitMessage : null;
+    final challengeBlocked = state.block == GoogleAuthBlock.securityChallenge;
+    // The controller publishes retryAfter only while it is in force, so a
+    // passed deadline marks the limit message of this very state as stale.
+    // A new refusal without delay publishes none and stays visible.
+    final staleLimit =
+        state.messageKey == 'google.rateLimited' &&
+        (formStep || challengeBlocked) &&
+        retryAfter != null &&
+        !retryPending;
+    final stateMessage = staleLimit
+        ? (challengeBlocked ? 'google.challengeRequired' : null)
+        : state.messageKey;
+    final message = exitMessage ?? stateMessage;
+    final challengeAction =
+        !busy &&
+        state.securityChallengeRequired &&
+        state.block != GoogleAuthBlock.intentMismatch;
+    final retrySeconds =
+        retryWait != null &&
+            retryPending &&
+            !busy &&
+            (formStep || challengeAction)
+        ? (retryWait.inMicroseconds / Duration.microsecondsPerSecond).ceil()
+        : null;
     return PopScope<void>(
       canPop: _allowPop,
       onPopInvokedWithResult: (didPop, _) {
@@ -243,17 +340,45 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ),
-                  if (state.messageKey != null || _exitMessage != null) ...[
-                    Semantics(
-                      liveRegion: true,
-                      child: FuzePanel(
-                        tone: FuzePanelTone.wash,
-                        child: Text(
-                          context.copy(_exitMessage ?? state.messageKey!),
-                        ),
+                  if (message != null || retrySeconds != null) ...[
+                    FuzePanel(
+                      tone: FuzePanelTone.wash,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (message != null)
+                            Semantics(
+                              liveRegion: true,
+                              child: Text(context.copy(message)),
+                            ),
+                          if (message != null && retrySeconds != null)
+                            const SizedBox(height: 8),
+                          // Not a live region: it changes every second.
+                          if (retrySeconds != null)
+                            Text(
+                              context.copy(
+                                'notice.retryAfter',
+                                arguments: {'seconds': retrySeconds},
+                              ),
+                              key: const ValueKey('google-retry-countdown'),
+                            ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 20),
+                  ],
+                  if (challengeAction) ...[
+                    OutlinedButton(
+                      key: const ValueKey('google-solve-challenge'),
+                      onPressed: state.retryAfter?.isAfter(_auth.now) == true
+                          ? null
+                          : _solveSecurityChallenge,
+                      child: Text(
+                        context.copy('google.solveChallenge'),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
                   ],
                   if (busy)
                     Semantics(
@@ -279,6 +404,8 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
                         ],
                       ),
                     )
+                  else if (state.block != null)
+                    const SizedBox.shrink()
                   else if (profileStep)
                     _profile(context)
                   else if (state.step == GoogleAuthStep.linkRequired)
@@ -323,7 +450,8 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
 
   Widget _profile(BuildContext context) {
     final locale = Localizations.localeOf(context).toLanguageTag();
-    final names = translatedCountryNames[locale] ?? countryNames['en']!;
+    final translated = translatedCountryNames[locale];
+    final names = translated ?? countryNames['en']!;
     // CLDR also contains reserved regions; XK is accepted by the API.
     const excluded = {
       'AC',
@@ -341,15 +469,20 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
       'XB',
       'ZZ',
     };
-    final codes =
-        names.keys
-            .where(
-              (code) =>
-                  RegExp(r'^[A-Z]{2}$').hasMatch(code) &&
-                  !excluded.contains(code),
-            )
-            .toList()
-          ..sort((a, b) => names[a]!.compareTo(names[b]!));
+    // Same alphabet as Locations: accents never move a country after Z.
+    if (_countryOrderLocale != locale) {
+      _countryOrderLocale = locale;
+      _countryOrder = sortedByLocalizedLabel(
+        names.keys.where(
+          (code) =>
+              RegExp(r'^[A-Z]{2}$').hasMatch(code) && !excluded.contains(code),
+        ),
+        (code) => names[code]!,
+        languageCode: translated == null ? 'en' : locale,
+        tieBreak: (a, b) => a.compareTo(b),
+      );
+    }
+    final codes = _countryOrder!;
     return Form(
       key: _profileForm,
       child: Column(
@@ -373,6 +506,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
             onChanged: (value) => setState(() => _country = value),
             validator: (value) =>
                 value == null ? context.copy('validation.country') : null,
+            errorBuilder: buildValidationError,
           ),
           const SizedBox(height: 20),
           _consent(context, terms: true),
@@ -380,7 +514,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
           const SizedBox(height: 20),
           FilledButton(
             key: const ValueKey('google-profile-submit'),
-            onPressed: _completeProfile,
+            onPressed: _canFinalize ? _completeProfile : null,
             child: Text(
               context.copy('action.createMyAccount'),
               textAlign: TextAlign.center,
@@ -473,13 +607,14 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
             validator: (value) => value == null || value.trim().isEmpty
                 ? context.copy('validation.required')
                 : null,
+            errorBuilder: buildValidationError,
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => _confirmEmail(),
           ),
           const SizedBox(height: 20),
           FilledButton(
             key: const ValueKey('google-email-confirm'),
-            onPressed: _confirmEmail,
+            onPressed: _canFinalize ? _confirmEmail : null,
             child: Text(
               context.copy('google.confirmEmail'),
               textAlign: TextAlign.center,
@@ -510,13 +645,14 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
             validator: (value) => value == null || value.isEmpty
                 ? context.copy('validation.required')
                 : null,
+            errorBuilder: buildValidationError,
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (_) => _provePassword(),
           ),
           const SizedBox(height: 20),
           FilledButton(
             key: const ValueKey('google-password-confirm'),
-            onPressed: _provePassword,
+            onPressed: _canFinalize ? _provePassword : null,
             child: Text(
               context.copy('google.linkAccount'),
               textAlign: TextAlign.center,
@@ -526,9 +662,11 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
         const SizedBox(height: 12),
         OutlinedButton(
           key: const ValueKey('google-email-request'),
-          onPressed: _auth.state.retryAfter?.isAfter(DateTime.now()) == true
-              ? null
-              : _auth.requestEmailLink,
+          onPressed:
+              _canFinalize &&
+                  _auth.state.emailRetryAfter?.isAfter(_auth.now) != true
+              ? _auth.requestEmailLink
+              : null,
           child: Text(
             context.copy('google.requestEmail'),
             textAlign: TextAlign.center,

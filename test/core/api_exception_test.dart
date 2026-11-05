@@ -28,7 +28,7 @@ void main() {
       expect(error.retryAfterSeconds, 42);
     });
 
-    test('rejette les codes et délais non fiables', () {
+    test('rejette les codes non fiables et borne les délais excessifs', () {
       final ApiException error = ApiException.fromResponse(
         statusCode: 500,
         retryAfterHeader: '-1',
@@ -37,6 +37,18 @@ void main() {
       );
 
       expect(error.errorCode, 'api_error');
+      // C5-04: an excessive delay is bounded to 24 h instead of being lost.
+      expect(error.retryAfterSeconds, 86400);
+    });
+
+    test('ignore les délais illisibles', () {
+      final ApiException error = ApiException.fromResponse(
+        statusCode: 503,
+        retryAfterHeader: 'later',
+        body: '{"error":"server_error","retry_after_seconds":-5}',
+      );
+
+      expect(error.errorCode, 'server_error');
       expect(error.retryAfterSeconds, isNull);
     });
   });
@@ -78,6 +90,32 @@ void main() {
 
       expect(message.arguments['code'], 'network_unavailable');
       expect(message.diagnosticCode, 'API-NETWORK · network_timeout');
+    });
+
+    test('ajoute la couche réseau au seul code diagnostic', () {
+      final ApiErrorMessage plain = ApiErrorMessages.fromFailure(
+        const ApiNetworkException(),
+      );
+      final ApiErrorMessage message = ApiErrorMessages.fromFailure(
+        const ApiNetworkException(stage: 'tls', family: 'ipv6'),
+      );
+      final ApiErrorMessage defect = ApiErrorMessages.fromFailure(
+        const ApiNetworkException(stage: 'client'),
+      );
+
+      expect(plain.diagnosticCode, 'API-NETWORK · network_unavailable');
+      expect(
+        message.diagnosticCode,
+        'API-NETWORK · network_unavailable/tls/ipv6',
+      );
+      expect(defect.diagnosticCode, 'API-NETWORK · network_unavailable/client');
+      for (final ApiErrorMessage staged in <ApiErrorMessage>[message, defect]) {
+        expect(staged.titleKey, plain.titleKey);
+        expect(staged.messageKey, plain.messageKey);
+        expect(staged.arguments, plain.arguments);
+        expect(staged.machineCode, 'network_unavailable');
+        expect(staged.httpStatus, isNull);
+      }
     });
   });
 }

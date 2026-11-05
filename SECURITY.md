@@ -21,11 +21,10 @@ If the page is unavailable, do not post details publicly; wait for the private
 channel to be available. No unverified security email address or response-time
 commitment is listed here.
 
-The current source baseline is **0.2.10+74016**, preserved by commit
-`a5eff1ab577be708e0c0c89b5dc98e5fc96f013b`. The dated
+The current release is **0.2.11+74018** (tag `v0.2.11`). The dated
 [qualification registry](docs/VALIDATION.md) identifies tested versions and
-open prerequisites. There is no public binary
-release or formal support lifecycle declared by this repository. Older code
+open prerequisites. Signed APKs are published as GitHub Releases (see
+[docs/APK.md](docs/APK.md)); no formal support lifecycle is declared. Older code
 should not be assumed to receive security updates. Report issues against the
 current source when possible, and identify older affected versions if known.
 

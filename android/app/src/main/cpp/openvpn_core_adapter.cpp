@@ -131,8 +131,10 @@ const char* FailureForEvent(const ::openvpn::ClientAPI::Event& event) {
 
 class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
  public:
-  AndroidCoreClient(PlatformCallbacks* callbacks, std::string pki_alias, NetworkPolicy network)
-      : callbacks_(callbacks), pki_alias_(std::move(pki_alias)), network_(std::move(network)) {}
+  AndroidCoreClient(PlatformCallbacks* callbacks, std::string pki_alias, NetworkPolicy network,
+                    ::openvpn::Stop* stop)
+      : callbacks_(callbacks), pki_alias_(std::move(pki_alias)), network_(std::move(network)),
+        stop_(stop) {}
 
   ~AndroidCoreClient() override { CloseTun(); }
 
@@ -250,17 +252,25 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
   bool tun_builder_set_dns_options(const ::openvpn::DnsOptions& options) override {
     std::lock_guard<std::mutex> lock(tun_mutex_);
     plan_.dns_servers.clear();
+    // This platform contract represents ordinary IPv4 DNS only. Never accept
+    // a pushed security/routing policy and silently drop its requirements.
+    if (!options.search_domains.empty()) return false;
+    std::vector<std::string> servers;
     for (const auto& [priority, server] : options.servers) {
       (void)priority;
+      if ((server.transport != ::openvpn::DnsServer::Transport::Unset &&
+           server.transport != ::openvpn::DnsServer::Transport::Plain) ||
+          (server.dnssec != ::openvpn::DnsServer::Security::Unset &&
+           server.dnssec != ::openvpn::DnsServer::Security::No) ||
+          !server.domains.empty() || !server.sni.empty() || server.addresses.empty()) return false;
       for (const auto& address : server.addresses) {
-        if (address.port != 0 || !IsIpv4Literal(address.address)) return false;
-        plan_.dns_servers.push_back(address.address);
+        if (address.port != 0 || !IsIpv4Literal(address.address) || servers.size() >= 32) return false;
+        servers.push_back(address.address);
       }
     }
-    for (const auto& domain : options.search_domains) {
-      plan_.search_domains.push_back(domain.domain);
-    }
-    return !plan_.dns_servers.empty();
+    if (servers.empty()) return false;
+    plan_.dns_servers = std::move(servers);
+    return true;
   }
 
   bool tun_builder_set_mtu(int mtu) override {
@@ -357,9 +367,15 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
     return connection_state_.connected();
   }
 
-  void Emit(std::string_view state, std::string_view reason) const {
-    if (callbacks_ != nullptr) callbacks_->OnCoreState(state, reason);
+  void Emit(std::string_view state, std::string_view reason) const noexcept {
+    // State reporting must never unwind the Core worker or its destructor.
+    try {
+      if (callbacks_ != nullptr) callbacks_->OnCoreState(state, reason);
+    } catch (...) {}
   }
+
+ protected:
+  ::openvpn::Stop* get_async_stop() override { return stop_; }
 
  private:
   // Called with tun_mutex_ held, in the same lock order as event().
@@ -387,6 +403,7 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
   TunPlan plan_;
   const NetworkPolicy network_;
   std::string tun_failure_reason_;
+  ::openvpn::Stop* const stop_;
 };
 
 class OpenVpn3CoreSession final : public CoreSession {
@@ -395,14 +412,17 @@ class OpenVpn3CoreSession final : public CoreSession {
 
   bool Start(ValidatedProfile profile, std::string_view pki_alias,
              PlatformCallbacks* callbacks) override {
+    ScopedStringErase erase_profile(profile.content);
     Stop();
     if (callbacks == nullptr || !ProfileValidator::IsSafeIdentityAlias(pki_alias)) {
       if (callbacks != nullptr) callbacks->OnCoreState("error", "invalid_identity_alias");
       SecureErase(&profile.content);
       return false;
     }
-    client_ = std::make_unique<AndroidCoreClient>(callbacks, std::string(pki_alias), std::move(profile.network));
+    stop_ = std::make_unique<::openvpn::Stop>();
+    client_ = std::make_unique<AndroidCoreClient>(callbacks, std::string(pki_alias), std::move(profile.network), stop_.get());
     ::openvpn::ClientAPI::Config config;
+    ScopedStringErase erase_config(config.content);
     config.content = std::move(profile.content);
     config.protoVersionOverride = 4;
     config.compressionMode = "no";
@@ -415,28 +435,43 @@ class OpenVpn3CoreSession final : public CoreSession {
       client_.reset();
       return false;
     }
+    // eval_config owns the parsed options. The temporary full profile can be
+    // erased when Start returns instead of being retained by the worker.
     callbacks->OnCoreState("connecting", "connecting");
-    client_thread_ = std::thread([this, config = std::move(config)]() mutable {
-      ::openvpn::ClientAPI::Status status;
-      try {
-        status = client_->connect();
-      } catch (...) {
-        // Always publish worker termination, without exporting exception text.
-        status.error = true;
-      }
-      client_->Complete(status);
-      SecureErase(&config.content);
-    });
+    // Core's external stop token retains an early request until its reactor
+    // installs the stop scope. OpenVPNClient::stop() alone ignores that window.
+    // Keep the token alive until the client and all its scopes are destroyed.
+    try {
+      client_thread_ = std::thread([this]() noexcept {
+        ::openvpn::ClientAPI::Status status;
+        try {
+          status = client_->connect();
+          client_->Complete(status);
+        } catch (...) {
+          // Completion/diagnostic callbacks can allocate as well as connect().
+          // Nothing may escape this worker and terminate the process.
+          try {
+            status.error = true;
+            client_->Complete(status);
+          } catch (...) {}
+        }
+      });
+    } catch (...) {
+      client_.reset();
+      stop_.reset();
+      throw;
+    }
     return true;
   }
 
   void Stop() override {
     if (client_ != nullptr) {
       client_->RequestStop();
-      client_->stop();
+      stop_->stop();
     }
     if (client_thread_.joinable()) client_thread_.join();
     client_.reset();
+    stop_.reset();
   }
 
   bool IsConnected() const override {
@@ -453,6 +488,8 @@ class OpenVpn3CoreSession final : public CoreSession {
   }
 
  private:
+  // Declared first so Core's AsioStopScopes never outlive the external token.
+  std::unique_ptr<::openvpn::Stop> stop_;
   std::unique_ptr<AndroidCoreClient> client_;
   std::thread client_thread_;
 };

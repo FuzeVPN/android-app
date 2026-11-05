@@ -3,7 +3,7 @@
 Audit de qualification du 14 octobre 2026 : [Q008](VALIDATION.md#q008), [Q009](VALIDATION.md#q009), [Q010](VALIDATION.md#q010), [Q011](VALIDATION.md#q011), [Q014](VALIDATION.md#q014), [Q017](VALIDATION.md#q017), [Q018](VALIDATION.md#q018), [Q025](VALIDATION.md#q025), [Q026](VALIDATION.md#q026), [Q027](VALIDATION.md#q027), [Q028](VALIDATION.md#q028), [Q029](VALIDATION.md#q029), [Q032](VALIDATION.md#q032).
 
 
-Version source **0.2.10+74016**. Ce guide décrit le comportement implémenté
+Version source **0.2.11+74018**. Ce guide décrit le comportement implémenté
 dans ce client. Les réponses API
 attendues ci-dessous sont les contraintes du client ; ce document ne remplace
 pas le contrat serveur et ne constate pas l'état de la production. Les
@@ -119,6 +119,22 @@ routes d'appareil, d'activation et de migration exigent une réponse
 `invalid_api_response` ; le client n'invente aucun endpoint, port ou profil de
 secours. Les identifiants incorporés aux chemins sont encodés.
 
+Un corps `2xx` doit être de l'UTF-8 valide et tenir dans 1 Mio. Le corps
+d'une autre réponse n'est qu'une enveloppe d'erreur : s'il est mal encodé
+(octets non UTF-8, `Content-Encoding` invalide) ou dépasse 1 Mio, une fois
+décompressé compris (la lecture s'arrête alors au plafond et le corps est
+ignoré), le statut HTTP et `Retry-After` sont conservés, de sorte qu'un `5xx`
+reste une indisponibilité temporaire. Il en va de même, dès lors que les
+en-têtes sont arrivés avant l'échéance, pour un corps tronqué, un découpage
+`chunked` invalide, une connexion fermée ou un corps encore incomplet à
+l'échéance : la réponse garde son statut avec un corps vide, sans prolonger
+l'échéance, et aucune enveloppe partielle n'est interprétée. Un corps `2xx`
+dans ces cas reste une erreur réseau. Derrière un proxy
+d'environnement, la réponse `CONNECT` est lue comme par le SDK (fins de ligne
+CRLF ou LF seul, obs-fold, réponse fragmentée en plusieurs lectures), dans la
+limite de 16 Kio d'en-têtes au total, réponses intermédiaires comprises, et de
+quatre réponses intermédiaires.
+
 | Opération | Réponse attendue / traitement |
 | --- | --- |
 | Connexion et inscription | `POST /v1/auth/login` et `/v1/auth/register` : `201` |
@@ -126,7 +142,7 @@ secours. Les identifiants incorporés aux chemins sont encodés.
 | Confirmation d'e-mail | `POST /v1/auth/email/verify` : `200` avec `email_verified: true` |
 | Réinitialisation de mot de passe | `/v1/auth/password/reset/request` : `202` ; `/confirm` : `204` |
 | Profil du compte | `GET` et `PUT /v1/me` : `200`. L'absence de `email_verified` signifie inconnu, pas faux. |
-| Catalogue | `GET /v1/locations` : `200`. `supported_protocols` détermine les protocoles proposés. |
+| Catalogue | `GET /v1/locations` : `200`. `supported_protocols` détermine les protocoles proposés. `supported_ip_families` n'est qu'un indice : IPv6 n'est proposé que si la valeur est une liste qui contient à la fois `ipv4` et `ipv6` (comparaison exacte, casse comprise), quel que soit l'ordre ; ses autres éléments (doublons, familles inconnues ou futures, autre casse, valeurs non textuelles) sont ignorés. Une liste à laquelle manque l'une de ces deux valeurs, ou une forme inattendue (champ absent, texte, objet), laisse l'emplacement en IPv4. Aucune de ces formes n'invalide le catalogue ni la liste des appareils. Une ligne dont `display_name` est un texte que le natif refuserait (vide ou blanc, plus de 96 unités UTF-16, caractère de contrôle ISO) n'est pas proposée ; les autres lignes restent disponibles. Un `display_name` absent ou non textuel et des identifiants dupliqués refusent toujours tout le catalogue. |
 | Activation WireGuard | `POST /v1/devices` : `201`. Envoie nom, clé publique locale et `location_id`, puis importe l'activation dans le composant natif. |
 | Liste et suppression d'appareils | `GET /v1/devices` : `200` ; `DELETE /v1/devices/{id}` : `204` |
 | Métadonnées des profils | `GET /v1/devices/{id}/profiles` : `200`, sans activation ni secrets |
@@ -136,13 +152,25 @@ secours. Les identifiants incorporés aux chemins sont encodés.
 
 Une demande double pile ajoute `ip_families: ["ipv4", "ipv6"]` aux activations
 qui le permettent. Le modèle valide la cohérence des adresses et familles
-retournées ; aucune route IPv6 n'est déduite d'une donnée manquante.
+retournées ; aucune route IPv6 n'est déduite d'une donnée manquante. Familles,
+adresses et routes d'une activation sont lues comme des ensembles, dans
+l'ordre choisi par le serveur : IPv4 obligatoire, IPv6 facultatif, aucun
+doublon ni valeur inconnue, chaque adresse rattachée à sa famille. Le natif
+reçoit toujours la forme canonique (IPv4 puis IPv6). Les
+adresses IPv4 reçues (DNS, endpoint OpenVPN, adresses de tunnel) suivent la
+forme décimale stricte du natif : quatre octets de 0 à 255 en chiffres ASCII,
+sans signe, espace ni zéro initial.
 
 Un appareil logique peut porter les profils WireGuard et OpenVPN au même
 emplacement. La liste accepte aussi un appareil navigateur avec `location: null`
 et un profil `browser_proxy` : il reste gérable, mais n'est pas un protocole VPN
 sélectionnable. Un refus `device_limit` doit conduire à la gestion des appareils,
-pas à une création supplémentaire.
+pas à une création supplémentaire. Le libellé textuel d'emplacement d'un
+appareil existant, quelle que soit sa longueur, est ramené à une forme acceptée
+par le natif (contrôles remplacés, 96 unités au plus, identifiant de
+l'emplacement s'il est vide ou blanc) sans écarter l'appareil. Un nom d'appareil
+absent ou vide reste vide dans le modèle ; l'interface affiche alors un libellé
+traduit.
 
 ### Déplacement et révocation
 
@@ -154,10 +182,14 @@ restent préservés. Ce chemin ne lance pas de migration d'appareil.
 
 OpenVPN utilise les états `draining`, `activating`, `ready` et `blocked` de la
 migration asynchrone. L'identifiant opaque, l'appareil, la destination et l'état
-sont chiffrés avec une portée compte/appareil. `Retry-After` prime sur
-`retry_after_seconds` ; sans valeur, l'attente est de deux secondes. Les délais
-sont validés et le nombre de vérifications est borné. Après `ready`, une lecture
-des appareils doit confirmer la destination avant de préparer le tunnel.
+sont chiffrés avec une portée compte/appareil. `Retry-After` (secondes ou
+HTTP-date, mesurée depuis l'en-tête `Date` de la réponse) prime sur
+`retry_after_seconds` ; sans valeur lisible, l'attente est de 0,5 s, puis 1 s,
+puis deux secondes, et l'écran n'affiche pas de délai. Un
+délai supérieur à 300 s est ramené à 300 s et un délai illisible est ignoré : il
+ne fait jamais perdre une migration acceptée. Le nombre de vérifications est
+borné. Après `ready`, une lecture des appareils doit confirmer la destination
+avant de préparer le tunnel.
 
 La migration normale conserve l'identité OpenVPN. Après une révocation ciblée,
 la prochaine création OpenVPN produit une nouvelle clé P-256 et un nouveau CSR.
@@ -194,6 +226,14 @@ certificat produit `openvpn_certificate_expiry_mismatch`.
 | `location_migration_conflict` | Actualise les appareils avant un nouvel essai contrôlé. |
 | `target_unavailable`, `node_unavailable`, `openvpn_signer_unavailable` | Affiche l'indisponibilité et respecte les délais applicables sans recréer l'appareil. |
 
+Le `Retry-After` d'une erreur accepte des secondes ou une HTTP-date (mesurée
+depuis l'en-tête `Date`, sinon l'horloge locale) ; une valeur supérieure à
+24 h est ramenée à 24 h au lieu d'être perdue, et des en-têtes répétés gardent
+le délai lisible le plus long. Une valeur illisible est ignorée. Un délai
+exact sous forme d'HTTP-date suppose l'en-tête `Date` : sans lui, une horloge
+d'appareil en avance sur le serveur raccourcit le délai, et une date passée
+vaut 0 (réessai immédiat), comme `Retry-After: 0`.
+
 Les messages sont des identifiants traduits au moment de l'affichage, avec des
 paramètres sûrs. Un changement de langue actualise les notices déjà visibles.
 Un code inconnu utilise un repli traduit ; les corps API et les textes libres
@@ -212,6 +252,13 @@ locale et de la libération du service. Le démarrage WireGuard protège les
 sockets avant d'ajouter les pairs ; le détail des patches est dans
 [NATIVE_DEPENDENCIES.md](NATIVE_DEPENDENCIES.md).
 
+`SharedVpnHost` démarre et arrête ce service sur le fil principal, où ses
+`onCreate()` et `onDestroy()` s'exécutent d'un bloc : publié juste avant
+`startForeground()`, un hôte arrêté entre les deux fait tuer l'application par
+Android 8 à 11, et un démarrage tombé au milieu de `onDestroy()` ne démarre rien.
+Un arrêt attend la fin de `onDestroy()` ; un passage au fil principal expiré est
+annulé, il ne démarre ni n'arrête plus rien ensuite.
+
 Le tunnel peut rester actif en arrière-plan. Le VPN permanent et le blocage
 des connexions sans VPN sont deux réglages Android distincts que l'utilisateur
 active dans les paramètres système. Une notification persistante ne prouve pas
@@ -225,6 +272,49 @@ Keystore peut nécessiter le premier déverrouillage après redémarrage. Un éc
 de reprise reste bloqué jusqu'à une nouvelle connexion explicite. La reprise
 OpenVPN après perte de transport possède un budget borné, conservé avec l'état
 de reprise ; elle ne contourne pas révocation, expiration ou renouvellement.
+Quand elle reconnecte avec le même plan réseau, elle réutilise l'interface TUN
+conservée au lieu d'en établir une nouvelle : sur Android 11 à 16, chaque
+nouvelle interface fait couper par le système les connexions TCP en cours.
+L'interface conservée est identifiée par `ioctl(TUNGETIFF)` sur son descripteur :
+une app release n'est pas « dumpable » et, sur Android 11, son propre
+`/proc/self/fdinfo` lui est illisible.
+
+Sur Android 11 seulement, le `ConnectivityManager` est unique par processus. Une
+mise à jour de proxy que le système envoie à tous les processus (à chaque fin de
+réseau VPN, par exemple) et qui arrive pendant le démarrage du processus le lie
+au paquet « android » jusqu'à la mort du processus : l'abonnement réseau et la
+lecture des capacités lèvent alors `SecurityException`. Le démarrage ne doit pas
+en mourir. Le pont journalise une fois « Physical network callback refused by
+Android » et continue sans abonnement : WireGuard ne suit plus les pertes de
+réseau ; tant qu'OpenVPN est actif, les réseaux physiques sont relus chaque
+seconde et un réseau disparu déclenche la reprise comme l'abonnement l'aurait
+fait ; toute autre interruption garde la reprise unique. Le réseau par défaut, le
+type VPN et les interfaces se lisent par les appels sans contrôle de paquet
+(`getAllNetworks`, `getActiveNetworkInfo`, `getNetworkInfo`, `getLinkProperties`).
+Android 12 a corrigé la cause.
+
+Après la mort du processus, Android ne relance pas le service VPN qu'il a déjà
+délié. Un service sans liaison ni premier plan, `SystemVpnResumeSentinel`
+(START_STICKY), est donc démarré tant qu'une mort serait suivie d'une reprise :
+Android 10 ou plus, état de reprise prêt, VPN permanent constaté pendant que le
+tunnel est connecté, et aucune commande d'arrêt ni perte du service en cours.
+Une commande d'arrêt le désarme dès sa réception. Relancé par Android, il
+vérifie d'abord sans rien écrire ni afficher l'état, la session, l'identité,
+le consentement, l'absence d'un autre VPN et un réseau physique (30 s au plus).
+Il réserve ensuite l'état, démarre le service VPN puis suit la reprise système.
+Rien n'est restauré sans VPN permanent, sur Android 8 et 9, ni dans le runtime
+de debug ; une reprise interrompue par une nouvelle mort n'est pas retentée.
+
+Android 10 à 13 abandonnent parfois ce redémarrage quand un autre composant (la
+tuile, une tâche d'une bibliothèque) relance d'abord le processus (observé sur
+Android 11 à 13). Tant que la sentinelle est armée, une tâche JobScheduler en
+attente (`SystemVpnRestartMark`, jamais exécutée avant 30 jours) la marque.
+Chaque démarrage du processus consomme cette marque et lance la même reprise,
+sur Android 11 ou plus, si le processus principal vient de mourir (2 min au
+plus) d'une mort qu'Android fait suivre d'un redémarrage : plantage, signal,
+mémoire, ANR, ressources, permission retirée ou fournisseur mort. Un arrêt forcé
+annule la marque, même processus déjà mort ; un démarrage d'appareil l'efface.
+Android 10 n'enregistre pas la raison d'une mort : seule la sentinelle y reprend.
 
 La tuile Réglages rapides reconnecte ce dernier profil validé sans accès API.
 Elle ouvre l'application lorsqu'une préparation, un consentement VPN ou un

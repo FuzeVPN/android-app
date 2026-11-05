@@ -129,6 +129,19 @@ abstract interface class SecureSessionStore {
   });
 }
 
+/// Tells an explicit registered admission still waiting for its first account
+/// restoration (stored unscoped) from an account-bound session. Such a stored
+/// session, even expired, is an explicit intent to leave any guest.
+abstract interface class PendingAdmissionStore {
+  Future<bool> readStoredSessionIsPendingAdmission();
+}
+
+/// Native storage that is told why a session ends. Each request joins the end
+/// in progress; stores without it receive the legacy expired flag once.
+abstract interface class SessionEndCauseStore {
+  Future<SessionTerminationResult> clearSessionFor(SessionEndCause cause);
+}
+
 /// The caller owns cleanup after checking the account/device operation again.
 class CorruptLocationMigration implements Exception {
   const CorruptLocationMigration();

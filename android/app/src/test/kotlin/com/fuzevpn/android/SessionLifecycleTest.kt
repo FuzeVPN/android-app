@@ -24,6 +24,82 @@ class SessionLifecycleTest {
         gate.activate(gate.ticket()) { }
         assertNull(gate.termination)
     }
+    // A01-auth-02: a pending session is never activated, so the completed
+    // expiry stays in memory when the user then signs out voluntarily.
+    @Test fun completedExpiryDoesNotTurnTheNextVoluntaryLogoutIntoAnExpiry() {
+        val gate = SessionLifecycle()
+        gate.beginEnd(expired = true)
+        assertTrue(gate.finish(SessionTermination(true, true)).sessionExpired)
+        gate.beginEnd(expired = false)
+        assertFalse(gate.termination!!.sessionExpired)
+        // The bridge's purge reads revokeGuestRecovery: a voluntary logout disables guest resume.
+        assertTrue(gate.termination!!.revokeGuestRecovery)
+        val confirmed = gate.finish(SessionTermination(true, true))
+        assertTrue(confirmed.revokeGuestRecovery)
+        assertFalse(confirmed.sessionExpired)
+        assertEquals(false, confirmed.toMap()["session_expired"])
+    }
+    @Test fun expiryJoinsAnUnfinishedEndButNeverOutlivesACompletedOne() {
+        val gate = SessionLifecycle()
+        gate.beginEnd(expired = false)
+        gate.beginEnd(expired = true)
+        assertTrue(gate.termination!!.sessionExpired)
+        gate.beginEnd(expired = false)
+        assertTrue(gate.termination!!.sessionExpired)
+        gate.finish(SessionTermination(true, false, storageError = "secure_storage_write_failed"))
+        gate.beginEnd(expired = false)
+        assertTrue("An unfinished expiry cleanup keeps its cause", gate.termination!!.sessionExpired)
+        assertTrue(gate.finish(SessionTermination(true, true)).sessionExpired)
+        gate.beginEnd(expired = false)
+        assertFalse(gate.termination!!.sessionExpired)
+        gate.finish(SessionTermination(true, true))
+        gate.beginEnd(expired = true)
+        assertTrue(gate.termination!!.sessionExpired)
+    }
+    // P1 of the lot S review (root decision of 29/10): the causes of one end
+    // merge. An expiry is reported when any request said so; automatic guest
+    // recovery is revoked when any request was voluntary, across retries too.
+    @Test fun endCausesMergeWithinOneEnd() {
+        for ((causes, revoke, expired) in listOf(
+            Triple(listOf(SessionEndCause.VOLUNTARY), true, false),
+            Triple(listOf(SessionEndCause.EXPIRED), false, true),
+            Triple(listOf(SessionEndCause.ABANDONED), false, false),
+            Triple(listOf(SessionEndCause.VOLUNTARY, SessionEndCause.EXPIRED), true, true),
+            Triple(listOf(SessionEndCause.EXPIRED, SessionEndCause.VOLUNTARY), true, true),
+            Triple(listOf(SessionEndCause.ABANDONED, SessionEndCause.VOLUNTARY), true, false),
+            Triple(listOf(SessionEndCause.EXPIRED, SessionEndCause.ABANDONED), false, true),
+        )) {
+            val gate = SessionLifecycle()
+            causes.forEach { gate.beginEnd(it) }
+            val confirmed = gate.finish(SessionTermination(true, true))
+            assertEquals("$causes", revoke, confirmed.revokeGuestRecovery)
+            assertEquals("$causes", expired, confirmed.sessionExpired)
+            assertEquals("$causes", expired, confirmed.toMap()["session_expired"])
+            assertFalse("$causes", confirmed.toMap().containsKey("revoke_guest_recovery"))
+        }
+        val gate = SessionLifecycle()
+        gate.beginEnd(SessionEndCause.ABANDONED)
+        gate.finish(SessionTermination(true, false, storageError = "secure_storage_write_failed"))
+        gate.beginEnd(SessionEndCause.VOLUNTARY)
+        assertTrue("a voluntary retry of an unfinished end revokes", gate.termination!!.revokeGuestRecovery)
+        gate.finish(SessionTermination(true, true))
+        gate.beginEnd(SessionEndCause.ABANDONED)
+        assertFalse("a completed voluntary end does not outlive its session", gate.termination!!.revokeGuestRecovery)
+    }
+
+    @Test fun clearSessionReasonIsReadStrictlyWithTheLegacyFlagAsFallback() {
+        assertEquals(SessionEndCause.VOLUNTARY, SessionEndCause.of(null))
+        assertEquals(SessionEndCause.VOLUNTARY, SessionEndCause.of(emptyMap<String, Any?>()))
+        assertEquals(SessionEndCause.EXPIRED, SessionEndCause.of(mapOf("session_expired" to true)))
+        assertEquals(SessionEndCause.VOLUNTARY, SessionEndCause.of(mapOf("reason" to null, "session_expired" to false)))
+        assertEquals(SessionEndCause.ABANDONED, SessionEndCause.of(mapOf("reason" to "abandoned", "session_expired" to true)))
+        assertEquals(SessionEndCause.VOLUNTARY, SessionEndCause.of(mapOf("reason" to "voluntary", "session_expired" to true)))
+        assertEquals(SessionEndCause.EXPIRED, SessionEndCause.of(mapOf("reason" to "expired")))
+        assertNull(SessionEndCause.of(mapOf("reason" to "logout")))
+        assertNull(SessionEndCause.of(mapOf("reason" to 42)))
+        assertNull(SessionEndCause.of(mapOf("reason" to "")))
+    }
+
     @Test fun queuedTunnelCommandsAndPublicationsAreRejectedForBothProtocols() = runTest {
         for (protocol in VpnProtocol.entries) {
             val gate = SessionLifecycle()

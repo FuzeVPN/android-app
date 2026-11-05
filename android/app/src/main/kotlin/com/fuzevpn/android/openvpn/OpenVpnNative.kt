@@ -63,6 +63,12 @@ object OpenVpnNative {
             ?.takeIf { it.size == 2 && it.all { value -> value >= 0L } }
     }
 
+    /** The interface the TUN descriptor [fd] is attached to; `null` when it is none or unreadable. */
+    fun tunInterfaceName(fd: Int): String? {
+        if (!ensureLibraryLoaded()) return null
+        return runCatching { nativeTunInterfaceName(fd) }.getOrNull()?.takeIf { it.isNotEmpty() }
+    }
+
     @Synchronized
     private fun ensureLibraryLoaded(): Boolean {
         if (loadAttempted) return libraryLoaded
@@ -87,4 +93,5 @@ object OpenVpnNative {
     external fun nativeStop(handle: Long): Boolean
     external fun nativeIsConnected(handle: Long): Boolean
     external fun nativeStatistics(handle: Long): LongArray
+    external fun nativeTunInterfaceName(fd: Int): String?
 }

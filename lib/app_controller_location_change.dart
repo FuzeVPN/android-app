@@ -6,11 +6,38 @@ extension VpnLocationChange on VpnAppController {
 
   bool get isChangingLocation => _locationChangeOperation != null;
 
+  /// The confirmed location change still running, for its progress card.
+  LocationChangeProgress? get locationChangeProgress {
+    final change = _locationChangeOperation;
+    if (change == null || change.finished || !change.isCurrent) return null;
+    return LocationChangeProgress(
+      sourceLocationId: change.sourceLocationId,
+      targetLocationId: change.targetLocationId,
+      protocol: change.protocol,
+      activating: change.activating,
+    );
+  }
+
+  /// Whether the connection page shows the location-change card: a server
+  /// migration, or any OpenVPN change, with or without one. A WireGuard change
+  /// takes under a second and the connection card already states it.
+  bool get showsLocationChangeProgress =>
+      locationMigration != null ||
+      locationChangeProgress?.protocol == VpnProtocol.openVpn;
+
+  // The server reported its new node activating, or ready, during this change:
+  // the card never goes back to its preparation step afterwards.
+  void _noteLocationChangeActivation() {
+    final change = _locationChangeOperation;
+    if (change != null && !change.finished) change.activating = true;
+  }
+
   bool get canChangeLocation =>
       !_disposed &&
       _sessionOperation.isCurrent &&
       isSignedIn &&
-      (_session?.expiresAt.isAfter(DateTime.now()) ?? false) &&
+      _session != null &&
+      _sessionLive(_session!) &&
       sessionTermination == null &&
       !isInitializing &&
       !isAuthenticating &&
@@ -31,6 +58,12 @@ extension VpnLocationChange on VpnAppController {
     final migration = _migrationContext;
     final saved = migration?.value;
     change?.invalidate();
+    // The abandoned continuation keeps its own object and stops at its next
+    // check; controls are released now, not when its request returns.
+    if (change != null) {
+      change.finished = true;
+      _locationChangeOperation = null;
+    }
     _networkAttemptEpoch++;
     // A cancelled migration may finish server-side, but its stale completion
     // must never continue this connection or replace a newer screen's state.
@@ -62,27 +95,44 @@ extension VpnLocationChange on VpnAppController {
         activeDeviceLocation?.id ??
         selectedLocation?.id;
     if (isConnected && activeLocation == target.id) return;
+    // Renew a guest token about to expire while the current tunnel still
+    // runs: a refused renewal leaves that tunnel untouched, with a notice.
+    if (_guestSessionNearExpiry) {
+      if (await _renewGuestSession() != _GuestRecovery.admitted) {
+        notice = const AppNotice(
+          titleKey: 'billing.title',
+          messageKey: 'guest.serviceUnavailable',
+        );
+        notifyListeners();
+        return;
+      }
+      if (!canChangeLocation) return;
+    }
 
-    final session = _sessionOperation;
+    final lineage = _sessionOperation.lineage;
     final account = profile?.userId;
-    final activeToken = token;
     final device = currentDeviceId;
     final deviceEpoch = _deviceEpoch;
     late final _LocationChangeOperation change;
+    // A guest token renewal keeps the account lineage: the confirmed change
+    // continues with the new token. Any other session change cancels it.
     change = _LocationChangeOperation(
-      () =>
+      sourceLocationId: activeLocation,
+      targetLocationId: target.id,
+      protocol: protocol,
+      matches: () =>
           !_disposed &&
-          session.isCurrent &&
-          identical(session, _sessionOperation) &&
+          _sessionOperation.isCurrent &&
+          identical(lineage, _sessionOperation.lineage) &&
           (change.finished || identical(change, _locationChangeOperation)) &&
           profile?.userId == account &&
-          token == activeToken &&
-          (_session?.expiresAt.isAfter(DateTime.now()) ?? false) &&
+          _session != null &&
+          _sessionLive(_session!) &&
           (change.connecting ||
               (currentDeviceId == device && _deviceEpoch == deviceEpoch)),
     );
     _locationChangeOperation = change;
-    notice = null;
+    _clearNoticeForAttempt();
     notifyListeners();
     try {
       change.check();
@@ -113,11 +163,27 @@ extension VpnLocationChange on VpnAppController {
       // Existing connect owns device creation/migration from this point onward;
       // its identity and network-attempt guards validate those expected changes.
       change.connecting = true;
-      await _connect(locationChange: change);
+      if (await _connect(locationChange: change)) {
+        await _connect(locationChange: change, afterGuestRenewal: true);
+      }
       change.check();
       if (notice == null && preferenceNotice != null) notice = preferenceNotice;
     } on SessionOperationCancelled {
       // Cancellation, a different account or a user stop never schedules a retry.
+      // A registered token that expired during the change ends like any expiry
+      // the device clock finds, never as a silent stop (A13-dart-vpn-01).
+      final AuthSession? current = _session;
+      if (!_disposed &&
+          sessionTermination == null &&
+          _sessionOperation.isCurrent &&
+          identical(lineage, _sessionOperation.lineage) &&
+          profile?.userId == account &&
+          profile?.isGuest == false &&
+          profile?.profileRedacted == false &&
+          current != null &&
+          !_sessionLive(current)) {
+        await _terminateSession(expired: true);
+      }
     } finally {
       if (identical(_locationChangeOperation, change)) {
         change.finished = true;
@@ -128,9 +194,34 @@ extension VpnLocationChange on VpnAppController {
   }
 }
 
+/// Where a confirmed location change goes, with which protocol, and whether
+/// the server already reported the new node activating.
+class LocationChangeProgress {
+  const LocationChangeProgress({
+    required this.sourceLocationId,
+    required this.targetLocationId,
+    required this.protocol,
+    this.activating = false,
+  });
+
+  final String? sourceLocationId;
+  final String targetLocationId;
+  final VpnProtocol protocol;
+  final bool activating;
+}
+
 class _LocationChangeOperation extends SessionOperation {
-  _LocationChangeOperation(this.matches);
+  _LocationChangeOperation({
+    required this.sourceLocationId,
+    required this.targetLocationId,
+    required this.protocol,
+    required this.matches,
+  });
+  final String? sourceLocationId;
+  final String targetLocationId;
+  final VpnProtocol protocol;
   final bool Function() matches;
+  bool activating = false;
   bool connecting = false;
   bool finished = false;
 

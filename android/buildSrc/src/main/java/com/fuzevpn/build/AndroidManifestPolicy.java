@@ -13,12 +13,18 @@ public final class AndroidManifestPolicy {
             "android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE",
             "android.permission.FOREGROUND_SERVICE", "android.permission.FOREGROUND_SERVICE_SPECIAL_USE",
             "android.permission.POST_NOTIFICATIONS",
-            "com.android.vending.BILLING",
-            "com.fuzevpn.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION");
+            "com.android.vending.BILLING");
 
     private AndroidManifestPolicy() {}
 
     public static void verify(Path manifest) {
+        verify(manifest, "com.fuzevpn");
+    }
+
+    public static void verify(Path manifest, String expectedApplicationId) {
+        if (!Set.of("com.fuzevpn", "com.fuzevpn.recoverytest").contains(expectedApplicationId)) {
+            throw new IllegalStateException("ANDROID_APPLICATION_ID_UNREVIEWED: " + expectedApplicationId);
+        }
         try {
             var factory = DocumentBuilderFactory.newInstance();
             factory.setNamespaceAware(true);
@@ -26,11 +32,15 @@ public final class AndroidManifestPolicy {
             factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
             factory.setAttribute(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
             var document = factory.newDocumentBuilder().parse(manifest.toFile());
+            if (!expectedApplicationId.equals(document.getDocumentElement().getAttribute("package"))) {
+                throw new IllegalStateException("ANDROID_APPLICATION_ID_MISMATCH: " + expectedApplicationId);
+            }
+            String receiverPermission = expectedApplicationId + ".DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION";
             for (String tag : new String[]{"uses-permission", "uses-permission-sdk-23"}) {
                 var permissions = document.getElementsByTagName(tag);
                 for (int i = 0; i < permissions.getLength(); i++) {
                     String name = ((Element) permissions.item(i)).getAttributeNS(ANDROID, "name");
-                    if (!PERMISSIONS.contains(name)) {
+                    if (!PERMISSIONS.contains(name) && !receiverPermission.equals(name)) {
                         throw new IllegalStateException("ANDROID_PERMISSION_UNREVIEWED: " + name);
                     }
                 }

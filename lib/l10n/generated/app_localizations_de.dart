@@ -47,7 +47,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Deine Sitzung ist ungültig. VPN wird beendet und die Sitzung gelöscht…';
+      'Sitzung wird beendet: VPN wird gestoppt und Sitzungsdaten werden gelöscht…';
 
   @override
   String get session_stopFailed =>
@@ -431,6 +431,9 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Unbenanntes Gerät';
+
+  @override
   String get action_remove => 'Entfernen';
 
   @override
@@ -470,6 +473,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'In der App verwendete Software';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Quellcode der App und ihrer Komponenten unter MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -553,7 +561,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get notice_rateLimited_title => 'Zu viele Versuche';
 
   @override
-  String get notice_deviceLimit_title => 'Limit von 2 Geräten erreicht';
+  String get notice_deviceLimit_title => 'Gerätelimit erreicht';
 
   @override
   String get notice_deviceLimit_message =>
@@ -656,7 +664,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'vpn_sign_in_required': 'Anmeldung erforderlich',
       'protocol_unavailable_at_location': 'Protokoll nicht verfügbar',
       'vpn_permission_denied': 'VPN-Berechtigung abgelehnt',
-      'revoked_identity_device_limit': 'Limit von 2 Geräten erreicht',
+      'revoked_identity_device_limit': 'Gerätelimit erreicht',
       'tunnel_start_unexpected': 'VPN konnte nicht gestartet werden',
       'flutter_disconnect_timeout': 'Trennung nicht bestätigt',
       'flutter_disconnect_unexpected': 'Trennung fehlgeschlagen',
@@ -672,6 +680,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'location_migration_device_changed':
           'Gerät während des Wechsels geändert',
       'tunnel_stop_failed': 'Wechsel nicht möglich',
+      'device_clock_ahead': 'Geräteuhr geht vor',
       'other': 'Vorgang fehlgeschlagen',
     });
     return '$_temp0';
@@ -721,6 +730,8 @@ class AppLocalizationsDe extends AppLocalizations {
           'Das vom Server zurückgegebene Gerät entspricht nicht mehr dem Gerät des Wechsels. Aktualisieren Sie die Geräte vor einem neuen Versuch.',
       'tunnel_stop_failed':
           'Der vorherige Tunnel muss vor der neuen Verbindung vollständig beendet sein.',
+      'device_clock_ahead':
+          'Die Uhr dieses Geräts scheint vorzugehen. Aktivieren Sie die automatische Datums- und Uhrzeiteinstellung, um angemeldet zu bleiben.',
       'other':
           'Der Vorgang konnte nicht abgeschlossen werden. Versuchen Sie es erneut oder senden Sie den Diagnosecode an den Support.',
     });
@@ -848,8 +859,36 @@ class AppLocalizationsDe extends AppLocalizations {
   String get notice_retryLater => 'Versuchen Sie es in Kürze erneut.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Versuchen Sie es in $seconds Sekunden erneut.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Versuchen Sie es in $seconds Sekunden erneut.',
+      one: 'Versuchen Sie es in $seconds Sekunde erneut.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Versuchen Sie es in $minutes Minuten erneut.',
+      one: 'Versuchen Sie es in $minutes Minute erneut.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Versuchen Sie es in $hours Stunden erneut.',
+      one: 'Versuchen Sie es in $hours Stunde erneut.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -972,6 +1011,9 @@ class AppLocalizationsDe extends AppLocalizations {
       'key_generation_failed':
           'WireGuard-Schlüssel konnte nicht erstellt werden',
       'csr_generation_failed': 'OpenVPN-CSR konnte nicht erstellt werden',
+      'openvpn_recovery_exhausted': 'OpenVPN-Wiederverbindung bereits genutzt',
+      'openvpn_recovery_failed': 'OpenVPN-Wiederverbindung fehlgeschlagen',
+      'openvpn_renewal_required': 'OpenVPN-Zertifikat muss erneuert werden',
       'other': 'Nicht klassifizierter nativer VPN-Fehler',
     });
     return '$_temp0';
@@ -1809,6 +1851,14 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ihr Abonnement wird über Google Play verwaltet.';
 
   @override
+  String get billing_playOnHold =>
+      'Ihr Google-Play-Abonnement ist ausgesetzt oder wartet auf eine Zahlung. Öffnen Sie „Abonnement verwalten“, um das in Google Play zu klären.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Dieses Google-Play-Konto hat bereits ein Fuze-Premium-Abonnement, das für dieses FuzeVPN-Konto nicht aktiv ist. Öffnen Sie „Abonnement verwalten“, um es in Google Play zu prüfen.';
+
+  @override
   String get billing_inactive => 'Kein aktives Abonnement.';
 
   @override
@@ -2060,6 +2110,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get google_rateLimited => 'Bitte warten Sie vor einem neuen Versuch.';
 
   @override
+  String get google_busy =>
+      'Google ist nicht verfügbar, solange ein anderer Vorgang läuft (VPN-Verbindung, Konto oder Gast). Versuchen Sie es erneut, sobald er abgeschlossen ist; Ihr aktueller Zugang bleibt erhalten.';
+
+  @override
   String get google_invalidPassword =>
       'Das FuzeVPN-Passwort ist falsch. Ihr aktuelles Konto bleibt erhalten.';
 
@@ -2090,6 +2144,36 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Die Sicherheitsprüfung ist nicht verfügbar. Versuchen Sie es später erneut.';
+
+  @override
+  String get google_intentMismatch =>
+      'Ein vorheriger Google-Anmeldeversuch ist noch offen. Brich ihn ab, bevor du diesen Vorgang startest.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Die erforderliche Sicherheitsprüfung ist in dieser App nicht verfügbar. Dieser Vorgang kann derzeit nicht abgeschlossen werden.';
+
+  @override
+  String get google_solveChallenge => 'Sicherheitsprüfung durchführen';
+
+  @override
+  String get google_challengeTitle => 'Sicherheitsprüfung';
+
+  @override
+  String get google_challengeReady =>
+      'Prüfung abgeschlossen. Du kannst jetzt die Erstellung deines Kontos bestätigen.';
+
+  @override
+  String get google_challengeExpired =>
+      'Die Prüfung ist abgelaufen. Wiederhole sie vor dem Bestätigen.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Prüfung abgebrochen. Du kannst sie erneut durchführen.';
+
+  @override
+  String get google_challengeFailed =>
+      'Die Sicherheitsprüfung ist fehlgeschlagen. Versuche es erneut.';
 
   @override
   String get billing_trialTitle => 'Fuze Premium kostenlos testen';

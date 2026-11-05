@@ -47,7 +47,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'نشست شما باطل شده است. وی‌پی‌ان متوقف و نشست پاک می‌شود…';
+      'در حال پایان دادن به نشست: توقف وی‌پی‌ان و پاک کردن داده‌های نشست…';
 
   @override
   String get session_stopFailed =>
@@ -427,6 +427,9 @@ class AppLocalizationsFa extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'دستگاه بدون نام';
+
+  @override
   String get action_remove => 'حذف';
 
   @override
@@ -465,6 +468,11 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'نرم‌افزار استفاده‌شده در برنامه';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'کد منبع برنامه و مؤلفه‌های آن با مجوز MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -547,7 +555,7 @@ class AppLocalizationsFa extends AppLocalizations {
   String get notice_rateLimited_title => 'تلاش‌های بیش از حد';
 
   @override
-  String get notice_deviceLimit_title => 'محدودیت دو دستگاه به پایان رسید';
+  String get notice_deviceLimit_title => 'محدودیت دستگاه‌ها به پایان رسید';
 
   @override
   String get notice_deviceLimit_message =>
@@ -644,7 +652,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'vpn_sign_in_required': 'ورود لازم است',
       'protocol_unavailable_at_location': 'پروتکل در دسترس نیست',
       'vpn_permission_denied': 'اجازه وی‌پی‌ان رد شد',
-      'revoked_identity_device_limit': 'محدودیت دو دستگاه به پایان رسید',
+      'revoked_identity_device_limit': 'محدودیت دستگاه‌ها به پایان رسید',
       'tunnel_start_unexpected': 'وی‌پی‌ان شروع نشد',
       'flutter_disconnect_timeout': 'قطع اتصال تأیید نشد',
       'flutter_disconnect_unexpected': 'قطع اتصال ممکن نشد',
@@ -658,6 +666,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'location_migration_verification_failed': 'تغییر مکان تأیید نشد',
       'location_migration_device_changed': 'دستگاه هنگام تغییر مکان عوض شد',
       'tunnel_stop_failed': 'تغییر مکان در دسترس نیست',
+      'device_clock_ahead': 'ساعت دستگاه جلو است',
       'other': 'عملیات ناموفق بود',
     });
     return '$_temp0';
@@ -706,6 +715,8 @@ class AppLocalizationsFa extends AppLocalizations {
           'دستگاهی که سرور برگردانده با دستگاه در حال تغییر مطابقت ندارد. پیش از تلاش دوباره دستگاه‌ها را تازه‌سازی کنید.',
       'tunnel_stop_failed':
           'پیش از اتصال جدید، تونل قبلی باید کاملاً متوقف شود.',
+      'device_clock_ahead':
+          'به نظر می‌رسد ساعت این دستگاه جلو است. برای اینکه وارد حساب خود بمانید، تاریخ و زمان خودکار را روشن کنید.',
       'other':
           'عملیات کامل نشد. دوباره تلاش کنید یا کد تشخیص را برای پشتیبانی ارسال کنید.',
     });
@@ -820,8 +831,36 @@ class AppLocalizationsFa extends AppLocalizations {
   String get notice_retryLater => 'چند لحظه دیگر دوباره تلاش کنید.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'پس از $seconds ثانیه دوباره تلاش کنید.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'پس از $seconds ثانیه دوباره تلاش کنید.',
+      one: 'پس از $seconds ثانیه دوباره تلاش کنید.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'پس از $minutes دقیقه دوباره تلاش کنید.',
+      one: 'پس از $minutes دقیقه دوباره تلاش کنید.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'پس از $hours ساعت دوباره تلاش کنید.',
+      one: 'پس از $hours ساعت دوباره تلاش کنید.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -928,6 +967,9 @@ class AppLocalizationsFa extends AppLocalizations {
       'secure_storage_write_failed': 'نوشتن امن ناموفق بود',
       'key_generation_failed': 'ایجاد کلید WireGuard ممکن نشد',
       'csr_generation_failed': 'ایجاد CSR برای OpenVPN ممکن نشد',
+      'openvpn_recovery_exhausted': 'بازیابی OpenVPN قبلاً استفاده شده است',
+      'openvpn_recovery_failed': 'بازیابی OpenVPN ناموفق بود',
+      'openvpn_renewal_required': 'تمدید گواهی OpenVPN لازم است',
       'other': 'خطای طبقه‌بندی‌نشده وی‌پی‌ان محلی',
     });
     return '$_temp0';
@@ -1744,6 +1786,14 @@ class AppLocalizationsFa extends AppLocalizations {
       'اشتراک شما از طریق Google Play مدیریت می‌شود.';
 
   @override
+  String get billing_playOnHold =>
+      'اشتراک Google Play شما معلق است یا در انتظار پرداخت است. برای رفع آن در Google Play، «مدیریت اشتراک» را باز کنید.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'این حساب Google Play از قبل یک اشتراک Fuze Premium دارد که برای این حساب FuzeVPN فعال نیست. برای بررسی آن در Google Play، «مدیریت اشتراک» را باز کنید.';
+
+  @override
   String get billing_inactive => 'اشتراک فعالی وجود ندارد.';
 
   @override
@@ -1992,6 +2042,10 @@ class AppLocalizationsFa extends AppLocalizations {
   String get google_rateLimited => 'پیش از تلاش دوباره کمی صبر کنید.';
 
   @override
+  String get google_busy =>
+      'تا وقتی عملیات دیگری در جریان است (اتصال وی‌پی‌ان، حساب یا مهمان)، ورود با Google در دسترس نیست. پس از پایان آن دوباره تلاش کنید؛ دسترسی فعلی شما حفظ می‌شود.';
+
+  @override
   String get google_invalidPassword =>
       'گذرواژه FuzeVPN نادرست است. حساب فعلی شما حفظ می‌شود.';
 
@@ -2020,6 +2074,36 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'بررسی امنیتی در دسترس نیست. بعداً دوباره تلاش کنید.';
+
+  @override
+  String get google_intentMismatch =>
+      'یک تلاش قبلی برای ورود با Google هنوز در انتظار است. پیش از شروع این عملیات، آن را لغو کنید.';
+
+  @override
+  String get google_challengeBlocked =>
+      'بررسی امنیتی لازم در این برنامه در دسترس نیست. این عملیات در حال حاضر قابل تکمیل نیست.';
+
+  @override
+  String get google_solveChallenge => 'انجام بررسی امنیتی';
+
+  @override
+  String get google_challengeTitle => 'بررسی امنیتی';
+
+  @override
+  String get google_challengeReady =>
+      'بررسی کامل شد. اکنون می‌توانید ایجاد حساب خود را تأیید کنید.';
+
+  @override
+  String get google_challengeExpired =>
+      'اعتبار بررسی به پایان رسیده است. پیش از تأیید، آن را دوباره انجام دهید.';
+
+  @override
+  String get google_challengeCancelled =>
+      'بررسی لغو شد. می‌توانید آن را دوباره انجام دهید.';
+
+  @override
+  String get google_challengeFailed =>
+      'بررسی امنیتی ناموفق بود. دوباره تلاش کنید.';
 
   @override
   String get billing_trialTitle => 'Fuze Premium را رایگان امتحان کنید';

@@ -1,4 +1,4 @@
-param([string]$OutputDirectory)
+param([string]$OutputDirectory, [string[]]$Only)
 $ErrorActionPreference = 'Stop'
 $gateRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 if (-not $OutputDirectory) { $OutputDirectory = Join-Path $gateRoot 'build/wireguard-release-gate-tests' }
@@ -10,6 +10,7 @@ $gateWrapper = Join-Path $gateRoot 'android/gradlew.bat'
 function Invoke-GateCase {
     param([string]$Name, [string[]]$Tasks, [string]$Flag, [bool]$Reject,
         [string]$BuildType, [string]$ExpectedConfig, [string[]]$ExtraArguments = @())
+    if ($Only -and $Name -notin $Only) { return }
     $caseLog = Join-Path $OutputDirectory ($Name + '.txt')
     $caseArguments = @($Tasks) + @('--offline', '--console=plain', '--max-workers=2', '-Ptarget-platform=android-arm64')
     if ($Flag) { $caseArguments += "-Pfuzevpn.usePatchedWireGuardAar=$Flag" }
@@ -38,6 +39,30 @@ function Invoke-GateCase {
     }
     $gateResults.Add([pscustomobject]@{ name=$Name; passed=$true; expectedRejection=$Reject; exitCode=$caseExit })
     Write-Output "PASS $Name"
+}
+
+# A17-supply-chain-05: GoBackend loads only libwg-go. The AAR's wireguard-tools
+# executables (libwg.so, libwg-quick.so: GPL-2.0, netlink LGPL-2.1) serve only
+# WgQuickBackend and its root shell, which the app never uses, and must not ship.
+function Invoke-NativeLibraryCase {
+    param([string]$Name)
+    if ($Only -and $Name -notin $Only) { return }
+    $caseLog = Join-Path $OutputDirectory ($Name + '.txt')
+    # The OpenVPN C++ build does not affect this inventory and is skipped.
+    $caseArguments = @(':app:mergeDebugNativeLibs', '-x', ':app:buildCMakeDebug[arm64-v8a]', '--offline',
+        '--console=plain', '--max-workers=2', '-Ptarget-platform=android-arm64', '-Pfuzevpn.usePatchedWireGuardAar=true')
+    $ErrorActionPreference = 'Continue'
+    & $gateWrapper @caseArguments *> $caseLog
+    $caseExit = $LASTEXITCODE
+    $ErrorActionPreference = 'Stop'
+    if ($caseExit -ne 0) { throw "$Name failed; see $caseLog" }
+    $merged = Join-Path $gateRoot 'build/app/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/arm64-v8a'
+    $packaged = @(Get-ChildItem -LiteralPath $merged -Filter '*.so' | Select-Object -ExpandProperty Name)
+    if ($packaged -notcontains 'libwg-go.so') { throw "$Name lost libwg-go.so; see $caseLog" }
+    $unused = @($packaged | Where-Object { $_ -in @('libwg.so', 'libwg-quick.so') })
+    if ($unused.Count) { throw "$Name packaged unused wireguard-tools executables: $($unused -join ', ')" }
+    $gateResults.Add([pscustomobject]@{ name=$Name; passed=$true; expectedRejection=$false; exitCode=$caseExit; nativeLibraries=$packaged })
+    Write-Output "PASS $Name ($($packaged -join ', '))"
 }
 
 # Examine the real application's dependency declarations without altering them.
@@ -82,6 +107,7 @@ try {
     Invoke-GateCase 'combined-debug-release-no-flag' @(':app:generateDebugBuildConfig', ':app:generateReleaseBuildConfig') '' $true
     Invoke-GateCase 'dependencies-no-flag' @(':app:verifyWireGuardDependencyIsolation') '' $false -ExtraArguments @('-I', $dependencyProbe)
     Invoke-GateCase 'dependencies-approved' @(':app:verifyWireGuardDependencyIsolation') 'true' $false -ExtraArguments @('-I', $dependencyProbe)
+    Invoke-NativeLibraryCase 'native-libraries-approved'
     $gateResults | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath (Join-Path $OutputDirectory 'results.json') -Encoding UTF8
     Write-Output "WireGuard Gradle integration: $($gateResults.Count) cases passed"
 } finally {

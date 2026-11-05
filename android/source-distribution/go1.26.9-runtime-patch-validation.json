@@ -1,0 +1,62 @@
+{
+  "go_version": "1.26.9",
+  "source_archive_sha256": "9735d7dcdb65b35d3fa577f04064737c03b89cf1a2b71e6e69fe2f3c6f9fd4ca",
+  "patch_sha256": "d0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a",
+  "reviewed_sites": 14,
+  "files": [
+    {
+      "path": "src/runtime/sys_linux_386.s",
+      "original_sha256": "900e3db7472d0686f80bd473f18c1386673591c912708ca6ec7065425b7cc6b1",
+      "patched_sha256": "d26df5e47f57d0c5b423856881c06a1413e7ae9552d885bda253f338297b8c7a",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/sys_linux_amd64.s",
+      "original_sha256": "98ec6f0afedcc07d64f94c299c201b1ca5e7d52f7ed284bf6782c5ca7b9760f2",
+      "patched_sha256": "c2d036930bd9dc0a82cfb4a607e512c2f237d39b559e8d02c1b93af3b1f29571",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/sys_linux_arm.s",
+      "original_sha256": "f26d517b075da9f6f86a6f5e3bce2dfdd8868d03f0ec67c2acdb083ef53e53a7",
+      "patched_sha256": "629c0c8e8fc48028c80402d38d09828e811bd9fb1bd5eb56267ad3d943bc4c97",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/sys_linux_arm64.s",
+      "original_sha256": "166e11d3359f7d4953e14dd57929e0b293471f7a5de7caed69c6e81317468666",
+      "patched_sha256": "2888e74e80ba0455090a53a3f944aefc9243238cf7380bc8097080e46a19cf10",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/sys_linux_mips64x.s",
+      "original_sha256": "441a9306b505d9747e0e0c2acc98150cbc1767ff64f7d94319ac9ee97df9a92b",
+      "patched_sha256": "5f38aef75c0cf29ebd7f1255eb3bfbc3892d5f357b6076c00c1a855124c7c18d",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/sys_linux_mipsx.s",
+      "original_sha256": "4813461def7383d9e21e34f1f7d6dda31aab238fa45582fb41f673b537c4c34b",
+      "patched_sha256": "fb3508ae6b891c42d84714878697f85ada00d25edc0aa5be9250f525ba028508",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/sys_linux_ppc64x.s",
+      "original_sha256": "e16220e5cdf8ee82be06117c355b22cd75162c9fb08a123437b7d84886736efd",
+      "patched_sha256": "e1c758d275ef3e7b5b2a00584551fcbeaada6635652ab0a525ff0abbd08a703e",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/sys_linux_s390x.s",
+      "original_sha256": "d4d364f17067837d7e8d4b064d64b95305f16917d23b57f2de35602591a5a8a3",
+      "patched_sha256": "6054f7d1f43164a1c3ae92a1b2078539191dfb0efc640faf175c262a08bfbedb",
+      "matches_installed_runtime": true
+    },
+    {
+      "path": "src/runtime/time_linux_amd64.s",
+      "original_sha256": "328970a6fb6973b917bc914931bb32d001f698b6a399b4d8d5f7c1939051f612",
+      "patched_sha256": "f524264d736d568d608ac44c641f15aae689c4a18d8c95f3512199422127efb0",
+      "matches_installed_runtime": true
+    }
+  ]
+}

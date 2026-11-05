@@ -38,11 +38,7 @@ class LanguageSettings extends StatelessWidget {
       leading: _LanguageFlag(locale: locale),
       title: Text(context.copy('settings.language')),
       subtitle: Text(_languageLabel(context, locale)),
-      trailing: Icon(
-        Directionality.of(context) == TextDirection.rtl
-            ? Icons.chevron_left
-            : Icons.chevron_right,
-      ),
+      trailing: const Icon(Icons.chevron_right),
       onTap: () => _showPicker(context),
     );
   }

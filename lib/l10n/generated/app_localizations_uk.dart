@@ -48,7 +48,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Ваш сеанс недійсний. Зупинення VPN і очищення даних сеансу…';
+      'Завершення сеансу: зупинення VPN і очищення даних сеансу…';
 
   @override
   String get session_stopFailed =>
@@ -430,6 +430,9 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Пристрій без назви';
+
+  @override
   String get action_remove => 'Видалити';
 
   @override
@@ -470,6 +473,11 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get settings_licensesDetail =>
       'Програмне забезпечення, використане в програмі';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Вихідний код програми та її компонентів за ліцензією MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -553,7 +561,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get notice_rateLimited_title => 'Забагато спроб';
 
   @override
-  String get notice_deviceLimit_title => 'Досягнуто обмеження у 2 пристрої';
+  String get notice_deviceLimit_title => 'Досягнуто обмеження пристроїв';
 
   @override
   String get notice_deviceLimit_message =>
@@ -652,7 +660,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'vpn_sign_in_required': 'Потрібен вхід',
       'protocol_unavailable_at_location': 'Протокол недоступний',
       'vpn_permission_denied': 'У дозволі на VPN відмовлено',
-      'revoked_identity_device_limit': 'Досягнуто обмеження у 2 пристрої',
+      'revoked_identity_device_limit': 'Досягнуто обмеження пристроїв',
       'tunnel_start_unexpected': 'Не вдалося запустити VPN',
       'flutter_disconnect_timeout': 'Відключення не підтверджено',
       'flutter_disconnect_unexpected': 'Не вдалося відключитися',
@@ -668,6 +676,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'location_migration_device_changed':
           'Під час зміни розташування пристрій змінився',
       'tunnel_stop_failed': 'Розташування недоступне для зміни',
+      'device_clock_ahead': 'Годинник пристрою поспішає',
       'other': 'Не вдалося виконати операцію',
     });
     return '$_temp0';
@@ -718,6 +727,8 @@ class AppLocalizationsUk extends AppLocalizations {
           'Пристрій, повернутий сервером, більше не відповідає пристрою, який змінюється. Оновіть список пристроїв перед новою спробою.',
       'tunnel_stop_failed':
           'Попередній тунель потрібно повністю зупинити перед новим підключенням.',
+      'device_clock_ahead':
+          'Схоже, годинник цього пристрою поспішає. Увімкніть автоматичні дату й час, щоб залишатися в системі.',
       'other':
           'Не вдалося завершити операцію. Спробуйте ще раз або надішліть код діагностики до служби підтримки.',
     });
@@ -837,8 +848,42 @@ class AppLocalizationsUk extends AppLocalizations {
   String get notice_retryLater => 'Спробуйте ще раз за кілька хвилин.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Спробуйте ще раз через $seconds секунд.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Спробуйте ще раз через $seconds секунди.',
+      many: 'Спробуйте ще раз через $seconds секунд.',
+      few: 'Спробуйте ще раз через $seconds секунди.',
+      one: 'Спробуйте ще раз через $seconds секунду.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Спробуйте ще раз через $minutes хвилини.',
+      many: 'Спробуйте ще раз через $minutes хвилин.',
+      few: 'Спробуйте ще раз через $minutes хвилини.',
+      one: 'Спробуйте ще раз через $minutes хвилину.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Спробуйте ще раз через $hours години.',
+      many: 'Спробуйте ще раз через $hours годин.',
+      few: 'Спробуйте ще раз через $hours години.',
+      one: 'Спробуйте ще раз через $hours годину.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -948,6 +993,9 @@ class AppLocalizationsUk extends AppLocalizations {
       'secure_storage_write_failed': 'Не вдалося безпечно записати дані',
       'key_generation_failed': 'Не вдалося створити ключ WireGuard',
       'csr_generation_failed': 'Не вдалося створити CSR OpenVPN',
+      'openvpn_recovery_exhausted': 'Відновлення OpenVPN уже використано',
+      'openvpn_recovery_failed': 'Не вдалося відновити OpenVPN',
+      'openvpn_renewal_required': 'Потрібно оновити сертифікат OpenVPN',
       'other': 'Некласифікована власна помилка VPN',
     });
     return '$_temp0';
@@ -1785,6 +1833,14 @@ class AppLocalizationsUk extends AppLocalizations {
       'Вашою підпискою можна керувати через Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Вашу підписку Google Play призупинено або вона очікує оплати. Відкрийте «Керувати підпискою», щоб вирішити це в Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Цей обліковий запис Google Play уже має підписку Fuze Premium, яка не активна для цього облікового запису FuzeVPN. Відкрийте «Керувати підпискою», щоб переглянути її в Google Play.';
+
+  @override
   String get billing_inactive => 'Немає активної підписки.';
 
   @override
@@ -2036,6 +2092,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get google_rateLimited => 'Зачекайте перед повторною спробою.';
 
   @override
+  String get google_busy =>
+      'Google недоступний, поки триває інша операція (VPN-з’єднання, обліковий запис або гостьовий доступ). Спробуйте ще раз після її завершення; ваш поточний доступ збережено.';
+
+  @override
   String get google_invalidPassword =>
       'Неправильний пароль FuzeVPN. Поточний обліковий запис збережено.';
 
@@ -2065,6 +2125,36 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Перевірка безпеки недоступна. Спробуйте пізніше.';
+
+  @override
+  String get google_intentMismatch =>
+      'Попередня спроба входу через Google ще не завершена. Скасуйте її перед початком цієї операції.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Потрібна перевірка безпеки недоступна в цьому застосунку. Зараз цю операцію неможливо завершити.';
+
+  @override
+  String get google_solveChallenge => 'Пройти перевірку безпеки';
+
+  @override
+  String get google_challengeTitle => 'Перевірка безпеки';
+
+  @override
+  String get google_challengeReady =>
+      'Перевірку завершено. Тепер ви можете підтвердити створення облікового запису.';
+
+  @override
+  String get google_challengeExpired =>
+      'Термін дії перевірки минув. Пройдіть її ще раз перед підтвердженням.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Перевірку скасовано. Ви можете пройти її знову.';
+
+  @override
+  String get google_challengeFailed =>
+      'Перевірка безпеки не вдалася. Спробуйте ще раз.';
 
   @override
   String get billing_trialTitle => 'Спробуйте Fuze Premium безкоштовно';

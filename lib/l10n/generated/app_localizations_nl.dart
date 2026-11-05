@@ -47,7 +47,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Je sessie is ongeldig gemaakt. De VPN wordt gestopt en de sessie wordt gewist…';
+      'Sessie wordt beëindigd: de VPN wordt gestopt en de sessiegegevens worden gewist…';
 
   @override
   String get session_stopFailed =>
@@ -428,6 +428,9 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Naamloos apparaat';
+
+  @override
   String get action_remove => 'Verwijderen';
 
   @override
@@ -467,6 +470,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Software die in de app wordt gebruikt';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Broncode van de app en van de componenten onder MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -549,7 +557,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get notice_rateLimited_title => 'Te veel pogingen';
 
   @override
-  String get notice_deviceLimit_title => 'Limiet van 2 apparaten bereikt';
+  String get notice_deviceLimit_title => 'Apparaatlimiet bereikt';
 
   @override
   String get notice_deviceLimit_message =>
@@ -653,7 +661,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'vpn_sign_in_required': 'Aanmelden vereist',
       'protocol_unavailable_at_location': 'Protocol niet beschikbaar',
       'vpn_permission_denied': 'VPN-toestemming geweigerd',
-      'revoked_identity_device_limit': 'Limiet van 2 apparaten bereikt',
+      'revoked_identity_device_limit': 'Apparaatlimiet bereikt',
       'tunnel_start_unexpected': 'VPN kon niet starten',
       'flutter_disconnect_timeout': 'Verbreking niet bevestigd',
       'flutter_disconnect_unexpected': 'Verbinding kon niet worden verbroken',
@@ -669,6 +677,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'location_migration_device_changed':
           'Apparaat gewijzigd tijdens locatiewijziging',
       'tunnel_stop_failed': 'Locatiewijziging niet beschikbaar',
+      'device_clock_ahead': 'Apparaatklok loopt voor',
       'other': 'Bewerking mislukt',
     });
     return '$_temp0';
@@ -719,6 +728,8 @@ class AppLocalizationsNl extends AppLocalizations {
           'Het apparaat dat door de server is teruggegeven, komt niet meer overeen met het apparaat dat wordt gewijzigd. Vernieuw de apparaten voordat je het opnieuw probeert.',
       'tunnel_stop_failed':
           'De vorige tunnel moet volledig zijn gestopt voordat de nieuwe verbinding wordt gemaakt.',
+      'device_clock_ahead':
+          'De klok van dit apparaat lijkt voor te lopen. Zet automatische datum en tijd aan om aangemeld te blijven.',
       'other':
           'De bewerking kon niet worden voltooid. Probeer het opnieuw of stuur de diagnosecode naar de ondersteuning.',
     });
@@ -846,8 +857,36 @@ class AppLocalizationsNl extends AppLocalizations {
       'Probeer het over enkele ogenblikken opnieuw.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Probeer het over $seconds seconden opnieuw.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Probeer het over $seconds seconden opnieuw.',
+      one: 'Probeer het over $seconds seconde opnieuw.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Probeer het over $minutes minuten opnieuw.',
+      one: 'Probeer het over $minutes minuut opnieuw.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Probeer het over $hours uur opnieuw.',
+      one: 'Probeer het over $hours uur opnieuw.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -965,6 +1004,9 @@ class AppLocalizationsNl extends AppLocalizations {
       'secure_storage_write_failed': 'Beveiligd schrijven mislukt',
       'key_generation_failed': 'WireGuard-sleutel kon niet worden gegenereerd',
       'csr_generation_failed': 'OpenVPN-CSR kon niet worden gegenereerd',
+      'openvpn_recovery_exhausted': 'OpenVPN-herstel al gebruikt',
+      'openvpn_recovery_failed': 'OpenVPN-herstel mislukt',
+      'openvpn_renewal_required': 'OpenVPN-certificaat moet worden vernieuwd',
       'other': 'Niet-geclassificeerde native VPN-fout',
     });
     return '$_temp0';
@@ -1798,6 +1840,14 @@ class AppLocalizationsNl extends AppLocalizations {
       'Je abonnement wordt beheerd via Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Je Google Play-abonnement is opgeschort of wacht op betaling. Open ‘Abonnement beheren’ om het op te lossen in Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Dit Google Play-account heeft al een Fuze Premium-abonnement dat niet actief is voor dit FuzeVPN-account. Open ‘Abonnement beheren’ om het te bekijken in Google Play.';
+
+  @override
   String get billing_inactive => 'Geen actief abonnement.';
 
   @override
@@ -2050,6 +2100,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get google_rateLimited => 'Wacht even voordat u opnieuw probeert.';
 
   @override
+  String get google_busy =>
+      'Google is niet beschikbaar zolang er een andere bewerking bezig is (VPN-verbinding, account of gast). Probeer het opnieuw zodra die klaar is; je huidige toegang blijft behouden.';
+
+  @override
   String get google_invalidPassword =>
       'Het FuzeVPN-wachtwoord is onjuist. Uw huidige account blijft behouden.';
 
@@ -2080,6 +2134,36 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'De beveiligingscontrole is niet beschikbaar. Probeer later opnieuw.';
+
+  @override
+  String get google_intentMismatch =>
+      'Een eerdere aanmeldpoging met Google is nog in behandeling. Annuleer die voordat je deze bewerking start.';
+
+  @override
+  String get google_challengeBlocked =>
+      'De vereiste beveiligingscontrole is niet beschikbaar in deze app. Deze bewerking kan momenteel niet worden voltooid.';
+
+  @override
+  String get google_solveChallenge => 'De beveiligingscontrole uitvoeren';
+
+  @override
+  String get google_challengeTitle => 'Beveiligingscontrole';
+
+  @override
+  String get google_challengeReady =>
+      'Verificatie voltooid. Je kunt nu het aanmaken van je account bevestigen.';
+
+  @override
+  String get google_challengeExpired =>
+      'De verificatie is verlopen. Voer deze opnieuw uit voordat je bevestigt.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Verificatie geannuleerd. Je kunt deze opnieuw uitvoeren.';
+
+  @override
+  String get google_challengeFailed =>
+      'De beveiligingscontrole is mislukt. Probeer het opnieuw.';
 
   @override
   String get billing_trialTitle => 'Probeer Fuze Premium gratis';

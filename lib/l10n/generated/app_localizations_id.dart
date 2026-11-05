@@ -47,7 +47,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Sesi Anda dibatalkan. Menghentikan VPN dan menghapus sesi…';
+      'Mengakhiri sesi: menghentikan VPN dan membersihkan data sesi…';
 
   @override
   String get session_stopFailed =>
@@ -426,6 +426,9 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Perangkat tanpa nama';
+
+  @override
   String get action_remove => 'Hapus';
 
   @override
@@ -466,6 +469,11 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get settings_licensesDetail =>
       'Perangkat lunak yang digunakan dalam aplikasi';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Kode sumber aplikasi dan komponennya yang berlisensi MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -548,7 +556,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get notice_rateLimited_title => 'Terlalu banyak percobaan';
 
   @override
-  String get notice_deviceLimit_title => 'Batas 2 perangkat tercapai';
+  String get notice_deviceLimit_title => 'Batas perangkat tercapai';
 
   @override
   String get notice_deviceLimit_message =>
@@ -648,7 +656,7 @@ class AppLocalizationsId extends AppLocalizations {
       'vpn_sign_in_required': 'Harus masuk',
       'protocol_unavailable_at_location': 'Protokol tidak tersedia',
       'vpn_permission_denied': 'Izin VPN ditolak',
-      'revoked_identity_device_limit': 'Batas 2 perangkat tercapai',
+      'revoked_identity_device_limit': 'Batas perangkat tercapai',
       'tunnel_start_unexpected': 'VPN tidak dapat dimulai',
       'flutter_disconnect_timeout': 'Pemutusan belum dikonfirmasi',
       'flutter_disconnect_unexpected': 'Tidak dapat memutuskan',
@@ -664,6 +672,7 @@ class AppLocalizationsId extends AppLocalizations {
       'location_migration_device_changed':
           'Perangkat berubah selama perubahan lokasi',
       'tunnel_stop_failed': 'Perubahan lokasi tidak tersedia',
+      'device_clock_ahead': 'Jam perangkat terlalu cepat',
       'other': 'Operasi gagal',
     });
     return '$_temp0';
@@ -712,6 +721,8 @@ class AppLocalizationsId extends AppLocalizations {
           'Perangkat yang dikembalikan server tidak lagi cocok dengan perangkat yang sedang diubah. Segarkan perangkat sebelum mencoba lagi.',
       'tunnel_stop_failed':
           'Tunnel sebelumnya harus dihentikan sepenuhnya sebelum koneksi baru dibuat.',
+      'device_clock_ahead':
+          'Jam di perangkat ini tampaknya terlalu cepat. Aktifkan tanggal dan waktu otomatis agar Anda tetap masuk.',
       'other':
           'Operasi tidak dapat diselesaikan. Coba lagi atau kirim kode diagnostik ke dukungan.',
     });
@@ -831,8 +842,36 @@ class AppLocalizationsId extends AppLocalizations {
   String get notice_retryLater => 'Coba lagi beberapa saat lagi.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Coba lagi dalam $seconds detik.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Coba lagi dalam $seconds detik.',
+      one: 'Coba lagi dalam $seconds detik.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Coba lagi dalam $minutes menit.',
+      one: 'Coba lagi dalam $minutes menit.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Coba lagi dalam $hours jam.',
+      one: 'Coba lagi dalam $hours jam.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -941,6 +980,9 @@ class AppLocalizationsId extends AppLocalizations {
       'secure_storage_write_failed': 'Penulisan aman gagal',
       'key_generation_failed': 'Tidak dapat membuat kunci WireGuard',
       'csr_generation_failed': 'Tidak dapat membuat CSR OpenVPN',
+      'openvpn_recovery_exhausted': 'Pemulihan OpenVPN sudah digunakan',
+      'openvpn_recovery_failed': 'Pemulihan OpenVPN gagal',
+      'openvpn_renewal_required': 'Sertifikat OpenVPN perlu diperbarui',
       'other': 'Kesalahan VPN asli yang tidak terklasifikasi',
     });
     return '$_temp0';
@@ -1771,6 +1813,14 @@ class AppLocalizationsId extends AppLocalizations {
       'Langganan Anda dikelola melalui Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Langganan Google Play Anda ditangguhkan atau menunggu pembayaran. Buka “Kelola langganan” untuk menyelesaikannya di Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Akun Google Play ini sudah memiliki langganan Fuze Premium yang tidak aktif untuk akun FuzeVPN ini. Buka “Kelola langganan” untuk meninjaunya di Google Play.';
+
+  @override
   String get billing_inactive => 'Tidak ada langganan aktif.';
 
   @override
@@ -2022,6 +2072,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get google_rateLimited => 'Harap tunggu sebelum mencoba lagi.';
 
   @override
+  String get google_busy =>
+      'Google tidak tersedia selama operasi lain sedang berlangsung (koneksi VPN, akun, atau tamu). Coba lagi setelah selesai; akses Anda saat ini tetap dipertahankan.';
+
+  @override
   String get google_invalidPassword =>
       'Kata sandi FuzeVPN salah. Akun Anda saat ini tetap disimpan.';
 
@@ -2052,6 +2106,35 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Pemeriksaan keamanan tidak tersedia. Coba lagi nanti.';
+
+  @override
+  String get google_intentMismatch =>
+      'Percobaan login Google sebelumnya masih tertunda. Batalkan percobaan tersebut sebelum memulai operasi ini.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Verifikasi keamanan yang diperlukan tidak tersedia di aplikasi ini. Operasi ini tidak dapat diselesaikan saat ini.';
+
+  @override
+  String get google_solveChallenge => 'Lakukan verifikasi keamanan';
+
+  @override
+  String get google_challengeTitle => 'Verifikasi keamanan';
+
+  @override
+  String get google_challengeReady =>
+      'Verifikasi selesai. Anda sekarang dapat mengonfirmasi pembuatan akun Anda.';
+
+  @override
+  String get google_challengeExpired =>
+      'Verifikasi telah kedaluwarsa. Lakukan kembali sebelum mengonfirmasi.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Verifikasi dibatalkan. Anda dapat melakukannya kembali.';
+
+  @override
+  String get google_challengeFailed => 'Verifikasi keamanan gagal. Coba lagi.';
 
   @override
   String get billing_trialTitle => 'Coba Fuze Premium gratis';

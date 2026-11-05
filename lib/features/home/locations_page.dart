@@ -18,6 +18,7 @@ class LocationsPage extends StatefulWidget {
 
 class _LocationsPageState extends State<LocationsPage> {
   final _search = TextEditingController();
+  final _searchFocus = FocusNode();
   final _scroll = ScrollController();
   bool _favoritesOnly = false;
   bool _confirmingChange = false;
@@ -64,6 +65,7 @@ class _LocationsPageState extends State<LocationsPage> {
   void dispose() {
     widget.controller.removeListener(_catalogueChanged);
     _search.dispose();
+    _searchFocus.dispose();
     _scroll.dispose();
     super.dispose();
   }
@@ -136,23 +138,31 @@ class _LocationsPageState extends State<LocationsPage> {
             alignment: AlignmentDirectional.centerStart,
             child: _LocationFlagBadge(countryCode: location.countryCode),
           ),
-          title: Text(dialogContext.copy('locations.changeTitle')),
-          content: Text(
-            dialogContext.copy(
-              active ? 'locations.changeActive' : 'locations.changeIdle',
-              arguments: {'name': location.displayName},
+          title: WholeWords(
+            child: Text(dialogContext.copy('locations.changeTitle')),
+          ),
+          content: WholeWords(
+            child: Text(
+              dialogContext.copy(
+                active ? 'locations.changeActive' : 'locations.changeIdle',
+                arguments: {'name': location.displayName},
+              ),
             ),
           ),
           actions: [
             TextButton(
               key: const ValueKey('location-change-cancel'),
               onPressed: () => answer(dialogContext, false),
-              child: Text(dialogContext.copy('action.cancel')),
+              child: WholeWords(
+                child: Text(dialogContext.copy('action.cancel')),
+              ),
             ),
             FilledButton(
               key: const ValueKey('location-change-confirm'),
               onPressed: () => answer(dialogContext, true),
-              child: Text(dialogContext.copy('locations.confirmChange')),
+              child: WholeWords(
+                child: Text(dialogContext.copy('locations.confirmChange')),
+              ),
             ),
           ],
         ),
@@ -216,9 +226,18 @@ class _LocationsPageState extends State<LocationsPage> {
       return PopScope<void>(
         canPop: !widget.isActive || !hasBack,
         onPopInvokedWithResult: (didPop, _) {
-          if (!didPop && widget.isActive && hasBack && !_confirmingChange) {
-            _goBack();
+          if (didPop || !widget.isActive || !hasBack || _confirmingChange) {
+            return;
           }
+          // From Android 16, typing puts this callback above the keyboard's,
+          // so back arrives here while the keyboard is shown: it only closes
+          // the keyboard, as it does on earlier versions. The Scaffold removes
+          // the keyboard inset from MediaQuery, hence View.
+          if (_searchFocus.hasFocus && View.of(context).viewInsets.bottom > 0) {
+            _searchFocus.unfocus();
+            return;
+          }
+          _goBack();
         },
         child: _PageBody(
           controller: _scroll,
@@ -231,6 +250,7 @@ class _LocationsPageState extends State<LocationsPage> {
             TextField(
               key: const ValueKey('locations-search'),
               controller: _search,
+              focusNode: _searchFocus,
               onChanged: (_) => setState(() {}),
               textInputAction: TextInputAction.search,
               onSubmitted: (_) => FocusScope.of(context).unfocus(),
@@ -633,23 +653,13 @@ class _LocationGroupRow extends StatelessWidget {
                       ? Row(
                           children: [
                             Expanded(child: countLabel),
-                            Icon(
-                              Directionality.of(context) == TextDirection.rtl
-                                  ? Icons.chevron_left_rounded
-                                  : Icons.chevron_right_rounded,
-                              size: 20,
-                            ),
+                            const Icon(Icons.chevron_right_rounded, size: 20),
                           ],
                         )
                       : Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(
-                              Directionality.of(context) == TextDirection.rtl
-                                  ? Icons.chevron_left_rounded
-                                  : Icons.chevron_right_rounded,
-                              size: 20,
-                            ),
+                            const Icon(Icons.chevron_right_rounded, size: 20),
                             const SizedBox(height: 8),
                             countLabel,
                           ],

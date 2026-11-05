@@ -2,7 +2,11 @@ import 'dart:async';
 
 /// No token is stored here. Identity is the lifetime of an account operation.
 class SessionOperation {
-  SessionOperation();
+  SessionOperation({Object? lineage}) : lineage = lineage ?? Object();
+
+  /// Shared by the operations of one account session across its guest token
+  /// renewals; any other admission or end starts a new lineage.
+  final Object lineage;
 
   bool _cancelled = false;
   final Completer<void> _cancellation = Completer<void>();
@@ -28,6 +32,12 @@ class SessionOperation {
 class SessionOperationCancelled implements Exception {
   const SessionOperationCancelled();
 }
+
+/// Why a session ends, as sent to native storage. Requests that join one end
+/// are merged there: it is an expiry if one of them is (the only cause that
+/// publishes the expiry), and automatic guest recovery is revoked as soon as
+/// one of them is voluntary. An abandoned automatic admission revokes nothing.
+enum SessionEndCause { voluntary, expired, abandoned }
 
 /// A success means both the native worker and the persisted session are gone.
 class SessionTerminationResult {

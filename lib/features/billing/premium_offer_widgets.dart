@@ -2,11 +2,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../app_theme.dart';
 import '../../core/play_billing.dart';
 import '../../l10n/app_copy.dart';
+import '../../l10n/app_formats.dart';
 import '../../widgets/fuze_brand.dart';
 import '../../widgets/fuze_design.dart';
 import '../auth/guest_claim_page.dart';
@@ -480,9 +480,10 @@ class _PremiumCheckoutSummaryState extends State<PremiumCheckoutSummary>
                   context.copy(
                     'billing.trialFirstCharge',
                     arguments: {
-                      'date': DateFormat.yMd(
-                        Localizations.localeOf(context).toString(),
-                      ).format(previewTrialChargeDate(_today, days)),
+                      'date': AppFormats.longDate(
+                        context,
+                        previewTrialChargeDate(_today, days),
+                      ),
                     },
                   ),
                   key: const ValueKey('subscription-first-charge'),

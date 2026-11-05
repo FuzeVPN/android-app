@@ -223,7 +223,7 @@ abstract class AppLocalizations {
   /// No description provided for @session_ending.
   ///
   /// In fr, this message translates to:
-  /// **'Votre session est invalidée. Arrêt du VPN et nettoyage en cours…'**
+  /// **'Fin de la session en cours : arrêt du VPN et nettoyage…'**
   String get session_ending;
 
   /// No description provided for @session_stopFailed.
@@ -916,6 +916,12 @@ abstract class AppLocalizations {
   /// **'Ajouté le {date}'**
   String devices_added(Object date);
 
+  /// No description provided for @devices_unnamed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Appareil sans nom'**
+  String get devices_unnamed;
+
   /// No description provided for @action_remove.
   ///
   /// In fr, this message translates to:
@@ -993,6 +999,12 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Logiciels utilisés dans l’application'**
   String get settings_licensesDetail;
+
+  /// No description provided for @settings_licensesLegalese.
+  ///
+  /// In fr, this message translates to:
+  /// **'Code source de l’application et de ses composants sous MPL-2.0 : {url}'**
+  String settings_licensesLegalese(String url);
 
   /// No description provided for @settings_background.
   ///
@@ -1141,7 +1153,7 @@ abstract class AppLocalizations {
   /// No description provided for @notice_deviceLimit_title.
   ///
   /// In fr, this message translates to:
-  /// **'Limite de 2 appareils atteinte'**
+  /// **'Limite d’appareils atteinte'**
   String get notice_deviceLimit_title;
 
   /// No description provided for @notice_deviceLimit_message.
@@ -1291,13 +1303,13 @@ abstract class AppLocalizations {
   /// No description provided for @notice_controller_title.
   ///
   /// In fr, this message translates to:
-  /// **'{code, select, account_created_email_unavailable{Compte créé} password_reset_sent{Demande de réinitialisation reçue} verification_email_sent{E-mail de vérification envoyé} location_migration_pending{Changement d’emplacement en cours} vpn_sign_in_required{Connexion requise} protocol_unavailable_at_location{Protocole indisponible} vpn_permission_denied{Autorisation VPN refusée} revoked_identity_device_limit{Limite de 2 appareils atteinte} tunnel_start_unexpected{Démarrage VPN impossible} flutter_disconnect_timeout{Déconnexion non confirmée} flutter_disconnect_unexpected{Déconnexion impossible} device_revoked{Appareil retiré} revoke_unexpected{Suppression impossible} identity_renewal_unexpected{Renouvellement impossible} openvpn_renewal_unexpected{Renouvellement OpenVPN impossible} location_migration_blocked{Changement d’emplacement bloqué} location_migration_slow{Changement toujours en cours} location_migration_conflict{Changement d’emplacement à actualiser} location_migration_verification_failed{Changement non confirmé} location_migration_device_changed{Appareil modifié pendant le changement} tunnel_stop_failed{Changement impossible} other{Opération impossible}}'**
+  /// **'{code, select, account_created_email_unavailable{Compte créé} password_reset_sent{Demande de réinitialisation reçue} verification_email_sent{E-mail de vérification envoyé} location_migration_pending{Changement d’emplacement en cours} vpn_sign_in_required{Connexion requise} protocol_unavailable_at_location{Protocole indisponible} vpn_permission_denied{Autorisation VPN refusée} revoked_identity_device_limit{Limite d’appareils atteinte} tunnel_start_unexpected{Démarrage VPN impossible} flutter_disconnect_timeout{Déconnexion non confirmée} flutter_disconnect_unexpected{Déconnexion impossible} device_revoked{Appareil retiré} revoke_unexpected{Suppression impossible} identity_renewal_unexpected{Renouvellement impossible} openvpn_renewal_unexpected{Renouvellement OpenVPN impossible} location_migration_blocked{Changement d’emplacement bloqué} location_migration_slow{Changement toujours en cours} location_migration_conflict{Changement d’emplacement à actualiser} location_migration_verification_failed{Changement non confirmé} location_migration_device_changed{Appareil modifié pendant le changement} tunnel_stop_failed{Changement impossible} device_clock_ahead{Heure de l’appareil en avance} other{Opération impossible}}'**
   String notice_controller_title(String code);
 
   /// No description provided for @notice_controller_message.
   ///
   /// In fr, this message translates to:
-  /// **'{code, select, account_created_email_unavailable{Le compte a été créé, mais l’e-mail de vérification n’a pas pu être envoyé. Utilisez le renvoi depuis l’application.} password_reset_sent{Votre demande a été reçue. Si un compte correspond à cette adresse, un e-mail pourra vous parvenir. Vérifiez aussi vos courriers indésirables.} verification_email_sent{Un nouvel e-mail de vérification vient d’être envoyé.} location_migration_pending{La préparation du déplacement vers {target} est toujours en cours. Vous pouvez la reprendre sans recréer l’appareil.} vpn_sign_in_required{Connectez-vous à votre compte avant de démarrer le VPN.} protocol_unavailable_at_location{Le protocole sélectionné n’est pas proposé par cet emplacement. Actualisez les emplacements ou choisissez un autre protocole.} vpn_permission_denied{Android a refusé l’autorisation VPN. Relancez la connexion puis acceptez la demande système.} revoked_identity_device_limit{L’accès VPN de cet appareil a été retiré et la limite d’appareils est atteinte. Retirez un appareil dans Compte → Gérer mes appareils.} tunnel_start_unexpected{Une erreur inattendue a interrompu la préparation du tunnel. Consultez le code diagnostic puis réessayez.} flutter_disconnect_timeout{Android n’a pas confirmé l’arrêt du VPN à temps. Réessayez l’arrêt.} flutter_disconnect_unexpected{Une erreur inattendue a empêché la confirmation de l’arrêt du tunnel.} device_revoked{L’accès VPN de l’appareil a été révoqué et ses secrets locaux ont été supprimés.} revoke_unexpected{L’appareil n’a pas pu être retiré. Actualisez la liste puis réessayez.} identity_renewal_unexpected{La nouvelle identité VPN n’a pas pu être créée. Actualisez les appareils puis réessayez.} openvpn_renewal_unexpected{Le profil OpenVPN n’a pas pu être renouvelé. Réessayez ou consultez le code diagnostic.} location_migration_blocked{Le serveur ne peut pas terminer ce changement pour le moment. L’appareil et son identité locale ont été conservés.} location_migration_slow{Le serveur prépare encore le déplacement vers {target}. Utilisez Reprendre dans quelques instants.} location_migration_conflict{L’état de l’appareil a changé sur le serveur. Actualisez les appareils puis reprenez le changement.} location_migration_verification_failed{Le serveur n’a pas confirmé le nouvel emplacement. L’ancienne identité locale a été conservée.} location_migration_device_changed{L’appareil retourné par le serveur ne correspond plus à celui du changement. Actualisez les appareils avant de réessayer.} tunnel_stop_failed{Le tunnel précédent doit être complètement arrêté avant la nouvelle connexion.} other{L’opération n’a pas pu être terminée. Réessayez ou transmettez le code diagnostic au support.}}'**
+  /// **'{code, select, account_created_email_unavailable{Le compte a été créé, mais l’e-mail de vérification n’a pas pu être envoyé. Utilisez le renvoi depuis l’application.} password_reset_sent{Votre demande a été reçue. Si un compte correspond à cette adresse, un e-mail pourra vous parvenir. Vérifiez aussi vos courriers indésirables.} verification_email_sent{Un nouvel e-mail de vérification vient d’être envoyé.} location_migration_pending{La préparation du déplacement vers {target} est toujours en cours. Vous pouvez la reprendre sans recréer l’appareil.} vpn_sign_in_required{Connectez-vous à votre compte avant de démarrer le VPN.} protocol_unavailable_at_location{Le protocole sélectionné n’est pas proposé par cet emplacement. Actualisez les emplacements ou choisissez un autre protocole.} vpn_permission_denied{Android a refusé l’autorisation VPN. Relancez la connexion puis acceptez la demande système.} revoked_identity_device_limit{L’accès VPN de cet appareil a été retiré et la limite d’appareils est atteinte. Retirez un appareil dans Compte → Gérer mes appareils.} tunnel_start_unexpected{Une erreur inattendue a interrompu la préparation du tunnel. Consultez le code diagnostic puis réessayez.} flutter_disconnect_timeout{Android n’a pas confirmé l’arrêt du VPN à temps. Réessayez l’arrêt.} flutter_disconnect_unexpected{Une erreur inattendue a empêché la confirmation de l’arrêt du tunnel.} device_revoked{L’accès VPN de l’appareil a été révoqué et ses secrets locaux ont été supprimés.} revoke_unexpected{L’appareil n’a pas pu être retiré. Actualisez la liste puis réessayez.} identity_renewal_unexpected{La nouvelle identité VPN n’a pas pu être créée. Actualisez les appareils puis réessayez.} openvpn_renewal_unexpected{Le profil OpenVPN n’a pas pu être renouvelé. Réessayez ou consultez le code diagnostic.} location_migration_blocked{Le serveur ne peut pas terminer ce changement pour le moment. L’appareil et son identité locale ont été conservés.} location_migration_slow{Le serveur prépare encore le déplacement vers {target}. Utilisez Reprendre dans quelques instants.} location_migration_conflict{L’état de l’appareil a changé sur le serveur. Actualisez les appareils puis reprenez le changement.} location_migration_verification_failed{Le serveur n’a pas confirmé le nouvel emplacement. L’ancienne identité locale a été conservée.} location_migration_device_changed{L’appareil retourné par le serveur ne correspond plus à celui du changement. Actualisez les appareils avant de réessayer.} tunnel_stop_failed{Le tunnel précédent doit être complètement arrêté avant la nouvelle connexion.} device_clock_ahead{L’heure de cet appareil semble en avance. Activez la date et l’heure automatiques pour rester connecté.} other{L’opération n’a pas pu être terminée. Réessayez ou transmettez le code diagnostic au support.}}'**
   String notice_controller_message(String code, String target);
 
   /// No description provided for @notice_api_title.
@@ -1321,13 +1333,25 @@ abstract class AppLocalizations {
   /// No description provided for @notice_retryAfter.
   ///
   /// In fr, this message translates to:
-  /// **'Réessayez dans {seconds} secondes.'**
-  String notice_retryAfter(Object seconds);
+  /// **'{seconds, plural, one{Réessayez dans {seconds} seconde.} other{Réessayez dans {seconds} secondes.}}'**
+  String notice_retryAfter(int seconds);
+
+  /// No description provided for @notice_retryAfterMinutes.
+  ///
+  /// In fr, this message translates to:
+  /// **'{minutes, plural, one{Réessayez dans {minutes} minute.} other{Réessayez dans {minutes} minutes.}}'**
+  String notice_retryAfterMinutes(int minutes);
+
+  /// No description provided for @notice_retryAfterHours.
+  ///
+  /// In fr, this message translates to:
+  /// **'{hours, plural, one{Réessayez dans {hours} heure.} other{Réessayez dans {hours} heures.}}'**
+  String notice_retryAfterHours(int hours);
 
   /// No description provided for @notice_native_title.
   ///
   /// In fr, this message translates to:
-  /// **'{code, select, system_vpn_resume_unavailable{Reprise VPN système indisponible} system_vpn_resume_corrupt{Reprise VPN système invalide} system_vpn_resume_session_invalid{Session de reprise VPN invalide} system_vpn_resume_identity_changed{Identité VPN modifiée} system_vpn_resume_identity_invalid{Identité de reprise VPN invalide} system_vpn_resume_storage_failed{Stockage de reprise VPN indisponible} system_vpn_resume_network_timeout{Reprise VPN sans réseau} system_vpn_resume_blocked{Reprise VPN bloquée} system_vpn_resume_failed{Reprise VPN échouée} system_vpn_resume_error_invalid{Erreur de reprise VPN invalide} wireguard_identity_store_failed{Identité WireGuard non enregistrée} wireguard_identity_unavailable{Identité WireGuard indisponible} vpn_host_destroyed{Hôte VPN Android arrêté} vpn_host_unavailable{Hôte VPN Android indisponible} vpn_permission_required{Autorisation VPN requise} vpn_permission_denied{Autorisation VPN refusée} vpn_permission_request_failed{Demande d’autorisation impossible} wireguard_foreground_service_unavailable{Service WireGuard indisponible} wireguard_identity_invalid{Clé WireGuard locale invalide} wireguard_identity_in_use{Identité WireGuard déjà utilisée} wireguard_configuration_invalid{Configuration WireGuard invalide} wireguard_operation_pending{Opération WireGuard encore active} wireguard_start_failed{Démarrage WireGuard refusé} wireguard_stop_timeout{Arrêt WireGuard non confirmé} wireguard_handshake_timeout{WireGuard sans réponse} openvpn_connection_timeout{OpenVPN sans réponse} openvpn_core_unavailable{Moteur OpenVPN indisponible} openvpn_operation_pending{Session OpenVPN encore active} openvpn_stop_timeout{Arrêt OpenVPN non confirmé} openvpn_profile_unavailable{Profil OpenVPN local absent} openvpn_native_failed{Appel natif OpenVPN interrompu} openvpn_key_generation_failed{Clé OpenVPN P-256 impossible} openvpn_csr_generation_failed{CSR OpenVPN impossible} openvpn_identity_store_failed{Identité OpenVPN non enregistrée} openvpn_identity_clear_failed{Suppression OpenVPN incomplète} openvpn_identity_in_use{Identité OpenVPN encore utilisée} openvpn_tls_verification_required{Vérification TLS OpenVPN absente} openvpn_cipher_invalid{Chiffrement OpenVPN invalide} openvpn_profile_rejected{Profil OpenVPN refusé} openvpn_identity_inconsistent{Identité OpenVPN incohérente} tls_handshake_failed{Négociation OpenVPN refusée} tls_alert_unknown_ca{Certificat client OpenVPN non reconnu} tls_alert_bad_certificate{Certificat client OpenVPN refusé} tls_alert_unsupported_certificate{Certificat OpenVPN non compatible} tls_client_certificate_required{Certificat client OpenVPN requis} tls_alert_misc{Alerte TLS OpenVPN} tls_signature_algorithm_rejected{Signature OpenVPN non compatible} tls_handshake_rejected{Négociation TLS OpenVPN refusée} tls_version_rejected{Version TLS OpenVPN incompatible} tls_certificate_expired{Certificat TLS expiré} tls_certificate_revoked{Certificat TLS révoqué} transport_failed{Serveur OpenVPN injoignable} tun_configuration_rejected{Interface OpenVPN impossible} tun_setup_failed{Initialisation TUN OpenVPN échouée} tun_interface_create_failed{Création de l’interface OpenVPN échouée} tun_interface_disabled{Interface OpenVPN désactivée} tun_halted{Interface OpenVPN interrompue} tun_already_established{Interface OpenVPN déjà ouverte} tun_addresses_missing{Adresse OpenVPN absente} tun_routes_missing{Routes OpenVPN absentes} tun_dns_missing{DNS OpenVPN absent} tun_permission_revoked{Autorisation VPN révoquée} tun_establish_returned_null{Interface VPN refusée par Android} openvpn_service_start_failed{Service OpenVPN indisponible} openvpn_operation_timeout{Appel OpenVPN expiré} openvpn_start_failed{Démarrage OpenVPN refusé} openvpn_connection_failed{Connexion OpenVPN interrompue} openvpn_core_status_error{OpenVPN Core terminé en erreur} openvpn_stopped_before_connected{OpenVPN arrêté avant connexion} openvpn_auth_failed{Authentification OpenVPN refusée} openvpn_client_setup_failed{Préparation du client OpenVPN échouée} openvpn_client_halted{Client OpenVPN interrompu} openvpn_client_restart{Redémarrage OpenVPN demandé} openvpn_inactive_timeout{OpenVPN inactif trop longtemps} openvpn_session_expired{Session OpenVPN expirée} openvpn_credentials_required{Authentification OpenVPN non prise en charge} openvpn_proxy_failed{Transport intermédiaire OpenVPN en échec} openvpn_compression_failed{Compression OpenVPN refusée} openvpn_ntlm_crypto_unavailable{Chiffrement NTLM OpenVPN indisponible} openvpn_feature_unsupported{Fonction OpenVPN non prise en charge} network_unavailable{Connexion Internet indisponible} network_lost{Réseau indisponible} certificate_validation_failed{Certificat serveur refusé} openvpn_certificate_expired{Certificat OpenVPN expiré} tunnel_active_for_another_account{Tunnel d’un autre compte encore actif} tunnel_already_active{Tunnel natif déjà actif} tunnel_stop_timeout{Arrêt {protocol} non confirmé} tunnel_disconnected{{protocol} interrompu} native_bridge_unavailable{Bridge Android indisponible} native_operation_failed{Opération Android interrompue} invalid_arguments{Paramètres VPN incomplets} invalid_account_id{Compte VPN invalide} invalid_device_id{Identifiant d’appareil invalide} storage_key_not_allowed{Clé de stockage refusée} secure_storage_read_failed{Lecture sécurisée impossible} secure_storage_write_failed{Écriture sécurisée impossible} key_generation_failed{Génération WireGuard impossible} csr_generation_failed{Génération OpenVPN impossible} other{Erreur VPN native non classée}}'**
+  /// **'{code, select, system_vpn_resume_unavailable{Reprise VPN système indisponible} system_vpn_resume_corrupt{Reprise VPN système invalide} system_vpn_resume_session_invalid{Session de reprise VPN invalide} system_vpn_resume_identity_changed{Identité VPN modifiée} system_vpn_resume_identity_invalid{Identité de reprise VPN invalide} system_vpn_resume_storage_failed{Stockage de reprise VPN indisponible} system_vpn_resume_network_timeout{Reprise VPN sans réseau} system_vpn_resume_blocked{Reprise VPN bloquée} system_vpn_resume_failed{Reprise VPN échouée} system_vpn_resume_error_invalid{Erreur de reprise VPN invalide} wireguard_identity_store_failed{Identité WireGuard non enregistrée} wireguard_identity_unavailable{Identité WireGuard indisponible} vpn_host_destroyed{Hôte VPN Android arrêté} vpn_host_unavailable{Hôte VPN Android indisponible} vpn_permission_required{Autorisation VPN requise} vpn_permission_denied{Autorisation VPN refusée} vpn_permission_request_failed{Demande d’autorisation impossible} wireguard_foreground_service_unavailable{Service WireGuard indisponible} wireguard_identity_invalid{Clé WireGuard locale invalide} wireguard_identity_in_use{Identité WireGuard déjà utilisée} wireguard_configuration_invalid{Configuration WireGuard invalide} wireguard_operation_pending{Opération WireGuard encore active} wireguard_start_failed{Démarrage WireGuard refusé} wireguard_stop_timeout{Arrêt WireGuard non confirmé} wireguard_handshake_timeout{WireGuard sans réponse} openvpn_connection_timeout{OpenVPN sans réponse} openvpn_core_unavailable{Moteur OpenVPN indisponible} openvpn_operation_pending{Session OpenVPN encore active} openvpn_stop_timeout{Arrêt OpenVPN non confirmé} openvpn_profile_unavailable{Profil OpenVPN local absent} openvpn_native_failed{Appel natif OpenVPN interrompu} openvpn_key_generation_failed{Clé OpenVPN P-256 impossible} openvpn_csr_generation_failed{CSR OpenVPN impossible} openvpn_identity_store_failed{Identité OpenVPN non enregistrée} openvpn_identity_clear_failed{Suppression OpenVPN incomplète} openvpn_identity_in_use{Identité OpenVPN encore utilisée} openvpn_tls_verification_required{Vérification TLS OpenVPN absente} openvpn_cipher_invalid{Chiffrement OpenVPN invalide} openvpn_profile_rejected{Profil OpenVPN refusé} openvpn_identity_inconsistent{Identité OpenVPN incohérente} tls_handshake_failed{Négociation OpenVPN refusée} tls_alert_unknown_ca{Certificat client OpenVPN non reconnu} tls_alert_bad_certificate{Certificat client OpenVPN refusé} tls_alert_unsupported_certificate{Certificat OpenVPN non compatible} tls_client_certificate_required{Certificat client OpenVPN requis} tls_alert_misc{Alerte TLS OpenVPN} tls_signature_algorithm_rejected{Signature OpenVPN non compatible} tls_handshake_rejected{Négociation TLS OpenVPN refusée} tls_version_rejected{Version TLS OpenVPN incompatible} tls_certificate_expired{Certificat TLS expiré} tls_certificate_revoked{Certificat TLS révoqué} transport_failed{Serveur OpenVPN injoignable} tun_configuration_rejected{Interface OpenVPN impossible} tun_setup_failed{Initialisation TUN OpenVPN échouée} tun_interface_create_failed{Création de l’interface OpenVPN échouée} tun_interface_disabled{Interface OpenVPN désactivée} tun_halted{Interface OpenVPN interrompue} tun_already_established{Interface OpenVPN déjà ouverte} tun_addresses_missing{Adresse OpenVPN absente} tun_routes_missing{Routes OpenVPN absentes} tun_dns_missing{DNS OpenVPN absent} tun_permission_revoked{Autorisation VPN révoquée} tun_establish_returned_null{Interface VPN refusée par Android} openvpn_service_start_failed{Service OpenVPN indisponible} openvpn_operation_timeout{Appel OpenVPN expiré} openvpn_start_failed{Démarrage OpenVPN refusé} openvpn_connection_failed{Connexion OpenVPN interrompue} openvpn_core_status_error{OpenVPN Core terminé en erreur} openvpn_stopped_before_connected{OpenVPN arrêté avant connexion} openvpn_auth_failed{Authentification OpenVPN refusée} openvpn_client_setup_failed{Préparation du client OpenVPN échouée} openvpn_client_halted{Client OpenVPN interrompu} openvpn_client_restart{Redémarrage OpenVPN demandé} openvpn_inactive_timeout{OpenVPN inactif trop longtemps} openvpn_session_expired{Session OpenVPN expirée} openvpn_credentials_required{Authentification OpenVPN non prise en charge} openvpn_proxy_failed{Transport intermédiaire OpenVPN en échec} openvpn_compression_failed{Compression OpenVPN refusée} openvpn_ntlm_crypto_unavailable{Chiffrement NTLM OpenVPN indisponible} openvpn_feature_unsupported{Fonction OpenVPN non prise en charge} network_unavailable{Connexion Internet indisponible} network_lost{Réseau indisponible} certificate_validation_failed{Certificat serveur refusé} openvpn_certificate_expired{Certificat OpenVPN expiré} tunnel_active_for_another_account{Tunnel d’un autre compte encore actif} tunnel_already_active{Tunnel natif déjà actif} tunnel_stop_timeout{Arrêt {protocol} non confirmé} tunnel_disconnected{{protocol} interrompu} native_bridge_unavailable{Bridge Android indisponible} native_operation_failed{Opération Android interrompue} invalid_arguments{Paramètres VPN incomplets} invalid_account_id{Compte VPN invalide} invalid_device_id{Identifiant d’appareil invalide} storage_key_not_allowed{Clé de stockage refusée} secure_storage_read_failed{Lecture sécurisée impossible} secure_storage_write_failed{Écriture sécurisée impossible} key_generation_failed{Génération WireGuard impossible} csr_generation_failed{Génération OpenVPN impossible} openvpn_recovery_exhausted{Reprise OpenVPN déjà utilisée} openvpn_recovery_failed{Reprise OpenVPN échouée} openvpn_renewal_required{Renouvellement du certificat OpenVPN requis} other{Erreur VPN native non classée}}'**
   String notice_native_title(String code, String protocol);
 
   /// No description provided for @notice_native_message.
@@ -2266,6 +2290,18 @@ abstract class AppLocalizations {
   /// **'Votre abonnement est géré par Google Play.'**
   String get billing_playManaged;
 
+  /// No description provided for @billing_playOnHold.
+  ///
+  /// In fr, this message translates to:
+  /// **'Votre abonnement Google Play est suspendu ou en attente de paiement. Ouvrez « Gérer l’abonnement » pour le régulariser dans Google Play.'**
+  String get billing_playOnHold;
+
+  /// No description provided for @billing_playReceiptUnlinked.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce compte Google Play détient déjà un abonnement Fuze Premium qui n’est pas actif pour ce compte FuzeVPN. Ouvrez « Gérer l’abonnement » pour le consulter dans Google Play.'**
+  String get billing_playReceiptUnlinked;
+
   /// No description provided for @billing_inactive.
   ///
   /// In fr, this message translates to:
@@ -2692,6 +2728,12 @@ abstract class AppLocalizations {
   /// **'Veuillez patienter avant de réessayer.'**
   String get google_rateLimited;
 
+  /// No description provided for @google_busy.
+  ///
+  /// In fr, this message translates to:
+  /// **'Google n’est pas disponible pendant l’opération en cours (connexion VPN, compte ou invité). Réessayez lorsqu’elle sera terminée ; votre accès actuel est conservé.'**
+  String get google_busy;
+
   /// No description provided for @google_invalidPassword.
   ///
   /// In fr, this message translates to:
@@ -2739,6 +2781,54 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'La vérification de sécurité est indisponible. Réessayez plus tard.'**
   String get google_challengeUnavailable;
+
+  /// No description provided for @google_intentMismatch.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une connexion Google précédente est encore en attente. Annulez-la avant de commencer cette opération.'**
+  String get google_intentMismatch;
+
+  /// No description provided for @google_challengeBlocked.
+  ///
+  /// In fr, this message translates to:
+  /// **'La vérification de sécurité requise n’est pas disponible dans cette application. Cette opération ne peut pas être terminée pour le moment.'**
+  String get google_challengeBlocked;
+
+  /// No description provided for @google_solveChallenge.
+  ///
+  /// In fr, this message translates to:
+  /// **'Effectuer la vérification de sécurité'**
+  String get google_solveChallenge;
+
+  /// No description provided for @google_challengeTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification de sécurité'**
+  String get google_challengeTitle;
+
+  /// No description provided for @google_challengeReady.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification terminée. Vous pouvez maintenant confirmer la création de votre compte.'**
+  String get google_challengeReady;
+
+  /// No description provided for @google_challengeExpired.
+  ///
+  /// In fr, this message translates to:
+  /// **'La vérification a expiré. Recommencez-la avant de confirmer.'**
+  String get google_challengeExpired;
+
+  /// No description provided for @google_challengeCancelled.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification annulée. Vous pouvez la recommencer.'**
+  String get google_challengeCancelled;
+
+  /// No description provided for @google_challengeFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'La vérification de sécurité a échoué. Réessayez.'**
+  String get google_challengeFailed;
 
   /// No description provided for @billing_trialTitle.
   ///

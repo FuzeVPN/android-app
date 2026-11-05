@@ -105,23 +105,27 @@
     },
     {
       "name": "go",
-      "version": "1.24.3",
-      "path": "android/source-distribution/archives/go1.24.3.src.tar.gz",
-      "origin": "https://dl.google.com/go/go1.24.3.src.tar.gz",
+      "version": "1.26.9",
+      "path": "android/source-distribution/archives/go1.26.9.src.tar.gz",
+      "origin": "https://dl.google.com/go/go1.26.9.src.tar.gz",
       "official_checksum_source": "https://go.dev/dl/?mode=json&include=all",
-      "official_sha256": "229c08b600b1446798109fae1f569228102c8473caba8104b6418cb5bc032878",
+      "official_sha256": "9735d7dcdb65b35d3fa577f04064737c03b89cf1a2b71e6e69fe2f3c6f9fd4ca",
       "license": "BSD-3-Clause",
-      "runtime_patch": "android/third_party/wireguard-android/tunnel/tools/libwg-go/goruntime-boottime-over-monotonic.diff",
-      "runtime_patch_sha256": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395",
+      "runtime_patch": "android/third_party/wireguard-android/tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.diff",
+      "runtime_patch_sha256": "d0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a",
       "runtime_patch_application": "tools/build_wireguard_native.ps1",
-      "sha256": "229c08b600b1446798109fae1f569228102c8473caba8104b6418cb5bc032878",
-      "file_count": 14133,
+      "sha256": "9735d7dcdb65b35d3fa577f04064737c03b89cf1a2b71e6e69fe2f3c6f9fd4ca",
+      "file_count": 15024,
       "archive_roots": [
         "go"
       ],
       "licenses": [
         {
           "path": "go/LICENSE",
+          "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
+        },
+        {
+          "path": "go/src/cmd/compile/internal/ssa/_gen/vendor/golang.org/x/tools/LICENSE",
           "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
         },
         {
@@ -181,6 +185,10 @@
           "sha256": "56210f826b8f0fbac3160dfe55c97f4019eb6cdda3963b5a0eab8a8bdb62360e"
         },
         {
+          "path": "go/src/runtime/testdata/testgoroutineleakprofile/goker/LICENSE",
+          "sha256": "f99df8ae6da6de047ed002d9dbe8682d9a19c88e9a7473abdadf3ac206621a85"
+        },
+        {
           "path": "go/src/vendor/golang.org/x/crypto/LICENSE",
           "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
         },
@@ -197,8 +205,10 @@
           "sha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad"
         }
       ],
-      "contents_inventory": "android/source-distribution/inventories/go1.24.3.src.tar.gz.contents.sha256",
-      "contents_inventory_sha256": "5938475da4d7a8185fadee4ea6c603be01054f410ae8b984711c7642e7f331d2"
+      "contents_inventory": "android/source-distribution/inventories/go1.26.9.src.tar.gz.contents.sha256",
+      "contents_inventory_sha256": "be80127de482e900d0f638f2bb311aee0837f0a6197440633bfd49af4242b900",
+      "runtime_patch_validation": "android/source-distribution/go1.26.9-runtime-patch-validation.json",
+      "runtime_source_correspondence": "android/source-distribution/go1.26.9-source-correspondence-validation.json"
     },
     {
       "name": "golang.org/x/crypto",
@@ -347,17 +357,17 @@
     },
     {
       "name": "golang.zx2c4.com/wireguard",
-      "version": "v0.0.0-20250521234502-f333402bd9cb",
-      "path": "android/source-distribution/archives/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.zip",
-      "sha256": "e40fbd4b585b8097e8d2577c2100c092f9844b44b09a6d6d640740e42e86f649",
-      "origin": "https://proxy.golang.org/golang.zx2c4.com/wireguard/@v/v0.0.0-20250521234502-f333402bd9cb.zip",
-      "go_sum": "h1:whnFRlWMcXI9d+ZbWg+4sHnLp52d5yiIPUxMBSt4X9A=",
+      "version": "v0.0.0-20261024220952-b3bc704ef0ee",
+      "path": "android/source-distribution/archives/golang.zx2c4.com_wireguard@v0.0.0-20261024220952-b3bc704ef0ee.zip",
+      "sha256": "e370e340c37f7b35d35f56d06c8a489613f2b02bf52146bbda6a55336c8b05f6",
+      "origin": "https://proxy.golang.org/golang.zx2c4.com/wireguard/@v/v0.0.0-20261024220952-b3bc704ef0ee.zip",
+      "go_sum": "h1:hByBPN/P/BVzJ591rJfvNhdoL94vmBtRbnVw77QJL20=",
       "go_mod_sum": "h1:rpwXGsirqLqN2L0JDJQlwOboGHmptD5ZD6T2VmcqhTw=",
       "repository": "https://git.zx2c4.com/wireguard-go",
-      "commit": "f333402bd9cbe0f3eeb02507bd14e23d7d639280",
+      "commit": "b3bc704ef0ee21a36298601a9e1e5ff90377ac52",
       "license": "MIT",
-      "go_mod_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.mod",
-      "version_info_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.info",
+      "go_mod_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wireguard@v0.0.0-20261024220952-b3bc704ef0ee.mod",
+      "version_info_file": "android/source-distribution/module-metadata/golang.zx2c4.com_wireguard@v0.0.0-20261024220952-b3bc704ef0ee.info",
       "android_runtime_dependency": true,
       "file_count": 107,
       "archive_roots": [
@@ -365,14 +375,14 @@
       ],
       "licenses": [
         {
-          "path": "golang.zx2c4.com/wireguard@v0.0.0-20250521234502-f333402bd9cb/LICENSE",
+          "path": "golang.zx2c4.com/wireguard@v0.0.0-20261024220952-b3bc704ef0ee/LICENSE",
           "sha256": "91276db973f25602d1aa43491f59cbc84cb88e6f151e1d0cc82a755563ce0195"
         }
       ],
       "go_mod_sha256": "87e5574c17f1c8d3badd9195d933237c289c07b5813f4e60ceae36c7b270e288",
-      "version_info_sha256": "c4073a12a52d2c27e960e810410e35cddbb694c313117f071a30335634801ed7",
-      "contents_inventory": "android/source-distribution/inventories/golang.zx2c4.com_wireguard@v0.0.0-20250521234502-f333402bd9cb.zip.contents.sha256",
-      "contents_inventory_sha256": "c219c546558c71723d77e65b5a0fb8b079cba79d9de728883d4c4c052b785fd0"
+      "version_info_sha256": "3967152cd75d6c62e1986386abe863ac93eb871d69236112d33eac0bea4a343b",
+      "contents_inventory": "android/source-distribution/inventories/golang.zx2c4.com_wireguard@v0.0.0-20261024220952-b3bc704ef0ee.zip.contents.sha256",
+      "contents_inventory_sha256": "841c813cdfcffc1573279f75ac97ef3617682fde2f981b516e7570efb4092f6d"
     },
     {
       "name": "gvisor.dev/gvisor",

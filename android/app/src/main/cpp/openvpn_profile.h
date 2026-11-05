@@ -46,6 +46,19 @@ class ProfileValidator final {
 
 // Best-effort erasure of temporary native buffers.  It is intentionally kept
 // out of log/error paths and is used for profile/PKI strings after use.
-void SecureErase(std::string* value);
+void SecureErase(std::string* value) noexcept;
+
+// Owns no storage; erases the referenced temporary on every exit, including
+// allocation failures and exceptions during native startup.
+class ScopedStringErase final {
+ public:
+  explicit ScopedStringErase(std::string& value) noexcept : value_(value) {}
+  ~ScopedStringErase() { SecureErase(&value_); }
+  ScopedStringErase(const ScopedStringErase&) = delete;
+  ScopedStringErase& operator=(const ScopedStringErase&) = delete;
+
+ private:
+  std::string& value_;
+};
 
 }  // namespace fuzevpn::openvpn

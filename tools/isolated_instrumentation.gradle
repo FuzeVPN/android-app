@@ -1,0 +1,58 @@
+// SPDX-License-Identifier: Apache-2.0
+// Explicit debug-only qualification build. No source, SDK or signing mutation.
+def supportedTasks = [':app:verifyIsolatedInstrumentationConfig', ':app:assembleDebug', ':app:assembleDebugAndroidTest',
+                      ':app:packageDebug', ':app:packageDebugAndroidTest']
+// Gradle retains task-scoped options in taskNames until command-line task parsing.
+// Permit --rerun only on the two package tasks whose fresh APKs are receipted.
+def requestedTokens = gradle.startParameter.taskNames
+def allowedRerunTasks = [':app:packageDebug', ':app:packageDebugAndroidTest']
+def invalidToken = requestedTokens.withIndex().any { token, index ->
+    !supportedTasks.contains(token) &&
+        !(token == '--rerun' && index > 0 && allowedRerunTasks.contains(requestedTokens[index - 1]))
+}
+if (invalidToken) {
+    throw new GradleException('ISOLATED_DEBUG_TASK_REQUIRED: only isolated configuration/debug APK tasks are allowed')
+}
+gradle.beforeProject { project ->
+    project.plugins.withId('com.android.application') {
+        if (project.path != ':app') return
+        if (project.providers.gradleProperty('fuzevpn.isolatedInstrumentation').orNull != 'true' ||
+            project.providers.gradleProperty('fuzevpn.usePatchedWireGuardAar').orNull != 'true') {
+            throw new GradleException('ISOLATED_EXPLICIT_OPT_IN_REQUIRED: isolated debug and approved WireGuard are required')
+        }
+        def target = project.providers.gradleProperty('target-platform').orNull
+        def abi = ['android-x64': 'x86_64', 'android-arm64': 'arm64-v8a', 'android-arm': 'armeabi-v7a'][target]
+        if (abi == null) throw new GradleException('ISOLATED_SINGLE_ABI_REQUIRED')
+        def components = project.extensions.getByName('androidComponents')
+        components.finalizeDsl { android ->
+            android.defaultConfig.applicationId = 'com.fuzevpn.recoverytest'
+            android.defaultConfig.testApplicationId = 'com.fuzevpn.recoverytest.test'
+            android.defaultConfig.ndk.abiFilters.clear()
+            android.defaultConfig.ndk.abiFilters.add(abi)
+            android.defaultConfig.externalNativeBuild.cmake.arguments.addAll([
+                '-DCMAKE_JOB_POOLS=fuzevpn_compile=2',
+                '-DCMAKE_JOB_POOL_COMPILE=fuzevpn_compile',
+                '-DCMAKE_JOB_POOL_LINK=fuzevpn_compile'
+            ])
+        }
+        components.beforeVariants(components.selector().all()) { variant ->
+            if (variant.buildType != 'debug') variant.enable = false
+        }
+        project.tasks.register('verifyIsolatedInstrumentationConfig') {
+            doLast {
+                def android = project.extensions.getByName('android')
+                if (android.defaultConfig.applicationId != 'com.fuzevpn.recoverytest' ||
+                    android.defaultConfig.testApplicationId != 'com.fuzevpn.recoverytest.test' ||
+                    android.defaultConfig.testInstrumentationRunner != 'androidx.test.runner.AndroidJUnitRunner' ||
+                    android.defaultConfig.ndk.abiFilters != [abi] as Set ||
+                    !android.buildTypes.getByName('debug').debuggable) {
+                    throw new GradleException('ISOLATED_CONFIGURATION_MISMATCH')
+                }
+                println "ISOLATED_CONFIG_OK applicationId=com.fuzevpn.recoverytest testApplicationId=com.fuzevpn.recoverytest.test abi=$abi"
+            }
+        }
+        project.tasks.matching { it.name in ['preDebugBuild', 'preDebugAndroidTestBuild'] }.configureEach {
+            dependsOn('verifyIsolatedInstrumentationConfig')
+        }
+    }
+}

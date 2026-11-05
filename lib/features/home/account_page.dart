@@ -381,7 +381,10 @@ class DeviceRow extends StatelessWidget {
       icon: current ? Icons.phone_android : Icons.devices_other,
       size: 36,
     );
-    final Widget name = Text(device.name, style: theme.textTheme.titleMedium);
+    final Widget name = Text(
+      _deviceName(context, device.name),
+      style: theme.textTheme.titleMedium,
+    );
     final Widget? currentLabel = current
         ? Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -905,14 +908,49 @@ class _LegalCard extends StatelessWidget {
           const Divider(height: 1),
         ],
         ListTile(
+          key: const ValueKey('account-licenses'),
           leading: const _AccountIcon(icon: Icons.info_outline, size: 36),
           title: Text(context.copy('settings.licenses')),
           subtitle: Text(context.copy('settings.licensesDetail')),
           trailing: const Icon(Icons.chevron_right),
-          onTap: () =>
-              showLicensePage(context: context, applicationName: 'FuzeVPN'),
+          onTap: () => _showLicenses(context, controller),
         ),
       ],
+    ),
+  );
+}
+
+/// MPL-2.0 components require telling recipients where the corresponding
+/// source is available: the `v<version>` tag of the installed version when it
+/// is known, otherwise the repository itself.
+Future<void> _showLicenses(
+  BuildContext context,
+  VpnAppController controller,
+) async {
+  final String? version = await controller.installedVersionLabel();
+  if (!context.mounted) return;
+  // The label is `<version> (<build>)` or `<version>`: a version never
+  // contains a space.
+  final String source = version == null
+      ? sourceCodeRepository
+      : '$sourceCodeRepository/tree/v${version.split(' ').first}';
+  unawaited(
+    Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        // Read in the page's own context: a language change while it is open
+        // updates the title and the legalese with the rest of the page.
+        builder: (pageContext) => LicensesTitle(
+          title: pageContext.copy('settings.licenses'),
+          child: LicensePage(
+            applicationName: 'FuzeVPN',
+            applicationVersion: version,
+            applicationLegalese: pageContext.copy(
+              'settings.licensesLegalese',
+              arguments: <String, Object?>{'url': source},
+            ),
+          ),
+        ),
+      ),
     ),
   );
 }
@@ -924,38 +962,48 @@ Future<void> _showAccountDeletionRequest(BuildContext context) async {
       key: const ValueKey('delete-account-warning'),
       constraints: const BoxConstraints(maxWidth: 560),
       scrollable: true,
-      title: Text(dialogContext.copy('settings.deleteAccount')),
+      title: WholeWords(
+        child: Text(dialogContext.copy('settings.deleteAccount')),
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Text(dialogContext.copy('billing.deleteAccountWarning')),
+          WholeWords(
+            child: Text(dialogContext.copy('billing.deleteAccountWarning')),
+          ),
           const SizedBox(height: 20),
           OutlinedButton(
             key: const ValueKey('delete-account-manage-play'),
             onPressed: () =>
                 openExternalLink(dialogContext, PublicLinks.playSubscriptions),
-            child: Text(
-              dialogContext.copy('billing.manage'),
-              textAlign: TextAlign.center,
+            child: WholeWords(
+              child: Text(
+                dialogContext.copy('billing.manage'),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           const SizedBox(height: 12),
           FilledButton(
             key: const ValueKey('delete-account-continue'),
             onPressed: () => Navigator.of(dialogContext).pop(true),
-            child: Text(
-              dialogContext.copy('billing.deleteAccountContinue'),
-              textAlign: TextAlign.center,
+            child: WholeWords(
+              child: Text(
+                dialogContext.copy('billing.deleteAccountContinue'),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           const SizedBox(height: 8),
           TextButton(
             key: const ValueKey('delete-account-cancel'),
             onPressed: () => Navigator.of(dialogContext).pop(false),
-            child: Text(
-              dialogContext.copy('action.cancel'),
-              textAlign: TextAlign.center,
+            child: WholeWords(
+              child: Text(
+                dialogContext.copy('action.cancel'),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ],

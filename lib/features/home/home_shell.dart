@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' hide TextDirection;
 
 import '../../app_controller.dart';
 import '../../app_theme.dart';
@@ -12,12 +11,16 @@ import '../../core/models.dart';
 import '../../core/public_links.dart';
 import '../../core/repositories.dart';
 import '../../l10n/app_copy.dart';
+import '../../l10n/app_formats.dart';
 import '../../widgets/country_flag.dart';
 import '../../widgets/external_link.dart';
 import '../../widgets/fuze_brand.dart';
 import '../../widgets/fuze_design.dart';
 import '../../widgets/language_settings.dart';
+import '../../widgets/licenses_title.dart';
 import '../../widgets/notice_card.dart';
+import '../../widgets/third_party_notices.dart';
+import '../../widgets/whole_words.dart';
 import '../auth/auth_page.dart';
 import '../auth/guest_claim_page.dart';
 import '../billing/subscription_card.dart';
@@ -41,6 +44,10 @@ class HomeShell extends StatefulWidget {
 class _HomeShellState extends State<HomeShell> {
   int _index = 0;
   final _connectionScroll = ScrollController();
+  // Crossing 720 dp (rotation, multi-window, unfolding) swaps the rail and the
+  // bar. The pages keep their identity so search, navigation and a pending
+  // location-change confirmation survive the new layout.
+  final _contentKey = GlobalKey(debugLabel: 'home-shell-content');
 
   @override
   void dispose() {
@@ -58,7 +65,7 @@ class _HomeShellState extends State<HomeShell> {
     FocusManager.instance.primaryFocus?.unfocus();
     setState(() => _index = index);
     if (index == 2) {
-      unawaited(widget.controller.billing.refreshSubscription());
+      unawaited(widget.controller.billing.refreshSubscriptionIfStale());
     }
   }
 
@@ -98,6 +105,7 @@ class _HomeShellState extends State<HomeShell> {
       builder: (BuildContext context, BoxConstraints constraints) {
         final bool useRail = constraints.maxWidth >= 720;
         final Widget content = SafeArea(
+          key: _contentKey,
           top: false,
           child: IndexedStack(index: _index, children: pages),
         );

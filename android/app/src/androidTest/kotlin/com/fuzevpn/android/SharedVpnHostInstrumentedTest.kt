@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.net.VpnService
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -28,8 +29,10 @@ class SharedVpnHostInstrumentedTest {
     @After
     fun stopTestHost() {
         if (BuildConfig.USE_PATCHED_WIREGUARD_AAR && testStartedHost) {
-            runCatching {
-                Class.forName(BACKEND).getMethod("stopHost").invoke(null)
+            // On the main thread, like SharedVpnHost (Android 8 to 11 kill a host stopped before
+            // its startForeground(), campaign vm31n).
+            InstrumentationRegistry.getInstrumentation().runOnMainSync {
+                runCatching { Class.forName(BACKEND).getMethod("stopHost").invoke(null) }
             }
             waitForHost(expectedPresent = false)
         }
@@ -57,6 +60,17 @@ class SharedVpnHostInstrumentedTest {
     }
 
     @Test
+    fun quickTileCanReceiveRuntimeRequestedStateUpdates() {
+        val info = context.packageManager.getServiceInfo(
+            ComponentName(context, VpnQuickTileService::class.java),
+            PackageManager.GET_META_DATA,
+        )
+        assertTrue(info.metaData?.getBoolean("android.service.quicksettings.ACTIVE_TILE") == true)
+        assertTrue(info.exported)
+        assertEquals("android.permission.BIND_QUICK_SETTINGS_TILE", info.permission)
+    }
+
+    @Test
     fun patchedHostStartsWithoutFlutterAndExposesTheSameVpnService() {
         // The official debug fallback deliberately lacks this API. Release and
         // explicitly patched debug instrumented runs execute the host contract.
@@ -75,6 +89,27 @@ class SharedVpnHostInstrumentedTest {
 
         // API access only: do not call establish(), and therefore create no TUN.
         assertNotNull(host!!.javaClass.getMethod("getBuilder").invoke(host) as VpnService.Builder)
+    }
+
+    // The host publishes itself in onCreate() just before startForeground(). Stopped in between,
+    // Android 8 to 11 kill the process (campaign vm31n): SharedVpnHost stops it on the main thread.
+    // A stop from a worker thread the moment the host appears must never kill the process.
+    @Test
+    fun aHostStoppedAsSoonAsItAppearsNeverKillsTheProcess() {
+        assumeTrue(BuildConfig.USE_PATCHED_WIREGUARD_AAR)
+        // Below Android 10 the permanent-VPN policy is unreadable, so the host is never stopped.
+        assumeTrue(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q)
+        assumeTrue("needs a host this test starts", hostNow() == null)
+        SharedVpnHost.initialize(context)
+        repeat(20) {
+            SharedVpnHost.start(context)
+            testStartedHost = true
+            val deadline = android.os.SystemClock.elapsedRealtime() + HOST_WAIT_MS
+            while (hostNow() == null && android.os.SystemClock.elapsedRealtime() < deadline) Thread.yield()
+            assertNotNull("host never appeared", hostNow())
+            SharedVpnHost.stopIfNotPermanent()
+            waitForHost(expectedPresent = false)
+        }
     }
 
     private fun waitForHost(expectedPresent: Boolean): VpnService? {

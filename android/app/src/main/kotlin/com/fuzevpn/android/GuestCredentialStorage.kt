@@ -53,7 +53,11 @@ internal class GuestCredentialStorage(
     fun readAutoResume(): Boolean = GuestCredentialPolicy.autoResumeEnabled(read(SecureStorageKeyPolicy.guestAutoResume()))
 
     @Synchronized
-    fun writeAutoResume(enabled: Boolean) = update(mapOf(SecureStorageKeyPolicy.guestAutoResume() to enabled.toString()), emptySet())
+    fun writeAutoResume(enabled: Boolean) {
+        val slot = SecureStorageKeyPolicy.guestAutoResume()
+        if (enabled) update(mapOf(slot to "true"), emptySet())
+        else update(emptyMap(), setOf(slot))
+    }
 
     @Synchronized
     fun clear() = update(emptyMap(), setOf(SecureStorageKeyPolicy.guestCredential(),

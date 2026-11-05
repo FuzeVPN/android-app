@@ -3,10 +3,12 @@
 Audit de qualification du 14 octobre 2026 : [Q002](VALIDATION.md#q002), [Q004](VALIDATION.md#q004), [Q006](VALIDATION.md#q006), [Q007](VALIDATION.md#q007), [Q030](VALIDATION.md#q030), [Q032](VALIDATION.md#q032), [Q033](VALIDATION.md#q033).
 
 
-Le dépôt public **FuzeVPN/android-app**, version **0.2.10+74016**, publie les
-sources avec leurs entrées natives revues. Il ne publie ni APK, ni AAB, ni
-GitHub Releases. Les archives natives incluses sont des dépendances de
-construction ; elles ne constituent pas une application installable.
+Le dépôt public **FuzeVPN/android-app**, version **0.2.11+74018**, publie les
+sources avec leurs entrées natives revues. Les APK signés sont joints aux
+GitHub Releases avec l’archive de sources produite pour eux par ce guide
+(option `--apk`) ; aucun AAB n’est publié. Les archives natives incluses sont
+des dépendances de construction ; elles ne constituent pas une application
+installable.
 
 `tools/package_android_sources.py` prépare une archive `.tar.gz` des sources
 de l’application et des entrées natives revues. Python **3.10 ou supérieur**
@@ -32,6 +34,40 @@ natif contre `android/native-provenance/bundle.sha256`, l’archive officielle
 OpenSSL 3.5.9, l’AAR WireGuard et les archives sources complémentaires. Les
 modules Go sont comparés aux empreintes `h1:` du `go.sum` importé, en
 recalculant l’empreinte de leur contenu. Il ne lance aucune compilation.
+
+Il vérifie aussi, de façon statique, les entrées qu’exigent la compilation et
+le runner de validation :
+
+- scripts et fichiers lus par `tools/validate_project.ps1` et par chaque script
+  du dépôt qu’il lance, PowerShell comme Python : chemins `Join-Path` et
+  `"$base/..."`, fichiers inclus par `.`, jointures littérales des scripts
+  Python (`Path(__file__)`, `/ 'littéral'`, boucles sur des listes littérales,
+  comme les 30 packs de `lib/l10n/translations` lus par l’étape
+  `translations`) et des modules de test que `unittest discover -s tools/tests`
+  charge ;
+- tout fichier des répertoires utilisés en bloc : sources Dart de `lib` et
+  `test`, jeux de sources Gradle, ressources Android, `buildSrc`, répertoires
+  d’assets déclarés, répertoire exporté qu’un script du runner nomme (racine
+  d’inclusion ou de sources ; un répertoire qui contient des racines exportées,
+  comme le projet Gradle `android`, compte seulement par ses entrées
+  explicites), fichiers listés par `Get-ChildItem` avec leur filtre et modules
+  de test Python découverts ;
+- fichiers lus par les tests Flutter au moyen de `File('…')` ou
+  `Directory('…')` littéraux ;
+- fermeture Kotlin des jeux `main`, `test` et `androidTest`, et celle du runner
+  Turnstile hôte (noms référencés sans import dans le même paquet, imports
+  `com.fuzevpn.*`, doublures Android/Flutter de `testHost/turnstile/stubs`) ;
+- sources et scripts nommés par les `CMakeLists.txt`/`.cmake` de l’application,
+  puis leurs `#include "..."` locaux ;
+- tout fichier source qu’une règle d’exclusion (`build`, `cache`, `tmp`…)
+  écarterait d’un répertoire compilé.
+
+Ce sont des contrôles statiques, pas une compilation de l’archive. Les chemins
+calculés à partir de données, de paramètres ou de l’environnement ne sont pas
+suivis, ni ceux qui ne sont lus qu’après un test d’existence. Dans le corps
+d’une classe qui hérite d’un type externe, un nom nu peut désigner un type
+imbriqué hérité (`Builder` d’un `VpnService`) : il n’y est pas vérifié, mais
+le fichier qui le déclarerait reste exigé comme tout fichier du jeu de sources.
 
 Une entrée manquante, une révision incompatible, une empreinte différente ou
 un lien dans les sources arrête l’export normal. `--allow-incomplete` permet
@@ -117,11 +153,12 @@ de secrets arbitrairement cachés dans du code.
 
 ## Sources et outils exacts
 
-La matrice actuelle utilise Flutter **3.44.7**, Java **17**, Gradle **9.5.0**,
+La matrice actuelle utilise Flutter **3.47.8**, Java **17**, Gradle **9.8.2**,
 Android Gradle Plugin **9.3.0**, Kotlin **2.3.20**, Android Platform **36**,
-NDK **28.2.13676358**, CMake **3.22.1** et Go **1.24.3**. Les versions sont
+NDK **28.2.13676358**, CMake **3.22.1** et Go **1.26.9**. Les versions sont
 relues depuis les fichiers de configuration ou les métadonnées de l’AAR,
-puis inscrites dans chaque archive.
+puis inscrites dans chaque archive ; `README-SOURCE.md` reprend la série de
+patches WireGuard depuis `android/third_party/wireguard-android/patches/fuzevpn/series`.
 
 Les entrées natives actuellement revues sont :
 
@@ -130,18 +167,35 @@ Les entrées natives actuellement revues sont :
 | OpenVPN 3 Core | Arbre complet `28469efe3ae770268b2b5c6aa607ed1489e101f0`, option MPL-2.0, XKey amont |
 | OpenSSL | Archive officielle signée 3.5.9, commit `45e844fa2a14ec92d146bd8f5778ac130b6625fb`, SHA-256 `603f5602e2eef00d77fbd429d34dcd5822bb301757a1bc9cdb24c670f1eb859a` |
 | Asio / fmt / lz4 | Sources complètes aux commits des métadonnées du préfixe, patches Asio amont, en-têtes et archives importés |
-| WireGuard Android | Tag `1.0.20260102`, commit `09b75c2bd37f749e2a8c85876394854113c74be7`, deux patches FuzeVPN ordonnés |
+| WireGuard Android | Tag `1.0.20260102`, commit `09b75c2bd37f749e2a8c85876394854113c74be7`, trois patches FuzeVPN appliqués dans l’ordre du fichier `series` : `0001-go-backend-real-foreground-service.patch`, `0002-go-backend-protected-start.patch`, `0003-go-runtime-and-handshake-update.patch` |
 | wireguard-tools / elf-cleaner | Sous-modules exportés aux commits revus, licences et fichiers de construction |
-| wireguard-go | Module `v0.0.0-20250521234502-f333402bd9cb`, ZIP canonique vérifié contre `go.sum` |
+| wireguard-go | Module `v0.0.0-20261024220952-b3bc704ef0ee` (commit `b3bc704ef0ee21a36298601a9e1e5ff90377ac52`), ZIP canonique vérifié contre `go.sum` |
 | Modules Go | ZIPs exacts de toutes les entrées de `go.sum`, y compris les dépendances nécessaires aux fonctionnalités et tests amont |
-| Runtime Go | Source officielle 1.24.3 et patch `goruntime-boottime-over-monotonic.diff`, sans binaire de compilateur |
+| Runtime Go | Source officielle 1.26.9 (`go1.26.9.src.tar.gz`) et patch `goruntime-go1.26.9-boottime.diff` avec son manifeste `goruntime-go1.26.9-boottime.json`, ajoutés par le patch 0003, sans binaire de compilateur |
+| AAR WireGuard approuvé | `tunnel-1.0.20260102-fuzevpn-fgs.aar`, SHA-256 `bf563b779e670647e7d47751e7f4ff5d90299272640af7814c52f74bfe8c4b73` (`WireGuardAarPolicy.APPROVED_SHA256`) |
+
+`tools/import_wireguard_android.ps1` exporte l’étiquette amont avec
+`core.autocrlf=false` puis applique la série par
+`tools/wireguard_patch_series.ps1`, indépendamment des fins de ligne : les
+patches revus mélangent des préimages CRLF (0001, 0003) et LF (0002). Les
+octets et empreintes des patches ne changent pas. Une réimportation n’est pas
+identique à l’octet : elle écrit les octets commités et des fichiers en LF là
+où l’arbre versionné, exporté en `core.autocrlf=true`, est en CRLF ; les
+sous-modules `wireguard-tools` et `elf-cleaner` sont copiés depuis la copie de
+travail et suivent son `core.autocrlf`. `jni.c` ne correspond alors plus à
+`nativeBuild.sourceHashes` de l’AAR approuvé et
+`tools/generate_release_sbom.py` refuse l’AAR tant que
+`build_wireguard_native.ps1` puis `build_wireguard_patched_aar.ps1` n’ont pas
+régénéré l’AAR et ses métadonnées (empreinte à réapprouver dans
+`WireGuardAarPolicy`). Sans cette reconstruction, l’arbre versionné reste la
+référence de l’archive de sources ; voir docs/NATIVE_DEPENDENCIES.md.
 
 `android/source-distribution/completeness.manifest.json` associe chaque
 archive complémentaire à son origine, sa version, sa révision et ses
 empreintes. Les licences et inventaires du contenu sont conservés avec ces
 archives. L’export exige la présence de chaque composant attendu et une
-liste `missing_sources` vide avant d’indiquer que toutes ses entrées requises
-sont présentes.
+liste `missing_sources` vide avant d’indiquer qu’aucune entrée manquante n’a
+été détectée par ses contrôles.
 
 La signature détachée OpenSSL et les certificats de publication officiels
 accompagnent l’archive. Leur vérification d’origine est décrite dans

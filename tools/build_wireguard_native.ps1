@@ -3,29 +3,32 @@
 Builds libwg-go.so for Android directly from Windows with the reviewed
 WireGuard source tree. This does not package an AAR.
 
-It intentionally uses the upstream Go 1.24.3 Windows toolchain, patched with
-WireGuard's goruntime-boottime-over-monotonic.diff, rather than the workstation
+It intentionally uses the upstream Go 1.26.9 Windows toolchain, patched with
+the reviewed Go 1.26.9 adaptation of WireGuard's CLOCK_BOOTTIME patch, rather than the workstation
 Go installation. Every output and its verification record is placed below
 build/wireguard-native.
 #>
 [CmdletBinding()]
 param(
     [string]$AndroidSdk = $(if ($env:ANDROID_SDK_ROOT) { $env:ANDROID_SDK_ROOT } else { $env:ANDROID_HOME }),
-    [string]$GoToolchain = (Join-Path (Split-Path -Parent $PSScriptRoot) 'build\toolchains\go1.24.3-wireguard'),
-    [string[]]$Abi = @('arm64-v8a', 'armeabi-v7a', 'x86_64', 'x86')
+    [string]$GoToolchain = (Join-Path (Split-Path -Parent $PSScriptRoot) 'build\toolchains\go1.26.9-wireguard'),
+    [string[]]$Abi = @('arm64-v8a', 'armeabi-v7a', 'x86_64', 'x86'),
+    [switch]$PrepareOnly
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 if (-not $AndroidSdk) { throw 'Set ANDROID_SDK_ROOT or pass -AndroidSdk.' }
 
-$goVersion = '1.24.3'
+$goVersion = '1.26.9'
 $goArchive = "go${goVersion}.windows-amd64.zip"
-$goArchiveSha256 = 'be9787cb08998b1860fe3513e48a5fe5b96302d358a321b58e651184fa9638b3'
+$goArchiveSha256 = 'd722201a9c0c086d1610e111c48203009af690892ed708072bd5ae20160e7a59'
+$goSourceArchiveSha256 = '9735d7dcdb65b35d3fa577f04064737c03b89cf1a2b71e6e69fe2f3c6f9fd4ca'
+$runtimePatchManifestSha256 = '9580d03064a6c0247bd543ae6311991b330dd94ff6352e2fd0e09761ab9d0127'
 $goDownload = "https://dl.google.com/go/$goArchive"
 $ndkVersion = '28.2.13676358'
 $apiLevel = 21
-$expectedWireGuardModule = 'golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb'
+$expectedWireGuardModule = 'golang.zx2c4.com/wireguard v0.0.0-20261024220952-b3bc704ef0ee'
 
 $root = Split-Path -Parent $PSScriptRoot
 $source = Join-Path $root 'android\third_party\wireguard-android\tunnel\tools\libwg-go'
@@ -34,7 +37,8 @@ $ndk = Join-Path $AndroidSdk "ndk\$ndkVersion"
 $llvmBin = Join-Path $ndk 'toolchains\llvm\prebuilt\windows-x86_64\bin'
 $readelf = Join-Path $llvmBin 'llvm-readelf.exe'
 $nm = Join-Path $llvmBin 'llvm-nm.exe'
-$patch = Join-Path $source 'goruntime-boottime-over-monotonic.diff'
+$patch = Join-Path $source 'goruntime-go1.26.9-boottime.diff'
+$patchManifest = Join-Path $source 'goruntime-go1.26.9-boottime.json'
 $goExe = Join-Path $GoToolchain 'bin\go.exe'
 
 function Require-File([string]$Path, [string]$Name) {
@@ -108,40 +112,50 @@ function Ensure-PinnedGo {
 }
 
 function Apply-RuntimePatch {
-    $marker = Join-Path $GoToolchain '.fuzevpn-wireguard-boottime-patch'
+    # Never trust a marker alone: recheck every original/patched runtime file,
+    # including warm builds, before modifying or compiling any source.
+    $actualManifestHash = (Get-FileHash -LiteralPath $patchManifest -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($actualManifestHash -ne $runtimePatchManifestSha256) { throw 'The reviewed Go runtime patch manifest changed.' }
+    $review = Get-Content -LiteralPath $patchManifest -Raw | ConvertFrom-Json
     $patchHash = (Get-FileHash -LiteralPath $patch -Algorithm SHA256).Hash.ToLowerInvariant()
-    if (Test-Path -LiteralPath $marker -PathType Leaf) {
-        if ((Get-Content -LiteralPath $marker -Raw).Trim() -eq $patchHash) { return }
-        throw 'The existing Go runtime patch marker does not match the reviewed WireGuard patch.'
+    if ($review.schema -ne 1 -or $review.go_version -ne $goVersion -or
+        $review.source_archive_sha256 -ne $goSourceArchiveSha256 -or
+        $review.patch_sha256 -ne $patchHash -or @($review.files).Count -ne 9) {
+        throw 'The Go runtime adaptation does not match the pinned release and patch.'
     }
-    # This patch was authored against Go 1.20. Go 1.24.3 retains each targeted
-    # instruction, but surrounding runtime assembly changed, so git apply cannot
-    # match its hunks. Apply the same reviewed substitutions and reject every
-    # unexpected source shape rather than weakening the pinned compiler check.
-    $changes = @(
-        @('src/runtime/sys_linux_386.s', 'MOVL\t$1, 0(SP)\t// CLOCK_MONOTONIC', 'MOVL\t$7, 0(SP)\t// CLOCK_BOOTTIME'),
-        @('src/runtime/sys_linux_386.s', 'MOVL\t$1, BX\t\t// CLOCK_MONOTONIC', 'MOVL\t$7, BX\t\t// CLOCK_BOOTTIME'),
-        @('src/runtime/sys_linux_amd64.s', 'MOVL\t$1, DI // CLOCK_MONOTONIC', 'MOVL\t$7, DI // CLOCK_BOOTTIME'),
-        @('src/runtime/sys_linux_arm.s', '#define CLOCK_MONOTONIC\t1', '#define CLOCK_BOOTTIME\t7'),
-        @('src/runtime/sys_linux_arm.s', 'MOVW\t$CLOCK_MONOTONIC, R0', 'MOVW\t$CLOCK_BOOTTIME, R0'),
-        @('src/runtime/sys_linux_arm64.s', '#define CLOCK_MONOTONIC 1', '#define CLOCK_BOOTTIME 7'),
-        @('src/runtime/sys_linux_arm64.s', 'MOVW\t$CLOCK_MONOTONIC, R0', 'MOVW\t$CLOCK_BOOTTIME, R0'),
-        @('src/runtime/sys_linux_mips64x.s', 'MOVW\t$1, R4 // CLOCK_MONOTONIC', 'MOVW\t$7, R4 // CLOCK_BOOTTIME', 2),
-        @('src/runtime/sys_linux_mipsx.s', 'MOVW\t$1, R4\t// CLOCK_MONOTONIC', 'MOVW\t$7, R4\t// CLOCK_BOOTTIME'),
-        @('src/runtime/sys_linux_ppc64x.s', 'MOVD\t$1, R3\t\t// CLOCK_MONOTONIC', 'MOVD\t$7, R3\t\t// CLOCK_BOOTTIME'),
-        @('src/runtime/sys_linux_s390x.s', 'MOVW\t$1, R2\t\t\t// CLOCK_MONOTONIC', 'MOVW\t$7, R2\t\t\t// CLOCK_BOOTTIME')
-    )
-    foreach ($change in $changes) {
-        $path = Join-Path $GoToolchain $change[0]
-        $before = $change[1].Replace('\t', "`t")
-        $after = $change[2].Replace('\t', "`t")
-        $content = Get-Content -LiteralPath $path -Raw -Encoding UTF8
-        $occurrences = ([regex]::Matches($content, [regex]::Escape($before))).Count
-        $expectedOccurrences = if ($change.Count -gt 3) { [int]$change[3] } else { 1 }
-        if ($occurrences -ne $expectedOccurrences) { throw "The reviewed Go runtime patch has an incompatible target: $($change[0])" }
-        [IO.File]::WriteAllText($path, $content.Replace($before, $after), [Text.UTF8Encoding]::new($false))
+    $updates = [Collections.Generic.List[object]]::new()
+    foreach ($file in $review.files) {
+        # linux/amd64 implements time.now in time_linux_amd64.s; the other
+        # Android ABIs derive its monotonic part from the patched nanotime1.
+        if ($file.path -notmatch '^src/runtime/(sys_linux_(386|amd64|arm|arm64|mips64x|mipsx|ppc64x|s390x)|time_linux_amd64)\.s$') {
+            throw 'Unexpected runtime patch target.'
+        }
+        $target = Assert-ChildPath (Join-Path $GoToolchain $file.path) $GoToolchain 'Go runtime patch target'
+        Require-File $target 'Go runtime source'
+        $currentHash = (Get-FileHash -LiteralPath $target -Algorithm SHA256).Hash.ToLowerInvariant()
+        if ($currentHash -eq $file.patched_sha256) { continue }
+        if ($currentHash -ne $file.original_sha256) { throw "Go runtime source differs from its reviewed original/patched hash: $($file.path)" }
+        $content = [IO.File]::ReadAllText($target, [Text.Encoding]::UTF8)
+        foreach ($change in $file.substitutions) {
+            $count = [regex]::Matches($content, [regex]::Escape($change.before)).Count
+            if ($count -ne $change.count) { throw "The reviewed Go runtime patch has an incompatible target: $($file.path)" }
+            $content = $content.Replace($change.before, $change.after)
+        }
+        $bytes = [Text.UTF8Encoding]::new($false).GetBytes($content)
+        $hash = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()
+        if ($hash -ne $file.patched_sha256) { throw "Go runtime adaptation differs from reviewed output: $($file.path)" }
+        $updates.Add([pscustomobject]@{ path = $target; bytes = $bytes; sha256 = $hash })
     }
-    [IO.File]::WriteAllText($marker, ($patchHash + "`n"), [Text.UTF8Encoding]::new($false))
+    # All files have passed preflight; malformed sources cannot produce a
+    # partially reviewed compiler merely by retaining an earlier marker.
+    foreach ($update in $updates) {
+        [IO.File]::WriteAllBytes($update.path, $update.bytes)
+        if ((Get-FileHash -LiteralPath $update.path -Algorithm SHA256).Hash.ToLowerInvariant() -ne $update.sha256) {
+            throw 'Go runtime patch write verification failed.'
+        }
+    }
+    $marker = Join-Path $GoToolchain '.fuzevpn-wireguard-boottime-patch'
+    [IO.File]::WriteAllText($marker, "$goVersion|$patchHash|$runtimePatchManifestSha256`n", [Text.UTF8Encoding]::new($false))
 }
 
 $abiSpec = @{
@@ -152,7 +166,7 @@ $abiSpec = @{
 }
 
 Require-Directory $source 'WireGuard libwg-go source'
-foreach ($required in @($patch, (Join-Path $source 'api-android.go'), (Join-Path $source 'jni.c'),
+foreach ($required in @($patch, $patchManifest, (Join-Path $source 'api-android.go'), (Join-Path $source 'jni.c'),
     (Join-Path $source 'go.mod'), (Join-Path $source 'go.sum'), $readelf, $nm)) { Require-File $required 'Build input' }
 if ((Get-Content -LiteralPath (Join-Path $source 'go.mod') -Raw) -notmatch [regex]::Escape($expectedWireGuardModule)) {
     throw "go.mod does not retain the reviewed WireGuard module: $expectedWireGuardModule"
@@ -162,17 +176,20 @@ foreach ($item in $Abi) { if (-not $abiSpec.ContainsKey($item)) { throw "Unsuppo
 Ensure-PinnedGo
 Apply-RuntimePatch
 Require-File $goExe 'Pinned Go compiler'
+if ($PrepareOnly) { Write-Output 'Verified pinned Go compiler and CLOCK_BOOTTIME runtime sources'; return }
 
 New-Item -ItemType Directory -Force -Path $output, (Join-Path $output 'logs') | Out-Null
 $sourceHashes = [ordered]@{}
-foreach ($input in @('api-android.go', 'jni.c', 'go.mod', 'go.sum', 'goruntime-boottime-over-monotonic.diff')) {
-    $sourceHashes[$input] = (Get-FileHash -LiteralPath (Join-Path $source $input) -Algorithm SHA256).Hash.ToLowerInvariant()
+foreach ($inputName in @('api-android.go', 'jni.c', 'go.mod', 'go.sum', 'goruntime-boottime-over-monotonic.diff', 'goruntime-go1.26.9-boottime.diff', 'goruntime-go1.26.9-boottime.json')) {
+    $sourceHashes[$inputName] = (Get-FileHash -LiteralPath (Join-Path $source $inputName) -Algorithm SHA256).Hash.ToLowerInvariant()
 }
 $metadata = [ordered]@{
     schema = 'https://fuzevpn.com/schemas/wireguard-native-build-v1.json'
     builtAtUtc = [DateTime]::UtcNow.ToString('o')
     go = (& $goExe version).Trim()
     goArchive = @{ url = $goDownload; sha256 = $goArchiveSha256 }
+    goSourceArchive = @{ url = "https://dl.google.com/go/go${goVersion}.src.tar.gz"; sha256 = $goSourceArchiveSha256 }
+    runtimePatchManifestSha256 = $runtimePatchManifestSha256
     runtimePatchSha256 = (Get-FileHash -LiteralPath $patch -Algorithm SHA256).Hash.ToLowerInvariant()
     ndk = @{ version = $ndkVersion; path = $ndk }
     api = $apiLevel
@@ -204,7 +221,7 @@ foreach ($name in $Abi) {
         foreach ($key in $buildEnv.Keys) { $previous[$key] = [Environment]::GetEnvironmentVariable($key); Set-Item "Env:$key" $buildEnv[$key] }
         try {
             # This is the installed application ID, independently of the Kotlin/JNI namespace.
-            Invoke-Logged $log { & $goExe build -tags linux '-ldflags=-X golang.zx2c4.com/wireguard/ipc.socketDirectory=/data/data/com.fuzevpn/cache/wireguard -buildid=' -trimpath -buildvcs=false -buildmode=c-shared -o $library } "Go native build failed for $name"
+            Invoke-Logged $log { & $goExe build -mod=readonly -tags linux '-ldflags=-X golang.zx2c4.com/wireguard/ipc.socketDirectory=/data/data/com.fuzevpn/cache/wireguard -buildid=' -trimpath -buildvcs=false -buildmode=c-shared -o $library } "Go native build failed for $name"
         } finally {
             foreach ($key in $buildEnv.Keys) { if ($null -eq $previous[$key]) { Remove-Item "Env:$key" -ErrorAction SilentlyContinue } else { Set-Item "Env:$key" $previous[$key] } }
         }
@@ -231,5 +248,6 @@ foreach ($name in $Abi) {
 }
 
 $metadataPath = Join-Path $output 'metadata.json'
-[IO.File]::WriteAllText($metadataPath, (($metadata | ConvertTo-Json -Depth 5) + "`n"), [Text.UTF8Encoding]::new($false))
+$metadataJson = ($metadata | ConvertTo-Json -Depth 5).Replace("`r`n", "`n")
+[IO.File]::WriteAllText($metadataPath, ($metadataJson + "`n"), [Text.UTF8Encoding]::new($false))
 Write-Host "Built and verified WireGuard native libraries in $output"

@@ -2,6 +2,7 @@
 // and session types deliberately redact secrets in `toString`; they must not
 // be sent to analytics, crash reporting, or application logs.
 
+import 'api_exception.dart' show ApiRetryAfter;
 import 'network_configuration.dart';
 export 'network_configuration.dart';
 
@@ -44,6 +45,22 @@ class Location {
 
   bool supports(VpnProtocol protocol) => supportedProtocols.contains(protocol);
 
+  /// Longest label, in UTF-16 code units, that the native VPN layer accepts
+  /// (AndroidVpnBridge.requiredDisplayName and QuickTileProfile).
+  static const int maximumDisplayNameLength = 96;
+
+  /// Native label contract: not blank, at most [maximumDisplayNameLength]
+  /// UTF-16 code units and no ISO control character (Kotlin
+  /// `Char.isISOControl`: U+0000-U+001F and U+007F-U+009F).
+  static bool isNativeDisplayName(String value) =>
+      value.length <= maximumDisplayNameLength &&
+      value.trim().isNotEmpty &&
+      !value.codeUnits.any(_isIsoControl);
+
+  /// Parses a catalogue row. A well-formed row whose label the native layer
+  /// would refuse, a blank one included, raises
+  /// [UnsupportedLocationException] before it can be selected, hence before
+  /// any server-side activation or migration.
   factory Location.fromJson(Map<String, dynamic> json) {
     final Object? rawProtocols = json['supported_protocols'];
     final Set<VpnProtocol> protocols = <VpnProtocol>{};
@@ -58,11 +75,18 @@ class Location {
         }
       }
     }
-    return Location(
-      id: _requiredIdentifier(json, 'id', 'Emplacement VPN invalide.'),
+    final String id = _requiredIdentifier(
+      json,
+      'id',
+      'Emplacement VPN invalide.',
+    );
+    final Location location = Location(
+      id: id,
       city: _requiredText(json, 'city', 'Emplacement VPN invalide.'),
       countryCode: _requiredCountryCode(json, 'country_code'),
-      displayName: _requiredText(
+      // Any text, of any length, is well formed here; isNativeDisplayName
+      // below decides whether this client can offer it.
+      displayName: _requiredString(
         json,
         'display_name',
         'Emplacement VPN invalide.',
@@ -72,10 +96,57 @@ class Location {
         json['supported_ip_families'],
       ),
     );
+    if (!isNativeDisplayName(location.displayName)) {
+      throw UnsupportedLocationException(id);
+    }
+    return location;
+  }
+
+  /// Parses the location of an existing account device. Unlike a catalogue
+  /// offer it cannot be dropped, so a label the native layer would refuse is
+  /// replaced by a native-safe one; identity and capabilities are unchanged.
+  factory Location._ofDevice(Map<String, dynamic> json) {
+    try {
+      return Location.fromJson(json);
+    } on UnsupportedLocationException catch (unsupported) {
+      return Location.fromJson(<String, dynamic>{
+        ...json,
+        'display_name': _nativeSafeDisplayName(
+          json['display_name'] as String,
+          fallback: unsupported.locationId,
+        ),
+      });
+    }
   }
 
   @override
   String toString() => 'Location(id: $id, displayName: $displayName)';
+}
+
+/// A well-formed location that this client cannot offer, such as a label the
+/// native VPN layer would refuse. A catalogue drops only that row.
+class UnsupportedLocationException extends FormatException {
+  const UnsupportedLocationException(this.locationId)
+    : super('Emplacement VPN non pris en charge.');
+
+  final String locationId;
+}
+
+bool _isIsoControl(int unit) => unit <= 0x1f || (unit >= 0x7f && unit <= 0x9f);
+
+String _nativeSafeDisplayName(String value, {required String fallback}) {
+  final String cleaned = String.fromCharCodes(
+    value.codeUnits.map((int unit) => _isIsoControl(unit) ? 0x20 : unit),
+  ).trim();
+  var label = cleaned.isEmpty ? fallback : cleaned;
+  if (label.length > Location.maximumDisplayNameLength) {
+    var end = Location.maximumDisplayNameLength - 1;
+    final int last = label.codeUnitAt(end - 1);
+    // Never keep half of a surrogate pair.
+    if (last >= 0xd800 && last <= 0xdbff) end--;
+    label = '${label.substring(0, end)}\u2026';
+  }
+  return label;
 }
 
 /// WireGuard configuration returned only while enrolling or updating a device.
@@ -216,9 +287,10 @@ class VpnDevice {
         'device_id',
         'Appareil VPN invalide.',
       ),
-      name: _optionalText(json['name']) ?? 'Appareil sans nom',
+      // Absent or blank stays empty: the interface shows a localized label.
+      name: _deviceName(json['name']),
       location: rawLocation is Map<String, dynamic>
-          ? Location.fromJson(rawLocation)
+          ? Location._ofDevice(rawLocation)
           : null,
       createdAt: _optionalDateTime(
         json['created_at'],
@@ -234,6 +306,11 @@ class VpnDevice {
   String toString() => 'VpnDevice(deviceId: $deviceId, redacted: true)';
 }
 
+String _deviceName(Object? value) {
+  final String? name = _optionalText(value);
+  return name == null || name.trim().isEmpty ? '' : name;
+}
+
 class DeviceList {
   const DeviceList({required this.limit, required this.devices});
 
@@ -244,7 +321,12 @@ class DeviceList {
     final Object? rawLimit = json['limit'];
     final int limit = switch (rawLimit) {
       final int value => value,
-      final num value when value == value.roundToDouble() => value.toInt(),
+      final num value
+          when value.isFinite &&
+              value >= 1 &&
+              value <= 100 &&
+              value == value.roundToDouble() =>
+        value.toInt(),
       _ => throw const FormatException('Liste des appareils invalide.'),
     };
     final Object? rawDevices = json['devices'];
@@ -305,6 +387,9 @@ class DeviceLocationMigration {
   final String targetLocationId;
   final LocationMigrationStatus status;
   final int? retryAfterSeconds;
+
+  /// Longest polling delay honoured for a migration.
+  static const int maximumRetryAfterSeconds = _maximumRetryAfterSeconds;
 
   factory DeviceLocationMigration.fromJson(
     Map<String, dynamic> json, {
@@ -375,18 +460,11 @@ class DeviceLocationMigration {
 
 const int _maximumRetryAfterSeconds = 300;
 
-int? _optionalBoundedRetryAfter(Object? value) {
-  if (value == null) return null;
-  final int? seconds = switch (value) {
-    final int value => value,
-    final num value when value == value.roundToDouble() => value.toInt(),
-    _ => null,
-  };
-  if (seconds == null || seconds < 0 || seconds > _maximumRetryAfterSeconds) {
-    throw const FormatException('Migration d’emplacement invalide.');
-  }
-  return seconds;
-}
+// The server has accepted the migration: its delay is advisory. A value
+// above the bound is bounded and an unreadable one ignored (C5-02), checked
+// as finite, integral and non-negative before any integer conversion.
+int? _optionalBoundedRetryAfter(Object? value) =>
+    ApiRetryAfter.parseSeconds(value, maximum: _maximumRetryAfterSeconds);
 
 class DeviceProfiles {
   const DeviceProfiles({required this.deviceId, required this.profiles});
@@ -855,6 +933,16 @@ String _requiredText(Map<String, dynamic> json, String key, String message) {
   return value;
 }
 
+/// Any JSON string. Its length is already bounded by the response byte
+/// budget; the caller decides which values it can use.
+String _requiredString(Map<String, dynamic> json, String key, String message) {
+  final Object? value = json[key];
+  if (value is! String) {
+    throw FormatException(message);
+  }
+  return value;
+}
+
 String? _optionalText(Object? value) {
   if (value == null) return null;
   if (value is! String || value.length > 16384) {
@@ -956,24 +1044,14 @@ List<String> _requiredCiphers(Object? raw) {
 bool _isIpv4Cidr(String value) {
   final List<String> parts = value.split('/');
   if (parts.length != 2 || !_isIpv4Address(parts.first)) return false;
-  final int? prefix = int.tryParse(parts.last);
-  return prefix != null && prefix >= 0 && prefix <= 32;
+  if (!RegExp(r'^(0|[1-9][0-9]?)$').hasMatch(parts.last)) return false;
+  return int.parse(parts.last) <= 32;
 }
 
 bool _hasIpv4Prefix(String value, int expectedPrefix) =>
     value.endsWith('/$expectedPrefix') && _isIpv4Cidr(value);
 
-bool _isIpv4Address(String value) {
-  final List<String> parts = value.split('.');
-  if (parts.length != 4) return false;
-  for (final String part in parts) {
-    if (part.isEmpty ||
-        part.length > 3 ||
-        (part.length > 1 && part.startsWith('0'))) {
-      return false;
-    }
-    final int? value = int.tryParse(part);
-    if (value == null || value < 0 || value > 255) return false;
-  }
-  return true;
-}
+// Same dotted-decimal form as the native validators (TunnelNetworkSpec,
+// OpenVpnController): ASCII digits only, no sign, space or leading zero.
+bool _isIpv4Address(String value) =>
+    VpnNetworkConfiguration.isCanonicalIpv4Address(value);

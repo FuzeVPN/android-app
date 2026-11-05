@@ -7,6 +7,8 @@ internal data class SessionTermination(
     val storageError: String? = null,
     val inProgress: Boolean = false,
     val sessionExpired: Boolean = false,
+    /** Native only, never published: the end revokes automatic guest recovery. */
+    val revokeGuestRecovery: Boolean = false,
 ) {
     val complete get() = tunnelStopped && sessionCleared && !inProgress
     fun toMap(): Map<String, Any?> = mapOf(
@@ -14,6 +16,23 @@ internal data class SessionTermination(
         "stop_error" to stopError, "storage_error" to storageError, "in_progress" to inProgress,
         "session_expired" to sessionExpired,
     )
+}
+
+/** Why Dart ends the session: the "reason" of storageClearSession (lot S review, P1). */
+internal enum class SessionEndCause(val wireValue: String) {
+    VOLUNTARY("voluntary"),
+    EXPIRED("expired"),
+    ABANDONED("abandoned"),
+    ;
+
+    companion object {
+        /** Without a reason, the legacy session_expired flag decides; an unknown reason is null. */
+        fun of(arguments: Any?): SessionEndCause? {
+            val values = arguments as? Map<*, *>
+            val reason = values?.get("reason") ?: return if (values?.get("session_expired") == true) EXPIRED else VOLUNTARY
+            return entries.firstOrNull { it.wireValue == reason }
+        }
+    }
 }
 
 /** Process-retained admission fence; no token or identity is retained here. */
@@ -58,19 +77,27 @@ internal class SessionLifecycle {
         accepting = true
         termination = null
     }
-    @Synchronized fun beginEnd(expired: Boolean = false): Long {
-        val sessionExpired = expired || termination?.sessionExpired == true
+    fun beginEnd(expired: Boolean): Long = beginEnd(if (expired) SessionEndCause.EXPIRED else SessionEndCause.VOLUNTARY)
+
+    @Synchronized fun beginEnd(cause: SessionEndCause = SessionEndCause.VOLUNTARY): Long {
+        // Only an unfinished termination carries its causes into this request.
+        // A completed one belongs to a previous session (A01-auth-02). Any
+        // expired request reports an expiry; any voluntary one revokes recovery.
+        val unfinished = termination?.takeIf { !it.complete }
+        val sessionExpired = cause == SessionEndCause.EXPIRED || unfinished?.sessionExpired == true
+        val revoke = cause == SessionEndCause.VOLUNTARY || unfinished?.revokeGuestRecovery == true
         if (termination?.inProgress == true) {
-            if (sessionExpired) termination = termination?.copy(sessionExpired = true)
+            termination = termination?.copy(sessionExpired = sessionExpired, revokeGuestRecovery = revoke)
             return epoch
         }
         epoch++
         accepting = false
-        termination = SessionTermination(inProgress = true, sessionExpired = sessionExpired)
+        termination = SessionTermination(inProgress = true, sessionExpired = sessionExpired, revokeGuestRecovery = revoke)
         return epoch
     }
     @Synchronized fun finish(result: SessionTermination): SessionTermination {
-        val completed = result.copy(sessionExpired = result.sessionExpired || termination?.sessionExpired == true)
+        val completed = result.copy(sessionExpired = result.sessionExpired || termination?.sessionExpired == true,
+            revokeGuestRecovery = result.revokeGuestRecovery || termination?.revokeGuestRecovery == true)
         termination = completed
         return completed
     }

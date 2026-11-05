@@ -14,6 +14,11 @@ class HedgedHttpOpen {
     required Future<T> Function() alternate,
     required void Function(T value) abort,
     required Duration timeout,
+    void Function()? cancelPrimary,
+    void Function()? cancelAlternate,
+    // When both openings fail, the error ranked higher is reported; ties and
+    // an absent ranking keep the primary's.
+    int Function(Object error)? errorRank,
   }) {
     final Completer<T> result = Completer<T>();
     Timer? hedgeTimer;
@@ -27,7 +32,13 @@ class HedgedHttpOpen {
     var alternateDone = false;
     var finished = false;
 
-    void finishSuccess(T value) {
+    void cancel(void Function()? action) {
+      try {
+        action?.call();
+      } catch (_) {}
+    }
+
+    void finishSuccess(T value, {required bool isPrimary}) {
       if (finished) {
         try {
           abort(value);
@@ -37,6 +48,7 @@ class HedgedHttpOpen {
       finished = true;
       hedgeTimer?.cancel();
       timeoutTimer?.cancel();
+      cancel(isPrimary ? cancelAlternate : cancelPrimary);
       result.complete(value);
     }
 
@@ -45,6 +57,8 @@ class HedgedHttpOpen {
       finished = true;
       hedgeTimer?.cancel();
       timeoutTimer?.cancel();
+      cancel(cancelPrimary);
+      cancel(cancelAlternate);
       if (stackTrace == null) {
         result.completeError(error);
       } else {
@@ -52,8 +66,17 @@ class HedgedHttpOpen {
       }
     }
 
+    int rank(Object? error) {
+      if (error == null || errorRank == null) return 0;
+      try {
+        return errorRank(error);
+      } catch (_) {
+        return 0;
+      }
+    }
+
     void finishBothFailures() {
-      if (primaryError != null) {
+      if (primaryError != null && rank(primaryError) >= rank(alternateError)) {
         finishError(primaryError!, primaryStackTrace);
       } else {
         finishError(alternateError!, alternateStackTrace);
@@ -62,7 +85,7 @@ class HedgedHttpOpen {
 
     void observe(Future<T> future, {required bool isPrimary}) {
       future.then(
-        finishSuccess,
+        (value) => finishSuccess(value, isPrimary: isPrimary),
         onError: (Object error, StackTrace stackTrace) {
           if (finished) return;
           if (isPrimary) {

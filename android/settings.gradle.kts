@@ -18,7 +18,7 @@ pluginManagement {
 plugins {
     id("dev.flutter.flutter-plugin-loader") version "1.0.0"
     id("com.android.application") version "9.3.0" apply false
-    // Flutter 3.44.7's Gradle integration still uses AGP's legacy variant
+    // Flutter 3.47.8's Gradle integration still uses AGP's legacy variant
     // API. The two compatibility flags in gradle.properties therefore keep
     // AGP 9.3's legacy DSL until Flutter ships its built-in-Kotlin migration.
     id("org.jetbrains.kotlin.android") version "2.3.20" apply false

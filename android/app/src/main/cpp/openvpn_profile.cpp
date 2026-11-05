@@ -20,6 +20,18 @@ namespace {
 constexpr size_t kMaxProfileBytes = 64 * 1024;
 constexpr size_t kMaxTlsCryptBytes = 8 * 1024;
 constexpr size_t kMaxDnsServers = 8;
+// Core reads at most 512 bytes per line, newline included
+// (ProfileParseLimits::MAX_LINE_SIZE); a longer line fails eval_config.
+constexpr size_t kMaxLineBytes = 512;
+// Like the former CA length check: a shorter body is no certificate.
+constexpr size_t kMinCertificateBodyBytes = 8;
+constexpr std::string_view kCaBegin = "-----BEGIN CERTIFICATE-----";
+constexpr std::string_view kCaEnd = "-----END CERTIFICATE-----";
+constexpr std::string_view kTlsCryptV2Begin = "-----BEGIN OpenVPN tls-crypt-v2 client key-----";
+constexpr std::string_view kTlsCryptV2End = "-----END OpenVPN tls-crypt-v2 client key-----";
+
+// Position inside the PEM content of an inline block.
+enum class Pem { kExpectBegin, kExpectBody, kInBody, kAfterEnd };
 
 std::string_view Trim(std::string_view value) {
   while (!value.empty() &&
@@ -65,13 +77,44 @@ bool IsName(std::string_view value) {
   return true;
 }
 
-bool IsPemCa(std::string_view value) {
-  constexpr std::string_view kBegin = "-----BEGIN CERTIFICATE-----";
-  constexpr std::string_view kEnd = "-----END CERTIFICATE-----";
-  value = Trim(value);
-  return value.size() >= kBegin.size() + kEnd.size() + 8 &&
-         value.starts_with(kBegin) && value.ends_with(kEnd) &&
-         value.find('\0') == std::string_view::npos;
+// ASCII only: unlike std::isalnum, independent of the process locale.
+bool IsAsciiAlnum(unsigned char character) {
+  return (character >= 'A' && character <= 'Z') || (character >= 'a' && character <= 'z') ||
+         (character >= '0' && character <= '9');
+}
+
+bool IsBase64Line(std::string_view line) {
+  if (line.empty()) return false;
+  for (const unsigned char character : line) {
+    if (!(IsAsciiAlnum(character) || character == '+' || character == '/' || character == '=')) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// Core tokenizes directive lines itself: quotes, backslashes, '#'/';'
+// comments, every isspace byte and "<tag>" openers change its reading
+// (options.hpp:972-1042). Accept only lines on which that reading is plain
+// splitting: words of [A-Za-z0-9._:-] separated by exactly one space. The two
+// fully quoted legacy filter words stay accepted; Core only drops the quotes.
+bool IsCanonicalDirective(std::string_view line) {
+  for (size_t start = 0;;) {
+    const size_t space = line.find(' ', start);
+    const std::string_view word = line.substr(
+        start, space == std::string_view::npos ? std::string_view::npos : space - start);
+    if (word.empty()) return false;
+    if (word != "\"route-ipv6\"" && word != "\"ifconfig-ipv6\"") {
+      for (const unsigned char character : word) {
+        if (!(IsAsciiAlnum(character) || character == '.' || character == '-' ||
+              character == '_' || character == ':')) {
+          return false;
+        }
+      }
+    }
+    if (space == std::string_view::npos) return true;
+    start = space + 1;
+  }
 }
 
 bool IsModernCipher(std::string_view cipher) {
@@ -94,11 +137,15 @@ bool ParseCipherList(std::string_view value, std::vector<std::string>* output) {
 }
 
 bool IsPrintableProfileText(std::string_view text) {
-  for (const unsigned char byte : text) {
+  for (size_t index = 0; index < text.size(); ++index) {
+    const unsigned char byte = static_cast<unsigned char>(text[index]);
     if (byte == '\0') return false;
     // PEM is ASCII.  Reject control bytes other than the textual line format.
     if (byte < 0x20 && byte != '\n' && byte != '\r' && byte != '\t') return false;
-    if (byte == 0x7f) return false;
+    if (byte >= 0x7f) return false;
+    // Core drops every CR that ends a line and splits words on any other CR,
+    // so a CR is only unambiguous as part of a CRLF line end.
+    if (byte == '\r' && (index + 1 == text.size() || text[index + 1] != '\n')) return false;
   }
   return true;
 }
@@ -111,7 +158,7 @@ bool IsExact(std::vector<std::string_view> words,
 
 }  // namespace
 
-void SecureErase(std::string* value) {
+void SecureErase(std::string* value) noexcept {
   if (value == nullptr || value->empty()) return;
   volatile char* bytes = value->data();
   for (size_t index = 0; index < value->size(); ++index) bytes[index] = 0;
@@ -191,10 +238,13 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
   bool has_autologin = false;
   bool has_ca = false;
   bool has_tls_crypt_v2 = false;
+  bool has_route_ipv6_filter = false;
+  bool has_ifconfig_ipv6_filter = false;
   bool in_ca = false;
   bool in_tls_crypt_v2 = false;
-  std::string ca;
-  std::string tls_crypt_v2;
+  Pem pem = Pem::kExpectBegin;
+  size_t certificate_body_bytes = 0;
+  size_t tls_crypt_v2_size = 0;
   ValidatedProfile result;
 
   size_t cursor = 0;
@@ -204,63 +254,90 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
     std::string_view line = profile.substr(cursor, count);
     if (!line.empty() && line.back() == '\r') line.remove_suffix(1);
     cursor = end == std::string_view::npos ? profile.size() + 1 : end + 1;
-    const std::string_view trimmed = Trim(line);
+    // Compare exactly the bytes Core keeps: the line without its LF or CRLF.
+    // Trimming more let " </ca>" close <ca> here but not in Core, and the
+    // following lines then reached Core as directives.
+    if (count + 1 > kMaxLineBytes) {
+      return reject(in_ca ? ProfileFailure::kInvalidCa
+                    : in_tls_crypt_v2 ? ProfileFailure::kInvalidTlsCryptV2
+                                      : ProfileFailure::kForbiddenDirective);
+    }
 
     if (in_ca) {
-      if (trimmed == "</ca>") {
+      if (line == "</ca>") {
+        if (pem != Pem::kAfterEnd) return reject(ProfileFailure::kInvalidCa);
         in_ca = false;
-        if (!IsPemCa(ca)) return reject(ProfileFailure::kInvalidCa);
         continue;
       }
-      if (ca.size() + line.size() + 1 > kMaxProfileBytes) {
+      // CERTIFICATE PEM blocks only, optionally separated by empty lines: no
+      // line Core could read as a tag, a comment or a meta option.
+      if (line == kCaBegin && (pem == Pem::kExpectBegin || pem == Pem::kAfterEnd)) {
+        pem = Pem::kExpectBody;
+        certificate_body_bytes = 0;
+      } else if (IsBase64Line(line) && (pem == Pem::kExpectBody || pem == Pem::kInBody)) {
+        pem = Pem::kInBody;
+        certificate_body_bytes += line.size();
+      } else if (line == kCaEnd && pem == Pem::kInBody &&
+                 certificate_body_bytes >= kMinCertificateBodyBytes) {
+        pem = Pem::kAfterEnd;
+      } else if (!(line.empty() && pem == Pem::kAfterEnd)) {
         return reject(ProfileFailure::kInvalidCa);
       }
-      ca.append(line);
-      ca.push_back('\n');
       continue;
     }
     if (in_tls_crypt_v2) {
-      if (trimmed == "</tls-crypt-v2>") {
+      if (line == "</tls-crypt-v2>") {
+        if (pem != Pem::kAfterEnd) return reject(ProfileFailure::kInvalidTlsCryptV2);
         in_tls_crypt_v2 = false;
-        if (Trim(tls_crypt_v2).empty()) {
-          return reject(ProfileFailure::kInvalidTlsCryptV2);
-        }
         continue;
       }
-      if (tls_crypt_v2.size() + line.size() + 1 > kMaxTlsCryptBytes) {
+      if (tls_crypt_v2_size + line.size() + 1 > kMaxTlsCryptBytes) {
         return reject(ProfileFailure::kInvalidTlsCryptV2);
       }
-      tls_crypt_v2.append(line);
-      tls_crypt_v2.push_back('\n');
+      // Only presence and size are needed here. Do not duplicate this secret
+      // into a second heap allocation just to validate its container.
+      tls_crypt_v2_size += line.size() + 1;
+      // Exactly one client-key PEM block, nothing else.
+      if (line == kTlsCryptV2Begin && pem == Pem::kExpectBegin) {
+        pem = Pem::kExpectBody;
+      } else if (IsBase64Line(line) && (pem == Pem::kExpectBody || pem == Pem::kInBody)) {
+        pem = Pem::kInBody;
+      } else if (line == kTlsCryptV2End && pem == Pem::kInBody) {
+        pem = Pem::kAfterEnd;
+      } else {
+        return reject(ProfileFailure::kInvalidTlsCryptV2);
+      }
       continue;
     }
 
-    if (trimmed.empty()) continue;
+    if (line.empty()) continue;
     // Comments make canonical validation ambiguous; native profiles are
     // generated programmatically, so comments are not part of this contract.
-    if (trimmed.starts_with('#') || trimmed.starts_with(';')) {
+    if (line.starts_with('#') || line.starts_with(';')) {
       return reject(ProfileFailure::kForbiddenDirective);
     }
-    if (trimmed == "<ca>") {
+    if (line == "<ca>") {
       if (has_ca) return reject(ProfileFailure::kForbiddenDirective);
       has_ca = true;
       in_ca = true;
+      pem = Pem::kExpectBegin;
       continue;
     }
-    if (trimmed == "<tls-crypt-v2>") {
+    if (line == "<tls-crypt-v2>") {
       if (has_tls_crypt_v2) return reject(ProfileFailure::kForbiddenDirective);
       has_tls_crypt_v2 = true;
       in_tls_crypt_v2 = true;
+      pem = Pem::kExpectBegin;
       continue;
     }
     // Inline certificate/key material is deliberately forbidden.  The client
     // certificate and P-256 private key are supplied by External PKI instead.
-    if (trimmed.starts_with('<') || trimmed.starts_with("key ") ||
-        trimmed.starts_with("cert ") || trimmed.starts_with("ca ")) {
+    if (line.starts_with('<') || line.starts_with("key ") ||
+        line.starts_with("cert ") || line.starts_with("ca ") || !IsCanonicalDirective(line)) {
       return reject(ProfileFailure::kForbiddenDirective);
     }
 
-    const std::vector<std::string_view> words = Words(trimmed);
+    const std::vector<std::string_view> words = Words(line);
     if (words.empty()) continue;
     if (IsExact(words, {"client"})) {
       if (has_client) return reject(ProfileFailure::kForbiddenDirective);
@@ -318,9 +395,15 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
       }
       result.dns_servers.emplace_back(words[2]);
     } else if (IsExact(words, {"pull-filter", "ignore", "route-ipv6"}) ||
-               IsExact(words, {"pull-filter", "ignore", "ifconfig-ipv6"}) ||
-               IsExact(words, {"pull-filter", "ignore", "\"route-ipv6\""}) ||
+               IsExact(words, {"pull-filter", "ignore", "\"route-ipv6\""})) {
+      // Each filter once: repeated lines could overflow Core's option budget.
+      if (has_route_ipv6_filter) return reject(ProfileFailure::kForbiddenDirective);
+      has_route_ipv6_filter = true;
+      has_ipv6_filter = true;
+    } else if (IsExact(words, {"pull-filter", "ignore", "ifconfig-ipv6"}) ||
                IsExact(words, {"pull-filter", "ignore", "\"ifconfig-ipv6\""})) {
+      if (has_ifconfig_ipv6_filter) return reject(ProfileFailure::kForbiddenDirective);
+      has_ifconfig_ipv6_filter = true;
       has_ipv6_filter = true;
     } else {
       // This excludes scripts, management, proxy, username/password auth,

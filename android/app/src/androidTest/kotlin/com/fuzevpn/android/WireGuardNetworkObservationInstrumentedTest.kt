@@ -10,6 +10,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import java.util.concurrent.atomic.AtomicLong
 import org.junit.Assert.*
 import org.junit.Assume.assumeTrue
+import org.junit.AssumptionViolatedException
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -42,8 +43,16 @@ class WireGuardNetworkObservationInstrumentedTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         assumeTrue("Requires the isolated recovery test APK", context.packageName == "com.fuzevpn.recoverytest")
         val connectivity = context.getSystemService(ConnectivityManager::class.java)
+        // `am instrument` right after a VPN teardown can hit the Android 11 bind race (campaign
+        // vm31i): this process's ConnectivityManager then answers for package android, refuses
+        // capabilities, and the bridge has no physical callback. Nothing is observable: skip.
         fun hasPhysical() = connectivity.allNetworks.any { network ->
-            connectivity.getNetworkCapabilities(network)?.let {
+            val capabilities = try {
+                connectivity.getNetworkCapabilities(network)
+            } catch (refused: SecurityException) {
+                throw AssumptionViolatedException("Network capabilities refused in this process", refused)
+            }
+            capabilities?.let {
                 it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
                     it.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN) &&
                     it.hasCapability(NetworkCapabilities.NET_CAPABILITY_TRUSTED) &&
@@ -53,6 +62,8 @@ class WireGuardNetworkObservationInstrumentedTest {
         val wifi = shell("settings get global wifi_on")
         val data = shell("settings get global mobile_data")
         val bridge = AndroidVpnBridge.obtain(context)
+        assumeTrue("Physical network callback refused in this process",
+            field(bridge, "physicalCallbackRegistered") == true)
         try {
             shell("svc wifi enable"); shell("svc data enable")
             await("No initial physical network", 30_000) { hasPhysical() }

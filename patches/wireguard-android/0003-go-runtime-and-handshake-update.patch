@@ -1,0 +1,458 @@
+# Reviewed FuzeVPN Go 1.26.9 / WireGuard b3bc704 source recipe update.
+--- a/tunnel/tools/libwg-go/Makefile
++++ b/tunnel/tools/libwg-go/Makefile
+@@ -1,52 +1,52 @@
+-# SPDX-License-Identifier: Apache-2.0
+-#
+-# Copyright © 2017-2025 WireGuard LLC. All Rights Reserved.
+-
+-BUILDDIR ?= $(CURDIR)/build
+-DESTDIR ?= $(CURDIR)/out
+-
+-NDK_GO_ARCH_MAP_x86 := 386
+-NDK_GO_ARCH_MAP_x86_64 := amd64
+-NDK_GO_ARCH_MAP_arm := arm
+-NDK_GO_ARCH_MAP_arm64 := arm64
+-NDK_GO_ARCH_MAP_mips := mipsx
+-NDK_GO_ARCH_MAP_mips64 := mips64x
+-
+-comma := ,
+-CLANG_FLAGS := --target=$(TARGET) --sysroot=$(SYSROOT)
+-export CGO_CFLAGS := $(CLANG_FLAGS) $(subst -mthumb,-marm,$(CFLAGS))
+-export CGO_LDFLAGS := $(CLANG_FLAGS) $(patsubst -Wl$(comma)--build-id=%,-Wl$(comma)--build-id=none,$(LDFLAGS)) -Wl,-soname=libwg-go.so
+-export GOARCH := $(NDK_GO_ARCH_MAP_$(ANDROID_ARCH_NAME))
+-export GOOS := android
+-export CGO_ENABLED := 1
+-
+-GO_VERSION := 1.24.3
+-GO_PLATFORM := $(shell uname -s | tr '[:upper:]' '[:lower:]')-$(NDK_GO_ARCH_MAP_$(shell uname -m))
+-GO_TARBALL := go$(GO_VERSION).$(GO_PLATFORM).tar.gz
+-GO_HASH_darwin-amd64 := 13e6fe3fcf65689d77d40e633de1e31c6febbdbcb846eb05fc2434ed2213e92b
+-GO_HASH_darwin-arm64 := 64a3fa22142f627e78fac3018ce3d4aeace68b743eff0afda8aae0411df5e4fb
+-GO_HASH_linux-amd64 := 3333f6ea53afa971e9078895eaa4ac7204a8c6b5c68c10e6bc9a33e8e391bdd8
+-
+-default: $(DESTDIR)/libwg-go.so
+-
+-$(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL):
+-	mkdir -p "$(dir $@)"
+-	flock "$@.lock" -c ' \
+-	[ -f "$@" ] && exit 0; \
+-	curl -o "$@.tmp" "https://dl.google.com/go/$(GO_TARBALL)" && \
+-	echo "$(GO_HASH_$(GO_PLATFORM))  $@.tmp" | sha256sum -c && \
+-	mv "$@.tmp" "$@"'
+-
+-$(BUILDDIR)/go-$(GO_VERSION)/.prepared: $(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL)
+-	mkdir -p "$(dir $@)"
+-	flock "$@.lock" -c ' \
+-	[ -f "$@" ] && exit 0; \
+-	tar -C "$(dir $@)" --strip-components=1 -xzf "$^" && \
+-	patch -p1 -f -N -r- -d "$(dir $@)" < goruntime-boottime-over-monotonic.diff && \
+-	touch "$@"'
+-
+-$(DESTDIR)/libwg-go.so: export PATH := $(BUILDDIR)/go-$(GO_VERSION)/bin/:$(PATH)
+-$(DESTDIR)/libwg-go.so: $(BUILDDIR)/go-$(GO_VERSION)/.prepared go.mod
+-	go build -tags linux -ldflags="-X golang.zx2c4.com/wireguard/ipc.socketDirectory=/data/data/$(ANDROID_PACKAGE_NAME)/cache/wireguard -buildid=" -v -trimpath -buildvcs=false -o "$@" -buildmode c-shared
+-
+-.DELETE_ON_ERROR:
++# SPDX-License-Identifier: Apache-2.0
++#
++# Copyright © 2017-2025 WireGuard LLC. All Rights Reserved.
++
++BUILDDIR ?= $(CURDIR)/build
++DESTDIR ?= $(CURDIR)/out
++
++NDK_GO_ARCH_MAP_x86 := 386
++NDK_GO_ARCH_MAP_x86_64 := amd64
++NDK_GO_ARCH_MAP_arm := arm
++NDK_GO_ARCH_MAP_arm64 := arm64
++NDK_GO_ARCH_MAP_mips := mipsx
++NDK_GO_ARCH_MAP_mips64 := mips64x
++
++comma := ,
++CLANG_FLAGS := --target=$(TARGET) --sysroot=$(SYSROOT)
++export CGO_CFLAGS := $(CLANG_FLAGS) $(subst -mthumb,-marm,$(CFLAGS))
++export CGO_LDFLAGS := $(CLANG_FLAGS) $(patsubst -Wl$(comma)--build-id=%,-Wl$(comma)--build-id=none,$(LDFLAGS)) -Wl,-soname=libwg-go.so
++export GOARCH := $(NDK_GO_ARCH_MAP_$(ANDROID_ARCH_NAME))
++export GOOS := android
++export CGO_ENABLED := 1
++
++GO_VERSION := 1.26.9
++GO_PLATFORM := $(shell uname -s | tr '[:upper:]' '[:lower:]')-$(NDK_GO_ARCH_MAP_$(shell uname -m))
++GO_TARBALL := go$(GO_VERSION).$(GO_PLATFORM).tar.gz
++GO_HASH_darwin-amd64 := 00c29e3d4c8562f547410daa18d2959b641bd691ab00c4a525ea817a0253d4bd
++GO_HASH_darwin-arm64 := f9bb7c0a02506c5d9bf0d1eb1f7ee6c7684f844ae49558308a0427b830e022cc
++GO_HASH_linux-amd64 := 42d158b4d8f7b61ac0a830567c940a86098fb7aac52e467a5ebec03ef5cc2f8d
++
++default: $(DESTDIR)/libwg-go.so
++
++$(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL):
++	mkdir -p "$(dir $@)"
++	flock "$@.lock" -c ' \
++	[ -f "$@" ] && exit 0; \
++	curl -o "$@.tmp" "https://dl.google.com/go/$(GO_TARBALL)" && \
++	echo "$(GO_HASH_$(GO_PLATFORM))  $@.tmp" | sha256sum -c && \
++	mv "$@.tmp" "$@"'
++
++$(BUILDDIR)/go-$(GO_VERSION)/.prepared: $(GRADLE_USER_HOME)/caches/golang/$(GO_TARBALL)
++	mkdir -p "$(dir $@)"
++	flock "$@.lock" -c ' \
++	[ -f "$@" ] && exit 0; \
++	tar -C "$(dir $@)" --strip-components=1 -xzf "$^" && \
++	patch -p1 -f -N -r- -d "$(dir $@)" < goruntime-go1.26.9-boottime.diff && \
++	touch "$@"'
++
++$(DESTDIR)/libwg-go.so: export PATH := $(BUILDDIR)/go-$(GO_VERSION)/bin/:$(PATH)
++$(DESTDIR)/libwg-go.so: $(BUILDDIR)/go-$(GO_VERSION)/.prepared go.mod
++	go build -tags linux -ldflags="-X golang.zx2c4.com/wireguard/ipc.socketDirectory=/data/data/$(ANDROID_PACKAGE_NAME)/cache/wireguard -buildid=" -v -trimpath -buildvcs=false -o "$@" -buildmode c-shared
++
++.DELETE_ON_ERROR:
+--- a/tunnel/tools/libwg-go/go.mod
++++ b/tunnel/tools/libwg-go/go.mod
+@@ -1,14 +1,14 @@
+-module golang.zx2c4.com/wireguard/android
+-
+-go 1.23.1
+-
+-require (
+-	golang.org/x/sys v0.33.0
+-	golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb
+-)
+-
+-require (
+-	golang.org/x/crypto v0.38.0 // indirect
+-	golang.org/x/net v0.40.0 // indirect
+-	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
+-)
++module golang.zx2c4.com/wireguard/android
++
++go 1.23.1
++
++require (
++	golang.org/x/sys v0.33.0
++	golang.zx2c4.com/wireguard v0.0.0-20261024220952-b3bc704ef0ee
++)
++
++require (
++	golang.org/x/crypto v0.38.0 // indirect
++	golang.org/x/net v0.40.0 // indirect
++	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
++)
+--- a/tunnel/tools/libwg-go/go.sum
++++ b/tunnel/tools/libwg-go/go.sum
+@@ -1,16 +1,16 @@
+-github.com/google/btree v1.1.2 h1:xf4v41cLI2Z6FxbKm+8Bu+m8ifhj15JuZ9sa0jZCMUU=
+-github.com/google/btree v1.1.2/go.mod h1:qOPhT0dTNdNzV6Z/lhRX0YXUafgPLFUh+gZMl761Gm4=
+-golang.org/x/crypto v0.38.0 h1:jt+WWG8IZlBnVbomuhg2Mdq0+BBQaHbtqHEFEigjUV8=
+-golang.org/x/crypto v0.38.0/go.mod h1:MvrbAqul58NNYPKnOra203SB9vpuZW0e+RRZV+Ggqjw=
+-golang.org/x/net v0.40.0 h1:79Xs7wF06Gbdcg4kdCCIQArK11Z1hr5POQ6+fIYHNuY=
+-golang.org/x/net v0.40.0/go.mod h1:y0hY0exeL2Pku80/zKK7tpntoX23cqL3Oa6njdgRtds=
+-golang.org/x/sys v0.33.0 h1:q3i8TbbEz+JRD9ywIRlyRAQbM0qF7hu24q3teo2hbuw=
+-golang.org/x/sys v0.33.0/go.mod h1:BJP2sWEmIv4KK5OTEluFJCKSidICx8ciO85XgH3Ak8k=
+-golang.org/x/time v0.7.0 h1:ntUhktv3OPE6TgYxXWv9vKvUSJyIFJlyohwbkEwPrKQ=
+-golang.org/x/time v0.7.0/go.mod h1:3BpzKBy/shNhVucY/MWOyx10tF3SFh9QdLuxbVysPQM=
+-golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 h1:B82qJJgjvYKsXS9jeunTOisW56dUokqW/FOteYJJ/yg=
+-golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2/go.mod h1:deeaetjYA+DHMHg+sMSMI58GrEteJUUzzw7en6TJQcI=
+-golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb h1:whnFRlWMcXI9d+ZbWg+4sHnLp52d5yiIPUxMBSt4X9A=
+-golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb/go.mod h1:rpwXGsirqLqN2L0JDJQlwOboGHmptD5ZD6T2VmcqhTw=
+-gvisor.dev/gvisor v0.0.0-20250503011706-39ed1f5ac29c h1:m/r7OM+Y2Ty1sgBQ7Qb27VgIMBW8ZZhT4gLnUyDIhzI=
+-gvisor.dev/gvisor v0.0.0-20250503011706-39ed1f5ac29c/go.mod h1:3r5CMtNQMKIvBlrmM9xWUNamjKBYPOWyXOjmg5Kts3g=
++github.com/google/btree v1.1.2 h1:xf4v41cLI2Z6FxbKm+8Bu+m8ifhj15JuZ9sa0jZCMUU=
++github.com/google/btree v1.1.2/go.mod h1:qOPhT0dTNdNzV6Z/lhRX0YXUafgPLFUh+gZMl761Gm4=
++golang.org/x/crypto v0.38.0 h1:jt+WWG8IZlBnVbomuhg2Mdq0+BBQaHbtqHEFEigjUV8=
++golang.org/x/crypto v0.38.0/go.mod h1:MvrbAqul58NNYPKnOra203SB9vpuZW0e+RRZV+Ggqjw=
++golang.org/x/net v0.40.0 h1:79Xs7wF06Gbdcg4kdCCIQArK11Z1hr5POQ6+fIYHNuY=
++golang.org/x/net v0.40.0/go.mod h1:y0hY0exeL2Pku80/zKK7tpntoX23cqL3Oa6njdgRtds=
++golang.org/x/sys v0.33.0 h1:q3i8TbbEz+JRD9ywIRlyRAQbM0qF7hu24q3teo2hbuw=
++golang.org/x/sys v0.33.0/go.mod h1:BJP2sWEmIv4KK5OTEluFJCKSidICx8ciO85XgH3Ak8k=
++golang.org/x/time v0.7.0 h1:ntUhktv3OPE6TgYxXWv9vKvUSJyIFJlyohwbkEwPrKQ=
++golang.org/x/time v0.7.0/go.mod h1:3BpzKBy/shNhVucY/MWOyx10tF3SFh9QdLuxbVysPQM=
++golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 h1:B82qJJgjvYKsXS9jeunTOisW56dUokqW/FOteYJJ/yg=
++golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2/go.mod h1:deeaetjYA+DHMHg+sMSMI58GrEteJUUzzw7en6TJQcI=
++golang.zx2c4.com/wireguard v0.0.0-20261024220952-b3bc704ef0ee h1:hByBPN/P/BVzJ591rJfvNhdoL94vmBtRbnVw77QJL20=
++golang.zx2c4.com/wireguard v0.0.0-20261024220952-b3bc704ef0ee/go.mod h1:rpwXGsirqLqN2L0JDJQlwOboGHmptD5ZD6T2VmcqhTw=
++gvisor.dev/gvisor v0.0.0-20250503011706-39ed1f5ac29c h1:m/r7OM+Y2Ty1sgBQ7Qb27VgIMBW8ZZhT4gLnUyDIhzI=
++gvisor.dev/gvisor v0.0.0-20250503011706-39ed1f5ac29c/go.mod h1:3r5CMtNQMKIvBlrmM9xWUNamjKBYPOWyXOjmg5Kts3g=
+--- /dev/null
++++ b/tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.diff
+@@ -0,0 +1,145 @@
++# FuzeVPN adaptation of WireGuard upstream CLOCK_BOOTTIME patch for Go 1.26.9.
++# Upstream eight runtime files and twelve clock substitutions, plus time.now on linux/amd64
++# (time_linux_amd64.s, two substitutions): fourteen in all; exact pre/post hashes in adjacent JSON.
++--- a/src/runtime/sys_linux_386.s
+++++ b/src/runtime/sys_linux_386.s
++@@ -365,13 +365,13 @@
++ 
++ 	LEAL	8(SP), BX	// &ts (struct timespec)
++ 	MOVL	BX, 4(SP)
++-	MOVL	$1, 0(SP)	// CLOCK_MONOTONIC
+++	MOVL	$7, 0(SP)	// CLOCK_BOOTTIME
++ 	CALL	AX
++ 	JMP finish
++ 
++ fallback:
++ 	MOVL	$SYS_clock_gettime, AX
++-	MOVL	$1, BX		// CLOCK_MONOTONIC
+++	MOVL	$7, BX		// CLOCK_BOOTTIME
++ 	LEAL	8(SP), CX
++ 	INVOKE_SYSCALL
++ 
++--- a/src/runtime/sys_linux_amd64.s
+++++ b/src/runtime/sys_linux_amd64.s
++@@ -267,7 +267,7 @@
++ 	SUBQ	$16, SP		// Space for results
++ 	ANDQ	$~15, SP	// Align for C code
++ 
++-	MOVL	$1, DI // CLOCK_MONOTONIC
+++	MOVL	$7, DI // CLOCK_BOOTTIME
++ 	LEAQ	0(SP), SI
++ 	MOVQ	runtime·vdsoClockgettimeSym(SB), AX
++ 	CMPQ	AX, $0
++--- a/src/runtime/sys_linux_arm.s
+++++ b/src/runtime/sys_linux_arm.s
++@@ -11,7 +11,7 @@
++ #include "textflag.h"
++ 
++ #define CLOCK_REALTIME	0
++-#define CLOCK_MONOTONIC	1
+++#define CLOCK_BOOTTIME	7
++ 
++ // for EABI, as we don't support OABI
++ #define SYS_BASE 0x0
++@@ -386,7 +386,7 @@
++ 
++ // func nanotime1() int64
++ TEXT runtime·nanotime1(SB),NOSPLIT,$12-8
++-	MOVW	$CLOCK_MONOTONIC, R0
+++	MOVW	$CLOCK_BOOTTIME, R0
++ 	MOVW	$spec-12(SP), R1	// timespec
++ 
++ 	MOVW	runtime·vdsoClockgettimeSym(SB), R4
++--- a/src/runtime/sys_linux_arm64.s
+++++ b/src/runtime/sys_linux_arm64.s
++@@ -14,7 +14,7 @@
++ #define AT_FDCWD -100
++ 
++ #define CLOCK_REALTIME 0
++-#define CLOCK_MONOTONIC 1
+++#define CLOCK_BOOTTIME 7
++ 
++ #define SYS_exit		93
++ #define SYS_read		63
++@@ -352,7 +352,7 @@
++ 	BIC	$15, R1
++ 	MOVD	R1, RSP
++ 
++-	MOVW	$CLOCK_MONOTONIC, R0
+++	MOVW	$CLOCK_BOOTTIME, R0
++ 	MOVD	runtime·vdsoClockgettimeSym(SB), R2
++ 	CBZ	R2, fallback
++ 
++--- a/src/runtime/sys_linux_mips64x.s
+++++ b/src/runtime/sys_linux_mips64x.s
++@@ -326,7 +326,7 @@
++ 	AND	$~15, R1	// Align for C code
++ 	MOVV	R1, R29
++ 
++-	MOVW	$1, R4 // CLOCK_MONOTONIC
+++	MOVW	$7, R4 // CLOCK_BOOTTIME
++ 	MOVV	$0(R29), R5
++ 
++ 	MOVV	runtime·vdsoClockgettimeSym(SB), R25
++@@ -336,7 +336,7 @@
++ 	// see walltime for detail
++ 	BEQ	R2, R0, finish
++ 	MOVV	R0, runtime·vdsoClockgettimeSym(SB)
++-	MOVW	$1, R4 // CLOCK_MONOTONIC
+++	MOVW	$7, R4 // CLOCK_BOOTTIME
++ 	MOVV	$0(R29), R5
++ 	JMP	fallback
++ 
++--- a/src/runtime/sys_linux_mipsx.s
+++++ b/src/runtime/sys_linux_mipsx.s
++@@ -256,7 +256,7 @@
++ 	RET
++ 
++ TEXT runtime·nanotime1(SB),NOSPLIT,$8-8
++-	MOVW	$1, R4	// CLOCK_MONOTONIC
+++	MOVW	$7, R4	// CLOCK_BOOTTIME
++ 	MOVW	$4(R29), R5
++ 	MOVW	$SYS_clock_gettime, R2
++ 	SYSCALL
++--- a/src/runtime/sys_linux_ppc64x.s
+++++ b/src/runtime/sys_linux_ppc64x.s
++@@ -299,7 +299,7 @@
++ 	JMP	return
++ 
++ TEXT runtime·nanotime1(SB),NOSPLIT,$16-8
++-	MOVD	$1, R3		// CLOCK_MONOTONIC
+++	MOVD	$7, R3		// CLOCK_BOOTTIME
++ 
++ 	MOVD	R1, R15		// R15 is unchanged by C code
++ 	MOVD	g_m(g), R21	// R21 = m
++--- a/src/runtime/sys_linux_s390x.s
+++++ b/src/runtime/sys_linux_s390x.s
++@@ -297,7 +297,7 @@
++ 	RET
++ 
++ TEXT runtime·nanotime1(SB),NOSPLIT,$32-8
++-	MOVW	$1, R2			// CLOCK_MONOTONIC
+++	MOVW	$7, R2			// CLOCK_BOOTTIME
++ 
++ 	MOVD	R15, R7			// Backup stack pointer
++ 
++--- a/src/runtime/time_linux_amd64.s
+++++ b/src/runtime/time_linux_amd64.s
++@@ -56,7 +56,7 @@
++ 	JEQ	fallback
++ 	CALL	AX
++ 
++-	MOVL	$1, DI // CLOCK_MONOTONIC
+++	MOVL	$7, DI // CLOCK_BOOTTIME
++ 	LEAQ	0(SP), SI
++ 	MOVQ	runtime·vdsoClockgettimeSym(SB), AX
++ 	CALL	AX
++@@ -89,7 +89,7 @@
++ 	MOVQ	$SYS_clock_gettime, AX
++ 	SYSCALL
++ 
++-	MOVL	$1, DI // CLOCK_MONOTONIC
+++	MOVL	$7, DI // CLOCK_BOOTTIME
++ 	LEAQ	0(SP), SI
++ 	MOVQ	$SYS_clock_gettime, AX
++ 	SYSCALL
+--- /dev/null
++++ b/tunnel/tools/libwg-go/goruntime-go1.26.9-boottime.json
+@@ -0,0 +1,133 @@
++{
++  "schema": 1,
++  "go_version": "1.26.9",
++  "source_archive_sha256": "9735d7dcdb65b35d3fa577f04064737c03b89cf1a2b71e6e69fe2f3c6f9fd4ca",
++  "upstream_patch": "goruntime-boottime-over-monotonic.diff",
++  "upstream_patch_sha256": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395",
++  "patch_sha256": "d0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a",
++  "files": [
++    {
++      "path": "src/runtime/sys_linux_386.s",
++      "original_sha256": "900e3db7472d0686f80bd473f18c1386673591c912708ca6ec7065425b7cc6b1",
++      "patched_sha256": "d26df5e47f57d0c5b423856881c06a1413e7ae9552d885bda253f338297b8c7a",
++      "substitutions": [
++        {
++          "before": "MOVL\t$1, 0(SP)\t// CLOCK_MONOTONIC",
++          "after": "MOVL\t$7, 0(SP)\t// CLOCK_BOOTTIME",
++          "count": 1
++        },
++        {
++          "before": "MOVL\t$1, BX\t\t// CLOCK_MONOTONIC",
++          "after": "MOVL\t$7, BX\t\t// CLOCK_BOOTTIME",
++          "count": 1
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/sys_linux_amd64.s",
++      "original_sha256": "98ec6f0afedcc07d64f94c299c201b1ca5e7d52f7ed284bf6782c5ca7b9760f2",
++      "patched_sha256": "c2d036930bd9dc0a82cfb4a607e512c2f237d39b559e8d02c1b93af3b1f29571",
++      "substitutions": [
++        {
++          "before": "MOVL\t$1, DI // CLOCK_MONOTONIC",
++          "after": "MOVL\t$7, DI // CLOCK_BOOTTIME",
++          "count": 1
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/sys_linux_arm.s",
++      "original_sha256": "f26d517b075da9f6f86a6f5e3bce2dfdd8868d03f0ec67c2acdb083ef53e53a7",
++      "patched_sha256": "629c0c8e8fc48028c80402d38d09828e811bd9fb1bd5eb56267ad3d943bc4c97",
++      "substitutions": [
++        {
++          "before": "#define CLOCK_MONOTONIC\t1",
++          "after": "#define CLOCK_BOOTTIME\t7",
++          "count": 1
++        },
++        {
++          "before": "MOVW\t$CLOCK_MONOTONIC, R0",
++          "after": "MOVW\t$CLOCK_BOOTTIME, R0",
++          "count": 1
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/sys_linux_arm64.s",
++      "original_sha256": "166e11d3359f7d4953e14dd57929e0b293471f7a5de7caed69c6e81317468666",
++      "patched_sha256": "2888e74e80ba0455090a53a3f944aefc9243238cf7380bc8097080e46a19cf10",
++      "substitutions": [
++        {
++          "before": "#define CLOCK_MONOTONIC 1",
++          "after": "#define CLOCK_BOOTTIME 7",
++          "count": 1
++        },
++        {
++          "before": "MOVW\t$CLOCK_MONOTONIC, R0",
++          "after": "MOVW\t$CLOCK_BOOTTIME, R0",
++          "count": 1
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/sys_linux_mips64x.s",
++      "original_sha256": "441a9306b505d9747e0e0c2acc98150cbc1767ff64f7d94319ac9ee97df9a92b",
++      "patched_sha256": "5f38aef75c0cf29ebd7f1255eb3bfbc3892d5f357b6076c00c1a855124c7c18d",
++      "substitutions": [
++        {
++          "before": "MOVW\t$1, R4 // CLOCK_MONOTONIC",
++          "after": "MOVW\t$7, R4 // CLOCK_BOOTTIME",
++          "count": 2
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/sys_linux_mipsx.s",
++      "original_sha256": "4813461def7383d9e21e34f1f7d6dda31aab238fa45582fb41f673b537c4c34b",
++      "patched_sha256": "fb3508ae6b891c42d84714878697f85ada00d25edc0aa5be9250f525ba028508",
++      "substitutions": [
++        {
++          "before": "MOVW\t$1, R4\t// CLOCK_MONOTONIC",
++          "after": "MOVW\t$7, R4\t// CLOCK_BOOTTIME",
++          "count": 1
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/sys_linux_ppc64x.s",
++      "original_sha256": "e16220e5cdf8ee82be06117c355b22cd75162c9fb08a123437b7d84886736efd",
++      "patched_sha256": "e1c758d275ef3e7b5b2a00584551fcbeaada6635652ab0a525ff0abbd08a703e",
++      "substitutions": [
++        {
++          "before": "MOVD\t$1, R3\t\t// CLOCK_MONOTONIC",
++          "after": "MOVD\t$7, R3\t\t// CLOCK_BOOTTIME",
++          "count": 1
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/sys_linux_s390x.s",
++      "original_sha256": "d4d364f17067837d7e8d4b064d64b95305f16917d23b57f2de35602591a5a8a3",
++      "patched_sha256": "6054f7d1f43164a1c3ae92a1b2078539191dfb0efc640faf175c262a08bfbedb",
++      "substitutions": [
++        {
++          "before": "MOVW\t$1, R2\t\t\t// CLOCK_MONOTONIC",
++          "after": "MOVW\t$7, R2\t\t\t// CLOCK_BOOTTIME",
++          "count": 1
++        }
++      ]
++    },
++    {
++      "path": "src/runtime/time_linux_amd64.s",
++      "original_sha256": "328970a6fb6973b917bc914931bb32d001f698b6a399b4d8d5f7c1939051f612",
++      "patched_sha256": "f524264d736d568d608ac44c641f15aae689c4a18d8c95f3512199422127efb0",
++      "substitutions": [
++        {
++          "before": "MOVL\t$1, DI // CLOCK_MONOTONIC",
++          "after": "MOVL\t$7, DI // CLOCK_BOOTTIME",
++          "count": 2
++        }
++      ]
++    }
++  ]
++}

@@ -3,11 +3,14 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:crypto/crypto.dart';
+import 'package:flutter/foundation.dart'
+    show ValueListenable, listEquals, mapEquals;
 import 'package:flutter/material.dart';
 
 import 'billing_controller.dart';
 import 'core/api_exception.dart';
 import 'core/connection_timing.dart';
+import 'core/diagnostic_schema.dart' show DiagnosticMetadata;
 import 'core/diagnostics.dart';
 import 'core/favorite_locations.dart';
 import 'core/google_auth.dart';
@@ -183,6 +186,21 @@ class VpnAppController extends ChangeNotifier {
   late final StreamSubscription<VpnRuntimeState> _tunnelSubscription;
   Timer? _tunnelMetricsTimer;
   bool _tunnelMetricsRefreshInFlight = false;
+  bool _appInBackground = false;
+  // Each tunnel sample, counters included. The metrics card listens to it, so
+  // a sample that only moves counters (the 1 s poll while connected) no longer
+  // rebuilds the whole app.
+  final ValueNotifier<VpnRuntimeState?> _tunnelSamples = ValueNotifier(null);
+  int _tunnelStateRevision = 0;
+  // The tunnel state when the current connection work began, and whether
+  // native code has reported another step since (a resume snapshot or a
+  // protection refresh repeating that state is not one).
+  VpnRuntimeState? _attemptBaseState;
+  bool _attemptStateMoved = false;
+  // The owner of connection work that starts a tunnel (a connect, a location
+  // change, a profile renewal); following a server migration alone is not.
+  Object? _tunnelAttemptOwner;
+  int _tunnelSnapshotGeneration = 0;
   SessionOperation _sessionOperation = SessionOperation();
   Future<void> _sessionWrites = Future<void>.value();
   Future<void>? _terminationTask;
@@ -191,14 +209,33 @@ class VpnAppController extends ChangeNotifier {
   bool _disposed = false;
   Object? _guestActionOwner;
   Timer? _guestRetryTimer;
+  DateTime? _guestRetryAfter;
+
+  /// End of the guest Retry-After delay in force, if any.
+  DateTime? get guestRetryAfter =>
+      _guestRetryTimer == null ? null : _guestRetryAfter;
   bool _guestRefreshing = false;
   bool _guestRefreshQueued = false;
   Future<bool>? _guestRefreshTask;
   bool _guestRenewing = false;
-  Future<bool>? _guestRenewalTask;
+  // The renewal that owns _guestRenewing: a session end releases it, and an
+  // abandoned renewal that returns late cannot clear a newer one's flag.
+  Object? _guestRenewalOwner;
+  Future<_GuestRecovery>? _guestRenewalTask;
   bool _guestResuming = false;
-  Future<bool>? _guestResumeTask;
+  Future<_GuestRecovery>? _guestResumeTask;
+  // A temporary failure defers automatic guest recovery for the exact session
+  // (or the absence of one) it was attempted for, never for a later account.
   bool _guestRecoveryDeferred = false;
+  AuthSession? _guestRecoveryTarget;
+  bool get _guestRecoveryDeferredHere =>
+      _guestRecoveryDeferred && identical(_guestRecoveryTarget, _session);
+  // A registered admission (this process's, or one stored unscoped), even
+  // expired or never restored, is an explicit intent to leave the guest.
+  AuthSession? _registeredSession;
+  // Set while that intent cannot durably revoke guest recovery: no automatic
+  // guest admission may run behind it in this process.
+  bool _guestRecoveryBlocked = false;
   bool? _guestObservedAccess;
   String? _guestMessage;
   // Presentation only: a checkout's technical guest session is not yet a home.
@@ -218,12 +255,57 @@ class VpnAppController extends ChangeNotifier {
   }) => _claimGuestAccount(email: email, password: password);
   Future<bool> refreshGuestAccount() => _refreshGuestAccount();
   int _locationsRefreshGeneration = 0;
+  // A non-empty catalogue is published. One that failed or came back empty is
+  // loaded again once an account is restored, the app resumes or the tunnel
+  // stops (OFFLINE-RESTORE-CATALOGUE-01).
+  bool _catalogueLoaded = false;
+  // The saved destination outlives a startup catalogue that failed.
+  String? _preferredLocationId;
   int _capacityRejectionGeneration = 0;
   final Map<String, int> _capacityRejectedLocations = {};
   int _devicesRefreshGeneration = 0;
   int _locationSelectionGeneration = 0;
   bool _sessionExpired = false;
+  // An abandoned automatic admission ends like an expiry in native storage
+  // (automatic guest recovery is kept) but without the expiry notice. Only a
+  // voluntary end revokes recovery.
+  bool _sessionAbandoned = false;
+  // Whether one request of the end in progress is voluntary (it revokes guest
+  // recovery), and the causes already sent: a later cause joins the same end.
+  bool _terminationVoluntary = false;
+  final Set<SessionEndCause> _sentEndCauses = <SessionEndCause>{};
+  // The server owns the expiry of a session it delivered in this process; the
+  // device clock is trusted only for a session read back from storage.
+  AuthSession? _issuedSession;
+  // A delivered session the device clock already placed in the past: it is
+  // never renewed on that clock again, only after a 401 (C4-04).
+  AuthSession? _clockAheadSession;
+  // The native error already shown (and maybe dismissed since): each error
+  // is shown once.
+  String? _shownNativeError;
+  // A transient Keystore read keeps the stored session in place: restoration
+  // stays pending until a retry can read it.
+  bool _storedSessionUnreadable = false;
+  bool _storedSessionReading = false;
   SessionTerminationResult? sessionTermination;
+  int _terminationGeneration = 0;
+  static const Duration _sessionWriteDrainLimit = Duration(seconds: 10);
+  static const Duration _sessionClearLimit = Duration(seconds: 30);
+
+  bool _sessionLive(AuthSession session) =>
+      identical(session, _issuedSession) ||
+      session.expiresAt.isAfter(DateTime.now());
+
+  // The server's session is kept although the device clock already places its
+  // end in the past (C4-04). A later launch would judge the stored copy
+  // expired, so the user is told how to keep it.
+  void _noticeClockAhead(AuthSession session) {
+    if (identical(session, _issuedSession) &&
+        !session.expiresAt.isAfter(DateTime.now())) {
+      _clockAheadSession = session;
+      notice = _controllerNotice('device_clock_ahead');
+    }
+  }
 
   Future<T> _sessionWrite<T>(
     SessionOperation operation,
@@ -429,6 +511,7 @@ class VpnAppController extends ChangeNotifier {
       attempt.check();
       if (generation == _locationsRefreshGeneration) {
         locations = _filterCapacityRejections(received, capacityGeneration);
+        _catalogueLoaded = locations.isNotEmpty;
       }
       final matching = received.where((item) => item.id == locationId);
       attempt.requestIpv6 = matching.isNotEmpty && matching.first.supportsIpv6;
@@ -521,6 +604,8 @@ class VpnAppController extends ChangeNotifier {
     final Object owner = Object();
     _connectionOwner = owner;
     isConnecting = true;
+    _attemptBaseState = tunnelState;
+    _attemptStateMoved = false;
     return owner;
   }
 
@@ -576,15 +661,37 @@ class VpnAppController extends ChangeNotifier {
   bool isLoadingLocations = false;
   bool isLoadingDevices = false;
   bool _isAuthenticating = false;
+  Object? _authenticationOwner;
+  int _authenticationGeneration = 0;
   bool get isAuthenticating =>
       _isAuthenticating || _googleAuth.hasPendingIntent;
   set isAuthenticating(bool value) => _isAuthenticating = value;
+
+  Object _beginAuthentication() {
+    final owner = Object();
+    _authenticationGeneration++;
+    _authenticationOwner = owner;
+    _isAuthenticating = true;
+    return owner;
+  }
+
+  bool _ownsAuthentication(Object owner) =>
+      !_disposed && identical(_authenticationOwner, owner);
+
+  void _finishAuthentication(Object owner) {
+    if (!_ownsAuthentication(owner)) return;
+    _authenticationOwner = null;
+    _isAuthenticating = false;
+  }
+
   bool isConnecting = false;
   bool isRevoking = false;
   bool mayNeedEmailVerification = false;
 
-  bool get isRestoringAccount => _accountRestorationOwner != null;
-  bool get hasPendingAccountRestoration => _session != null && !isSignedIn;
+  bool get isRestoringAccount =>
+      _accountRestorationOwner != null || _storedSessionReading;
+  bool get hasPendingAccountRestoration =>
+      (_session != null || _storedSessionUnreadable) && !isSignedIn;
   bool get isSignedIn =>
       _session != null && profile != null && !isRestoringAccount;
   bool get canShowHome =>
@@ -619,6 +726,40 @@ class VpnAppController extends ChangeNotifier {
           tunnelState.phase == VpnRuntimePhase.authorizing ||
           tunnelState.phase == VpnRuntimePhase.preparing ||
           tunnelState.phase == VpnRuntimePhase.connecting);
+
+  /// The phase the connection card shows. Native code reports its first phase
+  /// only once the API and identity steps are done (up to seconds with
+  /// OpenVPN), while the button already offers Cancel. Until then an attempt
+  /// this controller started shows « Préparation » instead of a stale
+  /// « Déconnecté » or the previous attempt's error. Any phase native code
+  /// reports wins, so the card never claims a tunnel it has not reported.
+  VpnRuntimePhase get presentedTunnelPhase {
+    final VpnRuntimePhase phase = tunnelState.phase;
+    if (!canCancelConnectionAttempt) return phase;
+    final bool startsTunnel =
+        isChangingLocation ||
+        (_connectionOwner != null &&
+            identical(_connectionOwner, _tunnelAttemptOwner));
+    if (!startsTunnel) return phase;
+    final VpnRuntimeState? base = _attemptBaseState;
+    if (phase == VpnRuntimePhase.idle ||
+        (phase == VpnRuntimePhase.error &&
+            isConnecting &&
+            !_attemptStateMoved &&
+            base != null &&
+            _sameRuntimeStep(tunnelState, base))) {
+      return VpnRuntimePhase.preparing;
+    }
+    return phase;
+  }
+
+  // The controller records its own start failures without a protocol, while
+  // native code keeps the same error with one: a missing protocol matches.
+  static bool _sameRuntimeStep(VpnRuntimeState a, VpnRuntimeState b) =>
+      a.phase == b.phase &&
+      a.messageCode == b.messageCode &&
+      (a.protocol == null || b.protocol == null || a.protocol == b.protocol);
+
   bool get isLocationMigrationPending =>
       locationMigration?.status.isPending ?? false;
   bool get isLocationMigrationLocked =>
@@ -673,6 +814,7 @@ class VpnAppController extends ChangeNotifier {
         _preferences.readSelectedLocation(),
       );
       operation.check();
+      _preferredLocationId = savedLocation;
       final VpnRuntimeState? restoredState = await _safe<VpnRuntimeState?>(
         _tunnel.getState(),
       );
@@ -684,47 +826,34 @@ class VpnAppController extends ChangeNotifier {
       _sessionExpired = _sessionExpired || (pending?.sessionExpired ?? false);
       if (pending != null && !pending.isComplete) {
         sessionTermination = pending;
-        if (pending.inProgress) await _terminateSession();
+        // Joining a native end adds no intent of its own: an expiry stays an
+        // expiry, and only a voluntary request already made revokes recovery.
+        if (pending.inProgress) {
+          await _terminateSession(
+            expired: pending.sessionExpired,
+            abandoned: !pending.sessionExpired,
+          );
+        }
         return;
       }
       _syncTunnelMetricsTimer();
-      await refreshLocations(savedLocation: savedLocation, notify: false);
-      operation.check();
-
-      final AuthSession? savedSession;
+      // The public catalogue is requested before the stored account and
+      // published after it: the startup page lasts the longer of the two
+      // requests, not their sum.
+      final Future<void> Function() publishCatalogue = _startStartupCatalogue(
+        savedLocation,
+      );
       try {
-        savedSession = await _sessionStore.readSession();
-      } catch (_) {
-        operation.check();
-        await _terminateSession();
-        return;
-      }
-      operation.check();
-      if (savedSession != null &&
-          savedSession.expiresAt.isAfter(DateTime.now())) {
-        _session = savedSession;
-        await _restoreAccount(notify: false);
-      } else if (savedSession != null) {
-        if (!await _resumeGuestSession(operation, previous: savedSession)) {
-          operation.check();
-          if (_guestRecoveryDeferred) {
-            _session = savedSession;
-            notice = const AppNotice(
-              titleKey: 'billing.title',
-              messageKey: 'guest.serviceUnavailable',
-            );
-          } else {
-            await _terminateSession(expired: true);
-          }
-        }
-      } else if (await _resumeGuestSession(operation)) {
-        operation.check();
-      } else if (tunnelState.phase != VpnRuntimePhase.idle) {
-        await _terminateSession();
+        if (!await _restoreStoredSession(operation)) return;
+      } finally {
+        await publishCatalogue();
       }
       if (_session == null && pending?.isComplete == true && _sessionExpired) {
         _showSessionExpiredNotice();
       }
+      // A native error raised while the app was closed is shown once, after
+      // the startup notices: none of them can hide it for good.
+      _noticeNativeError(tunnelState);
     } on SessionOperationCancelled {
       // The shared session termination already owns the UI.
     } finally {
@@ -732,6 +861,133 @@ class VpnAppController extends ChangeNotifier {
         isInitializing = false;
         notifyListeners();
       }
+    }
+  }
+
+  /// Reads and restores the stored session, at startup or when a retry follows
+  /// a transient Keystore read. Returns false while it stays unreadable.
+  Future<bool> _restoreStoredSession(SessionOperation operation) async {
+    final AuthSession? savedSession;
+    try {
+      savedSession = await _sessionStore.readSession();
+    } catch (error) {
+      operation.check();
+      if (error is NativeVpnException && _isTransientNativeFailure(error)) {
+        // Temporary unavailability: erase and revoke nothing; retry later.
+        _storedSessionUnreadable = true;
+        notice = _nativeNotice(error.code);
+        return false;
+      }
+      // A proven corruption is erased, without revoking guest recovery.
+      _storedSessionUnreadable = false;
+      await _terminateSession(abandoned: true);
+      return true;
+    }
+    operation.check();
+    _storedSessionUnreadable = false;
+    if (savedSession != null) {
+      final bool? registered = await _storedSessionIsRegistered();
+      operation.check();
+      if (registered == null) {
+        // A transient read decides nothing: neither "not registered" (it
+        // could resume the guest) nor an end. The retry reads both again.
+        _storedSessionUnreadable = true;
+        notice = _nativeNotice('secure_storage_read_failed');
+        return false;
+      }
+      if (registered) _registeredSession = savedSession;
+    }
+    if (savedSession != null &&
+        savedSession.expiresAt.isAfter(DateTime.now())) {
+      _session = savedSession;
+      await _restoreAccount(notify: false);
+    } else if (savedSession != null &&
+        identical(savedSession, _registeredSession)) {
+      // An expired registered admission never resumes the guest behind it.
+      // If recovery cannot be revoked now, the session stays stored and the
+      // next launch retries; nothing is purged meanwhile.
+      if (await _confirmGuestOptOut(operation)) {
+        await _terminateSession(expired: true);
+      }
+    } else if (savedSession != null) {
+      switch (await _resumeGuestSession(operation, previous: savedSession)) {
+        case _GuestRecovery.admitted || _GuestRecovery.pending:
+          // A committed renewal keeps its own pending restoration and retry.
+          break;
+        case _GuestRecovery.deferred:
+          operation.check();
+          _session = savedSession;
+          notice = const AppNotice(
+            titleKey: 'billing.title',
+            messageKey: 'guest.serviceUnavailable',
+          );
+        case _GuestRecovery.busy || _GuestRecovery.refused:
+          operation.check();
+          await _terminateSession(expired: true);
+      }
+    } else {
+      await _resumeGuestSession(operation);
+      operation.check();
+      // Without any session only a live orphan tunnel needs a confirmed stop.
+      // It is abandoned work, not a logout: guest recovery stays available.
+      if (_session == null && isTunnelActive) {
+        await _terminateSession(abandoned: true);
+      }
+    }
+    return true;
+  }
+
+  /// Null while a transient read leaves it unknown. A binding that can never
+  /// be read again (secure_storage_corrupt) counts as registered: it never
+  /// lets the guest resume behind a possible explicit sign-in.
+  Future<bool?> _storedSessionIsRegistered() async {
+    final store = _sessionStore;
+    if (store is! PendingAdmissionStore) return false;
+    try {
+      return await (store as PendingAdmissionStore)
+          .readStoredSessionIsPendingAdmission();
+    } on NativeVpnException catch (error) {
+      return _isTransientNativeFailure(error) ? null : true;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Null while a transient read leaves the guest recovery marker unknown.
+  Future<bool?> _readGuestAutoResume() async {
+    final GuestCredentialStore? store = _guestStore;
+    if (store == null) return false;
+    try {
+      return await store.readGuestAutoResume();
+    } on NativeVpnException catch (error) {
+      return _isTransientNativeFailure(error) ? null : false;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Ending a registered session never resumes the guest behind it: a recovery
+  /// still enabled is revoked again first. While that write fails, automatic
+  /// guest admission stays blocked, with a notice, and nothing is purged.
+  Future<bool> _confirmGuestOptOut(SessionOperation operation) async {
+    final guestStore = _guestStore;
+    if (guestStore == null) return true;
+    try {
+      if (await guestStore.readGuestAutoResume()) {
+        operation.check();
+        await _sessionWrite(
+          operation,
+          () => guestStore.writeGuestAutoResume(false),
+        );
+      }
+      operation.check();
+      _guestRecoveryBlocked = false;
+      return true;
+    } on NativeVpnException catch (error) {
+      operation.check();
+      _guestRecoveryBlocked = true;
+      notice = _nativeNotice(error.code);
+      return false;
     }
   }
 
@@ -760,9 +1016,12 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
+  /// A [quiet] reload leaves the shared notice slot alone: a native error or a
+  /// restoration notice shown there is never replaced by a background failure.
   Future<void> refreshLocations({
     String? savedLocation,
     bool notify = true,
+    bool quiet = false,
   }) async {
     final SessionOperation operation = _sessionOperation;
     if (_disposed || !operation.isCurrent) return;
@@ -778,27 +1037,16 @@ class VpnAppController extends ChangeNotifier {
     try {
       final List<Location> received = await _api.locations();
       if (!isCurrent()) return;
-      locations = _filterCapacityRejections(received, capacityGeneration);
-      final bool selectionChanged =
-          selectionGeneration != _locationSelectionGeneration;
-      final String? preferredId = selectionChanged
-          ? selectedLocation?.id
-          : savedLocation ?? selectedLocation?.id;
-      selectedLocation = locations.cast<Location?>().firstWhere(
-        (Location? location) => location?.id == preferredId,
-        // A catalogue cannot replace an explicit newer choice or the target of
-        // ongoing connection/migration work. An omitted target is no longer a
-        // selectable row, but that omission does not cancel or restart work.
-        orElse: () =>
-            selectionChanged || isConnecting || isLocationMigrationLocked
-            ? selectedLocation
-            : locations.isEmpty
-            ? null
-            : locations.first,
+      _publishLocations(
+        received,
+        capacityGeneration: capacityGeneration,
+        selectionGeneration: selectionGeneration,
+        savedLocation: savedLocation,
+        keepSelection: isConnecting || isLocationMigrationLocked,
       );
     } on ApiFailure catch (error) {
       if (!isCurrent()) return;
-      _setNotice(ApiErrorMessages.fromFailure(error));
+      if (!quiet) _setNotice(ApiErrorMessages.fromFailure(error));
     } finally {
       if (isCurrent()) {
         isLoadingLocations = false;
@@ -807,12 +1055,133 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
+  void _publishLocations(
+    List<Location> received, {
+    required int capacityGeneration,
+    required int selectionGeneration,
+    required String? savedLocation,
+    required bool keepSelection,
+  }) {
+    locations = _filterCapacityRejections(received, capacityGeneration);
+    _catalogueLoaded = locations.isNotEmpty;
+    final bool selectionChanged =
+        selectionGeneration != _locationSelectionGeneration;
+    final String? preferredId = selectionChanged
+        ? selectedLocation?.id
+        : savedLocation ?? selectedLocation?.id ?? _preferredLocationId;
+    selectedLocation = locations.cast<Location?>().firstWhere(
+      (Location? location) => location?.id == preferredId,
+      // A catalogue cannot replace an explicit newer choice or the target of
+      // ongoing connection/migration work. An omitted target is no longer a
+      // selectable row, but that omission does not cancel or restart work.
+      orElse: () => selectionChanged || keepSelection
+          ? selectedLocation
+          : locations.isEmpty
+          ? null
+          : locations.first,
+    );
+  }
+
+  /// Starts the startup catalogue request. The returned call publishes it
+  /// once the stored account is restored, on every path, with the startup
+  /// rule (the saved location, else the first) and the state seen before
+  /// that restoration, which may publish a migration or end the session.
+  Future<void> Function() _startStartupCatalogue(String? savedLocation) {
+    final int capacityGeneration = _capacityRejectionGeneration;
+    final int selectionGeneration = _locationSelectionGeneration;
+    final bool keepSelection = isConnecting || isLocationMigrationLocked;
+    final int terminationGeneration = _terminationGeneration;
+    final Future<List<Location>> request = Future<List<Location>>.sync(
+      _api.locations,
+    );
+    // Observed at once: an early return never leaves an uncaught failure.
+    unawaited(request.then<void>((_) {}, onError: (Object _, StackTrace _) {}));
+    // The restoration does not start a second request meanwhile.
+    isLoadingLocations = true;
+    return () async {
+      if (_disposed) return;
+      // Taken after the restoration: a session end or a new guest scope
+      // meanwhile does not drop this public catalogue.
+      final int generation = ++_locationsRefreshGeneration;
+      bool isCurrent() =>
+          !_disposed && generation == _locationsRefreshGeneration;
+      AppNotice? failureNotice;
+      isLoadingLocations = true;
+      try {
+        final List<Location> received = await request;
+        if (!isCurrent()) return;
+        _publishLocations(
+          received,
+          capacityGeneration: capacityGeneration,
+          selectionGeneration: selectionGeneration,
+          savedLocation: savedLocation,
+          keepSelection: keepSelection,
+        );
+      } on ApiFailure catch (error) {
+        // The restoration's notice, or the end that cleared it, wins as it
+        // did when this failure was reported first.
+        if (isCurrent() &&
+            notice == null &&
+            terminationGeneration == _terminationGeneration) {
+          _setNotice(ApiErrorMessages.fromFailure(error));
+          failureNotice = notice;
+        }
+      } catch (_) {
+        // Like a failure: a later restoration, resume or refresh loads it.
+      } finally {
+        if (isCurrent()) {
+          isLoadingLocations = false;
+          // A session ended or replaced meanwhile leaves no later notify: a
+          // home admitted while this request was pending repaints here.
+          notifyListeners();
+        }
+      }
+      if (isSignedIn) _reloadCatalogueIfMissing(staleNotice: failureNotice);
+    };
+  }
+
+  /// Loads again, in the background, a catalogue that failed or came back
+  /// empty. A failure of any kind is never shown: the next restoration,
+  /// resume or stopped tunnel tries again (OFFLINE-RESTORE-CATALOGUE-01).
+  /// It never counts as a stage of the connection or disconnection traced
+  /// around its caller. A [staleNotice] (the startup failure notice) still
+  /// shown once this reload publishes a catalogue is cleared; no other is.
+  void _reloadCatalogueIfMissing({AppNotice? staleNotice}) {
+    if (_disposed ||
+        _catalogueLoaded ||
+        isLoadingLocations ||
+        !_sessionOperation.isCurrent) {
+      return;
+    }
+    final Future<void> reload = ConnectionTiming.unobserved(
+      () => refreshLocations(quiet: true),
+    );
+    // Taken by the reload before its first await.
+    final int generation = _locationsRefreshGeneration;
+    unawaited(
+      reload.then<void>((_) {
+        if (staleNotice != null &&
+            !_disposed &&
+            _catalogueLoaded &&
+            generation == _locationsRefreshGeneration &&
+            identical(notice, staleNotice)) {
+          notice = null;
+          notifyListeners();
+        }
+      }, onError: (Object _, StackTrace _) {}),
+    );
+  }
+
   Future<bool> signIn({required String email, required String password}) async {
+    if (_disposed) return false;
     if (_session != null &&
         (profile?.isGuest == true || profile?.profileRedacted == true)) {
       return _signInSeparately(email: email, password: password);
     }
-    if (sessionTermination != null || _session != null || isAuthenticating) {
+    if (sessionTermination != null ||
+        _session != null ||
+        isAuthenticating ||
+        isGuestActionBusy) {
       return false;
     }
     _sessionOperation.invalidate();
@@ -822,8 +1191,8 @@ class VpnAppController extends ChangeNotifier {
     _sessionExpired = false;
     final SessionOperation operation = _sessionOperation;
     if (!operation.isCurrent) return false;
+    final authenticationOwner = _beginAuthentication();
     try {
-      isAuthenticating = true;
       notice = null;
       notifyListeners();
       try {
@@ -847,8 +1216,8 @@ class VpnAppController extends ChangeNotifier {
         await _handleInitialSessionWriteFailure(error);
         return false;
       } finally {
-        if (operation.isCurrent) {
-          isAuthenticating = false;
+        if (_ownsAuthentication(authenticationOwner)) {
+          _finishAuthentication(authenticationOwner);
           notifyListeners();
         }
       }
@@ -858,7 +1227,11 @@ class VpnAppController extends ChangeNotifier {
   }
 
   Future<bool> register(RegisterAccountRequest request) async {
-    if (sessionTermination != null || _session != null || isAuthenticating) {
+    if (_disposed ||
+        sessionTermination != null ||
+        _session != null ||
+        isAuthenticating ||
+        isGuestActionBusy) {
       return false;
     }
     _sessionOperation.invalidate();
@@ -868,8 +1241,8 @@ class VpnAppController extends ChangeNotifier {
     _sessionExpired = false;
     final SessionOperation operation = _sessionOperation;
     if (!operation.isCurrent) return false;
+    final authenticationOwner = _beginAuthentication();
     try {
-      isAuthenticating = true;
       notice = null;
       notifyListeners();
       try {
@@ -893,8 +1266,8 @@ class VpnAppController extends ChangeNotifier {
         await _handleInitialSessionWriteFailure(error);
         return false;
       } finally {
-        if (operation.isCurrent) {
-          isAuthenticating = false;
+        if (_ownsAuthentication(authenticationOwner)) {
+          _finishAuthentication(authenticationOwner);
           notifyListeners();
         }
       }
@@ -904,20 +1277,32 @@ class VpnAppController extends ChangeNotifier {
   }
 
   Future<bool> requestPasswordReset(String email) async {
-    if (isAuthenticating) return false;
-    isAuthenticating = true;
+    if (_disposed ||
+        sessionTermination != null ||
+        isAuthenticating ||
+        isGuestActionBusy) {
+      return false;
+    }
+    final operation = _sessionOperation;
+    final owner = _beginAuthentication();
+    bool isCurrent() =>
+        _ownsAuthentication(owner) && identical(operation, _sessionOperation);
     notice = null;
     notifyListeners();
     try {
       await _api.requestPasswordReset(email);
+      if (!isCurrent()) return false;
       notice = _controllerNotice('password_reset_sent');
       return true;
     } on ApiFailure catch (error) {
+      if (!isCurrent()) return false;
       _setNotice(ApiErrorMessages.fromFailure(error));
       return false;
     } finally {
-      isAuthenticating = false;
-      notifyListeners();
+      if (_ownsAuthentication(owner)) {
+        _finishAuthentication(owner);
+        notifyListeners();
+      }
     }
   }
 
@@ -998,6 +1383,7 @@ class VpnAppController extends ChangeNotifier {
       return;
     }
     selectedLocation = location;
+    _preferredLocationId = location.id;
     _locationSelectionGeneration++;
     await _persistUiPreference(
       'location',
@@ -1039,35 +1425,46 @@ class VpnAppController extends ChangeNotifier {
     );
   }
 
-  Future<void> connect() => _connect();
+  Future<void> connect() async {
+    if (await _connect()) await _connect(afterGuestRenewal: true);
+  }
 
-  Future<void> _connect({
+  bool get _guestSessionNearExpiry =>
+      profile?.isGuest == true &&
+      _session != null &&
+      !identical(_session, _clockAheadSession) &&
+      !_session!.expiresAt.isAfter(
+        DateTime.now().add(const Duration(minutes: 2)),
+      );
+
+  /// Returns true when a guest token rejected during this attempt was renewed
+  /// by the attempt itself: the caller may then retry once with the new token.
+  Future<bool> _connect({
     _LocationChangeOperation? locationChange,
+    bool afterGuestRenewal = false,
   }) => ConnectionTiming.run('connection', () async {
-    if (profile?.isGuest == true &&
-        _session != null &&
-        !_session!.expiresAt.isAfter(
-          DateTime.now().add(const Duration(minutes: 2)),
-        )) {
-      if (!await _renewGuestSession()) {
+    if (_guestSessionNearExpiry) {
+      if (await _renewGuestSession() != _GuestRecovery.admitted) {
         notice = const AppNotice(
           titleKey: 'billing.title',
           messageKey: 'guest.serviceUnavailable',
         );
         notifyListeners();
-        return;
+        return false;
       }
     }
     if (_disconnectsInFlight > 0 ||
         isStartingLocationMigration ||
         (isChangingLocation &&
             !identical(locationChange, _locationChangeOperation))) {
-      return;
+      return false;
     }
-    if (locationChange != null && !locationChange.isCurrent) return;
+    if (locationChange != null && !locationChange.isCurrent) return false;
     final SessionOperation operation = _sessionOperation;
-    if (!operation.isCurrent) return;
-    if (openVpnRevocation != null) return;
+    if (!operation.isCurrent) return false;
+    if (openVpnRevocation != null) return false;
+    var guestRenewed = false;
+    var attemptEpoch = -1;
     try {
       final VpnProtocol connectionProtocol = selectedProtocol;
 
@@ -1077,7 +1474,7 @@ class VpnAppController extends ChangeNotifier {
       if (!isSignedIn || activeProfile == null || activeToken == null) {
         notice = _controllerNotice('vpn_sign_in_required');
         notifyListeners();
-        return;
+        return false;
       }
       if (!activeProfile.canUseVpn) {
         notice = const AppNotice(
@@ -1085,17 +1482,17 @@ class VpnAppController extends ChangeNotifier {
           messageKey: 'guest.premiumRequired',
         );
         notifyListeners();
-        return;
+        return false;
       }
       if (location == null || !location.supports(connectionProtocol)) {
         notice = _controllerNotice('protocol_unavailable_at_location');
         notifyListeners();
-        return;
+        return false;
       }
       if (isConnecting ||
           isIdentityBusy ||
           tunnelState.phase == VpnRuntimePhase.disconnecting) {
-        return;
+        return false;
       }
       final DeviceLocationMigration? pendingMigration = locationMigration;
       if (pendingMigration != null &&
@@ -1106,13 +1503,15 @@ class VpnAppController extends ChangeNotifier {
           arguments: <String, Object?>{'target': _migrationTargetLabel()},
         );
         notifyListeners();
-        return;
+        return false;
       }
 
       final Object owner = _beginConnectionWork();
+      _tunnelAttemptOwner = owner;
       final networkAttempt = _networkAttempt();
+      attemptEpoch = _networkAttemptEpoch;
       _MigrationContext? migrationContext;
-      notice = null;
+      _clearNoticeForAttempt();
       notifyListeners();
       try {
         await _prepareTunnelRequest(activeProfile.userId);
@@ -1129,7 +1528,7 @@ class VpnAppController extends ChangeNotifier {
             );
         operation.check();
         networkAttempt.check();
-        if (!locationPreparation.ready) return;
+        if (!locationPreparation.ready) return false;
         migrationContext = locationPreparation.context;
         migrationContext?.check();
         migrationContext?.connectionOwner = owner;
@@ -1237,7 +1636,12 @@ class VpnAppController extends ChangeNotifier {
         operation.check();
         networkAttempt.check();
         migrationContext?.check();
-        await _handleSessionFailure(error, operation);
+        guestRenewed = await _handleSessionFailure(
+          error,
+          operation,
+          owner: owner,
+          allowGuestRenewal: !afterGuestRenewal,
+        );
         operation.check();
         networkAttempt.check();
         migrationContext?.check();
@@ -1295,8 +1699,15 @@ class VpnAppController extends ChangeNotifier {
           notifyListeners();
         }
       }
+      return false;
     } on SessionOperationCancelled {
-      return;
+      // The renewal retired this attempt's operation; retry once with the new
+      // token unless the user cancelled or another attempt started meanwhile.
+      return guestRenewed &&
+          !afterGuestRenewal &&
+          !_disposed &&
+          attemptEpoch == _networkAttemptEpoch &&
+          (locationChange?.isCurrent ?? true);
     }
   });
 
@@ -1380,6 +1791,7 @@ class VpnAppController extends ChangeNotifier {
           );
         }
         _syncTunnelMetricsTimer();
+        if (!isTunnelActive && isSignedIn) _reloadCatalogueIfMissing();
         notifyListeners();
       } on SessionOperationCancelled {
         return;
@@ -1394,8 +1806,18 @@ class VpnAppController extends ChangeNotifier {
   /// before Flutter has observed a tunnel state. Accepted remote migrations
   /// remain tracked, but can never continue this cancelled tunnel attempt.
   Future<void> cancelConnectionAttempt() async {
-    if (!canCancelConnectionAttempt) return;
-    await disconnect(forceNativeStop: true);
+    if (canCancelConnectionAttempt) {
+      await disconnect(forceNativeStop: true);
+      return;
+    }
+    // The attempt completed while the last frame still showed Cancel: the
+    // tap must not be dropped with the tunnel left up, so it stops it.
+    if (!_disposed &&
+        _sessionOperation.isCurrent &&
+        !isDisconnecting &&
+        isConnected) {
+      await requestUserDisconnect();
+    }
   }
 
   /// The visible Disconnect control respects Android's system-owned
@@ -1467,36 +1889,95 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
-  void onAppPaused() => _billing.onAppPaused();
+  /// [hidden]: the app is no longer on screen. An inactive app (split
+  /// screen, the notification shade over it) is still visible.
+  void onAppPaused({bool hidden = true}) {
+    // Each state decides: hidden -> inactive is the app on screen again.
+    _appInBackground = hidden;
+    if (!_disposed) _syncTunnelMetricsTimer();
+    _billing.onAppPaused();
+  }
 
   Future<void> onAppResumed() async {
-    if (profile?.isGuest == true || profile?.profileRedacted == true) {
-      if (_session?.expiresAt.isAfter(DateTime.now()) == false) {
-        await _renewGuestSession();
-      } else {
-        await refreshGuestAccount();
+    if (_disposed) return;
+    _appInBackground = false;
+    _syncTunnelMetricsTimer();
+    final resumedOperation = _sessionOperation;
+    final authenticationGeneration = _authenticationGeneration;
+    final mayResumeGuest = !isAuthenticating;
+    await _reconcileTunnelState();
+    if (_disposed) return;
+    // Authentication may have started and finished while the snapshot waited.
+    // That earlier resume must not revive a credential for another account.
+    if (mayResumeGuest &&
+        !isAuthenticating &&
+        !_storedSessionUnreadable &&
+        authenticationGeneration == _authenticationGeneration &&
+        identical(resumedOperation, _sessionOperation)) {
+      if (profile?.isGuest == true || profile?.profileRedacted == true) {
+        if (_session?.expiresAt.isAfter(DateTime.now()) == false &&
+            !identical(_session, _clockAheadSession)) {
+          await _renewGuestSession();
+        } else {
+          await refreshGuestAccount();
+        }
+      } else if (_guestRecoveryDeferredHere &&
+          profile == null &&
+          !isInitializing &&
+          !isGuestActionBusy) {
+        await _resumeGuestSession(_sessionOperation, previous: _session);
+        notifyListeners();
+      } else if (_session == null && !isInitializing && !isGuestActionBusy) {
+        await _resumeGuestSession(_sessionOperation);
       }
-    } else if (_guestRecoveryDeferred &&
-        profile == null &&
-        !isInitializing &&
-        !isGuestActionBusy) {
-      await _resumeGuestSession(_sessionOperation, previous: _session);
-      notifyListeners();
-    } else if (_session == null && !isInitializing && !isGuestActionBusy) {
-      await _resumeGuestSession(_sessionOperation);
     }
+    // Started before the slower work below, which cannot hold or skip it.
+    if (isSignedIn) _reloadCatalogueIfMissing();
     unawaited(_billing.onAppResumed());
     await refreshSystemProtection();
     _syncDiagnosticSession();
     await _diagnostics?.retryPending();
   }
 
+  Future<void> _reconcileTunnelState() async {
+    if (isInitializing || sessionTermination != null) return;
+    final operation = _sessionOperation;
+    final requestedFor = tunnelState;
+    final revision = _tunnelStateRevision;
+    final connectionOwner = _connectionOwner;
+    final networkEpoch = _networkAttemptEpoch;
+    final generation = ++_tunnelSnapshotGeneration;
+    try {
+      final state = await _tunnel.getState().timeout(
+        const Duration(seconds: 5),
+      );
+      if (!_disposed &&
+          identical(operation, _sessionOperation) &&
+          identical(requestedFor, tunnelState) &&
+          revision == _tunnelStateRevision &&
+          identical(connectionOwner, _connectionOwner) &&
+          networkEpoch == _networkAttemptEpoch &&
+          generation == _tunnelSnapshotGeneration &&
+          sessionTermination == null) {
+        _onTunnelState(state);
+      }
+    } catch (_) {
+      // A resume snapshot is informative; retain newer events and proven state.
+    }
+  }
+
   Future<bool> revokeDevice(VpnDevice device) =>
       _revokeDeviceById(device.deviceId);
 
-  Future<bool> _revokeDeviceById(String deviceId) async {
+  /// A 401 renews a guest token once: the revocation then runs again with the
+  /// new token, as a connection does (A13-dart-vpn-02).
+  Future<bool> _revokeDeviceById(
+    String deviceId, {
+    bool afterGuestRenewal = false,
+  }) async {
     final SessionOperation operation = _sessionOperation;
     if (!operation.isCurrent) return false;
+    var guestRenewed = false;
     try {
       final UserProfile? activeProfile = profile;
       final String? activeToken = token;
@@ -1564,7 +2045,12 @@ class VpnAppController extends ChangeNotifier {
         return false;
       } on ApiFailure catch (error) {
         operation.check();
-        await _handleSessionFailure(error, operation);
+        guestRenewed = await _handleSessionFailure(
+          error,
+          operation,
+          owner: owner,
+          allowGuestRenewal: !afterGuestRenewal,
+        );
         operation.check();
         _setNotice(ApiErrorMessages.fromFailure(error));
         return false;
@@ -1585,8 +2071,10 @@ class VpnAppController extends ChangeNotifier {
         }
       }
     } on SessionOperationCancelled {
-      return false;
+      // The renewal retired this operation: revoke once more with its token.
+      if (!guestRenewed) return false;
     }
+    return _revokeDeviceById(deviceId, afterGuestRenewal: true);
   }
 
   Future<void> resetRevokedIdentity() async {
@@ -1736,6 +2224,7 @@ class VpnAppController extends ChangeNotifier {
         }
         final context = _identityScope(deviceId);
         final Object owner = _beginConnectionWork();
+        _tunnelAttemptOwner = owner;
         final networkAttempt = _networkAttempt();
         notice = null;
         notifyListeners();
@@ -1799,7 +2288,7 @@ class VpnAppController extends ChangeNotifier {
           operation.check();
           networkAttempt.check();
           context.check();
-          await _handleSessionFailure(error, operation);
+          await _handleSessionFailure(error, operation, owner: owner);
           operation.check();
           networkAttempt.check();
           context.check();
@@ -1845,18 +2334,18 @@ class VpnAppController extends ChangeNotifier {
     },
   );
 
-  Future<void> signOut() async {
+  Future<void> signOut() => _signOut();
+
+  Future<void> _signOut({Object? authenticationOwner}) async {
     // Local logout cannot depend on provider availability. Invalidate pending
     // Google admission immediately; private recovery tickets remain if offline.
     final googleCancellation = _googleAuth.hasPendingIntent
         ? _googleAuth.cancel()
         : Future<bool>.value(true);
-    final store = _sessionStore;
-    if (store is GuestCredentialStore) {
-      await (store as GuestCredentialStore).writeGuestAutoResume(false);
-    }
     final String? oldToken = token;
-    final Future<void> ending = _terminateSession();
+    final Future<void> ending = _terminateSession(
+      authenticationOwner: authenticationOwner,
+    );
     unawaited(googleCancellation.then<void>((_) {}, onError: (Object _) {}));
     unawaited(_googleAuth.clearCredentialState());
     if (oldToken != null) unawaited(_logoutRemotely(oldToken));
@@ -1872,21 +2361,58 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
-  Future<void> retrySessionTermination() => _terminateSession();
+  /// A retry keeps the causes of the end it completes or joins.
+  Future<void> retrySessionTermination() =>
+      _terminateSession(abandoned: _sessionAbandoned, retry: true);
 
-  Future<void> _terminateSession({bool expired = false}) {
+  /// Ends the session for one of three causes. A voluntary end (the default)
+  /// revokes automatic guest recovery. An expiry keeps it and shows the expiry
+  /// notice. An abandoned automatic admission only erases what it may have
+  /// committed: recovery, its message and any Retry-After delay are kept.
+  /// Requests joining one end are merged, in Dart as in native storage.
+  Future<void> _terminateSession({
+    bool expired = false,
+    bool abandoned = false,
+    bool retry = false,
+    Object? authenticationOwner,
+  }) {
+    if (authenticationOwner == null ||
+        !_ownsAuthentication(authenticationOwner)) {
+      _authenticationOwner = null;
+      _isAuthenticating = false;
+    }
     _sessionExpired = _sessionExpired || expired;
-    if (_terminationTask != null) return _terminationTask!;
+    if (_terminationTask != null) {
+      // A voluntary request joining any end still revokes recovery. A retry
+      // is never one: it only completes the end it joins.
+      if (!retry && !abandoned && !expired) {
+        _forgetGuestRecovery();
+        _terminationVoluntary = true;
+      }
+      _sessionAbandoned = _sessionAbandoned && abandoned;
+      _joinNativeEnd();
+      return _terminationTask!;
+    }
+    _sessionAbandoned = abandoned;
+    if (!retry) _terminationVoluntary = !abandoned && !expired;
+    _sentEndCauses.clear();
+    _clockAheadSession = null;
+    // A renewal still waiting on a native write cannot own the next scope; the
+    // native end fences its late write (C1-02).
+    _guestRenewalTask = null;
+    _guestRenewalOwner = null;
+    _guestRenewing = false;
+    _terminationGeneration++;
     final Completer<void> done = Completer<void>();
     _terminationTask = done.future;
     _sessionOperation.invalidate();
+    _invalidateGuestResume();
     _guestActionOwner = null;
     _guestObservedAccess = null;
     _guestHomeUserId = null;
-    _guestMessage = null;
-    _guestRecoveryDeferred = false;
-    _guestRetryTimer?.cancel();
-    _guestRetryTimer = null;
+    if (!abandoned) _forgetGuestRecovery();
+    _storedSessionUnreadable = false;
+    _registeredSession = null;
     _cancelLocationChange();
     _locationChangeOperation = null;
     _invalidateListRefreshes();
@@ -1906,7 +2432,6 @@ class VpnAppController extends ChangeNotifier {
     mayNeedEmailVerification = false;
     isConnecting = false;
     isRevoking = false;
-    isAuthenticating = false;
     isInitializing = false;
     isLoadingDevices = false;
     _tunnelMetricsTimer?.cancel();
@@ -1930,23 +2455,46 @@ class VpnAppController extends ChangeNotifier {
 
   Future<void> _finishSessionTermination(Completer<void> done) async {
     try {
-      // Drain submitted writes, but never wait for pending API requests.
-      await _sessionWrites;
-      final SessionTerminationResult result = await _sessionStore.clearSession(
-        expired: _sessionExpired,
+      // Drain submitted writes, but never wait for pending API requests. A
+      // stuck write cannot hold the end: native storage fences it by itself,
+      // and later writes start a new queue instead of waiting behind it.
+      var drained = true;
+      await _sessionWrites.timeout(
+        _sessionWriteDrainLimit,
+        onTimeout: () {
+          drained = false;
+        },
       );
-      if (_disposed) return;
-      sessionTermination = result.isComplete ? null : result;
-      tunnelState = VpnRuntimeState(
-        phase: result.tunnelStopped
-            ? VpnRuntimePhase.idle
-            : VpnRuntimePhase.error,
-        protocol: result.tunnelStopped ? null : tunnelState.protocol,
-        messageCode: result.stopError,
-      );
-      if (result.isComplete && _sessionExpired) {
-        _showSessionExpiredNotice();
+      if (!drained) _sessionWrites = Future<void>.value();
+      final Future<SessionTerminationResult> clearing = _clearNativeSession();
+      final SessionTerminationResult result;
+      try {
+        result = await clearing.timeout(_sessionClearLimit);
+      } on TimeoutException {
+        if (_disposed) return;
+        // Unconfirmed, not in progress: the cleanup page offers a retry, and a
+        // late native answer still completes this end if nothing replaced it.
+        sessionTermination = const SessionTerminationResult(
+          tunnelStopped: false,
+          sessionCleared: false,
+          stopError: 'session_termination_unconfirmed',
+        );
+        final int generation = _terminationGeneration;
+        unawaited(
+          clearing.then<void>((late) {
+            if (!_disposed &&
+                _terminationTask == null &&
+                generation == _terminationGeneration &&
+                sessionTermination != null) {
+              _applySessionTermination(late);
+              notifyListeners();
+            }
+          }, onError: (Object _) {}),
+        );
+        return;
       }
+      if (_disposed) return;
+      _applySessionTermination(result);
     } catch (_) {
       if (!_disposed) {
         sessionTermination = const SessionTerminationResult(
@@ -1963,9 +2511,75 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
+  List<SessionEndCause> get _requiredEndCauses => <SessionEndCause>[
+    if (_sessionExpired) SessionEndCause.expired,
+    if (_terminationVoluntary) SessionEndCause.voluntary,
+    if (!_sessionExpired && !_terminationVoluntary) SessionEndCause.abandoned,
+  ];
+
+  /// Sends every cause of this end at once: native storage merges requests
+  /// that join one end. A store without causes gets the legacy flag once.
+  Future<SessionTerminationResult> _clearNativeSession() async {
+    final SecureSessionStore store = _sessionStore;
+    if (store is! SessionEndCauseStore) {
+      _sentEndCauses.addAll(_requiredEndCauses);
+      return store.clearSession(expired: _sessionExpired || _sessionAbandoned);
+    }
+    final List<SessionEndCause> causes = _requiredEndCauses;
+    _sentEndCauses.addAll(causes);
+    final List<SessionTerminationResult> results = await Future.wait(
+      <Future<SessionTerminationResult>>[
+        for (final SessionEndCause cause in causes)
+          (store as SessionEndCauseStore).clearSessionFor(cause),
+      ],
+    );
+    return results.last;
+  }
+
+  /// A cause added once the end was sent joins the same native end.
+  void _joinNativeEnd() {
+    final SecureSessionStore store = _sessionStore;
+    if (_sentEndCauses.isEmpty || store is! SessionEndCauseStore) return;
+    for (final SessionEndCause cause in _requiredEndCauses) {
+      if (_sentEndCauses.add(cause)) {
+        unawaited(
+          (store as SessionEndCauseStore)
+              .clearSessionFor(cause)
+              .then<void>((_) {}, onError: (Object _) {}),
+        );
+      }
+    }
+  }
+
+  void _forgetGuestRecovery() {
+    _guestMessage = null;
+    _guestRecoveryDeferred = false;
+    _guestRetryTimer?.cancel();
+    _guestRetryTimer = null;
+    _guestRetryAfter = null;
+  }
+
+  void _applySessionTermination(SessionTerminationResult result) {
+    sessionTermination = result.isComplete ? null : result;
+    tunnelState = VpnRuntimeState(
+      phase: result.tunnelStopped ? VpnRuntimePhase.idle : VpnRuntimePhase.error,
+      protocol: result.tunnelStopped ? null : tunnelState.protocol,
+      messageCode: result.stopError,
+    );
+    if (result.isComplete && _sessionExpired) {
+      _showSessionExpiredNotice();
+    }
+  }
+
   void clearNotice() {
     notice = null;
     notifyListeners();
+  }
+
+  /// A new attempt replaces the previous notice, except the clock notice: it
+  /// says what the next launch will decide (C4-04).
+  void _clearNoticeForAttempt() {
+    if (notice?.arguments['code'] != 'device_clock_ahead') notice = null;
   }
 
   Future<void> _handleInitialSessionWriteFailure(
@@ -1994,12 +2608,33 @@ class VpnAppController extends ChangeNotifier {
     }
 
     checkAuthorization();
+    // An explicit sign-in revokes automatic guest recovery before its session
+    // is written: an older guest can never replace this account later, even
+    // if its first restoration fails and it expires before succeeding.
+    _guestRecoveryDeferred = false;
+    final guestStore = _guestStore;
+    if (guestStore != null) {
+      try {
+        await _sessionWrite(operation, () {
+          checkAuthorization();
+          return guestStore.writeGuestAutoResume(false);
+        });
+      } on NativeVpnException {
+        // Restoration repeats this durable opt-out before publishing the
+        // account, and stays pending (with a retry) until it succeeds.
+      }
+      operation.check();
+      checkAuthorization();
+    }
     await _sessionWrite(operation, () {
       checkAuthorization();
       return _sessionStore.writeSession(session);
     });
     operation.check();
     checkAuthorization();
+    _issuedSession = session;
+    _registeredSession = session;
+    _storedSessionUnreadable = false;
     _session = session;
     _pendingVerificationNeeded = verificationNeeded;
     return _restoreAccount(
@@ -2010,15 +2645,32 @@ class VpnAppController extends ChangeNotifier {
   }
 
   Future<void> retryAccountRestoration() async {
+    // A running guest recovery or its Retry-After delay owns the next attempt.
     if (!hasPendingAccountRestoration ||
         isRestoringAccount ||
+        isGuestActionBusy ||
         !_sessionOperation.isCurrent) {
       return;
     }
     notice = null;
     try {
-      if (_guestRecoveryDeferred) {
+      if (_storedSessionUnreadable) {
+        _storedSessionReading = true;
+        notifyListeners();
+        try {
+          await _restoreStoredSession(_sessionOperation);
+        } finally {
+          _storedSessionReading = false;
+          notifyListeners();
+        }
+        // These paths may end without _restoreAccount: the catalogue is
+        // still owed.
+        _reloadCatalogueIfMissing();
+        return;
+      }
+      if (_guestRecoveryDeferredHere) {
         await _resumeGuestSession(_sessionOperation, previous: _session);
+        _reloadCatalogueIfMissing();
         notifyListeners();
         return;
       }
@@ -2037,8 +2689,8 @@ class VpnAppController extends ChangeNotifier {
     final SessionOperation operation = _sessionOperation;
     operation.check();
     final AuthSession? session = _session;
-    if (session == null || isRestoringAccount) return false;
-    if (!session.expiresAt.isAfter(DateTime.now())) {
+    if (session == null || _accountRestorationOwner != null) return false;
+    if (!_sessionLive(session)) {
       await _terminateSession(expired: true);
       return false;
     }
@@ -2064,6 +2716,17 @@ class VpnAppController extends ChangeNotifier {
       if (expectedUserId != null && restoredProfile.userId != expectedUserId) {
         throw const NativeVpnException('invalid_arguments');
       }
+      final guestStore = _guestStore;
+      if (guestStore != null &&
+          !restoredProfile.isGuest &&
+          !restoredProfile.profileRedacted &&
+          restoredProfile.canManageAccount) {
+        await _sessionWrite(operation, () {
+          check();
+          return guestStore.writeGuestAutoResume(false);
+        });
+        check();
+      }
       await _sessionWrite(operation, () {
         check();
         return _sessionStore.writeSession(
@@ -2072,9 +2735,27 @@ class VpnAppController extends ChangeNotifier {
         );
       });
       check();
-      final String? restoredDevice = await _sessionStore.readCurrentDeviceId(
-        userId: restoredProfile.userId,
-      );
+      Future<String?> readRestoredDevice() async {
+        try {
+          return await _sessionStore.readCurrentDeviceId(
+            userId: restoredProfile.userId,
+          );
+        } on NativeVpnException catch (error) {
+          if (error.code != 'secure_storage_corrupt') rethrow;
+          check();
+          // Its Keystore key is gone for good: the device binding is forgotten
+          // and a new device is registered at the next connection (P6).
+          await _sessionWrite(operation, () {
+            check();
+            return _sessionStore.clearCurrentDeviceId(
+              userId: restoredProfile.userId,
+            );
+          });
+          return null;
+        }
+      }
+
+      final String? restoredDevice = await readRestoredDevice();
       check();
       final OpenVpnRevocationResult? revocation = restoredDevice == null
           ? null
@@ -2189,33 +2870,63 @@ class VpnAppController extends ChangeNotifier {
           !isIdentityBusy) {
         unawaited(_followLocationMigration(context, refreshFirst: false));
       }
+      _noticeClockAhead(session);
+      // Every account publication ends here: a catalogue missed before it
+      // (offline start, failed reload) is loaded now, in the background.
+      _reloadCatalogueIfMissing();
       return true;
     } on ApiFailure catch (error) {
       check();
-      if (expectedUserId == null &&
-          !_guestResuming &&
-          (error.statusCode == 401 || error.code == 'unauthorized') &&
-          _guestStore != null &&
-          await _safe<bool>(_guestStore!.readGuestAutoResume()) == true) {
+      final bool unauthorized =
+          error.statusCode == 401 || error.code == 'unauthorized';
+      final bool registered =
+          unauthorized &&
+          expectedUserId == null &&
+          identical(session, _registeredSession);
+      final bool? guestRecovery =
+          !registered &&
+              expectedUserId == null &&
+              !_guestResuming &&
+              unauthorized &&
+              _guestStore != null
+          ? await _readGuestAutoResume()
+          : false;
+      if (registered) {
+        // A refused registered session never resumes the guest behind it. If
+        // recovery cannot be revoked now, it stays pending with a notice.
+        if (!await _confirmGuestOptOut(operation)) return false;
+        check();
+      } else if (guestRecovery == null) {
+        // A transient read decides nothing: the session and its tunnel are
+        // kept and the restoration stays pending with a retry (P5).
+        check();
+        notice = _nativeNotice('secure_storage_read_failed');
+        return false;
+      } else if (guestRecovery) {
         operation.check();
         // The cached token may have been revoked before its local expiry.
         // Release restoration ownership before reentering it with the same
         // durable guest credential and native device binding.
         _accountRestorationOwner = null;
-        if (await _resumeGuestSession(operation, previous: session)) {
-          return true;
+        switch (await _resumeGuestSession(operation, previous: session)) {
+          case _GuestRecovery.admitted:
+            return true;
+          case _GuestRecovery.pending:
+            // The renewed session is committed; only its restoration failed.
+            return false;
+          case _GuestRecovery.deferred:
+            operation.check();
+            _session = session;
+            notice = const AppNotice(
+              titleKey: 'billing.title',
+              messageKey: 'guest.serviceUnavailable',
+            );
+            return false;
+          case _GuestRecovery.busy || _GuestRecovery.refused:
+            operation.check();
+            await _terminateSession(expired: true);
+            return false;
         }
-        operation.check();
-        if (_guestRecoveryDeferred) {
-          _session = session;
-          notice = const AppNotice(
-            titleKey: 'billing.title',
-            messageKey: 'guest.serviceUnavailable',
-          );
-          return false;
-        }
-        await _terminateSession(expired: true);
-        return false;
       }
       await _handleSessionFailure(error, operation);
       check();
@@ -2284,7 +2995,7 @@ class VpnAppController extends ChangeNotifier {
         rethrow;
       } on ApiFailure catch (error) {
         context.check();
-        await _handleSessionFailure(error, context.session);
+        await _handleSessionFailure(error, context.session, owner: owner);
         context.check();
         _setNotice(ApiErrorMessages.fromFailure(error));
         await _refreshAfterCapacityFailure(
@@ -2452,6 +3163,7 @@ class VpnAppController extends ChangeNotifier {
       context.check();
     }
     final DeviceLocationMigration migration;
+    bool recordStored = false;
     if (saved != null && saved.targetLocationId == location.id) {
       migration = saved;
     } else {
@@ -2466,6 +3178,7 @@ class VpnAppController extends ChangeNotifier {
           locationId: location.id,
         );
         await _retainAcceptedMigration(context, migration, location.id);
+        recordStored = true;
       } finally {
         if (identical(_migrationStartRequest, context)) {
           _migrationStartRequest = null;
@@ -2475,7 +3188,11 @@ class VpnAppController extends ChangeNotifier {
     }
     context.check();
     _validateMigration(context, migration, targetLocationId: location.id);
-    return _waitForLocationMigration(context, migration);
+    return _waitForLocationMigration(
+      context,
+      migration,
+      recordStored: recordStored,
+    );
   }
 
   /// Executes the documented WireGuard transition for a logical device whose
@@ -2590,14 +3307,27 @@ class VpnAppController extends ChangeNotifier {
     context.value = null;
   }
 
+  /// [recordStored]: [migration] was just written successfully (the accepted
+  /// POST), so its first pending cycle need not write it again.
   Future<bool> _waitForLocationMigration(
     _MigrationContext context,
-    DeviceLocationMigration migration,
-  ) => ConnectionTiming.measure('migration.total', () async {
+    DeviceLocationMigration migration, {
+    bool recordStored = false,
+  }) => ConnectionTiming.measure('migration.total', () async {
     _validateMigration(context, migration);
     DeviceLocationMigration current = migration;
+    // The record this loop knows to be stored. A poll that repeats it is not
+    // written again: each write is an encrypted record and a full-file commit.
+    Map<String, Object?>? written = recordStored
+        ? migration.toStorageJson()
+        : null;
+    int unhintedWaits = 0;
     for (int attempt = 0; ; attempt++) {
       context.check();
+      if (current.status == LocationMigrationStatus.activating ||
+          current.status == LocationMigrationStatus.ready) {
+        _noteLocationChangeActivation();
+      }
       if (current.status == LocationMigrationStatus.blocked) {
         await _storeLocationMigration(context, current);
         context.check();
@@ -2628,14 +3358,30 @@ class VpnAppController extends ChangeNotifier {
         return true;
       }
       if (attempt >= _migrationMaxPollAttempts) break;
-      await _storeLocationMigration(context, current);
+      final Map<String, Object?> record = current.toStorageJson();
+      if (written != null && mapEquals(written, record)) {
+        _validateMigration(context, current);
+        context.value = current;
+      } else {
+        await _storeLocationMigration(context, current);
+        written = record;
+      }
       context.check();
       notifyListeners();
+      // A server hint is always honoured. Without one, check again after
+      // 0.5 s and 1 s before settling on 2 s, so a migration that finishes
+      // quickly does not hold the change for whole periods.
+      final int? hint = current.retryAfterSeconds;
+      final Duration wait = hint != null
+          ? Duration(seconds: hint)
+          : switch (unhintedWaits++) {
+              0 => const Duration(milliseconds: 500),
+              1 => const Duration(seconds: 1),
+              _ => const Duration(seconds: 2),
+            };
       await ConnectionTiming.measure(
         'migration.retry_wait',
-        () => context.wait(
-          _migrationDelay(Duration(seconds: current.retryAfterSeconds ?? 2)),
-        ),
+        () => context.wait(_migrationDelay(wait)),
       );
       context.check();
       current = await _pollLocationMigration(context, current);
@@ -2643,7 +3389,12 @@ class VpnAppController extends ChangeNotifier {
     }
     await _storeLocationMigration(context, current);
     context.check();
-    notice = _controllerNotice('location_migration_slow');
+    notice = _controllerNotice(
+      'location_migration_slow',
+      arguments: <String, Object?>{
+        'target': _migrationTargetLabel(current.targetLocationId),
+      },
+    );
     notifyListeners();
     return false;
   });
@@ -2906,7 +3657,12 @@ class VpnAppController extends ChangeNotifier {
       final SessionOperation operation = _sessionOperation;
       operation.check();
       final VpnRuntimePhase current = tunnelState.phase;
-      if (current == VpnRuntimePhase.idle || current == VpnRuntimePhase.error) {
+      // An OpenVPN engine whose stop failed can stay retained in error, and
+      // native code refuses a new CSR while it is in use: stop it first
+      // (A09-01).
+      if (current == VpnRuntimePhase.idle ||
+          (current == VpnRuntimePhase.error &&
+              tunnelState.protocol != VpnProtocol.openVpn)) {
         return;
       }
       await disconnect(cancelPendingConnection: false);
@@ -2919,6 +3675,11 @@ class VpnAppController extends ChangeNotifier {
 
   void _onTunnelState(VpnRuntimeState state) {
     if (_disposed) return;
+    _tunnelStateRevision++;
+    final VpnRuntimeState? attemptBase = _attemptBaseState;
+    if (attemptBase != null && !_sameRuntimeStep(attemptBase, state)) {
+      _attemptStateMoved = true;
+    }
     _recordDiagnosticState(state);
     final cleanup = state.openVpnRevocation;
     if (cleanup != null &&
@@ -2937,31 +3698,93 @@ class VpnAppController extends ChangeNotifier {
         _revocationResult = cleanup;
       }
     }
-    _sessionExpired =
-        _sessionExpired || (state.sessionTermination?.sessionExpired ?? false);
-    if (state.sessionTermination != null &&
-        !state.sessionTermination!.isComplete) {
-      sessionTermination = state.sessionTermination;
+    final SessionTerminationResult? ending = state.sessionTermination;
+    // Only an end still in progress carries its cause. A completed expiry
+    // must not turn a later voluntary logout into an expiry. During its own
+    // end, Dart already knows the causes it asked for: an older bridge that
+    // publishes its legacy flag cannot turn an abandoned end into an expiry.
+    if (ending != null && !ending.isComplete) {
+      if (_terminationTask == null) {
+        _sessionExpired = _sessionExpired || ending.sessionExpired;
+      }
+      sessionTermination = ending;
     }
     if (sessionTermination != null) {
       notifyListeners();
       return;
     }
+    final bool countersOnly = _differsOnlyInCounters(tunnelState, state);
     tunnelState = state;
+    _tunnelSamples.value = state;
     _syncTunnelMetricsTimer();
-    if (state.phase == VpnRuntimePhase.error && state.messageCode != null) {
-      notice ??= _nativeNotice(
-        state.messageCode!,
-        protocol: state.protocol,
-        record: false,
-      );
+    _noticeNativeError(state);
+    // An active tunnel hid a missing catalogue; a stopped one would show it.
+    if (!isTunnelActive && isSignedIn) _reloadCatalogueIfMissing();
+    if (!countersOnly) notifyListeners();
+  }
+
+  /// Every tunnel sample, for the widgets that show its counters.
+  ValueListenable<VpnRuntimeState?> get tunnelSamples => _tunnelSamples;
+
+  // Two samples of the same connected tunnel where only bytes and the latest
+  // handshake moved: nothing outside the metrics card depends on them. Any
+  // other event still notifies, even when nothing changed, as before.
+  static bool _differsOnlyInCounters(VpnRuntimeState a, VpnRuntimeState b) =>
+      a.phase == VpnRuntimePhase.connected &&
+      b.phase == VpnRuntimePhase.connected &&
+      a.protocol == b.protocol &&
+      a.messageCode == b.messageCode &&
+      a.connectedAt == b.connectedAt &&
+      a.locationId == b.locationId &&
+      a.locationName == b.locationName &&
+      a.sessionTermination == null &&
+      b.sessionTermination == null &&
+      a.openVpnRevocation == null &&
+      b.openVpnRevocation == null &&
+      listEquals(a.ipFamilies, b.ipFamilies) &&
+      a.systemProtection.alwaysOn == b.systemProtection.alwaysOn &&
+      a.systemProtection.lockdown == b.systemProtection.lockdown &&
+      a.systemProtection.resumeState == b.systemProtection.resumeState &&
+      a.systemProtection.resumeError == b.systemProtection.resumeError;
+
+  /// Each native error is shown once: a resume snapshot of an error already
+  /// shown, then dismissed, does not bring it back; a new error does. An error
+  /// that arrives behind another notice is shown once that notice is gone.
+  void _noticeNativeError(VpnRuntimeState state) {
+    final String? code = state.messageCode;
+    // An internal cancellation (a disconnect during an OpenVPN start, for
+    // instance) is not an error to show (A11-openvpn-kotlin-01).
+    if (state.phase != VpnRuntimePhase.error ||
+        code == null ||
+        code == 'session_operation_cancelled') {
+      _shownNativeError = null;
+      return;
     }
-    notifyListeners();
+    if (code == _shownNativeError) return;
+    // Another notice holds the only slot: nothing is marked, and the next
+    // snapshot or event shows the error. The same native notice, already set
+    // by a connection or a disconnection, counts as shown.
+    final AppNotice? current = notice;
+    if (current != null &&
+        !(current.titleKey == 'notice.native.title' &&
+            current.arguments['code'] == _nativeLocalizationCode(code))) {
+      return;
+    }
+    _shownNativeError = code;
+    notice ??= _nativeNotice(code, protocol: state.protocol, record: false);
   }
 
   void _syncTunnelMetricsTimer() {
-    if (tunnelState.phase != VpnRuntimePhase.connected &&
-        !tunnelState.isWireGuardRecovery) {
+    // While nothing is on screen, a steady WireGuard tunnel needs no sample
+    // (the resume reconciles its state). OpenVPN keeps it: the sample is one
+    // of the paths that detect its failures. A recovery keeps it too.
+    final bool hiddenSteadyWireGuard =
+        _appInBackground &&
+        tunnelState.phase == VpnRuntimePhase.connected &&
+        tunnelState.protocol == VpnProtocol.wireGuard;
+    if (hiddenSteadyWireGuard ||
+        (tunnelState.phase != VpnRuntimePhase.connected &&
+            !tunnelState.isWireGuardRecovery)) {
       _tunnelMetricsTimer?.cancel();
       _tunnelMetricsTimer = null;
       return;
@@ -3102,18 +3925,58 @@ class VpnAppController extends ChangeNotifier {
     return 'VPN-STATE';
   }
 
-  Future<void> _handleSessionFailure(
+  /// A 401 ends the session unless a guest renewal replaces its token. The
+  /// [owner] of the failing connection or identity work may hand its session
+  /// over to that renewal. Returns true when the token was renewed: the
+  /// caller's operation is then retired. A renewal that cannot run now (another
+  /// owner, network, server or Keystore unavailable, Retry-After) keeps the
+  /// session, its tunnel and a notice, and aborts the caller; a later request
+  /// renews it. Without [allowGuestRenewal] (the retry after a renewal, whose
+  /// new token is refused too) nothing is renewed again: the session is kept
+  /// with the same notice instead of looping.
+  Future<bool> _handleSessionFailure(
     ApiFailure error,
-    SessionOperation operation,
-  ) async {
+    SessionOperation operation, {
+    Object? owner,
+    bool allowGuestRenewal = true,
+  }) async {
     operation.check();
-    if (error.code != 'unauthorized' && error.statusCode != 401) return;
+    if (error.code != 'unauthorized' && error.statusCode != 401) return false;
     if (profile?.isGuest == true) {
-      if (await _renewGuestSession()) return;
-      operation.check();
+      switch (allowGuestRenewal
+          ? await _renewGuestSession(owner: owner)
+          : _GuestRecovery.busy) {
+        case _GuestRecovery.admitted:
+          return true;
+        case _GuestRecovery.deferred || _GuestRecovery.busy:
+          // Busy: a reset, purchase or another connection owns this moment.
+          operation.check();
+          notice = const AppNotice(
+            titleKey: 'billing.title',
+            messageKey: 'guest.serviceUnavailable',
+          );
+          notifyListeners();
+          throw const SessionOperationCancelled();
+        case _GuestRecovery.pending || _GuestRecovery.refused:
+          operation.check();
+      }
     }
     await _terminateSession(expired: true);
+    return false;
   }
+
+  /// Temporary unavailability: a later attempt may succeed, so nothing that
+  /// belongs to the session is erased or revoked because of it.
+  bool _isTransientNativeFailure(NativeVpnException error) =>
+      error.code == 'secure_storage_read_failed' ||
+      error.code == 'native_bridge_unavailable';
+
+  bool _isTransientFailure(Object error) => switch (error) {
+    ApiNetworkException() => true,
+    ApiFailure(:final int statusCode) => statusCode == 429 || statusCode >= 500,
+    NativeVpnException() => _isTransientNativeFailure(error),
+    _ => false,
+  };
 
   void _showSessionExpiredNotice() => _setNotice(
     ApiErrorMessages.fromFailure(
@@ -3158,8 +4021,8 @@ class VpnAppController extends ChangeNotifier {
         diagnosticCode: 'APP-LOGIC · ${failure.code}',
       );
 
-  String _migrationTargetLabel() {
-    final String? targetId = locationMigration?.targetLocationId;
+  String _migrationTargetLabel([String? target]) {
+    final String? targetId = target ?? locationMigration?.targetLocationId;
     if (targetId == null) return '';
     return locations
             .cast<Location?>()
@@ -3195,6 +4058,9 @@ class VpnAppController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _tunnelSamples.dispose();
+    _authenticationOwner = null;
+    _isAuthenticating = false;
     _googleAuth.removeListener(_googleChanged);
     _googleAuth.dispose();
     _guestRetryTimer?.cancel();

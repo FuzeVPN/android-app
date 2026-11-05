@@ -8,6 +8,7 @@
     public native boolean nativeStop(long);
     public native boolean nativeIsConnected(long);
     public native long[] nativeStatistics(long);
+    public native java.lang.String nativeTunInterfaceName(int);
 }
 
 # nativeCreate's descriptor names the interface. C++ resolves its callbacks on

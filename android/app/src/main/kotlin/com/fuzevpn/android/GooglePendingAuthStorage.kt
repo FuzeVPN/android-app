@@ -56,8 +56,14 @@ internal class GooglePendingAuthStorage(
     private val slot = SecureStorageSlot(SecureKeystoreStore.GLOBAL_SCOPE, "fuzevpn.google.pending_authentication")
 
     fun read(): String? {
-        val payload = try { read(slot) } catch (_: Exception) { throw GoogleAuthException("secure_storage_failed") }
-            ?: return null
+        val payload = try { read(slot) } catch (error: Exception) {
+            // An entry that can never be decrypted again (failed authentication
+            // or format, or a Keystore key that is gone) is unusable rather than
+            // unavailable, so Dart may drop it (C5-03). Anything else may recover.
+            val unusable = error is SecureStorageException &&
+                (error.code == "secure_storage_corrupt" || error.keyMissing)
+            throw GoogleAuthException(if (unusable) "secure_storage_corrupt" else "secure_storage_failed")
+        } ?: return null
         try { GooglePendingAuthPolicy.validate(payload) }
         catch (_: GoogleAuthException) { throw GoogleAuthException("secure_storage_corrupt") }
         return payload

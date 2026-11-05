@@ -1,22 +1,46 @@
 # FuzeVPN pour Android
 
-Audit de qualification du 14 octobre 2026 : [Q001](docs/VALIDATION.md#q001), [Q002](docs/VALIDATION.md#q002), [Q003](docs/VALIDATION.md#q003), [Q004](docs/VALIDATION.md#q004), [Q006](docs/VALIDATION.md#q006), [Q009](docs/VALIDATION.md#q009), [Q018](docs/VALIDATION.md#q018), [Q019](docs/VALIDATION.md#q019), [Q020](docs/VALIDATION.md#q020), [Q021](docs/VALIDATION.md#q021), [Q023](docs/VALIDATION.md#q023), [Q030](docs/VALIDATION.md#q030), [Q031](docs/VALIDATION.md#q031), [Q032](docs/VALIDATION.md#q032), [Q033](docs/VALIDATION.md#q033).
-
-
 [English](README.md)
 
-Sources du client Android FuzeVPN, version **0.2.10+74016**, développé avec
-Flutter, Kotlin, WireGuard et OpenVPN. Package Android : `com.fuzevpn`.
-Android 8.0 (API 26) ou ultérieur est requis.
+L'application FuzeVPN pour Android : tunnels WireGuard et OpenVPN, trente
+langues, abonnements Google Play et accès invité. Elle fonctionne sur
+**Android 8.0 (API 26) ou ultérieur** ; son package est `com.fuzevpn`.
 
-Ce dépôt publie les sources et les entrées natives de compilation revues.
-Il ne publie aucun APK, App Bundle ni GitHub Release. Le backend et
-l'infrastructure VPN FuzeVPN sont des services distincts, absents de ce dépôt.
+Ce dépôt contient le code source de l'application et ses entrées natives de
+compilation revues. Le backend et l'infrastructure VPN FuzeVPN sont des
+services distincts, absents de ce dépôt.
 
-Cette version refond l’écran Premium et prend en charge l’offre Google Play
-`freetest` pour les nouveaux abonnés éligibles, avec le tarif récurrent exact,
-les conditions de renouvellement et une date de premier débit estimée.
-Voir les [notes de version](docs/RELEASE_NOTES.md) et le [guide de l’essai](docs/FREE_TRIAL.md).
+## Télécharger
+
+Version actuelle : **0.2.11** (build 74018).
+
+Des APK signés sont joints à chaque
+[release GitHub](https://github.com/FuzeVPN/android-app/releases), avec leurs
+empreintes SHA-256 et l'archive des sources correspondantes. Aucun App Bundle
+n'est publié. Le [guide des APK](docs/APK.fr.md) indique quel fichier convient
+à votre téléphone et comment le vérifier avant de l'installer.
+
+Si vous avez installé FuzeVPN depuis Google Play, continuez à le mettre à jour
+par Google Play : les versions Google Play et GitHub sont signées avec des clés
+différentes, l'une ne peut pas mettre à jour l'autre.
+
+## Nouveautés de la 0.2.11
+
+- La carte de connexion indique « Préparation » dès le tap sur « Se connecter »,
+  et chaque changement d'emplacement OpenVPN affiche sa progression, étape par
+  étape.
+- Depuis Android 11, le VPN permanent revient seul après un arrêt de l'app par
+  un plantage ou par Android, même quand la tuile des réglages rapides ou un
+  autre composant relance l'app en premier (Android 10 : sans ce secours,
+  non testé).
+- OpenVPN ne coupe plus les transferts quand le téléphone repasse en Wi-Fi.
+- Android 11 : plus de plantage au démarrage ; Android 8 à 11 : plus de
+  plantage quand le service VPN est arrêté juste après son démarrage.
+- Avec un texte très agrandi (200 %), les dialogues de confirmation ne coupent
+  plus les mots.
+- Moins de travail pendant la connexion et sur l'onglet Compte.
+
+Détails dans les [notes de version](docs/RELEASE_NOTES.md).
 
 ## Fonctionnalités
 
@@ -32,18 +56,13 @@ Voir les [notes de version](docs/RELEASE_NOTES.md) et le [guide de l’essai](do
   compte après vérification. Elle ne convertit pas l'invité et ne transfère
   aucun abonnement ; la création de compte reste une action distincte.
 
-L’audit du 14 octobre documente les résultats par version : tunnels et reprise
-74016 sur les VM Android 14–17, achats/RTDN historiques 74008/API035,
-et blocages Google natif, freetest réel et ARM natif. Voir le
-[registre de qualification](docs/VALIDATION.md). Les preuves d’une version
-ou d’un service ne sont pas attribuées à un autre environnement.
 Release/profile utilisent l'origine API de production ; le remplacement
 d'origine est réservé au debug. Lire les guides avant tout essai réseau.
 
-## Compiler
+## Compiler depuis les sources
 
-Matrice revue : Flutter **3.44.7**, JDK **17**, Android Platform **36**,
-NDK **28.2.13676358** et CMake **3.22.1**. Le projet épingle Gradle **9.5.0**,
+Matrice revue : Flutter **3.47.8** (Dart **3.13.7**), JDK **17**, Android Platform **36**,
+NDK **28.2.13676358** et CMake **3.22.1**. Le projet épingle Gradle **9.8.2**,
 Android Gradle Plugin **9.3.0** et Kotlin **2.3.20**.
 
 Installer les outils, définir `JAVA_HOME` et `ANDROID_HOME`, puis créer son
@@ -71,7 +90,11 @@ Maven/Pub se préparent séparément.
 
 | Guide | Contenu |
 | --- | --- |
-| [Notes de version](docs/RELEASE_NOTES.md) | Changements de 0.2.10+74016 et limites de validation |
+| [Guide des APK](docs/APK.fr.md) | Quel APK pour quel téléphone, installation, vérifications |
+| [Notes de version](docs/RELEASE_NOTES.md) | Changements par version et limites de validation |
+| [Corrections de l’audit complet](docs/AUDIT_CORRECTIONS_20261029.md) | 81 écarts, chaîne d’outils, deux validations locales et limites |
+| [Corrections du réaudit](docs/AUDIT_CORRECTIONS_20261028.md) | Onze écarts, validation locale et identité des compilations de contrôle |
+| [Dernier SPDX release (28/10)](docs/SBOM.release.corrections-20261028.spdx.json) | Résolution des dépendances et AAB exact non signé de l’arbre de travail, produit avant l’inventaire des composants natifs ([guide des SBOM release](docs/SBOM.release.md)) |
 | [Développement](docs/DEVELOPMENT.md) | Outils, compilation, tests et qualification sur appareil |
 | [Architecture](docs/ARCHITECTURE.md) | Comportement, stockage, tunnels et API attendue |
 | [Dépendances natives](docs/NATIVE_DEPENDENCIES.md) | Révisions, patches, intégrité et reconstruction |
@@ -81,7 +104,26 @@ Maven/Pub se préparent séparément.
 | [Connexion Google](docs/GOOGLE_AUTH.md) | Credential Manager et contrat OAuth serveur |
 | [Licences](LICENSING.md) | Périmètre MPL, exceptions et marques |
 | [Notices tierces](THIRD_PARTY_NOTICES.md) | Licences et provenance des composants |
-| [Inventaire SPDX](docs/SBOM.spdx.json) | Inventaire de sources et limites |
+| [Inventaire SPDX historique (14/10)](docs/SBOM.spdx.json) | Inventaire de sources du 14/10, avec l’ancien moteur WireGuard ; versions actuelles dans le [guide des SBOM release](docs/SBOM.release.md) et les [notices tierces](THIRD_PARTY_NOTICES.md) |
+
+## Qualité et audits
+
+Le [registre de qualification](docs/VALIDATION.md) indique ce qui a été testé,
+sur quelle version et dans quel environnement, avec ses limites. Les preuves
+d’une version ou d’un service ne sont pas attribuées à un autre environnement.
+
+- Audit de qualification du 14 octobre 2026 : [Q001](docs/VALIDATION.md#q001), [Q002](docs/VALIDATION.md#q002), [Q003](docs/VALIDATION.md#q003), [Q004](docs/VALIDATION.md#q004), [Q006](docs/VALIDATION.md#q006), [Q009](docs/VALIDATION.md#q009), [Q018](docs/VALIDATION.md#q018), [Q019](docs/VALIDATION.md#q019), [Q020](docs/VALIDATION.md#q020), [Q021](docs/VALIDATION.md#q021), [Q023](docs/VALIDATION.md#q023), [Q030](docs/VALIDATION.md#q030), [Q031](docs/VALIDATION.md#q031), [Q032](docs/VALIDATION.md#q032), [Q033](docs/VALIDATION.md#q033).
+  Il documente les résultats par version : tunnels et reprise 74016 sur les VM
+  Android 14–17, achats/RTDN historiques 74008/API035, et blocages Google
+  natif, freetest réel et ARM natif.
+- Les [corrections de l’audit complet du 28 octobre 2026](docs/AUDIT_CORRECTIONS_20261029.md)
+  traitent 81 écarts (1 P1, 9 P2, 71 P3) et portent la chaîne d’outils à
+  Flutter 3.47.8 et Gradle 9.8.2.
+- Les [corrections du réaudit du 28 octobre 2026](docs/AUDIT_CORRECTIONS_20261028.md)
+  corrigent onze écarts de sources et d’outillage. Les [corrections du 19 octobre](docs/AUDIT_CORRECTIONS_20261019.md)
+  et les preuves de qualification antérieures gardent leurs dates et limites.
+- Voir les [limites des preuves et outils maintenus](docs/RELEASE_EVIDENCE.md),
+  dont la réserve sur les deux originaux historiques non retrouvés.
 
 ## Licence et contributions
 

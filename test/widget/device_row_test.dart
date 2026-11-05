@@ -87,7 +87,7 @@ void main() {
             expect(
               find.text(
                 copy.devices_added(
-                  DateFormat.yMd(language).format(device.createdAt!),
+                  DateFormat.yMd(language).format(device.createdAt!.toLocal()),
                 ),
               ),
               findsOneWidget,

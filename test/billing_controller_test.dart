@@ -40,16 +40,18 @@ BillingSubscription _active({
 );
 
 PlayPurchase _purchase({
-  String owner = _ownerA,
+  String? owner = _ownerA,
   String token = 'purchase-token-test',
   String state = 'purchased',
   bool acknowledged = false,
+  bool suspended = false,
 }) => PlayPurchase(
   productId: 'premium',
   purchaseToken: token,
   state: state,
   obfuscatedAccountId: owner,
   acknowledged: acknowledged,
+  suspended: suspended,
 );
 
 Future<void> _drainEvents() => Future<void>.delayed(Duration.zero);
@@ -63,6 +65,36 @@ Future<void> _until(bool Function() ready) async {
 }
 
 void main() {
+  test('a tab visit keeps a subscription read in the last minute', () async {
+    final fixture = _Fixture();
+    addTearDown(fixture.dispose);
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads, ['session-a']);
+    // A visit within the minute still clears a message left by an
+    // automatic restore, like a refresh, without reading again.
+    fixture.controller.messageKey = 'billing.restoreEmpty';
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads, ['session-a']);
+    expect(fixture.controller.messageKey, isNull);
+    // The refresh button always reads.
+    await fixture.controller.refreshSubscription();
+    expect(fixture.api.contextReads, ['session-a', 'session-a']);
+    // A failed read is never kept.
+    fixture.api.onContext = (_) async => throw const ApiException(
+      statusCode: 503,
+      errorCode: 'google_play_unavailable',
+    );
+    await fixture.controller.refreshSubscription();
+    fixture.api.onContext = null;
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads, hasLength(4));
+    // Another account never reuses the previous account's read.
+    fixture.switchToB();
+    await fixture.controller.refreshSubscriptionIfStale();
+    expect(fixture.api.contextReads.last, 'session-b');
+    expect(fixture.api.contextReads, hasLength(5));
+  });
+
   test(
     'changed Play offer clears catalogue and requires a new choice',
     () async {
@@ -329,7 +361,11 @@ void main() {
       fixture.gateway.owned = <PlayPurchase>[_purchase(owner: _ownerB)];
       await fixture.controller.restorePurchases();
       expect(fixture.api.verifications, isEmpty);
-      expect(fixture.controller.messageKey, 'billing.restoreEmpty');
+      // H-R13-01-01: the foreign receipt still blocks checkout natively.
+      expect(
+        fixture.controller.messageKey,
+        BillingController.playExistingReceiptMessageKey,
+      );
     },
   );
 
@@ -350,6 +386,542 @@ void main() {
       expect(fixture.controller.subscription?.hasAccess, isFalse);
       await fixture.controller.restorePurchases();
       expect(fixture.gateway.ownedQueries, 1);
+    },
+  );
+
+  test(
+    'checkout-owner recovery with only foreign receipts releases waiting without verifying them',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      await fixture.controller.loadPlans();
+      await fixture.controller.purchase(_monthly);
+
+      fixture.gateway.emit(
+        PlayBillingEvent(
+          type: 'purchases',
+          obfuscatedAccountId: _ownerB,
+          purchases: [_purchase(owner: _ownerB)],
+        ),
+      );
+      await _drainEvents();
+      expect(fixture.controller.isBusy, isTrue);
+
+      fixture.gateway.emit(
+        PlayBillingEvent(
+          type: 'purchases',
+          obfuscatedAccountId: _ownerA,
+          purchases: [_purchase(owner: _ownerB)],
+        ),
+      );
+      await _until(() => !fixture.controller.isBusy);
+
+      expect(fixture.api.verifications, isEmpty);
+      expect(fixture.controller.subscription?.hasAccess, isFalse);
+      await fixture.controller.restorePurchases();
+      expect(fixture.gateway.ownedQueries, 1);
+      expect(fixture.controller.messageKey, 'billing.restoreEmpty');
+      expect(fixture.controller.isBusy, isFalse);
+    },
+  );
+
+  for (final sameUser in <bool>[false, true]) {
+    test(
+      '${sameUser ? 'a new scope for the same user' : 'a new account'} handles cancellation and purchase before an old verification finishes',
+      () async {
+        final fixture = _Fixture();
+        addTearDown(fixture.dispose);
+        final oldVerification = Completer<BillingVerification>();
+        final currentSubscription = _active(
+          expiresAt: DateTime.utc(2099, 3, 1),
+        );
+        fixture.api.onVerify = (_, token) => token == 'old-purchase'
+            ? oldVerification.future
+            : Future.value(
+                BillingVerification(
+                  purchaseStatus: 'verified',
+                  subscription: currentSubscription,
+                ),
+              );
+        await fixture.controller.loadPlans();
+        fixture.gateway.emitPurchase(_purchase(token: 'old-purchase'));
+        await _until(() => fixture.api.verifications.length == 1);
+
+        final currentOwner = sameUser ? _ownerA : _ownerB;
+        fixture.account = BillingAccount(
+          userId: sameUser ? 'user-a' : 'user-b',
+          accessToken: 'session-b',
+          scope: Object(),
+        );
+        fixture.api.contexts['session-b'] = BillingPurchaseContext(
+          obfuscatedAccountId: currentOwner,
+          purchaseAllowed: true,
+        );
+        fixture.controller.syncAccount();
+        await fixture.controller.loadPlans();
+        await fixture.controller.purchase(_monthly);
+        fixture.gateway.emit(
+          PlayBillingEvent(
+            type: 'cancelled',
+            obfuscatedAccountId: currentOwner,
+          ),
+        );
+        await _until(
+          () => fixture.controller.messageKey == 'billing.cancelled',
+        );
+        expect(fixture.controller.isBusy, isFalse);
+        expect(oldVerification.isCompleted, isFalse);
+
+        await fixture.controller.purchase(_monthly);
+        fixture.gateway.emitPurchase(
+          _purchase(owner: currentOwner, token: 'current-purchase'),
+        );
+        await _until(
+          () => identical(fixture.controller.subscription, currentSubscription),
+        );
+        expect(fixture.controller.isBusy, isFalse);
+        expect(fixture.controller.messageKey, 'billing.success');
+        expect(fixture.api.verifications, hasLength(2));
+        expect(fixture.api.verifications.last.accessToken, 'session-b');
+        expect(oldVerification.isCompleted, isFalse);
+
+        oldVerification.complete(
+          BillingVerification(
+            purchaseStatus: 'verified',
+            subscription: _active(),
+          ),
+        );
+        await _drainEvents();
+        expect(fixture.controller.subscription, same(currentSubscription));
+        expect(fixture.controller.messageKey, 'billing.success');
+        expect(fixture.controller.isBusy, isFalse);
+      },
+    );
+  }
+
+  for (final verifiedAccess in <bool>[false, true]) {
+    test(
+      'a delayed subscription read cannot replace newer verified access=$verifiedAccess',
+      () async {
+        final fixture = _Fixture();
+        addTearDown(fixture.dispose);
+        final staleSubscription = verifiedAccess ? _inactive : _active();
+        final currentSubscription = verifiedAccess ? _active() : _inactive;
+        fixture.api.subscriptions['session-a'] = staleSubscription;
+        final staleRead = Completer<BillingSubscription>();
+        var reads = 0;
+        fixture.api.onSubscription = (token) => ++reads == 1
+            ? staleRead.future
+            : Future.value(fixture.api.subscriptions[token]!);
+        fixture.api.onContext = (token) async => BillingPurchaseContext(
+          obfuscatedAccountId: _ownerA,
+          purchaseAllowed: !fixture.api.subscriptions[token]!.hasAccess,
+        );
+        fixture.api.onVerify = (token, _) async {
+          fixture.api.subscriptions[token] = currentSubscription;
+          return BillingVerification(
+            purchaseStatus: 'verified',
+            subscription: currentSubscription,
+          );
+        };
+
+        final loading = fixture.controller.loadPlans();
+        await _until(() => reads == 1);
+        fixture.gateway.emitPurchase(_purchase());
+        await _drainEvents();
+        expect(fixture.api.verifications, isEmpty);
+        staleRead.complete(staleSubscription);
+        await loading;
+        await _until(
+          () => identical(fixture.controller.subscription, currentSubscription),
+        );
+        await _until(() => !fixture.controller.isBusy);
+        expect(fixture.controller.subscription, same(currentSubscription));
+        expect(
+          fixture.controller.messageKey,
+          verifiedAccess ? 'billing.success' : 'billing.inactive',
+        );
+        // The pre-verification context may still prohibit checkout. Only a
+        // fresh server context can enable it after the entitlement changes.
+        expect(fixture.controller.purchaseAllowed, isFalse);
+        expect(fixture.controller.isBusy, isFalse);
+        await fixture.controller.refreshSubscription();
+        expect(fixture.controller.subscription, same(currentSubscription));
+        expect(fixture.controller.purchaseAllowed, !verifiedAccess);
+
+        // Reads issued after verification may still refresh the entitlement.
+        fixture.api.subscriptions['session-a'] = staleSubscription;
+        await fixture.controller.refreshSubscription();
+        expect(fixture.controller.subscription, same(staleSubscription));
+        expect(fixture.controller.isBusy, isFalse);
+      },
+    );
+  }
+
+  for (final newerReadFirst in <bool>[false, true]) {
+    test(
+      'subscription reads serialize when newer response becomes ready ${newerReadFirst ? 'first' : 'last'}',
+      () async {
+        final fixture = _Fixture();
+        addTearDown(fixture.dispose);
+        final olderRead = Completer<BillingSubscription>();
+        final newerRead = Completer<BillingSubscription>();
+        final context = Completer<BillingPurchaseContext>();
+        final currentSubscription = _active();
+        var reads = 0;
+        fixture.api.onSubscription = (_) =>
+            ++reads == 1 ? olderRead.future : newerRead.future;
+        fixture.api.onContext = (_) => context.future;
+        fixture.api.verification = BillingVerification(
+          purchaseStatus: 'verified',
+          subscription: currentSubscription,
+        );
+        final loading = fixture.controller.loadPlans();
+        await _until(() => reads == 1);
+        fixture.gateway.emitPurchase(_purchase());
+        await _drainEvents();
+        expect(reads, 1);
+        if (newerReadFirst) {
+          newerRead.complete(currentSubscription);
+        }
+        olderRead.complete(_inactive);
+        await _until(() => reads == 2);
+        if (!newerReadFirst) {
+          newerRead.complete(currentSubscription);
+        }
+        await _until(() => fixture.api.contextReads.length == 2);
+        expect(fixture.api.verifications, isEmpty);
+        expect(fixture.controller.subscription, same(currentSubscription));
+
+        context.complete(
+          const BillingPurchaseContext(
+            obfuscatedAccountId: _ownerA,
+            purchaseAllowed: false,
+          ),
+        );
+        await loading;
+        await _until(() => !fixture.controller.isBusy);
+        expect(fixture.controller.subscription, same(currentSubscription));
+      },
+    );
+  }
+
+  test(
+    'a recovered server subscription supersedes an outstanding subscription read',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      final staleRead = Completer<BillingSubscription>();
+      var readStarted = false;
+      fixture.api.onSubscription = (_) {
+        readStarted = true;
+        return staleRead.future;
+      };
+      final loading = fixture.controller.loadPlans();
+      await _until(() => readStarted);
+      final recovered = _active();
+      fixture.controller.acceptRecoveredSubscription(
+        recovered: recovered,
+        purchaseStatus: 'verified',
+        purchase: _purchase(),
+      );
+
+      staleRead.complete(_inactive);
+      await loading;
+
+      expect(fixture.controller.subscription, same(recovered));
+      expect(fixture.controller.messageKey, 'billing.restored');
+      expect(fixture.controller.purchaseAllowed, isFalse);
+      expect(fixture.controller.isBusy, isFalse);
+    },
+  );
+
+  test(
+    'a subscription read requested during verification starts after the server mutation',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      await fixture.controller.loadPlans();
+      final catalog = Completer<List<PlaySubscriptionPlan>>();
+      fixture.gateway.onQueryPlans = () => catalog.future;
+      final verification = Completer<BillingVerification>();
+      fixture.api.onVerify = (_, _) => verification.future;
+      final loading = fixture.controller.loadPlans();
+      fixture.gateway.emitPurchase(_purchase());
+      await _until(() => fixture.api.verifications.length == 1);
+
+      final currentRead = Completer<BillingSubscription>();
+      var readStarted = false;
+      fixture.api.onSubscription = (_) {
+        readStarted = true;
+        return currentRead.future;
+      };
+      catalog.complete(const [_monthly]);
+      await _drainEvents();
+      expect(readStarted, isFalse);
+
+      final currentSubscription = _active();
+      verification.complete(
+        BillingVerification(
+          purchaseStatus: 'verified',
+          subscription: currentSubscription,
+        ),
+      );
+      await _until(
+        () => identical(fixture.controller.subscription, currentSubscription),
+      );
+      await _until(() => readStarted);
+      currentRead.complete(currentSubscription);
+      await loading;
+      expect(fixture.controller.subscription, same(currentSubscription));
+      expect(fixture.controller.messageKey, 'billing.success');
+      expect(fixture.controller.isBusy, isFalse);
+    },
+  );
+
+  for (final newAccess in [false, true]) {
+    for (final secondCompletesFirst in [false, true]) {
+      test(
+        'R11-01 distinct tokens serialize common entitlement access=$newAccess secondReadyFirst=$secondCompletesFirst',
+        () async {
+          final fixture = _Fixture();
+          addTearDown(fixture.dispose);
+          final old = newAccess ? _inactive : _active();
+          final current = newAccess ? _active() : _inactive;
+          fixture.api.subscriptions['session-a'] = old;
+          await fixture.controller.loadPlans();
+          final first = Completer<BillingVerification>();
+          final second = Completer<BillingVerification>();
+          var inFlight = 0;
+          var maximumInFlight = 0;
+          var serverSubscription = old;
+          fixture.api.onVerify = (_, token) {
+            inFlight++;
+            if (inFlight > maximumInFlight) {
+              maximumInFlight = inFlight;
+            }
+            final response = token == 'old-token'
+                ? first.future
+                : second.future;
+            if (token == 'new-token') serverSubscription = current;
+            return response.whenComplete(() => inFlight--);
+          };
+          fixture.gateway.owned = [_purchase(token: 'old-token')];
+          final restoring = fixture.controller.restorePurchases();
+          await _until(() => fixture.api.verifications.length == 1);
+          fixture.gateway.emitPurchase(_purchase(token: 'new-token'));
+          await _until(
+            () => fixture.controller.messageKey == 'billing.verifying',
+          );
+          await _drainEvents();
+
+          if (secondCompletesFirst) {
+            second.complete(
+              BillingVerification(
+                purchaseStatus: 'verified',
+                subscription: current,
+              ),
+            );
+          }
+          await _drainEvents();
+          // A ready later response must not cause a concurrent server request.
+          expect(fixture.api.verifications, hasLength(1));
+          expect(fixture.controller.isBusy, isTrue);
+          expect(serverSubscription, same(old));
+          first.complete(
+            BillingVerification(purchaseStatus: 'verified', subscription: old),
+          );
+          await _until(() => fixture.api.verifications.length == 2);
+          if (!secondCompletesFirst) {
+            second.complete(
+              BillingVerification(
+                purchaseStatus: 'verified',
+                subscription: current,
+              ),
+            );
+          }
+          await restoring;
+          await _until(() => !fixture.controller.isBusy);
+          expect(maximumInFlight, 1);
+          expect(fixture.api.verifications.map((r) => r.purchaseToken), [
+            'old-token',
+            'new-token',
+          ]);
+          expect(fixture.controller.subscription, same(current));
+          expect(serverSubscription, same(current));
+          expect(
+            fixture.controller.messageKey,
+            newAccess ? 'billing.success' : 'billing.inactive',
+          );
+        },
+      );
+    }
+  }
+
+  test(
+    'R11-01 a failed verification releases the common entitlement queue',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      final first = Completer<BillingVerification>();
+      final current = _active();
+      fixture.api.onVerify = (_, token) => token == 'old-token'
+          ? first.future
+          : Future.value(
+              BillingVerification(
+                purchaseStatus: 'verified',
+                subscription: current,
+              ),
+            );
+      fixture.gateway.owned = [_purchase(token: 'old-token')];
+      final restoring = fixture.controller.restorePurchases();
+      await _until(() => fixture.api.verifications.length == 1);
+      fixture.gateway.emitPurchase(_purchase(token: 'new-token'));
+      await _until(() => fixture.controller.messageKey == 'billing.verifying');
+      expect(fixture.api.verifications, hasLength(1));
+      first.completeError(
+        const ApiException(statusCode: 503, errorCode: 'synthetic'),
+      );
+      await restoring;
+      await _until(() => !fixture.controller.isBusy);
+      expect(fixture.api.verifications, hasLength(2));
+      expect(fixture.controller.subscription, same(current));
+      expect(fixture.controller.messageKey, 'billing.success');
+    },
+  );
+
+  for (final sameUser in [false, true]) {
+    test(
+      'R11-01 replacement scope detaches queued tokens sameUser=$sameUser',
+      () async {
+        final fixture = _Fixture();
+        addTearDown(fixture.dispose);
+        final old = Completer<BillingVerification>();
+        final current = _active();
+        fixture.api.onVerify = (session, _) => session == 'session-a'
+            ? old.future
+            : Future.value(
+                BillingVerification(
+                  purchaseStatus: 'verified',
+                  subscription: current,
+                ),
+              );
+        fixture.gateway.owned = [_purchase(token: 'old-running')];
+        final restoring = fixture.controller.restorePurchases();
+        await _until(() => fixture.api.verifications.length == 1);
+        fixture.gateway.emitPurchase(_purchase(token: 'old-queued'));
+        await _until(
+          () => fixture.controller.messageKey == 'billing.verifying',
+        );
+        final owner = sameUser ? _ownerA : _ownerB;
+        fixture.api.contexts['session-b'] = BillingPurchaseContext(
+          obfuscatedAccountId: owner,
+          purchaseAllowed: true,
+        );
+        fixture.account = BillingAccount(
+          userId: sameUser ? 'user-a' : 'user-b',
+          accessToken: 'session-b',
+          scope: Object(),
+        );
+        fixture.controller.syncAccount();
+        await fixture.controller.loadPlans();
+        fixture.gateway.emitPurchase(
+          _purchase(owner: owner, token: 'new-scope'),
+        );
+        await _until(() => identical(fixture.controller.subscription, current));
+        expect(old.isCompleted, isFalse);
+        old.complete(
+          const BillingVerification(
+            purchaseStatus: 'verified',
+            subscription: _inactive,
+          ),
+        );
+        await restoring;
+        await _drainEvents();
+        expect(
+          fixture.api.verifications.map(
+            (r) => (r.accessToken, r.purchaseToken),
+          ),
+          [('session-a', 'old-running'), ('session-b', 'new-scope')],
+        );
+        expect(fixture.controller.subscription, same(current));
+        expect(fixture.controller.isBusy, isFalse);
+        expect(fixture.controller.messageKey, 'billing.success');
+      },
+    );
+  }
+
+  test(
+    'R11-01 reentrant scope replacement cannot dispatch the old verification',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      await fixture.controller.loadPlans();
+      final current = Completer<BillingVerification>();
+      fixture.api.onVerify = (session, _) {
+        expect(session, 'session-b');
+        return current.future;
+      };
+      Future<void>? replacement;
+      var replaced = false;
+      fixture.controller.addListener(() {
+        if (replaced || fixture.controller.messageKey != 'billing.verifying') {
+          return;
+        }
+        replaced = true;
+        fixture.switchToB();
+        replacement = () async {
+          await fixture.controller.loadPlans();
+          fixture.gateway.emitPurchase(_purchase(owner: _ownerB));
+        }();
+      });
+      fixture.gateway.emitPurchase(_purchase());
+      await _until(() => replacement != null);
+      await replacement;
+      await _until(() => fixture.api.verifications.length == 1);
+      expect(fixture.api.verifications.single.accessToken, 'session-b');
+      expect(fixture.controller.isBusy, isTrue);
+      expect(fixture.controller.messageKey, 'billing.verifying');
+      current.complete(
+        BillingVerification(
+          purchaseStatus: 'verified',
+          subscription: _active(),
+        ),
+      );
+      await _until(() => !fixture.controller.isBusy);
+      expect(fixture.controller.subscription?.hasAccess, isTrue);
+    },
+  );
+
+  test(
+    'R13-01 unknown owners remain recovery evidence without acquiring account access',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      fixture.gateway.owned = [
+        _purchase(owner: null, token: 'unbound', suspended: true),
+        _purchase(owner: _ownerB, token: 'foreign', suspended: true),
+        _purchase(token: 'owned', suspended: true, acknowledged: true),
+      ];
+      final discovered = await fixture.controller.queryRecoveryPurchases();
+      expect(discovered.map((p) => p.obfuscatedAccountId), [
+        null,
+        _ownerB,
+        _ownerA,
+      ]);
+      expect(discovered.every((p) => p.suspended), isTrue);
+      fixture.api.verification = const BillingVerification(
+        purchaseStatus: 'verified',
+        subscription: _inactive,
+      );
+      await fixture.controller.restorePurchases();
+      expect(fixture.api.verifications.map((r) => r.purchaseToken), ['owned']);
+      expect(fixture.controller.subscription?.hasAccess, isFalse);
+      // A07-billing-02: a suspended receipt without access is a Play hold.
+      expect(
+        fixture.controller.messageKey,
+        BillingController.playPaymentIssueMessageKey,
+      );
     },
   );
 
@@ -497,6 +1069,35 @@ void main() {
       expect(fixture.api.verifications, hasLength(1));
       expect(fixture.controller.subscription?.hasAccess, isFalse);
       expect(fixture.controller.messageKey, 'billing.inactive');
+    },
+  );
+
+  test(
+    'a suspended purchased receipt is restored through the server without local access',
+    () async {
+      final fixture = _Fixture();
+      addTearDown(fixture.dispose);
+      fixture.gateway.owned = [_purchase(suspended: true, acknowledged: true)];
+      fixture.api.verification = const BillingVerification(
+        purchaseStatus: 'verified',
+        subscription: _inactive,
+      );
+
+      await fixture.controller.restorePurchases();
+
+      expect(fixture.api.verifications, hasLength(1));
+      expect(
+        fixture.api.verifications.single.purchaseToken,
+        'purchase-token-test',
+      );
+      expect(fixture.controller.subscription?.hasAccess, isFalse);
+      // A07-billing-02: a suspended receipt without access is a Play hold.
+      expect(
+        fixture.controller.messageKey,
+        BillingController.playPaymentIssueMessageKey,
+      );
+      expect(fixture.gateway.openedOwners, isEmpty);
+      expect(fixture.controller.isBusy, isFalse);
     },
   );
 
@@ -1053,11 +1654,14 @@ class _FakeApi implements BillingApiRepository {
     subscription: _active(),
   );
   Future<BillingPurchaseContext> Function(String)? onContext;
+  Future<BillingSubscription> Function(String)? onSubscription;
   Future<BillingVerification> Function(String, String)? onVerify;
 
   @override
   Future<BillingSubscription> getSubscription(String token) async =>
-      subscriptions[token]!;
+      onSubscription == null
+      ? subscriptions[token]!
+      : await onSubscription!(token);
 
   @override
   Future<BillingPurchaseContext> getPurchaseContext(String token) async {

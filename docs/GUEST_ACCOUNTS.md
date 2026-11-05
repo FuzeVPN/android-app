@@ -16,6 +16,22 @@ Après activation, créer un compte est facultatif. Cette création demande
 uniquement une adresse e-mail et un mot de passe. Elle transforme l’identité
 invitée existante ; elle ne crée pas un second propriétaire de l’abonnement.
 
+### Correction des sources du 19 octobre 2026 : reçu suspendu
+
+La découverte et la restauration invitée incluent les abonnements Play
+suspendus dans la lecture native. Le reçu acheté conserve son propriétaire
+opaque d’origine et le booléen `suspended` ; cette information sert à retrouver
+une identité et à la faire vérifier au serveur. Elle n’active ni ne transfère
+un abonnement localement. Un reçu pending ou suspendu ne justifie pas un
+nouveau paiement tant qu’il reste détenu. La session et le droit d’accès ne
+proviennent que de la réponse API de restauration/vérification ; le corps de
+requête ne substitue pas l’état client au jeton Play et à la preuve invitée.
+Voir le [contrat de lecture et vérification](PLAY_BILLING.md).
+
+Cette correction ne constitue pas une recette réelle de paiement suspendu ou
+de restauration sur un autre appareil ; les limites datées du registre sont
+conservées.
+
 ## Parcours de l’application
 
 - Sans session récupérable : accueil FuzeVPN avec **Démarrer**, **Se connecter**
@@ -51,6 +67,8 @@ invitée existante ; elle ne crée pas un second propriétaire de l’abonnement
   échouer conserve l’invité ; une connexion réussie change de compte et ne
   transforme pas l’invité, ne fusionne pas les droits et ne transfère pas son
   abonnement. **Créer mon compte** conserve son parcours de conversion distinct.
+  Pendant un travail invité, une connexion VPN ou une opération d’identité, le
+  formulaire de la fenêtre est désactivé et dit pourquoi.
 
 L’historique local d’activation sert uniquement à choisir l’écran d’entrée. Il
 est conservé par identité dans le stockage protégé Android pour garder l’accès
@@ -169,7 +187,67 @@ ou **409 `account_login_required`** ne remplace aucune credential.
   du même invité. Une indisponibilité réseau reste récupérable.
 - **Déconnexion volontaire** : désactiver la reprise automatique avant de
   terminer la session. Ne pas reconnecter l’utilisateur silencieusement au
-  lancement suivant.
+  lancement suivant. C’est la **seule** fin de session qui révoque la reprise.
+- **Cause transmise au natif** : `storageClearSession` reçoit `reason`
+  (`voluntary`, `expired` ou `abandoned`), en plus du drapeau
+  `session_expired` gardé pour les ponts plus anciens. Les demandes qui
+  rejoignent une même fin sont fusionnées : elle est expirée si l’une l’est
+  (seule cause qui affiche « session expirée »), et la reprise est révoquée
+  dès qu’une demande est volontaire. Rejoindre au démarrage une fin native en
+  cours n’ajoute aucune intention (`expired` ou `abandoned`).
+- **Admission automatique abandonnée** (reprise ou renouvellement annulé, ou
+  dont l’écriture native a échoué après sa soumission, corruption avérée,
+  tunnel orphelin au démarrage) : ne pas adopter la session, effacer seulement
+  ce qu’elle a pu écrire, sans révoquer la reprise ni effacer son message ou
+  son délai `Retry-After`, et sans avis « session expirée ». Une session
+  valide qui n’appartient pas à cette admission n’est jamais purgée.
+- **Indisponibilité temporaire** (réseau, 429, 5xx, Keystore illisible,
+  renouvellement refusé parce qu’une autre opération est en cours, délai
+  `Retry-After` en cours) : conserver la session et le tunnel, avec l’avis
+  « service temporairement indisponible ». La restauration reste en attente,
+  avec un réessai. Tout renouvellement, au premier plan comme en arrière-plan,
+  respecte `Retry-After` : aucune session n’est créée avant l’échéance. Une
+  session déjà renouvelée et écrite reste en attente si seule sa restauration
+  échoue. Une lecture transitoire de la liaison du slot ou du marqueur de
+  reprise ne décide rien : ni « session non inscrite », ni fin expirée.
+- **Clé Keystore disparue** (`secure_storage_corrupt`) : une session illisible
+  est purgée comme une admission abandonnée ; une liaison illisible compte
+  comme une session inscrite ; un appareil courant illisible est oublié, la
+  session est gardée et un nouvel appareil est enregistré à la connexion.
+- **Jeton renouvelé refusé à son tour** : pas de second renouvellement ; la
+  session est gardée avec l’avis « service temporairement indisponible ».
+- **Report lié à l’identité** : une reprise différée ne vaut que pour la
+  session (ou l’absence de session) pour laquelle elle a été différée ; une
+  connexion explicite par e-mail ou Google désactive la reprise automatique
+  avant d’écrire sa propre session.
+- **Session inscrite stockée** : une session inscrite stockée, même expirée ou
+  jamais restaurée (slot natif en attente), vaut intention explicite de
+  quitter l’invité. Sa fin ne relance jamais la reprise invitée automatique :
+  l’opt-out est réessayé d’abord. Tant qu’il échoue, la reprise automatique
+  reste bloquée et rien n’est purgé ; le lancement suivant réessaie.
+- **Délai `Retry-After`** : la page de restauration affiche le compte à
+  rebours et son bouton « Réessayer » reste inactif jusqu’à l’échéance.
+- **Expiration côté serveur** : une session que le serveur vient de délivrer
+  n’est jamais refusée par l’horloge de l’appareil ; seuls ses 401 comptent.
+  Si cette horloge la juge déjà échue, l’avis « Heure de l’appareil en avance »
+  (`device_clock_ahead`) invite à activer la date et l’heure automatiques ; une
+  connexion ou un changement de lieu ne l’efface pas. Dans le processus, cette
+  session n’est jamais renouvelée préventivement sur l’horloge (premier plan,
+  connexion, changement de lieu) : seul un 401 la renouvelle. Les diagnostics
+  gardent son compte et son jeton, sans échéance jugée sur cette horloge.
+  Limite connue : au lancement suivant, la copie stockée est jugée sur
+  l’horloge de l’appareil, sans appel au serveur. Une session inscrite se
+  termine alors avec l’avis « session expirée », et un invité reçoit une
+  nouvelle session à chaque lancement. Sans le serveur, l’appareil ne
+  distingue pas une horloge en avance d’une vraie expiration, et un jeton jugé
+  échu n’est jamais envoyé.
+- **Jeton inscrit échu pendant un changement de lieu** : la session se termine
+  comme une expiration (avis « session expirée »), jamais par un arrêt
+  silencieux du tunnel.
+- **Fin bornée** : une fin qui attend une écriture native bloquée aboutit en
+  10 s ; le renouvellement invité bloqué est abandonné et les écritures
+  suivantes repartent d’une file neuve, pour que l’application reste
+  utilisable (connexion, accueil).
 - **Claim confirmé** : nettoyer les credentials invitées sans modifier le
   jeton courant. Un échec du nettoyage ne peut annuler la conversion serveur.
 - **Réponse de claim perdue** : relire le profil avec la session initiatrice
@@ -183,7 +261,13 @@ Chaque adoption de session vérifie le `user_id` retourné avec le profil serveu
 avant de publier un compte utilisable. Les barrières d’opération de session
 empêchent une réponse ancienne ou un HTTP 401 tardif de modifier une autre
 autorisation. Les opérations de connexion, migration et révocation conservent
-leurs protections existantes.
+leurs protections existantes. Quand un 401 renouvelle le jeton invité, une
+connexion ou une révocation d’appareil est relancée une fois avec le nouveau
+jeton, et le suivi d’une migration repart du renouvellement ; un second 401
+garde la session avec l’avis « service temporairement indisponible ».
+Une restauration en attente apparue derrière une page poussée (connexion par
+email ouverte pendant une reprise invitée automatique, par exemple) ferme
+cette page pour montrer la restauration et son bouton « Réessayer ».
 
 Le claim ne réécrit pas la session native : il préserve le tunnel courant,
 la clé WireGuard, le CSR et le certificat OpenVPN, le `device_id` et les

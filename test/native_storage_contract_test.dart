@@ -381,6 +381,29 @@ void main() {
     },
   );
 
+  test('an end sends its cause, with the expired flag kept for older '
+      'bridges (P1)', () async {
+    responses['storageClearSession'] = <String, Object?>{
+      'tunnel_stopped': true,
+      'session_cleared': true,
+    };
+    for (final (cause, legacyFlag) in <(SessionEndCause, bool)>[
+      (SessionEndCause.voluntary, false),
+      (SessionEndCause.expired, true),
+      (SessionEndCause.abandoned, true),
+    ]) {
+      expect((await store.clearSessionFor(cause)).isComplete, isTrue);
+      expect(calls.last.method, 'storageClearSession');
+      expect(calls.last.arguments, <String, Object>{
+        'session_expired': legacyFlag,
+        'reason': cause.name,
+      });
+    }
+    // The legacy entry point is unchanged: no reason, only the flag.
+    await store.clearSession(expired: true);
+    expect(calls.last.arguments, <String, Object>{'session_expired': true});
+  });
+
   test(
     'an unreadable session requests common termination in the controller',
     () async {
@@ -437,6 +460,69 @@ void main() {
       'prepareTunnelRequest',
     ]);
     expect(calls.last.arguments, <String, Object?>{'account_id': 'user-a'});
+  });
+
+  // C4-03: an unscoped registered admission is told from a bound session.
+  test('a pending admission is read from the native binding', () async {
+    responses['storageReadSessionBinding'] = 'pending';
+    expect(await store.readStoredSessionIsPendingAdmission(), isTrue);
+    responses['storageReadSessionBinding'] = 'account';
+    expect(await store.readStoredSessionIsPendingAdmission(), isFalse);
+    responses['storageReadSessionBinding'] = null;
+    expect(await store.readStoredSessionIsPendingAdmission(), isFalse);
+    expect(
+      calls.map((MethodCall call) => call.method).toSet(),
+      <String>{'storageReadSessionBinding'},
+    );
+  });
+
+  test('an older bridge falls back to the marker of pending writes', () async {
+    final AuthSession session = AuthSession(
+      accessToken: 'secret-token',
+      expiresAt: DateTime.utc(2027, 1, 2, 3, 4, 5),
+    );
+    await store.writeSession(session);
+    await store.writeSession(session, userId: 'user-a');
+    final Map<String, Object?> pending =
+        jsonDecode((calls[0].arguments as Map)['payload'] as String)
+            as Map<String, Object?>;
+    final Map<String, Object?> bound =
+        jsonDecode((calls[1].arguments as Map)['payload'] as String)
+            as Map<String, Object?>;
+    expect(pending['admission'], 'registered');
+    // Bound payloads keep the exact two-key format native code validates.
+    expect(bound.keys.toSet(), <String>{'access_token', 'expires_at'});
+
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (MethodCall call) async {
+          calls.add(call);
+          if (call.method == 'storageReadSessionBinding') {
+            throw MissingPluginException();
+          }
+          return responses[call.method];
+        });
+    responses['storageReadSession'] = (calls[0].arguments as Map)['payload'];
+    expect(await store.readStoredSessionIsPendingAdmission(), isTrue);
+    expect((await store.readSession())?.accessToken, 'secret-token');
+    responses['storageReadSession'] = (calls[1].arguments as Map)['payload'];
+    expect(await store.readStoredSessionIsPendingAdmission(), isFalse);
+    responses['storageReadSession'] = null;
+    expect(await store.readStoredSessionIsPendingAdmission(), isFalse);
+  });
+
+  // C3-01: "system language" is an explicit null code, never an empty map.
+  test('notification locale always carries its language code', () async {
+    await bridge.setNotificationLocale(null);
+    await bridge.setNotificationLocale('de');
+    expect(calls.map((MethodCall call) => call.method), <String>[
+      'setNotificationLocale',
+      'setNotificationLocale',
+    ]);
+    final Map<Object?, Object?> system =
+        calls.first.arguments as Map<Object?, Object?>;
+    expect(system.containsKey('language_code'), isTrue);
+    expect(system['language_code'], isNull);
+    expect(calls.last.arguments, <String, Object?>{'language_code': 'de'});
   });
 }
 

@@ -120,13 +120,10 @@ void main() {
       }
     });
 
-    test('refuse les statuts, identifiants et délais incohérents', () {
+    test('refuse les statuts et identifiants incohérents', () {
       final List<Map<String, dynamic>> invalid = <Map<String, dynamic>>[
         migrationJson(status: 'moving'),
         <String, dynamic>{...migrationJson(), 'device_id': 'other-device'},
-        migrationJson(retryAfterSeconds: -1),
-        migrationJson(retryAfterSeconds: 301),
-        migrationJson(retryAfterSeconds: 1.5),
         <String, dynamic>{...migrationJson()}..remove('migration_id'),
       ];
       for (final Map<String, dynamic> json in invalid) {
@@ -138,6 +135,24 @@ void main() {
           throwsFormatException,
         );
       }
+    });
+
+    test('borne ou ignore un délai sans perdre la migration (C5-02)', () {
+      final Map<Object, int?> delays = <Object, int?>{
+        -1: null,
+        301: 300,
+        1.5: null,
+        'soon': null,
+      };
+      delays.forEach((Object retry, int? expected) {
+        final DeviceLocationMigration migration =
+            DeviceLocationMigration.fromJson(
+              migrationJson(retryAfterSeconds: retry),
+              expectedDeviceId: 'device-123',
+            );
+        expect(migration.migrationId, 'migration-123');
+        expect(migration.retryAfterSeconds, expected);
+      });
     });
   });
 

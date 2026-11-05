@@ -189,6 +189,48 @@ void main() {
   });
 
   _restorationTest(
+    'retry after an offline start and a VPN stop shows a usable catalogue',
+    (tester, h) async {
+      h.api.locationsFailure = const ApiNetworkException();
+      await h.controller.initialize();
+      await tester.pumpWidget(
+        FuzeVpnApp(controller: h.controller, autoInitialize: false),
+      );
+      await tester.pumpAndSettle();
+      await _tapVisible(
+        tester,
+        find.byKey(const ValueKey('restoration-disconnect-vpn')),
+      );
+      await tester.pumpAndSettle();
+      expect(h.controller.isConnected, isFalse);
+      h.api.failure = null;
+      h.api.locationsFailure = null;
+      await _tapVisible(
+        tester,
+        find.byKey(const ValueKey('retry-account-restoration')),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(HomeShell), findsOneWidget);
+      expect(find.text('Choisissez un emplacement'), findsNothing);
+      expect(find.text('Paris'), findsWidgets);
+      await _tapVisible(
+        tester,
+        find.byKey(const PageStorageKey<String>('connection-options')),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('OpenVPN indisponible'), findsNothing);
+      final openVpn = find.widgetWithText(ChoiceChip, 'OpenVPN');
+      await tester.ensureVisible(openVpn);
+      expect(tester.widget<ChoiceChip>(openVpn).onSelected, isNotNull);
+      await tester.tap(find.text('Emplacements'));
+      await tester.pumpAndSettle();
+      expect(find.text('Aucune destination disponible'), findsNothing);
+      expect(h.api.locationsCalls, 2);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  _restorationTest(
     'a pending retry keeps VPN stop available and is not submitted twice',
     (tester, h) async {
       await h.controller.initialize();
@@ -420,9 +462,11 @@ class _RestorationFixture {
 
 class _RestorationApi implements VpnApiRepository {
   ApiFailure? failure = const ApiNetworkException();
+  ApiFailure? locationsFailure;
   Future<UserProfile>? pendingProfile;
   int meCalls = 0;
   int loginCalls = 0;
+  int locationsCalls = 0;
   @override
   Future<UserProfile> me(String token) async {
     meCalls++;
@@ -431,15 +475,19 @@ class _RestorationApi implements VpnApiRepository {
   }
 
   @override
-  Future<List<Location>> locations() async => const [
-    Location(
-      id: 'test-location',
-      city: 'Paris',
-      countryCode: 'FR',
-      displayName: 'Paris',
-      supportedProtocols: {VpnProtocol.wireGuard, VpnProtocol.openVpn},
-    ),
-  ];
+  Future<List<Location>> locations() async {
+    locationsCalls++;
+    if (locationsFailure != null) throw locationsFailure!;
+    return const [
+      Location(
+        id: 'test-location',
+        city: 'Paris',
+        countryCode: 'FR',
+        displayName: 'Paris',
+        supportedProtocols: {VpnProtocol.wireGuard, VpnProtocol.openVpn},
+      ),
+    ];
+  }
   @override
   Future<DeviceList> listDevices(String token) async =>
       const DeviceList(limit: 2, devices: []);

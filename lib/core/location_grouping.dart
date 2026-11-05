@@ -1,3 +1,4 @@
+import 'country_data.dart';
 import 'location_presentation.dart';
 import 'models.dart';
 
@@ -41,7 +42,7 @@ List<LocationCountryGroup> groupLocations(
 }) {
   final countries = <String, Map<String, List<Location>>>{};
   for (final location in locations) {
-    final countryCode = _normalizedCountryCode(location.countryCode);
+    final countryCode = normalizeLocationCountryCode(location.countryCode);
     final cityKey = normalizeLocationSearch(location.city);
     final cities = countries.putIfAbsent(countryCode, () => {});
     cities.putIfAbsent(cityKey, () => []).add(location);
@@ -77,11 +78,214 @@ List<LocationCountryGroup> groupLocations(
       ),
     );
   }
-  result.sort((a, b) {
-    final byName = _compareLabels(a.name, b.name);
-    return byName != 0 ? byName : a.countryCode.compareTo(b.countryCode);
+  return List<LocationCountryGroup>.unmodifiable(
+    sortedByLocalizedLabel<LocationCountryGroup>(
+      result,
+      (country) => country.name,
+      languageCode: languageCode,
+      tieBreak: (a, b) => a.countryCode.compareTo(b.countryCode),
+    ),
+  );
+}
+
+/// Orders [items] by their translated [label] in the alphabet of
+/// [languageCode], without depending on a platform collator: identical
+/// offline and on every Android version. Case, accents and punctuation are
+/// secondary, numbers are natural, and letters which a language sorts
+/// separately keep their place (sv `Ö` after `Z`, cs `Ch` after `H`, uk `І`
+/// after `И`, fa `گ` after `ک`, ur `آ` after the `ا` block, Thai pre-vowels
+/// by their consonant). Equal
+/// labels use [tieBreak], so the result never depends on the input order.
+List<T> sortedByLocalizedLabel<T>(
+  Iterable<T> items,
+  String Function(T item) label, {
+  required String languageCode,
+  int Function(T a, T b)? tieBreak,
+}) {
+  final language = languageCode.split(RegExp('[-_]')).first.toLowerCase();
+  final keyed = [
+    for (final item in items)
+      (item: item, label: label(item), key: _sortKey(label(item), language)),
+  ];
+  keyed.sort((a, b) {
+    var order = _compareKeys(a.key, b.key);
+    if (order == 0) {
+      order = a.label.toLowerCase().compareTo(b.label.toLowerCase());
+    }
+    if (order == 0) order = a.label.compareTo(b.label);
+    if (order == 0 && tieBreak != null) order = tieBreak(a.item, b.item);
+    return order;
   });
-  return List<LocationCountryGroup>.unmodifiable(result);
+  return [for (final entry in keyed) entry.item];
+}
+
+// A letter sorted after [base] as a separate letter becomes base + marker.
+// Markers are above every code unit a key can otherwise contain.
+const _after1 = '￱', _after2 = '￲', _after3 = '￳';
+
+/// Script-wide primary equivalences (CLDR root order).
+const _scriptOrder = <String, String>{
+  // Greek tonos, dialytika and final sigma are secondary.
+  'ά': 'α', 'έ': 'ε', 'ή': 'η', 'ί': 'ι', 'ό': 'ο', 'ύ': 'υ', 'ώ': 'ω',
+  'ϊ': 'ι', 'ϋ': 'υ', 'ΐ': 'ι', 'ΰ': 'υ', 'ς': 'σ',
+  // Cyrillic: ё is е; ґ, є, і, ї follow г, е, и.
+  'ё': 'е', 'ґ': 'г$_after1', 'є': 'е$_after1', 'і': 'и$_after1',
+  'ї': 'и$_after2',
+  // Persian and Urdu letters follow their Arabic base letters.
+  'پ': 'ب$_after1', 'ٹ': 'ت$_after1', 'چ': 'ج$_after1', 'ڈ': 'د$_after1',
+  'ڑ': 'ر$_after1', 'ژ': 'ز$_after1', 'ک': 'ك', 'گ': 'ك$_after1',
+  'ں': 'ن$_after1', 'ہ': 'ه', 'ۀ': 'ه', 'ھ': 'ه$_after1', 'ی': 'ي',
+  'ے': 'ي$_after1',
+};
+
+const _nordic = <String, String>{
+  'æ': 'z$_after1',
+  'ä': 'z$_after1',
+  'ø': 'z$_after2',
+  'ö': 'z$_after2',
+  'å': 'z$_after3',
+};
+const _persoArabic = <String, String>{
+  // و precedes ه in the Persian and Urdu alphabets.
+  'ه': 'و$_after1', 'ہ': 'و$_after1', 'ۀ': 'و$_after1', 'ھ': 'و$_after2',
+};
+const _urdu = <String, String>{
+  // CLDR ur, unlike fa: آ is a letter after the whole ا block.
+  'آ': 'ا$_after1',
+  // ؤ, ئ and ۓ are و, ی and ے plus a secondary mark.
+  'ؤ': 'و', 'ئ': 'ي', 'ۓ': 'ي$_after1',
+  // و precedes ہ, as in Persian.
+  'ه': 'و$_after1', 'ہ': 'و$_after1', 'ۀ': 'و$_after1',
+  // An aspirate (consonant + ھ) follows every other word of its consonant:
+  // ھ sorts after the last letter (ی, ے) and before the next consonant.
+  'ھ': 'ي$_after3',
+  // Kasra (U+0650) is a secondary mark.
+  '\u0650': '',
+};
+
+/// Letters that the language sorts as separate letters (CLDR tailorings).
+const _languageOrder = <String, Map<String, String>>{
+  'sv': {
+    'å': 'z$_after1',
+    'ä': 'z$_after2',
+    'æ': 'z$_after2',
+    'ö': 'z$_after3',
+    'ø': 'z$_after3',
+  },
+  'da': _nordic,
+  'nb': _nordic,
+  'tr': {
+    'ç': 'c$_after1',
+    'ğ': 'g$_after1',
+    'ı': 'h$_after1',
+    'ö': 'o$_after1',
+    'ş': 's$_after1',
+    'ü': 'u$_after1',
+  },
+  'cs': {
+    'č': 'c$_after1',
+    'ř': 'r$_after1',
+    'š': 's$_after1',
+    'ž': 'z$_after1',
+  },
+  'pl': {
+    'ą': 'a$_after1',
+    'ć': 'c$_after1',
+    'ę': 'e$_after1',
+    'ł': 'l$_after1',
+    'ń': 'n$_after1',
+    'ó': 'o$_after1',
+    'ś': 's$_after1',
+    'ź': 'z$_after1',
+    'ż': 'z$_after2',
+  },
+  'ro': {
+    'ă': 'a$_after1',
+    'â': 'a$_after2',
+    'î': 'i$_after1',
+    'ș': 's$_after1',
+    'ş': 's$_after1',
+    'ț': 't$_after1',
+    'ţ': 't$_after1',
+  },
+  'es': {'ñ': 'n$_after1'},
+  'vi': {
+    'ă': 'a$_after1',
+    'ằ': 'a$_after1',
+    'ắ': 'a$_after1',
+    'ẳ': 'a$_after1',
+    'ẵ': 'a$_after1',
+    'ặ': 'a$_after1',
+    'â': 'a$_after2',
+    'ầ': 'a$_after2',
+    'ấ': 'a$_after2',
+    'ẩ': 'a$_after2',
+    'ẫ': 'a$_after2',
+    'ậ': 'a$_after2',
+    'đ': 'd$_after1',
+    'ê': 'e$_after1',
+    'ề': 'e$_after1',
+    'ế': 'e$_after1',
+    'ể': 'e$_after1',
+    'ễ': 'e$_after1',
+    'ệ': 'e$_after1',
+    'ô': 'o$_after1',
+    'ồ': 'o$_after1',
+    'ố': 'o$_after1',
+    'ổ': 'o$_after1',
+    'ỗ': 'o$_after1',
+    'ộ': 'o$_after1',
+    'ơ': 'o$_after2',
+    'ờ': 'o$_after2',
+    'ớ': 'o$_after2',
+    'ở': 'o$_after2',
+    'ỡ': 'o$_after2',
+    'ợ': 'o$_after2',
+    'ư': 'u$_after1',
+    'ừ': 'u$_after1',
+    'ứ': 'u$_after1',
+    'ử': 'u$_after1',
+    'ữ': 'u$_after1',
+    'ự': 'u$_after1',
+  },
+  // Alef with hamza is alef plus a secondary mark in Arabic (CLDR). Alef with
+  // madda, ؤ and ئ keep their code unit order, which matches CLDR for every
+  // bundled name: آ sorts ahead of the alef words, as in Persian.
+  'ar': {'أ': 'ا', 'إ': 'ا'},
+  'fa': _persoArabic,
+  'ur': _urdu,
+};
+
+final _thaiPreVowel = RegExp('([เ-ไ])([ก-ฮ])');
+final _combiningMarks = RegExp(r'[̀-ͯ]');
+final _separators = RegExp(r'[^\p{L}\p{M}\p{N}￱-￳]+', unicode: true);
+
+String _sortKey(String value, String language) {
+  var text = value;
+  // Turkish keeps dotless and dotted I distinct.
+  if (language == 'tr') text = text.replaceAll('I', 'ı').replaceAll('İ', 'i');
+  text = text.toLowerCase();
+  if (language == 'cs') text = text.replaceAll('ch', 'h$_after1');
+  // Thai pre-vowels are written first but sorted after their consonant.
+  if (language == 'th') {
+    text = text.replaceAllMapped(_thaiPreVowel, (m) => '${m[2]}${m[1]}');
+  }
+  final tailoring = _languageOrder[language] ?? const <String, String>{};
+  final buffer = StringBuffer();
+  for (final rune in text.runes) {
+    final char = String.fromCharCode(rune);
+    buffer.write(
+      tailoring[char] ??
+          _scriptOrder[char] ??
+          latinSearchReplacements[char] ??
+          char,
+    );
+  }
+  return buffer
+      .toString()
+      .replaceAll(_combiningMarks, '')
+      .replaceAll(_separators, ' ')
+      .trim();
 }
 
 /// Selects only from the supplied current group. This is a deterministic choice,
@@ -110,11 +314,6 @@ Location? chooseLocationServer(
   return candidates.firstOrNull;
 }
 
-String _normalizedCountryCode(String value) {
-  final code = value.trim().toUpperCase();
-  return code == 'UK' ? 'GB' : code;
-}
-
 String _cleanLabel(String value) =>
     value.trim().replaceAll(RegExp(r'\s+'), ' ');
 
@@ -137,9 +336,10 @@ int _compareCitySpellings(String a, String b) {
   return byCase != 0 ? byCase : a.compareTo(b);
 }
 
-int _compareLabels(String a, String b) {
-  final left = normalizeLocationSearch(a);
-  final right = normalizeLocationSearch(b);
+int _compareLabels(String a, String b) =>
+    _compareKeys(normalizeLocationSearch(a), normalizeLocationSearch(b));
+
+int _compareKeys(String left, String right) {
   // Natural numeric order keeps Server 2 ahead of Server 10 without making any
   // claim about capacity or quality. Lengths avoid parsing unbounded integers.
   final parts = RegExp(r'\d+|\D+');

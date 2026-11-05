@@ -1,58 +1,66 @@
 {
   "schema": "https://fuzevpn.com/schemas/wireguard-patched-aar-v1.json",
   "artifact": "tunnel-1.0.20260102-fuzevpn-fgs.aar",
-  "sha256": "bf96422b21e086cf371154613f5250c8101568538ab40acb4ccbad09394e4811",
+  "sha256": "bf563b779e670647e7d47751e7f4ff5d90299272640af7814c52f74bfe8c4b73",
   "upstreamAarSha256": "2b9c16db026496123e4db695d26d03d1958a201096c7c4c89b21077dc70f3119",
   "sourceCommit": "09b75c2bd37f749e2a8c85876394854113c74be7",
   "patchSha256": "777a8563e37ca11c4bf084820c3fd69e12280c5dd48af99274cf407dcfacd92c",
   "protectedStartPatchSha256": "e6861dba0b06e569b65119029c7d817adc98b4120e36d75c95af7ff4999e1ded",
+  "nativeRuntimePatchSha256": "cc6624be2e950edef4e15c9d232581e1242525d96f437e693e82f03f9310ffd4",
   "jdk": "openjdk version \"17.0.20.1\" 2026-08-18",
   "nativeLibraries": "libwg-go rebuilt from pinned source with protected-start JNI; other libraries unchanged from official AAR.",
   "nativeBuild": {
     "schema": "https://fuzevpn.com/schemas/wireguard-native-build-v1.json",
-    "builtAtUtc": "2026-10-02T11:25:16.4317066Z",
-    "go": "go version go1.24.3 windows/amd64",
+    "builtAtUtc": "2026-10-29T16:29:33.5157096Z",
+    "go": "go version go1.26.9 windows/amd64",
     "goArchive": {
-      "sha256": "be9787cb08998b1860fe3513e48a5fe5b96302d358a321b58e651184fa9638b3",
-      "url": "https://dl.google.com/go/go1.24.3.windows-amd64.zip"
+      "sha256": "d722201a9c0c086d1610e111c48203009af690892ed708072bd5ae20160e7a59",
+      "url": "https://dl.google.com/go/go1.26.9.windows-amd64.zip"
     },
-    "runtimePatchSha256": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395",
+    "goSourceArchive": {
+      "sha256": "9735d7dcdb65b35d3fa577f04064737c03b89cf1a2b71e6e69fe2f3c6f9fd4ca",
+      "url": "https://dl.google.com/go/go1.26.9.src.tar.gz"
+    },
+    "runtimePatchManifestSha256": "9580d03064a6c0247bd543ae6311991b330dd94ff6352e2fd0e09761ab9d0127",
+    "runtimePatchSha256": "d0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a",
     "ndk": {
-      "path": "C:\\Users\\Tak\\.codex\\toolchains\\android-sdk\\ndk\\28.2.13676358",
-      "version": "28.2.13676358"
+      "version": "28.2.13676358",
+      "path": "C:\\Users\\Tak\\.codex\\toolchains\\android-sdk\\ndk\\28.2.13676358"
     },
     "api": 21,
-    "module": "golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb",
+    "module": "golang.zx2c4.com/wireguard v0.0.0-20261024220952-b3bc704ef0ee",
     "sourceHashes": {
       "api-android.go": "53427a92d20e46e430fd7cfc855c4ac857c3e54a1dff8344f930665e4fa2876c",
       "jni.c": "60496563d5ff416de4ad5eae76951a2ade16352bda473c2a54cffac23cdf7057",
-      "go.mod": "8786bc8ea1dc05d185b88322bbb0ac62643c890092a0541bceb14e29ab41ee47",
-      "go.sum": "ce306aed32f667a553af6aed626fa53e98dee36a494a76033ab9d15343986d3e",
-      "goruntime-boottime-over-monotonic.diff": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395"
+      "go.mod": "0662241a2ffb13094a8cdd93ec09a329cd87759e34309063137622dbeb8a455c",
+      "go.sum": "8860837f0c1ad66404d75869cf682563e3cdcbb87fa5091de830d83ea3bd598b",
+      "goruntime-boottime-over-monotonic.diff": "ec9a55d3bca1ec38195469c5c863cf3323dff9eb6531383f12c36b9c75acb395",
+      "goruntime-go1.26.9-boottime.diff": "d0b1fc4c89ea06186c5a3926efd12ea0a570fd65e111e699fb1b55de5e483d4a",
+      "goruntime-go1.26.9-boottime.json": "9580d03064a6c0247bd543ae6311991b330dd94ff6352e2fd0e09761ab9d0127"
     },
     "abi": [
       {
         "name": "arm64-v8a",
         "file": "arm64-v8a/libwg-go.so",
-        "sha256": "33102d711ecb0f43a1709fc02a7044aca463f946c7782207a073b201f4d8b5e4",
+        "sha256": "96babb07d34d48f1fa20e44181b4bd46f4c88ade29c07899f2c22b02a465ef6f",
         "log": "logs/arm64-v8a.log"
       },
       {
         "name": "armeabi-v7a",
         "file": "armeabi-v7a/libwg-go.so",
-        "sha256": "81c2a9f84c13d5ec6b6d9d9d73091b97aaac73233d88d89cdfc54297fcf3568d",
+        "sha256": "a07c7f4de50400929272e021a76b0274be800f73a669f4fc1004a9d6d4479cdd",
         "log": "logs/armeabi-v7a.log"
       },
       {
         "name": "x86_64",
         "file": "x86_64/libwg-go.so",
-        "sha256": "f3d571b3444fd868046a7ca45e653911fe9425fa5e70a3df7773499e792f37e5",
+        "sha256": "aa42b6d8dc36309819979de3eef10e6049aced0ee27ded81240643f5ce9dae33",
         "log": "logs/x86_64.log"
       },
       {
         "name": "x86",
         "file": "x86/libwg-go.so",
-        "sha256": "ff7d0215407e8ecadd2772619d748cfee7861ab3879fec32638c3c439dd73bbc",
+        "sha256": "058121b257e3a42ee1090c2502cdf0955e8aa11c56e5571732cc8a738ba1642d",
         "log": "logs/x86.log"
       }
     ]

@@ -48,7 +48,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Pinawalang-bisa ang iyong session. Ihihinto ang VPN at lilinisin ang session…';
+      'Tinatapos ang session: hinihinto ang VPN at nililinis ang data ng session…';
 
   @override
   String get session_stopFailed =>
@@ -432,6 +432,9 @@ class AppLocalizationsFil extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Device na walang pangalan';
+
+  @override
   String get action_remove => 'Alisin';
 
   @override
@@ -471,6 +474,11 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Software na ginagamit sa app';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Source code ng app at ng mga component nito na nasa MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -554,7 +562,7 @@ class AppLocalizationsFil extends AppLocalizations {
   String get notice_rateLimited_title => 'Napakaraming pagtatangka';
 
   @override
-  String get notice_deviceLimit_title => 'Naabot ang limitasyong 2 device';
+  String get notice_deviceLimit_title => 'Naabot ang limitasyon ng device';
 
   @override
   String get notice_deviceLimit_message =>
@@ -660,7 +668,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'vpn_sign_in_required': 'Kailangang mag-sign in',
       'protocol_unavailable_at_location': 'Hindi magagamit ang protocol',
       'vpn_permission_denied': 'Tinanggihan ang pahintulot sa VPN',
-      'revoked_identity_device_limit': 'Naabot ang limitasyong 2 device',
+      'revoked_identity_device_limit': 'Naabot ang limitasyon ng device',
       'tunnel_start_unexpected': 'Hindi masimulan ang VPN',
       'flutter_disconnect_timeout': 'Hindi nakumpirma ang pagdiskonekta',
       'flutter_disconnect_unexpected': 'Hindi makapagdiskonekta',
@@ -677,6 +685,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'location_migration_device_changed':
           'Nagbago ang device habang binabago ang lokasyon',
       'tunnel_stop_failed': 'Hindi magagamit ang pagbabago ng lokasyon',
+      'device_clock_ahead': 'Nauuna ang orasan ng device',
       'other': 'Nabigo ang operasyon',
     });
     return '$_temp0';
@@ -727,6 +736,8 @@ class AppLocalizationsFil extends AppLocalizations {
           'Hindi na tumutugma ang device na ibinalik ng server sa binabago. I-refresh ang mga device bago subukan muli.',
       'tunnel_stop_failed':
           'Dapat lubusang mahinto ang dating tunnel bago ang bagong koneksyon.',
+      'device_clock_ahead':
+          'Mukhang nauuna ang orasan ng device na ito. I-on ang awtomatikong petsa at oras para manatiling naka-sign in.',
       'other':
           'Hindi nakumpleto ang operasyon. Subukan muli o ipadala ang diagnostic code sa suporta.',
     });
@@ -855,8 +866,36 @@ class AppLocalizationsFil extends AppLocalizations {
   String get notice_retryLater => 'Subukan muli pagkalipas ng ilang sandali.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Subukan muli pagkalipas ng $seconds segundo.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Subukan muli pagkalipas ng $seconds segundo.',
+      one: 'Subukan muli pagkalipas ng $seconds segundo.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Subukan muli pagkalipas ng $minutes minuto.',
+      one: 'Subukan muli pagkalipas ng $minutes minuto.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Subukan muli pagkalipas ng $hours oras.',
+      one: 'Subukan muli pagkalipas ng $hours oras.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -988,6 +1027,10 @@ class AppLocalizationsFil extends AppLocalizations {
       'secure_storage_write_failed': 'Nabigo ang ligtas na pagsulat',
       'key_generation_failed': 'Hindi makagawa ng WireGuard key',
       'csr_generation_failed': 'Hindi makagawa ng OpenVPN CSR',
+      'openvpn_recovery_exhausted': 'Nagamit na ang pag-recover ng OpenVPN',
+      'openvpn_recovery_failed': 'Nabigo ang pag-recover ng OpenVPN',
+      'openvpn_renewal_required':
+          'Kailangang i-renew ang certificate ng OpenVPN',
       'other': 'Hindi nauri na native VPN error',
     });
     return '$_temp0';
@@ -1424,7 +1467,7 @@ class AppLocalizationsFil extends AppLocalizations {
       count,
       locale: localeName,
       other: '$count naka-attach na teknikal na event',
-      one: '1 naka-attach na teknikal na event',
+      one: '$count naka-attach na teknikal na event',
       zero: 'Walang naka-attach na teknikal na event',
     );
     return '$_temp0';
@@ -1826,6 +1869,14 @@ class AppLocalizationsFil extends AppLocalizations {
       'Pinamamahalaan ang iyong subscription sa Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Naka-hold o naghihintay ng bayad ang iyong subscription sa Google Play. Buksan ang “Pamahalaan ang subscription” para maayos ito sa Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'May Fuze Premium subscription na ang Google Play account na ito na hindi aktibo para sa FuzeVPN account na ito. Buksan ang “Pamahalaan ang subscription” para suriin ito sa Google Play.';
+
+  @override
   String get billing_inactive => 'Walang aktibong subscription.';
 
   @override
@@ -2079,6 +2130,10 @@ class AppLocalizationsFil extends AppLocalizations {
   String get google_rateLimited => 'Maghintay bago subukang muli.';
 
   @override
+  String get google_busy =>
+      'Hindi available ang Google habang may ibang operasyong isinasagawa (koneksyon ng VPN, account, o guest). Subukan muli kapag tapos na ito; mananatili ang kasalukuyan mong access.';
+
+  @override
   String get google_invalidPassword =>
       'Mali ang FuzeVPN password. Nananatili ang kasalukuyang account.';
 
@@ -2109,6 +2164,36 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Hindi available ang pagsusuri sa seguridad. Subukan sa ibang pagkakataon.';
+
+  @override
+  String get google_intentMismatch =>
+      'Nakabinbin pa ang isang naunang pagtatangkang mag-sign in sa Google. Kanselahin ito bago simulan ang operasyong ito.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Hindi available sa app na ito ang kinakailangang pagsusuri sa seguridad. Hindi makumpleto ang operasyong ito sa ngayon.';
+
+  @override
+  String get google_solveChallenge => 'Isagawa ang pagsusuri sa seguridad';
+
+  @override
+  String get google_challengeTitle => 'Pagsusuri sa seguridad';
+
+  @override
+  String get google_challengeReady =>
+      'Tapos na ang beripikasyon. Maaari mo nang kumpirmahin ang paggawa ng iyong account.';
+
+  @override
+  String get google_challengeExpired =>
+      'Nag-expire na ang beripikasyon. Ulitin ito bago kumpirmahin.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Nakansela ang beripikasyon. Maaari mo itong ulitin.';
+
+  @override
+  String get google_challengeFailed =>
+      'Nabigo ang pagsusuri sa seguridad. Subukang muli.';
 
   @override
   String get billing_trialTitle => 'Subukan ang Fuze Premium nang libre';

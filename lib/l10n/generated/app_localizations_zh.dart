@@ -45,7 +45,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get session_endingTitle => '正在结束会话';
 
   @override
-  String get session_ending => '您的会话已失效。正在停止 VPN 并清除会话…';
+  String get session_ending => '正在结束会话：正在停止 VPN 并清除会话数据…';
 
   @override
   String get session_stopFailed => '尚未确认 VPN 已关闭。请在再次登录前重试。';
@@ -405,6 +405,9 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => '未命名设备';
+
+  @override
   String get action_remove => '移除';
 
   @override
@@ -442,6 +445,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => '应用中使用的软件';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return '本应用及其采用 MPL-2.0 许可的组件的源代码：$url';
+  }
 
   @override
   String get settings_background => '离开应用后 VPN 仍会保持开启。如需停止，请在“连接”选项卡中使用“断开连接”。';
@@ -520,7 +528,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get notice_rateLimited_title => '尝试次数过多';
 
   @override
-  String get notice_deviceLimit_title => '已达到 2 台设备的上限';
+  String get notice_deviceLimit_title => '已达到设备上限';
 
   @override
   String get notice_deviceLimit_message => '请先移除现有设备，然后再添加其他设备。';
@@ -608,7 +616,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'vpn_sign_in_required': '需要登录',
       'protocol_unavailable_at_location': '协议不可用',
       'vpn_permission_denied': 'VPN 权限被拒绝',
-      'revoked_identity_device_limit': '已达到 2 台设备的上限',
+      'revoked_identity_device_limit': '已达到设备上限',
       'tunnel_start_unexpected': 'VPN 无法启动',
       'flutter_disconnect_timeout': '未确认断开连接',
       'flutter_disconnect_unexpected': '无法断开连接',
@@ -622,6 +630,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'location_migration_verification_failed': '未确认位置更改',
       'location_migration_device_changed': '位置更改期间设备发生变化',
       'tunnel_stop_failed': '位置更改不可用',
+      'device_clock_ahead': '设备时钟偏快',
       'other': '操作失败',
     });
     return '$_temp0';
@@ -652,6 +661,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'location_migration_verification_failed': '服务器未确认新位置。之前的本地身份已保留。',
       'location_migration_device_changed': '服务器返回的设备与正在更改的设备不再匹配。请刷新设备后重试。',
       'tunnel_stop_failed': '建立新连接前，必须完全停止之前的隧道。',
+      'device_clock_ahead': '此设备的时钟似乎偏快。请开启自动设置日期和时间，以保持登录状态。',
       'other': '无法完成操作。请重试，或将诊断代码发送给支持人员。',
     });
     return '$_temp0';
@@ -749,8 +759,36 @@ class AppLocalizationsZh extends AppLocalizations {
   String get notice_retryLater => '请过一会儿再重试。';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return '请在 $seconds 秒后重试。';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '请在 $seconds 秒后重试。',
+      one: '请在 $seconds 秒后重试。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '请在 $minutes 分钟后重试。',
+      one: '请在 $minutes 分钟后重试。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '请在 $hours 小时后重试。',
+      one: '请在 $hours 小时后重试。',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -854,6 +892,9 @@ class AppLocalizationsZh extends AppLocalizations {
       'secure_storage_write_failed': '安全写入失败',
       'key_generation_failed': '无法生成 WireGuard 密钥',
       'csr_generation_failed': '无法生成 OpenVPN CSR',
+      'openvpn_recovery_exhausted': 'OpenVPN 自动恢复已使用',
+      'openvpn_recovery_failed': 'OpenVPN 自动恢复失败',
+      'openvpn_renewal_required': '需要更新 OpenVPN 证书',
       'other': '未分类的原生 VPN 错误',
     });
     return '$_temp0';
@@ -1550,6 +1591,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get billing_playManaged => '您的订阅通过 Google Play 管理。';
 
   @override
+  String get billing_playOnHold =>
+      '您的 Google Play 订阅已暂停或正在等待付款。请打开“管理订阅”，在 Google Play 中解决此问题。';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      '此 Google Play 账户已有一项 Fuze Premium 订阅，但该订阅未在此 FuzeVPN 账户中生效。请打开“管理订阅”，在 Google Play 中查看。';
+
+  @override
   String get billing_inactive => '没有生效的订阅。';
 
   @override
@@ -1766,6 +1815,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get google_rateLimited => '请稍等后重试。';
 
   @override
+  String get google_busy =>
+      '有其他操作（VPN 连接、账户或访客）正在进行时，无法使用 Google。请在操作完成后重试；您当前的访问权限会保留。';
+
+  @override
   String get google_invalidPassword => 'FuzeVPN 密码不正确。当前账户将被保留。';
 
   @override
@@ -1788,6 +1841,31 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get google_challengeUnavailable => '安全验证不可用。请稍后重试。';
+
+  @override
+  String get google_intentMismatch =>
+      '之前的一次 Google 登录尝试仍在等待处理。请先取消该尝试，然后再开始此操作。';
+
+  @override
+  String get google_challengeBlocked => '此应用不支持所需的安全验证。目前无法完成此操作。';
+
+  @override
+  String get google_solveChallenge => '进行安全验证';
+
+  @override
+  String get google_challengeTitle => '安全验证';
+
+  @override
+  String get google_challengeReady => '验证已完成。现在可以确认创建账户。';
+
+  @override
+  String get google_challengeExpired => '验证已过期。请重新验证后再确认。';
+
+  @override
+  String get google_challengeCancelled => '验证已取消。您可以重新验证。';
+
+  @override
+  String get google_challengeFailed => '安全验证失败。请重试。';
 
   @override
   String get billing_trialTitle => '免费试用 Fuze Premium';
@@ -1918,7 +1996,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get session_endingTitle => '正在结束会话';
 
   @override
-  String get session_ending => '您的会话已失效。正在停止 VPN 并清除会话…';
+  String get session_ending => '正在结束会话：正在停止 VPN 并清除会话数据…';
 
   @override
   String get session_stopFailed => '尚未确认 VPN 已关闭。请在再次登录前重试。';
@@ -2278,6 +2356,9 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
+  String get devices_unnamed => '未命名设备';
+
+  @override
   String get action_remove => '移除';
 
   @override
@@ -2315,6 +2396,11 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get settings_licensesDetail => '应用中使用的软件';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return '本应用及其采用 MPL-2.0 许可的组件的源代码：$url';
+  }
 
   @override
   String get settings_background => '离开应用后 VPN 仍会保持开启。如需停止，请在“连接”选项卡中使用“断开连接”。';
@@ -2393,7 +2479,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get notice_rateLimited_title => '尝试次数过多';
 
   @override
-  String get notice_deviceLimit_title => '已达到 2 台设备的上限';
+  String get notice_deviceLimit_title => '已达到设备上限';
 
   @override
   String get notice_deviceLimit_message => '请先移除现有设备，然后再添加其他设备。';
@@ -2481,7 +2567,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'vpn_sign_in_required': '需要登录',
       'protocol_unavailable_at_location': '协议不可用',
       'vpn_permission_denied': 'VPN 权限被拒绝',
-      'revoked_identity_device_limit': '已达到 2 台设备的上限',
+      'revoked_identity_device_limit': '已达到设备上限',
       'tunnel_start_unexpected': 'VPN 无法启动',
       'flutter_disconnect_timeout': '未确认断开连接',
       'flutter_disconnect_unexpected': '无法断开连接',
@@ -2495,6 +2581,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'location_migration_verification_failed': '未确认位置更改',
       'location_migration_device_changed': '位置更改期间设备发生变化',
       'tunnel_stop_failed': '位置更改不可用',
+      'device_clock_ahead': '设备时钟偏快',
       'other': '操作失败',
     });
     return '$_temp0';
@@ -2525,6 +2612,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'location_migration_verification_failed': '服务器未确认新位置。之前的本地身份已保留。',
       'location_migration_device_changed': '服务器返回的设备与正在更改的设备不再匹配。请刷新设备后重试。',
       'tunnel_stop_failed': '建立新连接前，必须完全停止之前的隧道。',
+      'device_clock_ahead': '此设备的时钟似乎偏快。请开启自动设置日期和时间，以保持登录状态。',
       'other': '无法完成操作。请重试，或将诊断代码发送给支持人员。',
     });
     return '$_temp0';
@@ -2622,8 +2710,36 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get notice_retryLater => '请过一会儿再重试。';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return '请在 $seconds 秒后重试。';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '请在 $seconds 秒后重试。',
+      one: '请在 $seconds 秒后重试。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '请在 $minutes 分钟后重试。',
+      one: '请在 $minutes 分钟后重试。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '请在 $hours 小时后重试。',
+      one: '请在 $hours 小时后重试。',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -2727,6 +2843,9 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'secure_storage_write_failed': '安全写入失败',
       'key_generation_failed': '无法生成 WireGuard 密钥',
       'csr_generation_failed': '无法生成 OpenVPN CSR',
+      'openvpn_recovery_exhausted': 'OpenVPN 自动恢复已使用',
+      'openvpn_recovery_failed': 'OpenVPN 自动恢复失败',
+      'openvpn_renewal_required': '需要更新 OpenVPN 证书',
       'other': '未分类的原生 VPN 错误',
     });
     return '$_temp0';
@@ -3423,6 +3542,14 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get billing_playManaged => '您的订阅通过 Google Play 管理。';
 
   @override
+  String get billing_playOnHold =>
+      '您的 Google Play 订阅已暂停或正在等待付款。请打开“管理订阅”，在 Google Play 中解决此问题。';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      '此 Google Play 账户已有一项 Fuze Premium 订阅，但该订阅未在此 FuzeVPN 账户中生效。请打开“管理订阅”，在 Google Play 中查看。';
+
+  @override
   String get billing_inactive => '没有生效的订阅。';
 
   @override
@@ -3639,6 +3766,10 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get google_rateLimited => '请稍等后重试。';
 
   @override
+  String get google_busy =>
+      '有其他操作（VPN 连接、账户或访客）正在进行时，无法使用 Google。请在操作完成后重试；您当前的访问权限会保留。';
+
+  @override
   String get google_invalidPassword => 'FuzeVPN 密码不正确。当前账户将被保留。';
 
   @override
@@ -3661,6 +3792,31 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get google_challengeUnavailable => '安全验证不可用。请稍后重试。';
+
+  @override
+  String get google_intentMismatch =>
+      '之前的一次 Google 登录尝试仍在等待处理。请先取消该尝试，然后再开始此操作。';
+
+  @override
+  String get google_challengeBlocked => '此应用不支持所需的安全验证。目前无法完成此操作。';
+
+  @override
+  String get google_solveChallenge => '进行安全验证';
+
+  @override
+  String get google_challengeTitle => '安全验证';
+
+  @override
+  String get google_challengeReady => '验证已完成。现在可以确认创建账户。';
+
+  @override
+  String get google_challengeExpired => '验证已过期。请重新验证后再确认。';
+
+  @override
+  String get google_challengeCancelled => '验证已取消。您可以重新验证。';
+
+  @override
+  String get google_challengeFailed => '安全验证失败。请重试。';
 
   @override
   String get billing_trialTitle => '免费试用 Fuze Premium';
@@ -3791,7 +3947,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get session_endingTitle => '正在結束工作階段';
 
   @override
-  String get session_ending => '您的工作階段已失效。正在停止 VPN 並清除工作階段…';
+  String get session_ending => '正在結束工作階段：正在停止 VPN 並清除工作階段資料…';
 
   @override
   String get session_stopFailed => '尚未確認 VPN 已關閉。請在再次登入前重試。';
@@ -4151,6 +4307,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
+  String get devices_unnamed => '未命名裝置';
+
+  @override
   String get action_remove => '移除';
 
   @override
@@ -4188,6 +4347,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settings_licensesDetail => '應用程式使用的軟體';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return '本應用程式及其採用 MPL-2.0 授權之元件的原始碼：$url';
+  }
 
   @override
   String get settings_background =>
@@ -4267,7 +4431,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get notice_rateLimited_title => '嘗試次數過多';
 
   @override
-  String get notice_deviceLimit_title => '已達 2 部裝置的上限';
+  String get notice_deviceLimit_title => '已達裝置上限';
 
   @override
   String get notice_deviceLimit_message => '請先移除現有裝置，再新增其他裝置。';
@@ -4356,7 +4520,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'vpn_sign_in_required': '需要登入',
       'protocol_unavailable_at_location': '通訊協定無法使用',
       'vpn_permission_denied': 'VPN 權限遭拒',
-      'revoked_identity_device_limit': '已達 2 部裝置的上限',
+      'revoked_identity_device_limit': '已達裝置上限',
       'tunnel_start_unexpected': 'VPN 無法啟動',
       'flutter_disconnect_timeout': '尚未確認中斷連線',
       'flutter_disconnect_unexpected': '無法中斷連線',
@@ -4370,6 +4534,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'location_migration_verification_failed': '尚未確認位置變更',
       'location_migration_device_changed': '位置變更期間裝置已變更',
       'tunnel_stop_failed': '位置變更無法使用',
+      'device_clock_ahead': '裝置時鐘偏快',
       'other': '操作失敗',
     });
     return '$_temp0';
@@ -4400,6 +4565,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'location_migration_verification_failed': '伺服器未確認新位置。先前的本機身分已保留。',
       'location_migration_device_changed': '伺服器傳回的裝置已不再符合正在變更的裝置。請重新整理裝置後再試一次。',
       'tunnel_stop_failed': '必須先完全停止先前的通道，才能建立新連線。',
+      'device_clock_ahead': '這部裝置的時鐘似乎偏快。請開啟自動設定日期和時間，以維持登入狀態。',
       'other': '無法完成操作。請再試一次，或將診斷代碼傳送給支援人員。',
     });
     return '$_temp0';
@@ -4497,8 +4663,36 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get notice_retryLater => '請稍候片刻再試一次。';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return '請在 $seconds 秒後再試一次。';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '請在 $seconds 秒後再試一次。',
+      one: '請在 $seconds 秒後再試一次。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '請在 $minutes 分鐘後再試一次。',
+      one: '請在 $minutes 分鐘後再試一次。',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '請在 $hours 小時後再試一次。',
+      one: '請在 $hours 小時後再試一次。',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -4602,6 +4796,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'secure_storage_write_failed': '安全寫入失敗',
       'key_generation_failed': '無法產生 WireGuard 金鑰',
       'csr_generation_failed': '無法產生 OpenVPN CSR',
+      'openvpn_recovery_exhausted': 'OpenVPN 自動復原已使用',
+      'openvpn_recovery_failed': 'OpenVPN 自動復原失敗',
+      'openvpn_renewal_required': '需要更新 OpenVPN 憑證',
       'other': '未分類的原生 VPN 錯誤',
     });
     return '$_temp0';
@@ -5303,6 +5500,14 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get billing_playManaged => '您的訂閱透過 Google Play 管理。';
 
   @override
+  String get billing_playOnHold =>
+      '您的 Google Play 訂閱已暫停或正在等待付款。請開啟「管理訂閱」，在 Google Play 中解決此問題。';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      '此 Google Play 帳戶已有一項 Fuze Premium 訂閱，但該訂閱未在此 FuzeVPN 帳戶中生效。請開啟「管理訂閱」，在 Google Play 中查看。';
+
+  @override
   String get billing_inactive => '沒有生效的訂閱。';
 
   @override
@@ -5519,6 +5724,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get google_rateLimited => '請稍候再重試。';
 
   @override
+  String get google_busy =>
+      '有其他作業（VPN 連線、帳戶或訪客）正在進行時，無法使用 Google。請在作業完成後再試一次；您目前的存取權會保留。';
+
+  @override
   String get google_invalidPassword => 'FuzeVPN 密碼不正確。目前的帳戶將被保留。';
 
   @override
@@ -5541,6 +5750,30 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get google_challengeUnavailable => '安全驗證無法使用。請稍後重試。';
+
+  @override
+  String get google_intentMismatch => '先前的一次 Google 登入嘗試仍待處理。請先取消該嘗試，再開始此操作。';
+
+  @override
+  String get google_challengeBlocked => '此應用程式不支援所需的安全驗證。目前無法完成此操作。';
+
+  @override
+  String get google_solveChallenge => '進行安全驗證';
+
+  @override
+  String get google_challengeTitle => '安全驗證';
+
+  @override
+  String get google_challengeReady => '驗證已完成。現在可以確認建立帳戶。';
+
+  @override
+  String get google_challengeExpired => '驗證已過期。請重新驗證後再確認。';
+
+  @override
+  String get google_challengeCancelled => '驗證已取消。您可以重新驗證。';
+
+  @override
+  String get google_challengeFailed => '安全驗證失敗。請重試。';
 
   @override
   String get billing_trialTitle => '免費試用 Fuze Premium';

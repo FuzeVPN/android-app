@@ -47,7 +47,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Oturumunuz geçersiz kılındı. VPN durduruluyor ve oturum temizleniyor…';
+      'Oturum sonlandırılıyor: VPN durduruluyor ve oturum verileri temizleniyor…';
 
   @override
   String get session_stopFailed =>
@@ -425,6 +425,9 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Adsız cihaz';
+
+  @override
   String get action_remove => 'Kaldır';
 
   @override
@@ -463,6 +466,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Uygulamada kullanılan yazılım';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Uygulamanın ve MPL-2.0 lisanslı bileşenlerinin kaynak kodu: $url';
+  }
 
   @override
   String get settings_background =>
@@ -545,7 +553,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get notice_rateLimited_title => 'Çok fazla deneme yapıldı';
 
   @override
-  String get notice_deviceLimit_title => '2 cihaz sınırına ulaşıldı';
+  String get notice_deviceLimit_title => 'Cihaz sınırına ulaşıldı';
 
   @override
   String get notice_deviceLimit_message =>
@@ -646,7 +654,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'vpn_sign_in_required': 'Oturum açmanız gerekiyor',
       'protocol_unavailable_at_location': 'Protokol kullanılamıyor',
       'vpn_permission_denied': 'VPN izni reddedildi',
-      'revoked_identity_device_limit': '2 cihaz sınırına ulaşıldı',
+      'revoked_identity_device_limit': 'Cihaz sınırına ulaşıldı',
       'tunnel_start_unexpected': 'VPN başlatılamadı',
       'flutter_disconnect_timeout': 'Bağlantının kesildiği doğrulanamadı',
       'flutter_disconnect_unexpected': 'Bağlantı kesilemedi',
@@ -663,6 +671,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'location_migration_device_changed':
           'Konum değişikliği sırasında cihaz değişti',
       'tunnel_stop_failed': 'Konum değişikliği kullanılamıyor',
+      'device_clock_ahead': 'Cihaz saati ileride',
       'other': 'İşlem başarısız oldu',
     });
     return '$_temp0';
@@ -712,6 +721,8 @@ class AppLocalizationsTr extends AppLocalizations {
           'Sunucunun döndürdüğü cihaz artık değiştirilen cihazla eşleşmiyor. Tekrar denemeden önce cihazları yenileyin.',
       'tunnel_stop_failed':
           'Yeni bağlantıdan önce önceki tünel tamamen durdurulmalıdır.',
+      'device_clock_ahead':
+          'Bu cihazın saati ileride görünüyor. Oturumunuzun açık kalması için otomatik tarih ve saati açın.',
       'other':
           'İşlem tamamlanamadı. Tekrar deneyin veya tanılama kodunu desteğe gönderin.',
     });
@@ -834,8 +845,36 @@ class AppLocalizationsTr extends AppLocalizations {
   String get notice_retryLater => 'Birkaç dakika sonra tekrar deneyin.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return '$seconds saniye sonra tekrar deneyin.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '$seconds saniye sonra tekrar deneyin.',
+      one: '$seconds saniye sonra tekrar deneyin.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes dakika sonra tekrar deneyin.',
+      one: '$minutes dakika sonra tekrar deneyin.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours saat sonra tekrar deneyin.',
+      one: '$hours saat sonra tekrar deneyin.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -945,6 +984,10 @@ class AppLocalizationsTr extends AppLocalizations {
       'secure_storage_write_failed': 'Güvenli yazma başarısız oldu',
       'key_generation_failed': 'WireGuard anahtarı oluşturulamadı',
       'csr_generation_failed': 'OpenVPN CSR oluşturulamadı',
+      'openvpn_recovery_exhausted': 'OpenVPN kurtarma zaten kullanıldı',
+      'openvpn_recovery_failed': 'OpenVPN kurtarma başarısız oldu',
+      'openvpn_renewal_required':
+          'OpenVPN sertifikasının yenilenmesi gerekiyor',
       'other': 'Sınıflandırılmamış yerel VPN hatası',
     });
     return '$_temp0';
@@ -1771,6 +1814,14 @@ class AppLocalizationsTr extends AppLocalizations {
       'Aboneliğiniz Google Play üzerinden yönetilir.';
 
   @override
+  String get billing_playOnHold =>
+      'Google Play aboneliğiniz askıya alındı veya ödeme bekliyor. Google Play’de düzeltmek için “Aboneliği yönet” seçeneğini açın.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Bu Google Play hesabında, bu FuzeVPN hesabı için etkin olmayan bir Fuze Premium aboneliği zaten var. Google Play’de incelemek için “Aboneliği yönet” seçeneğini açın.';
+
+  @override
   String get billing_inactive => 'Etkin abonelik yok.';
 
   @override
@@ -2023,6 +2074,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get google_rateLimited => 'Tekrar denemeden önce lütfen bekleyin.';
 
   @override
+  String get google_busy =>
+      'Başka bir işlem sürerken Google kullanılamaz (VPN bağlantısı, hesap veya misafir). İşlem bittiğinde tekrar deneyin; mevcut erişiminiz korunur.';
+
+  @override
   String get google_invalidPassword =>
       'FuzeVPN şifresi yanlış. Mevcut hesabınız korunur.';
 
@@ -2051,6 +2106,36 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Güvenlik doğrulaması kullanılamıyor. Daha sonra deneyin.';
+
+  @override
+  String get google_intentMismatch =>
+      'Önceki bir Google oturum açma denemesi hâlâ beklemede. Bu işlemi başlatmadan önce onu iptal edin.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Gerekli güvenlik doğrulaması bu uygulamada kullanılamıyor. Bu işlem şu anda tamamlanamıyor.';
+
+  @override
+  String get google_solveChallenge => 'Güvenlik doğrulamasını tamamla';
+
+  @override
+  String get google_challengeTitle => 'Güvenlik doğrulaması';
+
+  @override
+  String get google_challengeReady =>
+      'Doğrulama tamamlandı. Artık hesabınızın oluşturulmasını onaylayabilirsiniz.';
+
+  @override
+  String get google_challengeExpired =>
+      'Doğrulamanın süresi doldu. Onaylamadan önce doğrulamayı tekrarlayın.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Doğrulama iptal edildi. Tekrar deneyebilirsiniz.';
+
+  @override
+  String get google_challengeFailed =>
+      'Güvenlik doğrulaması başarısız oldu. Tekrar deneyin.';
 
   @override
   String get billing_trialTitle => 'Fuze Premium’u ücretsiz deneyin';

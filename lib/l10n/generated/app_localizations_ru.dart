@@ -47,7 +47,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Ваша сессия признана недействительной. Остановка VPN и очистка сессии…';
+      'Завершение сессии: остановка VPN и очистка данных сессии…';
 
   @override
   String get session_stopFailed =>
@@ -427,6 +427,9 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Устройство без имени';
+
+  @override
   String get action_remove => 'Удалить';
 
   @override
@@ -467,6 +470,11 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get settings_licensesDetail =>
       'Программное обеспечение, используемое в приложении';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Исходный код приложения и его компонентов под лицензией MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -550,7 +558,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get notice_rateLimited_title => 'Слишком много попыток';
 
   @override
-  String get notice_deviceLimit_title => 'Достигнут лимит в 2 устройства';
+  String get notice_deviceLimit_title => 'Достигнут лимит устройств';
 
   @override
   String get notice_deviceLimit_message =>
@@ -650,7 +658,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'vpn_sign_in_required': 'Требуется вход',
       'protocol_unavailable_at_location': 'Протокол недоступен',
       'vpn_permission_denied': 'В разрешении VPN отказано',
-      'revoked_identity_device_limit': 'Достигнут лимит в 2 устройства',
+      'revoked_identity_device_limit': 'Достигнут лимит устройств',
       'tunnel_start_unexpected': 'Не удалось запустить VPN',
       'flutter_disconnect_timeout': 'Отключение не подтверждено',
       'flutter_disconnect_unexpected': 'Не удалось отключиться',
@@ -666,6 +674,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'location_migration_device_changed':
           'Устройство изменилось во время смены локации',
       'tunnel_stop_failed': 'Изменение локации недоступно',
+      'device_clock_ahead': 'Часы устройства спешат',
       'other': 'Операция не выполнена',
     });
     return '$_temp0';
@@ -716,6 +725,8 @@ class AppLocalizationsRu extends AppLocalizations {
           'Устройство, возвращённое сервером, больше не совпадает с изменяемым устройством. Обновите список устройств перед новой попыткой.',
       'tunnel_stop_failed':
           'Перед новым подключением предыдущий туннель необходимо полностью остановить.',
+      'device_clock_ahead':
+          'Похоже, часы этого устройства спешат. Включите автоматическую настройку даты и времени, чтобы оставаться в системе.',
       'other':
           'Не удалось завершить операцию. Повторите попытку или отправьте диагностический код в службу поддержки.',
     });
@@ -839,8 +850,42 @@ class AppLocalizationsRu extends AppLocalizations {
   String get notice_retryLater => 'Повторите попытку через несколько минут.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Повторите попытку через $seconds секунд.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Повторите попытку через $seconds секунды.',
+      many: 'Повторите попытку через $seconds секунд.',
+      few: 'Повторите попытку через $seconds секунды.',
+      one: 'Повторите попытку через $seconds секунду.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Повторите попытку через $minutes минуты.',
+      many: 'Повторите попытку через $minutes минут.',
+      few: 'Повторите попытку через $minutes минуты.',
+      one: 'Повторите попытку через $minutes минуту.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Повторите попытку через $hours часа.',
+      many: 'Повторите попытку через $hours часов.',
+      few: 'Повторите попытку через $hours часа.',
+      one: 'Повторите попытку через $hours час.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -953,6 +998,9 @@ class AppLocalizationsRu extends AppLocalizations {
       'secure_storage_write_failed': 'Не удалось безопасно записать данные',
       'key_generation_failed': 'Не удалось создать ключ WireGuard',
       'csr_generation_failed': 'Не удалось создать CSR OpenVPN',
+      'openvpn_recovery_exhausted': 'Восстановление OpenVPN уже использовано',
+      'openvpn_recovery_failed': 'Не удалось восстановить OpenVPN',
+      'openvpn_renewal_required': 'Требуется обновить сертификат OpenVPN',
       'other': 'Не классифицированная нативная ошибка VPN',
     });
     return '$_temp0';
@@ -1789,6 +1837,14 @@ class AppLocalizationsRu extends AppLocalizations {
       'Ваша подписка управляется через Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Ваша подписка Google Play приостановлена или ожидает оплаты. Откройте «Управлять подпиской», чтобы решить проблему в Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'В этом аккаунте Google Play уже есть подписка Fuze Premium, которая не активна для этой учётной записи FuzeVPN. Откройте «Управлять подпиской», чтобы проверить её в Google Play.';
+
+  @override
   String get billing_inactive => 'Нет активной подписки.';
 
   @override
@@ -2041,6 +2097,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get google_rateLimited => 'Подождите перед повторной попыткой.';
 
   @override
+  String get google_busy =>
+      'Google недоступен, пока выполняется другая операция (VPN-подключение, учётная запись или гостевой доступ). Повторите попытку после её завершения; текущий доступ сохраняется.';
+
+  @override
   String get google_invalidPassword =>
       'Неверный пароль FuzeVPN. Текущий аккаунт сохраняется.';
 
@@ -2070,6 +2130,36 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Проверка безопасности недоступна. Попробуйте позже.';
+
+  @override
+  String get google_intentMismatch =>
+      'Предыдущая попытка входа через Google ещё не завершена. Отмените её перед началом этой операции.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Необходимая проверка безопасности недоступна в этом приложении. Сейчас эту операцию невозможно завершить.';
+
+  @override
+  String get google_solveChallenge => 'Пройти проверку безопасности';
+
+  @override
+  String get google_challengeTitle => 'Проверка безопасности';
+
+  @override
+  String get google_challengeReady =>
+      'Проверка завершена. Теперь вы можете подтвердить создание аккаунта.';
+
+  @override
+  String get google_challengeExpired =>
+      'Срок действия проверки истёк. Пройдите её ещё раз перед подтверждением.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Проверка отменена. Вы можете пройти её снова.';
+
+  @override
+  String get google_challengeFailed =>
+      'Проверка безопасности не удалась. Попробуйте ещё раз.';
 
   @override
   String get billing_trialTitle => 'Попробуйте Fuze Premium бесплатно';

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/app_controller.dart';
+import 'package:fuzevpn_android/billing_controller.dart';
 import 'package:fuzevpn_android/core/api_exception.dart';
 import 'package:fuzevpn_android/core/guest_accounts.dart';
 import 'package:fuzevpn_android/core/models.dart';
@@ -85,6 +86,8 @@ const _separateAccount = UserProfile(
 );
 
 void main() {
+  _guestAdmissionCorrectionTests();
+  _reauditFinalGuestTests();
   test(
     'anonymous catalogue inspection creates no guest or recovery credential',
     () async {
@@ -380,16 +383,13 @@ void main() {
   );
 
   test(
-    'voluntary logout disables automatic guest recovery before ending the session',
+    'confirmed voluntary logout disables automatic guest recovery and retains its credential',
     () async {
       final h = await _signedInGuest();
       addTearDown(h.close);
       h.events.clear();
       await h.controller.signOut();
-      expect(
-        h.events.indexOf('store.auto:false'),
-        lessThan(h.events.indexOf('store.clearSession')),
-      );
+      expect(h.events, contains('store.clearSession'));
       expect(h.store.autoResume, isFalse);
       expect(h.store.credential, _credential);
       expect(h.controller.isSignedIn, isFalse);
@@ -516,6 +516,415 @@ void main() {
       expect(h.gateway.ownedQueries, ownedQueries);
       expect(h.gateway.openedOwners, isEmpty);
       expect(h.controller.isAuthenticating, isFalse);
+    },
+  );
+
+  test(
+    'separate login remains locked while its candidate session write is pending',
+    () async {
+      final h = await _signedInGuest();
+      addTearDown(h.close);
+      final entered = Completer<void>();
+      final reply = Completer<void>();
+      h.store.onWrite = (_, userId) async {
+        if (userId == null && !entered.isCompleted) {
+          entered.complete();
+          await reply.future;
+        }
+      };
+      final switching = h.controller.signIn(
+        email: 'existing@example.test',
+        password: 'fixture-password',
+      );
+      await entered.future;
+      expect(h.controller.isAuthenticating, isTrue);
+      expect(h.controller.token, isNull);
+      expect(
+        await h.controller.signIn(
+          email: 'third@example.test',
+          password: 'fixture-password',
+        ),
+        isFalse,
+      );
+      expect(h.api.loginCalls, 1);
+      expect(h.controller.isAuthenticating, isTrue);
+      reply.complete();
+      expect(await switching, isTrue);
+      expect(h.controller.profile?.userId, 'registered-fixture');
+      expect(h.store.storedSession?.accessToken, 'registered-token');
+      expect(h.controller.isAuthenticating, isFalse);
+    },
+  );
+
+  test(
+    'logout drains a cancelled separate session write before admitting another account',
+    () async {
+      final h = await _signedInGuest();
+      addTearDown(h.close);
+      final entered = Completer<void>();
+      final reply = Completer<void>();
+      h.store.onWrite = (_, _) {
+        entered.complete();
+        return reply.future;
+      };
+      final switching = h.controller.signIn(
+        email: 'existing@example.test',
+        password: 'fixture-password',
+      );
+      await entered.future;
+      final leaving = h.controller.signOut();
+      await Future<void>.value();
+      expect(h.controller.sessionTermination?.inProgress, isTrue);
+      expect(
+        await h.controller.signIn(
+          email: 'third@example.test',
+          password: 'fixture-password',
+        ),
+        isFalse,
+      );
+      reply.complete();
+      expect(await switching, isFalse);
+      await leaving;
+      expect(h.store.storedSession, isNull);
+      expect(h.controller.token, isNull);
+      expect(h.controller.profile, isNull);
+      expect(h.store.clearCalls, 2);
+      expect(h.controller.isAuthenticating, isFalse);
+      h.store.onWrite = null;
+      expect(
+        await h.controller.signIn(
+          email: 'third@example.test',
+          password: 'fixture-password',
+        ),
+        isTrue,
+      );
+      expect(h.store.clearCalls, 2);
+      expect(h.controller.isAuthenticating, isFalse);
+    },
+  );
+
+  test(
+    'a reentrant login at guest termination cannot replace the pending candidate',
+    () async {
+      final h = await _signedInGuest();
+      addTearDown(h.close);
+      Future<bool>? reentrant;
+      var triggered = false;
+      h.controller.addListener(() {
+        if (!triggered &&
+            h.controller.token == null &&
+            h.controller.sessionTermination == null) {
+          triggered = true;
+          expect(h.controller.isAuthenticating, isTrue);
+          reentrant = h.controller.signIn(
+            email: 'third@example.test',
+            password: 'fixture-password',
+          );
+        }
+      });
+      expect(
+        await h.controller.signIn(
+          email: 'existing@example.test',
+          password: 'fixture-password',
+        ),
+        isTrue,
+      );
+      expect(triggered, isTrue);
+      expect(await reentrant!, isFalse);
+      expect(h.api.loginCalls, 1);
+      expect(h.controller.profile?.userId, 'registered-fixture');
+      expect(h.api.logoutTokens, <String>['guest-token']);
+      expect(h.store.clearCalls, 1);
+      expect(h.controller.isAuthenticating, isFalse);
+    },
+  );
+
+  test(
+    'registered email login disables retained guest recovery across expiration and restart',
+    () async {
+      final h = _Harness();
+      addTearDown(h.close);
+      await h.controller.initialize();
+      await h.controller.billing.loadPlans();
+      h.api.onCreate = (_) async => throw const ApiNetworkException();
+      expect(await h.controller.beginGuestPurchase(_monthly), isFalse);
+      expect(h.controller.token, isNull);
+      expect(h.store.autoResume, isTrue);
+      final retainedCredential = h.store.credential;
+      expect(retainedCredential, isNotNull);
+      h.api.onCreate = null;
+      expect(
+        await h.controller.signIn(
+          email: 'existing@example.test',
+          password: 'fixture-password',
+        ),
+        isTrue,
+      );
+      expect(h.controller.profile?.userId, 'registered-fixture');
+      expect(h.store.autoResume, isFalse);
+      expect(h.store.credential, retainedCredential);
+
+      final expired = _Harness();
+      addTearDown(expired.close);
+      expired.store.credential = h.store.credential;
+      expired.store.autoResume = h.store.autoResume;
+      expired.store.storedSession = AuthSession(
+        accessToken: 'registered-token',
+        expiresAt: DateTime.utc(2000),
+      );
+      await expired.controller.initialize();
+      expect(expired.controller.isSignedIn, isFalse);
+      expect(expired.store.storedSession, isNull);
+      expect(expired.api.createdCredentials, isEmpty);
+      expect(expired.store.autoResume, isFalse);
+
+      final restarted = _Harness();
+      addTearDown(restarted.close);
+      restarted.store.credential = expired.store.credential;
+      restarted.store.autoResume = expired.store.autoResume;
+      await restarted.controller.initialize();
+      expect(restarted.controller.isSignedIn, isFalse);
+      expect(restarted.api.createdCredentials, isEmpty);
+      expect(restarted.store.credential, retainedCredential);
+    },
+  );
+
+  test(
+    'registered admission waits for durable guest recovery opt-out and can retry its failure',
+    () async {
+      final h = _Harness();
+      addTearDown(h.close);
+      await h.controller.initialize();
+      h.store.credential = _credential;
+      h.store.autoResume = true;
+      h.store.autoResumeWriteFailure = const NativeVpnException(
+        'secure_storage_write_failed',
+      );
+      expect(
+        await h.controller.signIn(
+          email: 'existing@example.test',
+          password: 'fixture-password',
+        ),
+        isFalse,
+      );
+      expect(h.controller.profile, isNull);
+      expect(h.controller.canShowHome, isFalse);
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      expect(h.store.autoResume, isTrue);
+      expect(h.store.credential, _credential);
+      h.store.autoResumeWriteFailure = null;
+      await h.controller.retryAccountRestoration();
+      expect(h.controller.profile?.userId, 'registered-fixture');
+      expect(h.controller.canShowHome, isTrue);
+      expect(h.store.autoResume, isFalse);
+      expect(h.store.credential, _credential);
+    },
+  );
+
+  test(
+    'email and registration cannot overlap an automatic guest recovery already in flight',
+    () async {
+      final h = _Harness();
+      addTearDown(h.close);
+      await h.controller.initialize();
+      h.store.credential = _credential;
+      h.store.autoResume = true;
+      final entered = Completer<void>();
+      final reply = Completer<UserProfile>();
+      h.api.onMe = (_) async {
+        if (!entered.isCompleted) {
+          entered.complete();
+          return reply.future;
+        }
+        return _guest();
+      };
+      final resuming = h.controller.onAppResumed();
+      await entered.future;
+      expect(h.controller.isGuestActionBusy, isTrue);
+      expect(
+        await h.controller.signIn(
+          email: 'existing@example.test',
+          password: 'fixture-password',
+        ),
+        isFalse,
+      );
+      expect(
+        await h.controller.register(
+          const RegisterAccountRequest(
+            email: 'new@example.test',
+            password: 'fixture-password',
+            firstName: '',
+            lastName: '',
+            phone: '',
+            addressLine1: '',
+            postalCode: '',
+            city: '',
+            countryCode: 'FR',
+            termsAccepted: true,
+            privacyAccepted: true,
+          ),
+        ),
+        isFalse,
+      );
+      expect(h.api.loginCalls, 0);
+      expect(h.store.sessionWrites, isEmpty);
+      reply.complete(_guest());
+      await resuming;
+      expect(h.controller.profile?.isGuest, isTrue);
+      expect(h.controller.isGuestActionBusy, isFalse);
+    },
+  );
+
+  for (final loginSucceeds in <bool>[true, false]) {
+    test(
+      'foreground resume during email authentication cannot recover a guest when login succeeds=$loginSucceeds',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        await h.controller.initialize();
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        final reply = Completer<AuthSession>();
+        h.api.onLogin = (_, _) => reply.future;
+        final signingIn = h.controller.signIn(
+          email: 'existing@example.test',
+          password: 'fixture-password',
+        );
+        await h.controller.onAppResumed();
+        expect(h.controller.isAuthenticating, isTrue);
+        expect(h.api.createdCredentials, isEmpty);
+        if (loginSucceeds) {
+          reply.complete(_session('registered-token'));
+        } else {
+          reply.completeError(const ApiNetworkException());
+        }
+        expect(await signingIn, loginSucceeds);
+        expect(
+          h.controller.profile?.userId,
+          loginSucceeds ? 'registered-fixture' : null,
+        );
+        expect(h.api.createdCredentials, isEmpty);
+        expect(h.store.credential, _credential);
+      },
+    );
+
+    for (final resumeBeforeLogin in <bool>[true, false]) {
+      test(
+        'delayed resume snapshot cannot recover an old guest after email authentication (resume first=$resumeBeforeLogin, succeeds=$loginSucceeds)',
+        () async {
+          final h = _Harness();
+          addTearDown(h.close);
+          await h.controller.initialize();
+          h.store.credential = _credential;
+          h.store.autoResume = true;
+          final snapshot = Completer<VpnRuntimeState>();
+          final snapshotEntered = Completer<void>();
+          h.tunnel.onGetState = () {
+            snapshotEntered.complete();
+            return snapshot.future;
+          };
+          final loginReply = Completer<AuthSession>();
+          h.api.onLogin = (_, _) => loginReply.future;
+          Future<bool> signIn() => h.controller.signIn(
+            email: 'existing@example.test',
+            password: 'fixture-password',
+          );
+          final Future<void> resuming;
+          final Future<bool> signingIn;
+          if (resumeBeforeLogin) {
+            resuming = h.controller.onAppResumed();
+            await snapshotEntered.future;
+            signingIn = signIn();
+          } else {
+            signingIn = signIn();
+            resuming = h.controller.onAppResumed();
+            await snapshotEntered.future;
+          }
+          if (loginSucceeds) {
+            loginReply.complete(_session('registered-token'));
+          } else {
+            loginReply.completeError(const ApiNetworkException());
+          }
+          expect(await signingIn, loginSucceeds);
+          snapshot.complete(h.tunnel.state);
+          await resuming;
+          expect(h.api.createdCredentials, isEmpty);
+          expect(
+            h.controller.profile?.userId,
+            loginSucceeds ? 'registered-fixture' : null,
+          );
+          expect(h.store.credential, _credential);
+          expect(h.controller.isAuthenticating, isFalse);
+        },
+      );
+    }
+  }
+
+  test(
+    'a completed password reset invalidates automatic guest recovery from an older resume snapshot',
+    () async {
+      final h = _Harness();
+      addTearDown(h.close);
+      await h.controller.initialize();
+      h.store.credential = _credential;
+      h.store.autoResume = true;
+      final snapshot = Completer<VpnRuntimeState>();
+      final entered = Completer<void>();
+      h.tunnel.onGetState = () {
+        entered.complete();
+        return snapshot.future;
+      };
+      final resuming = h.controller.onAppResumed();
+      await entered.future;
+      expect(
+        await h.controller.requestPasswordReset('existing@example.test'),
+        isTrue,
+      );
+      expect(h.controller.isAuthenticating, isFalse);
+      snapshot.complete(h.tunnel.state);
+      await resuming;
+      expect(h.api.createdCredentials, isEmpty);
+      expect(h.controller.profile, isNull);
+      expect(h.controller.notice?.arguments['code'], 'password_reset_sent');
+    },
+  );
+
+  test(
+    'logout detaches an old guest lookup and its late result cannot replace a new email session',
+    () async {
+      final h = _Harness();
+      addTearDown(h.close);
+      await h.controller.initialize();
+      h.store.credential = _credential;
+      h.store.autoResume = true;
+      final entered = Completer<void>();
+      final reply = Completer<UserProfile>();
+      h.api.onMe = (token) async {
+        if (token == 'guest-token') {
+          entered.complete();
+          return reply.future;
+        }
+        return _separateAccount;
+      };
+      final resuming = h.controller.onAppResumed();
+      await entered.future;
+      await h.controller.signOut();
+      expect(h.controller.isGuestActionBusy, isFalse);
+      expect(
+        await h.controller.signIn(
+          email: 'existing@example.test',
+          password: 'fixture-password',
+        ),
+        isTrue,
+      );
+      final admittedWrites = h.store.sessionWrites.length;
+      reply.complete(_guest());
+      await resuming;
+      expect(h.controller.profile?.userId, 'registered-fixture');
+      expect(h.store.storedSession?.accessToken, 'registered-token');
+      expect(h.store.sessionWrites, hasLength(admittedWrites));
+      expect(h.store.clearCalls, 1);
+      expect(h.controller.isGuestActionBusy, isFalse);
     },
   );
 
@@ -1048,6 +1457,69 @@ void main() {
   );
 
   testWidgets(
+    'startup 503 api_error with Retry-After defers resume and keeps session, device and tunnel',
+    (tester) async {
+      // A04-transport-01: ApiClient keeps the status and Retry-After of a 5xx
+      // whose body is not UTF-8, not valid gzip or above 1 MiB, as this
+      // generic api_error. It is a temporary unavailability, never an end.
+      final h = _Harness();
+      addTearDown(h.close);
+      final expired = AuthSession(
+        accessToken: 'expired-token',
+        expiresAt: DateTime.utc(2020),
+      );
+      h.store.storedSession = expired;
+      h.store.credential = _credential;
+      h.store.autoResume = true;
+      h.store.deviceIds['guest-fixture'] = 'device-fixture';
+      h.tunnel.state = const VpnRuntimeState(
+        phase: VpnRuntimePhase.connected,
+        protocol: VpnProtocol.wireGuard,
+      );
+      h.api.onCreate = (_) async => throw const ApiException(
+        statusCode: 503,
+        errorCode: 'api_error',
+        retryAfterSeconds: 30,
+      );
+      await h.controller.initialize();
+      expect(h.store.storedSession, same(expired));
+      expect(h.store.credential, _credential);
+      expect(h.store.autoResume, isTrue);
+      expect(h.store.deviceIds['guest-fixture'], 'device-fixture');
+      expect(h.store.clearCalls, 0);
+      expect(h.store.replacements, isEmpty);
+      expect(h.store.sessionWrites, isEmpty);
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      expect(h.controller.guestMessageKey, 'guest.serviceUnavailable');
+      expect(h.controller.isGuestActionBusy, isTrue);
+      expect(h.tunnel.disconnectCalls, 0);
+      expect(h.tunnel.clearedIdentities, isEmpty);
+
+      // The server's delay is honoured: no new request before 30 seconds.
+      await tester.pump(const Duration(seconds: 29));
+      await h.controller.onAppResumed();
+      expect(h.api.createdCredentials, hasLength(1));
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      await tester.pump(const Duration(seconds: 1));
+      expect(h.controller.isGuestActionBusy, isFalse);
+      h.api.onCreate = (_) async => GuestSessionResult(
+        session: _session('recovered-token'),
+        userId: 'guest-fixture',
+      );
+      await h.controller.onAppResumed();
+      expect(h.api.createdCredentials, <String>[_credential, _credential]);
+      expect(h.controller.token, 'recovered-token');
+      expect(h.controller.profile?.isGuest, isTrue);
+      expect(h.controller.currentDeviceId, 'device-fixture');
+      expect(h.store.clearCalls, 0);
+      expect(h.store.replacements, <String>['recovered-token']);
+      expect(h.tunnel.disconnectCalls, 0);
+      expect(h.tunnel.clearedIdentities, isEmpty);
+      await h.close();
+    },
+  );
+
+  testWidgets(
     'disposing during provider Retry-After cancels its pending timer',
     (tester) async {
       final h = _Harness();
@@ -1160,6 +1632,8 @@ class _Api extends Fake
     'guest-token': _guest(),
     'registered-token': _separateAccount,
   };
+  int resetCalls = 0;
+  Future<void> Function()? onReset;
   int loginCalls = 0;
   int claimCalls = 0;
   BillingSubscription subscription = _inactive;
@@ -1181,6 +1655,12 @@ class _Api extends Fake
     return onLogin != null
         ? await onLogin!(email, password)
         : _session('registered-token');
+  }
+
+  @override
+  Future<void> requestPasswordReset(String email) async {
+    resetCalls++;
+    if (onReset != null) await onReset!();
   }
 
   @override
@@ -1308,6 +1788,8 @@ class _Store extends Fake
   final sessionWrites = <String?>[];
   final replacements = <String>[];
   Future<void> Function(AuthSession, String?)? onWrite;
+  Future<void> Function()? onReplace;
+  Object? autoResumeWriteFailure;
   @override
   Future<AuthSession?> readSession() async => storedSession;
   @override
@@ -1324,6 +1806,7 @@ class _Store extends Fake
   }) async {
     replacements.add(session.accessToken);
     storedSession = session;
+    if (onReplace != null) await onReplace!();
   }
 
   @override
@@ -1368,6 +1851,7 @@ class _Store extends Fake
   @override
   Future<void> writeGuestAutoResume(bool enabled) async {
     events.add('store.auto:$enabled');
+    if (autoResumeWriteFailure != null) throw autoResumeWriteFailure!;
     autoResume = enabled;
   }
 
@@ -1397,10 +1881,12 @@ class _Tunnel extends Fake implements VpnTunnelGateway {
   final wireGuardKeys = <String, String>{'guest-fixture': _wireGuardPublicKey};
   final connectedDeviceIds = <String>[];
   int keyCreations = 0;
+  Future<VpnRuntimeState> Function()? onGetState;
   @override
   Stream<VpnRuntimeState> get states => _states.stream;
   @override
-  Future<VpnRuntimeState> getState() async => state;
+  Future<VpnRuntimeState> getState() async =>
+      onGetState == null ? state : await onGetState!();
   @override
   Future<bool> requestVpnPermission() async => true;
   @override
@@ -1497,4 +1983,478 @@ class _Gateway extends Fake
   }) async => openedOwners.add(obfuscatedAccountId);
   @override
   void dispose() {}
+}
+
+// Regressions adapted from reaudit-20261028/checks/06; real controller imports.
+void _guestAdmissionCorrectionTests() {
+  group('guest admission correction 2026-10-28', () {
+    test(
+      'a partial native write failure is reconciled while authorization is still current',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        await h.controller.initialize();
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        h.store.onWrite = (_, __) async =>
+            throw const NativeVpnException('secure_storage_write_failed');
+        await h.controller.onAppResumed();
+        expect(h.store.storedSession, isNull);
+        expect(h.controller.token, isNull);
+        expect(h.controller.profile, isNull);
+        expect(h.controller.hasPendingAccountRestoration, isFalse);
+        expect(h.store.clearCalls, 1);
+        expect(h.store.credential, _credential);
+        expect(h.controller.sessionTermination, isNull);
+        // Recovery and its message survive the purge (A02-guest-01).
+        expect(h.store.autoResume, isTrue);
+        expect(h.controller.guestMessageKey, 'guest.secureStorageError');
+        h.store.onWrite = null;
+        expect(
+          await h.controller.signIn(
+            email: 'existing@example.test',
+            password: 'fixture',
+          ),
+          isTrue,
+        );
+        expect(h.controller.token, 'registered-token');
+        expect(h.store.storedSession?.accessToken, 'registered-token');
+      },
+    );
+
+    test(
+      'logout owns cleanup of a late failed guest write before a newer admission',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        await h.controller.initialize();
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        final entered = Completer<void>();
+        final release = Completer<void>();
+        h.store.onWrite = (_, __) async {
+          entered.complete();
+          await release.future;
+          throw const NativeVpnException('secure_storage_write_failed');
+        };
+        final resuming = h.controller.onAppResumed();
+        await entered.future;
+        final leaving = h.controller.signOut();
+        release.complete();
+        await leaving;
+        await resuming;
+        expect(h.store.clearCalls, 1);
+        expect(h.store.credential, _credential);
+        h.store.onWrite = null;
+        expect(
+          await h.controller.signIn(
+            email: 'existing@example.test',
+            password: 'fixture',
+          ),
+          isTrue,
+        );
+        expect(h.controller.token, 'registered-token');
+        expect(h.store.storedSession?.accessToken, 'registered-token');
+        expect(h.store.clearCalls, 1);
+      },
+    );
+
+    for (final replacingExpired in [false, true]) {
+      test(
+        'late native write failure after authorization revocation is reconciled (expired=$replacingExpired)',
+        () async {
+          final h = _Harness();
+          addTearDown(h.close);
+          if (!replacingExpired) await h.controller.initialize();
+          h.store.credential = _credential;
+          h.store.autoResume = true;
+          final entered = Completer<void>();
+          final release = Completer<void>();
+          Future<void> lateFailure() async {
+            entered.complete();
+            await release.future;
+            throw const NativeVpnException('secure_storage_write_failed');
+          }
+
+          if (replacingExpired) {
+            h.store.storedSession = AuthSession(
+              accessToken: 'expired-token',
+              expiresAt: DateTime.utc(2000),
+            );
+            h.store.onReplace = lateFailure;
+          } else {
+            h.store.onWrite = (_, __) => lateFailure();
+          }
+          final recovering = replacingExpired
+              ? h.controller.initialize()
+              : h.controller.onAppResumed();
+          await entered.future;
+          h.controller.isAuthenticating = true;
+          release.complete();
+          await recovering;
+          expect(h.store.storedSession, isNull);
+          expect(h.controller.token, isNull);
+          expect(h.controller.profile, isNull);
+          expect(h.controller.hasPendingAccountRestoration, isFalse);
+          expect(h.store.clearCalls, 1);
+          expect(h.store.credential, _credential);
+          // An abandoned automatic admission is not a logout (A02-guest-01).
+          expect(h.store.autoResume, isTrue);
+          expect(h.controller.sessionTermination, isNull);
+        },
+      );
+    }
+
+    test(
+      'an in-flight reset excludes renewal of a near-expiry guest',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        h.store.storedSession = AuthSession(
+          accessToken: 'guest-token',
+          expiresAt: DateTime.now().add(const Duration(minutes: 1)),
+        );
+        await h.controller.initialize();
+        final release = Completer<void>();
+        h.api.onReset = () => release.future;
+        final resetting = h.controller.requestPasswordReset(
+          'existing@example.test',
+        );
+        await h.controller.connect();
+        expect(h.api.createdCredentials, isEmpty);
+        expect(h.store.replacements, isEmpty);
+        expect(h.controller.isAuthenticating, isTrue);
+        release.complete();
+        expect(await resetting, isTrue);
+        await h.controller.connect();
+        expect(h.store.replacements, ['guest-token']);
+        expect(h.controller.token, h.store.storedSession?.accessToken);
+      },
+    );
+
+    test(
+      'a reset cannot interrupt an already submitted guest renewal',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        h.store.storedSession = AuthSession(
+          accessToken: 'guest-token',
+          expiresAt: DateTime.now().add(const Duration(minutes: 1)),
+        );
+        await h.controller.initialize();
+        final entered = Completer<void>();
+        final release = Completer<void>();
+        h.store.onReplace = () {
+          entered.complete();
+          return release.future;
+        };
+        final connecting = h.controller.connect();
+        await entered.future;
+        final reset = await h.controller.requestPasswordReset(
+          'existing@example.test',
+        );
+        release.complete();
+        await connecting;
+        expect(reset, isFalse);
+        expect(h.api.resetCalls, 0);
+        expect(h.controller.token, h.store.storedSession?.accessToken);
+        expect(h.controller.profile?.userId, 'guest-fixture');
+        expect(h.store.clearCalls, 0);
+      },
+    );
+
+    test(
+      'cancelled expired-session replacement clears partial state but preserves recovery',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        h.store.storedSession = AuthSession(
+          accessToken: 'expired-token',
+          expiresAt: DateTime.utc(2000),
+        );
+        final entered = Completer<void>();
+        final release = Completer<void>();
+        h.store.onReplace = () {
+          entered.complete();
+          return release.future;
+        };
+        final initializing = h.controller.initialize();
+        await entered.future;
+        h.controller.isAuthenticating = true;
+        release.complete();
+        await initializing;
+        expect(h.store.clearCalls, 1);
+        expect(h.store.storedSession, isNull);
+        expect(h.controller.token, isNull);
+        expect(h.controller.profile, isNull);
+        expect(h.controller.hasPendingAccountRestoration, isFalse);
+        expect(h.controller.sessionTermination, isNull);
+        expect(h.store.credential, _credential);
+        expect(h.store.autoResume, isTrue);
+      },
+    );
+
+    for (final boundary in ['first native write', 'profile restoration']) {
+      test(
+        'reset is refused during $boundary and guest admission stays coherent',
+        () async {
+          final h = _Harness();
+          addTearDown(h.close);
+          await h.controller.initialize();
+          h.store.credential = _credential;
+          h.store.autoResume = true;
+          final entered = Completer<void>();
+          final release = Completer<void>();
+          if (boundary == 'first native write') {
+            h.store.onWrite = (_, __) async {
+              if (!entered.isCompleted) {
+                entered.complete();
+                await release.future;
+              }
+            };
+          } else {
+            var reads = 0;
+            h.api.onMe = (_) async {
+              if (++reads == 2) {
+                entered.complete();
+                await release.future;
+              }
+              return _guest();
+            };
+          }
+          final resuming = h.controller.onAppResumed();
+          await entered.future;
+          final busy = h.controller.isGuestActionBusy;
+          final reset = await h.controller.requestPasswordReset(
+            'existing@example.test',
+          );
+          release.complete();
+          await resuming;
+          expect(busy, isTrue);
+          expect(reset, isFalse);
+          expect(h.api.resetCalls, 0);
+          expect(h.controller.token, 'guest-token');
+          expect(h.controller.profile?.userId, 'guest-fixture');
+          expect(h.store.storedSession?.accessToken, h.controller.token);
+          expect(h.controller.hasPendingAccountRestoration, isFalse);
+          expect(h.controller.isGuestActionBusy, isFalse);
+          expect(h.controller.isAuthenticating, isFalse);
+          expect(h.store.clearCalls, 0);
+          expect(
+            await h.controller.requestPasswordReset('existing@example.test'),
+            isTrue,
+          );
+          expect(h.api.resetCalls, 1);
+        },
+      );
+
+      test(
+        'revoked authorization after $boundary reconciles its own committed candidate',
+        () async {
+          final h = _Harness();
+          addTearDown(h.close);
+          await h.controller.initialize();
+          h.store.credential = _credential;
+          h.store.autoResume = true;
+          final entered = Completer<void>();
+          final release = Completer<void>();
+          if (boundary == 'first native write') {
+            h.store.onWrite = (_, __) async {
+              if (!entered.isCompleted) {
+                entered.complete();
+                await release.future;
+              }
+            };
+          } else {
+            var reads = 0;
+            h.api.onMe = (_) async {
+              if (++reads == 2) {
+                entered.complete();
+                await release.future;
+              }
+              return _guest();
+            };
+          }
+          final resuming = h.controller.onAppResumed();
+          await entered.future;
+          // Revoke admission through the controller's public busy state. This
+          // exercises rollback independently of the reset entry guard.
+          h.controller.isAuthenticating = true;
+          release.complete();
+          await resuming;
+          expect(h.controller.token, isNull);
+          expect(h.controller.profile, isNull);
+          expect(h.store.storedSession, isNull);
+          expect(h.store.clearCalls, 1);
+          expect(h.controller.sessionTermination, isNull);
+          expect(h.controller.hasPendingAccountRestoration, isFalse);
+          expect(h.controller.isGuestActionBusy, isFalse);
+          expect(h.controller.isAuthenticating, isFalse);
+          expect(h.store.credential, _credential);
+          // Reconciliation purges the candidate but keeps automatic recovery
+          // (A02-guest-01, H-RA-A06-01-02).
+          expect(h.store.autoResume, isTrue);
+          expect(
+            await h.controller.signIn(
+              email: 'existing@example.test',
+              password: 'fixture',
+            ),
+            isTrue,
+          );
+          expect(h.controller.token, 'registered-token');
+        },
+      );
+    }
+
+    test(
+      'reset already in flight excludes guest recovery until a new resume',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        await h.controller.initialize();
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        final release = Completer<void>();
+        h.api.onReset = () => release.future;
+        final resetting = h.controller.requestPasswordReset(
+          'existing@example.test',
+        );
+        await h.controller.onAppResumed();
+        expect(h.controller.isAuthenticating, isTrue);
+        expect(h.api.createdCredentials, isEmpty);
+        expect(h.store.sessionWrites, isEmpty);
+        release.complete();
+        expect(await resetting, isTrue);
+        await h.controller.onAppResumed();
+        expect(h.controller.profile?.userId, 'guest-fixture');
+        expect(h.store.storedSession?.accessToken, h.controller.token);
+      },
+    );
+
+    test(
+      'logout during a submitted guest write drains before admitting a newer account',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        await h.controller.initialize();
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        final entered = Completer<void>();
+        final release = Completer<void>();
+        h.store.onWrite = (_, __) async {
+          if (!entered.isCompleted) {
+            entered.complete();
+            await release.future;
+          }
+        };
+        final resuming = h.controller.onAppResumed();
+        await entered.future;
+        final leaving = h.controller.signOut();
+        expect(h.controller.sessionTermination?.inProgress, isTrue);
+        expect(
+          await h.controller.signIn(
+            email: 'existing@example.test',
+            password: 'fixture',
+          ),
+          isFalse,
+        );
+        release.complete();
+        await leaving;
+        await resuming;
+        expect(h.store.storedSession, isNull);
+        expect(h.store.clearCalls, 1);
+        h.store.onWrite = null;
+        expect(
+          await h.controller.signIn(
+            email: 'existing@example.test',
+            password: 'fixture',
+          ),
+          isTrue,
+        );
+        expect(h.controller.token, 'registered-token');
+        expect(h.store.storedSession?.accessToken, 'registered-token');
+      },
+    );
+  });
+}
+
+// Passe finale du réaudit (30/10/2026), avec le vrai VpnAppController.
+void _reauditFinalGuestTests() {
+  test(
+    'A01-auth-01 a deferral for the absence of a session never resumes a '
+    'guest admitted since without signIn',
+    () async {
+      final h = _Harness();
+      addTearDown(h.close);
+      h.store.credential = _credential;
+      h.store.autoResume = true;
+      var creations = 0;
+      h.api.onCreate = (_) async {
+        if (++creations == 1) throw const ApiNetworkException();
+        return GuestSessionResult(
+          session: _session('guest-token'),
+          userId: 'guest-fixture',
+        );
+      };
+      var guestReads = 0;
+      h.api.onMe = (token) async {
+        if (token == 'guest-token' && ++guestReads == 2) {
+          throw const ApiNetworkException();
+        }
+        return h.api.profiles[token] ?? _guest();
+      };
+      // The startup resume is deferred for the absence of a session.
+      await h.controller.initialize();
+      expect(h.controller.token, isNull);
+      // An explicit purchase admits G without _setSession, so nothing resets
+      // that deferral: only its identity binding keeps it away from G.
+      await h.controller.beginGuestPurchase(_monthly);
+      expect(h.controller.token, 'guest-token');
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      await h.controller.onAppResumed();
+      await pumpEventQueue();
+      expect(h.api.createdCredentials, hasLength(2));
+      expect(h.store.replacements, isEmpty);
+      expect(h.controller.token, 'guest-token');
+    },
+  );
+
+  test(
+    'H-R13-01-01 G5 a signed-in guest checkout blocked by an ownerless Play '
+    'receipt relays the billing message',
+    () async {
+      final h = await _signedInGuest();
+      addTearDown(h.close);
+      expect(h.controller.profile?.isGuest, isTrue);
+      // The paywall state when the plan is tapped: no access, plans loaded.
+      h.api.subscription = _inactive;
+      await h.controller.billing.refreshSubscription();
+      await h.controller.billing.loadPlans();
+      h.gateway.owned = const <PlayPurchase>[
+        PlayPurchase(
+          productId: 'premium',
+          purchaseToken: 'ownerless-fixture',
+          state: 'purchased',
+          obfuscatedAccountId: null,
+          acknowledged: true,
+        ),
+      ];
+      final launched = await h.controller.beginGuestPurchase(_monthly);
+      expect(launched, isFalse);
+      expect(
+        h.controller.guestMessageKey,
+        BillingController.playExistingReceiptMessageKey,
+      );
+      expect(h.api.verifiedTokens, isEmpty);
+      expect(h.api.restoredTokens, isEmpty);
+      expect(h.gateway.openedOwners, isEmpty);
+      expect(h.controller.billing.canManagePlaySubscription, isTrue);
+    },
+  );
 }

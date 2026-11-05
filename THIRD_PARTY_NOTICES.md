@@ -4,34 +4,40 @@ Audit de qualification du 14 octobre 2026 : [Q030](docs/VALIDATION.md#q030), [Q0
 
 
 Inventaire de sources **0.2.10+74016**, audité le **14 octobre 2026** à
-partir des fichiers conservés et des sources primaires indiquées.
+partir des fichiers conservés et des sources primaires indiquées, puis mis à
+jour le **29 octobre 2026** pour l’état épinglé actuel du moteur WireGuard
+(AAR, wireguard-go, Go) relu dans le dépôt.
 [LICENSING.md](LICENSING.md) distingue le code propre MPL-2.0, ses exceptions,
-les composants tiers et les marques. [docs/SBOM.spdx.json](docs/SBOM.spdx.json) contient les versions,
-relations et empreintes disponibles. Il distingue les dépendances déclarées,
-les outils de développement, les ressources et les paquets multiplateformes
-résolus par Pub. Il ne constitue pas un relevé des composants d’un APK donné.
+les composants tiers et les marques. Les versions actuelles sont celles de ce
+document et du SBOM release régénéré par `tools/generate_release_sbom.py`
+(voir [docs/SBOM.release.md](docs/SBOM.release.md)). [docs/SBOM.spdx.json](docs/SBOM.spdx.json)
+reste l’inventaire **historique** de l’audit du 14 octobre : il décrit l’ancien
+moteur WireGuard et n’est pas mis à jour. Ces inventaires distinguent les
+dépendances déclarées, les outils de développement, les ressources et les
+paquets multiplateformes résolus par Pub ; aucun ne constitue à lui seul un
+relevé des composants d’un APK donné.
 
 ## Composants de l’application
 
 | Composant | Version ou révision | Licence déclarée / retenue | Usage |
 | --- | --- | --- | --- |
-| Flutter SDK | 3.44.7 | BSD-3-Clause, avec notices de ses composants | Interface et runtime |
-| flutter_localizations | SDK Flutter 3.44.7 | Voir les notices du SDK | Localisation Flutter |
-| intl | 0.20.2 | BSD-3-Clause | Formats et localisation |
+| Flutter SDK | 3.47.8 (Dart 3.13.7) | BSD-3-Clause, avec notices de ses composants | Interface et runtime |
+| flutter_localizations | SDK Flutter 3.47.8 | Voir les notices du SDK | Localisation Flutter |
+| intl | 0.20.3 | BSD-3-Clause | Formats et localisation |
 | crypto | 3.0.7 | BSD-3-Clause | Empreintes Dart |
 | url_launcher | 6.3.2 | BSD-3-Clause | Liens publics |
 | url_launcher_android | 6.3.32 | BSD-3-Clause | Implémentation Android |
 | url_launcher_platform_interface | 2.3.2 | BSD-3-Clause | Interface du plugin |
 | WireGuard Android Tunnel local | 1.0.20260102-fuzevpn-fgs | Apache-2.0 pour le tunnel Java ; notices natives distinctes | Service VPN partagé et démarrage protégé |
-| wireguard-go | v0.0.0-20250521234502-f333402bd9cb | MIT | Moteur Go, via le pont natif modifié |
-| wireguard-tools | e2ecaaa739144997ccff89d6ad6ec81698ea6ced | GPL-2.0-only ; nombreux fichiers GPL-2.0-only OR MIT, netlink LGPL-2.1-or-later | Outils libwg / libwg-quick conservés dans l’AAR |
+| wireguard-go | v0.0.0-20261024220952-b3bc704ef0ee (commit `b3bc704ef0ee21a36298601a9e1e5ff90377ac52`) | MIT | Moteur Go, via le pont natif modifié |
+| wireguard-tools | e2ecaaa739144997ccff89d6ad6ec81698ea6ced | GPL-2.0-only ; nombreux fichiers GPL-2.0-only OR MIT, netlink LGPL-2.1-or-later | Outils `libwg.so` / `libwg-quick.so` conservés dans l’AAR, exclus de l’APK et de l’AAB (`packaging.jniLibs.excludes`) : non livrés |
 | OpenVPN 3 Core | 28469efe3ae770268b2b5c6aa607ed1489e101f0 | MPL-2.0, option retenue | Moteur JNI et XKey amont |
 | OpenSSL | 3.5.9 | Apache-2.0 | TLS et cryptographie OpenVPN |
 | Asio | 1.36.0 | BSL-1.0 | E/S, avec les six patches maintenus par OpenVPN |
 | fmt | 12.1.0 | MIT | Formatage du Core |
 | lz4 | 1.10.0 | BSD-2-Clause | Dépendance du Core |
-| AndroidX Core KTX | 1.16.0 | Apache-2.0 | API Android |
-| AndroidX annotation / collection | 1.9.1 / 1.5.0 | Apache-2.0, déclaration des POM officiels | Dépendances explicites de l’AAR |
+| AndroidX Core KTX | 1.16.0 à la compilation, 1.17.0 au runtime release (`app-patched.lockfile`) | Apache-2.0 | API Android |
+| AndroidX annotation / collection | 1.9.1 à la compilation, 1.10.0 au runtime release / 1.5.0 | Apache-2.0, déclaration des POM officiels | Dépendances explicites de l’AAR |
 | Kotlin / Coroutines Android | 2.3.20 / 1.10.2 | Apache-2.0 | Code et exécution asynchrone |
 | Google Play Billing Library | 9.1.0 | Android Software Development Kit License, déclaration du POM ; [conditions officielles](https://developer.android.com/studio/terms.html) | Prérequis de facturation Google Play |
 | AndroidX Credential Manager / Credential Manager Play Services Auth | 1.6.0 / 1.6.0 | Apache-2.0, déclaration des POM et textes inclus dans les AAR | Sélection native du compte Google et pont Google Play services |
@@ -159,15 +165,20 @@ le logo Google restent distincts. Voir [LICENSING.md](LICENSING.md).
 ## Provenance native
 
 L’AAR local WireGuard part du commit Android
-`09b75c2bd37f749e2a8c85876394854113c74be7`. Il applique les patches de service
-au premier plan et de démarrage protégé. **libwg-go est reconstruit** avec le
-nouveau contrat JNI ; les autres bibliothèques restent celles de l’AAR officiel
-vérifié. Les sources, patches et `.metadata.json` associés doivent rester avec
+`09b75c2bd37f749e2a8c85876394854113c74be7`. Il applique, dans l’ordre du fichier
+`android/third_party/wireguard-android/patches/fuzevpn/series`, trois patches :
+service au premier plan (0001), démarrage protégé (0002), puis runtime Go 1.26.9
+avec l’adaptation CLOCK_BOOTTIME revue et wireguard-go `b3bc704ef0ee`, qui
+ajoute au correctif amont de concurrence du handshake celui de la longueur IPv6
+(0003). **libwg-go est reconstruit**
+avec le nouveau contrat JNI ; les autres bibliothèques restent celles de l’AAR
+officiel vérifié. Les sources, patches et `.metadata.json` associés doivent rester avec
 l’artefact. Le sous-module `wireguard-tools` possède ses propres notices ; la
 licence Apache du tunnel Java ne décrit pas à elle seule tous les fichiers natifs.
 
 L'AAR approuvé a pour SHA-256
-`bf96422b21e086cf371154613f5250c8101568538ab40acb4ccbad09394e4811`.
+`bf563b779e670647e7d47751e7f4ff5d90299272640af7814c52f74bfe8c4b73`
+(`WireGuardAarPolicy.APPROVED_SHA256` et `tunnel-1.0.20260102-fuzevpn-fgs.metadata.json`).
 Les quatre versions de `libwg-go.so` fixent leur socket UAPI local à
 `/data/data/com.fuzevpn/cache/wireguard`. Cette adaptation de l'identifiant
 installé conserve les sources Go, les patches et le contrat JNI. Les autres
@@ -186,8 +197,8 @@ de sources sont décrits dans
 
 ## Développement et portée du SBOM
 
-Les outils épinglés comprennent Android Gradle Plugin 9.3.0, Gradle 9.5.0,
-Java 17, Android Platform 36, NDK 28.2.13676358, CMake 3.22.1 et Go 1.24.3.
+Les outils épinglés comprennent Android Gradle Plugin 9.3.0, Gradle 9.8.2,
+Java 17, Android Platform 36, NDK 28.2.13676358, CMake 3.22.1 et Go 1.26.9.
 `termux-elf-cleaner`, au commit
 `7efc05090675ec6161b7def862728086a26c3b1f`, est un outil du build WireGuard
 sous GPL-3.0-or-later ; il n’est pas une bibliothèque du runtime Android.
@@ -204,18 +215,20 @@ est un support Windows, sans inclusion Android affirmée ici.
 ## Textes de licence des sources supplémentaires
 
 Le contrôle du **7 octobre 2026** a ouvert les archives conservées, lu leurs
-textes et comparé leurs empreintes au manifeste inchangé
-`android/source-distribution/completeness.manifest.json`. Aucune archive ni
-entrée native verrouillée n’a été modifiée.
+textes et comparé leurs empreintes au manifeste
+`android/source-distribution/completeness.manifest.json`. Il a été refait le
+**29 octobre 2026** pour les archives actuelles `go1.26.9.src.tar.gz` et
+wireguard-go `b3bc704ef0ee` : mêmes textes BSD-3-Clause et MIT (empreintes
+ci-dessous). Ce contrôle n’a modifié aucune archive.
 
 | Source redistribuée | Licence principale et texte effectivement présent |
 | --- | --- |
-| Go 1.24.3, runtime et bibliothèque standard | BSD-3-Clause : `go/LICENSE` dans `go1.24.3.src.tar.gz` ; 18 autres licences de composants vendored conservées |
+| Go 1.26.9, runtime et bibliothèque standard | BSD-3-Clause : `go/LICENSE` dans `go1.26.9.src.tar.gz` ; 20 autres fichiers de licence (composants vendored et données de test) conservés dans l’archive |
 | `golang.org/x/crypto` v0.38.0 | BSD-3-Clause : `golang.org/x/crypto@v0.38.0/LICENSE` dans son ZIP |
 | `golang.org/x/net` v0.40.0 | BSD-3-Clause : `golang.org/x/net@v0.40.0/LICENSE` dans son ZIP |
 | `golang.org/x/sys` v0.33.0 | BSD-3-Clause : `golang.org/x/sys@v0.33.0/LICENSE` dans son ZIP |
 | `golang.org/x/time` v0.7.0 | BSD-3-Clause : `golang.org/x/time@v0.7.0/LICENSE` dans son ZIP |
-| WireGuard Go v0.0.0-20250521234502-f333402bd9cb | MIT : `golang.zx2c4.com/wireguard@v0.0.0-20250521234502-f333402bd9cb/LICENSE` dans son ZIP |
+| WireGuard Go v0.0.0-20261024220952-b3bc704ef0ee | MIT : `golang.zx2c4.com/wireguard@v0.0.0-20261024220952-b3bc704ef0ee/LICENSE` dans son ZIP |
 | Wintun v0.0.0-20230126152724-0fa3db229ce2 | MIT : `golang.zx2c4.com/wintun@v0.0.0-20230126152724-0fa3db229ce2/LICENSE` dans son ZIP ; source Windows, inclusion Android non affirmée |
 | `github.com/google/btree` v1.1.2 | Apache-2.0 : `github.com/google/btree@v1.1.2/LICENSE` dans son ZIP |
 | gVisor v0.0.0-20250503011706-39ed1f5ac29c | Apache-2.0 : `gvisor.dev/gvisor@v0.0.0-20250503011706-39ed1f5ac29c/LICENSE` dans son ZIP |
@@ -242,6 +255,18 @@ s’applique au code netlink conservé et à son droit or-later ; il n’impose 
 une nouvelle licence au code propre de l’application et ne conclut pas le
 régime d’un APK entier.
 
+**Exécutables wireguard-tools non livrés** : l’application n’utilise que
+`GoBackend`, qui charge seulement `libwg-go.so` (wireguard-go et sa glue JNI).
+`libwg.so` et `libwg-quick.so`, seules cibles de l’AAR qui compilent
+wireguard-tools et son code netlink, servent uniquement `WgQuickBackend` et son
+shell root. `android/app/build.gradle.kts` les exclut de toutes les variantes
+d’APK et d’AAB (`packaging.jniLibs.excludes`) ; le cas
+`native-libraries-approved` de `tools/test_wireguard_release_gate.ps1`, exigé
+par la validation, refuse une fusion qui les contient encore. Aucun code
+GPL-2.0 ou LGPL-2.1 de wireguard-tools n’est donc livré dans l’application ;
+les sources, notices et le texte LGPL ci-dessus accompagnent l’AAR et sa
+distribution de sources.
+
 Les SDK Flutter/Android, NDK, JDK et CMake sont des prérequis externes à obtenir
 séparément ; leurs distributions ne sont pas copiées dans ce dépôt. Le
 `NOASSERTION` de leurs entrées décrit la limite de cet inventaire et la
@@ -262,6 +287,30 @@ Cette comparaison n’invente pas la provenance du téléchargement historique.
 L’inventaire exhaustif des internes Flutter/transitifs réellement conservés
 dans l’APK optimisé est **bloqué, Q033**, avec ses entrées requises
 ([détail](docs/VALIDATION.md#q033)).
+
+## Notices tierces des SDK Google et indication des sources
+
+Les AAR Google du classpath release (Billing 9.1.0, Play services auth 21.1.1
+et leurs dépendances Play services, DataTransport, Firebase encoders et
+Google ID 1.2.1) déclarent dans `third_party_licenses.json`/`.txt` des
+composants incorporés sous licences BSD, MIT, Apache et autres (notamment
+Protocol Buffers, JSR 305, Animal Sniffer, Checker Framework, ICU4C, zlib).
+Le packaging Android ne conserve pas ces fichiers. L’application les reproduit
+donc à l’octet près dans l’écran « Licences des composants »
+(`lib/widgets/google_sdk_notices.dart`, enregistré par
+`lib/widgets/third_party_notices.dart`), chaque texte portant l’empreinte
+SHA-256 relue dans l’AAR vérifié par `android/gradle/verification-metadata.xml`.
+Ces notices doivent être régénérées à chaque changement de version d’un SDK
+Google ; la rétention de chaque composant après R8 n’est pas établie, elles
+sont affichées par prudence.
+
+Le même écran indique où obtenir le code source de l’application et de ses
+composants MPL-2.0 : https://github.com/FuzeVPN/android-app
+(`applicationLegalese`, texte localisé `settings.licensesLegalese`). Voir
+[LICENSING.md](LICENSING.md) pour la portée de cette indication.
+`libwg.so`/`libwg-quick.so` (GPL-2.0) étant exclus de l’APK et de l’AAB,
+l’écran n’affiche ni notice wireguard-tools ni mention « GPL-2.0 » ; les
+textes de wireguard-tools restent avec l’AAR et sa distribution de sources.
 
 ## Diffusion
 

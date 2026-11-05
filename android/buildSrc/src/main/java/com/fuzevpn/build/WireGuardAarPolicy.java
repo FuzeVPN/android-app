@@ -17,7 +17,7 @@ import java.util.zip.ZipInputStream;
 /** Distribution policy. The approved digest is code, never read from mutable artifact metadata. */
 public final class WireGuardAarPolicy {
     public static final String APPROVED_SHA256 =
-            "bf96422b21e086cf371154613f5250c8101568538ab40acb4ccbad09394e4811";
+            "bf563b779e670647e7d47751e7f4ff5d90299272640af7814c52f74bfe8c4b73";
     private static final String BACKEND = "com/wireguard/android/backend/GoBackend";
     private static final String PROTECTED_START_SYMBOL = "Java_com_wireguard_android_backend_GoBackend_wgSetConfig";
     private static final String UAPI_SOCKET_DIRECTORY = "/data/data/com.fuzevpn/cache/wireguard";

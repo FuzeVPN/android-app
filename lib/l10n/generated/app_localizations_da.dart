@@ -48,7 +48,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Din session er ugyldiggjort. VPN-forbindelsen stoppes, og sessionen ryddes…';
+      'Sessionen afsluttes: VPN-forbindelsen stoppes, og sessionsdata ryddes…';
 
   @override
   String get session_stopFailed =>
@@ -429,6 +429,9 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Unavngivet enhed';
+
+  @override
   String get action_remove => 'Fjern';
 
   @override
@@ -468,6 +471,11 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Software, der bruges i appen';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Kildekode til appen og dens komponenter under MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -550,7 +558,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get notice_rateLimited_title => 'For mange forsøg';
 
   @override
-  String get notice_deviceLimit_title => 'Grænsen på 2 enheder er nået';
+  String get notice_deviceLimit_title => 'Enhedsgrænsen er nået';
 
   @override
   String get notice_deviceLimit_message =>
@@ -649,7 +657,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'vpn_sign_in_required': 'Login påkrævet',
       'protocol_unavailable_at_location': 'Protokol ikke tilgængelig',
       'vpn_permission_denied': 'VPN-tilladelse afvist',
-      'revoked_identity_device_limit': 'Grænsen på 2 enheder er nået',
+      'revoked_identity_device_limit': 'Enhedsgrænsen er nået',
       'tunnel_start_unexpected': 'VPN kunne ikke starte',
       'flutter_disconnect_timeout': 'Afbrydelse ikke bekræftet',
       'flutter_disconnect_unexpected': 'Kunne ikke afbryde forbindelsen',
@@ -665,6 +673,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'location_migration_device_changed':
           'Enheden blev ændret under skift af placering',
       'tunnel_stop_failed': 'Skift af placering er ikke tilgængeligt',
+      'device_clock_ahead': 'Enhedens ur går for hurtigt',
       'other': 'Handlingen mislykkedes',
     });
     return '$_temp0';
@@ -713,6 +722,8 @@ class AppLocalizationsDa extends AppLocalizations {
           'Den enhed, serveren returnerede, matcher ikke længere den enhed, der ændres. Opdater enhederne, før du prøver igen.',
       'tunnel_stop_failed':
           'Den tidligere tunnel skal stoppes helt, før den nye forbindelse kan oprettes.',
+      'device_clock_ahead':
+          'Uret på denne enhed ser ud til at gå for hurtigt. Slå automatisk dato og tid til for at forblive logget ind.',
       'other':
           'Handlingen kunne ikke gennemføres. Prøv igen, eller send diagnosticeringskoden til support.',
     });
@@ -831,8 +842,36 @@ class AppLocalizationsDa extends AppLocalizations {
   String get notice_retryLater => 'Prøv igen om et øjeblik.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Prøv igen om $seconds sekunder.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Prøv igen om $seconds sekunder.',
+      one: 'Prøv igen om $seconds sekund.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Prøv igen om $minutes minutter.',
+      one: 'Prøv igen om $minutes minut.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Prøv igen om $hours timer.',
+      one: 'Prøv igen om $hours time.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -947,6 +986,9 @@ class AppLocalizationsDa extends AppLocalizations {
       'secure_storage_write_failed': 'Sikker skrivning mislykkedes',
       'key_generation_failed': 'WireGuard-nøgle kunne ikke genereres',
       'csr_generation_failed': 'OpenVPN-CSR kunne ikke genereres',
+      'openvpn_recovery_exhausted': 'OpenVPN-gendannelse allerede brugt',
+      'openvpn_recovery_failed': 'OpenVPN-gendannelse mislykkedes',
+      'openvpn_renewal_required': 'OpenVPN-certifikatet skal fornyes',
       'other': 'Uklassificeret indbygget VPN-fejl',
     });
     return '$_temp0';
@@ -1777,6 +1819,14 @@ class AppLocalizationsDa extends AppLocalizations {
       'Dit abonnement administreres via Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Dit Google Play-abonnement er sat på pause eller afventer betaling. Åbn “Administrer abonnement” for at løse det i Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Denne Google Play-konto har allerede et Fuze Premium-abonnement, som ikke er aktivt for denne FuzeVPN-konto. Åbn “Administrer abonnement” for at se det i Google Play.';
+
+  @override
   String get billing_inactive => 'Intet aktivt abonnement.';
 
   @override
@@ -2028,6 +2078,10 @@ class AppLocalizationsDa extends AppLocalizations {
   String get google_rateLimited => 'Vent før du prøver igen.';
 
   @override
+  String get google_busy =>
+      'Google er ikke tilgængeligt, mens en anden handling er i gang (VPN-forbindelse, konto eller gæst). Prøv igen, når den er færdig; din nuværende adgang bevares.';
+
+  @override
   String get google_invalidPassword =>
       'FuzeVPN-adgangskoden er forkert. Din nuværende konto bevares.';
 
@@ -2058,6 +2112,36 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Sikkerhedskontrollen er ikke tilgængelig. Prøv senere.';
+
+  @override
+  String get google_intentMismatch =>
+      'Et tidligere forsøg på at logge ind med Google afventer stadig. Annuller det, før du starter denne handling.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Det nødvendige sikkerhedstjek er ikke tilgængeligt i denne app. Handlingen kan ikke fuldføres lige nu.';
+
+  @override
+  String get google_solveChallenge => 'Udfør sikkerhedstjekket';
+
+  @override
+  String get google_challengeTitle => 'Sikkerhedstjek';
+
+  @override
+  String get google_challengeReady =>
+      'Bekræftelsen er gennemført. Du kan nu bekræfte oprettelsen af din konto.';
+
+  @override
+  String get google_challengeExpired =>
+      'Bekræftelsen er udløbet. Udfør den igen, før du bekræfter.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Bekræftelsen er annulleret. Du kan udføre den igen.';
+
+  @override
+  String get google_challengeFailed =>
+      'Sikkerhedstjekket mislykkedes. Prøv igen.';
 
   @override
   String get billing_trialTitle => 'Prøv Fuze Premium gratis';

@@ -97,10 +97,11 @@ String diagnosticEnum(
 int? diagnosticInteger(Object? value, int maximum, [int minimum = 0]) =>
     value is int && value >= minimum && value <= maximum ? value : null;
 
-String diagnosticCode(Object? value) =>
-    value is String && diagnosticCodes.contains(value)
-    ? value
-    : 'unknown_error';
+String diagnosticCode(Object? value) {
+  if (value is! String) return 'unknown_error';
+  final code = diagnosticCodeAliases[value] ?? value;
+  return diagnosticCodes.contains(code) ? code : 'unknown_error';
+}
 
 /// These objects only retain normalized, finite vocabulary, never their inputs.
 class DiagnosticError {

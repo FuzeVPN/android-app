@@ -221,17 +221,26 @@ class PlayPurchase {
     required this.state,
     required this.obfuscatedAccountId,
     required this.acknowledged,
+    this.suspended = false,
   });
   final String productId, purchaseToken, state;
   final String? obfuscatedAccountId;
   final bool acknowledged;
+
+  /// Inactive purchase evidence can recover its owner, never grant VPN access.
+  final bool suspended;
   factory PlayPurchase.fromJson(Map<dynamic, dynamic> json) {
     if (json['productId'] != 'premium' ||
         !const ['purchased', 'pending'].contains(json['state']) ||
-        json['acknowledged'] is! bool) {
+        json['acknowledged'] is! bool ||
+        (json.containsKey('suspended') && json['suspended'] is! bool) ||
+        (json['suspended'] == true && json['state'] != 'purchased')) {
       throw const FormatException('invalid_play_purchase');
     }
-    final owner = json['obfuscatedAccountId'];
+    // Billing may encode an absent account identifier as an empty string.
+    // Preserve absence; never bind it to the currently signed-in account.
+    final rawOwner = json['obfuscatedAccountId'];
+    final owner = rawOwner == '' ? null : rawOwner;
     if (owner != null && (owner is! String || !validBillingAccountId(owner))) {
       throw const FormatException('invalid_purchase_owner');
     }
@@ -241,6 +250,7 @@ class PlayPurchase {
       state: json['state'] as String,
       obfuscatedAccountId: owner as String?,
       acknowledged: json['acknowledged'] as bool,
+      suspended: json['suspended'] as bool? ?? false,
     );
   }
 }

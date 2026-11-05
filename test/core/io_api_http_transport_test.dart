@@ -220,12 +220,147 @@ void main() {
       }
     });
   }
+
+  // A04-transport-01: an error body over the budget is not a payload. Reading
+  // stops at the budget (the stream below never ends) and the status stays.
+  for (final status in [302, 429, 503]) {
+    test('a $status body over the byte limit keeps its status', () async {
+      final response = _Response(statusCode: status);
+      response.controller.add(List<int>.filled(1024 * 1024 + 1, 32));
+      final transport = IoApiHttpTransport(
+        client: _Client(() async => _Request(() async => response)),
+        requestTimeout: const Duration(seconds: 5),
+      );
+      try {
+        final result = await transport.send(_post());
+        expect(result.statusCode, status);
+        expect(result.body, isEmpty);
+        expect(response.cancelled, isTrue);
+      } finally {
+        await response.controller.close();
+        transport.close();
+      }
+    });
+
+    // Review round 2: a framing or connection failure of an error body, or
+    // an error body still pending at the deadline, keeps the status as well.
+    test('a $status body failing mid-stream keeps its status', () async {
+      final response = _Response(statusCode: status);
+      response.controller
+        ..add(ascii.encode('{"error":"rate_limited"'))
+        ..addError(
+          const HttpException('Connection closed while receiving data'),
+        );
+      final transport = IoApiHttpTransport(
+        client: _Client(() async => _Request(() async => response)),
+        requestTimeout: const Duration(seconds: 5),
+      );
+      try {
+        final result = await transport.send(_post());
+        expect(result.statusCode, status);
+        expect(result.body, isEmpty);
+      } finally {
+        await response.controller.close();
+        transport.close();
+      }
+    });
+
+    test('a $status body pending at the deadline keeps its status', () async {
+      final response = _Response(statusCode: status);
+      response.controller.add(ascii.encode('{"error":'));
+      final transport = IoApiHttpTransport(
+        client: _Client(() async => _Request(() async => response)),
+        requestTimeout: const Duration(milliseconds: 150),
+      );
+      final watch = Stopwatch()..start();
+      try {
+        final result = await transport.send(_post());
+        expect(result.statusCode, status);
+        expect(result.body, isEmpty);
+        expect(watch.elapsedMilliseconds, greaterThanOrEqualTo(140));
+        expect(watch.elapsedMilliseconds, lessThan(700));
+        expect(response.cancelled, isTrue);
+      } finally {
+        await response.controller.close();
+        transport.close();
+      }
+    });
+  }
+
+  test('a 200 body failing mid-stream stays a network failure', () async {
+    final response = _Response();
+    response.controller
+      ..add(ascii.encode('{"limit":2'))
+      ..addError(const HttpException('Connection closed while receiving data'));
+    final transport = IoApiHttpTransport(
+      client: _Client(() async => _Request(() async => response)),
+      requestTimeout: const Duration(seconds: 5),
+    );
+    try {
+      await expectLater(
+        transport.send(_post()),
+        throwsA(
+          isA<ApiNetworkException>()
+              .having((e) => e.code, 'code', 'network_unavailable')
+              .having((e) => e.statusCode, 'status', isNull),
+        ),
+      );
+    } finally {
+      await response.controller.close();
+      transport.close();
+    }
+  });
+
+  test('error headers after the deadline stay a timeout', () async {
+    final headers = Completer<HttpClientResponse>();
+    final response = _Response(statusCode: 503);
+    final transport = IoApiHttpTransport(
+      client: _Client(() async => _Request(() => headers.future)),
+      requestTimeout: const Duration(milliseconds: 60),
+    );
+    try {
+      await expectLater(transport.send(_post()), _timeout);
+      headers.complete(response);
+      await Future<void>.delayed(Duration.zero);
+      expect(response.cancelled, isTrue);
+    } finally {
+      await response.controller.close();
+      transport.close();
+    }
+  });
+
+  // Final review R1: close() blocks the isolate past the deadline, so the
+  // error headers are handled before the global timeout can fire. Only the
+  // deadline check made when the headers arrive keeps them a timeout.
+  test('late error headers after a blocking close stay a timeout', () async {
+    const requestTimeout = Duration(milliseconds: 200);
+    final response = _Response(statusCode: 503);
+    final outgoing = _Request(() {
+      sleep(requestTimeout + const Duration(milliseconds: 50));
+      return Future<HttpClientResponse>.value(response);
+    });
+    final transport = IoApiHttpTransport(
+      client: _Client(() async => outgoing),
+      requestTimeout: requestTimeout,
+    );
+    try {
+      await expectLater(transport.send(_post()), _timeout);
+      expect(response.cancelled, isTrue);
+      expect(outgoing.closeCalls, 1);
+    } finally {
+      await response.controller.close();
+      transport.close();
+    }
+  });
 }
 
 class _Client implements HttpClient {
   _Client(this.openRequest);
   final Future<HttpClientRequest> Function() openRequest;
   bool closed = false;
+
+  @override
+  Duration? connectionTimeout;
 
   @override
   Future<HttpClientRequest> openUrl(String method, Uri url) => openRequest();
@@ -243,6 +378,9 @@ class _Request implements HttpClientRequest {
   final List<int> bytes = [];
   int closeCalls = 0;
   int aborts = 0;
+
+  @override
+  bool followRedirects = true;
 
   @override
   final _Headers headers = _Headers();
@@ -281,7 +419,7 @@ class _Headers implements HttpHeaders {
 }
 
 class _Response extends Stream<List<int>> implements HttpClientResponse {
-  _Response({Future<void> Function()? cleanup}) {
+  _Response({this.statusCode = 200, Future<void> Function()? cleanup}) {
     controller = StreamController<List<int>>(
       onCancel: () {
         cancelled = true;
@@ -294,7 +432,7 @@ class _Response extends Stream<List<int>> implements HttpClientResponse {
   bool cancelled = false;
 
   @override
-  int get statusCode => 200;
+  final int statusCode;
 
   @override
   final HttpHeaders headers = _Headers();

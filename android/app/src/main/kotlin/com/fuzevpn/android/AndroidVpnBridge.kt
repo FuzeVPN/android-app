@@ -9,9 +9,12 @@ import android.net.VpnService
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.net.NetworkRequest
 import android.os.Build
 import android.os.UserManager
+import android.provider.Settings
+import android.util.Log
 import androidx.core.content.ContextCompat
 import com.fuzevpn.android.openvpn.OpenVpnController
 import com.fuzevpn.android.openvpn.OpenVpnRecoveryPolicy
@@ -22,6 +25,7 @@ import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.CancellationException
@@ -36,6 +40,8 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.delay
+import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
 import java.lang.ref.WeakReference
 
@@ -54,8 +60,13 @@ internal class AndroidVpnBridge(
 
     private var methodChannel: MethodChannel? = null
     private var eventChannel: EventChannel? = null
-    private val operationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
-    private val observerScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    // Last resort (C2-02): an escaped failure is logged by type only and never
+    // reaches the process handler, which would also take a running tunnel down.
+    private val lastResortHandler = CoroutineExceptionHandler { _, error ->
+        Log.w(LOG_TAG, "Unhandled bridge operation failure: ${error.javaClass.simpleName}")
+    }
+    private val operationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO + lastResortHandler)
+    private val observerScope = CoroutineScope(SupervisorJob() + Dispatchers.IO + lastResortHandler)
     private val tunnelOperationMutex = Mutex()
     private val store = SecureKeystoreStore(appContext)
     private val guestCredentials = GuestCredentialStorage(
@@ -66,12 +77,27 @@ internal class AndroidVpnBridge(
         read = { readStrict(it) },
         write = { slot, value -> writeSlot(slot, value) },
     )
-    private val quickTileProfiles = QuickTileProfileStore(store)
+    private val quickTileProfiles = QuickTileProfileStore(store) { VpnQuickTileService.requestUpdate(appContext) }
     private val resumeRegistry = SystemVpnResumeRegistry(
         readRaw = { SecureStorageKeyPolicy.systemVpnResume().let { store.read(it.scope, it.key, removeCorrupt = false) } },
-        writeRaw = { writeSlot(SecureStorageKeyPolicy.systemVpnResume(), it) },
+        writeRaw = { writeSlot(SecureStorageKeyPolicy.systemVpnResume(), it); noteDurableResume(it) },
     )
     private val tunnelRequestEpoch = AtomicLong()
+    // Automatic restoration owns publications without cancelling explicit commands.
+    private val systemStartPublicationEpoch = AtomicLong()
+    // Advanced under systemStartLock when an explicit command takes the tunnel
+    // (invalidateSystemResume) and again when that mutex hold ends. A system
+    // start that saw another value owns neither the engine, the durable record
+    // nor the published state, even with the same request epoch (H-E22-N01-01).
+    private val explicitAdmissionEpoch = AtomicLong()
+    // Publication epoch of the last admitted system start that no longer owns
+    // or attempts an engine: an older tile click may then run (H-E22-N01-02).
+    private val releasedSystemStartEpoch = AtomicLong()
+    // Tunnel-mutex hold state, read by closeTunnelHold at the end of each hold.
+    private var explicitHoldOpen = false
+    private var systemRestoreHoldOpen = false
+    private var systemRestoreInstance = -1L
+    private val publicationSequence = AtomicLong()
     private val tunnelInstanceEpoch = AtomicLong()
     private val physicalNetworks = PhysicalNetworkTracker<Network>()
     private val connectivity = appContext.getSystemService(ConnectivityManager::class.java)
@@ -93,6 +119,18 @@ internal class AndroidVpnBridge(
     @Volatile private var resumeError: String? = null
     @Volatile private var resumeStorageFailure = false
     @Volatile private var systemStartInFlight = false
+    // Restore after a process death (SystemVpnResumeSentinel). A restart that has not reserved
+    // the record yet gives way to Android's own start (guarded by systemStartLock).
+    private var processRestartUnreserved = false
+    @Volatile private var resumeArmedInStorage = false
+    // Sampled only while our tunnel is CONNECTED: isAlwaysOn() answers for an established VPN.
+    @Volatile private var alwaysOnWhileEstablished: Boolean? = null
+    // Explicit commands and host losses in progress: none of them may leave the restart armed.
+    private val processRestartHolds = AtomicInteger()
+    // The arming decision is computed and handed to the sentinel in one step, so a decision
+    // computed before a stop's hold can never land after it.
+    private val processRestartSyncLock = Any()
+    @Volatile private var alwaysOnSampler: Job? = null
     private val stateLock = Any()
     private val sessionLifecycle = SessionLifecycle()
     private val sessionEndLock = Any()
@@ -143,6 +181,10 @@ internal class AndroidVpnBridge(
     private var permissionResult: MethodChannel.Result? = null
     private var permissionSessionEpoch = 0L
     @Volatile private var permissionDisclosureAccepted = false
+    // Last answer of VpnService.prepare during an explicit user action. The
+    // tile never probes it, and a tile click calls it only after its local
+    // checks: prepare revokes another app's VPN (C2-01, QT-REVOKE-OVPN-01).
+    @Volatile private var vpnPermissionMissing = false
 
     // Main-thread lifecycle state; never retains the Activity or a file path.
     private var diagnosticExport: DiagnosticExport<MethodChannel.Result>? = null
@@ -159,7 +201,19 @@ internal class AndroidVpnBridge(
     @Volatile private var recoveryOwnsSession = false
     @Volatile private var openVpnTransition = false
     private var handledFailureGeneration = 0L
+    // Physical onLost count (callback thread) and its value when the current OpenVPN
+    // engine start began. A loss in between saw status != CONNECTED; it is acted on at the proof.
+    private val physicalLosses = AtomicLong()
+    @Volatile private var openVpnStartLosses = 0L
     @Volatile private var revocationState: OpenVpnRevocationState? = null
+    // False when Android refused the physical network callback. On Android 11 a proxy broadcast
+    // (sent on every VPN network teardown) that reaches this process while it binds leaves the
+    // process-wide ConnectivityManager on package android until the process dies: callbacks and
+    // capabilities then throw SecurityException, calls without a package check still answer.
+    private val physicalCallbackRegistered: Boolean
+    // Without that callback: the default physical network followed through legacy readings (see
+    // physicalNetworkVanished). Under recoveryLock; reset while OpenVPN is inactive.
+    private val legacyDefaultNetwork = LegacyDefaultNetworkTracker<Network>()
 
     private data class RecoveryTarget(
         val request: Long,
@@ -168,31 +222,98 @@ internal class AndroidVpnBridge(
         val deviceId: String,
         val locationId: String,
         val locationName: String,
+        val networkChange: Boolean = false,
     )
 
     init {
         observeOpenVpnStates()
         // Observe physical network loss even before Core's keepalive expires.
         // A VPN's own disappearance must not trigger another recovery.
-        connectivity.registerNetworkCallback(
-            physicalNetworkRequest,
-            object : ConnectivityManager.NetworkCallback() {
-                override fun onAvailable(network: Network) {
-                    physicalNetworkChanged(network, false)
-                }
+        physicalCallbackRegistered = try {
+            connectivity.registerNetworkCallback(
+                physicalNetworkRequest,
+                object : ConnectivityManager.NetworkCallback() {
+                    override fun onAvailable(network: Network) {
+                        physicalNetworkChanged(network, false)
+                    }
 
-                override fun onCapabilitiesChanged(network: Network, capabilities: NetworkCapabilities) {
-                    physicalNetworkChanged(network, physicalNetworkUsable(capabilities))
-                }
+                    override fun onCapabilitiesChanged(network: Network, capabilities: NetworkCapabilities) {
+                        physicalNetworkChanged(network, physicalNetworkUsable(capabilities))
+                    }
 
-                override fun onLost(network: Network) {
-                    physicalNetworkChanged(network, false)
-                    if (activeProtocol == VpnProtocol.OPENVPN && currentState.status == VpnStatus.CONNECTED &&
-                        !openVpn.hasUsableNetwork()) openVpn.networkLost()
+                    override fun onLost(network: Network) {
+                        physicalNetworkChanged(network, false)
+                        physicalLosses.incrementAndGet()
+                        // Decide from the callback alone: getAllNetworks() can still list the departing
+                        // network as VALIDATED (run C), and a remaining network does not carry Core's
+                        // already-connected socket (handover).
+                        signalOpenVpnNetworkLoss()
+                    }
+                },
+            )
+            true
+        } catch (_: SecurityException) {
+            // This runs in Application.onCreate: throwing would kill every start of the process
+            // (campaign vm31i, 10 of 40 cold starts). Never retried: no public API rebuilds that
+            // manager, only a new process does.
+            Log.w(LOG_TAG, "Physical network callback refused by Android: network changes are not observed in this process")
+            false
+        }
+        if (!physicalCallbackRegistered) watchPhysicalNetworksWithoutCallback()
+    }
+
+    // Without the physical callback, Core alone notices a lost network only at its keepalive,
+    // after a transfer has timed out (campaign vm31j). While OpenVPN is the active protocol, the
+    // default physical network is read once a second without a package check, and its loss is
+    // reported as onLost would have. Under recoveryLock, like handleOpenVpnFailure's own look.
+    private fun watchPhysicalNetworksWithoutCallback() = observerScope.launch {
+        while (true) {
+            synchronized(recoveryLock) {
+                if (activeProtocol == VpnProtocol.OPENVPN) {
+                    if (physicalNetworkVanished()) {
+                        physicalLosses.incrementAndGet()
+                        signalOpenVpnNetworkLoss()
+                    }
+                } else {
+                    legacyDefaultNetwork.reset()
                 }
+            }
+            delay(1_000L)
+        }
+    }
+
+    /**
+     * Called under recoveryLock. True when the default physical network followed so far is lost
+     * (see LegacyDefaultNetworkTracker.look): on a Wi-Fi return the cellular network stays listed,
+     * lingers, then runs in the background where Core's traffic stops, which the callback reports
+     * as onLost about 30 s later (campaign vm31k). Both readings go through the same per-app filter
+     * in Android 11, but as separate calls: the tracker allows for a block changing in between.
+     */
+    @Suppress("DEPRECATION")
+    private fun physicalNetworkVanished(): Boolean {
+        val listed: Map<Network, LegacyDefaultNetworkTracker.Reading>
+        val default: LegacyDefaultNetworkTracker.Reading?
+        try {
+            listed = connectivity.allNetworks.mapNotNull { network ->
+                connectivity.getNetworkInfo(network)?.let(::legacyReading)?.let { network to it }
+            }.toMap()
+            // Our VPN's underlying networks are null: this describes the physical default network.
+            default = connectivity.activeNetworkInfo?.let(::legacyReading)
+        } catch (_: Exception) {
+            return false
+        }
+        return legacyDefaultNetwork.look(listed, default)
+    }
+
+    @Suppress("DEPRECATION")
+    private fun legacyReading(info: NetworkInfo): LegacyDefaultNetworkTracker.Reading? =
+        if (info.type == ConnectivityManager.TYPE_VPN) null else LegacyDefaultNetworkTracker.Reading(
+            info.type, info.extraInfo, when (info.detailedState) {
+                NetworkInfo.DetailedState.CONNECTED, NetworkInfo.DetailedState.SUSPENDED -> LegacyDefaultNetworkTracker.State.FOLLOWED
+                NetworkInfo.DetailedState.BLOCKED -> LegacyDefaultNetworkTracker.State.BLOCKED
+                else -> LegacyDefaultNetworkTracker.State.OTHER
             },
         )
-    }
 
     private fun physicalNetworkUsable(capabilities: NetworkCapabilities?): Boolean = capabilities?.let {
         it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
@@ -300,9 +421,37 @@ internal class AndroidVpnBridge(
         systemStartJob?.cancel()
         systemStartJob = null
         systemStartInFlight = false
+        processRestartUnreserved = false
+    }
+
+    /** Every caller is an explicit command holding the tunnel mutex. */
+    private fun admitExplicitCommand() = synchronized(systemStartLock) {
+        explicitHoldOpen = true
+        explicitAdmissionEpoch.incrementAndGet()
+    }
+
+    /** Ends one tunnel-mutex hold, before another waiter can take the mutex. */
+    private fun closeTunnelHold() = synchronized(systemStartLock) {
+        if (explicitHoldOpen) {
+            explicitHoldOpen = false
+            explicitAdmissionEpoch.incrementAndGet()
+        }
+        if (systemRestoreHoldOpen) {
+            // The admitted system start failed inside this hold: an older
+            // tile click queued behind it may now connect.
+            systemRestoreHoldOpen = false
+            releasedSystemStartEpoch.set(systemStartPublicationEpoch.get())
+        }
+    }
+
+    /** No newer admitted system start still owns or attempts the engine. */
+    private fun systemStartAllows(publicationEpoch: Long): Boolean {
+        val current = systemStartPublicationEpoch.get()
+        return current == publicationEpoch || current == releasedSystemStartEpoch.get()
     }
 
     private fun invalidateSystemResume() {
+        admitExplicitCommand()
         try { resumeRegistry.invalidate() }
         catch (error: Exception) {
             resumeStorageFailure = true
@@ -381,43 +530,127 @@ internal class AndroidVpnBridge(
                 resumeError = messageCode(error, "system_vpn_resume_corrupt")
             }
         }
-        val flags = SharedVpnHost.systemFlags()
+        val flags = runCatching { SharedVpnHost.systemFlags() }.getOrDefault(null to null)
         return mapOf("always_on" to flags.first, "lockdown" to flags.second,
             "resume_state" to resumeState, "resume_error" to resumeError)
     }
 
     /** Android callbacks only enqueue work. No worker join or storage access here. */
-    internal fun onSystemVpnStart() = synchronized(systemStartLock) {
-        if (systemStartJob?.isActive == true || activeProtocol != null) return@synchronized
+    internal fun onSystemVpnStart() { startSystemRestore(selfStarted = false) }
+
+    /**
+     * Sticky restart of SystemVpnResumeSentinel after a process death with Android's permanent
+     * VPN on. Enqueues only: the restore shows nothing, writes nothing and starts no host before
+     * every read-only check has passed.
+     */
+    internal fun onProcessRestart() { if (!startSystemRestore(selfStarted = true)) syncProcessRestart() }
+
+    private fun startSystemRestore(selfStarted: Boolean): Boolean = synchronized(systemStartLock) {
+        if (activeProtocol != null) return@synchronized false
+        val running = systemStartJob
+        if (running?.isActive == true) {
+            // Android's own start supersedes a process restart that has not reserved the
+            // record: the host Android started is the one that restore needs.
+            if (selfStarted || !processRestartUnreserved) return@synchronized false
+            running.cancel()
+        }
         val epoch = tunnelRequestEpoch.get()
         val ticket = sessionLifecycle.ticket()
+        // An explicit command may share this request epoch. Its admission, or
+        // the end of a hold already admitted, ends this start's authority.
+        val authority = explicitAdmissionEpoch.get()
+        processRestartUnreserved = selfStarted
         systemStartInFlight = true
         systemStartJob = operationScope.launch(start = CoroutineStart.LAZY) {
+            val job = coroutineContext[Job]
             var profile: QuickTileProfile? = null
+            var admitted: Long? = null
+            var restored = false
+            var restoring: VpnState? = null
+            // Android started the boot path's host; a process restart starts its own.
+            var hostStarted = !selfStarted
+            var outcome = "superseded"
             try {
                 // Credential-encrypted storage is never read before first unlock.
-                while (!appContext.getSystemService(UserManager::class.java).isUserUnlocked) {
-                    checkRequest(epoch)
-                    delay(250)
+                awaitUserUnlock(epoch)
+                if (selfStarted) {
+                    // Read-only: no write, no state, no notification, no prepare and no host
+                    // until the record, the account, the consent and a network allow a restore.
+                    try {
+                        withTunnelOperation { checkProcessRestartEligible(epoch, ticket, authority) }
+                        awaitSystemVpnNetwork(
+                            isCurrent = { tunnelRequestEpoch.get() == epoch && sessionLifecycle.isCurrent(ticket) },
+                            hasNetwork = { openVpn.hasUsableNetwork() },
+                        )
+                    } catch (cancelled: CancellationException) {
+                        throw cancelled
+                    } catch (skip: ProcessRestartSkip) {
+                        throw skip
+                    } catch (error: Exception) {
+                        throw ProcessRestartSkip(messageCode(error, "system_vpn_resume_failed"))
+                    }
                 }
                 val reserved = withTunnelOperation {
                     checkRequest(epoch)
                     sessionLifecycle.check(ticket)
                     // A queued system start may arrive behind a successful
                     // explicit start. It does not own that engine's cleanup.
-                    if (activeProtocol != null) throw CancellationException("system_vpn_start_superseded")
+                    if (activeProtocol != null || explicitAdmissionEpoch.get() != authority) {
+                        throw CancellationException("system_vpn_start_superseded")
+                    }
+                    systemRestoreInstance = -1L
                     val saved = resumeRegistry.snapshot() ?: throw VpnNativeException("system_vpn_resume_unavailable")
                     if (!saved.isResumable) throw VpnNativeException(saved.errorCode ?: "system_vpn_resume_blocked")
                     profile = saved.profile
                     val session = localSession(saved.profile)
                     val identity = localIdentity(saved.profile)
-                    ensureVpnAuthorized()
-                    resumeRegistry.reserve(session, identity) ?: throw VpnNativeException("system_vpn_resume_identity_changed")
+                    // prepare() revokes another app's VPN: a process restart never takes one over.
+                    if (selfStarted) checkPermanentVpnStillOurs()
+                    ensureVpnAuthorized(publishFailure = !selfStarted)
+                    if (selfStarted) synchronized(systemStartLock) {
+                        // One step: before it, Android's own start supersedes this restart with
+                        // nothing written; after it, that start finds this restart reserving.
+                        if (systemStartJob !== job) throw CancellationException("system_vpn_start_superseded")
+                        processRestartUnreserved = false
+                    }
+                    val reservation = resumeRegistry.reserve(session, identity)
+                        ?: throw VpnNativeException("system_vpn_resume_identity_changed")
+                    if (selfStarted) {
+                        // Reserved before the host: a death from here on leaves RESERVED, which
+                        // is never retried. A refused host start gives the record back.
+                        try {
+                            WireGuardForegroundNotifier.startProtocol(appContext, saved.profile.protocol,
+                                VpnStatus.CONNECTING, isReconnecting = true)
+                            SharedVpnHost.start(appContext)
+                        } catch (error: Exception) {
+                            runCatching { resumeRegistry.complete(session, identity) }
+                            // A skipped restart shows nothing: no host ever gets this reconnecting text.
+                            runCatching { WireGuardForegroundNotifier.startProtocol(appContext, null, VpnStatus.IDLE) }
+                            throw ProcessRestartSkip(messageCode(error, "vpn_host_unavailable"))
+                        }
+                        hostStarted = true
+                        Log.i(LOG_TAG, "Permanent VPN process restart: restoring")
+                    }
+                    // A rejected or superseded callback must not invalidate tile
+                    // publications. Keep explicit command epochs untouched: a
+                    // queued user stop must still stop an automatic connection.
+                    synchronized(systemStartLock) {
+                        checkRequest(epoch)
+                        sessionLifecycle.check(ticket)
+                        admitted = systemStartPublicationEpoch.incrementAndGet()
+                    }
+                    reservation
                 }
                 val target = reserved.profile
-                resumeState = "waiting_network"
-                emitState(VpnStatus.CONNECTING, target.protocol, "system_vpn_restoring")
-                WireGuardForegroundNotifier.startProtocol(appContext, target.protocol, VpnStatus.CONNECTING, isReconnecting = true)
+                synchronized(systemStartLock) {
+                    checkRequest(epoch)
+                    sessionLifecycle.check(ticket)
+                    if (explicitAdmissionEpoch.get() != authority) throw CancellationException("system_vpn_start_superseded")
+                    resumeState = "waiting_network"
+                    emitState(VpnStatus.CONNECTING, target.protocol, "system_vpn_restoring")
+                    restoring = synchronized(stateLock) { currentState }
+                    WireGuardForegroundNotifier.startProtocol(appContext, target.protocol, VpnStatus.CONNECTING, isReconnecting = true)
+                }
                 awaitSystemVpnNetwork(
                     isCurrent = { tunnelRequestEpoch.get() == epoch && sessionLifecycle.isCurrent(ticket) },
                     hasNetwork = { openVpn.hasUsableNetwork() },
@@ -427,18 +660,32 @@ internal class AndroidVpnBridge(
                 resumeState = "restoring"
                 when (target.protocol) {
                     VpnProtocol.WIREGUARD -> connectWireGuard(target.wireGuardRequest
-                        ?: throw VpnNativeException("system_vpn_resume_corrupt"), ticket, epoch, restoring = true)
+                        ?: throw VpnNativeException("system_vpn_resume_corrupt"), ticket, epoch, restoring = true,
+                        systemAuthority = authority)
                     VpnProtocol.OPENVPN -> reconnectOpenVpn(target, ticket, epoch, restoring = true,
-                        recoveryConsumed = reserved.recoveryConsumed)
+                        recoveryConsumed = reserved.recoveryConsumed, systemAuthority = authority)
                 }
+                restored = true
+                outcome = "restored"
+            } catch (skip: ProcessRestartSkip) {
+                outcome = "skipped " + skip.code
             } catch (_: CancellationException) {
                 // A replacing operation owns shutdown and durable invalidation.
             } catch (error: Exception) {
-                withContext(NonCancellable) { withTunnelOperation {
-                    if (tunnelRequestEpoch.get() != epoch || !sessionLifecycle.isCurrent(ticket)) return@withTunnelOperation
+                // Before its own host, a process restart blocks nothing and shows nothing: the
+                // record stays READY for a reboot or an explicit connect.
+                if (!hostStarted) {
+                    outcome = "skipped " + messageCode(error, "system_vpn_resume_failed")
+                } else withContext(NonCancellable) { withTunnelOperation {
+                    outcome = "failed"
+                    if (tunnelRequestEpoch.get() != epoch || !sessionLifecycle.isCurrent(ticket) ||
+                        explicitAdmissionEpoch.get() != authority) return@withTunnelOperation
                     var code = messageCode(error, "system_vpn_resume_failed")
-                    try { disconnectLocked(userInitiated = false) }
-                    catch (stopError: Exception) { code = messageCode(stopError, code) }
+                    // Stop only an engine this restoration started.
+                    if (activeProtocol != null && tunnelInstanceEpoch.get() == systemRestoreInstance) {
+                        try { disconnectLocked(userInitiated = false) }
+                        catch (stopError: Exception) { code = messageCode(stopError, code) }
+                    }
                     try { resumeRegistry.block(code) }
                     catch (storageError: Exception) {
                         resumeStorageFailure = true
@@ -451,21 +698,95 @@ internal class AndroidVpnBridge(
                         VpnStatus.ERROR, requiresAction = true)
                 } }
             } finally {
-                synchronized(systemStartLock) {
-                    if (tunnelRequestEpoch.get() == epoch) systemStartInFlight = false
+                val orphan = synchronized(systemStartLock) {
+                    if (tunnelRequestEpoch.get() == epoch && systemStartJob === job) {
+                        systemStartInFlight = false
+                        processRestartUnreserved = false
+                    }
+                    admitted?.let { if (!restored && systemStartPublicationEpoch.get() == it) releasedSystemStartEpoch.set(it) }
+                    restoring.takeIf { !restored }
+                }
+                // A command may cancel this start without publishing (prepare,
+                // storage or identity work): never leave its CONNECTING
+                // "system_vpn_restoring" as the final state (A08-vpn-bridge-02).
+                if (orphan != null) withContext(NonCancellable) { withTunnelOperation {
+                    if (activeProtocol == null && synchronized(stateLock) { currentState } === orphan) {
+                        disconnectLocked(userInitiated = false)
+                    }
+                } }
+                if (selfStarted) {
+                    // Fixed text and native codes only: the device proof of this path.
+                    Log.i(LOG_TAG, "Permanent VPN process restart: $outcome")
+                    if (!restored) syncProcessRestart()
                 }
             }
         }.also { it.start() }
+        true
     }
+
+    private suspend fun awaitUserUnlock(epoch: Long) {
+        while (!appContext.getSystemService(UserManager::class.java).isUserUnlocked) {
+            checkRequest(epoch)
+            delay(250)
+        }
+    }
+
+    /** Read-only, under the tunnel mutex: a process restart may restore only from here. */
+    private fun checkProcessRestartEligible(epoch: Long, ticket: Long, authority: Long) {
+        checkRequest(epoch)
+        sessionLifecycle.check(ticket)
+        if (activeProtocol != null || explicitAdmissionEpoch.get() != authority) {
+            throw CancellationException("system_vpn_start_superseded")
+        }
+        val saved = resumeRegistry.snapshot()?.takeIf { it.isResumable }
+            ?: throw VpnNativeException("system_vpn_resume_unavailable")
+        localSession(saved.profile)
+        localIdentity(saved.profile)
+        if (!vpnDisclosureAccepted()) throw VpnNativeException("vpn_disclosure_required")
+        checkPermanentVpnStillOurs()
+    }
+
+    /** prepare() would take over the VPN of another app in this user: never after a death. */
+    private fun checkPermanentVpnStillOurs() {
+        if (foreignVpnPresent()) throw ProcessRestartSkip(ANOTHER_VPN_ACTIVE)
+        // Best effort: Android 10 and 11 let the app read which app is the permanent VPN;
+        // Android 12+ refuse the read, and the restore then relies on the check above.
+        val permanent = try {
+            Settings.Secure.getString(appContext.contentResolver, ALWAYS_ON_VPN_APP_SETTING)
+        } catch (_: Throwable) {
+            return
+        }
+        if (permanent != appContext.packageName) throw ProcessRestartSkip(NOT_PERMANENT_VPN)
+    }
+
+    // Our own VPN ended with the process: a VPN carrying this app's traffic now belongs to
+    // another app of this user, which prepare() could revoke. A VPN of another profile or user
+    // (work profile, Private Space) is listed by allNetworks but cannot be touched: ignore it.
+    @Suppress("DEPRECATION")
+    private fun foreignVpnPresent(): Boolean = try {
+        val active = connectivity.activeNetwork
+        active != null && try {
+            connectivity.getNetworkCapabilities(active)?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true
+        } catch (_: SecurityException) {
+            // Android 11 system-package manager (see physicalCallbackRegistered): the legacy
+            // type of the default network has no package check.
+            connectivity.getNetworkInfo(active)?.type == ConnectivityManager.TYPE_VPN
+        }
+    } catch (_: Exception) {
+        true
+    }
+
+    // Only logged: a skipped process restart shows and stores nothing.
+    private class ProcessRestartSkip(val code: String) : Exception(code)
 
     internal fun captureHostLoss(): Pair<Long, Boolean> =
         tunnelInstanceEpoch.get() to (activeProtocol != null || systemStartInFlight)
 
-    internal fun onVpnHostLost(cause: String, eventEpoch: Long) {
-        if (tunnelInstanceEpoch.get() != eventEpoch) return
+    internal fun onVpnHostLost(cause: String, eventEpoch: Long, release: () -> Unit = {}) {
+        if (tunnelInstanceEpoch.get() != eventEpoch) { release(); return }
         val protocol = activeProtocol
         val interruptedRestore = systemStartInFlight
-        if (protocol == null && !interruptedRestore) return
+        if (protocol == null && !interruptedRestore) { release(); return }
         cancelRecovery()
         cancelSystemStart()
         val epoch = tunnelRequestEpoch.get()
@@ -485,19 +806,84 @@ internal class AndroidVpnBridge(
             resumeState = "blocked"
             resumeError = failure
             emitState(VpnStatus.ERROR, protocol, failure)
-        } }
+        } }.invokeOnCompletion { release() }
+    }
+
+    private fun noteDurableResume(raw: String?) {
+        resumeArmedInStorage = systemVpnResumeKeepsProcessRestart(raw)
+        syncProcessRestart()
+    }
+
+    /** Null is no information (no host, or Android 8-9). */
+    private fun noteAlwaysOn(value: Boolean?) {
+        if (value == null || value == alwaysOnWhileEstablished) return
+        alwaysOnWhileEstablished = value
+        syncProcessRestart()
+    }
+
+    private fun syncProcessRestart() = synchronized(processRestartSyncLock) {
+        SystemVpnResumeSentinel.sync(appContext, processRestartArmed(
+            Build.VERSION.SDK_INT, BuildConfig.USE_PATCHED_WIREGUARD_AAR, processRestartHolds.get(),
+            resumeArmedInStorage, alwaysOnWhileEstablished))
+    }
+
+    /** Until the returned release runs, nothing can re-arm the restart. The release is idempotent. */
+    internal fun holdProcessRestart(): () -> Unit {
+        processRestartHolds.incrementAndGet()
+        syncProcessRestart()
+        val released = AtomicBoolean()
+        return {
+            if (released.compareAndSet(false, true)) {
+                processRestartHolds.decrementAndGet()
+                syncProcessRestart()
+            }
+        }
+    }
+
+    private class ReleasingResult(private val target: MethodChannel.Result, private val release: () -> Unit) :
+        MethodChannel.Result {
+        override fun success(result: Any?) { release(); target.success(result) }
+        override fun error(errorCode: String, errorMessage: String?, errorDetails: Any?) {
+            release(); target.error(errorCode, errorMessage, errorDetails)
+        }
+        override fun notImplemented() { release(); target.notImplemented() }
+    }
+
+    // Android sends no event when the permanent VPN is enabled for an app that is already
+    // connected: sample it while CONNECTED so a later process death can be restored.
+    private fun startAlwaysOnSampler() = synchronized(stateLock) {
+        if (alwaysOnSampler?.isActive == true) return@synchronized
+        alwaysOnSampler = observerScope.launch {
+            while (true) {
+                delay(ALWAYS_ON_SAMPLE_MS)
+                if (currentState.status != VpnStatus.CONNECTED) break
+                noteAlwaysOn(runCatching { SharedVpnHost.systemFlags().first }.getOrNull())
+            }
+        }
     }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
         val timing = NativeConnectionTiming.fromRpc(call.arguments)
         NativeConnectionTiming.mark(timing, "rpc_arrival")
         val sessionTicket = sessionLifecycle.ticket()
+        // A clear-session request naming no known cause is refused before it
+        // cancels anything (final reaudit B31).
+        val endCause = if (call.method == "storageClearSession") SessionEndCause.of(call.arguments) else null
         // Cancel waits at command receipt, before a command waits for the native
         // transition mutex. A background retry must not outlive user intent.
-        if (call.method in setOf("prepareTunnelRequest", "connectWireGuard", "connectOpenVpn", "disconnect",
-                "clearOpenVpnIdentity", "storageClearSession")) {
+        val holdsRestart = call.method in setOf("prepareTunnelRequest", "connectWireGuard", "connectOpenVpn", "disconnect",
+            "clearOpenVpnIdentity", "storageClearSession") && (call.method != "storageClearSession" || endCause != null)
+        // At receipt, before anything is queued: the restart after a process death is disarmed
+        // until this command has answered, so no write in flight can re-arm it.
+        val reply = if (holdsRestart) ReleasingResult(result, holdProcessRestart()) else result
+        if (holdsRestart) {
             cancelRecovery()
             cancelSystemStart()
+            // A connection can hold the transition mutex while awaiting its
+            // native handshake. Wake that wait before queuing the stop behind it.
+            if (call.method == "disconnect" && activeProtocol == VpnProtocol.OPENVPN) {
+                openVpn.cancelPendingConnection()
+            }
         }
         val requestEpoch = tunnelRequestEpoch.get()
         when (call.method) {
@@ -512,33 +898,35 @@ internal class AndroidVpnBridge(
                 try { appContext.startActivity(SharedVpnHost.settingsIntent()); result.success(null) }
                 catch (_: Exception) { result.error("vpn_settings_unavailable", "vpn_settings_unavailable", null) }
             }
-            "prepareTunnelRequest" -> launchVoidResult(result) { withTunnelOperation {
+            "prepareTunnelRequest" -> launchVoidResult(reply) { withTunnelOperation {
                 requireAccountSession(sessionTicket, call.requireAccountId())
                 checkRequest(requestEpoch)
                 invalidateSystemResume()
             } }
             "getVpnDisclosureStatus" -> launchResult(result) {
                 mapOf("accepted" to vpnDisclosureAccepted(),
-                    "android_permission" to (VpnService.prepare(appContext) == null))
+                    "android_permission" to (prepareVpnService() == null))
             }
             "requestVpnPermission" -> requestVpnPermission(result, sessionTicket,
                 (call.arguments as? Map<*, *>)?.get("disclosure_accepted") == true)
-            "connectWireGuard" -> launchTunnelResult(result, sessionTicket, requestEpoch, VpnProtocol.WIREGUARD, timing) {
+            "connectWireGuard" -> launchTunnelResult(reply, sessionTicket, requestEpoch, VpnProtocol.WIREGUARD, timing) {
                 connectWireGuard(call.requireMap().toWireGuardRequest(), sessionTicket, requestEpoch = requestEpoch, timing = timing)
             }
-            "connectOpenVpn" -> launchTunnelResult(result, sessionTicket, requestEpoch, VpnProtocol.OPENVPN, timing) {
+            "connectOpenVpn" -> launchTunnelResult(reply, sessionTicket, requestEpoch, VpnProtocol.OPENVPN, timing) {
                 connectOpenVpn(call.requireMap(), sessionTicket, requestEpoch, timing)
             }
-            "disconnect" -> launchVoidResult(result) { disconnect(userInitiated = true, ticket = sessionTicket, requestEpoch = requestEpoch, timing = timing) }
+            "disconnect" -> launchVoidResult(reply) { disconnect(userInitiated = true, ticket = sessionTicket, requestEpoch = requestEpoch, timing = timing) }
             "disconnectByUser" -> {
                 if (SharedVpnHost.userStopOpensSettings()) {
                     try { appContext.startActivity(SharedVpnHost.settingsIntent()); result.success(null) }
                     catch (_: Exception) { result.error("vpn_settings_unavailable", "vpn_settings_unavailable", null) }
                 } else {
+                    val release = holdProcessRestart()
                     cancelSystemStart()
                     cancelRecovery()
+                    if (activeProtocol == VpnProtocol.OPENVPN) openVpn.cancelPendingConnection()
                     val stopEpoch = tunnelRequestEpoch.get()
-                    launchVoidResult(result) { disconnect(userInitiated = true, ticket = sessionTicket, stopHost = true, requestEpoch = stopEpoch, timing = timing) }
+                    launchVoidResult(ReleasingResult(result, release)) { disconnect(userInitiated = true, ticket = sessionTicket, stopHost = true, requestEpoch = stopEpoch, timing = timing) }
                 }
             }
             "getOrCreateWireGuardPublicKey" -> launchResult(result) {
@@ -567,7 +955,7 @@ internal class AndroidVpnBridge(
                     args.requiredString(DEVICE_ID),
                 ).toMap()
             }
-            "clearOpenVpnIdentity" -> launchVoidResult(result) {
+            "clearOpenVpnIdentity" -> launchVoidResult(reply) {
                 val args = call.requireMap()
                 clearOpenVpnIdentity(
                     args.requiredString(ACCOUNT_ID),
@@ -595,10 +983,12 @@ internal class AndroidVpnBridge(
                 clearAccountIdentity(args.requiredString(ACCOUNT_ID), ExpectedDeviceIdentity.fromArguments(args), sessionTicket)
             }
             "setNotificationLocale" -> {
+                // A null language_code is "system language": Dart always sends the
+                // key, null for the system language (C3-01); an absent key reads the same.
                 val args = call.arguments as? Map<*, *>
                 val rawLanguage = args?.get("language_code")
                 val languageCode = NativeLocalePolicy.canonicalTag(rawLanguage as? String)
-                if (args == null || !args.containsKey("language_code") ||
+                if ((call.arguments != null && args == null) ||
                     (rawLanguage != null && (rawLanguage !is String || languageCode == null))) {
                     result.error("invalid_arguments", nativeErrorMessage("invalid_arguments"), null)
                 } else {
@@ -607,7 +997,8 @@ internal class AndroidVpnBridge(
                     result.success(null)
                 }
             }
-            "storageReadSession" -> launchResult(result) { readStoredSession() }
+            "storageReadSession" -> launchResult(result) { sessionRead { readStoredSession() } }
+            "storageReadSessionBinding" -> launchResult(result) { sessionRead { readStoredSessionBinding() } }
             "storageWritePendingSession" -> launchVoidResult(result) {
                 sessionLifecycle.mutate(sessionTicket) {
                     writeSlot(SecureStorageKeyPolicy.pendingSession(), call.requireMap().requiredString(PAYLOAD))
@@ -620,8 +1011,10 @@ internal class AndroidVpnBridge(
                         writeStoredAccountSession(args)
                     }
                 }
+                // A new session can make the tile's profile connectable again.
+                VpnQuickTileService.requestUpdate(appContext)
             }
-            "storageReadGuestCredential" -> launchResult(result) { guestCredentials.readCredential() }
+            "storageReadGuestCredential" -> launchResult(result) { sessionRead { guestCredentials.readCredential() } }
             "storageWriteGuestCredential" -> launchVoidResult(result) {
                 sessionLifecycle.mutate(sessionTicket) { guestCredentials.writeCredential(call.requireMap().requiredString("credential")) }
             }
@@ -632,7 +1025,7 @@ internal class AndroidVpnBridge(
             "storageClearGuestCredentials" -> launchVoidResult(result) {
                 sessionLifecycle.mutate(sessionTicket) { guestCredentials.clear() }
             }
-            "storageReadGuestAutoResume" -> launchResult(result) { guestCredentials.readAutoResume() }
+            "storageReadGuestAutoResume" -> launchResult(result) { sessionRead { guestCredentials.readAutoResume() } }
             "storageWriteGuestAutoResume" -> launchVoidResult(result) {
                 val enabled = call.requireMap()["enabled"] as? Boolean ?: throw VpnNativeException("invalid_arguments")
                 sessionLifecycle.mutate(sessionTicket) { guestCredentials.writeAutoResume(enabled) }
@@ -650,11 +1043,16 @@ internal class AndroidVpnBridge(
                 withTunnelOperation { replaceStoredGuestSession(args, sessionTicket) }
             }
             "storageClearSession" -> {
-                val ending = endSession((call.arguments as? Map<*, *>)?.get("session_expired") == true)
-                launchResult(result) { ending.await().toMap() }
+                // Dart names the cause of the end; an unknown cause starts nothing (lot S review, P1).
+                if (endCause == null) {
+                    launchResult(result) { throw VpnNativeException("invalid_arguments") }
+                } else {
+                    val ending = endSession(endCause)
+                    launchResult(reply) { ending.await().toMap() }
+                }
             }
             "storageReadCurrentDevice" -> launchResult(result) {
-                readSlot(SecureStorageKeyPolicy.currentDevice(call.requireAccountId()))
+                sessionRead { readSlot(SecureStorageKeyPolicy.currentDevice(call.requireAccountId())) }
             }
             "storageWriteCurrentDevice" -> launchVoidResult(result) {
                 val args = call.requireMap()
@@ -715,13 +1113,11 @@ internal class AndroidVpnBridge(
                     FavoriteLocations.encode(call.requireMap()[VALUE]))
             }
             "storageReadAutomaticDiagnostics" -> launchResult(result) {
-                SecureStorageKeyPolicy.automaticDiagnosticsEnabled(
-                    readPreference(SecureAppPreference.DIAGNOSTICS_AUTOMATIC_OPT_IN),
-                )
+                store.readAutomaticDiagnosticsConsent()
             }
             "storageWriteAutomaticDiagnostics" -> launchVoidResult(result) {
                 val enabled = call.requireMap()[VALUE] as? Boolean ?: throw VpnNativeException("invalid_arguments")
-                writePreference(SecureAppPreference.DIAGNOSTICS_AUTOMATIC_OPT_IN, enabled.toString())
+                store.writeAutomaticDiagnosticsConsent(enabled)
             }
             "storageReadVerificationNeeded" -> launchResult(result) {
                 readStoredVerificationNeeded(call.requireAccountId())
@@ -902,13 +1298,13 @@ internal class AndroidVpnBridge(
             result.error("permission_request_in_progress", "permission_request_in_progress", null)
             return
         }
-        val intent = VpnService.prepare(appContext)
+        val intent = prepareVpnService()
         if (!VpnDisclosurePolicy.mayRequest(accepted, intent == null, disclosed)) {
             result.error("vpn_disclosure_required", "vpn_disclosure_required", null)
             return
         }
         if (intent == null) {
-            completeVpnPermission(result, ticket, disclosed || accepted)
+            completeVpnPermission(result, ticket, disclosed || accepted, alreadyAccepted = accepted)
             return
         }
         permissionResult = result
@@ -926,12 +1322,18 @@ internal class AndroidVpnBridge(
         }
     }
 
-    private fun completeVpnPermission(result: MethodChannel.Result, ticket: Long, disclosed: Boolean) {
+    private fun completeVpnPermission(
+        result: MethodChannel.Result,
+        ticket: Long,
+        disclosed: Boolean,
+        alreadyAccepted: Boolean = false,
+    ) {
         operationScope.launch {
             try {
                 sessionLifecycle.check(ticket)
-                val granted = disclosed && VpnService.prepare(appContext) == null
-                if (granted) {
+                val granted = disclosed && prepareVpnService() == null
+                // A consent stored for this disclosure version is not rewritten on every connect.
+                if (granted && !alreadyAccepted) {
                     // Durable consent must succeed before Dart can start a tunnel.
                     sessionLifecycle.mutate(ticket) {
                         writePreference(SecureAppPreference.VPN_DISCLOSURE_VERSION, VpnDisclosurePolicy.CURRENT_VERSION)
@@ -961,9 +1363,19 @@ internal class AndroidVpnBridge(
 
     private suspend fun connectWireGuard(request: WireGuardRequest, ticket: Long,
         requestEpoch: Long = tunnelRequestEpoch.get(), restoring: Boolean = false,
-        localOnly: Boolean = false, timing: NativeConnectionTiming.TraceContext? = null): Boolean = withTunnelOperation(timing) {
+        localOnly: Boolean = false, timing: NativeConnectionTiming.TraceContext? = null,
+        expectedSystemStartEpoch: Long? = null, systemAuthority: Long? = null): Boolean = withTunnelOperation(timing) {
         val connectionSession = NativeConnectionTiming.span(timing, "session_validation") {
             checkRequest(requestEpoch)
+            if (expectedSystemStartEpoch != null && !systemStartAllows(expectedSystemStartEpoch)) {
+                throw VpnNativeException("session_operation_cancelled")
+            }
+            if (systemAuthority != null && explicitAdmissionEpoch.get() != systemAuthority) {
+                throw CancellationException("system_vpn_start_superseded")
+            }
+            // Until CONNECTED, a restore failing inside this hold, its session
+            // checks included, releases older tile clicks (final reaudit A4).
+            if (restoring) systemRestoreHoldOpen = true
             sessionLifecycle.check(ticket)
             localSession(request.accountId, request.deviceId)
         }
@@ -989,10 +1401,12 @@ internal class AndroidVpnBridge(
             locationId = request.locationId,
             locationName = request.locationName,
         )
+        if (restoring) systemRestoreInstance = tunnelInstanceEpoch.get()
         emitState(VpnStatus.PREPARING, VpnProtocol.WIREGUARD, null)
         wireGuardIpFamilies = request.network.ipFamilies
         NativeConnectionTiming.span(timing, "notification") { WireGuardForegroundNotifier.start(appContext, VpnStatus.CONNECTING) }
         emitState(VpnStatus.CONNECTING, VpnProtocol.WIREGUARD, null)
+        val ownConnecting = synchronized(stateLock) { currentState }
         // Mark the transition active before calling the backend. A timed-out
         // backend call can still own a TUN later, and must block any second
         // protocol until disconnect has positively completed.
@@ -1005,11 +1419,13 @@ internal class AndroidVpnBridge(
             val stopped = wireGuard.disconnect(timing)
             if (stopped) clearWireGuardActiveLocked()
             else emitState(VpnStatus.ERROR, VpnProtocol.WIREGUARD, "wireguard_stop_timeout")
+            if (stopped && endCancelledConnection(ticket, requestEpoch, ownConnecting)) throw VpnNativeException("session_operation_cancelled")
             throw if (stopped) error else VpnNativeException("wireguard_stop_timeout", error)
         } catch (error: Exception) {
             val stopped = wireGuard.disconnect(timing)
             if (stopped) clearWireGuardActiveLocked()
             else emitState(VpnStatus.ERROR, VpnProtocol.WIREGUARD, "wireguard_stop_timeout")
+            if (stopped && endCancelledConnection(ticket, requestEpoch, ownConnecting)) throw VpnNativeException("session_operation_cancelled")
             throw if (stopped) VpnNativeException("wireguard_start_failed", error)
             else VpnNativeException("wireguard_stop_timeout", error)
         }
@@ -1017,6 +1433,13 @@ internal class AndroidVpnBridge(
             val stopped = wireGuard.disconnect(timing)
             if (stopped) {
                 clearWireGuardActiveLocked()
+                // The handshake wait also returns early for a newer command or
+                // session end: that is a cancellation, not a timeout (A08-03).
+                if (!sessionLifecycle.isCurrent(ticket) || tunnelRequestEpoch.get() != requestEpoch) {
+                    emitState(VpnStatus.IDLE, null, null)
+                    WireGuardForegroundNotifier.startProtocol(appContext, null, VpnStatus.IDLE)
+                    throw VpnNativeException("session_operation_cancelled")
+                }
                 emitState(VpnStatus.ERROR, VpnProtocol.WIREGUARD, "wireguard_handshake_timeout")
                 throw VpnNativeException("wireguard_handshake_timeout")
             }
@@ -1032,17 +1455,37 @@ internal class AndroidVpnBridge(
                 connectedAtMillis = System.currentTimeMillis()
                 emitState(VpnStatus.CONNECTED, VpnProtocol.WIREGUARD, null)
                 WireGuardForegroundNotifier.update(appContext, VpnStatus.CONNECTED)
-                wireGuardRecoveryInstance = tunnelInstanceEpoch.get()
-                wireGuardRecovery.start(wireGuardRecoveryInstance, reconcilePhysicalNetworksLocked())
-                refreshWireGuardRecoveryLocked(sample = false)
-                startWireGuardRecoveryObserverLocked()
+                // Without the physical callback the inventory is unreadable too (see
+                // physicalCallbackRegistered): an empty tracker would show a network wait all along.
+                if (physicalCallbackRegistered) {
+                    wireGuardRecoveryInstance = tunnelInstanceEpoch.get()
+                    wireGuardRecovery.start(wireGuardRecoveryInstance, reconcilePhysicalNetworksLocked(), wireGuard.recoveryBaseline())
+                    refreshWireGuardRecoveryLocked(sample = false)
+                    startWireGuardRecoveryObserverLocked()
+                }
             } }
         } catch (error: Exception) {
             val stopped = wireGuard.disconnect(timing)
             if (stopped) clearWireGuardActiveLocked()
+            if (stopped && endCancelledConnection(ticket, requestEpoch, ownConnecting)) throw VpnNativeException("session_operation_cancelled")
             throw if (stopped) error else VpnNativeException("wireguard_stop_timeout", error)
         }
+        systemRestoreHoldOpen = false
         true
+    }
+
+    /**
+     * A connection whose engine stopped after its request or session stopped
+     * being current was cancelled, not failed: publish IDLE as the handshake
+     * wait does (A08-03), unless another operation has published since this
+     * connection's own CONNECTING (final reaudit A2/B11).
+     */
+    private fun endCancelledConnection(ticket: Long, requestEpoch: Long, ownConnecting: VpnState): Boolean {
+        if (sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch) return false
+        if (synchronized(stateLock) { currentState } !== ownConnecting) return false
+        emitState(VpnStatus.IDLE, null, null)
+        WireGuardForegroundNotifier.startProtocol(appContext, null, VpnStatus.IDLE)
+        return true
     }
 
     private suspend fun connectOpenVpn(args: Map<String, Any?>, ticket: Long, requestEpoch: Long,
@@ -1080,6 +1523,7 @@ internal class AndroidVpnBridge(
         // As with WireGuard, the active marker begins before native start so
         // an unconfirmed stop can never be followed by a competing tunnel.
         activeProtocol = VpnProtocol.OPENVPN
+        markOpenVpnStart()
         val started = try {
             openVpn.connect(accountId, deviceId, args, timing = timing) {
                 sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch
@@ -1281,70 +1725,133 @@ internal class AndroidVpnBridge(
      * Handles one explicit Quick Settings click. A connect is permitted only
      * for a profile that previously reached native CONNECTED and only when the
      * Android VPN permission is already granted. No API call or permission UI
-     * can originate from this background entry point.
+     * can originate from this background entry point. The permission is
+     * checked after every local check, as VpnService.prepare revokes another
+     * app's VPN: a click refused locally never calls it.
      */
     internal fun toggleFromQuickTile(onComplete: (String?) -> Unit) {
-        if (quickTileAction(activeProtocol, SharedVpnHost.systemFlags().first) == QuickTileAction.OPEN_SETTINGS) {
-            appContext.startActivity(SharedVpnHost.settingsIntent())
-            onComplete(null)
+        // Preserve the user's action before cancelling a pending connection:
+        // its cleanup may clear activeProtocol before this worker can run.
+        val action = quickTileAction(activeProtocol, SharedVpnHost.systemFlags().first)
+        if (action == QuickTileAction.OPEN_SETTINGS) {
+            // Only the tile service may launch with startActivityAndCollapse:
+            // a bridge start is blocked in the background on Android 14+ (C2-03).
+            onComplete(QUICK_TILE_OPEN_SETTINGS)
             return
         }
+        if (!sessionLifecycle.isCurrent(sessionLifecycle.ticket())) {
+            // Signed out, whatever the action (an engine may still be retained):
+            // the tile asks to open the app first (A11-03; final reaudit A3).
+            onComplete(QUICK_TILE_SESSION_REQUIRED)
+            return
+        }
+        val release = holdProcessRestart()
         cancelSystemStart()
         cancelRecovery()
         val ticket = sessionLifecycle.ticket()
+        val requestEpoch = tunnelRequestEpoch.get()
+        val publicationEpoch = systemStartPublicationEpoch.get()
+        val publications = publicationSequence.get()
+        if (activeProtocol == VpnProtocol.OPENVPN) openVpn.cancelPendingConnection()
         operationScope.launch {
             var failureCode: String? = null
+            var selectedProtocol: VpnProtocol? = null
             try {
                 sessionLifecycle.check(ticket)
-                if (activeProtocol != null) {
-                    disconnect(userInitiated = true, ticket = ticket, stopHost = true)
+                checkRequest(requestEpoch)
+                if (action == QuickTileAction.DISCONNECT) {
+                    disconnect(userInitiated = true, ticket = ticket, stopHost = true, requestEpoch = requestEpoch)
                 } else {
-                    ensureVpnAuthorized()
                     val profile = quickTileProfiles.read()
                         ?: throw VpnNativeException("quick_tile_profile_unavailable")
+                    selectedProtocol = profile.protocol
                     localSession(profile)
                     localIdentity(profile)
+                    checkRequest(requestEpoch)
+                    sessionLifecycle.check(ticket)
+                    // Last, right before the engine: prepare revokes another
+                    // app's VPN, so a click that can only open the app never
+                    // calls it. A missing consent stays a local refusal.
+                    ensureVpnAuthorized(publishFailure = false)
                     when (profile.protocol) {
                         VpnProtocol.WIREGUARD -> connectWireGuard(
                             profile.wireGuardRequest
                                 ?: throw VpnNativeException("quick_tile_profile_unavailable"),
                             ticket,
+                            requestEpoch = requestEpoch,
                             localOnly = true,
+                            expectedSystemStartEpoch = publicationEpoch,
                         )
-                        VpnProtocol.OPENVPN -> reconnectOpenVpn(profile, ticket)
+                        VpnProtocol.OPENVPN -> reconnectOpenVpn(profile, ticket, requestEpoch = requestEpoch,
+                            expectedSystemStartEpoch = publicationEpoch)
                     }
                 }
             } catch (error: Throwable) {
-                failureCode = messageCode(error, "quick_tile_operation_failed")
-                val protocol = activeProtocol ?: quickTileProfileSnapshot()?.protocol
-                if (sessionLifecycle.isCurrent(ticket)) {
-                    emitState(VpnStatus.ERROR, protocol, failureCode)
-                    WireGuardForegroundNotifier.startProtocol(appContext, protocol, VpnStatus.ERROR, requiresAction = true)
+                synchronized(systemStartLock) {
+                    if (sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch &&
+                        systemStartAllows(publicationEpoch)) {
+                        val code = messageCode(error, "quick_tile_operation_failed")
+                        failureCode = code
+                        // A local refusal that changed no state only opens the
+                        // app; it is not a global VPN error (A11-03).
+                        if (!quickTileFailureOpensApplication(code) || publicationSequence.get() != publications) {
+                            val protocol = activeProtocol ?: selectedProtocol
+                            emitState(VpnStatus.ERROR, protocol, code)
+                            WireGuardForegroundNotifier.startProtocol(appContext, protocol, VpnStatus.ERROR, requiresAction = true)
+                        }
+                    }
                 }
             } finally {
-                withContext(Dispatchers.Main) { onComplete(failureCode) }
+                withContext(Dispatchers.Main) {
+                    // A late callback may refresh the current tile, but must
+                    // never open the app because an obsolete command failed.
+                    synchronized(systemStartLock) {
+                        onComplete(failureCode.takeIf {
+                            sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch &&
+                                systemStartAllows(publicationEpoch)
+                        })
+                    }
+                }
             }
-        }
+        }.invokeOnCompletion { release() }
     }
 
     internal fun quickTileState(): VpnState = synchronized(stateLock) { currentState }
 
-    internal fun quickTileProfileSnapshot(): QuickTileProfile? = runCatching {
+    private fun quickTileProfileSnapshot(): QuickTileProfile? = runCatching {
         quickTileProfiles.read()
     }.getOrNull()
 
-    internal fun canQuickTileConnect(): Boolean {
+    /** Never probes VpnService.prepare: a tile refresh is not a connection (C2-01). */
+    private fun canQuickTileConnect(profile: QuickTileProfile?): Boolean {
         if (!sessionLifecycle.isCurrent(sessionLifecycle.ticket()) ||
-            !runCatching { VpnDisclosurePolicy.mayStart(vpnDisclosureAccepted(), VpnService.prepare(appContext) == null) }.getOrDefault(false)) return false
-        val profile = quickTileProfileSnapshot() ?: return false
+            !runCatching { VpnDisclosurePolicy.mayStart(vpnDisclosureAccepted(), !vpnPermissionMissing) }.getOrDefault(false)) return false
+        if (profile == null) return false
         return profile.protocol != VpnProtocol.OPENVPN ||
             !openVpn.isRevocationBlocked(profile.accountId, profile.deviceId)
     }
 
+    /** Storage and Keystore reads belong to the tile's IO snapshot loader. */
+    internal fun quickTileSnapshot(): QuickTileSnapshot {
+        val profile = quickTileProfileSnapshot()
+        val canConnect = canQuickTileConnect(profile)
+        return QuickTileSnapshot(quickTileState(), profile, canConnect)
+    }
+
     private suspend fun reconnectOpenVpn(profile: QuickTileProfile, ticket: Long,
         requestEpoch: Long = tunnelRequestEpoch.get(), restoring: Boolean = false,
-        recoveryConsumed: Boolean = false): Boolean = withTunnelOperation {
+        recoveryConsumed: Boolean = false, expectedSystemStartEpoch: Long? = null,
+        systemAuthority: Long? = null): Boolean = withTunnelOperation {
         checkRequest(requestEpoch)
+        if (expectedSystemStartEpoch != null && !systemStartAllows(expectedSystemStartEpoch)) {
+            throw VpnNativeException("session_operation_cancelled")
+        }
+        if (systemAuthority != null && explicitAdmissionEpoch.get() != systemAuthority) {
+            throw CancellationException("system_vpn_start_superseded")
+        }
+        // Until CONNECTED, a restore failing inside this hold, its session
+        // checks included, releases older tile clicks (final reaudit A4).
+        if (restoring) systemRestoreHoldOpen = true
         sessionLifecycle.check(ticket)
         val connectionSession = localSession(profile)
         if (openVpn.isRevocationBlocked(profile.accountId, profile.deviceId)) {
@@ -1376,6 +1883,7 @@ internal class AndroidVpnBridge(
             profile.locationId,
             profile.locationName,
         )
+        if (restoring) systemRestoreInstance = tunnelInstanceEpoch.get()
         emitState(VpnStatus.PREPARING, VpnProtocol.OPENVPN, null)
         OpenVpnService.start(appContext)
         if (!OpenVpnService.awaitReady(OPENVPN_SERVICE_START_TIMEOUT_MS)) {
@@ -1385,6 +1893,7 @@ internal class AndroidVpnBridge(
         }
         emitState(VpnStatus.CONNECTING, VpnProtocol.OPENVPN, null)
         activeProtocol = VpnProtocol.OPENVPN
+        markOpenVpnStart()
         val started = try {
             openVpn.reconnectLocal(profile.accountId, profile.deviceId, profile.openVpnNetwork) {
                 sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch
@@ -1408,7 +1917,20 @@ internal class AndroidVpnBridge(
             if (stopped) clearOpenVpnActiveLocked()
             throw if (stopped) error else VpnNativeException("openvpn_stop_timeout", error)
         }
+        systemRestoreHoldOpen = false
         true
+    }
+
+    /**
+     * Session reads (lot S review, P6): a Keystore key that is gone leaves the
+     * stored session permanently undecryptable, so it is reported as corrupt,
+     * as for the Google slot (C5-03). An unavailable Keystore stays transient.
+     * Guest credential and auto-resume reads follow the same rule (final reaudit B33).
+     */
+    private inline fun <T> sessionRead(read: () -> T): T = try {
+        read()
+    } catch (error: SecureStorageException) {
+        throw if (error.keyMissing) SecureStorageException("secure_storage_corrupt", error) else error
     }
 
     private fun readStoredSession(): String? {
@@ -1418,6 +1940,17 @@ internal class AndroidVpnBridge(
         } else {
             readSlot(SecureStorageKeyPolicy.accountSession(activeUserId))
         }
+    }
+
+    /**
+     * Which slot holds the stored session: "account" (active user), "pending"
+     * (a registered admission never restored) or null. Strict: a failed read
+     * is reported and nothing is erased (C4-03).
+     */
+    private fun readStoredSessionBinding(): String? = when {
+        readStrict(SecureStorageKeyPolicy.activeUser()) != null -> "account"
+        readStrict(SecureStorageKeyPolicy.pendingSession()) != null -> "pending"
+        else -> null
     }
 
     private fun prepareStoredAccountSession(args: Map<String, Any?>) {
@@ -1475,6 +2008,7 @@ internal class AndroidVpnBridge(
                         mapOf(sessionSlot to payload, SecureStorageKeyPolicy.systemVpnResume() to encodedResume),
                         setOf(SecureStorageKeyPolicy.pendingSession()),
                     )
+                    noteDurableResume(encodedResume)
                 }
                 resumeState = if (ready) "ready" else "unavailable"
                 resumeError = null
@@ -1488,8 +2022,8 @@ internal class AndroidVpnBridge(
         }
     }
 
-    private fun endSession(expired: Boolean): CompletableDeferred<SessionTermination> = synchronized(sessionEndLock) {
-        sessionLifecycle.beginEnd(expired)
+    private fun endSession(cause: SessionEndCause): CompletableDeferred<SessionTermination> = synchronized(sessionEndLock) {
+        sessionLifecycle.beginEnd(cause)
         permissionDisclosureAccepted = false
         sessionEndTask?.takeIf { !it.isCompleted }?.let { return@synchronized it }
         cancelRecovery()
@@ -1497,35 +2031,71 @@ internal class AndroidVpnBridge(
         if (activeProtocol == VpnProtocol.OPENVPN) openVpn.cancelPendingConnection()
         val done = CompletableDeferred<SessionTermination>()
         sessionEndTask = done
-        emitState(VpnStatus.DISCONNECTING, activeProtocol, "session_ending")
-        when (activeProtocol) {
-            VpnProtocol.OPENVPN -> OpenVpnService.update(appContext, VpnStatus.DISCONNECTING)
-            VpnProtocol.WIREGUARD -> WireGuardForegroundNotifier.update(appContext, VpnStatus.DISCONNECTING)
-            null -> Unit
-        }
-        operationScope.launch {
-            val ended = withTunnelOperation {
-                // If erasing tokens later fails, a separately committed tombstone
-                // still prevents the previous valid session from being resumed.
-                runCatching { invalidateSystemResume() }
-                endSessionAttempt(stop = { disconnectLocked(userInitiated = true).also {
-                    WireGuardForegroundNotifier.startProtocol(appContext, null, VpnStatus.IDLE, requiresAction = true)
-                    SharedVpnHost.stopIfNotPermanent()
-                } },
-                    erase = { store.clearSessionMaterial(disableGuestAutoResume =
-                        sessionLifecycle.termination?.sessionExpired != true) })
+        // A failed early notice must never leave this shared result pending:
+        // every later logout would wait on it (C2-02).
+        try {
+            emitState(VpnStatus.DISCONNECTING, activeProtocol, "session_ending")
+            when (activeProtocol) {
+                VpnProtocol.OPENVPN -> OpenVpnService.update(appContext, VpnStatus.DISCONNECTING)
+                VpnProtocol.WIREGUARD -> WireGuardForegroundNotifier.update(appContext, VpnStatus.DISCONNECTING)
+                null -> Unit
             }
-            val confirmed = sessionLifecycle.finish(ended)
-            resumeState = if (ended.sessionCleared) "unavailable" else "blocked"
-            resumeError = ended.storageError
+        } catch (_: Exception) { /* The termination below still runs and reports. */ }
+        operationScope.launch {
+            var confirmed: SessionTermination? = null
             try {
-                emitState(if (ended.tunnelStopped) VpnStatus.IDLE else VpnStatus.ERROR,
-                    activeProtocol, ended.stopError ?: ended.storageError)
+                var revoked = false
+                val ended = withTunnelOperation {
+                    // If erasing tokens later fails, a separately committed tombstone
+                    // still prevents the previous valid session from being resumed.
+                    runCatching { invalidateSystemResume() }
+                    endSessionAttempt(stop = { disconnectLocked(userInitiated = true).also {
+                        WireGuardForegroundNotifier.startProtocol(appContext, null, VpnStatus.IDLE, requiresAction = true)
+                        SharedVpnHost.stopIfNotPermanent()
+                    } },
+                        erase = {
+                            // Only a voluntary end revokes automatic guest recovery.
+                            revoked = sessionLifecycle.termination?.revokeGuestRecovery == true
+                            store.clearSessionMaterial(disableGuestAutoResume = revoked)
+                        })
+                }
+                confirmed = settleEnd(done, ended, revoked) { settled ->
+                    resumeState = if (settled.sessionCleared) "unavailable" else "blocked"
+                    resumeError = settled.storageError
+                    emitState(if (settled.tunnelStopped) VpnStatus.IDLE else VpnStatus.ERROR,
+                        activeProtocol, settled.stopError ?: settled.storageError)
+                }
             } finally {
-                done.complete(confirmed)
+                // An unexpected failure is reported as an unfinished, retryable end.
+                if (confirmed == null) {
+                    settleEnd(done, SessionTermination(stopError = "native_operation_failed"), revoked = false)
+                }
             }
         }
         done
+    }
+
+    /**
+     * Settles an end under [sessionEndLock]: a request either joins it before this
+     * point or starts a new end. A voluntary request that joined after the erase
+     * still revokes automatic guest recovery before any caller is answered (P1).
+     */
+    private fun settleEnd(done: CompletableDeferred<SessionTermination>, ended: SessionTermination,
+        revoked: Boolean, publish: (SessionTermination) -> Unit = {}): SessionTermination = synchronized(sessionEndLock) {
+        val result = if (ended.sessionCleared && !revoked && sessionLifecycle.termination?.revokeGuestRecovery == true) {
+            try {
+                store.clearSessionMaterial(disableGuestAutoResume = true)
+                ended
+            } catch (error: Exception) {
+                ended.copy(sessionCleared = false,
+                    storageError = (error as? SecureStorageException)?.code ?: "secure_storage_write_failed")
+            }
+        } else ended
+        sessionLifecycle.finish(result).also { settled ->
+            // A failed publication never keeps the callers waiting (C2-02).
+            runCatching { publish(settled) }
+            done.complete(settled)
+        }
     }
 
     private fun requireAccountSession(ticket: Long, accountId: String) {
@@ -1586,13 +2156,23 @@ internal class AndroidVpnBridge(
         store.delete(slot.scope, slot.key)
     }
 
-    private fun ensureVpnAuthorized() {
+    private fun ensureVpnAuthorized(publishFailure: Boolean = true) {
         if (!vpnDisclosureAccepted()) {
             throw VpnNativeException("vpn_disclosure_required")
         }
-        if (VpnService.prepare(appContext) != null) {
-            emitState(VpnStatus.ERROR, null, "vpn_permission_required")
+        if (prepareVpnService() != null) {
+            if (publishFailure) emitState(VpnStatus.ERROR, null, "vpn_permission_required")
             throw VpnNativeException("vpn_permission_required")
+        }
+    }
+
+    /** Only for an explicit user action: prepare revokes another app's VPN. */
+    private fun prepareVpnService(): Intent? = VpnService.prepare(appContext).also { intent ->
+        val missing = intent != null
+        if (vpnPermissionMissing != missing) {
+            vpnPermissionMissing = missing
+            // The active tile reads this flag (A09-services-01; final reaudit B15).
+            VpnQuickTileService.requestUpdate(appContext)
         }
     }
 
@@ -1669,6 +2249,19 @@ internal class AndroidVpnBridge(
         recoveryPolicy.newRequest()
     }
 
+    // Under recoveryLock so a command's cancelRecovery() cannot slip between the mark and the
+    // interruption and turn this loss into openvpn_recovery_exhausted.
+    private fun signalOpenVpnNetworkLoss() = synchronized(recoveryLock) {
+        if (activeProtocol != VpnProtocol.OPENVPN || currentState.status != VpnStatus.CONNECTED) return@synchronized
+        // Marked before the interruption so the collector and the 1 Hz poll both see it;
+        // refused after cancelRecovery() (provenGeneration = 0): the pending command owns the tunnel.
+        if (!recoveryPolicy.networkLost(openVpn.sessionGeneration)) return@synchronized
+        Log.i(LOG_TAG, "OpenVPN physical network lost") // Fixed text, no identifiers: the device proof of this path.
+        openVpn.networkLost()
+    }
+
+    private fun markOpenVpnStart() { openVpnStartLosses = physicalLosses.get() }
+
     private fun handleOpenVpnFailure(generation: Long, code: String) = synchronized(recoveryLock) {
         if (!sessionLifecycle.isCurrent(activeSessionEpoch)) return@synchronized
         if (activeProtocol != VpnProtocol.OPENVPN || generation != openVpn.sessionGeneration ||
@@ -1677,10 +2270,25 @@ internal class AndroidVpnBridge(
         handledFailureGeneration = generation
         recoveryOwnsSession = true
         val request = recoveryPolicy.currentRequest()
-        val ticket = if (code == "openvpn_reconnect_required") recoveryPolicy.claim(generation) else null
+        val reconnect = code == "openvpn_reconnect_required"
+        // Without the physical callback, Core can notice a lost network before the next look:
+        // a network that vanished since then makes this the network change onLost would mark.
+        // Any other interruption keeps the single retry, as with the callback.
+        if (reconnect && !physicalCallbackRegistered && physicalNetworkVanished()) {
+            physicalLosses.incrementAndGet()
+            recoveryPolicy.networkLost(generation)
+        }
+        val networkTicket = if (reconnect) recoveryPolicy.claimNetworkChange(generation) else null
+        val ticket = networkTicket ?: if (reconnect) recoveryPolicy.claim(generation) else null
+        // Fixed text and native codes only: the device trace of every OpenVPN recovery.
+        Log.i(LOG_TAG, when {
+            networkTicket != null -> "OpenVPN recovery: network change"
+            ticket != null -> "OpenVPN recovery: interruption, single retry"
+            else -> "OpenVPN recovery: none left after $code"
+        })
         val target = RecoveryTarget(request, generation, activeAccountId ?: return@synchronized,
             activeDeviceId ?: return@synchronized, activeLocationId ?: return@synchronized,
-            activeLocationName ?: return@synchronized)
+            activeLocationName ?: return@synchronized, networkChange = networkTicket != null)
         connectedAtMillis = null
         if (ticket != null) {
             emitState(VpnStatus.CONNECTING, VpnProtocol.OPENVPN, OPENVPN_RECONNECTING)
@@ -1710,7 +2318,8 @@ internal class AndroidVpnBridge(
                     val saved = resumeRegistry.snapshot() ?: throw VpnNativeException("system_vpn_resume_unavailable")
                     if (saved.profile.accountId != target.accountId || saved.profile.deviceId != target.deviceId ||
                         saved.profile.locationId != target.locationId ||
-                        resumeRegistry.consumeRecovery(localSession(saved.profile), localIdentity(saved.profile)) == null) {
+                        (if (target.networkChange) resumeRegistry.admitNetworkRecovery(localSession(saved.profile), localIdentity(saved.profile))
+                         else resumeRegistry.consumeRecovery(localSession(saved.profile), localIdentity(saved.profile))) == null) {
                         throw VpnNativeException("openvpn_recovery_exhausted")
                     }
                 } else {
@@ -1728,8 +2337,10 @@ internal class AndroidVpnBridge(
                     openVpnTransition = true
                     try {
                         if (!openVpn.disconnect()) throw VpnNativeException("openvpn_stop_timeout")
-                        // Keep only the foreground service during the network
-                        // wait. Core's worker, handle and TUN are already gone.
+                        // Core's worker and handle are gone. OpenVpnService holds the TUN
+                        // interface until restartLocal reuses it (same plan, same host) or its
+                        // establish() replaces it, or clearOpenVpnActiveLocked releases it: the
+                        // wait drops traffic.
                         // A TLS/profile failure delivered during shutdown takes
                         // precedence over the initial transport interruption.
                         val nativeFailure = openVpn.sessionFailure
@@ -1753,6 +2364,7 @@ internal class AndroidVpnBridge(
                         if (!OpenVpnService.awaitReady(OPENVPN_SERVICE_START_TIMEOUT_MS)) {
                             throw VpnNativeException("openvpn_service_start_failed")
                         }
+                        markOpenVpnStart()
                         val started = openVpn.reconnectLocal(target.accountId, target.deviceId) {
                             isRecoveryCurrent(target)
                         }
@@ -1765,14 +2377,17 @@ internal class AndroidVpnBridge(
                             return@withTunnelOperation
                         }
                         publishOpenVpnConnection()
+                        Log.i(LOG_TAG, "OpenVPN recovery: connected")
                     } finally { openVpnTransition = false }
                 } },
             )
         } catch (_: CancellationException) {
             // The replacing command owns cleanup; a startup already underway
             // checks its ticket and stops before releasing the native mutex.
+            Log.i(LOG_TAG, "OpenVPN recovery: superseded")
         } catch (error: Exception) {
             finalFailure = messageCode(error, "openvpn_recovery_failed")
+            Log.i(LOG_TAG, "OpenVPN recovery: failed with $finalFailure")
             withContext(NonCancellable) {
                 withTunnelOperation {
                     if (!isRecoveryCurrent(target)) return@withTunnelOperation
@@ -1815,6 +2430,8 @@ internal class AndroidVpnBridge(
             handleOpenVpnFailure(openVpn.sessionGeneration, failure)
             throw VpnNativeException(failure)
         }
+        // CONNECTED is now published (volatile). Either this read or the onLost callback acts.
+        if (physicalLosses.get() != openVpnStartLosses) signalOpenVpnNetworkLoss()
     }
 
     private fun requestNotificationPermissionIfNeeded() {
@@ -1868,14 +2485,23 @@ internal class AndroidVpnBridge(
             } else emptyList(),
         )
         synchronized(stateLock) { currentState = state }
-        val epoch = sessionLifecycle.ticket()
-        currentActivity()?.runOnUiThread {
-            // A queued UI delivery must not resurrect a session or an older
-            // cleanup step after a new account/termination result is active.
-            if (epoch == sessionLifecycle.ticket() && state.sessionTermination === sessionLifecycle.termination) {
-                eventSink?.success(state.toChannelMap())
-            }
+        if (status == VpnStatus.CONNECTED) {
+            noteAlwaysOn(state.systemProtection["always_on"] as? Boolean)
+            startAlwaysOnSampler()
         }
+        publicationSequence.incrementAndGet()
+        val epoch = sessionLifecycle.ticket()
+        // Publication never throws into a connection, permission or logout
+        // step: the state above is already the native truth (C2-02).
+        try {
+            currentActivity()?.runOnUiThread {
+                // A queued UI delivery must not resurrect a session or an older
+                // cleanup step after a new account/termination result is active.
+                if (epoch == sessionLifecycle.ticket() && state.sessionTermination === sessionLifecycle.termination) {
+                    eventSink?.success(state.toChannelMap())
+                }
+            }
+        } catch (_: RuntimeException) { /* Flutter reads getState on its next attach. */ }
         VpnQuickTileService.requestUpdate(appContext)
     }
 
@@ -2016,7 +2642,8 @@ internal class AndroidVpnBridge(
         return try {
             tunnelOperationMutex.withLock {
                 waiting?.end()
-                NativeConnectionTiming.spanSuspend(timing, "tunnel_mutex_execution") { block() }
+                try { NativeConnectionTiming.spanSuspend(timing, "tunnel_mutex_execution") { block() } }
+                finally { closeTunnelHold() }
             }
         } catch (error: Throwable) {
             waiting?.error()
@@ -2073,7 +2700,12 @@ internal class AndroidVpnBridge(
         private const val DIAGNOSTIC_EXPORT_REQUEST_CODE_START = 20_000
         private const val DIAGNOSTIC_EXPORT_REQUEST_CODE_END = 65_535
         private const val OPENVPN_SERVICE_START_TIMEOUT_MS = 5_000L
+        private const val ALWAYS_ON_SAMPLE_MS = 2_000L
+        private const val ANOTHER_VPN_ACTIVE = "another VPN is active"
+        private const val NOT_PERMANENT_VPN = "the permanent VPN is no longer this app"
+        private const val ALWAYS_ON_VPN_APP_SETTING = "always_on_vpn_app"
         private const val OPENVPN_RECONNECTING = "openvpn_reconnecting"
+        private const val LOG_TAG = "FuzeVpnBridge"
         private const val ACCOUNT_ID = "account_id"
         private const val DEVICE_ID = "device_id"
         private const val LOCATION_ID = "location_id"

@@ -47,7 +47,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get session_ending =>
-      'Sesiunea ta a fost invalidată. VPN-ul este oprit, iar sesiunea este ștearsă…';
+      'Sesiunea se încheie: se oprește VPN-ul și se șterg datele sesiunii…';
 
   @override
   String get session_stopFailed =>
@@ -428,6 +428,9 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
+  String get devices_unnamed => 'Dispozitiv fără nume';
+
+  @override
   String get action_remove => 'Elimină';
 
   @override
@@ -467,6 +470,11 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get settings_licensesDetail => 'Software folosit în aplicație';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'Codul sursă al aplicației și al componentelor sale licențiate MPL-2.0: $url';
+  }
 
   @override
   String get settings_background =>
@@ -550,8 +558,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get notice_rateLimited_title => 'Prea multe încercări';
 
   @override
-  String get notice_deviceLimit_title =>
-      'Limita de 2 dispozitive a fost atinsă';
+  String get notice_deviceLimit_title => 'Limita de dispozitive a fost atinsă';
 
   @override
   String get notice_deviceLimit_message =>
@@ -653,7 +660,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'vpn_sign_in_required': 'Este necesară autentificarea',
       'protocol_unavailable_at_location': 'Protocol indisponibil',
       'vpn_permission_denied': 'Permisiunea VPN a fost refuzată',
-      'revoked_identity_device_limit': 'Limita de 2 dispozitive a fost atinsă',
+      'revoked_identity_device_limit': 'Limita de dispozitive a fost atinsă',
       'tunnel_start_unexpected': 'VPN-ul nu a putut porni',
       'flutter_disconnect_timeout': 'Deconectarea nu este confirmată',
       'flutter_disconnect_unexpected': 'Deconectarea nu a reușit',
@@ -670,6 +677,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'location_migration_device_changed':
           'Dispozitivul s-a schimbat în timpul schimbării locației',
       'tunnel_stop_failed': 'Schimbarea locației nu este disponibilă',
+      'device_clock_ahead': 'Ceasul dispozitivului este înainte',
       'other': 'Operațiunea a eșuat',
     });
     return '$_temp0';
@@ -720,6 +728,8 @@ class AppLocalizationsRo extends AppLocalizations {
           'Dispozitivul returnat de server nu mai corespunde celui modificat. Reîmprospătează dispozitivele înainte de a încerca din nou.',
       'tunnel_stop_failed':
           'Tunelul anterior trebuie oprit complet înainte de noua conexiune.',
+      'device_clock_ahead':
+          'Se pare că ceasul acestui dispozitiv este înainte. Activează data și ora automate pentru a-ți păstra sesiunea.',
       'other':
           'Operațiunea nu a putut fi finalizată. Încearcă din nou sau trimite codul de diagnosticare serviciului de asistență.',
     });
@@ -845,8 +855,39 @@ class AppLocalizationsRo extends AppLocalizations {
   String get notice_retryLater => 'Încearcă din nou peste câteva momente.';
 
   @override
-  String notice_retryAfter(Object seconds) {
-    return 'Încearcă din nou peste $seconds secunde.';
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: 'Încearcă din nou peste $seconds de secunde.',
+      few: 'Încearcă din nou peste $seconds secunde.',
+      one: 'Încearcă din nou peste $seconds secundă.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: 'Încearcă din nou peste $minutes de minute.',
+      few: 'Încearcă din nou peste $minutes minute.',
+      one: 'Încearcă din nou peste $minutes minut.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: 'Încearcă din nou peste $hours de ore.',
+      few: 'Încearcă din nou peste $hours ore.',
+      one: 'Încearcă din nou peste $hours oră.',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -964,6 +1005,9 @@ class AppLocalizationsRo extends AppLocalizations {
       'secure_storage_write_failed': 'Scrierea securizată a eșuat',
       'key_generation_failed': 'Cheia WireGuard nu a putut fi generată',
       'csr_generation_failed': 'CSR-ul OpenVPN nu a putut fi generat',
+      'openvpn_recovery_exhausted': 'Recuperarea OpenVPN a fost deja folosită',
+      'openvpn_recovery_failed': 'Recuperarea OpenVPN a eșuat',
+      'openvpn_renewal_required': 'Certificatul OpenVPN trebuie reînnoit',
       'other': 'Eroare VPN nativă neclasificată',
     });
     return '$_temp0';
@@ -1803,6 +1847,14 @@ class AppLocalizationsRo extends AppLocalizations {
       'Abonamentul tău este gestionat prin Google Play.';
 
   @override
+  String get billing_playOnHold =>
+      'Abonamentul tău Google Play este suspendat sau așteaptă plata. Deschide „Gestionează abonamentul” pentru a rezolva problema în Google Play.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'Acest cont Google Play are deja un abonament Fuze Premium care nu este activ pentru acest cont FuzeVPN. Deschide „Gestionează abonamentul” pentru a-l verifica în Google Play.';
+
+  @override
   String get billing_inactive => 'Niciun abonament activ.';
 
   @override
@@ -2056,6 +2108,10 @@ class AppLocalizationsRo extends AppLocalizations {
   String get google_rateLimited => 'Așteaptă înainte de a încerca din nou.';
 
   @override
+  String get google_busy =>
+      'Google nu este disponibil cât timp este în curs o altă operațiune (conexiune VPN, cont sau oaspete). Încearcă din nou după ce se termină; accesul tău actual este păstrat.';
+
+  @override
   String get google_invalidPassword =>
       'Parola FuzeVPN este incorectă. Contul actual este păstrat.';
 
@@ -2085,6 +2141,36 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get google_challengeUnavailable =>
       'Verificarea de securitate nu este disponibilă. Încearcă mai târziu.';
+
+  @override
+  String get google_intentMismatch =>
+      'O încercare anterioară de conectare cu Google este încă în așteptare. Anuleaz-o înainte de a începe această operațiune.';
+
+  @override
+  String get google_challengeBlocked =>
+      'Verificarea de securitate necesară nu este disponibilă în această aplicație. Această operațiune nu poate fi finalizată momentan.';
+
+  @override
+  String get google_solveChallenge => 'Efectuează verificarea de securitate';
+
+  @override
+  String get google_challengeTitle => 'Verificare de securitate';
+
+  @override
+  String get google_challengeReady =>
+      'Verificare finalizată. Acum poți confirma crearea contului.';
+
+  @override
+  String get google_challengeExpired =>
+      'Verificarea a expirat. Repet-o înainte de a confirma.';
+
+  @override
+  String get google_challengeCancelled =>
+      'Verificare anulată. O poți efectua din nou.';
+
+  @override
+  String get google_challengeFailed =>
+      'Verificarea de securitate a eșuat. Încearcă din nou.';
 
   @override
   String get billing_trialTitle => 'Încearcă Fuze Premium gratuit';

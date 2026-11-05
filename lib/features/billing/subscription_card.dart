@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../app_controller.dart';
 import '../../app_theme.dart';
 import '../../billing_controller.dart';
 import '../../core/play_billing.dart';
 import '../../l10n/app_copy.dart';
+import '../../l10n/app_formats.dart';
 import '../../widgets/fuze_brand.dart';
 import '../../widgets/fuze_design.dart';
 import '../auth/auth_page.dart';
@@ -77,9 +77,18 @@ class SubscriptionCard extends StatelessWidget {
               if (controller.messageKey != null) ...<Widget>[
                 const SizedBox(height: 16),
                 _BillingMessage(messageKey: controller.messageKey!),
+              ] else if (controller.playCheckoutBlockedMessageKey
+                  case final String blockKey) ...<Widget>[
+                const SizedBox(height: 16),
+                _BillingMessage(
+                  key: const ValueKey('subscription-play-block'),
+                  messageKey: blockKey,
+                ),
               ],
               const SizedBox(height: 20),
-              if (!hasAccess)
+              // Play refuses a checkout while a premium receipt exists; offer
+              // its management instead of a purchase that must fail.
+              if (!hasAccess && !controller.playCheckoutBlocked)
                 FilledButton.icon(
                   key: const ValueKey('subscription-open'),
                   onPressed: controller.isBusy
@@ -99,7 +108,7 @@ class SubscriptionCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 )
-              else if (_isGooglePlay(subscription))
+              else if (controller.canManagePlaySubscription)
                 FilledButton.icon(
                   key: const ValueKey('subscription-manage'),
                   onPressed: controller.isBusy
@@ -317,8 +326,25 @@ class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
                               ),
                             ],
                             if (billing.messageKey != null) ...[
-                              const SizedBox(height: 12),
-                              _BillingMessage(messageKey: billing.messageKey!),
+                              // The guest flow may relay the same message.
+                              if (billing.messageKey !=
+                                  controller.guestMessageKey) ...[
+                                const SizedBox(height: 12),
+                                _BillingMessage(
+                                  messageKey: billing.messageKey!,
+                                ),
+                              ],
+                            ] else if (billing.playCheckoutBlockedMessageKey
+                                case final String blockKey) ...[
+                              if (blockKey != controller.guestMessageKey) ...[
+                                const SizedBox(height: 12),
+                                _BillingMessage(
+                                  key: const ValueKey(
+                                    'subscription-play-block',
+                                  ),
+                                  messageKey: blockKey,
+                                ),
+                              ],
                             ] else if (!billing.isLoadingCatalog &&
                                 !hasAccess &&
                                 billing.plans.isEmpty)
@@ -403,9 +429,13 @@ class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
-                            if (hasAccess &&
-                                _isGooglePlay(billing.subscription))
+                            if ((hasAccess &&
+                                    _isGooglePlay(billing.subscription)) ||
+                                billing.playCheckoutBlocked)
                               OutlinedButton(
+                                key: const ValueKey(
+                                  'subscription-paywall-manage',
+                                ),
                                 onPressed: busy ? null : billing.openManagement,
                                 child: Text(
                                   context.copy('billing.manage'),
@@ -474,9 +504,10 @@ String _subscriptionManagerKey(BillingSubscription? subscription) =>
       _ => 'billing.active',
     };
 
-String _subscriptionDate(BuildContext context, DateTime date) => DateFormat.yMd(
-  Localizations.localeOf(context).toString(),
-).format(date.toLocal());
+// A16-01: like the trial date, the financial date follows the real system
+// region (en-GB, fr-CA...) and spells out the month to avoid ambiguity.
+String _subscriptionDate(BuildContext context, DateTime date) =>
+    AppFormats.longDate(context, date.toLocal());
 
 Future<void> _showSubscriptionSelection(
   BuildContext context,
@@ -630,9 +661,11 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
                 )
               else if (plans.isEmpty && controller.messageKey == null)
                 _BillingMessage(
-                  messageKey: controller.purchaseAllowed
-                      ? 'billing.unavailable'
-                      : 'billing.comingSoon',
+                  messageKey:
+                      controller.playCheckoutBlockedMessageKey ??
+                      (controller.purchaseAllowed
+                          ? 'billing.unavailable'
+                          : 'billing.comingSoon'),
                 )
               else
                 PremiumPlanChoices(
@@ -648,7 +681,11 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
                   !controller.purchaseAllowed &&
                   controller.messageKey == null) ...<Widget>[
                 const SizedBox(height: 8),
-                const _BillingMessage(messageKey: 'billing.comingSoon'),
+                _BillingMessage(
+                  messageKey:
+                      controller.playCheckoutBlockedMessageKey ??
+                      'billing.comingSoon',
+                ),
               ],
               if (controller.messageKey != null) ...<Widget>[
                 const SizedBox(height: 8),
@@ -716,8 +753,10 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              if (hasAccess && _isGooglePlay(controller.subscription))
+              if ((hasAccess && _isGooglePlay(controller.subscription)) ||
+                  controller.playCheckoutBlocked)
                 OutlinedButton(
+                  key: const ValueKey('subscription-selection-manage'),
                   onPressed: controller.isBusy || !_currentAccount
                       ? null
                       : controller.openManagement,
@@ -735,7 +774,7 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
 }
 
 class _BillingMessage extends StatelessWidget {
-  const _BillingMessage({required this.messageKey});
+  const _BillingMessage({super.key, required this.messageKey});
   final String messageKey;
 
   @override

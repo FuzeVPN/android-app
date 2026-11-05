@@ -3,6 +3,7 @@ package com.fuzevpn.android.openvpn
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
+import java.util.concurrent.atomic.AtomicBoolean
 
 internal data class OpenVpnSessionEvent(val generation: Long, val state: OpenVpnNativeState)
 
@@ -18,7 +19,11 @@ internal class OpenVpnSessionEvents {
     private var stopping = false
     private var finished = false
     private var interrupted = false
-    private var outcome = CompletableDeferred<OpenVpnNativeState>()
+    private class ConnectionWait {
+        val cancelled = AtomicBoolean(false)
+        val outcome = CompletableDeferred<OpenVpnNativeState>()
+    }
+    @Volatile private var connectionWait = ConnectionWait()
     @Volatile var failureCode: String? = null
         private set
 
@@ -28,7 +33,7 @@ internal class OpenVpnSessionEvents {
         stopping = false
         finished = false
         interrupted = false
-        outcome = CompletableDeferred()
+        connectionWait = ConnectionWait()
         failureCode = null
         publish(generation, OpenVpnNativeState.connecting())
         return generation
@@ -51,8 +56,15 @@ internal class OpenVpnSessionEvents {
         publish(generation, OpenVpnNativeState.error(code))
     }
 
+    /** Called on command receipt: never wait for a PKI callback's monitor. */
+    fun cancelPendingConnection() {
+        val waiting = connectionWait
+        waiting.cancelled.set(true)
+        waiting.outcome.complete(OpenVpnNativeState.error("session_operation_cancelled"))
+    }
+
     @Synchronized fun publish(id: Long, state: OpenVpnNativeState) {
-        if (id != generation || finished || ((stopping || interrupted) && state.isConnected())) return
+        if (id != generation || finished || ((stopping || interrupted || connectionWait.cancelled.get()) && state.isConnected())) return
         snapshot = state
         if (state.toVpnStatus() == com.fuzevpn.android.VpnStatus.ERROR &&
             (failureCode == null || failureCode == "openvpn_reconnect_required")) {
@@ -62,17 +74,17 @@ internal class OpenVpnSessionEvents {
             interrupted = true
             callbacksEnabled = false
         }
-        if (state.isConnectionTerminal()) outcome.complete(state)
+        if (state.isConnectionTerminal()) connectionWait.outcome.complete(state)
         check(events.trySend(OpenVpnSessionEvent(id, state)).isSuccess)
     }
 
     @Synchronized fun firstOutcome(id: Long): CompletableDeferred<OpenVpnNativeState> {
         check(id == generation)
-        return outcome
+        return connectionWait.outcome
     }
 
     @Synchronized fun confirmConnected(id: Long, publish: () -> Unit): Boolean {
-        if (id != generation || !snapshot.isConnected() || stopping || finished || interrupted) return false
+        if (id != generation || !snapshot.isConnected() || stopping || finished || interrupted || connectionWait.cancelled.get()) return false
         publish()
         return true
     }
@@ -80,5 +92,5 @@ internal class OpenVpnSessionEvents {
     // The guard covers the full callback, including signing, so session rollover
     // cannot occur between checking its generation and accessing its identity.
     @Synchronized fun <T> callback(id: Long, rejected: T, block: () -> T): T =
-        if (id == generation && callbacksEnabled) block() else rejected
+        if (id == generation && callbacksEnabled && !connectionWait.cancelled.get()) block() else rejected
 }

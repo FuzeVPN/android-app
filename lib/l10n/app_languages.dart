@@ -142,4 +142,25 @@ abstract final class AppLanguages {
     }
     return null;
   }
+
+  /// Translation keys stay canonical, while dates retain a matching region.
+  static Locale formattingLocale(
+    Locale displayLocale,
+    Iterable<Locale> systemLocales,
+  ) {
+    final canonical = parse(displayLocale.toLanguageTag());
+    if (canonical == null) return fallback;
+    if (displayLocale.countryCode?.isNotEmpty ?? false) return displayLocale;
+    for (final locale in systemLocales) {
+      if ((locale.countryCode?.isNotEmpty ?? false) &&
+          parse(locale.toLanguageTag()) == canonical) {
+        return Locale.fromSubtags(
+          languageCode: canonical.languageCode,
+          scriptCode: canonical.scriptCode,
+          countryCode: locale.countryCode,
+        );
+      }
+    }
+    return canonical;
+  }
 }

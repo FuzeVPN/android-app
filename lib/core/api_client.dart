@@ -2,7 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart'
+    show debugPrintSynchronously, kDebugMode;
+
 import 'api_exception.dart';
+import 'api_socket_open.dart';
 import 'connection_timing.dart';
 import 'google_auth.dart';
 import 'guest_accounts.dart';
@@ -64,25 +68,63 @@ abstract class ApiHttpTransport {
 
 /// Dart IO transport used on Android. No third-party HTTP library is required.
 class IoApiHttpTransport extends ApiHttpTransport {
+  /// The owned default client uses cancellable sockets with platform TLS and
+  /// environment proxy routing. An injected client keeps its factory, proxy and
+  /// trust settings; its connector must provide cancellation of pending TLS.
   IoApiHttpTransport({
     HttpClient? client,
     this.requestTimeout = const Duration(seconds: 20),
     HedgedHttpOpen? opener,
-  }) : _client = client ?? HttpClient(),
-       _opener = opener ?? const HedgedHttpOpen();
+  }) : _ownsClient = client == null,
+       _client = client ?? (HttpClient()..connectionFactory = openApiSocket),
+       _opener = opener ?? const HedgedHttpOpen() {
+    // Also bound the IO client's TCP wait. The owned socket factory closes a
+    // retained raw socket when TLS is still pending; connectionTimeout alone
+    // cannot reliably cancel that phase in the SDK.
+    final Duration? existingTimeout = _client.connectionTimeout;
+    if (existingTimeout == null || existingTimeout > requestTimeout) {
+      _client.connectionTimeout = requestTimeout;
+    }
+  }
 
   static const int _maximumResponseBytes = 1024 * 1024;
 
   final HttpClient _client;
+  final bool _ownsClient;
+  final Map<String, HttpClient> _ownedHttpsClients = {};
+  var _closed = false;
   final HedgedHttpOpen _opener;
   final Duration requestTimeout;
+
+  HttpClient _clientFor(Uri uri) {
+    if (_closed) throw const HttpException('API transport closed');
+    if (!_ownsClient || uri.scheme != 'https') return _client;
+    final configuration = HttpClient.findProxyFromEnvironment(uri);
+    return _ownedHttpsClients.putIfAbsent(configuration, () {
+      // The raw factory performs the configured proxy route and CONNECT.
+      // Disabling the SDK's second CONNECT does not bypass the network proxy.
+      return HttpClient()
+        ..findProxy = ((_) => 'DIRECT')
+        ..connectionFactory = ((target, _, _) =>
+            openApiSocketWithProxyConfiguration(target, configuration))
+        ..connectionTimeout = requestTimeout;
+    });
+  }
 
   @override
   Future<ApiHttpResponse> send(ApiHttpRequest request) async {
     final Stopwatch elapsed = Stopwatch()..start();
     HttpClientRequest? selectedRequest;
+    final primaryOpening = ApiSocketOpenAttempt();
+    final alternateOpening = ApiSocketOpenAttempt();
     StreamIterator<List<int>>? responseBody;
+    // A non-2xx response whose headers arrived before the deadline, without
+    // its body: what is returned when that body cannot be read in time.
+    ApiHttpResponse? withoutBody;
     var expired = false;
+    HttpClient? requestClient;
+    // Diagnostics only: the address family of the selected connection.
+    String? openedFamily;
 
     bool deadlineReached() => expired || elapsed.elapsed >= requestTimeout;
 
@@ -93,18 +135,35 @@ class IoApiHttpTransport extends ApiHttpTransport {
       }
     }
 
-    void cancelPending() {
-      try {
-        selectedRequest?.abort();
-      } catch (_) {
-        // Cleanup must not replace the public failure.
-      }
+    void cancelBody() {
       final StreamIterator<List<int>>? iterator = responseBody;
       responseBody = null;
       if (iterator != null) {
         // abort() cannot stop a body once the response headers have arrived.
         // Observe cleanup errors without extending the request deadline.
         unawaited(iterator.cancel().then<void>((_) {}, onError: (Object _) {}));
+      }
+    }
+
+    void cancelPending() {
+      primaryOpening.cancel();
+      alternateOpening.cancel();
+      try {
+        selectedRequest?.abort();
+      } catch (_) {
+        // Cleanup must not replace the public failure.
+      }
+      cancelBody();
+    }
+
+    Future<HttpClientRequest> open(ApiSocketOpenAttempt attempt) async {
+      try {
+        return await attempt.run(
+          () => (requestClient ??= _clientFor(request.uri))
+              .openUrl(request.method, request.uri),
+        );
+      } finally {
+        attempt.release();
       }
     }
 
@@ -115,13 +174,21 @@ class IoApiHttpTransport extends ApiHttpTransport {
         final HttpClientRequest outgoing = await ConnectionTiming.measure(
           'http.open',
           () => _opener.open<HttpClientRequest>(
-            primary: () => _client.openUrl(request.method, request.uri),
-            alternate: () => _client.openUrl(request.method, request.uri),
+            primary: () => open(primaryOpening),
+            alternate: () => open(alternateOpening),
+            cancelPrimary: primaryOpening.cancel,
+            cancelAlternate: alternateOpening.cancel,
             abort: (HttpClientRequest pending) => pending.abort(),
             timeout: requestTimeout - elapsed.elapsed,
+            errorRank: _openingRank,
           ),
         );
         selectedRequest = outgoing;
+        openedFamily = _connectionFamily(outgoing);
+        // Control-plane credentials and response budgets belong to the API
+        // origin. Implicit redirects can copy custom authentication headers
+        // elsewhere and drain intermediate bodies outside our byte limit.
+        outgoing.followRedirects = false;
         // A late connection must never send headers or a business request.
         checkDeadline();
         request.headers.forEach((String name, String value) {
@@ -137,9 +204,27 @@ class IoApiHttpTransport extends ApiHttpTransport {
           outgoing.close,
         );
         ConnectionTiming.event('http.response', status: incoming.statusCode);
-        final List<int> bytes = await ConnectionTiming.measure(
-          'http.body',
-          () async {
+        // Only a 2xx body can carry a business payload, so it stays strict.
+        // Any other body is at most an error envelope: when it cannot be
+        // decoded, exceeds the byte budget, breaks its framing, loses its
+        // connection or is still pending at the deadline, a response whose
+        // headers arrived in time keeps its status and Retry-After.
+        final int status = incoming.statusCode;
+        final bool payload = status >= 200 && status < 300;
+        final Map<String, String> headers = <String, String>{};
+        incoming.headers.forEach((String name, List<String> values) {
+          headers[name] = values.join(',');
+        });
+        if (!payload && !deadlineReached()) {
+          withoutBody = ApiHttpResponse(
+            statusCode: status,
+            headers: headers,
+            body: '',
+          );
+        }
+        List<int> bytes;
+        try {
+          bytes = await ConnectionTiming.measure('http.body', () async {
             final StreamIterator<List<int>> iterator = StreamIterator(incoming);
             responseBody = iterator;
             // Start listening even if headers arrive after expiration so cancel
@@ -157,25 +242,46 @@ class IoApiHttpTransport extends ApiHttpTransport {
               final List<int> chunk = iterator.current;
               length += chunk.length;
               if (length > _maximumResponseBytes) {
-                throw const ApiProtocolException(code: 'invalid_api_response');
+                // A 2xx payload must be complete. Any other body is at most
+                // an error envelope: stop reading at the budget (also after
+                // decompression) and keep the status and headers without it.
+                if (payload) throw ApiProtocolException(statusCode: status);
+                cancelBody();
+                return const <int>[];
               }
               received.addAll(chunk);
               hasChunk = await iterator.moveNext();
             }
             checkDeadline();
             return received;
-          },
-        );
-        final Map<String, String> headers = <String, String>{};
-        incoming.headers.forEach((String name, List<String> values) {
-          headers[name] = values.join(',');
-        });
+          });
+        } on FormatException {
+          // The SDK could not undo the announced Content-Encoding.
+          if (payload) throw ApiProtocolException(statusCode: status);
+          bytes = const <int>[];
+        } on IOException {
+          // Truncated body, broken chunked framing or closed connection.
+          if (withoutBody == null) rethrow;
+          cancelBody();
+          bytes = const <int>[];
+        } on TimeoutException {
+          if (withoutBody == null) rethrow;
+          cancelBody();
+          bytes = const <int>[];
+        }
+        String text;
+        try {
+          text = utf8.decode(bytes);
+        } on FormatException {
+          if (payload) throw ApiProtocolException(statusCode: status);
+          text = utf8.decode(bytes, allowMalformed: true);
+        }
         final ApiHttpResponse response = ApiHttpResponse(
-          statusCode: incoming.statusCode,
+          statusCode: status,
           headers: headers,
-          body: utf8.decode(bytes),
+          body: text,
         );
-        checkDeadline();
+        if (withoutBody == null) checkDeadline();
         succeeded = true;
         return response;
       } finally {
@@ -189,6 +295,8 @@ class IoApiHttpTransport extends ApiHttpTransport {
         onTimeout: () {
           expired = true;
           cancelPending();
+          final ApiHttpResponse? response = withoutBody;
+          if (response != null) return response;
           throw TimeoutException('HTTP request deadline exceeded');
         },
       );
@@ -196,21 +304,29 @@ class IoApiHttpTransport extends ApiHttpTransport {
       rethrow;
     } on TimeoutException {
       throw const ApiNetworkException(code: 'network_timeout');
-    } on SocketException {
-      throw const ApiNetworkException();
-    } on HttpException {
-      throw const ApiNetworkException();
-    } on IOException {
-      throw const ApiNetworkException();
     } on FormatException {
       throw const ApiProtocolException();
-    } catch (_) {
-      throw const ApiNetworkException();
+    } catch (error) {
+      if (!_isTransportError(error)) {
+        throw const ApiNetworkException(stage: 'client');
+      }
+      // An opening reports the layer it reached; any later failure is HTTP.
+      if (selectedRequest != null) {
+        throw ApiNetworkException(stage: 'http', family: openedFamily);
+      }
+      throw apiSocketOpenFailure(error) ?? const ApiNetworkException();
     }
   }
 
   @override
-  void close() => _client.close(force: true);
+  void close() {
+    _closed = true;
+    _client.close(force: true);
+    for (final client in _ownedHttpsClients.values) {
+      client.close(force: true);
+    }
+    _ownedHttpsClients.clear();
+  }
 }
 
 /// Public control-plane client. It is intentionally state-free: callers own
@@ -291,7 +407,8 @@ class ApiClient
     );
     return _parseObject(
       response,
-      (json) => GoogleAuthResult.fromJson(json, statusCode: response.statusCode),
+      (json) =>
+          GoogleAuthResult.fromJson(json, statusCode: response.statusCode),
     );
   }
 
@@ -317,6 +434,7 @@ class ApiClient
     required String countryCode,
     required bool termsAccepted,
     required bool privacyAccepted,
+    String? turnstileToken,
   }) async {
     final response = await _googleRequest(
       'POST',
@@ -327,6 +445,7 @@ class ApiClient
         countryCode: countryCode,
         termsAccepted: termsAccepted,
         privacyAccepted: privacyAccepted,
+        turnstileToken: turnstileToken,
       ),
       expectedStatusCodes: const {201},
     );
@@ -340,6 +459,7 @@ class ApiClient
     required String countryCode,
     required bool termsAccepted,
     required bool privacyAccepted,
+    String? turnstileToken,
   }) async {
     final response = await _googleRequest(
       'POST',
@@ -350,6 +470,7 @@ class ApiClient
         countryCode: countryCode,
         termsAccepted: termsAccepted,
         privacyAccepted: privacyAccepted,
+        turnstileToken: turnstileToken,
       ),
       expectedStatusCodes: const {200},
     );
@@ -511,14 +632,23 @@ class ApiClient
     required String countryCode,
     required bool termsAccepted,
     required bool privacyAccepted,
+    String? turnstileToken,
   }) {
     if (!RegExp(r'^[A-Z]{2}$').hasMatch(countryCode)) {
+      throw const ApiProtocolException(code: 'invalid_google_auth_request');
+    }
+    if (turnstileToken != null &&
+        turnstileToken.isNotEmpty &&
+        (turnstileToken.length > 2048 ||
+            !RegExp(r'^[\x21-\x7e]+$').hasMatch(turnstileToken) ||
+            turnstileToken.contains('\n'))) {
       throw const ApiProtocolException(code: 'invalid_google_auth_request');
     }
     return <String, Object?>{
       'country_code': countryCode,
       'terms_accepted': termsAccepted,
       'privacy_accepted': privacyAccepted,
+      if (turnstileToken?.isNotEmpty == true) 'turnstile_token': turnstileToken,
     };
   }
 
@@ -756,12 +886,27 @@ class ApiClient
       throw ApiProtocolException(statusCode: response.statusCode);
     }
     final List<Location> locations = <Location>[];
+    final Set<String> locationIds = <String>{};
     try {
       for (final Object? item in rawLocations) {
         if (item is! Map<String, dynamic>) {
           throw const FormatException('Emplacement VPN invalide.');
         }
-        locations.add(Location.fromJson(item));
+        final Location location;
+        try {
+          location = Location.fromJson(item);
+        } on UnsupportedLocationException catch (unsupported) {
+          // Not offered (for example a label the native layer refuses), so it
+          // can never reach an activation; it still counts as a duplicate.
+          if (!locationIds.add(unsupported.locationId)) {
+            throw const FormatException('Emplacement VPN dupliqué.');
+          }
+          continue;
+        }
+        if (!locationIds.add(location.id)) {
+          throw const FormatException('Emplacement VPN dupliqué.');
+        }
+        locations.add(location);
       }
     } on FormatException {
       throw ApiProtocolException(statusCode: response.statusCode);
@@ -975,8 +1120,12 @@ class ApiClient
             _jsonObject(response),
             expectedDeviceId: expectedDeviceId,
           );
-      final int? headerRetryAfter = _migrationRetryAfter(
+      // The server has accepted or reported this migration: an unreadable
+      // delay is ignored and an excessive one bounded, never a rejection.
+      final int? headerRetryAfter = ApiRetryAfter.parseHeader(
         response.header('retry-after'),
+        dateHeader: response.header('date'),
+        maximum: DeviceLocationMigration.maximumRetryAfterSeconds,
       );
       return headerRetryAfter == null
           ? migration
@@ -1011,6 +1160,7 @@ class ApiClient
       encodedBody = jsonEncode(body);
     }
     final String? timingStage = _connectionApiTimingStage(method, relativePath);
+    final Stopwatch elapsed = Stopwatch()..start();
     final ApiHttpResponse response;
     try {
       Future<ApiHttpResponse> send() => _transport.send(
@@ -1024,10 +1174,15 @@ class ApiClient
       response = timingStage == null
           ? await send()
           : await ConnectionTiming.measure(timingStage, send);
-    } on ApiFailure {
+    } on ApiFailure catch (failure) {
+      _debugApiFailure(method, relativePath, failure, elapsed);
       rethrow;
-    } catch (_) {
-      throw const ApiNetworkException();
+    } catch (error) {
+      final ApiNetworkException failure = _isTransportError(error)
+          ? const ApiNetworkException()
+          : const ApiNetworkException(stage: 'client');
+      _debugApiFailure(method, relativePath, failure, elapsed);
+      throw failure;
     }
     if (timingStage != null) {
       ConnectionTiming.event(timingStage, status: response.statusCode);
@@ -1037,6 +1192,7 @@ class ApiClient
         statusCode: response.statusCode,
         body: response.body,
         retryAfterHeader: response.header('retry-after'),
+        dateHeader: response.header('date'),
       );
     }
     if (requireNoStore && !_hasNoStore(response.header('cache-control'))) {
@@ -1088,15 +1244,6 @@ class ApiClient
           .contains('no-store') ??
       false;
 
-  static int? _migrationRetryAfter(String? value) {
-    if (value == null) return null;
-    final int? seconds = int.tryParse(value.trim());
-    if (seconds == null || seconds < 0 || seconds > 300) {
-      throw const FormatException('Migration d’emplacement invalide.');
-    }
-    return seconds;
-  }
-
   /// Releases a transport owned by this API client. It is safe to call when
   /// the application exits; individual requests should not call it.
   void close() => _transport.close();
@@ -1108,6 +1255,9 @@ String? _connectionApiTimingStage(String method, String relativePath) {
   final List<String> parts = relativePath.split('/');
   if (method == 'GET' && _sameParts(parts, const <String>['v1', 'locations'])) {
     return 'api.locations';
+  }
+  if (method == 'GET' && _sameParts(parts, const <String>['v1', 'me'])) {
+    return 'api.me';
   }
   if (method == 'GET' && _sameParts(parts, const <String>['v1', 'devices'])) {
     return 'api.devices.list';
@@ -1144,4 +1294,68 @@ bool _sameParts(List<String> actual, List<String> expected) {
     if (actual[index] != expected[index]) return false;
   }
   return true;
+}
+
+/// Only a socket, IO or timeout failure is a network failure. Anything else,
+/// a Dart Error in particular, is a client defect and must not look like one.
+bool _isTransportError(Object error) =>
+    error is IOException || error is OSError || error is TimeoutException;
+
+/// When both hedged openings fail, the one that went furthest is reported.
+int _openingRank(Object error) => switch (apiSocketOpenFailure(error)?.stage) {
+  'tls' => 3,
+  'connect' => 2,
+  'dns' => 1,
+  _ => 0,
+};
+
+/// Address family of an opened request, or `null` when it has no socket.
+String? _connectionFamily(HttpClientRequest request) {
+  try {
+    return apiAddressFamily(request.connectionInfo?.remoteAddress);
+  } catch (_) {
+    return null;
+  }
+}
+
+final RegExp _fixedPathSegment = RegExp(r'^[a-z]+(?:-[a-z]+)*$');
+
+/// [relativePath] with identifiers and queries removed: device and migration
+/// identifiers, and any segment that is not a fixed lowercase name.
+String _apiPathTemplate(String relativePath) {
+  final List<String> parts = relativePath.split('?').first.split('/');
+  for (var index = 1; index < parts.length; index++) {
+    final String previous = parts[index - 1];
+    if (previous == 'devices' ||
+        previous == 'location-migrations' ||
+        !_fixedPathSegment.hasMatch(parts[index])) {
+      parts[index] = ':id';
+    }
+  }
+  return parts.join('/');
+}
+
+/// Debug builds only: one line per failed request with its method, path
+/// template, failing layer and duration. No host, address, identifier, query
+/// or token is ever written.
+void _debugApiFailure(
+  String method,
+  String relativePath,
+  ApiFailure failure,
+  Stopwatch elapsed,
+) {
+  if (!kDebugMode) return;
+  final (String? stage, String? family) = switch (failure) {
+    ApiNetworkException(:final stage, :final family) => (stage, family),
+    _ => (null, null),
+  };
+  final Map<String, Object?> record = <String, Object?>{
+    'method': method,
+    'path': _apiPathTemplate(relativePath),
+    'code': failure.code,
+    if (stage != null) 'stage': stage,
+    if (family != null) 'family': family,
+    'elapsed_ms': elapsed.elapsedMilliseconds,
+  };
+  debugPrintSynchronously('FuzeVpnApi ${jsonEncode(record)}');
 }
