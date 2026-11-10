@@ -13,6 +13,7 @@ import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 
 /// Per pack, the stems with which the former wording stated that the session
 /// was already invalidated. None of them may come back in session_ending.
+/// Only the thirty packs shipped before the reword carried that wording.
 const Map<String, List<String>> _invalidationClaims = {
   'ar': ['أُبطلت', 'أبطلت', 'باطل'],
   'cs': ['neplatn'],
@@ -47,10 +48,11 @@ const Map<String, List<String>> _invalidationClaims = {
 };
 
 void main() {
-  test('chaque langue livrée a sa liste de formulations interdites', () {
+  test('chaque langue de l’ancienne formulation a sa liste interdite', () {
+    expect(_invalidationClaims, hasLength(30));
     expect(
-      _invalidationClaims.keys.toSet(),
-      AppLanguages.all.map((language) => language.tag).toSet(),
+      AppLanguages.all.map((language) => language.tag),
+      containsAll(_invalidationClaims.keys),
     );
   });
 
@@ -72,13 +74,13 @@ void main() {
     expect(en, contains('stopping the VPN'));
   });
 
-  test('30 langues : session_ending ne dit pas que la session est déjà '
+  test('70 langues : session_ending ne dit pas que la session est déjà '
       'invalidée et reste une opération en cours', () {
     for (final language in AppLanguages.all) {
       final l = lookupAppLocalizations(language.locale);
       final ending = AppCopy.resolve(l, 'session.ending');
       final folded = ending.toLowerCase();
-      for (final claim in _invalidationClaims[language.tag]!) {
+      for (final claim in _invalidationClaims[language.tag] ?? const []) {
         expect(
           folded,
           isNot(contains(claim.toLowerCase())),

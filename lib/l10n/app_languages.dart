@@ -51,6 +51,46 @@ abstract final class AppLanguages {
     AppLanguage(Locale('da'), 'Dansk', 'DK'),
     AppLanguage(Locale('nb'), 'Norsk bokmål', 'NO'),
     AppLanguage(Locale('el'), 'Ελληνικά', 'GR'),
+    AppLanguage(Locale('bn'), 'বাংলা', 'BD'),
+    AppLanguage(Locale('sw'), 'Kiswahili', 'TZ'),
+    AppLanguage(Locale('my'), 'မြန်မာ', 'MM'),
+    AppLanguage(Locale('km'), 'ខ្មែរ', 'KH'),
+    AppLanguage(Locale('uz'), 'Oʻzbekcha', 'UZ'),
+    AppLanguage(Locale('ne'), 'नेपाली', 'NP'),
+    AppLanguage(Locale('si'), 'සිංහල', 'LK'),
+    AppLanguage(Locale('ta'), 'தமிழ்', 'IN'),
+    AppLanguage(Locale('te'), 'తెలుగు', 'IN'),
+    AppLanguage(Locale('mr'), 'मराठी', 'IN'),
+    AppLanguage(Locale('gu'), 'ગુજરાતી', 'IN'),
+    AppLanguage(Locale('ha'), 'Hausa', 'NG'),
+    AppLanguage(Locale('am'), 'አማርኛ', 'ET'),
+    AppLanguage(Locale('hu'), 'Magyar', 'HU'),
+    AppLanguage(Locale('bg'), 'Български', 'BG'),
+    AppLanguage(Locale('fi'), 'Suomi', 'FI'),
+    AppLanguage(Locale('sk'), 'Slovenčina', 'SK'),
+    AppLanguage(Locale('hr'), 'Hrvatski', 'HR'),
+    AppLanguage(Locale('sr'), 'Српски', 'RS'),
+    AppLanguage(Locale('he'), 'עברית', 'IL'),
+    AppLanguage(Locale('pa'), 'ਪੰਜਾਬੀ', 'IN'),
+    AppLanguage(Locale('kn'), 'ಕನ್ನಡ', 'IN'),
+    AppLanguage(Locale('ml'), 'മലയാളം', 'IN'),
+    AppLanguage(Locale('or'), 'ଓଡ଼ିଆ', 'IN'),
+    AppLanguage(Locale('ps'), 'پښتو', 'AF'),
+    AppLanguage(Locale('lt'), 'Lietuvių', 'LT'),
+    AppLanguage(Locale('lv'), 'Latviešu', 'LV'),
+    AppLanguage(Locale('et'), 'Eesti', 'EE'),
+    AppLanguage(Locale('sl'), 'Slovenščina', 'SI'),
+    AppLanguage(Locale('sq'), 'Shqip', 'AL'),
+    AppLanguage(Locale('kk'), 'Қазақ тілі', 'KZ'),
+    AppLanguage(Locale('az'), 'Azərbaycan', 'AZ'),
+    AppLanguage(Locale('hy'), 'Հայերեն', 'AM'),
+    AppLanguage(Locale('ka'), 'ქართული', 'GE'),
+    AppLanguage(Locale('lo'), 'ລາວ', 'LA'),
+    AppLanguage(Locale('mg'), 'Malagasy', 'MG'),
+    AppLanguage(Locale('so'), 'Soomaali', 'SO'),
+    AppLanguage(Locale('yo'), 'Yorùbá', 'NG'),
+    AppLanguage(Locale('ig'), 'Igbo', 'NG'),
+    AppLanguage(Locale('rw'), 'Ikinyarwanda', 'RW'),
   ];
 
   // Keep the historical fallback, independently of the alphabetical picker.
@@ -88,6 +128,10 @@ abstract final class AppLanguages {
       'ž': 'z',
       'ế': 'e',
       'ệ': 'e',
+      'ə': 'e',
+      'ù': 'u',
+      'ų': 'u',
+      'ʻ': '',
     };
     return value
         .toLowerCase()
@@ -108,10 +152,16 @@ abstract final class AppLanguages {
     final parts = normalized.toLowerCase().split('-');
     final code = switch (parts.first) {
       'in' => 'id',
+      'iw' => 'he',
       'tl' => 'fil',
       'no' => 'nb',
       final value => value,
     };
+    // A system language in a script its pack does not use (Shahmukhi
+    // Punjabi, Arabic-script Uzbek or Azerbaijani) moves on to the next one.
+    if (parts.length > 1 && _otherScripts[code]?.contains(parts[1]) == true) {
+      return null;
+    }
     if (code == 'zh') {
       final traditional =
           parts.contains('hant') ||
@@ -126,6 +176,12 @@ abstract final class AppLanguages {
     }
     return null;
   }
+
+  static const _otherScripts = <String, Set<String>>{
+    'pa': {'arab'},
+    'uz': {'arab'},
+    'az': {'arab'},
+  };
 
   static Locale resolve(List<Locale>? requested, Iterable<Locale> _) {
     for (final locale in requested ?? const <Locale>[]) {

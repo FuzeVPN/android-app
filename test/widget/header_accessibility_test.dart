@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/widgets/fuze_design.dart';
 
@@ -38,8 +39,7 @@ void main() {
                 MaterialApp(
                   locale: Locale(language),
                   supportedLocales: AppLanguages.supportedLocales,
-                  localizationsDelegates:
-                      AppLocalizations.localizationsDelegates,
+                  localizationsDelegates: AppLocalizationDelegates.all,
                   theme: dark ? FuzeVpnTheme.dark() : FuzeVpnTheme.light(),
                   builder: (context, child) => MediaQuery(
                     data: MediaQuery.of(

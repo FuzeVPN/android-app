@@ -11,6 +11,10 @@ internal object NativeLocalePolicy {
         "en", "es", "pt", "de", "fr", "ar", "tr", "ja", "id", "ru",
         "it", "ko", "pl", "nl", "hi", "vi", "uk", "th", "zh-Hans", "zh-Hant",
         "fa", "ur", "fil", "ms", "ro", "cs", "sv", "da", "nb", "el",
+        "bn", "sw", "my", "km", "uz", "ne", "si", "ta", "te", "mr",
+        "gu", "ha", "am", "hu", "bg", "fi", "sk", "hr", "sr", "he",
+        "pa", "kn", "ml", "or", "ps", "lt", "lv", "et", "sl", "sq",
+        "kk", "az", "hy", "ka", "lo", "mg", "so", "yo", "ig", "rw",
     )
 
     /**
@@ -29,10 +33,14 @@ internal object NativeLocalePolicy {
         }
         val language = when (locale.language.lowercase(Locale.ROOT)) {
             "in" -> "id"
+            "iw" -> "he"
             "tl" -> "fil"
             "no" -> "nb"
             else -> locale.language.lowercase(Locale.ROOT)
         }
+        // A system language in a script its pack does not use (Shahmukhi
+        // Punjabi, Arabic-script Uzbek or Azerbaijani) moves on to the next one.
+        if (locale.script.lowercase(Locale.ROOT) in OTHER_SCRIPTS[language].orEmpty()) return null
         if (language == "zh") {
             return when (locale.script.lowercase(Locale.ROOT)) {
                 "hans" -> "zh-Hans"
@@ -55,4 +63,5 @@ internal object NativeLocalePolicy {
 
     private val TAG = Regex("[A-Za-z]{2,3}(?:-[A-Za-z0-9]{1,8})*")
     private val TRADITIONAL_REGIONS = setOf("TW", "HK", "MO")
+    private val OTHER_SCRIPTS = mapOf("pa" to setOf("arab"), "uz" to setOf("arab"), "az" to setOf("arab"))
 }

@@ -1,0 +1,745 @@
+{
+  "vpnDisclosure_title": "ປົກປ້ອງການເຊື່ອມຕໍ່ຂອງທ່ານ",
+  "vpnDisclosure_body": "FuzeVPN ໃຊ້ບໍລິການ VPN ຂອງ Android (VpnService) ເພື່ອສ້າງອຸໂມງທີ່ເຂົ້າລະຫັດລະຫວ່າງອຸປະກອນນີ້ ແລະ ເຊີບເວີຂອງ FuzeVPN.",
+  "vpnDisclosure_dataBody": "ໃນຂະນະທີ່ VPN ເປີດໃຊ້ງານຢູ່, ທຣາຟິກອິນເຕີເນັດຂອງແອັບຕ່າງໆຂອງທ່ານ, ທີ່ຢູ່ປາຍທາງ ແລະ ຄຳຂໍ DNS ຈະຜ່ານອຸໂມງນີ້ ເພື່ອກຳນົດເສັ້ນທາງການເຊື່ອມຕໍ່ຂອງທ່ານ ເຖິງແມ່ນວ່າ FuzeVPN ຈະຢູ່ເບື້ອງຫຼັງກໍຕາມ.",
+  "vpnDisclosure_statusBody": "ແອັບໃຊ້ສະຖານະການເຊື່ອມຕໍ່, ໄລຍະເວລາ ແລະ ປະລິມານຂໍ້ມູນທີ່ຖ່າຍໂອນ ເພື່ອສະແດງການເຊື່ອມຕໍ່ VPN ຂອງທ່ານ. ທ່ານສາມາດຢຸດໄດ້ທຸກເວລາ.",
+  "vpnDisclosure_privacy": "ຄວາມເປັນສ່ວນຕົວ",
+  "vpnDisclosure_accept": "ຍອມຮັບ ແລະ ສືບຕໍ່",
+  "vpnDisclosure_decline": "ບໍ່ຕອນນີ້",
+  "accountRestoration_title": "ບັນຊີບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ",
+  "accountRestoration_message": "ເຊດຊັນຂອງທ່ານຖືກເກັບໄວ້ແລ້ວ. ລອງໃໝ່ເພື່ອກູ້ຄືນບັນຊີຂອງທ່ານ. ທ່ານຍັງສາມາດຈັດການການເຊື່ອມຕໍ່ VPN ທີ່ນີ້ໄດ້.",
+  "action_retry": "ລອງໃໝ່",
+  "session_endingTitle": "ກຳລັງສິ້ນສຸດເຊດຊັນ",
+  "session_ending": "ກຳລັງສິ້ນສຸດເຊດຊັນ: ກຳລັງຢຸດ VPN ແລະ ເຮັດຄວາມສະອາດ…",
+  "session_stopFailed": "ຍັງບໍ່ໄດ້ຢືນຢັນການຢຸດ VPN. ກະລຸນາລອງໃໝ່ກ່ອນເຂົ້າສູ່ລະບົບອີກຄັ້ງ.",
+  "session_cleanupFailed": "VPN ຢຸດແລ້ວ ແຕ່ຍັງບໍ່ໄດ້ຢືນຢັນການລຶບເຊດຊັນ. ກະລຸນາລອງເຮັດຄວາມສະອາດໃໝ່.",
+  "session_retryStop": "ລອງຢຸດໃໝ່",
+  "session_retryCleanup": "ລອງເຮັດຄວາມສະອາດໃໝ່",
+  "@@locale": "lo",
+  "appTitle": "FuzeVPN",
+  "startup": "ກຳລັງກຽມ FuzeVPN ຢ່າງປອດໄພ…",
+  "nav_connection": "ການເຊື່ອມຕໍ່",
+  "nav_locations": "ສະຖານທີ່",
+  "nav_account": "ບັນຊີ",
+  "nav_devices": "ອຸປະກອນ",
+  "nav_settings": "ການຕັ້ງຄ່າ",
+  "action_refresh": "ໂຫຼດໃໝ່",
+  "auth_tab_login": "ເຂົ້າສູ່ລະບົບ",
+  "auth_tab_register": "ລົງທະບຽນ",
+  "auth_stepAccount": "ບັນຊີ",
+  "auth_stepIdentity": "ຂໍ້ມູນຕົວຕົນ",
+  "auth_stepAddress": "ທີ່ຢູ່ ແລະ ຂໍ້ຕົກລົງ",
+  "auth_stepProgress": "ຂັ້ນຕອນທີ່ {current} ຈາກ {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "ເຮັດໃຫ້ VPN ຂອງທ່ານງ່າຍດາຍ.",
+  "auth_keysLocal": "ກະແຈ VPN ສ່ວນຕົວຂອງທ່ານຈະຢູ່ໃນອຸປະກອນນີ້.",
+  "form_email": "ທີ່ຢູ່ອີເມວ",
+  "form_password": "ລະຫັດຜ່ານ",
+  "form_showPassword": "ສະແດງລະຫັດຜ່ານ",
+  "form_hidePassword": "ເຊື່ອງລະຫັດຜ່ານ",
+  "form_passwordMin": "8–72 ໄບຕ໌ UTF-8. ບາງຕົວອັກສອນໃຊ້ຫຼາຍກວ່າໜຶ່ງໄບຕ໌.",
+  "form_firstName": "ຊື່",
+  "form_lastName": "ນາມສະກຸນ",
+  "form_phone": "ເບີໂທລະສັບ (+33612345678)",
+  "form_address": "ທີ່ຢູ່",
+  "form_address2": "ທີ່ຢູ່ແຖວທີ 2 (ບໍ່ບັງຄັບ)",
+  "form_postalCode": "ລະຫັດໄປສະນີ",
+  "form_city": "ເມືອງ",
+  "form_country": "ລະຫັດປະເທດ (ເຊັ່ນ FR)",
+  "action_login": "ເຂົ້າສູ່ລະບົບ",
+  "action_createAccount": "ສ້າງບັນຊີ",
+  "action_createMyAccount": "ສ້າງບັນຊີຂອງຂ້ອຍ",
+  "action_next": "ສືບຕໍ່",
+  "action_previous": "ກັບຄືນ",
+  "action_forgotPassword": "ລືມລະຫັດຜ່ານ?",
+  "auth_noAccount": "ຍັງບໍ່ມີບັນຊີບໍ?",
+  "auth_requiredInformation": "ສ້າງບັນຊີຂອງທ່ານໃນສາມຂັ້ນຕອນ.",
+  "auth_termsPrefix": "ຂ້ອຍຍອມຮັບ ",
+  "auth_termsLink": "ເງື່ອນໄຂການໃຊ້ງານ",
+  "auth_privacyPrefix": "ຂ້ອຍຍອມຮັບ ",
+  "auth_privacyLink": "ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ",
+  "auth_consentRequired": "ຕ້ອງໄດ້ຮັບການຍິນຍອມຂອງທ່ານເພື່ອສ້າງບັນຊີ.",
+  "validation_required": "ຈຳເປັນຕ້ອງຕື່ມຊ່ອງນີ້.",
+  "validation_email": "ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວທີ່ຖືກຕ້ອງ.",
+  "validation_password": "ລະຫັດຜ່ານສັ້ນເກີນໄປ: ຢ່າງໜ້ອຍ 8 ໄບຕ໌ UTF-8.",
+  "validation_passwordTooLong": "ລະຫັດຜ່ານຍາວເກີນໄປ: ສູງສຸດ 72 ໄບຕ໌ UTF-8.",
+  "validation_phone": "ກະລຸນາໃຊ້ຮູບແບບສາກົນ, ເຊັ່ນ +33612345678.",
+  "validation_country": "ກະລຸນາໃຊ້ລະຫັດປະເທດ 2 ຕົວອັກສອນ ເຊັ່ນ FR.",
+  "passwordReset_title": "ຕັ້ງລະຫັດຜ່ານໃໝ່",
+  "passwordReset_description": "ກະລຸນາປ້ອນທີ່ຢູ່ອີເມວຂອງບັນຊີຂອງທ່ານ ເພື່ອຂໍລິ້ງຕັ້ງລະຫັດຜ່ານໃໝ່.",
+  "passwordReset_send": "ສົ່ງລິ້ງ",
+  "connection_title": "ການເຊື່ອມຕໍ່ຂອງທ່ານ",
+  "connection_subtitle": "ເລືອກສະຖານທີ່, ແລ້ວເປີດ VPN ຂອງທ່ານ.",
+  "connection_prepare": "ພ້ອມເຊື່ອມຕໍ່ບໍ?",
+  "connection_advancedOptions": "ຕົວເລືອກຂັ້ນສູງ",
+  "connection_location": "ສະຖານທີ່",
+  "connection_chooseLocation": "ເລືອກສະຖານທີ່",
+  "connection_protocol": "ໂປຣໂຕຄໍ",
+  "connection_connect": "ເຊື່ອມຕໍ່",
+  "connection_connecting": "ກຳລັງເຊື່ອມຕໍ່…",
+  "connection_disconnect": "ຕັດການເຊື່ອມຕໍ່",
+  "connection_disconnecting": "ກຳລັງຕັດການເຊື່ອມຕໍ່",
+  "connection_locationChange": "ກຳລັງປ່ຽນສະຖານທີ່…",
+  "connection_unavailable": "{protocol} ບໍ່ພ້ອມໃຊ້ງານ",
+  "connection_activeLocation": "ສະຖານທີ່ທີ່ໃຊ້ງານຢູ່",
+  "connection_duration": "ໄລຍະເວລາ",
+  "connection_received": "ໄດ້ຮັບແລ້ວ",
+  "connection_sent": "ສົ່ງແລ້ວ",
+  "connection_lastHandshake": "ການແລກປ່ຽນທີ່ປອດໄພຄັ້ງລ່າສຸດ",
+  "connection_handshakeAgo": "{duration} ກ່ອນ",
+  "verification_title": "ຢືນຢັນທີ່ຢູ່ອີເມວຂອງທ່ານ",
+  "verification_message": "ກະລຸນາຢືນຢັນທີ່ຢູ່ອີເມວຂອງທ່ານ ເພື່ອໃຊ້ VPN ໃນໂທລະສັບນີ້.",
+  "verification_resend": "ສົ່ງອີເມວອີກຄັ້ງ",
+  "migration_title": "ການປ່ຽນສະຖານທີ່",
+  "migration_draining": "ກຳລັງກຽມການປ່ຽນສະຖານທີ່…",
+  "migration_activating": "ກຳລັງເປີດໃຊ້ເຊີບເວີໃໝ່…",
+  "migration_ready": "ອັບເດດສະຖານທີ່ແລ້ວ.",
+  "migration_blocked": "ການປ່ຽນສະຖານທີ່ຕ້ອງໃຫ້ເຊີບເວີແກ້ໄຂ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ ຫຼື ຕິດຕໍ່ຝ່າຍສະໜັບສະໜູນ.",
+  "migration_progress": "ຄວາມຄືບໜ້າການປ່ຽນສະຖານທີ່",
+  "migration_retryDelay": "ໄລຍະເວລາລະຫວ່າງການກວດສອບ: {seconds} ວິນາທີ.",
+  "migration_resume": "ສືບຕໍ່ການປ່ຽນສະຖານທີ່",
+  "status_authorizing": "ຕ້ອງໄດ້ຮັບອະນຸຍາດ",
+  "status_authorizingDetail": "ກະລຸນາຍອມຮັບຄຳຂໍຂອງ Android ເພື່ອອະນຸຍາດໃຫ້ VPN ເຮັດວຽກ.",
+  "status_preparing": "ກຳລັງກຽມ",
+  "status_preparingDetail": "ກຳລັງກຽມການເຊື່ອມຕໍ່ທີ່ປອດໄພຂອງທ່ານ.",
+  "status_reconnecting": "ກຳລັງເຊື່ອມຕໍ່ໃໝ່…",
+  "status_reconnectingDetail": "ການເຊື່ອມຕໍ່ຖືກຂັດຂວາງ. VPN ກຳລັງພະຍາຍາມເຊື່ອມຕໍ່ໃໝ່.",
+  "status_connecting": "ກຳລັງເຊື່ອມຕໍ່",
+  "status_connectingDetail": "ກຳລັງເຊື່ອມຕໍ່ກັບເຊີບເວີ VPN…",
+  "status_connected": "ເຊື່ອມຕໍ່ແລ້ວ",
+  "status_connectedDetail": "ການເຊື່ອມຕໍ່ VPN ຂອງທ່ານເປີດໃຊ້ງານຢູ່ແລ້ວ.",
+  "status_disconnecting": "ກຳລັງຕັດການເຊື່ອມຕໍ່",
+  "status_disconnectingDetail": "ການເຊື່ອມຕໍ່ VPN ຂອງທ່ານກຳລັງຢຸດ.",
+  "status_error": "ການເຊື່ອມຕໍ່ບໍ່ພ້ອມໃຊ້ງານ",
+  "status_errorDetail": "ຍັງບໍ່ໄດ້ຢືນຢັນການເຊື່ອມຕໍ່ VPN. ກະລຸນາລອງໃໝ່.",
+  "status_idle": "ຕັດການເຊື່ອມຕໍ່ແລ້ວ",
+  "status_idleDetail": "ເຊື່ອມຕໍ່ VPN ເພື່ອປົກປ້ອງການເຊື່ອມຕໍ່ຂອງທ່ານ.",
+  "trust_note": "ການປິດແອັບບໍ່ໄດ້ຢຸດ VPN. ເພື່ອຢຸດ, ກະລຸນາໃຊ້ປຸ່ມຕັດການເຊື່ອມຕໍ່.",
+  "locations_none": "ຕອນນີ້ບໍ່ມີສະຖານທີ່ທີ່ພ້ອມໃຊ້ງານ.",
+  "locations_available": "ເລືອກສະຖານທີ່ຕໍ່ໄປຂອງທ່ານ.",
+  "locations_selected": "ສະຖານທີ່ທີ່ເລືອກ",
+  "locations_select": "ເລືອກສະຖານທີ່ນີ້",
+  "locations_lockedTunnel": "ກະລຸນາຕັດການເຊື່ອມຕໍ່ VPN ເພື່ອປ່ຽນສະຖານທີ່.",
+  "locations_lockedMigration": "ກະລຸນາລໍຖ້າໃຫ້ການປ່ຽນສະຖານທີ່ສຳເລັດກ່ອນ.",
+  "devices_title": "ອຸປະກອນຂອງທ່ານ",
+  "devices_used": "{count} / {limit} ອຸປະກອນ",
+  "devices_refresh": "ໂຫຼດອຸປະກອນໃໝ່",
+  "devices_empty": "ຍັງບໍ່ມີອຸປະກອນ VPN ທີ່ລົງທະບຽນ.",
+  "devices_firstConnection": "ໂທລະສັບຂອງທ່ານຈະຖືກເພີ່ມໃນການເຊື່ອມຕໍ່ຄັ້ງທຳອິດ.",
+  "devices_thisDevice": "ອຸປະກອນນີ້",
+  "devices_added": "ເພີ່ມເມື່ອ {date}",
+  "devices_unnamed": "ອຸປະກອນທີ່ບໍ່ມີຊື່",
+  "action_remove": "ລຶບອອກ",
+  "settings_title": "ການຕັ້ງຄ່າ",
+  "settings_subtitle": "ການຕັ້ງຄ່າ ແລະ ບັນຊີຂອງທ່ານ, ທັງໝົດຢູ່ບ່ອນດຽວ.",
+  "settings_appearance": "ຮູບລັກສະນະ",
+  "settings_language": "ພາສາ",
+  "settings_languageDescription": "ພາສາທີ່ທ່ານເລືອກຈະນຳໃຊ້ກັບການແຈ້ງເຕືອນ VPN ເຊັ່ນກັນ.",
+  "settings_account": "ບັນຊີ",
+  "settings_signOut": "ອອກຈາກລະບົບ",
+  "settings_privacy": "ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ",
+  "settings_terms": "ເງື່ອນໄຂການໃຊ້ງານ",
+  "settings_security": "ຄວາມປອດໄພ ແລະ ຄວາມໂປ່ງໃສ",
+  "settings_licenses": "ໃບອະນຸຍາດຂອງສ່ວນປະກອບ",
+  "settings_licensesDetail": "ຊອບແວທີ່ໃຊ້ໃນແອັບ",
+  "settings_licensesLegalese": "ໂຄດຕົ້ນສະບັບຂອງແອັບ ແລະ ສ່ວນປະກອບທີ່ມີໃບອະນຸຍາດ MPL-2.0: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_background": "VPN ຈະຍັງເປີດຢູ່ເມື່ອທ່ານອອກຈາກແອັບ. ເພື່ອຢຸດ, ກະລຸນາໃຊ້ປຸ່ມຕັດການເຊື່ອມຕໍ່ໃນແຖບການເຊື່ອມຕໍ່.",
+  "theme_system": "ຕາມລະບົບ",
+  "theme_light": "ສະຫວ່າງ",
+  "theme_dark": "ມືດ",
+  "language_system": "ພາສາຂອງໂທລະສັບ",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "ລຶບອຸປະກອນນີ້ອອກບໍ?",
+  "dialog_removeCurrent": "ໂທລະສັບນີ້ຈະຖືກຕັດການເຊື່ອມຕໍ່ຈາກ VPN ແລະ ສູນເສຍການເຂົ້າເຖິງ. ຂໍ້ມູນການເຊື່ອມຕໍ່ VPN ຂອງມັນຈະຖືກລຶບອອກຫຼັງຈາກເຊີບເວີຢືນຢັນ.",
+  "dialog_removeOther": "ການເຂົ້າເຖິງ VPN ຂອງ “{name}” ຈະຖືກເພີກຖອນ. ການກະທຳນີ້ບໍ່ສາມາດຍົກເລີກໄດ້.",
+  "dialog_signOut": "ອອກຈາກລະບົບບໍ?",
+  "dialog_signOutMessage": "VPN ຈະຢຸດ ແລະ ທ່ານຈະຕ້ອງເຂົ້າສູ່ລະບົບອີກຄັ້ງ. ກະແຈ VPN ທີ່ເຂົ້າລະຫັດຂອງທ່ານຈະຍັງຄົງຢູ່ໃນໂທລະສັບນີ້ ສຳລັບການເຊື່ອມຕໍ່ຄັ້ງຕໍ່ໄປ.",
+  "action_cancel": "ຍົກເລີກ",
+  "action_close": "ປິດ",
+  "action_copy": "ສຳເນົາ",
+  "action_signOut": "ອອກຈາກລະບົບ",
+  "notice_close": "ປິດຂໍ້ຄວາມ",
+  "notice_sessionExpired_title": "ເຊດຊັນໝົດອາຍຸ",
+  "notice_sessionExpired_message": "ເຊດຊັນຂອງທ່ານໝົດອາຍຸແລ້ວ. ກະລຸນາເຂົ້າສູ່ລະບົບອີກຄັ້ງ.",
+  "notice_connectionFailed_title": "ການເຊື່ອມຕໍ່ລົ້ມເຫຼວ",
+  "notice_invalidCredentials_message": "ທີ່ຢູ່ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ.",
+  "notice_emailVerification_title": "ຕ້ອງຢືນຢັນອີເມວ",
+  "notice_emailVerification_message": "ກະລຸນາຢືນຢັນທີ່ຢູ່ອີເມວຂອງທ່ານ ກ່ອນເພີ່ມອຸປະກອນ VPN.",
+  "notice_rateLimited_title": "ພະຍາຍາມຫຼາຍເກີນໄປ",
+  "notice_deviceLimit_title": "ຮອດຂີດຈຳກັດອຸປະກອນແລ້ວ",
+  "notice_deviceLimit_message": "ກະລຸນາລຶບອຸປະກອນທີ່ມີຢູ່ອອກກ່ອນເພີ່ມອຸປະກອນອື່ນ.",
+  "notice_identityRenewal_title": "ຕ້ອງຕໍ່ອາຍຸຕົວຕົນ VPN",
+  "notice_identityRenewal_message": "ຕົວຕົນນີ້ຖືກລຶບອອກແລ້ວ. ກະລຸນາສ້າງຕົວຕົນໃນເຄື່ອງໃໝ່.",
+  "notice_migrationPending_title": "ກຳລັງປ່ຽນສະຖານທີ່",
+  "notice_migrationPending_message": "ມີການປ່ຽນສະຖານທີ່ກຳລັງດຳເນີນຢູ່ແລ້ວ.",
+  "notice_migrationBlocked_title": "ການປ່ຽນສະຖານທີ່ຖືກບລັອກ",
+  "notice_migrationBlocked_message": "ການປ່ຽນສະຖານທີ່ຕ້ອງໃຫ້ເຊີບເວີແກ້ໄຂ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ ຫຼື ຕິດຕໍ່ຝ່າຍສະໜັບສະໜູນ.",
+  "notice_targetUnavailable_title": "ເຊີບເວີບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ",
+  "notice_targetUnavailable_message": "ເຊີບເວີນີ້ບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ.",
+  "notice_networkUnavailable_title": "ບໍ່ມີການເຊື່ອມຕໍ່ອິນເຕີເນັດ",
+  "notice_networkUnavailable_message": "ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ຂອງທ່ານ ແລ້ວລອງໃໝ່.",
+  "notice_permissionDenied_title": "ການອະນຸຍາດ VPN ຖືກປະຕິເສດ",
+  "notice_permissionDenied_message": "ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ ແລະ ຍອມຮັບຄຳຂໍອະນຸຍາດຂອງ Android.",
+  "notice_wireguardTimeout_title": "ເຊີບເວີບໍ່ຕອບສະໜອງ",
+  "notice_wireguardTimeout_message": "ການເຊື່ອມຕໍ່ WireGuard ໃຊ້ເວລາດົນເກີນໄປ. ກະລຸນາລອງໃໝ່ ຫຼື ເລືອກສະຖານທີ່ອື່ນ.",
+  "notice_tlsFailed_title": "ການເຊື່ອມຕໍ່ທີ່ປອດໄພຖືກປະຕິເສດ",
+  "notice_tlsFailed_message": "ເຊີບເວີບໍ່ໄດ້ຍອມຮັບການເຊື່ອມຕໍ່ OpenVPN. ກະລຸນາລອງໃໝ່. ຖ້າບັນຫາຍັງຄົງຢູ່, ກະລຸນາເລີ່ມການວິນິດໄສ.",
+  "notice_tunRejected_title": "Android ປະຕິເສດອິນເຕີເຟດ VPN",
+  "notice_tunRejected_message": "Android ປະຕິເສດການຕັ້ງຄ່າເຄືອຂ່າຍທີ່ OpenVPN ຮ້ອງຂໍ.",
+  "notice_openvpnStart_title": "ບໍ່ສາມາດເລີ່ມ OpenVPN ໄດ້",
+  "notice_openvpnStart_message": "ເຄື່ອງຈັກ OpenVPN ເລີ່ມເຮັດວຽກບໍ່ສຳເລັດ. ກະລຸນາລອງໃໝ່. ຖ້າບັນຫາຍັງຄົງຢູ່, ກະລຸນາຕິດຕໍ່ຝ່າຍສະໜັບສະໜູນ.",
+  "notice_diagnosticCode": "ລະຫັດວິນິດໄສ: {code}",
+  "notice_generic_title": "ການເຊື່ອມຕໍ່ VPN ລົ້ມເຫຼວ",
+  "notice_generic_message": "ເກີດຂໍ້ຜິດພາດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{ສ້າງບັນຊີແລ້ວ} password_reset_sent{ໄດ້ຮັບຄຳຂໍຕັ້ງລະຫັດຜ່ານໃໝ່ແລ້ວ} verification_email_sent{ສົ່ງອີເມວຢືນຢັນແລ້ວ} location_migration_pending{ກຳລັງປ່ຽນສະຖານທີ່} vpn_sign_in_required{ຕ້ອງເຂົ້າສູ່ລະບົບ} protocol_unavailable_at_location{ໂປຣໂຕຄໍບໍ່ພ້ອມໃຊ້ງານ} vpn_permission_denied{ການອະນຸຍາດ VPN ຖືກປະຕິເສດ} revoked_identity_device_limit{ຮອດຂີດຈຳກັດອຸປະກອນແລ້ວ} tunnel_start_unexpected{ບໍ່ສາມາດເລີ່ມ VPN ໄດ້} flutter_disconnect_timeout{ຍັງບໍ່ໄດ້ຢືນຢັນການຕັດການເຊື່ອມຕໍ່} flutter_disconnect_unexpected{ບໍ່ສາມາດຕັດການເຊື່ອມຕໍ່ໄດ້} device_revoked{ລຶບອຸປະກອນແລ້ວ} revoke_unexpected{ບໍ່ສາມາດລຶບອຸປະກອນໄດ້} identity_renewal_unexpected{ບໍ່ສາມາດຕໍ່ອາຍຸຕົວຕົນໄດ້} openvpn_renewal_unexpected{ບໍ່ສາມາດຕໍ່ອາຍຸ OpenVPN ໄດ້} location_migration_blocked{ການປ່ຽນສະຖານທີ່ຖືກບລັອກ} location_migration_slow{ການປ່ຽນສະຖານທີ່ຍັງດຳເນີນຢູ່} location_migration_conflict{ການປ່ຽນສະຖານທີ່ຕ້ອງໂຫຼດໃໝ່} location_migration_verification_failed{ຍັງບໍ່ໄດ້ຢືນຢັນການປ່ຽນສະຖານທີ່} location_migration_device_changed{ອຸປະກອນປ່ຽນແປງໃນລະຫວ່າງການປ່ຽນສະຖານທີ່} tunnel_stop_failed{ການປ່ຽນສະຖານທີ່ບໍ່ພ້ອມໃຊ້ງານ} device_clock_ahead{ໂມງຂອງອຸປະກອນໄວເກີນໄປ} other{ການດຳເນີນການລົ້ມເຫຼວ}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{ສ້າງບັນຊີແລ້ວ ແຕ່ບໍ່ສາມາດສົ່ງອີເມວຢືນຢັນໄດ້. ກະລຸນາໃຊ້ປຸ່ມສົ່ງອີເມວອີກຄັ້ງໃນແອັບ.} password_reset_sent{ໄດ້ຮັບຄຳຂໍຂອງທ່ານແລ້ວ. ຖ້າມີບັນຊີທີ່ກົງກັບທີ່ຢູ່ນີ້, ທ່ານອາດຈະໄດ້ຮັບອີເມວ. ກະລຸນາກວດເບິ່ງໂຟນເດີສະແປມນຳ.} verification_email_sent{ສົ່ງອີເມວຢືນຢັນໃໝ່ແລ້ວ.} location_migration_pending{ການຍ້າຍໄປ {target} ຍັງຢູ່ໃນຂັ້ນຕອນການກຽມ. ທ່ານສາມາດສືບຕໍ່ໄດ້ໂດຍບໍ່ຕ້ອງສ້າງອຸປະກອນໃໝ່.} vpn_sign_in_required{ກະລຸນາເຂົ້າສູ່ລະບົບບັນຊີຂອງທ່ານກ່ອນເລີ່ມ VPN.} protocol_unavailable_at_location{ສະຖານທີ່ນີ້ບໍ່ຮອງຮັບໂປຣໂຕຄໍທີ່ເລືອກ. ກະລຸນາໂຫຼດສະຖານທີ່ໃໝ່ ຫຼື ເລືອກໂປຣໂຕຄໍອື່ນ.} vpn_permission_denied{Android ປະຕິເສດການອະນຸຍາດ VPN. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ ແລະ ຍອມຮັບຄຳຂໍຂອງລະບົບ.} revoked_identity_device_limit{ການເຂົ້າເຖິງ VPN ຂອງອຸປະກອນນີ້ຖືກລຶບອອກແລ້ວ ແລະ ຮອດຂີດຈຳກັດອຸປະກອນແລ້ວ. ກະລຸນາລຶບອຸປະກອນໜຶ່ງໃນ ບັນຊີ → ຈັດການອຸປະກອນຂອງຂ້ອຍ.} tunnel_start_unexpected{ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຄາດຄິດຂັດຂວາງການກຽມອຸໂມງ. ກະລຸນາກວດລະຫັດວິນິດໄສ ແລ້ວລອງໃໝ່.} flutter_disconnect_timeout{Android ບໍ່ໄດ້ຢືນຢັນວ່າ VPN ຢຸດທັນເວລາ. ກະລຸນາລອງຢຸດອີກຄັ້ງ.} flutter_disconnect_unexpected{ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຄາດຄິດ ເຮັດໃຫ້ບໍ່ສາມາດຢືນຢັນວ່າອຸໂມງຢຸດແລ້ວ.} device_revoked{ການເຂົ້າເຖິງ VPN ຂອງອຸປະກອນຖືກເພີກຖອນແລ້ວ ແລະ ຂໍ້ມູນລັບໃນເຄື່ອງຖືກລຶບອອກແລ້ວ.} revoke_unexpected{ບໍ່ສາມາດລຶບອຸປະກອນໄດ້. ກະລຸນາໂຫຼດລາຍການໃໝ່ ແລ້ວລອງອີກຄັ້ງ.} identity_renewal_unexpected{ບໍ່ສາມາດສ້າງຕົວຕົນ VPN ໃໝ່ໄດ້. ກະລຸນາໂຫຼດອຸປະກອນໃໝ່ ແລ້ວລອງອີກຄັ້ງ.} openvpn_renewal_unexpected{ບໍ່ສາມາດຕໍ່ອາຍຸໂປຣໄຟລ໌ OpenVPN ໄດ້. ກະລຸນາລອງອີກຄັ້ງ ຫຼື ກວດລະຫັດວິນິດໄສ.} location_migration_blocked{ເຊີບເວີບໍ່ສາມາດສຳເລັດການປ່ຽນແປງນີ້ໄດ້ໃນຕອນນີ້. ອຸປະກອນ ແລະ ຕົວຕົນໃນເຄື່ອງຍັງຖືກເກັບໄວ້.} location_migration_slow{ເຊີບເວີຍັງກຽມການຍ້າຍໄປ {target} ຢູ່. ກະລຸນາໃຊ້ປຸ່ມສືບຕໍ່ໃນອີກບໍ່ດົນ.} location_migration_conflict{ສະຖານະອຸປະກອນໄດ້ປ່ຽນແປງຢູ່ເຊີບເວີ. ກະລຸນາໂຫຼດອຸປະກອນໃໝ່ ແລ້ວສືບຕໍ່ການປ່ຽນແປງ.} location_migration_verification_failed{ເຊີບເວີບໍ່ໄດ້ຢືນຢັນສະຖານທີ່ໃໝ່. ຕົວຕົນໃນເຄື່ອງເດີມຍັງຖືກເກັບໄວ້.} location_migration_device_changed{ອຸປະກອນທີ່ເຊີບເວີສົ່ງກັບມາບໍ່ກົງກັບອຸປະກອນທີ່ກຳລັງປ່ຽນແປງອີກຕໍ່ໄປ. ກະລຸນາໂຫຼດອຸປະກອນໃໝ່ກ່ອນລອງອີກຄັ້ງ.} tunnel_stop_failed{ອຸໂມງກ່ອນໜ້າຕ້ອງຢຸດໃຫ້ສົມບູນກ່ອນການເຊື່ອມຕໍ່ໃໝ່.} device_clock_ahead{ໂມງຂອງອຸປະກອນນີ້ເບິ່ງຄືວ່າໄວເກີນໄປ. ກະລຸນາເປີດວັນທີ ແລະ ເວລາອັດຕະໂນມັດ ເພື່ອບໍ່ໃຫ້ຖືກອອກຈາກລະບົບ.} other{ບໍ່ສາມາດດຳເນີນການໃຫ້ສຳເລັດໄດ້. ກະລຸນາລອງອີກຄັ້ງ ຫຼື ສົ່ງລະຫັດວິນິດໄສໃຫ້ຝ່າຍສະໜັບສະໜູນ.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{ເຊດຊັນໝົດອາຍຸແລ້ວ} invalid_credentials{ເຂົ້າສູ່ລະບົບບໍ່ສຳເລັດ} email_verification_required{ຕ້ອງຢືນຢັນອີເມວ} verification_email_cooldown{ສົ່ງອີເມວແລ້ວ} rate_limited{ພະຍາຍາມຫຼາຍເກີນໄປ} invalid_registration{ຕ້ອງແກ້ໄຂຂໍ້ມູນ} email_exists{ມີບັນຊີຢູ່ແລ້ວ} invalid_profile{ໂປຣໄຟລ໌ບໍ່ຖືກຕ້ອງ} invalid_device{ອຸປະກອນບໍ່ຖືກຕ້ອງ} invalid_location{ສະຖານທີ່ບໍ່ພ້ອມໃຊ້ງານ} device_limit{ຮອດຂີດຈຳກັດອຸປະກອນແລ້ວ} device_exists{ຕົວຕົນ VPN ຖືກໃຊ້ແລ້ວ} device_identity_revoked{ຕ້ອງຕໍ່ອາຍຸຕົວຕົນ VPN} device_location_locked{ການປ່ຽນສະຖານທີ່ຕ້ອງໂຫຼດໃໝ່} location_migration_pending{ກຳລັງປ່ຽນສະຖານທີ່} location_migration_blocked{ການປ່ຽນສະຖານທີ່ຖືກບລັອກ} target_ca_mismatch{ເຊີບເວີ OpenVPN ບໍ່ເຂົ້າກັນໄດ້} location_migration_conflict{ການປ່ຽນສະຖານທີ່ຕ້ອງໂຫຼດໃໝ່} server_full{ເຊີບເວີເຕັມແລ້ວ} capacity_unavailable{ສະຖານທີ່ບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ} target_unavailable{ເຊີບເວີບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ} not_found{ບໍ່ພົບລາຍການ} invalid_openvpn_csr{ຕົວຕົນ OpenVPN ບໍ່ຖືກຕ້ອງ} openvpn_profile_exists{ມີໂປຣໄຟລ໌ OpenVPN ແລ້ວ} openvpn_profile_revoked{ໂປຣໄຟລ໌ OpenVPN ຖືກເພີກຖອນແລ້ວ} openvpn_operation_pending{ກຳລັງດຳເນີນການ OpenVPN} openvpn_operation_terminal{ການດຳເນີນການ OpenVPN ຖືກຢຸດ} openvpn_address_unavailable{ທີ່ຢູ່ OpenVPN ບໍ່ພ້ອມໃຊ້ງານ} openvpn_profile_conflict{OpenVPN ມີຄວາມຂັດແຍ້ງ} openvpn_signer_unavailable{OpenVPN ບໍ່ພ້ອມໃຊ້ງານ} email_delivery_unavailable{ອີເມວບໍ່ພ້ອມໃຊ້ງານ} invalid_token{ລິ້ງບໍ່ຖືກຕ້ອງ} network_unavailable{ບໍ່ມີການເຊື່ອມຕໍ່ອິນເຕີເນັດ} invalid_json{ຄຳຂໍບໍ່ຖືກຕ້ອງ} invalid_api_response{ການຕອບກັບຂອງເຊີບເວີບໍ່ຖືກຕ້ອງ} ipv6_unavailable{IPv6 ບໍ່ພ້ອມໃຊ້ງານ} invalid_ip_families{ການຕັ້ງຄ່າເຄືອຂ່າຍຖືກປະຕິເສດ} other{ບໍລິການບໍ່ພ້ອມໃຊ້ງານ}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{ເຊດຊັນຂອງທ່ານໝົດອາຍຸແລ້ວ. ກະລຸນາເຂົ້າສູ່ລະບົບອີກຄັ້ງ.} invalid_credentials{ທີ່ຢູ່ອີເມວ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ.} email_verification_required{ກະລຸນາຢືນຢັນທີ່ຢູ່ອີເມວຂອງທ່ານກ່ອນເພີ່ມອຸປະກອນ VPN.} invalid_registration{ກະລຸນາກວດສອບຂໍ້ມູນ ແລະ ການຍິນຍອມທີ່ຕ້ອງການ.} email_exists{ມີບັນຊີທີ່ໃຊ້ທີ່ຢູ່ອີເມວນີ້ຢູ່ແລ້ວ.} invalid_profile{ກະລຸນາກວດສອບຂໍ້ມູນໂປຣໄຟລ໌ຂອງທ່ານ.} invalid_device{ຊື່ ຫຼື ຕົວຕົນໃນເຄື່ອງຂອງອຸປະກອນນີ້ບໍ່ຖືກຕ້ອງ.} invalid_location{ກະລຸນາໂຫຼດລາຍການສະຖານທີ່ໃໝ່ ແລ້ວລອງອີກຄັ້ງ.} device_limit{ກະລຸນາລຶບອຸປະກອນທີ່ມີຢູ່ອອກກ່ອນເພີ່ມອຸປະກອນອື່ນ.} device_exists{ຕົວຕົນ VPN ນີ້ຖືກເຊື່ອມໂຍງກັບບັນຊີອື່ນແລ້ວ.} device_identity_revoked{ຕົວຕົນນີ້ຖືກລຶບອອກແລ້ວ. ຕ້ອງສ້າງຕົວຕົນໃນເຄື່ອງໃໝ່.} device_location_locked{ສະຖານທີ່ຂອງອຸປະກອນນີ້ຫາກໍປ່ຽນແປງ. ແອັບຈະສືບຕໍ່ການປ່ຽນສະຖານທີ່ທີ່ກຳລັງດຳເນີນຢູ່.} location_migration_pending{ມີການປ່ຽນສະຖານທີ່ກຳລັງດຳເນີນຢູ່ແລ້ວ.} location_migration_blocked{ການປ່ຽນສະຖານທີ່ຕ້ອງໃຫ້ເຊີບເວີແກ້ໄຂ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ ຫຼື ຕິດຕໍ່ຝ່າຍສະໜັບສະໜູນ.} target_ca_mismatch{ເຊີບເວີນີ້ຍັງບໍ່ເຂົ້າກັນໄດ້ກັບໂປຣໄຟລ໌ OpenVPN ປັດຈຸບັນ.} location_migration_conflict{ກະລຸນາໂຫຼດອຸປະກອນໃໝ່ ແລ້ວລອງປ່ຽນສະຖານທີ່ອີກຄັ້ງ.} server_full{ສະຖານທີ່ນີ້ເຕັມຂີດຈຳກັດການເຊື່ອມຕໍ່ແລ້ວ. ກະລຸນາເລືອກສະຖານທີ່ອື່ນ ຫຼື ລອງໃໝ່ໃນພາຍຫຼັງ.} capacity_unavailable{ຕອນນີ້ຢືນຢັນບໍ່ໄດ້ວ່າສະຖານທີ່ນີ້ພ້ອມໃຊ້ງານຫຼືບໍ່. ກະລຸນາເລືອກສະຖານທີ່ອື່ນ ຫຼື ລອງໃໝ່ໃນພາຍຫຼັງ.} target_unavailable{ເຊີບເວີນີ້ບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ.} not_found{ລາຍການນີ້ບໍ່ສາມາດໃຊ້ໄດ້ໃນບັນຊີຂອງທ່ານອີກຕໍ່ໄປ.} invalid_openvpn_csr{ກະລຸນາສ້າງຕົວຕົນ OpenVPN ໃໝ່ ແລ້ວລອງອີກຄັ້ງ.} openvpn_profile_exists{ມີໂປຣໄຟລ໌ OpenVPN ສຳລັບອຸປະກອນນີ້ແລ້ວ.} openvpn_profile_revoked{ກະລຸນາຕໍ່ອາຍຸໂປຣໄຟລ໌ OpenVPN ເພື່ອສືບຕໍ່.} openvpn_operation_pending{ການປ່ຽນແປງຍັງກຳລັງອັບເດດ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.} openvpn_operation_terminal{ກະລຸນາສ້າງຕົວຕົນ OpenVPN ໃໝ່ ແລ້ວລອງອີກຄັ້ງ.} openvpn_address_unavailable{ຕອນນີ້ບໍ່ມີທີ່ຢູ່ OpenVPN ໃຫ້ໃຊ້.} openvpn_profile_conflict{ໂປຣໄຟລ໌ມີການປ່ຽນແປງ. ກະລຸນາໂຫຼດອຸປະກອນໃໝ່ ແລ້ວລອງອີກຄັ້ງ.} openvpn_signer_unavailable{ບໍລິການ OpenVPN ບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ.} email_delivery_unavailable{ບໍ່ສາມາດສົ່ງອີເມວໄດ້. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.} invalid_token{ລິ້ງນີ້ບໍ່ຖືກຕ້ອງ ຫຼື ໝົດອາຍຸແລ້ວ. ກະລຸນາຂໍລິ້ງໃໝ່.} network_unavailable{ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດຂອງທ່ານ ແລ້ວລອງໃໝ່.} invalid_json{ກະລຸນາກວດສອບຂໍ້ມູນທີ່ປ້ອນ ແລ້ວລອງໃໝ່.} invalid_api_response{ເຊີບເວີສົ່ງການຕອບກັບທີ່ບໍ່ຄາດຄິດກັບມາ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.} ipv6_unavailable{ຕອນນີ້ເຊີບເວີເປີດໃຊ້ IPv6 ບໍ່ໄດ້. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.} invalid_ip_families{ການຕັ້ງຄ່າອຸໂມງບໍ່ສົມບູນ ຫຼື ບໍ່ກົງກັບທີ່ຢູ່ທີ່ໄດ້ຮັບອະນຸຍາດ. ກະລຸນາລອງໃໝ່ຈາກແອັບ.} other{ເກີດຂໍ້ຜິດພາດຂອງເຊີບເວີ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "ກະລຸນາລອງໃໝ່ໃນອີກບໍ່ດົນ.",
+  "notice_retryAfter": "{seconds, plural, other{ລອງໃໝ່ໃນອີກ {seconds} ວິນາທີ.}}",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterMinutes": "{minutes, plural, other{ລອງໃໝ່ໃນອີກ {minutes} ນາທີ.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, other{ລອງໃໝ່ໃນອີກ {hours} ຊົ່ວໂມງ.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{ບໍ່ສາມາດສືບຕໍ່ VPN ຂອງລະບົບໄດ້} system_vpn_resume_corrupt{ການສືບຕໍ່ VPN ຂອງລະບົບບໍ່ຖືກຕ້ອງ} system_vpn_resume_session_invalid{ເຊດຊັນສືບຕໍ່ VPN ບໍ່ຖືກຕ້ອງ} system_vpn_resume_identity_changed{ຕົວຕົນ VPN ມີການປ່ຽນແປງ} system_vpn_resume_identity_invalid{ຕົວຕົນສຳລັບສືບຕໍ່ VPN ບໍ່ຖືກຕ້ອງ} system_vpn_resume_storage_failed{ບ່ອນເກັບຂໍ້ມູນການສືບຕໍ່ VPN ບໍ່ພ້ອມໃຊ້ງານ} system_vpn_resume_network_timeout{ບໍ່ມີເຄືອຂ່າຍເພື່ອສືບຕໍ່ VPN} system_vpn_resume_blocked{ການສືບຕໍ່ VPN ຖືກບລັອກ} system_vpn_resume_failed{ການສືບຕໍ່ VPN ລົ້ມເຫຼວ} system_vpn_resume_error_invalid{ຂໍ້ຜິດພາດການສືບຕໍ່ VPN ບໍ່ຖືກຕ້ອງ} wireguard_identity_store_failed{ຕົວຕົນ WireGuard ບໍ່ໄດ້ຖືກບັນທຶກ} wireguard_identity_unavailable{ຕົວຕົນ WireGuard ບໍ່ພ້ອມໃຊ້ງານ} vpn_host_destroyed{ໂຮສ VPN ຂອງ Android ຖືກຢຸດແລ້ວ} vpn_host_unavailable{ໂຮສ VPN ຂອງ Android ບໍ່ພ້ອມໃຊ້ງານ} vpn_permission_required{ຕ້ອງການການອະນຸຍາດ VPN} vpn_permission_denied{ການອະນຸຍາດ VPN ຖືກປະຕິເສດ} vpn_permission_request_failed{ບໍ່ສາມາດຮ້ອງຂໍການອະນຸຍາດໄດ້} wireguard_foreground_service_unavailable{ບໍລິການ WireGuard ບໍ່ພ້ອມໃຊ້ງານ} wireguard_identity_invalid{ກະແຈ WireGuard ໃນເຄື່ອງບໍ່ຖືກຕ້ອງ} wireguard_identity_in_use{ຕົວຕົນ WireGuard ກຳລັງຖືກໃຊ້ຢູ່ແລ້ວ} wireguard_configuration_invalid{ການຕັ້ງຄ່າ WireGuard ບໍ່ຖືກຕ້ອງ} wireguard_operation_pending{ການດຳເນີນການ WireGuard ຍັງໃຊ້ງານຢູ່} wireguard_start_failed{ການເລີ່ມ WireGuard ຖືກປະຕິເສດ} wireguard_stop_timeout{ການຢຸດ WireGuard ຍັງບໍ່ໄດ້ຮັບການຢືນຢັນ} wireguard_handshake_timeout{WireGuard ບໍ່ຕອບສະໜອງ} openvpn_connection_timeout{OpenVPN ບໍ່ຕອບສະໜອງ} openvpn_core_unavailable{ເຄື່ອງຈັກ OpenVPN ບໍ່ພ້ອມໃຊ້ງານ} openvpn_operation_pending{ເຊດຊັນ OpenVPN ຍັງເຮັດວຽກຢູ່} openvpn_stop_timeout{ການຢຸດ OpenVPN ຍັງບໍ່ໄດ້ຮັບການຢືນຢັນ} openvpn_profile_unavailable{ບໍ່ພົບໂປຣໄຟລ໌ OpenVPN ໃນເຄື່ອງ} openvpn_native_failed{ການເອີ້ນ OpenVPN ເນທີຟຖືກຂັດຂວາງ} openvpn_key_generation_failed{ບໍ່ສາມາດສ້າງກະແຈ OpenVPN P-256 ໄດ້} openvpn_csr_generation_failed{ບໍ່ສາມາດສ້າງ CSR ຂອງ OpenVPN ໄດ້} openvpn_identity_store_failed{ຕົວຕົນ OpenVPN ບໍ່ໄດ້ຖືກບັນທຶກ} openvpn_identity_clear_failed{ການລຶບ OpenVPN ບໍ່ສົມບູນ} openvpn_identity_in_use{ຕົວຕົນ OpenVPN ຍັງຖືກໃຊ້ຢູ່} openvpn_tls_verification_required{ຂາດການກວດສອບ TLS ຂອງ OpenVPN} openvpn_cipher_invalid{ການເຂົ້າລະຫັດ OpenVPN ບໍ່ຖືກຕ້ອງ} openvpn_profile_rejected{ໂປຣໄຟລ໌ OpenVPN ຖືກປະຕິເສດ} openvpn_identity_inconsistent{ຕົວຕົນ OpenVPN ບໍ່ສອດຄ່ອງກັນ} tls_handshake_failed{ການເຈລະຈາ OpenVPN ຖືກປະຕິເສດ} tls_alert_unknown_ca{ໃບຮັບຮອງໄຄລເອັນ OpenVPN ບໍ່ຮູ້ຈັກ} tls_alert_bad_certificate{ໃບຮັບຮອງໄຄລເອັນ OpenVPN ຖືກປະຕິເສດ} tls_alert_unsupported_certificate{ໃບຮັບຮອງ OpenVPN ບໍ່ຮອງຮັບ} tls_client_certificate_required{ຕ້ອງການໃບຮັບຮອງໄຄລເອັນ OpenVPN} tls_alert_misc{ການແຈ້ງເຕືອນ TLS ຂອງ OpenVPN} tls_signature_algorithm_rejected{ລາຍເຊັນ OpenVPN ບໍ່ຮອງຮັບ} tls_handshake_rejected{ການເຈລະຈາ TLS ຂອງ OpenVPN ຖືກປະຕິເສດ} tls_version_rejected{ເວີຊັນ TLS ຂອງ OpenVPN ບໍ່ເຂົ້າກັນໄດ້} tls_certificate_expired{ໃບຮັບຮອງ TLS ໝົດອາຍຸແລ້ວ} tls_certificate_revoked{ໃບຮັບຮອງ TLS ຖືກເພີກຖອນແລ້ວ} transport_failed{ບໍ່ສາມາດເຂົ້າເຖິງເຊີບເວີ OpenVPN ໄດ້} tun_configuration_rejected{ບໍ່ສາມາດສ້າງອິນເຕີເຟດ OpenVPN ໄດ້} tun_setup_failed{ການຕັ້ງຄ່າ TUN ຂອງ OpenVPN ລົ້ມເຫຼວ} tun_interface_create_failed{ການສ້າງອິນເຕີເຟດ OpenVPN ລົ້ມເຫຼວ} tun_interface_disabled{ອິນເຕີເຟດ OpenVPN ຖືກປິດການໃຊ້ງານ} tun_halted{ອິນເຕີເຟດ OpenVPN ຖືກຂັດຂວາງ} tun_already_established{ອິນເຕີເຟດ OpenVPN ເປີດຢູ່ແລ້ວ} tun_addresses_missing{ຂາດທີ່ຢູ່ OpenVPN} tun_routes_missing{ຂາດເສັ້ນທາງ OpenVPN} tun_dns_missing{ຂາດ DNS ຂອງ OpenVPN} tun_permission_revoked{ການອະນຸຍາດ VPN ຖືກຖອນແລ້ວ} tun_establish_returned_null{Android ປະຕິເສດອິນເຕີເຟດ VPN} openvpn_service_start_failed{ບໍລິການ OpenVPN ບໍ່ພ້ອມໃຊ້ງານ} openvpn_operation_timeout{ການເອີ້ນ OpenVPN ໝົດເວລາ} openvpn_start_failed{ການເລີ່ມ OpenVPN ຖືກປະຕິເສດ} openvpn_connection_failed{ການເຊື່ອມຕໍ່ OpenVPN ຖືກຂັດຂວາງ} openvpn_core_status_error{ແກນຫຼັກ OpenVPN ສິ້ນສຸດດ້ວຍຂໍ້ຜິດພາດ} openvpn_stopped_before_connected{OpenVPN ຢຸດກ່ອນເຊື່ອມຕໍ່} openvpn_auth_failed{ການຢືນຢັນຕົວຕົນ OpenVPN ຖືກປະຕິເສດ} openvpn_client_setup_failed{ການຕັ້ງຄ່າໄຄລເອັນ OpenVPN ລົ້ມເຫຼວ} openvpn_client_halted{ໄຄລເອັນ OpenVPN ຖືກຂັດຂວາງ} openvpn_client_restart{ມີການຮ້ອງຂໍເລີ່ມ OpenVPN ໃໝ່} openvpn_inactive_timeout{OpenVPN ບໍ່ໄດ້ໃຊ້ງານດົນເກີນໄປ} openvpn_session_expired{ເຊດຊັນ OpenVPN ໝົດອາຍຸແລ້ວ} openvpn_credentials_required{ການຢືນຢັນຕົວຕົນ OpenVPN ບໍ່ຮອງຮັບ} openvpn_proxy_failed{ການສົ່ງຜ່ານຕົວກາງ OpenVPN ລົ້ມເຫຼວ} openvpn_compression_failed{ການບີບອັດ OpenVPN ຖືກປະຕິເສດ} openvpn_ntlm_crypto_unavailable{ການເຂົ້າລະຫັດ NTLM ຂອງ OpenVPN ບໍ່ພ້ອມໃຊ້ງານ} openvpn_feature_unsupported{ຟີເຈີ OpenVPN ບໍ່ຮອງຮັບ} network_unavailable{ບໍ່ມີການເຊື່ອມຕໍ່ອິນເຕີເນັດ} network_lost{ເຄືອຂ່າຍບໍ່ພ້ອມໃຊ້ງານ} certificate_validation_failed{ໃບຮັບຮອງເຊີບເວີຖືກປະຕິເສດ} openvpn_certificate_expired{ໃບຮັບຮອງ OpenVPN ໝົດອາຍຸແລ້ວ} tunnel_active_for_another_account{ອຸໂມງຂອງບັນຊີອື່ນຍັງເຮັດວຽກຢູ່} tunnel_already_active{ອຸໂມງເນທີຟເຮັດວຽກຢູ່ແລ້ວ} tunnel_stop_timeout{ການຢຸດ {protocol} ຍັງບໍ່ໄດ້ຮັບການຢືນຢັນ} tunnel_disconnected{{protocol} ຖືກຂັດຂວາງ} native_bridge_unavailable{ຂົວເຊື່ອມຕໍ່ຂອງ Android ບໍ່ພ້ອມໃຊ້ງານ} native_operation_failed{ການດຳເນີນການຂອງ Android ຖືກຂັດຂວາງ} invalid_arguments{ພາຣາມິເຕີ VPN ບໍ່ສົມບູນ} invalid_account_id{ບັນຊີ VPN ບໍ່ຖືກຕ້ອງ} invalid_device_id{ຕົວລະບຸອຸປະກອນບໍ່ຖືກຕ້ອງ} storage_key_not_allowed{ກະແຈບ່ອນເກັບຂໍ້ມູນຖືກປະຕິເສດ} secure_storage_read_failed{ການອ່ານຂໍ້ມູນທີ່ປອດໄພລົ້ມເຫຼວ} secure_storage_write_failed{ການບັນທຶກຂໍ້ມູນທີ່ປອດໄພລົ້ມເຫຼວ} key_generation_failed{ບໍ່ສາມາດສ້າງກະແຈ WireGuard ໄດ້} csr_generation_failed{ບໍ່ສາມາດສ້າງ CSR ຂອງ OpenVPN ໄດ້} openvpn_recovery_exhausted{ການກູ້ຄືນ OpenVPN ຖືກໃຊ້ໄປແລ້ວ} openvpn_recovery_failed{ການກູ້ຄືນ OpenVPN ລົ້ມເຫຼວ} openvpn_renewal_required{ຕ້ອງຕໍ່ອາຍຸໃບຮັບຮອງ OpenVPN} other{ຂໍ້ຜິດພາດ VPN ເນທີຟທີ່ບໍ່ໄດ້ຈັດປະເພດ}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ບໍ່ພົບເຊດຊັນ VPN ທີ່ສືບຕໍ່ໄດ້. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບ.} system_vpn_resume_corrupt{ຂໍ້ມູນການສືບຕໍ່ VPN ທີ່ບັນທຶກໄວ້ບໍ່ຖືກຕ້ອງ ແລະ ຈະບໍ່ຖືກນຳໃຊ້. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່.} system_vpn_resume_session_invalid{ເຊດຊັນທີ່ບັນທຶກໄວ້ບໍ່ສາມາດສືບຕໍ່ VPN ໄດ້ອີກແລ້ວ. ກະລຸນາເຂົ້າສູ່ລະບົບອີກຄັ້ງໃນແອັບ.} system_vpn_resume_identity_changed{ຕົວຕົນ VPN ໃນເຄື່ອງມີການປ່ຽນແປງ. ການສືບຕໍ່ຖືກຢຸດແລ້ວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່.} system_vpn_resume_identity_invalid{ຕົວຕົນສຳລັບສືບຕໍ່ບໍ່ຖືກຕ້ອງ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່.} system_vpn_resume_storage_failed{Android ບໍ່ສາມາດອ່ານ ຫຼື ອັບເດດຂໍ້ມູນການສືບຕໍ່ທີ່ເຂົ້າລະຫັດໄວ້ໄດ້. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່.} system_vpn_resume_network_timeout{Android ບໍ່ພົບເຄືອຂ່າຍທັນເວລາເພື່ອສືບຕໍ່ VPN. ກະລຸນາລອງໃໝ່ເມື່ອມີເຄືອຂ່າຍ.} system_vpn_resume_blocked{ການສືບຕໍ່ VPN ຖືກບລັອກ. ກະລຸນາກວດສອບການຕັ້ງຄ່າ Android ແລ້ວເລີ່ມການເຊື່ອມຕໍ່ໃໝ່.} system_vpn_resume_failed{ການສືບຕໍ່ VPN ຂອງ Android ລົ້ມເຫຼວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບ.} system_vpn_resume_error_invalid{Android ສົ່ງຂໍ້ຜິດພາດການສືບຕໍ່ທີ່ໃຊ້ບໍ່ໄດ້ກັບມາ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່.} wireguard_identity_store_failed{Android ບໍ່ສາມາດບັນທຶກຕົວຕົນ WireGuard ທີ່ເຂົ້າລະຫັດຂອງບັນຊີນີ້ໄດ້.} wireguard_identity_unavailable{ບໍ່ມີຕົວຕົນ WireGuard ທີ່ໃຊ້ໄດ້ສຳລັບການເຊື່ອມຕໍ່ນີ້.} vpn_host_destroyed{ສ່ວນປະກອບຂອງ Android ທີ່ໂຮສ VPN ຖືກຢຸດແລ້ວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່.} vpn_host_unavailable{Android ບໍ່ສາມາດສ້າງສ່ວນປະກອບທີ່ໂຮສ VPN ໄດ້. ກະລຸນາລອງໃໝ່ຫຼັງຈາກກວດສອບການຕັ້ງຄ່າ VPN.} openvpn_renewal_required{ໃບຮັບຮອງຕ້ອງການການດຳເນີນການໃນແອັບກ່ອນເຊື່ອມຕໍ່.} openvpn_recovery_failed{ການກູ້ຄືນອັດຕະໂນມັດລົ້ມເຫຼວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບ.} openvpn_recovery_exhausted{ການກູ້ຄືນອັດຕະໂນມັດຖືກໃຊ້ໄປແລ້ວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບ.} vpn_permission_required{Android ຕ້ອງການການອະນຸຍາດ VPN ໃໝ່ກ່ອນເລີ່ມອຸໂມງ.} vpn_permission_denied{ກະລຸນາອະນຸຍາດ FuzeVPN ໃນຄຳຂໍຂອງ Android ເພື່ອສືບຕໍ່.} vpn_permission_request_failed{Android ບໍ່ສາມາດເປີດໜ້າການອະນຸຍາດ VPN ໄດ້.} wireguard_foreground_service_unavailable{Android ບໍ່ສາມາດຮັກສາບໍລິການ WireGuard ໃຫ້ເຮັດວຽກຢູ່ເບື້ອງໜ້າໄດ້.} wireguard_identity_invalid{ກະແຈ WireGuard ທີ່ເຂົ້າລະຫັດຂອງບັນຊີນີ້ອ່ານບໍ່ໄດ້ ຫຼື ບໍ່ຖືກຕ້ອງ.} wireguard_identity_in_use{ມີການດຳເນີນການອື່ນຍັງໃຊ້ກະແຈ WireGuard ຂອງບັນຊີນີ້ຢູ່.} wireguard_configuration_invalid{ທີ່ຢູ່, DNS, ກະແຈເຊີບເວີ ຫຼື ເສັ້ນທາງ WireGuard ທີ່ໄດ້ຮັບບໍ່ຖືກຕ້ອງ.} wireguard_operation_pending{ການດຳເນີນການ WireGuard ກ່ອນໜ້ານີ້ຍັງບໍ່ໄດ້ປ່ອຍບໍລິການເນທີຟຂອງມັນ.} wireguard_start_failed{ເຄື່ອງຈັກ WireGuard ປະຕິເສດການເປີດໃຊ້ການຕັ້ງຄ່າ.} wireguard_stop_timeout{ບໍລິການ WireGuard ບໍ່ໄດ້ຢືນຢັນການປ່ອຍອິນເຕີເຟດ VPN ພາຍໃນເວລາທີ່ກຳນົດ.} wireguard_handshake_timeout{ອຸໂມງບໍ່ໄດ້ຢືນຢັນການຈັບມືກັບເຊີບເວີທັນເວລາ.} openvpn_connection_timeout{OpenVPN ບໍ່ໄດ້ຢືນຢັນການເຊື່ອມຕໍ່ກັບເຊີບເວີທັນເວລາ.} openvpn_core_unavailable{ເວີຊັນແອັບນີ້ບໍ່ມີເຄື່ອງຈັກ OpenVPN ທີ່ໃຊ້ໄດ້.} openvpn_operation_pending{ເຄື່ອງຈັກເນທີຟຍັງຖືເຊດຊັນ OpenVPN ກ່ອນໜ້າໄວ້ ແລະ ປະຕິເສດການສ້າງເຊດຊັນທີສອງ.} openvpn_stop_timeout{ແກນຫຼັກ OpenVPN ບໍ່ໄດ້ຢືນຢັນວ່າເຊດຊັນເນທີຟຂອງມັນຢຸດ ແລະ ຖືກທຳລາຍພາຍໃນເວລາທີ່ກຳນົດ.} openvpn_profile_unavailable{ບໍ່ສາມາດອ່ານໂປຣໄຟລ໌ OpenVPN ທີ່ຜ່ານການກວດສອບສຳລັບການເຊື່ອມຕໍ່ນີ້ໄດ້.} openvpn_native_failed{ຂໍ້ຜິດພາດຂອງແອັບໄດ້ຂັດຂວາງ OpenVPN. ກະລຸນາລອງເຊື່ອມຕໍ່ອີກຄັ້ງ. ຫາກບັນຫານີ້ຍັງຄົງຢູ່, ກະລຸນາເລີ່ມການວິນິດໄສ.} openvpn_key_generation_failed{Android Keystore ບໍ່ສາມາດສ້າງ ຫຼື ອ່ານກະແຈສ່ວນຕົວ P-256 ທີ່ບໍ່ສາມາດສົ່ງອອກໄດ້.} openvpn_csr_generation_failed{ກະແຈ Android Keystore ບໍ່ສາມາດເຊັນຄຳຮ້ອງຂໍໃບຮັບຮອງ OpenVPN ໄດ້.} openvpn_identity_store_failed{ໃບຮັບຮອງ ຫຼື ໂປຣໄຟລ໌ OpenVPN ບໍ່ສາມາດບັນທຶກໃນບ່ອນເກັບຂໍ້ມູນທີ່ເຂົ້າລະຫັດໄວ້ໄດ້.} openvpn_identity_clear_failed{Android ບໍ່ສາມາດລຶບຕົວຕົນ OpenVPN ໃນເຄື່ອງທັງໝົດຂອງບັນຊີນີ້ໄດ້.} openvpn_identity_in_use{ເຊດຊັນ OpenVPN ເນທີຟຍັງໃຊ້ກະແຈ ຫຼື ໃບຮັບຮອງຂອງອຸປະກອນນີ້ຢູ່.} openvpn_tls_verification_required{ໂປຣໄຟລ໌ນີ້ບໍ່ໄດ້ກຳນົດໃຫ້ກວດສອບໃບຮັບຮອງເຊີບເວີຢ່າງຊັດເຈນ.} openvpn_cipher_invalid{ເຊີບເວີສົ່ງອັລກໍຣິທຶມການເຂົ້າລະຫັດທີ່ບໍ່ຢູ່ໃນລາຍການທີ່ອະນຸຍາດ.} openvpn_profile_rejected{ໂປຣໄຟລ໌ທີ່ໄດ້ຮັບຈາກເຊີບເວີບໍ່ເຂົ້າກັນໄດ້. ກະລຸນາສ້າງອຸປະກອນນີ້ໃໝ່ ແລ້ວລອງອີກຄັ້ງ.} openvpn_identity_inconsistent{ໃບຮັບຮອງບໍ່ກົງກັບຕົວຕົນທີ່ປອດໄພຂອງໂທລະສັບນີ້. ບໍ່ມີໂປຣໄຟລ໌ໃນເຄື່ອງທີ່ຖືກປ່ຽນແທນ.} tls_handshake_failed{ເຊີບເວີປະຕິເສດການເຈລະຈາ TLS. ຫາກບັນຫາຍັງຄົງຢູ່, ກະລຸນາສ້າງໂປຣໄຟລ໌ໃໝ່.} tls_alert_unknown_ca{ເຊີບເວີບໍ່ຮູ້ຈັກຜູ້ອອກໃບຮັບຮອງຂອງອຸປະກອນນີ້. ຕ້ອງກວດສອບເຊີບເວີ OpenVPN.} tls_alert_bad_certificate{ເຊີບເວີປະຕິເສດໃບຮັບຮອງຂອງອຸປະກອນນີ້. ກະລຸນາສ້າງອຸປະກອນໃໝ່ກ່ອນລອງອີກຄັ້ງ.} tls_alert_unsupported_certificate{ເຊີບເວີບໍ່ຮອງຮັບປະເພດໃບຮັບຮອງທີ່ປອດໄພທີ່ Android ໃຊ້.} tls_client_certificate_required{ເຊີບເວີຕ້ອງການໃບຮັບຮອງໄຄລເອັນ ແຕ່ແກນຫຼັກ OpenVPN ບໍ່ສາມາດສະເໜີໃບຮັບຮອງໄດ້.} tls_alert_misc{ເຊີບເວີສົ່ງການແຈ້ງເຕືອນ TLS ທີ່ບໍ່ຢູ່ໃນປະເພດໃບຮັບຮອງ ຫຼື ເວີຊັນ.} tls_signature_algorithm_rejected{ເຊີບເວີປະຕິເສດອັລກໍຣິທຶມ ECDSA P-256 ຂອງກະແຈ Android Keystore.} tls_handshake_rejected{ເຊີບເວີຂັດຂວາງການເຈລະຈາ TLS ກ່ອນເຊື່ອມຕໍ່.} tls_version_rejected{ໄຄລເອັນ ແລະ ເຊີບເວີບໍ່ພົບເວີຊັນ TLS ທີ່ກົງກັນ.} tls_certificate_expired{ໃບຮັບຮອງທີ່ສະເໜີໃນລະຫວ່າງການເຊື່ອມຕໍ່ໄດ້ໝົດອາຍຸແລ້ວ.} tls_certificate_revoked{ໃບຮັບຮອງທີ່ສະເໜີໃນລະຫວ່າງການເຊື່ອມຕໍ່ໄດ້ຖືກເພີກຖອນແລ້ວ.} transport_failed{ເຊີບເວີ OpenVPN ບໍ່ຕອບສະໜອງໃນເຄືອຂ່າຍປັດຈຸບັນ. ກະລຸນາລອງໃໝ່ໃນອີກບໍ່ດົນ.} tun_configuration_rejected{Android ປະຕິເສດການຕັ້ງຄ່າເຄືອຂ່າຍທີ່ OpenVPN ຮ້ອງຂໍ.} tun_setup_failed{ແກນຫຼັກ OpenVPN ປະຕິເສດແຜນເຄືອຂ່າຍກ່ອນສ້າງອິນເຕີເຟດ Android.} tun_interface_create_failed{ແກນຫຼັກ OpenVPN ບໍ່ສາມາດຮັບອິນເຕີເຟດ TUN ຈາກ VpnService ຂອງ Android ໄດ້.} tun_interface_disabled{Android ຫຼື ແກນຫຼັກ OpenVPN ໄດ້ປິດການໃຊ້ງານອິນເຕີເຟດ TUN ໃນລະຫວ່າງການເຊື່ອມຕໍ່.} tun_halted{ແກນຫຼັກ OpenVPN ໄດ້ຮັບຄຳຂໍໃຫ້ຢຸດອິນເຕີເຟດ TUN.} tun_already_established{OpenVPN ຮ້ອງຂໍອິນເຕີເຟດທີສອງໃນການເຊື່ອມຕໍ່ດຽວກັນ. ອຸໂມງຖືກຢຸດເພື່ອຄວາມປອດໄພ.} tun_addresses_missing{ເຊີບເວີບໍ່ໄດ້ໃຫ້ທີ່ຢູ່ອຸໂມງທີ່ໃຊ້ໄດ້.} tun_routes_missing{ເຊີບເວີບໍ່ໄດ້ໃຫ້ເສັ້ນທາງອຸໂມງທີ່ໃຊ້ໄດ້.} tun_dns_missing{ເຊີບເວີບໍ່ໄດ້ໃຫ້ເຊີບເວີ DNS ທີ່ໃຊ້ໄດ້.} tun_permission_revoked{Android ໄດ້ຖອນການອະນຸຍາດ VPN ໃນລະຫວ່າງການເຊື່ອມຕໍ່.} tun_establish_returned_null{Android ບໍ່ໄດ້ສ້າງອິນເຕີເຟດ, ໂດຍປົກກະຕິເນື່ອງຈາກ VPN ອື່ນຍັງເຮັດວຽກຢູ່.} openvpn_service_start_failed{Android ບໍ່ສາມາດເລີ່ມບໍລິການ OpenVPN ເບື້ອງໜ້າໄດ້.} openvpn_operation_timeout{ການເອີ້ນ JNI ໄປຫາແກນຫຼັກ OpenVPN ເກີນໄລຍະເວລາສູງສຸດ.} openvpn_start_failed{ບໍລິການ Android ພ້ອມແລ້ວ, ແຕ່ແກນຫຼັກ OpenVPN ບໍ່ຍອມຮັບການເລີ່ມໂປຣໄຟລ໌.} openvpn_connection_failed{ແກນຫຼັກ OpenVPN ຢຸດກ່ອນສົ່ງເຫດການ CONNECTED.} openvpn_core_status_error{ວົງຈອນ OpenVPN ເນທີຟສິ້ນສຸດດ້ວຍຂໍ້ຜິດພາດ ໂດຍບໍ່ມີເຫດການສຸດທ້າຍທີ່ລະບຸເຈາະຈົງກວ່ານີ້.} openvpn_stopped_before_connected{ວົງຈອນ OpenVPN ເນທີຟຢຸດກ່ອນ CONNECTED ໂດຍບໍ່ມີຂໍ້ຜິດພາດຈາກແກນຫຼັກທີ່ຊັດເຈນ.} openvpn_auth_failed{ເຊີບເວີ OpenVPN ປະຕິເສດການຢືນຢັນຕົວຕົນຂອງໂປຣໄຟລ໌.} openvpn_client_setup_failed{ແກນຫຼັກ OpenVPN ບໍ່ສາມາດເລີ່ມຕົ້ນໄຄລເອັນກ່ອນການເຊື່ອມຕໍ່ເຄືອຂ່າຍໄດ້.} openvpn_client_halted{ແກນຫຼັກ OpenVPN ໄດ້ຮັບຄຳສັ່ງຢຸດໄຄລເອັນສຸດທ້າຍ.} openvpn_client_restart{ແກນຫຼັກ OpenVPN ຮ້ອງຂໍໃຫ້ເລີ່ມເຊດຊັນການສົ່ງຂໍ້ມູນໃໝ່.} openvpn_inactive_timeout{ແກນຫຼັກ OpenVPN ປິດເຊດຊັນຫຼັງຈາກໝົດເວລາບໍ່ໃຊ້ງານ.} openvpn_session_expired{ເຊີບເວີແຈ້ງວ່າເຊດຊັນ OpenVPN ໝົດອາຍຸແລ້ວ.} openvpn_credentials_required{ເຊີບເວີ ຫຼື ພຣັອກຊີຮ້ອງຂໍຂໍ້ມູນຢືນຢັນແບບໂຕ້ຕອບ ທີ່ບໍ່ໄດ້ຢູ່ໃນໂປຣໄຟລ໌ໃບຮັບຮອງນີ້.} openvpn_proxy_failed{ແກນຫຼັກ OpenVPN ລາຍງານວ່າພຣັອກຊີ ຫຼື ຕົວສົ່ງຕໍ່ທີ່ຕັ້ງຄ່າໄວ້ລົ້ມເຫຼວ.} openvpn_compression_failed{ແກນຫຼັກ OpenVPN ປະຕິເສດໂໝດການບີບອັດທີ່ໂປຣໄຟລ໌ ຫຼື ເຊີບເວີປະກາດ.} openvpn_ntlm_crypto_unavailable{ໂປຣໄຟລ໌ຮ້ອງຂໍການເຂົ້າລະຫັດ NTLM ທີ່ບໍ່ມີໃນເວີຊັນນີ້.} openvpn_feature_unsupported{ໂປຣໄຟລ໌ ຫຼື ເຊີບເວີຕ້ອງການຟີເຈີທີ່ບໍ່ມີໃນໄຄລເອັນ Android ນີ້.} network_unavailable{ບໍ່ມີເຄືອຂ່າຍທາງກາຍະພາບທີ່ໃຊ້ໄດ້.} network_lost{ອຸໂມງຖືກຢຸດຫຼັງຈາກເຄືອຂ່າຍຂາດຫາຍໄປ.} certificate_validation_failed{ບໍ່ສາມາດກວດສອບຕົວຕົນຂອງເຊີບເວີ OpenVPN ໄດ້.} openvpn_certificate_expired{ກະລຸນາຕໍ່ອາຍຸໂປຣໄຟລ໌ OpenVPN ກ່ອນເຊື່ອມຕໍ່ໃໝ່.} tunnel_active_for_another_account{ອຸໂມງຂອງບັນຊີອື່ນຕ້ອງຢຸດກ່ອນການເຊື່ອມຕໍ່ນີ້.} tunnel_already_active{Android ລາຍງານວ່າເຊດຊັນ VPN ກ່ອນໜ້ານີ້ຍັງໃຊ້ອິນເຕີເຟດຢູ່.} tunnel_stop_timeout{ເຄື່ອງຈັກ {protocol} ບໍ່ໄດ້ຢືນຢັນການປ່ອຍອິນເຕີເຟດ VPN ພາຍໃນເວລາທີ່ກຳນົດ.} tunnel_disconnected{ເຄື່ອງຈັກເນທີຟລາຍງານວ່າອຸໂມງສິ້ນສຸດລົງຢ່າງບໍ່ຄາດຄິດຫຼັງຈາກເລີ່ມແລ້ວ.} native_bridge_unavailable{ແອັບບໍ່ສາມາດເຂົ້າເຖິງບໍລິການ VPN ຂອງ Android ໄດ້. ກະລຸນາປິດ ແລ້ວເປີດແອັບອີກຄັ້ງ ຈາກນັ້ນລອງໃໝ່.} native_operation_failed{ຂໍ້ຜິດພາດຂອງແອັບໄດ້ຂັດຂວາງການດຳເນີນການ VPN. ກະລຸນາລອງໃໝ່. ຫາກບັນຫາຍັງຄົງຢູ່, ກະລຸນາເລີ່ມການວິນິດໄສ.} invalid_arguments{ຂໍ້ມູນທີ່ຕ້ອງການສຳລັບການດຳເນີນການ VPN ນີ້ບໍ່ສົມບູນ. ກະລຸນາລອງໃໝ່. ຫາກບັນຫາຍັງຄົງຢູ່, ກະລຸນາເລີ່ມການວິນິດໄສ.} invalid_account_id{ການດຳເນີນການເນທີຟນີ້ບໍ່ກ່ຽວຂ້ອງກັບຕົວລະບຸບັນຊີທີ່ຖືກຕ້ອງ.} invalid_device_id{ຕົວລະບຸອຸປະກອນທີ່ສົ່ງໄປເຄື່ອງຈັກເນທີຟຂາດຫາຍ ຫຼື ບໍ່ຖືກຕ້ອງ.} storage_key_not_allowed{ຂົວເຊື່ອມຕໍ່ຂອງ Android ໄດ້ບລັອກກະແຈທີ່ຢູ່ນອກລາຍການບ່ອນເກັບຂໍ້ມູນທີ່ອະນຸຍາດ.} secure_storage_read_failed{Android Keystore ບໍ່ສາມາດຖອດລະຫັດຂໍ້ມູນໃນເຄື່ອງຂອງບັນຊີນີ້ໄດ້.} secure_storage_write_failed{Android Keystore ບໍ່ສາມາດເຂົ້າລະຫັດ ຫຼື ບັນທຶກຂໍ້ມູນໃນເຄື່ອງໄດ້.} key_generation_failed{Android ບໍ່ສາມາດສ້າງ ຫຼື ອ່ານກະແຈ WireGuard ໃນບ່ອນເກັບຂໍ້ມູນທີ່ປອດໄພໄດ້.} csr_generation_failed{Android Keystore ບໍ່ສາມາດສ້າງ ຫຼື ເຊັນ CSR P-256 ຂອງ OpenVPN ໄດ້.} other{ເສັ້ນທາງໂຄດເນທີຟທີ່ບໍ່ມີໃນເອກະສານລົ້ມເຫຼວ. ກະລຸນາສົ່ງລະຫັດວິນິດໄສທີ່ສະແດງດ້ານລຸ່ມໃຫ້ຝ່າຍສະໜັບສະໜູນ.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "ມີຄຳຂໍອະນຸຍາດເປີດຢູ່ແລ້ວ",
+  "notice_permissionRequestInProgress_message": "ໜ້າຂໍອະນຸຍາດ VPN ຂອງ Android ສະແດງຢູ່ແລ້ວ. ກະລຸນາດຳເນີນການໃຫ້ສຳເລັດກ່ອນລອງໃໝ່.",
+  "notice_permissionRequestInterrupted_title": "ການຂໍອະນຸຍາດ VPN ຖືກຢຸດ",
+  "notice_permissionRequestInterrupted_message": "ໜ້າຈໍອະນຸຍາດ VPN ປິດລົງກ່ອນທີ່ແອັບຈະໄດ້ຮັບການຕອບກັບ.",
+  "notice_openvpnProofMissing_title": "ຍັງບໍ່ໄດ້ຢືນຢັນການເຊື່ອມຕໍ່ OpenVPN",
+  "notice_openvpnProofMissing_message": "ບໍ່ສາມາດຢືນຢັນການເຊື່ອມຕໍ່ OpenVPN ໄດ້. ໄດ້ຢຸດການເຊື່ອມຕໍ່ເພື່ອຄວາມປອດໄພ. ກະລຸນາລອງໃໝ່.",
+  "openvpnCleanup_title": "ໂປຣໄຟລ໌ OpenVPN ຖືກເພີກຖອນແລ້ວ",
+  "openvpnCleanup_working": "ກຳລັງຢຸດ ແລະ ລຶບໂປຣໄຟລ໌ OpenVPN ທີ່ຖືກເພີກຖອນ…",
+  "openvpnCleanup_stopFailed": "ຍັງບໍ່ໄດ້ຢືນຢັນການປິດ OpenVPN. ກະລຸນາລອງໃໝ່ກ່ອນສ້າງໂປຣໄຟລ໌ໃໝ່.",
+  "openvpnCleanup_cleanupFailed": "ບໍ່ສາມາດລຶບໂປຣໄຟລ໌ OpenVPN ທີ່ຖືກເພີກຖອນອອກໄດ້ໝົດ. ກະລຸນາລອງລຶບອີກຄັ້ງ.",
+  "openvpnCleanup_complete": "ລຶບໂປຣໄຟລ໌ OpenVPN ທີ່ຖືກເພີກຖອນອອກແລ້ວ. ແຕະເຊື່ອມຕໍ່ເພື່ອສ້າງໃໝ່.",
+  "network_title": "ການຕັ້ງຄ່າເຄືອຂ່າຍ",
+  "network_ipv4Fallback": "IPv6 ບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ. ການກຽມພ້ອມຈະດຳເນີນຕໍ່ດ້ວຍ IPv4.",
+  "network_rejectedTitle": "ການຕັ້ງຄ່າເຄືອຂ່າຍຖືກປະຕິເສດ",
+  "network_rejectedMessage": "ການຕັ້ງຄ່າອຸໂມງບໍ່ສົມບູນ ຫຼື ບໍ່ກົງກັບທີ່ຢູ່ທີ່ໄດ້ຮັບອະນຸຍາດ. ກະລຸນາລອງໃໝ່ຈາກແອັບ.",
+  "network_unreadableTitle": "ອ່ານການຕັ້ງຄ່າໃນເຄື່ອງບໍ່ໄດ້",
+  "network_unreadableMessage": "ການຕັ້ງຄ່າເຄືອຂ່າຍ OpenVPN ທີ່ບັນທຶກໄວ້ບໍ່ສາມາດໃຊ້ໄດ້. ກະລຸນາເຊື່ອມຕໍ່ໃໝ່ຈາກແອັບເພື່ອອັບເດດ.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "ການປົກປ້ອງເຄືອຂ່າຍ",
+  "protection_subtitle": "ບລັອກການເຂົ້າອິນເຕີເນັດໂດຍກົງ ຖ້າ VPN ຕັດການເຊື່ອມຕໍ່.",
+  "protection_active": "ການປົກປ້ອງລະບົບເປີດໃຊ້ງານແລ້ວ",
+  "protection_alwaysOnOnly": "ເປີດໃຊ້ VPN ເປີດຕະຫຼອດເວລາແລ້ວ. ກະລຸນາເປີດການບລັອກນອກ VPN",
+  "protection_inactive": "ການປົກປ້ອງລະບົບບໍ່ໄດ້ເປີດໃຊ້ງານ",
+  "protection_unknown": "ກວດສອບການປົກປ້ອງລະບົບ",
+  "protection_openSettings": "ເປີດການຕັ້ງຄ່າ Android",
+  "protection_dialogTitle": "ຕັ້ງຄ່າການປົກປ້ອງເຄືອຂ່າຍ",
+  "protection_dialogMessage": "Android ຈັດການ VPN ເປີດຕະຫຼອດເວລາ ແລະ ການບລັອກການເຊື່ອມຕໍ່ນອກ VPN. ກະລຸນາກວດສອບວ່າ FuzeVPN ຖືກເລືອກຢູ່ ແລະ ເປີດການບລັອກໃນການຕັ້ງຄ່າລະບົບ.",
+  "protection_dialogOpen": "ເປີດການຕັ້ງຄ່າ",
+  "session_systemProtectionNote": "ຫາກ Android ຍັງບລັອກທຣາຟິກນອກ VPN ຢູ່, ກະລຸນາເປີດການຕັ້ງຄ່າລະບົບເພື່ອກວດສອບ ຫຼື ປ່ຽນການປົກປ້ອງນີ້.",
+  "diagnostics_title": "ການວິນິດໄສ",
+  "diagnostics_settingsTitle": "ການວິນິດໄສແອັບ",
+  "diagnostics_automaticTitle": "ສົ່ງຂໍ້ຜິດພາດສຳຄັນ",
+  "diagnostics_automaticDescription": "ແບ່ງປັນລາຍງານທາງເຕັກນິກສັ້ນໆ ເມື່ອເກີດຂໍ້ຜິດພາດສຳຄັນ.",
+  "diagnostics_privacy": "ລາຍງານທີ່ສົ່ງແລ້ວຈະຖືກເຊື່ອມໂຍງກັບບັນຊີທີ່ເຂົ້າສູ່ລະບົບຢູ່ ແລະ ຈະເກັບໄວ້ 30 ວັນ. ລາຍງານເຫຼົ່ານີ້ບໍ່ມີປະຫວັດການທ່ອງເວັບ, ລະຫັດຜ່ານ ຫຼື ກະແຈ VPN.",
+  "diagnostics_manualOpen": "ເລີ່ມການວິນິດໄສ",
+  "diagnostics_localDescription": "ສ້າງລາຍງານສະຖານະຂອງແອັບ ແລະ VPN. ການເຊື່ອມຕໍ່ຂອງທ່ານຍັງຄົງເດີມ.",
+  "diagnostics_sendReport": "ສົ່ງລາຍງານ",
+  "diagnostics_sendHint": "ຫາກບໍ່ເລືອກຊ່ອງນີ້, ລາຍງານຈະຖືກເກັບໄວ້ໃນອຸປະກອນນີ້.",
+  "diagnostics_signedOut": "ກະລຸນາເຂົ້າສູ່ລະບົບບັນຊີຂອງທ່ານເພື່ອສົ່ງລາຍງານ.",
+  "diagnostics_localLifetime": "ບັນທຶກລາຍງານນີ້ໄວ້ໃນໂທລະສັບຂອງທ່ານ ເພື່ອໃຫ້ຍັງມີຢູ່ຫຼັງຈາກປິດແອັບ.",
+  "diagnostics_run": "ເລີ່ມການວິນິດໄສ",
+  "diagnostics_rerun": "ເລີ່ມການວິນິດໄສອີກຄັ້ງ",
+  "diagnostics_running": "ກຳລັງກວດສອບ…",
+  "diagnostics_sending": "ກຳລັງສົ່ງລາຍງານ…",
+  "diagnostics_prepared": "ລາຍງານພ້ອມແລ້ວໃນອຸປະກອນນີ້",
+  "diagnostics_queued": "ລາຍງານກຳລັງລໍຖ້າການສົ່ງ",
+  "diagnostics_sent": "ໄດ້ຮັບລາຍງານແລ້ວ",
+  "diagnostics_failed": "ການສົ່ງບໍ່ສຳເລັດ. ລາຍງານໃນອຸປະກອນຂອງທ່ານຍັງສາມາດໃຊ້ໄດ້.",
+  "diagnostics_preparationFailed": "ບໍ່ສາມາດກຽມລາຍງານການວິນິດໄສໄດ້. ກະລຸນາລອງໃໝ່.",
+  "diagnostics_authenticationRequired": "ກະລຸນາເຂົ້າສູ່ລະບົບອີກຄັ້ງເພື່ອສົ່ງລາຍງານ.",
+  "diagnostics_retry": "ລອງສົ່ງໃໝ່",
+  "diagnostics_export": "ບັນທຶກລາຍງານ",
+  "diagnostics_exportFailed": "ການສົ່ງອອກບໍ່ສຳເລັດ. ກະລຸນາລອງໃໝ່ຈາກລາຍງານໃນອຸປະກອນ.",
+  "diagnostics_preferenceFailed": "ບໍ່ສາມາດບັນທຶກການຕັ້ງຄ່ານີ້ໄດ້. ກະລຸນາລອງໃໝ່.",
+  "diagnostics_receipt": "ເລກອ້າງອີງ: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "ໄດ້ຮັບເມື່ອ {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "ເກັບໄວ້ຈົນເຖິງ {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "ລາຍງານນີ້ເຄີຍໄດ້ຮັບແລ້ວ.",
+  "diagnostics_preview": "ຕົວຢ່າງລາຍງານ",
+  "diagnostics_eventCount": "{count, plural, =0{ບໍ່ມີເຫດການທາງເຕັກນິກແນບມາ} =1{ມີເຫດການທາງເຕັກນິກແນບມາ 1 ລາຍການ} other{ມີເຫດການທາງເຕັກນິກແນບມາ {count} ລາຍການ}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "ລາຍລະອຽດທາງເຕັກນິກ",
+  "diagnostics_empty": "ຍັງບໍ່ມີລາຍງານການວິນິດໄສທີ່ກຽມໄວ້.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{ສະຖານະອຸໂມງ} handshake{ການຢືນຢັນການເຊື່ອມຕໍ່} certificate{ໃບຮັບຮອງ VPN} kill_switch{ການປົກປ້ອງ Android} connectivity{ເຄືອຂ່າຍທີ່ໃຊ້ໄດ້} api_reachability{ການເຂົ້າເຖິງບໍລິການ} secure_storage{ບ່ອນເກັບຂໍ້ມູນທີ່ປອດໄພ} other{ການກວດສອບໃນເຄື່ອງ}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{ກວດສອບແລ້ວ} failed{ຄວນກວດສອບ} skipped{ຍັງບໍ່ໄດ້ທົດສອບ — ບໍ່ມີການກວດສອບໂດຍກົງ} unknown{ບໍ່ມີຂໍ້ມູນ} other{ບໍ່ມີຂໍ້ມູນ}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "ຍິນດີຕ້ອນຮັບສູ່ FuzeVPN",
+  "connection_changeLocation": "ປ່ຽນສະຖານທີ່",
+  "connection_details": "ລາຍລະອຽດການເຊື່ອມຕໍ່",
+  "locations_searchLabel": "ຄົ້ນຫາເມືອງ ຫຼື ປະເທດ",
+  "locations_clearSearch": "ລ້າງການຄົ້ນຫາ",
+  "locations_filterAll": "ທັງໝົດ",
+  "locations_filterFavorites": "ລາຍການທີ່ມັກ",
+  "locations_results": "{count, plural, other{{count} ສະຖານທີ່}}",
+  "locations_noResults": "ບໍ່ພົບສະຖານທີ່",
+  "locations_noResultsHint": "ລອງຄົ້ນຫາເມືອງ ຫຼື ປະເທດອື່ນ.",
+  "locations_noFavorites": "ລາຍການທີ່ມັກຂອງທ່ານ ຢູ່ໃກ້ມືສະເໝີ",
+  "locations_noFavoritesHint": "ແຕະດາວຂ້າງສະຖານທີ່ເພື່ອບັນທຶກໄວ້ບ່ອນນີ້.",
+  "locations_showAll": "ເບິ່ງສະຖານທີ່ທັງໝົດ",
+  "locations_addFavorite": "ເພີ່ມ {name} ເຂົ້າລາຍການທີ່ມັກ",
+  "locations_removeFavorite": "ລຶບ {name} ອອກຈາກລາຍການທີ່ມັກ",
+  "locations_favoriteSaveFailed": "ບໍ່ສາມາດບັນທຶກລາຍການທີ່ມັກໄດ້. ກະລຸນາລອງໃໝ່.",
+  "locations_emptyTitle": "ບໍ່ມີສະຖານທີ່ໃຫ້ໃຊ້",
+  "locations_emptyHint": "ກະລຸນາໂຫຼດລາຍການໃໝ່ເພື່ອລອງອີກຄັ້ງ.",
+  "devices_manage": "ຈັດການອຸປະກອນຂອງຂ້ອຍ",
+  "settings_personalization": "ປັບແຕ່ງຕາມໃຈທ່ານ",
+  "settings_safety": "ການປົກປ້ອງ",
+  "settings_help": "ຕ້ອງການຄວາມຊ່ວຍເຫຼືອບໍ?",
+  "settings_about": "ກ່ຽວກັບ FuzeVPN",
+  "diagnostics_heading": "ເຂົ້າໃຈບັນຫາການເຊື່ອມຕໍ່",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{ພ້ອມໃຊ້ງານ} pending{ກຳລັງກຽມ} revoked{ຖືກລຶບອອກແລ້ວ} expired{ໝົດອາຍຸແລ້ວ} other{ບໍ່ມີຂໍ້ມູນສະຖານະ}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "ບໍ່ໄດ້ບັນທຶກການຕັ້ງຄ່າ",
+  "notice_preferenceSave_message": "ການເລືອກຂອງທ່ານຖືກນຳໃຊ້ຊົ່ວຄາວແລ້ວ, ແຕ່ບໍ່ສາມາດບັນທຶກໄດ້. ກະລຸນາລອງອີກຄັ້ງເພື່ອເກັບໄວ້ຫຼັງຈາກປິດແອັບ.",
+  "connection_androidDisconnectHint": "ຖ້າ Android ຍັງເປີດ VPN ຢູ່, ກະລຸນາປິດ VPN ເປີດຕະຫຼອດເວລາໃນການຕັ້ງຄ່າທີ່ເປີດຂຶ້ນມາ.",
+  "protection_learnMore": "ຮຽນຮູ້ກ່ຽວກັບການປົກປ້ອງ Android",
+  "protection_guideWhy": "ການປົກປ້ອງນີ້ຈະບໍ່ໃຫ້ແອັບໃຊ້ອິນເຕີເນັດໂດຍກົງ ຖ້າ VPN ຕັດການເຊື່ອມຕໍ່. ຕັ້ງຄ່າໄດ້ໃນ Android.",
+  "protection_guideAlwaysOnTitle": "VPN ເປີດຕະຫຼອດເວລາ",
+  "protection_guideAlwaysOn": "Android ຮັກສາບໍລິການ VPN ໃຫ້ເຮັດວຽກຢູ່ ແລະ ສາມາດເລີ່ມມັນຄືນໃໝ່ໄດ້ຫຼັງຈາກໂທລະສັບເລີ່ມເຄື່ອງໃໝ່.",
+  "protection_guideBlockTitle": "ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN",
+  "protection_guideBlock": "ການຕັ້ງຄ່ານີ້ຈະບໍ່ໃຫ້ທຣາຟິກຜ່ານໄປນອກ VPN, ລວມທັງໃນຂະນະທີ່ການເຊື່ອມຕໍ່ຖືກຂັດຂວາງ.",
+  "protection_guideWarning": "ເມື່ອເປີດການບລັອກນີ້, ການເຂົ້າເຖິງອິນເຕີເນັດຈະຖືກປິດໄວ້ ຈົນກວ່າ VPN ຈະເຊື່ອມຕໍ່ແລ້ວ.",
+  "protection_guideStepsTitle": "ເປີດການປົກປ້ອງ",
+  "protection_guideStep1": "ເປີດການຕັ້ງຄ່າ VPN ຂອງ Android ດ້ວຍປຸ່ມຂ້າງລຸ່ມນີ້.",
+  "protection_guideStep2": "ເປີດຕົວເລືອກດ້ວຍໄອຄອນຮູບເຟືອງຢູ່ຂ້າງ FuzeVPN.",
+  "protection_guideStep3": "ເປີດ “VPN ເປີດຕະຫຼອດເວລາ” ຈາກນັ້ນເປີດ “ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN” ຖ້າມີຕົວເລືອກເຫຼົ່ານີ້.",
+  "protection_guideManufacturers": "ຊື່ຕ່າງໆອາດແຕກຕ່າງກັນຕາມແຕ່ລະໂທລະສັບ. ຖ້າຈຳເປັນ ໃຫ້ຄົ້ນຫາ VPN ໃນການຕັ້ງຄ່າ ເຊິ່ງມັກຢູ່ໃນ “ເຄືອຂ່າຍ ແລະ ອິນເຕີເນັດ”.",
+  "protection_guideDisableTitle": "ປິດການປົກປ້ອງນີ້",
+  "protection_guideDisable": "ໃນການຕັ້ງຄ່າດຽວກັນ ໃຫ້ປິດການບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN ເພື່ອໃຫ້ເຂົ້າອິນເຕີເນັດໄດ້ໂດຍບໍ່ໃຊ້ VPN. ນອກຈາກນີ້ ໃຫ້ປິດ VPN ເປີດຕະຫຼອດເວລາ ຖ້າທ່ານບໍ່ຕ້ອງການໃຫ້ Android ເລີ່ມມັນໃໝ່ອີກ.",
+  "protection_guideManual": "ທ່ານກຳນົດການຕັ້ງຄ່າເຫຼົ່ານີ້ເອງໃນ Android. FuzeVPN ຈະບໍ່ປ່ຽນແປງການຕັ້ງຄ່າເຫຼົ່ານີ້ແທນທ່ານ.",
+  "locations_changeTitle": "ປ່ຽນສະຖານທີ່ບໍ?",
+  "locations_changeActive": "VPN ຈະຕັດການເຊື່ອມຕໍ່ ຈາກນັ້ນພະຍາຍາມເຊື່ອມຕໍ່ກັບ {name}.",
+  "locations_changeIdle": "VPN ຈະພະຍາຍາມເຊື່ອມຕໍ່ກັບ {name}.",
+  "locations_confirmChange": "ປ່ຽນ ແລະ ເຊື່ອມຕໍ່",
+  "locations_changeBusy": "ກຳລັງມີການປ່ຽນແປງຢູ່. ກະລຸນາລໍຖ້າກ່ອນເລືອກສະຖານທີ່ອື່ນ.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "ເລືອກອັດຕະໂນມັດ",
+  "locations_cities": "ເມືອງ",
+  "locations_servers": "ເຊີບເວີ",
+  "locations_viewCities": "ເບິ່ງເມືອງໃນ {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "ເບິ່ງເຊີບເວີໃນ {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, other{{count} ປະເທດ}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, other{{count} ເມືອງ}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, other{{count} ເຊີບເວີ}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "ທຸກປະເທດ",
+  "locations_backToCountries": "ກັບໄປຫາປະເທດ",
+  "locations_backToCities": "ກັບໄປຫາເມືອງໃນ {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "ເລືອກ {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "ເລືອກ {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "ບໍ່ມີເຊີບເວີທີ່ເຂົ້າກັນໄດ້ໃຫ້ໃຊ້ງານ.",
+  "externalLink_failed": "ບໍ່ສາມາດເປີດລິ້ງນີ້ໄດ້. ທ່ານສາມາດສຳເນົາລິ້ງ ແລ້ວເປີດໃນເວັບບຣາວເຊີຂອງທ່ານ.",
+  "externalLink_copy": "ສຳເນົາລິ້ງ",
+  "externalLink_copied": "ສຳເນົາລິ້ງແລ້ວ",
+  "externalLink_copyFailed": "ບໍ່ສາມາດສຳເນົາລິ້ງໄດ້. ກະລຸນາເລືອກທີ່ຢູ່ຂ້າງລຸ່ມນີ້.",
+  "settings_deleteAccount": "ລຶບບັນຊີຂອງຂ້ອຍ",
+  "settings_deleteAccountDetail": "ເບິ່ງຂັ້ນຕອນການຮ້ອງຂໍລຶບບັນຊີ",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "ເລືອກການສະໝັກໃຊ້ງານ VPN ຂອງທ່ານ.",
+  "billing_subscribe": "ສະໝັກໃຊ້ງານ",
+  "billing_choosePlan": "ເລືອກແຜນເພື່ອດຳເນີນການຕໍ່.",
+  "billing_monthly": "ລາຍເດືອນ",
+  "billing_yearly": "ລາຍປີ",
+  "billing_continue": "ສືບຕໍ່ດ້ວຍ Google Play",
+  "billing_restore": "ກູ້ຄືນການຊື້",
+  "billing_manage": "ຈັດການການສະໝັກໃຊ້ງານ",
+  "billing_deleteAccountWarning": "ຖ້າທ່ານມີການສະໝັກໃຊ້ງານ Google Play, ການລຶບບັນຊີ FuzeVPN ຂອງທ່ານຈະບໍ່ຍົກເລີກການຕໍ່ອາຍຸ. ກະລຸນາຈັດການ ຫຼື ຍົກເລີກການຕໍ່ອາຍຸແຍກຕ່າງຫາກໃນ Google Play.",
+  "billing_deleteAccountContinue": "ສືບຕໍ່ໄປຫາການຮ້ອງຂໍລຶບບັນຊີ",
+  "billing_refresh": "ໂຫຼດສິດການເຂົ້າເຖິງໃໝ່",
+  "billing_loadingPlans": "ກຳລັງໂຫຼດແຜນ…",
+  "billing_unavailable": "ຕອນນີ້ບໍ່ມີແຜນໃຫ້ໃຊ້ງານ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.",
+  "billing_comingSoon": "ການສະໝັກໃຊ້ງານຈະມາໃນໄວໆນີ້.",
+  "billing_priceDisclosure": "ລາຄາມາຈາກ Google Play. ຈຳນວນເງິນສຸດທ້າຍ ແລະ ພາສີທີ່ນຳໃຊ້ ຈະສະແດງໃຫ້ເຫັນກ່ອນທີ່ທ່ານຈະຢືນຢັນ.",
+  "billing_renewalMonthly": "ຕໍ່ອາຍຸອັດຕະໂນມັດທຸກເດືອນ ເວັ້ນເສຍແຕ່ທ່ານຈະຍົກເລີກ. ທ່ານສາມາດຍົກເລີກໄດ້ທຸກເວລາໃນການສະໝັກໃຊ້ງານ Google Play.",
+  "billing_renewalYearly": "ຕໍ່ອາຍຸອັດຕະໂນມັດທຸກປີ ເວັ້ນເສຍແຕ່ທ່ານຈະຍົກເລີກ. ທ່ານສາມາດຍົກເລີກໄດ້ທຸກເວລາໃນການສະໝັກໃຊ້ງານ Google Play.",
+  "billing_active": "ການເຂົ້າເຖິງ Premium ຂອງທ່ານເປີດໃຊ້ງານແລ້ວ",
+  "billing_accessUntil": "ເຂົ້າເຖິງໄດ້ຈົນເຖິງ {date}.",
+  "billing_webManaged": "ການສະໝັກໃຊ້ງານຂອງທ່ານຖືກຈັດການຢູ່ເວັບໄຊ FuzeVPN.",
+  "billing_playManaged": "ການສະໝັກໃຊ້ງານຂອງທ່ານຖືກຈັດການໂດຍ Google Play.",
+  "billing_playOnHold": "ການສະໝັກໃຊ້ງານ Google Play ຂອງທ່ານຖືກພັກໄວ້ ຫຼື ກຳລັງລໍຖ້າການຊຳລະ. ເປີດ “ຈັດການການສະໝັກໃຊ້ງານ” ເພື່ອແກ້ໄຂໃນ Google Play.",
+  "billing_playReceiptUnlinked": "ບັນຊີ Google Play ນີ້ມີການສະໝັກໃຊ້ງານ Fuze Premium ຢູ່ແລ້ວ ເຊິ່ງບໍ່ໄດ້ເປີດໃຊ້ງານສຳລັບບັນຊີ FuzeVPN ນີ້. ເປີດ “ຈັດການການສະໝັກໃຊ້ງານ” ເພື່ອກວດສອບໃນ Google Play.",
+  "billing_inactive": "ບໍ່ມີການສະໝັກໃຊ້ງານທີ່ຍັງມີຜົນ.",
+  "billing_checkingAccess": "ກຳລັງກວດສອບການເຂົ້າເຖິງຂອງທ່ານ…",
+  "billing_restoring": "ກຳລັງກູ້ຄືນການຊື້…",
+  "billing_pending": "ການຊຳລະເງິນກຳລັງລໍຖ້າ. ການເຂົ້າເຖິງຂອງທ່ານຈະເປີດໃຊ້ງານຫຼັງຈາກຢືນຢັນແລ້ວ.",
+  "billing_cancelled": "ຍົກເລີກການຊື້ແລ້ວ. ບໍ່ມີການສະໝັກໃຊ້ງານໃໝ່ຖືກເປີດໃຊ້ງານ.",
+  "billing_verifying": "ກຳລັງກວດສອບການຊື້…",
+  "billing_success": "ເປີດໃຊ້ການສະໝັກໃຊ້ງານແລ້ວ. ການເຂົ້າເຖິງ Premium ຂອງທ່ານພ້ອມແລ້ວ.",
+  "billing_restored": "ການຊື້ຂອງທ່ານຖືກກູ້ຄືນແລ້ວ.",
+  "billing_restoreEmpty": "ບໍ່ມີການຊື້ໃຫ້ກູ້ຄືນສຳລັບບັນຊີ Google Play ນີ້.",
+  "billing_catalogError": "ບໍ່ສາມາດໂຫຼດແຜນໄດ້. ກະລຸນາລອງໃໝ່.",
+  "billing_purchaseError": "ບໍ່ສາມາດເລີ່ມການຊື້ໄດ້. ກະລຸນາລອງໃໝ່.",
+  "billing_verificationError": "ການກວດສອບການຊື້ບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ. ກະລຸນາກູ້ຄືນການຊື້ເພື່ອລອງໃໝ່.",
+  "billing_restoreError": "ບໍ່ສາມາດກູ້ຄືນການຊື້ໄດ້. ກະລຸນາລອງໃໝ່.",
+  "billing_managementError": "ບໍ່ສາມາດເປີດການຈັດການການສະໝັກໃຊ້ງານໄດ້. ກະລຸນາລອງໃໝ່.",
+  "billing_storeUnavailable": "Google Play ບໍ່ພ້ອມໃຊ້ງານໃນອຸປະກອນນີ້.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "ເຮັດໃຫ້ VPN ຂອງທ່ານງ່າຍດາຍ.",
+  "welcome_description": "ປົກປ້ອງການເຊື່ອມຕໍ່ຂອງທ່ານ ແລະ ຄວບຄຸມຄວາມເປັນສ່ວນຕົວຂອງທ່ານ.",
+  "welcome_start": "ເລີ່ມຕົ້ນ",
+  "welcome_alreadyPurchased": "ຊື້ແລ້ວບໍ?",
+  "welcome_noAccountRequired": "ບໍ່ຕ້ອງໃຊ້ບັນຊີເພື່ອເລີ່ມຕົ້ນ.",
+  "guest_accountTitle": "ບັນຊີຍັງບໍ່ໄດ້ເຊື່ອມໂຍງ",
+  "guest_accountDescription": "ກູ້ຄືນການຊື້ຂອງທ່ານດ້ວຍບັນຊີ Google Play ດຽວກັນ ເພື່ອໃຊ້ການສະໝັກໃຊ້ງານຂອງທ່ານໃນອຸປະກອນອື່ນ.",
+  "guest_existingSubscriberSignIn": "ສະໝັກໃຊ້ງານແລ້ວບໍ? ເຂົ້າສູ່ລະບົບ",
+  "guest_claimTitle": "ເອົາ FuzeVPN ໄປກັບທ່ານ",
+  "guest_claimDescription": "ສ້າງບັນຊີເພື່ອເຂົ້າເຖິງການສະໝັກໃຊ້ງານຂອງທ່ານໃນອຸປະກອນອື່ນໆ. ຂັ້ນຕອນນີ້ບໍ່ບັງຄັບ.",
+  "guest_skip": "ໄວ້ພາຍຫຼັງ",
+  "guest_activationTitle": "Fuze Premium ເປີດໃຊ້ງານແລ້ວ",
+  "guest_activationDescription": "ການສະໝັກໃຊ້ງານຂອງທ່ານພ້ອມແລ້ວ. ທ່ານສາມາດໃຊ້ VPN ແລະ ສ້າງບັນຊີເມື່ອໃດກໍໄດ້ທີ່ທ່ານຕ້ອງການ.",
+  "guest_useVpn": "ໃຊ້ VPN ຂອງຂ້ອຍ",
+  "guest_loginRequired": "ການຊື້ນີ້ເຊື່ອມໂຍງກັບບັນຊີ FuzeVPN ແລ້ວ. ກະລຸນາເຂົ້າສູ່ລະບົບບັນຊີນັ້ນເພື່ອເຂົ້າເຖິງການສະໝັກໃຊ້ງານຂອງທ່ານ.",
+  "guest_signOutWarning": "ທ່ານສາມາດກູ້ຄືນການສະໝັກໃຊ້ງານໄດ້ໂດຍກູ້ຄືນການຊື້ດ້ວຍບັນຊີ Google Play ດຽວກັນ.",
+  "guest_profileUnavailable": "ບັນຊີຂອງທ່ານເຊື່ອມໂຍງແລ້ວ. ກະລຸນາເຂົ້າສູ່ລະບົບເພື່ອເບິ່ງ ແລະ ຈັດການຂໍ້ມູນຂອງທ່ານ.",
+  "billing_acceptance": "ເມື່ອສືບຕໍ່, ທ່ານຍອມຮັບເງື່ອນໄຂການໃຊ້ງານ ແລະ ນະໂຍບາຍຄວາມເປັນສ່ວນຕົວ.",
+  "guest_verifyEmailReminder": "ກະລຸນາຢືນຢັນທີ່ຢູ່ອີເມວຂອງທ່ານເພື່ອຮັກສາຄວາມປອດໄພບັນຊີ. ທ່ານສາມາດສືບຕໍ່ໃຊ້ VPN ໄດ້.",
+  "guest_serviceUnavailable": "ບໍລິການບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ. ກະລຸນາລອງໃໝ່ໃນບໍ່ດົນນີ້.",
+  "guest_restoreError": "ບໍ່ສາມາດກູ້ຄືນການຊື້ຂອງທ່ານໄດ້. ກະລຸນາລອງໃໝ່ດ້ວຍບັນຊີ Google Play ທີ່ໃຊ້ໃນການຊື້.",
+  "guest_claimSuccess": "ສ້າງບັນຊີຂອງທ່ານແລ້ວ. ການສະໝັກໃຊ້ງານ ແລະ ການເຂົ້າເຖິງ VPN ຂອງທ່ານຍັງຄົງຢູ່.",
+  "guest_emailExists": "ອີເມວນີ້ຖືກໃຊ້ແລ້ວ. ກະລຸນາເລືອກທີ່ຢູ່ອື່ນ ຫຼື ເຂົ້າສູ່ລະບົບບັນຊີທີ່ມີຢູ່ແລ້ວ. ການຊື້ຂອງທ່ານຍັງສາມາດໃຊ້ໄດ້ຜ່ານ Google Play.",
+  "guest_claimError": "ບໍ່ສາມາດສ້າງບັນຊີຂອງທ່ານໄດ້. ທ່ານສາມາດສືບຕໍ່ໃຊ້ VPN ແລະ ລອງໃໝ່ໃນພາຍຫຼັງ.",
+  "guest_secureStorageError": "ບໍ່ສາມາດຮັກສາຄວາມປອດໄພເຊດຊັນຂອງທ່ານໃນອຸປະກອນນີ້ໄດ້. ກະລຸນາລອງໃໝ່.",
+  "guest_premiumRequired": "ເລືອກການສະໝັກໃຊ້ງານເພື່ອເປີດໃຊ້ VPN ຂອງທ່ານ.",
+  "welcome_viewPlans": "ເບິ່ງແຜນ",
+  "google_continue": "ສືບຕໍ່ດ້ວຍ Google",
+  "google_or": "ຫຼື",
+  "google_title": "ບັນຊີ FuzeVPN ຂອງທ່ານ",
+  "google_settingUp": "ສ້າງບັນຊີຂອງທ່ານໃຫ້ສຳເລັດ",
+  "google_country": "ປະເທດທີ່ອາໄສຢູ່",
+  "google_profileDescription": "ເລືອກປະເທດຂອງທ່ານ ແລະ ກວດສອບເອກະສານທັງສອງສະບັບເພື່ອສ້າງບັນຊີ FuzeVPN ຂອງທ່ານ.",
+  "google_claimDescription": "ເຊື່ອມໂຍງບັນຊີແຂກຂອງທ່ານກັບ Google. ການສະໝັກໃຊ້ງານ ແລະ ອຸປະກອນຂອງທ່ານຍັງຄົງຜູກກັບບັນຊີນີ້.",
+  "google_linkTitle": "ເຊື່ອມໂຍງ Google ກັບ FuzeVPN",
+  "google_linkDescription": "ຢືນຢັນການເຂົ້າເຖິງບັນຊີ FuzeVPN ທີ່ມີຢູ່ແລ້ວຂອງທ່ານ. ຂັ້ນຕອນນີ້ຈະບໍ່ຂໍລະຫັດຜ່ານ Google ຂອງທ່ານ.",
+  "google_password": "ລະຫັດຜ່ານ FuzeVPN",
+  "google_linkAccount": "ຢືນຢັນການເຊື່ອມໂຍງ",
+  "google_requestEmail": "ສົ່ງອີເມວຢືນຢັນໃຫ້ຂ້ອຍ",
+  "google_emailInstructions": "ເປີດອີເມວຈາກ FuzeVPN ແລ້ວປ້ອນລະຫັດຢືນຢັນ.",
+  "google_emailCode": "ລະຫັດຢືນຢັນທາງອີເມວ",
+  "google_confirmEmail": "ຢືນຢັນລະຫັດ",
+  "google_restart": "ເລືອກບັນຊີ Google ອື່ນ",
+  "google_resume": "ກວດສອບການພະຍາຍາມນີ້",
+  "google_unavailable": "ການເຂົ້າສູ່ລະບົບດ້ວຍ Google ບໍ່ພ້ອມໃຊ້ງານ. ທ່ານສາມາດໃຊ້ອີເມວ ແລະ ລະຫັດຜ່ານໄດ້.",
+  "google_expired": "ການພະຍາຍາມນີ້ໝົດອາຍຸແລ້ວ. ກະລຸນາຍົກເລີກ ແລ້ວເລີ່ມໃໝ່.",
+  "google_conflict": "ບັນຊີ Google ນີ້ຖືກເຊື່ອມໂຍງຢູ່ບ່ອນອື່ນແລ້ວ. ບັນຊີ ແລະ ການສະໝັກໃຊ້ງານປັດຈຸບັນຂອງທ່ານຍັງຄົງຢູ່.",
+  "google_error": "ການເຂົ້າສູ່ລະບົບດ້ວຍ Google ລົ້ມເຫຼວ. ກະລຸນາລອງໃໝ່. ການເຂົ້າເຖິງປັດຈຸບັນຂອງທ່ານຍັງຄົງຢູ່.",
+  "google_uncertain": "ບໍ່ສາມາດຢືນຢັນຜົນໄດ້. ກະລຸນາກວດສອບການພະຍາຍາມນີ້ ຫຼື ຍົກເລີກກ່ອນເລີ່ມໃໝ່.",
+  "google_cancelFailed": "ບໍ່ສາມາດຢືນຢັນການຍົກເລີກໄດ້. ກະລຸນາລອງຍົກເລີກອີກຄັ້ງກ່ອນອອກຈາກໜ້ານີ້.",
+  "google_cancelled": "ຍົກເລີກການເຂົ້າສູ່ລະບົບດ້ວຍ Google ແລ້ວ.",
+  "google_selecting": "ເລືອກບັນຊີ Google ຂອງທ່ານ…",
+  "google_verifying": "ກຳລັງກວດສອບບັນຊີຂອງທ່ານ…",
+  "google_emailUnavailable": "ບໍ່ສາມາດສົ່ງອີເມວຢືນຢັນໄດ້. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.",
+  "google_emailSent": "ສົ່ງອີເມວຢືນຢັນແລ້ວ. ກະລຸນາກວດສອບກ່ອງຈົດໝາຍຂອງທ່ານ.",
+  "google_rateLimited": "ກະລຸນາລໍຖ້າກ່ອນລອງໃໝ່.",
+  "google_busy": "Google ບໍ່ພ້ອມໃຊ້ງານໃນຂະນະທີ່ມີການດຳເນີນການອື່ນຢູ່ (ການເຊື່ອມຕໍ່ VPN, ບັນຊີ ຫຼື ແຂກ). ກະລຸນາລອງໃໝ່ເມື່ອການດຳເນີນການນັ້ນສຳເລັດແລ້ວ. ການເຂົ້າເຖິງປັດຈຸບັນຂອງທ່ານຍັງຄົງຢູ່.",
+  "google_invalidPassword": "ລະຫັດຜ່ານ FuzeVPN ບໍ່ຖືກຕ້ອງ. ບັນຊີປັດຈຸບັນຂອງທ່ານຍັງຄົງຢູ່.",
+  "google_invalidCode": "ລະຫັດຢືນຢັນບໍ່ຖືກຕ້ອງ ຫຼື ໝົດອາຍຸແລ້ວ.",
+  "google_accountChanged": "ເຊດຊັນຂອງທ່ານປ່ຽນແປງແລ້ວ. ກະລຸນາຍົກເລີກການພະຍາຍາມນີ້ກ່ອນເລີ່ມໃໝ່.",
+  "google_invalidResponse": "ບໍ່ສາມາດກວດສອບການຕອບກັບໄດ້. ການເຂົ້າເຖິງປັດຈຸບັນຂອງທ່ານຍັງຄົງຢູ່.",
+  "google_invalidRegistration": "ກະລຸນາກວດສອບປະເທດ ແລະ ການຍິນຍອມທັງສອງຢ່າງຂອງທ່ານ.",
+  "google_consentRequired": "ກະລຸນາເລືອກປະເທດຂອງທ່ານ ແລະ ຍອມຮັບເອກະສານທັງສອງສະບັບເພື່ອດຳເນີນການຕໍ່.",
+  "google_challengeRequired": "ຕ້ອງມີການກວດສອບຄວາມປອດໄພເພີ່ມເຕີມ. ການເຂົ້າເຖິງປັດຈຸບັນຂອງທ່ານຍັງຄົງຢູ່.",
+  "google_challengeUnavailable": "ການກວດສອບຄວາມປອດໄພບໍ່ພ້ອມໃຊ້ງານ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.",
+  "google_intentMismatch": "ການພະຍາຍາມເຂົ້າສູ່ລະບົບດ້ວຍ Google ກ່ອນໜ້ານີ້ຍັງລໍຖ້າຢູ່. ກະລຸນາຍົກເລີກກ່ອນເລີ່ມການດຳເນີນການນີ້.",
+  "google_challengeBlocked": "ການກວດສອບຄວາມປອດໄພທີ່ຕ້ອງການບໍ່ມີໃຫ້ໃນແອັບນີ້. ການດຳເນີນການນີ້ບໍ່ສາມາດສຳເລັດໄດ້ໃນຕອນນີ້.",
+  "google_solveChallenge": "ດຳເນີນການກວດສອບຄວາມປອດໄພ",
+  "google_challengeTitle": "ການກວດສອບຄວາມປອດໄພ",
+  "google_challengeReady": "ການຢືນຢັນສຳເລັດແລ້ວ. ທ່ານສາມາດຢືນຢັນການສ້າງບັນຊີຂອງທ່ານໄດ້ດຽວນີ້.",
+  "google_challengeExpired": "ການຢືນຢັນໝົດອາຍຸແລ້ວ. ກະລຸນາດຳເນີນການອີກຄັ້ງກ່ອນຢືນຢັນ.",
+  "google_challengeCancelled": "ຍົກເລີກການຢືນຢັນແລ້ວ. ທ່ານສາມາດລອງໃໝ່ໄດ້.",
+  "google_challengeFailed": "ການກວດສອບຄວາມປອດໄພລົ້ມເຫຼວ. ກະລຸນາລອງໃໝ່.",
+  "billing_trialTitle": "ທົດລອງໃຊ້ Fuze Premium ຟຣີ",
+  "billing_trialSubtitle": "ປົກປ້ອງການເຊື່ອມຕໍ່ຂອງທ່ານຕັ້ງແຕ່ມື້ນີ້.",
+  "billing_trialWeeks": "ທົດລອງໃຊ້ຟຣີ 2 ອາທິດ",
+  "billing_trialDays": "ທົດລອງໃຊ້ຟຣີ {days} ວັນ",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "ເລີ່ມການທົດລອງໃຊ້ຟຣີ",
+  "billing_trialFirstCharge": "ຖ້າທ່ານເລີ່ມມື້ນີ້, ຄາດວ່າຈະເກັບເງິນຄັ້ງທຳອິດໃນວັນທີ {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "ຕໍ່ອາຍຸອັດຕະໂນມັດໃນລາຄາທີ່ລະບຸໄວ້. ເພື່ອຫຼີກລ່ຽງການຖືກເກັບເງິນ ກະລຸນາຍົກເລີກໃນ Google Play ກ່ອນການທົດລອງໃຊ້ໝົດລົງ.",
+  "billing_trialThenMonthly": "ຫຼັງຈາກນັ້ນ {price} ຕໍ່ເດືອນ",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "ຫຼັງຈາກນັ້ນ {price} ຕໍ່ປີ",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "ເລືອກແຜນຂອງທ່ານ",
+  "billing_selectionHint": "ເລືອກແຜນເພື່ອດຳເນີນການຕໍ່.",
+  "billing_benefitConnection": "ການເຊື່ອມຕໍ່ທີ່ເຂົ້າລະຫັດ",
+  "billing_benefitPrivacy": "ຄວາມເປັນສ່ວນຕົວອອນລາຍ",
+  "billing_benefitNoAccount": "ບໍ່ຕ້ອງລົງທະບຽນ",
+  "billing_cancellation": "ຍົກເລີກໃນ Google Play",
+  "billing_premiumTitle": "ການເຊື່ອມຕໍ່ທີ່ປອດໄພກວ່າເກົ່າ.",
+  "billing_premiumSubtitle": "ປົກປ້ອງການເຊື່ອມຕໍ່ຂອງທ່ານ ຕາມຈັງຫວະຂອງທ່ານ.",
+  "billing_priceMonthly": "ຕໍ່ເດືອນ",
+  "billing_priceYearly": "ຕໍ່ປີ",
+  "billing_trialToday": "ມື້ນີ້ບໍ່ຕ້ອງຊຳລະຫຍັງ",
+  "billing_trialConfirmation": "Google Play ຈະຢືນຢັນວັນທີ, ຈຳນວນເງິນສຸດທ້າຍ ແລະ ພາສີທີ່ນຳໃຊ້ ກ່ອນທີ່ທ່ານຈະຢືນຢັນ.",
+  "billing_offerChanged": "ເງື່ອນໄຂຂອງໂປຣໂມຊັນນີ້ປ່ຽນແປງແລ້ວ. ກະລຸນາໂຫຼດແຜນໃໝ່ ແລ້ວເລືອກອີກຄັ້ງ.",
+  "status_waitingNetwork": "ກຳລັງລໍຖ້າເຄືອຂ່າຍ",
+  "status_waitingNetworkDetail": "ບໍ່ມີເຄືອຂ່າຍໃຫ້ໃຊ້ງານ. VPN ຈະກວດສອບການເຊື່ອມຕໍ່ເມື່ອເຄືອຂ່າຍກັບມາ.",
+  "locations_favoriteLoadFailed": "ບໍ່ສາມາດໂຫຼດລາຍການທີ່ມັກໄດ້. ກະລຸນາລອງໃໝ່.",
+  "locations_favoritesLoading": "ກຳລັງໂຫຼດລາຍການທີ່ມັກ…"
+}

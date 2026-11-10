@@ -99,7 +99,7 @@ class TranslationPackValidationTests(unittest.TestCase):
             with self.subTest(mode=mode):
                 result = self.run_tool(mode, "--check", "--require-all")
                 self.assertEqual(0, result.returncode, result.stdout + result.stderr)
-                self.assertIn("Validated 30/30 complete packs", result.stdout)
+                self.assertIn("Validated 70/70 complete packs", result.stdout)
 
     def test_contract_violations_are_refused_even_under_python_optimizations(self):
         # The audit trigger (empty text, %1$s -> %2$s) plus one ICU and one metadata
@@ -127,6 +127,13 @@ class TranslationPackValidationTests(unittest.TestCase):
                 result = self.run_tool(mode, "--check")
                 self.assertEqual(1, result.returncode, result.stdout + result.stderr)
                 self.assertIn("Missing translation: el", result.stderr)
+
+    def test_android_resources_keep_legacy_indonesian_and_hebrew_codes(self):
+        resources = self.root / "android/app/src/main/res"
+        for legacy, canonical in (("in", "id"), ("iw", "he")):
+            with self.subTest(language=canonical):
+                self.assertTrue((resources / f"values-{legacy}/strings.xml").exists())
+                self.assertFalse((resources / f"values-{canonical}").exists())
 
     def test_each_native_message_case_needs_a_title_case(self):
         # Requested by the UI/l10n sub-lot (A16-ui-l10n-03): a message case without its title is refused.

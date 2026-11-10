@@ -526,6 +526,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get action_cancel => 'Batal';
 
   @override
+  String get action_close => 'Tutup';
+
+  @override
+  String get action_copy => 'Salin';
+
+  @override
   String get action_signOut => 'Keluar';
 
   @override

@@ -6,7 +6,7 @@ import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/play_billing.dart';
 import 'package:fuzevpn_android/google_auth_controller.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
-import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 
 Widget welcomeUiTestApp(
   WelcomeUiController controller,
@@ -17,7 +17,7 @@ Widget welcomeUiTestApp(
   locale: controller.locale,
   supportedLocales: AppLanguages.supportedLocales,
   localeListResolutionCallback: AppLanguages.resolve,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   theme: dark ? FuzeVpnTheme.dark() : FuzeVpnTheme.light(),
   home: page,
 );

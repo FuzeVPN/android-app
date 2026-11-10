@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">ການເຊື່ອມຕໍ່ VPN</string>
+    <string name="vpn_notification_channel_description">ສະແດງເມື່ອການເຊື່ອມຕໍ່ FuzeVPN ເປີດໃຊ້ງານຢູ່.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">ການເຊື່ອມຕໍ່ %1$s ເປີດໃຊ້ງານຢູ່</string>
+    <string name="vpn_notification_connecting">ກຳລັງເຊື່ອມຕໍ່ %1$s</string>
+    <string name="vpn_notification_disconnecting">ກຳລັງຕັດການເຊື່ອມຕໍ່ %1$s</string>
+    <string name="vpn_notification_interrupted">ການເຊື່ອມຕໍ່ %1$s ຖືກຂັດຂວາງ</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">ພ້ອມແລ້ວ · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">ເຊື່ອມຕໍ່ແລ້ວ · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">ກຳລັງເຊື່ອມຕໍ່ %1$s…</string>
+    <string name="vpn_tile_disconnecting">ກຳລັງຕັດການເຊື່ອມຕໍ່…</string>
+    <string name="vpn_tile_interrupted">%1$s ຖືກຂັດຂວາງ</string>
+    <string name="vpn_tile_setup_required">ເປີດແອັບກ່ອນ</string>
+    <string name="vpn_tile_working">ກຳລັງດຳເນີນການ VPN…</string>
+    <string name="vpn_notification_reconnecting">ກຳລັງເຊື່ອມຕໍ່ໃໝ່… · %1$s</string>
+    <string name="vpn_system_action_required">ຕ້ອງດຳເນີນການໃນການຕັ້ງຄ່າ Android</string>
+    <string name="vpn_tile_reconnecting">ກຳລັງເຊື່ອມຕໍ່ໃໝ່… · %1$s</string>
+    <string name="vpn_notification_waiting_network">ກຳລັງລໍຖ້າເຄືອຂ່າຍ · %1$s</string>
+    <string name="vpn_tile_waiting_network">ກຳລັງລໍຖ້າເຄືອຂ່າຍ · %1$s</string>
+</resources>

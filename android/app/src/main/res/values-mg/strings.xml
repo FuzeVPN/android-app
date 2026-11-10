@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Fifandraisana VPN</string>
+    <string name="vpn_notification_channel_description">Mampiseho rehefa mavitrika ny fifandraisana FuzeVPN.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Fifandraisana %1$s mavitrika</string>
+    <string name="vpn_notification_connecting">Fifandraisana %1$s mandeha</string>
+    <string name="vpn_notification_disconnecting">Miala amin’ny %1$s</string>
+    <string name="vpn_notification_interrupted">Voatapaka ny fifandraisana %1$s</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Vonona · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Nifandray · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Mifandray amin’ny %1$s…</string>
+    <string name="vpn_tile_disconnecting">Miala…</string>
+    <string name="vpn_tile_interrupted">%1$s voatapaka</string>
+    <string name="vpn_tile_setup_required">Sokafy aloha ny fampiharana</string>
+    <string name="vpn_tile_working">Mandeha ny asa VPN…</string>
+    <string name="vpn_notification_reconnecting">Mifandray indray… · %1$s</string>
+    <string name="vpn_system_action_required">Misy hetsika ilaina ao amin’ny fikirana Android</string>
+    <string name="vpn_tile_reconnecting">Mifandray indray… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Miandry ny tambajotra · %1$s</string>
+    <string name="vpn_tile_waiting_network">Miandry ny tambajotra · %1$s</string>
+</resources>

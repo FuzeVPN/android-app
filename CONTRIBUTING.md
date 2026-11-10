@@ -16,7 +16,7 @@ Before opening a pull request:
 4. Run the checks appropriate to the change in
    [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md). State exactly what ran and what
    still needs a real device, Google account or compatible test backend.
-5. For translated text, edit the thirty source packs in
+5. For translated text, edit the seventy source packs in
    `lib/l10n/translations/` and regenerate their outputs. Inspect intentional
    golden-image changes before accepting them.
 6. Preserve upstream licenses and file notices. Record native modifications

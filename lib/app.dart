@@ -13,6 +13,7 @@ import 'features/auth/welcome_page.dart';
 import 'features/home/home_shell.dart';
 import 'l10n/app_copy.dart';
 import 'l10n/app_languages.dart';
+import 'l10n/app_localization_delegates.dart';
 import 'l10n/generated/app_localizations.dart';
 import 'native_vpn_bridge.dart';
 import 'play_billing_bridge.dart';
@@ -163,7 +164,7 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
       locale: _controller.locale,
       supportedLocales: AppLanguages.supportedLocales,
       localeListResolutionCallback: AppLanguages.resolve,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: AppLocalizationDelegates.all,
       theme: FuzeVpnTheme.light(),
       darkTheme: FuzeVpnTheme.dark(),
       themeMode: _controller.themeMode,

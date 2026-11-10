@@ -528,6 +528,12 @@ class AppLocalizationsDa extends AppLocalizations {
   String get action_cancel => 'Annuller';
 
   @override
+  String get action_close => 'Luk';
+
+  @override
+  String get action_copy => 'Kopiér';
+
+  @override
   String get action_signOut => 'Log ud';
 
   @override

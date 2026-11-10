@@ -176,6 +176,8 @@
     "dialog_signOut": "Keluar?",
     "dialog_signOutMessage": "VPN akan dihentikan dan Anda harus masuk kembali. Kunci VPN terenkripsi Anda akan tetap berada di ponsel ini untuk koneksi berikutnya.",
     "action_cancel": "Batal",
+    "action_close": "Tutup",
+    "action_copy": "Salin",
     "action_signOut": "Keluar",
     "notice_close": "Tutup pesan",
     "notice_sessionExpired_title": "Sesi kedaluwarsa",

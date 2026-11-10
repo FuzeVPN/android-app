@@ -9,6 +9,7 @@ import 'package:fuzevpn_android/features/auth/auth_page.dart';
 import 'package:fuzevpn_android/features/auth/welcome_page.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 
@@ -536,7 +537,7 @@ Widget _testApp(VpnAppController controller, Widget home) => MaterialApp(
   locale: controller.locale,
   supportedLocales: AppLanguages.supportedLocales,
   localeListResolutionCallback: AppLanguages.resolve,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   theme: FuzeVpnTheme.light(),
   darkTheme: FuzeVpnTheme.dark(),
   themeMode: controller.themeMode,

@@ -15,6 +15,7 @@ import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/l10n/app_formats.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:intl/intl.dart';
 
@@ -85,7 +86,7 @@ class _InstantWithLocalDay implements DateTime {
 Widget _app(Locale locale, Widget child) => MaterialApp(
   locale: locale,
   supportedLocales: AppLanguages.supportedLocales,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   theme: FuzeVpnTheme.light(),
   home: Scaffold(
     body: SingleChildScrollView(

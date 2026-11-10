@@ -1,0 +1,1036 @@
+{
+  "locale": "et",
+  "arb": {
+    "vpnDisclosure_title": "Kaitse oma ühendust",
+    "vpnDisclosure_body": "FuzeVPN kasutab Androidi VPN-teenust (VpnService), et luua selle seadme ja FuzeVPN-serverite vahel krüpteeritud tunnel.",
+    "vpnDisclosure_dataBody": "Kui VPN on aktiivne, liiguvad sinu rakenduste internetiliiklus, sihtaadressid ja DNS-päringud läbi selle tunneli, et ühendust suunata – ka siis, kui FuzeVPN töötab taustal.",
+    "vpnDisclosure_statusBody": "Rakendus kasutab ühenduse olekut, kestust ja edastatud andmemahtu, et kuvada sinu VPN-ühendust. Ühenduse saad igal ajal peatada.",
+    "vpnDisclosure_privacy": "Privaatsus",
+    "vpnDisclosure_accept": "Nõustu ja jätka",
+    "vpnDisclosure_decline": "Mitte praegu",
+    "accountRestoration_title": "Konto on ajutiselt kättesaamatu",
+    "accountRestoration_message": "Sinu seanss on säilitatud. Konto taastamiseks proovi uuesti. VPN-ühendust saad siin endiselt hallata.",
+    "action_retry": "Proovi uuesti",
+    "session_endingTitle": "Seansi lõpetamine",
+    "session_ending": "Seansi lõpetamine: VPN-i peatamine ja puhastamine…",
+    "session_stopFailed": "VPN-i peatamine pole kinnitatud. Tee enne uuesti sisselogimist uus katse.",
+    "session_cleanupFailed": "VPN on peatatud, kuid seansi eemaldamine pole kinnitatud. Proovi puhastamist uuesti.",
+    "session_retryStop": "Proovi peatamist uuesti",
+    "session_retryCleanup": "Proovi puhastamist uuesti",
+    "@@locale": "et",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN-i turvaline ettevalmistamine…",
+    "nav_connection": "Ühendus",
+    "nav_locations": "Asukohad",
+    "nav_account": "Konto",
+    "nav_devices": "Seadmed",
+    "nav_settings": "Seaded",
+    "action_refresh": "Värskenda",
+    "auth_tab_login": "Logi sisse",
+    "auth_tab_register": "Registreeru",
+    "auth_stepAccount": "Konto",
+    "auth_stepIdentity": "Isikuandmed",
+    "auth_stepAddress": "Aadress ja nõusolekud",
+    "auth_stepProgress": "Samm {current} / {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "Sinu VPN, lihtsaks tehtud.",
+    "auth_keysLocal": "Sinu privaatsed VPN-võtmed jäävad sellesse seadmesse.",
+    "form_email": "E-posti aadress",
+    "form_password": "Parool",
+    "form_showPassword": "Näita parooli",
+    "form_hidePassword": "Peida parool",
+    "form_passwordMin": "8–72 UTF-8 baiti. Mõned märgid kasutavad rohkem kui ühte baiti.",
+    "form_firstName": "Eesnimi",
+    "form_lastName": "Perekonnanimi",
+    "form_phone": "Telefon (+33612345678)",
+    "form_address": "Aadress",
+    "form_address2": "Aadressi 2. rida (valikuline)",
+    "form_postalCode": "Postiindeks",
+    "form_city": "Linn",
+    "form_country": "Riigikood (nt FR)",
+    "action_login": "Logi sisse",
+    "action_createAccount": "Loo konto",
+    "action_createMyAccount": "Loo oma konto",
+    "action_next": "Jätka",
+    "action_previous": "Tagasi",
+    "action_forgotPassword": "Unustasid parooli?",
+    "auth_noAccount": "Kas sul pole veel kontot?",
+    "auth_requiredInformation": "Loo oma konto kolme sammuga.",
+    "auth_termsPrefix": "Nõustun ",
+    "auth_termsLink": "kasutustingimustega",
+    "auth_privacyPrefix": "Nõustun ",
+    "auth_privacyLink": "privaatsuspoliitikaga",
+    "auth_consentRequired": "Konto loomiseks on vaja sinu nõusolekut.",
+    "validation_required": "See väli on kohustuslik.",
+    "validation_email": "Sisesta kehtiv e-posti aadress.",
+    "validation_password": "Parool on liiga lühike: vähemalt 8 UTF-8 baiti.",
+    "validation_passwordTooLong": "Parool on liiga pikk: kuni 72 UTF-8 baiti.",
+    "validation_phone": "Kasuta rahvusvahelist vormingut, näiteks +33612345678.",
+    "validation_country": "Kasuta kahetähelist riigikoodi, näiteks FR.",
+    "passwordReset_title": "Lähtesta parool",
+    "passwordReset_description": "Parooli lähtestamise lingi taotlemiseks sisesta oma konto e-posti aadress.",
+    "passwordReset_send": "Saada link",
+    "connection_title": "Sinu ühendus",
+    "connection_subtitle": "Vali asukoht ja lülita seejärel VPN sisse.",
+    "connection_prepare": "Kas oled valmis ühenduma?",
+    "connection_advancedOptions": "Täpsemad valikud",
+    "connection_location": "Asukoht",
+    "connection_chooseLocation": "Vali asukoht",
+    "connection_protocol": "Protokoll",
+    "connection_connect": "Ühenda",
+    "connection_connecting": "Ühendamine…",
+    "connection_disconnect": "Katkesta ühendus",
+    "connection_disconnecting": "Ühenduse katkestamine",
+    "connection_locationChange": "Asukoha muutmine…",
+    "connection_unavailable": "{protocol} pole saadaval",
+    "connection_activeLocation": "Aktiivne asukoht",
+    "connection_duration": "Kestus",
+    "connection_received": "Saadud",
+    "connection_sent": "Saadetud",
+    "connection_lastHandshake": "Viimane turvaline andmevahetus",
+    "connection_handshakeAgo": "{duration} tagasi",
+    "verification_title": "Kinnita oma e-posti aadress",
+    "verification_message": "Kinnita oma e-posti aadress, et kasutada VPN-i sellel telefonil.",
+    "verification_resend": "Saada e-kiri uuesti",
+    "migration_title": "Asukoha muutmine",
+    "migration_draining": "Asukoha muutmise ettevalmistamine…",
+    "migration_activating": "Uue serveri aktiveerimine…",
+    "migration_ready": "Asukoht on uuendatud.",
+    "migration_blocked": "Asukoha muutmine nõuab serveripoolset sekkumist. Proovi hiljem uuesti või võta ühendust klienditoega.",
+    "migration_progress": "Asukoha muutmise edenemine",
+    "migration_retryDelay": "Kontrollide vaheline viivitus: {seconds} s.",
+    "migration_resume": "Jätka asukoha muutmist",
+    "status_authorizing": "Vaja on luba",
+    "status_authorizingDetail": "VPN-i lubamiseks nõustu Androidi taotlusega.",
+    "status_preparing": "Ettevalmistamine",
+    "status_preparingDetail": "Sinu turvaline ühendus valmistatakse ette.",
+    "status_reconnecting": "Uuesti ühendamine…",
+    "status_reconnectingDetail": "Ühendus katkes. VPN proovib uuesti ühenduda.",
+    "status_connecting": "Ühendamine",
+    "status_connectingDetail": "Ühendatakse VPN-serveriga…",
+    "status_connected": "Ühendatud",
+    "status_connectedDetail": "Sinu VPN-ühendus on aktiivne.",
+    "status_disconnecting": "Ühenduse katkestamine",
+    "status_disconnectingDetail": "Sinu VPN-ühendus peatub.",
+    "status_error": "Ühendus pole saadaval",
+    "status_errorDetail": "VPN-ühendus pole kinnitatud. Proovi uuesti.",
+    "status_idle": "Ühendus katkestatud",
+    "status_idleDetail": "Ühenda VPN, et kaitsta oma ühendust.",
+    "trust_note": "Rakenduse sulgemine ei peata VPN-i. Peatamiseks kasuta nuppu „Katkesta ühendus“.",
+    "locations_none": "Praegu pole ühtegi asukohta saadaval.",
+    "locations_available": "Vali järgmine asukoht.",
+    "locations_selected": "Valitud asukoht",
+    "locations_select": "Vali see asukoht",
+    "locations_lockedTunnel": "Asukoha muutmiseks katkesta VPN-i ühendus.",
+    "locations_lockedMigration": "Oota, kuni asukoha muutmine lõpeb.",
+    "devices_title": "Sinu seadmed",
+    "devices_used": "{count} / {limit} seadet",
+    "devices_refresh": "Värskenda seadmeid",
+    "devices_empty": "Ühtegi VPN-seadet pole veel registreeritud.",
+    "devices_firstConnection": "Sinu telefon lisatakse esimesel ühendamisel.",
+    "devices_thisDevice": "See seade",
+    "devices_added": "Lisatud {date}",
+    "devices_unnamed": "Nimetu seade",
+    "action_remove": "Eemalda",
+    "settings_title": "Seaded",
+    "settings_subtitle": "Sinu eelistused ja konto ühes kohas.",
+    "settings_appearance": "Välimus",
+    "settings_language": "Keel",
+    "settings_languageDescription": "Valitud keelt kasutatakse ka VPN-i teavitustes.",
+    "settings_account": "Konto",
+    "settings_signOut": "Logi välja",
+    "settings_privacy": "Privaatsuspoliitika",
+    "settings_terms": "Kasutustingimused",
+    "settings_security": "Turvalisus ja läbipaistvus",
+    "settings_licenses": "Komponentide litsentsid",
+    "settings_licensesDetail": "Rakenduses kasutatav tarkvara",
+    "settings_licensesLegalese": "Rakenduse ja selle MPL-2.0 komponentide lähtekood: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "VPN jääb tööle ka siis, kui rakendusest lahkud. Peatamiseks kasuta vahekaardil „Ühendus“ nuppu „Katkesta ühendus“.",
+    "theme_system": "Süsteem",
+    "theme_light": "Hele",
+    "theme_dark": "Tume",
+    "language_system": "Telefoni keel",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Kas eemaldada see seade?",
+    "dialog_removeCurrent": "See telefon katkestab VPN-ühenduse ja kaotab juurdepääsu. Selle VPN-ühenduse andmed eemaldatakse pärast serveri kinnitust.",
+    "dialog_removeOther": "VPN-juurdepääs seadmele „{name}“ tühistatakse. Seda ei saa tagasi võtta.",
+    "dialog_signOut": "Kas logida välja?",
+    "dialog_signOutMessage": "VPN peatatakse ja pead uuesti sisse logima. Sinu krüpteeritud VPN-võtmed jäävad järgmiseks ühenduseks sellele telefonile.",
+    "action_cancel": "Tühista",
+    "action_close": "Sule",
+    "action_copy": "Kopeeri",
+    "action_signOut": "Logi välja",
+    "notice_close": "Sulge teade",
+    "notice_sessionExpired_title": "Seanss on aegunud",
+    "notice_sessionExpired_message": "Sinu seanss on aegunud. Logi uuesti sisse.",
+    "notice_connectionFailed_title": "Ühenduse loomine ebaõnnestus",
+    "notice_invalidCredentials_message": "E-posti aadress või parool on vale.",
+    "notice_emailVerification_title": "E-posti aadress tuleb kinnitada",
+    "notice_emailVerification_message": "Kinnita oma e-posti aadress enne VPN-seadme lisamist.",
+    "notice_rateLimited_title": "Liiga palju katseid",
+    "notice_deviceLimit_title": "Seadmete limiit on täis",
+    "notice_deviceLimit_message": "Eemalda enne uue seadme lisamist üks olemasolev seade.",
+    "notice_identityRenewal_title": "VPN-i identiteet tuleb uuendada",
+    "notice_identityRenewal_message": "See identiteet eemaldati. Loo uus kohalik identiteet.",
+    "notice_migrationPending_title": "Asukoha muutmine on pooleli",
+    "notice_migrationPending_message": "Asukoha muutmine on juba pooleli.",
+    "notice_migrationBlocked_title": "Asukoha muutmine on blokeeritud",
+    "notice_migrationBlocked_message": "Asukoha muutmine nõuab serveripoolset sekkumist. Proovi hiljem uuesti või võta ühendust klienditoega.",
+    "notice_targetUnavailable_title": "Server on ajutiselt kättesaamatu",
+    "notice_targetUnavailable_message": "See server on ajutiselt kättesaamatu.",
+    "notice_networkUnavailable_title": "Internetiühendus pole saadaval",
+    "notice_networkUnavailable_message": "Kontrolli oma ühendust ja proovi uuesti.",
+    "notice_permissionDenied_title": "VPN-i luba pole antud",
+    "notice_permissionDenied_message": "Alusta ühendamist uuesti ja nõustu Androidi loataotlusega.",
+    "notice_wireguardTimeout_title": "Server ei vasta",
+    "notice_wireguardTimeout_message": "WireGuard-ühendus võttis liiga kaua aega. Proovi uuesti või vali teine asukoht.",
+    "notice_tlsFailed_title": "Turvaline ühendus lükati tagasi",
+    "notice_tlsFailed_message": "Server ei võtnud OpenVPN-ühendust vastu. Proovi uuesti. Kui probleem jätkub, käivita diagnostika.",
+    "notice_tunRejected_title": "Android lükkas VPN-liidese tagasi",
+    "notice_tunRejected_message": "Android lükkas OpenVPN-i taotletud võrgukonfiguratsiooni tagasi.",
+    "notice_openvpnStart_title": "OpenVPN-i ei õnnestunud käivitada",
+    "notice_openvpnStart_message": "OpenVPN-i mootori käivitamist ei õnnestunud lõpule viia. Proovi uuesti. Kui probleem püsib, võta ühendust klienditoega.",
+    "notice_diagnosticCode": "Diagnostikakood: {code}",
+    "notice_generic_title": "VPN-ühenduse loomine ebaõnnestus",
+    "notice_generic_message": "Tekkis viga. Proovi hiljem uuesti.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Konto loodud} password_reset_sent{Parooli lähtestamise taotlus vastu võetud} verification_email_sent{Kinnituskiri saadetud} location_migration_pending{Asukoha muutmine on pooleli} vpn_sign_in_required{Sisselogimine on vajalik} protocol_unavailable_at_location{Protokoll pole saadaval} vpn_permission_denied{VPN-i luba pole antud} revoked_identity_device_limit{Seadmete limiit on täis} tunnel_start_unexpected{VPN-i ei õnnestunud käivitada} flutter_disconnect_timeout{Ühenduse katkestamine pole kinnitatud} flutter_disconnect_unexpected{Ühenduse katkestamine ebaõnnestus} device_revoked{Seade eemaldatud} revoke_unexpected{Seadet ei õnnestunud eemaldada} identity_renewal_unexpected{Identiteeti ei õnnestunud uuendada} openvpn_renewal_unexpected{OpenVPN-i ei õnnestunud uuendada} location_migration_blocked{Asukoha muutmine blokeeritud} location_migration_slow{Asukoha muutmine on endiselt pooleli} location_migration_conflict{Asukoha muutmine vajab värskendamist} location_migration_verification_failed{Asukoha muutmine pole kinnitatud} location_migration_device_changed{Seade muutus asukoha muutmise ajal} tunnel_stop_failed{Asukoha muutmine pole saadaval} device_clock_ahead{Seadme kell on ees} other{Toiming ebaõnnestus}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Konto loodi, kuid kinnituskirja ei õnnestunud saata. Saada kiri rakenduses uuesti.} password_reset_sent{Taotlus on vastu võetud. Kui sellele aadressile vastab konto, võid saada e-kirja. Kontrolli ka rämpsposti kausta.} verification_email_sent{Uus kinnituskiri on just saadetud.} location_migration_pending{Üleminek asukohta {target} on endiselt ettevalmistamisel. Saad jätkata ilma seadet uuesti loomata.} vpn_sign_in_required{Logi enne VPN-i käivitamist oma kontole sisse.} protocol_unavailable_at_location{See asukoht ei paku valitud protokolli. Värskenda asukohti või vali teine protokoll.} vpn_permission_denied{Android ei andnud VPN-i luba. Alusta ühendamist uuesti ja nõustu süsteemi taotlusega.} revoked_identity_device_limit{Selle seadme VPN-juurdepääs eemaldati ja seadmete limiit on täis. Eemalda mõni seade jaotises Konto → Halda minu seadmeid.} tunnel_start_unexpected{Ootamatu viga katkestas tunneli ettevalmistamise. Kontrolli diagnostikakoodi ja proovi uuesti.} flutter_disconnect_timeout{Android ei kinnitanud õigeaegselt, et VPN peatus. Proovi see uuesti peatada.} flutter_disconnect_unexpected{Ootamatu viga takistas tunneli peatumise kinnitamist.} device_revoked{Seadme VPN-juurdepääs tühistati ja selle kohalikud salaandmed eemaldati.} revoke_unexpected{Seadet ei õnnestunud eemaldada. Värskenda loendit ja proovi uuesti.} identity_renewal_unexpected{Uut VPN-i identiteeti ei õnnestunud luua. Värskenda seadmeid ja proovi uuesti.} openvpn_renewal_unexpected{OpenVPN-i profiili ei õnnestunud uuendada. Proovi uuesti või kontrolli diagnostikakoodi.} location_migration_blocked{Server ei saa seda muudatust praegu lõpule viia. Seade ja selle kohalik identiteet jäeti alles.} location_migration_slow{Server valmistab üleminekut asukohta {target} endiselt ette. Mõne hetke pärast kasuta nuppu „Jätka asukoha muutmist“.} location_migration_conflict{Seadme olek muutus serveris. Värskenda seadmeid ja jätka seejärel asukoha muutmist.} location_migration_verification_failed{Server ei kinnitanud uut asukohta. Eelmine kohalik identiteet jäeti alles.} location_migration_device_changed{Serveri tagastatud seade ei vasta enam seadmele, mida muudetakse. Värskenda seadmeid enne uuesti proovimist.} tunnel_stop_failed{Eelmine tunnel tuleb enne uut ühendust täielikult peatada.} device_clock_ahead{Selle seadme kell näib ees olevat. Sisselogituna püsimiseks lülita sisse automaatne kuupäev ja kellaaeg.} other{Toimingut ei õnnestunud lõpule viia. Proovi uuesti või saada diagnostikakood klienditoele.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Seanss on aegunud} invalid_credentials{Sisselogimine ebaõnnestus} email_verification_required{E-posti aadress tuleb kinnitada} verification_email_cooldown{E-kiri on juba saadetud} rate_limited{Liiga palju katseid} invalid_registration{Andmeid tuleb parandada} email_exists{Konto on juba olemas} invalid_profile{Vigane profiil} invalid_device{Vigane seade} invalid_location{Asukoht pole saadaval} device_limit{Seadmete limiit on täis} device_exists{VPN-i identiteet on juba kasutusel} device_identity_revoked{VPN-i identiteet tuleb uuendada} device_location_locked{Asukoha muutmine vajab värskendamist} location_migration_pending{Asukoha muutmine on pooleli} location_migration_blocked{Asukoha muutmine blokeeritud} target_ca_mismatch{Ühildumatu OpenVPN-server} location_migration_conflict{Asukoha muutmine vajab värskendamist} server_full{Server on täis} capacity_unavailable{Asukoht on ajutiselt kättesaamatu} target_unavailable{Server on ajutiselt kättesaamatu} not_found{Üksust ei leitud} invalid_openvpn_csr{Vigane OpenVPN-i identiteet} openvpn_profile_exists{OpenVPN-i profiil on juba olemas} openvpn_profile_revoked{OpenVPN-i profiil on tühistatud} openvpn_operation_pending{OpenVPN-i toiming on pooleli} openvpn_operation_terminal{OpenVPN-i toiming katkestati} openvpn_address_unavailable{OpenVPN-i aadress pole saadaval} openvpn_profile_conflict{OpenVPN-i konflikt} openvpn_signer_unavailable{OpenVPN pole saadaval} email_delivery_unavailable{E-kirja saatmine pole saadaval} invalid_token{Kehtetu link} network_unavailable{Internetiühendus pole saadaval} invalid_json{Vigane päring} invalid_api_response{Vigane serveri vastus} ipv6_unavailable{IPv6 pole saadaval} invalid_ip_families{Võrgukonfiguratsioon lükati tagasi} other{Teenus pole saadaval}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Sinu seanss on aegunud. Logi uuesti sisse.} invalid_credentials{E-posti aadress või parool on vale.} email_verification_required{Kinnita enne VPN-seadme lisamist oma e-posti aadress.} invalid_registration{Kontrolli nõutud andmeid ja nõusolekuid.} email_exists{Selle e-posti aadressiga on juba konto.} invalid_profile{Kontrolli oma profiili andmeid.} invalid_device{Selle seadme nimi või kohalik identiteet on vigane.} invalid_location{Värskenda asukohtade loendit ja proovi uuesti.} device_limit{Eemalda enne uue seadme lisamist üks olemasolev seade.} device_exists{See VPN-i identiteet on juba seotud teise kontoga.} device_identity_revoked{See identiteet eemaldati. Tuleb luua uus kohalik identiteet.} device_location_locked{Selle seadme asukoht on just muutunud. Rakendus jätkab pooleli oleva muutmisega.} location_migration_pending{Asukoha muutmine on juba pooleli.} location_migration_blocked{Asukoha muutmine nõuab serveripoolset sekkumist. Proovi hiljem uuesti või võta ühendust klienditoega.} target_ca_mismatch{See server ei ühildu veel praeguse OpenVPN-i profiiliga.} location_migration_conflict{Värskenda seadmeid ja proovi asukoha muutmist uuesti.} server_full{Selles asukohas on ühenduste limiit täis. Vali teine asukoht või proovi hiljem uuesti.} capacity_unavailable{Praegu ei saa kinnitada, kas see asukoht on saadaval. Vali teine asukoht või proovi hiljem uuesti.} target_unavailable{See server on ajutiselt kättesaamatu.} not_found{See üksus ei ole enam sinu kontol saadaval.} invalid_openvpn_csr{Loo uus OpenVPN-i identiteet ja proovi uuesti.} openvpn_profile_exists{Selle seadme jaoks on OpenVPN-i profiil juba olemas.} openvpn_profile_revoked{Jätkamiseks uuenda OpenVPN-i profiili.} openvpn_operation_pending{Muudatus on veel rakendumas. Proovi hiljem uuesti.} openvpn_operation_terminal{Loo uus OpenVPN-i identiteet ja proovi uuesti.} openvpn_address_unavailable{Praegu pole ühtegi OpenVPN-i aadressi saadaval.} openvpn_profile_conflict{Profiil on muutunud. Värskenda seadmeid ja proovi uuesti.} openvpn_signer_unavailable{OpenVPN-i teenus on ajutiselt kättesaamatu.} email_delivery_unavailable{E-kirja ei õnnestunud saata. Proovi hiljem uuesti.} invalid_token{See link on kehtetu või aegunud. Taotle uus.} network_unavailable{Kontrolli oma internetiühendust ja proovi uuesti.} invalid_json{Kontrolli sisestatud andmeid ja proovi uuesti.} invalid_api_response{Server saatis ootamatu vastuse. Proovi hiljem uuesti.} ipv6_unavailable{Server ei saa praegu IPv6 aktiveerida. Proovi hiljem uuesti.} invalid_ip_families{Tunneli konfiguratsioon on puudulik või ei vasta lubatud aadressidele. Proovi rakendusest uuesti.} other{Tekkis serveri viga. Proovi hiljem uuesti.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Proovi mõne hetke pärast uuesti.",
+    "notice_retryAfter": "{seconds, plural, one{Proovi {seconds} sekundi pärast uuesti.} other{Proovi {seconds} sekundi pärast uuesti.}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{Proovi {minutes} minuti pärast uuesti.} other{Proovi {minutes} minuti pärast uuesti.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{Proovi {hours} tunni pärast uuesti.} other{Proovi {hours} tunni pärast uuesti.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Süsteemi VPN-i jätkamine pole saadaval} system_vpn_resume_corrupt{Vigane süsteemi VPN-i jätkamine} system_vpn_resume_session_invalid{Vigane VPN-i jätkamise seanss} system_vpn_resume_identity_changed{VPN-i identiteet on muutunud} system_vpn_resume_identity_invalid{Vigane VPN-i jätkamise identiteet} system_vpn_resume_storage_failed{VPN-i jätkamise hoidla pole saadaval} system_vpn_resume_network_timeout{VPN-i jätkamiseks puudub võrk} system_vpn_resume_blocked{VPN-i jätkamine on blokeeritud} system_vpn_resume_failed{VPN-i jätkamine ebaõnnestus} system_vpn_resume_error_invalid{Vigane VPN-i jätkamise viga} wireguard_identity_store_failed{WireGuardi identiteeti ei salvestatud} wireguard_identity_unavailable{WireGuardi identiteet pole saadaval} vpn_host_destroyed{Androidi VPN-i komponent on peatatud} vpn_host_unavailable{Androidi VPN-i komponent pole saadaval} vpn_permission_required{VPN-i luba on vajalik} vpn_permission_denied{VPN-i luba pole antud} vpn_permission_request_failed{Luba ei õnnestunud taotleda} wireguard_foreground_service_unavailable{WireGuardi teenus pole saadaval} wireguard_identity_invalid{Kohalik WireGuardi võti on vigane} wireguard_identity_in_use{WireGuardi identiteet on juba kasutusel} wireguard_configuration_invalid{Vigane WireGuardi konfiguratsioon} wireguard_operation_pending{WireGuardi toiming on veel käimas} wireguard_start_failed{WireGuardi käivitamine lükati tagasi} wireguard_stop_timeout{WireGuardi peatamist ei kinnitatud} wireguard_handshake_timeout{WireGuard ei vastanud} openvpn_connection_timeout{OpenVPN ei vastanud} openvpn_core_unavailable{OpenVPN-i mootor pole saadaval} openvpn_operation_pending{OpenVPN-i seanss on veel aktiivne} openvpn_stop_timeout{OpenVPN-i peatamist ei kinnitatud} openvpn_profile_unavailable{Kohalik OpenVPN-i profiil puudub} openvpn_native_failed{OpenVPN-i natiivne päring katkes} openvpn_key_generation_failed{OpenVPN-i P-256 võtit ei õnnestunud luua} openvpn_csr_generation_failed{OpenVPN-i CSR-i ei õnnestunud luua} openvpn_identity_store_failed{OpenVPN-i identiteeti ei salvestatud} openvpn_identity_clear_failed{OpenVPN-i eemaldamine jäi pooleli} openvpn_identity_in_use{OpenVPN-i identiteet on veel kasutusel} openvpn_tls_verification_required{OpenVPN-i TLS-kontroll puudub} openvpn_cipher_invalid{Vigane OpenVPN-i šiffer} openvpn_profile_rejected{OpenVPN-i profiil lükati tagasi} openvpn_identity_inconsistent{OpenVPN-i identiteet on vastuolus} tls_handshake_failed{OpenVPN-i läbirääkimine lükati tagasi} tls_alert_unknown_ca{OpenVPN-i kliendisertifikaati ei tuvastatud} tls_alert_bad_certificate{OpenVPN-i kliendisertifikaat lükati tagasi} tls_alert_unsupported_certificate{OpenVPN-i sertifikaat pole toetatud} tls_client_certificate_required{OpenVPN-i kliendisertifikaat on vajalik} tls_alert_misc{OpenVPN-i TLS-hoiatus} tls_signature_algorithm_rejected{OpenVPN-i allkirjastusalgoritm pole toetatud} tls_handshake_rejected{OpenVPN-i TLS-läbirääkimine lükati tagasi} tls_version_rejected{OpenVPN-i TLS-versioon ei ühildu} tls_certificate_expired{TLS-sertifikaat on aegunud} tls_certificate_revoked{TLS-sertifikaat on tühistatud} transport_failed{OpenVPN-i server pole kättesaadav} tun_configuration_rejected{OpenVPN-liidest ei õnnestunud luua} tun_setup_failed{OpenVPN-i TUN-i seadistamine ebaõnnestus} tun_interface_create_failed{OpenVPN-liidese loomine ebaõnnestus} tun_interface_disabled{OpenVPN-liides on keelatud} tun_halted{OpenVPN-liides katkes} tun_already_established{OpenVPN-liides on juba avatud} tun_addresses_missing{OpenVPN-i aadress puudub} tun_routes_missing{OpenVPN-i marsruudid puuduvad} tun_dns_missing{OpenVPN-i DNS puudub} tun_permission_revoked{VPN-i luba tühistati} tun_establish_returned_null{Android lükkas VPN-liidese tagasi} openvpn_service_start_failed{OpenVPN-i teenus pole saadaval} openvpn_operation_timeout{OpenVPN-i päring aegus} openvpn_start_failed{OpenVPN-i käivitamine lükati tagasi} openvpn_connection_failed{OpenVPN-i ühendus katkes} openvpn_core_status_error{OpenVPN Core lõppes veaga} openvpn_stopped_before_connected{OpenVPN peatus enne ühenduse loomist} openvpn_auth_failed{OpenVPN-i autentimine lükati tagasi} openvpn_client_setup_failed{OpenVPN-i kliendi seadistamine ebaõnnestus} openvpn_client_halted{OpenVPN-i klient katkes} openvpn_client_restart{OpenVPN-i taaskäivitamist taotleti} openvpn_inactive_timeout{OpenVPN on liiga kaua passiivne} openvpn_session_expired{OpenVPN-i seanss aegus} openvpn_credentials_required{OpenVPN-i autentimine pole toetatud} openvpn_proxy_failed{OpenVPN-i puhverserveri tõrge} openvpn_compression_failed{OpenVPN-i tihendus lükati tagasi} openvpn_ntlm_crypto_unavailable{OpenVPN-i NTLM-krüpteerimine pole saadaval} openvpn_feature_unsupported{OpenVPN-i funktsioon pole toetatud} network_unavailable{Internetiühendus pole saadaval} network_lost{Võrk pole saadaval} certificate_validation_failed{Serveri sertifikaat lükati tagasi} openvpn_certificate_expired{OpenVPN-i sertifikaat on aegunud} tunnel_active_for_another_account{Teise konto tunnel on veel aktiivne} tunnel_already_active{Natiivne tunnel on juba aktiivne} tunnel_stop_timeout{{protocol}: peatamine pole kinnitatud} tunnel_disconnected{{protocol} katkes} native_bridge_unavailable{Androidi sild pole saadaval} native_operation_failed{Androidi toiming katkes} invalid_arguments{VPN-i parameetrid on puudulikud} invalid_account_id{Vigane VPN-i konto} invalid_device_id{Vigane seadme identifikaator} storage_key_not_allowed{Hoidla võti lükati tagasi} secure_storage_read_failed{Turvalisest hoidlast lugemine ebaõnnestus} secure_storage_write_failed{Turvalisse hoidlasse kirjutamine ebaõnnestus} key_generation_failed{WireGuardi võtme loomine ebaõnnestus} csr_generation_failed{OpenVPN-i CSR-i ei õnnestunud luua} openvpn_recovery_exhausted{OpenVPN-i taastamine on juba kasutatud} openvpn_recovery_failed{OpenVPN-i taastamine ebaõnnestus} openvpn_renewal_required{OpenVPN-i sertifikaadi uuendamine on vajalik} other{Liigitamata natiivne VPN-i viga}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ei leia jätkatavat VPN-i seanssi. Loo rakenduses uus ühendus.} system_vpn_resume_corrupt{Salvestatud VPN-i jätkamise andmed on vigased ja neid ei kasutata. Loo uus ühendus.} system_vpn_resume_session_invalid{Salvestatud seanss ei saa enam VPN-i jätkata. Logi rakenduses uuesti sisse.} system_vpn_resume_identity_changed{Kohalik VPN-i identiteet on muutunud. Jätkamine peatati; loo uus ühendus.} system_vpn_resume_identity_invalid{Jätkamiseks kasutatav identiteet on vigane. Loo uus ühendus.} system_vpn_resume_storage_failed{Android ei saanud krüpteeritud jätkamisandmeid lugeda ega uuendada. Loo uus ühendus.} system_vpn_resume_network_timeout{Android ei leidnud VPN-i jätkamiseks õigeaegselt võrku. Proovi uuesti, kui võrk on saadaval.} system_vpn_resume_blocked{VPN-i jätkamine on blokeeritud. Kontrolli Androidi seadeid ja loo seejärel uus ühendus.} system_vpn_resume_failed{Androidi VPN-i jätkamine ebaõnnestus. Loo rakenduses uus ühendus.} system_vpn_resume_error_invalid{Android tagastas kasutuskõlbmatu jätkamisvea. Loo uus ühendus.} wireguard_identity_store_failed{Android ei saanud selle konto krüpteeritud WireGuardi identiteeti salvestada.} wireguard_identity_unavailable{Selle ühenduse jaoks pole kasutatavat WireGuardi identiteeti saadaval.} vpn_host_destroyed{VPN-i käitav Androidi komponent peatati. Loo uus ühendus.} vpn_host_unavailable{Android ei saa luua VPN-i käitavat komponenti. Kontrolli VPN-i seadeid ja proovi uuesti.} openvpn_renewal_required{Sertifikaat nõuab enne ühendamist toimingut rakenduses.} openvpn_recovery_failed{Automaatne taastamine ebaõnnestus. Loo rakenduses uus ühendus.} openvpn_recovery_exhausted{Automaatset taastamist on juba kasutatud. Loo rakenduses uus ühendus.} vpn_permission_required{Android nõuab enne tunneli käivitamist uut VPN-i luba.} vpn_permission_denied{Jätkamiseks anna Androidi taotluses FuzeVPN-ile luba.} vpn_permission_request_failed{Android ei saanud avada VPN-i loa ekraani.} wireguard_foreground_service_unavailable{Android ei saanud WireGuardi teenust esiplaanil hoida.} wireguard_identity_invalid{Selle konto krüpteeritud WireGuardi võti on loetamatu või vigane.} wireguard_identity_in_use{Teine toiming kasutab veel selle konto WireGuardi võtit.} wireguard_configuration_invalid{Saadud WireGuardi aadress, DNS, serveri võti või marsruudid on vigased.} wireguard_operation_pending{Eelmine WireGuardi toiming pole veel oma natiivset teenust vabastanud.} wireguard_start_failed{WireGuardi mootor lükkas konfiguratsiooni aktiveerimise tagasi.} wireguard_stop_timeout{WireGuardi teenus ei kinnitanud VPN-liidese vabastamist ettenähtud aja jooksul.} wireguard_handshake_timeout{Tunnel ei kinnitanud serveriga käepigistust õigeaegselt.} openvpn_connection_timeout{OpenVPN ei kinnitanud ühendust serveriga õigeaegselt.} openvpn_core_unavailable{See rakenduse versioon ei sisalda kasutatavat OpenVPN-i mootorit.} openvpn_operation_pending{Natiivne mootor hoiab veel eelmist OpenVPN-i seanssi ega luba luua teist.} openvpn_stop_timeout{OpenVPN Core ei kinnitanud ettenähtud aja jooksul, et selle natiivne seanss peatati ja hävitati.} openvpn_profile_unavailable{Selle ühenduse jaoks pole võimalik lugeda kontrollitud OpenVPN-i profiili.} openvpn_native_failed{Rakenduse viga katkestas OpenVPN-i. Proovi ühendust uuesti luua. Kui probleem jätkub, käivita diagnostika.} openvpn_key_generation_failed{Android Keystore ei saanud luua ega lugeda eksportimatut P-256 privaatvõtit.} openvpn_csr_generation_failed{Android Keystore’i võti ei saanud OpenVPN-i sertifikaaditaotlust allkirjastada.} openvpn_identity_store_failed{OpenVPN-i sertifikaati või profiili ei õnnestunud krüpteeritult salvestada.} openvpn_identity_clear_failed{Android ei saanud selle konto kogu kohalikku OpenVPN-i identiteeti eemaldada.} openvpn_identity_in_use{Natiivne OpenVPN-i seanss kasutab veel selle seadme võtit või sertifikaati.} openvpn_tls_verification_required{Profiil ei nõua selgesõnaliselt serveri sertifikaadi kontrollimist.} openvpn_cipher_invalid{Server pakkus krüpteerimisalgoritmi, mida lubatud loendis pole.} openvpn_profile_rejected{Serverist saadud profiil ei ühildu. Loo see seade uuesti ja proovi siis uuesti.} openvpn_identity_inconsistent{Sertifikaat ei vasta selle telefoni turvalisele identiteedile. Ühtegi kohalikku profiili ei asendatud.} tls_handshake_failed{Server lükkas TLS-läbirääkimise tagasi. Kui probleem püsib, loo profiil uuesti.} tls_alert_unknown_ca{Server ei tunne selle seadme sertifikaadi väljaandjat ära. OpenVPN-i server tuleb üle kontrollida.} tls_alert_bad_certificate{Server lükkas selle seadme sertifikaadi tagasi. Enne uut katset loo seade uuesti.} tls_alert_unsupported_certificate{Server ei toeta Androidi kasutatavat turvalist sertifikaaditüüpi.} tls_client_certificate_required{Server nõuab kliendisertifikaati, kuid OpenVPN Core ei saanud seda esitada.} tls_alert_misc{Server tagastas TLS-hoiatuse, mis ei kuulu sertifikaadi ega versiooni kategooriasse.} tls_signature_algorithm_rejected{Server lükkas Android Keystore’i võtme ECDSA P-256 algoritmi tagasi.} tls_handshake_rejected{Server katkestas TLS-läbirääkimise enne ühenduse loomist.} tls_version_rejected{Klient ja server ei leidnud ühist TLS-versiooni.} tls_certificate_expired{Ühenduse ajal esitatud sertifikaat on aegunud.} tls_certificate_revoked{Ühenduse ajal esitatud sertifikaat on tühistatud.} transport_failed{OpenVPN-i server ei vasta praeguses võrgus. Proovi mõne hetke pärast uuesti.} tun_configuration_rejected{Android lükkas OpenVPN-i taotletud võrgukonfiguratsiooni tagasi.} tun_setup_failed{OpenVPN Core lükkas võrguplaani tagasi enne Androidi liidese loomist.} tun_interface_create_failed{OpenVPN Core ei saanud Android VpnService’ilt TUN-liidest kätte.} tun_interface_disabled{Android või OpenVPN Core keelas ühenduse ajal TUN-liidese.} tun_halted{OpenVPN Core sai taotluse TUN-liidese peatamiseks.} tun_already_established{OpenVPN taotles samas ühenduses teist liidest. Tunnel peatati turvalisuse huvides.} tun_addresses_missing{Server ei esitanud kasutatavat tunneli aadressi.} tun_routes_missing{Server ei esitanud kasutatavaid tunneli marsruute.} tun_dns_missing{Server ei esitanud kasutatavat DNS-serverit.} tun_permission_revoked{Android tühistas ühenduse ajal VPN-i loa.} tun_establish_returned_null{Android ei loonud liidest, tavaliselt seetõttu, et mõni teine VPN on veel aktiivne.} openvpn_service_start_failed{Android ei saanud OpenVPN-i esiplaaniteenust käivitada.} openvpn_operation_timeout{JNI-päring OpenVPN Core’ile ületas maksimaalse kestuse.} openvpn_start_failed{Androidi teenus on valmis, kuid OpenVPN Core ei võtnud profiili käivitamist vastu.} openvpn_connection_failed{OpenVPN Core peatus enne CONNECTED-sündmuse väljastamist.} openvpn_core_status_error{Natiivne OpenVPN-i tsükkel lõppes veaga, ilma täpsema lõppsündmuseta.} openvpn_stopped_before_connected{Natiivne OpenVPN-i tsükkel peatus enne olekut CONNECTED, ilma selge Core’i veata.} openvpn_auth_failed{OpenVPN-i server lükkas profiili autentimise tagasi.} openvpn_client_setup_failed{OpenVPN Core ei suutnud klienti enne võrguühendust lähtestada.} openvpn_client_halted{OpenVPN Core sai kliendi lõpliku peatamise käsu.} openvpn_client_restart{OpenVPN Core palus oma edastusseansi taaskäivitamist.} openvpn_inactive_timeout{OpenVPN Core sulges seansi pärast tegevusetuse aegumist.} openvpn_session_expired{Server teatas, et OpenVPN-i seanss on aegunud.} openvpn_credentials_required{Server või puhverserver nõuab interaktiivseid sisselogimisandmeid, mida see sertifikaadiprofiil ei sisalda.} openvpn_proxy_failed{OpenVPN Core teatas seadistatud puhverserveri või relee tõrkest.} openvpn_compression_failed{OpenVPN Core lükkas profiili või serveri teatatud tihendusrežiimi tagasi.} openvpn_ntlm_crypto_unavailable{Profiil nõuab NTLM-krüpteerimist, mis pole selles versioonis saadaval.} openvpn_feature_unsupported{Profiil või server nõuab funktsiooni, mida selles Androidi kliendis pole.} network_unavailable{Kasutatavat füüsilist võrku pole saadaval.} network_lost{Tunnel peatati pärast võrgu kadumist.} certificate_validation_failed{OpenVPN-i serveri identiteeti ei õnnestunud kontrollida.} openvpn_certificate_expired{Uuenda enne uuesti ühendamist OpenVPN-i profiili.} tunnel_active_for_another_account{Enne selle ühenduse loomist tuleb peatada teise konto tunnel.} tunnel_already_active{Android teatab, et eelmine VPN-i seanss kasutab liidest veel.} tunnel_stop_timeout{{protocol}-mootor ei kinnitanud ettenähtud aja jooksul VPN-liidese vabastamist.} tunnel_disconnected{Natiivne mootor teatas, et tunnel lõppes pärast käivitamist ootamatult.} native_bridge_unavailable{Rakendus ei pääse Androidi VPN-teenusele ligi. Sulge rakendus ja ava see uuesti, seejärel proovi veel kord.} native_operation_failed{Rakenduse viga katkestas VPN-i toimingu. Proovi uuesti. Kui probleem jätkub, käivita diagnostika.} invalid_arguments{Selle VPN-i toimingu jaoks vajalik teave on puudulik. Proovi uuesti. Kui probleem jätkub, käivita diagnostika.} invalid_account_id{Natiivne toiming ei ole seotud kehtiva konto identifikaatoriga.} invalid_device_id{Natiivsele mootorile saadetud seadme identifikaator puudub või on vigane.} storage_key_not_allowed{Androidi sild blokeeris võtme, mis ei kuulu lubatud salvestusvõtmete loendisse.} secure_storage_read_failed{Android Keystore ei saanud selle konto kohalikke andmeid dekrüpteerida.} secure_storage_write_failed{Android Keystore ei saanud kohalikke andmeid krüpteerida ega salvestada.} key_generation_failed{Android ei saanud turvalises hoidlas WireGuardi võtit luua ega lugeda.} csr_generation_failed{Android Keystore ei saanud luua ega allkirjastada OpenVPN-i P-256 CSR-i.} other{Dokumenteerimata natiivne koodiharu ebaõnnestus. Saada allpool kuvatud diagnostikakood klienditoele.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Loataotlus on juba avatud",
+    "notice_permissionRequestInProgress_message": "Androidi VPN-i loataotlus on juba kuvatud. Lõpeta see enne uuesti proovimist.",
+    "notice_permissionRequestInterrupted_title": "VPN-i loataotlus katkestati",
+    "notice_permissionRequestInterrupted_message": "VPN-i loa ekraan suleti enne, kui rakendus vastuse sai.",
+    "notice_openvpnProofMissing_title": "OpenVPN-i ühendust ei kinnitatud",
+    "notice_openvpnProofMissing_message": "OpenVPN-i ühendust ei õnnestunud kinnitada. Turvalisuse huvides see peatati. Proovi uuesti.",
+    "openvpnCleanup_title": "OpenVPN-i profiil tühistatud",
+    "openvpnCleanup_working": "Tühistatud OpenVPN-i profiili peatamine ja eemaldamine…",
+    "openvpnCleanup_stopFailed": "OpenVPN-i peatamine pole kinnitatud. Enne uue profiili loomist proovi uuesti.",
+    "openvpnCleanup_cleanupFailed": "Tühistatud OpenVPN-i profiili ei õnnestunud täielikult eemaldada. Proovi puhastamist uuesti.",
+    "openvpnCleanup_complete": "Tühistatud OpenVPN-i profiil on eemaldatud. Uue loomiseks puuduta nuppu „Ühenda“.",
+    "network_title": "Võrgukonfiguratsioon",
+    "network_ipv4Fallback": "IPv6 on ajutiselt kättesaamatu. Ettevalmistamist jätkatakse IPv4-ga.",
+    "network_rejectedTitle": "Võrgukonfiguratsioon lükati tagasi",
+    "network_rejectedMessage": "Tunneli konfiguratsioon on puudulik või ei vasta lubatud aadressidele. Proovi rakendusest uuesti.",
+    "network_unreadableTitle": "Kohalik konfiguratsioon on loetamatu",
+    "network_unreadableMessage": "Salvestatud OpenVPN-i võrgukonfiguratsiooni ei saa kasutada. Värskendamiseks ühenda rakendusest uuesti.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Võrgukaitse",
+    "protection_subtitle": "Blokeeri otsene juurdepääs internetile, kui VPN katkeb.",
+    "protection_active": "Süsteemikaitse on aktiivne",
+    "protection_alwaysOnOnly": "Alati sees VPN on lubatud; lülita sisse blokeerimine ilma VPN-ita",
+    "protection_inactive": "Süsteemikaitse pole aktiivne",
+    "protection_unknown": "Kontrolli süsteemikaitset",
+    "protection_openSettings": "Ava Androidi seaded",
+    "protection_dialogTitle": "Võrgukaitse seadistamine",
+    "protection_dialogMessage": "Android haldab alati sees VPN-i ja ühenduste blokeerimist ilma VPN-ita. Kontrolli, et valitud oleks FuzeVPN, ja luba blokeerimine süsteemiseadetes.",
+    "protection_dialogOpen": "Ava seaded",
+    "session_systemProtectionNote": "Kui Android blokeerib endiselt liiklust ilma VPN-ita, ava süsteemiseaded, et seda kaitset kontrollida või muuta.",
+    "diagnostics_title": "Diagnostika",
+    "diagnostics_settingsTitle": "Rakenduse diagnostika",
+    "diagnostics_automaticTitle": "Saada olulised vead",
+    "diagnostics_automaticDescription": "Jaga väikest tehnilist aruannet, kui ilmneb oluline viga.",
+    "diagnostics_privacy": "Saadetud aruanded seostatakse sisselogitud kontoga ja neid hoitakse 30 päeva. Need ei sisalda sirvimisajalugu, paroole ega VPN-i võtmeid.",
+    "diagnostics_manualOpen": "Käivita diagnostika",
+    "diagnostics_localDescription": "Koosta rakenduse ja VPN-i oleku aruanne. Sinu ühendus jääb muutmata.",
+    "diagnostics_sendReport": "Saada aruanne",
+    "diagnostics_sendHint": "Jäta see märkeruut märkimata, et aruanne jääks sellesse seadmesse.",
+    "diagnostics_signedOut": "Aruande saatmiseks logi oma kontole sisse.",
+    "diagnostics_localLifetime": "Et aruanne jääks alles ka pärast rakenduse sulgemist, salvesta see oma telefoni.",
+    "diagnostics_run": "Käivita diagnostika",
+    "diagnostics_rerun": "Käivita diagnostika uuesti",
+    "diagnostics_running": "Kontrollimine…",
+    "diagnostics_sending": "Aruande saatmine…",
+    "diagnostics_prepared": "Aruanne on selles seadmes valmis",
+    "diagnostics_queued": "Aruanne ootab saatmist",
+    "diagnostics_sent": "Aruanne on vastu võetud",
+    "diagnostics_failed": "Saatmine ebaõnnestus. Kohalik aruanne on endiselt saadaval.",
+    "diagnostics_preparationFailed": "Diagnostikaaruannet ei õnnestunud koostada. Proovi uuesti.",
+    "diagnostics_authenticationRequired": "Aruande saatmiseks logi uuesti sisse.",
+    "diagnostics_retry": "Proovi saatmist uuesti",
+    "diagnostics_export": "Salvesta aruanne",
+    "diagnostics_exportFailed": "Eksportimine ebaõnnestus. Proovi uuesti kohalikust aruandest.",
+    "diagnostics_preferenceFailed": "Seda seadistust ei õnnestunud salvestada. Proovi uuesti.",
+    "diagnostics_receipt": "Viide: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Vastu võetud {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Hoitakse kuni {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "See aruanne oli juba vastu võetud.",
+    "diagnostics_preview": "Aruande eelvaade",
+    "diagnostics_eventCount": "{count, plural, =0{Tehnilisi sündmusi pole lisatud} =1{Lisatud on 1 tehniline sündmus} other{Lisatud on {count} tehnilist sündmust}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Tehnilised üksikasjad",
+    "diagnostics_empty": "Diagnostikaaruannet pole veel koostatud.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Tunneli olek} handshake{Ühenduse kinnitamine} certificate{VPN-i sertifikaat} kill_switch{Androidi kaitse} connectivity{Saadaolev võrk} api_reachability{Juurdepääs teenusele} secure_storage{Turvaline hoidla} other{Kohalik kontroll}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Kontrollitud} failed{Vajab tähelepanu} skipped{Pole testitud – aktiivset kontrolli ei tehtud} unknown{Teave pole saadaval} other{Teave pole saadaval}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Tere tulemast FuzeVPN-i",
+    "connection_changeLocation": "Muuda asukohta",
+    "connection_details": "Ühenduse üksikasjad",
+    "locations_searchLabel": "Otsi linna või riiki",
+    "locations_clearSearch": "Tühjenda otsing",
+    "locations_filterAll": "Kõik",
+    "locations_filterFavorites": "Lemmikud",
+    "locations_results": "{count, plural, one{{count} asukoht} other{{count} asukohta}}",
+    "locations_noResults": "Asukohti ei leitud",
+    "locations_noResultsHint": "Proovi teist linna või riiki.",
+    "locations_noFavorites": "Sinu lemmikud käeulatuses",
+    "locations_noFavoritesHint": "Asukoha siia salvestamiseks puuduta selle kõrval olevat tärni.",
+    "locations_showAll": "Vaata kõiki asukohti",
+    "locations_addFavorite": "Lisa {name} lemmikute hulka",
+    "locations_removeFavorite": "Eemalda {name} lemmikute hulgast",
+    "locations_favoriteSaveFailed": "Lemmikut ei õnnestunud salvestada. Proovi uuesti.",
+    "locations_emptyTitle": "Asukohti pole saadaval",
+    "locations_emptyHint": "Värskenda loendit ja proovi uuesti.",
+    "devices_manage": "Halda minu seadmeid",
+    "settings_personalization": "Isikupärastamine",
+    "settings_safety": "Kaitse",
+    "settings_help": "Vajad abi?",
+    "settings_about": "Teave FuzeVPN-i kohta",
+    "diagnostics_heading": "Ühendusprobleemi mõistmine",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Saadaval} pending{Ettevalmistamine} revoked{Eemaldatud} expired{Aegunud} other{Olek pole saadaval}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Eelistust ei salvestatud",
+    "notice_preferenceSave_message": "Sinu valik on praegu rakendatud, kuid seda ei õnnestunud salvestada. Proovi uuesti, et see jääks alles ka pärast rakenduse sulgemist.",
+    "connection_androidDisconnectHint": "Kui Android hoiab VPN-i aktiivsena, lülita avanevates seadetes välja „Alati sees VPN“.",
+    "protection_learnMore": "Lisateave Androidi kaitse kohta",
+    "protection_guideWhy": "See kaitse takistab rakendustel internetti otse kasutamast, kui VPN-ühendus katkeb. Seda seadistatakse Androidis.",
+    "protection_guideAlwaysOnTitle": "Alati sees VPN",
+    "protection_guideAlwaysOn": "Android hoiab VPN-teenuse töös ja saab selle pärast telefoni taaskäivitamist uuesti käivitada.",
+    "protection_guideBlockTitle": "Blokeeri ühendused ilma VPN-ita",
+    "protection_guideBlock": "See seadistus takistab andmeliiklusel VPN-ist mööda minna, ka ühenduse katkemise ajal.",
+    "protection_guideWarning": "Kui blokeerimine on sisse lülitatud, pole internet kättesaadav, kuni VPN on ühendatud.",
+    "protection_guideStepsTitle": "Lülita kaitse sisse",
+    "protection_guideStep1": "Ava Androidi VPN-i seaded allolevat nuppu puudutades.",
+    "protection_guideStep2": "Ava valikud FuzeVPN-i kõrval oleva hammasrattaikooni abil.",
+    "protection_guideStep3": "Lülita sisse „Alati sees VPN“ ning seejärel „Blokeeri ühendused ilma VPN-ita“, kui need valikud on saadaval.",
+    "protection_guideManufacturers": "Nimetused erinevad telefoniti. Vajadusel otsi seadetest „VPN“, sageli jaotisest „Võrk ja internet“.",
+    "protection_guideDisableTitle": "Lülita see kaitse välja",
+    "protection_guideDisable": "Lülita samades seadetes blokeerimine ilma VPN-ita välja, et saaksid internetti kasutada ka ilma VPN-ita. Kui sa ei soovi enam, et Android VPN-i uuesti käivitaks, lülita välja ka „Alati sees VPN“.",
+    "protection_guideManual": "Need seaded valid sa ise Androidis. FuzeVPN ei muuda neid sinu eest.",
+    "locations_changeTitle": "Kas muuta asukohta?",
+    "locations_changeActive": "VPN katkestab ühenduse ja proovib seejärel ühenduda asukohaga {name}.",
+    "locations_changeIdle": "VPN proovib ühenduda asukohaga {name}.",
+    "locations_confirmChange": "Muuda ja ühenda",
+    "locations_changeBusy": "Muutmine on pooleli. Oota enne teise asukoha valimist.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Automaatne valik",
+    "locations_cities": "Linnad",
+    "locations_servers": "Serverid",
+    "locations_viewCities": "Vaata linnu riigis {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Vaata servereid riigis {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} riik} other{{count} riiki}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} linn} other{{count} linna}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} server} other{{count} serverit}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Kõik riigid",
+    "locations_backToCountries": "Tagasi riikide juurde",
+    "locations_backToCities": "Tagasi linnade juurde riigis {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Vali {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Vali {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Ühilduvat serverit pole saadaval.",
+    "externalLink_failed": "Linki ei õnnestunud avada. Saad selle kopeerida ja avada brauseris.",
+    "externalLink_copy": "Kopeeri link",
+    "externalLink_copied": "Link kopeeritud",
+    "externalLink_copyFailed": "Linki ei õnnestunud kopeerida. Vali allolev aadress.",
+    "settings_deleteAccount": "Kustuta minu konto",
+    "settings_deleteAccountDetail": "Vaata konto kustutamise taotlemise juhiseid",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Vali oma VPN-i tellimus.",
+    "billing_subscribe": "Telli",
+    "billing_choosePlan": "Jätkamiseks vali pakett.",
+    "billing_monthly": "Igakuine",
+    "billing_yearly": "Iga-aastane",
+    "billing_continue": "Jätka Google Play kaudu",
+    "billing_restore": "Taasta ostud",
+    "billing_manage": "Halda tellimust",
+    "billing_deleteAccountWarning": "Kui sul on Google Play tellimus, ei tühista FuzeVPN-i konto kustutamine selle automaatset uuendamist. Halda või tühista uuendamine eraldi Google Play kaudu.",
+    "billing_deleteAccountContinue": "Jätka konto kustutamise taotluse juurde",
+    "billing_refresh": "Värskenda juurdepääsu",
+    "billing_loadingPlans": "Pakettide laadimine…",
+    "billing_unavailable": "Praegu pole ühtegi paketti saadaval. Proovi hiljem uuesti.",
+    "billing_comingSoon": "Tellimused on peagi saadaval.",
+    "billing_priceDisclosure": "Hinna esitab Google Play. Lõplik summa ja kehtivad maksud kinnitatakse enne, kui sa ostu kinnitad.",
+    "billing_renewalMonthly": "Uueneb automaatselt iga kuu, kui seda ei tühistata. Saad tellimuse igal ajal tühistada Google Play tellimuste jaotises.",
+    "billing_renewalYearly": "Uueneb automaatselt igal aastal, kui seda ei tühistata. Saad tellimuse igal ajal tühistada Google Play tellimuste jaotises.",
+    "billing_active": "Sinu Premium-juurdepääs on aktiivne",
+    "billing_accessUntil": "Juurdepääs kuni {date}.",
+    "billing_webManaged": "Sinu tellimust hallatakse FuzeVPN-i veebisaidil.",
+    "billing_playManaged": "Sinu tellimust hallatakse Google Play kaudu.",
+    "billing_playOnHold": "Sinu Google Play tellimus on peatatud või ootab makset. Ava „Halda tellimust“, et probleem Google Play kaudu lahendada.",
+    "billing_playReceiptUnlinked": "Sellel Google Play kontol on juba Fuze Premium tellimus, mis ei ole selle FuzeVPN-i konto jaoks aktiivne. Ava „Halda tellimust“, et seda Google Play kaudu üle vaadata.",
+    "billing_inactive": "Aktiivset tellimust pole.",
+    "billing_checkingAccess": "Juurdepääsu kontrollimine…",
+    "billing_restoring": "Ostude taastamine…",
+    "billing_pending": "Makse on ootel. Sinu juurdepääs aktiveeritakse pärast kinnitamist.",
+    "billing_cancelled": "Ost tühistati. Uut tellimust ei aktiveeritud.",
+    "billing_verifying": "Ostu kontrollimine…",
+    "billing_success": "Tellimus on aktiveeritud. Sinu Premium-juurdepääs on valmis.",
+    "billing_restored": "Sinu ostud on taastatud.",
+    "billing_restoreEmpty": "Selle Google Play konto jaoks pole taastamiseks ühtegi ostu.",
+    "billing_catalogError": "Pakettide laadimine ebaõnnestus. Proovi uuesti.",
+    "billing_purchaseError": "Ostu alustamine ebaõnnestus. Proovi uuesti.",
+    "billing_verificationError": "Ostu kontrollimine pole ajutiselt saadaval. Uuesti proovimiseks taasta ostud.",
+    "billing_restoreError": "Ostude taastamine ebaõnnestus. Proovi uuesti.",
+    "billing_managementError": "Tellimuse haldamise avamine ebaõnnestus. Proovi uuesti.",
+    "billing_storeUnavailable": "Google Play pole selles seadmes saadaval.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "Sinu VPN, lihtsaks tehtud.",
+    "welcome_description": "Kaitse oma ühendust. Hoia oma privaatsus enda kontrolli all.",
+    "welcome_start": "Alusta",
+    "welcome_alreadyPurchased": "Kas oled juba ostnud?",
+    "welcome_noAccountRequired": "Alustamiseks pole kontot vaja.",
+    "guest_accountTitle": "Konto pole seotud",
+    "guest_accountDescription": "Taasta oma ostud sama Google Play kontoga, et kasutada tellimust teises seadmes.",
+    "guest_existingSubscriberSignIn": "Juba tellija? Logi sisse",
+    "guest_claimTitle": "Võta FuzeVPN endaga kaasa",
+    "guest_claimDescription": "Loo konto, et kasutada oma tellimust ka teistes seadmetes. See samm on valikuline.",
+    "guest_skip": "Hiljem",
+    "guest_activationTitle": "Fuze Premium on aktiivne",
+    "guest_activationDescription": "Sinu tellimus on valmis. Kasuta oma VPN-i ja loo konto siis, kui soovid.",
+    "guest_useVpn": "Kasuta oma VPN-i",
+    "guest_loginRequired": "See ost on juba seotud FuzeVPN-i kontoga. Tellimuse kasutamiseks logi sellele kontole sisse.",
+    "guest_signOutWarning": "Tellimuse saad taastada, kui taastad ostud sama Google Play kontoga.",
+    "guest_profileUnavailable": "Sinu konto on juba seotud. Logi sisse, et oma andmeid vaadata ja hallata.",
+    "billing_acceptance": "Jätkates nõustud kasutustingimuste ja privaatsuspoliitikaga.",
+    "guest_verifyEmailReminder": "Konto turvamiseks kinnita oma e-posti aadress. VPN-i saad jätkuvalt kasutada.",
+    "guest_serviceUnavailable": "Teenus on ajutiselt kättesaamatu. Proovi mõne hetke pärast uuesti.",
+    "guest_restoreError": "Sinu oste ei õnnestunud taastada. Proovi uuesti Google Play kontoga, millega ostu tegid.",
+    "guest_claimSuccess": "Sinu konto on loodud. Sinu tellimus ja VPN-i juurdepääs on säilinud.",
+    "guest_emailExists": "See e-posti aadress on juba kasutusel. Vali teine aadress või logi sisse oma olemasolevale kontole. Sinu ost jääb kättesaadavaks Google Play kaudu.",
+    "guest_claimError": "Kontot ei õnnestunud luua. Saad VPN-i edasi kasutada ja hiljem uuesti proovida.",
+    "guest_secureStorageError": "Seanssi ei õnnestunud selles seadmes turvata. Proovi uuesti.",
+    "guest_premiumRequired": "Vali VPN-i aktiveerimiseks tellimus.",
+    "welcome_viewPlans": "Vaata pakette",
+    "google_continue": "Jätka Google’iga",
+    "google_or": "või",
+    "google_title": "Sinu FuzeVPN-i konto",
+    "google_settingUp": "Lõpeta konto loomine",
+    "google_country": "Elukohariik",
+    "google_profileDescription": "Vali oma riik ja tutvu kahe dokumendiga, et luua FuzeVPN-i konto.",
+    "google_claimDescription": "Seo oma külalisekonto Google’iga. Sinu tellimus ja seade jäävad selle kontoga seotuks.",
+    "google_linkTitle": "Seo Google FuzeVPN-iga",
+    "google_linkDescription": "Kinnita juurdepääs oma olemasolevale FuzeVPN-i kontole. See samm ei küsi sinu Google’i parooli.",
+    "google_password": "FuzeVPN-i parool",
+    "google_linkAccount": "Kinnita sidumine",
+    "google_requestEmail": "Saada mulle kinnituskiri",
+    "google_emailInstructions": "Ava FuzeVPN-i e-kiri ja sisesta kinnituskood.",
+    "google_emailCode": "E-posti kinnituskood",
+    "google_confirmEmail": "Kinnita kood",
+    "google_restart": "Vali teine Google’i konto",
+    "google_resume": "Kontrolli seda katset",
+    "google_unavailable": "Google’iga sisselogimine pole saadaval. Saad kasutada e-posti aadressi ja parooli.",
+    "google_expired": "See katse on aegunud. Tühista see ja alusta uuesti.",
+    "google_conflict": "See Google’i konto on juba mujal seotud. Sinu praegune konto ja tellimus jäävad alles.",
+    "google_error": "Google’iga sisselogimine ebaõnnestus. Proovi uuesti; sinu praegune juurdepääs jääb alles.",
+    "google_uncertain": "Tulemust ei õnnestunud kinnitada. Enne uuesti alustamist kontrolli seda katset või tühista see.",
+    "google_cancelFailed": "Tühistamist ei õnnestunud kinnitada. Enne sellelt ekraanilt lahkumist proovi tühistada uuesti.",
+    "google_cancelled": "Google’iga sisselogimine tühistati.",
+    "google_selecting": "Vali oma Google’i konto…",
+    "google_verifying": "Konto kontrollimine…",
+    "google_emailUnavailable": "Kinnituskirja ei õnnestunud saata. Proovi hiljem uuesti.",
+    "google_emailSent": "Kinnituskiri on saadetud. Kontrolli oma postkasti.",
+    "google_rateLimited": "Palun oota enne uuesti proovimist.",
+    "google_busy": "Google pole saadaval, kui on pooleli mõni muu toiming (VPN-ühendus, konto või külalisekonto). Proovi uuesti pärast selle lõppemist; sinu praegune juurdepääs jääb alles.",
+    "google_invalidPassword": "FuzeVPN-i parool on vale. Sinu praegune konto jääb alles.",
+    "google_invalidCode": "Kinnituskood on vale või aegunud.",
+    "google_accountChanged": "Sinu seanss on muutunud. Tühista see katse enne uuesti alustamist.",
+    "google_invalidResponse": "Vastuse kehtivust ei õnnestunud kontrollida. Sinu praegune juurdepääs jääb alles.",
+    "google_invalidRegistration": "Kontrolli oma riiki ja mõlemat nõusolekut.",
+    "google_consentRequired": "Jätkamiseks vali oma riik ja nõustu mõlema dokumendiga.",
+    "google_challengeRequired": "Nõutav on täiendav turvakontroll. Sinu praegune juurdepääs jääb alles.",
+    "google_challengeUnavailable": "Turvakontroll pole saadaval. Proovi hiljem uuesti.",
+    "google_intentMismatch": "Eelmine Google’iga sisselogimise katse on endiselt ootel. Tühista see enne selle toimingu alustamist.",
+    "google_challengeBlocked": "Nõutav turvakontroll pole selles rakenduses saadaval. Seda toimingut ei saa praegu lõpule viia.",
+    "google_solveChallenge": "Tee turvakontroll läbi",
+    "google_challengeTitle": "Turvakontroll",
+    "google_challengeReady": "Kontroll on lõpule viidud. Nüüd saad konto loomise kinnitada.",
+    "google_challengeExpired": "Kontroll on aegunud. Tee see enne kinnitamist uuesti.",
+    "google_challengeCancelled": "Kontroll tühistati. Saad selle uuesti teha.",
+    "google_challengeFailed": "Turvakontroll ebaõnnestus. Proovi uuesti.",
+    "billing_trialTitle": "Proovi Fuze Premium tasuta",
+    "billing_trialSubtitle": "Kaitse oma ühendust juba täna.",
+    "billing_trialWeeks": "2-nädalane tasuta prooviperiood",
+    "billing_trialDays": "{days}-päevane tasuta prooviperiood",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Alusta tasuta prooviperioodi",
+    "billing_trialFirstCharge": "Kui alustad täna, on esimese makse eeldatav kuupäev {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Uueneb automaatselt märgitud hinnaga. Tasu vältimiseks tühista tellimus Google Play kaudu enne prooviperioodi lõppu.",
+    "billing_trialThenMonthly": "Seejärel {price} kuus",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Seejärel {price} aastas",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Vali oma pakett",
+    "billing_selectionHint": "Jätkamiseks vali pakett.",
+    "billing_benefitConnection": "Krüpteeritud ühendus",
+    "billing_benefitPrivacy": "Privaatsus internetis",
+    "billing_benefitNoAccount": "Registreerimine pole nõutav",
+    "billing_cancellation": "Tühista Google Play kaudu",
+    "billing_premiumTitle": "Paremini kaitstud ühendus.",
+    "billing_premiumSubtitle": "Kaitse oma ühendust omas tempos.",
+    "billing_priceMonthly": "kuus",
+    "billing_priceYearly": "aastas",
+    "billing_trialToday": "Täna pole midagi maksta",
+    "billing_trialConfirmation": "Google Play kinnitab kuupäevad, lõpliku summa ja kehtivad maksud enne, kui sa kinnitad.",
+    "billing_offerChanged": "Selle pakkumise tingimused on muutunud. Värskenda pakette ja vali uuesti.",
+    "status_waitingNetwork": "Võrgu ootamine",
+    "status_waitingNetworkDetail": "Võrku pole saadaval. VPN kontrollib ühendust, kui võrk taastub.",
+    "locations_favoriteLoadFailed": "Lemmikute laadimine ebaõnnestus. Proovi uuesti.",
+    "locations_favoritesLoading": "Lemmikute laadimine…"
+  },
+  "android": {
+    "vpn_notification_channel": "VPN-ühendus",
+    "vpn_notification_channel_description": "Näitab, millal FuzeVPN-ühendus on aktiivne.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s-ühendus on aktiivne",
+    "vpn_notification_connecting": "%1$s-ühenduse loomine on pooleli",
+    "vpn_notification_disconnecting": "%1$s-ühenduse katkestamine",
+    "vpn_notification_interrupted": "%1$s-ühendus katkes",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Valmis · %1$s · %2$s",
+    "vpn_tile_connected": "Ühendatud · %1$s · %2$s",
+    "vpn_tile_connecting": "Ühendamine: %1$s…",
+    "vpn_tile_disconnecting": "Ühenduse katkestamine…",
+    "vpn_tile_interrupted": "%1$s katkes",
+    "vpn_tile_setup_required": "Ava kõigepealt rakendus",
+    "vpn_tile_working": "VPN-i toiming on pooleli…",
+    "vpn_notification_reconnecting": "Uuesti ühendamine… · %1$s",
+    "vpn_system_action_required": "Vajalik toiming Androidi seadetes",
+    "vpn_tile_reconnecting": "Uuesti ühendamine… · %1$s",
+    "vpn_notification_waiting_network": "Võrgu ootamine · %1$s",
+    "vpn_tile_waiting_network": "Võrgu ootamine · %1$s"
+  },
+  "countries": {
+    "AC": "Ascensioni saar",
+    "AD": "Andorra",
+    "AE": "Araabia Ühendemiraadid",
+    "AF": "Afganistan",
+    "AG": "Antigua ja Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albaania",
+    "AM": "Armeenia",
+    "AO": "Angola",
+    "AQ": "Antarktika",
+    "AR": "Argentina",
+    "AS": "Ameerika Samoa",
+    "AT": "Austria",
+    "AU": "Austraalia",
+    "AW": "Aruba",
+    "AX": "Ahvenamaa",
+    "AZ": "Aserbaidžaan",
+    "BA": "Bosnia ja Hertsegoviina",
+    "BB": "Barbados",
+    "BD": "Bangladesh",
+    "BE": "Belgia",
+    "BF": "Burkina Faso",
+    "BG": "Bulgaaria",
+    "BH": "Bahrein",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "Saint-Barthélemy",
+    "BM": "Bermuda",
+    "BN": "Brunei",
+    "BO": "Boliivia",
+    "BQ": "Kariibi Madalmaad",
+    "BR": "Brasiilia",
+    "BS": "Bahama",
+    "BT": "Bhutan",
+    "BV": "Bouvet’ saar",
+    "BW": "Botswana",
+    "BY": "Valgevene",
+    "BZ": "Belize",
+    "CA": "Kanada",
+    "CC": "Kookossaared",
+    "CD": "Kongo DV",
+    "CF": "Kesk-Aafrika Vabariik",
+    "CG": "Kongo Vabariik",
+    "CH": "Šveits",
+    "CI": "Elevandiluurannik",
+    "CK": "Cooki saared",
+    "CL": "Tšiili",
+    "CM": "Kamerun",
+    "CN": "Hiina",
+    "CO": "Colombia",
+    "CP": "Clippertoni saar",
+    "CQ": "Sark",
+    "CR": "Costa Rica",
+    "CU": "Kuuba",
+    "CV": "Roheneemesaared",
+    "CW": "Curaçao",
+    "CX": "Jõulusaar",
+    "CY": "Küpros",
+    "CZ": "Tšehhi",
+    "DE": "Saksamaa",
+    "DG": "Diego Garcia",
+    "DJ": "Djibouti",
+    "DK": "Taani",
+    "DM": "Dominica",
+    "DO": "Dominikaani Vabariik",
+    "DZ": "Alžeeria",
+    "EA": "Ceuta ja Melilla",
+    "EC": "Ecuador",
+    "EE": "Eesti",
+    "EG": "Egiptus",
+    "EH": "Lääne-Sahara",
+    "ER": "Eritrea",
+    "ES": "Hispaania",
+    "ET": "Etioopia",
+    "EU": "Euroopa Liit",
+    "EZ": "euroala",
+    "FI": "Soome",
+    "FJ": "Fidži",
+    "FK": "Falklandi saared",
+    "FM": "Mikroneesia",
+    "FO": "Fääri saared",
+    "FR": "Prantsusmaa",
+    "GA": "Gabon",
+    "GB": "Ühendkuningriik",
+    "GD": "Grenada",
+    "GE": "Gruusia",
+    "GF": "Prantsuse Guajaana",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GL": "Gröönimaa",
+    "GM": "Gambia",
+    "GN": "Guinea",
+    "GP": "Guadeloupe",
+    "GQ": "Ekvatoriaal-Guinea",
+    "GR": "Kreeka",
+    "GS": "Lõuna-Georgia ja Lõuna-Sandwichi saared",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hongkongi erihalduspiirkond",
+    "HM": "Heardi ja McDonaldi saared",
+    "HN": "Honduras",
+    "HR": "Horvaatia",
+    "HT": "Haiti",
+    "HU": "Ungari",
+    "IC": "Kanaari saared",
+    "ID": "Indoneesia",
+    "IE": "Iirimaa",
+    "IL": "Iisrael",
+    "IM": "Mani saar",
+    "IN": "India",
+    "IO": "Briti India ookeani ala",
+    "IQ": "Iraak",
+    "IR": "Iraan",
+    "IS": "Island",
+    "IT": "Itaalia",
+    "JE": "Jersey",
+    "JM": "Jamaica",
+    "JO": "Jordaania",
+    "JP": "Jaapan",
+    "KE": "Keenia",
+    "KG": "Kõrgõzstan",
+    "KH": "Kambodža",
+    "KI": "Kiribati",
+    "KM": "Komoorid",
+    "KN": "Saint Kitts ja Nevis",
+    "KP": "Põhja-Korea",
+    "KR": "Lõuna-Korea",
+    "KW": "Kuveit",
+    "KY": "Kaimanisaared",
+    "KZ": "Kasahstan",
+    "LA": "Laos",
+    "LB": "Liibanon",
+    "LC": "Saint Lucia",
+    "LI": "Liechtenstein",
+    "LK": "Sri Lanka",
+    "LR": "Libeeria",
+    "LS": "Lesotho",
+    "LT": "Leedu",
+    "LU": "Luksemburg",
+    "LV": "Läti",
+    "LY": "Liibüa",
+    "MA": "Maroko",
+    "MC": "Monaco",
+    "MD": "Moldova",
+    "ME": "Montenegro",
+    "MF": "Saint-Martin",
+    "MG": "Madagaskar",
+    "MH": "Marshalli Saared",
+    "MK": "Põhja-Makedoonia",
+    "ML": "Mali",
+    "MM": "Myanmar (Birma)",
+    "MN": "Mongoolia",
+    "MO": "Macau erihalduspiirkond",
+    "MP": "Põhja-Mariaanid",
+    "MQ": "Martinique",
+    "MR": "Mauritaania",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Mauritius",
+    "MV": "Maldiivid",
+    "MW": "Malawi",
+    "MX": "Mehhiko",
+    "MY": "Malaisia",
+    "MZ": "Mosambiik",
+    "NA": "Namiibia",
+    "NC": "Uus-Kaledoonia",
+    "NE": "Niger",
+    "NF": "Norfolk",
+    "NG": "Nigeeria",
+    "NI": "Nicaragua",
+    "NL": "Holland",
+    "NO": "Norra",
+    "NP": "Nepal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "Uus-Meremaa",
+    "OM": "Omaan",
+    "PA": "Panama",
+    "PE": "Peruu",
+    "PF": "Prantsuse Polüneesia",
+    "PG": "Paapua Uus-Guinea",
+    "PH": "Filipiinid",
+    "PK": "Pakistan",
+    "PL": "Poola",
+    "PM": "Saint-Pierre ja Miquelon",
+    "PN": "Pitcairni saared",
+    "PR": "Puerto Rico",
+    "PS": "Palestiina alad",
+    "PT": "Portugal",
+    "PW": "Belau",
+    "PY": "Paraguay",
+    "QA": "Katar",
+    "QO": "Okeaania hajasaared",
+    "RE": "Réunion",
+    "RO": "Rumeenia",
+    "RS": "Serbia",
+    "RU": "Venemaa",
+    "RW": "Rwanda",
+    "SA": "Saudi Araabia",
+    "SB": "Saalomoni Saared",
+    "SC": "Seišellid",
+    "SD": "Sudaan",
+    "SE": "Rootsi",
+    "SG": "Singapur",
+    "SH": "Saint Helena",
+    "SI": "Sloveenia",
+    "SJ": "Svalbard ja Jan Mayen",
+    "SK": "Slovakkia",
+    "SL": "Sierra Leone",
+    "SM": "San Marino",
+    "SN": "Senegal",
+    "SO": "Somaalia",
+    "SR": "Suriname",
+    "SS": "Lõuna-Sudaan",
+    "ST": "São Tomé ja Príncipe",
+    "SV": "El Salvador",
+    "SX": "Sint Maarten",
+    "SY": "Süüria",
+    "SZ": "Svaasimaa",
+    "TA": "Tristan da Cunha",
+    "TC": "Turks ja Caicos",
+    "TD": "Tšaad",
+    "TF": "Prantsuse Lõunaalad",
+    "TG": "Togo",
+    "TH": "Tai",
+    "TJ": "Tadžikistan",
+    "TK": "Tokelau",
+    "TL": "Ida-Timor",
+    "TM": "Türkmenistan",
+    "TN": "Tuneesia",
+    "TO": "Tonga",
+    "TR": "Türgi",
+    "TT": "Trinidad ja Tobago",
+    "TV": "Tuvalu",
+    "TW": "Taiwan",
+    "TZ": "Tansaania",
+    "UA": "Ukraina",
+    "UG": "Uganda",
+    "UM": "Ühendriikide hajasaared",
+    "UN": "Ühinenud Rahvaste Organisatsioon",
+    "US": "Ameerika Ühendriigid",
+    "UY": "Uruguay",
+    "UZ": "Usbekistan",
+    "VA": "Vatikan",
+    "VC": "Saint Vincent ja Grenadiinid",
+    "VE": "Venezuela",
+    "VG": "Briti Neitsisaared",
+    "VI": "USA Neitsisaared",
+    "VN": "Vietnam",
+    "VU": "Vanuatu",
+    "WF": "Wallis ja Futuna",
+    "WS": "Samoa",
+    "XA": "pseudo-aktsent",
+    "XB": "pseudobidi",
+    "XK": "Kosovo",
+    "YE": "Jeemen",
+    "YT": "Mayotte",
+    "ZA": "Lõuna-Aafrika Vabariik",
+    "ZM": "Sambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "tundmatu piirkond"
+  }
+}

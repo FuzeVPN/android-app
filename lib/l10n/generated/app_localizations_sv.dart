@@ -523,6 +523,12 @@ class AppLocalizationsSv extends AppLocalizations {
   String get action_cancel => 'Avbryt';
 
   @override
+  String get action_close => 'Stäng';
+
+  @override
+  String get action_copy => 'Kopiera';
+
+  @override
   String get action_signOut => 'Logga ut';
 
   @override

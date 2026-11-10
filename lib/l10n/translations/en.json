@@ -176,6 +176,8 @@
     "dialog_signOut": "Sign out?",
     "dialog_signOutMessage": "The VPN will stop and you will need to sign in again. Your encrypted VPN keys will stay on this phone for your next connection.",
     "action_cancel": "Cancel",
+    "action_close": "Close",
+    "action_copy": "Copy",
     "action_signOut": "Sign out",
     "notice_close": "Dismiss message",
     "notice_sessionExpired_title": "Session expired",

@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Xidhiidhka VPN</string>
+    <string name="vpn_notification_channel_description">Wuxuu muujiyaa marka xidhiidhka FuzeVPN uu firfircoon yahay.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Xidhiidhka %1$s wuu firfircoon yahay</string>
+    <string name="vpn_notification_connecting">Xidhiidhka %1$s waa la samaynayaa</string>
+    <string name="vpn_notification_disconnecting">Joojinaya %1$s</string>
+    <string name="vpn_notification_interrupted">Xidhiidhka %1$s wuu go’ay</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Diyaar · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Ku xidhan · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Ku xidhmaya %1$s…</string>
+    <string name="vpn_tile_disconnecting">Joojinaya…</string>
+    <string name="vpn_tile_interrupted">%1$s wuu go’ay</string>
+    <string name="vpn_tile_setup_required">Marka hore fur barnaamijka</string>
+    <string name="vpn_tile_working">Hawsha VPN-ka waa socotaa…</string>
+    <string name="vpn_notification_reconnecting">Dib ku xidhmaya… · %1$s</string>
+    <string name="vpn_system_action_required">Tallaabo ayaa loo baahan yahay gudaha dejinta Android</string>
+    <string name="vpn_tile_reconnecting">Dib ku xidhmaya… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Shabakad ayaa la sugayaa · %1$s</string>
+    <string name="vpn_tile_waiting_network">Shabakad ayaa la sugayaa · %1$s</string>
+</resources>

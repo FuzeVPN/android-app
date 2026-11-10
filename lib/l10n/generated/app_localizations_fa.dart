@@ -525,6 +525,12 @@ class AppLocalizationsFa extends AppLocalizations {
   String get action_cancel => 'لغو';
 
   @override
+  String get action_close => 'بستن';
+
+  @override
+  String get action_copy => 'کپی کردن';
+
+  @override
   String get action_signOut => 'خروج';
 
   @override

@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Haɗin VPN</string>
+    <string name="vpn_notification_channel_description">Yana nuna lokacin da haɗin FuzeVPN yake aiki.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Haɗin %1$s yana aiki</string>
+    <string name="vpn_notification_connecting">Ana kafa haɗin %1$s</string>
+    <string name="vpn_notification_disconnecting">Ana katse haɗin %1$s</string>
+    <string name="vpn_notification_interrupted">Haɗin %1$s ya katse</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">A shirye · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">An haɗa · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Ana haɗawa da %1$s…</string>
+    <string name="vpn_tile_disconnecting">Ana katse haɗi…</string>
+    <string name="vpn_tile_interrupted">An katse %1$s</string>
+    <string name="vpn_tile_setup_required">Ku fara buɗe manhajar</string>
+    <string name="vpn_tile_working">Aikin VPN yana gudana…</string>
+    <string name="vpn_notification_reconnecting">Ana sake haɗawa… · %1$s</string>
+    <string name="vpn_system_action_required">Ana buƙatar mataki a saitunan Android</string>
+    <string name="vpn_tile_reconnecting">Ana sake haɗawa… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Ana jiran hanyar sadarwa · %1$s</string>
+    <string name="vpn_tile_waiting_network">Ana jiran hanyar sadarwa · %1$s</string>
+</resources>

@@ -516,6 +516,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get action_cancel => 'إلغاء';
 
   @override
+  String get action_close => 'الإغلاق';
+
+  @override
+  String get action_copy => 'نسخ';
+
+  @override
   String get action_signOut => 'تسجيل الخروج';
 
   @override

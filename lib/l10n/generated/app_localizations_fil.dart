@@ -531,6 +531,12 @@ class AppLocalizationsFil extends AppLocalizations {
   String get action_cancel => 'Kanselahin';
 
   @override
+  String get action_close => 'Isara';
+
+  @override
+  String get action_copy => 'Kopyahin';
+
+  @override
   String get action_signOut => 'Mag-sign out';
 
   @override

@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN-kapcsolat</string>
+    <string name="vpn_notification_channel_description">Megjeleníti, ha a FuzeVPN-kapcsolat aktív.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s-kapcsolat aktív</string>
+    <string name="vpn_notification_connecting">%1$s-kapcsolat folyamatban</string>
+    <string name="vpn_notification_disconnecting">%1$s leválasztása folyamatban</string>
+    <string name="vpn_notification_interrupted">%1$s-kapcsolat megszakadt</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Kész · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Csatlakoztatva · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Csatlakozás: %1$s…</string>
+    <string name="vpn_tile_disconnecting">Leválasztás…</string>
+    <string name="vpn_tile_interrupted">%1$s megszakadt</string>
+    <string name="vpn_tile_setup_required">Előbb nyissa meg az alkalmazást</string>
+    <string name="vpn_tile_working">VPN-művelet folyamatban…</string>
+    <string name="vpn_notification_reconnecting">Újracsatlakozás… · %1$s</string>
+    <string name="vpn_system_action_required">Teendő az Android-beállításokban</string>
+    <string name="vpn_tile_reconnecting">Újracsatlakozás… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Várakozás a hálózatra · %1$s</string>
+    <string name="vpn_tile_waiting_network">Várakozás a hálózatra · %1$s</string>
+</resources>

@@ -10,7 +10,7 @@ import 'package:fuzevpn_android/features/auth/auth_page.dart';
 import 'package:fuzevpn_android/features/auth/guest_claim_page.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
-import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 
 import '../support/welcome_ui_fixture.dart';
 
@@ -339,7 +339,7 @@ Widget _settingsApp(_SettingsLoginController controller) => AnimatedBuilder(
     locale: controller.locale,
     supportedLocales: AppLanguages.supportedLocales,
     localeListResolutionCallback: AppLanguages.resolve,
-    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    localizationsDelegates: AppLocalizationDelegates.all,
     theme: FuzeVpnTheme.light(),
     home: Scaffold(body: AccountPage(controller: controller)),
   ),

@@ -20,6 +20,7 @@ import 'package:fuzevpn_android/features/auth/welcome_page.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/l10n/app_copy.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 import 'package:fuzevpn_android/widgets/notice_card.dart';
@@ -408,10 +409,16 @@ void main() {
           reason: text,
         );
         final drawn = tester.getRect(label);
-        expect(drawn.left, greaterThanOrEqualTo(card.left - 0.01), reason: text);
+        expect(
+          drawn.left,
+          greaterThanOrEqualTo(card.left - 0.01),
+          reason: text,
+        );
         expect(drawn.right, lessThanOrEqualTo(card.right + 0.01), reason: text);
       }
-      await tester.tap(find.descendant(of: dialog, matching: find.text(copy.action_cancel)));
+      await tester.tap(
+        find.descendant(of: dialog, matching: find.text(copy.action_cancel)),
+      );
       await tester.pumpAndSettle();
       expect(dialog, findsNothing);
       expect(h.controller.isSignedIn, isTrue);
@@ -1224,7 +1231,7 @@ void main() {
     (tester) async {
       tester.view.physicalSize = const Size(320, 640);
       tester.view.devicePixelRatio = 1;
-      tester.platformDispatcher.localesTestValue = const [Locale('fi')];
+      tester.platformDispatcher.localesTestValue = const [Locale('xh')];
       tester.platformDispatcher.textScaleFactorTestValue = 2;
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
@@ -1348,62 +1355,60 @@ void main() {
 
   if (const bool.fromEnvironment('FUZEVPN_ONBOARDING_PREVIEWS')) {
     for (final dark in [false, true]) {
-      testWidgets(
-        'export guest settings ${dark ? 'dark' : 'light'} preview',
-        (tester) async {
-          tester.view.physicalSize = const Size(411, 915);
-          tester.view.devicePixelRatio = 1;
-          addTearDown(tester.view.resetPhysicalSize);
-          addTearDown(tester.view.resetDevicePixelRatio);
-          final h = _UiHarness();
-          addTearDown(h.close);
-          h.store.session = _session;
-          h.api.profileResult = const UserProfile(
-            userId: 'guest-preview',
-            identityKind: 'guest',
-            profileRedacted: true,
-            canManageAccount: false,
-            canClaimAccount: true,
-            canUseVpn: true,
-          );
-          h.store.admittedGuests.add('guest-preview');
-          await h.controller.initialize();
-          await h.controller.setLocale(const Locale('fr'));
-          await h.controller.setThemeMode(
-            dark ? ThemeMode.dark : ThemeMode.light,
-          );
-          h.controller.billing.subscription = const BillingSubscription(
-            status: 'active',
-            hasAccess: true,
-            provider: 'google_play',
-          );
-          await tester.pumpWidget(
-            FuzeVpnApp(controller: h.controller, autoInitialize: false),
-          );
-          await tester.pumpAndSettle();
-          await tester.tap(find.text('Compte'));
-          await tester.pumpAndSettle();
-          h.controller.billing.messageKey = null;
-          await tester.pumpWidget(
-            FuzeVpnApp(controller: h.controller, autoInitialize: false),
-          );
-          await tester.pumpAndSettle();
-          await _settleImages(tester);
-          expect(
-            find.byKey(const ValueKey('guest-create-account')),
-            findsOneWidget,
-          );
-          expect(find.byKey(const ValueKey('delete-account')), findsNothing);
-          expect(tester.takeException(), isNull);
-          await expectLater(
-            find.byType(FuzeVpnApp),
-            matchesGoldenFile(
-              '../../build/reports/welcome-guest-2026-10-04/previews/guest-settings-${dark ? 'dark' : 'light'}.png',
-            ),
-          );
-        },
-        tags: 'onboarding-preview',
-      );
+      testWidgets('export guest settings ${dark ? 'dark' : 'light'} preview', (
+        tester,
+      ) async {
+        tester.view.physicalSize = const Size(411, 915);
+        tester.view.devicePixelRatio = 1;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+        final h = _UiHarness();
+        addTearDown(h.close);
+        h.store.session = _session;
+        h.api.profileResult = const UserProfile(
+          userId: 'guest-preview',
+          identityKind: 'guest',
+          profileRedacted: true,
+          canManageAccount: false,
+          canClaimAccount: true,
+          canUseVpn: true,
+        );
+        h.store.admittedGuests.add('guest-preview');
+        await h.controller.initialize();
+        await h.controller.setLocale(const Locale('fr'));
+        await h.controller.setThemeMode(
+          dark ? ThemeMode.dark : ThemeMode.light,
+        );
+        h.controller.billing.subscription = const BillingSubscription(
+          status: 'active',
+          hasAccess: true,
+          provider: 'google_play',
+        );
+        await tester.pumpWidget(
+          FuzeVpnApp(controller: h.controller, autoInitialize: false),
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Compte'));
+        await tester.pumpAndSettle();
+        h.controller.billing.messageKey = null;
+        await tester.pumpWidget(
+          FuzeVpnApp(controller: h.controller, autoInitialize: false),
+        );
+        await tester.pumpAndSettle();
+        await _settleImages(tester);
+        expect(
+          find.byKey(const ValueKey('guest-create-account')),
+          findsOneWidget,
+        );
+        expect(find.byKey(const ValueKey('delete-account')), findsNothing);
+        expect(tester.takeException(), isNull);
+        await expectLater(
+          find.byType(FuzeVpnApp),
+          matchesGoldenFile(
+            '../../build/reports/welcome-guest-2026-10-04/previews/guest-settings-${dark ? 'dark' : 'light'}.png',
+          ),
+        );
+      }, tags: 'onboarding-preview');
     }
   }
 
@@ -1630,9 +1635,9 @@ void main() {
           find.byKey(const ValueKey('copy-external-link')),
           findsOneWidget,
         );
-        final closeLabel = MaterialLocalizations.of(
+        final closeLabel = AppLocalizations.of(
           tester.element(find.byKey(const ValueKey('copy-external-link'))),
-        ).closeButtonLabel;
+        ).action_close;
         await tester.tap(find.widgetWithText(TextButton, closeLabel));
         await tester.pumpAndSettle();
         expect(find.byKey(const ValueKey('copy-external-link')), findsNothing);
@@ -1697,7 +1702,14 @@ void main() {
         await _selectReviewDestination(tester, copy.nav_account);
         final deletion = find.byKey(const ValueKey('delete-account'));
         await _scrollTo(tester, deletion);
-        await tester.tap(deletion);
+        // With long labels the row can be taller than the visible area, its
+        // centre under the navigation bar: tap its title, as a user would.
+        final deletionTitle = find
+            .descendant(of: deletion, matching: find.byType(Text))
+            .first;
+        await tester.ensureVisible(deletion);
+        await tester.pumpAndSettle();
+        await tester.tap(deletionTitle);
         await tester.pumpAndSettle();
         final warning = find.byKey(const ValueKey('delete-account-warning'));
         expect(warning, findsOneWidget);
@@ -1722,7 +1734,9 @@ void main() {
         await tester.pumpAndSettle();
         expect(warning, findsNothing);
         expect(opened, isEmpty);
-        await tester.tap(deletion);
+        await tester.ensureVisible(deletionTitle);
+        await tester.pumpAndSettle();
+        await tester.tap(deletionTitle);
         await tester.pumpAndSettle();
         await tester.ensureVisible(proceed);
         await tester.pumpAndSettle();
@@ -2892,7 +2906,7 @@ void main() {
         expect(h.controller.locale, language.locale);
         expect(
           Directionality.of(context),
-          {'ar', 'fa', 'ur'}.contains(language.tag)
+          {'ar', 'fa', 'ur', 'he', 'ps'}.contains(language.tag)
               ? TextDirection.rtl
               : TextDirection.ltr,
         );
@@ -2925,7 +2939,7 @@ void main() {
     }
 
     testWidgets(
-      'language sheet sorts all 30 choices and preserves Chinese script',
+      'language sheet sorts all 70 choices and preserves Chinese script',
       (tester) async {
         tester.view.physicalSize = const Size(320, 640);
         tester.view.devicePixelRatio = 1;
@@ -3031,7 +3045,7 @@ Widget _legacyAuthentication(VpnAppController controller) => AnimatedBuilder(
     locale: controller.locale,
     supportedLocales: AppLanguages.supportedLocales,
     localeListResolutionCallback: AppLanguages.resolve,
-    localizationsDelegates: AppLocalizations.localizationsDelegates,
+    localizationsDelegates: AppLocalizationDelegates.all,
     theme: FuzeVpnTheme.light(),
     darkTheme: FuzeVpnTheme.dark(),
     themeMode: controller.themeMode,

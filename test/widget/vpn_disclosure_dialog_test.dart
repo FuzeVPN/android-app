@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/widgets/vpn_disclosure_dialog.dart';
 
@@ -214,7 +215,7 @@ Future<void> _mount(
     MaterialApp(
       theme: dark ? FuzeVpnTheme.dark() : FuzeVpnTheme.light(),
       locale: locale,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      localizationsDelegates: AppLocalizationDelegates.all,
       supportedLocales: AppLanguages.supportedLocales,
       builder: (context, child) => MediaQuery(
         data: MediaQuery.of(

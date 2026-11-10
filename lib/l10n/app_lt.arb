@@ -1,0 +1,745 @@
+{
+  "vpnDisclosure_title": "Apsaugokite savo ryšį",
+  "vpnDisclosure_body": "FuzeVPN naudoja Android VPN paslaugą (VpnService), kad tarp šio įrenginio ir FuzeVPN serverių sukurtų šifruotą tunelį.",
+  "vpnDisclosure_dataBody": "Kol VPN aktyvus, jūsų programų interneto srautas, paskirties adresai ir DNS užklausos siunčiami šiuo tuneliu, kad būtų nukreiptas jūsų ryšys, net kai FuzeVPN veikia fone.",
+  "vpnDisclosure_statusBody": "Programa naudoja ryšio būseną, jo trukmę ir perduotų duomenų kiekį, kad rodytų jūsų VPN ryšį. Galite jį sustabdyti bet kada.",
+  "vpnDisclosure_privacy": "Privatumas",
+  "vpnDisclosure_accept": "Sutikti ir tęsti",
+  "vpnDisclosure_decline": "Ne dabar",
+  "accountRestoration_title": "Paskyra laikinai nepasiekiama",
+  "accountRestoration_message": "Jūsų sesija išsaugota. Bandykite dar kartą, kad atkurtumėte paskyrą; VPN ryšį čia vis tiek galite valdyti.",
+  "action_retry": "Bandyti dar kartą",
+  "session_endingTitle": "Baigiama sesija",
+  "session_ending": "Baigiama sesija: stabdomas VPN ir atliekamas valymas…",
+  "session_stopFailed": "VPN sustabdymas nepatvirtintas. Prieš vėl prisijungdami prie paskyros, bandykite dar kartą.",
+  "session_cleanupFailed": "VPN sustabdytas, tačiau sesijos pašalinimas nepatvirtintas. Bandykite išvalyti dar kartą.",
+  "session_retryStop": "Bandyti sustabdyti dar kartą",
+  "session_retryCleanup": "Bandyti išvalyti dar kartą",
+  "@@locale": "lt",
+  "appTitle": "FuzeVPN",
+  "startup": "Saugiai ruošiamas FuzeVPN…",
+  "nav_connection": "Ryšys",
+  "nav_locations": "Vietos",
+  "nav_account": "Paskyra",
+  "nav_devices": "Įrenginiai",
+  "nav_settings": "Nustatymai",
+  "action_refresh": "Atnaujinti",
+  "auth_tab_login": "Prisijungimas",
+  "auth_tab_register": "Registracija",
+  "auth_stepAccount": "Paskyra",
+  "auth_stepIdentity": "Tapatybė",
+  "auth_stepAddress": "Adresas ir sutikimai",
+  "auth_stepProgress": "Žingsnis {current} iš {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "Jūsų VPN – paprasta.",
+  "auth_keysLocal": "Jūsų privatūs VPN raktai lieka šiame įrenginyje.",
+  "form_email": "El. pašto adresas",
+  "form_password": "Slaptažodis",
+  "form_showPassword": "Rodyti slaptažodį",
+  "form_hidePassword": "Slėpti slaptažodį",
+  "form_passwordMin": "8–72 UTF-8 baitai. Kai kurie simboliai užima daugiau nei vieną baitą.",
+  "form_firstName": "Vardas",
+  "form_lastName": "Pavardė",
+  "form_phone": "Telefono numeris (+33612345678)",
+  "form_address": "Adresas",
+  "form_address2": "Adreso 2 eilutė (neprivaloma)",
+  "form_postalCode": "Pašto kodas",
+  "form_city": "Miestas",
+  "form_country": "Šalies kodas (pvz., FR)",
+  "action_login": "Prisijungti prie paskyros",
+  "action_createAccount": "Sukurti paskyrą",
+  "action_createMyAccount": "Sukurti mano paskyrą",
+  "action_next": "Tęsti",
+  "action_previous": "Atgal",
+  "action_forgotPassword": "Pamiršote slaptažodį?",
+  "auth_noAccount": "Dar neturite paskyros?",
+  "auth_requiredInformation": "Sukurkite paskyrą per tris žingsnius.",
+  "auth_termsPrefix": "Sutinku su ",
+  "auth_termsLink": "naudojimo sąlygomis",
+  "auth_privacyPrefix": "Sutinku su ",
+  "auth_privacyLink": "privatumo politika",
+  "auth_consentRequired": "Norint sukurti paskyrą, reikia jūsų sutikimo.",
+  "validation_required": "Šį lauką būtina užpildyti.",
+  "validation_email": "Įveskite tinkamą el. pašto adresą.",
+  "validation_password": "Slaptažodis per trumpas: reikia bent 8 UTF-8 baitų.",
+  "validation_passwordTooLong": "Slaptažodis per ilgas: ne daugiau kaip 72 UTF-8 baitų.",
+  "validation_phone": "Naudokite tarptautinį formatą, pvz., +33612345678.",
+  "validation_country": "Naudokite dviejų raidžių šalies kodą, pvz., FR.",
+  "passwordReset_title": "Slaptažodžio atkūrimas",
+  "passwordReset_description": "Įveskite savo paskyros el. pašto adresą, kad gautumėte slaptažodžio atkūrimo nuorodą.",
+  "passwordReset_send": "Siųsti nuorodą",
+  "connection_title": "Jūsų ryšys",
+  "connection_subtitle": "Pasirinkite vietą, tada įjunkite VPN.",
+  "connection_prepare": "Pasiruošę prisijungti?",
+  "connection_advancedOptions": "Išplėstinės parinktys",
+  "connection_location": "Vieta",
+  "connection_chooseLocation": "Pasirinkite vietą",
+  "connection_protocol": "Protokolas",
+  "connection_connect": "Prisijungti",
+  "connection_connecting": "Jungiamasi…",
+  "connection_disconnect": "Atjungti",
+  "connection_disconnecting": "Atjungiama",
+  "connection_locationChange": "Keičiama vieta…",
+  "connection_unavailable": "{protocol} nepasiekiamas",
+  "connection_activeLocation": "Aktyvi vieta",
+  "connection_duration": "Trukmė",
+  "connection_received": "Gauta",
+  "connection_sent": "Išsiųsta",
+  "connection_lastHandshake": "Paskutinis saugus ryšio užmezgimas",
+  "connection_handshakeAgo": "Prieš {duration}",
+  "verification_title": "Patvirtinkite savo el. pašto adresą",
+  "verification_message": "Patvirtinkite el. pašto adresą, kad galėtumėte naudoti VPN šiame telefone.",
+  "verification_resend": "Siųsti laišką iš naujo",
+  "migration_title": "Vietos keitimas",
+  "migration_draining": "Ruošiamas vietos keitimas…",
+  "migration_activating": "Aktyvinamas naujas serveris…",
+  "migration_ready": "Vieta atnaujinta.",
+  "migration_blocked": "Vietos keitimui reikia veiksmų serverio pusėje. Bandykite vėliau arba susisiekite su palaikymo tarnyba.",
+  "migration_progress": "Vietos keitimo eiga",
+  "migration_retryDelay": "Pauzė tarp patikrinimų: {seconds} s.",
+  "migration_resume": "Tęsti vietos keitimą",
+  "status_authorizing": "Reikalingas leidimas",
+  "status_authorizingDetail": "Patvirtinkite Android užklausą, kad leistumėte naudoti VPN.",
+  "status_preparing": "Ruošiamasi",
+  "status_preparingDetail": "Jūsų saugus ryšys ruošiamas.",
+  "status_reconnecting": "Jungiamasi iš naujo…",
+  "status_reconnectingDetail": "Ryšys nutrūko. VPN bando prisijungti iš naujo.",
+  "status_connecting": "Jungiamasi",
+  "status_connectingDetail": "Jungiamasi prie VPN serverio…",
+  "status_connected": "Prisijungta",
+  "status_connectedDetail": "Jūsų VPN ryšys aktyvus.",
+  "status_disconnecting": "Atjungiama",
+  "status_disconnectingDetail": "Jūsų VPN ryšys stabdomas.",
+  "status_error": "Ryšys nepasiekiamas",
+  "status_errorDetail": "VPN ryšys nepatvirtintas. Bandykite dar kartą.",
+  "status_idle": "Atjungta",
+  "status_idleDetail": "Prisijunkite prie VPN, kad apsaugotumėte savo ryšį.",
+  "trust_note": "Uždarius programą, VPN nesustoja. Norėdami jį sustabdyti, naudokite mygtuką „Atjungti“.",
+  "locations_none": "Šiuo metu nėra pasiekiamų vietų.",
+  "locations_available": "Pasirinkite kitą vietą.",
+  "locations_selected": "Pasirinkta vieta",
+  "locations_select": "Pasirinkti šią vietą",
+  "locations_lockedTunnel": "Norėdami keisti vietą, atjunkite VPN.",
+  "locations_lockedMigration": "Palaukite, kol baigsis vietos keitimas.",
+  "devices_title": "Jūsų įrenginiai",
+  "devices_used": "{count} / {limit} įrenginių",
+  "devices_refresh": "Atnaujinti įrenginius",
+  "devices_empty": "Dar neužregistruotas nė vienas VPN įrenginys.",
+  "devices_firstConnection": "Jūsų telefonas bus pridėtas pirmą kartą prisijungus.",
+  "devices_thisDevice": "Šis įrenginys",
+  "devices_added": "Pridėtas {date}",
+  "devices_unnamed": "Įrenginys be pavadinimo",
+  "action_remove": "Pašalinti",
+  "settings_title": "Nustatymai",
+  "settings_subtitle": "Jūsų nuostatos ir paskyra – vienoje vietoje.",
+  "settings_appearance": "Išvaizda",
+  "settings_language": "Kalba",
+  "settings_languageDescription": "Pasirinkta kalba taip pat taikoma VPN pranešimams.",
+  "settings_account": "Paskyra",
+  "settings_signOut": "Atsijungti nuo paskyros",
+  "settings_privacy": "Privatumo politika",
+  "settings_terms": "Naudojimo sąlygos",
+  "settings_security": "Saugumas ir skaidrumas",
+  "settings_licenses": "Komponentų licencijos",
+  "settings_licensesDetail": "Programoje naudojama programinė įranga",
+  "settings_licensesLegalese": "Programos ir jos MPL-2.0 komponentų pirminis kodas: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_background": "VPN lieka įjungtas, kai išeinate iš programos. Norėdami jį sustabdyti, naudokite mygtuką „Atjungti“ skirtuke „Ryšys“.",
+  "theme_system": "Pagal sistemą",
+  "theme_light": "Šviesi",
+  "theme_dark": "Tamsi",
+  "language_system": "Telefono kalba",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Pašalinti šį įrenginį?",
+  "dialog_removeCurrent": "Šis telefonas bus atjungtas nuo VPN ir neteks prieigos. Jo VPN ryšio duomenys bus pašalinti po serverio patvirtinimo.",
+  "dialog_removeOther": "VPN prieiga įrenginiui „{name}“ bus panaikinta. Šio veiksmo nebus galima atšaukti.",
+  "dialog_signOut": "Atsijungti nuo paskyros?",
+  "dialog_signOutMessage": "VPN bus sustabdytas, o jums reikės prisijungti dar kartą. Užšifruoti VPN raktai liks šiame telefone kitam prisijungimui.",
+  "action_cancel": "Atšaukti",
+  "action_close": "Uždaryti",
+  "action_copy": "Kopijuoti",
+  "action_signOut": "Atsijungti nuo paskyros",
+  "notice_close": "Uždaryti pranešimą",
+  "notice_sessionExpired_title": "Sesija baigėsi",
+  "notice_sessionExpired_message": "Jūsų sesija baigėsi. Prisijunkite dar kartą.",
+  "notice_connectionFailed_title": "Nepavyko prisijungti",
+  "notice_invalidCredentials_message": "Neteisingas el. pašto adresas arba slaptažodis.",
+  "notice_emailVerification_title": "Reikia patvirtinti el. pašto adresą",
+  "notice_emailVerification_message": "Prieš pridėdami VPN įrenginį, patvirtinkite el. pašto adresą.",
+  "notice_rateLimited_title": "Per daug bandymų",
+  "notice_deviceLimit_title": "Pasiekta įrenginių riba",
+  "notice_deviceLimit_message": "Prieš pridėdami kitą įrenginį, pašalinkite esamą.",
+  "notice_identityRenewal_title": "Reikia atnaujinti VPN tapatybę",
+  "notice_identityRenewal_message": "Ši tapatybė pašalinta. Sukurkite naują vietinę tapatybę.",
+  "notice_migrationPending_title": "Vyksta vietos keitimas",
+  "notice_migrationPending_message": "Vietos keitimas jau vyksta.",
+  "notice_migrationBlocked_title": "Vietos keitimas užblokuotas",
+  "notice_migrationBlocked_message": "Vietos keitimui reikia veiksmų serverio pusėje. Bandykite vėliau arba susisiekite su palaikymo tarnyba.",
+  "notice_targetUnavailable_title": "Serveris laikinai nepasiekiamas",
+  "notice_targetUnavailable_message": "Šis serveris laikinai nepasiekiamas.",
+  "notice_networkUnavailable_title": "Nėra interneto ryšio",
+  "notice_networkUnavailable_message": "Patikrinkite ryšį ir bandykite dar kartą.",
+  "notice_permissionDenied_title": "VPN leidimas atmestas",
+  "notice_permissionDenied_message": "Pradėkite prisijungimą iš naujo ir patvirtinkite Android leidimo užklausą.",
+  "notice_wireguardTimeout_title": "Serveris neatsako",
+  "notice_wireguardTimeout_message": "WireGuard ryšys užtruko per ilgai. Bandykite dar kartą arba pasirinkite kitą vietą.",
+  "notice_tlsFailed_title": "Saugus ryšys atmestas",
+  "notice_tlsFailed_message": "Serveris nepriėmė OpenVPN ryšio. Bandykite dar kartą. Jei problema išlieka, paleiskite diagnostiką.",
+  "notice_tunRejected_title": "Android atmetė VPN sąsają",
+  "notice_tunRejected_message": "Android atmetė tinklo konfigūraciją, kurios prašė OpenVPN.",
+  "notice_openvpnStart_title": "OpenVPN nepavyko paleisti",
+  "notice_openvpnStart_message": "OpenVPN variklio nepavyko visiškai paleisti. Bandykite dar kartą. Jei problema išlieka, susisiekite su palaikymo tarnyba.",
+  "notice_diagnosticCode": "Diagnostikos kodas: {code}",
+  "notice_generic_title": "Nepavyko užmegzti VPN ryšio",
+  "notice_generic_message": "Įvyko klaida. Bandykite vėliau.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Paskyra sukurta} password_reset_sent{Gauta slaptažodžio atkūrimo užklausa} verification_email_sent{Patvirtinimo laiškas išsiųstas} location_migration_pending{Vyksta vietos keitimas} vpn_sign_in_required{Reikia prisijungti prie paskyros} protocol_unavailable_at_location{Protokolas nepasiekiamas} vpn_permission_denied{VPN leidimas atmestas} revoked_identity_device_limit{Pasiekta įrenginių riba} tunnel_start_unexpected{VPN nepavyko paleisti} flutter_disconnect_timeout{Atjungimas nepatvirtintas} flutter_disconnect_unexpected{Nepavyko atjungti} device_revoked{Įrenginys pašalintas} revoke_unexpected{Nepavyko pašalinti įrenginio} identity_renewal_unexpected{Nepavyko atnaujinti tapatybės} openvpn_renewal_unexpected{Nepavyko atnaujinti OpenVPN} location_migration_blocked{Vietos keitimas užblokuotas} location_migration_slow{Vietos keitimas vis dar vyksta} location_migration_conflict{Vietos keitimą reikia atnaujinti} location_migration_verification_failed{Vietos keitimas nepatvirtintas} location_migration_device_changed{Keičiant vietą įrenginys pasikeitė} tunnel_stop_failed{Vietos keitimas nepasiekiamas} device_clock_ahead{Įrenginio laikrodis skuba} other{Nepavyko atlikti veiksmo}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Paskyra sukurta, tačiau patvirtinimo laiško išsiųsti nepavyko. Programoje pasirinkite „Siųsti laišką iš naujo“.} password_reset_sent{Jūsų užklausa gauta. Jei su šiuo adresu susieta paskyra, galite gauti el. laišką. Taip pat patikrinkite šlamšto aplanką.} verification_email_sent{Ką tik išsiųstas naujas patvirtinimo laiškas.} location_migration_pending{Perkėlimas į {target} dar ruošiamas. Galite tęsti jį nekurdami įrenginio iš naujo.} vpn_sign_in_required{Prieš paleisdami VPN, prisijunkite prie paskyros.} protocol_unavailable_at_location{Šioje vietoje pasirinkto protokolo nėra. Atnaujinkite vietas arba pasirinkite kitą protokolą.} vpn_permission_denied{Android nesuteikė VPN leidimo. Pradėkite prisijungimą iš naujo ir patvirtinkite sistemos užklausą.} revoked_identity_device_limit{Šio įrenginio VPN prieiga pašalinta, o įrenginių riba pasiekta. Pašalinkite įrenginį skiltyje „Paskyra“ → „Tvarkyti mano įrenginius“.} tunnel_start_unexpected{Netikėta klaida nutraukė tunelio ruošimą. Patikrinkite diagnostikos kodą ir bandykite dar kartą.} flutter_disconnect_timeout{Android laiku nepatvirtino, kad VPN sustojo. Bandykite jį sustabdyti dar kartą.} flutter_disconnect_unexpected{Dėl netikėtos klaidos nepavyko patvirtinti, kad tunelis sustojo.} device_revoked{Įrenginio VPN prieiga panaikinta, o jo vietiniai slaptieji duomenys pašalinti.} revoke_unexpected{Įrenginio nepavyko pašalinti. Atnaujinkite sąrašą ir bandykite dar kartą.} identity_renewal_unexpected{Nepavyko sukurti naujos VPN tapatybės. Atnaujinkite įrenginius ir bandykite dar kartą.} openvpn_renewal_unexpected{Nepavyko atnaujinti OpenVPN profilio. Bandykite dar kartą arba patikrinkite diagnostikos kodą.} location_migration_blocked{Serveris šiuo metu negali užbaigti šio pakeitimo. Įrenginys ir jo vietinė tapatybė išsaugoti.} location_migration_slow{Serveris vis dar ruošia perkėlimą į {target}. Po kelių akimirkų pasirinkite „Tęsti“.} location_migration_conflict{Serveryje pasikeitė įrenginio būsena. Atnaujinkite įrenginius, tada tęskite keitimą.} location_migration_verification_failed{Serveris nepatvirtino naujos vietos. Ankstesnė vietinė tapatybė išsaugota.} location_migration_device_changed{Serverio grąžintas įrenginys nebeatitinka keičiamo įrenginio. Prieš bandydami dar kartą, atnaujinkite įrenginius.} tunnel_stop_failed{Prieš naują ryšį ankstesnis tunelis turi būti visiškai sustabdytas.} device_clock_ahead{Atrodo, kad šio įrenginio laikrodis skuba. Įjunkite automatinę datą ir laiką, kad liktumėte prisijungę.} other{Veiksmo nepavyko užbaigti. Bandykite dar kartą arba palaikymo tarnybai nusiųskite diagnostikos kodą.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Sesija baigėsi} invalid_credentials{Prisijungti nepavyko} email_verification_required{Reikia patvirtinti el. pašto adresą} verification_email_cooldown{El. laiškas jau išsiųstas} rate_limited{Per daug bandymų} invalid_registration{Informaciją reikia ištaisyti} email_exists{Paskyra jau egzistuoja} invalid_profile{Netinkamas profilis} invalid_device{Netinkamas įrenginys} invalid_location{Vieta nepasiekiama} device_limit{Pasiekta įrenginių riba} device_exists{VPN tapatybė jau naudojama} device_identity_revoked{VPN tapatybę reikia atnaujinti} device_location_locked{Vietos keitimą reikia atnaujinti} location_migration_pending{Vyksta vietos keitimas} location_migration_blocked{Vietos keitimas užblokuotas} target_ca_mismatch{Nesuderinamas OpenVPN serveris} location_migration_conflict{Vietos keitimą reikia atnaujinti} server_full{Serveris pilnas} capacity_unavailable{Vieta laikinai nepasiekiama} target_unavailable{Serveris laikinai nepasiekiamas} not_found{Elementas nerastas} invalid_openvpn_csr{Neteisinga OpenVPN tapatybė} openvpn_profile_exists{OpenVPN profilis jau yra} openvpn_profile_revoked{OpenVPN profilis panaikintas} openvpn_operation_pending{OpenVPN veiksmas vykdomas} openvpn_operation_terminal{OpenVPN veiksmas nutrauktas} openvpn_address_unavailable{OpenVPN adresas nepasiekiamas} openvpn_profile_conflict{OpenVPN konfliktas} openvpn_signer_unavailable{OpenVPN nepasiekiamas} email_delivery_unavailable{El. paštas nepasiekiamas} invalid_token{Neteisinga nuoroda} network_unavailable{Nėra interneto ryšio} invalid_json{Netinkama užklausa} invalid_api_response{Netinkamas serverio atsakas} ipv6_unavailable{IPv6 nepasiekiamas} invalid_ip_families{Tinklo konfigūracija atmesta} other{Paslauga nepasiekiama}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Jūsų sesija baigėsi. Prisijunkite dar kartą.} invalid_credentials{Neteisingas el. pašto adresas arba slaptažodis.} email_verification_required{Prieš pridėdami VPN įrenginį, patvirtinkite el. pašto adresą.} invalid_registration{Patikrinkite pateiktą informaciją ir sutikimus.} email_exists{Su šiuo el. pašto adresu jau yra paskyra.} invalid_profile{Patikrinkite profilio informaciją.} invalid_device{Šio įrenginio pavadinimas arba vietinė tapatybė netinkami.} invalid_location{Atnaujinkite vietų sąrašą ir bandykite dar kartą.} device_limit{Prieš pridėdami kitą įrenginį, pašalinkite esamą.} device_exists{Ši VPN tapatybė jau susieta su kita paskyra.} device_identity_revoked{Ši tapatybė buvo pašalinta. Reikia sukurti naują vietinę tapatybę.} device_location_locked{Šio įrenginio vieta ką tik pasikeitė. Programa tęs vykstantį vietos keitimą.} location_migration_pending{Vietos keitimas jau vyksta.} location_migration_blocked{Vietos keitimui reikia veiksmų serverio pusėje. Bandykite vėliau arba susisiekite su palaikymo tarnyba.} target_ca_mismatch{Šis serveris dar nesuderinamas su dabartiniu OpenVPN profiliu.} location_migration_conflict{Atnaujinkite įrenginius, tada bandykite vietos keitimą dar kartą.} server_full{Ši vieta pasiekė ryšių ribą. Pasirinkite kitą vietą arba bandykite vėliau.} capacity_unavailable{Dabar negalime patvirtinti, ar ši vieta pasiekiama. Pasirinkite kitą vietą arba bandykite vėliau.} target_unavailable{Šis serveris laikinai nepasiekiamas.} not_found{Šis elementas jūsų paskyroje nebepasiekiamas.} invalid_openvpn_csr{Sukurkite naują OpenVPN tapatybę ir bandykite dar kartą.} openvpn_profile_exists{Šiam įrenginiui jau yra OpenVPN profilis.} openvpn_profile_revoked{Atnaujinkite OpenVPN profilį, kad galėtumėte tęsti.} openvpn_operation_pending{Pakeitimas dar įsigalioja. Bandykite vėliau.} openvpn_operation_terminal{Sukurkite naują OpenVPN tapatybę ir bandykite dar kartą.} openvpn_address_unavailable{Šiuo metu nėra pasiekiamo OpenVPN adreso.} openvpn_profile_conflict{Profilis pasikeitė. Atnaujinkite įrenginius ir bandykite dar kartą.} openvpn_signer_unavailable{OpenVPN paslauga laikinai nepasiekiama.} email_delivery_unavailable{El. laiško nepavyko išsiųsti. Bandykite vėliau.} invalid_token{Ši nuoroda neteisinga arba nebegalioja. Paprašykite naujos.} network_unavailable{Patikrinkite interneto ryšį ir bandykite dar kartą.} invalid_json{Patikrinkite įvestą informaciją ir bandykite dar kartą.} invalid_api_response{Serveris grąžino netikėtą atsakymą. Bandykite vėliau.} ipv6_unavailable{Serveris šiuo metu negali įjungti IPv6. Bandykite vėliau.} invalid_ip_families{Tunelio konfigūracija neišsami arba neatitinka leistinų adresų. Bandykite dar kartą programoje.} other{Įvyko serverio klaida. Bandykite vėliau.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Bandykite dar kartą po kelių akimirkų.",
+  "notice_retryAfter": "{seconds, plural, one{Bandykite dar kartą po {seconds} sekundės.} other{Bandykite dar kartą po {seconds} sekundžių.}}",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterMinutes": "{minutes, plural, one{Bandykite dar kartą po {minutes} minutės.} other{Bandykite dar kartą po {minutes} minučių.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{Bandykite dar kartą po {hours} valandos.} other{Bandykite dar kartą po {hours} valandų.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Sistemos VPN tęsimas nepasiekiamas} system_vpn_resume_corrupt{Netinkamas sistemos VPN tęsimas} system_vpn_resume_session_invalid{Netinkama VPN tęsimo sesija} system_vpn_resume_identity_changed{VPN tapatybė pakeista} system_vpn_resume_identity_invalid{Netinkama VPN tęsimo tapatybė} system_vpn_resume_storage_failed{VPN tęsimo saugykla nepasiekiama} system_vpn_resume_network_timeout{Nėra tinklo VPN tęsimui} system_vpn_resume_blocked{VPN tęsimas užblokuotas} system_vpn_resume_failed{Nepavyko tęsti VPN} system_vpn_resume_error_invalid{Netinkama VPN tęsimo klaida} wireguard_identity_store_failed{WireGuard tapatybė neišsaugota} wireguard_identity_unavailable{WireGuard tapatybė nepasiekiama} vpn_host_destroyed{Android VPN komponentas sustabdytas} vpn_host_unavailable{Android VPN komponentas nepasiekiamas} vpn_permission_required{Reikalingas VPN leidimas} vpn_permission_denied{VPN leidimas atmestas} vpn_permission_request_failed{Nepavyko paprašyti leidimo} wireguard_foreground_service_unavailable{WireGuard paslauga nepasiekiama} wireguard_identity_invalid{Netinkamas vietinis WireGuard raktas} wireguard_identity_in_use{WireGuard tapatybė jau naudojama} wireguard_configuration_invalid{Netinkama WireGuard konfigūracija} wireguard_operation_pending{WireGuard veiksmas dar vykdomas} wireguard_start_failed{WireGuard paleidimas atmestas} wireguard_stop_timeout{WireGuard sustabdymas nepatvirtintas} wireguard_handshake_timeout{WireGuard neatsako} openvpn_connection_timeout{OpenVPN neatsako} openvpn_core_unavailable{OpenVPN variklis nepasiekiamas} openvpn_operation_pending{OpenVPN sesija dar aktyvi} openvpn_stop_timeout{OpenVPN sustabdymas nepatvirtintas} openvpn_profile_unavailable{Trūksta vietinio OpenVPN profilio} openvpn_native_failed{Vietinis OpenVPN iškvietimas nutrūko} openvpn_key_generation_failed{Nepavyko sukurti OpenVPN P-256 rakto} openvpn_csr_generation_failed{Nepavyko sukurti OpenVPN CSR} openvpn_identity_store_failed{OpenVPN tapatybė neišsaugota} openvpn_identity_clear_failed{Neužbaigtas OpenVPN pašalinimas} openvpn_identity_in_use{OpenVPN tapatybė dar naudojama} openvpn_tls_verification_required{Trūksta OpenVPN TLS patikros} openvpn_cipher_invalid{Netinkamas OpenVPN šifras} openvpn_profile_rejected{OpenVPN profilis atmestas} openvpn_identity_inconsistent{Neatitinkama OpenVPN tapatybė} tls_handshake_failed{OpenVPN derybos atmestos} tls_alert_unknown_ca{OpenVPN kliento sertifikatas nepripažintas} tls_alert_bad_certificate{OpenVPN kliento sertifikatas atmestas} tls_alert_unsupported_certificate{Nepalaikomas OpenVPN sertifikatas} tls_client_certificate_required{Reikalingas OpenVPN kliento sertifikatas} tls_alert_misc{OpenVPN TLS įspėjimas} tls_signature_algorithm_rejected{Nepalaikomas OpenVPN parašas} tls_handshake_rejected{OpenVPN TLS derybos atmestos} tls_version_rejected{Nesuderinama OpenVPN TLS versija} tls_certificate_expired{TLS sertifikato galiojimas baigėsi} tls_certificate_revoked{TLS sertifikatas atšauktas} transport_failed{OpenVPN serveris nepasiekiamas} tun_configuration_rejected{Nepavyko sukurti OpenVPN sąsajos} tun_setup_failed{OpenVPN TUN paruošimo klaida} tun_interface_create_failed{OpenVPN sąsajos kūrimo klaida} tun_interface_disabled{OpenVPN sąsaja išjungta} tun_halted{OpenVPN sąsaja nutrūko} tun_already_established{OpenVPN sąsaja jau atidaryta} tun_addresses_missing{Trūksta OpenVPN adreso} tun_routes_missing{Trūksta OpenVPN maršrutų} tun_dns_missing{Trūksta OpenVPN DNS} tun_permission_revoked{VPN leidimas panaikintas} tun_establish_returned_null{Android atmetė VPN sąsają} openvpn_service_start_failed{OpenVPN paslauga nepasiekiama} openvpn_operation_timeout{OpenVPN iškvietimas užtruko per ilgai} openvpn_start_failed{OpenVPN paleidimas atmestas} openvpn_connection_failed{OpenVPN ryšys nutrūko} openvpn_core_status_error{OpenVPN Core užbaigė darbą su klaida} openvpn_stopped_before_connected{OpenVPN sustojo prieš prisijungiant} openvpn_auth_failed{OpenVPN autentifikavimas atmestas} openvpn_client_setup_failed{Nepavyko paruošti OpenVPN kliento} openvpn_client_halted{OpenVPN klientas nutrūko} openvpn_client_restart{Prašoma iš naujo paleisti OpenVPN} openvpn_inactive_timeout{OpenVPN per ilgai neaktyvus} openvpn_session_expired{OpenVPN sesijos galiojimas baigėsi} openvpn_credentials_required{Nepalaikomas OpenVPN autentifikavimas} openvpn_proxy_failed{OpenVPN tarpinio perdavimo klaida} openvpn_compression_failed{OpenVPN suspaudimas atmestas} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM šifravimas nepasiekiamas} openvpn_feature_unsupported{Nepalaikoma OpenVPN funkcija} network_unavailable{Nėra interneto ryšio} network_lost{Tinklas nepasiekiamas} certificate_validation_failed{Serverio sertifikatas atmestas} openvpn_certificate_expired{OpenVPN sertifikato galiojimas baigėsi} tunnel_active_for_another_account{Kitos paskyros tunelis dar aktyvus} tunnel_already_active{Vietinis tunelis jau aktyvus} tunnel_stop_timeout{{protocol} sustabdymas nepatvirtintas} tunnel_disconnected{{protocol} ryšys nutrūko} native_bridge_unavailable{Android tiltas nepasiekiamas} native_operation_failed{Android veiksmas nutrūko} invalid_arguments{Neišsamūs VPN parametrai} invalid_account_id{Netinkama VPN paskyra} invalid_device_id{Netinkamas įrenginio identifikatorius} storage_key_not_allowed{Saugyklos raktas atmestas} secure_storage_read_failed{Nepavyko saugiai nuskaityti} secure_storage_write_failed{Nepavyko saugiai įrašyti} key_generation_failed{Nepavyko sukurti WireGuard rakto} csr_generation_failed{Nepavyko sukurti OpenVPN CSR} openvpn_recovery_exhausted{OpenVPN atkūrimas jau panaudotas} openvpn_recovery_failed{Nepavyko atkurti OpenVPN} openvpn_renewal_required{Reikia atnaujinti OpenVPN sertifikatą} other{Neklasifikuota vietinė VPN klaida}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android negali rasti VPN sesijos, kurią būtų galima tęsti. Programoje pradėkite naują ryšį.} system_vpn_resume_corrupt{Išsaugoti VPN tęsimo duomenys yra netinkami ir nebus naudojami. Pradėkite naują ryšį.} system_vpn_resume_session_invalid{Išsaugota sesija nebegali tęsti VPN. Programoje prisijunkite prie paskyros dar kartą.} system_vpn_resume_identity_changed{Vietinė VPN tapatybė pakeista. Tęsimas sustabdytas; pradėkite naują ryšį.} system_vpn_resume_identity_invalid{Tęsimui skirta tapatybė netinkama. Pradėkite naują ryšį.} system_vpn_resume_storage_failed{Android negalėjo perskaityti arba atnaujinti šifruotų tęsimo duomenų. Pradėkite naują ryšį.} system_vpn_resume_network_timeout{Android per nustatytą laiką nerado tinklo VPN tęsimui. Bandykite dar kartą, kai bus pasiekiamas tinklas.} system_vpn_resume_blocked{VPN tęsimas užblokuotas. Patikrinkite Android nustatymus, tada pradėkite naują ryšį.} system_vpn_resume_failed{Android nepavyko tęsti VPN. Programoje pradėkite naują ryšį.} system_vpn_resume_error_invalid{Android grąžino netinkamą tęsimo klaidą. Pradėkite naują ryšį.} wireguard_identity_store_failed{Android negalėjo išsaugoti šios paskyros šifruotos WireGuard tapatybės.} wireguard_identity_unavailable{Šiam ryšiui nėra tinkamos WireGuard tapatybės.} vpn_host_destroyed{Android komponentas, kuriame veikė VPN, buvo sustabdytas. Pradėkite naują ryšį.} vpn_host_unavailable{Android negali sukurti komponento, kuriame veiktų VPN. Patikrinę VPN nustatymus, bandykite dar kartą.} openvpn_renewal_required{Prieš prisijungiant programoje reikia atlikti su sertifikatu susijusį veiksmą.} openvpn_recovery_failed{Automatinis atkūrimas nepavyko. Programoje pradėkite naują ryšį.} openvpn_recovery_exhausted{Automatinis atkūrimas jau buvo panaudotas. Programoje pradėkite naują ryšį.} vpn_permission_required{Prieš paleisdamas tunelį Android reikalauja naujo VPN leidimo.} vpn_permission_denied{Norėdami tęsti, Android užklausoje leiskite FuzeVPN.} vpn_permission_request_failed{Android nepavyko atidaryti VPN leidimo ekrano.} wireguard_foreground_service_unavailable{Android nepavyko išlaikyti WireGuard paslaugos pirmame plane.} wireguard_identity_invalid{Šios paskyros šifruotas WireGuard raktas nenuskaitomas arba netinkamas.} wireguard_identity_in_use{Kitas veiksmas vis dar naudoja šios paskyros WireGuard raktą.} wireguard_configuration_invalid{Gautas WireGuard adresas, DNS, serverio raktas arba maršrutai yra netinkami.} wireguard_operation_pending{Ankstesnis WireGuard veiksmas dar neatlaisvino savo vietinės paslaugos.} wireguard_start_failed{WireGuard variklis atmetė konfigūracijos aktyvavimą.} wireguard_stop_timeout{WireGuard paslauga per nustatytą laiką nepatvirtino VPN sąsajos atlaisvinimo.} wireguard_handshake_timeout{Tunelis per nustatytą laiką nepatvirtino ryšio užmezgimo su serveriu.} openvpn_connection_timeout{OpenVPN per nustatytą laiką nepatvirtino ryšio su serveriu.} openvpn_core_unavailable{Šioje programos versijoje nėra tinkamo OpenVPN variklio.} openvpn_operation_pending{Vietinis variklis vis dar laiko ankstesnę OpenVPN sesiją ir atsisako sukurti antrą.} openvpn_stop_timeout{OpenVPN Core per nustatytą laiką nepatvirtino, kad jo vietinė sesija sustojo ir buvo sunaikinta.} openvpn_profile_unavailable{Šiam ryšiui negalima nuskaityti patikrinto OpenVPN profilio.} openvpn_native_failed{Programos klaida nutraukė OpenVPN. Bandykite prisijungti dar kartą. Jei problema išlieka, paleiskite diagnostiką.} openvpn_key_generation_failed{Android Keystore negalėjo sukurti arba perskaityti neeksportuojamo P-256 privataus rakto.} openvpn_csr_generation_failed{Android Keystore raktu nepavyko pasirašyti OpenVPN sertifikato užklausos.} openvpn_identity_store_failed{OpenVPN sertifikato ar profilio nepavyko išsaugoti šifruotoje saugykloje.} openvpn_identity_clear_failed{Android nepavyko pašalinti visos vietinės šios paskyros OpenVPN tapatybės.} openvpn_identity_in_use{Vietinė OpenVPN sesija vis dar naudoja šio įrenginio raktą arba sertifikatą.} openvpn_tls_verification_required{Profilyje aiškiai nenurodyta, kad reikia tikrinti serverio sertifikatą.} openvpn_cipher_invalid{Serveris pateikė šifravimo algoritmą, kurio nėra leidžiamų algoritmų sąraše.} openvpn_profile_rejected{Iš serverio gautas profilis nesuderinamas. Sukurkite šį įrenginį iš naujo ir bandykite dar kartą.} openvpn_identity_inconsistent{Sertifikatas neatitinka šio telefono saugios tapatybės. Vietinis profilis nebuvo pakeistas.} tls_handshake_failed{Serveris atmetė TLS derybas. Jei problema išlieka, sukurkite profilį iš naujo.} tls_alert_unknown_ca{Serveris nepripažįsta šio įrenginio sertifikato išdavėjo. Reikia patikrinti OpenVPN serverį.} tls_alert_bad_certificate{Serveris atmetė šį įrenginio sertifikatą. Prieš bandydami dar kartą, sukurkite įrenginį iš naujo.} tls_alert_unsupported_certificate{Serveris nepalaiko saugaus sertifikato tipo, kurį naudoja Android.} tls_client_certificate_required{Serveriui reikalingas kliento sertifikatas, bet OpenVPN Core nepavyko jo pateikti.} tls_alert_misc{Serveris grąžino TLS įspėjimą, kuris nepriklauso nei sertifikato, nei versijos kategorijai.} tls_signature_algorithm_rejected{Serveris atmetė Android Keystore rakto ECDSA P-256 algoritmą.} tls_handshake_rejected{Serveris nutraukė TLS derybas prieš prisijungiant.} tls_version_rejected{Klientas ir serveris nerado bendros TLS versijos.} tls_certificate_expired{Prisijungimo metu pateiktas sertifikatas jau nebegalioja.} tls_certificate_revoked{Prisijungimo metu pateiktas sertifikatas buvo atšauktas.} transport_failed{OpenVPN serveris dabartiniame tinkle neatsako. Netrukus bandykite dar kartą.} tun_configuration_rejected{Android atmetė tinklo konfigūraciją, kurios prašė OpenVPN.} tun_setup_failed{OpenVPN Core atmetė tinklo planą prieš kurdamas Android sąsają.} tun_interface_create_failed{OpenVPN Core nepavyko gauti TUN sąsajos iš Android VpnService.} tun_interface_disabled{Ryšio metu Android arba OpenVPN Core išjungė TUN sąsają.} tun_halted{OpenVPN Core gavo užklausą sustabdyti TUN sąsają.} tun_already_established{OpenVPN tame pačiame ryšyje paprašė antros sąsajos. Saugumo sumetimais tunelis sustabdytas.} tun_addresses_missing{Serveris nepateikė tinkamo tunelio adreso.} tun_routes_missing{Serveris nepateikė tinkamų tunelio maršrutų.} tun_dns_missing{Serveris nepateikė tinkamo DNS serverio.} tun_permission_revoked{Ryšio metu Android panaikino VPN leidimą.} tun_establish_returned_null{Android nesukūrė sąsajos, dažniausiai todėl, kad kitas VPN vis dar aktyvus.} openvpn_service_start_failed{Android nepavyko paleisti OpenVPN paslaugos pirmame plane.} openvpn_operation_timeout{JNI iškvietimas į OpenVPN Core viršijo didžiausią leistiną trukmę.} openvpn_start_failed{Android paslauga paruošta, bet OpenVPN Core nepriėmė profilio paleidimo.} openvpn_connection_failed{OpenVPN Core sustojo prieš pateikdamas CONNECTED įvykį.} openvpn_core_status_error{Vietinis OpenVPN ciklas baigėsi klaida, nepateikdamas konkretesnio galutinio įvykio.} openvpn_stopped_before_connected{Vietinis OpenVPN ciklas sustojo prieš CONNECTED, be aiškios OpenVPN Core klaidos.} openvpn_auth_failed{OpenVPN serveris atmetė profilio autentifikavimą.} openvpn_client_setup_failed{OpenVPN Core nepavyko paruošti kliento prieš prisijungiant prie tinklo.} openvpn_client_halted{OpenVPN Core gavo galutinę kliento sustabdymo užklausą.} openvpn_client_restart{OpenVPN Core paprašė iš naujo paleisti savo perdavimo sesiją.} openvpn_inactive_timeout{OpenVPN Core uždarė sesiją pasibaigus neveiklumo laikui.} openvpn_session_expired{Serveris pranešė, kad OpenVPN sesijos galiojimas baigėsi.} openvpn_credentials_required{Serveris arba tarpinis serveris reikalauja interaktyvių prisijungimo duomenų, kurių nėra šiame sertifikato profilyje.} openvpn_proxy_failed{OpenVPN Core pranešė apie sukonfigūruoto tarpinio serverio arba retransliatoriaus gedimą.} openvpn_compression_failed{OpenVPN Core atmetė profilio ar serverio paskelbtą suspaudimo režimą.} openvpn_ntlm_crypto_unavailable{Profilyje prašomas NTLM šifravimas šioje versijoje nepasiekiamas.} openvpn_feature_unsupported{Profiliui ar serveriui reikalinga funkcija, kurios nėra šiame Android kliente.} network_unavailable{Nėra tinkamo fizinio tinklo.} network_lost{Tunelis sustabdytas po to, kai prarastas tinklas.} certificate_validation_failed{Nepavyko patikrinti OpenVPN serverio tapatybės.} openvpn_certificate_expired{Prieš prisijungdami iš naujo atnaujinkite OpenVPN profilį.} tunnel_active_for_another_account{Prieš šį ryšį turi būti sustabdytas kitos paskyros tunelis.} tunnel_already_active{Android praneša, kad ankstesnė VPN sesija vis dar naudoja sąsają.} tunnel_stop_timeout{{protocol} variklis per nustatytą laiką nepatvirtino VPN sąsajos atlaisvinimo.} tunnel_disconnected{Vietinis variklis pranešė, kad tunelis netikėtai nutrūko po paleidimo.} native_bridge_unavailable{Programa negali pasiekti Android VPN paslaugos. Uždarykite ir iš naujo atidarykite programą, tada bandykite dar kartą.} native_operation_failed{Programos klaida nutraukė VPN veiksmą. Bandykite dar kartą. Jei problema išlieka, paleiskite diagnostiką.} invalid_arguments{Šiam VPN veiksmui reikalinga informacija yra neišsami. Bandykite dar kartą. Jei problema išlieka, paleiskite diagnostiką.} invalid_account_id{Vietinis veiksmas nesusietas su tinkamu paskyros identifikatoriumi.} invalid_device_id{Vietiniam varikliui perduoto įrenginio identifikatoriaus nėra arba jis netinkamas.} storage_key_not_allowed{Android tiltas užblokavo raktą, kurio nėra leidžiamų saugyklos raktų sąraše.} secure_storage_read_failed{Android Keystore negalėjo iššifruoti šios paskyros vietinių duomenų.} secure_storage_write_failed{Android Keystore negalėjo užšifruoti arba išsaugoti vietinių duomenų.} key_generation_failed{Android nepavyko sukurti arba perskaityti WireGuard rakto saugioje saugykloje.} csr_generation_failed{Android Keystore nepavyko sukurti arba pasirašyti OpenVPN P-256 CSR.} other{Įvyko nedokumentuota vietinė klaida. Išsiųskite toliau rodomą diagnostikos kodą palaikymo tarnybai.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Leidimo užklausa jau rodoma",
+  "notice_permissionRequestInProgress_message": "Android VPN leidimo užklausa jau rodoma. Prieš bandydami dar kartą, ją užbaikite.",
+  "notice_permissionRequestInterrupted_title": "VPN leidimo užklausa nutrūko",
+  "notice_permissionRequestInterrupted_message": "VPN leidimo ekranas užsidarė, o programa nespėjo gauti atsakymo.",
+  "notice_openvpnProofMissing_title": "OpenVPN ryšys nepatvirtintas",
+  "notice_openvpnProofMissing_message": "Nepavyko patvirtinti OpenVPN ryšio. Saugumo sumetimais jis sustabdytas. Bandykite dar kartą.",
+  "openvpnCleanup_title": "OpenVPN profilis panaikintas",
+  "openvpnCleanup_working": "Sustabdomas ir pašalinamas panaikintas OpenVPN profilis…",
+  "openvpnCleanup_stopFailed": "OpenVPN sustabdymas nepatvirtintas. Prieš kurdami naują profilį, bandykite dar kartą.",
+  "openvpnCleanup_cleanupFailed": "Panaikinto OpenVPN profilio nepavyko visiškai pašalinti. Bandykite išvalyti dar kartą.",
+  "openvpnCleanup_complete": "Panaikintas OpenVPN profilis pašalintas. Palieskite „Prisijungti“, kad sukurtumėte naują.",
+  "network_title": "Tinklo konfigūracija",
+  "network_ipv4Fallback": "IPv6 laikinai nepasiekiamas. Ruošimas tęsiamas naudojant IPv4.",
+  "network_rejectedTitle": "Tinklo konfigūracija atmesta",
+  "network_rejectedMessage": "Tunelio konfigūracija neišsami arba neatitinka leistinų adresų. Bandykite dar kartą programoje.",
+  "network_unreadableTitle": "Vietinės konfigūracijos nepavyksta nuskaityti",
+  "network_unreadableMessage": "Išsaugotos OpenVPN tinklo konfigūracijos naudoti nepavyksta. Prisijunkite iš naujo programoje, kad ją atnaujintumėte.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Tinklo apsauga",
+  "protection_subtitle": "Blokuoti tiesioginę prieigą prie interneto, jei VPN atsijungia.",
+  "protection_active": "Sistemos apsauga įjungta",
+  "protection_alwaysOnOnly": "Įjungta funkcija „Visada įjungtas VPN“; įjunkite blokavimą be VPN",
+  "protection_inactive": "Sistemos apsauga išjungta",
+  "protection_unknown": "Patikrinkite sistemos apsaugą",
+  "protection_openSettings": "Atidaryti Android nustatymus",
+  "protection_dialogTitle": "Nustatykite tinklo apsaugą",
+  "protection_dialogMessage": "Android valdo funkciją „Visada įjungtas VPN“ ir ryšių blokavimą be VPN. Patikrinkite, ar pasirinktas FuzeVPN, ir sistemos nustatymuose įjunkite blokavimą.",
+  "protection_dialogOpen": "Atidaryti nustatymus",
+  "session_systemProtectionNote": "Jei Android vis dar blokuoja srautą be VPN, atidarykite sistemos nustatymus, kad patikrintumėte arba pakeistumėte šią apsaugą.",
+  "diagnostics_title": "Diagnostika",
+  "diagnostics_settingsTitle": "Programos diagnostika",
+  "diagnostics_automaticTitle": "Siųsti svarbias klaidas",
+  "diagnostics_automaticDescription": "Kai įvyksta svarbi klaida, išsiunčiama trumpa techninė ataskaita.",
+  "diagnostics_privacy": "Išsiųstos ataskaitos susietos su prisijungusia paskyra ir saugomos 30 dienų. Jose nėra naršymo istorijos, slaptažodžių ar VPN raktų.",
+  "diagnostics_manualOpen": "Paleisti diagnostiką",
+  "diagnostics_localDescription": "Sukurkite programos ir VPN būsenos ataskaitą. Jūsų ryšys nepakis.",
+  "diagnostics_sendReport": "Siųsti ataskaitą",
+  "diagnostics_sendHint": "Palikite šį langelį nepažymėtą, kad ataskaita liktų šiame įrenginyje.",
+  "diagnostics_signedOut": "Norėdami siųsti ataskaitą, prisijunkite prie paskyros.",
+  "diagnostics_localLifetime": "Išsaugokite šią ataskaitą telefone, kad ji liktų uždarius programą.",
+  "diagnostics_run": "Paleisti diagnostiką",
+  "diagnostics_rerun": "Paleisti diagnostiką dar kartą",
+  "diagnostics_running": "Tikrinama…",
+  "diagnostics_sending": "Siunčiama ataskaita…",
+  "diagnostics_prepared": "Ataskaita paruošta šiame įrenginyje",
+  "diagnostics_queued": "Ataskaita laukia siuntimo",
+  "diagnostics_sent": "Ataskaita gauta",
+  "diagnostics_failed": "Nepavyko išsiųsti. Vietinė ataskaita vis dar pasiekiama.",
+  "diagnostics_preparationFailed": "Diagnostikos ataskaitos nepavyko paruošti. Bandykite dar kartą.",
+  "diagnostics_authenticationRequired": "Prisijunkite dar kartą, kad išsiųstumėte ataskaitą.",
+  "diagnostics_retry": "Bandyti siųsti dar kartą",
+  "diagnostics_export": "Išsaugoti ataskaitą",
+  "diagnostics_exportFailed": "Eksportuoti nepavyko. Bandykite dar kartą iš vietinės ataskaitos.",
+  "diagnostics_preferenceFailed": "Šio nustatymo nepavyko išsaugoti. Bandykite dar kartą.",
+  "diagnostics_receipt": "Ataskaitos numeris: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "Gauta {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Saugoma iki {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Ši ataskaita jau buvo gauta.",
+  "diagnostics_preview": "Ataskaitos peržiūra",
+  "diagnostics_eventCount": "{count, plural, =0{Techninių įvykių nepridėta} one{Pridėtas {count} techninis įvykis} few{Pridėti {count} techniniai įvykiai} other{Pridėta {count} techninių įvykių}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Techninė informacija",
+  "diagnostics_empty": "Diagnostikos ataskaita dar nebuvo paruošta.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Tunelio būsena} handshake{Ryšio patvirtinimas} certificate{VPN sertifikatas} kill_switch{Android apsauga} connectivity{Pasiekiamas tinklas} api_reachability{Prieiga prie paslaugos} secure_storage{Saugi saugykla} other{Vietinis patikrinimas}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Patikrinta} failed{Reikia dėmesio} skipped{Netestuota, aktyvaus patikrinimo nėra} unknown{Informacija nepasiekiama} other{Informacija nepasiekiama}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Sveiki atvykę į FuzeVPN",
+  "connection_changeLocation": "Keisti vietą",
+  "connection_details": "Ryšio informacija",
+  "locations_searchLabel": "Ieškoti miesto ar šalies",
+  "locations_clearSearch": "Išvalyti paiešką",
+  "locations_filterAll": "Visos",
+  "locations_filterFavorites": "Mėgstamiausios",
+  "locations_results": "{count, plural, one{{count} vieta} few{{count} vietos} other{{count} vietų}}",
+  "locations_noResults": "Vietų nerasta",
+  "locations_noResultsHint": "Pabandykite kitą miestą arba šalį.",
+  "locations_noFavorites": "Mėgstamiausios vietos visada po ranka",
+  "locations_noFavoritesHint": "Palieskite žvaigždutę šalia vietos, kad ji būtų išsaugota čia.",
+  "locations_showAll": "Rodyti visas vietas",
+  "locations_addFavorite": "Pridėti prie mėgstamiausių: {name}",
+  "locations_removeFavorite": "Pašalinti iš mėgstamiausių: {name}",
+  "locations_favoriteSaveFailed": "Mėgstamiausios vietos nepavyko išsaugoti. Bandykite dar kartą.",
+  "locations_emptyTitle": "Vietų nėra",
+  "locations_emptyHint": "Atnaujinkite sąrašą ir bandykite dar kartą.",
+  "devices_manage": "Tvarkyti mano įrenginius",
+  "settings_personalization": "Pritaikykite sau",
+  "settings_safety": "Apsauga",
+  "settings_help": "Reikia pagalbos?",
+  "settings_about": "Apie FuzeVPN",
+  "diagnostics_heading": "Išsiaiškinkite ryšio problemą",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Pasiekiamas} pending{Ruošiamas} revoked{Pašalintas} expired{Nebegalioja} other{Būsena nepasiekiama}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Nuostata neišsaugota",
+  "notice_preferenceSave_message": "Jūsų pasirinkimas kol kas taikomas, bet nepavyko jo išsaugoti. Bandykite dar kartą, kad jis liktų uždarius programą.",
+  "connection_androidDisconnectHint": "Jei Android palieka VPN aktyvų, atsidariusiuose nustatymuose išjunkite „Visada įjungtas VPN“.",
+  "protection_learnMore": "Sužinokite daugiau apie Android apsaugą",
+  "protection_guideWhy": "Ši apsauga neleidžia programoms tiesiogiai naudotis internetu, jei VPN atsijungia. Ji nustatoma Android sistemoje.",
+  "protection_guideAlwaysOnTitle": "Visada įjungtas VPN",
+  "protection_guideAlwaysOn": "Android nuolat laiko VPN paslaugą įjungtą ir gali ją vėl paleisti perkrovus telefoną.",
+  "protection_guideBlockTitle": "Blokuoti ryšius be VPN",
+  "protection_guideBlock": "Šis nustatymas neleidžia srautui apeiti VPN, taip pat ir tada, kai ryšys nutrūksta.",
+  "protection_guideWarning": "Įjungus šį blokavimą, internetas neveiks, kol nebus prisijungta prie VPN.",
+  "protection_guideStepsTitle": "Įjunkite apsaugą",
+  "protection_guideStep1": "Žemiau esančiu mygtuku atidarykite Android VPN nustatymus.",
+  "protection_guideStep2": "Palieskite krumpliaračio piktogramą šalia FuzeVPN, kad atidarytumėte parinktis.",
+  "protection_guideStep3": "Įjunkite „Visada įjungtas VPN“, tada – „Blokuoti ryšius be VPN“, jei šios parinktys pasiekiamos.",
+  "protection_guideManufacturers": "Pavadinimai skiriasi priklausomai nuo telefono. Jei reikia, nustatymuose ieškokite „VPN“, dažniausiai skiltyje „Tinklas ir internetas“.",
+  "protection_guideDisableTitle": "Išjunkite šią apsaugą",
+  "protection_guideDisable": "Tuose pačiuose nustatymuose išjunkite blokavimą be VPN, kad būtų galima naudotis internetu be VPN. Taip pat išjunkite „Visada įjungtas VPN“, jei nebenorite, kad Android jį paleistų iš naujo.",
+  "protection_guideManual": "Šiuos nustatymus pasirenkate Android sistemoje. FuzeVPN jų už jus nekeičia.",
+  "locations_changeTitle": "Keisti vietą?",
+  "locations_changeActive": "VPN atsijungs, tada bandys prisijungti prie vietos: {name}.",
+  "locations_changeIdle": "VPN bandys prisijungti prie vietos: {name}.",
+  "locations_confirmChange": "Keisti ir prisijungti",
+  "locations_changeBusy": "Vyksta vietos keitimas. Prieš pasirinkdami kitą vietą, palaukite.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Automatinis pasirinkimas",
+  "locations_cities": "Miestai",
+  "locations_servers": "Serveriai",
+  "locations_viewCities": "Peržiūrėti miestus: {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Peržiūrėti serverius: {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} šalis} few{{count} šalys} other{{count} šalių}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} miestas} few{{count} miestai} other{{count} miestų}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} serveris} few{{count} serveriai} other{{count} serverių}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Visos šalys",
+  "locations_backToCountries": "Grįžti į šalis",
+  "locations_backToCities": "Grįžti į miestus: {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Pasirinkti: {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Pasirinkti: {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Nėra suderinamo serverio.",
+  "externalLink_failed": "Nepavyko atidaryti šios nuorodos. Ją galite nukopijuoti ir atidaryti naršyklėje.",
+  "externalLink_copy": "Kopijuoti nuorodą",
+  "externalLink_copied": "Nuoroda nukopijuota",
+  "externalLink_copyFailed": "Nepavyko nukopijuoti nuorodos. Pažymėkite toliau pateiktą adresą.",
+  "settings_deleteAccount": "Ištrinti mano paskyrą",
+  "settings_deleteAccountDetail": "Peržiūrėkite paskyros ištrynimo prašymo tvarką",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Pasirinkite VPN prenumeratą.",
+  "billing_subscribe": "Prenumeruoti",
+  "billing_choosePlan": "Norėdami tęsti, pasirinkite planą.",
+  "billing_monthly": "Mėnesinis",
+  "billing_yearly": "Metinis",
+  "billing_continue": "Tęsti naudojant Google Play",
+  "billing_restore": "Atkurti pirkinius",
+  "billing_manage": "Tvarkyti prenumeratą",
+  "billing_deleteAccountWarning": "Jei turite Google Play prenumeratą, ištrynus FuzeVPN paskyrą, jos atnaujinimas nebus atšauktas. Atnaujinimą tvarkykite arba atšaukite atskirai Google Play.",
+  "billing_deleteAccountContinue": "Pereiti prie paskyros ištrynimo prašymo",
+  "billing_refresh": "Atnaujinti prieigą",
+  "billing_loadingPlans": "Įkeliami planai…",
+  "billing_unavailable": "Šiuo metu planai nepasiekiami. Bandykite vėliau.",
+  "billing_comingSoon": "Prenumeratos netrukus bus galimos.",
+  "billing_priceDisclosure": "Kainą pateikia Google Play. Galutinė suma ir taikomi mokesčiai nurodomi prieš jums patvirtinant pirkimą.",
+  "billing_renewalMonthly": "Prenumerata automatiškai atnaujinama kas mėnesį, nebent ją atšauksite. Galite ją bet kada atšaukti Google Play prenumeratų skiltyje.",
+  "billing_renewalYearly": "Prenumerata automatiškai atnaujinama kas metus, nebent ją atšauksite. Galite ją bet kada atšaukti Google Play prenumeratų skiltyje.",
+  "billing_active": "Jūsų Premium prieiga aktyvi",
+  "billing_accessUntil": "Prieiga galioja iki {date}.",
+  "billing_webManaged": "Jūsų prenumerata tvarkoma FuzeVPN svetainėje.",
+  "billing_playManaged": "Jūsų prenumerata tvarkoma Google Play.",
+  "billing_playOnHold": "Jūsų Google Play prenumerata sustabdyta arba laukia mokėjimo. Atidarykite „Tvarkyti prenumeratą“, kad tai ištaisytumėte Google Play.",
+  "billing_playReceiptUnlinked": "Šioje Google Play paskyroje jau yra Fuze Premium prenumerata, kuri nėra aktyvi šiai FuzeVPN paskyrai. Atidarykite „Tvarkyti prenumeratą“, kad ją peržiūrėtumėte Google Play.",
+  "billing_inactive": "Aktyvios prenumeratos nėra.",
+  "billing_checkingAccess": "Tikrinama jūsų prieiga…",
+  "billing_restoring": "Atkuriami pirkiniai…",
+  "billing_pending": "Laukiama mokėjimo patvirtinimo. Jūsų prieiga bus aktyvuota jį patvirtinus.",
+  "billing_cancelled": "Pirkimas atšauktas. Nauja prenumerata nebuvo aktyvuota.",
+  "billing_verifying": "Tikrinamas pirkimas…",
+  "billing_success": "Prenumerata aktyvuota. Jūsų Premium prieiga paruošta.",
+  "billing_restored": "Jūsų pirkiniai atkurti.",
+  "billing_restoreEmpty": "Šioje Google Play paskyroje nėra pirkinių, kuriuos būtų galima atkurti.",
+  "billing_catalogError": "Nepavyko įkelti planų. Bandykite dar kartą.",
+  "billing_purchaseError": "Nepavyko pradėti pirkimo. Bandykite dar kartą.",
+  "billing_verificationError": "Pirkimo patikra laikinai nepasiekiama. Norėdami bandyti dar kartą, atkurkite pirkinius.",
+  "billing_restoreError": "Nepavyko atkurti pirkinių. Bandykite dar kartą.",
+  "billing_managementError": "Nepavyko atidaryti prenumeratos tvarkymo. Bandykite dar kartą.",
+  "billing_storeUnavailable": "Šiame įrenginyje Google Play nepasiekiama.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "Jūsų VPN – paprasta.",
+  "welcome_description": "Apsaugokite savo ryšį. Kontroliuokite savo privatumą.",
+  "welcome_start": "Pradėti",
+  "welcome_alreadyPurchased": "Jau įsigijote?",
+  "welcome_noAccountRequired": "Norint pradėti, paskyros nereikia.",
+  "guest_accountTitle": "Paskyra nesusieta",
+  "guest_accountDescription": "Atkurkite pirkinius naudodami tą pačią Google Play paskyrą, kad galėtumėte prenumeratą naudoti kitame įrenginyje.",
+  "guest_existingSubscriberSignIn": "Jau prenumeruojate? Prisijunkite prie paskyros",
+  "guest_claimTitle": "Naudokite FuzeVPN visur",
+  "guest_claimDescription": "Sukurkite paskyrą, kad prenumeratą galėtumėte naudoti kituose įrenginiuose. Šis žingsnis neprivalomas.",
+  "guest_skip": "Galbūt vėliau",
+  "guest_activationTitle": "Fuze Premium aktyvuotas",
+  "guest_activationDescription": "Jūsų prenumerata paruošta. Naudokite VPN ir sukurkite paskyrą, kada tik norite.",
+  "guest_useVpn": "Naudoti VPN",
+  "guest_loginRequired": "Šis pirkinys jau susietas su FuzeVPN paskyra. Prisijunkite prie tos paskyros, kad pasiektumėte prenumeratą.",
+  "guest_signOutWarning": "Prenumeratą galite atgauti atkurdami pirkinius su ta pačia Google Play paskyra.",
+  "guest_profileUnavailable": "Jūsų paskyra jau susieta. Prisijunkite, kad galėtumėte peržiūrėti ir tvarkyti savo duomenis.",
+  "billing_acceptance": "Tęsdami sutinkate su naudojimo sąlygomis ir privatumo politika.",
+  "guest_verifyEmailReminder": "Patvirtinkite el. pašto adresą, kad apsaugotumėte paskyrą. VPN galite toliau naudoti.",
+  "guest_serviceUnavailable": "Paslauga laikinai nepasiekiama. Netrukus bandykite dar kartą.",
+  "guest_restoreError": "Nepavyko atkurti pirkinių. Bandykite dar kartą su ta Google Play paskyra, kuria atliktas pirkimas.",
+  "guest_claimSuccess": "Paskyra sukurta. Jūsų prenumerata ir VPN prieiga išlieka.",
+  "guest_emailExists": "Šis el. paštas jau naudojamas. Pasirinkite kitą adresą arba prisijunkite prie esamos paskyros. Jūsų pirkinys ir toliau pasiekiamas per Google Play.",
+  "guest_claimError": "Nepavyko sukurti paskyros. VPN galite toliau naudoti ir bandyti vėliau.",
+  "guest_secureStorageError": "Šiame įrenginyje nepavyko apsaugoti sesijos. Bandykite dar kartą.",
+  "guest_premiumRequired": "Pasirinkite prenumeratą, kad aktyvuotumėte VPN.",
+  "welcome_viewPlans": "Peržiūrėti planus",
+  "google_continue": "Tęsti naudojant Google",
+  "google_or": "arba",
+  "google_title": "Jūsų FuzeVPN paskyra",
+  "google_settingUp": "Užbaikite paskyros kūrimą",
+  "google_country": "Gyvenamoji šalis",
+  "google_profileDescription": "Pasirinkite savo šalį ir peržiūrėkite du dokumentus, kad sukurtumėte FuzeVPN paskyrą.",
+  "google_claimDescription": "Susiekite svečio paskyrą su Google. Jūsų prenumerata ir įrenginys lieka susieti su šia paskyra.",
+  "google_linkTitle": "Susieti Google su FuzeVPN",
+  "google_linkDescription": "Patvirtinkite prieigą prie esamos FuzeVPN paskyros. Šis žingsnis nereikalauja jūsų Google slaptažodžio.",
+  "google_password": "FuzeVPN slaptažodis",
+  "google_linkAccount": "Patvirtinti susiejimą",
+  "google_requestEmail": "Siųsti man patvirtinimo el. laišką",
+  "google_emailInstructions": "Atidarykite FuzeVPN el. laišką ir įveskite patvirtinimo kodą.",
+  "google_emailCode": "El. laiško patvirtinimo kodas",
+  "google_confirmEmail": "Patvirtinti kodą",
+  "google_restart": "Pasirinkti kitą Google paskyrą",
+  "google_resume": "Patikrinti šį bandymą",
+  "google_unavailable": "Prisijungimas per Google nepasiekiamas. Galite naudoti el. paštą ir slaptažodį.",
+  "google_expired": "Šio bandymo galiojimas baigėsi. Atšaukite jį ir pradėkite iš naujo.",
+  "google_conflict": "Ši Google paskyra jau susieta kitur. Jūsų dabartinė paskyra ir prenumerata išlieka.",
+  "google_error": "Prisijungti per Google nepavyko. Bandykite dar kartą; dabartinė prieiga išlieka.",
+  "google_uncertain": "Rezultato nepavyko patvirtinti. Patikrinkite šį bandymą arba jį atšaukite prieš pradėdami iš naujo.",
+  "google_cancelFailed": "Atšaukimo nepavyko patvirtinti. Prieš išeidami iš šio ekrano, bandykite atšaukti dar kartą.",
+  "google_cancelled": "Prisijungimas per Google atšauktas.",
+  "google_selecting": "Pasirinkite savo Google paskyrą…",
+  "google_verifying": "Tikrinama jūsų paskyra…",
+  "google_emailUnavailable": "Patvirtinimo laiško nepavyko išsiųsti. Bandykite vėliau.",
+  "google_emailSent": "Patvirtinimo laiškas išsiųstas. Patikrinkite gautuosius.",
+  "google_rateLimited": "Prieš bandydami dar kartą, palaukite.",
+  "google_busy": "Google nepasiekiama, kol vykdomas kitas veiksmas (VPN ryšys, paskyra arba svečio paskyra). Bandykite dar kartą, kai jis bus baigtas; dabartinė prieiga išlieka.",
+  "google_invalidPassword": "FuzeVPN slaptažodis neteisingas. Jūsų dabartinė paskyra išlieka.",
+  "google_invalidCode": "Patvirtinimo kodas neteisingas arba nebegalioja.",
+  "google_accountChanged": "Jūsų sesija pasikeitė. Prieš pradėdami iš naujo, atšaukite šį bandymą.",
+  "google_invalidResponse": "Atsakymo nepavyko patikrinti. Jūsų dabartinė prieiga išlieka.",
+  "google_invalidRegistration": "Patikrinkite šalį ir abu sutikimus.",
+  "google_consentRequired": "Norėdami tęsti, pasirinkite šalį ir sutikite su abiem dokumentais.",
+  "google_challengeRequired": "Reikalinga papildoma saugumo patikra. Jūsų dabartinė prieiga išlieka.",
+  "google_challengeUnavailable": "Saugumo patikra nepasiekiama. Bandykite vėliau.",
+  "google_intentMismatch": "Ankstesnis prisijungimo per Google bandymas vis dar neužbaigtas. Prieš pradėdami šį veiksmą, atšaukite jį.",
+  "google_challengeBlocked": "Šioje programoje nepasiekiama reikiama saugumo patikra. Šio veiksmo šiuo metu negalima užbaigti.",
+  "google_solveChallenge": "Atlikti saugumo patikrą",
+  "google_challengeTitle": "Saugumo patikra",
+  "google_challengeReady": "Patikra atlikta. Dabar galite patvirtinti paskyros kūrimą.",
+  "google_challengeExpired": "Patikros galiojimas baigėsi. Prieš patvirtindami, atlikite ją dar kartą.",
+  "google_challengeCancelled": "Patikra atšaukta. Galite bandyti dar kartą.",
+  "google_challengeFailed": "Nepavyko atlikti saugumo patikros. Bandykite dar kartą.",
+  "billing_trialTitle": "Išbandykite Fuze Premium nemokamai",
+  "billing_trialSubtitle": "Apsaugokite savo ryšį jau šiandien.",
+  "billing_trialWeeks": "2 savaičių nemokamas bandomasis laikotarpis",
+  "billing_trialDays": "Nemokamas bandomasis laikotarpis: {days} d.",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Pradėti nemokamą bandymą",
+  "billing_trialFirstCharge": "Jei pradėsite šiandien, pirmasis mokėjimas numatomas {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Prenumerata automatiškai atnaujinama nurodyta kaina. Kad išvengtumėte mokėjimo, atšaukite ją Google Play prieš pasibaigiant bandomajam laikotarpiui.",
+  "billing_trialThenMonthly": "Vėliau {price} per mėnesį",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Vėliau {price} per metus",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Pasirinkite planą",
+  "billing_selectionHint": "Norėdami tęsti, pasirinkite planą.",
+  "billing_benefitConnection": "Šifruotas ryšys",
+  "billing_benefitPrivacy": "Privatumas internete",
+  "billing_benefitNoAccount": "Registracijos nereikia",
+  "billing_cancellation": "Atšaukimas per Google Play",
+  "billing_premiumTitle": "Geriau apsaugotas ryšys.",
+  "billing_premiumSubtitle": "Apsaugokite ryšį savo tempu.",
+  "billing_priceMonthly": "per mėnesį",
+  "billing_priceYearly": "per metus",
+  "billing_trialToday": "Šiandien mokėti nereikia",
+  "billing_trialConfirmation": "Prieš jums patvirtinant, Google Play nurodo datas, galutinę sumą ir taikomus mokesčius.",
+  "billing_offerChanged": "Šio pasiūlymo sąlygos pasikeitė. Atnaujinkite planus ir pasirinkite iš naujo.",
+  "status_waitingNetwork": "Laukiama tinklo",
+  "status_waitingNetworkDetail": "Nėra pasiekiamo tinklo. VPN patikrins ryšį, kai tinklas vėl bus pasiekiamas.",
+  "locations_favoriteLoadFailed": "Mėgstamiausių vietų nepavyko įkelti. Bandykite dar kartą.",
+  "locations_favoritesLoading": "Įkeliamos mėgstamiausios vietos…"
+}

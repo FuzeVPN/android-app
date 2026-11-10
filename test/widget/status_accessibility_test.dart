@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/widgets/fuze_design.dart';
 
@@ -46,7 +47,7 @@ void main() {
             MaterialApp(
               locale: language.locale,
               supportedLocales: AppLanguages.supportedLocales,
-              localizationsDelegates: AppLocalizations.localizationsDelegates,
+              localizationsDelegates: AppLocalizationDelegates.all,
               theme: FuzeVpnTheme.light(),
               builder: (context, child) => MediaQuery(
                 data: MediaQuery.of(context).copyWith(textScaler: entry.value),
@@ -100,6 +101,9 @@ void main() {
                                               'el',
                                               'ru',
                                               'uk',
+                                              'bg',
+                                              'sr',
+                                              'kk',
                                             ].contains(language.tag))
                                               'Google Sans',
                                             ...FuzeVpnTheme.fontFallback,

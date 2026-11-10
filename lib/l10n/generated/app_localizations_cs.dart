@@ -525,6 +525,12 @@ class AppLocalizationsCs extends AppLocalizations {
   String get action_cancel => 'Zrušit';
 
   @override
+  String get action_close => 'Zavřít';
+
+  @override
+  String get action_copy => 'Kopírovat';
+
+  @override
   String get action_signOut => 'Odhlásit se';
 
   @override

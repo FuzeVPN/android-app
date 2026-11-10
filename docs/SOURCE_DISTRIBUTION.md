@@ -42,7 +42,7 @@ le runner de validation :
   du dépôt qu’il lance, PowerShell comme Python : chemins `Join-Path` et
   `"$base/..."`, fichiers inclus par `.`, jointures littérales des scripts
   Python (`Path(__file__)`, `/ 'littéral'`, boucles sur des listes littérales,
-  comme les 30 packs de `lib/l10n/translations` lus par l’étape
+  comme les 70 packs de `lib/l10n/translations` lus par l’étape
   `translations`) et des modules de test que `unittest discover -s tools/tests`
   charge ;
 - tout fichier des répertoires utilisés en bloc : sources Dart de `lib` et

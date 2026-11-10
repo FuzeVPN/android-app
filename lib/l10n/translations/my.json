@@ -1,0 +1,1036 @@
+{
+  "locale": "my",
+  "arb": {
+    "vpnDisclosure_title": "သင့်ချိတ်ဆက်မှုကို ကာကွယ်ပါ",
+    "vpnDisclosure_body": "FuzeVPN သည် ဤစက်ပစ္စည်းနှင့် FuzeVPN ဆာဗာများကြား ကုဒ်ဝှက်ထားသော တန်နယ်ကို ဖန်တီးရန် Android ၏ VPN ဝန်ဆောင်မှု (VpnService) ကို အသုံးပြုပါသည်။",
+    "vpnDisclosure_dataBody": "VPN ဖွင့်ထားစဉ် သင့်အက်ပ်များ၏ အင်တာနက် ဒေတာ သွားလာမှု၊ ဦးတည်ရာ လိပ်စာများနှင့် DNS တောင်းဆိုမှုများသည် FuzeVPN နောက်ခံတွင် ရှိနေချိန်၌ပင် သင့်ချိတ်ဆက်မှုကို လမ်းကြောင်းပေးရန် ဤတန်နယ်မှတစ်ဆင့် သွားလာပါသည်။",
+    "vpnDisclosure_statusBody": "အက်ပ်သည် သင့် VPN ချိတ်ဆက်မှုကို ပြသရန် ချိတ်ဆက်မှု အခြေအနေ၊ ကြာချိန်နှင့် လွှဲပြောင်းထားသော ဒေတာ ပမာဏကို အသုံးပြုပါသည်။ သင် အချိန်မရွေး ရပ်နိုင်ပါသည်။",
+    "vpnDisclosure_privacy": "ကိုယ်ရေးကိုယ်တာ",
+    "vpnDisclosure_accept": "လက်ခံပြီး ဆက်လုပ်ရန်",
+    "vpnDisclosure_decline": "ယခု မလုပ်သေးပါ",
+    "accountRestoration_title": "အကောင့် ယာယီ မရရှိနိုင်ပါ",
+    "accountRestoration_message": "သင့်ဆက်ရှင်ကို ဆက်လက် ထိန်းသိမ်းထားပါသည်။ အကောင့်ကို ပြန်လည်ရယူရန် ထပ်ကြိုးစားပါ။ ဤနေရာတွင် VPN ချိတ်ဆက်မှုကို ဆက်လက် စီမံနိုင်ပါသည်။",
+    "action_retry": "ထပ်ကြိုးစားရန်",
+    "session_endingTitle": "ဆက်ရှင် အဆုံးသတ်နေသည်",
+    "session_ending": "ဆက်ရှင် အဆုံးသတ်နေသည်: VPN ကို ရပ်ပြီး သန့်ရှင်းရေး လုပ်နေပါသည်…",
+    "session_stopFailed": "VPN ရပ်တန့်ခြင်းကို အတည်မပြုရသေးပါ။ အကောင့်ပြန်ဝင်မီ ထပ်ကြိုးစားပါ။",
+    "session_cleanupFailed": "VPN ရပ်တန့်ပြီးပါပြီ၊ သို့သော် ဆက်ရှင်ဖျက်ခြင်းကို အတည်မပြုရသေးပါ။ သန့်ရှင်းရေးကို ထပ်ကြိုးစားပါ။",
+    "session_retryStop": "ရပ်တန့်ခြင်းကို ထပ်ကြိုးစားရန်",
+    "session_retryCleanup": "သန့်ရှင်းရေးကို ထပ်ကြိုးစားရန်",
+    "@@locale": "my",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN ကို လုံခြုံစွာ ပြင်ဆင်နေသည်…",
+    "nav_connection": "ချိတ်ဆက်မှု",
+    "nav_locations": "တည်နေရာများ",
+    "nav_account": "အကောင့်",
+    "nav_devices": "စက်ပစ္စည်းများ",
+    "nav_settings": "ဆက်တင်များ",
+    "action_refresh": "ပြန်လည်ဆန်းသစ်ရန်",
+    "auth_tab_login": "အကောင့်ဝင်ရန်",
+    "auth_tab_register": "အကောင့်ဖွင့်ရန်",
+    "auth_stepAccount": "အကောင့်",
+    "auth_stepIdentity": "ကိုယ်ရေးအချက်အလက်",
+    "auth_stepAddress": "လိပ်စာနှင့် သဘောတူညီချက်များ",
+    "auth_stepProgress": "အဆင့် {current} / {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "သင့် VPN၊ ရိုးရှင်းစွာ။",
+    "auth_keysLocal": "သင့်ကိုယ်ပိုင် VPN သော့များသည် ဤစက်ပစ္စည်းပေါ်တွင်သာ ရှိနေပါမည်။",
+    "form_email": "အီးမေးလ်လိပ်စာ",
+    "form_password": "စကားဝှက်",
+    "form_showPassword": "စကားဝှက် ပြရန်",
+    "form_hidePassword": "စကားဝှက် ဖျောက်ရန်",
+    "form_passwordMin": "8 မှ 72 UTF-8 ဘိုက်အထိ။ အက္ခရာအချို့သည် ဘိုက်တစ်ခုထက် ပိုသုံးပါသည်။",
+    "form_firstName": "အမည်",
+    "form_lastName": "မျိုးရိုးအမည်",
+    "form_phone": "ဖုန်းနံပါတ် (+33612345678)",
+    "form_address": "လိပ်စာ",
+    "form_address2": "လိပ်စာ စာကြောင်း 2 (မဖြည့်လည်း ရပါသည်)",
+    "form_postalCode": "စာတိုက်ကုဒ်",
+    "form_city": "မြို့",
+    "form_country": "နိုင်ငံကုဒ် (ဥပမာ FR)",
+    "action_login": "အကောင့်ဝင်ရန်",
+    "action_createAccount": "အကောင့် ဖန်တီးရန်",
+    "action_createMyAccount": "ကျွန်ုပ်၏ အကောင့်ကို ဖန်တီးရန်",
+    "action_next": "ဆက်လုပ်ရန်",
+    "action_previous": "နောက်သို့",
+    "action_forgotPassword": "စကားဝှက် မေ့နေပါသလား?",
+    "auth_noAccount": "အကောင့် မရှိသေးပါသလား?",
+    "auth_requiredInformation": "အဆင့်သုံးဆင့်ဖြင့် သင့်အကောင့်ကို ဖန်တီးပါ။",
+    "auth_termsPrefix": "ကျွန်ုပ်သည် ",
+    "auth_termsLink": "အသုံးပြုမှု စည်းမျဉ်းများကို လက်ခံပါသည်",
+    "auth_privacyPrefix": "ကျွန်ုပ်သည် ",
+    "auth_privacyLink": "ကိုယ်ရေးကိုယ်တာ မူဝါဒကို လက်ခံပါသည်",
+    "auth_consentRequired": "အကောင့် ဖန်တီးရန် သင့်သဘောတူညီချက် လိုအပ်ပါသည်။",
+    "validation_required": "ဤအကွက်ကို ဖြည့်ရန် လိုအပ်ပါသည်။",
+    "validation_email": "မှန်ကန်သော အီးမေးလ်လိပ်စာကို ရိုက်ထည့်ပါ။",
+    "validation_password": "စကားဝှက် တိုလွန်းပါသည်: အနည်းဆုံး UTF-8 ဘိုက် 8 ခု လိုအပ်ပါသည်။",
+    "validation_passwordTooLong": "စကားဝှက် ရှည်လွန်းပါသည်: အများဆုံး UTF-8 ဘိုက် 72 ခုသာ ခွင့်ပြုပါသည်။",
+    "validation_phone": "နိုင်ငံတကာ ပုံစံ သုံးပါ၊ ဥပမာ +33612345678။",
+    "validation_country": "အက္ခရာ 2 လုံးပါ နိုင်ငံကုဒ်ကို အသုံးပြုပါ၊ ဥပမာ FR။",
+    "passwordReset_title": "စကားဝှက် ပြန်သတ်မှတ်ရန်",
+    "passwordReset_description": "စကားဝှက် ပြန်သတ်မှတ်ရန် လင့်ခ် တောင်းဆိုရန် သင့်အကောင့် အီးမေးလ်လိပ်စာကို ရိုက်ထည့်ပါ။",
+    "passwordReset_send": "လင့်ခ် ပို့ရန်",
+    "connection_title": "သင့်ချိတ်ဆက်မှု",
+    "connection_subtitle": "တည်နေရာတစ်ခု ရွေးပြီး သင့် VPN ကို ဖွင့်ပါ။",
+    "connection_prepare": "ချိတ်ဆက်ရန် အဆင်သင့်ဖြစ်ပါပြီလား?",
+    "connection_advancedOptions": "အဆင့်မြင့် ရွေးချယ်စရာများ",
+    "connection_location": "တည်နေရာ",
+    "connection_chooseLocation": "တည်နေရာ ရွေးချယ်ပါ",
+    "connection_protocol": "ပရိုတိုကော",
+    "connection_connect": "ချိတ်ဆက်ရန်",
+    "connection_connecting": "ချိတ်ဆက်နေသည်…",
+    "connection_disconnect": "ချိတ်ဆက်မှု ဖြတ်ရန်",
+    "connection_disconnecting": "ချိတ်ဆက်မှု ဖြတ်နေသည်",
+    "connection_locationChange": "တည်နေရာ ပြောင်းနေသည်…",
+    "connection_unavailable": "{protocol} မရရှိနိုင်ပါ",
+    "connection_activeLocation": "လက်ရှိ တည်နေရာ",
+    "connection_duration": "ကြာချိန်",
+    "connection_received": "လက်ခံရရှိသည်",
+    "connection_sent": "ပေးပို့သည်",
+    "connection_lastHandshake": "နောက်ဆုံး လုံခြုံသော ဖလှယ်မှု",
+    "connection_handshakeAgo": "{duration} က",
+    "verification_title": "သင့်အီးမေးလ်လိပ်စာကို အတည်ပြုပါ",
+    "verification_message": "ဤဖုန်းတွင် VPN သုံးရန် သင့်အီးမေးလ်လိပ်စာကို အတည်ပြုပါ။",
+    "verification_resend": "အီးမေးလ် ပြန်ပို့ရန်",
+    "migration_title": "တည်နေရာ ပြောင်းခြင်း",
+    "migration_draining": "တည်နေရာ ပြောင်းခြင်းကို ပြင်ဆင်နေသည်…",
+    "migration_activating": "ဆာဗာအသစ်ကို ဖွင့်နေသည်…",
+    "migration_ready": "တည်နေရာ ပြောင်းလဲပြီးပါပြီ။",
+    "migration_blocked": "တည်နေရာ ပြောင်းခြင်းအတွက် ဆာဗာဘက်မှ ဆောင်ရွက်ချက် လိုအပ်ပါသည်။ နောက်မှ ထပ်ကြိုးစားပါ သို့မဟုတ် ပံ့ပိုးမှု အဖွဲ့ကို ဆက်သွယ်ပါ။",
+    "migration_progress": "တည်နေရာ ပြောင်းခြင်း တိုးတက်မှု",
+    "migration_retryDelay": "စစ်ဆေးမှုများအကြား စောင့်ချိန်: {seconds} စက္ကန့်။",
+    "migration_resume": "တည်နေရာ ပြောင်းခြင်းကို ဆက်လုပ်ရန်",
+    "status_authorizing": "ခွင့်ပြုချက် လိုအပ်သည်",
+    "status_authorizingDetail": "VPN ကို ခွင့်ပြုရန် Android တောင်းဆိုမှုကို လက်ခံပါ။",
+    "status_preparing": "ပြင်ဆင်နေသည်",
+    "status_preparingDetail": "သင့်လုံခြုံသော ချိတ်ဆက်မှုကို ပြင်ဆင်နေပါသည်။",
+    "status_reconnecting": "ပြန်ချိတ်ဆက်နေသည်…",
+    "status_reconnectingDetail": "ချိတ်ဆက်မှု ပြတ်တောက်သွားသည်။ VPN သည် ပြန်ချိတ်ရန် ကြိုးစားနေပါသည်။",
+    "status_connecting": "ချိတ်ဆက်နေသည်",
+    "status_connectingDetail": "VPN ဆာဗာသို့ ချိတ်ဆက်နေပါသည်…",
+    "status_connected": "ချိတ်ဆက်ထားသည်",
+    "status_connectedDetail": "သင့် VPN ချိတ်ဆက်မှု အလုပ်လုပ်နေပါသည်။",
+    "status_disconnecting": "ချိတ်ဆက်မှု ဖြတ်နေသည်",
+    "status_disconnectingDetail": "သင့် VPN ချိတ်ဆက်မှု ရပ်တန့်နေပါသည်။",
+    "status_error": "ချိတ်ဆက်မှု မရနိုင်ပါ",
+    "status_errorDetail": "VPN ချိတ်ဆက်မှုကို အတည်မပြုရသေးပါ။ ထပ်ကြိုးစားပါ။",
+    "status_idle": "ချိတ်ဆက်မထားပါ",
+    "status_idleDetail": "သင့်ချိတ်ဆက်မှုကို ကာကွယ်ရန် VPN ကို ချိတ်ဆက်ပါ။",
+    "trust_note": "အက်ပ်ကို ပိတ်ခြင်းဖြင့် VPN မရပ်ပါ။ ရပ်ရန် “ချိတ်ဆက်မှု ဖြတ်ရန်” ကို အသုံးပြုပါ။",
+    "locations_none": "လောလောဆယ် တည်နေရာ မရရှိနိုင်ပါ။",
+    "locations_available": "နောက်ထပ် တည်နေရာကို ရွေးချယ်ပါ။",
+    "locations_selected": "ရွေးချယ်ထားသော တည်နေရာ",
+    "locations_select": "ဤတည်နေရာကို ရွေးရန်",
+    "locations_lockedTunnel": "တည်နေရာ ပြောင်းရန် VPN ချိတ်ဆက်မှုကို ဖြတ်ပါ။",
+    "locations_lockedMigration": "တည်နေရာ ပြောင်းခြင်း ပြီးဆုံးသည်အထိ စောင့်ပါ။",
+    "devices_title": "သင့်စက်ပစ္စည်းများ",
+    "devices_used": "{count} / {limit} စက်ပစ္စည်း",
+    "devices_refresh": "စက်ပစ္စည်းများကို ပြန်လည်ဆန်းသစ်ရန်",
+    "devices_empty": "မှတ်ပုံတင်ထားသော VPN စက်ပစ္စည်း မရှိသေးပါ။",
+    "devices_firstConnection": "ပထမဆုံး ချိတ်ဆက်သည့်အခါ သင့်ဖုန်းကို ထည့်သွင်းပေးပါမည်။",
+    "devices_thisDevice": "ဤစက်ပစ္စည်း",
+    "devices_added": "{date} တွင် ထည့်သွင်းခဲ့သည်",
+    "devices_unnamed": "အမည်မရှိသော စက်ပစ္စည်း",
+    "action_remove": "ဖယ်ရှားရန်",
+    "settings_title": "ဆက်တင်များ",
+    "settings_subtitle": "သင့်ရွေးချယ်မှုများနှင့် အကောင့်ကို တစ်နေရာတည်းတွင်။",
+    "settings_appearance": "အသွင်အပြင်",
+    "settings_language": "ဘာသာစကား",
+    "settings_languageDescription": "သင် ရွေးချယ်ထားသော ဘာသာစကားသည် VPN အသိပေးချက်များတွင်လည်း သက်ရောက်ပါသည်။",
+    "settings_account": "အကောင့်",
+    "settings_signOut": "အကောင့်မှ ထွက်ရန်",
+    "settings_privacy": "ကိုယ်ရေးကိုယ်တာ မူဝါဒ",
+    "settings_terms": "အသုံးပြုမှု စည်းမျဉ်းများ",
+    "settings_security": "လုံခြုံရေးနှင့် ပွင့်လင်းမြင်သာမှု",
+    "settings_licenses": "အစိတ်အပိုင်း လိုင်စင်များ",
+    "settings_licensesDetail": "အက်ပ်တွင် အသုံးပြုထားသော ဆော့ဖ်ဝဲများ",
+    "settings_licensesLegalese": "အက်ပ်နှင့် MPL-2.0 အစိတ်အပိုင်းများ၏ ရင်းမြစ်ကုဒ်: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "အက်ပ်မှ ထွက်သွားသည့်တိုင် VPN ဆက်ဖွင့်ထားပါမည်။ ရပ်ရန် ချိတ်ဆက်မှု တက်ဘ်ရှိ “ချိတ်ဆက်မှု ဖြတ်ရန်” ကို အသုံးပြုပါ။",
+    "theme_system": "စနစ်အတိုင်း",
+    "theme_light": "အလင်း",
+    "theme_dark": "အမှောင်",
+    "language_system": "ဖုန်း ဘာသာစကား",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "ဤစက်ပစ္စည်းကို ဖယ်ရှားမလား?",
+    "dialog_removeCurrent": "ဤဖုန်းသည် VPN မှ ချိတ်ဆက်မှု ဖြတ်ပြီး အသုံးပြုခွင့်ကို ဆုံးရှုံးပါမည်။ ဆာဗာက အတည်ပြုပြီးနောက် ၎င်း၏ VPN ချိတ်ဆက်မှု ဒေတာကို ဖယ်ရှားပါမည်။",
+    "dialog_removeOther": "“{name}” အတွက် VPN အသုံးပြုခွင့်ကို ရုပ်သိမ်းပါမည်။ ဤလုပ်ဆောင်ချက်ကို ပြန်ပြောင်း၍ မရနိုင်ပါ။",
+    "dialog_signOut": "အကောင့်မှ ထွက်မလား?",
+    "dialog_signOutMessage": "VPN ရပ်သွားပြီး အကောင့်ပြန်ဝင်ရန် လိုအပ်ပါမည်။ သင့်ကုဒ်ဝှက်ထားသော VPN သော့များသည် နောက်တစ်ကြိမ် ချိတ်ဆက်ရန်အတွက် ဤဖုန်းတွင် ဆက်လက်ရှိနေပါမည်။",
+    "action_cancel": "ပယ်ဖျက်ရန်",
+    "action_close": "ပိတ်ရန်",
+    "action_copy": "မိတ္တူကူးရန်",
+    "action_signOut": "အကောင့်မှ ထွက်ရန်",
+    "notice_close": "မက်ဆေ့ချ်ကို ပိတ်ရန်",
+    "notice_sessionExpired_title": "ဆက်ရှင် သက်တမ်းကုန်သွားသည်",
+    "notice_sessionExpired_message": "သင့်ဆက်ရှင် သက်တမ်းကုန်သွားပါပြီ။ ထပ်မံ အကောင့်ဝင်ပါ။",
+    "notice_connectionFailed_title": "ချိတ်ဆက်မှု မအောင်မြင်ပါ",
+    "notice_invalidCredentials_message": "အီးမေးလ်လိပ်စာ သို့မဟုတ် စကားဝှက် မှားနေပါသည်။",
+    "notice_emailVerification_title": "အီးမေးလ် အတည်ပြုရန် လိုအပ်သည်",
+    "notice_emailVerification_message": "VPN စက်ပစ္စည်း ထည့်သွင်းမီ သင့်အီးမေးလ်လိပ်စာကို အတည်ပြုပါ။",
+    "notice_rateLimited_title": "ကြိုးစားမှု များလွန်းသည်",
+    "notice_deviceLimit_title": "စက်ပစ္စည်း အကန့်အသတ် ပြည့်သွားပါပြီ",
+    "notice_deviceLimit_message": "နောက်တစ်ခု ထည့်မီ ရှိပြီးသား စက်ပစ္စည်းတစ်ခုကို ဖယ်ရှားပါ။",
+    "notice_identityRenewal_title": "VPN အထောက်အထား အသစ်ပြုလုပ်ရန် လိုအပ်သည်",
+    "notice_identityRenewal_message": "ဤအထောက်အထားကို ဖယ်ရှားခဲ့သည်။ စက်ပေါ်ရှိ အထောက်အထား အသစ်ကို ဖန်တီးပါ။",
+    "notice_migrationPending_title": "တည်နေရာ ပြောင်းခြင်း လုပ်ဆောင်နေသည်",
+    "notice_migrationPending_message": "တည်နေရာ ပြောင်းခြင်း ဆောင်ရွက်နေပါပြီ။",
+    "notice_migrationBlocked_title": "တည်နေရာ ပြောင်းခြင်း ပိတ်ဆို့ထားသည်",
+    "notice_migrationBlocked_message": "တည်နေရာ ပြောင်းခြင်းအတွက် ဆာဗာဘက်မှ ဆောင်ရွက်ချက် လိုအပ်ပါသည်။ နောက်မှ ထပ်ကြိုးစားပါ သို့မဟုတ် ပံ့ပိုးမှု အဖွဲ့ကို ဆက်သွယ်ပါ။",
+    "notice_targetUnavailable_title": "ဆာဗာ ယာယီ မရရှိနိုင်ပါ",
+    "notice_targetUnavailable_message": "ဤဆာဗာသည် ယာယီ မရရှိနိုင်ပါ။",
+    "notice_networkUnavailable_title": "အင်တာနက် ချိတ်ဆက်မှု မရနိုင်ပါ",
+    "notice_networkUnavailable_message": "သင့်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။",
+    "notice_permissionDenied_title": "VPN ခွင့်ပြုချက် ငြင်းပယ်ခံရသည်",
+    "notice_permissionDenied_message": "ချိတ်ဆက်မှုကို ထပ်စတင်ပြီး Android ခွင့်ပြုချက် တောင်းဆိုမှုကို လက်ခံပါ။",
+    "notice_wireguardTimeout_title": "ဆာဗာက တုံ့ပြန်မှု မရှိပါ",
+    "notice_wireguardTimeout_message": "WireGuard ချိတ်ဆက်မှု အချိန်ကြာလွန်းပါသည်။ ထပ်ကြိုးစားပါ သို့မဟုတ် အခြား တည်နေရာတစ်ခုကို ရွေးပါ။",
+    "notice_tlsFailed_title": "လုံခြုံသော ချိတ်ဆက်မှု ပယ်ချခံရသည်",
+    "notice_tlsFailed_message": "ဆာဗာက OpenVPN ချိတ်ဆက်မှုကို လက်မခံခဲ့ပါ။ ထပ်ကြိုးစားပါ။ ဆက်၍ မအောင်မြင်ပါက ပြဿနာ ရှာဖွေမှု လုပ်ဆောင်ပါ။",
+    "notice_tunRejected_title": "Android က VPN အင်တာဖေ့စ်ကို ပယ်ချထားသည်",
+    "notice_tunRejected_message": "OpenVPN တောင်းဆိုသော ကွန်ရက် ဖွဲ့စည်းပုံကို Android က ပယ်ချလိုက်သည်။",
+    "notice_openvpnStart_title": "OpenVPN စတင်၍ မရပါ",
+    "notice_openvpnStart_message": "OpenVPN အင်ဂျင်ကို စတင်ခြင်း ပြီးမြောက်အောင် မလုပ်နိုင်ပါ။ ထပ်ကြိုးစားပါ။ ပြဿနာ ဆက်ဖြစ်နေပါက ပံ့ပိုးမှု အဖွဲ့ကို ဆက်သွယ်ပါ။",
+    "notice_diagnosticCode": "ပြဿနာ ရှာဖွေမှု ကုဒ်: {code}",
+    "notice_generic_title": "VPN ချိတ်ဆက်မှု မအောင်မြင်ပါ",
+    "notice_generic_message": "အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။ နောက်မှ ထပ်ကြိုးစားပါ။",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{အကောင့် ဖန်တီးပြီးပါပြီ} password_reset_sent{စကားဝှက် ပြန်သတ်မှတ်ရန် တောင်းဆိုမှု လက်ခံရရှိပါပြီ} verification_email_sent{အတည်ပြု အီးမေးလ် ပို့ပြီးပါပြီ} location_migration_pending{တည်နေရာ ပြောင်းခြင်း လုပ်ဆောင်နေသည်} vpn_sign_in_required{အကောင့်ဝင်ရန် လိုအပ်သည်} protocol_unavailable_at_location{ပရိုတိုကော မရရှိနိုင်ပါ} vpn_permission_denied{VPN ခွင့်ပြုချက် ငြင်းပယ်ခံရသည်} revoked_identity_device_limit{စက်ပစ္စည်း အကန့်အသတ် ပြည့်သွားပါပြီ} tunnel_start_unexpected{VPN စတင်၍ မရပါ} flutter_disconnect_timeout{ချိတ်ဆက်မှု ဖြတ်ခြင်းကို အတည်မပြုရသေးပါ} flutter_disconnect_unexpected{ချိတ်ဆက်မှု ဖြတ်၍ မရပါ} device_revoked{စက်ပစ္စည်းကို ဖယ်ရှားလိုက်ပါပြီ} revoke_unexpected{စက်ပစ္စည်းကို ဖယ်ရှား၍ မရပါ} identity_renewal_unexpected{VPN အထောက်အထား အသစ် ပြုလုပ်၍ မရပါ} openvpn_renewal_unexpected{OpenVPN ကို သက်တမ်းတိုး၍ မရပါ} location_migration_blocked{တည်နေရာ ပြောင်းခြင်း ပိတ်ဆို့ထားသည်} location_migration_slow{တည်နေရာ ပြောင်းခြင်း ဆက်လက် လုပ်ဆောင်နေဆဲ} location_migration_conflict{တည်နေရာ ပြောင်းခြင်းကို ပြန်လည်ဆန်းသစ်ရန် လိုအပ်သည်} location_migration_verification_failed{တည်နေရာ ပြောင်းခြင်း အတည်မပြုရသေးပါ} location_migration_device_changed{တည်နေရာ ပြောင်းနေစဉ် စက်ပစ္စည်း ပြောင်းလဲသွားသည်} tunnel_stop_failed{တည်နေရာ ပြောင်းခြင်း မရနိုင်ပါ} device_clock_ahead{စက်ပစ္စည်း နာရီ ရှေ့ရောက်နေသည်} other{လုပ်ဆောင်ချက် မအောင်မြင်ပါ}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{အကောင့် ဖန်တီးပြီးပါပြီ၊ သို့သော် အတည်ပြု အီးမေးလ်ကို ပို့၍ မရပါ။ အက်ပ်ရှိ “အီးမေးလ် ပြန်ပို့ရန်” ကို အသုံးပြုပါ။} password_reset_sent{တောင်းဆိုမှု လက်ခံရရှိပါပြီ။ ဤလိပ်စာနှင့် ကိုက်ညီသော အကောင့်ရှိပါက အီးမေးလ် ရရှိနိုင်ပါသည်။ စပမ် ဖိုဒါကိုလည်း စစ်ဆေးပါ။} verification_email_sent{အတည်ပြု အီးမေးလ် အသစ် ပို့ပြီးပါပြီ။} location_migration_pending{{target} သို့ ပြောင်းရန် ဆက်လက် ပြင်ဆင်နေဆဲ ဖြစ်ပါသည်။ စက်ပစ္စည်းကို ပြန်ဖန်တီးစရာ မလိုဘဲ ဆက်လုပ်နိုင်ပါသည်။} vpn_sign_in_required{VPN မစတင်မီ အကောင့်ဝင်ပါ။} protocol_unavailable_at_location{ရွေးချယ်ထားသော ပရိုတိုကော ဤတည်နေရာတွင် မရရှိနိုင်ပါ။ တည်နေရာများကို ပြန်လည်ဆန်းသစ်ပါ သို့မဟုတ် အခြား ပရိုတိုကော တစ်ခု ရွေးပါ။} vpn_permission_denied{Android က VPN ခွင့်ပြုချက်ကို ငြင်းပယ်လိုက်သည်။ ချိတ်ဆက်မှုကို ထပ်စတင်ပြီး စနစ်ဆိုင်ရာ တောင်းဆိုမှုကို လက်ခံပါ။} revoked_identity_device_limit{ဤစက်ပစ္စည်း၏ VPN အသုံးပြုခွင့်ကို ဖယ်ရှားထားပြီး စက်ပစ္စည်း အကန့်အသတ် ပြည့်သွားပါပြီ။ အကောင့် → စက်ပစ္စည်းများကို စီမံရန်တွင် စက်ပစ္စည်းတစ်ခုကို ဖယ်ရှားပါ။} tunnel_start_unexpected{မမျှော်လင့်သော အမှားတစ်ခုကြောင့် တန်နယ် ပြင်ဆင်မှု ရပ်သွားသည်။ ပြဿနာ ရှာဖွေမှု ကုဒ်ကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။} flutter_disconnect_timeout{Android က VPN ရပ်တန့်ကြောင်း အချိန်မီ အတည်မပြုနိုင်ပါ။ ထပ်မံ ရပ်တန့်ကြည့်ပါ။} flutter_disconnect_unexpected{မမျှော်လင့်သော အမှားတစ်ခုကြောင့် တန်နယ် ရပ်တန့်ကြောင်း အတည်ပြု၍ မရခဲ့ပါ။} device_revoked{ဤစက်ပစ္စည်း၏ VPN အသုံးပြုခွင့်ကို ရုပ်သိမ်းပြီး စက်ပေါ်ရှိ လျှို့ဝှက်ချက်များကို ဖျက်ပြီးပါပြီ။} revoke_unexpected{စက်ပစ္စည်းကို ဖယ်ရှား၍ မရခဲ့ပါ။ စာရင်းကို ပြန်လည်ဆန်းသစ်ပြီး ထပ်ကြိုးစားပါ။} identity_renewal_unexpected{VPN အထောက်အထား အသစ် ဖန်တီး၍ မရခဲ့ပါ။ စက်ပစ္စည်းများကို ပြန်လည်ဆန်းသစ်ပြီး ထပ်ကြိုးစားပါ။} openvpn_renewal_unexpected{OpenVPN ပရိုဖိုင်ကို သက်တမ်းတိုး၍ မရခဲ့ပါ။ ထပ်ကြိုးစားပါ သို့မဟုတ် ပြဿနာ ရှာဖွေမှု ကုဒ်ကို စစ်ဆေးပါ။} location_migration_blocked{ဆာဗာသည် ယခုအချိန်တွင် ဤပြောင်းလဲမှုကို ပြီးမြောက်အောင် မလုပ်နိုင်ပါ။ စက်ပစ္စည်းနှင့် ၎င်း၏ စက်ပေါ်ရှိ အထောက်အထားကို ထိန်းသိမ်းထားပါသည်။} location_migration_slow{ဆာဗာသည် {target} သို့ ပြောင်းရန် ဆက်လက် ပြင်ဆင်နေဆဲ ဖြစ်ပါသည်။ ခဏအကြာတွင် “ဆက်လုပ်ရန်” ကို နှိပ်ပါ။} location_migration_conflict{ဆာဗာပေါ်ရှိ စက်ပစ္စည်းအခြေအနေ ပြောင်းလဲသွားပါသည်။ စက်ပစ္စည်းများကို ပြန်လည်ဆန်းသစ်ပြီး ပြောင်းလဲမှုကို ဆက်လုပ်ပါ။} location_migration_verification_failed{ဆာဗာက တည်နေရာအသစ်ကို အတည်မပြုနိုင်ပါ။ ယခင် စက်ပေါ်ရှိ အထောက်အထားကို ထိန်းသိမ်းထားပါသည်။} location_migration_device_changed{ဆာဗာမှ ပြန်ပို့သော စက်ပစ္စည်းသည် ပြောင်းလဲနေသော စက်ပစ္စည်းနှင့် မကိုက်ညီတော့ပါ။ ထပ်ကြိုးစားမီ စက်ပစ္စည်းများကို ပြန်လည်ဆန်းသစ်ပါ။} tunnel_stop_failed{ချိတ်ဆက်မှုအသစ် မစတင်မီ ယခင် တန်နယ်ကို အပြည့်အဝ ရပ်တန့်ရပါမည်။} device_clock_ahead{ဤစက်ပစ္စည်း၏ နာရီသည် ရှေ့ရောက်နေပုံရပါသည်။ အကောင့်ဝင်ထားရန် အလိုအလျောက် ရက်စွဲနှင့် အချိန်ကို ဖွင့်ပါ။} other{လုပ်ဆောင်ချက်ကို ပြီးမြောက်အောင် မလုပ်နိုင်ပါ။ ထပ်ကြိုးစားပါ သို့မဟုတ် ပြဿနာ ရှာဖွေမှု ကုဒ်ကို ပံ့ပိုးမှု အဖွဲ့သို့ ပို့ပါ။}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{ဆက်ရှင် သက်တမ်းကုန်သွားသည်} invalid_credentials{အကောင့်ဝင်ခြင်း မအောင်မြင်ပါ} email_verification_required{အီးမေးလ် အတည်ပြုရန် လိုအပ်သည်} verification_email_cooldown{အီးမေးလ် ပို့ပြီးဖြစ်သည်} rate_limited{ကြိုးစားမှု များလွန်းသည်} invalid_registration{အချက်အလက်များကို ပြင်ရန် လိုအပ်သည်} email_exists{ဤအီးမေးလ်ဖြင့် အကောင့် ရှိပြီးဖြစ်သည်} invalid_profile{ပရိုဖိုင် မမှန်ကန်ပါ} invalid_device{စက်ပစ္စည်း မမှန်ကန်ပါ} invalid_location{တည်နေရာ မရရှိနိုင်ပါ} device_limit{စက်ပစ္စည်း အကန့်အသတ် ပြည့်သွားပါပြီ} device_exists{VPN အထောက်အထား အသုံးပြုနေပါပြီ} device_identity_revoked{VPN အထောက်အထား အသစ်ပြုလုပ်ရန် လိုအပ်သည်} device_location_locked{တည်နေရာ ပြောင်းခြင်း ပြန်လည်ဆန်းသစ်ရန် လိုအပ်သည်} location_migration_pending{တည်နေရာ ပြောင်းခြင်း လုပ်ဆောင်နေသည်} location_migration_blocked{တည်နေရာ ပြောင်းခြင်း ပိတ်ဆို့ထားသည်} target_ca_mismatch{OpenVPN ဆာဗာ မကိုက်ညီပါ} location_migration_conflict{တည်နေရာ ပြောင်းခြင်း ပြန်လည်ဆန်းသစ်ရန် လိုအပ်သည်} server_full{ဆာဗာ ပြည့်နေသည်} capacity_unavailable{တည်နေရာ ယာယီ မရရှိနိုင်ပါ} target_unavailable{ဆာဗာ ယာယီ မရရှိနိုင်ပါ} not_found{ရှာမတွေ့ပါ} invalid_openvpn_csr{OpenVPN အထောက်အထား မမှန်ကန်ပါ} openvpn_profile_exists{OpenVPN ပရိုဖိုင် ရှိပြီးဖြစ်သည်} openvpn_profile_revoked{OpenVPN ပရိုဖိုင် ရုပ်သိမ်းခံရသည်} openvpn_operation_pending{OpenVPN လုပ်ဆောင်ချက် ဆောင်ရွက်နေဆဲ} openvpn_operation_terminal{OpenVPN လုပ်ဆောင်ချက် ရပ်ဆိုင်းခံရသည်} openvpn_address_unavailable{OpenVPN လိပ်စာ မရရှိနိုင်ပါ} openvpn_profile_conflict{OpenVPN ကွဲလွဲမှု ရှိသည်} openvpn_signer_unavailable{OpenVPN မရရှိနိုင်ပါ} email_delivery_unavailable{အီးမေးလ် မပို့နိုင်ပါ} invalid_token{လင့်ခ် မမှန်ကန်ပါ} network_unavailable{အင်တာနက် ချိတ်ဆက်မှု မရရှိနိုင်ပါ} invalid_json{တောင်းဆိုချက် မမှန်ကန်ပါ} invalid_api_response{ဆာဗာ တုံ့ပြန်ချက် မမှန်ကန်ပါ} ipv6_unavailable{IPv6 မရရှိနိုင်ပါ} invalid_ip_families{ကွန်ရက် ဖွဲ့စည်းပုံ ပယ်ချခံရသည်} other{ဝန်ဆောင်မှု မရရှိနိုင်ပါ}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{သင့်ဆက်ရှင် သက်တမ်းကုန်သွားပါပြီ။ ထပ်မံ အကောင့်ဝင်ပါ။} invalid_credentials{အီးမေးလ်လိပ်စာ သို့မဟုတ် စကားဝှက် မမှန်ကန်ပါ။} email_verification_required{VPN စက်ပစ္စည်း ထည့်မီ သင့်အီးမေးလ်လိပ်စာကို အတည်ပြုပါ။} invalid_registration{တောင်းဆိုထားသော အချက်အလက်များနှင့် သဘောတူညီချက်များကို စစ်ဆေးပါ။} email_exists{ဤအီးမေးလ်လိပ်စာကို အကောင့်တစ်ခုက အသုံးပြုထားပြီးဖြစ်သည်။} invalid_profile{သင့်ပရိုဖိုင် အချက်အလက်များကို စစ်ဆေးပါ။} invalid_device{ဤစက်ပစ္စည်း၏ အမည် သို့မဟုတ် စက်ပေါ်ရှိ အထောက်အထား မမှန်ကန်ပါ။} invalid_location{တည်နေရာ စာရင်းကို ပြန်လည်ဆန်းသစ်ပြီး ထပ်ကြိုးစားပါ။} device_limit{အခြားစက်ပစ္စည်းတစ်ခု ထည့်မီ ရှိပြီးသား စက်ပစ္စည်းတစ်ခုကို ဖယ်ရှားပါ။} device_exists{ဤ VPN အထောက်အထားသည် အခြားအကောင့်တစ်ခုနှင့် ချိတ်ဆက်ထားပြီးဖြစ်သည်။} device_identity_revoked{ဤအထောက်အထားကို ဖယ်ရှားလိုက်သည်။ စက်ပေါ်ရှိ အထောက်အထား အသစ် ဖန်တီးရန် လိုအပ်သည်။} device_location_locked{ဤစက်ပစ္စည်း၏ တည်နေရာ ယခုမှ ပြောင်းလဲသွားပါပြီ။ လုပ်ဆောင်နေဆဲ ပြောင်းလဲမှုကို အက်ပ်က ဆက်လုပ်ပါမည်။} location_migration_pending{တည်နေရာ ပြောင်းခြင်း ဆောင်ရွက်နေပါပြီ။} location_migration_blocked{တည်နေရာ ပြောင်းခြင်းအတွက် ဆာဗာဘက်မှ ဆောင်ရွက်ချက် လိုအပ်ပါသည်။ နောက်မှ ထပ်ကြိုးစားပါ သို့မဟုတ် ပံ့ပိုးမှု အဖွဲ့ကို ဆက်သွယ်ပါ။} target_ca_mismatch{ဤဆာဗာသည် လက်ရှိ OpenVPN ပရိုဖိုင်နှင့် မကိုက်ညီသေးပါ။} location_migration_conflict{စက်ပစ္စည်းများကို ပြန်လည်ဆန်းသစ်ပြီး တည်နေရာ ပြောင်းခြင်းကို ထပ်ကြိုးစားပါ။} server_full{ဤတည်နေရာသည် ချိတ်ဆက်မှု အကန့်အသတ်သို့ ရောက်ပြီးဖြစ်သည်။ အခြားတည်နေရာ ရွေးချယ်ပါ သို့မဟုတ် နောက်မှ ထပ်ကြိုးစားပါ။} capacity_unavailable{ဤတည်နေရာ ယခု ရရှိနိုင်မနိုင် အတည်ပြု၍ မရပါ။ အခြားတည်နေရာ ရွေးချယ်ပါ သို့မဟုတ် နောက်မှ ထပ်ကြိုးစားပါ။} target_unavailable{ဤဆာဗာ ယာယီ မရရှိနိုင်ပါ။} not_found{ဤအရာသည် သင့်အကောင့်တွင် မရှိတော့ပါ။} invalid_openvpn_csr{OpenVPN အထောက်အထား အသစ် ဖန်တီးပြီး ထပ်ကြိုးစားပါ။} openvpn_profile_exists{ဤစက်ပစ္စည်းအတွက် OpenVPN ပရိုဖိုင် ရှိပြီးဖြစ်သည်။} openvpn_profile_revoked{ဆက်လုပ်ရန် OpenVPN ပရိုဖိုင်ကို သက်တမ်းတိုးပါ။} openvpn_operation_pending{ပြောင်းလဲမှု ဆာဗာများသို့ ရောက်ရှိနေဆဲ ဖြစ်သည်။ နောက်မှ ထပ်ကြိုးစားပါ။} openvpn_operation_terminal{OpenVPN အထောက်အထား အသစ် ဖန်တီးပြီး ထပ်ကြိုးစားပါ။} openvpn_address_unavailable{ယခုအချိန်တွင် OpenVPN လိပ်စာ မရရှိနိုင်ပါ။} openvpn_profile_conflict{ပရိုဖိုင် ပြောင်းလဲသွားပါပြီ။ စက်ပစ္စည်းများကို ပြန်လည်ဆန်းသစ်ပြီး ထပ်ကြိုးစားပါ။} openvpn_signer_unavailable{OpenVPN ဝန်ဆောင်မှု ယာယီ မရရှိနိုင်ပါ။} email_delivery_unavailable{အီးမေးလ် ပို့၍ မရပါ။ နောက်မှ ထပ်ကြိုးစားပါ။} invalid_token{ဤလင့်ခ်သည် မမှန်ကန်ပါ သို့မဟုတ် သက်တမ်းကုန်သွားပါပြီ။ အသစ် တောင်းဆိုပါ။} network_unavailable{အင်တာနက် ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။} invalid_json{ထည့်သွင်းထားသော အချက်အလက်များကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။} invalid_api_response{ဆာဗာမှ မမျှော်လင့်ထားသော တုံ့ပြန်ချက် ပြန်လာသည်။ နောက်မှ ထပ်ကြိုးစားပါ။} ipv6_unavailable{ဆာဗာသည် ယခု IPv6 ကို ဖွင့်၍ မရပါ။ နောက်မှ ထပ်ကြိုးစားပါ။} invalid_ip_families{တန်နယ် ဖွဲ့စည်းပုံ မပြည့်စုံပါ သို့မဟုတ် ခွင့်ပြုထားသော လိပ်စာများနှင့် မကိုက်ညီပါ။ အက်ပ်မှ ထပ်မံ ကြိုးစားပါ။} other{ဆာဗာ အမှား ဖြစ်ပွားခဲ့သည်။ နောက်မှ ထပ်ကြိုးစားပါ။}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "ခဏအကြာတွင် ထပ်ကြိုးစားပါ။",
+    "notice_retryAfter": "{seconds, plural, other{{seconds} စက္ကန့် အကြာတွင် ထပ်ကြိုးစားပါ။}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, other{{minutes} မိနစ် အကြာတွင် ထပ်ကြိုးစားပါ။}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, other{{hours} နာရီ အကြာတွင် ထပ်ကြိုးစားပါ။}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{စနစ် VPN ပြန်လည်စတင်ခြင်း မရနိုင်ပါ} system_vpn_resume_corrupt{စနစ် VPN ပြန်လည်စတင်ခြင်း မမှန်ကန်ပါ} system_vpn_resume_session_invalid{VPN ပြန်လည်စတင်ရန် ဆက်ရှင် မမှန်ကန်ပါ} system_vpn_resume_identity_changed{VPN အထောက်အထား ပြောင်းလဲသွားသည်} system_vpn_resume_identity_invalid{VPN ပြန်လည်စတင်ရန် အထောက်အထား မမှန်ကန်ပါ} system_vpn_resume_storage_failed{VPN ပြန်လည်စတင်ရန် သိုလှောင်မှု မရနိုင်ပါ} system_vpn_resume_network_timeout{VPN ပြန်လည်စတင်ရန် ကွန်ရက် မရှိပါ} system_vpn_resume_blocked{VPN ပြန်လည်စတင်မှု ပိတ်ဆို့ထားသည်} system_vpn_resume_failed{VPN ပြန်လည်စတင်မှု မအောင်မြင်ပါ} system_vpn_resume_error_invalid{VPN ပြန်လည်စတင်မှု အမှား မမှန်ကန်ပါ} wireguard_identity_store_failed{WireGuard အထောက်အထား သိမ်းဆည်း၍ မရပါ} wireguard_identity_unavailable{WireGuard အထောက်အထား မရနိုင်ပါ} vpn_host_destroyed{Android VPN အစိတ်အပိုင်း ရပ်တန့်သွားသည်} vpn_host_unavailable{Android VPN အစိတ်အပိုင်း မရနိုင်ပါ} vpn_permission_required{VPN ခွင့်ပြုချက် လိုအပ်သည်} vpn_permission_denied{VPN ခွင့်ပြုချက် ငြင်းပယ်ခံရသည်} vpn_permission_request_failed{ခွင့်ပြုချက် တောင်းဆို၍ မရပါ} wireguard_foreground_service_unavailable{WireGuard ဝန်ဆောင်မှု မရနိုင်ပါ} wireguard_identity_invalid{စက်ပေါ်ရှိ WireGuard သော့ မမှန်ကန်ပါ} wireguard_identity_in_use{WireGuard အထောက်အထား အသုံးပြုနေပြီ} wireguard_configuration_invalid{WireGuard ဖွဲ့စည်းပုံ မမှန်ကန်ပါ} wireguard_operation_pending{WireGuard လုပ်ဆောင်ချက် ဆက်လက်အလုပ်လုပ်နေဆဲ} wireguard_start_failed{WireGuard စတင်မှု ပယ်ချခံရသည်} wireguard_stop_timeout{WireGuard ရပ်တန့်မှု အတည်မပြုရပါ} wireguard_handshake_timeout{WireGuard တုံ့ပြန်မှု မရှိပါ} openvpn_connection_timeout{OpenVPN တုံ့ပြန်မှု မရှိပါ} openvpn_core_unavailable{OpenVPN အင်ဂျင် မရနိုင်ပါ} openvpn_operation_pending{OpenVPN ဆက်ရှင် ဆက်လက်အသုံးပြုနေဆဲ} openvpn_stop_timeout{OpenVPN ရပ်တန့်မှု အတည်မပြုရပါ} openvpn_profile_unavailable{စက်ပေါ်ရှိ OpenVPN ပရိုဖိုင် မရှိပါ} openvpn_native_failed{OpenVPN အတွင်းပိုင်း ခေါ်ဆိုမှု ရပ်ဆိုင်းသွားသည်} openvpn_key_generation_failed{OpenVPN P-256 သော့ ဖန်တီး၍ မရပါ} openvpn_csr_generation_failed{OpenVPN CSR ဖန်တီး၍ မရပါ} openvpn_identity_store_failed{OpenVPN အထောက်အထား သိမ်းဆည်း၍ မရပါ} openvpn_identity_clear_failed{OpenVPN ဖယ်ရှားမှု မပြည့်စုံပါ} openvpn_identity_in_use{OpenVPN အထောက်အထား ဆက်လက်အသုံးပြုနေဆဲ} openvpn_tls_verification_required{OpenVPN TLS စစ်ဆေးမှု မရှိပါ} openvpn_cipher_invalid{OpenVPN ကုဒ်ဝှက်နည်း မမှန်ကန်ပါ} openvpn_profile_rejected{OpenVPN ပရိုဖိုင် ပယ်ချခံရသည်} openvpn_identity_inconsistent{OpenVPN အထောက်အထား မကိုက်ညီပါ} tls_handshake_failed{OpenVPN ညှိနှိုင်းမှု ပယ်ချခံရသည်} tls_alert_unknown_ca{OpenVPN ကလိုင်းယင့်လက်မှတ်ကို အသိအမှတ်မပြုပါ} tls_alert_bad_certificate{OpenVPN ကလိုင်းယင့်လက်မှတ် ပယ်ချခံရသည်} tls_alert_unsupported_certificate{OpenVPN လက်မှတ် မထောက်ပံ့ပါ} tls_client_certificate_required{OpenVPN ကလိုင်းယင့်လက်မှတ် လိုအပ်သည်} tls_alert_misc{OpenVPN TLS သတိပေးချက်} tls_signature_algorithm_rejected{OpenVPN လက်မှတ်ရေးထိုးနည်း မထောက်ပံ့ပါ} tls_handshake_rejected{OpenVPN TLS ညှိနှိုင်းမှု ပယ်ချခံရသည်} tls_version_rejected{OpenVPN TLS ဗားရှင်း မကိုက်ညီပါ} tls_certificate_expired{TLS လက်မှတ် သက်တမ်းကုန်သွားပါပြီ} tls_certificate_revoked{TLS လက်မှတ် ရုပ်သိမ်းခံရသည်} transport_failed{OpenVPN ဆာဗာ ချိတ်ဆက်၍ မရပါ} tun_configuration_rejected{OpenVPN အင်တာဖေ့စ် ဖန်တီး၍ မရပါ} tun_setup_failed{OpenVPN TUN တပ်ဆင်မှု မအောင်မြင်ပါ} tun_interface_create_failed{OpenVPN အင်တာဖေ့စ် ဖန်တီးမှု မအောင်မြင်ပါ} tun_interface_disabled{OpenVPN အင်တာဖေ့စ် ပိတ်ထားသည်} tun_halted{OpenVPN အင်တာဖေ့စ် ရပ်ဆိုင်းသွားသည်} tun_already_established{OpenVPN အင်တာဖေ့စ် ဖွင့်ပြီးသား ဖြစ်သည်} tun_addresses_missing{OpenVPN လိပ်စာ မရှိပါ} tun_routes_missing{OpenVPN လမ်းကြောင်းများ မရှိပါ} tun_dns_missing{OpenVPN DNS မရှိပါ} tun_permission_revoked{VPN ခွင့်ပြုချက် ရုပ်သိမ်းခံရသည်} tun_establish_returned_null{Android က VPN အင်တာဖေ့စ်ကို ပယ်ချလိုက်သည်} openvpn_service_start_failed{OpenVPN ဝန်ဆောင်မှု မရနိုင်ပါ} openvpn_operation_timeout{OpenVPN ခေါ်ဆိုမှု အချိန်ကုန်သွားသည်} openvpn_start_failed{OpenVPN စတင်မှု ပယ်ချခံရသည်} openvpn_connection_failed{OpenVPN ချိတ်ဆက်မှု ပြတ်တောက်သွားသည်} openvpn_core_status_error{OpenVPN အင်ဂျင် အမှားဖြင့် ပြီးဆုံးသွားသည်} openvpn_stopped_before_connected{ချိတ်ဆက်မီ OpenVPN ရပ်တန့်သွားသည်} openvpn_auth_failed{OpenVPN အထောက်အထား စိစစ်မှု ပယ်ချခံရသည်} openvpn_client_setup_failed{OpenVPN ကလိုင်းယင့် တပ်ဆင်မှု မအောင်မြင်ပါ} openvpn_client_halted{OpenVPN ကလိုင်းယင့် ရပ်ဆိုင်းသွားသည်} openvpn_client_restart{OpenVPN ပြန်လည်စတင်ရန် တောင်းဆိုထားသည်} openvpn_inactive_timeout{OpenVPN လှုပ်ရှားမှု မရှိဘဲ ကြာလွန်းသည်} openvpn_session_expired{OpenVPN ဆက်ရှင် သက်တမ်းကုန်သွားသည်} openvpn_credentials_required{OpenVPN အထောက်အထား စိစစ်မှု မထောက်ပံ့ပါ} openvpn_proxy_failed{OpenVPN အလယ်ခံ ပို့ဆောင်မှု မအောင်မြင်ပါ} openvpn_compression_failed{OpenVPN ချုံ့ခြင်း ပယ်ချခံရသည်} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM ကုဒ်ဝှက်မှု မရနိုင်ပါ} openvpn_feature_unsupported{OpenVPN လုပ်ဆောင်ချက် မထောက်ပံ့ပါ} network_unavailable{အင်တာနက် ချိတ်ဆက်မှု မရနိုင်ပါ} network_lost{ကွန်ရက် မရနိုင်ပါ} certificate_validation_failed{ဆာဗာလက်မှတ် ပယ်ချခံရသည်} openvpn_certificate_expired{OpenVPN လက်မှတ် သက်တမ်းကုန်သွားသည်} tunnel_active_for_another_account{အခြားအကောင့်၏ တန်နယ် ဆက်လက်အသုံးပြုနေဆဲ} tunnel_already_active{အတွင်းပိုင်း တန်နယ် ဖွင့်ပြီးသား ဖြစ်သည်} tunnel_stop_timeout{{protocol} ရပ်တန့်မှု အတည်မပြုရပါ} tunnel_disconnected{{protocol} ချိတ်ဆက်မှု ပြတ်တောက်သွားသည်} native_bridge_unavailable{Android ဆက်သွယ်ရေးတံတား မရနိုင်ပါ} native_operation_failed{Android လုပ်ဆောင်ချက် ရပ်ဆိုင်းသွားသည်} invalid_arguments{VPN ပါရာမီတာ မပြည့်စုံပါ} invalid_account_id{VPN အကောင့် မမှန်ကန်ပါ} invalid_device_id{စက်ပစ္စည်း အမှတ်အသား မမှန်ကန်ပါ} storage_key_not_allowed{သိုလှောင်မှု သော့ ပယ်ချခံရသည်} secure_storage_read_failed{လုံခြုံသော ဖတ်ခြင်း မအောင်မြင်ပါ} secure_storage_write_failed{လုံခြုံသော ရေးခြင်း မအောင်မြင်ပါ} key_generation_failed{WireGuard သော့ ဖန်တီး၍ မရပါ} csr_generation_failed{OpenVPN CSR ဖန်တီး၍ မရပါ} openvpn_recovery_exhausted{OpenVPN ပြန်လည်ရယူမှု အသုံးပြုပြီးပါပြီ} openvpn_recovery_failed{OpenVPN ပြန်လည်ရယူမှု မအောင်မြင်ပါ} openvpn_renewal_required{OpenVPN လက်မှတ် သက်တမ်းတိုးခြင်း လိုအပ်သည်} other{အမျိုးအစားခွဲခြားမထားသော အတွင်းပိုင်း VPN အမှား}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android တွင် ပြန်လည်စတင်နိုင်သော VPN ဆက်ရှင် မတွေ့ပါ။ အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။} system_vpn_resume_corrupt{သိမ်းထားသော VPN ပြန်လည်စတင်ရန် အချက်အလက် မမှန်ကန်သဖြင့် အသုံးမပြုပါ။ ချိတ်ဆက်မှုအသစ် စတင်ပါ။} system_vpn_resume_session_invalid{သိမ်းထားသော ဆက်ရှင်ဖြင့် VPN ကို ပြန်လည်စတင်၍ မရတော့ပါ။ အက်ပ်တွင် ထပ်မံ အကောင့်ဝင်ပါ။} system_vpn_resume_identity_changed{စက်ပေါ်ရှိ VPN အထောက်အထား ပြောင်းလဲသွားပါသည်။ ပြန်လည်စတင်မှုကို ရပ်တန့်လိုက်ပါသည်။ ချိတ်ဆက်မှုအသစ် စတင်ပါ။} system_vpn_resume_identity_invalid{ပြန်လည်စတင်ရန် အထောက်အထား မမှန်ကန်ပါ။ ချိတ်ဆက်မှုအသစ် စတင်ပါ။} system_vpn_resume_storage_failed{Android သည် ကုဒ်ဝှက်ထားသော ပြန်လည်စတင်ရန် အချက်အလက်ကို ဖတ်ခြင်း သို့မဟုတ် အပ်ဒိတ်လုပ်ခြင်း မပြုနိုင်ပါ။ ချိတ်ဆက်မှုအသစ် စတင်ပါ။} system_vpn_resume_network_timeout{VPN ကို ပြန်လည်စတင်ရန် Android သည် အချိန်မီ ကွန်ရက်ကို မတွေ့ပါ။ ကွန်ရက် ရရှိသည့်အခါ ထပ်ကြိုးစားပါ။} system_vpn_resume_blocked{VPN ပြန်လည်စတင်မှုကို ပိတ်ဆို့ထားပါသည်။ Android ဆက်တင်များကို စစ်ဆေးပြီး ချိတ်ဆက်မှုအသစ် စတင်ပါ။} system_vpn_resume_failed{Android VPN ပြန်လည်စတင်မှု မအောင်မြင်ပါ။ အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။} system_vpn_resume_error_invalid{Android က အသုံးမပြုနိုင်သော ပြန်လည်စတင်မှု အမှားကို ပြန်ပို့လိုက်ပါသည်။ ချိတ်ဆက်မှုအသစ် စတင်ပါ။} wireguard_identity_store_failed{Android သည် ဤအကောင့်၏ ကုဒ်ဝှက်ထားသော WireGuard အထောက်အထားကို သိမ်းဆည်း၍ မရပါ။} wireguard_identity_unavailable{ဤချိတ်ဆက်မှုအတွက် အသုံးပြုနိုင်သော WireGuard အထောက်အထား မရှိပါ။} vpn_host_destroyed{VPN ကို လည်ပတ်စေသော Android အစိတ်အပိုင်း ရပ်တန့်သွားပါသည်။ ချိတ်ဆက်မှုအသစ် စတင်ပါ။} vpn_host_unavailable{VPN ကို လည်ပတ်စေသော အစိတ်အပိုင်းကို Android က ဖန်တီး၍ မရပါ။ VPN ဆက်တင်များကို စစ်ဆေးပြီးနောက် ထပ်ကြိုးစားပါ။} openvpn_renewal_required{ချိတ်ဆက်မီ လက်မှတ်အတွက် အက်ပ်တွင် လုပ်ဆောင်ရန် လိုအပ်ပါသည်။} openvpn_recovery_failed{အလိုအလျောက် ပြန်လည်ရယူမှု မအောင်မြင်ပါ။ အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။} openvpn_recovery_exhausted{အလိုအလျောက် ပြန်လည်ရယူမှုကို အသုံးပြုပြီးပါပြီ။ အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။} vpn_permission_required{တန်နယ် မစတင်မီ Android က VPN ခွင့်ပြုချက် အသစ် လိုအပ်ပါသည်။} vpn_permission_denied{ဆက်လုပ်ရန် Android တောင်းဆိုမှုတွင် FuzeVPN ကို ခွင့်ပြုပါ။} vpn_permission_request_failed{Android က VPN ခွင့်ပြုချက် စခရင်ကို ဖွင့်၍ မရပါ။} wireguard_foreground_service_unavailable{Android က WireGuard ဝန်ဆောင်မှုကို ရှေ့ပြင်တွင် ဆက်လက်ထားရှိ၍ မရပါ။} wireguard_identity_invalid{ဤအကောင့်၏ ကုဒ်ဝှက်ထားသော WireGuard သော့ကို ဖတ်၍ မရပါ သို့မဟုတ် မမှန်ကန်ပါ။} wireguard_identity_in_use{အခြားလုပ်ဆောင်ချက်တစ်ခုက ဤအကောင့်၏ WireGuard သော့ကို ဆက်လက်အသုံးပြုနေဆဲ ဖြစ်ပါသည်။} wireguard_configuration_invalid{လက်ခံရရှိသော WireGuard လိပ်စာ၊ DNS၊ ဆာဗာသော့ သို့မဟုတ် လမ်းကြောင်းများ မမှန်ကန်ပါ။} wireguard_operation_pending{ယခင် WireGuard လုပ်ဆောင်ချက်က အတွင်းပိုင်း ဝန်ဆောင်မှုကို မလွှတ်ပေးရသေးပါ။} wireguard_start_failed{WireGuard အင်ဂျင်က ဖွဲ့စည်းပုံကို အသက်သွင်းခြင်းကို ပယ်ချလိုက်ပါသည်။} wireguard_stop_timeout{WireGuard ဝန်ဆောင်မှုက သတ်မှတ်ချိန်အတွင်း VPN အင်တာဖေ့စ် လွှတ်ပေးခြင်းကို အတည်မပြုနိုင်ပါ။} wireguard_handshake_timeout{တန်နယ်က ဆာဗာနှင့် လုံခြုံသော ဖလှယ်မှုကို အချိန်မီ အတည်မပြုနိုင်ပါ။} openvpn_connection_timeout{OpenVPN က ဆာဗာသို့ ချိတ်ဆက်မှုကို အချိန်မီ အတည်မပြုနိုင်ပါ။} openvpn_core_unavailable{ဤအက်ပ်ဗားရှင်းတွင် အသုံးပြုနိုင်သော OpenVPN အင်ဂျင် မပါဝင်ပါ။} openvpn_operation_pending{အတွင်းပိုင်း အင်ဂျင်က ယခင် OpenVPN ဆက်ရှင်ကို ဆက်လက်ထိန်းထားဆဲ ဖြစ်ပြီး ဒုတိယ ဆက်ရှင် ဖန်တီးခွင့် မပေးပါ။} openvpn_stop_timeout{OpenVPN အင်ဂျင် က သတ်မှတ်ချိန်အတွင်း ၎င်း၏ အတွင်းပိုင်း ဆက်ရှင် ရပ်တန့်ပြီး ဖျက်သိမ်းခြင်းကို အတည်မပြုနိုင်ပါ။} openvpn_profile_unavailable{ဤချိတ်ဆက်မှုအတွက် အတည်ပြုပြီးသော OpenVPN ပရိုဖိုင် ဖတ်၍ မရပါ။} openvpn_native_failed{အက်ပ်အမှားကြောင့် OpenVPN ရပ်ဆိုင်းသွားပါသည်။ ထပ်မံ ချိတ်ဆက်ကြည့်ပါ။ ဆက်၍ မအောင်မြင်ပါက ပြဿနာ ရှာဖွေမှု လုပ်ဆောင်ပါ။} openvpn_key_generation_failed{Android Keystore က ပို့ထုတ်၍ မရသော P-256 သီးသန့်သော့ကို ဖန်တီးခြင်း သို့မဟုတ် ဖတ်ခြင်း မပြုနိုင်ပါ။} openvpn_csr_generation_failed{Android Keystore သော့ဖြင့် OpenVPN လက်မှတ် တောင်းဆိုချက်ကို လက်မှတ်ရေးထိုး၍ မရပါ။} openvpn_identity_store_failed{OpenVPN လက်မှတ် သို့မဟုတ် ပရိုဖိုင်ကို ကုဒ်ဝှက်ထားသော သိုလှောင်မှုတွင် သိမ်းဆည်း၍ မရပါ။} openvpn_identity_clear_failed{Android သည် ဤအကောင့်၏ စက်ပေါ်ရှိ OpenVPN အထောက်အထား အားလုံးကို ဖယ်ရှား၍ မရပါ။} openvpn_identity_in_use{အတွင်းပိုင်း OpenVPN ဆက်ရှင်တစ်ခုက ဤစက်ပစ္စည်း၏ သော့ သို့မဟုတ် လက်မှတ်ကို ဆက်လက်အသုံးပြုနေဆဲ ဖြစ်ပါသည်။} openvpn_tls_verification_required{ပရိုဖိုင်က ဆာဗာလက်မှတ် စစ်ဆေးမှုကို ရှင်းရှင်းလင်းလင်း မတောင်းဆိုထားပါ။} openvpn_cipher_invalid{ဆာဗာက ခွင့်ပြုထားသော စာရင်းတွင် မပါဝင်သော ကုဒ်ဝှက်နည်းကို ပေးပို့လိုက်ပါသည်။} openvpn_profile_rejected{ဆာဗာမှ လက်ခံရရှိသော ပရိုဖိုင် မကိုက်ညီပါ။ ဤစက်ပစ္စည်းကို ပြန်ဖန်တီးပြီး ထပ်ကြိုးစားပါ။} openvpn_identity_inconsistent{လက်မှတ်သည် ဤဖုန်း၏ လုံခြုံသော အထောက်အထားနှင့် မကိုက်ညီပါ။ စက်ပေါ်ရှိ ပရိုဖိုင်ကို အစားထိုးခြင်း မပြုလုပ်ပါ။} tls_handshake_failed{ဆာဗာက TLS ညှိနှိုင်းမှုကို ပယ်ချလိုက်ပါသည်။ ပြဿနာ ဆက်ဖြစ်နေပါက ပရိုဖိုင်ကို ပြန်ဖန်တီးပါ။} tls_alert_unknown_ca{ဆာဗာက ဤစက်ပစ္စည်းလက်မှတ်၏ လက်မှတ်ထုတ်ပေးသူကို မသိပါ။ OpenVPN ဆာဗာကို စစ်ဆေးရန် လိုအပ်ပါသည်။} tls_alert_bad_certificate{ဆာဗာက ဤစက်ပစ္စည်းလက်မှတ်ကို ပယ်ချလိုက်ပါသည်။ ထပ်ကြိုးစားမီ စက်ပစ္စည်းကို ပြန်ဖန်တီးပါ။} tls_alert_unsupported_certificate{ဆာဗာက Android အသုံးပြုသော လုံခြုံသည့် လက်မှတ်အမျိုးအစားကို မထောက်ပံ့ပါ။} tls_client_certificate_required{ဆာဗာက ကလိုင်းယင့်လက်မှတ် တောင်းဆိုသော်လည်း OpenVPN အင်ဂျင် က တင်ပြ၍ မရပါ။} tls_alert_misc{ဆာဗာက လက်မှတ်နှင့် ဗားရှင်းအမျိုးအစားများ အပြင်ရှိ TLS သတိပေးချက်ကို ပြန်ပို့လိုက်ပါသည်။} tls_signature_algorithm_rejected{ဆာဗာက Android Keystore သော့၏ ECDSA P-256 အယ်လ်ဂိုရီသမ်ကို ပယ်ချလိုက်ပါသည်။} tls_handshake_rejected{ချိတ်ဆက်မီ ဆာဗာက TLS ညှိနှိုင်းမှုကို ကြားဖြတ်လိုက်ပါသည်။} tls_version_rejected{ကလိုင်းယင့်နှင့် ဆာဗာတို့အတွက် တူညီသော TLS ဗားရှင်း မတွေ့ပါ။} tls_certificate_expired{ချိတ်ဆက်စဉ် တင်ပြခဲ့သော လက်မှတ် သက်တမ်းကုန်သွားပါပြီ။} tls_certificate_revoked{ချိတ်ဆက်စဉ် တင်ပြခဲ့သော လက်မှတ်ကို ရုပ်သိမ်းလိုက်ပါပြီ။} transport_failed{လက်ရှိကွန်ရက်ပေါ်တွင် OpenVPN ဆာဗာက တုံ့ပြန်မှု မရှိပါ။ ခဏအကြာ ထပ်ကြိုးစားပါ။} tun_configuration_rejected{OpenVPN က တောင်းဆိုသော ကွန်ရက် ဖွဲ့စည်းပုံကို Android က ပယ်ချလိုက်ပါသည်။} tun_setup_failed{Android အင်တာဖေ့စ် မဖန်တီးမီ OpenVPN အင်ဂျင် က ကွန်ရက်အစီအစဉ်ကို ပယ်ချလိုက်ပါသည်။} tun_interface_create_failed{OpenVPN အင်ဂျင် သည် Android VpnService မှ TUN အင်တာဖေ့စ်ကို ရယူ၍ မရပါ။} tun_interface_disabled{ချိတ်ဆက်နေစဉ် Android သို့မဟုတ် OpenVPN အင်ဂျင် က TUN အင်တာဖေ့စ်ကို ပိတ်လိုက်ပါသည်။} tun_halted{OpenVPN အင်ဂျင် သည် TUN အင်တာဖေ့စ်ကို ရပ်တန့်ရန် တောင်းဆိုချက် လက်ခံရရှိပါသည်။} tun_already_established{OpenVPN က တူညီသော ချိတ်ဆက်မှုအတွင်း ဒုတိယ အင်တာဖေ့စ် တောင်းဆိုခဲ့သည်။ လုံခြုံရေးအတွက် တန်နယ်ကို ရပ်တန့်လိုက်ပါသည်။} tun_addresses_missing{ဆာဗာက အသုံးပြုနိုင်သော တန်နယ် လိပ်စာ မပေးပါ။} tun_routes_missing{ဆာဗာက အသုံးပြုနိုင်သော တန်နယ် လမ်းကြောင်းများ မပေးပါ။} tun_dns_missing{ဆာဗာက အသုံးပြုနိုင်သော DNS ဆာဗာ မပေးပါ။} tun_permission_revoked{ချိတ်ဆက်နေစဉ် Android က VPN ခွင့်ပြုချက်ကို ရုပ်သိမ်းလိုက်ပါသည်။} tun_establish_returned_null{Android က အင်တာဖေ့စ်ကို ဖန်တီးမပေးပါ။ များသောအားဖြင့် အခြား VPN တစ်ခု ဆက်လက်အလုပ်လုပ်နေခြင်းကြောင့် ဖြစ်ပါသည်။} openvpn_service_start_failed{Android က OpenVPN ရှေ့ပြင်ဝန်ဆောင်မှုကို စတင်၍ မရပါ။} openvpn_operation_timeout{OpenVPN အင်ဂျင် သို့ JNI ခေါ်ဆိုမှုသည် အမြင့်ဆုံး ကြာချိန်ကို ကျော်လွန်သွားပါသည်။} openvpn_start_failed{Android ဝန်ဆောင်မှု အဆင်သင့်ဖြစ်သော်လည်း OpenVPN အင်ဂျင် က ပရိုဖိုင် စတင်ခြင်းကို လက်မခံပါ။} openvpn_connection_failed{OpenVPN အင်ဂျင် သည် CONNECTED ဖြစ်ရပ်ကို ထုတ်ပြန်မီ ရပ်တန့်သွားပါသည်။} openvpn_core_status_error{အတွင်းပိုင်း OpenVPN လုပ်ဆောင်ချက်ကွင်းသည် အမှားဖြင့် ပြီးဆုံးသွားပြီး ပိုမိုတိကျသော အဆုံးသတ်ဖြစ်ရပ် မရှိပါ။} openvpn_stopped_before_connected{အတွင်းပိုင်း OpenVPN လုပ်ဆောင်ချက်ကွင်းသည် အင်ဂျင် အမှား ရှင်းရှင်းလင်းလင်း မရှိဘဲ CONNECTED မဖြစ်မီ ရပ်တန့်သွားပါသည်။} openvpn_auth_failed{OpenVPN ဆာဗာက ပရိုဖိုင် အထောက်အထား စိစစ်မှုကို ပယ်ချလိုက်ပါသည်။} openvpn_client_setup_failed{ကွန်ရက်ချိတ်ဆက်မှု မတိုင်မီ OpenVPN အင်ဂျင် က ကလိုင်းယင့်ကို စတင်ပြင်ဆင်၍ မရပါ။} openvpn_client_halted{OpenVPN အင်ဂျင် က ကလိုင်းယင့် အဆုံးသတ် ရပ်တန့်ရန် တောင်းဆိုချက်ကို လက်ခံရရှိပါသည်။} openvpn_client_restart{OpenVPN အင်ဂျင် က ၎င်း၏ သယ်ယူပို့ဆောင်မှု ဆက်ရှင်ကို ပြန်လည်စတင်ရန် တောင်းဆိုပါသည်။} openvpn_inactive_timeout{လှုပ်ရှားမှု မရှိသော အချိန်ကန့်သတ်ချက် ကျော်လွန်ပြီးနောက် OpenVPN အင်ဂျင် က ဆက်ရှင်ကို ပိတ်လိုက်ပါသည်။} openvpn_session_expired{OpenVPN ဆက်ရှင် သက်တမ်းကုန်သွားကြောင်း ဆာဗာက အစီရင်ခံပါသည်။} openvpn_credentials_required{ဤလက်မှတ်ပရိုဖိုင်တွင် မပါဝင်သော အပြန်အလှန် အထောက်အထားများကို ဆာဗာ သို့မဟုတ် ပရောက်ဆီက တောင်းဆိုနေပါသည်။} openvpn_proxy_failed{OpenVPN အင်ဂျင် က သတ်မှတ်ထားသော ပရောက်ဆီ သို့မဟုတ် ကြားခံ၏ ချို့ယွင်းမှုကို အစီရင်ခံပါသည်။} openvpn_compression_failed{OpenVPN အင်ဂျင် က ပရိုဖိုင် သို့မဟုတ် ဆာဗာမှ ကြေညာထားသော ချုံ့ခြင်းမုဒ်ကို ပယ်ချလိုက်ပါသည်။} openvpn_ntlm_crypto_unavailable{ဤဗားရှင်းတွင် မရရှိနိုင်သော NTLM ကုဒ်ဝှက်မှုကို ပရိုဖိုင်က တောင်းဆိုပါသည်။} openvpn_feature_unsupported{ဤ Android ကလိုင်းယင့်တွင် မပါဝင်သော လုပ်ဆောင်ချက်ကို ပရိုဖိုင် သို့မဟုတ် ဆာဗာက လိုအပ်ပါသည်။} network_unavailable{အသုံးပြုနိုင်သော ရုပ်ပိုင်း ကွန်ရက် မရှိပါ။} network_lost{ကွန်ရက် ပျောက်ဆုံးပြီးနောက် တန်နယ်ကို ရပ်တန့်လိုက်ပါသည်။} certificate_validation_failed{OpenVPN ဆာဗာ အထောက်အထားကို စစ်ဆေး၍ မရပါ။} openvpn_certificate_expired{ပြန်ချိတ်ဆက်မီ OpenVPN ပရိုဖိုင်ကို သက်တမ်းတိုးပါ။} tunnel_active_for_another_account{ဤချိတ်ဆက်မှုမပြုလုပ်မီ အခြားအကောင့်နှင့်ဆိုင်သော တန်နယ်ကို ရပ်တန့်ရန် လိုအပ်ပါသည်။} tunnel_already_active{ယခင် VPN ဆက်ရှင်က အင်တာဖေ့စ်ကို ဆက်လက်အသုံးပြုနေဆဲ ဖြစ်ကြောင်း Android က အစီရင်ခံပါသည်။} tunnel_stop_timeout{{protocol} အင်ဂျင်က သတ်မှတ်ချိန်အတွင်း VPN အင်တာဖေ့စ် လွှတ်ပေးခြင်းကို အတည်မပြုနိုင်ပါ။} tunnel_disconnected{စတင်ပြီးနောက် တန်နယ် မမျှော်လင့်ဘဲ ပြီးဆုံးသွားကြောင်း အတွင်းပိုင်း အင်ဂျင်က အစီရင်ခံပါသည်။} native_bridge_unavailable{အက်ပ်သည် Android VPN ဝန်ဆောင်မှုကို ဝင်ရောက်၍ မရပါ။ အက်ပ်ကို ပိတ်ပြီး ပြန်ဖွင့်ကာ ထပ်ကြိုးစားပါ။} native_operation_failed{အက်ပ်အမှားကြောင့် VPN လုပ်ဆောင်ချက် ရပ်ဆိုင်းသွားပါသည်။ ထပ်ကြိုးစားပါ။ ဆက်၍ မအောင်မြင်ပါက ပြဿနာ ရှာဖွေမှု လုပ်ဆောင်ပါ။} invalid_arguments{ဤ VPN လုပ်ဆောင်ချက်အတွက် လိုအပ်သော အချက်အလက်များ မပြည့်စုံပါ။ ထပ်ကြိုးစားပါ။ ဆက်၍ မအောင်မြင်ပါက ပြဿနာ ရှာဖွေမှု လုပ်ဆောင်ပါ။} invalid_account_id{အတွင်းပိုင်း လုပ်ဆောင်ချက်သည် မှန်ကန်သော အကောင့် အမှတ်အသားနှင့် မဆက်စပ်ပါ။} invalid_device_id{အတွင်းပိုင်း အင်ဂျင်သို့ ပို့လိုက်သော စက်ပစ္စည်း အမှတ်အသား မရှိပါ သို့မဟုတ် မမှန်ကန်ပါ။} storage_key_not_allowed{Android ဆက်သွယ်ရေးတံတားက ခွင့်ပြုထားသော သိုလှောင်မှု စာရင်းအပြင်ရှိ သော့တစ်ခုကို ပိတ်ဆို့လိုက်ပါသည်။} secure_storage_read_failed{Android Keystore သည် ဤအကောင့်၏ စက်ပေါ်ရှိ ဒေတာကို ကုဒ်ဖြေ၍ မရပါ။} secure_storage_write_failed{Android Keystore သည် စက်ပေါ်ရှိ ဒေတာကို ကုဒ်ဝှက်ခြင်း သို့မဟုတ် သိမ်းဆည်းခြင်း မပြုနိုင်ပါ။} key_generation_failed{Android သည် လုံခြုံသော သိုလှောင်မှုတွင် WireGuard သော့ကို ဖန်တီးခြင်း သို့မဟုတ် ဖတ်ခြင်း မပြုနိုင်ပါ။} csr_generation_failed{Android Keystore သည် OpenVPN P-256 CSR ကို ဖန်တီးခြင်း သို့မဟုတ် လက်မှတ်ရေးထိုးခြင်း မပြုနိုင်ပါ။} other{မှတ်တမ်းမတင်ထားသော အတွင်းပိုင်း လုပ်ငန်းစဉ်လမ်းကြောင်း တစ်ခု မအောင်မြင်ပါ။ အောက်တွင် ပြထားသော ပြဿနာ ရှာဖွေမှု ကုဒ်ကို ပံ့ပိုးမှု အဖွဲ့သို့ ပို့ပါ။}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "ခွင့်ပြုချက် တောင်းဆိုမှုကို ဖွင့်ထားပြီးဖြစ်သည်",
+    "notice_permissionRequestInProgress_message": "Android VPN ခွင့်ပြုချက် တောင်းဆိုမှုကို ပြသထားပြီးသား ဖြစ်သည်။ ထပ်ကြိုးစားမီ ၎င်းကို အရင် ပြီးအောင် လုပ်ပါ။",
+    "notice_permissionRequestInterrupted_title": "VPN ခွင့်ပြုချက် တောင်းဆိုမှု ရပ်ဆိုင်းသွားသည်",
+    "notice_permissionRequestInterrupted_message": "အက်ပ်က တုံ့ပြန်ချက် မရရှိမီ VPN ခွင့်ပြုချက် စခရင် ပိတ်သွားသည်။",
+    "notice_openvpnProofMissing_title": "OpenVPN ချိတ်ဆက်မှု အတည်မပြုနိုင်ပါ",
+    "notice_openvpnProofMissing_message": "OpenVPN ချိတ်ဆက်မှုကို အတည်ပြု၍ မရပါ။ လုံခြုံရေးအတွက် ရပ်ဆိုင်းထားလိုက်သည်။ ထပ်ကြိုးစားပါ။",
+    "openvpnCleanup_title": "OpenVPN ပရိုဖိုင် ရုပ်သိမ်းထားသည်",
+    "openvpnCleanup_working": "ရုပ်သိမ်းထားသော OpenVPN ပရိုဖိုင်ကို ရပ်တန့်ပြီး ဖယ်ရှားနေသည်…",
+    "openvpnCleanup_stopFailed": "OpenVPN ရပ်တန့်ခြင်းကို အတည်မပြုရသေးပါ။ ပရိုဖိုင် အသစ် မဖန်တီးမီ ထပ်ကြိုးစားပါ။",
+    "openvpnCleanup_cleanupFailed": "ရုပ်သိမ်းထားသော OpenVPN ပရိုဖိုင်ကို အပြည့်အဝ ဖယ်ရှား၍ မရပါ။ သန့်ရှင်းရေးကို ထပ်ကြိုးစားပါ။",
+    "openvpnCleanup_complete": "ရုပ်သိမ်းထားသော OpenVPN ပရိုဖိုင်ကို ဖယ်ရှားပြီးပါပြီ။ အသစ်တစ်ခု ဖန်တီးရန် “ချိတ်ဆက်ရန်” ကို နှိပ်ပါ။",
+    "network_title": "ကွန်ရက် ဖွဲ့စည်းပုံ",
+    "network_ipv4Fallback": "IPv6 ယာယီ မရရှိနိုင်ပါ။ ပြင်ဆင်မှုကို IPv4 ဖြင့် ဆက်လုပ်နေသည်။",
+    "network_rejectedTitle": "ကွန်ရက် ဖွဲ့စည်းပုံ ပယ်ချခံရသည်",
+    "network_rejectedMessage": "တန်နယ် ဖွဲ့စည်းပုံ မပြည့်စုံပါ သို့မဟုတ် ခွင့်ပြုထားသော လိပ်စာများနှင့် မကိုက်ညီပါ။ အက်ပ်မှ ထပ်မံ ကြိုးစားပါ။",
+    "network_unreadableTitle": "စက်ပေါ်ရှိ ဖွဲ့စည်းပုံ ဖတ်၍ မရပါ",
+    "network_unreadableMessage": "သိမ်းထားသော OpenVPN ကွန်ရက် ဖွဲ့စည်းပုံကို အသုံးပြု၍ မရပါ။ ၎င်းကို အပ်ဒိတ်လုပ်ရန် အက်ပ်မှ ပြန်ချိတ်ဆက်ပါ။",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "ကွန်ရက် အကာအကွယ်",
+    "protection_subtitle": "VPN ပြတ်သွားပါက တိုက်ရိုက် အင်တာနက် ဝင်ရောက်မှုကို ပိတ်ပါ။",
+    "protection_active": "စနစ် အကာအကွယ် ဖွင့်ထားသည်",
+    "protection_alwaysOnOnly": "အမြဲဖွင့်ထားသော VPN ဖွင့်ထားသည်။ VPN အပြင်ဘက် ပိတ်ဆို့မှုကို ဖွင့်ပါ။",
+    "protection_inactive": "စနစ် အကာအကွယ် ပိတ်ထားသည်",
+    "protection_unknown": "စနစ် အကာအကွယ်ကို စစ်ဆေးပါ",
+    "protection_openSettings": "Android ဆက်တင်များကို ဖွင့်ရန်",
+    "protection_dialogTitle": "ကွန်ရက် အကာအကွယ် သတ်မှတ်ရန်",
+    "protection_dialogMessage": "Android က အမြဲဖွင့်ထားသော VPN နှင့် VPN အပြင်ဘက် ချိတ်ဆက်မှုများကို ပိတ်ဆို့ခြင်းကို စီမံသည်။ FuzeVPN ရွေးချယ်ထားကြောင်း စစ်ဆေးပြီး စနစ်ဆက်တင်များတွင် ပိတ်ဆို့ခြင်းကို ဖွင့်ပါ။",
+    "protection_dialogOpen": "ဆက်တင်များ ဖွင့်ရန်",
+    "session_systemProtectionNote": "Android က VPN အပြင်ဘက် ဒေတာ သွားလာမှုကို ဆက်လက် ပိတ်ဆို့နေပါက ဤအကာအကွယ်ကို စစ်ဆေးရန် သို့မဟုတ် ပြောင်းရန် စနစ်ဆက်တင်များကို ဖွင့်ပါ။",
+    "diagnostics_title": "ပြဿနာ ရှာဖွေမှု",
+    "diagnostics_settingsTitle": "အက်ပ် ပြဿနာ ရှာဖွေမှု",
+    "diagnostics_automaticTitle": "အရေးကြီးသော အမှားများကို ပို့ရန်",
+    "diagnostics_automaticDescription": "အရေးကြီးသော အမှား ဖြစ်ပေါ်သည့်အခါ အသေးစား နည်းပညာဆိုင်ရာ အစီရင်ခံစာတစ်ခုကို မျှဝေပါ။",
+    "diagnostics_privacy": "ပို့ထားသော အစီရင်ခံစာများသည် အကောင့်ဝင်ထားသော အကောင့်နှင့် ချိတ်ဆက်ထားပြီး 30 ရက်ကြာ သိမ်းဆည်းထားပါမည်။ ၎င်းတွင် ဝဘ်ရှာဖွေမှု မှတ်တမ်း၊ စကားဝှက် သို့မဟုတ် VPN သော့များ မပါဝင်ပါ။",
+    "diagnostics_manualOpen": "ပြဿနာ ရှာဖွေမှု လုပ်ရန်",
+    "diagnostics_localDescription": "အက်ပ်နှင့် VPN အခြေအနေ အစီရင်ခံစာ ဖန်တီးပါ။ သင့်ချိတ်ဆက်မှု မပြောင်းလဲပါ။",
+    "diagnostics_sendReport": "အစီရင်ခံစာ ပို့ရန်",
+    "diagnostics_sendHint": "အစီရင်ခံစာကို ဤစက်ပစ္စည်းတွင်သာ ထားရန် ဤအကွက်ကို မရွေးဘဲ ထားပါ။",
+    "diagnostics_signedOut": "အစီရင်ခံစာ ပို့ရန် အကောင့်ဝင်ပါ။",
+    "diagnostics_localLifetime": "အက်ပ်ကို ပိတ်ပြီးနောက်ပါ ထိန်းသိမ်းထားရန် ဤအစီရင်ခံစာကို သင့်ဖုန်းတွင် သိမ်းပါ။",
+    "diagnostics_run": "ပြဿနာ ရှာဖွေမှု လုပ်ရန်",
+    "diagnostics_rerun": "ပြဿနာ ရှာဖွေမှု ထပ်လုပ်ရန်",
+    "diagnostics_running": "စစ်ဆေးနေသည်…",
+    "diagnostics_sending": "အစီရင်ခံစာ ပို့နေသည်…",
+    "diagnostics_prepared": "ဤစက်ပစ္စည်းတွင် အစီရင်ခံစာ အဆင်သင့်ဖြစ်ပါပြီ",
+    "diagnostics_queued": "အစီရင်ခံစာ ပို့ရန် စောင့်နေသည်",
+    "diagnostics_sent": "အစီရင်ခံစာ လက်ခံရရှိပါပြီ",
+    "diagnostics_failed": "ပို့၍ မရပါ။ သင့်စက်ပေါ်ရှိ အစီရင်ခံစာကို ဆက်လက် အသုံးပြုနိုင်ပါသည်။",
+    "diagnostics_preparationFailed": "ပြဿနာ ရှာဖွေမှု အစီရင်ခံစာကို ပြင်ဆင်၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "diagnostics_authenticationRequired": "အစီရင်ခံစာ ပို့ရန် ထပ်မံ အကောင့်ဝင်ပါ။",
+    "diagnostics_retry": "ပို့ခြင်းကို ထပ်ကြိုးစားရန်",
+    "diagnostics_export": "အစီရင်ခံစာ သိမ်းရန်",
+    "diagnostics_exportFailed": "တင်ပို့ခြင်း မအောင်မြင်ပါ။ စက်ပေါ်ရှိ အစီရင်ခံစာမှ ထပ်ကြိုးစားပါ။",
+    "diagnostics_preferenceFailed": "ဤဆက်တင်ကို သိမ်း၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "diagnostics_receipt": "ရည်ညွှန်းနံပါတ်: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "{date} တွင် ရရှိခဲ့သည်",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "{date} အထိ ထိန်းသိမ်းထားမည်",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "ဤအစီရင်ခံစာကို ရရှိပြီးသား ဖြစ်သည်။",
+    "diagnostics_preview": "အစီရင်ခံစာ အကြိုကြည့်ရှုမှု",
+    "diagnostics_eventCount": "{count, plural, =0{နည်းပညာဆိုင်ရာ အဖြစ်အပျက် မပါဝင်ပါ} =1{နည်းပညာဆိုင်ရာ အဖြစ်အပျက် 1 ခု ပါဝင်သည်} other{နည်းပညာဆိုင်ရာ အဖြစ်အပျက် {count} ခု ပါဝင်သည်}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "နည်းပညာဆိုင်ရာ အသေးစိတ်များ",
+    "diagnostics_empty": "ပြဿနာ ရှာဖွေမှု အစီရင်ခံစာ မရှိသေးပါ။",
+    "diagnostics_checkName": "{id, select, tunnel_connection{တန်နယ် အခြေအနေ} handshake{ချိတ်ဆက်မှု အတည်ပြုချက်} certificate{VPN လက်မှတ်} kill_switch{Android အကာအကွယ်} connectivity{ရရှိနိုင်သော ကွန်ရက်} api_reachability{ဝန်ဆောင်မှု ဝင်ရောက်နိုင်မှု} secure_storage{လုံခြုံသော သိုလှောင်မှု} other{စက်ပေါ်ရှိ စစ်ဆေးမှု}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{စစ်ဆေးပြီး} failed{ဂရုပြုရန် လိုအပ်သည်} skipped{မစမ်းသပ်ထားပါ — တက်ကြွသော စစ်ဆေးမှု မပြုလုပ်ထားပါ} unknown{အချက်အလက် မရရှိနိုင်ပါ} other{အချက်အလက် မရရှိနိုင်ပါ}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "FuzeVPN သို့ ကြိုဆိုပါသည်",
+    "connection_changeLocation": "တည်နေရာ ပြောင်းရန်",
+    "connection_details": "ချိတ်ဆက်မှု အသေးစိတ်များ",
+    "locations_searchLabel": "မြို့ သို့မဟုတ် နိုင်ငံ ရှာရန်",
+    "locations_clearSearch": "ရှာဖွေမှု ဖျက်ရန်",
+    "locations_filterAll": "အားလုံး",
+    "locations_filterFavorites": "အကြိုက်ဆုံးများ",
+    "locations_results": "{count, plural, other{တည်နေရာ {count} ခု}}",
+    "locations_noResults": "တည်နေရာ မတွေ့ပါ",
+    "locations_noResultsHint": "အခြား မြို့ သို့မဟုတ် နိုင်ငံကို ရှာကြည့်ပါ။",
+    "locations_noFavorites": "သင့်အကြိုက်ဆုံးများ၊ လက်လှမ်းမီရာတွင်",
+    "locations_noFavoritesHint": "တည်နေရာတစ်ခု ဘေးရှိ ကြယ်ပွင့်ကို နှိပ်ပြီး ဤနေရာတွင် သိမ်းပါ။",
+    "locations_showAll": "တည်နေရာ အားလုံး ကြည့်ရန်",
+    "locations_addFavorite": "{name} ကို အကြိုက်ဆုံးများသို့ ထည့်ရန်",
+    "locations_removeFavorite": "{name} ကို အကြိုက်ဆုံးများမှ ဖယ်ရှားရန်",
+    "locations_favoriteSaveFailed": "အကြိုက်ဆုံးကို သိမ်း၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "locations_emptyTitle": "တည်နေရာ မရရှိနိုင်ပါ",
+    "locations_emptyHint": "စာရင်းကို ပြန်လည်ဆန်းသစ်ပြီး ထပ်ကြိုးစားပါ။",
+    "devices_manage": "စက်ပစ္စည်းများကို စီမံရန်",
+    "settings_personalization": "သင့်စိတ်ကြိုက် ပြင်ဆင်ပါ",
+    "settings_safety": "အကာအကွယ်",
+    "settings_help": "အကူအညီ လိုပါသလား?",
+    "settings_about": "FuzeVPN အကြောင်း",
+    "diagnostics_heading": "ချိတ်ဆက်မှု ပြဿနာကို နားလည်ရန်",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{ရရှိနိုင်သည်} pending{ပြင်ဆင်နေသည်} revoked{ဖယ်ရှားထားသည်} expired{သက်တမ်းကုန်သွားသည်} other{အခြေအနေ မရရှိနိုင်ပါ}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "ရွေးချယ်မှု မသိမ်းရပါ",
+    "notice_preferenceSave_message": "သင့်ရွေးချယ်မှုကို ယခုအတွက် အသုံးချထားသော်လည်း သိမ်း၍ မရပါ။ အက်ပ်ကို ပိတ်ပြီးနောက်ပါ ဆက်ထားရန် ထပ်ကြိုးစားပါ။",
+    "connection_androidDisconnectHint": "Android က VPN ကို ဆက်ဖွင့်ထားပါက ဖွင့်လာသော ဆက်တင်များတွင် အမြဲဖွင့်ထားသော VPN ကို ပိတ်ပါ။",
+    "protection_learnMore": "Android အကာအကွယ်အကြောင်း လေ့လာရန်",
+    "protection_guideWhy": "VPN ချိတ်ဆက်မှု ပြတ်သွားပါက ဤအကာအကွယ်က အက်ပ်များ အင်တာနက်ကို တိုက်ရိုက် အသုံးပြုခြင်းကို တားဆီးပေးပါသည်။ ၎င်းကို Android တွင် သတ်မှတ်ပါသည်။",
+    "protection_guideAlwaysOnTitle": "အမြဲဖွင့်ထားသော VPN",
+    "protection_guideAlwaysOn": "Android သည် VPN ဝန်ဆောင်မှုကို ဆက်လက် လည်ပတ်စေပြီး ဖုန်း ပြန်စတင်ပြီးနောက် ၎င်းကို ပြန်လည် စတင်ပေးနိုင်ပါသည်။",
+    "protection_guideBlockTitle": "VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်",
+    "protection_guideBlock": "ဤဆက်တင်က ချိတ်ဆက်မှု ရပ်တန့်နေချိန်အပါအဝင် VPN ကို ကျော်ဖြတ်ပြီး ဒေတာ ပို့ခြင်းကို တားဆီးပေးပါသည်။",
+    "protection_guideWarning": "ဤပိတ်ဆို့မှုကို ဖွင့်ထားပါက VPN ချိတ်ဆက်ပြီးမှသာ အင်တာနက်ကို သုံးနိုင်ပါမည်။",
+    "protection_guideStepsTitle": "အကာအကွယ်ကို ဖွင့်ရန်",
+    "protection_guideStep1": "အောက်ပါ ခလုတ်ဖြင့် Android VPN ဆက်တင်များကို ဖွင့်ပါ။",
+    "protection_guideStep2": "FuzeVPN ဘေးရှိ ဂီယာ အိုင်ကွန်ဖြင့် ရွေးချယ်စရာများကို ဖွင့်ပါ။",
+    "protection_guideStep3": "ရရှိနိုင်ပါက “အမြဲဖွင့်ထားသော VPN” ကို ဖွင့်ပြီး၊ ထို့နောက် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ဖွင့်ပါ။",
+    "protection_guideManufacturers": "အမည်များသည် ဖုန်းအလိုက် ကွဲပြားနိုင်ပါသည်။ လိုအပ်ပါက ဆက်တင်များတွင် VPN ကို ရှာဖွေပါ၊ များသောအားဖြင့် ကွန်ရက်နှင့် အင်တာနက် အောက်တွင် ရှိပါသည်။",
+    "protection_guideDisableTitle": "ဤအကာအကွယ်ကို ပိတ်ရန်",
+    "protection_guideDisable": "တူညီသော ဆက်တင်များတွင် VPN မပါဘဲ အင်တာနက် သုံးခွင့်ပေးရန် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ပိတ်ပါ။ Android က ပြန်လည် စတင်စေခြင်းကို မလိုချင်တော့ပါက “အမြဲဖွင့်ထားသော VPN” ကိုလည်း ပိတ်ပါ။",
+    "protection_guideManual": "ဤဆက်တင်များကို Android တွင် သင်ကိုယ်တိုင် ရွေးချယ်ပါသည်။ FuzeVPN သည် ၎င်းတို့ကို သင့်အစား ပြောင်းလဲပေးခြင်း မရှိပါ။",
+    "locations_changeTitle": "တည်နေရာကို ပြောင်းမလား?",
+    "locations_changeActive": "VPN ချိတ်ဆက်မှုကို ဖြတ်ပြီး {name} သို့ ချိတ်ဆက်ရန် ကြိုးစားပါမည်။",
+    "locations_changeIdle": "VPN သည် {name} သို့ ချိတ်ဆက်ရန် ကြိုးစားပါမည်။",
+    "locations_confirmChange": "ပြောင်းပြီး ချိတ်ဆက်ရန်",
+    "locations_changeBusy": "ပြောင်းလဲမှု လုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ အခြားတည်နေရာ မရွေးမီ စောင့်ပါ။",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "အလိုအလျောက် ရွေးချယ်ခြင်း",
+    "locations_cities": "မြို့များ",
+    "locations_servers": "ဆာဗာများ",
+    "locations_viewCities": "{name} ရှိ မြို့များကို ကြည့်ရန်",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "{name} ရှိ ဆာဗာများကို ကြည့်ရန်",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, other{နိုင်ငံ {count} ခု}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, other{မြို့ {count} ခု}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, other{ဆာဗာ {count} ခု}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "နိုင်ငံအားလုံး",
+    "locations_backToCountries": "နိုင်ငံများသို့ ပြန်သွားရန်",
+    "locations_backToCities": "{name} ရှိ မြို့များသို့ ပြန်သွားရန်",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "{name} ကို ရွေးရန်",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "{name} ကို ရွေးရန်",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "ကိုက်ညီသော ဆာဗာ မရှိပါ။",
+    "externalLink_failed": "ဤလင့်ခ်ကို ဖွင့်၍ မရပါ။ ကူးယူပြီး သင့်ဘရောက်ဆာတွင် ဖွင့်နိုင်ပါသည်။",
+    "externalLink_copy": "လင့်ခ် ကူးယူရန်",
+    "externalLink_copied": "လင့်ခ် ကူးယူပြီးပါပြီ",
+    "externalLink_copyFailed": "လင့်ခ်ကို ကူး၍ မရပါ။ အောက်ရှိ လိပ်စာကို ရွေးချယ်ပါ။",
+    "settings_deleteAccount": "ကျွန်ုပ်၏ အကောင့်ကို ဖျက်ရန်",
+    "settings_deleteAccountDetail": "အကောင့်ဖျက်ရန် တောင်းဆိုမှု လုပ်ထုံးလုပ်နည်းကို ကြည့်ရှုရန်",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "သင့် VPN စာရင်းသွင်းမှုကို ရွေးချယ်ပါ။",
+    "billing_subscribe": "စာရင်းသွင်းရန်",
+    "billing_choosePlan": "ဆက်လုပ်ရန် အစီအစဉ်တစ်ခု ရွေးချယ်ပါ။",
+    "billing_monthly": "လစဉ်",
+    "billing_yearly": "နှစ်စဉ်",
+    "billing_continue": "Google Play ဖြင့် ဆက်လုပ်ရန်",
+    "billing_restore": "ဝယ်ယူမှုများကို ပြန်လည်ရယူရန်",
+    "billing_manage": "စာရင်းသွင်းမှုကို စီမံရန်",
+    "billing_deleteAccountWarning": "Google Play စာရင်းသွင်းမှု ရှိပါက FuzeVPN အကောင့်ကို ဖျက်ခြင်းသည် ၎င်း၏ အလိုအလျောက် သက်တမ်းတိုးခြင်းကို ပယ်ဖျက်ခြင်း မဟုတ်ပါ။ Google Play တွင် ထိုသက်တမ်းတိုးခြင်းကို သီးခြား စီမံ သို့မဟုတ် ပယ်ဖျက်ပါ။",
+    "billing_deleteAccountContinue": "အကောင့်ဖျက်ရန် တောင်းဆိုမှုသို့ ဆက်သွားရန်",
+    "billing_refresh": "အသုံးပြုခွင့်ကို ပြန်လည်ဆန်းသစ်ရန်",
+    "billing_loadingPlans": "အစီအစဉ်များကို တင်နေသည်…",
+    "billing_unavailable": "ယခုအချိန်တွင် အစီအစဉ် မရှိပါ။ နောက်မှ ထပ်ကြိုးစားပါ။",
+    "billing_comingSoon": "စာရင်းသွင်းမှုများ မကြာမီ ရရှိနိုင်ပါမည်။",
+    "billing_priceDisclosure": "ဈေးနှုန်းကို Google Play က ပေးပါသည်။ နောက်ဆုံး ပမာဏနှင့် သက်ဆိုင်သော အခွန်များကို သင် အတည်ပြုခြင်းမပြုမီ အတည်ပြုပါမည်။",
+    "billing_renewalMonthly": "ပယ်ဖျက်တော့မည် မဟုတ်လျှင် လစဉ် အလိုအလျောက် သက်တမ်းတိုးပါမည်။ Google Play စာရင်းသွင်းမှုများတွင် အချိန်မရွေး ပယ်ဖျက်နိုင်ပါသည်။",
+    "billing_renewalYearly": "ပယ်ဖျက်တော့မည် မဟုတ်လျှင် နှစ်စဉ် အလိုအလျောက် သက်တမ်းတိုးပါမည်။ Google Play စာရင်းသွင်းမှုများတွင် အချိန်မရွေး ပယ်ဖျက်နိုင်ပါသည်။",
+    "billing_active": "သင့် Premium အသုံးပြုခွင့် အသက်ဝင်နေသည်",
+    "billing_accessUntil": "{date} အထိ အသုံးပြုခွင့် ရှိပါသည်။",
+    "billing_webManaged": "သင့်စာရင်းသွင်းမှုကို FuzeVPN ဝက်ဘ်ဆိုဒ်တွင် စီမံထားပါသည်။",
+    "billing_playManaged": "သင့်စာရင်းသွင်းမှုကို Google Play က စီမံထားပါသည်။",
+    "billing_playOnHold": "သင့် Google Play စာရင်းသွင်းမှုကို ရပ်ထားခြင်း သို့မဟုတ် ငွေပေးချေမှု စောင့်ဆိုင်းနေခြင်း ဖြစ်ပါသည်။ Google Play တွင် ပြင်ဆင်ရန် “စာရင်းသွင်းမှုကို စီမံရန်” ကို ဖွင့်ပါ။",
+    "billing_playReceiptUnlinked": "ဤ Google Play အကောင့်တွင် ဤ FuzeVPN အကောင့်အတွက် အသက်မဝင်သေးသော Fuze Premium စာရင်းသွင်းမှု ရှိနှင့်ပြီးဖြစ်ပါသည်။ Google Play တွင် ပြန်လည် စစ်ဆေးရန် “စာရင်းသွင်းမှုကို စီမံရန်” ကို ဖွင့်ပါ။",
+    "billing_inactive": "အသက်ဝင်နေသော စာရင်းသွင်းမှု မရှိပါ။",
+    "billing_checkingAccess": "သင့်အသုံးပြုခွင့်ကို စစ်ဆေးနေသည်…",
+    "billing_restoring": "ဝယ်ယူမှုများကို ပြန်လည် ရယူနေသည်…",
+    "billing_pending": "ငွေပေးချေမှု စောင့်ဆိုင်းနေဆဲ ဖြစ်ပါသည်။ အတည်ပြုပြီးနောက် သင့်အသုံးပြုခွင့် အသက်ဝင်ပါမည်။",
+    "billing_cancelled": "ဝယ်ယူမှုကို ပယ်ဖျက်လိုက်ပါပြီ။ စာရင်းသွင်းမှု အသစ် အသက်ဝင်ခြင်း မရှိပါ။",
+    "billing_verifying": "ဝယ်ယူမှုကို အတည်ပြုနေသည်…",
+    "billing_success": "စာရင်းသွင်းမှု အသက်ဝင်ပြီးပါပြီ။ သင့် Premium အသုံးပြုခွင့် အဆင်သင့် ဖြစ်ပါပြီ။",
+    "billing_restored": "သင့်ဝယ်ယူမှုများကို ပြန်လည် ရယူပြီးပါပြီ။",
+    "billing_restoreEmpty": "ဤ Google Play အကောင့်အတွက် ပြန်လည်ရယူရန် ဝယ်ယူမှု မရှိပါ။",
+    "billing_catalogError": "အစီအစဉ်များကို တင်၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "billing_purchaseError": "ဝယ်ယူမှုကို စတင်၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "billing_verificationError": "ဝယ်ယူမှု အတည်ပြုခြင်း ယာယီ မရရှိနိုင်ပါ။ ထပ်ကြိုးစားရန် ဝယ်ယူမှုများကို ပြန်လည်ရယူပါ။",
+    "billing_restoreError": "ဝယ်ယူမှုများကို ပြန်လည်ရယူ၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "billing_managementError": "စာရင်းသွင်းမှု စီမံခန့်ခွဲမှုကို ဖွင့်၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "billing_storeUnavailable": "ဤစက်ပစ္စည်းတွင် Google Play မရနိုင်ပါ။",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "သင့် VPN၊ ရိုးရှင်းစွာ။",
+    "welcome_description": "သင့်ချိတ်ဆက်မှုကို ကာကွယ်ပါ။ သင့်ကိုယ်ရေးကိုယ်တာကို ဆက်လက် ထိန်းချုပ်ထားပါ။",
+    "welcome_start": "စတင်ရန်",
+    "welcome_alreadyPurchased": "ဝယ်ယူပြီးပါပြီလား?",
+    "welcome_noAccountRequired": "စတင်ရန် အကောင့် မလိုအပ်ပါ။",
+    "guest_accountTitle": "အကောင့် ချိတ်ဆက်မထားပါ",
+    "guest_accountDescription": "အခြားစက်ပစ္စည်းတွင် သင့်စာရင်းသွင်းမှုကို အသုံးပြုရန် တူညီသော Google Play အကောင့်ဖြင့် ဝယ်ယူမှုများကို ပြန်လည်ရယူပါ။",
+    "guest_existingSubscriberSignIn": "စာရင်းသွင်းပြီးပါပြီလား? အကောင့်ဝင်ရန်",
+    "guest_claimTitle": "FuzeVPN ကို သင်နှင့်အတူ ယူသွားပါ",
+    "guest_claimDescription": "သင့်အခြားစက်ပစ္စည်းများတွင် စာရင်းသွင်းမှုကို အသုံးပြုရန် အကောင့်တစ်ခု ဖန်တီးပါ။ ဤအဆင့်ကို မလုပ်လည်း ရပါသည်။",
+    "guest_skip": "နောက်မှ",
+    "guest_activationTitle": "Fuze Premium အသက်ဝင်နေပါပြီ",
+    "guest_activationDescription": "သင့်စာရင်းသွင်းမှု အဆင်သင့် ဖြစ်ပါပြီ။ VPN ကို အသုံးပြုနိုင်ပြီး သင် လိုသည့်အချိန်တွင် အကောင့် ဖန်တီးနိုင်ပါသည်။",
+    "guest_useVpn": "ကျွန်ုပ်၏ VPN ကို အသုံးပြုရန်",
+    "guest_loginRequired": "ဤဝယ်ယူမှုကို FuzeVPN အကောင့်တစ်ခုနှင့် ချိတ်ဆက်ပြီးဖြစ်ပါသည်။ စာရင်းသွင်းမှုကို အသုံးပြုရန် ထိုအကောင့်ဖြင့် အကောင့်ဝင်ပါ။",
+    "guest_signOutWarning": "တူညီသော Google Play အကောင့်ဖြင့် ဝယ်ယူမှုများကို ပြန်လည်ရယူခြင်းဖြင့် သင့်စာရင်းသွင်းမှုကို ပြန်ယူနိုင်ပါသည်။",
+    "guest_profileUnavailable": "သင့်အကောင့် ချိတ်ဆက်ပြီးဖြစ်ပါသည်။ အသေးစိတ်ကို ကြည့်ရန်နှင့် စီမံရန် အကောင့်ဝင်ပါ။",
+    "billing_acceptance": "ဆက်လုပ်ခြင်းဖြင့် သင်သည် အသုံးပြုမှု စည်းမျဉ်းများနှင့် ကိုယ်ရေးကိုယ်တာ မူဝါဒကို လက်ခံပါသည်။",
+    "guest_verifyEmailReminder": "အကောင့်ကို လုံခြုံစေရန် သင့်အီးမေးလ်လိပ်စာကို အတည်ပြုပါ။ VPN ကို ဆက်လက် အသုံးပြုနိုင်ပါသည်။",
+    "guest_serviceUnavailable": "ဝန်ဆောင်မှု ယာယီ မရရှိနိုင်ပါ။ မကြာမီ ထပ်ကြိုးစားပါ။",
+    "guest_restoreError": "သင့်ဝယ်ယူမှုများကို ပြန်လည်ရယူ၍ မရပါ။ ဝယ်ယူစဉ်က သုံးခဲ့သော Google Play အကောင့်ဖြင့် ထပ်ကြိုးစားပါ။",
+    "guest_claimSuccess": "သင့်အကောင့် ဖန်တီးပြီးပါပြီ။ သင့်စာရင်းသွင်းမှုနှင့် VPN အသုံးပြုခွင့်များကို ထိန်းသိမ်းထားပါသည်။",
+    "guest_emailExists": "ဤအီးမေးလ်ကို အသုံးပြုပြီးဖြစ်ပါသည်။ အခြားလိပ်စာ ရွေးပါ သို့မဟုတ် ရှိပြီးသား အကောင့်ဖြင့် အကောင့်ဝင်ပါ။ သင့်ဝယ်ယူမှုကို Google Play မှတစ်ဆင့် ဆက်လက် ရရှိနိုင်ပါသည်။",
+    "guest_claimError": "သင့်အကောင့် ဖန်တီး၍ မရပါ။ VPN ကို ဆက်လက် အသုံးပြုနိုင်ပြီး နောက်မှ ထပ်ကြိုးစားနိုင်ပါသည်။",
+    "guest_secureStorageError": "ဤစက်ပစ္စည်းတွင် သင့်ဆက်ရှင်ကို လုံခြုံစွာ သိမ်းဆည်း၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "guest_premiumRequired": "သင့် VPN ကို အသက်ဝင်စေရန် စာရင်းသွင်းမှုတစ်ခု ရွေးချယ်ပါ။",
+    "welcome_viewPlans": "အစီအစဉ်များကို ကြည့်ရန်",
+    "google_continue": "Google ဖြင့် ဆက်လုပ်ရန်",
+    "google_or": "သို့မဟုတ်",
+    "google_title": "သင့် FuzeVPN အကောင့်",
+    "google_settingUp": "အကောင့် ဖန်တီးခြင်းကို အပြီးသတ်ပါ",
+    "google_country": "နေထိုင်ရာ နိုင်ငံ",
+    "google_profileDescription": "သင့်နိုင်ငံကို ရွေးချယ်ပြီး FuzeVPN အကောင့် ဖန်တီးရန် စာရွက်စာတမ်း နှစ်ခုကို ပြန်လည်ဖတ်ရှုပါ။",
+    "google_claimDescription": "သင့်ဧည့်သည်အကောင့်ကို Google နှင့် ချိတ်ဆက်ပါ။ သင့်စာရင်းသွင်းမှုနှင့် စက်ပစ္စည်းသည် ဤအကောင့်နှင့် ဆက်လက် ချိတ်ဆက်ထားပါမည်။",
+    "google_linkTitle": "Google ကို FuzeVPN နှင့် ချိတ်ဆက်ရန်",
+    "google_linkDescription": "ရှိပြီးသား FuzeVPN အကောင့်ကို ဝင်ရောက်နိုင်ကြောင်း အတည်ပြုပါ။ ဤအဆင့်တွင် သင့် Google စကားဝှက်ကို မတောင်းပါ။",
+    "google_password": "FuzeVPN စကားဝှက်",
+    "google_linkAccount": "ချိတ်ဆက်မှုကို အတည်ပြုရန်",
+    "google_requestEmail": "အတည်ပြုချက် အီးမေးလ် ပို့ပေးရန်",
+    "google_emailInstructions": "FuzeVPN အီးမေးလ်ကို ဖွင့်ပြီး အတည်ပြုကုဒ်ကို ရိုက်ထည့်ပါ။",
+    "google_emailCode": "အီးမေးလ် အတည်ပြုကုဒ်",
+    "google_confirmEmail": "ကုဒ်ကို အတည်ပြုရန်",
+    "google_restart": "အခြား Google အကောင့် ရွေးရန်",
+    "google_resume": "ဤကြိုးစားမှုကို စစ်ဆေးရန်",
+    "google_unavailable": "Google ဖြင့် အကောင့်ဝင်ခြင်း မရရှိနိုင်ပါ။ အီးမေးလ်နှင့် စကားဝှက်ကို အသုံးပြုနိုင်ပါသည်။",
+    "google_expired": "ဤကြိုးစားမှု သက်တမ်းကုန်သွားပါပြီ။ ပယ်ဖျက်ပြီး အစမှ ပြန်စပါ။",
+    "google_conflict": "ဤ Google အကောင့်ကို အခြားနေရာတွင် ချိတ်ဆက်ပြီးဖြစ်ပါသည်။ သင့်လက်ရှိအကောင့်နှင့် စာရင်းသွင်းမှုကို ထိန်းသိမ်းထားပါသည်။",
+    "google_error": "Google ဖြင့် အကောင့်ဝင်ခြင်း မအောင်မြင်ပါ။ ထပ်ကြိုးစားပါ။ သင့်လက်ရှိ အသုံးပြုခွင့်ကို ထိန်းသိမ်းထားပါသည်။",
+    "google_uncertain": "ရလဒ်ကို အတည်ပြု၍ မရပါ။ ဤကြိုးစားမှုကို စစ်ဆေးပါ သို့မဟုတ် ထပ်စတင်မီ ပယ်ဖျက်ပါ။",
+    "google_cancelFailed": "ပယ်ဖျက်မှုကို အတည်ပြု၍ မရပါ။ ဤစခရင်မှ ထွက်မီ ထပ်ပယ်ဖျက်ကြည့်ပါ။",
+    "google_cancelled": "Google ဖြင့် အကောင့်ဝင်ခြင်းကို ပယ်ဖျက်လိုက်ပါပြီ။",
+    "google_selecting": "သင့် Google အကောင့်ကို ရွေးချယ်ပါ…",
+    "google_verifying": "သင့်အကောင့်ကို စစ်ဆေးနေသည်…",
+    "google_emailUnavailable": "အတည်ပြုချက် အီးမေးလ်ကို ပို့၍ မရပါ။ နောက်မှ ထပ်ကြိုးစားပါ။",
+    "google_emailSent": "အတည်ပြုချက် အီးမေးလ် ပို့ပြီးပါပြီ။ သင့်ဝင်စာပုံးကို စစ်ဆေးပါ။",
+    "google_rateLimited": "ထပ်ကြိုးစားမီ ခဏစောင့်ပါ။",
+    "google_busy": "အခြား လုပ်ဆောင်ချက် (VPN ချိတ်ဆက်မှု၊ အကောင့် သို့မဟုတ် ဧည့်သည်) လုပ်ဆောင်နေစဉ် Google မရရှိနိုင်ပါ။ ပြီးဆုံးသွားသည်နှင့် ထပ်ကြိုးစားပါ။ သင့်လက်ရှိ အသုံးပြုခွင့်ကို ထိန်းသိမ်းထားပါသည်။",
+    "google_invalidPassword": "FuzeVPN စကားဝှက် မှားနေပါသည်။ သင့်လက်ရှိအကောင့်ကို ထိန်းသိမ်းထားပါသည်။",
+    "google_invalidCode": "အတည်ပြုကုဒ် မမှန်ကန်ပါ သို့မဟုတ် သက်တမ်းကုန်သွားပါပြီ။",
+    "google_accountChanged": "သင့်ဆက်ရှင် ပြောင်းလဲသွားပါပြီ။ ထပ်စတင်မီ ဤကြိုးစားမှုကို ပယ်ဖျက်ပါ။",
+    "google_invalidResponse": "တုံ့ပြန်ချက်ကို အတည်ပြု၍ မရပါ။ သင့်လက်ရှိ အသုံးပြုခွင့်ကို ထိန်းသိမ်းထားပါသည်။",
+    "google_invalidRegistration": "သင့်နိုင်ငံနှင့် သဘောတူညီချက် နှစ်ခုကို စစ်ဆေးပါ။",
+    "google_consentRequired": "ဆက်လုပ်ရန် သင့်နိုင်ငံကို ရွေးပြီး စာရွက်စာတမ်း နှစ်ခုလုံးကို လက်ခံပါ။",
+    "google_challengeRequired": "အပိုဆောင်း လုံခြုံရေး စစ်ဆေးမှု လိုအပ်ပါသည်။ သင့်လက်ရှိ အသုံးပြုခွင့်ကို ထိန်းသိမ်းထားပါသည်။",
+    "google_challengeUnavailable": "လုံခြုံရေး စစ်ဆေးမှု မရရှိနိုင်ပါ။ နောက်မှ ထပ်ကြိုးစားပါ။",
+    "google_intentMismatch": "ယခင် Google အကောင့်ဝင်ကြိုးစားမှု ဆက်လက် စောင့်ဆိုင်းနေဆဲ ဖြစ်ပါသည်။ ဤလုပ်ဆောင်ချက် မစမီ ၎င်းကို ပယ်ဖျက်ပါ။",
+    "google_challengeBlocked": "လိုအပ်သော လုံခြုံရေး စစ်ဆေးမှုကို ဤအက်ပ်တွင် မရရှိနိုင်ပါ။ ဤလုပ်ဆောင်ချက်ကို ယခု ပြီးမြောက်အောင် မလုပ်နိုင်ပါ။",
+    "google_solveChallenge": "လုံခြုံရေး စစ်ဆေးမှုကို ပြီးအောင် လုပ်ရန်",
+    "google_challengeTitle": "လုံခြုံရေး စစ်ဆေးမှု",
+    "google_challengeReady": "အတည်ပြုခြင်း ပြီးဆုံးပါပြီ။ ယခု သင့်အကောင့် ဖန်တီးခြင်းကို အတည်ပြုနိုင်ပါပြီ။",
+    "google_challengeExpired": "အတည်ပြုချက် သက်တမ်းကုန်သွားပါပြီ။ အတည်မပြုမီ ထပ်လုပ်ပါ။",
+    "google_challengeCancelled": "အတည်ပြုခြင်းကို ပယ်ဖျက်လိုက်ပါသည်။ ထပ်ကြိုးစားနိုင်ပါသည်။",
+    "google_challengeFailed": "လုံခြုံရေး စစ်ဆေးမှု မအောင်မြင်ပါ။ ထပ်ကြိုးစားပါ။",
+    "billing_trialTitle": "Fuze Premium ကို အခမဲ့ စမ်းသုံးကြည့်ပါ",
+    "billing_trialSubtitle": "ယနေ့မှစ၍ သင့်ချိတ်ဆက်မှုကို ကာကွယ်ပါ။",
+    "billing_trialWeeks": "2 ပတ် အခမဲ့ စမ်းသုံးခွင့်",
+    "billing_trialDays": "{days} ရက် အခမဲ့ စမ်းသုံးခွင့်",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "အခမဲ့ စမ်းသုံးခွင့်ကို စတင်ရန်",
+    "billing_trialFirstCharge": "ယနေ့ စတင်ပါက ပထမဆုံး ငွေကောက်ခံမှုကို {date} တွင် ပြုလုပ်မည်ဟု ခန့်မှန်းထားပါသည်။",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "ဖော်ပြထားသော ဈေးနှုန်းဖြင့် အလိုအလျောက် သက်တမ်းတိုးပါမည်။ ငွေကောက်ခံခြင်းကို ရှောင်ရှားရန် စမ်းသုံးခွင့် မကုန်မီ Google Play တွင် ပယ်ဖျက်ပါ။",
+    "billing_trialThenMonthly": "ထို့နောက် လစဉ် {price}",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "ထို့နောက် နှစ်စဉ် {price}",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "သင့်အစီအစဉ်ကို ရွေးပါ",
+    "billing_selectionHint": "ဆက်လုပ်ရန် အစီအစဉ်တစ်ခု ရွေးပါ။",
+    "billing_benefitConnection": "ကုဒ်ဝှက်ထားသော ချိတ်ဆက်မှု",
+    "billing_benefitPrivacy": "အွန်လိုင်း ကိုယ်ရေးကိုယ်တာ",
+    "billing_benefitNoAccount": "အကောင့်ဖွင့်ရန် မလိုအပ်ပါ",
+    "billing_cancellation": "Google Play တွင် ပယ်ဖျက်ရန်",
+    "billing_premiumTitle": "ပိုမိုကောင်းမွန်စွာ ကာကွယ်ထားသော ချိတ်ဆက်မှု။",
+    "billing_premiumSubtitle": "သင့်အလိုက် သင့်ချိတ်ဆက်မှုကို ကာကွယ်ပါ။",
+    "billing_priceMonthly": "တစ်လလျှင်",
+    "billing_priceYearly": "တစ်နှစ်လျှင်",
+    "billing_trialToday": "ယနေ့ ပေးချေစရာ မရှိပါ",
+    "billing_trialConfirmation": "သင်အတည်မပြုမီ Google Play က ရက်စွဲများ၊ နောက်ဆုံးပမာဏနှင့် သက်ဆိုင်သော အခွန်များကို အတည်ပြုပေးပါသည်။",
+    "billing_offerChanged": "ဤကမ်းလှမ်းချက်၏ စည်းကမ်းချက်များ ပြောင်းလဲသွားပါပြီ။ အစီအစဉ်များကို ပြန်လည်ဆန်းသစ်ပြီး ထပ်ရွေးပါ။",
+    "status_waitingNetwork": "ကွန်ရက်ကို စောင့်နေသည်",
+    "status_waitingNetworkDetail": "ကွန်ရက် မရနိုင်ပါ။ ကွန်ရက် ပြန်ရလာသည့်အခါ VPN က ချိတ်ဆက်မှုကို စစ်ဆေးပါမည်။",
+    "locations_favoriteLoadFailed": "အကြိုက်ဆုံးများကို တင်၍ မရပါ။ ထပ်ကြိုးစားပါ။",
+    "locations_favoritesLoading": "အကြိုက်ဆုံးများကို တင်နေသည်…"
+  },
+  "android": {
+    "vpn_notification_channel": "VPN ချိတ်ဆက်မှု",
+    "vpn_notification_channel_description": "FuzeVPN ချိတ်ဆက်မှု အလုပ်လုပ်နေချိန်ကို ပြသသည်။",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s ချိတ်ဆက်မှု အလုပ်လုပ်နေသည်",
+    "vpn_notification_connecting": "%1$s ချိတ်ဆက်နေသည်",
+    "vpn_notification_disconnecting": "%1$s ချိတ်ဆက်မှု ဖြတ်နေသည်",
+    "vpn_notification_interrupted": "%1$s ချိတ်ဆက်မှု ပြတ်တောက်သွားသည်",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "အဆင်သင့် · %1$s · %2$s",
+    "vpn_tile_connected": "ချိတ်ဆက်ထားသည် · %1$s · %2$s",
+    "vpn_tile_connecting": "%1$s ချိတ်ဆက်နေသည်…",
+    "vpn_tile_disconnecting": "ချိတ်ဆက်မှု ဖြတ်နေသည်…",
+    "vpn_tile_interrupted": "%1$s ပြတ်တောက်သွားသည်",
+    "vpn_tile_setup_required": "အက်ပ်ကို အရင်ဖွင့်ပါ",
+    "vpn_tile_working": "VPN လုပ်ဆောင်နေသည်…",
+    "vpn_notification_reconnecting": "ပြန်ချိတ်ဆက်နေသည်… · %1$s",
+    "vpn_system_action_required": "Android ဆက်တင်များတွင် လုပ်ဆောင်ရန် လိုအပ်သည်",
+    "vpn_tile_reconnecting": "ပြန်ချိတ်ဆက်နေသည်… · %1$s",
+    "vpn_notification_waiting_network": "ကွန်ရက်ကို စောင့်နေသည် · %1$s",
+    "vpn_tile_waiting_network": "ကွန်ရက်ကို စောင့်နေသည် · %1$s"
+  },
+  "countries": {
+    "AC": "အဆန်းရှင်းကျွန်း",
+    "AD": "အန်ဒိုရာ",
+    "AE": "ယူအေအီး",
+    "AF": "အာဖဂန်နစ္စတန်",
+    "AG": "အန်တီဂွါနှင့် ဘာဘူဒါ",
+    "AI": "အန်ဂီလာ",
+    "AL": "အယ်လ်ဘေးနီးယား",
+    "AM": "အာမေးနီးယား",
+    "AO": "အန်ဂိုလာ",
+    "AQ": "အန်တာတိက",
+    "AR": "အာဂျင်တီးနား",
+    "AS": "အမေရိကန် ဆမိုးအား",
+    "AT": "ဩစတြီးယား",
+    "AU": "ဩစတြေးလျ",
+    "AW": "အာရူးဗား",
+    "AX": "အာလန်ကျွန်း",
+    "AZ": "အဇာဘိုင်ဂျန်",
+    "BA": "ဘော့စနီးယားနှင့် ဟာဇီဂိုဗီနား",
+    "BB": "ဘာဘေးဒိုးစ်",
+    "BD": "ဘင်္ဂလားဒေ့ရှ်",
+    "BE": "ဘယ်လ်ဂျီယမ်",
+    "BF": "ဘာကီးနား ဖားဆို",
+    "BG": "ဘူလ်ဂေးရီးယား",
+    "BH": "ဘာရိန်း",
+    "BI": "ဘူရွန်ဒီ",
+    "BJ": "ဘီနင်",
+    "BL": "စိန့်ဘာသယ်လ်မီ",
+    "BM": "ဘာမြူဒါ",
+    "BN": "ဘရူနိုင်း",
+    "BO": "ဘိုလီးဗီးယား",
+    "BQ": "ကာရစ်ဘီယံ နယ်သာလန်",
+    "BR": "ဘရာဇီး",
+    "BS": "ဘဟားမား",
+    "BT": "ဘူတန်",
+    "BV": "ဘူဗက်ကျွန်း",
+    "BW": "ဘော့ဆွာနာ",
+    "BY": "ဘီလာရုစ်",
+    "BZ": "ဘလိဇ်",
+    "CA": "ကနေဒါ",
+    "CC": "ကိုကိုးကျွန်း",
+    "CD": "ကွန်ဂို",
+    "CF": "ဗဟို အာဖရိက ပြည်ထောင်စု",
+    "CG": "ကွန်ဂို-ဘရာဇာဗီးလ်",
+    "CH": "ဆွစ်ဇာလန်",
+    "CI": "ကို့တ် ဒီဗွာ",
+    "CK": "ကွတ် ကျွန်းစု",
+    "CL": "ချီလီ",
+    "CM": "ကင်မရွန်း",
+    "CN": "တရုတ်",
+    "CO": "ကိုလံဘီယာ",
+    "CP": "ကလစ်ပါတန်ကျွန်း",
+    "CQ": "ဆာ့က်",
+    "CR": "ကို့စ်တာရီကာ",
+    "CU": "ကျူးဘား",
+    "CV": "ကိတ်ဗာဒီ",
+    "CW": "ကျူရေးကိုးစ်",
+    "CX": "ခရစ်စမတ် ကျွန်း",
+    "CY": "ဆိုက်ပရပ်စ်",
+    "CZ": "ချက်ကီယား",
+    "DE": "ဂျာမနီ",
+    "DG": "ဒီအဲဂိုဂါစီရာ",
+    "DJ": "ဂျီဘူတီ",
+    "DK": "ဒိန်းမတ်",
+    "DM": "ဒိုမီနီကာ",
+    "DO": "ဒိုမီနီကန်",
+    "DZ": "အယ်လ်ဂျီးရီးယား",
+    "EA": "ဆယ်ဥတာနှင့်မယ်လီလ်လာ",
+    "EC": "အီကွေဒေါ",
+    "EE": "အက်စတိုးနီးယား",
+    "EG": "အီဂျစ်",
+    "EH": "အနောက် ဆာဟာရ",
+    "ER": "အီရီထရီးယား",
+    "ES": "စပိန်",
+    "ET": "အီသီယိုးပီးယား",
+    "EU": "ဥရောပသမဂ္ဂ",
+    "EZ": "ဥရောပဒေသ",
+    "FI": "ဖင်လန်",
+    "FJ": "ဖီဂျီ",
+    "FK": "ဖော့ကလန် ကျွန်းစု",
+    "FM": "မိုင်ခရိုနီရှား",
+    "FO": "ဖာရိုး ကျွန်းစုများ",
+    "FR": "ပြင်သစ်",
+    "GA": "ဂါဘွန်",
+    "GB": "ယူနိုက်တက်ကင်းဒမ်း",
+    "GD": "ဂရီနေဒါ",
+    "GE": "ဂျော်ဂျီယာ",
+    "GF": "ပြင်သစ် ဂီယာနာ",
+    "GG": "ဂွန်းဇီ",
+    "GH": "ဂါနာ",
+    "GI": "ဂျီဘရော်လ်တာ",
+    "GL": "ဂရင်းလန်း",
+    "GM": "ဂမ်ဘီရာ",
+    "GN": "ဂီနီ",
+    "GP": "ဂွါဒီလု",
+    "GQ": "အီကွေတာ ဂီနီ",
+    "GR": "ဂရိ",
+    "GS": "တောင် ဂျော်ဂျီယာ နှင့် တောင် ဆင်းဒဝစ်ဂျ် ကျွန်းစုများ",
+    "GT": "ဂွါတီမာလာ",
+    "GU": "ဂူအမ်",
+    "GW": "ဂီနီ-ဘီစော",
+    "GY": "ဂိုင်ယာနာ",
+    "HK": "ဟောင်ကောင် (တရုတ်ပြည်)",
+    "HM": "ဟတ်ကျွန်းနှင့်မက်ဒေါနယ်ကျွန်းစု",
+    "HN": "ဟွန်ဒူးရပ်စ်",
+    "HR": "ခရိုအေးရှား",
+    "HT": "ဟေတီ",
+    "HU": "ဟန်ဂေရီ",
+    "IC": "ကနေရီ ကျွန်းစု",
+    "ID": "အင်ဒိုနီးရှား",
+    "IE": "အိုင်ယာလန်",
+    "IL": "အစ္စရေး",
+    "IM": "မန်ကျွန်း",
+    "IN": "အိန္ဒိယ",
+    "IO": "ဗြိတိသျှပိုင် အိန္ဒိယသမုဒ္ဒရာကျွန်းများ",
+    "IQ": "အီရတ်",
+    "IR": "အီရန်",
+    "IS": "အိုက်စလန်",
+    "IT": "အီတလီ",
+    "JE": "ဂျာစီ",
+    "JM": "ဂျမေကာ",
+    "JO": "ဂျော်ဒန်",
+    "JP": "ဂျပန်",
+    "KE": "ကင်ညာ",
+    "KG": "ကာဂျစ္စတန်",
+    "KH": "ကမ္ဘောဒီးယား",
+    "KI": "ခီရီဘာတီ",
+    "KM": "ကိုမိုရိုစ်",
+    "KN": "စိန့်ကစ်နှင့်နီဗီစ်",
+    "KP": "မြောက်ကိုရီးယား",
+    "KR": "တောင်ကိုရီးယား",
+    "KW": "ကူဝိတ်",
+    "KY": "ကေမန် ကျွန်းစု",
+    "KZ": "ကာဇက်စတန်",
+    "LA": "လာအို",
+    "LB": "လက်ဘနွန်",
+    "LC": "စိန့်လူစီယာ",
+    "LI": "လစ်တန်စတိန်း",
+    "LK": "သီရိလင်္ကာ",
+    "LR": "လိုက်ဘေးရီးယား",
+    "LS": "လီဆိုသို",
+    "LT": "လစ်သူဝေးနီးယား",
+    "LU": "လူဇင်ဘတ်",
+    "LV": "လတ်ဗီးယား",
+    "LY": "လစ်ဗျား",
+    "MA": "မော်ရိုကို",
+    "MC": "မိုနာကို",
+    "MD": "မောလ်ဒိုဗာ",
+    "ME": "မွန်တီနိဂရိုး",
+    "MF": "စိန့်မာတင်",
+    "MG": "မဒါဂတ်စကား",
+    "MH": "မာရှယ် ကျွန်းစု",
+    "MK": "မြောက် မက်ဆီဒိုးနီးယား",
+    "ML": "မာလီ",
+    "MM": "မြန်မာ",
+    "MN": "မွန်ဂိုးလီးယား",
+    "MO": "မကာအို (တရုတ်ပြည်)",
+    "MP": "မြောက်ပိုင်းမာရီအာနာကျွန်းစု",
+    "MQ": "မာတီနိခ်",
+    "MR": "မော်ရီတေးနီးယား",
+    "MS": "မောင့်စဲရက်",
+    "MT": "မောလ်တာ",
+    "MU": "မောရစ်ရှ",
+    "MV": "မော်လ်ဒိုက်",
+    "MW": "မာလာဝီ",
+    "MX": "မက်ကဆီကို",
+    "MY": "မလေးရှား",
+    "MZ": "မိုဇမ်ဘစ်",
+    "NA": "နမီးဘီးယား",
+    "NC": "နယူး ကယ်လီဒိုနီးယား",
+    "NE": "နိုင်ဂျာ",
+    "NF": "နောဖုတ်ကျွန်း",
+    "NG": "နိုင်ဂျီးရီးယား",
+    "NI": "နီကာရာဂွါ",
+    "NL": "နယ်သာလန်",
+    "NO": "နော်ဝေ",
+    "NP": "နီပေါ",
+    "NR": "နော်ရူး",
+    "NU": "နီဥူအေ",
+    "NZ": "နယူးဇီလန်",
+    "OM": "အိုမန်",
+    "PA": "ပနားမား",
+    "PE": "ပီရူး",
+    "PF": "ပြင်သစ် ပေါ်လီနီးရှား",
+    "PG": "ပါပူအာ နယူးဂီနီ",
+    "PH": "ဖိလစ်ပိုင်",
+    "PK": "ပါကစ္စတန်",
+    "PL": "ပိုလန်",
+    "PM": "စိန့်ပီအဲရ်နှင့် မီကွီလွန်",
+    "PN": "ပစ်တ်ကိန်းကျွန်းစု",
+    "PR": "ပေါ်တိုရီကို",
+    "PS": "ပါလက်စတိုင်း ပိုင်နက်",
+    "PT": "ပေါ်တူဂီ",
+    "PW": "ပလာအို",
+    "PY": "ပါရာဂွေး",
+    "QA": "ကာတာ",
+    "QO": "သမုဒ္ဒရာ အပြင်ဘက်ရှိ ကျွန်းနိုင်ငံများ",
+    "RE": "ရီယူနီယန်",
+    "RO": "ရိုမေးနီးယား",
+    "RS": "ဆားဘီးယား",
+    "RU": "ရုရှား",
+    "RW": "ရဝန်ဒါ",
+    "SA": "ဆော်ဒီအာရေးဘီးယား",
+    "SB": "ဆော်လမွန်ကျွန်းစု",
+    "SC": "ဆေးရှဲ",
+    "SD": "ဆူဒန်",
+    "SE": "ဆွီဒင်",
+    "SG": "စင်္ကာပူ",
+    "SH": "စိန့်ဟယ်လယ်နာ",
+    "SI": "ဆလိုဗေးနီးယား",
+    "SJ": "စဗိုလ်ဘတ်နှင့်ဂျန်မေရန်",
+    "SK": "ဆလိုဗက်ကီးယား",
+    "SL": "ဆီယာရာ လီယွန်း",
+    "SM": "ဆန်မာရီနို",
+    "SN": "ဆီနီဂေါ",
+    "SO": "ဆိုမာလီယာ",
+    "SR": "ဆူရာနမ်",
+    "SS": "တောင် ဆူဒန်",
+    "ST": "ဆောင်တူမေးနှင့် ပရင်စီပီ",
+    "SV": "အယ်လ်ဆာဗေးဒိုး",
+    "SX": "စင့်မာတင်",
+    "SY": "ဆီးရီးယား",
+    "SZ": "ဆွာဇီလန်",
+    "TA": "ထရစ္စတန် ဒါ ကွန်ဟာ",
+    "TC": "တခ်စ်နှင့်ကာအီကိုစ်ကျွန်းစု",
+    "TD": "ချဒ်",
+    "TF": "ပြင်သစ် တောင်ပိုင်း ပိုင်နက်များ",
+    "TG": "တိုဂို",
+    "TH": "ထိုင်း",
+    "TJ": "တာဂျီကစ္စတန်",
+    "TK": "တိုကလောင်",
+    "TL": "အရှေ့တီမော",
+    "TM": "တာ့ခ်မင်နစ္စတန်",
+    "TN": "တူနီးရှား",
+    "TO": "တွန်ဂါ",
+    "TR": "တူရကီ",
+    "TT": "ထရီနီဒတ်နှင့် တိုဘက်ဂို",
+    "TV": "တူဗားလူ",
+    "TW": "ထိုင်ဝမ်",
+    "TZ": "တန်ဇန်းနီးယား",
+    "UA": "ယူကရိန်း",
+    "UG": "ယူဂန်းဒါး",
+    "UM": "ယူနိုက်တက်စတိတ် ကျွန်းနိုင်ငံများ",
+    "UN": "ကုလသမဂ္ဂ",
+    "US": "အမေရိကန် ပြည်ထောင်စု",
+    "UY": "ဥရုဂွေး",
+    "UZ": "ဥဇဘက်ကစ္စတန်",
+    "VA": "ဗာတီကန်စီးတီး",
+    "VC": "စိန့်ဗင်းဆင့်နှင့် ဂရိနေဒိုင်",
+    "VE": "ဗင်နီဇွဲလား",
+    "VG": "ဗြိတိသျှ ဗာဂျင်း ကျွန်းစု",
+    "VI": "ယူအက်စ် ဗာဂျင်း ကျွန်းစု",
+    "VN": "ဗီယက်နမ်",
+    "VU": "ဗနွားတူ",
+    "WF": "ဝေါလစ်နှင့် ဖူကျူးနား",
+    "WS": "ဆမိုးအား",
+    "XA": "နိုင်ငံခြားသံ",
+    "XB": "စာပြောင်းပြန်",
+    "XK": "ကိုဆိုဗို",
+    "YE": "ယီမင်",
+    "YT": "မေယော့",
+    "ZA": "တောင်အာဖရိက",
+    "ZM": "ဇမ်ဘီယာ",
+    "ZW": "ဇင်ဘာဘွေ",
+    "ZZ": "မသိ (သို့) မရှိသော ဒေသ"
+  }
+}

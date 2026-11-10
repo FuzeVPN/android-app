@@ -10,6 +10,7 @@ import 'package:fuzevpn_android/features/auth/auth_page.dart';
 import 'package:fuzevpn_android/features/auth/guest_claim_page.dart';
 import 'package:fuzevpn_android/google_auth_controller.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 
 // Regressions reproduced by audit A15, with bundled fonts and no real services.
@@ -498,7 +499,7 @@ Widget _app(
   navigatorKey: navigator,
   locale: const Locale('fr'),
   supportedLocales: AppLanguages.supportedLocales,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   theme: FuzeVpnTheme.light(),
   builder: (context, child) => MediaQuery(
     data: MediaQuery.of(context).copyWith(textScaler: scaler),

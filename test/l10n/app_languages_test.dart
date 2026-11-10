@@ -4,10 +4,10 @@ import 'package:fuzevpn_android/l10n/app_languages.dart';
 
 void main() {
   test(
-    'offers the 30 requested languages without duplicate Chinese choices',
+    'offers the 70 requested languages without duplicate Chinese choices',
     () {
-      expect(AppLanguages.all, hasLength(30));
-      expect(AppLanguages.all.map((e) => e.tag).toSet(), hasLength(30));
+      expect(AppLanguages.all, hasLength(70));
+      expect(AppLanguages.all.map((e) => e.tag).toSet(), hasLength(70));
       expect(AppLanguages.supportedLocales.first, const Locale('fr'));
       for (final language in AppLanguages.all) {
         expect(AppLanguages.parse(language.tag), language.locale);
@@ -32,12 +32,38 @@ void main() {
     },
   );
 
+  test('skips a system language written in a script its pack does not use', () {
+    for (final tag in ['pa-Arab-PK', 'uz-Arab-AF', 'az-Arab-IR']) {
+      expect(AppLanguages.parse(tag), isNull, reason: tag);
+    }
+    expect(
+      AppLanguages.resolve([
+        Locale.fromSubtags(
+          languageCode: 'pa',
+          scriptCode: 'Arab',
+          countryCode: 'PK',
+        ),
+        const Locale('ur', 'PK'),
+      ], []),
+      const Locale('ur'),
+    );
+    for (final entry in {
+      'pa-Guru-IN': 'pa',
+      'sr-Latn-RS': 'sr',
+      'uz-Cyrl-UZ': 'uz',
+      'az-Cyrl-AZ': 'az',
+      'iw-IL': 'he',
+    }.entries) {
+      expect(AppLanguages.parse(entry.key), Locale(entry.value));
+    }
+  });
+
   test('checks all system preferences before choosing the French fallback', () {
     expect(
-      AppLanguages.resolve([const Locale('he'), const Locale('tr')], []),
+      AppLanguages.resolve([const Locale('xh'), const Locale('tr')], []),
       const Locale('tr'),
     );
-    expect(AppLanguages.resolve([const Locale('he')], []), const Locale('fr'));
+    expect(AppLanguages.resolve([const Locale('xh')], []), const Locale('fr'));
     expect(AppLanguages.resolve(null, []), const Locale('fr'));
     for (final tag in [
       null,
@@ -60,24 +86,42 @@ void main() {
           .map((e) => e.tag)
           .toList();
       expect(latin, [
+        'az',
         'id',
         'ms',
         'cs',
         'da',
         'de',
+        'et',
         'en',
         'es',
         'fil',
         'fr',
+        'ha',
+        'hr',
+        'ig',
+        'rw',
         'it',
+        'sw',
+        'lv',
+        'lt',
+        'hu',
+        'mg',
         'nl',
         'nb',
+        'uz',
         'pl',
         'pt',
         'ro',
+        'sq',
+        'sk',
+        'sl',
+        'so',
+        'fi',
         'sv',
         'vi',
         'tr',
+        'yo',
       ]);
     },
   );

@@ -732,9 +732,7 @@ class _NetworkProtectionCard extends StatelessWidget {
                     ),
                     IconButton(
                       key: const ValueKey('protection-guide-close'),
-                      tooltip: MaterialLocalizations.of(
-                        sheetContext,
-                      ).closeButtonTooltip,
+                      tooltip: sheetContext.copy('action.close'),
                       onPressed: () => Navigator.of(sheetContext).pop(false),
                       icon: const Icon(Icons.close),
                     ),

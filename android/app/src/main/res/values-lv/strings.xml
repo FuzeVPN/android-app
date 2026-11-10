@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN savienojums</string>
+    <string name="vpn_notification_channel_description">Norāda, kad FuzeVPN savienojums ir aktīvs.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s savienojums ir aktīvs</string>
+    <string name="vpn_notification_connecting">Notiek %1$s savienošana</string>
+    <string name="vpn_notification_disconnecting">Notiek %1$s atvienošana</string>
+    <string name="vpn_notification_interrupted">%1$s savienojums pārtraukts</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Gatavs · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Savienots · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Savienojas: %1$s…</string>
+    <string name="vpn_tile_disconnecting">Notiek atvienošana…</string>
+    <string name="vpn_tile_interrupted">%1$s pārtraukts</string>
+    <string name="vpn_tile_setup_required">Vispirms atveriet lietotni</string>
+    <string name="vpn_tile_working">Notiek VPN darbība…</string>
+    <string name="vpn_notification_reconnecting">Notiek atkārtota savienošana… · %1$s</string>
+    <string name="vpn_system_action_required">Nepieciešama darbība Android iestatījumos</string>
+    <string name="vpn_tile_reconnecting">Notiek atkārtota savienošana… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Gaida tīklu · %1$s</string>
+    <string name="vpn_tile_waiting_network">Gaida tīklu · %1$s</string>
+</resources>

@@ -522,6 +522,12 @@ class AppLocalizationsVi extends AppLocalizations {
   String get action_cancel => 'Hủy';
 
   @override
+  String get action_close => 'Đóng';
+
+  @override
+  String get action_copy => 'Sao chép';
+
+  @override
   String get action_signOut => 'Đăng xuất';
 
   @override

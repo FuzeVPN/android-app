@@ -1,0 +1,745 @@
+{
+  "vpnDisclosure_title": "הגנה על החיבור שלך",
+  "vpnDisclosure_body": "FuzeVPN משתמשת בשירות ה-VPN של Android (VpnService) כדי ליצור מנהרה מוצפנת בין המכשיר הזה לבין השרתים של FuzeVPN.",
+  "vpnDisclosure_dataBody": "בזמן שה-VPN פעיל, תעבורת האינטרנט של האפליקציות שלך, כתובות היעד ובקשות ה-DNS עוברות דרך המנהרה הזו כדי לנתב את החיבור שלך, גם כש-FuzeVPN פועלת ברקע.",
+  "vpnDisclosure_statusBody": "האפליקציה משתמשת במצב החיבור, במשך החיבור ובכמות הנתונים שהועברו כדי להציג את חיבור ה-VPN שלך. אפשר לעצור אותו בכל עת.",
+  "vpnDisclosure_privacy": "פרטיות",
+  "vpnDisclosure_accept": "אשר והמשך",
+  "vpnDisclosure_decline": "לא עכשיו",
+  "accountRestoration_title": "החשבון אינו זמין כרגע",
+  "accountRestoration_message": "ההפעלה שלך נשמרה. נסה שוב כדי לשחזר את החשבון שלך. עדיין אפשר לנהל את חיבור ה-VPN מכאן.",
+  "action_retry": "נסה שוב",
+  "session_endingTitle": "סיום ההפעלה",
+  "session_ending": "מסיימים את ההפעלה: עוצרים את ה-VPN ומנקים…",
+  "session_stopFailed": "עצירת ה-VPN לא אושרה. נסה שוב לפני שתיכנס מחדש לחשבון.",
+  "session_cleanupFailed": "ה-VPN נעצר, אבל הסרת ההפעלה לא אושרה. נסה לנקות שוב.",
+  "session_retryStop": "נסה לעצור שוב",
+  "session_retryCleanup": "נסה לנקות שוב",
+  "@@locale": "he",
+  "appTitle": "FuzeVPN",
+  "startup": "מכינים את FuzeVPN בצורה מאובטחת…",
+  "nav_connection": "חיבור",
+  "nav_locations": "מיקומים",
+  "nav_account": "חשבון",
+  "nav_devices": "מכשירים",
+  "nav_settings": "הגדרות",
+  "action_refresh": "רענן",
+  "auth_tab_login": "כניסה",
+  "auth_tab_register": "הרשמה",
+  "auth_stepAccount": "חשבון",
+  "auth_stepIdentity": "זהות",
+  "auth_stepAddress": "כתובת והסכמות",
+  "auth_stepProgress": "שלב {current} מתוך {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "ה-VPN שלך, בפשטות.",
+  "auth_keysLocal": "מפתחות ה-VPN הפרטיים שלך נשארים במכשיר הזה.",
+  "form_email": "כתובת אימייל",
+  "form_password": "סיסמה",
+  "form_showPassword": "הצג סיסמה",
+  "form_hidePassword": "הסתר סיסמה",
+  "form_passwordMin": "בין 8 ל-72 בייטים ב-UTF-8. יש תווים שתופסים יותר מבייט אחד.",
+  "form_firstName": "שם פרטי",
+  "form_lastName": "שם משפחה",
+  "form_phone": "טלפון (‎+33612345678)",
+  "form_address": "כתובת",
+  "form_address2": "שורה נוספת בכתובת (אופציונלי)",
+  "form_postalCode": "מיקוד",
+  "form_city": "עיר",
+  "form_country": "קוד מדינה (לדוגמה FR)",
+  "action_login": "היכנס",
+  "action_createAccount": "צור חשבון",
+  "action_createMyAccount": "צור את החשבון שלי",
+  "action_next": "המשך",
+  "action_previous": "חזור",
+  "action_forgotPassword": "שכחת סיסמה?",
+  "auth_noAccount": "אין לך עדיין חשבון?",
+  "auth_requiredInformation": "צור את החשבון שלך בשלושה שלבים.",
+  "auth_termsPrefix": "אני מאשר/ת את ",
+  "auth_termsLink": "תנאי השימוש",
+  "auth_privacyPrefix": "אני מאשר/ת את ",
+  "auth_privacyLink": "מדיניות הפרטיות",
+  "auth_consentRequired": "נדרשת הסכמתך כדי ליצור חשבון.",
+  "validation_required": "זהו שדה חובה.",
+  "validation_email": "הזן כתובת אימייל תקינה.",
+  "validation_password": "הסיסמה קצרה מדי: לפחות 8 בייטים ב-UTF-8.",
+  "validation_passwordTooLong": "הסיסמה ארוכה מדי: לכל היותר 72 בייטים ב-UTF-8.",
+  "validation_phone": "השתמש בפורמט בינלאומי, לדוגמה ‎+33612345678.",
+  "validation_country": "השתמש בקוד מדינה בן שתי אותיות, לדוגמה FR.",
+  "passwordReset_title": "איפוס סיסמה",
+  "passwordReset_description": "הזן את כתובת האימייל של החשבון שלך כדי לבקש קישור לאיפוס סיסמה.",
+  "passwordReset_send": "שלח קישור",
+  "connection_title": "החיבור שלך",
+  "connection_subtitle": "בחר מיקום, ואז הפעל את ה-VPN.",
+  "connection_prepare": "מוכן להתחבר?",
+  "connection_advancedOptions": "אפשרויות מתקדמות",
+  "connection_location": "מיקום",
+  "connection_chooseLocation": "בחר מיקום",
+  "connection_protocol": "פרוטוקול",
+  "connection_connect": "התחבר",
+  "connection_connecting": "מתחבר…",
+  "connection_disconnect": "נתק",
+  "connection_disconnecting": "מתנתק",
+  "connection_locationChange": "משנה מיקום…",
+  "connection_unavailable": "{protocol} אינו זמין",
+  "connection_activeLocation": "מיקום פעיל",
+  "connection_duration": "משך",
+  "connection_received": "התקבלו",
+  "connection_sent": "נשלחו",
+  "connection_lastHandshake": "חילופי הנתונים המאובטחים האחרונים",
+  "connection_handshakeAgo": "לפני {duration}",
+  "verification_title": "אשר את כתובת האימייל שלך",
+  "verification_message": "אשר את כתובת האימייל שלך כדי להפעיל את ה-VPN בטלפון הזה.",
+  "verification_resend": "שלח שוב אימייל",
+  "migration_title": "שינוי מיקום",
+  "migration_draining": "מכינים את שינוי המיקום…",
+  "migration_activating": "מפעילים את השרת החדש…",
+  "migration_ready": "המיקום עודכן.",
+  "migration_blocked": "שינוי המיקום דורש התערבות של השרת. נסה שוב מאוחר יותר או פנה לתמיכה.",
+  "migration_progress": "התקדמות שינוי המיקום",
+  "migration_retryDelay": "זמן ההמתנה בין בדיקות (בשניות): {seconds}.",
+  "migration_resume": "המשך את שינוי המיקום",
+  "status_authorizing": "נדרשת הרשאה",
+  "status_authorizingDetail": "אשר את בקשת Android כדי לאפשר את ה-VPN.",
+  "status_preparing": "בהכנה",
+  "status_preparingDetail": "החיבור המאובטח שלך בהכנה.",
+  "status_reconnecting": "מתחבר מחדש…",
+  "status_reconnectingDetail": "החיבור נקטע. ה-VPN מנסה להתחבר מחדש.",
+  "status_connecting": "מתחבר",
+  "status_connectingDetail": "מתחבר לשרת ה-VPN…",
+  "status_connected": "מחובר",
+  "status_connectedDetail": "חיבור ה-VPN שלך פעיל.",
+  "status_disconnecting": "מתנתק",
+  "status_disconnectingDetail": "חיבור ה-VPN שלך נעצר.",
+  "status_error": "החיבור אינו זמין",
+  "status_errorDetail": "חיבור ה-VPN לא אושר. נסה שוב.",
+  "status_idle": "מנותק",
+  "status_idleDetail": "התחבר ל-VPN כדי להגן על החיבור שלך.",
+  "trust_note": "סגירת האפליקציה לא עוצרת את ה-VPN. כדי לעצור אותו, הקש על “נתק”.",
+  "locations_none": "אין כרגע מיקומים זמינים.",
+  "locations_available": "בחר את המיקום הבא שלך.",
+  "locations_selected": "מיקום שנבחר",
+  "locations_select": "בחר מיקום זה",
+  "locations_lockedTunnel": "נתק את ה-VPN כדי לשנות מיקום.",
+  "locations_lockedMigration": "המתן לסיום שינוי המיקום.",
+  "devices_title": "המכשירים שלך",
+  "devices_used": "{count} מתוך {limit} מכשירים",
+  "devices_refresh": "רענן מכשירים",
+  "devices_empty": "עדיין לא נרשם מכשיר VPN.",
+  "devices_firstConnection": "הטלפון שלך יתווסף בחיבור הראשון.",
+  "devices_thisDevice": "המכשיר הזה",
+  "devices_added": "נוסף ב-{date}",
+  "devices_unnamed": "מכשיר ללא שם",
+  "action_remove": "הסר",
+  "settings_title": "הגדרות",
+  "settings_subtitle": "ההעדפות והחשבון שלך, במקום אחד.",
+  "settings_appearance": "מראה",
+  "settings_language": "שפה",
+  "settings_languageDescription": "השפה שבחרת חלה גם על התראות ה-VPN.",
+  "settings_account": "חשבון",
+  "settings_signOut": "התנתק מהחשבון",
+  "settings_privacy": "מדיניות הפרטיות",
+  "settings_terms": "תנאי השימוש",
+  "settings_security": "אבטחה ושקיפות",
+  "settings_licenses": "רישיונות רכיבים",
+  "settings_licensesDetail": "תוכנות שבהן נעשה שימוש באפליקציה",
+  "settings_licensesLegalese": "קוד המקור של האפליקציה ושל הרכיבים שלה ברישיון MPL-2.0: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_background": "ה-VPN נשאר פעיל כשיוצאים מהאפליקציה. כדי לעצור אותו, הקש על “נתק” בלשונית החיבור.",
+  "theme_system": "מערכת",
+  "theme_light": "בהיר",
+  "theme_dark": "כהה",
+  "language_system": "שפת הטלפון",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "להסיר את המכשיר הזה?",
+  "dialog_removeCurrent": "הטלפון הזה ינותק מה-VPN ויאבד את הגישה. נתוני חיבור ה-VPN שלו יימחקו לאחר שהשרת יאשר.",
+  "dialog_removeOther": "הגישה ל-VPN של “{name}” תבוטל. לא ניתן לבטל פעולה זו.",
+  "dialog_signOut": "להתנתק מהחשבון?",
+  "dialog_signOutMessage": "ה-VPN ייעצר, ותצטרך להיכנס שוב. מפתחות ה-VPN המוצפנים יישארו בטלפון הזה לחיבור הבא שלך.",
+  "action_cancel": "ביטול",
+  "action_close": "סגירה",
+  "action_copy": "העתקה",
+  "action_signOut": "התנתק מהחשבון",
+  "notice_close": "סגור הודעה",
+  "notice_sessionExpired_title": "פג תוקף ההפעלה",
+  "notice_sessionExpired_message": "פג תוקף ההפעלה שלך. היכנס שוב.",
+  "notice_connectionFailed_title": "החיבור נכשל",
+  "notice_invalidCredentials_message": "כתובת האימייל או הסיסמה שגויים.",
+  "notice_emailVerification_title": "נדרש אישור אימייל",
+  "notice_emailVerification_message": "אשר את כתובת האימייל שלך לפני הוספת מכשיר VPN.",
+  "notice_rateLimited_title": "יותר מדי ניסיונות",
+  "notice_deviceLimit_title": "הגעת למגבלת המכשירים",
+  "notice_deviceLimit_message": "הסר מכשיר קיים לפני הוספת מכשיר נוסף.",
+  "notice_identityRenewal_title": "יש לחדש את זהות ה-VPN",
+  "notice_identityRenewal_message": "הזהות הזו הוסרה. צור זהות מקומית חדשה.",
+  "notice_migrationPending_title": "שינוי מיקום מתבצע",
+  "notice_migrationPending_message": "שינוי מיקום כבר מתבצע.",
+  "notice_migrationBlocked_title": "שינוי המיקום נחסם",
+  "notice_migrationBlocked_message": "שינוי המיקום דורש התערבות של השרת. נסה שוב מאוחר יותר או פנה לתמיכה.",
+  "notice_targetUnavailable_title": "השרת אינו זמין זמנית",
+  "notice_targetUnavailable_message": "השרת הזה אינו זמין זמנית.",
+  "notice_networkUnavailable_title": "חיבור האינטרנט אינו זמין",
+  "notice_networkUnavailable_message": "בדוק את החיבור ונסה שוב.",
+  "notice_permissionDenied_title": "הרשאת ה-VPN נדחתה",
+  "notice_permissionDenied_message": "התחל שוב את החיבור ואשר את בקשת ההרשאה של Android.",
+  "notice_wireguardTimeout_title": "השרת לא מגיב",
+  "notice_wireguardTimeout_message": "חיבור WireGuard ארך זמן רב מדי. נסה שוב או בחר מיקום אחר.",
+  "notice_tlsFailed_title": "החיבור המאובטח נדחה",
+  "notice_tlsFailed_message": "השרת לא קיבל את חיבור OpenVPN. נסה שוב. אם הבעיה נמשכת, הפעל אבחון.",
+  "notice_tunRejected_title": "Android דחה את ממשק ה-VPN",
+  "notice_tunRejected_message": "Android דחה את הגדרות הרשת שביקש OpenVPN.",
+  "notice_openvpnStart_title": "לא ניתן היה להפעיל את OpenVPN",
+  "notice_openvpnStart_message": "מנוע OpenVPN לא הצליח לסיים את ההפעלה. נסה שוב. אם הבעיה נמשכת, פנה לתמיכה.",
+  "notice_diagnosticCode": "קוד אבחון: {code}",
+  "notice_generic_title": "חיבור ה-VPN נכשל",
+  "notice_generic_message": "אירעה שגיאה. נסה שוב מאוחר יותר.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{החשבון נוצר} password_reset_sent{בקשת איפוס הסיסמה התקבלה} verification_email_sent{אימייל האימות נשלח} location_migration_pending{שינוי מיקום מתבצע} vpn_sign_in_required{נדרשת כניסה} protocol_unavailable_at_location{הפרוטוקול אינו זמין} vpn_permission_denied{הרשאת ה-VPN נדחתה} revoked_identity_device_limit{הגעת למגבלת המכשירים} tunnel_start_unexpected{לא ניתן להפעיל את ה-VPN} flutter_disconnect_timeout{הניתוק לא אושר} flutter_disconnect_unexpected{לא ניתן לנתק} device_revoked{המכשיר הוסר} revoke_unexpected{לא ניתן להסיר את המכשיר} identity_renewal_unexpected{לא ניתן לחדש את הזהות} openvpn_renewal_unexpected{לא ניתן לחדש את OpenVPN} location_migration_blocked{שינוי המיקום נחסם} location_migration_slow{שינוי המיקום עדיין מתבצע} location_migration_conflict{שינוי המיקום דורש רענון} location_migration_verification_failed{שינוי המיקום לא אושר} location_migration_device_changed{המכשיר השתנה במהלך שינוי המיקום} tunnel_stop_failed{שינוי המיקום אינו זמין} device_clock_ahead{השעון במכשיר מקדים} other{הפעולה נכשלה}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{החשבון נוצר, אבל לא ניתן היה לשלוח את אימייל האימות. השתמש באפשרות “שלח שוב אימייל” באפליקציה.} password_reset_sent{הבקשה שלך התקבלה. אם כתובת זו שייכת לחשבון, ייתכן שתקבל אימייל. בדוק גם בתיקיית הספאם.} verification_email_sent{אימייל אימות חדש נשלח זה עתה.} location_migration_pending{המעבר אל {target} עדיין בהכנה. אפשר להמשיך אותו בלי ליצור מחדש את המכשיר.} vpn_sign_in_required{היכנס לחשבון שלך לפני הפעלת ה-VPN.} protocol_unavailable_at_location{הפרוטוקול שנבחר אינו מוצע במיקום הזה. רענן את המיקומים או בחר פרוטוקול אחר.} vpn_permission_denied{Android דחה את הרשאת ה-VPN. התחל שוב את החיבור ואשר את בקשת המערכת.} revoked_identity_device_limit{גישת ה-VPN של המכשיר הזה הוסרה, והגעת למגבלת המכשירים. הסר מכשיר בקטע חשבון ← נהל את המכשירים שלי.} tunnel_start_unexpected{שגיאה לא צפויה קטעה את הכנת המנהרה. בדוק את קוד האבחון ונסה שוב.} flutter_disconnect_timeout{Android לא אישר שה-VPN נעצר בזמן. נסה לעצור אותו שוב.} flutter_disconnect_unexpected{שגיאה לא צפויה מנעה אישור של עצירת המנהרה.} device_revoked{גישת ה-VPN של המכשיר בוטלה, והנתונים הסודיים המקומיים שלו נמחקו.} revoke_unexpected{לא ניתן היה להסיר את המכשיר. רענן את הרשימה ונסה שוב.} identity_renewal_unexpected{לא ניתן היה ליצור זהות VPN חדשה. רענן את המכשירים ונסה שוב.} openvpn_renewal_unexpected{לא ניתן היה לחדש את פרופיל OpenVPN. נסה שוב או בדוק את קוד האבחון.} location_migration_blocked{השרת לא יכול להשלים את השינוי כרגע. המכשיר והזהות המקומית שלו נשמרו.} location_migration_slow{השרת עדיין מכין את המעבר אל {target}. הקש על “המשך את שינוי המיקום” בעוד כמה רגעים.} location_migration_conflict{מצב המכשיר השתנה בשרת. רענן את המכשירים, ואז המשך את השינוי.} location_migration_verification_failed{השרת לא אישר את המיקום החדש. הזהות המקומית הקודמת נשמרה.} location_migration_device_changed{המכשיר שהשרת החזיר כבר לא תואם למכשיר שבשינוי. רענן את המכשירים לפני שתנסה שוב.} tunnel_stop_failed{יש לעצור לגמרי את המנהרה הקודמת לפני החיבור החדש.} device_clock_ahead{נראה שהשעון של המכשיר הזה מקדים. הפעל תאריך ושעה אוטומטיים כדי להישאר מחובר.} other{לא ניתן היה להשלים את הפעולה. נסה שוב או שלח את קוד האבחון לתמיכה.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{פג תוקף ההפעלה} invalid_credentials{הכניסה נכשלה} email_verification_required{נדרש אישור כתובת האימייל} verification_email_cooldown{האימייל כבר נשלח} rate_limited{יותר מדי ניסיונות} invalid_registration{יש לתקן את הפרטים} email_exists{החשבון כבר קיים} invalid_profile{פרופיל לא תקין} invalid_device{מכשיר לא תקין} invalid_location{המיקום אינו זמין} device_limit{הגעת למגבלת המכשירים} device_exists{זהות ה-VPN כבר בשימוש} device_identity_revoked{יש לחדש את זהות ה-VPN} device_location_locked{שינוי המיקום דורש רענון} location_migration_pending{שינוי מיקום מתבצע} location_migration_blocked{שינוי המיקום נחסם} target_ca_mismatch{שרת OpenVPN אינו תואם} location_migration_conflict{שינוי המיקום דורש רענון} server_full{השרת מלא} capacity_unavailable{המיקום אינו זמין זמנית} target_unavailable{השרת אינו זמין זמנית} not_found{הפריט לא נמצא} invalid_openvpn_csr{זהות OpenVPN לא תקינה} openvpn_profile_exists{פרופיל OpenVPN כבר קיים} openvpn_profile_revoked{פרופיל OpenVPN בוטל} openvpn_operation_pending{פעולת OpenVPN בתהליך} openvpn_operation_terminal{פעולת OpenVPN נקטעה} openvpn_address_unavailable{כתובת OpenVPN אינה זמינה} openvpn_profile_conflict{התנגשות ב-OpenVPN} openvpn_signer_unavailable{OpenVPN אינו זמין} email_delivery_unavailable{שליחת האימייל אינה זמינה} invalid_token{קישור לא תקין} network_unavailable{חיבור האינטרנט אינו זמין} invalid_json{בקשה לא תקינה} invalid_api_response{תגובת שרת לא תקינה} ipv6_unavailable{IPv6 אינו זמין} invalid_ip_families{הגדרות הרשת נדחו} other{השירות אינו זמין}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{פג תוקף ההפעלה שלך. היכנס שוב.} invalid_credentials{כתובת האימייל או הסיסמה שגויות.} email_verification_required{אשר את כתובת האימייל שלך לפני הוספת מכשיר VPN.} invalid_registration{בדוק את המידע וההסכמות המבוקשים.} email_exists{כתובת האימייל הזו כבר משויכת לחשבון.} invalid_profile{בדוק את פרטי הפרופיל שלך.} invalid_device{שם המכשיר או הזהות המקומית שלו אינם תקינים.} invalid_location{רענן את רשימת המיקומים ונסה שוב.} device_limit{הסר מכשיר קיים לפני הוספת מכשיר נוסף.} device_exists{זהות ה-VPN הזו כבר מקושרת לחשבון אחר.} device_identity_revoked{הזהות הזו הוסרה. יש ליצור זהות מקומית חדשה.} device_location_locked{המיקום של המכשיר הזה השתנה זה עתה. האפליקציה תמשיך את שינוי המיקום שבתהליך.} location_migration_pending{שינוי מיקום כבר מתבצע.} location_migration_blocked{שינוי המיקום דורש התערבות של השרת. נסה שוב מאוחר יותר או פנה לתמיכה.} target_ca_mismatch{השרת הזה עדיין אינו תואם לפרופיל OpenVPN הנוכחי.} location_migration_conflict{רענן את המכשירים ונסה לבצע שוב את שינוי המיקום.} server_full{המיקום הזה הגיע למספר החיבורים המרבי. בחר מיקום אחר או נסה שוב מאוחר יותר.} capacity_unavailable{לא ניתן לאשר כרגע אם המיקום הזה זמין. בחר מיקום אחר או נסה שוב מאוחר יותר.} target_unavailable{השרת הזה אינו זמין זמנית.} not_found{הפריט הזה כבר אינו זמין בחשבון שלך.} invalid_openvpn_csr{צור זהות OpenVPN חדשה ונסה שוב.} openvpn_profile_exists{כבר קיים פרופיל OpenVPN למכשיר הזה.} openvpn_profile_revoked{חדש את פרופיל OpenVPN כדי להמשיך.} openvpn_operation_pending{השינוי עדיין מתעדכן. נסה שוב מאוחר יותר.} openvpn_operation_terminal{צור זהות OpenVPN חדשה ונסה שוב.} openvpn_address_unavailable{אין כרגע כתובת OpenVPN זמינה.} openvpn_profile_conflict{הפרופיל השתנה. רענן את המכשירים ונסה שוב.} openvpn_signer_unavailable{שירות OpenVPN אינו זמין זמנית.} email_delivery_unavailable{לא ניתן היה לשלוח את האימייל. נסה שוב מאוחר יותר.} invalid_token{הקישור אינו תקין או שפג תוקפו. בקש קישור חדש.} network_unavailable{בדוק את חיבור האינטרנט שלך ונסה שוב.} invalid_json{בדוק את המידע שהזנת ונסה שוב.} invalid_api_response{השרת החזיר תגובה לא צפויה. נסה שוב מאוחר יותר.} ipv6_unavailable{השרת לא יכול להפעיל IPv6 כרגע. נסה שוב מאוחר יותר.} invalid_ip_families{הגדרות המנהרה חסרות או אינן תואמות לכתובות המורשות. נסה שוב מהאפליקציה.} other{אירעה שגיאה בשרת. נסה שוב מאוחר יותר.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "נסה שוב בעוד כמה רגעים.",
+  "notice_retryAfter": "{seconds, plural, one{נסה שוב בעוד {seconds} שנייה.} two{נסה שוב בעוד {seconds} שניות.} other{נסה שוב בעוד {seconds} שניות.}}",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterMinutes": "{minutes, plural, one{נסה שוב בעוד {minutes} דקה.} two{נסה שוב בעוד {minutes} דקות.} other{נסה שוב בעוד {minutes} דקות.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{נסה שוב בעוד {hours} שעה.} two{נסה שוב בעוד {hours} שעות.} other{נסה שוב בעוד {hours} שעות.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{חידוש VPN של המערכת אינו זמין} system_vpn_resume_corrupt{חידוש VPN של המערכת אינו תקין} system_vpn_resume_session_invalid{הפעלה לא תקינה לחידוש VPN} system_vpn_resume_identity_changed{זהות ה-VPN השתנתה} system_vpn_resume_identity_invalid{זהות לחידוש VPN אינה תקינה} system_vpn_resume_storage_failed{אחסון חידוש ה-VPN אינו זמין} system_vpn_resume_network_timeout{אין רשת לחידוש ה-VPN} system_vpn_resume_blocked{חידוש ה-VPN חסום} system_vpn_resume_failed{חידוש ה-VPN נכשל} system_vpn_resume_error_invalid{שגיאת חידוש VPN אינה תקינה} wireguard_identity_store_failed{זהות WireGuard לא נשמרה} wireguard_identity_unavailable{זהות WireGuard אינה זמינה} vpn_host_destroyed{מארח ה-VPN של Android הופסק} vpn_host_unavailable{מארח ה-VPN של Android אינו זמין} vpn_permission_required{נדרשת הרשאת VPN} vpn_permission_denied{הרשאת VPN נדחתה} vpn_permission_request_failed{לא ניתן לבקש הרשאה} wireguard_foreground_service_unavailable{שירות WireGuard אינו זמין} wireguard_identity_invalid{מפתח WireGuard מקומי אינו תקין} wireguard_identity_in_use{זהות WireGuard כבר בשימוש} wireguard_configuration_invalid{הגדרות WireGuard אינן תקינות} wireguard_operation_pending{פעולת WireGuard עדיין פעילה} wireguard_start_failed{הפעלת WireGuard נדחתה} wireguard_stop_timeout{עצירת WireGuard לא אושרה} wireguard_handshake_timeout{WireGuard לא הגיב} openvpn_connection_timeout{OpenVPN לא הגיב} openvpn_core_unavailable{מנוע OpenVPN אינו זמין} openvpn_operation_pending{ההפעלה של OpenVPN עדיין פעילה} openvpn_stop_timeout{עצירת OpenVPN לא אושרה} openvpn_profile_unavailable{פרופיל OpenVPN מקומי חסר} openvpn_native_failed{הקריאה המקומית ל-OpenVPN הופסקה} openvpn_key_generation_failed{לא ניתן ליצור מפתח P-256 של OpenVPN} openvpn_csr_generation_failed{לא ניתן ליצור CSR של OpenVPN} openvpn_identity_store_failed{זהות OpenVPN לא נשמרה} openvpn_identity_clear_failed{הסרת OpenVPN לא הושלמה} openvpn_identity_in_use{זהות OpenVPN עדיין בשימוש} openvpn_tls_verification_required{אימות TLS של OpenVPN חסר} openvpn_cipher_invalid{הצופן של OpenVPN אינו תקין} openvpn_profile_rejected{פרופיל OpenVPN נדחה} openvpn_identity_inconsistent{זהות OpenVPN אינה עקבית} tls_handshake_failed{המשא ומתן של OpenVPN נדחה} tls_alert_unknown_ca{תעודת הלקוח של OpenVPN לא זוהתה} tls_alert_bad_certificate{תעודת הלקוח של OpenVPN נדחתה} tls_alert_unsupported_certificate{תעודת OpenVPN אינה נתמכת} tls_client_certificate_required{נדרשת תעודת לקוח של OpenVPN} tls_alert_misc{התראת TLS של OpenVPN} tls_signature_algorithm_rejected{חתימת OpenVPN אינה נתמכת} tls_handshake_rejected{המשא ומתן TLS של OpenVPN נדחה} tls_version_rejected{גרסת TLS של OpenVPN אינה תואמת} tls_certificate_expired{פג תוקף תעודת TLS} tls_certificate_revoked{תעודת TLS בוטלה} transport_failed{שרת OpenVPN אינו נגיש} tun_configuration_rejected{לא ניתן ליצור ממשק OpenVPN} tun_setup_failed{הגדרת TUN של OpenVPN נכשלה} tun_interface_create_failed{יצירת ממשק OpenVPN נכשלה} tun_interface_disabled{ממשק OpenVPN הושבת} tun_halted{ממשק OpenVPN הופסק} tun_already_established{ממשק OpenVPN כבר פתוח} tun_addresses_missing{כתובת OpenVPN חסרה} tun_routes_missing{נתיבי OpenVPN חסרים} tun_dns_missing{DNS של OpenVPN חסר} tun_permission_revoked{הרשאת VPN בוטלה} tun_establish_returned_null{Android דחה את ממשק ה-VPN} openvpn_service_start_failed{שירות OpenVPN אינו זמין} openvpn_operation_timeout{תם הזמן הקצוב לקריאת OpenVPN} openvpn_start_failed{הפעלת OpenVPN נדחתה} openvpn_connection_failed{החיבור ל-OpenVPN הופסק} openvpn_core_status_error{ליבת OpenVPN הסתיימה בשגיאה} openvpn_stopped_before_connected{OpenVPN הופסק לפני החיבור} openvpn_auth_failed{אימות OpenVPN נדחה} openvpn_client_setup_failed{הגדרת לקוח OpenVPN נכשלה} openvpn_client_halted{לקוח OpenVPN הופסק} openvpn_client_restart{התבקשה הפעלה מחדש של OpenVPN} openvpn_inactive_timeout{OpenVPN לא היה פעיל זמן רב מדי} openvpn_session_expired{פג תוקף ההפעלה של OpenVPN} openvpn_credentials_required{אימות OpenVPN אינו נתמך} openvpn_proxy_failed{הפרוקסי של OpenVPN נכשל} openvpn_compression_failed{הדחיסה של OpenVPN נדחתה} openvpn_ntlm_crypto_unavailable{הצפנת NTLM של OpenVPN אינה זמינה} openvpn_feature_unsupported{תכונת OpenVPN אינה נתמכת} network_unavailable{חיבור האינטרנט אינו זמין} network_lost{הרשת אינה זמינה} certificate_validation_failed{תעודת השרת נדחתה} openvpn_certificate_expired{פג תוקף תעודת OpenVPN} tunnel_active_for_another_account{המנהרה של חשבון אחר עדיין פעילה} tunnel_already_active{המנהרה המקומית כבר פעילה} tunnel_stop_timeout{עצירת {protocol} לא אושרה} tunnel_disconnected{{protocol} הופסק} native_bridge_unavailable{הגשר ל-Android אינו זמין} native_operation_failed{פעולת Android הופסקה} invalid_arguments{פרמטרים של VPN חסרים} invalid_account_id{חשבון VPN אינו תקין} invalid_device_id{מזהה המכשיר אינו תקין} storage_key_not_allowed{מפתח האחסון נדחה} secure_storage_read_failed{קריאה מאובטחת נכשלה} secure_storage_write_failed{כתיבה מאובטחת נכשלה} key_generation_failed{לא ניתן ליצור מפתח WireGuard} csr_generation_failed{לא ניתן ליצור CSR של OpenVPN} openvpn_recovery_exhausted{שחזור OpenVPN כבר נוצל} openvpn_recovery_failed{שחזור OpenVPN נכשל} openvpn_renewal_required{נדרש חידוש של תעודת OpenVPN} other{שגיאת VPN מקומית לא מסווגת}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android לא מצא הפעלת VPN שניתן לחדש. התחל חיבור חדש באפליקציה.} system_vpn_resume_corrupt{נתוני החידוש השמורים של ה-VPN אינם תקינים ולא יבוצע בהם שימוש. התחל חיבור חדש.} system_vpn_resume_session_invalid{ההפעלה השמורה כבר אינה יכולה לחדש את ה-VPN. היכנס שוב באפליקציה.} system_vpn_resume_identity_changed{זהות ה-VPN המקומית השתנתה. החידוש הופסק; התחל חיבור חדש.} system_vpn_resume_identity_invalid{זהות החידוש אינה תקינה. התחל חיבור חדש.} system_vpn_resume_storage_failed{Android לא הצליח לקרוא או לעדכן את נתוני החידוש המוצפנים. התחל חיבור חדש.} system_vpn_resume_network_timeout{Android לא מצא רשת בזמן כדי לחדש את ה-VPN. נסה שוב כשתהיה רשת זמינה.} system_vpn_resume_blocked{חידוש ה-VPN חסום. בדוק את הגדרות Android, ואז התחל חיבור חדש.} system_vpn_resume_failed{חידוש ה-VPN של Android נכשל. התחל חיבור חדש באפליקציה.} system_vpn_resume_error_invalid{Android החזיר שגיאת חידוש לא תקינה. התחל חיבור חדש.} wireguard_identity_store_failed{Android לא הצליח לשמור את זהות ה-WireGuard המוצפנת של החשבון הזה.} wireguard_identity_unavailable{אין זהות WireGuard תקינה זמינה לחיבור הזה.} vpn_host_destroyed{רכיב Android שמארח את ה-VPN הופסק. התחל חיבור חדש.} vpn_host_unavailable{Android לא יכול ליצור את הרכיב שמארח את ה-VPN. נסה שוב לאחר בדיקת הגדרות ה-VPN.} openvpn_renewal_required{התעודה דורשת פעולה באפליקציה לפני החיבור.} openvpn_recovery_failed{השחזור האוטומטי נכשל. התחל חיבור חדש באפליקציה.} openvpn_recovery_exhausted{השחזור האוטומטי כבר נוצל. התחל חיבור חדש באפליקציה.} vpn_permission_required{Android דורש הרשאת VPN חדשה לפני הפעלת המנהרה.} vpn_permission_denied{אשר את FuzeVPN בבקשת Android כדי להמשיך.} vpn_permission_request_failed{Android לא הצליח לפתוח את מסך הרשאת ה-VPN.} wireguard_foreground_service_unavailable{Android לא הצליח להשאיר את שירות WireGuard בחזית.} wireguard_identity_invalid{מפתח WireGuard המוצפן של החשבון הזה אינו קריא או אינו תקין.} wireguard_identity_in_use{פעולה אחרת עדיין משתמשת במפתח WireGuard של החשבון הזה.} wireguard_configuration_invalid{כתובת WireGuard, DNS, מפתח שרת או נתיבים שהתקבלו אינם תקינים.} wireguard_operation_pending{הפעולה הקודמת של WireGuard עדיין לא שחררה את השירות המקומי שלה.} wireguard_start_failed{מנוע WireGuard דחה את הפעלת ההגדרות.} wireguard_stop_timeout{שירות WireGuard לא אישר את שחרור ממשק ה-VPN בתוך פרק הזמן המותר.} wireguard_handshake_timeout{המנהרה לא אישרה לחיצת יד עם השרת בזמן.} openvpn_connection_timeout{OpenVPN לא אישר את החיבור לשרת בזמן.} openvpn_core_unavailable{גרסת האפליקציה הזו אינה כוללת מנוע OpenVPN זמין.} openvpn_operation_pending{המנוע המקומי עדיין מחזיק בהפעלת OpenVPN הקודמת ומסרב ליצור הפעלה שנייה.} openvpn_stop_timeout{ליבת OpenVPN לא אישרה שההפעלה המקומית שלה הופסקה והוסרה בתוך פרק הזמן המותר.} openvpn_profile_unavailable{לא ניתן לקרוא פרופיל OpenVPN מאומת לחיבור הזה.} openvpn_native_failed{שגיאה באפליקציה הפסיקה את OpenVPN. נסה להתחבר שוב. אם הבעיה נמשכת, הפעל אבחון.} openvpn_key_generation_failed{Android Keystore לא הצליח ליצור או לקרוא את מפתח P-256 הפרטי שאינו ניתן לייצוא.} openvpn_csr_generation_failed{מפתח Android Keystore לא הצליח לחתום על בקשת התעודה של OpenVPN.} openvpn_identity_store_failed{לא ניתן לשמור את תעודת OpenVPN או את הפרופיל באחסון המוצפן.} openvpn_identity_clear_failed{Android לא הצליח להסיר במלואה את זהות OpenVPN המקומית של החשבון הזה.} openvpn_identity_in_use{הפעלה מקומית של OpenVPN עדיין משתמשת במפתח או בתעודה של המכשיר הזה.} openvpn_tls_verification_required{הפרופיל אינו דורש במפורש אימות של תעודת השרת.} openvpn_cipher_invalid{השרת סיפק אלגוריתם הצפנה שאינו ברשימה המותרת.} openvpn_profile_rejected{הפרופיל שהתקבל מהשרת אינו תואם. צור מחדש את המכשיר הזה ונסה שוב.} openvpn_identity_inconsistent{התעודה אינה תואמת את הזהות המאובטחת של הטלפון הזה. לא הוחלף פרופיל מקומי.} tls_handshake_failed{השרת דחה את המשא ומתן של TLS. צור מחדש את הפרופיל אם הבעיה נמשכת.} tls_alert_unknown_ca{השרת אינו מכיר את רשות האישורים של תעודת המכשיר הזו. יש לבדוק את שרת OpenVPN.} tls_alert_bad_certificate{השרת דחה את תעודת המכשיר הזה. צור מחדש את המכשיר לפני ניסיון נוסף.} tls_alert_unsupported_certificate{השרת אינו תומך בסוג התעודה המאובטח שבו משתמש Android.} tls_client_certificate_required{השרת דורש תעודת לקוח, אך ליבת OpenVPN לא הצליחה להציג תעודה כזו.} tls_alert_misc{השרת החזיר התראת TLS שאינה שייכת לקטגוריות התעודה או הגרסה.} tls_signature_algorithm_rejected{השרת דחה את אלגוריתם ECDSA P-256 של מפתח Android Keystore.} tls_handshake_rejected{השרת הפסיק את המשא ומתן של TLS לפני החיבור.} tls_version_rejected{הלקוח והשרת לא מצאו גרסת TLS משותפת.} tls_certificate_expired{פג תוקפה של התעודה שהוצגה במהלך החיבור.} tls_certificate_revoked{התעודה שהוצגה במהלך החיבור בוטלה.} transport_failed{שרת OpenVPN אינו מגיב ברשת הנוכחית. נסה שוב בעוד רגע.} tun_configuration_rejected{Android דחה את הגדרות הרשת שביקש OpenVPN.} tun_setup_failed{ליבת OpenVPN דחתה את תוכנית הרשת לפני יצירת הממשק ב-Android.} tun_interface_create_failed{ליבת OpenVPN לא הצליחה לקבל את ממשק ה-TUN מ-VpnService של Android.} tun_interface_disabled{Android או ליבת OpenVPN השביתו את ממשק ה-TUN במהלך החיבור.} tun_halted{ליבת OpenVPN קיבלה בקשה לעצור את ממשק ה-TUN.} tun_already_established{OpenVPN ביקש ממשק שני באותו חיבור. המנהרה הופסקה מטעמי אבטחה.} tun_addresses_missing{השרת לא סיפק כתובת מנהרה תקינה.} tun_routes_missing{השרת לא סיפק נתיבי מנהרה תקינים.} tun_dns_missing{השרת לא סיפק שרת DNS תקין.} tun_permission_revoked{Android ביטל את הרשאת ה-VPN במהלך החיבור.} tun_establish_returned_null{Android לא יצר את הממשק, בדרך כלל משום ש-VPN אחר עדיין פעיל.} openvpn_service_start_failed{Android לא הצליח להפעיל את שירות OpenVPN בחזית.} openvpn_operation_timeout{קריאת JNI אל ליבת OpenVPN חרגה ממשך הזמן המרבי שלה.} openvpn_start_failed{שירות Android מוכן, אך ליבת OpenVPN לא קיבלה את הפעלת הפרופיל.} openvpn_connection_failed{ליבת OpenVPN הופסקה לפני שהפיקה את אירוע CONNECTED.} openvpn_core_status_error{הלולאה המקומית של OpenVPN הסתיימה בשגיאה, ללא אירוע סיום מפורט יותר.} openvpn_stopped_before_connected{הלולאה המקומית של OpenVPN הופסקה לפני CONNECTED, ללא שגיאת ליבה מפורשת.} openvpn_auth_failed{שרת OpenVPN דחה את האימות של הפרופיל.} openvpn_client_setup_failed{ליבת OpenVPN לא הצליחה לאתחל את הלקוח לפני החיבור לרשת.} openvpn_client_halted{ליבת OpenVPN קיבלה עצירה סופית של הלקוח.} openvpn_client_restart{ליבת OpenVPN ביקשה לאתחל מחדש את הפעלת התעבורה שלו.} openvpn_inactive_timeout{ליבת OpenVPN סגרה את ההפעלה לאחר פרק זמן של חוסר פעילות.} openvpn_session_expired{השרת דיווח שפג תוקף ההפעלה של OpenVPN.} openvpn_credentials_required{השרת או פרוקסי מבקשים פרטי הזדהות אינטראקטיביים שאינם חלק מפרופיל התעודה הזה.} openvpn_proxy_failed{ליבת OpenVPN דיווחה על כשל בפרוקסי או בממסר שהוגדר.} openvpn_compression_failed{ליבת OpenVPN דחתה את מצב הדחיסה שהוכרז על ידי הפרופיל או השרת.} openvpn_ntlm_crypto_unavailable{הפרופיל מבקש הצפנת NTLM שאינה זמינה בגרסה זו.} openvpn_feature_unsupported{הפרופיל או השרת דורשים תכונה שחסרה בלקוח Android הזה.} network_unavailable{אין רשת פיזית זמינה.} network_lost{המנהרה הופסקה לאחר שהרשת נותקה.} certificate_validation_failed{לא ניתן לאמת את זהות שרת OpenVPN.} openvpn_certificate_expired{חדש את פרופיל OpenVPN לפני החיבור מחדש.} tunnel_active_for_another_account{מנהרה ששייכת לחשבון אחר חייבת להיעצר לפני החיבור הזה.} tunnel_already_active{Android מדווח שהפעלת VPN קודמת עדיין משתמשת בממשק.} tunnel_stop_timeout{מנוע {protocol} לא אישר את שחרור ממשק ה-VPN בתוך פרק הזמן המותר.} tunnel_disconnected{המנוע המקומי דיווח שהמנהרה הסתיימה באופן בלתי צפוי לאחר ההפעלה.} native_bridge_unavailable{האפליקציה אינה יכולה לגשת לשירות ה-VPN של Android. סגור ופתח את האפליקציה מחדש, ואז נסה שוב.} native_operation_failed{שגיאה באפליקציה הפסיקה את פעולת ה-VPN. נסה שוב. אם הבעיה נמשכת, הפעל אבחון.} invalid_arguments{המידע הנדרש לפעולת ה-VPN הזו אינו שלם. נסה שוב. אם הבעיה נמשכת, הפעל אבחון.} invalid_account_id{הפעולה המקומית אינה משויכת למזהה חשבון תקין.} invalid_device_id{מזהה המכשיר שנשלח למנוע המקומי חסר או אינו תקין.} storage_key_not_allowed{הגשר ל-Android חסם מפתח שאינו ברשימת האחסון המותרת.} secure_storage_read_failed{Android Keystore לא הצליח לפענח את הנתונים המקומיים של החשבון הזה.} secure_storage_write_failed{Android Keystore לא הצליח להצפין או לשמור את הנתונים המקומיים.} key_generation_failed{Android לא הצליח ליצור או לקרוא את מפתח WireGuard באחסון המאובטח.} csr_generation_failed{Android Keystore לא הצליח ליצור או לחתום על CSR P-256 של OpenVPN.} other{אירעה שגיאה מקומית לא מתועדת. שלח לתמיכה את קוד האבחון המוצג למטה.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "בקשת ההרשאה כבר פתוחה",
+  "notice_permissionRequestInProgress_message": "בקשת ההרשאה ל-VPN של Android כבר מוצגת. השלם אותה לפני שתנסה שוב.",
+  "notice_permissionRequestInterrupted_title": "בקשת ההרשאה ל-VPN הופסקה",
+  "notice_permissionRequestInterrupted_message": "מסך ההרשאה ל-VPN נסגר לפני שהאפליקציה קיבלה תשובה.",
+  "notice_openvpnProofMissing_title": "חיבור OpenVPN לא אושר",
+  "notice_openvpnProofMissing_message": "לא ניתן היה לאשר את חיבור OpenVPN. החיבור הופסק מטעמי אבטחה. נסה שוב.",
+  "openvpnCleanup_title": "פרופיל OpenVPN בוטל",
+  "openvpnCleanup_working": "עוצרים ומסירים את פרופיל OpenVPN שבוטל…",
+  "openvpnCleanup_stopFailed": "עצירת OpenVPN לא אושרה. נסה שוב לפני יצירת פרופיל חדש.",
+  "openvpnCleanup_cleanupFailed": "לא ניתן היה להסיר לגמרי את פרופיל OpenVPN שבוטל. נסה לנקות שוב.",
+  "openvpnCleanup_complete": "פרופיל OpenVPN שבוטל הוסר. הקש על “התחבר” כדי ליצור פרופיל חדש.",
+  "network_title": "הגדרות רשת",
+  "network_ipv4Fallback": "IPv6 אינו זמין זמנית. ההכנה ממשיכה ב-IPv4.",
+  "network_rejectedTitle": "הגדרות הרשת נדחו",
+  "network_rejectedMessage": "הגדרות המנהרה חסרות או אינן תואמות לכתובות המורשות. נסה שוב מהאפליקציה.",
+  "network_unreadableTitle": "ההגדרות המקומיות אינן קריאות",
+  "network_unreadableMessage": "לא ניתן להשתמש בהגדרות הרשת השמורות של OpenVPN. התחבר מחדש דרך האפליקציה כדי לעדכן אותן.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "הגנת רשת",
+  "protection_subtitle": "חסום גישה ישירה לאינטרנט אם ה-VPN מתנתק.",
+  "protection_active": "הגנת המערכת פעילה",
+  "protection_alwaysOnOnly": "“VPN תמיד פעיל” מופעל; יש להפעיל את חסימת החיבורים ללא VPN",
+  "protection_inactive": "הגנת המערכת אינה פעילה",
+  "protection_unknown": "בדוק את הגנת המערכת",
+  "protection_openSettings": "פתח הגדרות Android",
+  "protection_dialogTitle": "הגדר את הגנת הרשת",
+  "protection_dialogMessage": "Android מנהל את ההגדרה “VPN תמיד פעיל” ואת חסימת החיבורים ללא VPN. ודא ש-FuzeVPN נבחר והפעל את החסימה בהגדרות המערכת.",
+  "protection_dialogOpen": "פתח הגדרות",
+  "session_systemProtectionNote": "אם Android עדיין חוסם תעבורה מחוץ ל-VPN, פתח את הגדרות המערכת כדי לבדוק או לשנות את ההגנה הזו.",
+  "diagnostics_title": "אבחון",
+  "diagnostics_settingsTitle": "אבחון האפליקציה",
+  "diagnostics_automaticTitle": "שלח שגיאות חשובות",
+  "diagnostics_automaticDescription": "שתף דוח טכני קצר כשמתרחשת שגיאה חשובה.",
+  "diagnostics_privacy": "הדוחות שנשלחו מקושרים לחשבון המחובר ונשמרים 30 יום. הם אינם מכילים היסטוריית גלישה, סיסמאות או מפתחות VPN.",
+  "diagnostics_manualOpen": "הפעל אבחון",
+  "diagnostics_localDescription": "צור דוח על מצב האפליקציה וה-VPN. החיבור שלך יישאר ללא שינוי.",
+  "diagnostics_sendReport": "שלח את הדוח",
+  "diagnostics_sendHint": "השאר את התיבה לא מסומנת כדי לשמור את הדוח במכשיר הזה.",
+  "diagnostics_signedOut": "היכנס לחשבון שלך כדי לשלוח דוח.",
+  "diagnostics_localLifetime": "שמור את הדוח בטלפון כדי שיישאר זמין גם אחרי סגירת האפליקציה.",
+  "diagnostics_run": "הפעל אבחון",
+  "diagnostics_rerun": "הפעל אבחון שוב",
+  "diagnostics_running": "בודק…",
+  "diagnostics_sending": "שולח את הדוח…",
+  "diagnostics_prepared": "הדוח מוכן במכשיר הזה",
+  "diagnostics_queued": "הדוח ממתין לשליחה",
+  "diagnostics_sent": "הדוח התקבל",
+  "diagnostics_failed": "השליחה נכשלה. הדוח המקומי שלך עדיין זמין.",
+  "diagnostics_preparationFailed": "לא ניתן היה להכין את דוח האבחון. נסה שוב.",
+  "diagnostics_authenticationRequired": "היכנס שוב כדי לשלוח את הדוח.",
+  "diagnostics_retry": "נסה לשלוח שוב",
+  "diagnostics_export": "שמור דוח",
+  "diagnostics_exportFailed": "הייצוא נכשל. נסה שוב מהדוח המקומי.",
+  "diagnostics_preferenceFailed": "לא ניתן לשמור את ההגדרה הזו. נסה שוב.",
+  "diagnostics_receipt": "אסמכתא: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "התקבל ב-{date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "נשמר עד {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "דוח זה כבר התקבל בעבר.",
+  "diagnostics_preview": "תצוגה מקדימה של הדוח",
+  "diagnostics_eventCount": "{count, plural, =0{לא צורף אירוע טכני} =1{צורף אירוע טכני 1} other{צורפו {count} אירועים טכניים}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "פרטים טכניים",
+  "diagnostics_empty": "עדיין לא הוכן דוח אבחון.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{מצב המנהרה} handshake{אישור החיבור} certificate{תעודת ה-VPN} kill_switch{הגנת Android} connectivity{רשת זמינה} api_reachability{גישה לשירות} secure_storage{אחסון מאובטח} other{בדיקה מקומית}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{נבדק} failed{דורש תשומת לב} skipped{לא נבדק — אין בדיקה פעילה} unknown{המידע אינו זמין} other{המידע אינו זמין}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "ברוכים הבאים ל-FuzeVPN",
+  "connection_changeLocation": "שנה מיקום",
+  "connection_details": "פרטי החיבור",
+  "locations_searchLabel": "חפש עיר או מדינה",
+  "locations_clearSearch": "נקה חיפוש",
+  "locations_filterAll": "הכול",
+  "locations_filterFavorites": "מועדפים",
+  "locations_results": "{count, plural, one{{count} מיקום} two{{count} מיקומים} other{{count} מיקומים}}",
+  "locations_noResults": "לא נמצאו מיקומים",
+  "locations_noResultsHint": "נסה עיר או מדינה אחרת.",
+  "locations_noFavorites": "המועדפים שלך, בהישג יד",
+  "locations_noFavoritesHint": "הקש על הכוכב שליד מיקום כדי לשמור אותו כאן.",
+  "locations_showAll": "הצג את כל המיקומים",
+  "locations_addFavorite": "הוסף את {name} למועדפים",
+  "locations_removeFavorite": "הסר את {name} מהמועדפים",
+  "locations_favoriteSaveFailed": "לא ניתן היה לשמור את המועדף. נסה שוב.",
+  "locations_emptyTitle": "אין מיקומים זמינים",
+  "locations_emptyHint": "רענן את הרשימה כדי לנסות שוב.",
+  "devices_manage": "נהל את המכשירים שלי",
+  "settings_personalization": "התאמה אישית",
+  "settings_safety": "הגנה",
+  "settings_help": "צריך עזרה?",
+  "settings_about": "אודות FuzeVPN",
+  "diagnostics_heading": "הבנת בעיית חיבור",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{זמין} pending{בהכנה} revoked{הוסר} expired{פג תוקף} other{הסטטוס אינו זמין}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "ההעדפה לא נשמרה",
+  "notice_preferenceSave_message": "הבחירה שלך הופעלה לעת עתה, אך לא ניתן היה לשמור אותה. נסה שוב כדי שתישמר גם אחרי סגירת האפליקציה.",
+  "connection_androidDisconnectHint": "אם Android משאיר את ה-VPN פעיל, כבה את “VPN תמיד פעיל” בהגדרות שייפתחו.",
+  "protection_learnMore": "מידע נוסף על הגנת Android",
+  "protection_guideWhy": "הגנה זו מונעת מאפליקציות להשתמש ישירות באינטרנט אם ה-VPN מתנתק. היא מוגדרת ב-Android.",
+  "protection_guideAlwaysOnTitle": "VPN תמיד פעיל",
+  "protection_guideAlwaysOn": "Android משאיר את שירות ה-VPN פעיל ויכול להפעיל אותו מחדש לאחר אתחול הטלפון.",
+  "protection_guideBlockTitle": "חסום חיבורים ללא VPN",
+  "protection_guideBlock": "הגדרה זו מונעת מהתעבורה לעקוף את ה-VPN, גם בזמן שהחיבור נקטע.",
+  "protection_guideWarning": "כשהחסימה הזו פעילה, הגישה לאינטרנט תישאר כבויה עד שה-VPN יתחבר.",
+  "protection_guideStepsTitle": "הפעל את ההגנה",
+  "protection_guideStep1": "פתח את הגדרות ה-VPN של Android באמצעות הלחצן שלמטה.",
+  "protection_guideStep2": "פתח את האפשרויות באמצעות סמל גלגל השיניים שליד FuzeVPN.",
+  "protection_guideStep3": "הפעל את “VPN תמיד פעיל”, ואז את “חסום חיבורים ללא VPN”, אם האפשרויות האלה מוצעות.",
+  "protection_guideManufacturers": "שמות האפשרויות משתנים לפי הטלפון. במידת הצורך, חפש VPN בהגדרות, לרוב תחת רשת ואינטרנט.",
+  "protection_guideDisableTitle": "כבה את ההגנה הזו",
+  "protection_guideDisable": "באותן הגדרות, כבה את חסימת החיבורים ללא VPN כדי לאפשר גישה לאינטרנט בלי VPN. כבה גם את “VPN תמיד פעיל”, אם אינך רוצה ש-Android יפעיל אותו מחדש.",
+  "protection_guideManual": "ההגדרות האלה נבחרות ב-Android. FuzeVPN לא משנה אותן עבורך.",
+  "locations_changeTitle": "לשנות מיקום?",
+  "locations_changeActive": "ה-VPN ינותק, ואז ינסה להתחבר אל {name}.",
+  "locations_changeIdle": "ה-VPN ינסה להתחבר אל {name}.",
+  "locations_confirmChange": "שנה והתחבר",
+  "locations_changeBusy": "שינוי מיקום מתבצע כעת. המתן לפני בחירת מיקום אחר.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "בחירה אוטומטית",
+  "locations_cities": "ערים",
+  "locations_servers": "שרתים",
+  "locations_viewCities": "הצג את הערים של {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "הצג את השרתים של {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} מדינה} two{{count} מדינות} other{{count} מדינות}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} עיר} two{{count} ערים} other{{count} ערים}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} שרת} two{{count} שרתים} other{{count} שרתים}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "כל המדינות",
+  "locations_backToCountries": "חזרה למדינות",
+  "locations_backToCities": "חזרה לערים של {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "בחר את {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "בחר את {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "אין שרת תואם זמין.",
+  "externalLink_failed": "לא ניתן לפתוח את הקישור הזה. אפשר להעתיק אותו ולפתוח אותו בדפדפן.",
+  "externalLink_copy": "העתק קישור",
+  "externalLink_copied": "הקישור הועתק",
+  "externalLink_copyFailed": "לא ניתן להעתיק את הקישור. בחר את הכתובת שלמטה.",
+  "settings_deleteAccount": "מחק את החשבון שלי",
+  "settings_deleteAccountDetail": "הצג את הנוהל לבקשת מחיקת חשבון",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "בחר את מנוי ה-VPN שלך.",
+  "billing_subscribe": "הצטרף למנוי",
+  "billing_choosePlan": "בחר תוכנית כדי להמשיך.",
+  "billing_monthly": "חודשי",
+  "billing_yearly": "שנתי",
+  "billing_continue": "המשך עם Google Play",
+  "billing_restore": "שחזר רכישות",
+  "billing_manage": "נהל מנוי",
+  "billing_deleteAccountWarning": "אם יש לך מנוי Google Play, מחיקת חשבון FuzeVPN אינה מבטלת את החידוש שלו. נהל או בטל את החידוש בנפרד ב-Google Play.",
+  "billing_deleteAccountContinue": "המשך לבקשת מחיקת החשבון",
+  "billing_refresh": "רענן גישה",
+  "billing_loadingPlans": "טוען תוכניות…",
+  "billing_unavailable": "אין תוכניות זמינות כרגע. נסה שוב מאוחר יותר.",
+  "billing_comingSoon": "מנויים יהיו זמינים בקרוב.",
+  "billing_priceDisclosure": "המחיר מסופק על ידי Google Play. הסכום הסופי והמסים החלים יוצגו לאישורך לפני השלמת הרכישה.",
+  "billing_renewalMonthly": "מתחדש אוטומטית מדי חודש, אלא אם מבטלים. אפשר לבטל בכל עת במנויים של Google Play.",
+  "billing_renewalYearly": "מתחדש אוטומטית מדי שנה, אלא אם מבטלים. אפשר לבטל בכל עת במנויים של Google Play.",
+  "billing_active": "הגישה שלך ל-Premium פעילה",
+  "billing_accessUntil": "גישה עד {date}.",
+  "billing_webManaged": "המנוי שלך מנוהל באתר של FuzeVPN.",
+  "billing_playManaged": "המנוי שלך מנוהל על ידי Google Play.",
+  "billing_playOnHold": "המנוי שלך ב-Google Play מושהה או ממתין לתשלום. פתח את “נהל מנוי” כדי לתקן זאת ב-Google Play.",
+  "billing_playReceiptUnlinked": "לחשבון Google Play הזה כבר יש מנוי Fuze Premium שאינו פעיל עבור חשבון FuzeVPN זה. פתח את “נהל מנוי” כדי לבדוק אותו ב-Google Play.",
+  "billing_inactive": "אין מנוי פעיל.",
+  "billing_checkingAccess": "בודק את הגישה שלך…",
+  "billing_restoring": "משחזר רכישות…",
+  "billing_pending": "התשלום בהמתנה. הגישה שלך תופעל לאחר האישור.",
+  "billing_cancelled": "הרכישה בוטלה. לא הופעל מנוי חדש.",
+  "billing_verifying": "מאמת את הרכישה…",
+  "billing_success": "המנוי הופעל. הגישה שלך ל-Premium מוכנה.",
+  "billing_restored": "הרכישות שלך שוחזרו.",
+  "billing_restoreEmpty": "אין רכישות לשחזור עבור חשבון Google Play הזה.",
+  "billing_catalogError": "לא ניתן לטעון תוכניות. נסה שוב.",
+  "billing_purchaseError": "לא ניתן להתחיל את הרכישה. נסה שוב.",
+  "billing_verificationError": "אימות הרכישה אינו זמין כרגע. שחזר רכישות כדי לנסות שוב.",
+  "billing_restoreError": "לא ניתן לשחזר רכישות. נסה שוב.",
+  "billing_managementError": "לא ניתן לפתוח את ניהול המנויים. נסה שוב.",
+  "billing_storeUnavailable": "Google Play אינו זמין במכשיר הזה.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "ה-VPN שלך, בפשטות.",
+  "welcome_description": "הגן על החיבור שלך. שמור על השליטה בפרטיות שלך.",
+  "welcome_start": "התחל",
+  "welcome_alreadyPurchased": "כבר רכשת?",
+  "welcome_noAccountRequired": "אין צורך בחשבון כדי להתחיל.",
+  "guest_accountTitle": "החשבון לא מקושר",
+  "guest_accountDescription": "שחזר את הרכישות שלך עם אותו חשבון Google Play כדי להשתמש במנוי שלך במכשיר אחר.",
+  "guest_existingSubscriberSignIn": "כבר יש לך מנוי? היכנס",
+  "guest_claimTitle": "FuzeVPN איתך בכל מקום",
+  "guest_claimDescription": "צור חשבון כדי לגשת למנוי שלך במכשירים האחרים שלך. שלב זה אופציונלי.",
+  "guest_skip": "אולי אחר כך",
+  "guest_activationTitle": "Fuze Premium פעיל",
+  "guest_activationDescription": "המנוי שלך מוכן. אפשר להשתמש ב-VPN וליצור חשבון בכל עת.",
+  "guest_useVpn": "השתמש ב-VPN שלי",
+  "guest_loginRequired": "הרכישה הזו כבר מקושרת לחשבון FuzeVPN. היכנס לחשבון הזה כדי לגשת למנוי שלך.",
+  "guest_signOutWarning": "אפשר לשחזר את המנוי שלך על ידי שחזור הרכישות עם אותו חשבון Google Play.",
+  "guest_profileUnavailable": "החשבון שלך כבר מקושר. היכנס כדי להציג ולנהל את הפרטים שלך.",
+  "billing_acceptance": "המשך התהליך מהווה הסכמה לתנאי השימוש ולמדיניות הפרטיות.",
+  "guest_verifyEmailReminder": "אשר את כתובת האימייל שלך כדי לאבטח את החשבון. אפשר להמשיך להשתמש ב-VPN.",
+  "guest_serviceUnavailable": "השירות אינו זמין כרגע. נסה שוב בעוד רגע.",
+  "guest_restoreError": "לא ניתן לשחזר את הרכישות שלך. נסה שוב עם חשבון Google Play שבו בוצעה הרכישה.",
+  "guest_claimSuccess": "החשבון שלך נוצר. המנוי והגישה שלך ל-VPN נשמרו.",
+  "guest_emailExists": "כתובת האימייל הזו כבר בשימוש. בחר כתובת אחרת או היכנס לחשבון הקיים שלך. הרכישה שלך נשארת זמינה דרך Google Play.",
+  "guest_claimError": "לא ניתן ליצור את החשבון. אפשר להמשיך להשתמש ב-VPN ולנסות שוב מאוחר יותר.",
+  "guest_secureStorageError": "לא ניתן לאבטח את ההפעלה במכשיר הזה. נסה שוב.",
+  "guest_premiumRequired": "בחר מנוי כדי להפעיל את ה-VPN שלך.",
+  "welcome_viewPlans": "הצג תוכניות",
+  "google_continue": "המשך עם Google",
+  "google_or": "או",
+  "google_title": "החשבון שלך ב-FuzeVPN",
+  "google_settingUp": "סיים את יצירת החשבון",
+  "google_country": "מדינת מגורים",
+  "google_profileDescription": "בחר את המדינה שלך ועיין בשני המסמכים כדי ליצור את חשבון FuzeVPN שלך.",
+  "google_claimDescription": "קשר את חשבון האורח שלך ל-Google. המנוי והמכשיר שלך יישארו משויכים לחשבון הזה.",
+  "google_linkTitle": "קשר את Google ל-FuzeVPN",
+  "google_linkDescription": "אשר גישה לחשבון FuzeVPN הקיים שלך. שלב זה לא מבקש את סיסמת Google שלך.",
+  "google_password": "סיסמת FuzeVPN",
+  "google_linkAccount": "אשר את הקישור",
+  "google_requestEmail": "שלח לי אימייל לאישור",
+  "google_emailInstructions": "פתח את האימייל מ-FuzeVPN והזן את קוד האישור.",
+  "google_emailCode": "קוד אישור באימייל",
+  "google_confirmEmail": "אשר את הקוד",
+  "google_restart": "בחר חשבון Google אחר",
+  "google_resume": "בדוק את הניסיון הזה",
+  "google_unavailable": "כניסה עם Google אינה זמינה. אפשר להשתמש באימייל ובסיסמה.",
+  "google_expired": "פג תוקף הניסיון. בטל אותו והתחל מחדש.",
+  "google_conflict": "חשבון Google הזה כבר מקושר לחשבון אחר. החשבון והמנוי הנוכחיים שלך נשמרים.",
+  "google_error": "הכניסה עם Google נכשלה. נסה שוב; הגישה הנוכחית שלך נשמרת.",
+  "google_uncertain": "לא ניתן לאשר את התוצאה. בדוק את הניסיון הזה או בטל אותו לפני שתתחיל מחדש.",
+  "google_cancelFailed": "לא ניתן לאשר את הביטול. נסה לבטל שוב לפני שתצא ממסך זה.",
+  "google_cancelled": "הכניסה עם Google בוטלה.",
+  "google_selecting": "בחר את חשבון Google שלך…",
+  "google_verifying": "בודק את החשבון שלך…",
+  "google_emailUnavailable": "לא ניתן לשלוח את אימייל האישור. נסה שוב מאוחר יותר.",
+  "google_emailSent": "אימייל האישור נשלח. בדוק את תיבת הדואר הנכנס שלך.",
+  "google_rateLimited": "המתן לפני שתנסה שוב.",
+  "google_busy": "Google אינו זמין בזמן שפעולה אחרת מתבצעת (חיבור VPN, חשבון או אורח). נסה שוב אחרי שהיא תסתיים; הגישה הנוכחית שלך נשמרת.",
+  "google_invalidPassword": "סיסמת FuzeVPN שגויה. החשבון הנוכחי שלך נשמר.",
+  "google_invalidCode": "קוד האישור שגוי או שפג תוקפו.",
+  "google_accountChanged": "ההפעלה שלך השתנתה. בטל את הניסיון הזה לפני שתתחיל מחדש.",
+  "google_invalidResponse": "לא ניתן לאמת את התשובה. הגישה הנוכחית שלך נשמרת.",
+  "google_invalidRegistration": "בדוק את המדינה ואת שתי ההסכמות.",
+  "google_consentRequired": "בחר את המדינה שלך ואשר את שני המסמכים כדי להמשיך.",
+  "google_challengeRequired": "נדרש אימות אבטחה נוסף. הגישה הנוכחית שלך נשמרת.",
+  "google_challengeUnavailable": "בדיקת האבטחה אינה זמינה. נסה שוב מאוחר יותר.",
+  "google_intentMismatch": "ניסיון כניסה קודם עם Google עדיין ממתין. בטל אותו לפני שתתחיל את הפעולה הזו.",
+  "google_challengeBlocked": "בדיקת האבטחה הנדרשת אינה זמינה באפליקציה הזו. לא ניתן להשלים את הפעולה כרגע.",
+  "google_solveChallenge": "השלם את בדיקת האבטחה",
+  "google_challengeTitle": "בדיקת אבטחה",
+  "google_challengeReady": "האימות הושלם. אפשר עכשיו לאשר את יצירת החשבון.",
+  "google_challengeExpired": "פג תוקף האימות. השלם אותו שוב לפני האישור.",
+  "google_challengeCancelled": "האימות בוטל. אפשר לנסות שוב.",
+  "google_challengeFailed": "בדיקת האבטחה נכשלה. נסה שוב.",
+  "billing_trialTitle": "נסה את Fuze Premium בחינם",
+  "billing_trialSubtitle": "הגן על החיבור שלך החל מהיום.",
+  "billing_trialWeeks": "ניסיון חינם של שבועיים",
+  "billing_trialDays": "ניסיון חינם של {days} ימים",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "התחל את הניסיון החינם שלי",
+  "billing_trialFirstCharge": "אם תתחיל היום, החיוב הראשון צפוי ב-{date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "מתחדש אוטומטית במחיר המצוין. כדי להימנע מחיוב, בטל ב-Google Play לפני סיום הניסיון.",
+  "billing_trialThenMonthly": "לאחר מכן {price} לחודש",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "לאחר מכן {price} לשנה",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "בחר את התוכנית שלך",
+  "billing_selectionHint": "בחר תוכנית כדי להמשיך.",
+  "billing_benefitConnection": "חיבור מוצפן",
+  "billing_benefitPrivacy": "פרטיות באינטרנט",
+  "billing_benefitNoAccount": "ללא צורך בהרשמה",
+  "billing_cancellation": "ביטול ב-Google Play",
+  "billing_premiumTitle": "חיבור מוגן יותר.",
+  "billing_premiumSubtitle": "הגן על החיבור שלך, בקצב שלך.",
+  "billing_priceMonthly": "לחודש",
+  "billing_priceYearly": "לשנה",
+  "billing_trialToday": "אין תשלום היום",
+  "billing_trialConfirmation": "Google Play מציג לאישורך את התאריכים, הסכום הסופי והמסים החלים לפני השלמת הרכישה.",
+  "billing_offerChanged": "תנאי ההצעה הזו השתנו. רענן את התוכניות ובחר שוב.",
+  "status_waitingNetwork": "ממתין לרשת",
+  "status_waitingNetworkDetail": "אין רשת זמינה. ה-VPN יבדוק את החיבור כשהרשת תחזור.",
+  "locations_favoriteLoadFailed": "לא ניתן לטעון את המועדפים. נסה שוב.",
+  "locations_favoritesLoading": "טוען מועדפים…"
+}

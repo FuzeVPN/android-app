@@ -1,0 +1,1036 @@
+{
+  "locale": "ig",
+  "arb": {
+    "vpnDisclosure_title": "Chebe njikọ gị",
+    "vpnDisclosure_body": "FuzeVPN na-eji ọrụ VPN nke Android (VpnService) mepụta tunnel e zoro ezo n’etiti ngwaọrụ a na sava FuzeVPN.",
+    "vpnDisclosure_dataBody": "Mgbe VPN na-arụ ọrụ, data ịntanetị nke ngwa gị, adreesị ebe ha na-aga na arịrịọ DNS na-agafe site na tunnel a iji duzie njikọ gị, ọ bụlagodi mgbe FuzeVPN nọ n’azụ.",
+    "vpnDisclosure_statusBody": "Ngwa a na-eji ọnọdụ njikọ, ogologo oge ọ dị na ọnụọgụ data e bufere iji gosi njikọ VPN gị. Ị nwere ike ịkwụsị ya mgbe ọ bụla.",
+    "vpnDisclosure_privacy": "Nzuzo",
+    "vpnDisclosure_accept": "Nabata ma gaa n’ihu",
+    "vpnDisclosure_decline": "Ọ bụghị ugbu a",
+    "accountRestoration_title": "Akaụntụ adịghị dị nwa oge",
+    "accountRestoration_message": "Echekwara oge ịbanye gị. Nwaa ọzọ iji weghachi akaụntụ gị; ị ka nwere ike ijikwa njikọ VPN ebe a.",
+    "action_retry": "Nwaa ọzọ",
+    "session_endingTitle": "Na-akwụsị oge ịbanye",
+    "session_ending": "Na-akwụsị oge ịbanye: na-akwụsị VPN ma na-ehicha ihe fọdụrụ…",
+    "session_stopFailed": "Akwadoghị na VPN akwụsịla. Nwaa ọzọ tupu ị banye ọzọ.",
+    "session_cleanupFailed": "VPN akwụsịla, mana akwadoghị iwepụ oge ịbanye. Nwaa ihicha ọzọ.",
+    "session_retryStop": "Nwaa ịkwụsị ọzọ",
+    "session_retryCleanup": "Nwaa ihicha ọzọ",
+    "@@locale": "ig",
+    "appTitle": "FuzeVPN",
+    "startup": "Na-akwadebe FuzeVPN n’ụzọ dị nchekwa…",
+    "nav_connection": "Njikọ",
+    "nav_locations": "Ebe",
+    "nav_account": "Akaụntụ",
+    "nav_devices": "Ngwaọrụ",
+    "nav_settings": "Ntọala",
+    "action_refresh": "Melite",
+    "auth_tab_login": "Banye n’akaụntụ",
+    "auth_tab_register": "Debanye aha",
+    "auth_stepAccount": "Akaụntụ",
+    "auth_stepIdentity": "Njirimara",
+    "auth_stepAddress": "Adreesị na nkwekọrịta",
+    "auth_stepProgress": "Nzọụkwụ {current} n’ime {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "VPN gị, dị mfe.",
+    "auth_keysLocal": "Igodo VPN nzuzo gị na-anọgide na ngwaọrụ a.",
+    "form_email": "Adreesị e-mail",
+    "form_password": "Paswọọdụ",
+    "form_showPassword": "Gosi paswọọdụ",
+    "form_hidePassword": "Zoo paswọọdụ",
+    "form_passwordMin": "8–72 byte UTF-8. Mkpụrụedemede ụfọdụ na-eji karịa otu byte.",
+    "form_firstName": "Aha mbụ",
+    "form_lastName": "Aha ikpeazụ",
+    "form_phone": "Ekwentị (+33612345678)",
+    "form_address": "Adreesị",
+    "form_address2": "Ahịrị adreesị nke abụọ (nhọrọ)",
+    "form_postalCode": "Koodu ozi",
+    "form_city": "Obodo",
+    "form_country": "Koodu mba (dịka ọmụmaatụ FR)",
+    "action_login": "Banye n’akaụntụ",
+    "action_createAccount": "Mepụta akaụntụ",
+    "action_createMyAccount": "Mepụta akaụntụ m",
+    "action_next": "Gaa n’ihu",
+    "action_previous": "Laghachi azụ",
+    "action_forgotPassword": "Chefuru paswọọdụ?",
+    "auth_noAccount": "Ị nwebeghị akaụntụ?",
+    "auth_requiredInformation": "Mepụta akaụntụ gị site na nzọụkwụ atọ.",
+    "auth_termsPrefix": "Anabatara m ",
+    "auth_termsLink": "ụkpụrụ ojiji",
+    "auth_privacyPrefix": "Anabatara m ",
+    "auth_privacyLink": "iwu nzuzo",
+    "auth_consentRequired": "Nkwenye gị dị mkpa iji mepụta akaụntụ.",
+    "validation_required": "Ebe a dị mkpa.",
+    "validation_email": "Tinye adreesị e-mail ziri ezi.",
+    "validation_password": "Paswọọdụ dị mkpụmkpụ nke ukwuu: opekata mpe byte UTF-8 dị 8.",
+    "validation_passwordTooLong": "Paswọọdụ dị ogologo nke ukwuu: byte UTF-8 dị 72 kachasị.",
+    "validation_phone": "Jiri usoro mba ụwa niile, dịka ọmụmaatụ +33612345678.",
+    "validation_country": "Jiri koodu mba nwere mkpụrụedemede abụọ, dịka ọmụmaatụ FR.",
+    "passwordReset_title": "Tọgharịa paswọọdụ",
+    "passwordReset_description": "Tinye adreesị e-mail akaụntụ gị iji rịọ njikọ ịtọgharị paswọọdụ.",
+    "passwordReset_send": "Zipụ njikọ",
+    "connection_title": "Njikọ gị",
+    "connection_subtitle": "Họrọ ebe, mgbe ahụ gbanye VPN gị.",
+    "connection_prepare": "Ị dị njikere ijikọ?",
+    "connection_advancedOptions": "Nhọrọ dị elu",
+    "connection_location": "Ebe",
+    "connection_chooseLocation": "Họrọ ebe",
+    "connection_protocol": "Usoro",
+    "connection_connect": "Jikọọ",
+    "connection_connecting": "Na-ejikọ…",
+    "connection_disconnect": "Kwụsị njikọ",
+    "connection_disconnecting": "Na-akwụsị njikọ",
+    "connection_locationChange": "Na-agbanwe ebe…",
+    "connection_unavailable": "{protocol} adịghị dị",
+    "connection_activeLocation": "Ebe na-arụ ọrụ",
+    "connection_duration": "Ogologo oge",
+    "connection_received": "Natara",
+    "connection_sent": "Ezipụrụ",
+    "connection_lastHandshake": "Mgbanwe ozi dị nchekwa ikpeazụ",
+    "connection_handshakeAgo": "{duration} gara aga",
+    "verification_title": "Kwado adreesị e-mail gị",
+    "verification_message": "Kwado adreesị e-mail gị ka ị nwee ike iji VPN na ekwentị a.",
+    "verification_resend": "Zipụ e-mail ọzọ",
+    "migration_title": "Mgbanwe ebe",
+    "migration_draining": "Na-akwadebe mgbanwe ebe…",
+    "migration_activating": "Na-eme ka sava ọhụrụ rụọ ọrụ…",
+    "migration_ready": "Agbanwere ebe.",
+    "migration_blocked": "Mgbanwe ebe chọrọ ka e tinye aka n’akụkụ sava. Nwaa ọzọ mgbe e mesịrị ma ọ bụ kpọtụrụ ndị nkwado.",
+    "migration_progress": "Ọganihu mgbanwe ebe",
+    "migration_retryDelay": "Oge dị n’etiti nyocha: {seconds} sekọnd.",
+    "migration_resume": "Gaa n’ihu na mgbanwe ebe",
+    "status_authorizing": "Achọrọ ikike",
+    "status_authorizingDetail": "Nabata arịrịọ Android iji kwe ka VPN rụọ ọrụ.",
+    "status_preparing": "Na-akwadebe",
+    "status_preparingDetail": "Na-akwadebe njikọ gị dị nchekwa.",
+    "status_reconnecting": "Na-ejikọ ọzọ…",
+    "status_reconnectingDetail": "Njikọ kwụsịrị. VPN na-anwa ijikọ ọzọ.",
+    "status_connecting": "Na-ejikọ",
+    "status_connectingDetail": "Na-ejikọ na sava VPN…",
+    "status_connected": "Ejikọrọ",
+    "status_connectedDetail": "Njikọ VPN gị na-arụ ọrụ.",
+    "status_disconnecting": "Na-akwụsị njikọ",
+    "status_disconnectingDetail": "Njikọ VPN gị na-akwụsị.",
+    "status_error": "Njikọ adịghị dị",
+    "status_errorDetail": "Akwadoghị njikọ VPN. Nwaa ọzọ.",
+    "status_idle": "Ejikọghị",
+    "status_idleDetail": "Jikọọ VPN iji chebe njikọ gị.",
+    "trust_note": "Imechi ngwa a anaghị akwụsị VPN. Iji kwụsị ya, jiri “Kwụsị njikọ”.",
+    "locations_none": "Enweghị ebe dị ugbu a.",
+    "locations_available": "Họrọ ebe ọzọ ị chọrọ ịga.",
+    "locations_selected": "Ebe ahọpụtara",
+    "locations_select": "Họrọ ebe a",
+    "locations_lockedTunnel": "Kwụsị njikọ VPN iji gbanwee ebe.",
+    "locations_lockedMigration": "Chere ka mgbanwe ebe gwụchaa.",
+    "devices_title": "Ngwaọrụ gị",
+    "devices_used": "Ngwaọrụ {count} n’ime {limit}",
+    "devices_refresh": "Melite ngwaọrụ",
+    "devices_empty": "Enweghị ngwaọrụ VPN e debanyere aha ruo ugbu a.",
+    "devices_firstConnection": "A ga-agbakwunye ekwentị gị n’oge njikọ mbụ.",
+    "devices_thisDevice": "Ngwaọrụ a",
+    "devices_added": "Agbakwunyere na {date}",
+    "devices_unnamed": "Ngwaọrụ na-enweghị aha",
+    "action_remove": "Wepụ",
+    "settings_title": "Ntọala",
+    "settings_subtitle": "Nhọrọ gị na akaụntụ gị niile n’otu ebe.",
+    "settings_appearance": "Ọdịdị",
+    "settings_language": "Asụsụ",
+    "settings_languageDescription": "Asụsụ ị họọrọ na-emetụtakwa ọkwa VPN.",
+    "settings_account": "Akaụntụ",
+    "settings_signOut": "Pụọ n’akaụntụ",
+    "settings_privacy": "Iwu nzuzo",
+    "settings_terms": "Ụkpụrụ ojiji",
+    "settings_security": "Nchekwa na ịdị doro anya",
+    "settings_licenses": "Ikike ojiji nke akụkụ ngwa",
+    "settings_licensesDetail": "Sọftụwia e ji na ngwa a",
+    "settings_licensesLegalese": "Koodu isi mmalite nke ngwa a na akụkụ ya dị n’okpuru MPL-2.0: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "VPN na-anọgide na-arụ ọrụ mgbe ị hapụrụ ngwa a. Iji kwụsị ya, jiri “Kwụsị njikọ” na taabụ Njikọ.",
+    "theme_system": "Sistemu",
+    "theme_light": "Ọcha",
+    "theme_dark": "Ọchịchịrị",
+    "language_system": "Asụsụ ekwentị",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Wepụ ngwaọrụ a?",
+    "dialog_removeCurrent": "Ekwentị a ga-akwụsị njikọ VPN ma ghara inwe ike inweta ya ọzọ. A ga-ewepụ data njikọ VPN ya mgbe sava kwadoro.",
+    "dialog_removeOther": "A ga-akagbu inweta VPN nke “{name}”. Enweghị ike ịlaghachi azụ.",
+    "dialog_signOut": "Pụọ n’akaụntụ?",
+    "dialog_signOutMessage": "VPN ga-akwụsị, ị ga-achọkwa ịbanye ọzọ. Igodo VPN gị e zoro ezo ga-anọgide na ekwentị a maka njikọ gị ọzọ.",
+    "action_cancel": "Kagbuo",
+    "action_close": "Mechie",
+    "action_copy": "Depụta",
+    "action_signOut": "Pụọ n’akaụntụ",
+    "notice_close": "Mechie ozi",
+    "notice_sessionExpired_title": "Oge ịbanye agwụla",
+    "notice_sessionExpired_message": "Oge ịbanye gị agwụla. Banye ọzọ.",
+    "notice_connectionFailed_title": "Njikọ dara",
+    "notice_invalidCredentials_message": "Adreesị e-mail ma ọ bụ paswọọdụ ezighị ezi.",
+    "notice_emailVerification_title": "Achọrọ nkwado e-mail",
+    "notice_emailVerification_message": "Kwado adreesị e-mail gị tupu ịgbakwunye ngwaọrụ VPN.",
+    "notice_rateLimited_title": "Mbọ gafere oke",
+    "notice_deviceLimit_title": "Oke ngwaọrụ eruola",
+    "notice_deviceLimit_message": "Wepụ ngwaọrụ dị adị tupu ịgbakwunye ọzọ.",
+    "notice_identityRenewal_title": "Achọrọ imegharị njirimara VPN",
+    "notice_identityRenewal_message": "Ewepụla njirimara a. Mepụta njirimara ọhụrụ na ngwaọrụ a.",
+    "notice_migrationPending_title": "Mgbanwe ebe na-aga n’ihu",
+    "notice_migrationPending_message": "Mgbanwe ebe na-aga n’ihu ugbu a.",
+    "notice_migrationBlocked_title": "Egbochiri mgbanwe ebe",
+    "notice_migrationBlocked_message": "Mgbanwe ebe chọrọ ka e tinye aka n’akụkụ sava. Nwaa ọzọ mgbe e mesịrị ma ọ bụ kpọtụrụ ndị nkwado.",
+    "notice_targetUnavailable_title": "Sava adịghị dị nwa oge",
+    "notice_targetUnavailable_message": "Sava a adịghị dị nwa oge.",
+    "notice_networkUnavailable_title": "Njikọ ịntanetị adịghị dị",
+    "notice_networkUnavailable_message": "Lelee njikọ gị ma nwaa ọzọ.",
+    "notice_permissionDenied_title": "Ajụrụ ikike VPN",
+    "notice_permissionDenied_message": "Malite njikọ ọzọ ma nabata arịrịọ ikike Android.",
+    "notice_wireguardTimeout_title": "Sava anaghị aza",
+    "notice_wireguardTimeout_message": "Njikọ WireGuard were oge karịrị oke. Nwaa ọzọ ma ọ bụ họrọ ebe ọzọ.",
+    "notice_tlsFailed_title": "Ajụrụ njikọ dị nchekwa",
+    "notice_tlsFailed_message": "Sava anabataghị njikọ OpenVPN. Nwaa ọzọ. Ọ bụrụ na nsogbu ahụ na-aga n’ihu, mee nyocha nsogbu.",
+    "notice_tunRejected_title": "Android jụrụ ọdụ netwọkụ VPN",
+    "notice_tunRejected_message": "Android jụrụ nhazi netwọkụ OpenVPN rịọrọ.",
+    "notice_openvpnStart_title": "OpenVPN enweghị ike ịmalite",
+    "notice_openvpnStart_message": "Injin OpenVPN enweghị ike imecha ịmalite. Nwaa ọzọ. Ọ bụrụ na nsogbu ahụ adịgide, kpọtụrụ ndị nkwado.",
+    "notice_diagnosticCode": "Koodu nyocha nsogbu: {code}",
+    "notice_generic_title": "Njikọ VPN dara",
+    "notice_generic_message": "Njehie mere. Nwaa ọzọ mgbe e mesịrị.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Emepụtala akaụntụ} password_reset_sent{Natara arịrịọ ịtọgharị paswọọdụ} verification_email_sent{Ezipụrụ e-mail nkwado} location_migration_pending{Mgbanwe ebe na-aga n’ihu} vpn_sign_in_required{Achọrọ ịbanye n’akaụntụ} protocol_unavailable_at_location{Usoro adịghị dị} vpn_permission_denied{Ajụrụ ikike VPN} revoked_identity_device_limit{Oke ngwaọrụ eruola} tunnel_start_unexpected{VPN enweghị ike ịmalite} flutter_disconnect_timeout{Akwadoghị ịkwụsị njikọ} flutter_disconnect_unexpected{Enweghị ike ịkwụsị njikọ} device_revoked{Ewepụrụ ngwaọrụ} revoke_unexpected{Enweghị ike iwepụ ngwaọrụ} identity_renewal_unexpected{Enweghị ike imegharị njirimara} openvpn_renewal_unexpected{Enweghị ike imegharị OpenVPN} location_migration_blocked{Egbochiri mgbanwe ebe} location_migration_slow{Mgbanwe ebe ka na-aga n’ihu} location_migration_conflict{Mgbanwe ebe chọrọ ka e melite ya} location_migration_verification_failed{Akwadoghị mgbanwe ebe} location_migration_device_changed{Ngwaọrụ agbanwere n’oge mgbanwe ebe} tunnel_stop_failed{Mgbanwe ebe adịghị dị} device_clock_ahead{Elekere ngwaọrụ dị n’ihu} other{Ọrụ dara}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Emepụtala akaụntụ ahụ, mana enweghị ike izipụ e-mail nkwado. Jiri nhọrọ izipụ ọzọ na ngwa a.} password_reset_sent{Natara arịrịọ gị. Ọ bụrụ na akaụntụ dabara na adreesị a, ị nwere ike inweta e-mail. Biko lelee igbe spam gị kwa.} verification_email_sent{Ezipụla e-mail nkwado ọhụrụ ugbu a.} location_migration_pending{A ka na-akwadebe mgbanwe gaa {target}. Ị nwere ike ịga n’ihu na ya n’enweghị imepụta ngwaọrụ ahụ ọzọ.} vpn_sign_in_required{Banye n’akaụntụ gị tupu ịmalite VPN.} protocol_unavailable_at_location{Ebe a anaghị enye usoro ahọpụtara. Melite ebe ndị ahụ ma ọ bụ họrọ usoro ọzọ.} vpn_permission_denied{Android jụrụ ikike VPN. Malite njikọ ọzọ ma nabata arịrịọ sistemu.} revoked_identity_device_limit{Ewepụrụ inweta VPN nke ngwaọrụ a ma oke ngwaọrụ eruola. Wepụ otu ngwaọrụ n’okpuru Akaụntụ → Jikwaa ngwaọrụ m.} tunnel_start_unexpected{Njehie a na-atụghị anya kwụsịrị nkwadebe tunnel. Lelee koodu nyocha nsogbu ma nwaa ọzọ.} flutter_disconnect_timeout{Android akwadoghị n’oge na VPN akwụsịrị. Nwaa ịkwụsị ya ọzọ.} flutter_disconnect_unexpected{Njehie a na-atụghị anya gbochiri nkwado na tunnel akwụsịrị.} device_revoked{Akagbuola inweta VPN nke ngwaọrụ ahụ, e wepụkwara ihe nzuzo ya dị na ngwaọrụ a.} revoke_unexpected{Enweghị ike iwepụ ngwaọrụ ahụ. Melite ndepụta ahụ ma nwaa ọzọ.} identity_renewal_unexpected{Enweghị ike imepụta njirimara VPN ọhụrụ ahụ. Melite ngwaọrụ ma nwaa ọzọ.} openvpn_renewal_unexpected{Enweghị ike imegharị profaịlụ OpenVPN. Nwaa ọzọ ma ọ bụ lelee koodu nyocha nsogbu.} location_migration_blocked{Sava enweghị ike imecha mgbanwe a ugbu a. Echekwara ngwaọrụ ahụ na njirimara ya dị na ngwaọrụ a.} location_migration_slow{Sava ka na-akwadebe mgbanwe gaa {target}. Jiri “Gaa n’ihu” mgbe obere oge gasịrị.} location_migration_conflict{Ọnọdụ ngwaọrụ agbanweela na sava. Melite ngwaọrụ, wee gaa n’ihu na mgbanwe ahụ.} location_migration_verification_failed{Sava akwadoghị ebe ọhụrụ ahụ. Echekwara njirimara mbụ dị na ngwaọrụ a.} location_migration_device_changed{Ngwaọrụ sava weghachiri adabaghịzi na nke a na-agbanwe. Melite ngwaọrụ tupu ị nwaa ọzọ.} tunnel_stop_failed{A ghaghị ịkwụsị tunnel nke gara aga kpamkpam tupu njikọ ọhụrụ.} device_clock_ahead{Elekere ngwaọrụ a yiri ka ọ dị n’ihu oge. Gbanye ụbọchị na oge akpaaka iji nọgide n’akaụntụ gị.} other{Enweghị ike imecha ọrụ ahụ. Nwaa ọzọ ma ọ bụ zipụrụ ndị nkwado koodu nyocha nsogbu ahụ.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Oge ịbanye agwụla} invalid_credentials{Ịbanye dara} email_verification_required{Achọrọ nkwado e-mail} verification_email_cooldown{Ezipụlarị e-mail} rate_limited{Mbọ gafere oke} invalid_registration{Ozi chọrọ ndozi} email_exists{Akaụntụ adịlarị} invalid_profile{Profaịlụ ezighị ezi} invalid_device{Ngwaọrụ ezighị ezi} invalid_location{Ebe adịghị dị} device_limit{Oke ngwaọrụ eruola} device_exists{Njirimara VPN ejirilarị} device_identity_revoked{Achọrọ imegharị njirimara VPN} device_location_locked{Mgbanwe ebe chọrọ ka e melite ya} location_migration_pending{Mgbanwe ebe na-aga n’ihu} location_migration_blocked{Egbochiri mgbanwe ebe} target_ca_mismatch{Sava OpenVPN adakọtaghị} location_migration_conflict{Mgbanwe ebe chọrọ ka e melite ya} server_full{Sava jupụtara} capacity_unavailable{Ebe adịghị dị nwa oge} target_unavailable{Sava adịghị dị nwa oge} not_found{Ahụghị ihe ahụ} invalid_openvpn_csr{Njirimara OpenVPN ezighị ezi} openvpn_profile_exists{Profaịlụ OpenVPN adịlarị} openvpn_profile_revoked{Akagbuola profaịlụ OpenVPN} openvpn_operation_pending{Ọrụ OpenVPN na-aga n’ihu} openvpn_operation_terminal{Ọrụ OpenVPN kwụsịrị} openvpn_address_unavailable{Adreesị OpenVPN adịghị dị} openvpn_profile_conflict{Esemokwu OpenVPN} openvpn_signer_unavailable{OpenVPN adịghị dị} email_delivery_unavailable{E-mail adịghị dị} invalid_token{Njikọ ezighị ezi} network_unavailable{Njikọ ịntanetị adịghị dị} invalid_json{Arịrịọ ezighị ezi} invalid_api_response{Nzaghachi sava ezighị ezi} ipv6_unavailable{IPv6 adịghị dị} invalid_ip_families{Ajụrụ nhazi netwọkụ} other{Ọrụ adịghị dị}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Oge ịbanye gị agwụla. Banye ọzọ.} invalid_credentials{Adreesị e-mail ma ọ bụ paswọọdụ ezighị ezi.} email_verification_required{Kwado adreesị e-mail gị tupu ịgbakwunye ngwaọrụ VPN.} invalid_registration{Lelee ozi a rịọrọ na nkwenye ndị ahụ.} email_exists{Akaụntụ na-eji adreesị e-mail a ugbu a.} invalid_profile{Lelee ozi profaịlụ gị.} invalid_device{Aha ma ọ bụ njirimara dị na ngwaọrụ a ezighị ezi.} invalid_location{Melite ndepụta ebe ahụ ma nwaa ọzọ.} device_limit{Wepụ ngwaọrụ dị adị tupu ịgbakwunye ọzọ.} device_exists{Njirimara VPN a jikọtalarị na akaụntụ ọzọ.} device_identity_revoked{Ewepụla njirimara a. A ghaghị imepụta njirimara ọhụrụ na ngwaọrụ a.} device_location_locked{Ebe ngwaọrụ a agbanweela ugbu a. Ngwa ahụ ga-aga n’ihu na mgbanwe na-aga.} location_migration_pending{Mgbanwe ebe na-aga n’ihu ugbu a.} location_migration_blocked{Mgbanwe ebe chọrọ ka e tinye aka n’akụkụ sava. Nwaa ọzọ mgbe e mesịrị ma ọ bụ kpọtụrụ ndị nkwado.} target_ca_mismatch{Sava a adakọtabeghị na profaịlụ OpenVPN dị ugbu a.} location_migration_conflict{Melite ngwaọrụ, wee nwaa mgbanwe ebe ọzọ.} server_full{Ebe a eruola oke njikọ ya. Họrọ ebe ọzọ ma ọ bụ nwaa ọzọ mgbe e mesịrị.} capacity_unavailable{Anyị enweghị ike ịchọpụta ma ebe a dị ugbu a. Họrọ ebe ọzọ ma ọ bụ nwaa ọzọ mgbe e mesịrị.} target_unavailable{Sava a adịghị dị nwa oge.} not_found{Ihe a adịghịzi na akaụntụ gị.} invalid_openvpn_csr{Mepụta njirimara OpenVPN ọhụrụ ma nwaa ọzọ.} openvpn_profile_exists{Profaịlụ OpenVPN adịlarị maka ngwaọrụ a.} openvpn_profile_revoked{Megharịa profaịlụ OpenVPN iji gaa n’ihu.} openvpn_operation_pending{Mgbanwe ahụ ka na-agbasa. Nwaa ọzọ mgbe e mesịrị.} openvpn_operation_terminal{Mepụta njirimara OpenVPN ọhụrụ ma nwaa ọzọ.} openvpn_address_unavailable{Enweghị adreesị OpenVPN dị ugbu a.} openvpn_profile_conflict{Profaịlụ agbanweela. Melite ngwaọrụ ma nwaa ọzọ.} openvpn_signer_unavailable{Ọrụ OpenVPN adịghị dị nwa oge.} email_delivery_unavailable{Enweghị ike izipụ e-mail ahụ. Nwaa ọzọ mgbe e mesịrị.} invalid_token{Njikọ a ezighị ezi ma ọ bụ agwụla oge. Rịọ nke ọhụrụ.} network_unavailable{Lelee njikọ ịntanetị gị ma nwaa ọzọ.} invalid_json{Lelee ozi ndị ị tinyere ma nwaa ọzọ.} invalid_api_response{Sava weghachiri nzaghachi a na-atụghị anya. Nwaa ọzọ mgbe e mesịrị.} ipv6_unavailable{Sava enweghị ike ịgbanye IPv6 ugbu a. Nwaa ọzọ mgbe e mesịrị.} invalid_ip_families{Nhazi tunnel ezughị oke ma ọ bụ ọ dabaghị na adreesị e nyere ikike. Nwaa ọzọ site na ngwa a.} other{Njehie sava mere. Nwaa ọzọ mgbe e mesịrị.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Nwaa ọzọ n’oge na-adịghị anya.",
+    "notice_retryAfter": "{seconds, plural, other{Nwaa ọzọ mgbe sekọnd {seconds} gasịrị.}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, other{Nwaa ọzọ mgbe nkeji {minutes} gasịrị.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, other{Nwaa ọzọ mgbe awa {hours} gasịrị.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Ịmalitegharị VPN sistemu adịghị dị} system_vpn_resume_corrupt{Ịmalitegharị VPN sistemu ezighị ezi} system_vpn_resume_session_invalid{Oge ịmalitegharị VPN ezighị ezi} system_vpn_resume_identity_changed{Njirimara VPN agbanweela} system_vpn_resume_identity_invalid{Njirimara ịmalitegharị VPN ezighị ezi} system_vpn_resume_storage_failed{Nchekwa ịmalitegharị VPN adịghị dị} system_vpn_resume_network_timeout{Ịmalitegharị VPN enweghị netwọkụ} system_vpn_resume_blocked{Egbochiri ịmalitegharị VPN} system_vpn_resume_failed{Ịmalitegharị VPN dara} system_vpn_resume_error_invalid{Njehie ịmalitegharị VPN ezighị ezi} wireguard_identity_store_failed{Echekwaghị njirimara WireGuard} wireguard_identity_unavailable{Njirimara WireGuard adịghị dị} vpn_host_destroyed{Akụkụ VPN Android kwụsịrị} vpn_host_unavailable{Akụkụ VPN Android adịghị dị} openvpn_renewal_required{Achọrọ imegharị asambodo OpenVPN} openvpn_recovery_failed{Mgbake OpenVPN dara} openvpn_recovery_exhausted{Ejirilarị mgbake OpenVPN} vpn_permission_required{Achọrọ ikike VPN} vpn_permission_denied{Ajụrụ ikike VPN} vpn_permission_request_failed{Enweghị ike ịrịọ ikike} wireguard_foreground_service_unavailable{Ọrụ WireGuard adịghị dị} wireguard_identity_invalid{Igodo WireGuard dị na ngwaọrụ ezighị ezi} wireguard_identity_in_use{Njirimara WireGuard ejirilarị} wireguard_configuration_invalid{Nhazi WireGuard ezighị ezi} wireguard_operation_pending{Ọrụ WireGuard ka na-arụ} wireguard_start_failed{Ajụrụ ịmalite WireGuard} wireguard_stop_timeout{Akwadoghị ịkwụsị WireGuard} wireguard_handshake_timeout{WireGuard enweghị nzaghachi} openvpn_connection_timeout{OpenVPN enweghị nzaghachi} openvpn_core_unavailable{Injin OpenVPN adịghị dị} openvpn_operation_pending{Oge njikọ OpenVPN ka na-arụ ọrụ} openvpn_stop_timeout{Akwadoghị ịkwụsị OpenVPN} openvpn_profile_unavailable{Profaịlụ OpenVPN dị na ngwaọrụ adịghị} openvpn_native_failed{Oku injin OpenVPN kwụsịrị} openvpn_key_generation_failed{Enweghị ike imepụta igodo OpenVPN P-256} openvpn_csr_generation_failed{Enweghị ike imepụta CSR OpenVPN} openvpn_identity_store_failed{Echekwaghị njirimara OpenVPN} openvpn_identity_clear_failed{Iwepụ OpenVPN ezughị oke} openvpn_identity_in_use{A ka na-eji njirimara OpenVPN} openvpn_tls_verification_required{Nyocha TLS OpenVPN adịghị} openvpn_cipher_invalid{Algoridịm nzuzo OpenVPN ezighị ezi} openvpn_profile_rejected{Ajụrụ profaịlụ OpenVPN} openvpn_identity_inconsistent{Njirimara OpenVPN adakọtaghị} tls_handshake_failed{Ajụrụ nkwekọrịta OpenVPN} tls_alert_unknown_ca{Asambodo ngwa OpenVPN amataghị} tls_alert_bad_certificate{Ajụrụ asambodo ngwa OpenVPN} tls_alert_unsupported_certificate{Asambodo OpenVPN enweghị nkwado} tls_client_certificate_required{Achọrọ asambodo ngwa OpenVPN} tls_alert_misc{Ịdọ aka ná ntị TLS OpenVPN} tls_signature_algorithm_rejected{Mbinye aka OpenVPN enweghị nkwado} tls_handshake_rejected{Ajụrụ nkwekọrịta TLS OpenVPN} tls_version_rejected{Ụdị TLS OpenVPN adakọtaghị} tls_certificate_expired{Asambodo TLS agwụla oge} tls_certificate_revoked{Akagbuola asambodo TLS} transport_failed{Enweghị ike iru sava OpenVPN} tun_configuration_rejected{Enweghị ike imepụta ọdụ netwọkụ OpenVPN} tun_setup_failed{Nhazi TUN OpenVPN dara} tun_interface_create_failed{Mmepụta ọdụ netwọkụ OpenVPN dara} tun_interface_disabled{Egbanyụrụ ọdụ netwọkụ OpenVPN} tun_halted{Ọdụ netwọkụ OpenVPN kwụsịrị} tun_already_established{Ọdụ netwọkụ OpenVPN emeghelarị} tun_addresses_missing{Adreesị OpenVPN adịghị} tun_routes_missing{Ụzọ OpenVPN adịghị} tun_dns_missing{DNS OpenVPN adịghị} tun_permission_revoked{Akagbuola ikike VPN} tun_establish_returned_null{Android jụrụ ọdụ netwọkụ VPN} openvpn_service_start_failed{Ọrụ OpenVPN adịghị dị} openvpn_operation_timeout{Oku OpenVPN gafere oge} openvpn_start_failed{Ajụrụ ịmalite OpenVPN} openvpn_connection_failed{Njikọ OpenVPN kwụsịrị} openvpn_core_status_error{OpenVPN Core kwụsịrị n’ihi njehie} openvpn_stopped_before_connected{OpenVPN kwụsịrị tupu ọ jikọọ} openvpn_auth_failed{Ajụrụ nyocha njirimara OpenVPN} openvpn_client_setup_failed{Nhazi ngwa OpenVPN dara} openvpn_client_halted{Ngwa OpenVPN kwụsịrị} openvpn_client_restart{A rịọrọ ịmalitegharị OpenVPN} openvpn_inactive_timeout{OpenVPN adịghị arụ ọrụ ogologo oge} openvpn_session_expired{Oge njikọ OpenVPN agwụla} openvpn_credentials_required{Nyocha njirimara OpenVPN enweghị nkwado} openvpn_proxy_failed{Nnyefe proxy OpenVPN dara} openvpn_compression_failed{Ajụrụ mkpakọ OpenVPN} openvpn_ntlm_crypto_unavailable{Nzuzo NTLM OpenVPN adịghị dị} openvpn_feature_unsupported{Atụmatụ OpenVPN enweghị nkwado} network_unavailable{Njikọ ịntanetị adịghị dị} network_lost{Netwọkụ adịghị dị} certificate_validation_failed{Ajụrụ asambodo sava} openvpn_certificate_expired{Asambodo OpenVPN agwụla oge} tunnel_active_for_another_account{Tunnel nke akaụntụ ọzọ ka na-arụ ọrụ} tunnel_already_active{Tunnel nke injin na-arụlarị ọrụ} tunnel_stop_timeout{Akwadoghị ịkwụsị {protocol}} tunnel_disconnected{{protocol} kwụsịrị} native_bridge_unavailable{Ihe njikọ Android adịghị dị} native_operation_failed{Ọrụ Android kwụsịrị} invalid_arguments{Paramita VPN ezughị oke} invalid_account_id{Akaụntụ VPN ezighị ezi} invalid_device_id{Njirimara ngwaọrụ ezighị ezi} storage_key_not_allowed{Ajụrụ igodo nchekwa} secure_storage_read_failed{Ịgụ n’ebe nchekwa e chebere dara} secure_storage_write_failed{Ide n’ebe nchekwa e chebere dara} key_generation_failed{Enweghị ike imepụta igodo WireGuard} csr_generation_failed{Enweghị ike imepụta CSR OpenVPN} other{Njehie VPN nke injin amataghị ụdị ya}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android enweghị ike ịchọta oge njikọ VPN nke a pụrụ ịmalitegharị. Malite njikọ ọhụrụ na ngwa ahụ.} system_vpn_resume_corrupt{Data ịmalitegharị VPN echekwara ezighị ezi, a gaghị eji ya. Malite njikọ ọhụrụ.} system_vpn_resume_session_invalid{Oge ịbanye echekwara apụghịzi ịmalitegharị VPN. Banye ọzọ na ngwa ahụ.} system_vpn_resume_identity_changed{Njirimara VPN dị na ngwaọrụ agbanweela. A kwụsịrị ịmalitegharị; malite njikọ ọhụrụ.} system_vpn_resume_identity_invalid{Njirimara e ji malitegharị ezighị ezi. Malite njikọ ọhụrụ.} system_vpn_resume_storage_failed{Android enweghị ike ịgụ ma ọ bụ melite data ịmalitegharị e zoro ezo. Malite njikọ ọhụrụ.} system_vpn_resume_network_timeout{Android achọtaghị netwọkụ n’oge iji malitegharị VPN. Nwaa ọzọ mgbe netwọkụ dị.} system_vpn_resume_blocked{Egbochiri ịmalitegharị VPN. Lelee ntọala Android, wee malite njikọ ọhụrụ.} system_vpn_resume_failed{Ịmalitegharị VPN nke Android emeghị nke ọma. Malite njikọ ọhụrụ na ngwa ahụ.} system_vpn_resume_error_invalid{Android weghachiri njehie ịmalitegharị nke apụghị iji. Malite njikọ ọhụrụ.} wireguard_identity_store_failed{Android enweghị ike ichekwa njirimara WireGuard e zoro ezo nke akaụntụ a.} wireguard_identity_unavailable{Enweghị njirimara WireGuard a pụrụ iji maka njikọ a.} vpn_host_destroyed{Akụkụ Android na-ebu VPN kwụsịrị. Malite njikọ ọhụrụ.} vpn_host_unavailable{Android enweghị ike imepụta akụkụ na-ebu VPN. Nwaa ọzọ mgbe ị lelechara ntọala VPN.} openvpn_renewal_required{Asambodo ahụ chọrọ ka ị mee ihe na ngwa ahụ tupu ijikọ.} openvpn_recovery_failed{Mgbake akpaaka emeghị nke ọma. Malite njikọ ọhụrụ na ngwa ahụ.} openvpn_recovery_exhausted{Ejirilarị mgbake akpaaka. Malite njikọ ọhụrụ na ngwa ahụ.} vpn_permission_required{Android chọrọ ikike VPN ọhụrụ tupu ịmalite tunnel.} vpn_permission_denied{Kwere FuzeVPN na arịrịọ Android iji gaa n’ihu.} vpn_permission_request_failed{Android enweghị ike imepe ihuenyo ikike VPN.} wireguard_foreground_service_unavailable{Android enweghị ike idobe ọrụ WireGuard n’ihu ihuenyo.} wireguard_identity_invalid{Igodo WireGuard e zoro ezo nke akaụntụ a agụghị ma ọ bụ ezighị ezi.} wireguard_identity_in_use{Ọrụ ọzọ ka na-eji igodo WireGuard nke akaụntụ a.} wireguard_configuration_invalid{Adreesị WireGuard, DNS, igodo sava ma ọ bụ ụzọ ndị e nwetara ezighị ezi.} wireguard_operation_pending{Ọrụ WireGuard gara aga ahapụbeghị ọrụ injin ya.} wireguard_start_failed{Injin WireGuard jụrụ ịgbanye nhazi ahụ.} wireguard_stop_timeout{Ọrụ WireGuard akwadoghị ịhapụ ọdụ netwọkụ VPN n’ime oge e kpebiri.} wireguard_handshake_timeout{Tunnel akwadoghị nkwekọrịta njikọ na sava n’oge.} openvpn_connection_timeout{OpenVPN akwadoghị njikọ na sava n’oge.} openvpn_core_unavailable{Ụdị ngwa a enweghị injin OpenVPN a pụrụ iji.} openvpn_operation_pending{Injin ahụ ka na-ejide oge njikọ OpenVPN gara aga ma jụ imepụta nke abụọ.} openvpn_stop_timeout{OpenVPN Core akwadoghị n’ime oge e kpebiri na oge njikọ ya kwụsịrị ma e bibiri ya.} openvpn_profile_unavailable{Enweghị profaịlụ OpenVPN e kwadoro a pụrụ ịgụ maka njikọ a.} openvpn_native_failed{Njehie ngwa kwụsịrị OpenVPN. Nwaa ijikọ ọzọ. Ọ bụrụ na nsogbu ahụ aga n’ihu, mee nyocha nsogbu.} openvpn_key_generation_failed{Android Keystore enweghị ike imepụta ma ọ bụ ịgụ igodo nzuzo P-256 nke a pụghị ibupụ.} openvpn_csr_generation_failed{Igodo Android Keystore enweghị ike ibinye aka na arịrịọ asambodo OpenVPN.} openvpn_identity_store_failed{Enweghị ike ichekwa asambodo ma ọ bụ profaịlụ OpenVPN n’ime nchekwa e zoro ezo.} openvpn_identity_clear_failed{Android enweghị ike iwepụ njirimara OpenVPN niile dị na ngwaọrụ nke akaụntụ a.} openvpn_identity_in_use{Oge njikọ OpenVPN nke injin ka na-eji igodo ma ọ bụ asambodo nke ngwaọrụ a.} openvpn_tls_verification_required{Profaịlụ ahụ achọghị nyocha asambodo sava n’ụzọ doro anya.} openvpn_cipher_invalid{Sava nyere algoridịm nzuzo nke na-adịghị na ndepụta e kwere ekwe.} openvpn_profile_rejected{Profaịlụ e nwetara site na sava adakọtaghị. Mepụta ngwaọrụ a ọzọ, wee nwaa ọzọ.} openvpn_identity_inconsistent{Asambodo ahụ adakọtaghị na njirimara nchekwa nke ekwentị a. E dochighị profaịlụ ọ bụla dị na ngwaọrụ.} tls_handshake_failed{Sava jụrụ nkwekọrịta TLS. Mepụta profaịlụ ọzọ ma ọ bụrụ na nsogbu ahụ adịgide.} tls_alert_unknown_ca{Sava amataghị onye nyere asambodo ngwaọrụ a. A ghaghị ilele sava OpenVPN.} tls_alert_bad_certificate{Sava jụrụ asambodo ngwaọrụ a. Mepụta ngwaọrụ ọzọ tupu ị nwaa ọzọ.} tls_alert_unsupported_certificate{Sava anaghị akwado ụdị asambodo nchekwa Android na-eji.} tls_client_certificate_required{Sava chọrọ asambodo ngwa, mana OpenVPN Core enweghị ike inye otu.} tls_alert_misc{Sava weghachiri ịdọ aka ná ntị TLS nke na-abụghị maka asambodo ma ọ bụ ụdị TLS.} tls_signature_algorithm_rejected{Sava jụrụ algoridịm ECDSA P-256 nke igodo Android Keystore.} tls_handshake_rejected{Sava kwụsịrị nkwekọrịta TLS tupu njikọ.} tls_version_rejected{Ngwa ahụ na sava achọtaghị ụdị TLS ha abụọ na-akwado.} tls_certificate_expired{Asambodo e gosipụtara n’oge njikọ agwụla oge.} tls_certificate_revoked{Akagbuola asambodo e gosipụtara n’oge njikọ.} transport_failed{Sava OpenVPN anaghị aza na netwọkụ dị ugbu a. Nwaa ọzọ n’oge na-adịghị anya.} tun_configuration_rejected{Android jụrụ nhazi netwọkụ OpenVPN rịọrọ.} tun_setup_failed{OpenVPN Core jụrụ atụmatụ netwọkụ tupu e mepụta ọdụ netwọkụ Android.} tun_interface_create_failed{OpenVPN Core enweghị ike inweta ọdụ netwọkụ TUN site na Android VpnService.} tun_interface_disabled{Android ma ọ bụ OpenVPN Core gbanyụrụ ọdụ netwọkụ TUN n’oge njikọ.} tun_halted{OpenVPN Core natara arịrịọ ịkwụsị ọdụ netwọkụ TUN.} tun_already_established{OpenVPN rịọrọ ọdụ netwọkụ nke abụọ n’otu njikọ ahụ. A kwụsịrị tunnel maka nchekwa.} tun_addresses_missing{Sava enyeghị adreesị tunnel a pụrụ iji.} tun_routes_missing{Sava enyeghị ụzọ tunnel a pụrụ iji.} tun_dns_missing{Sava enyeghị sava DNS a pụrụ iji.} tun_permission_revoked{Android kagburu ikike VPN n’oge njikọ.} tun_establish_returned_null{Android emepụghị ọdụ netwọkụ ahụ, n’ọtụtụ oge n’ihi na VPN ọzọ ka na-arụ ọrụ.} openvpn_service_start_failed{Android enweghị ike ịmalite ọrụ OpenVPN n’ihu ihuenyo.} openvpn_operation_timeout{Oku JNI gaa OpenVPN Core gafere oge kachasị ya.} openvpn_start_failed{Ọrụ Android dị njikere, mana OpenVPN Core anabataghị ịmalite profaịlụ ahụ.} openvpn_connection_failed{OpenVPN Core kwụsịrị tupu ọ wepụta ihe omume CONNECTED.} openvpn_core_status_error{Okirikiri ọrụ OpenVPN nke injin kwụsịrị n’ihi njehie, na-enweghị ihe omume ikpeazụ ka doro anya.} openvpn_stopped_before_connected{Okirikiri ọrụ OpenVPN nke injin kwụsịrị tupu CONNECTED, na-enweghị njehie Core doro anya.} openvpn_auth_failed{Sava OpenVPN jụrụ nyocha njirimara nke profaịlụ ahụ.} openvpn_client_setup_failed{OpenVPN Core enweghị ike ịkwadebe ngwa ahụ tupu njikọ netwọkụ.} openvpn_client_halted{OpenVPN Core natara arịrịọ ikpeazụ ịkwụsị ngwa ahụ.} openvpn_client_restart{OpenVPN Core rịọrọ ịmalitegharị oge nnyefe ya.} openvpn_inactive_timeout{OpenVPN Core mechiri oge njikọ ahụ mgbe oge adịghị arụ ọrụ gasịrị.} openvpn_session_expired{Sava kọrọ na oge njikọ OpenVPN agwụla.} openvpn_credentials_required{Sava ma ọ bụ proxy na-arịọ ozi nbanye ị ga-etinye ozugbo, nke na-abụghị akụkụ nke profaịlụ asambodo a.} openvpn_proxy_failed{OpenVPN Core kọrọ na proxy ma ọ bụ relay e haziri dara.} openvpn_compression_failed{OpenVPN Core jụrụ ụdị mkpakọ profaịlụ ma ọ bụ sava kwupụtara.} openvpn_ntlm_crypto_unavailable{Profaịlụ ahụ na-arịọ nzuzo NTLM nke adịghị n’ụdị a.} openvpn_feature_unsupported{Profaịlụ ma ọ bụ sava chọrọ atụmatụ nke adịghị na ngwa Android a.} network_unavailable{Enweghị netwọkụ anụ ahụ a pụrụ iji.} network_lost{A kwụsịrị tunnel mgbe netwọkụ furu efu.} certificate_validation_failed{Enweghị ike inyocha njirimara sava OpenVPN.} openvpn_certificate_expired{Megharịa profaịlụ OpenVPN tupu ijikọ ọzọ.} tunnel_active_for_another_account{A ghaghị ịkwụsị tunnel nke akaụntụ ọzọ tupu njikọ a.} tunnel_already_active{Android kọrọ na oge njikọ VPN gara aga ka na-eji ọdụ netwọkụ ahụ.} tunnel_stop_timeout{Injin {protocol} akwadoghị ịhapụ ọdụ netwọkụ VPN n’ime oge e kpebiri.} tunnel_disconnected{Injin ahụ kọrọ na tunnel kwụsịrị n’enweghị atụmanya mgbe ọ malitechara.} native_bridge_unavailable{Ngwa ahụ enweghị ike inweta ọrụ VPN Android. Mechie ngwa ahụ, meghee ya ọzọ, wee nwaa ọzọ.} native_operation_failed{Njehie ngwa kwụsịrị ọrụ VPN ahụ. Nwaa ọzọ. Ọ bụrụ na nsogbu ahụ aga n’ihu, mee nyocha nsogbu.} invalid_arguments{Ozi achọrọ maka ọrụ VPN a ezughị oke. Nwaa ọzọ. Ọ bụrụ na nsogbu ahụ aga n’ihu, mee nyocha nsogbu.} invalid_account_id{Ọrụ injin ahụ ejikọtaghị na njirimara akaụntụ ziri ezi.} invalid_device_id{Njirimara ngwaọrụ e zigara injin ahụ adịghị ma ọ bụ ezighị ezi.} storage_key_not_allowed{Ihe njikọ Android gbochiri igodo nke na-adịghị na ndepụta nchekwa e kwere ekwe.} secure_storage_read_failed{Android Keystore enweghị ike imeghe data e zoro ezo nke akaụntụ a dị na ngwaọrụ.} secure_storage_write_failed{Android Keystore enweghị ike izo ezo ma ọ bụ ichekwa data dị na ngwaọrụ.} key_generation_failed{Android enweghị ike imepụta ma ọ bụ ịgụ igodo WireGuard n’ime nchekwa e chebere.} csr_generation_failed{Android Keystore enweghị ike imepụta ma ọ bụ ibinye aka na CSR OpenVPN P-256.} other{Otu ngalaba injin nke enweghị akwụkwọ nkọwa dara. Zipụrụ ndị nkwado koodu nyocha nsogbu egosiri n’okpuru.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Arịrịọ ikike emeghelarị",
+    "notice_permissionRequestInProgress_message": "Arịrịọ ikike VPN Android egosilarị. Mezuo ya tupu ị nwaa ọzọ.",
+    "notice_permissionRequestInterrupted_title": "Arịrịọ ikike VPN kwụsịrị",
+    "notice_permissionRequestInterrupted_message": "Ihuenyo ikike VPN mechiri tupu ngwa ahụ anata nzaghachi.",
+    "notice_openvpnProofMissing_title": "Akwadoghị njikọ OpenVPN",
+    "notice_openvpnProofMissing_message": "Enweghị ike ịkwado njikọ OpenVPN. A kwụsịrị ya maka nchekwa. Nwaa ọzọ.",
+    "openvpnCleanup_title": "Akagbuola profaịlụ OpenVPN",
+    "openvpnCleanup_working": "Na-akwụsị ma na-ewepụ profaịlụ OpenVPN akagburu…",
+    "openvpnCleanup_stopFailed": "Akwadoghị ịkwụsị OpenVPN. Nwaa ọzọ tupu imepụta profaịlụ ọhụrụ.",
+    "openvpnCleanup_cleanupFailed": "Enweghị ike iwepụ kpamkpam profaịlụ OpenVPN akagburu. Nwaa ihicha ọzọ.",
+    "openvpnCleanup_complete": "Ewepụla profaịlụ OpenVPN akagburu ahụ. Pịa “Jikọọ” iji mepụta nke ọhụrụ.",
+    "network_title": "Nhazi netwọkụ",
+    "network_ipv4Fallback": "IPv6 adịghị dị nwa oge. Nkwadebe na-aga n’ihu site na IPv4.",
+    "network_rejectedTitle": "Ajụrụ nhazi netwọkụ",
+    "network_rejectedMessage": "Nhazi tunnel ezughị oke ma ọ bụ ọ dabaghị na adreesị e nyere ikike. Nwaa ọzọ site na ngwa a.",
+    "network_unreadableTitle": "Enweghị ike ịgụ nhazi dị na ngwaọrụ",
+    "network_unreadableMessage": "Enweghị ike iji nhazi netwọkụ OpenVPN echekwara. Jikọọ ọzọ site na ngwa a iji melite ya.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Nchebe netwọkụ",
+    "protection_subtitle": "Gbochie inweta ịntanetị n’enweghị VPN ma ọ bụrụ na VPN kwụsịrị.",
+    "protection_active": "Nchebe sistemu na-arụ ọrụ",
+    "protection_alwaysOnOnly": "Egbanyela VPN na-arụ ọrụ mgbe niile; gbanye igbochi njikọ na-enweghị VPN",
+    "protection_inactive": "Nchebe sistemu adịghị arụ ọrụ",
+    "protection_unknown": "Lelee nchebe sistemu",
+    "protection_openSettings": "Mepee ntọala Android",
+    "protection_dialogTitle": "Hazie nchebe netwọkụ",
+    "protection_dialogMessage": "Android na-ejikwa VPN na-arụ ọrụ mgbe niile na igbochi njikọ na-enweghị VPN. Lelee na a họọrọla FuzeVPN, ma gbanye igbochi na ntọala sistemu.",
+    "protection_dialogOpen": "Mepee ntọala",
+    "session_systemProtectionNote": "Ọ bụrụ na Android ka na-egbochi data na-enweghị VPN, mepee ntọala sistemu iji lelee ma ọ bụ gbanwee nchebe a.",
+    "diagnostics_title": "Nyocha nsogbu",
+    "diagnostics_settingsTitle": "Nyocha nsogbu ngwa",
+    "diagnostics_automaticTitle": "Zipụ njehie dị mkpa",
+    "diagnostics_automaticDescription": "Kekọrịta obere akụkọ teknụzụ mgbe njehie dị mkpa mere.",
+    "diagnostics_privacy": "Akụkọ ndị e zipụrụ jikọtara na akaụntụ ị banyere n’ime ya, a na-echekwa ha ruo ụbọchị 30. Ha enweghị akụkọ nchọgharị, paswọọdụ ma ọ bụ igodo VPN.",
+    "diagnostics_manualOpen": "Mee nyocha nsogbu",
+    "diagnostics_localDescription": "Mepụta akụkọ banyere ọnọdụ ngwa na VPN. Njikọ gị agaghị agbanwe.",
+    "diagnostics_sendReport": "Zipụ akụkọ ahụ",
+    "diagnostics_sendHint": "Hapụ igbe a n’enweghị akara iji chekwa akụkọ ahụ na ngwaọrụ a.",
+    "diagnostics_signedOut": "Banye n’akaụntụ gị iji zipụ akụkọ.",
+    "diagnostics_localLifetime": "Chekwaa akụkọ a na ekwentị gị iji debe ya mgbe ị mechiri ngwa ahụ.",
+    "diagnostics_run": "Mee nyocha nsogbu",
+    "diagnostics_rerun": "Mee nyocha nsogbu ọzọ",
+    "diagnostics_running": "Na-enyocha…",
+    "diagnostics_sending": "Na-ezipụ akụkọ…",
+    "diagnostics_prepared": "Akụkọ dị njikere na ngwaọrụ a",
+    "diagnostics_queued": "Akụkọ na-echere izipụ",
+    "diagnostics_sent": "Natara akụkọ ahụ",
+    "diagnostics_failed": "Izipụ emeghị nke ọma. Akụkọ dị na ngwaọrụ gị ka dị.",
+    "diagnostics_preparationFailed": "Enweghị ike ịkwadebe akụkọ nyocha nsogbu. Nwaa ọzọ.",
+    "diagnostics_authenticationRequired": "Banye ọzọ iji zipụ akụkọ ahụ.",
+    "diagnostics_retry": "Nwaa izipụ ọzọ",
+    "diagnostics_export": "Chekwaa akụkọ",
+    "diagnostics_exportFailed": "Mbupụ emeghị nke ọma. Nwaa ọzọ site na akụkọ dị na ngwaọrụ.",
+    "diagnostics_preferenceFailed": "Enweghị ike ichekwa ntọala a. Nwaa ọzọ.",
+    "diagnostics_receipt": "Ntụaka: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Natara na {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Echekwara ruo {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Natarala akụkọ a na mbụ.",
+    "diagnostics_preview": "Nlele akụkọ",
+    "diagnostics_eventCount": "{count, plural, =0{Enweghị ihe omume teknụzụ e jikọtara} =1{Ihe omume teknụzụ 1 e jikọtara} other{Ihe omume teknụzụ {count} e jikọtara}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Nkọwa teknụzụ",
+    "diagnostics_empty": "Enweghị akụkọ nyocha nsogbu e kwadebeworo.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Ọnọdụ tunnel} handshake{Nkwado njikọ} certificate{Asambodo VPN} kill_switch{Nchebe Android} connectivity{Netwọkụ dị} api_reachability{Inweta ọrụ} secure_storage{Ebe nchekwa e chebere} other{Nyocha dị na ngwaọrụ}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Enyochala} failed{Chọrọ nlebara anya} skipped{Anwaghị ule — enweghị nyocha na-arụ ọrụ} unknown{Ozi adịghị dị} other{Ozi adịghị dị}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Nnọọ na FuzeVPN",
+    "connection_changeLocation": "Gbanwee ebe",
+    "connection_details": "Nkọwa njikọ",
+    "locations_searchLabel": "Chọọ obodo ma ọ bụ mba",
+    "locations_clearSearch": "Hichapụ nchọ",
+    "locations_filterAll": "Niile",
+    "locations_filterFavorites": "Ndị kacha amasị",
+    "locations_results": "{count, plural, other{ebe {count}}}",
+    "locations_noResults": "Ahụghị ebe ọ bụla",
+    "locations_noResultsHint": "Nwaa obodo ma ọ bụ mba ọzọ.",
+    "locations_noFavorites": "Ndị kacha amasị gị, dị nso",
+    "locations_noFavoritesHint": "Pịa kpakpando dị n’akụkụ ebe iji chekwa ya ebe a.",
+    "locations_showAll": "Lee ebe niile",
+    "locations_addFavorite": "Tinye {name} na ndị kacha amasị",
+    "locations_removeFavorite": "Wepụ {name} n’ime ndị kacha amasị",
+    "locations_favoriteSaveFailed": "Enweghị ike ichekwa ya na ndị kacha amasị. Nwaa ọzọ.",
+    "locations_emptyTitle": "Enweghị ebe dị",
+    "locations_emptyHint": "Melite ndepụta ahụ iji nwaa ọzọ.",
+    "devices_manage": "Jikwaa ngwaọrụ m",
+    "settings_personalization": "Mee ka ọ bụrụ nke gị",
+    "settings_safety": "Nchebe",
+    "settings_help": "Ị chọrọ enyemaka?",
+    "settings_about": "Banyere FuzeVPN",
+    "diagnostics_heading": "Ghọta nsogbu njikọ",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Dị} pending{Na-akwadebe} revoked{Ewepụrụ} expired{Agwụla oge} other{Ọnọdụ adịghị dị}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Nhọrọ echekwabeghị",
+    "notice_preferenceSave_message": "A na-eji nhọrọ gị ugbu a, mana enweghị ike ichekwa ya. Nwaa ọzọ iji debe ya mgbe ị mechiri ngwa ahụ.",
+    "connection_androidDisconnectHint": "Ọ bụrụ na Android ka na-edobe VPN n’ọrụ, gbanyụọ VPN na-arụ ọrụ mgbe niile na ntọala ndị ga-emeghe.",
+    "protection_learnMore": "Mụta banyere nchebe Android",
+    "protection_guideWhy": "Nchebe a na-egbochi ngwa iji ịntanetị n’enweghị VPN ma ọ bụrụ na VPN kwụsịrị. A na-ahazi ya na Android.",
+    "protection_guideAlwaysOnTitle": "VPN na-arụ ọrụ mgbe niile",
+    "protection_guideAlwaysOn": "Android na-edobe ọrụ VPN n’ọrụ ma nwee ike ịmalitegharị ya mgbe ekwentị malitere ọzọ.",
+    "protection_guideBlockTitle": "Gbochie njikọ na-enweghị VPN",
+    "protection_guideBlock": "Ntọala a na-egbochi data ịgafe n’enweghị VPN, gụnyere mgbe njikọ kwụsịrị.",
+    "protection_guideWarning": "Mgbe mgbochi a dị n’ọrụ, inweta ịntanetị agaghị adị ruo mgbe VPN jikọrọ.",
+    "protection_guideStepsTitle": "Gbanye nchebe",
+    "protection_guideStep1": "Jiri bọtịnụ dị n’okpuru mepee ntọala VPN Android.",
+    "protection_guideStep2": "Mepee nhọrọ site na akara ntọala (gia) dị n’akụkụ FuzeVPN.",
+    "protection_guideStep3": "Gbanye “VPN na-arụ ọrụ mgbe niile”, mgbe ahụ “Gbochie njikọ na-enweghị VPN”, ọ bụrụ na nhọrọ ndị a dị.",
+    "protection_guideManufacturers": "Aha ndị a dị iche n’ekwentị ọ bụla. Ọ bụrụ na ọ dị mkpa, chọọ VPN na Ntọala, nke a na-ahụkarị n’okpuru Netwọkụ na ịntanetị.",
+    "protection_guideDisableTitle": "Gbanyụọ nchebe a",
+    "protection_guideDisable": "Na otu ntọala ahụ, gbanyụọ “Gbochie njikọ na-enweghị VPN” iji kwe ka inweta ịntanetị dị n’enweghị VPN. Gbanyụkwa “VPN na-arụ ọrụ mgbe niile” ma ọ bụrụ na ịchọghịzi ka Android malitegharịa ya.",
+    "protection_guideManual": "Ị na-ahọrọ ntọala ndị a na Android. FuzeVPN anaghị agbanwe ha maka gị.",
+    "locations_changeTitle": "Gbanwee ebe?",
+    "locations_changeActive": "VPN ga-akwụsị njikọ, mgbe ahụ ọ ga-anwa ijikọ na {name}.",
+    "locations_changeIdle": "VPN ga-anwa ijikọ na {name}.",
+    "locations_confirmChange": "Gbanwee ma jikọọ",
+    "locations_changeBusy": "A na-agbanwe ebe ugbu a. Chere tupu ị họrọ ebe ọzọ.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Nhọrọ akpaaka",
+    "locations_cities": "Obodo",
+    "locations_servers": "Sava",
+    "locations_viewCities": "Lee obodo dị na {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Lee sava dị na {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, other{mba {count}}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, other{obodo {count}}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, other{sava {count}}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Mba niile",
+    "locations_backToCountries": "Laghachi na mba",
+    "locations_backToCities": "Laghachi na obodo dị na {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Họrọ {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Họrọ {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Enweghị sava kwekọrọ dị.",
+    "externalLink_failed": "Enweghị ike imepe njikọ a. Ị nwere ike ịkọpịa ya ma mepee ya na ihe nchọgharị gị.",
+    "externalLink_copy": "Kọpịa njikọ",
+    "externalLink_copied": "Ekọpịrị njikọ",
+    "externalLink_copyFailed": "Enweghị ike ịkọpịa njikọ ahụ. Họrọ adreesị dị n’okpuru.",
+    "settings_deleteAccount": "Hichapụ akaụntụ m",
+    "settings_deleteAccountDetail": "Lee usoro arịrịọ ihichapụ akaụntụ",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Họrọ ndebanye VPN gị.",
+    "billing_subscribe": "Debanye",
+    "billing_choosePlan": "Họrọ atụmatụ iji gaa n’ihu.",
+    "billing_monthly": "Kwa ọnwa",
+    "billing_yearly": "Kwa afọ",
+    "billing_continue": "Gaa n’ihu na Google Play",
+    "billing_restore": "Weghachi ihe ị zụtara",
+    "billing_manage": "Jikwaa ndebanye",
+    "billing_deleteAccountWarning": "Ọ bụrụ na ị nwere ndebanye Google Play, ihichapụ akaụntụ FuzeVPN gị anaghị akagbu mmegharị ya. Jikwaa ma ọ bụ kagbuo mmegharị ahụ n’ụzọ dị iche na Google Play.",
+    "billing_deleteAccountContinue": "Gaa n’ihu na arịrịọ ihichapụ akaụntụ",
+    "billing_refresh": "Melite inweta",
+    "billing_loadingPlans": "Na-ebudata atụmatụ…",
+    "billing_unavailable": "Enweghị atụmatụ dị ugbu a. Nwaa ọzọ mgbe e mesịrị.",
+    "billing_comingSoon": "Ndebanye na-abịa n’oge na-adịghị anya.",
+    "billing_priceDisclosure": "Google Play na-enye ọnụahịa a. A na-ekwado ọnụ ego ikpeazụ na ụtụ isi metụtara ya tupu ị kwado.",
+    "billing_renewalMonthly": "A na-emegharị ya akpaaka kwa ọnwa, belụsọ ma e kagbuo ya. Ị nwere ike ịkagbu ya mgbe ọ bụla na ndebanye Google Play.",
+    "billing_renewalYearly": "A na-emegharị ya akpaaka kwa afọ, belụsọ ma e kagbuo ya. Ị nwere ike ịkagbu ya mgbe ọ bụla na ndebanye Google Play.",
+    "billing_active": "Inweta Premium gị na-arụ ọrụ",
+    "billing_accessUntil": "Inweta ruo {date}.",
+    "billing_webManaged": "A na-ejikwa ndebanye gị na weebụsaịtị FuzeVPN.",
+    "billing_playManaged": "Google Play na-ejikwa ndebanye gị.",
+    "billing_playOnHold": "Ndebanye Google Play gị kwụsịrị nwa oge ma ọ bụ na-echere ịkwụ ụgwọ. Mepee “Jikwaa ndebanye” iji dozie ya na Google Play.",
+    "billing_playReceiptUnlinked": "Akaụntụ Google Play a nwerelarị ndebanye Fuze Premium nke na-adịghị arụ ọrụ maka akaụntụ FuzeVPN a. Mepee “Jikwaa ndebanye” iji lelee ya na Google Play.",
+    "billing_inactive": "Enweghị ndebanye na-arụ ọrụ.",
+    "billing_checkingAccess": "Na-enyocha inweta gị…",
+    "billing_restoring": "Na-eweghachi ihe ị zụtara…",
+    "billing_pending": "Ịkwụ ụgwọ na-echere. Inweta gị ga-amalite mgbe a kwadoro ya.",
+    "billing_cancelled": "Akagbuola nzụta. Enweghị ndebanye ọhụrụ e mere ka ọ rụọ ọrụ.",
+    "billing_verifying": "Na-enyocha nzụta…",
+    "billing_success": "Emeela ka ndebanye rụọ ọrụ. Inweta Premium gị dị njikere.",
+    "billing_restored": "Eweghachila ihe ị zụtara.",
+    "billing_restoreEmpty": "Enweghị ihe e zụtara a ga-eweghachi maka akaụntụ Google Play a.",
+    "billing_catalogError": "Enweghị ike ibudata atụmatụ. Nwaa ọzọ.",
+    "billing_purchaseError": "Enweghị ike ibido nzụta. Nwaa ọzọ.",
+    "billing_verificationError": "Nyocha nzụta adịghị dị nwa oge. Weghachi ihe ị zụtara iji nwaa ọzọ.",
+    "billing_restoreError": "Enweghị ike iweghachi ihe ị zụtara. Nwaa ọzọ.",
+    "billing_managementError": "Enweghị ike imepe njikwa ndebanye. Nwaa ọzọ.",
+    "billing_storeUnavailable": "Google Play adịghị dị na ngwaọrụ a.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "VPN gị, dị mfe.",
+    "welcome_description": "Chebe njikọ gị. Nọgide na-achịkwa nzuzo gị.",
+    "welcome_start": "Malite",
+    "welcome_alreadyPurchased": "Ị zụtalarị ya?",
+    "welcome_noAccountRequired": "Ị chọghị akaụntụ iji malite.",
+    "guest_accountTitle": "Akaụntụ ejikọtaghị",
+    "guest_accountDescription": "Weghachi ihe ị zụtara site n’otu akaụntụ Google Play ahụ ka ị nwee ike iji ndebanye gị na ngwaọrụ ọzọ.",
+    "guest_existingSubscriberSignIn": "Ị debanyelarị? Banye n’akaụntụ",
+    "guest_claimTitle": "Were FuzeVPN gaa ebe ọ bụla",
+    "guest_claimDescription": "Mepụta akaụntụ iji nweta ndebanye gị na ngwaọrụ gị ndị ọzọ. Nzọụkwụ a bụ nhọrọ.",
+    "guest_skip": "Mgbe e mesịrị",
+    "guest_activationTitle": "Fuze Premium na-arụ ọrụ",
+    "guest_activationDescription": "Ndebanye gị dị njikere. Jiri VPN gị ma mepụta akaụntụ mgbe ọ bụla ịchọrọ.",
+    "guest_useVpn": "Jiri VPN m",
+    "guest_loginRequired": "Nzụta a jikọtalarị na akaụntụ FuzeVPN. Banye n’akaụntụ ahụ iji nweta ndebanye gị.",
+    "guest_signOutWarning": "Ị nwere ike iweghachite ndebanye gị site n’iweghachi ihe ị zụtara na otu akaụntụ Google Play ahụ.",
+    "guest_profileUnavailable": "Akaụntụ gị jikọtalarị. Banye n’akaụntụ iji lee ma jikwaa ozi gị.",
+    "billing_acceptance": "Site n’ịga n’ihu, ị na-anabata ụkpụrụ ojiji na iwu nzuzo.",
+    "guest_verifyEmailReminder": "Kwado adreesị e-mail gị iji chebe akaụntụ gị. Ị nwere ike ịga n’ihu na-eji VPN gị.",
+    "guest_serviceUnavailable": "Ọrụ ahụ adịghị dị nwa oge. Nwaa ọzọ n’oge na-adịghị anya.",
+    "guest_restoreError": "Enweghị ike iweghachi ihe ị zụtara. Nwaa ọzọ site na akaụntụ Google Play ị jiri zụta ya.",
+    "guest_claimSuccess": "Emepụtala akaụntụ gị. Echekwara ndebanye gị na inweta VPN gị.",
+    "guest_emailExists": "E-mail a ejirilarị. Họrọ adreesị ọzọ ma ọ bụ banye n’akaụntụ gị dị adị. Nzụta gị ka dị site na Google Play.",
+    "guest_claimError": "Enweghị ike imepụta akaụntụ gị. Ị nwere ike ịga n’ihu na-eji VPN gị ma nwaa ọzọ mgbe e mesịrị.",
+    "guest_secureStorageError": "Enweghị ike ichebe oge ịbanye gị na ngwaọrụ a. Nwaa ọzọ.",
+    "guest_premiumRequired": "Họrọ ndebanye iji mee ka VPN gị rụọ ọrụ.",
+    "welcome_viewPlans": "Lee atụmatụ",
+    "google_continue": "Gaa n’ihu na Google",
+    "google_or": "ma ọ bụ",
+    "google_title": "Akaụntụ FuzeVPN gị",
+    "google_settingUp": "Mechaa imepụta akaụntụ gị",
+    "google_country": "Mba ebe ị bi",
+    "google_profileDescription": "Họrọ mba gị ma lelee akwụkwọ abụọ ahụ iji mepụta akaụntụ FuzeVPN gị.",
+    "google_claimDescription": "Jikọta akaụntụ onye ọbịa gị na Google. Ndebanye gị na ngwaọrụ gị ga-anọgide jikọtara na akaụntụ a.",
+    "google_linkTitle": "Jikọta Google na FuzeVPN",
+    "google_linkDescription": "Kwado inweta akaụntụ FuzeVPN gị dị adị. Nzọụkwụ a anaghị arịọ paswọọdụ Google gị.",
+    "google_password": "Paswọọdụ FuzeVPN",
+    "google_linkAccount": "Kwado njikọta",
+    "google_requestEmail": "Zipụrụ m e-mail nkwado",
+    "google_emailInstructions": "Mepee e-mail FuzeVPN ma tinye koodu nkwado ahụ.",
+    "google_emailCode": "Koodu nkwado e-mail",
+    "google_confirmEmail": "Kwado koodu ahụ",
+    "google_restart": "Họrọ akaụntụ Google ọzọ",
+    "google_resume": "Nyochaa mbọ a",
+    "google_unavailable": "Ịbanye na Google adịghị dị. Ị nwere ike iji e-mail na paswọọdụ.",
+    "google_expired": "Mbọ a agwụla oge. Kagbuo ya ma malite ọzọ.",
+    "google_conflict": "Akaụntụ Google a jikọtalarị ebe ọzọ. Akaụntụ gị na ndebanye gị dị ugbu a ka echekwara.",
+    "google_error": "Ịbanye na Google emeghị nke ọma. Nwaa ọzọ; inweta gị dị ugbu a ka echekwara.",
+    "google_uncertain": "Enweghị ike ịkwado nsonaazụ ahụ. Nyochaa mbọ a ma ọ bụ kagbuo ya tupu ị malite ọzọ.",
+    "google_cancelFailed": "Enweghị ike ịkwado nkagbu ahụ. Nwaa ịkagbu ya ọzọ tupu ị hapụ ihuenyo a.",
+    "google_cancelled": "Akagbuola ịbanye na Google.",
+    "google_selecting": "Họrọ akaụntụ Google gị…",
+    "google_verifying": "Na-enyocha akaụntụ gị…",
+    "google_emailUnavailable": "Enweghị ike izipụ e-mail nkwado ahụ. Nwaa ọzọ mgbe e mesịrị.",
+    "google_emailSent": "Ezipụla e-mail nkwado. Lelee igbe ozi gị.",
+    "google_rateLimited": "Biko chere tupu ị nwaa ọzọ.",
+    "google_busy": "Google adịghị dị mgbe ọrụ ọzọ na-aga n’ihu (njikọ VPN, akaụntụ ma ọ bụ onye ọbịa). Nwaa ọzọ mgbe ọ gwụchara; inweta gị dị ugbu a ka echekwara.",
+    "google_invalidPassword": "Paswọọdụ FuzeVPN ezighị ezi. Akaụntụ gị dị ugbu a ka echekwara.",
+    "google_invalidCode": "Koodu nkwado ezighị ezi ma ọ bụ agwụla oge.",
+    "google_accountChanged": "Oge ịbanye gị agbanweela. Kagbuo mbọ a tupu ị malite ọzọ.",
+    "google_invalidResponse": "Enweghị ike ịkwado nzaghachi ahụ. Inweta gị dị ugbu a ka echekwara.",
+    "google_invalidRegistration": "Lelee mba gị na nkwenye abụọ ahụ.",
+    "google_consentRequired": "Họrọ mba gị ma nabata akwụkwọ abụọ ahụ iji gaa n’ihu.",
+    "google_challengeRequired": "Achọrọ nyocha nchekwa ọzọ. Inweta gị dị ugbu a ka echekwara.",
+    "google_challengeUnavailable": "Nyocha nchekwa adịghị dị. Nwaa ọzọ mgbe e mesịrị.",
+    "google_intentMismatch": "Mbọ ịbanye na Google gara aga ka na-echere. Kagbuo ya tupu ị malite ọrụ a.",
+    "google_challengeBlocked": "Nyocha nchekwa achọrọ adịghị na ngwa a. Enweghị ike imecha ọrụ a ugbu a.",
+    "google_solveChallenge": "Mezuo nyocha nchekwa",
+    "google_challengeTitle": "Nyocha nchekwa",
+    "google_challengeReady": "Emechala nyocha ahụ. Ị nwere ike ịkwado imepụta akaụntụ gị ugbu a.",
+    "google_challengeExpired": "Nyocha ahụ agwụla oge. Mezuo ya ọzọ tupu ị kwado.",
+    "google_challengeCancelled": "Akagbuola nyocha ahụ. Ị nwere ike ịnwa ya ọzọ.",
+    "google_challengeFailed": "Nyocha nchekwa emeghị nke ọma. Nwaa ọzọ.",
+    "billing_trialTitle": "Nwalee Fuze Premium n’efu",
+    "billing_trialSubtitle": "Malite taa, chebe njikọ gị.",
+    "billing_trialWeeks": "Nnwale efu izu abụọ",
+    "billing_trialDays": "Nnwale efu ụbọchị {days}",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Malite nnwale efu m",
+    "billing_trialFirstCharge": "Ọ bụrụ na ị malite taa, a na-atụ anya ịkwụ ụgwọ nke mbụ na {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "A na-emegharị ya akpaaka n’ọnụahịa e kwuru. Iji zere ịkwụ ụgwọ, kagbuo na Google Play tupu nnwale ahụ agwụ.",
+    "billing_trialThenMonthly": "Mgbe ahụ, {price} kwa ọnwa",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Mgbe ahụ, {price} kwa afọ",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Họrọ atụmatụ gị",
+    "billing_selectionHint": "Họrọ otu atụmatụ iji gaa n’ihu.",
+    "billing_benefitConnection": "Njikọ e zoro ezo",
+    "billing_benefitPrivacy": "Nzuzo n’ịntanetị",
+    "billing_benefitNoAccount": "Achọghị idebanye aha",
+    "billing_cancellation": "Nkagbu na Google Play",
+    "billing_premiumTitle": "Njikọ e chebere nke ọma karịa.",
+    "billing_premiumSubtitle": "Chebe njikọ gị n’ọsọ nke gị.",
+    "billing_priceMonthly": "kwa ọnwa",
+    "billing_priceYearly": "kwa afọ",
+    "billing_trialToday": "Enweghị ihe ị ga-akwụ taa",
+    "billing_trialConfirmation": "Google Play na-ekwado ụbọchị, ọnụ ego ikpeazụ na ụtụ isi metụtara ya tupu ị kwado.",
+    "billing_offerChanged": "Ụkpụrụ nke onyinye a agbanweela. Melite atụmatụ ndị ahụ ma họrọ ọzọ.",
+    "status_waitingNetwork": "Na-echere netwọkụ",
+    "status_waitingNetworkDetail": "Enweghị netwọkụ dị. VPN ga-enyocha njikọ mgbe netwọkụ laghachiri.",
+    "locations_favoriteLoadFailed": "Enweghị ike ibudata ndị kacha amasị. Nwaa ọzọ.",
+    "locations_favoritesLoading": "Na-ebudata ndị kacha amasị…"
+  },
+  "android": {
+    "vpn_notification_channel": "Njikọ VPN",
+    "vpn_notification_channel_description": "Na-egosi mgbe njikọ FuzeVPN na-arụ ọrụ.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "Njikọ %1$s na-arụ ọrụ",
+    "vpn_notification_connecting": "Na-eme njikọ %1$s",
+    "vpn_notification_disconnecting": "Na-akwụsị njikọ %1$s",
+    "vpn_notification_interrupted": "Njikọ %1$s kwụsịrị",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Dị njikere · %1$s · %2$s",
+    "vpn_tile_connected": "Ejikọrọ · %1$s · %2$s",
+    "vpn_tile_connecting": "Na-ejikọ %1$s…",
+    "vpn_tile_disconnecting": "Na-akwụsị njikọ…",
+    "vpn_tile_interrupted": "%1$s kwụsịrị",
+    "vpn_tile_setup_required": "Buru ụzọ mepee ngwa ahụ",
+    "vpn_tile_working": "Ọrụ VPN na-aga n’ihu…",
+    "vpn_notification_reconnecting": "Na-ejikọ ọzọ… · %1$s",
+    "vpn_system_action_required": "Achọrọ ka ị mee ihe na ntọala Android",
+    "vpn_tile_reconnecting": "Na-ejikọ ọzọ… · %1$s",
+    "vpn_notification_waiting_network": "Na-echere netwọkụ · %1$s",
+    "vpn_tile_waiting_network": "Na-echere netwọkụ · %1$s"
+  },
+  "countries": {
+    "AC": "Ascension Island",
+    "AD": "Andorra",
+    "AE": "United Arab Emirates",
+    "AF": "Afghanistan",
+    "AG": "Antigua na Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albania",
+    "AM": "Armenia",
+    "AO": "Angola",
+    "AQ": "Antarctica",
+    "AR": "Argentina",
+    "AS": "American Samoa",
+    "AT": "Austria",
+    "AU": "Australia",
+    "AW": "Aruba",
+    "AX": "Åland Islands",
+    "AZ": "Azerbaijan",
+    "BA": "Bosnia & Herzegovina",
+    "BB": "Barbados",
+    "BD": "Bangladesh",
+    "BE": "Belgium",
+    "BF": "Burkina Faso",
+    "BG": "Bulgaria",
+    "BH": "Bahrain",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "St. Barthélemy",
+    "BM": "Bermuda",
+    "BN": "Brunei",
+    "BO": "Bolivia",
+    "BQ": "Caribbean Netherlands",
+    "BR": "Brazil",
+    "BS": "Bahamas",
+    "BT": "Bhutan",
+    "BV": "Bouvet Island",
+    "BW": "Botswana",
+    "BY": "Belarus",
+    "BZ": "Belize",
+    "CA": "Canada",
+    "CC": "Agwaetiti Cocos (Keeling)",
+    "CD": "Congo - Kinshasa",
+    "CF": "Central African Republik",
+    "CG": "Congo",
+    "CH": "Switzerland",
+    "CI": "Côte d’Ivoire",
+    "CK": "Agwaetiti Cook",
+    "CL": "Chile",
+    "CM": "Cameroon",
+    "CN": "China",
+    "CO": "Colombia",
+    "CP": "Agwaetiti Clipperton",
+    "CQ": "Sark",
+    "CR": "Kosta Rika",
+    "CU": "Cuba",
+    "CV": "Cape Verde",
+    "CW": "Kurakao",
+    "CX": "Agwaetiti Christmas",
+    "CY": "Cyprus",
+    "CZ": "Czechia",
+    "DE": "Germany",
+    "DG": "Diego Garcia",
+    "DJ": "Djibouti",
+    "DK": "Denmark",
+    "DM": "Dominica",
+    "DO": "Dominican Republik",
+    "DZ": "Algeria",
+    "EA": "Ceuta & Melilla",
+    "EC": "Ecuador",
+    "EE": "Estonia",
+    "EG": "Egypt",
+    "EH": "Ọdịda Anyanwụ Sahara",
+    "ER": "Eritrea",
+    "ES": "Spain",
+    "ET": "Ethiopia",
+    "EU": "Otu nzukọ mba Europe",
+    "EZ": "Gburugburu Euro",
+    "FI": "Finland",
+    "FJ": "Fiji",
+    "FK": "Falkland Islands",
+    "FM": "Micronesia",
+    "FO": "Faroe Islands",
+    "FR": "France",
+    "GA": "Gabon",
+    "GB": "United Kingdom",
+    "GD": "Grenada",
+    "GE": "Georgia",
+    "GF": "French Guiana",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GL": "Greenland",
+    "GM": "Gambia",
+    "GN": "Guinea",
+    "GP": "Guadeloupe",
+    "GQ": "Equatorial Guinea",
+    "GR": "Greece",
+    "GS": "South Georgia & South Sandwich Islands",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hong Kong SAR China",
+    "HM": "Agwaetiti Heard na Agwaetiti McDonald",
+    "HN": "Honduras",
+    "HR": "Croatia",
+    "HT": "Haiti",
+    "HU": "Hungary",
+    "IC": "Canary Islands",
+    "ID": "Indonesia",
+    "IE": "Ireland",
+    "IL": "Israel",
+    "IM": "Isle of Man",
+    "IN": "India",
+    "IO": "British Indian Ocean Territory",
+    "IQ": "Iraq",
+    "IR": "Iran",
+    "IS": "Iceland",
+    "IT": "Italy",
+    "JE": "Jersey",
+    "JM": "Jamaika",
+    "JO": "Jordan",
+    "JP": "Japan",
+    "KE": "Kenya",
+    "KG": "Kyrgyzstan",
+    "KH": "Cambodia",
+    "KI": "Kiribati",
+    "KM": "Comoros",
+    "KN": "St. Kitts & Nevis",
+    "KP": "North Korea",
+    "KR": "South Korea",
+    "KW": "Kuwait",
+    "KY": "Cayman Islands",
+    "KZ": "Kazakhstan",
+    "LA": "Laos",
+    "LB": "Lebanon",
+    "LC": "St. Lucia",
+    "LI": "Liechtenstein",
+    "LK": "Sri Lanka",
+    "LR": "Liberia",
+    "LS": "Lesotho",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "LV": "Latvia",
+    "LY": "Libia",
+    "MA": "Morocco",
+    "MC": "Monaco",
+    "MD": "Moldova",
+    "ME": "Montenegro",
+    "MF": "St. Martin",
+    "MG": "Madagascar",
+    "MH": "Agwaetiti Marshall",
+    "MK": "North Macedonia",
+    "ML": "Mali",
+    "MM": "Myanmar (Burma)",
+    "MN": "Mongolia",
+    "MO": "Macao SAR China",
+    "MP": "Agwaetiti Northern Mariana",
+    "MQ": "Martinique",
+    "MR": "Mauritania",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Mauritius",
+    "MV": "Maldives",
+    "MW": "Malawi",
+    "MX": "Mexico",
+    "MY": "Malaysia",
+    "MZ": "Mozambique",
+    "NA": "Namibia",
+    "NC": "New Caledonia",
+    "NE": "Niger",
+    "NF": "Agwaetiti Norfolk",
+    "NG": "Naịjịrịa",
+    "NI": "Nicaragua",
+    "NL": "Netherlands",
+    "NO": "Norway",
+    "NP": "Nepal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "New Zealand",
+    "OM": "Oman",
+    "PA": "Panama",
+    "PE": "Peru",
+    "PF": "French Polynesia",
+    "PG": "Papua New Guinea",
+    "PH": "Philippines",
+    "PK": "Pakistan",
+    "PL": "Poland",
+    "PM": "St. Pierre & Miquelon",
+    "PN": "Agwaetiti Pitcairn",
+    "PR": "Puerto Rico",
+    "PS": "Mpaghara ndị Palestine",
+    "PT": "Portugal",
+    "PW": "Palau",
+    "PY": "Paraguay",
+    "QA": "Qatar",
+    "QO": "Outlying Oceania",
+    "RE": "Réunion",
+    "RO": "Romania",
+    "RS": "Serbia",
+    "RU": "Russia",
+    "RW": "Rwanda",
+    "SA": "Saudi Arabia",
+    "SB": "Agwaetiti Solomon",
+    "SC": "Seychelles",
+    "SD": "Sudan",
+    "SE": "Sweden",
+    "SG": "Singapore",
+    "SH": "St. Helena",
+    "SI": "Slovenia",
+    "SJ": "Svalbard & Jan Mayen",
+    "SK": "Slovakia",
+    "SL": "Sierra Leone",
+    "SM": "San Marino",
+    "SN": "Senegal",
+    "SO": "Somalia",
+    "SR": "Suriname",
+    "SS": "South Sudan",
+    "ST": "São Tomé & Príncipe",
+    "SV": "El Salvador",
+    "SX": "Sint Maarten",
+    "SY": "Syria",
+    "SZ": "Eswatini",
+    "TA": "Tristan da Cunha",
+    "TC": "Turks & Caicos Islands",
+    "TD": "Chad",
+    "TF": "Ụmụ ngalaba Frenchi Southern",
+    "TG": "Togo",
+    "TH": "Thailand",
+    "TJ": "Tajikistan",
+    "TK": "Tokelau",
+    "TL": "Timor-Leste",
+    "TM": "Turkmenistan",
+    "TN": "Tunisia",
+    "TO": "Tonga",
+    "TR": "Türkiye",
+    "TT": "Trinidad na Tobago",
+    "TV": "Tuvalu",
+    "TW": "Taiwan",
+    "TZ": "Tanzania",
+    "UA": "Ukraine",
+    "UG": "Uganda",
+    "UM": "Obere Agwaetiti Dị Na Mpụga U.S",
+    "UN": "Mba Ụwa Jikọrọ Ọnụ",
+    "US": "United States",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VA": "Vatican City",
+    "VC": "St. Vincent & Grenadines",
+    "VE": "Venezuela",
+    "VG": "British Virgin Islands",
+    "VI": "U.S. Virgin Islands",
+    "VN": "Vietnam",
+    "VU": "Vanuatu",
+    "WF": "Wallis & Futuna",
+    "WS": "Samoa",
+    "XA": "Pseudo-Accents",
+    "XB": "Pseudo-Bidi",
+    "XK": "Kosovo",
+    "YE": "Yemen",
+    "YT": "Mayotte",
+    "ZA": "South Africa",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "Mpaghara A na-amaghị"
+  }
+}

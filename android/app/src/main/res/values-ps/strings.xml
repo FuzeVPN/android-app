@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">د VPN اتصال</string>
+    <string name="vpn_notification_channel_description">ښيي چې کله د FuzeVPN اتصال فعال وي.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">د %1$s اتصال فعال دی</string>
+    <string name="vpn_notification_connecting">د %1$s اتصال جوړېږي</string>
+    <string name="vpn_notification_disconnecting">%1$s قطع کېږي</string>
+    <string name="vpn_notification_interrupted">د %1$s اتصال ګډوډ شو</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">چمتو · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">وصل شوی · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s وصلېږي…</string>
+    <string name="vpn_tile_disconnecting">قطع کېږي…</string>
+    <string name="vpn_tile_interrupted">%1$s ګډوډ شو</string>
+    <string name="vpn_tile_setup_required">لومړی اپلیکیشن خلاص کړئ</string>
+    <string name="vpn_tile_working">د VPN عملیه روانه ده…</string>
+    <string name="vpn_notification_reconnecting">بیا وصلېږي… · %1$s</string>
+    <string name="vpn_system_action_required">په Android تنظیماتو کې کړنه اړینه ده</string>
+    <string name="vpn_tile_reconnecting">بیا وصلېږي… · %1$s</string>
+    <string name="vpn_notification_waiting_network">د شبکې په تمه · %1$s</string>
+    <string name="vpn_tile_waiting_network">د شبکې په تمه · %1$s</string>
+</resources>

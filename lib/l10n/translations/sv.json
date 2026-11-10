@@ -176,6 +176,8 @@
     "dialog_signOut": "Logga ut?",
     "dialog_signOutMessage": "VPN stängs av och du måste logga in igen. Dina krypterade VPN-nycklar stannar på den här telefonen inför nästa anslutning.",
     "action_cancel": "Avbryt",
+    "action_close": "Stäng",
+    "action_copy": "Kopiera",
     "action_signOut": "Logga ut",
     "notice_close": "Stäng meddelandet",
     "notice_sessionExpired_title": "Sessionen har löpt ut",

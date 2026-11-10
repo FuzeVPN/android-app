@@ -121,9 +121,7 @@ class _AuthenticationDialogState extends State<AuthenticationDialog> {
                           ),
                           IconButton(
                             key: const ValueKey('guest-login-close'),
-                            tooltip: MaterialLocalizations.of(
-                              context,
-                            ).closeButtonTooltip,
+                            tooltip: context.copy('action.close'),
                             onPressed: busy
                                 ? null
                                 : () => Navigator.of(context).pop(),

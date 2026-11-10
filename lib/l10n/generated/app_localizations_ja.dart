@@ -506,6 +506,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get action_cancel => 'キャンセル';
 
   @override
+  String get action_close => '閉じる';
+
+  @override
+  String get action_copy => 'コピー';
+
+  @override
   String get action_signOut => 'サインアウト';
 
   @override

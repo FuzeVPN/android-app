@@ -1,0 +1,1036 @@
+{
+  "locale": "am",
+  "arb": {
+    "vpnDisclosure_title": "ግንኙነትዎን ይጠብቁ",
+    "vpnDisclosure_body": "FuzeVPN በዚህ መሣሪያ እና በFuzeVPN አገልጋዮች መካከል የተመሰጠረ ቱነል ለመፍጠር የAndroid VPN አገልግሎትን (VpnService) ይጠቀማል።",
+    "vpnDisclosure_dataBody": "VPN ንቁ በሆነ ጊዜ የመተግበሪያዎችዎ የኢንተርኔት ትራፊክ፣ የመድረሻ አድራሻዎች እና የDNS ጥያቄዎች ግንኙነትዎን ለማዘዋወር በዚህ ቱነል ያልፋሉ፤ FuzeVPN ከበስተጀርባ እየሰራ ቢሆንም እንኳ።",
+    "vpnDisclosure_statusBody": "መተግበሪያው የVPN ግንኙነትዎን ለማሳየት የግንኙነቱን ሁኔታ፣ የቆይታ ጊዜውን እና የተላለፈውን የውሂብ መጠን ይጠቀማል። በማንኛውም ጊዜ ማቆም ይችላሉ።",
+    "vpnDisclosure_privacy": "ግላዊነት",
+    "vpnDisclosure_accept": "ተቀብለው ይቀጥሉ",
+    "vpnDisclosure_decline": "አሁን አይደለም",
+    "accountRestoration_title": "መለያ ለጊዜው አይገኝም",
+    "accountRestoration_message": "ክፍለ ጊዜዎ ተጠብቋል። መለያዎን ለመመለስ እንደገና ይሞክሩ፤ አሁንም የVPN ግንኙነቱን እዚህ ማስተዳደር ይችላሉ።",
+    "action_retry": "እንደገና ይሞክሩ",
+    "session_endingTitle": "ክፍለ ጊዜውን በመጨረስ ላይ",
+    "session_ending": "ክፍለ ጊዜውን በመጨረስ ላይ፦ VPNን በማቆም እና በማጽዳት ላይ…",
+    "session_stopFailed": "የVPN መዘጋት አልተረጋገጠም። ዳግም ከመግባትዎ በፊት እንደገና ይሞክሩ።",
+    "session_cleanupFailed": "VPN ቆሟል፣ ነገር ግን የክፍለ ጊዜው መወገድ አልተረጋገጠም። ማጽዳቱን እንደገና ይሞክሩ።",
+    "session_retryStop": "መዘጋቱን እንደገና ይሞክሩ",
+    "session_retryCleanup": "ማጽዳቱን እንደገና ይሞክሩ",
+    "@@locale": "am",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPNን በአስተማማኝ ሁኔታ በማዘጋጀት ላይ…",
+    "nav_connection": "ግንኙነት",
+    "nav_locations": "አካባቢዎች",
+    "nav_account": "መለያ",
+    "nav_devices": "መሣሪያዎች",
+    "nav_settings": "ቅንብሮች",
+    "action_refresh": "ያድሱ",
+    "auth_tab_login": "ይግቡ",
+    "auth_tab_register": "ይመዝገቡ",
+    "auth_stepAccount": "መለያ",
+    "auth_stepIdentity": "ማንነት",
+    "auth_stepAddress": "አድራሻ እና ስምምነቶች",
+    "auth_stepProgress": "ደረጃ {current} ከ{total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "የእርስዎ VPN፣ ቀላል ተደርጓል።",
+    "auth_keysLocal": "የግል VPN ቁልፎችዎ በዚህ መሣሪያ ላይ ይቆያሉ።",
+    "form_email": "የኢሜይል አድራሻ",
+    "form_password": "የይለፍ ቃል",
+    "form_showPassword": "የይለፍ ቃሉን ያሳዩ",
+    "form_hidePassword": "የይለፍ ቃሉን ይደብቁ",
+    "form_passwordMin": "ከ8 እስከ 72 UTF-8 ባይት። አንዳንድ ቁምፊዎች ከአንድ በላይ ባይት ይጠቀማሉ።",
+    "form_firstName": "የመጀመሪያ ስም",
+    "form_lastName": "የአያት ስም",
+    "form_phone": "ስልክ ቁጥር (+33612345678)",
+    "form_address": "አድራሻ",
+    "form_address2": "ተጨማሪ የአድራሻ መስመር (አማራጭ)",
+    "form_postalCode": "የፖስታ ኮድ",
+    "form_city": "ከተማ",
+    "form_country": "የአገር ኮድ (ለምሳሌ FR)",
+    "action_login": "ይግቡ",
+    "action_createAccount": "መለያ ይፍጠሩ",
+    "action_createMyAccount": "መለያዬን ይፍጠሩ",
+    "action_next": "ይቀጥሉ",
+    "action_previous": "ይመለሱ",
+    "action_forgotPassword": "የይለፍ ቃልዎን ረሱ?",
+    "auth_noAccount": "ገና መለያ የለዎትም?",
+    "auth_requiredInformation": "መለያዎን በሶስት ደረጃዎች ይፍጠሩ።",
+    "auth_termsPrefix": "እቀበላለሁ፦ ",
+    "auth_termsLink": "የአጠቃቀም ውሎች",
+    "auth_privacyPrefix": "እቀበላለሁ፦ ",
+    "auth_privacyLink": "የግላዊነት ፖሊሲ",
+    "auth_consentRequired": "መለያ ለመፍጠር ፈቃድዎ ያስፈልጋል።",
+    "validation_required": "ይህ መስክ ያስፈልጋል።",
+    "validation_email": "ትክክለኛ የኢሜይል አድራሻ ያስገቡ።",
+    "validation_password": "የይለፍ ቃሉ በጣም አጭር ነው፦ ቢያንስ 8 UTF-8 ባይት መሆን አለበት።",
+    "validation_passwordTooLong": "የይለፍ ቃሉ በጣም ረጅም ነው፦ ከ72 UTF-8 ባይት መብለጥ የለበትም።",
+    "validation_phone": "ዓለም አቀፍ ቅርጸት ይጠቀሙ፣ ለምሳሌ +33612345678።",
+    "validation_country": "ባለ ሁለት ፊደል የአገር ኮድ ይጠቀሙ፣ ለምሳሌ FR።",
+    "passwordReset_title": "የይለፍ ቃል ዳግም ማስጀመር",
+    "passwordReset_description": "የይለፍ ቃልዎን ዳግም ለማስጀመር አገናኝ ለመጠየቅ የመለያዎን የኢሜይል አድራሻ ያስገቡ።",
+    "passwordReset_send": "አገናኙን ይላኩ",
+    "connection_title": "ግንኙነትዎ",
+    "connection_subtitle": "አካባቢ ይምረጡ፣ ከዚያም VPNዎን ያብሩ።",
+    "connection_prepare": "ለመገናኘት ዝግጁ ነዎት?",
+    "connection_advancedOptions": "የላቁ አማራጮች",
+    "connection_location": "አካባቢ",
+    "connection_chooseLocation": "አካባቢ ይምረጡ",
+    "connection_protocol": "ፕሮቶኮል",
+    "connection_connect": "ይገናኙ",
+    "connection_connecting": "በመገናኘት ላይ…",
+    "connection_disconnect": "ግንኙነት ያቋርጡ",
+    "connection_disconnecting": "ግንኙነት በማቋረጥ ላይ",
+    "connection_locationChange": "አካባቢ በመቀየር ላይ…",
+    "connection_unavailable": "{protocol} አይገኝም",
+    "connection_activeLocation": "ንቁ አካባቢ",
+    "connection_duration": "ቆይታ",
+    "connection_received": "የተቀበለ",
+    "connection_sent": "የተላከ",
+    "connection_lastHandshake": "የመጨረሻ ደህንነቱ የተጠበቀ ልውውጥ",
+    "connection_handshakeAgo": "ከ{duration} በፊት",
+    "verification_title": "የኢሜይል አድራሻዎን ያረጋግጡ",
+    "verification_message": "በዚህ ስልክ VPNን ለመጠቀም የኢሜይል አድራሻዎን ያረጋግጡ።",
+    "verification_resend": "ኢሜይሉን እንደገና ይላኩ",
+    "migration_title": "የአካባቢ ለውጥ",
+    "migration_draining": "የአካባቢ ለውጡን በማዘጋጀት ላይ…",
+    "migration_activating": "አዲሱን አገልጋይ በማንቃት ላይ…",
+    "migration_ready": "አካባቢው ተዘምኗል።",
+    "migration_blocked": "የአካባቢ ለውጡ የአገልጋይ ጣልቃ ገብነት ይፈልጋል። ቆይተው እንደገና ይሞክሩ ወይም የድጋፍ ቡድኑን ያነጋግሩ።",
+    "migration_progress": "የአካባቢ ለውጥ ሂደት",
+    "migration_retryDelay": "በፍተሻዎች መካከል ያለው መዘግየት፦ {seconds} ሰከንድ።",
+    "migration_resume": "የአካባቢ ለውጡን ይቀጥሉ",
+    "status_authorizing": "ፈቃድ ያስፈልጋል",
+    "status_authorizingDetail": "VPNን ለመፍቀድ የAndroid ጥያቄውን ይቀበሉ።",
+    "status_preparing": "በመዘጋጀት ላይ",
+    "status_preparingDetail": "ደህንነቱ የተጠበቀ ግንኙነትዎን በማዘጋጀት ላይ።",
+    "status_reconnecting": "እንደገና በመገናኘት ላይ…",
+    "status_reconnectingDetail": "ግንኙነቱ ተስተጓጉሏል። VPN እንደገና ለመገናኘት እየሞከረ ነው።",
+    "status_connecting": "በመገናኘት ላይ",
+    "status_connectingDetail": "ከVPN አገልጋይ ጋር በመገናኘት ላይ…",
+    "status_connected": "ተገናኝቷል",
+    "status_connectedDetail": "የVPN ግንኙነትዎ ንቁ ነው።",
+    "status_disconnecting": "ግንኙነት በማቋረጥ ላይ",
+    "status_disconnectingDetail": "የVPN ግንኙነትዎ በመቆም ላይ ነው።",
+    "status_error": "ግንኙነት አይገኝም",
+    "status_errorDetail": "የVPN ግንኙነቱ አልተረጋገጠም። እንደገና ይሞክሩ።",
+    "status_idle": "ተቋርጧል",
+    "status_idleDetail": "ግንኙነትዎን ለመጠበቅ VPNን ያገናኙ።",
+    "trust_note": "መተግበሪያውን መዝጋት VPNን አያቆምም። ለማቆም “ግንኙነት ያቋርጡ” የሚለውን ይጠቀሙ።",
+    "locations_none": "በአሁኑ ጊዜ ምንም አካባቢ አይገኝም።",
+    "locations_available": "ቀጣይ አካባቢዎን ይምረጡ።",
+    "locations_selected": "የተመረጠ አካባቢ",
+    "locations_select": "ይህን አካባቢ ይምረጡ",
+    "locations_lockedTunnel": "አካባቢ ለመቀየር የVPN ግንኙነቱን ያቋርጡ።",
+    "locations_lockedMigration": "የአካባቢ ለውጡ እስኪጠናቀቅ ይጠብቁ።",
+    "devices_title": "መሣሪያዎችዎ",
+    "devices_used": "{count} / {limit} መሣሪያዎች",
+    "devices_refresh": "መሣሪያዎችን ያድሱ",
+    "devices_empty": "እስካሁን የተመዘገበ VPN መሣሪያ የለም።",
+    "devices_firstConnection": "ስልክዎ በመጀመሪያው ግንኙነት ላይ ይታከላል።",
+    "devices_thisDevice": "ይህ መሣሪያ",
+    "devices_added": "በ{date} ታክሏል",
+    "devices_unnamed": "ስም የሌለው መሣሪያ",
+    "action_remove": "ያስወግዱ",
+    "settings_title": "ቅንብሮች",
+    "settings_subtitle": "ምርጫዎችዎ እና መለያዎ፣ ሁሉም በአንድ ቦታ።",
+    "settings_appearance": "መልክ",
+    "settings_language": "ቋንቋ",
+    "settings_languageDescription": "የመረጡት ቋንቋ ለVPN ማሳወቂያዎችም ይተገበራል።",
+    "settings_account": "መለያ",
+    "settings_signOut": "ይውጡ",
+    "settings_privacy": "የግላዊነት ፖሊሲ",
+    "settings_terms": "የአጠቃቀም ውሎች",
+    "settings_security": "ደህንነት እና ግልጽነት",
+    "settings_licenses": "የአካላት ፈቃዶች",
+    "settings_licensesDetail": "በመተግበሪያው ውስጥ ጥቅም ላይ የዋለ ሶፍትዌር",
+    "settings_licensesLegalese": "የመተግበሪያው እና በMPL-2.0 ፈቃድ ያሉ አካላቱ ምንጭ ኮድ፦ {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "መተግበሪያውን ሲለቁ VPN በርቶ ይቆያል። ለማቆም በ“ግንኙነት” ትር ላይ “ግንኙነት ያቋርጡ” የሚለውን ይጠቀሙ።",
+    "theme_system": "ስርዓት",
+    "theme_light": "ብርሃን",
+    "theme_dark": "ጨለማ",
+    "language_system": "የስልክ ቋንቋ",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "ይህን መሣሪያ ማስወገድ ይፈልጋሉ?",
+    "dialog_removeCurrent": "ይህ ስልክ ከVPN ይቋረጣል እና መዳረሻ ያጣል። የVPN ግንኙነት ውሂቡ አገልጋዩ ካረጋገጠ በኋላ ይወገዳል።",
+    "dialog_removeOther": "የ“{name}” የVPN መዳረሻ ይሰረዛል። ይህ ድርጊት ሊቀለበስ አይችልም።",
+    "dialog_signOut": "ከመለያዎ ይውጡ?",
+    "dialog_signOutMessage": "VPN ይቆማል እና እንደገና መግባት ይኖርብዎታል። የተመሰጠሩ የVPN ቁልፎችዎ ለሚቀጥለው ግንኙነት በዚህ ስልክ ላይ ይቆያሉ።",
+    "action_cancel": "ይቅር",
+    "action_close": "ዝጋ",
+    "action_copy": "ቅዳ",
+    "action_signOut": "ይውጡ",
+    "notice_close": "መልዕክቱን ይዝጉ",
+    "notice_sessionExpired_title": "ክፍለ ጊዜው አብቅቷል",
+    "notice_sessionExpired_message": "ክፍለ ጊዜዎ አብቅቷል። እንደገና ይግቡ።",
+    "notice_connectionFailed_title": "ግንኙነት አልተሳካም",
+    "notice_invalidCredentials_message": "የኢሜይል አድራሻው ወይም የይለፍ ቃሉ ትክክል አይደለም።",
+    "notice_emailVerification_title": "የኢሜይል ማረጋገጫ ያስፈልጋል",
+    "notice_emailVerification_message": "VPN መሣሪያ ከማከልዎ በፊት የኢሜይል አድራሻዎን ያረጋግጡ።",
+    "notice_rateLimited_title": "በጣም ብዙ ሙከራዎች",
+    "notice_deviceLimit_title": "የመሣሪያ ገደብ ላይ ደርሷል",
+    "notice_deviceLimit_message": "ሌላ ከማከልዎ በፊት ያለን መሣሪያ ያስወግዱ።",
+    "notice_identityRenewal_title": "የVPN ማንነት መታደስ አለበት",
+    "notice_identityRenewal_message": "ይህ ማንነት ተወግዷል። በዚህ መሣሪያ ላይ አዲስ ማንነት ይፍጠሩ።",
+    "notice_migrationPending_title": "የአካባቢ ለውጥ በሂደት ላይ ነው",
+    "notice_migrationPending_message": "የአካባቢ ለውጥ ቀድሞውኑ በሂደት ላይ ነው።",
+    "notice_migrationBlocked_title": "የአካባቢ ለውጥ ታግዷል",
+    "notice_migrationBlocked_message": "የአካባቢ ለውጡ የአገልጋይ ጣልቃ ገብነት ይፈልጋል። ቆይተው እንደገና ይሞክሩ ወይም የድጋፍ ቡድኑን ያነጋግሩ።",
+    "notice_targetUnavailable_title": "አገልጋዩ ለጊዜው አይገኝም",
+    "notice_targetUnavailable_message": "ይህ አገልጋይ ለጊዜው አይገኝም።",
+    "notice_networkUnavailable_title": "የኢንተርኔት ግንኙነት አይገኝም",
+    "notice_networkUnavailable_message": "ግንኙነትዎን ያረጋግጡ እና እንደገና ይሞክሩ።",
+    "notice_permissionDenied_title": "የVPN ፈቃድ ተከልክሏል",
+    "notice_permissionDenied_message": "ግንኙነቱን እንደገና ይጀምሩ እና የAndroid ፈቃድ ጥያቄውን ይቀበሉ።",
+    "notice_wireguardTimeout_title": "አገልጋዩ ምላሽ እየሰጠ አይደለም",
+    "notice_wireguardTimeout_message": "የWireGuard ግንኙነቱ ከመጠን በላይ ጊዜ ወሰደ። እንደገና ይሞክሩ ወይም ሌላ አካባቢ ይምረጡ።",
+    "notice_tlsFailed_title": "ደህንነቱ የተጠበቀ ግንኙነት ውድቅ ተደርጓል",
+    "notice_tlsFailed_message": "አገልጋዩ የOpenVPN ግንኙነቱን አልተቀበለም። እንደገና ይሞክሩ። ችግሩ ከቀጠለ ምርመራ ያሂዱ።",
+    "notice_tunRejected_title": "Android የVPN በይነገጹን ውድቅ አድርጓል",
+    "notice_tunRejected_message": "Android በOpenVPN የተጠየቀውን የአውታረ መረብ ውቅር ውድቅ አድርጓል።",
+    "notice_openvpnStart_title": "OpenVPN መጀመር አልቻለም",
+    "notice_openvpnStart_message": "የOpenVPN ሞተር መጀመርን ማጠናቀቅ አልቻለም። እንደገና ይሞክሩ። ችግሩ ከቀጠለ የድጋፍ ቡድኑን ያነጋግሩ።",
+    "notice_diagnosticCode": "የምርመራ ኮድ፦ {code}",
+    "notice_generic_title": "የVPN ግንኙነት አልተሳካም",
+    "notice_generic_message": "ስህተት ተፈጥሯል። ቆይተው እንደገና ይሞክሩ።",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{መለያ ተፈጥሯል} password_reset_sent{የይለፍ ቃል ዳግም ማስጀመሪያ ጥያቄ ደርሷል} verification_email_sent{የማረጋገጫ ኢሜይል ተልኳል} location_migration_pending{የአካባቢ ለውጥ በሂደት ላይ ነው} vpn_sign_in_required{መግባት ያስፈልጋል} protocol_unavailable_at_location{ፕሮቶኮል አይገኝም} vpn_permission_denied{የVPN ፈቃድ ተከልክሏል} revoked_identity_device_limit{የመሣሪያ ገደብ ላይ ደርሷል} tunnel_start_unexpected{VPN መጀመር አልቻለም} flutter_disconnect_timeout{ግንኙነቱ መቋረጡ አልተረጋገጠም} flutter_disconnect_unexpected{ግንኙነቱን ማቋረጥ አልተቻለም} device_revoked{መሣሪያ ተወግዷል} revoke_unexpected{መሣሪያውን ማስወገድ አልተቻለም} identity_renewal_unexpected{ማንነትን ማደስ አልተቻለም} openvpn_renewal_unexpected{OpenVPNን ማደስ አልተቻለም} location_migration_blocked{የአካባቢ ለውጥ ታግዷል} location_migration_slow{የአካባቢ ለውጡ አሁንም በሂደት ላይ ነው} location_migration_conflict{የአካባቢ ለውጡን ማደስ ያስፈልጋል} location_migration_verification_failed{የአካባቢ ለውጡ አልተረጋገጠም} location_migration_device_changed{በአካባቢ ለውጡ ወቅት መሣሪያው ተቀይሯል} tunnel_stop_failed{የአካባቢ ለውጡ አይገኝም} device_clock_ahead{የመሣሪያው ሰዓት ቀድሟል} other{ስራው አልተሳካም}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{መለያው ተፈጥሯል፣ ነገር ግን የማረጋገጫ ኢሜይሉ ሊላክ አልቻለም። በመተግበሪያው ውስጥ ኢሜይሉን እንደገና ይላኩ።} password_reset_sent{ጥያቄዎ ደርሷል። ይህን አድራሻ የሚጠቀም መለያ ካለ ኢሜይል ሊደርስዎ ይችላል። እባክዎ የአይፈለጌ መልዕክት ማህደርዎንም ይመልከቱ።} verification_email_sent{አዲስ የማረጋገጫ ኢሜይል አሁን ተልኳል።} location_migration_pending{ወደ {target} የሚደረገው ለውጥ አሁንም በመዘጋጀት ላይ ነው። መሣሪያውን እንደገና ሳይፈጥሩ መቀጠል ይችላሉ።} vpn_sign_in_required{VPNን ከመጀመርዎ በፊት ወደ መለያዎ ይግቡ።} protocol_unavailable_at_location{የተመረጠው ፕሮቶኮል በዚህ አካባቢ አይቀርብም። አካባቢዎችን ያድሱ ወይም ሌላ ፕሮቶኮል ይምረጡ።} vpn_permission_denied{Android የVPN ፈቃዱን ከልክሏል። ግንኙነቱን እንደገና ይጀምሩ እና የስርዓቱን ጥያቄ ይቀበሉ።} revoked_identity_device_limit{የዚህ መሣሪያ የVPN መዳረሻ ተወግዷል እና የመሣሪያ ገደቡ ላይ ደርሷል። በመለያ → መሣሪያዎቼን ያስተዳድሩ ስር አንድ መሣሪያ ያስወግዱ።} tunnel_start_unexpected{ያልተጠበቀ ስህተት የቱነል ዝግጅቱን አቋርጧል። የምርመራ ኮዱን ይመልከቱ እና እንደገና ይሞክሩ።} flutter_disconnect_timeout{Android VPN በጊዜ መቆሙን አላረጋገጠም። እንደገና ለማቆም ይሞክሩ።} flutter_disconnect_unexpected{ያልተጠበቀ ስህተት ቱነሉ መቆሙ እንዳይረጋገጥ አድርጓል።} device_revoked{የመሣሪያው የVPN መዳረሻ ተሰርዟል እና በመሣሪያው ላይ የነበረው ሚስጥራዊ ውሂብ ተወግዷል።} revoke_unexpected{መሣሪያው ሊወገድ አልቻለም። ዝርዝሩን ያድሱ እና እንደገና ይሞክሩ።} identity_renewal_unexpected{አዲሱ የVPN ማንነት ሊፈጠር አልቻለም። መሣሪያዎችን ያድሱ እና እንደገና ይሞክሩ።} openvpn_renewal_unexpected{የOpenVPN መገለጫው ሊታደስ አልቻለም። እንደገና ይሞክሩ ወይም የምርመራ ኮዱን ይመልከቱ።} location_migration_blocked{አገልጋዩ ይህን ለውጥ አሁን ማጠናቀቅ አይችልም። መሣሪያው እና በመሣሪያው ላይ ያለው ማንነት ተጠብቀዋል።} location_migration_slow{አገልጋዩ ወደ {target} የሚደረገውን ለውጥ አሁንም እያዘጋጀ ነው። ከጥቂት ጊዜ በኋላ “የአካባቢ ለውጡን ይቀጥሉ” የሚለውን ይጠቀሙ።} location_migration_conflict{የመሣሪያው ሁኔታ በአገልጋዩ ላይ ተቀይሯል። መሣሪያዎችን ያድሱ፣ ከዚያ ለውጡን ይቀጥሉ።} location_migration_verification_failed{አገልጋዩ አዲሱን አካባቢ አላረጋገጠም። ቀደም ሲል የነበረው ማንነት ተጠብቋል።} location_migration_device_changed{አገልጋዩ የመለሰው መሣሪያ አሁን ከሚለወጠው መሣሪያ ጋር አይዛመድም። እንደገና ከመሞከርዎ በፊት መሣሪያዎችን ያድሱ።} tunnel_stop_failed{ከአዲሱ ግንኙነት በፊት ቀደም ያለው ቱነል ሙሉ በሙሉ መቆም አለበት።} device_clock_ahead{የዚህ መሣሪያ ሰዓት ከትክክለኛው ሰዓት የቀደመ ይመስላል። ገብተው ለመቆየት ራስ-ሰር ቀን እና ሰዓት ያብሩ።} other{ስራው ሊጠናቀቅ አልቻለም። እንደገና ይሞክሩ ወይም የምርመራ ኮዱን ለድጋፍ ቡድኑ ይላኩ።}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{ክፍለ ጊዜው አብቅቷል} invalid_credentials{መግባት አልተሳካም} email_verification_required{የኢሜይል ማረጋገጫ ያስፈልጋል} verification_email_cooldown{ኢሜይሉ አስቀድሞ ተልኳል} rate_limited{በጣም ብዙ ሙከራዎች} invalid_registration{መረጃው መስተካከል አለበት} email_exists{መለያ አስቀድሞ አለ} invalid_profile{ልክ ያልሆነ መገለጫ} invalid_device{ልክ ያልሆነ መሣሪያ} invalid_location{አካባቢ አይገኝም} device_limit{የመሣሪያ ገደብ ላይ ደርሷል} device_exists{የVPN ማንነት አስቀድሞ ጥቅም ላይ ውሏል} device_identity_revoked{የVPN ማንነት መታደስ አለበት} device_location_locked{የአካባቢ ለውጡን ማደስ ያስፈልጋል} location_migration_pending{የአካባቢ ለውጥ በሂደት ላይ ነው} location_migration_blocked{የአካባቢ ለውጥ ታግዷል} target_ca_mismatch{ተኳሃኝ ያልሆነ የOpenVPN አገልጋይ} location_migration_conflict{የአካባቢ ለውጡን ማደስ ያስፈልጋል} server_full{አገልጋዩ ሞልቷል} capacity_unavailable{አካባቢው ለጊዜው አይገኝም} target_unavailable{አገልጋዩ ለጊዜው አይገኝም} not_found{ንጥሉ አልተገኘም} invalid_openvpn_csr{ልክ ያልሆነ የOpenVPN ማንነት} openvpn_profile_exists{የOpenVPN መገለጫ አስቀድሞ አለ} openvpn_profile_revoked{የOpenVPN መገለጫ ተሰርዟል} openvpn_operation_pending{የOpenVPN ስራ በሂደት ላይ ነው} openvpn_operation_terminal{የOpenVPN ስራ ተቋርጧል} openvpn_address_unavailable{የOpenVPN አድራሻ አይገኝም} openvpn_profile_conflict{የOpenVPN ግጭት} openvpn_signer_unavailable{OpenVPN አይገኝም} email_delivery_unavailable{ኢሜይል አይገኝም} invalid_token{ልክ ያልሆነ አገናኝ} network_unavailable{የኢንተርኔት ግንኙነት አይገኝም} invalid_json{ልክ ያልሆነ ጥያቄ} invalid_api_response{ልክ ያልሆነ የአገልጋይ ምላሽ} ipv6_unavailable{IPv6 አይገኝም} invalid_ip_families{የአውታረ መረብ ውቅር ውድቅ ተደርጓል} other{አገልግሎቱ አይገኝም}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{ክፍለ ጊዜዎ አብቅቷል። እንደገና ይግቡ።} invalid_credentials{የኢሜይል አድራሻው ወይም የይለፍ ቃሉ ትክክል አይደለም።} email_verification_required{VPN መሣሪያ ከማከልዎ በፊት የኢሜይል አድራሻዎን ያረጋግጡ።} invalid_registration{የተጠየቀውን መረጃ እና ስምምነቶች ያረጋግጡ።} email_exists{ይህን የኢሜይል አድራሻ የሚጠቀም መለያ አስቀድሞ አለ።} invalid_profile{የመገለጫ መረጃዎን ያረጋግጡ።} invalid_device{የዚህ መሣሪያ ስም ወይም በመሣሪያው ላይ ያለው ማንነት ልክ አይደለም።} invalid_location{የአካባቢዎችን ዝርዝር ያድሱ እና እንደገና ይሞክሩ።} device_limit{ሌላ መሣሪያ ከማከልዎ በፊት ያለውን መሣሪያ ያስወግዱ።} device_exists{ይህ የVPN ማንነት አስቀድሞ ከሌላ መለያ ጋር ተገናኝቷል።} device_identity_revoked{ይህ ማንነት ተወግዷል። አዲስ የመሣሪያ ማንነት መፍጠር ያስፈልጋል።} device_location_locked{የዚህ መሣሪያ አካባቢ አሁን ተቀይሯል። መተግበሪያው በሂደት ላይ ያለውን ለውጥ ይቀጥላል።} location_migration_pending{የአካባቢ ለውጥ አስቀድሞ በሂደት ላይ ነው።} location_migration_blocked{የአካባቢ ለውጡ የአገልጋይ ጣልቃ ገብነት ይፈልጋል። ቆይተው እንደገና ይሞክሩ ወይም የድጋፍ ቡድኑን ያነጋግሩ።} target_ca_mismatch{ይህ አገልጋይ ከአሁኑ የOpenVPN መገለጫ ጋር ገና ተኳሃኝ አይደለም።} location_migration_conflict{መሣሪያዎችን ያድሱ፣ ከዚያ የአካባቢ ለውጡን እንደገና ይሞክሩ።} server_full{ይህ አካባቢ የግንኙነት ገደቡ ላይ ደርሷል። ሌላ አካባቢ ይምረጡ ወይም ቆይተው እንደገና ይሞክሩ።} capacity_unavailable{ይህ አካባቢ አሁን መገኘቱን ማረጋገጥ አልተቻለም። ሌላ አካባቢ ይምረጡ ወይም ቆይተው እንደገና ይሞክሩ።} target_unavailable{ይህ አገልጋይ ለጊዜው አይገኝም።} not_found{ይህ ንጥል ከአሁን በኋላ በመለያዎ ላይ አይገኝም።} invalid_openvpn_csr{አዲስ የOpenVPN ማንነት ይፍጠሩ እና እንደገና ይሞክሩ።} openvpn_profile_exists{ለዚህ መሣሪያ የOpenVPN መገለጫ አስቀድሞ አለ።} openvpn_profile_revoked{ለመቀጠል የOpenVPN መገለጫውን ያድሱ።} openvpn_operation_pending{ለውጡ እየተሰራጨ ነው። ቆይተው እንደገና ይሞክሩ።} openvpn_operation_terminal{አዲስ የOpenVPN ማንነት ይፍጠሩ እና እንደገና ይሞክሩ።} openvpn_address_unavailable{በአሁኑ ጊዜ ምንም የOpenVPN አድራሻ አይገኝም።} openvpn_profile_conflict{መገለጫው ተቀይሯል። መሣሪያዎችን ያድሱ እና እንደገና ይሞክሩ።} openvpn_signer_unavailable{የOpenVPN አገልግሎት ለጊዜው አይገኝም።} email_delivery_unavailable{ኢሜይሉ ሊላክ አልቻለም። ቆይተው እንደገና ይሞክሩ።} invalid_token{ይህ አገናኝ ልክ ያልሆነ ወይም ጊዜው ያለፈበት ነው። አዲስ ይጠይቁ።} network_unavailable{የኢንተርኔት ግንኙነትዎን ያረጋግጡ እና እንደገና ይሞክሩ።} invalid_json{ያስገቡትን መረጃ ያረጋግጡ እና እንደገና ይሞክሩ።} invalid_api_response{አገልጋዩ ያልተጠበቀ ምላሽ ሰጥቷል። ቆይተው እንደገና ይሞክሩ።} ipv6_unavailable{አገልጋዩ አሁን IPv6ን ማንቃት አይችልም። ቆይተው እንደገና ይሞክሩ።} invalid_ip_families{የቱነል ውቅሩ ያልተሟላ ነው ወይም ከተፈቀዱት አድራሻዎች ጋር አይዛመድም። ከመተግበሪያው እንደገና ይሞክሩ።} other{የአገልጋይ ስህተት ተከስቷል። ቆይተው እንደገና ይሞክሩ።}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "ከጥቂት ጊዜ በኋላ እንደገና ይሞክሩ።",
+    "notice_retryAfter": "{seconds, plural, one{ከ{seconds} ሰከንድ በኋላ እንደገና ይሞክሩ።} other{ከ{seconds} ሰከንድ በኋላ እንደገና ይሞክሩ።}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{ከ{minutes} ደቂቃ በኋላ እንደገና ይሞክሩ።} other{ከ{minutes} ደቂቃ በኋላ እንደገና ይሞክሩ።}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{ከ{hours} ሰዓት በኋላ እንደገና ይሞክሩ።} other{ከ{hours} ሰዓት በኋላ እንደገና ይሞክሩ።}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{የስርዓት VPN ዳግም መቀጠል አይገኝም} system_vpn_resume_corrupt{የስርዓት VPN ዳግም መቀጠል ልክ አይደለም} system_vpn_resume_session_invalid{የVPN ዳግም መቀጠያ ክፍለ ጊዜ ልክ አይደለም} system_vpn_resume_identity_changed{የVPN ማንነት ተቀይሯል} system_vpn_resume_identity_invalid{የVPN ዳግም መቀጠያ ማንነት ልክ አይደለም} system_vpn_resume_storage_failed{የVPN ዳግም መቀጠያ ማከማቻ አይገኝም} system_vpn_resume_network_timeout{ለVPN ዳግም መቀጠል አውታረ መረብ አልተገኘም} system_vpn_resume_blocked{የVPN ዳግም መቀጠል ታግዷል} system_vpn_resume_failed{የVPN ዳግም መቀጠል አልተሳካም} system_vpn_resume_error_invalid{የVPN ዳግም መቀጠያ ስህተት ልክ አይደለም} wireguard_identity_store_failed{የWireGuard ማንነት አልተቀመጠም} wireguard_identity_unavailable{የWireGuard ማንነት አይገኝም} vpn_host_destroyed{የAndroid VPN አስተናጋጅ ቆሟል} vpn_host_unavailable{የAndroid VPN አስተናጋጅ አይገኝም} vpn_permission_required{የVPN ፈቃድ ያስፈልጋል} vpn_permission_denied{የVPN ፈቃድ ተከልክሏል} vpn_permission_request_failed{ፈቃድ መጠየቅ አልተቻለም} wireguard_foreground_service_unavailable{የWireGuard አገልግሎት አይገኝም} wireguard_identity_invalid{በመሣሪያው ላይ ያለው የWireGuard ቁልፍ ልክ አይደለም} wireguard_identity_in_use{የWireGuard ማንነት አስቀድሞ በጥቅም ላይ ነው} wireguard_configuration_invalid{የWireGuard ውቅር ልክ አይደለም} wireguard_operation_pending{የWireGuard ስራ አሁንም በሂደት ላይ ነው} wireguard_start_failed{የWireGuard መጀመር ውድቅ ተደርጓል} wireguard_stop_timeout{የWireGuard ማቆም አልተረጋገጠም} wireguard_handshake_timeout{WireGuard ምላሽ አልሰጠም} openvpn_connection_timeout{OpenVPN ምላሽ አልሰጠም} openvpn_core_unavailable{የOpenVPN ሞተር አይገኝም} openvpn_operation_pending{የOpenVPN ክፍለ ጊዜ አሁንም ንቁ ነው} openvpn_stop_timeout{የOpenVPN ማቆም አልተረጋገጠም} openvpn_profile_unavailable{በመሣሪያው ላይ ያለው የOpenVPN መገለጫ የለም} openvpn_native_failed{የOpenVPN ቤተኛ ጥሪ ተቋርጧል} openvpn_key_generation_failed{የOpenVPN P-256 ቁልፍ መፍጠር አልተቻለም} openvpn_csr_generation_failed{የOpenVPN CSR መፍጠር አልተቻለም} openvpn_identity_store_failed{የOpenVPN ማንነት አልተቀመጠም} openvpn_identity_clear_failed{የOpenVPN ማስወገድ ያልተሟላ ነው} openvpn_identity_in_use{የOpenVPN ማንነት አሁንም በጥቅም ላይ ነው} openvpn_tls_verification_required{የOpenVPN TLS ማረጋገጫ ይጎድላል} openvpn_cipher_invalid{የOpenVPN ምስጠራ ልክ አይደለም} openvpn_profile_rejected{የOpenVPN መገለጫ ውድቅ ተደርጓል} openvpn_identity_inconsistent{የOpenVPN ማንነት አይጣጣምም} tls_handshake_failed{የOpenVPN ድርድር ውድቅ ተደርጓል} tls_alert_unknown_ca{የOpenVPN የደንበኛ ሰርተፍኬት አልታወቀም} tls_alert_bad_certificate{የOpenVPN የደንበኛ ሰርተፍኬት ውድቅ ተደርጓል} tls_alert_unsupported_certificate{የማይደገፍ የOpenVPN ሰርተፍኬት} tls_client_certificate_required{የOpenVPN የደንበኛ ሰርተፍኬት ያስፈልጋል} tls_alert_misc{የOpenVPN TLS ማስጠንቀቂያ} tls_signature_algorithm_rejected{የማይደገፍ የOpenVPN ፊርማ} tls_handshake_rejected{የOpenVPN TLS ድርድር ውድቅ ተደርጓል} tls_version_rejected{የማይጣጣም የOpenVPN TLS ስሪት} tls_certificate_expired{የTLS ሰርተፍኬት ጊዜው አልፎበታል} tls_certificate_revoked{የTLS ሰርተፍኬት ተሽሯል} transport_failed{የOpenVPN አገልጋይ ሊደረስበት አይችልም} tun_configuration_rejected{የOpenVPN በይነገጽ መፍጠር አልተቻለም} tun_setup_failed{የOpenVPN TUN ማዋቀር አልተሳካም} tun_interface_create_failed{የOpenVPN በይነገጽ መፍጠር አልተሳካም} tun_interface_disabled{የOpenVPN በይነገጽ ተሰናክሏል} tun_halted{የOpenVPN በይነገጽ ተቋርጧል} tun_already_established{የOpenVPN በይነገጽ አስቀድሞ ተከፍቷል} tun_addresses_missing{የOpenVPN አድራሻ ይጎድላል} tun_routes_missing{የOpenVPN መስመሮች ይጎድላሉ} tun_dns_missing{የOpenVPN DNS ይጎድላል} tun_permission_revoked{የVPN ፈቃድ ተሰርዟል} tun_establish_returned_null{Android የVPN በይነገጹን ውድቅ አድርጓል} openvpn_service_start_failed{የOpenVPN አገልግሎት አይገኝም} openvpn_operation_timeout{የOpenVPN ጥሪ ጊዜው አልቋል} openvpn_start_failed{የOpenVPN መጀመር ውድቅ ተደርጓል} openvpn_connection_failed{የOpenVPN ግንኙነት ተቋርጧል} openvpn_core_status_error{የOpenVPN ሞተር በስህተት ተጠናቅቋል} openvpn_stopped_before_connected{OpenVPN ከመገናኘቱ በፊት ቆሟል} openvpn_auth_failed{የOpenVPN ማረጋገጫ ውድቅ ተደርጓል} openvpn_client_setup_failed{የOpenVPN ደንበኛ ማዘጋጀት አልተሳካም} openvpn_client_halted{የOpenVPN ደንበኛ ተቋርጧል} openvpn_client_restart{የOpenVPN ዳግም መጀመር ተጠይቋል} openvpn_inactive_timeout{OpenVPN ለረጅም ጊዜ ስራ ፈት ነው} openvpn_session_expired{የOpenVPN ክፍለ ጊዜ ጊዜው አልፎበታል} openvpn_credentials_required{የማይደገፍ የOpenVPN ማረጋገጫ} openvpn_proxy_failed{የOpenVPN መካከለኛ ማጓጓዣ አልተሳካም} openvpn_compression_failed{የOpenVPN መጭመቅ ውድቅ ተደርጓል} openvpn_ntlm_crypto_unavailable{የOpenVPN NTLM ምስጠራ አይገኝም} openvpn_feature_unsupported{የማይደገፍ የOpenVPN ባህሪ} network_unavailable{የኢንተርኔት ግንኙነት አይገኝም} network_lost{አውታረ መረብ አይገኝም} certificate_validation_failed{የአገልጋይ ሰርተፍኬት ውድቅ ተደርጓል} openvpn_certificate_expired{የOpenVPN ሰርተፍኬት ጊዜው አልፎበታል} tunnel_active_for_another_account{የሌላ መለያ ቱነል አሁንም ንቁ ነው} tunnel_already_active{ቤተኛ ቱነል አስቀድሞ ንቁ ነው} tunnel_stop_timeout{የ{protocol} ማቆም አልተረጋገጠም} tunnel_disconnected{የ{protocol} ግንኙነት ተቋርጧል} native_bridge_unavailable{የAndroid ድልድይ አይገኝም} native_operation_failed{የAndroid ስራ ተቋርጧል} invalid_arguments{የVPN መለኪያዎች ያልተሟሉ ናቸው} invalid_account_id{የVPN መለያ ልክ አይደለም} invalid_device_id{የመሣሪያ መለያ ቁጥር ልክ አይደለም} storage_key_not_allowed{የማከማቻ ቁልፍ ውድቅ ተደርጓል} secure_storage_read_failed{ደህንነቱ የተጠበቀ ውሂብ ማንበብ አልተሳካም} secure_storage_write_failed{ደህንነቱ የተጠበቀ ውሂብ መጻፍ አልተሳካም} key_generation_failed{የWireGuard ቁልፍ ማመንጨት አልተቻለም} csr_generation_failed{የOpenVPN CSR ማመንጨት አልተቻለም} openvpn_recovery_exhausted{የOpenVPN ራስ-ሰር መልሶ ማግኘት አስቀድሞ ጥቅም ላይ ውሏል} openvpn_recovery_failed{የOpenVPN ራስ-ሰር መልሶ ማግኘት አልተሳካም} openvpn_renewal_required{የOpenVPN ሰርተፍኬት ማደስ ያስፈልጋል} other{ያልተመደበ ቤተኛ የVPN ስህተት}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ዳግም ሊቀጥል የሚችል የVPN ክፍለ ጊዜ ማግኘት አይችልም። በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።} system_vpn_resume_corrupt{የተቀመጠው የVPN ዳግም መቀጠያ ውሂብ ልክ ያልሆነ ስለሆነ ጥቅም ላይ አይውልም። አዲስ ግንኙነት ይጀምሩ።} system_vpn_resume_session_invalid{የተቀመጠው ክፍለ ጊዜ ከአሁን በኋላ VPNን ዳግም መቀጠል አይችልም። በመተግበሪያው ውስጥ እንደገና ይግቡ።} system_vpn_resume_identity_changed{በመሣሪያው ላይ ያለው የVPN ማንነት ተቀይሯል። ዳግም መቀጠል ቆሟል፤ አዲስ ግንኙነት ይጀምሩ።} system_vpn_resume_identity_invalid{ለዳግም መቀጠል የሚያገለግለው ማንነት ልክ አይደለም። አዲስ ግንኙነት ይጀምሩ።} system_vpn_resume_storage_failed{Android የተመሰጠረውን የዳግም መቀጠያ ውሂብ ማንበብ ወይም ማዘመን አልቻለም። አዲስ ግንኙነት ይጀምሩ።} system_vpn_resume_network_timeout{Android VPNን ዳግም ለመቀጠል በጊዜው አውታረ መረብ ማግኘት አልቻለም። አውታረ መረብ ሲገኝ እንደገና ይሞክሩ።} system_vpn_resume_blocked{የVPN ዳግም መቀጠል ታግዷል። የAndroid ቅንብሮችን ያረጋግጡ፤ ከዚያም አዲስ ግንኙነት ይጀምሩ።} system_vpn_resume_failed{የAndroid VPN ዳግም መቀጠል አልተሳካም። በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።} system_vpn_resume_error_invalid{Android ጥቅም ላይ የማይውል የዳግም መቀጠል ስህተት መለሰ። አዲስ ግንኙነት ይጀምሩ።} wireguard_identity_store_failed{Android የዚህን መለያ የተመሰጠረ የWireGuard ማንነት ማስቀመጥ አልቻለም።} wireguard_identity_unavailable{ለዚህ ግንኙነት ጥቅም ላይ የሚውል የWireGuard ማንነት አይገኝም።} vpn_host_destroyed{VPNን የሚያስተናግደው የAndroid አካል ቆሟል። አዲስ ግንኙነት ይጀምሩ።} vpn_host_unavailable{Android VPNን የሚያስተናግድ አካል መፍጠር አይችልም። የVPN ቅንብሮችን ካረጋገጡ በኋላ እንደገና ይሞክሩ።} openvpn_renewal_required{ሰርተፍኬቱ ከመገናኘትዎ በፊት በመተግበሪያው ውስጥ እርምጃ ይፈልጋል።} openvpn_recovery_failed{ራስ-ሰር መልሶ ማግኘት አልተሳካም። በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።} openvpn_recovery_exhausted{ራስ-ሰር መልሶ ማግኘት አስቀድሞ ጥቅም ላይ ውሏል። በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።} vpn_permission_required{ቱነሉን ከመጀመርዎ በፊት Android አዲስ የVPN ፈቃድ ያስፈልገዋል።} vpn_permission_denied{ለመቀጠል በAndroid ጥያቄው ውስጥ FuzeVPNን ይፍቀዱ።} vpn_permission_request_failed{Android የVPN ፈቃድ ማያ ገጽን መክፈት አልቻለም።} wireguard_foreground_service_unavailable{Android የWireGuard አገልግሎቱን በፊት ለፊት ማቆየት አልቻለም።} wireguard_identity_invalid{የዚህ መለያ የተመሰጠረ የWireGuard ቁልፍ ሊነበብ የማይችል ወይም ልክ ያልሆነ ነው።} wireguard_identity_in_use{ሌላ ስራ አሁንም የዚህን መለያ የWireGuard ቁልፍ እየተጠቀመ ነው።} wireguard_configuration_invalid{የተቀበሉት የWireGuard አድራሻ፣ DNS፣ የአገልጋይ ቁልፍ ወይም መስመሮች ልክ አይደሉም።} wireguard_operation_pending{ቀዳሚው የWireGuard ስራ ቤተኛ አገልግሎቱን ገና አልለቀቀም።} wireguard_start_failed{የWireGuard ሞተር የውቅሩን ማንቃት ውድቅ አድርጓል።} wireguard_stop_timeout{የWireGuard አገልግሎት በተቀመጠው ጊዜ ውስጥ የVPN በይነገጹን መልቀቅ አላረጋገጠም።} wireguard_handshake_timeout{ቱነሉ ከአገልጋዩ ጋር ሃንድሼክ መደረጉን በጊዜው አላረጋገጠም።} openvpn_connection_timeout{OpenVPN በጊዜው ከአገልጋዩ ጋር ግንኙነቱን አላረጋገጠም።} openvpn_core_unavailable{ይህ የመተግበሪያ ስሪት ጥቅም ላይ የሚውል የOpenVPN ሞተር የለውም።} openvpn_operation_pending{ቤተኛው ሞተር አሁንም ቀዳሚውን የOpenVPN ክፍለ ጊዜ እየያዘ ስለሆነ ሁለተኛ ክፍለ ጊዜ መፍጠር አይችልም።} openvpn_stop_timeout{የOpenVPN ሞተር በተቀመጠው ጊዜ ውስጥ ቤተኛው ክፍለ ጊዜ መቆሙን እና መጥፋቱን አላረጋገጠም።} openvpn_profile_unavailable{ለዚህ ግንኙነት የተረጋገጠ የOpenVPN መገለጫ ማንበብ አይቻልም።} openvpn_native_failed{በመተግበሪያ ስህተት ምክንያት OpenVPN ተቋርጧል። እንደገና ለመገናኘት ይሞክሩ። ችግሩ ከቀጠለ ምርመራ ያሂዱ።} openvpn_key_generation_failed{Android Keystore ወደ ውጭ መላክ የማይቻለውን የP-256 የግል ቁልፍ መፍጠር ወይም ማንበብ አልቻለም።} openvpn_csr_generation_failed{የAndroid Keystore ቁልፍ የOpenVPN ሰርተፍኬት ጥያቄን መፈረም አልቻለም።} openvpn_identity_store_failed{የOpenVPN ሰርተፍኬቱ ወይም መገለጫው በተመሰጠረ ማከማቻ ውስጥ ሊቀመጥ አልቻለም።} openvpn_identity_clear_failed{Android ለዚህ መለያ በመሣሪያው ላይ ያለውን የOpenVPN ማንነት በሙሉ ማስወገድ አልቻለም።} openvpn_identity_in_use{አንድ ቤተኛ የOpenVPN ክፍለ ጊዜ አሁንም የዚህን መሣሪያ ቁልፍ ወይም ሰርተፍኬት እየተጠቀመ ነው።} openvpn_tls_verification_required{መገለጫው የአገልጋይ ሰርተፍኬት ማረጋገጫ በግልጽ አይጠይቅም።} openvpn_cipher_invalid{አገልጋዩ በተፈቀደው ዝርዝር ውስጥ የሌለ የምስጠራ ስልተ ቀመር አቅርቧል።} openvpn_profile_rejected{ከአገልጋዩ የተላከው መገለጫ ተኳሃኝ አይደለም። ይህን መሣሪያ እንደገና ይፍጠሩ እና ይሞክሩ።} openvpn_identity_inconsistent{ሰርተፍኬቱ ከዚህ ስልክ ደህንነቱ የተጠበቀ ማንነት ጋር አይዛመድም። በስልኩ ላይ ያለ ምንም መገለጫ አልተተካም።} tls_handshake_failed{አገልጋዩ የTLS ድርድሩን ውድቅ አድርጓል። ችግሩ ከቀጠለ መገለጫውን እንደገና ይፍጠሩ።} tls_alert_unknown_ca{አገልጋዩ የዚህን መሣሪያ ሰርተፍኬት ሰጪ ባለስልጣን አያውቀውም። የOpenVPN አገልጋዩ መፈተሽ አለበት።} tls_alert_bad_certificate{አገልጋዩ ይህን የመሣሪያ ሰርተፍኬት ውድቅ አድርጓል። ዳግም ከመሞከርዎ በፊት መሣሪያውን እንደገና ይፍጠሩ።} tls_alert_unsupported_certificate{አገልጋዩ Android የሚጠቀምበትን ደህንነቱ የተጠበቀ የሰርተፍኬት ዓይነት አይደግፍም።} tls_client_certificate_required{አገልጋዩ የደንበኛ ሰርተፍኬት ይፈልጋል፣ ነገር ግን የOpenVPN ሞተር ሊያቀርብ አልቻለም።} tls_alert_misc{አገልጋዩ ከሰርተፍኬት እና ከስሪት ምድቦች ውጭ የTLS ማስጠንቀቂያ መለሰ።} tls_signature_algorithm_rejected{አገልጋዩ የAndroid Keystore ቁልፍን የECDSA P-256 ስልተ ቀመር ውድቅ አድርጓል።} tls_handshake_rejected{አገልጋዩ ከመገናኘቱ በፊት የTLS ድርድሩን አቋርጧል።} tls_version_rejected{ደንበኛው እና አገልጋዩ የጋራ የTLS ስሪት ማግኘት አልቻሉም።} tls_certificate_expired{በግንኙነቱ ወቅት የቀረበው ሰርተፍኬት ጊዜው አልፎበታል።} tls_certificate_revoked{በግንኙነቱ ወቅት የቀረበው ሰርተፍኬት ተሽሯል።} transport_failed{የOpenVPN አገልጋዩ በአሁኑ አውታረ መረብ ላይ ምላሽ እየሰጠ አይደለም። ከጥቂት ጊዜ በኋላ እንደገና ይሞክሩ።} tun_configuration_rejected{Android OpenVPN የጠየቀውን የአውታረ መረብ ውቅር ውድቅ አድርጓል።} tun_setup_failed{የOpenVPN ሞተር የAndroid በይነገጹን ከመፍጠሩ በፊት የአውታረ መረብ ዕቅዱን ውድቅ አድርጓል።} tun_interface_create_failed{የOpenVPN ሞተር ከAndroid VpnService የTUN በይነገጽ ማግኘት አልቻለም።} tun_interface_disabled{በግንኙነቱ ወቅት Android ወይም የOpenVPN ሞተር የTUN በይነገጹን አሰናክለዋል።} tun_halted{የOpenVPN ሞተር የTUN በይነገጹን እንዲያቆም ጥያቄ ደርሶታል።} tun_already_established{OpenVPN በተመሳሳይ ግንኙነት ሁለተኛ በይነገጽ ጠይቋል። ለደህንነት ሲባል ቱነሉ ቆሟል።} tun_addresses_missing{አገልጋዩ ጥቅም ላይ የሚውል የቱነል አድራሻ አላቀረበም።} tun_routes_missing{አገልጋዩ ጥቅም ላይ የሚውሉ የቱነል መስመሮችን አላቀረበም።} tun_dns_missing{አገልጋዩ ጥቅም ላይ የሚውል የDNS አገልጋይ አላቀረበም።} tun_permission_revoked{በግንኙነቱ ወቅት Android የVPN ፈቃዱን ሰርዟል።} tun_establish_returned_null{Android በይነገጹን አልፈጠረም፤ ብዙውን ጊዜ ሌላ VPN አሁንም ንቁ ስለሆነ ነው።} openvpn_service_start_failed{Android የOpenVPN የፊት ለፊት አገልግሎቱን ማስጀመር አልቻለም።} openvpn_operation_timeout{ወደ OpenVPN ሞተር የተደረገ የJNI ጥሪ ከፍተኛውን ጊዜ አልፏል።} openvpn_start_failed{የAndroid አገልግሎቱ ዝግጁ ነው፣ ነገር ግን የOpenVPN ሞተር መገለጫውን ለማስጀመር አልተቀበለም።} openvpn_connection_failed{የOpenVPN ሞተር የCONNECTED ክስተቱን ከማሳየቱ በፊት ቆሟል።} openvpn_core_status_error{ቤተኛው የOpenVPN ዑደት በስህተት ተጠናቅቋል፤ የበለጠ ግልጽ የመጨረሻ ክስተት አልነበረም።} openvpn_stopped_before_connected{ቤተኛው የOpenVPN ዑደት ግልጽ የሞተር ስህተት ሳይኖር ከCONNECTED በፊት ቆሟል።} openvpn_auth_failed{የOpenVPN አገልጋዩ የመገለጫውን ማረጋገጫ ውድቅ አድርጓል።} openvpn_client_setup_failed{የOpenVPN ሞተር ከአውታረ መረብ ግንኙነቱ በፊት ደንበኛውን ማዘጋጀት አልቻለም።} openvpn_client_halted{የOpenVPN ሞተር የደንበኛው የመጨረሻ ማቆሚያ ትዕዛዝ ደርሶታል።} openvpn_client_restart{የOpenVPN ሞተር የማጓጓዣ ክፍለ ጊዜውን እንደገና እንዲጀመር ጠይቋል።} openvpn_inactive_timeout{የOpenVPN ሞተር የእንቅስቃሴ-አልባነት የጊዜ ገደቡ ካለፈ በኋላ ክፍለ ጊዜውን ዘግቷል።} openvpn_session_expired{አገልጋዩ የOpenVPN ክፍለ ጊዜ ጊዜው እንዳለፈበት ገልጿል።} openvpn_credentials_required{አገልጋዩ ወይም ፕሮክሲው በዚህ የሰርተፍኬት መገለጫ ውስጥ ያልተካተቱ በእጅ የሚገቡ የመግቢያ መረጃዎችን ይጠይቃል።} openvpn_proxy_failed{የOpenVPN ሞተር በተዋቀረው ፕሮክሲ ወይም ማስተላለፊያ ላይ ብልሽት እንዳለ ገልጿል።} openvpn_compression_failed{የOpenVPN ሞተር በመገለጫው ወይም በአገልጋዩ የተገለጸውን የመጭመቂያ ሁነታ ውድቅ አድርጓል።} openvpn_ntlm_crypto_unavailable{መገለጫው በዚህ ስሪት ውስጥ የማይገኝ የNTLM ምስጠራ ይጠይቃል።} openvpn_feature_unsupported{መገለጫው ወይም አገልጋዩ በዚህ የAndroid ደንበኛ ውስጥ የሌለ ባህሪ ይጠይቃል።} network_unavailable{ጥቅም ላይ የሚውል አካላዊ አውታረ መረብ አይገኝም።} network_lost{አውታረ መረቡ ከጠፋ በኋላ ቱነሉ ቆሟል።} certificate_validation_failed{የOpenVPN አገልጋዩ ማንነት ሊረጋገጥ አልቻለም።} openvpn_certificate_expired{እንደገና ከመገናኘትዎ በፊት የOpenVPN መገለጫውን ያድሱ።} tunnel_active_for_another_account{ከዚህ ግንኙነት በፊት የሌላ መለያ ቱነል መቆም አለበት።} tunnel_already_active{Android ቀዳሚው የVPN ክፍለ ጊዜ አሁንም በይነገጹን እየተጠቀመ መሆኑን ይገልጻል።} tunnel_stop_timeout{የ{protocol} ሞተር በተቀመጠው ጊዜ ውስጥ የVPN በይነገጹን መልቀቅ አላረጋገጠም።} tunnel_disconnected{ቤተኛው ሞተር ቱነሉ ከጀመረ በኋላ ባልተጠበቀ ሁኔታ መቋረጡን ገልጿል።} native_bridge_unavailable{መተግበሪያው የAndroid VPN አገልግሎትን ማግኘት አይችልም። መተግበሪያውን ዘግተው እንደገና ይክፈቱ፤ ከዚያም እንደገና ይሞክሩ።} native_operation_failed{በመተግበሪያ ስህተት ምክንያት የVPN ስራው ተቋርጧል። እንደገና ይሞክሩ። ችግሩ ከቀጠለ ምርመራ ያሂዱ።} invalid_arguments{ለዚህ የVPN ስራ የሚያስፈልገው መረጃ ያልተሟላ ነው። እንደገና ይሞክሩ። ችግሩ ከቀጠለ ምርመራ ያሂዱ።} invalid_account_id{ቤተኛው ስራ ከትክክለኛ የመለያ ቁጥር ጋር የተያያዘ አይደለም።} invalid_device_id{ወደ ቤተኛው ሞተር የተላከው የመሣሪያ መለያ ቁጥር ጠፍቷል ወይም ልክ አይደለም።} storage_key_not_allowed{የAndroid ድልድይ ከተፈቀደው የማከማቻ ዝርዝር ውጭ ቁልፍ አግዷል።} secure_storage_read_failed{Android Keystore የዚህን መለያ በመሣሪያው ላይ ያለ ውሂብ ምስጠራ መፍታት አልቻለም።} secure_storage_write_failed{Android Keystore በመሣሪያው ላይ ያለውን ውሂብ ማመስጠር ወይም ማስቀመጥ አልቻለም።} key_generation_failed{Android በደህንነቱ የተጠበቀ ማከማቻ ውስጥ የWireGuard ቁልፍን መፍጠር ወይም ማንበብ አልቻለም።} csr_generation_failed{Android Keystore የOpenVPN P-256 CSR መፍጠር ወይም መፈረም አልቻለም።} other{ያልተመዘገበ ቤተኛ ሂደት አልተሳካም። ከታች የሚታየውን የምርመራ ኮድ ለድጋፍ ቡድኑ ይላኩ።}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "የፈቃድ ጥያቄ አስቀድሞ ክፍት ነው",
+    "notice_permissionRequestInProgress_message": "የAndroid VPN ፈቃድ ጥያቄ አስቀድሞ እየታየ ነው። እንደገና ከመሞከርዎ በፊት ያጠናቅቁት።",
+    "notice_permissionRequestInterrupted_title": "የVPN ፈቃድ ጥያቄ ተቋርጧል",
+    "notice_permissionRequestInterrupted_message": "መተግበሪያው ምላሽ ከመቀበሉ በፊት የVPN ፈቃድ ማያ ገጹ ተዘግቷል።",
+    "notice_openvpnProofMissing_title": "የOpenVPN ግንኙነት አልተረጋገጠም",
+    "notice_openvpnProofMissing_message": "የOpenVPN ግንኙነቱ ሊረጋገጥ አልቻለም። ለደህንነት ሲባል ተቋርጧል። እንደገና ይሞክሩ።",
+    "openvpnCleanup_title": "የOpenVPN መገለጫ ተሰርዟል",
+    "openvpnCleanup_working": "የተሰረዘውን የOpenVPN መገለጫ በማቆም እና በማስወገድ ላይ…",
+    "openvpnCleanup_stopFailed": "የOpenVPN መዘጋት አልተረጋገጠም። አዲስ መገለጫ ከመፍጠርዎ በፊት እንደገና ይሞክሩ።",
+    "openvpnCleanup_cleanupFailed": "የተሰረዘው የOpenVPN መገለጫ ሙሉ በሙሉ ሊወገድ አልቻለም። ማጽዳቱን እንደገና ይሞክሩ።",
+    "openvpnCleanup_complete": "የተሰረዘው የOpenVPN መገለጫ ተወግዷል። አዲስ ለመፍጠር “ይገናኙ”ን ይንኩ።",
+    "network_title": "የአውታረ መረብ ውቅር",
+    "network_ipv4Fallback": "IPv6 ለጊዜው አይገኝም። ዝግጅቱ በIPv4 ቀጥሏል።",
+    "network_rejectedTitle": "የአውታረ መረብ ውቅር ውድቅ ተደርጓል",
+    "network_rejectedMessage": "የቱነል ውቅሩ ያልተሟላ ነው ወይም ከተፈቀዱት አድራሻዎች ጋር አይዛመድም። ከመተግበሪያው እንደገና ይሞክሩ።",
+    "network_unreadableTitle": "በመሣሪያው ላይ ያለ ውቅር ሊነበብ አይችልም",
+    "network_unreadableMessage": "የተቀመጠው የOpenVPN የአውታረ መረብ ውቅር ጥቅም ላይ ሊውል አይችልም። ለማዘመን ከመተግበሪያው እንደገና ይገናኙ።",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "የአውታረ መረብ ጥበቃ",
+    "protection_subtitle": "VPN ከተቋረጠ ቀጥተኛ የኢንተርኔት መዳረሻን ያግዱ።",
+    "protection_active": "የስርዓት ጥበቃ ነቅቷል",
+    "protection_alwaysOnOnly": "ሁልጊዜ የበራ VPN ነቅቷል፤ ከVPN ውጭ ማገድን ያብሩ",
+    "protection_inactive": "የስርዓት ጥበቃ ጠፍቷል",
+    "protection_unknown": "የስርዓት ጥበቃን ያረጋግጡ",
+    "protection_openSettings": "የAndroid ቅንብሮችን ይክፈቱ",
+    "protection_dialogTitle": "የአውታረ መረብ ጥበቃን ያዋቅሩ",
+    "protection_dialogMessage": "Android ሁልጊዜ የበራ VPN እና ከVPN ውጭ ያሉ ግንኙነቶችን ማገድን ያስተዳድራል። FuzeVPN መመረጡን ያረጋግጡ እና በስርዓት ቅንብሮች ውስጥ ማገድን ያንቁ።",
+    "protection_dialogOpen": "ቅንብሮችን ይክፈቱ",
+    "session_systemProtectionNote": "Android አሁንም ከVPN ውጭ ያለውን ትራፊክ እየከለከለ ከሆነ ይህን ጥበቃ ለመፈተሽ ወይም ለመቀየር የስርዓት ቅንብሮችን ይክፈቱ።",
+    "diagnostics_title": "ምርመራ",
+    "diagnostics_settingsTitle": "የመተግበሪያ ምርመራ",
+    "diagnostics_automaticTitle": "ወሳኝ ስህተቶችን ይላኩ",
+    "diagnostics_automaticDescription": "ወሳኝ ስህተት በሚከሰትበት ጊዜ አጭር የቴክኒክ ሪፖርት ያጋሩ።",
+    "diagnostics_privacy": "የተላኩ ሪፖርቶች ከገቡበት መለያ ጋር ተያይዘው ለ30 ቀናት ይቀመጣሉ። የአሰሳ ታሪክ፣ የይለፍ ቃል ወይም የVPN ቁልፎች አያካትቱም።",
+    "diagnostics_manualOpen": "ምርመራ ያሂዱ",
+    "diagnostics_localDescription": "የመተግበሪያውን እና የVPN ሁኔታ ሪፖርት ይፍጠሩ። ግንኙነትዎ ሳይለወጥ ይቆያል።",
+    "diagnostics_sendReport": "ሪፖርቱን ይላኩ",
+    "diagnostics_sendHint": "ሪፖርቱን በዚህ መሣሪያ ላይ ለማቆየት ይህንን ሳጥን ምልክት ሳያደርጉ ይተዉት።",
+    "diagnostics_signedOut": "ሪፖርት ለመላክ ወደ መለያዎ ይግቡ።",
+    "diagnostics_localLifetime": "መተግበሪያውን ከዘጉ በኋላ ይህንን ሪፖርት ለማቆየት በስልክዎ ላይ ያስቀምጡት።",
+    "diagnostics_run": "ምርመራ ያሂዱ",
+    "diagnostics_rerun": "ምርመራውን እንደገና ያሂዱ",
+    "diagnostics_running": "በመፈተሽ ላይ…",
+    "diagnostics_sending": "ሪፖርቱን በመላክ ላይ…",
+    "diagnostics_prepared": "ሪፖርቱ በዚህ መሣሪያ ላይ ዝግጁ ነው",
+    "diagnostics_queued": "ሪፖርቱ ለመላክ በመጠበቅ ላይ ነው",
+    "diagnostics_sent": "ሪፖርቱ ደርሷል",
+    "diagnostics_failed": "መላክ አልተሳካም። በመሣሪያዎ ላይ ያለው ሪፖርት አሁንም ይገኛል።",
+    "diagnostics_preparationFailed": "የምርመራ ሪፖርቱ ዝግጁ ሊሆን አልቻለም። እንደገና ይሞክሩ።",
+    "diagnostics_authenticationRequired": "ሪፖርቱን ለመላክ እንደገና ይግቡ።",
+    "diagnostics_retry": "መላክን እንደገና ይሞክሩ",
+    "diagnostics_export": "ሪፖርቱን ያስቀምጡ",
+    "diagnostics_exportFailed": "ማስቀመጥ አልተሳካም። በመሣሪያዎ ላይ ካለው ሪፖርት እንደገና ይሞክሩ።",
+    "diagnostics_preferenceFailed": "ይህ ቅንብር ሊቀመጥ አልቻለም። እንደገና ይሞክሩ።",
+    "diagnostics_receipt": "ማጣቀሻ፦ {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "በ{date} ደርሷል",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "እስከ {date} ድረስ ይቀመጣል",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "ይህ ሪፖርት ከዚህ በፊት ደርሶ ነበር።",
+    "diagnostics_preview": "የሪፖርቱ ቅድመ እይታ",
+    "diagnostics_eventCount": "{count, plural, =0{ምንም የቴክኒክ ክስተት አልተያያዘም} =1{1 የቴክኒክ ክስተት ተያይዟል} other{{count} የቴክኒክ ክስተቶች ተያይዘዋል}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "የቴክኒክ ዝርዝሮች",
+    "diagnostics_empty": "ገና ምንም የምርመራ ሪፖርት አልተዘጋጀም።",
+    "diagnostics_checkName": "{id, select, tunnel_connection{የቱነል ሁኔታ} handshake{የግንኙነት ማረጋገጫ} certificate{የVPN ሰርተፍኬት} kill_switch{የAndroid ጥበቃ} connectivity{የሚገኝ አውታረ መረብ} api_reachability{የአገልግሎት መዳረሻ} secure_storage{ደህንነቱ የተጠበቀ ማከማቻ} other{የመሣሪያ ላይ ፍተሻ}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{ተረጋግጧል} failed{ትኩረት ያስፈልገዋል} skipped{አልተፈተነም — ንቁ ፍተሻ የለም} unknown{መረጃ አይገኝም} other{መረጃ አይገኝም}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "እንኳን ወደ FuzeVPN በደህና መጡ",
+    "connection_changeLocation": "አካባቢ ይቀይሩ",
+    "connection_details": "የግንኙነት ዝርዝሮች",
+    "locations_searchLabel": "ከተማ ወይም አገር ይፈልጉ",
+    "locations_clearSearch": "ፍለጋውን ያጽዱ",
+    "locations_filterAll": "ሁሉም",
+    "locations_filterFavorites": "ተወዳጆች",
+    "locations_results": "{count, plural, one{{count} አካባቢ} other{{count} አካባቢዎች}}",
+    "locations_noResults": "ምንም አካባቢ አልተገኘም",
+    "locations_noResultsHint": "ሌላ ከተማ ወይም አገር ይሞክሩ።",
+    "locations_noFavorites": "ተወዳጆችዎ፣ በእጅዎ ላይ",
+    "locations_noFavoritesHint": "እዚህ ለማስቀመጥ ከአካባቢ ቀጥሎ ያለውን ኮከብ ይንኩ።",
+    "locations_showAll": "ሁሉንም አካባቢዎች ይመልከቱ",
+    "locations_addFavorite": "{name}ን ወደ ተወዳጆች ያክሉ",
+    "locations_removeFavorite": "{name}ን ከተወዳጆች ያስወግዱ",
+    "locations_favoriteSaveFailed": "ተወዳጁ ሊቀመጥ አልቻለም። እንደገና ይሞክሩ።",
+    "locations_emptyTitle": "ምንም አካባቢ አይገኝም",
+    "locations_emptyHint": "እንደገና ለመሞከር ዝርዝሩን ያድሱ።",
+    "devices_manage": "መሣሪያዎቼን ያስተዳድሩ",
+    "settings_personalization": "እንደ ፍላጎትዎ ያብጁ",
+    "settings_safety": "ጥበቃ",
+    "settings_help": "እርዳታ ያስፈልግዎታል?",
+    "settings_about": "ስለ FuzeVPN",
+    "diagnostics_heading": "የግንኙነት ችግርን መረዳት",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{ይገኛል} pending{በዝግጅት ላይ} revoked{ተወግዷል} expired{ጊዜው አልፎበታል} other{ሁኔታው አይገኝም}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "ምርጫው አልተቀመጠም",
+    "notice_preferenceSave_message": "ምርጫዎ ለአሁኑ ተግባራዊ ሆኗል፤ ነገር ግን ሊቀመጥ አልቻለም። መተግበሪያውን ከዘጉ በኋላም እንዲቆይ እንደገና ይሞክሩ።",
+    "connection_androidDisconnectHint": "Android VPNን ንቁ አድርጎ ካቆየው፣ በሚከፈቱት ቅንብሮች ውስጥ ሁልጊዜ የበራ VPNን ያጥፉ።",
+    "protection_learnMore": "ስለ Android ጥበቃ ይወቁ",
+    "protection_guideWhy": "ይህ ጥበቃ VPN ግንኙነቱ ከተቋረጠ መተግበሪያዎች በቀጥታ ኢንተርኔትን እንዳይጠቀሙ ይከለክላል። ይህ ቅንብር በAndroid ውስጥ ይዋቀራል።",
+    "protection_guideAlwaysOnTitle": "ሁልጊዜ የበራ VPN",
+    "protection_guideAlwaysOn": "Android የVPN አገልግሎቱን ንቁ አድርጎ ያቆያል፤ ስልኩ ዳግም ከጀመረ በኋላም መልሶ ሊያስጀምረው ይችላል።",
+    "protection_guideBlockTitle": "VPN ከሌለ ግንኙነቶችን ያግዱ",
+    "protection_guideBlock": "ይህ ቅንብር ግንኙነቱ በሚቋረጥበት ጊዜም ቢሆን ትራፊክ ከVPN ውጭ እንዳያልፍ ይከለክላል።",
+    "protection_guideWarning": "ይህ ማገድ ሲነቃ፣ VPN እስኪገናኝ ድረስ የኢንተርኔት መዳረሻ ጠፍቶ ይቆያል።",
+    "protection_guideStepsTitle": "ጥበቃን ያብሩ",
+    "protection_guideStep1": "ከታች ያለውን አዝራር በመጠቀም የAndroid VPN ቅንብሮችን ይክፈቱ።",
+    "protection_guideStep2": "ከFuzeVPN ቀጥሎ ያለውን የማርሽ አዶ በመጠቀም አማራጮቹን ይክፈቱ።",
+    "protection_guideStep3": "እነዚህ አማራጮች ካሉ፣ መጀመሪያ “ሁልጊዜ የበራ VPN”ን፣ ከዚያም “VPN ከሌለ ግንኙነቶችን ያግዱ”ን ያንቁ።",
+    "protection_guideManufacturers": "ስሞቹ እንደ ስልኩ ይለያያሉ። አስፈላጊ ከሆነ በ“ቅንብሮች” ውስጥ VPN ብለው ይፈልጉ፤ ብዙውን ጊዜ በ“አውታረ መረብ እና ኢንተርኔት” ስር ይገኛል።",
+    "protection_guideDisableTitle": "ይህን ጥበቃ ያጥፉ",
+    "protection_guideDisable": "በተመሳሳዩ ቅንብሮች ውስጥ፣ ያለ VPN ኢንተርኔትን ለመጠቀም “VPN ከሌለ ግንኙነቶችን ያግዱ”ን ያጥፉ። Android እንደገና እንዲያስጀምረው ካልፈለጉ “ሁልጊዜ የበራ VPN”ንም ያጥፉ።",
+    "protection_guideManual": "እነዚህን ቅንብሮች የሚመርጡት በAndroid ውስጥ ነው። FuzeVPN በእርስዎ ምትክ አይቀይራቸውም።",
+    "locations_changeTitle": "አካባቢ ይቀይሩ?",
+    "locations_changeActive": "VPN ግንኙነቱን ያቋርጣል፤ ከዚያም ከ{name} ጋር ለመገናኘት ይሞክራል።",
+    "locations_changeIdle": "VPN ከ{name} ጋር ለመገናኘት ይሞክራል።",
+    "locations_confirmChange": "ይቀይሩ እና ይገናኙ",
+    "locations_changeBusy": "ለውጥ በሂደት ላይ ነው። ሌላ አካባቢ ከመምረጥዎ በፊት ይጠብቁ።",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "ራስ-ሰር ምርጫ",
+    "locations_cities": "ከተሞች",
+    "locations_servers": "አገልጋዮች",
+    "locations_viewCities": "በ{name} ውስጥ ያሉ ከተሞችን ይመልከቱ",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "በ{name} ውስጥ ያሉ አገልጋዮችን ይመልከቱ",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} አገር} other{{count} አገሮች}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} ከተማ} other{{count} ከተሞች}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} አገልጋይ} other{{count} አገልጋዮች}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "ሁሉም አገሮች",
+    "locations_backToCountries": "ወደ አገሮች ይመለሱ",
+    "locations_backToCities": "ወደ {name} ከተሞች ይመለሱ",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "{name}ን ይምረጡ",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "{name}ን ይምረጡ",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "ተኳሃኝ የሆነ አገልጋይ የለም።",
+    "externalLink_failed": "ይህን አገናኝ መክፈት አልተቻለም። ቀድተው በአሳሽዎ ውስጥ መክፈት ይችላሉ።",
+    "externalLink_copy": "አገናኙን ይቅዱ",
+    "externalLink_copied": "አገናኙ ተቀድቷል",
+    "externalLink_copyFailed": "አገናኙን መቅዳት አልተቻለም። ከታች ያለውን አድራሻ ይምረጡ።",
+    "settings_deleteAccount": "መለያዬን ይሰርዙ",
+    "settings_deleteAccountDetail": "የመለያ መሰረዝ ጥያቄ አሰራርን ይመልከቱ",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "የVPN የደንበኝነት ምዝገባዎን ይምረጡ።",
+    "billing_subscribe": "በደንበኝነት ይመዝገቡ",
+    "billing_choosePlan": "ለመቀጠል ዕቅድ ይምረጡ።",
+    "billing_monthly": "ወርሃዊ",
+    "billing_yearly": "ዓመታዊ",
+    "billing_continue": "በGoogle Play ይቀጥሉ",
+    "billing_restore": "ግዢዎችን ወደነበረበት ይመልሱ",
+    "billing_manage": "የደንበኝነት ምዝገባን ያስተዳድሩ",
+    "billing_deleteAccountWarning": "የGoogle Play የደንበኝነት ምዝገባ ካለዎት የFuzeVPN መለያዎን መሰረዝ የምዝገባውን እድሳት አያቋርጥም። እድሳቱን በGoogle Play ውስጥ ለብቻ ያስተዳድሩ ወይም ይሰርዙ።",
+    "billing_deleteAccountContinue": "ወደ መለያ መሰረዝ ጥያቄ ይቀጥሉ",
+    "billing_refresh": "መዳረሻን ያድሱ",
+    "billing_loadingPlans": "ዕቅዶች በመጫን ላይ…",
+    "billing_unavailable": "በአሁኑ ጊዜ ምንም ዕቅድ የለም። ቆይተው እንደገና ይሞክሩ።",
+    "billing_comingSoon": "የደንበኝነት ምዝገባዎች በቅርቡ ይገኛሉ።",
+    "billing_priceDisclosure": "ዋጋው በGoogle Play የቀረበ ነው። የመጨረሻው መጠን እና ተፈጻሚ የሚሆኑ ግብሮች ከማረጋገጥዎ በፊት ይረጋገጣሉ።",
+    "billing_renewalMonthly": "ካልተሰረዘ በስተቀር በየወሩ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ በGoogle Play የደንበኝነት ምዝገባዎች ውስጥ መሰረዝ ይችላሉ።",
+    "billing_renewalYearly": "ካልተሰረዘ በስተቀር በየዓመቱ በራስ-ሰር ይታደሳል። በማንኛውም ጊዜ በGoogle Play የደንበኝነት ምዝገባዎች ውስጥ መሰረዝ ይችላሉ።",
+    "billing_active": "የእርስዎ Premium መዳረሻ ንቁ ነው",
+    "billing_accessUntil": "መዳረሻ እስከ {date} ድረስ ይቆያል።",
+    "billing_webManaged": "የእርስዎ የደንበኝነት ምዝገባ በFuzeVPN ድረ-ገጽ ላይ ይተዳደራል።",
+    "billing_playManaged": "የእርስዎ የደንበኝነት ምዝገባ የሚተዳደረው በGoogle Play ነው።",
+    "billing_playOnHold": "የእርስዎ የGoogle Play የደንበኝነት ምዝገባ ታግዷል ወይም ክፍያ በመጠባበቅ ላይ ነው። ለማስተካከል በGoogle Play “የደንበኝነት ምዝገባን ያስተዳድሩ”ን ይክፈቱ።",
+    "billing_playReceiptUnlinked": "ይህ የGoogle Play መለያ ለዚህ FuzeVPN መለያ ንቁ ያልሆነ የFuze Premium የደንበኝነት ምዝገባ ቀድሞውኑ አለው። ለመገምገም በGoogle Play “የደንበኝነት ምዝገባን ያስተዳድሩ”ን ይክፈቱ።",
+    "billing_inactive": "ንቁ የደንበኝነት ምዝገባ የለም።",
+    "billing_checkingAccess": "የእርስዎን መዳረሻ በመፈተሽ ላይ…",
+    "billing_restoring": "ግዢዎችን ወደነበረበት በመመለስ ላይ…",
+    "billing_pending": "ክፍያው በመጠባበቅ ላይ ነው። ከተረጋገጠ በኋላ የእርስዎ መዳረሻ ይነቃል።",
+    "billing_cancelled": "ግዢው ተሰርዟል። አዲስ የደንበኝነት ምዝገባ አልነቃም።",
+    "billing_verifying": "ግዢውን በማረጋገጥ ላይ…",
+    "billing_success": "የደንበኝነት ምዝገባ ነቅቷል። የእርስዎ Premium መዳረሻ ዝግጁ ነው።",
+    "billing_restored": "የእርስዎ ግዢዎች ወደነበሩበት ተመልሰዋል።",
+    "billing_restoreEmpty": "ለዚህ Google Play መለያ ወደነበረበት የሚመለስ ግዢ የለም።",
+    "billing_catalogError": "ዕቅዶችን መጫን አልተቻለም። እንደገና ይሞክሩ።",
+    "billing_purchaseError": "ግዢውን መጀመር አልተቻለም። እንደገና ይሞክሩ።",
+    "billing_verificationError": "የግዢ ማረጋገጫ ለጊዜው አይገኝም። እንደገና ለመሞከር ግዢዎችን ወደነበረበት ይመልሱ።",
+    "billing_restoreError": "ግዢዎችን ወደነበረበት መመለስ አልተቻለም። እንደገና ይሞክሩ።",
+    "billing_managementError": "የደንበኝነት ምዝገባ አስተዳደርን መክፈት አልተቻለም። እንደገና ይሞክሩ።",
+    "billing_storeUnavailable": "Google Play በዚህ መሣሪያ ላይ አይገኝም።",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "የእርስዎ VPN፣ ቀላል ተደርጓል።",
+    "welcome_description": "ግንኙነትዎን ይጠብቁ። የግላዊነትዎን ቁጥጥር በእጅዎ ይያዙ።",
+    "welcome_start": "ይጀምሩ",
+    "welcome_alreadyPurchased": "ቀድሞ ገዝተዋል?",
+    "welcome_noAccountRequired": "ለመጀመር መለያ አያስፈልግም።",
+    "guest_accountTitle": "መለያ አልተያያዘም",
+    "guest_accountDescription": "የደንበኝነት ምዝገባዎን በሌላ መሣሪያ ላይ ለመጠቀም ግዢዎችዎን በተመሳሳዩ የGoogle Play መለያ ወደነበሩበት ይመልሱ።",
+    "guest_existingSubscriberSignIn": "ቀድሞ በደንበኝነት ተመዝግበዋል? ይግቡ",
+    "guest_claimTitle": "FuzeVPNን ይዘው ይሂዱ",
+    "guest_claimDescription": "የደንበኝነት ምዝገባዎን በሌሎች መሣሪያዎችዎ ላይ ለማግኘት መለያ ይፍጠሩ። ይህ ደረጃ አማራጭ ነው።",
+    "guest_skip": "ምናልባት በኋላ",
+    "guest_activationTitle": "Fuze Premium ንቁ ነው",
+    "guest_activationDescription": "የደንበኝነት ምዝገባዎ ዝግጁ ነው። VPNዎን ይጠቀሙ፤ በፈለጉበት ጊዜ መለያ መፍጠር ይችላሉ።",
+    "guest_useVpn": "VPNን ይጠቀሙ",
+    "guest_loginRequired": "ይህ ግዢ ቀድሞውኑ ከFuzeVPN መለያ ጋር ተያይዟል። የደንበኝነት ምዝገባዎን ለማግኘት ወደዚያ መለያ ይግቡ።",
+    "guest_signOutWarning": "ግዢዎችን በተመሳሳዩ የGoogle Play መለያ ወደነበሩበት በመመለስ የደንበኝነት ምዝገባዎን ማግኘት ይችላሉ።",
+    "guest_profileUnavailable": "የእርስዎ መለያ ቀድሞውኑ ተያይዟል። ዝርዝሮችዎን ለማየት እና ለማስተዳደር ይግቡ።",
+    "billing_acceptance": "በመቀጠል የአጠቃቀም ውሎችን እና የግላዊነት ፖሊሲን ይቀበላሉ።",
+    "guest_verifyEmailReminder": "መለያዎን ለመጠበቅ የኢሜይል አድራሻዎን ያረጋግጡ። VPNዎን መጠቀም መቀጠል ይችላሉ።",
+    "guest_serviceUnavailable": "አገልግሎቱ ለጊዜው አይገኝም። ከጥቂት ጊዜ በኋላ እንደገና ይሞክሩ።",
+    "guest_restoreError": "ግዢዎችዎን ወደነበሩበት መመለስ አልተቻለም። ግዢው በተፈጸመበት የGoogle Play መለያ እንደገና ይሞክሩ።",
+    "guest_claimSuccess": "መለያዎ ተፈጥሯል። የደንበኝነት ምዝገባዎ እና የVPN መዳረሻዎ ተጠብቀው ይቆያሉ።",
+    "guest_emailExists": "ይህ ኢሜይል ቀድሞውኑ ጥቅም ላይ ውሏል። ሌላ አድራሻ ይምረጡ ወይም ወደ ነባር መለያዎ ይግቡ። ግዢዎ በGoogle Play በኩል ይገኛል።",
+    "guest_claimError": "መለያዎ መፈጠር አልቻለም። VPNዎን መጠቀም መቀጠል እና ቆይተው እንደገና መሞከር ይችላሉ።",
+    "guest_secureStorageError": "ክፍለ ጊዜዎ በዚህ መሣሪያ ላይ ሊጠበቅ አልቻለም። እንደገና ይሞክሩ።",
+    "guest_premiumRequired": "VPNዎን ለማንቃት የደንበኝነት ምዝገባ ይምረጡ።",
+    "welcome_viewPlans": "ዕቅዶችን ይመልከቱ",
+    "google_continue": "በGoogle ይቀጥሉ",
+    "google_or": "ወይም",
+    "google_title": "የእርስዎ FuzeVPN መለያ",
+    "google_settingUp": "መለያዎን መፍጠር ያጠናቅቁ",
+    "google_country": "የመኖሪያ አገር",
+    "google_profileDescription": "የFuzeVPN መለያዎን ለመፍጠር አገርዎን ይምረጡ እና ሁለቱንም ሰነዶች ይገምግሙ።",
+    "google_claimDescription": "የእንግዳ መለያዎን ከGoogle ጋር ያገናኙ። የደንበኝነት ምዝገባዎ እና መሣሪያዎ ከዚህ መለያ ጋር ተያይዘው ይቆያሉ።",
+    "google_linkTitle": "Googleን ከFuzeVPN ጋር ያገናኙ",
+    "google_linkDescription": "ወደ ነባሩ FuzeVPN መለያዎ መዳረሻን ያረጋግጡ። ይህ ደረጃ የGoogle የይለፍ ቃልዎን አይጠይቅም።",
+    "google_password": "የFuzeVPN የይለፍ ቃል",
+    "google_linkAccount": "ማገናኘቱን ያረጋግጡ",
+    "google_requestEmail": "የማረጋገጫ ኢሜይል ይላኩልኝ",
+    "google_emailInstructions": "የFuzeVPN ኢሜይሉን ይክፈቱ እና የማረጋገጫ ኮዱን ያስገቡ።",
+    "google_emailCode": "የኢሜይል ማረጋገጫ ኮድ",
+    "google_confirmEmail": "ኮዱን ያረጋግጡ",
+    "google_restart": "ሌላ የGoogle መለያ ይምረጡ",
+    "google_resume": "ይህን ሙከራ ያረጋግጡ",
+    "google_unavailable": "የGoogle መግቢያ አይገኝም። ኢሜይል እና የይለፍ ቃል መጠቀም ይችላሉ።",
+    "google_expired": "ይህ ሙከራ ጊዜው አልፎበታል። ይሰርዙት እና እንደገና ይጀምሩ።",
+    "google_conflict": "ይህ የGoogle መለያ ቀድሞውኑ በሌላ ቦታ ተያይዟል። አሁን ያለዎት መለያ እና የደንበኝነት ምዝገባ ይቀመጣሉ።",
+    "google_error": "የGoogle መግቢያ አልተሳካም። እንደገና ይሞክሩ፤ አሁን ያለዎት መዳረሻ ይቀመጣል።",
+    "google_uncertain": "ውጤቱ ሊረጋገጥ አልቻለም። እንደገና ከመጀመርዎ በፊት ይህን ሙከራ ያረጋግጡ ወይም ይሰርዙት።",
+    "google_cancelFailed": "ሙከራውን መሰረዝ ሊረጋገጥ አልቻለም። ይህን ማያ ገጽ ከመልቀቅዎ በፊት እንደገና ለመሰረዝ ይሞክሩ።",
+    "google_cancelled": "የGoogle መግቢያ ተሰርዟል።",
+    "google_selecting": "የእርስዎን የGoogle መለያ ይምረጡ…",
+    "google_verifying": "መለያዎን በመፈተሽ ላይ…",
+    "google_emailUnavailable": "የማረጋገጫ ኢሜይሉ ሊላክ አልቻለም። ቆይተው እንደገና ይሞክሩ።",
+    "google_emailSent": "የማረጋገጫ ኢሜይል ተልኳል። የገቢ መልዕክት ሳጥንዎን ይመልከቱ።",
+    "google_rateLimited": "እባክዎ እንደገና ከመሞከርዎ በፊት ይጠብቁ።",
+    "google_busy": "ሌላ ስራ በሂደት ላይ ባለበት ጊዜ (የVPN ግንኙነት፣ መለያ ወይም እንግዳ) Google አይገኝም። ስራው እንደተጠናቀቀ እንደገና ይሞክሩ፤ አሁን ያለዎት መዳረሻ ይቀመጣል።",
+    "google_invalidPassword": "የFuzeVPN የይለፍ ቃል ትክክል አይደለም። አሁን ያለዎት መለያ ይቀመጣል።",
+    "google_invalidCode": "የማረጋገጫ ኮዱ ልክ ያልሆነ ወይም ጊዜው ያለፈበት ነው።",
+    "google_accountChanged": "ክፍለ ጊዜዎ ተቀይሯል። እንደገና ከመጀመርዎ በፊት ይህን ሙከራ ይሰርዙ።",
+    "google_invalidResponse": "ምላሹን ማረጋገጥ አልተቻለም። አሁን ያለዎት መዳረሻ ይቀመጣል።",
+    "google_invalidRegistration": "አገርዎን እና ሁለቱንም ስምምነቶች ያረጋግጡ።",
+    "google_consentRequired": "ለመቀጠል አገርዎን ይምረጡ እና ሁለቱንም ሰነዶች ይቀበሉ።",
+    "google_challengeRequired": "ተጨማሪ የደህንነት ማረጋገጫ ያስፈልጋል። አሁን ያለዎት መዳረሻ ይቀመጣል።",
+    "google_challengeUnavailable": "የደህንነት ማረጋገጫው አይገኝም። ቆይተው እንደገና ይሞክሩ።",
+    "google_intentMismatch": "ቀደም ሲል የተጀመረ የGoogle መግቢያ ሙከራ አሁንም በመጠባበቅ ላይ ነው። ይህን ስራ ከመጀመርዎ በፊት ይሰርዙት።",
+    "google_challengeBlocked": "አስፈላጊው የደህንነት ማረጋገጫ በዚህ መተግበሪያ ውስጥ አይገኝም። ይህ ስራ አሁን ሊጠናቀቅ አይችልም።",
+    "google_solveChallenge": "የደህንነት ማረጋገጫውን ያጠናቅቁ",
+    "google_challengeTitle": "የደህንነት ማረጋገጫ",
+    "google_challengeReady": "ማረጋገጫው ተጠናቋል። አሁን መለያዎን መፍጠር ማረጋገጥ ይችላሉ።",
+    "google_challengeExpired": "ማረጋገጫው ጊዜው አልፎበታል። ከማረጋገጥዎ በፊት እንደገና ያጠናቅቁት።",
+    "google_challengeCancelled": "ማረጋገጫው ተሰርዟል። እንደገና መሞከር ይችላሉ።",
+    "google_challengeFailed": "የደህንነት ማረጋገጫው አልተሳካም። እንደገና ይሞክሩ።",
+    "billing_trialTitle": "Fuze Premiumን በነጻ ይሞክሩ",
+    "billing_trialSubtitle": "ከዛሬ ጀምሮ ግንኙነትዎን ይጠብቁ።",
+    "billing_trialWeeks": "የ2 ሳምንት ነጻ ሙከራ",
+    "billing_trialDays": "የ{days} ቀን ነጻ ሙከራ",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "ነጻ ሙከራዬን ይጀምሩ",
+    "billing_trialFirstCharge": "ዛሬ ከጀመሩ የመጀመሪያ ክፍያዎ {date} ላይ እንደሚፈጸም ይጠበቃል።",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "በተገለጸው ዋጋ በራስ-ሰር ይታደሳል። ክፍያ እንዳይፈጸም ሙከራው ከማለቁ በፊት በGoogle Play ይሰርዙ።",
+    "billing_trialThenMonthly": "ከዚያ በኋላ በወር {price}",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "ከዚያ በኋላ በዓመት {price}",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "ዕቅድዎን ይምረጡ",
+    "billing_selectionHint": "ለመቀጠል ዕቅድ ይምረጡ።",
+    "billing_benefitConnection": "የተመሰጠረ ግንኙነት",
+    "billing_benefitPrivacy": "የመስመር ላይ ግላዊነት",
+    "billing_benefitNoAccount": "መመዝገብ አያስፈልግም",
+    "billing_cancellation": "በGoogle Play ይሰርዙ",
+    "billing_premiumTitle": "የተሻለ ጥበቃ ያለው ግንኙነት።",
+    "billing_premiumSubtitle": "ግንኙነትዎን በራስዎ ፍጥነት ይጠብቁ።",
+    "billing_priceMonthly": "በወር",
+    "billing_priceYearly": "በዓመት",
+    "billing_trialToday": "ዛሬ ምንም መክፈል አያስፈልግም",
+    "billing_trialConfirmation": "Google Play ከማረጋገጥዎ በፊት ቀኖቹን፣ የመጨረሻውን መጠን እና ተፈጻሚ የሚሆኑ ግብሮችን ያረጋግጣል።",
+    "billing_offerChanged": "የዚህ ቅናሽ ውሎች ተቀይረዋል። ዕቅዶቹን ያድሱ እና እንደገና ይምረጡ።",
+    "status_waitingNetwork": "አውታረ መረብን በመጠበቅ ላይ",
+    "status_waitingNetworkDetail": "ምንም አውታረ መረብ የለም። አውታረ መረቡ ሲመለስ VPN ግንኙነቱን ያረጋግጣል።",
+    "locations_favoriteLoadFailed": "ተወዳጆችን መጫን አልተቻለም። እንደገና ይሞክሩ።",
+    "locations_favoritesLoading": "ተወዳጆችን በመጫን ላይ…"
+  },
+  "android": {
+    "vpn_notification_channel": "የVPN ግንኙነት",
+    "vpn_notification_channel_description": "የFuzeVPN ግንኙነት ንቁ መሆኑን ያመለክታል።",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s ግንኙነት ንቁ ነው",
+    "vpn_notification_connecting": "%1$s ግንኙነት በሂደት ላይ ነው",
+    "vpn_notification_disconnecting": "%1$s ግንኙነት በማቋረጥ ላይ",
+    "vpn_notification_interrupted": "%1$s ግንኙነት ተስተጓጉሏል",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "ዝግጁ · %1$s · %2$s",
+    "vpn_tile_connected": "ተገናኝቷል · %1$s · %2$s",
+    "vpn_tile_connecting": "%1$s በመገናኘት ላይ…",
+    "vpn_tile_disconnecting": "ግንኙነት በማቋረጥ ላይ…",
+    "vpn_tile_interrupted": "%1$s ተስተጓጉሏል",
+    "vpn_tile_setup_required": "በመጀመሪያ መተግበሪያውን ይክፈቱ",
+    "vpn_tile_working": "የVPN ስራ በሂደት ላይ…",
+    "vpn_notification_reconnecting": "እንደገና በመገናኘት ላይ… · %1$s",
+    "vpn_system_action_required": "በAndroid ቅንብሮች ውስጥ እርምጃ ያስፈልጋል",
+    "vpn_tile_reconnecting": "እንደገና በመገናኘት ላይ… · %1$s",
+    "vpn_notification_waiting_network": "አውታረ መረብን በመጠበቅ ላይ · %1$s",
+    "vpn_tile_waiting_network": "አውታረ መረብን በመጠበቅ ላይ · %1$s"
+  },
+  "countries": {
+    "AC": "አሴንሽን ደሴት",
+    "AD": "አንዶራ",
+    "AE": "የተባበሩት ዓረብ ኤምሬትስ",
+    "AF": "አፍጋኒስታን",
+    "AG": "አንቲጓ እና ባርቡዳ",
+    "AI": "አንጉይላ",
+    "AL": "አልባኒያ",
+    "AM": "አርሜኒያ",
+    "AO": "አንጐላ",
+    "AQ": "አንታርክቲካ",
+    "AR": "አርጀንቲና",
+    "AS": "የአሜሪካ ሳሞአ",
+    "AT": "ኦስትሪያ",
+    "AU": "አውስትራልያ",
+    "AW": "አሩባ",
+    "AX": "የአላንድ ደሴቶች",
+    "AZ": "አዘርባጃን",
+    "BA": "ቦስኒያ እና ሄርዞጎቪኒያ",
+    "BB": "ባርቤዶስ",
+    "BD": "ባንግላዲሽ",
+    "BE": "ቤልጄም",
+    "BF": "ቡርኪና ፋሶ",
+    "BG": "ቡልጋሪያ",
+    "BH": "ባህሬን",
+    "BI": "ብሩንዲ",
+    "BJ": "ቤኒን",
+    "BL": "ሴንት ባርቴሌሚ",
+    "BM": "ቤርሙዳ",
+    "BN": "ብሩኒ",
+    "BO": "ቦሊቪያ",
+    "BQ": "የካሪቢያን ኔዘርላንድስ",
+    "BR": "ብራዚል",
+    "BS": "ባሃማስ",
+    "BT": "ቡህታን",
+    "BV": "ቡቬት ደሴት",
+    "BW": "ቦትስዋና",
+    "BY": "ቤላሩስ",
+    "BZ": "በሊዝ",
+    "CA": "ካናዳ",
+    "CC": "ኮኮስ(ኬሊንግ) ደሴቶች",
+    "CD": "ኮንጎ-ኪንሻሳ",
+    "CF": "ማዕከላዊ አፍሪካ ሪፑብሊክ",
+    "CG": "ኮንጎ ብራዛቪል",
+    "CH": "ስዊዘርላንድ",
+    "CI": "ኮትዲቯር",
+    "CK": "ኩክ ደሴቶች",
+    "CL": "ቺሊ",
+    "CM": "ካሜሩን",
+    "CN": "ቻይና",
+    "CO": "ኮሎምቢያ",
+    "CP": "ክሊፐርቶን ደሴት",
+    "CQ": "ሳርክ",
+    "CR": "ኮስታሪካ",
+    "CU": "ኩባ",
+    "CV": "ኬፕቨርዴ",
+    "CW": "ኩራሳዎ",
+    "CX": "ክሪስማስ ደሴት",
+    "CY": "ሳይፕረስ",
+    "CZ": "ቼቺያ",
+    "DE": "ጀርመን",
+    "DG": "ዲዬጎ ጋርሲያ",
+    "DJ": "ጂቡቲ",
+    "DK": "ዴንማርክ",
+    "DM": "ዶሚኒካ",
+    "DO": "ዶመኒካን ሪፑብሊክ",
+    "DZ": "አልጄሪያ",
+    "EA": "ሴኡታና ሜሊላ",
+    "EC": "ኢኳዶር",
+    "EE": "ኤስቶኒያ",
+    "EG": "ግብጽ",
+    "EH": "ምዕራባዊ ሳህራ",
+    "ER": "ኤርትራ",
+    "ES": "ስፔን",
+    "ET": "ኢትዮጵያ",
+    "EU": "የአውሮፓ ህብረት",
+    "EZ": "የዩሮ ዞን",
+    "FI": "ፊንላንድ",
+    "FJ": "ፊጂ",
+    "FK": "የፎክላንድ ደሴቶች",
+    "FM": "ማይክሮኔዢያ",
+    "FO": "የፋሮ ደሴቶች",
+    "FR": "ፈረንሳይ",
+    "GA": "ጋቦን",
+    "GB": "ዩናይትድ ኪንግደም",
+    "GD": "ግሬናዳ",
+    "GE": "ጆርጂያ",
+    "GF": "የፈረንሳይ ጉዊአና",
+    "GG": "ጉርነሲ",
+    "GH": "ጋና",
+    "GI": "ጂብራልተር",
+    "GL": "ግሪንላንድ",
+    "GM": "ጋምቢያ",
+    "GN": "ጊኒ",
+    "GP": "ጉዋደሉፕ",
+    "GQ": "ኢኳቶሪያል ጊኒ",
+    "GR": "ግሪክ",
+    "GS": "ደቡብ ጆርጂያ እና የደቡብ ሳንድዊች ደሴቶች",
+    "GT": "ጉዋቲማላ",
+    "GU": "ጉዋም",
+    "GW": "ጊኒ-ቢሳው",
+    "GY": "ጉያና",
+    "HK": "ሆንግ ኮንግ ልዩ የአስተዳደር ክልል ቻይና",
+    "HM": "ኽርድ እና ማክዶናልድ ደሴቶች",
+    "HN": "ሆንዱራስ",
+    "HR": "ክሮኤሽያ",
+    "HT": "ሀይቲ",
+    "HU": "ሀንጋሪ",
+    "IC": "የካናሪ ደሴቶች",
+    "ID": "ኢንዶኔዢያ",
+    "IE": "አየርላንድ",
+    "IL": "እስራኤል",
+    "IM": "አይል ኦፍ ማን",
+    "IN": "ህንድ",
+    "IO": "የብሪታኒያ ህንድ ውቅያኖስ ግዛት",
+    "IQ": "ኢራቅ",
+    "IR": "ኢራን",
+    "IS": "አይስላንድ",
+    "IT": "ጣሊያን",
+    "JE": "ጀርዚ",
+    "JM": "ጃማይካ",
+    "JO": "ጆርዳን",
+    "JP": "ጃፓን",
+    "KE": "ኬንያ",
+    "KG": "ኪርጊስታን",
+    "KH": "ካምቦዲያ",
+    "KI": "ኪሪባቲ",
+    "KM": "ኮሞሮስ",
+    "KN": "ቅዱስ ኪትስ እና ኔቪስ",
+    "KP": "ሰሜን ኮሪያ",
+    "KR": "ደቡብ ኮሪያ",
+    "KW": "ኩዌት",
+    "KY": "ካይማን ደሴቶች",
+    "KZ": "ካዛኪስታን",
+    "LA": "ላኦስ",
+    "LB": "ሊባኖስ",
+    "LC": "ሴንት ሉቺያ",
+    "LI": "ሊችተንስታይን",
+    "LK": "ሲሪላንካ",
+    "LR": "ላይቤሪያ",
+    "LS": "ሌሶቶ",
+    "LT": "ሊቱዌኒያ",
+    "LU": "ሉክሰምበርግ",
+    "LV": "ላትቪያ",
+    "LY": "ሊቢያ",
+    "MA": "ሞሮኮ",
+    "MC": "ሞናኮ",
+    "MD": "ሞልዶቫ",
+    "ME": "ሞንተኔግሮ",
+    "MF": "ሴንት ማርቲን",
+    "MG": "ማዳጋስካር",
+    "MH": "ማርሻል ደሴቶች",
+    "MK": "ሰሜን መቄዶንያ",
+    "ML": "ማሊ",
+    "MM": "ማይናማር(በርማ)",
+    "MN": "ሞንጎሊያ",
+    "MO": "ማካኦ ልዩ የአስተዳደር ክልል ቻይና",
+    "MP": "የሰሜናዊ ማሪያና ደሴቶች",
+    "MQ": "ማርቲኒክ",
+    "MR": "ሞሪቴኒያ",
+    "MS": "ሞንትሴራት",
+    "MT": "ማልታ",
+    "MU": "ሞሪሸስ",
+    "MV": "ማልዲቭስ",
+    "MW": "ማላዊ",
+    "MX": "ሜክሲኮ",
+    "MY": "ማሌዢያ",
+    "MZ": "ሞዛምቢክ",
+    "NA": "ናሚቢያ",
+    "NC": "ኒው ካሌዶኒያ",
+    "NE": "ኒጀር",
+    "NF": "ኖርፎልክ ደሴት",
+    "NG": "ናይጄሪያ",
+    "NI": "ኒካራጓ",
+    "NL": "ኔዘርላንድ",
+    "NO": "ኖርዌይ",
+    "NP": "ኔፓል",
+    "NR": "ናኡሩ",
+    "NU": "ኒዌ",
+    "NZ": "ኒው ዚላንድ",
+    "OM": "ኦማን",
+    "PA": "ፓናማ",
+    "PE": "ፔሩ",
+    "PF": "የፈረንሳይ ፖሊኔዢያ",
+    "PG": "ፓፑዋ ኒው ጊኒ",
+    "PH": "ፊሊፒንስ",
+    "PK": "ፓኪስታን",
+    "PL": "ፖላንድ",
+    "PM": "ሴንት ፒዬር እና ሚኩኤሎን",
+    "PN": "ፒትካኢርን ደሴቶች",
+    "PR": "ፑዌርቶ ሪኮ",
+    "PS": "የፍልስጤም ግዛት",
+    "PT": "ፖርቱጋል",
+    "PW": "ፓላው",
+    "PY": "ፓራጓይ",
+    "QA": "ኳታር",
+    "QO": "የኦሺያንያ ዳርቻ",
+    "RE": "ሪዩኒየን",
+    "RO": "ሮሜኒያ",
+    "RS": "ሰርብያ",
+    "RU": "ሩስያ",
+    "RW": "ሩዋንዳ",
+    "SA": "ሳውድአረቢያ",
+    "SB": "ሰለሞን ደሴቶች",
+    "SC": "ሲሼልስ",
+    "SD": "ሱዳን",
+    "SE": "ስዊድን",
+    "SG": "ሲንጋፖር",
+    "SH": "ሴንት ሄለና",
+    "SI": "ስሎቬኒያ",
+    "SJ": "ስቫልባርድ እና ጃን ማየን",
+    "SK": "ስሎቫኪያ",
+    "SL": "ሴራሊዮን",
+    "SM": "ሳን ማሪኖ",
+    "SN": "ሴኔጋል",
+    "SO": "ሶማሊያ",
+    "SR": "ሱሪናም",
+    "SS": "ደቡብ ሱዳን",
+    "ST": "ሳኦ ቶሜ እና ፕሪንሲፔ",
+    "SV": "ኤል ሳልቫዶር",
+    "SX": "ሲንት ማርተን",
+    "SY": "ሶሪያ",
+    "SZ": "ኤስዋቲኒ",
+    "TA": "ትሪስታን ዳ ኩንሃ",
+    "TC": "የቱርኮችና የካኢኮስ ደሴቶች",
+    "TD": "ቻድ",
+    "TF": "የፈረንሳይ ደቡባዊ ግዛቶች",
+    "TG": "ቶጐ",
+    "TH": "ታይላንድ",
+    "TJ": "ታጃኪስታን",
+    "TK": "ቶክላው",
+    "TL": "ቲሞር ሌስቴ",
+    "TM": "ቱርክሜኒስታን",
+    "TN": "ቱኒዚያ",
+    "TO": "ቶንጋ",
+    "TR": "ቱርክ",
+    "TT": "ትሪናዳድ እና ቶቤጎ",
+    "TV": "ቱቫሉ",
+    "TW": "ታይዋን",
+    "TZ": "ታንዛኒያ",
+    "UA": "ዩክሬን",
+    "UG": "ዩጋንዳ",
+    "UM": "የዩ ኤስ ጠረፍ ላይ ያሉ ደሴቶች",
+    "UN": "የተባበሩት መንግስታት",
+    "US": "ዩናይትድ ስቴትስ",
+    "UY": "ኡራጓይ",
+    "UZ": "ኡዝቤኪስታን",
+    "VA": "ቫቲካን ከተማ",
+    "VC": "ሴንት ቪንሴንት እና ግሬናዲንስ",
+    "VE": "ቬንዙዌላ",
+    "VG": "የእንግሊዝ ቨርጂን ደሴቶች",
+    "VI": "የአሜሪካ ቨርጂን ደሴቶች",
+    "VN": "ቬትናም",
+    "VU": "ቫኑአቱ",
+    "WF": "ዋሊስ እና ፉቱና ደሴቶች",
+    "WS": "ሳሞአ",
+    "XA": "የሀሰት ትእምርት",
+    "XB": "የሀሰት ባለሁለት አቅጣጫ",
+    "XK": "ኮሶቮ",
+    "YE": "የመን",
+    "YT": "ሜይኦቴ",
+    "ZA": "ደቡብ አፍሪካ",
+    "ZM": "ዛምቢያ",
+    "ZW": "ዚምቧቤ",
+    "ZZ": "ያልታወቀ ክልል"
+  }
+}

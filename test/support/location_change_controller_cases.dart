@@ -62,7 +62,7 @@ void locationChangeControllerTests() {
         MaterialApp(
           theme: FuzeVpnTheme.light(),
           locale: const Locale('fr'),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: SingleChildScrollView(
@@ -90,7 +90,7 @@ void locationChangeControllerTests() {
         MaterialApp(
           theme: FuzeVpnTheme.light(),
           locale: const Locale('fr'),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: SingleChildScrollView(
@@ -109,7 +109,7 @@ void locationChangeControllerTests() {
         MaterialApp(
           theme: FuzeVpnTheme.light(),
           locale: const Locale('fr'),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: SingleChildScrollView(
@@ -186,7 +186,7 @@ void locationChangeControllerTests() {
           MaterialApp(
             theme: FuzeVpnTheme.light(),
             locale: const Locale('fr'),
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            localizationsDelegates: AppLocalizationDelegates.all,
             supportedLocales: AppLocalizations.supportedLocales,
             home: Scaffold(
               body: SingleChildScrollView(
@@ -263,7 +263,7 @@ void locationChangeControllerTests() {
         MaterialApp(
           theme: FuzeVpnTheme.light(),
           locale: const Locale('fr'),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: SingleChildScrollView(
@@ -658,7 +658,7 @@ void locationChangeControllerTests() {
       MaterialApp(
         theme: FuzeVpnTheme.light(),
         locale: const Locale('fr'),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: AppLocalizationDelegates.all,
         supportedLocales: AppLocalizations.supportedLocales,
         home: Scaffold(
           body: ListenableBuilder(
@@ -1115,7 +1115,7 @@ void locationChangeControllerTests() {
       await tester.pumpWidget(
         MaterialApp(
           locale: const Locale('fr'),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(body: TunnelMetricsCard(controller: h.controller)),
         ),
@@ -1134,7 +1134,7 @@ void locationChangeControllerTests() {
       await tester.pumpWidget(
         MaterialApp(
           locale: const Locale('fr'),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(body: TunnelMetricsCard(controller: h.controller)),
         ),

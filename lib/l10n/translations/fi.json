@@ -1,0 +1,1036 @@
+{
+  "locale": "fi",
+  "arb": {
+    "vpnDisclosure_title": "Suojaa yhteytesi",
+    "vpnDisclosure_body": "FuzeVPN käyttää Androidin VPN-palvelua (VpnService) salatun tunnelin luomiseen tämän laitteen ja FuzeVPN-palvelimien välille.",
+    "vpnDisclosure_dataBody": "Kun VPN on käytössä, sovellustesi internetliikenne, kohdeosoitteet ja DNS-pyynnöt kulkevat tämän tunnelin kautta yhteytesi reitittämiseksi, myös silloin, kun FuzeVPN on taustalla.",
+    "vpnDisclosure_statusBody": "Sovellus käyttää yhteyden tilaa, kestoa ja siirrettyjen tietojen määrää VPN-yhteytesi näyttämiseen. Voit pysäyttää VPN-yhteyden milloin tahansa.",
+    "vpnDisclosure_privacy": "Tietosuoja",
+    "vpnDisclosure_accept": "Hyväksy ja jatka",
+    "vpnDisclosure_decline": "Ei nyt",
+    "accountRestoration_title": "Tili ei ole tilapäisesti käytettävissä",
+    "accountRestoration_message": "Istuntosi on säilytetty. Palauta tilisi yrittämällä uudelleen. Voit silti hallita VPN-yhteyttä täällä.",
+    "action_retry": "Yritä uudelleen",
+    "session_endingTitle": "Istunnon päättäminen",
+    "session_ending": "Istuntoa päätetään: VPN pysäytetään ja tiedot puhdistetaan…",
+    "session_stopFailed": "VPN:n pysäytystä ei ole vahvistettu. Yritä uudelleen, ennen kuin kirjaudut takaisin sisään.",
+    "session_cleanupFailed": "VPN on pysäytetty, mutta istunnon poistoa ei ole vahvistettu. Yritä puhdistusta uudelleen.",
+    "session_retryStop": "Yritä pysäytystä uudelleen",
+    "session_retryCleanup": "Yritä puhdistusta uudelleen",
+    "@@locale": "fi",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN valmistellaan turvallisesti…",
+    "nav_connection": "Yhteys",
+    "nav_locations": "Sijainnit",
+    "nav_account": "Tili",
+    "nav_devices": "Laitteet",
+    "nav_settings": "Asetukset",
+    "action_refresh": "Päivitä",
+    "auth_tab_login": "Kirjaudu sisään",
+    "auth_tab_register": "Rekisteröidy",
+    "auth_stepAccount": "Tili",
+    "auth_stepIdentity": "Henkilötiedot",
+    "auth_stepAddress": "Osoite ja hyväksynnät",
+    "auth_stepProgress": "Vaihe {current} / {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "VPN-palvelusi, yksinkertaisesti.",
+    "auth_keysLocal": "Yksityiset VPN-avaimesi pysyvät tällä laitteella.",
+    "form_email": "Sähköpostiosoite",
+    "form_password": "Salasana",
+    "form_showPassword": "Näytä salasana",
+    "form_hidePassword": "Piilota salasana",
+    "form_passwordMin": "8–72 tavua UTF-8-koodauksella. Osa merkeistä vie useamman kuin yhden tavun.",
+    "form_firstName": "Etunimi",
+    "form_lastName": "Sukunimi",
+    "form_phone": "Puhelinnumero (+33612345678)",
+    "form_address": "Osoite",
+    "form_address2": "Osoitteen lisärivi (valinnainen)",
+    "form_postalCode": "Postinumero",
+    "form_city": "Kaupunki",
+    "form_country": "Maakoodi (esim. FR)",
+    "action_login": "Kirjaudu sisään",
+    "action_createAccount": "Luo tili",
+    "action_createMyAccount": "Luo tilini",
+    "action_next": "Jatka",
+    "action_previous": "Takaisin",
+    "action_forgotPassword": "Unohditko salasanasi?",
+    "auth_noAccount": "Eikö sinulla ole vielä tiliä?",
+    "auth_requiredInformation": "Luo tilisi kolmessa vaiheessa.",
+    "auth_termsPrefix": "Hyväksyn ",
+    "auth_termsLink": "käyttöehdot",
+    "auth_privacyPrefix": "Hyväksyn ",
+    "auth_privacyLink": "tietosuojakäytännön",
+    "auth_consentRequired": "Tilin luomiseen tarvitaan suostumuksesi.",
+    "validation_required": "Tämä kenttä on pakollinen.",
+    "validation_email": "Anna kelvollinen sähköpostiosoite.",
+    "validation_password": "Salasana on liian lyhyt: vähintään 8 tavua UTF-8-koodauksella.",
+    "validation_passwordTooLong": "Salasana on liian pitkä: enintään 72 tavua UTF-8-koodauksella.",
+    "validation_phone": "Käytä kansainvälistä muotoa, esimerkiksi +33612345678.",
+    "validation_country": "Käytä kaksikirjaimista maakoodia, esimerkiksi FR.",
+    "passwordReset_title": "Nollaa salasana",
+    "passwordReset_description": "Anna tilisi sähköpostiosoite, jotta voit pyytää salasanan nollauslinkin.",
+    "passwordReset_send": "Lähetä linkki",
+    "connection_title": "Yhteytesi",
+    "connection_subtitle": "Valitse sijainti ja ota sitten VPN käyttöön.",
+    "connection_prepare": "Valmis yhdistämään?",
+    "connection_advancedOptions": "Lisäasetukset",
+    "connection_location": "Sijainti",
+    "connection_chooseLocation": "Valitse sijainti",
+    "connection_protocol": "Protokolla",
+    "connection_connect": "Yhdistä",
+    "connection_connecting": "Yhdistetään…",
+    "connection_disconnect": "Katkaise yhteys",
+    "connection_disconnecting": "Katkaistaan yhteyttä",
+    "connection_locationChange": "Vaihdetaan sijaintia…",
+    "connection_unavailable": "{protocol} ei ole käytettävissä",
+    "connection_activeLocation": "Aktiivinen sijainti",
+    "connection_duration": "Kesto",
+    "connection_received": "Vastaanotettu",
+    "connection_sent": "Lähetetty",
+    "connection_lastHandshake": "Viimeisin suojattu tiedonvaihto",
+    "connection_handshakeAgo": "{duration} sitten",
+    "verification_title": "Vahvista sähköpostiosoitteesi",
+    "verification_message": "Vahvista sähköpostiosoitteesi, jotta voit käyttää VPN:ää tällä puhelimella.",
+    "verification_resend": "Lähetä sähköposti uudelleen",
+    "migration_title": "Sijainnin vaihto",
+    "migration_draining": "Valmistellaan sijainnin vaihtoa…",
+    "migration_activating": "Otetaan uusi palvelin käyttöön…",
+    "migration_ready": "Sijainti päivitetty.",
+    "migration_blocked": "Sijainnin vaihto vaatii palvelinpuolen toimenpiteitä. Yritä myöhemmin uudelleen tai ota yhteyttä tukeen.",
+    "migration_progress": "Sijainnin vaihdon eteneminen",
+    "migration_retryDelay": "Tarkistusten väli: {seconds} s.",
+    "migration_resume": "Jatka sijainnin vaihtoa",
+    "status_authorizing": "Lupa vaaditaan",
+    "status_authorizingDetail": "Hyväksy Androidin pyyntö VPN:n sallimiseksi.",
+    "status_preparing": "Valmistellaan",
+    "status_preparingDetail": "Valmistellaan suojattua yhteyttäsi.",
+    "status_reconnecting": "Yhdistetään uudelleen…",
+    "status_reconnectingDetail": "Yhteys keskeytyi. VPN yrittää muodostaa yhteyden uudelleen.",
+    "status_connecting": "Yhdistetään",
+    "status_connectingDetail": "Yhdistetään VPN-palvelimeen…",
+    "status_connected": "Yhdistetty",
+    "status_connectedDetail": "VPN-yhteytesi on aktiivinen.",
+    "status_disconnecting": "Katkaistaan yhteyttä",
+    "status_disconnectingDetail": "VPN-yhteytesi katkaistaan.",
+    "status_error": "Yhteys ei ole käytettävissä",
+    "status_errorDetail": "VPN-yhteyttä ei ole vahvistettu. Yritä uudelleen.",
+    "status_idle": "Yhteys katkaistu",
+    "status_idleDetail": "Yhdistä VPN suojataksesi yhteytesi.",
+    "trust_note": "Sovelluksen sulkeminen ei katkaise VPN-yhteyttä. Voit katkaista yhteyden painikkeesta ”Katkaise yhteys”.",
+    "locations_none": "Sijainteja ei ole tällä hetkellä saatavilla.",
+    "locations_available": "Valitse seuraava sijainti.",
+    "locations_selected": "Valittu sijainti",
+    "locations_select": "Valitse tämä sijainti",
+    "locations_lockedTunnel": "Katkaise VPN-yhteys vaihtaaksesi sijaintia.",
+    "locations_lockedMigration": "Odota, kunnes sijainnin vaihto on valmis.",
+    "devices_title": "Laitteesi",
+    "devices_used": "{count} / {limit} laitetta",
+    "devices_refresh": "Päivitä laitteet",
+    "devices_empty": "VPN-laitteita ei ole vielä rekisteröity.",
+    "devices_firstConnection": "Puhelimesi lisätään, kun yhdistät ensimmäisen kerran.",
+    "devices_thisDevice": "Tämä laite",
+    "devices_added": "Lisätty {date}",
+    "devices_unnamed": "Nimetön laite",
+    "action_remove": "Poista",
+    "settings_title": "Asetukset",
+    "settings_subtitle": "Asetuksesi ja tilisi yhdessä paikassa.",
+    "settings_appearance": "Ulkoasu",
+    "settings_language": "Kieli",
+    "settings_languageDescription": "Valitsemasi kieli koskee myös VPN-ilmoituksia.",
+    "settings_account": "Tili",
+    "settings_signOut": "Kirjaudu ulos",
+    "settings_privacy": "Tietosuojakäytäntö",
+    "settings_terms": "Käyttöehdot",
+    "settings_security": "Turvallisuus ja läpinäkyvyys",
+    "settings_licenses": "Komponenttien lisenssit",
+    "settings_licensesDetail": "Sovelluksessa käytetyt ohjelmistot",
+    "settings_licensesLegalese": "Sovelluksen ja sen MPL-2.0-komponenttien lähdekoodi: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "VPN pysyy päällä, kun poistut sovelluksesta. Voit katkaista yhteyden Yhteys-välilehden painikkeesta ”Katkaise yhteys”.",
+    "theme_system": "Järjestelmä",
+    "theme_light": "Vaalea",
+    "theme_dark": "Tumma",
+    "language_system": "Puhelimen kieli",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Poistetaanko tämä laite?",
+    "dialog_removeCurrent": "Tämän puhelimen VPN-yhteys katkaistaan, ja puhelin menettää käyttöoikeutensa. VPN-yhteyden tiedot poistetaan, kun palvelin on vahvistanut poiston.",
+    "dialog_removeOther": "Laitteen ”{name}” VPN-käyttöoikeus peruutetaan. Tätä ei voi kumota.",
+    "dialog_signOut": "Kirjaudu ulos?",
+    "dialog_signOutMessage": "VPN pysäytetään, ja sinun on kirjauduttava sisään uudelleen. Salatut VPN-avaimesi pysyvät tällä puhelimella seuraavaa yhteyttä varten.",
+    "action_cancel": "Peruuta",
+    "action_close": "Sulje",
+    "action_copy": "Kopioi",
+    "action_signOut": "Kirjaudu ulos",
+    "notice_close": "Sulje viesti",
+    "notice_sessionExpired_title": "Istunto vanhentui",
+    "notice_sessionExpired_message": "Istuntosi on vanhentunut. Kirjaudu sisään uudelleen.",
+    "notice_connectionFailed_title": "Yhdistäminen epäonnistui",
+    "notice_invalidCredentials_message": "Sähköpostiosoite tai salasana on virheellinen.",
+    "notice_emailVerification_title": "Sähköpostiosoitteen vahvistus vaaditaan",
+    "notice_emailVerification_message": "Vahvista sähköpostiosoitteesi ennen VPN-laitteen lisäämistä.",
+    "notice_rateLimited_title": "Liian monta yritystä",
+    "notice_deviceLimit_title": "Laitteiden enimmäismäärä saavutettu",
+    "notice_deviceLimit_message": "Poista jokin nykyinen laite ennen uuden lisäämistä.",
+    "notice_identityRenewal_title": "VPN-identiteetti on uusittava",
+    "notice_identityRenewal_message": "Tämä identiteetti poistettiin. Luo uusi paikallinen identiteetti.",
+    "notice_migrationPending_title": "Sijainnin vaihto on käynnissä",
+    "notice_migrationPending_message": "Sijainnin vaihto on jo käynnissä.",
+    "notice_migrationBlocked_title": "Sijainnin vaihto estetty",
+    "notice_migrationBlocked_message": "Sijainnin vaihto vaatii palvelinpuolen toimenpiteitä. Yritä myöhemmin uudelleen tai ota yhteyttä tukeen.",
+    "notice_targetUnavailable_title": "Palvelin ei ole tilapäisesti käytettävissä",
+    "notice_targetUnavailable_message": "Tämä palvelin ei ole tilapäisesti käytettävissä.",
+    "notice_networkUnavailable_title": "Internetyhteys ei ole käytettävissä",
+    "notice_networkUnavailable_message": "Tarkista yhteytesi ja yritä uudelleen.",
+    "notice_permissionDenied_title": "VPN-lupa evätty",
+    "notice_permissionDenied_message": "Aloita yhteys uudelleen ja hyväksy Androidin lupapyyntö.",
+    "notice_wireguardTimeout_title": "Palvelin ei vastaa",
+    "notice_wireguardTimeout_message": "WireGuard-yhteyden muodostaminen kesti liian kauan. Yritä uudelleen tai valitse toinen sijainti.",
+    "notice_tlsFailed_title": "Suojattu yhteys hylättiin",
+    "notice_tlsFailed_message": "Palvelin ei hyväksynyt OpenVPN-yhteyttä. Yritä uudelleen. Jos ongelma jatkuu, suorita diagnostiikka.",
+    "notice_tunRejected_title": "Android hylkäsi VPN-verkkoliitännän",
+    "notice_tunRejected_message": "Android hylkäsi OpenVPN:n pyytämät verkkoasetukset.",
+    "notice_openvpnStart_title": "OpenVPN ei voinut käynnistyä",
+    "notice_openvpnStart_message": "OpenVPN-moottorin käynnistystä ei saatu päätökseen. Yritä uudelleen. Jos ongelma jatkuu, ota yhteyttä tukeen.",
+    "notice_diagnosticCode": "Diagnostiikkakoodi: {code}",
+    "notice_generic_title": "VPN-yhteys epäonnistui",
+    "notice_generic_message": "Tapahtui virhe. Yritä myöhemmin uudelleen.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Tili luotiin} password_reset_sent{Salasanan nollauspyyntö vastaanotettu} verification_email_sent{Vahvistussähköposti lähetetty} location_migration_pending{Sijainnin vaihto on käynnissä} vpn_sign_in_required{Kirjautuminen vaaditaan} protocol_unavailable_at_location{Protokolla ei ole käytettävissä} vpn_permission_denied{VPN-lupa evätty} revoked_identity_device_limit{Laitteiden enimmäismäärä saavutettu} tunnel_start_unexpected{VPN ei voinut käynnistyä} flutter_disconnect_timeout{Yhteyden katkaisua ei ole vahvistettu} flutter_disconnect_unexpected{Yhteyden katkaiseminen epäonnistui} device_revoked{Laite poistettu} revoke_unexpected{Laitteen poistaminen epäonnistui} identity_renewal_unexpected{Identiteetin uusiminen epäonnistui} openvpn_renewal_unexpected{OpenVPN-profiilin uusiminen epäonnistui} location_migration_blocked{Sijainnin vaihto estetty} location_migration_slow{Sijainnin vaihto on yhä käynnissä} location_migration_conflict{Sijainnin vaihto vaatii päivityksen} location_migration_verification_failed{Sijainnin vaihtoa ei ole vahvistettu} location_migration_device_changed{Laite muuttui sijainnin vaihdon aikana} tunnel_stop_failed{Sijainnin vaihto ei ole käytettävissä} device_clock_ahead{Laitteen kello on edellä} other{Toimintoa ei voitu suorittaa}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Tili luotiin, mutta vahvistussähköpostia ei voitu lähettää. Lähetä se uudelleen sovelluksesta.} password_reset_sent{Pyyntösi on vastaanotettu. Jos tähän osoitteeseen liittyy tili, saatat saada sähköpostiviestin. Tarkista myös roskapostikansio.} verification_email_sent{Uusi vahvistussähköposti on juuri lähetetty.} location_migration_pending{Sijainnin vaihtoa ({target}) valmistellaan yhä. Voit jatkaa sitä luomatta laitetta uudelleen.} vpn_sign_in_required{Kirjaudu tiliisi ennen VPN:n käynnistämistä.} protocol_unavailable_at_location{Tämä sijainti ei tarjoa valittua protokollaa. Päivitä sijainnit tai valitse toinen protokolla.} vpn_permission_denied{Android eväsi VPN-luvan. Aloita yhteys uudelleen ja hyväksy järjestelmän pyyntö.} revoked_identity_device_limit{Tämän laitteen VPN-käyttöoikeus poistettiin, ja laitteiden enimmäismäärä on saavutettu. Poista laite kohdassa Tili → Hallitse laitteitani.} tunnel_start_unexpected{Odottamaton virhe keskeytti tunnelin valmistelun. Tarkista diagnostiikkakoodi ja yritä uudelleen.} flutter_disconnect_timeout{Android ei vahvistanut VPN:n pysähtymistä ajoissa. Yritä pysäyttää se uudelleen.} flutter_disconnect_unexpected{Odottamaton virhe esti tunnelin pysähtymisen vahvistamisen.} device_revoked{Laitteen VPN-käyttöoikeus peruutettiin ja sen paikalliset salaiset tiedot poistettiin.} revoke_unexpected{Laitetta ei voitu poistaa. Päivitä luettelo ja yritä uudelleen.} identity_renewal_unexpected{Uutta VPN-identiteettiä ei voitu luoda. Päivitä laitteet ja yritä uudelleen.} openvpn_renewal_unexpected{OpenVPN-profiilia ei voitu uusia. Yritä uudelleen tai tarkista diagnostiikkakoodi.} location_migration_blocked{Palvelin ei voi suorittaa tätä muutosta juuri nyt. Laite ja sen paikallinen identiteetti säilytettiin.} location_migration_slow{Palvelin valmistelee yhä sijainnin vaihtoa ({target}). Jatka vaihtoa hetken kuluttua.} location_migration_conflict{Laitteen tila muuttui palvelimella. Päivitä laitteet ja jatka sitten muutosta.} location_migration_verification_failed{Palvelin ei vahvistanut uutta sijaintia. Edellinen paikallinen identiteetti säilytettiin.} location_migration_device_changed{Palvelimen palauttama laite ei vastaa enää muutettavana olevaa laitetta. Päivitä laitteet ennen uutta yritystä.} tunnel_stop_failed{Edellinen tunneli on pysäytettävä kokonaan ennen uuden yhteyden muodostamista.} device_clock_ahead{Tämän laitteen kello näyttää olevan edellä. Ota automaattinen päivämäärä ja kellonaika käyttöön, jotta pysyt kirjautuneena.} other{Toimintoa ei voitu suorittaa loppuun. Yritä uudelleen tai lähetä diagnostiikkakoodi tukeen.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Istunto vanhentui} invalid_credentials{Kirjautuminen epäonnistui} email_verification_required{Sähköpostiosoitteen vahvistus vaaditaan} verification_email_cooldown{Sähköposti on jo lähetetty} rate_limited{Liian monta yritystä} invalid_registration{Tiedot on korjattava} email_exists{Tili on jo olemassa} invalid_profile{Virheellinen profiili} invalid_device{Virheellinen laite} invalid_location{Sijainti ei ole käytettävissä} device_limit{Laitteiden enimmäismäärä saavutettu} device_exists{VPN-identiteetti on jo käytössä} device_identity_revoked{VPN-identiteetti on uusittava} device_location_locked{Sijainnin vaihto vaatii päivityksen} location_migration_pending{Sijainnin vaihto on käynnissä} location_migration_blocked{Sijainnin vaihto estetty} target_ca_mismatch{Yhteensopimaton OpenVPN-palvelin} location_migration_conflict{Sijainnin vaihto vaatii päivityksen} server_full{Palvelin on täynnä} capacity_unavailable{Sijainti ei ole tilapäisesti käytettävissä} target_unavailable{Palvelin ei ole tilapäisesti käytettävissä} not_found{Kohdetta ei löytynyt} invalid_openvpn_csr{Virheellinen OpenVPN-identiteetti} openvpn_profile_exists{OpenVPN-profiili on jo olemassa} openvpn_profile_revoked{OpenVPN-profiili peruutettu} openvpn_operation_pending{OpenVPN-toiminto on käynnissä} openvpn_operation_terminal{OpenVPN-toiminto keskeytyi} openvpn_address_unavailable{OpenVPN-osoite ei ole käytettävissä} openvpn_profile_conflict{OpenVPN-ristiriita} openvpn_signer_unavailable{OpenVPN ei ole käytettävissä} email_delivery_unavailable{Sähköpostin lähetys ei ole käytettävissä} invalid_token{Virheellinen linkki} network_unavailable{Internetyhteys ei ole käytettävissä} invalid_json{Virheellinen pyyntö} invalid_api_response{Virheellinen palvelimen vastaus} ipv6_unavailable{IPv6 ei ole käytettävissä} invalid_ip_families{Verkkoasetukset hylättiin} other{Palvelu ei ole käytettävissä}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Istuntosi on vanhentunut. Kirjaudu sisään uudelleen.} invalid_credentials{Sähköpostiosoite tai salasana on virheellinen.} email_verification_required{Vahvista sähköpostiosoitteesi ennen VPN-laitteen lisäämistä.} invalid_registration{Tarkista pyydetyt tiedot ja suostumukset.} email_exists{Tällä sähköpostiosoitteella on jo tili.} invalid_profile{Tarkista profiilisi tiedot.} invalid_device{Laitteen nimi tai paikallinen identiteetti on virheellinen.} invalid_location{Päivitä sijaintiluettelo ja yritä uudelleen.} device_limit{Poista jokin nykyinen laite ennen uuden lisäämistä.} device_exists{Tämä VPN-identiteetti on jo liitetty toiseen tiliin.} device_identity_revoked{Tämä identiteetti on poistettu. Uusi paikallinen identiteetti on luotava.} device_location_locked{Tämän laitteen sijainti on juuri muuttunut. Sovellus jatkaa käynnissä olevaa muutosta.} location_migration_pending{Sijainnin vaihto on jo käynnissä.} location_migration_blocked{Sijainnin vaihto vaatii palvelinpuolen toimenpiteitä. Yritä myöhemmin uudelleen tai ota yhteyttä tukeen.} target_ca_mismatch{Tämä palvelin ei ole vielä yhteensopiva nykyisen OpenVPN-profiilin kanssa.} location_migration_conflict{Päivitä laitteet ja yritä sijainnin vaihtoa uudelleen.} server_full{Tämä sijainti on saavuttanut yhteysrajansa. Valitse toinen sijainti tai yritä myöhemmin uudelleen.} capacity_unavailable{Emme voi vahvistaa, onko tämä sijainti käytettävissä juuri nyt. Valitse toinen sijainti tai yritä myöhemmin uudelleen.} target_unavailable{Tämä palvelin ei ole tilapäisesti käytettävissä.} not_found{Tämä kohde ei ole enää käytettävissä tililläsi.} invalid_openvpn_csr{Luo uusi OpenVPN-identiteetti ja yritä uudelleen.} openvpn_profile_exists{Tälle laitteelle on jo OpenVPN-profiili.} openvpn_profile_revoked{Uudista OpenVPN-profiili jatkaaksesi.} openvpn_operation_pending{Muutos ei ole vielä tullut voimaan. Yritä myöhemmin uudelleen.} openvpn_operation_terminal{Luo uusi OpenVPN-identiteetti ja yritä uudelleen.} openvpn_address_unavailable{OpenVPN-osoitetta ei ole tällä hetkellä saatavilla.} openvpn_profile_conflict{Profiili on muuttunut. Päivitä laitteet ja yritä uudelleen.} openvpn_signer_unavailable{OpenVPN-palvelu ei ole tilapäisesti käytettävissä.} email_delivery_unavailable{Sähköpostia ei voitu lähettää. Yritä myöhemmin uudelleen.} invalid_token{Tämä linkki on virheellinen tai vanhentunut. Pyydä uusi linkki.} network_unavailable{Tarkista internetyhteytesi ja yritä uudelleen.} invalid_json{Tarkista annetut tiedot ja yritä uudelleen.} invalid_api_response{Palvelin palautti odottamattoman vastauksen. Yritä myöhemmin uudelleen.} ipv6_unavailable{Palvelin ei voi ottaa IPv6:ta käyttöön tällä hetkellä. Yritä myöhemmin uudelleen.} invalid_ip_families{Tunnelin asetukset ovat puutteelliset tai eivät vastaa valtuutettuja osoitteita. Yritä uudelleen sovelluksesta.} other{Palvelimessa tapahtui virhe. Yritä myöhemmin uudelleen.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Yritä uudelleen hetken kuluttua.",
+    "notice_retryAfter": "{seconds, plural, one{Yritä uudelleen {seconds} sekunnin kuluttua.} other{Yritä uudelleen {seconds} sekunnin kuluttua.}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{Yritä uudelleen {minutes} minuutin kuluttua.} other{Yritä uudelleen {minutes} minuutin kuluttua.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{Yritä uudelleen {hours} tunnin kuluttua.} other{Yritä uudelleen {hours} tunnin kuluttua.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{VPN-yhteyden jatkaminen ei ole käytettävissä} system_vpn_resume_corrupt{Virheelliset VPN-jatkamistiedot} system_vpn_resume_session_invalid{Virheellinen VPN-istunto jatkamiseen} system_vpn_resume_identity_changed{VPN-identiteetti on muuttunut} system_vpn_resume_identity_invalid{Virheellinen VPN-identiteetti jatkamiseen} system_vpn_resume_storage_failed{VPN-jatkamistietojen tallennus ei ole käytettävissä} system_vpn_resume_network_timeout{Ei verkkoa VPN-yhteyden jatkamiseen} system_vpn_resume_blocked{VPN-yhteyden jatkaminen on estetty} system_vpn_resume_failed{VPN-yhteyden jatkaminen epäonnistui} system_vpn_resume_error_invalid{Virheellinen VPN-jatkamisvirhe} wireguard_identity_store_failed{WireGuard-identiteettiä ei voitu tallentaa} wireguard_identity_unavailable{WireGuard-identiteetti ei ole käytettävissä} vpn_host_destroyed{Androidin VPN-isäntä pysähtyi} vpn_host_unavailable{Androidin VPN-isäntä ei ole käytettävissä} openvpn_renewal_required{OpenVPN-varmenne on uusittava} openvpn_recovery_failed{OpenVPN:n palautus epäonnistui} openvpn_recovery_exhausted{OpenVPN:n palautus on jo käytetty} vpn_permission_required{VPN-lupa vaaditaan} vpn_permission_denied{VPN-lupa evätty} vpn_permission_request_failed{Lupaa ei voitu pyytää} wireguard_foreground_service_unavailable{WireGuard-palvelu ei ole käytettävissä} wireguard_identity_invalid{Virheellinen paikallinen WireGuard-avain} wireguard_identity_in_use{WireGuard-identiteetti on jo käytössä} wireguard_configuration_invalid{WireGuard-asetukset ovat virheelliset} wireguard_operation_pending{WireGuard-toiminto on yhä käynnissä} wireguard_start_failed{WireGuardin käynnistys hylättiin} wireguard_stop_timeout{WireGuardin pysäytystä ei vahvistettu} wireguard_handshake_timeout{WireGuard ei vastannut} openvpn_connection_timeout{OpenVPN ei vastannut} openvpn_core_unavailable{OpenVPN-moottori ei ole käytettävissä} openvpn_operation_pending{OpenVPN-istunto on yhä aktiivinen} openvpn_stop_timeout{OpenVPN:n pysäytystä ei vahvistettu} openvpn_profile_unavailable{Paikallinen OpenVPN-profiili puuttuu} openvpn_native_failed{Natiivi OpenVPN-kutsu keskeytyi} openvpn_key_generation_failed{OpenVPN P-256 -avainta ei voitu luoda} openvpn_csr_generation_failed{OpenVPN-varmennepyyntöä ei voitu luoda} openvpn_identity_store_failed{OpenVPN-identiteettiä ei voitu tallentaa} openvpn_identity_clear_failed{OpenVPN-identiteetin poisto jäi kesken} openvpn_identity_in_use{OpenVPN-identiteetti on yhä käytössä} openvpn_tls_verification_required{OpenVPN:n TLS-vahvistus puuttuu} openvpn_cipher_invalid{Virheellinen OpenVPN-salausalgoritmi} openvpn_profile_rejected{OpenVPN-profiili hylättiin} openvpn_identity_inconsistent{Ristiriitainen OpenVPN-identiteetti} tls_handshake_failed{OpenVPN-neuvottelu hylättiin} tls_alert_unknown_ca{OpenVPN-asiakasvarmennetta ei tunnistettu} tls_alert_bad_certificate{OpenVPN-asiakasvarmenne hylättiin} tls_alert_unsupported_certificate{OpenVPN-varmennetta ei tueta} tls_client_certificate_required{OpenVPN-asiakasvarmenne vaaditaan} tls_alert_misc{OpenVPN:n TLS-hälytys} tls_signature_algorithm_rejected{OpenVPN-allekirjoitusta ei tueta} tls_handshake_rejected{OpenVPN:n TLS-neuvottelu hylättiin} tls_version_rejected{OpenVPN:n TLS-versio ei ole yhteensopiva} tls_certificate_expired{TLS-varmenne on vanhentunut} tls_certificate_revoked{TLS-varmenne on peruutettu} transport_failed{OpenVPN-palvelin ei ole tavoitettavissa} tun_configuration_rejected{OpenVPN-verkkoliitäntää ei voitu luoda} tun_setup_failed{OpenVPN:n TUN-liitännän määritys epäonnistui} tun_interface_create_failed{OpenVPN-verkkoliitännän luominen epäonnistui} tun_interface_disabled{OpenVPN-verkkoliitäntä on poistettu käytöstä} tun_halted{OpenVPN-verkkoliitännän toiminta keskeytyi} tun_already_established{OpenVPN-verkkoliitäntä on jo avoinna} tun_addresses_missing{OpenVPN-osoite puuttuu} tun_routes_missing{OpenVPN-reitit puuttuvat} tun_dns_missing{OpenVPN-DNS puuttuu} tun_permission_revoked{VPN-lupa peruutettiin} tun_establish_returned_null{Android hylkäsi VPN-verkkoliitännän} openvpn_service_start_failed{OpenVPN-palvelu ei ole käytettävissä} openvpn_operation_timeout{OpenVPN-kutsu aikakatkaistiin} openvpn_start_failed{OpenVPN:n käynnistys hylättiin} openvpn_connection_failed{OpenVPN-yhteys keskeytyi} openvpn_core_status_error{OpenVPN Core päättyi virheeseen} openvpn_stopped_before_connected{OpenVPN pysähtyi ennen yhdistämistä} openvpn_auth_failed{OpenVPN-todennus hylättiin} openvpn_client_setup_failed{OpenVPN-asiakkaan määritys epäonnistui} openvpn_client_halted{OpenVPN-asiakkaan toiminta keskeytyi} openvpn_client_restart{OpenVPN:n uudelleenkäynnistys pyydetty} openvpn_inactive_timeout{OpenVPN on ollut toimettomana liian kauan} openvpn_session_expired{OpenVPN-istunto on vanhentunut} openvpn_credentials_required{OpenVPN-todennusta ei tueta} openvpn_proxy_failed{OpenVPN-välitysyhteys epäonnistui} openvpn_compression_failed{OpenVPN-pakkaus hylättiin} openvpn_ntlm_crypto_unavailable{OpenVPN:n NTLM-salaus ei ole käytettävissä} openvpn_feature_unsupported{OpenVPN-ominaisuutta ei tueta} network_unavailable{Internetyhteys ei ole käytettävissä} network_lost{Verkko ei ole käytettävissä} certificate_validation_failed{Palvelimen varmenne hylättiin} openvpn_certificate_expired{OpenVPN-varmenne on vanhentunut} tunnel_active_for_another_account{Toisen tilin tunneli on yhä aktiivinen} tunnel_already_active{Natiivitunneli on jo aktiivinen} tunnel_stop_timeout{{protocol}-pysäytystä ei vahvistettu} tunnel_disconnected{{protocol}-yhteys keskeytyi} native_bridge_unavailable{Android-silta ei ole käytettävissä} native_operation_failed{Android-toiminto keskeytyi} invalid_arguments{VPN-parametrit ovat puutteelliset} invalid_account_id{Virheellinen VPN-tili} invalid_device_id{Virheellinen laitetunniste} storage_key_not_allowed{Tallennusavain hylättiin} secure_storage_read_failed{Suojatun tallennuksen lukeminen epäonnistui} secure_storage_write_failed{Suojattuun tallennukseen kirjoittaminen epäonnistui} key_generation_failed{WireGuard-avainta ei voitu luoda} csr_generation_failed{OpenVPN-varmennepyyntöä ei voitu luoda} other{Luokittelematon natiivi VPN-virhe}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ei löydä jatkettavissa olevaa VPN-istuntoa. Aloita uusi yhteys sovelluksessa.} system_vpn_resume_corrupt{Tallennetut VPN-jatkamistiedot ovat virheellisiä, eikä niitä käytetä. Aloita uusi yhteys.} system_vpn_resume_session_invalid{Tallennettu istunto ei enää voi jatkaa VPN-yhteyttä. Kirjaudu sisään uudelleen sovelluksessa.} system_vpn_resume_identity_changed{Paikallinen VPN-identiteetti on muuttunut. Jatkaminen pysäytettiin. Aloita uusi yhteys.} system_vpn_resume_identity_invalid{Jatkamiseen tarkoitettu identiteetti on virheellinen. Aloita uusi yhteys.} system_vpn_resume_storage_failed{Android ei voinut lukea tai päivittää salattuja jatkamistietoja. Aloita uusi yhteys.} system_vpn_resume_network_timeout{Android ei löytänyt verkkoa ajoissa VPN-yhteyden jatkamiseen. Yritä uudelleen, kun verkko on käytettävissä.} system_vpn_resume_blocked{VPN-yhteyden jatkaminen on estetty. Tarkista Android-asetukset ja aloita sitten uusi yhteys.} system_vpn_resume_failed{Android ei voinut jatkaa VPN-yhteyttä. Aloita uusi yhteys sovelluksessa.} system_vpn_resume_error_invalid{Android palautti virheen, jota ei voi käyttää jatkamiseen. Aloita uusi yhteys.} wireguard_identity_store_failed{Android ei voinut tallentaa tämän tilin salattua WireGuard-identiteettiä.} wireguard_identity_unavailable{Tähän yhteyteen ei ole käytettävissä kelvollista WireGuard-identiteettiä.} vpn_host_destroyed{VPN:ää isännöivä Android-komponentti pysäytettiin. Aloita uusi yhteys.} vpn_host_unavailable{Android ei voi luoda VPN:ää isännöivää komponenttia. Yritä uudelleen, kun olet tarkistanut VPN-asetukset.} openvpn_renewal_required{Varmenne vaatii toimenpiteen sovelluksessa ennen yhdistämistä.} openvpn_recovery_failed{Automaattinen palautus epäonnistui. Aloita uusi yhteys sovelluksessa.} openvpn_recovery_exhausted{Automaattinen palautus on jo käytetty. Aloita uusi yhteys sovelluksessa.} vpn_permission_required{Android vaatii uuden VPN-luvan ennen tunnelin käynnistämistä.} vpn_permission_denied{Salli FuzeVPN Androidin pyynnössä, jotta voit jatkaa.} vpn_permission_request_failed{Android ei voinut avata VPN-luvan näyttöä.} wireguard_foreground_service_unavailable{Android ei voinut pitää WireGuard-palvelua etualalla.} wireguard_identity_invalid{Tämän tilin salattu WireGuard-avain on lukukelvoton tai virheellinen.} wireguard_identity_in_use{Toinen toiminto käyttää yhä tämän tilin WireGuard-avainta.} wireguard_configuration_invalid{Vastaanotettu WireGuard-osoite, DNS, palvelinavain tai reitit ovat virheellisiä.} wireguard_operation_pending{Edellinen WireGuard-toiminto ei ole vielä vapauttanut natiivipalveluaan.} wireguard_start_failed{WireGuard-moottori hylkäsi asetusten aktivoinnin.} wireguard_stop_timeout{WireGuard-palvelu ei vahvistanut VPN-verkkoliitännän vapautumista määräajassa.} wireguard_handshake_timeout{Tunneli ei vahvistanut kättelyä palvelimen kanssa ajoissa.} openvpn_connection_timeout{OpenVPN ei vahvistanut yhteyttä palvelimeen ajoissa.} openvpn_core_unavailable{Tämä sovellusversio ei sisällä käyttökelpoista OpenVPN-moottoria.} openvpn_operation_pending{Natiivimoottori käyttää yhä edellistä OpenVPN-istuntoa eikä luo toista.} openvpn_stop_timeout{OpenVPN Core ei vahvistanut, että sen natiivi-istunto pysähtyi ja tuhoutui määräajassa.} openvpn_profile_unavailable{Tälle yhteydelle ei voida lukea vahvistettua OpenVPN-profiilia.} openvpn_native_failed{Sovellusvirhe keskeytti OpenVPN:n. Yritä yhdistää uudelleen. Jos ongelma jatkuu, suorita diagnostiikka.} openvpn_key_generation_failed{Android Keystore ei voinut luoda tai lukea yksityistä P-256 -avainta, jota ei voi viedä.} openvpn_csr_generation_failed{Android Keystore -avain ei voinut allekirjoittaa OpenVPN-varmennepyyntöä.} openvpn_identity_store_failed{OpenVPN-varmennetta tai -profiilia ei voitu tallentaa salattuun tallennustilaan.} openvpn_identity_clear_failed{Android ei voinut poistaa kokonaan tämän tilin paikallista OpenVPN-identiteettiä.} openvpn_identity_in_use{Natiivi OpenVPN-istunto käyttää yhä tämän laitteen avainta tai varmennetta.} openvpn_tls_verification_required{Profiili ei vaadi nimenomaisesti palvelinvarmenteen vahvistusta.} openvpn_cipher_invalid{Palvelin antoi salausalgoritmin, joka ei kuulu sallittuihin.} openvpn_profile_rejected{Palvelimelta saatu profiili ei ole yhteensopiva. Luo laite uudelleen ja yritä sitten uudestaan.} openvpn_identity_inconsistent{Varmenne ei vastaa tämän puhelimen suojattua identiteettiä. Paikallista profiilia ei korvattu.} tls_handshake_failed{Palvelin hylkäsi TLS-neuvottelun. Luo profiili uudelleen, jos ongelma jatkuu.} tls_alert_unknown_ca{Palvelin ei tunnista tämän laitteen varmenteen myöntäjää. OpenVPN-palvelin on tarkistettava.} tls_alert_bad_certificate{Palvelin hylkäsi tämän laitteen varmenteen. Luo laite uudelleen ennen uutta yritystä.} tls_alert_unsupported_certificate{Palvelin ei tue Androidin käyttämää suojattua varmennetyyppiä.} tls_client_certificate_required{Palvelin vaatii asiakasvarmenteen, mutta OpenVPN Core ei voinut esittää sitä.} tls_alert_misc{Palvelin lähetti TLS-hälytyksen, joka ei kuulu varmenne- eikä versioluokkaan.} tls_signature_algorithm_rejected{Palvelin hylkäsi Android Keystore -avaimen ECDSA P-256 -algoritmin.} tls_handshake_rejected{Palvelin keskeytti TLS-neuvottelun ennen yhdistämistä.} tls_version_rejected{Asiakas ja palvelin eivät löytäneet yhteistä TLS-versiota.} tls_certificate_expired{Yhteyden aikana esitetty varmenne on vanhentunut.} tls_certificate_revoked{Yhteyden aikana esitetty varmenne on peruutettu.} transport_failed{OpenVPN-palvelin ei vastaa nykyisessä verkossa. Yritä hetken kuluttua uudelleen.} tun_configuration_rejected{Android hylkäsi OpenVPN:n pyytämät verkkoasetukset.} tun_setup_failed{OpenVPN Core hylkäsi verkkosuunnitelman ennen Android-liitännän luomista.} tun_interface_create_failed{OpenVPN Core ei saanut TUN-liitäntää Android VpnService -palvelulta.} tun_interface_disabled{Android tai OpenVPN Core poisti TUN-liitännän käytöstä yhteyden aikana.} tun_halted{OpenVPN Core sai pyynnön pysäyttää TUN-liitännän.} tun_already_established{OpenVPN pyysi toista liitäntää samassa yhteydessä. Tunneli pysäytettiin turvallisuussyistä.} tun_addresses_missing{Palvelin ei antanut käyttökelpoista tunnelin osoitetta.} tun_routes_missing{Palvelin ei antanut käyttökelpoisia tunnelin reittejä.} tun_dns_missing{Palvelin ei antanut käyttökelpoista DNS-palvelinta.} tun_permission_revoked{Android peruutti VPN-luvan yhteyden aikana.} tun_establish_returned_null{Android ei luonut liitäntää, yleensä koska toinen VPN on yhä aktiivinen.} openvpn_service_start_failed{Android ei voinut käynnistää OpenVPN-palvelua etualalla.} openvpn_operation_timeout{JNI-kutsu OpenVPN Coreen ylitti enimmäiskestonsa.} openvpn_start_failed{Android-palvelu on valmis, mutta OpenVPN Core ei hyväksynyt profiilin käynnistystä.} openvpn_connection_failed{OpenVPN Core pysähtyi ennen CONNECTED-tapahtuman lähettämistä.} openvpn_core_status_error{Natiivi OpenVPN-silmukka päättyi virheeseen ilman tarkempaa lopputapahtumaa.} openvpn_stopped_before_connected{Natiivi OpenVPN-silmukka pysähtyi ennen CONNECTED-tilaa ilman selvää Core-virhettä.} openvpn_auth_failed{OpenVPN-palvelin hylkäsi profiilin todennuksen.} openvpn_client_setup_failed{OpenVPN Core ei voinut alustaa asiakasta ennen verkkoyhteyttä.} openvpn_client_halted{OpenVPN Core sai asiakkaan lopullisen pysäytyspyynnön.} openvpn_client_restart{OpenVPN Core pyysi kuljetusistuntonsa uudelleenkäynnistystä.} openvpn_inactive_timeout{OpenVPN Core sulki istunnon toimettomuusajan jälkeen.} openvpn_session_expired{Palvelin ilmoitti, että OpenVPN-istunto on vanhentunut.} openvpn_credentials_required{Palvelin tai välityspalvelin pyytää interaktiivisia kirjautumistietoja, jotka eivät kuulu tähän varmenneprofiiliin.} openvpn_proxy_failed{OpenVPN Core ilmoitti määritetyn välityspalvelimen tai releen virheestä.} openvpn_compression_failed{OpenVPN Core hylkäsi profiilin tai palvelimen ilmoittaman pakkaustilan.} openvpn_ntlm_crypto_unavailable{Profiili pyytää NTLM-salausta, joka ei ole käytettävissä tässä versiossa.} openvpn_feature_unsupported{Profiili tai palvelin vaatii ominaisuuden, jota tästä Android-asiakkaasta puuttuu.} network_unavailable{Käyttökelpoista fyysistä verkkoa ei ole käytettävissä.} network_lost{Tunneli pysäytettiin verkkoyhteyden katkettua.} certificate_validation_failed{OpenVPN-palvelimen identiteettiä ei voitu vahvistaa.} openvpn_certificate_expired{Uudista OpenVPN-profiili, ennen kuin yhdistät uudelleen.} tunnel_active_for_another_account{Toisen tilin tunnelin on pysähdyttävä ennen tätä yhteyttä.} tunnel_already_active{Android ilmoittaa, että edellinen VPN-istunto käyttää yhä verkkoliitäntää.} tunnel_stop_timeout{{protocol}-moottori ei vahvistanut VPN-verkkoliitännän vapautumista määräajassa.} tunnel_disconnected{Natiivimoottori ilmoitti, että tunneli päättyi odottamatta käynnistyksen jälkeen.} native_bridge_unavailable{Sovellus ei pääse Android VPN -palveluun. Sulje sovellus, avaa se uudelleen ja yritä uudelleen.} native_operation_failed{Sovellusvirhe keskeytti VPN-toiminnon. Yritä uudelleen. Jos ongelma jatkuu, suorita diagnostiikka.} invalid_arguments{Tämän VPN-toiminnon tarvitsemat tiedot ovat puutteelliset. Yritä uudelleen. Jos ongelma jatkuu, suorita diagnostiikka.} invalid_account_id{Natiivitoiminto ei liity kelvolliseen tilitunnisteeseen.} invalid_device_id{Natiivimoottorille lähetetty laitetunniste puuttuu tai on virheellinen.} storage_key_not_allowed{Android-silta esti avaimen, joka ei kuulu sallittuun tallennusluetteloon.} secure_storage_read_failed{Android Keystore ei voinut purkaa tämän tilin paikallisten tietojen salausta.} secure_storage_write_failed{Android Keystore ei voinut salata tai tallentaa paikallisia tietoja.} key_generation_failed{Android ei voinut luoda tai lukea WireGuard-avainta suojatusta tallennustilasta.} csr_generation_failed{Android Keystore ei voinut luoda tai allekirjoittaa OpenVPN P-256 -varmennepyyntöä.} other{Dokumentoimaton natiivihaara epäonnistui. Lähetä alla näkyvä diagnostiikkakoodi tukeen.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Lupapyyntö on jo auki",
+    "notice_permissionRequestInProgress_message": "Androidin VPN-lupapyyntö on jo näkyvissä. Vastaa siihen, ennen kuin yrität uudelleen.",
+    "notice_permissionRequestInterrupted_title": "VPN-lupapyyntö keskeytyi",
+    "notice_permissionRequestInterrupted_message": "VPN-lupanäyttö suljettiin, ennen kuin sovellus sai vastauksen.",
+    "notice_openvpnProofMissing_title": "OpenVPN-yhteyttä ei vahvistettu",
+    "notice_openvpnProofMissing_message": "OpenVPN-yhteyttä ei voitu vahvistaa. Se pysäytettiin turvallisuussyistä. Yritä uudelleen.",
+    "openvpnCleanup_title": "OpenVPN-profiili peruutettu",
+    "openvpnCleanup_working": "OpenVPN pysäytetään ja peruutettu profiili poistetaan…",
+    "openvpnCleanup_stopFailed": "OpenVPN:n pysäytystä ei ole vahvistettu. Yritä uudelleen ennen uuden profiilin luomista.",
+    "openvpnCleanup_cleanupFailed": "Peruutettua OpenVPN-profiilia ei voitu poistaa kokonaan. Yritä puhdistusta uudelleen.",
+    "openvpnCleanup_complete": "Peruutettu OpenVPN-profiili on poistettu. Luo uusi napauttamalla Yhdistä.",
+    "network_title": "Verkkoasetukset",
+    "network_ipv4Fallback": "IPv6 ei ole tilapäisesti käytettävissä. Valmistelu jatkuu IPv4:llä.",
+    "network_rejectedTitle": "Verkkoasetukset hylättiin",
+    "network_rejectedMessage": "Tunnelin asetukset ovat puutteelliset tai eivät vastaa valtuutettuja osoitteita. Yritä uudelleen sovelluksesta.",
+    "network_unreadableTitle": "Paikallisia asetuksia ei voi lukea",
+    "network_unreadableMessage": "Tallennettuja OpenVPN-verkkoasetuksia ei voi käyttää. Yhdistä uudelleen sovelluksesta, niin asetukset päivittyvät.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Verkkosuojaus",
+    "protection_subtitle": "Estä suora pääsy internetiin, jos VPN-yhteys katkeaa.",
+    "protection_active": "Järjestelmäsuojaus käytössä",
+    "protection_alwaysOnOnly": "Aina päällä oleva VPN on käytössä. Ota käyttöön VPN:n ulkopuolisten yhteyksien esto.",
+    "protection_inactive": "Järjestelmäsuojaus ei ole käytössä",
+    "protection_unknown": "Tarkista järjestelmäsuojaus",
+    "protection_openSettings": "Avaa Android-asetukset",
+    "protection_dialogTitle": "Määritä verkkosuojaus",
+    "protection_dialogMessage": "Android hallitsee aina päällä olevaa VPN:ää ja VPN:n ulkopuolisten yhteyksien estoa. Tarkista, että FuzeVPN on valittuna, ja ota esto käyttöön järjestelmäasetuksissa.",
+    "protection_dialogOpen": "Avaa asetukset",
+    "session_systemProtectionNote": "Jos Android estää yhä liikenteen VPN:n ulkopuolella, avaa järjestelmäasetukset tarkistaaksesi tai muuttaaksesi tätä suojausta.",
+    "diagnostics_title": "Diagnostiikka",
+    "diagnostics_settingsTitle": "Sovelluksen diagnostiikka",
+    "diagnostics_automaticTitle": "Lähetä tärkeät virheet",
+    "diagnostics_automaticDescription": "Lähetä pieni tekninen raportti, kun tapahtuu tärkeä virhe.",
+    "diagnostics_privacy": "Lähetetyt raportit liitetään kirjautuneeseen tiliin ja säilytetään 30 päivää. Ne eivät sisällä selaushistoriaa, salasanoja tai VPN-avaimia.",
+    "diagnostics_manualOpen": "Suorita diagnostiikka",
+    "diagnostics_localDescription": "Luo raportti sovelluksen ja VPN:n tilasta. Yhteytesi pysyy ennallaan.",
+    "diagnostics_sendReport": "Lähetä raportti",
+    "diagnostics_sendHint": "Jätä tämä ruutu valitsematta, jos haluat pitää raportin tällä laitteella.",
+    "diagnostics_signedOut": "Kirjaudu sisään tilillesi, jotta voit lähettää raportin.",
+    "diagnostics_localLifetime": "Tallenna tämä raportti puhelimeesi, jotta se säilyy sovelluksen sulkemisen jälkeen.",
+    "diagnostics_run": "Suorita diagnostiikka",
+    "diagnostics_rerun": "Suorita diagnostiikka uudelleen",
+    "diagnostics_running": "Tarkistetaan…",
+    "diagnostics_sending": "Lähetetään raporttia…",
+    "diagnostics_prepared": "Raportti on valmis tällä laitteella",
+    "diagnostics_queued": "Raportti odottaa lähetystä",
+    "diagnostics_sent": "Raportti vastaanotettu",
+    "diagnostics_failed": "Lähetys epäonnistui. Paikallinen raporttisi on yhä käytettävissä.",
+    "diagnostics_preparationFailed": "Diagnostiikkaraporttia ei voitu valmistella. Yritä uudelleen.",
+    "diagnostics_authenticationRequired": "Kirjaudu sisään uudelleen, jotta voit lähettää raportin.",
+    "diagnostics_retry": "Yritä lähetystä uudelleen",
+    "diagnostics_export": "Tallenna raportti",
+    "diagnostics_exportFailed": "Tallennus epäonnistui. Yritä uudelleen paikallisesta raportista.",
+    "diagnostics_preferenceFailed": "Tätä asetusta ei voitu tallentaa. Yritä uudelleen.",
+    "diagnostics_receipt": "Viite: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Vastaanotettu {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Säilytetään {date} asti",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Tämä raportti oli jo vastaanotettu.",
+    "diagnostics_preview": "Raportin esikatselu",
+    "diagnostics_eventCount": "{count, plural, =0{Ei liitettyjä teknisiä tapahtumia} =1{1 liitetty tekninen tapahtuma} other{{count} liitettyä teknistä tapahtumaa}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Tekniset tiedot",
+    "diagnostics_empty": "Diagnostiikkaraporttia ei ole vielä valmisteltu.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Tunnelin tila} handshake{Yhteyden vahvistus} certificate{VPN-varmenne} kill_switch{Android-suojaus} connectivity{Verkkoyhteys} api_reachability{Palveluun pääsy} secure_storage{Suojattu tallennus} other{Paikallinen tarkistus}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Tarkistettu} failed{Vaatii huomiota} skipped{Ei testattu – aktiivista testausta ei tehty} unknown{Tieto ei ole saatavilla} other{Tieto ei ole saatavilla}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Tervetuloa FuzeVPN-palveluun",
+    "connection_changeLocation": "Vaihda sijainti",
+    "connection_details": "Yhteyden tiedot",
+    "locations_searchLabel": "Hae kaupunkia tai maata",
+    "locations_clearSearch": "Tyhjennä haku",
+    "locations_filterAll": "Kaikki",
+    "locations_filterFavorites": "Suosikit",
+    "locations_results": "{count, plural, one{{count} sijainti} other{{count} sijaintia}}",
+    "locations_noResults": "Sijainteja ei löytynyt",
+    "locations_noResultsHint": "Kokeile toista kaupunkia tai maata.",
+    "locations_noFavorites": "Suosikkisi käden ulottuvilla",
+    "locations_noFavoritesHint": "Napauta sijainnin vieressä olevaa tähteä tallentaaksesi sen tähän.",
+    "locations_showAll": "Näytä kaikki sijainnit",
+    "locations_addFavorite": "Lisää {name} suosikkeihin",
+    "locations_removeFavorite": "Poista {name} suosikeista",
+    "locations_favoriteSaveFailed": "Suosikkia ei voitu tallentaa. Yritä uudelleen.",
+    "locations_emptyTitle": "Sijainteja ei ole saatavilla",
+    "locations_emptyHint": "Päivitä luettelo ja yritä uudelleen.",
+    "devices_manage": "Hallitse laitteitani",
+    "settings_personalization": "Mukauta omaksesi",
+    "settings_safety": "Suojaus",
+    "settings_help": "Tarvitsetko apua?",
+    "settings_about": "Tietoja FuzeVPN:stä",
+    "diagnostics_heading": "Yhteysongelman selvittäminen",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Käytettävissä} pending{Valmistellaan} revoked{Poistettu} expired{Vanhentunut} other{Tila ei ole saatavilla}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Asetusta ei tallennettu",
+    "notice_preferenceSave_message": "Valintasi on käytössä toistaiseksi, mutta sitä ei voitu tallentaa. Yritä uudelleen, jotta se säilyy sovelluksen sulkemisen jälkeen.",
+    "connection_androidDisconnectHint": "Jos Android pitää VPN-yhteyden aktiivisena, poista avautuvissa asetuksissa käytöstä Aina päällä oleva VPN.",
+    "protection_learnMore": "Lue lisää Android-suojauksesta",
+    "protection_guideWhy": "Tämä suojaus estää sovelluksia käyttämästä internetiä suoraan, jos VPN-yhteys katkeaa. Se määritetään Androidissa.",
+    "protection_guideAlwaysOnTitle": "Aina päällä oleva VPN",
+    "protection_guideAlwaysOn": "Android pitää VPN-palvelun käynnissä ja voi käynnistää sen automaattisesti puhelimen uudelleenkäynnistyksen jälkeen.",
+    "protection_guideBlockTitle": "Estä yhteydet ilman VPN:ää",
+    "protection_guideBlock": "Tämä asetus estää liikennettä ohittamasta VPN-yhteyttä, myös yhteyden katkeamisen aikana.",
+    "protection_guideWarning": "Kun tämä esto on käytössä, internetyhteys on pois käytöstä, kunnes VPN-yhteys on muodostettu.",
+    "protection_guideStepsTitle": "Ota suojaus käyttöön",
+    "protection_guideStep1": "Avaa alla olevalla painikkeella Androidin VPN-asetukset.",
+    "protection_guideStep2": "Avaa asetukset FuzeVPN-kohdan vieressä olevasta rataskuvakkeesta.",
+    "protection_guideStep3": "Ota käyttöön ”Aina päällä oleva VPN” ja sen jälkeen ”Estä yhteydet ilman VPN:ää”, jos nämä vaihtoehdot ovat saatavilla.",
+    "protection_guideManufacturers": "Nimet vaihtelevat puhelimen mukaan. Tarvittaessa hae asetuksista VPN, usein kohdasta Verkko ja internet.",
+    "protection_guideDisableTitle": "Poista tämä suojaus käytöstä",
+    "protection_guideDisable": "Poista samoissa asetuksissa käytöstä ”Estä yhteydet ilman VPN:ää”, jotta internet toimii ilman VPN-yhteyttä. Poista myös käytöstä ”Aina päällä oleva VPN”, jos et enää halua, että Android käynnistää sen uudelleen.",
+    "protection_guideManual": "Määrität nämä asetukset itse Androidissa. FuzeVPN ei muuta niitä puolestasi.",
+    "locations_changeTitle": "Vaihdetaanko sijaintia?",
+    "locations_changeActive": "VPN-yhteys katkaistaan, minkä jälkeen yritetään yhdistää uuteen sijaintiin: {name}.",
+    "locations_changeIdle": "VPN yrittää yhdistää sijaintiin: {name}.",
+    "locations_confirmChange": "Vaihda ja yhdistä",
+    "locations_changeBusy": "Sijaintia vaihdetaan parhaillaan. Odota, ennen kuin valitset toisen sijainnin.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Automaattinen valinta",
+    "locations_cities": "Kaupungit",
+    "locations_servers": "Palvelimet",
+    "locations_viewCities": "Näytä kaupungit: {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Näytä palvelimet: {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} maa} other{{count} maata}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} kaupunki} other{{count} kaupunkia}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} palvelin} other{{count} palvelinta}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Kaikki maat",
+    "locations_backToCountries": "Takaisin maihin",
+    "locations_backToCities": "Takaisin kaupunkeihin: {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Valitse {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Valitse {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Yhteensopivaa palvelinta ei ole saatavilla.",
+    "externalLink_failed": "Linkkiä ei voi avata. Voit kopioida linkin ja avata sen selaimessa.",
+    "externalLink_copy": "Kopioi linkki",
+    "externalLink_copied": "Linkki kopioitu",
+    "externalLink_copyFailed": "Linkkiä ei voitu kopioida. Valitse alla oleva osoite.",
+    "settings_deleteAccount": "Poista tilini",
+    "settings_deleteAccountDetail": "Katso tilin poistopyynnön ohjeet",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Valitse VPN-tilauksesi.",
+    "billing_subscribe": "Tilaa",
+    "billing_choosePlan": "Valitse tilausvaihtoehto jatkaaksesi.",
+    "billing_monthly": "Kuukausittain",
+    "billing_yearly": "Vuosittain",
+    "billing_continue": "Jatka Google Playn kautta",
+    "billing_restore": "Palauta ostokset",
+    "billing_manage": "Hallitse tilausta",
+    "billing_deleteAccountWarning": "Jos sinulla on Google Play -tilaus, FuzeVPN-tilin poistaminen ei peruuta sen uusiutumista. Hallitse uusiutumista tai peruuta se erikseen Google Playssa.",
+    "billing_deleteAccountContinue": "Jatka tilin poistopyyntöön",
+    "billing_refresh": "Päivitä käyttöoikeus",
+    "billing_loadingPlans": "Ladataan tilausvaihtoehtoja…",
+    "billing_unavailable": "Tilausvaihtoehtoja ei ole saatavilla juuri nyt. Yritä myöhemmin uudelleen.",
+    "billing_comingSoon": "Tilaukset tulevat pian saataville.",
+    "billing_priceDisclosure": "Hinnan ilmoittaa Google Play. Lopullinen summa ja sovellettavat verot esitetään, ennen kuin vahvistat ostoksen.",
+    "billing_renewalMonthly": "Uusiutuu automaattisesti joka kuukausi, ellei sitä peruuteta. Voit peruuttaa milloin tahansa Google Play -tilauksissa.",
+    "billing_renewalYearly": "Uusiutuu automaattisesti joka vuosi, ellei sitä peruuteta. Voit peruuttaa milloin tahansa Google Play -tilauksissa.",
+    "billing_active": "Premium-käyttöoikeutesi on aktiivinen",
+    "billing_accessUntil": "Käyttöoikeus on voimassa {date} asti.",
+    "billing_webManaged": "Tilaustasi hallitaan FuzeVPN-verkkosivustolla.",
+    "billing_playManaged": "Tilaustasi hallitaan Google Playssa.",
+    "billing_playOnHold": "Google Play -tilauksesi on keskeytetty tai odottaa maksua. Korjaa asia Google Playssa avaamalla ”Hallitse tilausta”.",
+    "billing_playReceiptUnlinked": "Tällä Google Play -tilillä on jo Fuze Premium -tilaus, joka ei ole aktiivinen tällä FuzeVPN-tilillä. Tarkista se Google Playssa avaamalla ”Hallitse tilausta”.",
+    "billing_inactive": "Ei aktiivista tilausta.",
+    "billing_checkingAccess": "Tarkistetaan käyttöoikeuttasi…",
+    "billing_restoring": "Palautetaan ostoksia…",
+    "billing_pending": "Maksu on vielä kesken. Käyttöoikeutesi aktivoituu, kun maksu on vahvistettu.",
+    "billing_cancelled": "Osto peruutettiin. Uutta tilausta ei aktivoitu.",
+    "billing_verifying": "Vahvistetaan ostosta…",
+    "billing_success": "Tilaus aktivoitu. Premium-käyttöoikeutesi on valmis.",
+    "billing_restored": "Ostokset on palautettu.",
+    "billing_restoreEmpty": "Tälle Google Play -tilille ei ole palautettavia ostoksia.",
+    "billing_catalogError": "Tilausvaihtoehtojen lataaminen ei onnistunut. Yritä uudelleen.",
+    "billing_purchaseError": "Oston aloittaminen ei onnistunut. Yritä uudelleen.",
+    "billing_verificationError": "Oston vahvistaminen ei ole tilapäisesti käytettävissä. Yritä uudelleen palauttamalla ostokset.",
+    "billing_restoreError": "Ostosten palauttaminen ei onnistunut. Yritä uudelleen.",
+    "billing_managementError": "Tilauksen hallinnan avaaminen ei onnistunut. Yritä uudelleen.",
+    "billing_storeUnavailable": "Google Play ei ole käytettävissä tällä laitteella.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "VPN-palvelusi, yksinkertaisesti.",
+    "welcome_description": "Suojaa yhteytesi. Pidä yksityisyytesi hallinnassa.",
+    "welcome_start": "Aloita",
+    "welcome_alreadyPurchased": "Oletko jo ostanut?",
+    "welcome_noAccountRequired": "Aloittaminen ei vaadi tiliä.",
+    "guest_accountTitle": "Tiliä ei ole yhdistetty",
+    "guest_accountDescription": "Palauta ostokset samalla Google Play -tilillä, jotta voit käyttää tilaustasi toisella laitteella.",
+    "guest_existingSubscriberSignIn": "Oletko jo tilaaja? Kirjaudu sisään",
+    "guest_claimTitle": "Ota FuzeVPN mukaasi",
+    "guest_claimDescription": "Luo tili, jotta voit käyttää tilaustasi muilla laitteillasi. Tämä vaihe on valinnainen.",
+    "guest_skip": "Ehkä myöhemmin",
+    "guest_activationTitle": "Fuze Premium on aktiivinen",
+    "guest_activationDescription": "Tilauksesi on valmis. Voit käyttää VPN-yhteyttä ja luoda tilin milloin haluat.",
+    "guest_useVpn": "Käytä VPN-yhteyttä",
+    "guest_loginRequired": "Tämä osto on jo yhdistetty FuzeVPN-tiliin. Kirjaudu sisään siihen tiliin, jotta pääset tilauksesi käyttöön.",
+    "guest_signOutWarning": "Voit saada tilauksesi takaisin palauttamalla ostokset samalla Google Play -tilillä.",
+    "guest_profileUnavailable": "Tilisi on jo yhdistetty. Kirjaudu sisään, jos haluat nähdä ja hallita tietojasi.",
+    "billing_acceptance": "Jatkamalla hyväksyt käyttöehdot ja tietosuojakäytännön.",
+    "guest_verifyEmailReminder": "Vahvista sähköpostiosoitteesi tilisi suojaamiseksi. Voit jatkaa VPN-yhteyden käyttöä.",
+    "guest_serviceUnavailable": "Palvelu ei ole tilapäisesti käytettävissä. Yritä kohta uudelleen.",
+    "guest_restoreError": "Ostoksia ei voitu palauttaa. Yritä uudelleen sillä Google Play -tilillä, jolla ostos tehtiin.",
+    "guest_claimSuccess": "Tilisi on luotu. Tilauksesi ja VPN-käyttöoikeutesi säilyvät.",
+    "guest_emailExists": "Tämä sähköpostiosoite on jo käytössä. Valitse toinen osoite tai kirjaudu sisään olemassa olevalle tilillesi. Ostoksesi on edelleen saatavilla Google Playn kautta.",
+    "guest_claimError": "Tiliä ei voitu luoda. Voit jatkaa VPN-yhteyden käyttöä ja yrittää myöhemmin uudelleen.",
+    "guest_secureStorageError": "Istuntoa ei voitu suojata tällä laitteella. Yritä uudelleen.",
+    "guest_premiumRequired": "Valitse tilaus, jotta voit aktivoida VPN-yhteyden.",
+    "welcome_viewPlans": "Näytä tilausvaihtoehdot",
+    "google_continue": "Jatka Googlella",
+    "google_or": "tai",
+    "google_title": "FuzeVPN-tilisi",
+    "google_settingUp": "Viimeistele tilin luominen",
+    "google_country": "Asuinmaa",
+    "google_profileDescription": "Valitse asuinmaasi ja tutustu kahteen asiakirjaan, jotta voit luoda FuzeVPN-tilin.",
+    "google_claimDescription": "Yhdistä vierastilisi Googleen. Tilauksesi ja laitteesi pysyvät liitettyinä tähän tiliin.",
+    "google_linkTitle": "Yhdistä Google FuzeVPN-tiliin",
+    "google_linkDescription": "Vahvista pääsy olemassa olevaan FuzeVPN-tiliisi. Tässä vaiheessa ei kysytä Google-salasanaasi.",
+    "google_password": "FuzeVPN-salasana",
+    "google_linkAccount": "Vahvista yhdistäminen",
+    "google_requestEmail": "Lähetä vahvistussähköposti",
+    "google_emailInstructions": "Avaa FuzeVPN-sähköposti ja anna vahvistuskoodi.",
+    "google_emailCode": "Sähköpostin vahvistuskoodi",
+    "google_confirmEmail": "Vahvista koodi",
+    "google_restart": "Valitse toinen Google-tili",
+    "google_resume": "Tarkista tämä yritys",
+    "google_unavailable": "Google-kirjautuminen ei ole käytettävissä. Voit käyttää sähköpostiosoitetta ja salasanaa.",
+    "google_expired": "Tämä yritys on vanhentunut. Peruuta se ja aloita uudelleen.",
+    "google_conflict": "Tämä Google-tili on jo yhdistetty muualle. Nykyinen tilisi ja tilauksesi säilyvät.",
+    "google_error": "Google-kirjautuminen epäonnistui. Yritä uudelleen. Nykyinen käyttöoikeutesi säilyy.",
+    "google_uncertain": "Tulosta ei voitu vahvistaa. Tarkista tämä yritys tai peruuta se ennen uuden aloittamista.",
+    "google_cancelFailed": "Peruutusta ei voitu vahvistaa. Yritä peruuttaa uudelleen ennen kuin poistut tältä näytöltä.",
+    "google_cancelled": "Google-kirjautuminen peruutettiin.",
+    "google_selecting": "Valitse Google-tilisi…",
+    "google_verifying": "Tarkistetaan tiliäsi…",
+    "google_emailUnavailable": "Vahvistussähköpostia ei voitu lähettää. Yritä myöhemmin uudelleen.",
+    "google_emailSent": "Vahvistussähköposti lähetettiin. Tarkista saapuneet viestit.",
+    "google_rateLimited": "Odota hetki ennen uutta yritystä.",
+    "google_busy": "Google ei ole käytettävissä, kun toinen toiminto on käynnissä (VPN-yhteys, tili tai vierastila). Yritä uudelleen, kun toiminto on päättynyt. Nykyinen käyttöoikeutesi säilyy.",
+    "google_invalidPassword": "FuzeVPN-salasana on virheellinen. Nykyinen tilisi säilyy.",
+    "google_invalidCode": "Vahvistuskoodi on virheellinen tai vanhentunut.",
+    "google_accountChanged": "Istuntosi on muuttunut. Peruuta tämä yritys ennen uuden aloittamista.",
+    "google_invalidResponse": "Vastausta ei voitu vahvistaa. Nykyinen käyttöoikeutesi säilyy.",
+    "google_invalidRegistration": "Tarkista maa ja molemmat suostumukset.",
+    "google_consentRequired": "Valitse asuinmaasi ja hyväksy molemmat asiakirjat jatkaaksesi.",
+    "google_challengeRequired": "Tarvitaan lisäturvatarkistus. Nykyinen käyttöoikeutesi säilyy.",
+    "google_challengeUnavailable": "Turvatarkistus ei ole käytettävissä. Yritä myöhemmin uudelleen.",
+    "google_intentMismatch": "Edellinen Google-kirjautumisyritys on yhä kesken. Peruuta se ennen tämän toiminnon aloittamista.",
+    "google_challengeBlocked": "Vaadittu turvatarkistus ei ole käytettävissä tässä sovelluksessa. Tätä toimintoa ei voi suorittaa loppuun juuri nyt.",
+    "google_solveChallenge": "Suorita turvatarkistus",
+    "google_challengeTitle": "Turvatarkistus",
+    "google_challengeReady": "Vahvistus on suoritettu. Voit nyt vahvistaa tilin luomisen.",
+    "google_challengeExpired": "Vahvistus on vanhentunut. Suorita se uudelleen ennen vahvistamista.",
+    "google_challengeCancelled": "Vahvistus peruutettiin. Voit yrittää uudelleen.",
+    "google_challengeFailed": "Turvatarkistus epäonnistui. Yritä uudelleen.",
+    "billing_trialTitle": "Kokeile Fuze Premium -palvelua ilmaiseksi",
+    "billing_trialSubtitle": "Suojaa yhteytesi jo tänään.",
+    "billing_trialWeeks": "2 viikon ilmainen kokeilu",
+    "billing_trialDays": "{days} päivän ilmainen kokeilu",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Aloita ilmainen kokeiluni",
+    "billing_trialFirstCharge": "Jos aloitat tänään, ensimmäinen veloitus tapahtuu arviolta {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Uusiutuu automaattisesti ilmoitettuun hintaan. Jos haluat välttää veloituksen, peruuta tilaus Google Playssa ennen kokeilun päättymistä.",
+    "billing_trialThenMonthly": "Sen jälkeen {price} kuukaudessa",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Sen jälkeen {price} vuodessa",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Valitse tilausvaihtoehto",
+    "billing_selectionHint": "Valitse tilausvaihtoehto jatkaaksesi.",
+    "billing_benefitConnection": "Salattu yhteys",
+    "billing_benefitPrivacy": "Yksityisyys verkossa",
+    "billing_benefitNoAccount": "Ei vaadi rekisteröitymistä",
+    "billing_cancellation": "Peruuta Google Playssa",
+    "billing_premiumTitle": "Paremmin suojattu yhteys.",
+    "billing_premiumSubtitle": "Suojaa yhteytesi omassa tahdissasi.",
+    "billing_priceMonthly": "kuukaudessa",
+    "billing_priceYearly": "vuodessa",
+    "billing_trialToday": "Ei maksettavaa tänään",
+    "billing_trialConfirmation": "Google Play vahvistaa päivämäärät, lopullisen summan ja sovellettavat verot, ennen kuin vahvistat ostoksen.",
+    "billing_offerChanged": "Tarjouksen ehdot ovat muuttuneet. Päivitä tilausvaihtoehdot ja valitse uudelleen.",
+    "status_waitingNetwork": "Odotetaan verkkoyhteyttä",
+    "status_waitingNetworkDetail": "Verkkoa ei ole saatavilla. VPN tarkistaa yhteyden, kun verkko palaa.",
+    "locations_favoriteLoadFailed": "Suosikkeja ei voitu ladata. Yritä uudelleen.",
+    "locations_favoritesLoading": "Ladataan suosikkeja…"
+  },
+  "android": {
+    "vpn_notification_channel": "VPN-yhteys",
+    "vpn_notification_channel_description": "Näyttää, kun FuzeVPN-yhteys on aktiivinen.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s-yhteys aktiivinen",
+    "vpn_notification_connecting": "%1$s-yhteyttä muodostetaan",
+    "vpn_notification_disconnecting": "Katkaistaan %1$s-yhteyttä",
+    "vpn_notification_interrupted": "%1$s-yhteys keskeytyi",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Valmis · %1$s · %2$s",
+    "vpn_tile_connected": "Yhdistetty · %1$s · %2$s",
+    "vpn_tile_connecting": "%1$s-yhteyttä muodostetaan…",
+    "vpn_tile_disconnecting": "Katkaistaan yhteyttä…",
+    "vpn_tile_interrupted": "%1$s-yhteys keskeytyi",
+    "vpn_tile_setup_required": "Avaa sovellus ensin",
+    "vpn_tile_working": "VPN-toiminto käynnissä…",
+    "vpn_notification_reconnecting": "Yhdistetään uudelleen… · %1$s",
+    "vpn_system_action_required": "Toimenpide vaaditaan Android-asetuksissa",
+    "vpn_tile_reconnecting": "Yhdistetään uudelleen… · %1$s",
+    "vpn_notification_waiting_network": "Odotetaan verkkoyhteyttä · %1$s",
+    "vpn_tile_waiting_network": "Odotetaan verkkoyhteyttä · %1$s"
+  },
+  "countries": {
+    "AC": "Ascension-saari",
+    "AD": "Andorra",
+    "AE": "Arabiemiirikunnat",
+    "AF": "Afganistan",
+    "AG": "Antigua ja Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albania",
+    "AM": "Armenia",
+    "AO": "Angola",
+    "AQ": "Antarktis",
+    "AR": "Argentiina",
+    "AS": "Amerikan Samoa",
+    "AT": "Itävalta",
+    "AU": "Australia",
+    "AW": "Aruba",
+    "AX": "Ahvenanmaa",
+    "AZ": "Azerbaidžan",
+    "BA": "Bosnia ja Hertsegovina",
+    "BB": "Barbados",
+    "BD": "Bangladesh",
+    "BE": "Belgia",
+    "BF": "Burkina Faso",
+    "BG": "Bulgaria",
+    "BH": "Bahrain",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "Saint-Barthélemy",
+    "BM": "Bermuda",
+    "BN": "Brunei",
+    "BO": "Bolivia",
+    "BQ": "Karibian Alankomaat",
+    "BR": "Brasilia",
+    "BS": "Bahama",
+    "BT": "Bhutan",
+    "BV": "Bouvet’nsaari",
+    "BW": "Botswana",
+    "BY": "Valko-Venäjä",
+    "BZ": "Belize",
+    "CA": "Kanada",
+    "CC": "Kookossaaret (Keelingsaaret)",
+    "CD": "Kongon demokraattinen tasavalta",
+    "CF": "Keski-Afrikan tasavalta",
+    "CG": "Kongon tasavalta",
+    "CH": "Sveitsi",
+    "CI": "Norsunluurannikko",
+    "CK": "Cookinsaaret",
+    "CL": "Chile",
+    "CM": "Kamerun",
+    "CN": "Kiina",
+    "CO": "Kolumbia",
+    "CP": "Clippertoninsaari",
+    "CQ": "Sark",
+    "CR": "Costa Rica",
+    "CU": "Kuuba",
+    "CV": "Kap Verde",
+    "CW": "Curaçao",
+    "CX": "Joulusaari",
+    "CY": "Kypros",
+    "CZ": "Tšekki",
+    "DE": "Saksa",
+    "DG": "Diego Garcia",
+    "DJ": "Djibouti",
+    "DK": "Tanska",
+    "DM": "Dominica",
+    "DO": "Dominikaaninen tasavalta",
+    "DZ": "Algeria",
+    "EA": "Ceuta ja Melilla",
+    "EC": "Ecuador",
+    "EE": "Viro",
+    "EG": "Egypti",
+    "EH": "Länsi-Sahara",
+    "ER": "Eritrea",
+    "ES": "Espanja",
+    "ET": "Etiopia",
+    "EU": "Euroopan unioni",
+    "EZ": "euroalue",
+    "FI": "Suomi",
+    "FJ": "Fidži",
+    "FK": "Falklandinsaaret",
+    "FM": "Mikronesia",
+    "FO": "Färsaaret",
+    "FR": "Ranska",
+    "GA": "Gabon",
+    "GB": "Yhdistynyt kuningaskunta",
+    "GD": "Grenada",
+    "GE": "Georgia",
+    "GF": "Ranskan Guayana",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltar",
+    "GL": "Grönlanti",
+    "GM": "Gambia",
+    "GN": "Guinea",
+    "GP": "Guadeloupe",
+    "GQ": "Päiväntasaajan Guinea",
+    "GR": "Kreikka",
+    "GS": "Etelä-Georgia ja Eteläiset Sandwichsaaret",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hongkong – Kiinan erityishallintoalue",
+    "HM": "Heard ja McDonaldinsaaret",
+    "HN": "Honduras",
+    "HR": "Kroatia",
+    "HT": "Haiti",
+    "HU": "Unkari",
+    "IC": "Kanariansaaret",
+    "ID": "Indonesia",
+    "IE": "Irlanti",
+    "IL": "Israel",
+    "IM": "Mansaari",
+    "IN": "Intia",
+    "IO": "Brittiläinen Intian valtameren alue",
+    "IQ": "Irak",
+    "IR": "Iran",
+    "IS": "Islanti",
+    "IT": "Italia",
+    "JE": "Jersey",
+    "JM": "Jamaika",
+    "JO": "Jordania",
+    "JP": "Japani",
+    "KE": "Kenia",
+    "KG": "Kirgisia",
+    "KH": "Kambodža",
+    "KI": "Kiribati",
+    "KM": "Komorit",
+    "KN": "Saint Kitts ja Nevis",
+    "KP": "Pohjois-Korea",
+    "KR": "Etelä-Korea",
+    "KW": "Kuwait",
+    "KY": "Caymansaaret",
+    "KZ": "Kazakstan",
+    "LA": "Laos",
+    "LB": "Libanon",
+    "LC": "Saint Lucia",
+    "LI": "Liechtenstein",
+    "LK": "Sri Lanka",
+    "LR": "Liberia",
+    "LS": "Lesotho",
+    "LT": "Liettua",
+    "LU": "Luxemburg",
+    "LV": "Latvia",
+    "LY": "Libya",
+    "MA": "Marokko",
+    "MC": "Monaco",
+    "MD": "Moldova",
+    "ME": "Montenegro",
+    "MF": "Saint-Martin",
+    "MG": "Madagaskar",
+    "MH": "Marshallinsaaret",
+    "MK": "Pohjois-Makedonia",
+    "ML": "Mali",
+    "MM": "Myanmar (Burma)",
+    "MN": "Mongolia",
+    "MO": "Macao – Kiinan erityishallintoalue",
+    "MP": "Pohjois-Mariaanit",
+    "MQ": "Martinique",
+    "MR": "Mauritania",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Mauritius",
+    "MV": "Malediivit",
+    "MW": "Malawi",
+    "MX": "Meksiko",
+    "MY": "Malesia",
+    "MZ": "Mosambik",
+    "NA": "Namibia",
+    "NC": "Uusi-Kaledonia",
+    "NE": "Niger",
+    "NF": "Norfolkinsaari",
+    "NG": "Nigeria",
+    "NI": "Nicaragua",
+    "NL": "Alankomaat",
+    "NO": "Norja",
+    "NP": "Nepal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "Uusi-Seelanti",
+    "OM": "Oman",
+    "PA": "Panama",
+    "PE": "Peru",
+    "PF": "Ranskan Polynesia",
+    "PG": "Papua-Uusi-Guinea",
+    "PH": "Filippiinit",
+    "PK": "Pakistan",
+    "PL": "Puola",
+    "PM": "Saint-Pierre ja Miquelon",
+    "PN": "Pitcairn",
+    "PR": "Puerto Rico",
+    "PS": "Palestiinalaisalue",
+    "PT": "Portugali",
+    "PW": "Palau",
+    "PY": "Paraguay",
+    "QA": "Qatar",
+    "QO": "Oseanian erillissaaret",
+    "RE": "Réunion",
+    "RO": "Romania",
+    "RS": "Serbia",
+    "RU": "Venäjä",
+    "RW": "Ruanda",
+    "SA": "Saudi-Arabia",
+    "SB": "Salomonsaaret",
+    "SC": "Seychellit",
+    "SD": "Sudan",
+    "SE": "Ruotsi",
+    "SG": "Singapore",
+    "SH": "Saint Helena",
+    "SI": "Slovenia",
+    "SJ": "Huippuvuoret ja Jan Mayen",
+    "SK": "Slovakia",
+    "SL": "Sierra Leone",
+    "SM": "San Marino",
+    "SN": "Senegal",
+    "SO": "Somalia",
+    "SR": "Suriname",
+    "SS": "Etelä-Sudan",
+    "ST": "São Tomé ja Príncipe",
+    "SV": "El Salvador",
+    "SX": "Sint Maarten",
+    "SY": "Syyria",
+    "SZ": "Eswatini",
+    "TA": "Tristan da Cunha",
+    "TC": "Turks- ja Caicossaaret",
+    "TD": "Tšad",
+    "TF": "Ranskan eteläiset ja antarktiset alueet",
+    "TG": "Togo",
+    "TH": "Thaimaa",
+    "TJ": "Tadžikistan",
+    "TK": "Tokelau",
+    "TL": "Itä-Timor",
+    "TM": "Turkmenistan",
+    "TN": "Tunisia",
+    "TO": "Tonga",
+    "TR": "Turkki",
+    "TT": "Trinidad ja Tobago",
+    "TV": "Tuvalu",
+    "TW": "Taiwan",
+    "TZ": "Tansania",
+    "UA": "Ukraina",
+    "UG": "Uganda",
+    "UM": "Yhdysvaltain erillissaaret",
+    "UN": "Yhdistyneet kansakunnat",
+    "US": "Yhdysvallat",
+    "UY": "Uruguay",
+    "UZ": "Uzbekistan",
+    "VA": "Vatikaani",
+    "VC": "Saint Vincent ja Grenadiinit",
+    "VE": "Venezuela",
+    "VG": "Brittiläiset Neitsytsaaret",
+    "VI": "Yhdysvaltain Neitsytsaaret",
+    "VN": "Vietnam",
+    "VU": "Vanuatu",
+    "WF": "Wallis ja Futuna",
+    "WS": "Samoa",
+    "XA": "pseudoaksentit",
+    "XB": "kaksisuuntainen pseudo",
+    "XK": "Kosovo",
+    "YE": "Jemen",
+    "YT": "Mayotte",
+    "ZA": "Etelä-Afrikka",
+    "ZM": "Sambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "tuntematon alue"
+  }
+}

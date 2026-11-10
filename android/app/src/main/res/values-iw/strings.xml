@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">חיבור VPN</string>
+    <string name="vpn_notification_channel_description">מציין מתי חיבור FuzeVPN פעיל.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">חיבור %1$s פעיל</string>
+    <string name="vpn_notification_connecting">חיבור %1$s מתבצע</string>
+    <string name="vpn_notification_disconnecting">חיבור %1$s מתנתק</string>
+    <string name="vpn_notification_interrupted">חיבור %1$s נקטע</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">מוכן · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">מחובר · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">מתחבר אל %1$s…</string>
+    <string name="vpn_tile_disconnecting">מתנתק…</string>
+    <string name="vpn_tile_interrupted">%1$s נקטע</string>
+    <string name="vpn_tile_setup_required">פתח קודם את האפליקציה</string>
+    <string name="vpn_tile_working">פעולת VPN מתבצעת…</string>
+    <string name="vpn_notification_reconnecting">מתחבר מחדש… · %1$s</string>
+    <string name="vpn_system_action_required">נדרשת פעולה בהגדרות Android</string>
+    <string name="vpn_tile_reconnecting">מתחבר מחדש… · %1$s</string>
+    <string name="vpn_notification_waiting_network">ממתין לרשת · %1$s</string>
+    <string name="vpn_tile_waiting_network">ממתין לרשת · %1$s</string>
+</resources>

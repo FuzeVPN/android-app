@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN ryšys</string>
+    <string name="vpn_notification_channel_description">Rodo, kada FuzeVPN ryšys yra aktyvus.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s ryšys aktyvus</string>
+    <string name="vpn_notification_connecting">%1$s ryšys jungiamas</string>
+    <string name="vpn_notification_disconnecting">Atjungiamas %1$s ryšys</string>
+    <string name="vpn_notification_interrupted">%1$s ryšys nutrūko</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Paruošta · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Prisijungta · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Jungiamasi… · %1$s</string>
+    <string name="vpn_tile_disconnecting">Atjungiama…</string>
+    <string name="vpn_tile_interrupted">Ryšys nutrūko · %1$s</string>
+    <string name="vpn_tile_setup_required">Pirmiausia atidarykite programą</string>
+    <string name="vpn_tile_working">Vyksta VPN veiksmas…</string>
+    <string name="vpn_notification_reconnecting">Jungiamasi iš naujo… · %1$s</string>
+    <string name="vpn_system_action_required">Reikia veiksmo Android nustatymuose</string>
+    <string name="vpn_tile_reconnecting">Jungiamasi iš naujo… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Laukiama tinklo · %1$s</string>
+    <string name="vpn_tile_waiting_network">Laukiama tinklo · %1$s</string>
+</resources>

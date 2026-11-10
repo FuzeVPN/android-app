@@ -50,7 +50,7 @@ class NoticeCard extends StatelessWidget {
             IconButton(
               onPressed: onDismiss,
               icon: const Icon(Icons.close, size: 18),
-              tooltip: MaterialLocalizations.of(context).closeButtonTooltip,
+              tooltip: context.copy('notice.close'),
             ),
           ],
         ),
@@ -101,7 +101,7 @@ class NoticeCard extends StatelessWidget {
               }
             },
             icon: Icon(Icons.copy_outlined, size: 16, color: foreground),
-            label: Text(MaterialLocalizations.of(context).copyButtonLabel),
+            label: Text(context.copy('action.copy')),
           ),
         ],
       ],

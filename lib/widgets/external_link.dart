@@ -111,9 +111,7 @@ class _ExternalLinkFailureDialogState
     actions: <Widget>[
       TextButton(
         onPressed: () => Navigator.of(context).pop(),
-        child: WholeWords(
-          child: Text(MaterialLocalizations.of(context).closeButtonLabel),
-        ),
+        child: WholeWords(child: Text(context.copy('action.close'))),
       ),
       FilledButton.icon(
         key: const ValueKey('copy-external-link'),

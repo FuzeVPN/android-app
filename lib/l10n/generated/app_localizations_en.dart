@@ -523,6 +523,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get action_cancel => 'Cancel';
 
   @override
+  String get action_close => 'Close';
+
+  @override
+  String get action_copy => 'Copy';
+
+  @override
   String get action_signOut => 'Sign out';
 
   @override

@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN pripojenie</string>
+    <string name="vpn_notification_channel_description">Zobrazuje, kedy je pripojenie FuzeVPN aktívne.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Pripojenie %1$s je aktívne</string>
+    <string name="vpn_notification_connecting">Prebieha pripojenie %1$s</string>
+    <string name="vpn_notification_disconnecting">Odpájanie %1$s</string>
+    <string name="vpn_notification_interrupted">Pripojenie %1$s bolo prerušené</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Pripravené · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Pripojené · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Pripájanie %1$s…</string>
+    <string name="vpn_tile_disconnecting">Odpájanie…</string>
+    <string name="vpn_tile_interrupted">Prerušené · %1$s</string>
+    <string name="vpn_tile_setup_required">Najprv otvorte aplikáciu</string>
+    <string name="vpn_tile_working">Prebieha operácia VPN…</string>
+    <string name="vpn_notification_reconnecting">Opätovné pripájanie… · %1$s</string>
+    <string name="vpn_system_action_required">Vyžaduje sa zásah v nastaveniach systému Android</string>
+    <string name="vpn_tile_reconnecting">Opätovné pripájanie… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Čaká sa na sieť · %1$s</string>
+    <string name="vpn_tile_waiting_network">Čaká sa na sieť · %1$s</string>
+</resources>

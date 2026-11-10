@@ -331,7 +331,7 @@ référence.
 
 ## Localisation
 
-Les trente fichiers `lib/l10n/translations/<code>.json` sont la source des
+Les soixante-dix fichiers `lib/l10n/translations/<code>.json` sont la source des
 messages Flutter, des textes Android et des noms de pays. Modifier les packs,
 puis régénérer leurs sorties ; ne pas entretenir une traduction parallèle dans
 les ARB, XML ou classes Dart générés. Les codes sont :
@@ -339,6 +339,8 @@ les ARB, XML ou classes Dart générés. Les codes sont :
 ```text
 en es pt de fr ar tr ja id ru it ko pl nl hi vi uk th
 zh-Hans zh-Hant fa ur fil ms ro cs sv da nb el
+bn sw my km uz ne si ta te mr gu ha am hu bg fi sk hr sr he
+pa kn ml or ps lt lv et sl sq kk az hy ka lo mg so yo ig rw
 ```
 
 Le générateur écrit les ARB de toutes les langues, les `strings.xml` Android,
@@ -356,16 +358,23 @@ flutter test --no-pub
 ```
 
 `--check --require-all` contrôle tous les packs et la fraîcheur des sorties sans
-écrire de fichiers. Les trente packs sont toujours requis ; `--require-all`
+écrire de fichiers. Les soixante-dix packs sont toujours requis ; `--require-all`
 reste accepté pour la compatibilité des commandes. Les contrôles portent
 notamment sur les clés, textes vides, doublons, variables ICU, branches `select`
 et arguments Android. Une validation structurelle ne garantit pas la qualité
-linguistique : relire les traductions en contexte.
+linguistique : relire les traductions en contexte. Les quarante langues
+ajoutées en novembre 2026 (du bengali au kinyarwanda) ont été traduites
+automatiquement, puis relues deux fois automatiquement ; aucune n'a encore été
+relue par un locuteur natif.
 
 Le registre `lib/l10n/app_languages.dart` et
 `NativeLocalePolicy.kt` doivent rester cohérents. Les préférences utilisent
 les tags BCP-47 complets, avec `zh-Hans` et `zh-Hant` distincts. Les alias
-`in` → `id`, `tl` → `fil` et `no` → `nb` sont normalisés. Les variantes
+`in` → `id`, `iw` → `he`, `tl` → `fil` et `no` → `nb` sont normalisés. Une
+langue système écrite dans une autre écriture que son pack (pendjabi
+shahmukhi `pa-Arab`, ouzbek ou azéri en alphabet arabe) est ignorée au profit
+de la langue suivante ; le serbe latin, l'ouzbek et l'azéri cyrilliques
+gardent leur pack. Les variantes
 régionales rejoignent la langue disponible. Le choix explicite de l'utilisateur
 prime ; en mode système, la première langue du téléphone reconnue est utilisée.
 Si aucune préférence explicite valide ni langue système prise en charge n'est
@@ -374,11 +383,22 @@ Android par défaut sont également françaises.
 
 Le sélecteur place la langue du téléphone en premier, puis les noms de langue
 dans leur propre écriture. Le tri ignore les accents latins et utilise un
-ordre Unicode déterministe pour les autres écritures. Arabe, persan et ourdou
-utilisent une interface de droite à gauche. `app_zh.arb` est la base chinoise
+ordre Unicode déterministe pour les autres écritures. Arabe, persan, ourdou,
+hébreu et pachto utilisent une interface de droite à gauche. `app_zh.arb` est la base chinoise
 requise par Flutter, générée depuis le chinois simplifié ; elle n'ajoute pas
-un trente-et-unième choix. Android conserve le répertoire historique
-`values-in` pour l'indonésien, tout en stockant la préférence `id`.
+un soixante-et-onzième choix. Android conserve les répertoires historiques
+`values-in` pour l'indonésien et `values-iw` pour l'hébreu, tout en stockant
+les préférences `id` et `he`.
+
+Flutter ne fournit pas de textes Material, Cupertino et Widgets en haoussa,
+malgache, somali, yoruba, igbo et kinyarwanda, ni de textes Cupertino en
+pachto. `AppLocalizationDelegates.all` (dans
+`lib/l10n/app_localization_delegates.dart`) leur donne les textes anglais du
+framework ; les textes de l'application restent traduits, y compris les
+boutons Fermer et Copier (`action_close`, `action_copy`, repris des libellés
+Material pour les autres langues). Les dates de ces six langues, sans données
+de date dans Flutter, utilisent le format anglais britannique (jour avant mois)
+d'`AppFormats`.
 
 Les notifications et la tuile suivent la langue de l'application. Les paquets
 de langues Android séparés sont désactivés pour conserver ces ressources dans
@@ -454,7 +474,7 @@ Compléter cette matrice avec les scénarios suivants :
 | Révocation et session | Vérifier arrêt, effacement limité à l'identité concernée, perte de session et changement de compte. |
 | Renouvellement OpenVPN | Utiliser un certificat à J-7 ou expiré ; vérifier `/renew`, reprise du même CSR et conservation de l'identité active en cas d'échec API. |
 | Consentement et interruptions | Refuser la permission VPN, interrompre une préparation et confirmer l'absence de boucle ou de second tunnel. |
-| Interface | Vérifier hiérarchie, recherche, favoris, confirmation, capacité refusée, trente langues, RTL et notifications. |
+| Interface | Vérifier hiérarchie, recherche, favoris, confirmation, capacité refusée, soixante-dix langues, RTL et notifications. |
 | Diagnostics | Vérifier consentements séparés, export, absence de secrets et exactitude des contrôles inconnus/non exécutés. |
 
 Les tests Android ciblés sont sous `android/app/src/androidTest/` ; leur
@@ -542,8 +562,8 @@ Conserver les VM en échec et les preuves existantes.
 ## Régressions de statut 74016
 
 status_accessibility_test.dart charge les polices embarquées et teste les neuf
-statuts dans trente langues, à 320/360 dp, à 100 %, avec un scaleur linéaire
-200 % et avec la courbe Android 14 à 200 % (180 cas). Les sélections des mots
+statuts dans soixante-dix langues, à 320/360 dp, à 100 %, avec un scaleur linéaire
+200 % et avec la courbe Android 14 à 200 % (420 cas). Les sélections des mots
 partagent une bande verticale, sans confondre les métriques des fallbacks avec
 une véritable coupure. Les fixtures grecque et cyrilliques utilisent Google Sans en fallback
 de test ; le fallback système Android dépend du matériel.

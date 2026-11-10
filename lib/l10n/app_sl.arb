@@ -1,0 +1,745 @@
+{
+  "vpnDisclosure_title": "Zaščitite svojo povezavo",
+  "vpnDisclosure_body": "FuzeVPN uporablja storitev VPN sistema Android (VpnService), da ustvari šifriran tunel med to napravo in strežniki FuzeVPN.",
+  "vpnDisclosure_dataBody": "Ko je VPN aktiven, internetni promet vaših aplikacij, ciljni naslovi in poizvedbe DNS potekajo prek tega tunela za usmerjanje vaše povezave, tudi ko je FuzeVPN v ozadju.",
+  "vpnDisclosure_statusBody": "Aplikacija uporablja stanje povezave, njeno trajanje in količino prenesenih podatkov za prikaz vaše povezave VPN. Povezavo lahko kadar koli prekinete.",
+  "vpnDisclosure_privacy": "Zasebnost",
+  "vpnDisclosure_accept": "Sprejmi in nadaljuj",
+  "vpnDisclosure_decline": "Ne zdaj",
+  "accountRestoration_title": "Račun začasno ni na voljo",
+  "accountRestoration_message": "Vaša seja je ohranjena. Poskusite znova, da obnovite račun. Povezavo VPN lahko še vedno upravljate tukaj.",
+  "action_retry": "Poskusi znova",
+  "session_endingTitle": "Zaključevanje seje",
+  "session_ending": "Zaključevanje seje: ustavljanje VPN-ja in čiščenje…",
+  "session_stopFailed": "Ustavitev VPN-ja ni potrjena. Pred ponovno prijavo poskusite znova.",
+  "session_cleanupFailed": "VPN je ustavljen, vendar odstranitev seje ni potrjena. Ponovite čiščenje.",
+  "session_retryStop": "Ponovi ustavitev",
+  "session_retryCleanup": "Ponovi čiščenje",
+  "@@locale": "sl",
+  "appTitle": "FuzeVPN",
+  "startup": "FuzeVPN se varno pripravlja…",
+  "nav_connection": "Povezava",
+  "nav_locations": "Lokacije",
+  "nav_account": "Račun",
+  "nav_devices": "Naprave",
+  "nav_settings": "Nastavitve",
+  "action_refresh": "Osveži",
+  "auth_tab_login": "Prijava",
+  "auth_tab_register": "Registracija",
+  "auth_stepAccount": "Račun",
+  "auth_stepIdentity": "Identiteta",
+  "auth_stepAddress": "Naslov in soglasja",
+  "auth_stepProgress": "Korak {current} od {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "Vaš VPN, brez zapletov.",
+  "auth_keysLocal": "Vaši zasebni ključi VPN ostanejo v tej napravi.",
+  "form_email": "E-poštni naslov",
+  "form_password": "Geslo",
+  "form_showPassword": "Prikaži geslo",
+  "form_hidePassword": "Skrij geslo",
+  "form_passwordMin": "8–72 bajtov UTF-8. Nekateri znaki zasedejo več bajtov.",
+  "form_firstName": "Ime",
+  "form_lastName": "Priimek",
+  "form_phone": "Telefon (+33612345678)",
+  "form_address": "Naslov",
+  "form_address2": "Dodatek k naslovu (neobvezno)",
+  "form_postalCode": "Poštna številka",
+  "form_city": "Mesto",
+  "form_country": "Oznaka države (npr. FR)",
+  "action_login": "Prijava",
+  "action_createAccount": "Ustvari račun",
+  "action_createMyAccount": "Ustvari moj račun",
+  "action_next": "Nadaljuj",
+  "action_previous": "Nazaj",
+  "action_forgotPassword": "Ste pozabili geslo?",
+  "auth_noAccount": "Še nimate računa?",
+  "auth_requiredInformation": "Ustvarite račun v treh korakih.",
+  "auth_termsPrefix": "Sprejemam ",
+  "auth_termsLink": "pogoje uporabe",
+  "auth_privacyPrefix": "Sprejemam ",
+  "auth_privacyLink": "politiko zasebnosti",
+  "auth_consentRequired": "Za ustvarjanje računa je potrebno vaše soglasje.",
+  "validation_required": "To polje je obvezno.",
+  "validation_email": "Vnesite veljaven e-poštni naslov.",
+  "validation_password": "Geslo je prekratko: vsaj 8 bajtov UTF-8.",
+  "validation_passwordTooLong": "Geslo je predolgo: največ 72 bajtov UTF-8.",
+  "validation_phone": "Uporabite mednarodno obliko, na primer +33612345678.",
+  "validation_country": "Uporabite dvočrkovno oznako države, na primer FR.",
+  "passwordReset_title": "Ponastavitev gesla",
+  "passwordReset_description": "Vnesite e-poštni naslov svojega računa, da zahtevate povezavo za ponastavitev gesla.",
+  "passwordReset_send": "Pošlji povezavo",
+  "connection_title": "Vaša povezava",
+  "connection_subtitle": "Izberite lokacijo in nato vklopite VPN.",
+  "connection_prepare": "Ste pripravljeni na povezavo?",
+  "connection_advancedOptions": "Napredne možnosti",
+  "connection_location": "Lokacija",
+  "connection_chooseLocation": "Izberite lokacijo",
+  "connection_protocol": "Protokol",
+  "connection_connect": "Poveži",
+  "connection_connecting": "Povezovanje…",
+  "connection_disconnect": "Prekini povezavo",
+  "connection_disconnecting": "Prekinjanje povezave",
+  "connection_locationChange": "Spreminjanje lokacije…",
+  "connection_unavailable": "{protocol} ni na voljo",
+  "connection_activeLocation": "Aktivna lokacija",
+  "connection_duration": "Trajanje",
+  "connection_received": "Prejeto",
+  "connection_sent": "Poslano",
+  "connection_lastHandshake": "Zadnja varna izmenjava",
+  "connection_handshakeAgo": "Pred {duration}",
+  "verification_title": "Potrdite svoj e-poštni naslov",
+  "verification_message": "Potrdite svoj e-poštni naslov, če želite v tem telefonu uporabljati VPN.",
+  "verification_resend": "Pošlji e-pošto znova",
+  "migration_title": "Sprememba lokacije",
+  "migration_draining": "Priprava spremembe lokacije…",
+  "migration_activating": "Aktiviranje novega strežnika…",
+  "migration_ready": "Lokacija je posodobljena.",
+  "migration_blocked": "Za spremembo lokacije je potreben poseg na strežniku. Poskusite znova pozneje ali se obrnite na podporo.",
+  "migration_progress": "Napredek spremembe lokacije",
+  "migration_retryDelay": "Zamik med preverjanji: {seconds} s.",
+  "migration_resume": "Nadaljuj spremembo lokacije",
+  "status_authorizing": "Potrebno dovoljenje",
+  "status_authorizingDetail": "Sprejmite zahtevo sistema Android, da dovolite VPN.",
+  "status_preparing": "Priprava",
+  "status_preparingDetail": "Vaša varna povezava se pripravlja.",
+  "status_reconnecting": "Ponovno povezovanje…",
+  "status_reconnectingDetail": "Povezava je prekinjena. VPN se poskuša ponovno povezati.",
+  "status_connecting": "Povezovanje",
+  "status_connectingDetail": "Povezovanje s strežnikom VPN…",
+  "status_connected": "Povezano",
+  "status_connectedDetail": "Vaša povezava VPN je aktivna.",
+  "status_disconnecting": "Prekinjanje povezave",
+  "status_disconnectingDetail": "Vaša povezava VPN se prekinja.",
+  "status_error": "Povezava ni na voljo",
+  "status_errorDetail": "Povezava VPN ni potrjena. Poskusite znova.",
+  "status_idle": "Ni povezano",
+  "status_idleDetail": "Povežite VPN, da zaščitite svojo povezavo.",
+  "trust_note": "Zapiranje aplikacije ne ustavi VPN-ja. Če ga želite ustaviti, uporabite možnost Prekini povezavo.",
+  "locations_none": "Trenutno ni na voljo nobene lokacije.",
+  "locations_available": "Izberite naslednjo lokacijo.",
+  "locations_selected": "Izbrana lokacija",
+  "locations_select": "Izberi to lokacijo",
+  "locations_lockedTunnel": "Za spremembo lokacije prekinite povezavo VPN.",
+  "locations_lockedMigration": "Počakajte, da se sprememba lokacije konča.",
+  "devices_title": "Vaše naprave",
+  "devices_used": "{count} / {limit} naprav",
+  "devices_refresh": "Osveži naprave",
+  "devices_empty": "Še ni registrirane nobene naprave VPN.",
+  "devices_firstConnection": "Vaš telefon bo dodan ob prvi povezavi.",
+  "devices_thisDevice": "Ta naprava",
+  "devices_added": "Dodano {date}",
+  "devices_unnamed": "Naprava brez imena",
+  "action_remove": "Odstrani",
+  "settings_title": "Nastavitve",
+  "settings_subtitle": "Vaše nastavitve in račun na enem mestu.",
+  "settings_appearance": "Videz",
+  "settings_language": "Jezik",
+  "settings_languageDescription": "Izbrani jezik velja tudi za obvestila VPN.",
+  "settings_account": "Račun",
+  "settings_signOut": "Odjava",
+  "settings_privacy": "Politika zasebnosti",
+  "settings_terms": "Pogoji uporabe",
+  "settings_security": "Varnost in preglednost",
+  "settings_licenses": "Licence komponent",
+  "settings_licensesDetail": "Programska oprema, uporabljena v aplikaciji",
+  "settings_licensesLegalese": "Izvorna koda aplikacije in njenih komponent z licenco MPL-2.0: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_background": "VPN ostane vklopljen, ko zapustite aplikacijo. Če ga želite ustaviti, na zavihku Povezava uporabite možnost Prekini povezavo.",
+  "theme_system": "Sistemska",
+  "theme_light": "Svetla",
+  "theme_dark": "Temna",
+  "language_system": "Jezik telefona",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Želite odstraniti to napravo?",
+  "dialog_removeCurrent": "Ta telefon bo prekinil povezavo z VPN-jem in izgubil dostop. Podatki njegove povezave VPN bodo odstranjeni, ko strežnik to potrdi.",
+  "dialog_removeOther": "Dostop do VPN-ja za „{name}“ bo preklican. Tega dejanja ni mogoče razveljaviti.",
+  "dialog_signOut": "Želite se odjaviti?",
+  "dialog_signOutMessage": "VPN se bo ustavil, zato se boste morali znova prijaviti. Šifrirani ključi VPN bodo za vašo naslednjo povezavo ostali v tem telefonu.",
+  "action_cancel": "Prekliči",
+  "action_close": "Zapri",
+  "action_copy": "Kopiraj",
+  "action_signOut": "Odjava",
+  "notice_close": "Zapri sporočilo",
+  "notice_sessionExpired_title": "Seja je potekla",
+  "notice_sessionExpired_message": "Vaša seja je potekla. Znova se prijavite.",
+  "notice_connectionFailed_title": "Povezava ni uspela",
+  "notice_invalidCredentials_message": "Napačen e-poštni naslov ali geslo.",
+  "notice_emailVerification_title": "Potrebna je potrditev e-poštnega naslova",
+  "notice_emailVerification_message": "Pred dodajanjem naprave VPN potrdite svoj e-poštni naslov.",
+  "notice_rateLimited_title": "Preveč poskusov",
+  "notice_deviceLimit_title": "Dosežena omejitev naprav",
+  "notice_deviceLimit_message": "Pred dodajanjem nove naprave odstranite eno obstoječo.",
+  "notice_identityRenewal_title": "Identiteto VPN je treba obnoviti",
+  "notice_identityRenewal_message": "Ta identiteta je bila odstranjena. Ustvarite novo lokalno identiteto.",
+  "notice_migrationPending_title": "Sprememba lokacije poteka",
+  "notice_migrationPending_message": "Sprememba lokacije že poteka.",
+  "notice_migrationBlocked_title": "Sprememba lokacije je blokirana",
+  "notice_migrationBlocked_message": "Za spremembo lokacije je potreben poseg na strežniku. Poskusite znova pozneje ali se obrnite na podporo.",
+  "notice_targetUnavailable_title": "Strežnik začasno ni na voljo",
+  "notice_targetUnavailable_message": "Ta strežnik začasno ni na voljo.",
+  "notice_networkUnavailable_title": "Internetna povezava ni na voljo",
+  "notice_networkUnavailable_message": "Preverite povezavo in poskusite znova.",
+  "notice_permissionDenied_title": "Dovoljenje za VPN je zavrnjeno",
+  "notice_permissionDenied_message": "Znova vzpostavite povezavo in sprejmite zahtevo za dovoljenje sistema Android.",
+  "notice_wireguardTimeout_title": "Strežnik se ne odziva",
+  "notice_wireguardTimeout_message": "Povezava WireGuard je trajala predolgo. Poskusite znova ali izberite drugo lokacijo.",
+  "notice_tlsFailed_title": "Varna povezava je zavrnjena",
+  "notice_tlsFailed_message": "Strežnik ni sprejel povezave OpenVPN. Poskusite znova. Če težava ostaja, zaženite diagnostiko.",
+  "notice_tunRejected_title": "Android je zavrnil vmesnik VPN",
+  "notice_tunRejected_message": "Android je zavrnil omrežno konfiguracijo, ki jo je zahteval OpenVPN.",
+  "notice_openvpnStart_title": "OpenVPN se ni mogel zagnati",
+  "notice_openvpnStart_message": "Pogon OpenVPN se ni mogel zagnati do konca. Poskusite znova. Če težava ostaja, se obrnite na podporo.",
+  "notice_diagnosticCode": "Diagnostična koda: {code}",
+  "notice_generic_title": "Povezava VPN ni uspela",
+  "notice_generic_message": "Prišlo je do napake. Poskusite znova pozneje.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Račun je ustvarjen} password_reset_sent{Zahteva za ponastavitev gesla je prejeta} verification_email_sent{Potrditveno e-poštno sporočilo je poslano} location_migration_pending{Sprememba lokacije poteka} vpn_sign_in_required{Potrebna je prijava} protocol_unavailable_at_location{Protokol ni na voljo} vpn_permission_denied{Dovoljenje za VPN je zavrnjeno} revoked_identity_device_limit{Dosežena omejitev naprav} tunnel_start_unexpected{VPN se ni mogel zagnati} flutter_disconnect_timeout{Prekinitev povezave ni potrjena} flutter_disconnect_unexpected{Povezave ni bilo mogoče prekiniti} device_revoked{Naprava je odstranjena} revoke_unexpected{Naprave ni bilo mogoče odstraniti} identity_renewal_unexpected{Identitete ni bilo mogoče obnoviti} openvpn_renewal_unexpected{OpenVPN ni bilo mogoče obnoviti} location_migration_blocked{Sprememba lokacije je blokirana} location_migration_slow{Sprememba lokacije še vedno poteka} location_migration_conflict{Spremembo lokacije je treba osvežiti} location_migration_verification_failed{Sprememba lokacije ni potrjena} location_migration_device_changed{Naprava se je med spremembo lokacije spremenila} tunnel_stop_failed{Sprememba lokacije ni na voljo} device_clock_ahead{Ura naprave prehiteva} other{Dejanje ni uspelo}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Račun je bil ustvarjen, vendar potrditvenega e-poštnega sporočila ni bilo mogoče poslati. V aplikaciji uporabite možnost za ponovno pošiljanje.} password_reset_sent{Vašo zahtevo smo prejeli. Če s tem naslovom obstaja račun, boste morda prejeli e-poštno sporočilo. Preverite tudi mapo z neželeno pošto.} verification_email_sent{Pravkar je bilo poslano novo potrditveno e-poštno sporočilo.} location_migration_pending{Premik na lokacijo {target} se še vedno pripravlja. Nadaljujete ga lahko brez ponovnega ustvarjanja naprave.} vpn_sign_in_required{Pred zagonom VPN-ja se prijavite v svoj račun.} protocol_unavailable_at_location{Izbrani protokol na tej lokaciji ni na voljo. Osvežite lokacije ali izberite drug protokol.} vpn_permission_denied{Android je zavrnil dovoljenje za VPN. Znova vzpostavite povezavo in sprejmite zahtevo sistema.} revoked_identity_device_limit{Dostop te naprave do VPN-ja je bil odstranjen, omejitev števila naprav pa je dosežena. Odstranite napravo v razdelku Račun → Upravljaj moje naprave.} tunnel_start_unexpected{Nepričakovana napaka je prekinila pripravo tunela. Preverite diagnostično kodo in poskusite znova.} flutter_disconnect_timeout{Android ni pravočasno potrdil, da se je VPN ustavil. Poskusite ga znova ustaviti.} flutter_disconnect_unexpected{Nepričakovana napaka je preprečila potrditev, da se je tunel ustavil.} device_revoked{Dostop naprave do VPN-ja je bil preklican, njeni lokalni skrivni podatki pa so bili odstranjeni.} revoke_unexpected{Naprave ni bilo mogoče odstraniti. Osvežite seznam in poskusite znova.} identity_renewal_unexpected{Nove identitete VPN ni bilo mogoče ustvariti. Osvežite naprave in poskusite znova.} openvpn_renewal_unexpected{Profila OpenVPN ni bilo mogoče obnoviti. Poskusite znova ali preverite diagnostično kodo.} location_migration_blocked{Strežnik trenutno ne more dokončati te spremembe. Naprava in njena lokalna identiteta sta bili ohranjeni.} location_migration_slow{Strežnik še vedno pripravlja premik na lokacijo {target}. Čez nekaj trenutkov izberite „Nadaljuj spremembo lokacije“.} location_migration_conflict{Stanje naprave se je na strežniku spremenilo. Osvežite naprave in nato nadaljujte spremembo.} location_migration_verification_failed{Strežnik ni potrdil nove lokacije. Prejšnja lokalna identiteta je bila ohranjena.} location_migration_device_changed{Naprava, ki jo je vrnil strežnik, se ne ujema več z napravo, ki se spreminja. Pred ponovnim poskusom osvežite naprave.} tunnel_stop_failed{Prejšnji tunel mora biti pred novo povezavo popolnoma ustavljen.} device_clock_ahead{Zdi se, da ura te naprave prehiteva. Vklopite samodejni datum in čas, da ostanete prijavljeni.} other{Dejanja ni bilo mogoče dokončati. Poskusite znova ali posredujte diagnostično kodo podpori.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Seja je potekla} invalid_credentials{Prijava ni uspela} email_verification_required{Potrebna je potrditev e-poštnega naslova} verification_email_cooldown{E-poštno sporočilo je že poslano} rate_limited{Preveč poskusov} invalid_registration{Podatke je treba popraviti} email_exists{Račun že obstaja} invalid_profile{Neveljaven profil} invalid_device{Neveljavna naprava} invalid_location{Lokacija ni na voljo} device_limit{Dosežena omejitev naprav} device_exists{Identiteta VPN je že v uporabi} device_identity_revoked{Identiteto VPN je treba obnoviti} device_location_locked{Spremembo lokacije je treba osvežiti} location_migration_pending{Sprememba lokacije poteka} location_migration_blocked{Sprememba lokacije je blokirana} target_ca_mismatch{Nezdružljiv strežnik OpenVPN} location_migration_conflict{Spremembo lokacije je treba osvežiti} server_full{Strežnik je poln} capacity_unavailable{Lokacija začasno ni na voljo} target_unavailable{Strežnik začasno ni na voljo} not_found{Elementa ni mogoče najti} invalid_openvpn_csr{Neveljavna identiteta OpenVPN} openvpn_profile_exists{Profil OpenVPN že obstaja} openvpn_profile_revoked{Profil OpenVPN je preklican} openvpn_operation_pending{Operacija OpenVPN poteka} openvpn_operation_terminal{Operacija OpenVPN je prekinjena} openvpn_address_unavailable{Naslov OpenVPN ni na voljo} openvpn_profile_conflict{Konflikt pri OpenVPN} openvpn_signer_unavailable{OpenVPN ni na voljo} email_delivery_unavailable{E-pošta ni na voljo} invalid_token{Neveljavna povezava} network_unavailable{Internetna povezava ni na voljo} invalid_json{Neveljavna zahteva} invalid_api_response{Neveljaven odgovor strežnika} ipv6_unavailable{IPv6 ni na voljo} invalid_ip_families{Omrežna konfiguracija je zavrnjena} other{Storitev ni na voljo}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Vaša seja je potekla. Znova se prijavite.} invalid_credentials{Napačen e-poštni naslov ali geslo.} email_verification_required{Pred dodajanjem naprave VPN potrdite svoj e-poštni naslov.} invalid_registration{Preverite zahtevane podatke in soglasja.} email_exists{Ta e-poštni naslov je že povezan z računom.} invalid_profile{Preverite podatke v svojem profilu.} invalid_device{Ime te naprave ali njena lokalna identiteta ni veljavna.} invalid_location{Osvežite seznam lokacij in poskusite znova.} device_limit{Pred dodajanjem nove naprave odstranite eno obstoječo.} device_exists{Ta identiteta VPN je že povezana z drugim računom.} device_identity_revoked{Ta identiteta je bila odstranjena. Ustvariti je treba novo lokalno identiteto.} device_location_locked{Lokacija te naprave se je pravkar spremenila. Aplikacija bo nadaljevala spremembo, ki je v teku.} location_migration_pending{Sprememba lokacije že poteka.} location_migration_blocked{Za spremembo lokacije je potreben poseg na strežniku. Poskusite znova pozneje ali se obrnite na podporo.} target_ca_mismatch{Ta strežnik še ni združljiv s trenutnim profilom OpenVPN.} location_migration_conflict{Osvežite naprave in nato znova poskusite spremeniti lokacijo.} server_full{Ta lokacija je dosegla omejitev povezav. Izberite drugo lokacijo ali poskusite znova pozneje.} capacity_unavailable{Trenutno ne moremo potrditi, ali je ta lokacija na voljo. Izberite drugo lokacijo ali poskusite znova pozneje.} target_unavailable{Ta strežnik začasno ni na voljo.} not_found{Ta element na vašem računu ni več na voljo.} invalid_openvpn_csr{Ustvarite novo identiteto OpenVPN in poskusite znova.} openvpn_profile_exists{Za to napravo že obstaja profil OpenVPN.} openvpn_profile_revoked{Za nadaljevanje obnovite profil OpenVPN.} openvpn_operation_pending{Sprememba se še uveljavlja. Poskusite znova pozneje.} openvpn_operation_terminal{Ustvarite novo identiteto OpenVPN in poskusite znova.} openvpn_address_unavailable{Trenutno ni na voljo noben naslov OpenVPN.} openvpn_profile_conflict{Profil se je spremenil. Osvežite naprave in poskusite znova.} openvpn_signer_unavailable{Storitev OpenVPN začasno ni na voljo.} email_delivery_unavailable{E-poštnega sporočila ni bilo mogoče poslati. Poskusite znova pozneje.} invalid_token{Ta povezava ni veljavna ali je potekla. Zahtevajte novo.} network_unavailable{Preverite internetno povezavo in poskusite znova.} invalid_json{Preverite vnesene podatke in poskusite znova.} invalid_api_response{Strežnik je vrnil nepričakovan odgovor. Poskusite znova pozneje.} ipv6_unavailable{Strežnik trenutno ne more aktivirati IPv6. Poskusite znova pozneje.} invalid_ip_families{Konfiguracija tunela je nepopolna ali se ne ujema z odobrenimi naslovi. Poskusite znova v aplikaciji.} other{Prišlo je do napake strežnika. Poskusite znova pozneje.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Poskusite znova čez nekaj trenutkov.",
+  "notice_retryAfter": "{seconds, plural, one{Poskusite znova čez {seconds} sekundo.} two{Poskusite znova čez {seconds} sekundi.} few{Poskusite znova čez {seconds} sekunde.} other{Poskusite znova čez {seconds} sekund.}}",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterMinutes": "{minutes, plural, one{Poskusite znova čez {minutes} minuto.} two{Poskusite znova čez {minutes} minuti.} few{Poskusite znova čez {minutes} minute.} other{Poskusite znova čez {minutes} minut.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{Poskusite znova čez {hours} uro.} two{Poskusite znova čez {hours} uri.} few{Poskusite znova čez {hours} ure.} other{Poskusite znova čez {hours} ur.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Obnovitev sistemskega VPN-ja ni na voljo} system_vpn_resume_corrupt{Neveljavna obnovitev sistemskega VPN-ja} system_vpn_resume_session_invalid{Neveljavna seja za obnovitev VPN-ja} system_vpn_resume_identity_changed{Identiteta VPN-ja je bila spremenjena} system_vpn_resume_identity_invalid{Neveljavna identiteta za obnovitev VPN-ja} system_vpn_resume_storage_failed{Shramba za obnovitev VPN-ja ni na voljo} system_vpn_resume_network_timeout{Ni omrežja za obnovitev VPN-ja} system_vpn_resume_blocked{Obnovitev VPN-ja je blokirana} system_vpn_resume_failed{Obnovitev VPN-ja ni uspela} system_vpn_resume_error_invalid{Neveljavna napaka pri obnovitvi VPN-ja} wireguard_identity_store_failed{Identiteta WireGuard ni shranjena} wireguard_identity_unavailable{Identiteta WireGuard ni na voljo} vpn_host_destroyed{Gostitelj VPN-ja v Androidu je ustavljen} vpn_host_unavailable{Gostitelj VPN-ja v Androidu ni na voljo} vpn_permission_required{Potrebno je dovoljenje za VPN} vpn_permission_denied{Dovoljenje za VPN je zavrnjeno} vpn_permission_request_failed{Dovoljenja ni mogoče zahtevati} wireguard_foreground_service_unavailable{Storitev WireGuard ni na voljo} wireguard_identity_invalid{Neveljaven lokalni ključ WireGuard} wireguard_identity_in_use{Identiteta WireGuard je že v uporabi} wireguard_configuration_invalid{Neveljavna konfiguracija WireGuard} wireguard_operation_pending{Operacija WireGuard je še vedno aktivna} wireguard_start_failed{Zagon WireGuard je zavrnjen} wireguard_stop_timeout{Ustavitev WireGuard ni potrjena} wireguard_handshake_timeout{WireGuard se ni odzval} openvpn_connection_timeout{OpenVPN se ni odzval} openvpn_core_unavailable{Pogon OpenVPN ni na voljo} openvpn_operation_pending{Seja OpenVPN je še vedno aktivna} openvpn_stop_timeout{Ustavitev OpenVPN ni potrjena} openvpn_profile_unavailable{Lokalni profil OpenVPN manjka} openvpn_native_failed{Nativni klic OpenVPN je prekinjen} openvpn_key_generation_failed{Ključa P-256 za OpenVPN ni mogoče ustvariti} openvpn_csr_generation_failed{Zahteve CSR za OpenVPN ni mogoče ustvariti} openvpn_identity_store_failed{Identiteta OpenVPN ni shranjena} openvpn_identity_clear_failed{Odstranitev OpenVPN ni popolna} openvpn_identity_in_use{Identiteta OpenVPN je še vedno v uporabi} openvpn_tls_verification_required{Preverjanje TLS za OpenVPN manjka} openvpn_cipher_invalid{Neveljaven šifrirni algoritem OpenVPN} openvpn_profile_rejected{Profil OpenVPN je zavrnjen} openvpn_identity_inconsistent{Nedosledna identiteta OpenVPN} tls_handshake_failed{Pogajanje OpenVPN je zavrnjeno} tls_alert_unknown_ca{Potrdilo odjemalca OpenVPN ni prepoznano} tls_alert_bad_certificate{Potrdilo odjemalca OpenVPN je zavrnjeno} tls_alert_unsupported_certificate{Nepodprto potrdilo OpenVPN} tls_client_certificate_required{Potrebno je potrdilo odjemalca OpenVPN} tls_alert_misc{Opozorilo TLS za OpenVPN} tls_signature_algorithm_rejected{Nepodprt podpisni algoritem OpenVPN} tls_handshake_rejected{Pogajanje TLS za OpenVPN je zavrnjeno} tls_version_rejected{Nezdružljiva različica TLS za OpenVPN} tls_certificate_expired{Potrdilo TLS je poteklo} tls_certificate_revoked{Potrdilo TLS je preklicano} transport_failed{Strežnik OpenVPN ni dosegljiv} tun_configuration_rejected{Vmesnika OpenVPN ni mogoče ustvariti} tun_setup_failed{Nastavitev TUN za OpenVPN ni uspela} tun_interface_create_failed{Ustvarjanje vmesnika OpenVPN ni uspelo} tun_interface_disabled{Vmesnik OpenVPN je onemogočen} tun_halted{Vmesnik OpenVPN je bil prekinjen} tun_already_established{Vmesnik OpenVPN je že odprt} tun_addresses_missing{Naslov OpenVPN manjka} tun_routes_missing{Manjkajo poti OpenVPN} tun_dns_missing{DNS za OpenVPN manjka} tun_permission_revoked{Dovoljenje za VPN je odvzeto} tun_establish_returned_null{Android je zavrnil vmesnik VPN} openvpn_service_start_failed{Storitev OpenVPN ni na voljo} openvpn_operation_timeout{Čas za klic OpenVPN je potekel} openvpn_start_failed{Zagon OpenVPN je zavrnjen} openvpn_connection_failed{Povezava OpenVPN je prekinjena} openvpn_core_status_error{OpenVPN Core se je končal z napako} openvpn_stopped_before_connected{OpenVPN se je ustavil pred vzpostavitvijo povezave} openvpn_auth_failed{Overitev OpenVPN je zavrnjena} openvpn_client_setup_failed{Priprava odjemalca OpenVPN ni uspela} openvpn_client_halted{Odjemalec OpenVPN je bil prekinjen} openvpn_client_restart{Zahtevan je ponovni zagon OpenVPN} openvpn_inactive_timeout{OpenVPN je predolgo neaktiven} openvpn_session_expired{Seja OpenVPN je potekla} openvpn_credentials_required{Nepodprta overitev OpenVPN} openvpn_proxy_failed{Posredniški prenos OpenVPN ni uspel} openvpn_compression_failed{Stiskanje OpenVPN je zavrnjeno} openvpn_ntlm_crypto_unavailable{Šifriranje NTLM za OpenVPN ni na voljo} openvpn_feature_unsupported{Nepodprta funkcija OpenVPN} network_unavailable{Internetna povezava ni na voljo} network_lost{Omrežje ni na voljo} certificate_validation_failed{Potrdilo strežnika je zavrnjeno} openvpn_certificate_expired{Potrdilo OpenVPN je poteklo} tunnel_active_for_another_account{Tunel drugega računa je še vedno aktiven} tunnel_already_active{Nativni tunel je že aktiven} tunnel_stop_timeout{Ustavitev {protocol} ni potrjena} tunnel_disconnected{{protocol} je bil prekinjen} native_bridge_unavailable{Most za Android ni na voljo} native_operation_failed{Operacija v Androidu je bila prekinjena} invalid_arguments{Parametri VPN-ja so nepopolni} invalid_account_id{Neveljaven račun za VPN} invalid_device_id{Neveljaven identifikator naprave} storage_key_not_allowed{Ključ za shrambo je zavrnjen} secure_storage_read_failed{Varno branje ni uspelo} secure_storage_write_failed{Varno shranjevanje ni uspelo} key_generation_failed{Ključa WireGuard ni mogoče ustvariti} csr_generation_failed{Zahteve CSR za OpenVPN ni mogoče ustvariti} openvpn_recovery_exhausted{Samodejna obnovitev OpenVPN je že uporabljena} openvpn_recovery_failed{Samodejna obnovitev OpenVPN ni uspela} openvpn_renewal_required{Potrebna je obnova potrdila OpenVPN} other{Neopredeljena nativna napaka VPN-ja}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ne najde seje VPN-ja, ki bi jo bilo mogoče obnoviti. V aplikaciji vzpostavite novo povezavo.} system_vpn_resume_corrupt{Shranjeni podatki za obnovitev VPN-ja so neveljavni in ne bodo uporabljeni. Vzpostavite novo povezavo.} system_vpn_resume_session_invalid{Shranjena seja ne more več obnoviti VPN-ja. V aplikaciji se znova prijavite.} system_vpn_resume_identity_changed{Lokalna identiteta VPN-ja se je spremenila. Obnovitev je bila ustavljena. Vzpostavite novo povezavo.} system_vpn_resume_identity_invalid{Identiteta za obnovitev je neveljavna. Vzpostavite novo povezavo.} system_vpn_resume_storage_failed{Android ni mogel prebrati ali posodobiti šifriranih podatkov za obnovitev. Vzpostavite novo povezavo.} system_vpn_resume_network_timeout{Android ni pravočasno našel omrežja za obnovitev VPN-ja. Poskusite znova, ko bo omrežje na voljo.} system_vpn_resume_blocked{Obnovitev VPN-ja je blokirana. Preverite nastavitve Androida in nato vzpostavite novo povezavo.} system_vpn_resume_failed{Obnovitev VPN-ja v Androidu ni uspela. V aplikaciji vzpostavite novo povezavo.} system_vpn_resume_error_invalid{Android je vrnil neuporabno napako pri obnovitvi. Vzpostavite novo povezavo.} wireguard_identity_store_failed{Android ni mogel shraniti šifrirane identitete WireGuard za ta račun.} wireguard_identity_unavailable{Za to povezavo ni na voljo uporabne identitete WireGuard.} vpn_host_destroyed{Komponenta Androida, ki gosti VPN, je bila ustavljena. Vzpostavite novo povezavo.} vpn_host_unavailable{Android ne more ustvariti komponente, ki gosti VPN. Preverite nastavitve VPN-ja in poskusite znova.} openvpn_renewal_required{Potrdilo pred povezavo zahteva ukrep v aplikaciji.} openvpn_recovery_failed{Samodejna obnovitev ni uspela. V aplikaciji vzpostavite novo povezavo.} openvpn_recovery_exhausted{Samodejna obnovitev je bila že uporabljena. V aplikaciji vzpostavite novo povezavo.} vpn_permission_required{Android pred zagonom tunela zahteva novo dovoljenje za VPN.} vpn_permission_denied{Za nadaljevanje v zahtevi Androida dovolite FuzeVPN.} vpn_permission_request_failed{Android ni mogel odpreti zaslona za dovoljenje za VPN.} wireguard_foreground_service_unavailable{Android ni mogel ohraniti storitve WireGuard v ospredju.} wireguard_identity_invalid{Šifrirani ključ WireGuard za ta račun ni berljiv ali je neveljaven.} wireguard_identity_in_use{Druga operacija še vedno uporablja ključ WireGuard za ta račun.} wireguard_configuration_invalid{Prejeti naslov WireGuard, DNS, ključ strežnika ali poti so neveljavni.} wireguard_operation_pending{Prejšnja operacija WireGuard še ni sprostila svoje nativne storitve.} wireguard_start_failed{Pogon WireGuard je zavrnil aktivacijo konfiguracije.} wireguard_stop_timeout{Storitev WireGuard v dovoljenem času ni potrdila sprostitve vmesnika VPN.} wireguard_handshake_timeout{Tunel pravočasno ni potrdil rokovanja s strežnikom.} openvpn_connection_timeout{OpenVPN pravočasno ni potrdil povezave s strežnikom.} openvpn_core_unavailable{Ta različica aplikacije ne vsebuje uporabnega pogona OpenVPN.} openvpn_operation_pending{Nativni pogon še vedno vzdržuje prejšnjo sejo OpenVPN in ne dovoli ustvarjanja druge.} openvpn_stop_timeout{OpenVPN Core v dovoljenem času ni potrdil, da je bila njegova nativna seja ustavljena in uničena.} openvpn_profile_unavailable{Za to povezavo ni mogoče prebrati nobenega preverjenega profila OpenVPN.} openvpn_native_failed{Napaka v aplikaciji je prekinila OpenVPN. Poskusite se znova povezati. Če težava ostaja, zaženite diagnostiko.} openvpn_key_generation_failed{Android Keystore ni mogel ustvariti ali prebrati zasebnega ključa P-256, ki ga ni mogoče izvoziti.} openvpn_csr_generation_failed{Ključ Android Keystore ni mogel podpisati zahteve za potrdilo OpenVPN.} openvpn_identity_store_failed{Potrdila ali profila OpenVPN ni bilo mogoče shraniti v šifrirano shrambo.} openvpn_identity_clear_failed{Android ni mogel v celoti odstraniti lokalne identitete OpenVPN za ta račun.} openvpn_identity_in_use{Nativna seja OpenVPN še vedno uporablja ključ ali potrdilo te naprave.} openvpn_tls_verification_required{Profil izrecno ne zahteva preverjanja potrdila strežnika.} openvpn_cipher_invalid{Strežnik je poslal šifrirni algoritem, ki ni na dovoljenem seznamu.} openvpn_profile_rejected{Profil, prejet s strežnika, ni združljiv. Ponovno ustvarite to napravo in poskusite znova.} openvpn_identity_inconsistent{Potrdilo se ne ujema z varno identiteto tega telefona. Noben lokalni profil ni bil zamenjan.} tls_handshake_failed{Strežnik je zavrnil pogajanje TLS. Če težava ostaja, ponovno ustvarite profil.} tls_alert_unknown_ca{Strežnik ne prepozna izdajatelja potrdila te naprave. Preveriti je treba strežnik OpenVPN.} tls_alert_bad_certificate{Strežnik je zavrnil potrdilo te naprave. Pred ponovnim poskusom ponovno ustvarite napravo.} tls_alert_unsupported_certificate{Strežnik ne podpira vrste varnega potrdila, ki jo uporablja Android.} tls_client_certificate_required{Strežnik zahteva potrdilo odjemalca, OpenVPN Core pa ga ni mogel predložiti.} tls_alert_misc{Strežnik je vrnil opozorilo TLS, ki ne spada med kategorije potrdil in različic.} tls_signature_algorithm_rejected{Strežnik je zavrnil algoritem ECDSA P-256 ključa Android Keystore.} tls_handshake_rejected{Strežnik je pred vzpostavitvijo povezave prekinil pogajanje TLS.} tls_version_rejected{Odjemalec in strežnik nista našla skupne različice TLS.} tls_certificate_expired{Potrdilo, predloženo med povezavo, je poteklo.} tls_certificate_revoked{Potrdilo, predloženo med povezavo, je bilo preklicano.} transport_failed{Strežnik OpenVPN se na trenutnem omrežju ne odziva. Poskusite znova čez nekaj trenutkov.} tun_configuration_rejected{Android je zavrnil omrežno konfiguracijo, ki jo je zahteval OpenVPN.} tun_setup_failed{OpenVPN Core je zavrnil omrežni načrt, preden je ustvaril vmesnik Androida.} tun_interface_create_failed{OpenVPN Core ni mogel pridobiti vmesnika TUN iz storitve Android VpnService.} tun_interface_disabled{Android ali OpenVPN Core je med povezavo onemogočil vmesnik TUN.} tun_halted{OpenVPN Core je prejel zahtevo za ustavitev vmesnika TUN.} tun_already_established{OpenVPN je v isti povezavi zahteval drugi vmesnik. Tunel je bil zaradi varnosti ustavljen.} tun_addresses_missing{Strežnik ni posredoval uporabnega naslova tunela.} tun_routes_missing{Strežnik ni posredoval uporabnih poti tunela.} tun_dns_missing{Strežnik ni posredoval uporabnega strežnika DNS.} tun_permission_revoked{Android je med povezavo odvzel dovoljenje za VPN.} tun_establish_returned_null{Android ni ustvaril vmesnika, običajno zato, ker je še vedno aktiven drug VPN.} openvpn_service_start_failed{Android ni mogel zagnati storitve OpenVPN v ospredju.} openvpn_operation_timeout{Klic JNI za OpenVPN Core je presegel največje dovoljeno trajanje.} openvpn_start_failed{Storitev Androida je pripravljena, vendar OpenVPN Core ni sprejel zagona profila.} openvpn_connection_failed{OpenVPN Core se je ustavil, preden je sprožil dogodek CONNECTED.} openvpn_core_status_error{Nativna zanka OpenVPN se je končala z napako, brez natančnejšega končnega dogodka.} openvpn_stopped_before_connected{Nativna zanka OpenVPN se je ustavila pred dogodkom CONNECTED, brez izrecne napake Core.} openvpn_auth_failed{Strežnik OpenVPN je zavrnil overitev profila.} openvpn_client_setup_failed{OpenVPN Core ni mogel inicializirati odjemalca pred omrežno povezavo.} openvpn_client_halted{OpenVPN Core je prejel končno ustavitev odjemalca.} openvpn_client_restart{OpenVPN Core je zahteval ponovni zagon svoje prenosne seje.} openvpn_inactive_timeout{OpenVPN Core je po časovni omejitvi za neaktivnost zaprl sejo.} openvpn_session_expired{Strežnik je sporočil, da je seja OpenVPN potekla.} openvpn_credentials_required{Strežnik ali posredniški strežnik zahteva interaktivne prijavne podatke, ki niso del tega profila s potrdilom.} openvpn_proxy_failed{OpenVPN Core je javil napako nastavljenega posredniškega strežnika ali releja.} openvpn_compression_failed{OpenVPN Core je zavrnil način stiskanja, ki ga je napovedal profil ali strežnik.} openvpn_ntlm_crypto_unavailable{Profil zahteva šifriranje NTLM, ki v tej različici ni na voljo.} openvpn_feature_unsupported{Profil ali strežnik zahteva funkcijo, ki v tem odjemalcu za Android manjka.} network_unavailable{Ni na voljo nobenega uporabnega fizičnega omrežja.} network_lost{Tunel je bil ustavljen po izgubi omrežja.} certificate_validation_failed{Identitete strežnika OpenVPN ni bilo mogoče preveriti.} openvpn_certificate_expired{Pred ponovno povezavo obnovite profil OpenVPN.} tunnel_active_for_another_account{Tunel, ki pripada drugemu računu, se mora pred to povezavo ustaviti.} tunnel_already_active{Android poroča, da prejšnja seja VPN-ja še vedno uporablja vmesnik.} tunnel_stop_timeout{Pogon {protocol} v dovoljenem času ni potrdil sprostitve vmesnika VPN.} tunnel_disconnected{Nativni pogon je sporočil, da se je tunel po zagonu nepričakovano končal.} native_bridge_unavailable{Aplikacija ne more dostopati do storitve VPN v Androidu. Zaprite in znova odprite aplikacijo ter poskusite znova.} native_operation_failed{Napaka v aplikaciji je prekinila operacijo VPN. Poskusite znova. Če težava ostaja, zaženite diagnostiko.} invalid_arguments{Podatki, potrebni za to operacijo VPN, so nepopolni. Poskusite znova. Če težava ostaja, zaženite diagnostiko.} invalid_account_id{Nativna operacija ni povezana z veljavnim identifikatorjem računa.} invalid_device_id{Identifikator naprave, poslan nativnemu pogonu, manjka ali je neveljaven.} storage_key_not_allowed{Most za Android je blokiral ključ, ki ni na dovoljenem seznamu shrambe.} secure_storage_read_failed{Android Keystore ni mogel dešifrirati lokalnih podatkov tega računa.} secure_storage_write_failed{Android Keystore ni mogel šifrirati ali shraniti lokalnih podatkov.} key_generation_failed{Android ni mogel ustvariti ali prebrati ključa WireGuard v varni shrambi.} csr_generation_failed{Android Keystore ni mogel ustvariti ali podpisati zahteve CSR P-256 za OpenVPN.} other{Pri nativni operaciji je prišlo do nedokumentirane napake. Podpori pošljite diagnostično kodo, prikazano spodaj.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Zahteva za dovoljenje je že odprta",
+  "notice_permissionRequestInProgress_message": "Zahteva za dovoljenje za VPN v Androidu je že prikazana. Pred ponovnim poskusom jo dokončajte.",
+  "notice_permissionRequestInterrupted_title": "Zahteva za dovoljenje za VPN je bila prekinjena",
+  "notice_permissionRequestInterrupted_message": "Zaslon za dovoljenje za VPN se je zaprl, preden je aplikacija prejela odgovor.",
+  "notice_openvpnProofMissing_title": "Povezava OpenVPN ni potrjena",
+  "notice_openvpnProofMissing_message": "Povezave OpenVPN ni bilo mogoče potrditi. Zaradi varnosti je bila ustavljena. Poskusite znova.",
+  "openvpnCleanup_title": "Profil OpenVPN je preklican",
+  "openvpnCleanup_working": "Ustavljanje in odstranjevanje preklicanega profila OpenVPN…",
+  "openvpnCleanup_stopFailed": "Ustavitev OpenVPN ni potrjena. Pred ustvarjanjem novega profila poskusite znova.",
+  "openvpnCleanup_cleanupFailed": "Preklicanega profila OpenVPN ni bilo mogoče v celoti odstraniti. Ponovite čiščenje.",
+  "openvpnCleanup_complete": "Preklicani profil OpenVPN je bil odstranjen. Za ustvarjanje novega se dotaknite „Poveži“.",
+  "network_title": "Omrežna konfiguracija",
+  "network_ipv4Fallback": "IPv6 začasno ni na voljo. Priprava se nadaljuje z IPv4.",
+  "network_rejectedTitle": "Omrežna konfiguracija je zavrnjena",
+  "network_rejectedMessage": "Konfiguracija tunela je nepopolna ali se ne ujema z odobrenimi naslovi. Poskusite znova v aplikaciji.",
+  "network_unreadableTitle": "Lokalna konfiguracija ni berljiva",
+  "network_unreadableMessage": "Shranjene omrežne konfiguracije OpenVPN ni mogoče uporabiti. Za njeno posodobitev se znova povežite v aplikaciji.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Zaščita omrežja",
+  "protection_subtitle": "Blokirajte neposreden dostop do interneta, če se VPN prekine.",
+  "protection_active": "Sistemska zaščita je aktivna",
+  "protection_alwaysOnOnly": "Vedno vklopljen VPN je omogočen; vklopite blokiranje zunaj VPN-ja",
+  "protection_inactive": "Sistemska zaščita ni aktivna",
+  "protection_unknown": "Preverite sistemsko zaščito",
+  "protection_openSettings": "Odpri nastavitve Androida",
+  "protection_dialogTitle": "Nastavite zaščito omrežja",
+  "protection_dialogMessage": "Android upravlja vedno vklopljen VPN in blokiranje povezav zunaj VPN-ja. Preverite, ali je izbran FuzeVPN, nato pa v sistemskih nastavitvah vklopite blokiranje.",
+  "protection_dialogOpen": "Odpri nastavitve",
+  "session_systemProtectionNote": "Če Android še vedno blokira promet zunaj VPN-ja, odprite sistemske nastavitve, da to zaščito preverite ali spremenite.",
+  "diagnostics_title": "Diagnostika",
+  "diagnostics_settingsTitle": "Diagnostika aplikacije",
+  "diagnostics_automaticTitle": "Pošiljanje pomembnih napak",
+  "diagnostics_automaticDescription": "Ob pomembni napaki delite kratko tehnično poročilo.",
+  "diagnostics_privacy": "Poslana poročila so povezana s prijavljenim računom in se hranijo 30 dni. Ne vsebujejo zgodovine brskanja, gesel ali ključev VPN.",
+  "diagnostics_manualOpen": "Zaženi diagnostiko",
+  "diagnostics_localDescription": "Ustvarite poročilo o stanju aplikacije in VPN-ja. Vaša povezava ostane nespremenjena.",
+  "diagnostics_sendReport": "Pošlji poročilo",
+  "diagnostics_sendHint": "Če želite poročilo obdržati v tej napravi, pustite potrditveno polje neizbrano.",
+  "diagnostics_signedOut": "Za pošiljanje poročila se prijavite v svoj račun.",
+  "diagnostics_localLifetime": "Če želite poročilo obdržati tudi po zaprtju aplikacije, ga shranite v telefon.",
+  "diagnostics_run": "Zaženi diagnostiko",
+  "diagnostics_rerun": "Ponovno zaženi diagnostiko",
+  "diagnostics_running": "Preverjanje…",
+  "diagnostics_sending": "Pošiljanje poročila…",
+  "diagnostics_prepared": "Poročilo je pripravljeno v tej napravi",
+  "diagnostics_queued": "Poročilo čaka na pošiljanje",
+  "diagnostics_sent": "Poročilo je prejeto",
+  "diagnostics_failed": "Pošiljanje ni uspelo. Vaše lokalno poročilo je še vedno na voljo.",
+  "diagnostics_preparationFailed": "Diagnostičnega poročila ni bilo mogoče pripraviti. Poskusite znova.",
+  "diagnostics_authenticationRequired": "Za pošiljanje poročila se znova prijavite.",
+  "diagnostics_retry": "Ponovno pošlji",
+  "diagnostics_export": "Shrani poročilo",
+  "diagnostics_exportFailed": "Izvoz ni uspel. Poskusite znova iz lokalnega poročila.",
+  "diagnostics_preferenceFailed": "Te nastavitve ni bilo mogoče shraniti. Poskusite znova.",
+  "diagnostics_receipt": "Referenca: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "Prejeto {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Shranjeno do {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "To poročilo je bilo že prejeto.",
+  "diagnostics_preview": "Predogled poročila",
+  "diagnostics_eventCount": "{count, plural, =0{Brez priloženih tehničnih dogodkov} one{Priložen je {count} tehnični dogodek} two{Priložena sta {count} tehnična dogodka} few{Priloženi so {count} tehnični dogodki} other{Priloženih je {count} tehničnih dogodkov}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Tehnične podrobnosti",
+  "diagnostics_empty": "Diagnostično poročilo še ni bilo pripravljeno.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Stanje tunela} handshake{Potrditev povezave} certificate{Potrdilo VPN} kill_switch{Zaščita Androida} connectivity{Razpoložljivo omrežje} api_reachability{Dostop do storitve} secure_storage{Varno shranjevanje} other{Lokalno preverjanje}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Preverjeno} failed{Zahteva pozornost} skipped{Ni preizkušeno – brez aktivnega preverjanja} unknown{Podatek ni na voljo} other{Podatek ni na voljo}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Dobrodošli v aplikaciji FuzeVPN",
+  "connection_changeLocation": "Spremeni lokacijo",
+  "connection_details": "Podrobnosti povezave",
+  "locations_searchLabel": "Poiščite mesto ali državo",
+  "locations_clearSearch": "Počisti iskanje",
+  "locations_filterAll": "Vse",
+  "locations_filterFavorites": "Priljubljene",
+  "locations_results": "{count, plural, one{{count} lokacija} two{{count} lokaciji} few{{count} lokacije} other{{count} lokacij}}",
+  "locations_noResults": "Ni najdenih lokacij",
+  "locations_noResultsHint": "Poskusite z drugim mestom ali državo.",
+  "locations_noFavorites": "Vaše priljubljene so vedno pri roki",
+  "locations_noFavoritesHint": "Dotaknite se zvezdice ob lokaciji, da jo shranite tukaj.",
+  "locations_showAll": "Prikaži vse lokacije",
+  "locations_addFavorite": "Dodaj med priljubljene: {name}",
+  "locations_removeFavorite": "Odstrani iz priljubljenih: {name}",
+  "locations_favoriteSaveFailed": "Priljubljene lokacije ni bilo mogoče shraniti. Poskusite znova.",
+  "locations_emptyTitle": "Ni razpoložljivih lokacij",
+  "locations_emptyHint": "Osvežite seznam in poskusite znova.",
+  "devices_manage": "Upravljaj moje naprave",
+  "settings_personalization": "Prilagodite po svoje",
+  "settings_safety": "Zaščita",
+  "settings_help": "Potrebujete pomoč?",
+  "settings_about": "O aplikaciji FuzeVPN",
+  "diagnostics_heading": "Razumevanje težav s povezavo",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Na voljo} pending{Priprava} revoked{Odstranjeno} expired{Poteklo} other{Stanje ni na voljo}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Nastavitev ni shranjena",
+  "notice_preferenceSave_message": "Vaša izbira je za zdaj uporabljena, vendar je ni bilo mogoče shraniti. Poskusite znova, da jo boste obdržali tudi po zaprtju aplikacije.",
+  "connection_androidDisconnectHint": "Če Android ohranja VPN aktiven, v nastavitvah, ki se odprejo, izklopite „Vedno vklopljen VPN“.",
+  "protection_learnMore": "Preberite več o zaščiti Androida",
+  "protection_guideWhy": "Ta zaščita preprečuje, da bi aplikacije uporabljale internet neposredno, če se VPN prekine. Nastavi se v sistemu Android.",
+  "protection_guideAlwaysOnTitle": "Vedno vklopljen VPN",
+  "protection_guideAlwaysOn": "Android ohranja storitev VPN aktivno in jo lahko po ponovnem zagonu telefona znova zažene.",
+  "protection_guideBlockTitle": "Blokiraj povezave brez VPN-ja",
+  "protection_guideBlock": "Ta nastavitev preprečuje, da bi promet šel mimo VPN-ja, tudi med prekinitvijo povezave.",
+  "protection_guideWarning": "Če je to blokiranje vklopljeno, dostop do interneta ostane izklopljen, dokler VPN ni povezan.",
+  "protection_guideStepsTitle": "Vklopite zaščito",
+  "protection_guideStep1": "Z gumbom spodaj odprite nastavitve VPN-ja v sistemu Android.",
+  "protection_guideStep2": "Z ikono zobnika poleg vnosa FuzeVPN odprite možnosti.",
+  "protection_guideStep3": "Vklopite možnost „Vedno vklopljen VPN“ in nato „Blokiraj povezave brez VPN-ja“, če sta na voljo.",
+  "protection_guideManufacturers": "Imena se razlikujejo glede na telefon. Če je treba, v nastavitvah poiščite „VPN“, pogosto v razdelku Omrežje in internet.",
+  "protection_guideDisableTitle": "Izklopite to zaščito",
+  "protection_guideDisable": "V istih nastavitvah izklopite blokiranje brez VPN-ja, če želite dostop do interneta brez VPN-ja. Če ne želite več, da Android VPN samodejno znova zažene, izklopite tudi „Vedno vklopljen VPN“.",
+  "protection_guideManual": "Te nastavitve izberete v sistemu Android. FuzeVPN jih ne spreminja namesto vas.",
+  "locations_changeTitle": "Želite spremeniti lokacijo?",
+  "locations_changeActive": "VPN se bo prekinil, nato pa se bo poskusil povezati z lokacijo {name}.",
+  "locations_changeIdle": "VPN se bo poskusil povezati z lokacijo {name}.",
+  "locations_confirmChange": "Spremeni in poveži",
+  "locations_changeBusy": "Sprememba poteka. Počakajte, preden izberete drugo lokacijo.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Samodejna izbira",
+  "locations_cities": "Mesta",
+  "locations_servers": "Strežniki",
+  "locations_viewCities": "Oglej si mesta: {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Oglej si strežnike: {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} država} two{{count} državi} few{{count} države} other{{count} držav}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} mesto} two{{count} mesti} few{{count} mesta} other{{count} mest}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} strežnik} two{{count} strežnika} few{{count} strežniki} other{{count} strežnikov}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Vse države",
+  "locations_backToCountries": "Nazaj na države",
+  "locations_backToCities": "Nazaj na mesta: {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Izberi: {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Izberi: {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Na voljo ni nobenega združljivega strežnika.",
+  "externalLink_failed": "Te povezave ni mogoče odpreti. Lahko jo kopirate in odprete v brskalniku.",
+  "externalLink_copy": "Kopiraj povezavo",
+  "externalLink_copied": "Povezava je kopirana",
+  "externalLink_copyFailed": "Povezave ni mogoče kopirati. Izberite naslov spodaj.",
+  "settings_deleteAccount": "Izbriši moj račun",
+  "settings_deleteAccountDetail": "Oglejte si postopek zahteve za izbris računa",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Izberite naročnino za VPN.",
+  "billing_subscribe": "Naroči se",
+  "billing_choosePlan": "Za nadaljevanje izberite paket.",
+  "billing_monthly": "Mesečno",
+  "billing_yearly": "Letno",
+  "billing_continue": "Nadaljuj z Google Play",
+  "billing_restore": "Obnovi nakupe",
+  "billing_manage": "Upravljaj naročnino",
+  "billing_deleteAccountWarning": "Če imate naročnino Google Play, izbris računa FuzeVPN ne prekliče njenega podaljšanja. Podaljšanje upravljajte ali prekličite ločeno v Google Play.",
+  "billing_deleteAccountContinue": "Nadaljuj na zahtevo za izbris računa",
+  "billing_refresh": "Osveži dostop",
+  "billing_loadingPlans": "Nalaganje paketov…",
+  "billing_unavailable": "Trenutno ni na voljo nobenega paketa. Poskusite znova pozneje.",
+  "billing_comingSoon": "Naročnine bodo kmalu na voljo.",
+  "billing_priceDisclosure": "Ceno zagotavlja Google Play. Končni znesek in veljavne davke boste videli, preden nakup potrdite.",
+  "billing_renewalMonthly": "Naročnina se vsak mesec samodejno obnovi, razen če jo prekličete. Kadar koli jo lahko prekličete med naročninami v Google Play.",
+  "billing_renewalYearly": "Naročnina se vsako leto samodejno obnovi, razen če jo prekličete. Kadar koli jo lahko prekličete med naročninami v Google Play.",
+  "billing_active": "Vaš dostop Premium je aktiven",
+  "billing_accessUntil": "Dostop velja do {date}.",
+  "billing_webManaged": "Vašo naročnino upravljate na spletnem mestu FuzeVPN.",
+  "billing_playManaged": "Vašo naročnino upravlja Google Play.",
+  "billing_playOnHold": "Vaša naročnina Google Play je zadržana ali čaka na plačilo. Odprite „Upravljaj naročnino“ in težavo odpravite v Google Play.",
+  "billing_playReceiptUnlinked": "Ta račun Google Play že ima naročnino Fuze Premium, ki za vaš račun FuzeVPN ni aktivna. Odprite „Upravljaj naročnino“ in si jo oglejte v Google Play.",
+  "billing_inactive": "Ni aktivne naročnine.",
+  "billing_checkingAccess": "Preverjanje dostopa…",
+  "billing_restoring": "Obnavljanje nakupov…",
+  "billing_pending": "Plačilo je na čakanju. Vaš dostop se bo aktiviral po potrditvi.",
+  "billing_cancelled": "Nakup je preklican. Nobena nova naročnina ni bila aktivirana.",
+  "billing_verifying": "Preverjanje nakupa…",
+  "billing_success": "Naročnina je aktivirana. Vaš dostop Premium je pripravljen.",
+  "billing_restored": "Vaši nakupi so bili obnovljeni.",
+  "billing_restoreEmpty": "Za ta račun Google Play ni nakupov za obnovitev.",
+  "billing_catalogError": "Paketov ni mogoče naložiti. Poskusite znova.",
+  "billing_purchaseError": "Nakupa ni mogoče začeti. Poskusite znova.",
+  "billing_verificationError": "Preverjanje nakupa je začasno nedosegljivo. Če želite poskusiti znova, obnovite nakupe.",
+  "billing_restoreError": "Nakupov ni mogoče obnoviti. Poskusite znova.",
+  "billing_managementError": "Upravljanja naročnine ni mogoče odpreti. Poskusite znova.",
+  "billing_storeUnavailable": "Google Play na tej napravi ni na voljo.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "Vaš VPN, brez zapletov.",
+  "welcome_description": "Zaščitite svojo povezavo. Ohranite nadzor nad zasebnostjo.",
+  "welcome_start": "Začni",
+  "welcome_alreadyPurchased": "Ste že opravili nakup?",
+  "welcome_noAccountRequired": "Za začetek račun ni potreben.",
+  "guest_accountTitle": "Račun ni povezan",
+  "guest_accountDescription": "Nakupe obnovite z istim računom Google Play, če želite naročnino uporabljati v drugi napravi.",
+  "guest_existingSubscriberSignIn": "Že imate naročnino? Prijavite se",
+  "guest_claimTitle": "Vzemite FuzeVPN s seboj",
+  "guest_claimDescription": "Ustvarite račun, da boste naročnino lahko uporabljali na drugih napravah. Ta korak je neobvezen.",
+  "guest_skip": "Morda pozneje",
+  "guest_activationTitle": "Fuze Premium je aktiven",
+  "guest_activationDescription": "Vaša naročnina je pripravljena. VPN lahko uporabljate, račun pa ustvarite, kadar koli želite.",
+  "guest_useVpn": "Uporabi moj VPN",
+  "guest_loginRequired": "Ta nakup je že povezan z računom FuzeVPN. Prijavite se v ta račun za dostop do naročnine.",
+  "guest_signOutWarning": "Naročnino lahko obnovite tako, da z istim računom Google Play obnovite nakupe.",
+  "guest_profileUnavailable": "Vaš račun je že povezan. Prijavite se, da si ogledate in upravljate svoje podatke.",
+  "billing_acceptance": "Z nadaljevanjem sprejemate pogoje uporabe in politiko zasebnosti.",
+  "guest_verifyEmailReminder": "Potrdite e-poštni naslov, da zaščitite račun. VPN lahko še naprej uporabljate.",
+  "guest_serviceUnavailable": "Storitev je začasno nedosegljiva. Poskusite znova čez nekaj trenutkov.",
+  "guest_restoreError": "Nakupov ni bilo mogoče obnoviti. Poskusite znova z računom Google Play, ki ste ga uporabili za nakup.",
+  "guest_claimSuccess": "Vaš račun je bil ustvarjen. Vaša naročnina in dostop do VPN-ja sta ohranjena.",
+  "guest_emailExists": "Ta e-poštni naslov je že v uporabi. Izberite drug naslov ali se prijavite v obstoječi račun. Nakup ostaja na voljo prek Google Play.",
+  "guest_claimError": "Vašega računa ni bilo mogoče ustvariti. VPN lahko še naprej uporabljate, poskusite pa znova pozneje.",
+  "guest_secureStorageError": "Vaše seje na tej napravi ni bilo mogoče zaščititi. Poskusite znova.",
+  "guest_premiumRequired": "Za aktivacijo VPN-ja izberite naročnino.",
+  "welcome_viewPlans": "Oglej si pakete",
+  "google_continue": "Nadaljuj z računom Google",
+  "google_or": "ali",
+  "google_title": "Vaš račun FuzeVPN",
+  "google_settingUp": "Dokončajte ustvarjanje računa",
+  "google_country": "Država prebivališča",
+  "google_profileDescription": "Izberite državo in preglejte oba dokumenta, da ustvarite račun FuzeVPN.",
+  "google_claimDescription": "Gostujoči račun povežite z računom Google. Naročnina in naprava ostaneta povezani s tem računom.",
+  "google_linkTitle": "Povežite račun Google z računom FuzeVPN",
+  "google_linkDescription": "Potrdite dostop do obstoječega računa FuzeVPN. Ta korak ne zahteva vašega gesla za Google.",
+  "google_password": "Geslo FuzeVPN",
+  "google_linkAccount": "Potrdi povezavo",
+  "google_requestEmail": "Pošlji mi potrditveno e-pošto",
+  "google_emailInstructions": "Odprite e-pošto FuzeVPN in vnesite potrditveno kodo.",
+  "google_emailCode": "Potrditvena koda iz e-pošte",
+  "google_confirmEmail": "Potrdi kodo",
+  "google_restart": "Izberi drug račun Google",
+  "google_resume": "Preveri ta poskus",
+  "google_unavailable": "Prijava z računom Google ni na voljo. Lahko uporabite e-poštni naslov in geslo.",
+  "google_expired": "Ta poskus je potekel. Prekličite ga in začnite znova.",
+  "google_conflict": "Ta račun Google je že povezan drugje. Vaš trenutni račun in naročnina ostaneta nespremenjena.",
+  "google_error": "Prijava z računom Google ni uspela. Poskusite znova; vaš trenutni dostop ostane nespremenjen.",
+  "google_uncertain": "Rezultata ni bilo mogoče potrditi. Preverite ta poskus ali ga prekličite, preden začnete znova.",
+  "google_cancelFailed": "Preklica ni bilo mogoče potrditi. Poskusite preklicati še enkrat, preden zapustite ta zaslon.",
+  "google_cancelled": "Prijava z računom Google je preklicana.",
+  "google_selecting": "Izberite svoj račun Google…",
+  "google_verifying": "Preverjanje vašega računa…",
+  "google_emailUnavailable": "Potrditvene e-pošte ni bilo mogoče poslati. Poskusite znova pozneje.",
+  "google_emailSent": "Potrditvena e-pošta je poslana. Preverite nabiralnik.",
+  "google_rateLimited": "Počakajte, preden poskusite znova.",
+  "google_busy": "Prijava z računom Google ni na voljo, medtem ko poteka drug postopek (povezava VPN, račun ali gost). Poskusite znova, ko bo končan; vaš trenutni dostop ostane nespremenjen.",
+  "google_invalidPassword": "Geslo FuzeVPN je napačno. Vaš trenutni račun ostane nespremenjen.",
+  "google_invalidCode": "Potrditvena koda je neveljavna ali je potekla.",
+  "google_accountChanged": "Vaša seja se je spremenila. Prekličite ta poskus, preden začnete znova.",
+  "google_invalidResponse": "Odgovora ni bilo mogoče preveriti. Vaš trenutni dostop ostane nespremenjen.",
+  "google_invalidRegistration": "Preverite državo in obe soglasji.",
+  "google_consentRequired": "Za nadaljevanje izberite državo in sprejmite oba dokumenta.",
+  "google_challengeRequired": "Potrebno je dodatno varnostno preverjanje. Vaš trenutni dostop ostane nespremenjen.",
+  "google_challengeUnavailable": "Varnostno preverjanje ni na voljo. Poskusite znova pozneje.",
+  "google_intentMismatch": "Prejšnji poskus prijave z računom Google je še v teku. Prekličite ga, preden začnete ta postopek.",
+  "google_challengeBlocked": "Zahtevano varnostno preverjanje v tej aplikaciji ni na voljo. Tega postopka trenutno ni mogoče dokončati.",
+  "google_solveChallenge": "Dokončaj varnostno preverjanje",
+  "google_challengeTitle": "Varnostno preverjanje",
+  "google_challengeReady": "Preverjanje je dokončano. Zdaj lahko potrdite ustvarjanje računa.",
+  "google_challengeExpired": "Preverjanje je poteklo. Pred potrditvijo ga dokončajte znova.",
+  "google_challengeCancelled": "Preverjanje je preklicano. Lahko ga poskusite znova.",
+  "google_challengeFailed": "Varnostno preverjanje ni uspelo. Poskusite znova.",
+  "billing_trialTitle": "Preizkusite Fuze Premium brezplačno",
+  "billing_trialSubtitle": "Zaščitite svojo povezavo že danes.",
+  "billing_trialWeeks": "2-tedenski brezplačni preizkus",
+  "billing_trialDays": "{days}-dnevni brezplačni preizkus",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Začni brezplačni preizkus",
+  "billing_trialFirstCharge": "Če začnete danes, je prvo plačilo predvideno za {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Samodejno se obnovi po navedeni ceni. Če se želite izogniti plačilu, prekličite v Google Play, preden se preizkus konča.",
+  "billing_trialThenMonthly": "Nato {price} na mesec",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Nato {price} na leto",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Izberite paket",
+  "billing_selectionHint": "Za nadaljevanje izberite paket.",
+  "billing_benefitConnection": "Šifrirana povezava",
+  "billing_benefitPrivacy": "Zasebnost na spletu",
+  "billing_benefitNoAccount": "Registracija ni potrebna",
+  "billing_cancellation": "Preklic v Google Play",
+  "billing_premiumTitle": "Bolj zaščitena povezava.",
+  "billing_premiumSubtitle": "Zaščitite svojo povezavo v svojem tempu.",
+  "billing_priceMonthly": "na mesec",
+  "billing_priceYearly": "na leto",
+  "billing_trialToday": "Danes ni treba plačati ničesar",
+  "billing_trialConfirmation": "Google Play pred vašo potrditvijo prikaže datume, končni znesek in veljavne davke.",
+  "billing_offerChanged": "Pogoji te ponudbe so se spremenili. Osvežite pakete in izberite znova.",
+  "status_waitingNetwork": "Čakanje na omrežje",
+  "status_waitingNetworkDetail": "Omrežje ni na voljo. Povezava se bo preverila, ko bo omrežje spet na voljo.",
+  "locations_favoriteLoadFailed": "Priljubljenih ni mogoče naložiti. Poskusite znova.",
+  "locations_favoritesLoading": "Nalaganje priljubljenih…"
+}
