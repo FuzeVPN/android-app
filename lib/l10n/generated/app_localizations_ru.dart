@@ -527,6 +527,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get action_cancel => 'Отмена';
 
   @override
+  String get action_close => 'Закрыть';
+
+  @override
+  String get action_copy => 'Копировать';
+
+  @override
   String get action_signOut => 'Выйти';
 
   @override

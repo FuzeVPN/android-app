@@ -1,0 +1,1036 @@
+{
+  "locale": "so",
+  "arb": {
+    "vpnDisclosure_title": "Ilaali xidhiidhkaaga",
+    "vpnDisclosure_body": "FuzeVPN wuxuu isticmaalaa adeegga VPN ee Android (VpnService) si uu u abuuro tunnel la sireeyay oo isku xidha aaladdan iyo serverrada FuzeVPN.",
+    "vpnDisclosure_dataBody": "Marka VPN-ku firfircoon yahay, socodka internetka ee barnaamijyadaada, cinwaannada meesha loo socdo iyo codsiyada DNS waxay maraan tunnel-kan si xidhiidhkaaga loo jiheeyo, xitaa marka FuzeVPN gadaal ka shaqeynayo.",
+    "vpnDisclosure_statusBody": "Barnaamijku wuxuu isticmaalaa xaaladda xidhiidhka, muddadiisa iyo xaddiga xogta la wareejiyay si uu u muujiyo xidhiidhkaaga VPN. Waad joojin kartaa goor kasta.",
+    "vpnDisclosure_privacy": "Asturnaanta",
+    "vpnDisclosure_accept": "Aqbal oo sii wad",
+    "vpnDisclosure_decline": "Hadda maya",
+    "accountRestoration_title": "Akoonka si ku meel gaar ah looma heli karo",
+    "accountRestoration_message": "Fadhigaaga waa la kaydiyay. Isku day mar kale si akoonkaaga loo soo celiyo; halkan waad ka maamuli kartaa xidhiidhka VPN.",
+    "action_retry": "Isku day mar kale",
+    "session_endingTitle": "Fadhiga waa la dhammeynayaa",
+    "session_ending": "Fadhiga waa la dhammeynayaa: VPN-ka waa la joojinayaa, waana la nadiifinayaa…",
+    "session_stopFailed": "Joojinta VPN-ka lama xaqiijin. Isku day mar kale ka hor intaadan mar kale soo gelin.",
+    "session_cleanupFailed": "VPN-ka waa la joojiyay, laakiin ka saarista fadhiga lama xaqiijin. Isku day nadiifinta mar kale.",
+    "session_retryStop": "Isku day joojinta mar kale",
+    "session_retryCleanup": "Isku day nadiifinta mar kale",
+    "@@locale": "so",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN si ammaan ah ayaa loo diyaarinayaa…",
+    "nav_connection": "Xidhiidh",
+    "nav_locations": "Goobaha",
+    "nav_account": "Akoon",
+    "nav_devices": "Aaladaha",
+    "nav_settings": "Dejinta",
+    "action_refresh": "Cusboonaysii",
+    "auth_tab_login": "Soo gal",
+    "auth_tab_register": "Samee akoon",
+    "auth_stepAccount": "Akoon",
+    "auth_stepIdentity": "Aqoonsi",
+    "auth_stepAddress": "Cinwaan iyo heshiisyo",
+    "auth_stepProgress": "Tallaabada {current} ka mid ah {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "VPN-kaaga, si fudud.",
+    "auth_keysLocal": "Furayaasha gaarka ah ee VPN-kaaga waxay ku sii jiraan aaladdan.",
+    "form_email": "Cinwaanka iimaylka",
+    "form_password": "Erayga sirta",
+    "form_showPassword": "Muuji erayga sirta",
+    "form_hidePassword": "Qari erayga sirta",
+    "form_passwordMin": "8–72 bayt oo UTF-8 ah. Xarfaha qaarkood waxay isticmaalaan in ka badan hal bayt.",
+    "form_firstName": "Magaca koowaad",
+    "form_lastName": "Magaca dambe",
+    "form_phone": "Taleefan (+33612345678)",
+    "form_address": "Cinwaan",
+    "form_address2": "Cinwaanka khadka 2 (ikhtiyaari)",
+    "form_postalCode": "Koodhka boostada",
+    "form_city": "Magaalada",
+    "form_country": "Koodhka dalka (tusaale ahaan FR)",
+    "action_login": "Soo gal",
+    "action_createAccount": "Samee akoon",
+    "action_createMyAccount": "Samee akoonkayga",
+    "action_next": "Sii wad",
+    "action_previous": "Dib u noqo",
+    "action_forgotPassword": "Ma illowday erayga sirta?",
+    "auth_noAccount": "Weli akoon ma lihid?",
+    "auth_requiredInformation": "Akoonkaaga ku samee saddex tallaabo.",
+    "auth_termsPrefix": "Waan aqbalay ",
+    "auth_termsLink": "shuruudaha isticmaalka",
+    "auth_privacyPrefix": "Waan aqbalay ",
+    "auth_privacyLink": "siyaasadda asturnaanta",
+    "auth_consentRequired": "Oggolaanshahaaga ayaa loo baahan yahay si akoon loo abuuro.",
+    "validation_required": "Qaybtan waa in la buuxiyo.",
+    "validation_email": "Geli cinwaan iimayl oo sax ah.",
+    "validation_password": "Erayga sirta wuu gaaban yahay: ugu yaraan 8 bayt oo UTF-8 ah.",
+    "validation_passwordTooLong": "Erayga sirta wuu dheer yahay: ugu badnaan 72 bayt oo UTF-8 ah.",
+    "validation_phone": "Isticmaal qaabka caalamiga ah, tusaale ahaan +33612345678.",
+    "validation_country": "Isticmaal koodh dal oo laba xaraf ah, tusaale ahaan FR.",
+    "passwordReset_title": "Dib u deji erayga sirta",
+    "passwordReset_description": "Geli cinwaanka iimaylka ee akoonkaaga si aad u codsato xiriir lagu dib u dejiyo erayga sirta.",
+    "passwordReset_send": "Dir xiriirka",
+    "connection_title": "Xidhiidhkaaga",
+    "connection_subtitle": "Dooro goob, kadibna shid VPN-kaaga.",
+    "connection_prepare": "Diyaar ma u tahay inaad ku xidhanto?",
+    "connection_advancedOptions": "Doorashooyin horumarsan",
+    "connection_location": "Goob",
+    "connection_chooseLocation": "Dooro goob",
+    "connection_protocol": "Protokol",
+    "connection_connect": "Ku xidh",
+    "connection_connecting": "Ku xidhmaya…",
+    "connection_disconnect": "Jooji",
+    "connection_disconnecting": "Joojinaya",
+    "connection_locationChange": "Goobta waa la beddelayaa…",
+    "connection_unavailable": "{protocol} lama heli karo",
+    "connection_activeLocation": "Goobta firfircoon",
+    "connection_duration": "Muddada",
+    "connection_received": "La helay",
+    "connection_sent": "La diray",
+    "connection_lastHandshake": "Isweydaarsiga ammaanka ah ee ugu dambeeyay",
+    "connection_handshakeAgo": "{duration} ka hor",
+    "verification_title": "Xaqiiji cinwaanka iimaylkaaga",
+    "verification_message": "Xaqiiji cinwaanka iimaylkaaga si aad VPN-ka ugu isticmaasho taleefankan.",
+    "verification_resend": "Dib u dir iimaylka",
+    "migration_title": "Beddelka goobta",
+    "migration_draining": "Beddelka goobta waa la diyaarinayaa…",
+    "migration_activating": "Server-ka cusub waa la hawlgelinayaa…",
+    "migration_ready": "Goobta waa la cusboonaysiiyay.",
+    "migration_blocked": "Beddelka goobta wuxuu u baahan yahay faragelin dhinaca server-ka ah. Mar dambe isku day ama la xiriir taageerada.",
+    "migration_progress": "Horumarka beddelka goobta",
+    "migration_retryDelay": "Waqtiga u dhexeeya hubinnada: {seconds} ilbiriqsi.",
+    "migration_resume": "Dib u sii wad beddelka goobta",
+    "status_authorizing": "Oggolaansho ayaa loo baahan yahay",
+    "status_authorizingDetail": "Aqbal codsiga Android si VPN-ka loo oggolaado.",
+    "status_preparing": "Diyaarinaya",
+    "status_preparingDetail": "Xidhiidhkaaga ammaanka ah waa la diyaarinayaa.",
+    "status_reconnecting": "Dib ku xidhmaya…",
+    "status_reconnectingDetail": "Xidhiidhku wuu go’ay. VPN-ku wuxuu isku dayayaa inuu dib ku xidhmo.",
+    "status_connecting": "Ku xidhmaya",
+    "status_connectingDetail": "Ku xidhmaya server-ka VPN…",
+    "status_connected": "Ku xidhan",
+    "status_connectedDetail": "Xidhiidhka VPN-kaaga wuu firfircoon yahay.",
+    "status_disconnecting": "Joojinaya",
+    "status_disconnectingDetail": "Xidhiidhka VPN-kaaga waa la joojinayaa.",
+    "status_error": "Xidhiidhka lama heli karo",
+    "status_errorDetail": "Xidhiidhka VPN lama xaqiijin. Isku day mar kale.",
+    "status_idle": "Ma ku xidhna",
+    "status_idleDetail": "Ku xidh VPN-ka si aad xidhiidhkaaga u ilaaliso.",
+    "trust_note": "Marka barnaamijka la xidho, VPN-ku ma joogsado. Si aad u joojiso, isticmaal “Jooji”.",
+    "locations_none": "Hadda ma jiraan goobo la heli karo.",
+    "locations_available": "Dooro goobtaada xigta.",
+    "locations_selected": "Goobta la doortay",
+    "locations_select": "Dooro goobtan",
+    "locations_lockedTunnel": "Jooji VPN-ka si aad goobta u beddesho.",
+    "locations_lockedMigration": "Sug ilaa beddelka goobta dhammaado.",
+    "devices_title": "Aaladahaaga",
+    "devices_used": "{count} / {limit} aalad",
+    "devices_refresh": "Cusboonaysii aaladaha",
+    "devices_empty": "Weli ma jirto aalad VPN ah oo diiwaangashan.",
+    "devices_firstConnection": "Taleefankaaga waa la dari doonaa marka ugu horreysa ee aad ku xidhanto.",
+    "devices_thisDevice": "Aaladdan",
+    "devices_added": "La daray {date}",
+    "devices_unnamed": "Aalad aan magac lahayn",
+    "action_remove": "Ka saar",
+    "settings_title": "Dejinta",
+    "settings_subtitle": "Doorashooyinkaaga iyo akoonkaaga, oo dhan hal meel.",
+    "settings_appearance": "Muuqaalka",
+    "settings_language": "Luqadda",
+    "settings_languageDescription": "Luqadda aad dooratay waxaa sidoo kale loo isticmaalaa ogeysiisyada VPN-ka.",
+    "settings_account": "Akoon",
+    "settings_signOut": "Ka bax",
+    "settings_privacy": "Siyaasadda asturnaanta",
+    "settings_terms": "Shuruudaha isticmaalka",
+    "settings_security": "Amniga iyo hufnaanta",
+    "settings_licenses": "Liisannada qaybaha",
+    "settings_licensesDetail": "Softiweerka barnaamijka ku jira",
+    "settings_licensesLegalese": "Koodhka isha ee barnaamijka iyo qaybihiisa MPL-2.0 ah: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "VPN-ku wuu sii shaqeynayaa marka aad barnaamijka ka baxdo. Si aad u joojiso, qaybta Xidhiidh ka isticmaal “Jooji”.",
+    "theme_system": "Nidaamka",
+    "theme_light": "Iftiin",
+    "theme_dark": "Mugdi",
+    "language_system": "Luqadda taleefanka",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Ka saar aaladdan?",
+    "dialog_removeCurrent": "Taleefankan wuu ka go’i doonaa VPN-ka wuuna waayi doonaa gelitaanka. Xogta xidhiidhkiisa VPN waa la tirtiri doonaa marka server-ku xaqiijiyo.",
+    "dialog_removeOther": "Gelitaanka VPN ee “{name}” waa la ka qaadi doonaa. Tan dib looma noqon karo.",
+    "dialog_signOut": "Ma ka baxaysaa?",
+    "dialog_signOutMessage": "VPN-ku wuu joogsan doonaa, waxaadna u baahan doontaa inaad mar kale soo gasho. Furayaasha VPN-ka ee la sireeyay waxay ku sii jiri doonaan taleefankan xidhiidhkaaga xiga.",
+    "action_cancel": "Iska daa",
+    "action_close": "Xir",
+    "action_copy": "Koobiyee",
+    "action_signOut": "Ka bax",
+    "notice_close": "Xir farriinta",
+    "notice_sessionExpired_title": "Fadhigu wuu dhacay",
+    "notice_sessionExpired_message": "Fadhigaagu wuu dhacay. Mar kale soo gal.",
+    "notice_connectionFailed_title": "Xidhiidhku wuu fashilmay",
+    "notice_invalidCredentials_message": "Cinwaanka iimaylka ama erayga sirta ma sax aha.",
+    "notice_emailVerification_title": "Xaqiijinta iimaylka ayaa loo baahan yahay",
+    "notice_emailVerification_message": "Xaqiiji cinwaanka iimaylkaaga ka hor intaadan aalad VPN ah ku darin.",
+    "notice_rateLimited_title": "Isku dayo aad u badan",
+    "notice_deviceLimit_title": "Xadka aaladaha waa la gaaray",
+    "notice_deviceLimit_message": "Ka saar aalad hadda jirta ka hor intaadan mid kale ku darin.",
+    "notice_identityRenewal_title": "Aqoonsiga VPN waa in la cusboonaysiiyaa",
+    "notice_identityRenewal_message": "Aqoonsigan waa la tirtiray. Samee aqoonsi cusub oo maxalli ah.",
+    "notice_migrationPending_title": "Beddelka goobta ayaa socda",
+    "notice_migrationPending_message": "Beddel goob ayaa hore u socda.",
+    "notice_migrationBlocked_title": "Beddelka goobta waa la xannibay",
+    "notice_migrationBlocked_message": "Beddelka goobta wuxuu u baahan yahay faragelin dhinaca server-ka ah. Mar dambe isku day ama la xiriir taageerada.",
+    "notice_targetUnavailable_title": "Server-ka si ku meel gaar ah looma heli karo",
+    "notice_targetUnavailable_message": "Server-kan si ku meel gaar ah looma heli karo.",
+    "notice_networkUnavailable_title": "Xidhiidhka internetka lama heli karo",
+    "notice_networkUnavailable_message": "Hubi xidhiidhkaaga, kadibna isku day mar kale.",
+    "notice_permissionDenied_title": "Oggolaanshaha VPN waa la diiday",
+    "notice_permissionDenied_message": "Mar kale bilow xidhiidhka, kadibna aqbal codsiga oggolaanshaha Android.",
+    "notice_wireguardTimeout_title": "Server-ku ma jawaabayo",
+    "notice_wireguardTimeout_message": "Xidhiidhka WireGuard waqti badan ayuu qaatay. Isku day mar kale ama dooro goob kale.",
+    "notice_tlsFailed_title": "Xidhiidhka ammaanka ah waa la diiday",
+    "notice_tlsFailed_message": "Server-ku ma aqbalin xidhiidhka OpenVPN. Isku day mar kale. Haddii dhibaatadu sii socoto, samee baaritaan.",
+    "notice_tunRejected_title": "Android wuu diiday interface-ka VPN",
+    "notice_tunRejected_message": "Android wuxuu diiday habaynta shabakadda ee OpenVPN uu codsaday.",
+    "notice_openvpnStart_title": "OpenVPN lama bilaabi karin",
+    "notice_openvpnStart_message": "Mishiinka OpenVPN ma dhammaystiri karin bilaabidda. Isku day mar kale. Haddii dhibaatadu sii socoto, la xiriir taageerada.",
+    "notice_diagnosticCode": "Koodhka baaritaanka: {code}",
+    "notice_generic_title": "Xidhiidhka VPN wuu fashilmay",
+    "notice_generic_message": "Khalad ayaa dhacay. Mar dambe isku day.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Akoonka waa la sameeyay} password_reset_sent{Codsiga dib u dejinta erayga sirta waa la helay} verification_email_sent{Iimaylka xaqiijinta waa la diray} location_migration_pending{Beddelka goobta ayaa socda} vpn_sign_in_required{Soo galitaan ayaa loo baahan yahay} protocol_unavailable_at_location{Protokolka lama heli karo} vpn_permission_denied{Oggolaanshaha VPN waa la diiday} revoked_identity_device_limit{Xadka aaladaha waa la gaaray} tunnel_start_unexpected{VPN lama bilaabi karin} flutter_disconnect_timeout{Joojinta xidhiidhka lama xaqiijin} flutter_disconnect_unexpected{Xidhiidhka lama joojin karin} device_revoked{Aaladda waa la saaray} revoke_unexpected{Aaladda lama saari karin} identity_renewal_unexpected{Aqoonsiga lama cusboonaysiin karin} openvpn_renewal_unexpected{OpenVPN lama cusboonaysiin karin} location_migration_blocked{Beddelka goobta waa la xannibay} location_migration_slow{Beddelka goobta weli waa socdaa} location_migration_conflict{Beddelka goobta waa in la cusboonaysiiyaa} location_migration_verification_failed{Beddelka goobta lama xaqiijin} location_migration_device_changed{Aaladda way is beddeshay inta beddelka goobta socday} tunnel_stop_failed{Beddelka goobta lama heli karo} device_clock_ahead{Saacadda aaladda way hore u socotaa} other{Hawshu way guuldareysatay}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Akoonka waa la sameeyay, laakiin iimaylka xaqiijinta lama diri karin. Barnaamijka ka isticmaal “Dib u dir iimaylka”.} password_reset_sent{Codsigaaga waa la helay. Haddii akoon u dhigma cinwaankan jiro, iimayl ayaad heli kartaa. Fadlan sidoo kale hubi faylka spam-ka.} verification_email_sent{Iimayl xaqiijin cusub ayaa hadda la diray.} location_migration_pending{Wareejinta ku wajahan {target} weli waa la diyaarinayaa. Waad dib u sii wadi kartaa adigoon aaladda dib u abuurin.} vpn_sign_in_required{Ka hor intaadan VPN-ka bilaabin, soo gal akoonkaaga.} protocol_unavailable_at_location{Goobtan ma bixiso protokolka la doortay. Cusboonaysii goobaha ama dooro protokol kale.} vpn_permission_denied{Android ayaa diiday oggolaanshaha VPN. Mar kale bilow xidhiidhka, kadibna aqbal codsiga nidaamka.} revoked_identity_device_limit{Gelitaanka VPN ee aaladdan waa la ka qaaday, xadka aaladahana waa la gaaray. Aalad ka saar qaybta Akoon → Maamul aaladahayga.} tunnel_start_unexpected{Khalad aan la filayn ayaa carqaladeeyay diyaarinta tunnel-ka. Hubi koodhka baaritaanka, kadibna isku day mar kale.} flutter_disconnect_timeout{Android ma xaqiijin in VPN-ka la joojiyay waqtigii loogu talagalay. Isku day inaad mar kale joojiso.} flutter_disconnect_unexpected{Khalad aan la filayn ayaa ka hortagay xaqiijinta in tunnel-ka la joojiyay.} device_revoked{Gelitaanka VPN ee aaladda waa la baabi’iyay, sirihii maxalliga ahaa waa la tirtiray.} revoke_unexpected{Aaladda lama saari karin. Cusboonaysii liiska, kadibna isku day mar kale.} identity_renewal_unexpected{Aqoonsiga VPN ee cusub lama abuuri karin. Cusboonaysii aaladaha, kadibna isku day mar kale.} openvpn_renewal_unexpected{Profiilka OpenVPN lama cusboonaysiin karin. Isku day mar kale ama hubi koodhka baaritaanka.} location_migration_blocked{Server-ku hadda ma dhammaystiri karo beddelkan. Aaladda iyo aqoonsigeeda maxalliga ah waa la ilaaliyay.} location_migration_slow{Server-ku weli wuu diyaarinayaa wareejinta ku wajahan {target}. Wax yar ka dib isticmaal “Dib u sii wad”.} location_migration_conflict{Xaaladda aaladda ayaa server-ka ku isbeddeshay. Cusboonaysii aaladaha, kadibna dib u sii wad beddelka.} location_migration_verification_failed{Server-ku ma xaqiijin goobta cusub. Aqoonsigii hore ee maxalliga ahaa waa la ilaaliyay.} location_migration_device_changed{Aaladda server-ku soo celiyay mar dambe ma waafaqsana tan la beddelayo. Cusboonaysii aaladaha ka hor intaadan mar kale isku dayin.} tunnel_stop_failed{Tunnel-kii hore waa in si buuxda loo joojiyaa ka hor xidhiidhka cusub.} device_clock_ahead{Saacadda aaladdan waxay u muuqataa inay hore u socoto. Shid taariikhda iyo waqtiga toos ah si aanad akoonkaaga ka bixin.} other{Hawsha lama dhammaystiri karin. Isku day mar kale ama u dir koodhka baaritaanka kooxda taageerada.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Fadhigu wuu dhacay} invalid_credentials{Soo galitaanku wuu fashilmay} email_verification_required{Xaqiijinta iimaylka ayaa loo baahan yahay} verification_email_cooldown{Iimaylka hore ayaa la diray} rate_limited{Isku dayo aad u badan} invalid_registration{Macluumaadka waa in la saxaa} email_exists{Akoon hore ayaa jira} invalid_profile{Profiilka ma sax aha} invalid_device{Aaladda ma sax aha} invalid_location{Goobta lama heli karo} device_limit{Xadka aaladaha waa la gaaray} device_exists{Aqoonsiga VPN horeba waa la isticmaalayaa} device_identity_revoked{Aqoonsiga VPN waa in la cusboonaysiiyaa} device_location_locked{Beddelka goobta waa in la cusboonaysiiyaa} location_migration_pending{Beddelka goobta ayaa socda} location_migration_blocked{Beddelka goobta waa la xannibay} target_ca_mismatch{Server-ka OpenVPN ma waafaqsana} location_migration_conflict{Beddelka goobta waa in la cusboonaysiiyaa} server_full{Server-ku waa buuxaa} capacity_unavailable{Goobta si ku meel gaar ah looma heli karo} target_unavailable{Server-ka si ku meel gaar ah looma heli karo} not_found{Shayga lama helin} invalid_openvpn_csr{Aqoonsiga OpenVPN ma sax aha} openvpn_profile_exists{Profiilka OpenVPN hore ayaa jira} openvpn_profile_revoked{Profiilka OpenVPN waa la baabi’iyay} openvpn_operation_pending{Hawsha OpenVPN waa socotaa} openvpn_operation_terminal{Hawsha OpenVPN waa go’day} openvpn_address_unavailable{Cinwaanka OpenVPN lama heli karo} openvpn_profile_conflict{Isku dhac OpenVPN} openvpn_signer_unavailable{OpenVPN lama heli karo} email_delivery_unavailable{Iimaylka lama heli karo} invalid_token{Xiriirka ma sax aha} network_unavailable{Xidhiidhka internetka lama heli karo} invalid_json{Codsiga ma sax aha} invalid_api_response{Jawaabta server-ka ma sax aha} ipv6_unavailable{IPv6 lama heli karo} invalid_ip_families{Habaynta shabakadda waa la diiday} other{Adeegga lama heli karo}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Fadhigaagu wuu dhacay. Mar kale soo gal.} invalid_credentials{Cinwaanka iimaylka ama erayga sirta ma sax aha.} email_verification_required{Xaqiiji cinwaanka iimaylkaaga ka hor intaadan aalad VPN ah ku darin.} invalid_registration{Hubi macluumaadka iyo oggolaanshaha la codsaday.} email_exists{Akoon ayaa hore u isticmaalay cinwaankan iimaylka.} invalid_profile{Hubi macluumaadka profiilkaaga.} invalid_device{Magaca ama aqoonsiga maxalliga ah ee aaladdan ma sax aha.} invalid_location{Cusboonaysii liiska goobaha, kadibna isku day mar kale.} device_limit{Ka saar aalad hadda jirta ka hor intaadan mid kale ku darin.} device_exists{Aqoonsigan VPN horeba waxaa lagu xiriiriyay akoon kale.} device_identity_revoked{Aqoonsigan waa la tirtiray. Waa in la abuuraa aqoonsi maxalli ah oo cusub.} device_location_locked{Goobta aaladdan hadda ayaa la beddelay. Barnaamijku wuu dib u sii wadi doonaa beddelka socda.} location_migration_pending{Beddel goob ayaa hore u socda.} location_migration_blocked{Beddelka goobta wuxuu u baahan yahay faragelin dhinaca server-ka ah. Mar dambe isku day ama la xiriir taageerada.} target_ca_mismatch{Server-kan weli ma waafaqsana profiilka OpenVPN ee hadda jira.} location_migration_conflict{Cusboonaysii aaladaha, kadibna mar kale isku day beddelka goobta.} server_full{Goobtan waxay gaartay xadka xidhiidhada. Dooro goob kale ama mar dambe isku day.} capacity_unavailable{Hadda ma xaqiijin karno in goobtan la heli karo. Dooro goob kale ama mar dambe isku day.} target_unavailable{Server-kan si ku meel gaar ah looma heli karo.} not_found{Shaygan mar dambe kuma jiro akoonkaaga.} invalid_openvpn_csr{Samee aqoonsi OpenVPN oo cusub, kadibna isku day mar kale.} openvpn_profile_exists{Profiil OpenVPN ah ayaa hore ugu jiray aaladdan.} openvpn_profile_revoked{Cusboonaysii profiilka OpenVPN si aad u sii waddo.} openvpn_operation_pending{Isbeddelku weli wuu faafayaa. Mar dambe isku day.} openvpn_operation_terminal{Samee aqoonsi OpenVPN oo cusub, kadibna isku day mar kale.} openvpn_address_unavailable{Hadda ma jiro cinwaan OpenVPN ah oo la heli karo.} openvpn_profile_conflict{Profiilka waa isbeddelay. Cusboonaysii aaladaha, kadibna isku day mar kale.} openvpn_signer_unavailable{Adeegga OpenVPN si ku meel gaar ah looma heli karo.} email_delivery_unavailable{Iimaylka lama diri karin. Mar dambe isku day.} invalid_token{Xiriirkan ma sax aha ama wuu dhacay. Codso mid cusub.} network_unavailable{Hubi xidhiidhkaaga internetka, kadibna isku day mar kale.} invalid_json{Hubi macluumaadka aad gelisay, kadibna isku day mar kale.} invalid_api_response{Server-ku wuxuu soo celiyay jawaab aan la filayn. Mar dambe isku day.} ipv6_unavailable{Server-ku hadda ma shidi karo IPv6. Mar dambe isku day.} invalid_ip_families{Habaynta tunnel-ka ma dhammaystirna ama ma waafaqsana cinwaannada la oggolaaday. Barnaamijka ka isku day mar kale.} other{Khalad dhinaca server-ka ah ayaa dhacay. Mar dambe isku day.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Wax yar ka dib mar kale isku day.",
+    "notice_retryAfter": "{seconds, plural, one{Mar kale isku day {seconds} ilbiriqsi ka dib.} other{Mar kale isku day {seconds} ilbiriqsi ka dib.}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{Mar kale isku day {minutes} daqiiqo ka dib.} other{Mar kale isku day {minutes} daqiiqo ka dib.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{Mar kale isku day {hours} saac ka dib.} other{Mar kale isku day {hours} saac ka dib.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Dib u bilaabista VPN-ka nidaamka lama heli karo} system_vpn_resume_corrupt{Dib u bilaabista VPN-ka nidaamka ma sax aha} system_vpn_resume_session_invalid{Fadhiga dib u bilaabista VPN ma sax aha} system_vpn_resume_identity_changed{Aqoonsiga VPN waa isbeddelay} system_vpn_resume_identity_invalid{Aqoonsiga dib u bilaabista VPN ma sax aha} system_vpn_resume_storage_failed{Kaydka dib u bilaabista VPN lama heli karo} system_vpn_resume_network_timeout{Dib u bilaabista VPN shabakad ma jirto} system_vpn_resume_blocked{Dib u bilaabista VPN waa la xannibay} system_vpn_resume_failed{Dib u bilaabista VPN way guuldareysatay} system_vpn_resume_error_invalid{Khaladka dib u bilaabista VPN ma sax aha} wireguard_identity_store_failed{Aqoonsiga WireGuard lama kaydin} wireguard_identity_unavailable{Aqoonsiga WireGuard lama heli karo} vpn_host_destroyed{Qaybta VPN ee Android waa la joojiyay} vpn_host_unavailable{Qaybta VPN ee Android lama heli karo} vpn_permission_required{Oggolaansho VPN ayaa loo baahan yahay} vpn_permission_denied{Oggolaanshaha VPN waa la diiday} vpn_permission_request_failed{Oggolaansho lama codsan karin} wireguard_foreground_service_unavailable{Adeegga WireGuard lama heli karo} wireguard_identity_invalid{Furaha WireGuard ee maxalliga ah ma sax aha} wireguard_identity_in_use{Aqoonsiga WireGuard horeba waa la isticmaalayaa} wireguard_configuration_invalid{Habaynta WireGuard ma sax aha} wireguard_operation_pending{Hawsha WireGuard weli waa socotaa} wireguard_start_failed{Bilaabista WireGuard waa la diiday} wireguard_stop_timeout{Joojinta WireGuard lama xaqiijin} wireguard_handshake_timeout{WireGuard ma jawaabin} openvpn_connection_timeout{OpenVPN ma jawaabin} openvpn_core_unavailable{Mishiinka OpenVPN lama heli karo} openvpn_operation_pending{Fadhiga OpenVPN weli waa firfircoon yahay} openvpn_stop_timeout{Joojinta OpenVPN lama xaqiijin} openvpn_profile_unavailable{Profiilka OpenVPN ee maxalliga ah ma jiro} openvpn_native_failed{Wicitaanka asalka ah ee OpenVPN wuu go’ay} openvpn_key_generation_failed{Furaha OpenVPN P-256 lama abuuri karin} openvpn_csr_generation_failed{CSR-ka OpenVPN lama abuuri karin} openvpn_identity_store_failed{Aqoonsiga OpenVPN lama kaydin} openvpn_identity_clear_failed{Ka saarista OpenVPN ma dhammaystirna} openvpn_identity_in_use{Aqoonsiga OpenVPN weli waa la isticmaalayaa} openvpn_tls_verification_required{Xaqiijinta TLS ee OpenVPN way maqan tahay} openvpn_cipher_invalid{Habka sirinta OpenVPN ma sax aha} openvpn_profile_rejected{Profiilka OpenVPN waa la diiday} openvpn_identity_inconsistent{Aqoonsiga OpenVPN isma waafaqsana} tls_handshake_failed{Wada-xaajoodka OpenVPN waa la diiday} tls_alert_unknown_ca{Shahaadada macmiilka OpenVPN lama aqoonsan} tls_alert_bad_certificate{Shahaadada macmiilka OpenVPN waa la diiday} tls_alert_unsupported_certificate{Shahaadada OpenVPN lama taageero} tls_client_certificate_required{Shahaado macmiil OpenVPN ayaa loo baahan yahay} tls_alert_misc{Digniinta TLS ee OpenVPN} tls_signature_algorithm_rejected{Saxiixa OpenVPN lama taageero} tls_handshake_rejected{Wada-xaajoodka TLS ee OpenVPN waa la diiday} tls_version_rejected{Nooca TLS ee OpenVPN ma waafaqsana} tls_certificate_expired{Shahaadada TLS way dhacday} tls_certificate_revoked{Shahaadada TLS waa la baabi’iyay} transport_failed{Server-ka OpenVPN lama gaari karo} tun_configuration_rejected{Interface-ka OpenVPN lama abuuri karin} tun_setup_failed{Diyaarinta TUN ee OpenVPN way guuldareysatay} tun_interface_create_failed{Abuurista interface-ka OpenVPN way guuldareysatay} tun_interface_disabled{Interface-ka OpenVPN waa la damiyay} tun_halted{Interface-ka OpenVPN wuu go’ay} tun_already_established{Interface-ka OpenVPN horeba wuu furan yahay} tun_addresses_missing{Cinwaanka OpenVPN wuu maqan yahay} tun_routes_missing{Jidadka OpenVPN way maqan yihiin} tun_dns_missing{DNS-ka OpenVPN wuu maqan yahay} tun_permission_revoked{Oggolaanshaha VPN waa la baabi’iyay} tun_establish_returned_null{Android wuu diiday interface-ka VPN} openvpn_service_start_failed{Adeegga OpenVPN lama heli karo} openvpn_operation_timeout{Wicitaanka OpenVPN wuu dhaafay waqtigii loogu talagalay} openvpn_start_failed{Bilaabista OpenVPN waa la diiday} openvpn_connection_failed{Xidhiidhka OpenVPN wuu go’ay} openvpn_core_status_error{OpenVPN Core wuxuu ku dhammaaday khalad} openvpn_stopped_before_connected{OpenVPN wuu joogsaday ka hor inta aan la ku xidhin} openvpn_auth_failed{Xaqiijinta aqoonsiga OpenVPN waa la diiday} openvpn_client_setup_failed{Diyaarinta macmiilka OpenVPN way guuldareysatay} openvpn_client_halted{Macmiilka OpenVPN wuu go’ay} openvpn_client_restart{Dib u bilaabista OpenVPN waa la codsaday} openvpn_inactive_timeout{OpenVPN waqti dheer ma firfircoonayn} openvpn_session_expired{Fadhiga OpenVPN wuu dhacay} openvpn_credentials_required{Xaqiijinta OpenVPN lama taageero} openvpn_proxy_failed{Gudbinta dhexe ee OpenVPN way guuldareysatay} openvpn_compression_failed{Cadaadinta OpenVPN waa la diiday} openvpn_ntlm_crypto_unavailable{Sirinta NTLM ee OpenVPN lama heli karo} openvpn_feature_unsupported{Sifada OpenVPN lama taageero} network_unavailable{Xidhiidhka internetka lama heli karo} network_lost{Shabakadda lama heli karo} certificate_validation_failed{Shahaadada server-ka waa la diiday} openvpn_certificate_expired{Shahaadada OpenVPN way dhacday} tunnel_active_for_another_account{Tunnel-ka akoon kale weli wuu firfircoon yahay} tunnel_already_active{Tunnel-ka asalka ah horeba wuu firfircoon yahay} tunnel_stop_timeout{Joojinta {protocol} lama xaqiijin} tunnel_disconnected{{protocol} wuu go’ay} native_bridge_unavailable{Buundada Android lama heli karo} native_operation_failed{Hawsha Android waa go’day} invalid_arguments{Halbeegyada VPN ma dhammaystirna} invalid_account_id{Akoonka VPN ma sax aha} invalid_device_id{Aqoonsiga aaladda ma sax aha} storage_key_not_allowed{Furaha kaydka waa la diiday} secure_storage_read_failed{Akhrinta ammaanka ah way guuldareysatay} secure_storage_write_failed{Qorista ammaanka ah way guuldareysatay} key_generation_failed{Furaha WireGuard lama abuuri karin} csr_generation_failed{CSR-ka OpenVPN lama abuuri karin} openvpn_recovery_exhausted{Soo kabashada OpenVPN horeba waa la isticmaalay} openvpn_recovery_failed{Soo kabashada OpenVPN way guuldareysatay} openvpn_renewal_required{Cusboonaysiinta shahaadada OpenVPN ayaa loo baahan yahay} other{Khalad VPN oo aan la kala saarin}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ma helin fadhi VPN oo dib loo sii wadi karo. Barnaamijka ka bilow xidhiidh cusub.} system_vpn_resume_corrupt{Xogta la kaydiyay ee dib u bilaabista VPN ma sax aha, lamana isticmaali doono. Bilow xidhiidh cusub.} system_vpn_resume_session_invalid{Fadhiga la kaydiyay mar dambe ma dib u bilaabi karo VPN-ka. Barnaamijka ka soo gal mar kale.} system_vpn_resume_identity_changed{Aqoonsiga VPN ee maxalliga ah waa isbeddelay. Dib u bilaabistii waa la joojiyay; bilow xidhiidh cusub.} system_vpn_resume_identity_invalid{Aqoonsiga dib u bilaabista ma sax aha. Bilow xidhiidh cusub.} system_vpn_resume_storage_failed{Android ma akhriyi karin ama ma cusboonaysiin karin xogta dib u bilaabista ee la sireeyay. Bilow xidhiidh cusub.} system_vpn_resume_network_timeout{Android shabakad kuma helin waqtigii loogu talagalay si VPN-ka dib loogu bilaabo. Isku day mar kale marka shabakad la heli karo.} system_vpn_resume_blocked{Dib u bilaabista VPN waa la xannibay. Hubi dejinta Android, kadibna bilow xidhiidh cusub.} system_vpn_resume_failed{Dib u bilaabista VPN ee Android way guuldareysatay. Barnaamijka ka bilow xidhiidh cusub.} system_vpn_resume_error_invalid{Android wuxuu soo celiyay khalad dib u bilaabis oo aan la isticmaali karin. Bilow xidhiidh cusub.} wireguard_identity_store_failed{Android ma kaydin karin aqoonsiga WireGuard ee la sireeyay ee akoonkan.} wireguard_identity_unavailable{Xidhiidhkan ma laha aqoonsi WireGuard oo la isticmaali karo.} vpn_host_destroyed{Qaybta Android ee martigelisay VPN-ka waa la joojiyay. Bilow xidhiidh cusub.} vpn_host_unavailable{Android ma abuuri karo qaybta martigelinaysa VPN-ka. Hubi dejinta VPN, kadibna isku day mar kale.} openvpn_renewal_required{Shahaadadu waxay u baahan tahay tallaabo laga qaado barnaamijka ka hor inta aan la ku xidhin.} openvpn_recovery_failed{Soo kabashada toos ah way guuldareysatay. Barnaamijka ka bilow xidhiidh cusub.} openvpn_recovery_exhausted{Soo kabashada toos ah horeba waa la isticmaalay. Barnaamijka ka bilow xidhiidh cusub.} vpn_permission_required{Android wuxuu u baahan yahay oggolaansho VPN oo cusub ka hor inta aan tunnel-ka la bilaabin.} vpn_permission_denied{Codsiga Android ku oggolow FuzeVPN si aad u sii waddo.} vpn_permission_request_failed{Android ma furi karin shaashadda oggolaanshaha VPN.} wireguard_foreground_service_unavailable{Android ma ku sii hayn karin adeegga WireGuard oo hore u socda.} wireguard_identity_invalid{Furaha WireGuard ee la sireeyay ee akoonkan lama akhriyi karo ama ma sax aha.} wireguard_identity_in_use{Hawl kale ayaa weli isticmaalaysa furaha WireGuard ee akoonkan.} wireguard_configuration_invalid{Cinwaanka WireGuard, DNS-ka, furaha server-ka ama jidadka la helay ma sax aha.} wireguard_operation_pending{Hawshii hore ee WireGuard weli ma sii deyn adeeggeeda asalka ah.} wireguard_start_failed{Mishiinka WireGuard wuu diiday hawlgelinta habaynta.} wireguard_stop_timeout{Adeegga WireGuard ma xaqiijin inuu sii daayay interface-ka VPN muddada loo cayimay gudaheeda.} wireguard_handshake_timeout{Tunnel-ku ma xaqiijin isweydaarsiga ammaanka ah ee server-ka waqtigii loogu talagalay.} openvpn_connection_timeout{OpenVPN ma xaqiijin xidhiidhka server-ka waqtigii loogu talagalay.} openvpn_core_unavailable{Nooca barnaamijkan kuma jiro mishiin OpenVPN oo la isticmaali karo.} openvpn_operation_pending{Mishiinka asalka ah weli wuxuu haystaa fadhigii hore ee OpenVPN, wuuna diiday inuu abuuro mid labaad.} openvpn_stop_timeout{OpenVPN Core ma xaqiijin in fadhigiisa asalka ah la joojiyay oo la baabi’iyay muddada loo cayimay gudaheeda.} openvpn_profile_unavailable{Xidhiidhkan lama akhriyi karo profiil OpenVPN oo la xaqiijiyay.} openvpn_native_failed{Khalad barnaamij ayaa hakiyay OpenVPN. Isku day inaad mar kale ku xidhanto. Haddii dhibaatadu sii socoto, samee baaritaan.} openvpn_key_generation_failed{Android Keystore ma abuuri karin ama ma akhriyi karin furaha gaarka ah ee P-256 ee aan la dhoofin karin.} openvpn_csr_generation_failed{Furaha Android Keystore ma saxiixi karin codsiga shahaadada OpenVPN.} openvpn_identity_store_failed{Shahaadada ama profiilka OpenVPN lama kaydin karin kaydka la sireeyay.} openvpn_identity_clear_failed{Android ma saari karin aqoonsiga OpenVPN ee maxalliga ah ee akoonkan oo dhan.} openvpn_identity_in_use{Fadhi OpenVPN oo asal ah ayaa weli isticmaalaya furaha ama shahaadada aaladdan.} openvpn_tls_verification_required{Profiilku si cad ugama baahna xaqiijinta shahaadada server-ka.} openvpn_cipher_invalid{Server-ku wuxuu bixiyay algorithm sirin ah oo aan ku jirin liiska la oggolaaday.} openvpn_profile_rejected{Profiilka laga helay server-ka ma waafaqsana. Dib u abuur aaladdan, kadibna isku day mar kale.} openvpn_identity_inconsistent{Shahaadadu ma waafaqsana aqoonsiga ammaanka ah ee taleefankan. Profiil maxalli ah lama beddelin.} tls_handshake_failed{Server-ku wuu diiday wada-xaajoodka TLS. Haddii dhibaatadu sii socoto, dib u abuur profiilka.} tls_alert_unknown_ca{Server-ku ma aqoonsado hay’adda soo saartay shahaadada aaladdan. Server-ka OpenVPN waa in la hubiyaa.} tls_alert_bad_certificate{Server-ku wuu diiday shahaadada aaladdan. Dib u abuur aaladda ka hor intaadan mar kale isku dayin.} tls_alert_unsupported_certificate{Server-ku ma taageero nooca shahaadada ammaanka ah ee Android isticmaalo.} tls_client_certificate_required{Server-ku wuxuu u baahan yahay shahaado macmiil, laakiin OpenVPN Core ma soo bandhigi karin mid.} tls_alert_misc{Server-ku wuxuu soo celiyay digniin TLS ah oo ka baxsan qaybaha shahaadada iyo nooca.} tls_signature_algorithm_rejected{Server-ku wuu diiday algorithm-ka ECDSA P-256 ee furaha Android Keystore.} tls_handshake_rejected{Server-ku wuu hakiyay wada-xaajoodka TLS ka hor xidhiidhka.} tls_version_rejected{Macmiilka iyo server-ku ma helin nooc TLS oo wadaag ah.} tls_certificate_expired{Shahaadada la soo bandhigay inta xidhiidhku socday way dhacday.} tls_certificate_revoked{Shahaadada la soo bandhigay inta xidhiidhku socday waa la baabi’iyay.} transport_failed{Server-ka OpenVPN ma jawaabayo shabakadda hadda jirta. Wax yar ka dib isku day mar kale.} tun_configuration_rejected{Android wuxuu diiday habaynta shabakadda ee OpenVPN uu codsaday.} tun_setup_failed{OpenVPN Core wuu diiday qorshaha shabakadda ka hor inta uusan abuurin interface-ka Android.} tun_interface_create_failed{OpenVPN Core ma heli karin interface-ka TUN ee VpnService ee Android.} tun_interface_disabled{Android ama OpenVPN Core ayaa damiyay interface-ka TUN inta xidhiidhku socday.} tun_halted{OpenVPN Core wuxuu helay codsi uu ku joojinayo interface-ka TUN.} tun_already_established{OpenVPN wuxuu codsaday interface labaad isla xidhiidhkaas. Tunnel-ka amni darteed waa la joojiyay.} tun_addresses_missing{Server-ku ma bixin cinwaan tunnel oo la isticmaali karo.} tun_routes_missing{Server-ku ma bixin jidad tunnel oo la isticmaali karo.} tun_dns_missing{Server-ku ma bixin server DNS ah oo la isticmaali karo.} tun_permission_revoked{Android wuu baabi’iyay oggolaanshaha VPN inta xidhiidhku socday.} tun_establish_returned_null{Android ma abuurin interface-ka, badanaaba sababta oo ah VPN kale ayaa weli firfircoon.} openvpn_service_start_failed{Android ma bilaabi karin adeegga OpenVPN oo hore u socda.} openvpn_operation_timeout{Wicitaan JNI ah oo loo diray OpenVPN Core ayaa dhaafay muddadiisa ugu badan.} openvpn_start_failed{Adeegga Android waa diyaar, laakiin OpenVPN Core ma aqbalin bilaabista profiilka.} openvpn_connection_failed{OpenVPN Core wuu joogsaday ka hor inta uusan soo saarin dhacdada CONNECTED.} openvpn_core_status_error{Wareegga OpenVPN ee asalka ah wuxuu ku dhammaaday khalad, dhacdo dhammaad oo gaar ah oo kale ma jirin.} openvpn_stopped_before_connected{Wareegga OpenVPN ee asalka ah wuu joogsaday ka hor CONNECTED, iyadoo aan khalad Core oo cad jirin.} openvpn_auth_failed{Server-ka OpenVPN wuu diiday xaqiijinta aqoonsiga profiilka.} openvpn_client_setup_failed{OpenVPN Core ma diyaarin karin macmiilka ka hor xidhiidhka shabakadda.} openvpn_client_halted{OpenVPN Core wuxuu helay joojin macmiil oo kama dambays ah.} openvpn_client_restart{OpenVPN Core wuxuu codsaday in fadhiga gudbintiisa dib loo bilaabo.} openvpn_inactive_timeout{OpenVPN Core wuu xidhay fadhiga ka dib marka muddada aan la shaqayn dhammaatay.} openvpn_session_expired{Server-ku wuxuu sheegay in fadhiga OpenVPN uu dhacay.} openvpn_credentials_required{Server-ka ama proxy-ga ayaa codsanaya aqoonsiyo lagu geliyo gacanta oo aan ka mid ahayn profiilka shahaadada.} openvpn_proxy_failed{OpenVPN Core wuxuu sheegay guuldarro ku timid proxy-ga ama relay-ga la habeeyay.} openvpn_compression_failed{OpenVPN Core wuu diiday habka cadaadinta ee profiilka ama server-ku ku dhawaaqay.} openvpn_ntlm_crypto_unavailable{Profiilku wuxuu codsanayaa sirinta NTLM, taas oo aan ku jirin nooca hadda jira.} openvpn_feature_unsupported{Profiilka ama server-ku wuxuu u baahan yahay sifo ka maqan macmiilkan Android.} network_unavailable{Ma jirto shabakad jireed oo la isticmaali karo.} network_lost{Tunnel-ka waa la joojiyay ka dib marka shabakadda la waayay.} certificate_validation_failed{Aqoonsiga server-ka OpenVPN lama xaqiijin karin.} openvpn_certificate_expired{Cusboonaysii profiilka OpenVPN ka hor inta aadan dib ugu xidhmin.} tunnel_active_for_another_account{Tunnel ka tirsan akoon kale waa in la joojiyaa ka hor xidhiidhkan.} tunnel_already_active{Android wuxuu sheegayaa in fadhi VPN oo hore uu weli isticmaalayo interface-ka.} tunnel_stop_timeout{Mishiinka {protocol} ma xaqiijin inuu sii daayay interface-ka VPN muddada loo cayimay gudaheeda.} tunnel_disconnected{Mishiinka asalka ah wuxuu sheegay in tunnel-ku si lama filaan ah u dhammaaday kadib bilaabistiisa.} native_bridge_unavailable{Barnaamijku ma gali karo adeegga VPN ee Android. Xidh barnaamijka, kadibna mar kale fur oo isku day.} native_operation_failed{Khalad barnaamij ayaa hakiyay hawsha VPN. Isku day mar kale. Haddii dhibaatadu sii socoto, samee baaritaan.} invalid_arguments{Macluumaadka loo baahan yahay hawshan VPN ma dhammaystirna. Isku day mar kale. Haddii dhibaatadu sii socoto, samee baaritaan.} invalid_account_id{Hawsha asalka ah lama xiriirin aqoonsi akoon oo sax ah.} invalid_device_id{Aqoonsiga aaladda ee loo diray mishiinka asalka ah wuu maqan yahay ama ma sax aha.} storage_key_not_allowed{Buundada Android waxay xannibtay fure ka baxsan liiska kaydka la oggolaaday.} secure_storage_read_failed{Android Keystore ma furi karin sirinta xogta maxalliga ah ee akoonkan.} secure_storage_write_failed{Android Keystore ma sirin karin ama ma kaydin karin xogta maxalliga ah.} key_generation_failed{Android ma abuuri karin ama ma akhriyi karin furaha WireGuard ee kaydka ammaanka ah.} csr_generation_failed{Android Keystore ma abuuri karin ama ma saxiixi karin CSR-ka OpenVPN P-256.} other{Qayb asal ah oo aan la dukumeentiyin ayaa guuldareysatay. U dir koodhka baaritaanka ee hoos ku muuqda kooxda taageerada.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Codsiga oggolaanshaha horeba waa furan yahay",
+    "notice_permissionRequestInProgress_message": "Codsiga oggolaanshaha VPN ee Android hadda waa soo muuqdaa. Dhammaystir ka hor intaadan mar kale isku dayin.",
+    "notice_permissionRequestInterrupted_title": "Codsiga oggolaanshaha VPN wuu go’ay",
+    "notice_permissionRequestInterrupted_message": "Shaashadda oggolaanshaha VPN waa la xidhay ka hor intaanu barnaamijku jawaab helin.",
+    "notice_openvpnProofMissing_title": "Xidhiidhka OpenVPN lama xaqiijin",
+    "notice_openvpnProofMissing_message": "Xidhiidhka OpenVPN lama xaqiijin karin. Amni darteed waa la joojiyay. Isku day mar kale.",
+    "openvpnCleanup_title": "Profiilka OpenVPN waa la baabi’iyay",
+    "openvpnCleanup_working": "Profiilka OpenVPN ee la baabi’iyay waa la joojinayaa oo la tirtirayaa…",
+    "openvpnCleanup_stopFailed": "Joojinta OpenVPN lama xaqiijin. Isku day mar kale ka hor intaadan abuurin profiil cusub.",
+    "openvpnCleanup_cleanupFailed": "Profiilka OpenVPN ee la baabi’iyay gebi ahaanba lama tirtiri karin. Isku day nadiifinta mar kale.",
+    "openvpnCleanup_complete": "Profiilka OpenVPN ee la baabi’iyay waa la tirtiray. Taabo “Ku xidh” si aad mid cusub u abuurto.",
+    "network_title": "Habaynta shabakadda",
+    "network_ipv4Fallback": "IPv6 si ku meel gaar ah looma heli karo. Diyaarintu waxay ku sii socotaa IPv4.",
+    "network_rejectedTitle": "Habaynta shabakadda waa la diiday",
+    "network_rejectedMessage": "Habaynta tunnel-ka ma dhammaystirna ama ma waafaqsana cinwaannada la oggolaaday. Barnaamijka ka isku day mar kale.",
+    "network_unreadableTitle": "Habaynta maxalliga ah lama akhriyi karo",
+    "network_unreadableMessage": "Habaynta shabakadda OpenVPN ee la kaydiyay lama isticmaali karo. Barnaamijka ka dib ku xidh si aad u cusboonaysiiso.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Ilaalinta shabakadda",
+    "protection_subtitle": "Xannib gelitaanka toos ah ee internetka haddii VPN-ku go’o.",
+    "protection_active": "Ilaalinta nidaamka way firfircoon tahay",
+    "protection_alwaysOnOnly": "“VPN had iyo jeer” waa la shiday; shid xannibaadda xidhiidhada aan VPN lahayn",
+    "protection_inactive": "Ilaalinta nidaamka ma firfircoona",
+    "protection_unknown": "Hubi ilaalinta nidaamka",
+    "protection_openSettings": "Fur dejinta Android",
+    "protection_dialogTitle": "Deji ilaalinta shabakadda",
+    "protection_dialogMessage": "Android ayaa maamula “VPN had iyo jeer” iyo xannibidda xidhiidhada ka baxsan VPN-ka. Hubi in FuzeVPN la doortay, kadibna dejinta nidaamka ka shid xannibaadda.",
+    "protection_dialogOpen": "Fur dejinta",
+    "session_systemProtectionNote": "Haddii Android weli xannibayo socodka ka baxsan VPN-ka, fur dejinta nidaamka si aad u hubiso ama u beddesho ilaalintan.",
+    "diagnostics_title": "Baaritaan",
+    "diagnostics_settingsTitle": "Baaritaanka barnaamijka",
+    "diagnostics_automaticTitle": "Dir khaladaadka muhiimka ah",
+    "diagnostics_automaticDescription": "La wadaag warbixin farsamo oo yar marka khalad muhiim ah dhaco.",
+    "diagnostics_privacy": "Warbixinnada la diro waxay ku xiran yihiin akoonka aad soo gashay, waxaana la hayaa 30 maalmood. Kuma jiraan taariikhda bogagga aad booqatay, erayada sirta ah ama furayaasha VPN.",
+    "diagnostics_manualOpen": "Samee baaritaan",
+    "diagnostics_localDescription": "Samee warbixin ku saabsan xaaladda barnaamijka iyo VPN-ka. Xidhiidhkaaga lama beddelayo.",
+    "diagnostics_sendReport": "Dir warbixinta",
+    "diagnostics_sendHint": "Sanduuqan ha calaamadin si warbixinta aaladdan loogu hayo.",
+    "diagnostics_signedOut": "Si aad warbixin u dirto, soo gal akoonkaaga.",
+    "diagnostics_localLifetime": "Ku kaydi warbixintan taleefankaaga si aad ugu hayso ka dib marka aad barnaamijka xidho.",
+    "diagnostics_run": "Samee baaritaan",
+    "diagnostics_rerun": "Mar kale samee baaritaan",
+    "diagnostics_running": "Waa la hubinayaa…",
+    "diagnostics_sending": "Warbixinta waa la dirayaa…",
+    "diagnostics_prepared": "Warbixinta waxay diyaar ku tahay aaladdan",
+    "diagnostics_queued": "Warbixinta waxay sugaysaa in la diro",
+    "diagnostics_sent": "Warbixinta waa la helay",
+    "diagnostics_failed": "Dirista way guuldareysatay. Warbixintaada maxalliga ah weli way diyaar tahay.",
+    "diagnostics_preparationFailed": "Warbixinta baaritaanka lama diyaarin karin. Isku day mar kale.",
+    "diagnostics_authenticationRequired": "Mar kale soo gal si aad warbixinta u dirto.",
+    "diagnostics_retry": "Isku day dirista mar kale",
+    "diagnostics_export": "Kaydi warbixinta",
+    "diagnostics_exportFailed": "Kaydintu way guuldareysatay. Mar kale isku day warbixinta maxalliga ah.",
+    "diagnostics_preferenceFailed": "Dejintan lama kaydin karin. Isku day mar kale.",
+    "diagnostics_receipt": "Tixraac: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "La helay {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "La hayaa ilaa {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Warbixintan horeba waa la helay.",
+    "diagnostics_preview": "Hordhaca warbixinta",
+    "diagnostics_eventCount": "{count, plural, =0{Ma jiraan dhacdooyin farsamo oo la lifaaqay} =1{1 dhacdo farsamo ah ayaa la lifaaqay} other{{count} dhacdo farsamo ah ayaa la lifaaqay}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Faahfaahinta farsamada",
+    "diagnostics_empty": "Weli lama diyaarin warbixin baaritaan.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Xaaladda tunnel-ka} handshake{Xaqiijinta xidhiidhka} certificate{Shahaadada VPN} kill_switch{Ilaalinta Android} connectivity{Shabakadda la heli karo} api_reachability{Gelitaanka adeegga} secure_storage{Kaydinta ammaanka ah} other{Hubinta maxalliga ah}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{La hubiyay} failed{Fiiro gaar ah ayaa loo baahan yahay} skipped{Lama tijaabin — baadhis firfircoon ma jiro} unknown{Macluumaadka lama heli karo} other{Macluumaadka lama heli karo}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Ku soo dhawoow FuzeVPN",
+    "connection_changeLocation": "Beddel goobta",
+    "connection_details": "Faahfaahinta xidhiidhka",
+    "locations_searchLabel": "Raadi magaalo ama dal",
+    "locations_clearSearch": "Tirtir raadinta",
+    "locations_filterAll": "Dhammaan",
+    "locations_filterFavorites": "Kuwa la jecel yahay",
+    "locations_results": "{count, plural, one{{count} goob} other{{count} goob}}",
+    "locations_noResults": "Goob lama helin",
+    "locations_noResultsHint": "Isku day magaalo ama dal kale.",
+    "locations_noFavorites": "Kuwa aad jeceshahay, gacantaada ku dhow",
+    "locations_noFavoritesHint": "Taabo xiddigta ku xigta goob si aad halkan ugu kaydiso.",
+    "locations_showAll": "Eeg dhammaan goobaha",
+    "locations_addFavorite": "Ku dar {name} kuwa la jecel yahay",
+    "locations_removeFavorite": "Ka saar {name} kuwa la jecel yahay",
+    "locations_favoriteSaveFailed": "Goobta la jecel yahay lama kaydin karin. Isku day mar kale.",
+    "locations_emptyTitle": "Ma jiraan goobo la heli karo",
+    "locations_emptyHint": "Cusboonaysii liiska si aad mar kale isku daydo.",
+    "devices_manage": "Maamul aaladahayga",
+    "settings_personalization": "Ka dhig mid adiga kuu gaar ah",
+    "settings_safety": "Ilaalinta",
+    "settings_help": "Ma u baahan tahay caawimaad?",
+    "settings_about": "Ku saabsan FuzeVPN",
+    "diagnostics_heading": "Garo dhibaatada xidhiidhka",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{La heli karo} pending{Diyaarinaya} revoked{La saaray} expired{Dhacay} other{Xaaladda lama heli karo}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Doorashada lama kaydin",
+    "notice_preferenceSave_message": "Doorashadaada hadda waa la dabaqay, laakiin lama kaydin karin. Isku day mar kale si ay u sii jirto marka barnaamijka la xidho.",
+    "connection_androidDisconnectHint": "Haddii Android uu VPN-ka firfircoon hayo, ka demi “VPN had iyo jeer” dejinta furmaysa.",
+    "protection_learnMore": "Wax ka baro ilaalinta Android",
+    "protection_guideWhy": "Ilaalintan waxay ka hortagtaa barnaamijyada inay si toos ah u isticmaalaan internetka haddii VPN-ku go’o. Waxaa lagu habeeyaa gudaha Android.",
+    "protection_guideAlwaysOnTitle": "VPN had iyo jeer",
+    "protection_guideAlwaysOn": "Android wuxuu ka dhigaa adeegga VPN mid shaqeynaya, wuuna dib u bilaabi karaa marka taleefanka dib loo bilaabo.",
+    "protection_guideBlockTitle": "Xannib xidhiidhada aan VPN lahayn",
+    "protection_guideBlock": "Dejintan waxay ka hortagtaa in socodka xogta VPN-ka ka baxsado, xitaa marka xidhiidhku go’o.",
+    "protection_guideWarning": "Marka xannibaaddan la shido, internetka lama isticmaali karo ilaa VPN-ka lagu xidho.",
+    "protection_guideStepsTitle": "Shid ilaalinta",
+    "protection_guideStep1": "Badhanka hoose ku fur dejinta VPN ee Android.",
+    "protection_guideStep2": "Astaanta giirka ee ku xigta FuzeVPN ku fur doorashooyinka.",
+    "protection_guideStep3": "Shid “VPN had iyo jeer”, kadibna “Xannib xidhiidhada aan VPN lahayn”, haddii doorashooyinkaasi jiraan.",
+    "protection_guideManufacturers": "Magacyadu way kala duwan yihiin taleefan ilaa taleefan. Haddii loo baahdo, gudaha Dejinta ka raadi VPN, badanaaba hoosta Shabakadda & internetka.",
+    "protection_guideDisableTitle": "Demi ilaalintan",
+    "protection_guideDisable": "Isla dejintaas, demi “Xannib xidhiidhada aan VPN lahayn” si aad internetka ugu isticmaasho adigoo aan VPN isticmaalin. Sidoo kale demi “VPN had iyo jeer” haddii aadan mar dambe rabin in Android uu dib u bilaabo.",
+    "protection_guideManual": "Dejintan waxaad ku doortaa gudaha Android. FuzeVPN kuuma beddelo.",
+    "locations_changeTitle": "Ma beddelaysaa goobta?",
+    "locations_changeActive": "VPN-ku wuu joogsan doonaa, kadibna wuxuu isku dayi doonaa inuu ku xidhmo {name}.",
+    "locations_changeIdle": "VPN-ku wuxuu isku dayi doonaa inuu ku xidhmo {name}.",
+    "locations_confirmChange": "Beddel oo ku xidh",
+    "locations_changeBusy": "Beddel ayaa socda. Sug ka hor intaadan dooran goob kale.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Doorasho toos ah",
+    "locations_cities": "Magaalooyin",
+    "locations_servers": "Serverro",
+    "locations_viewCities": "Eeg magaalooyinka {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Eeg serverrada {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} dal} other{{count} dal}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} magaalo} other{{count} magaalo}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} server} other{{count} server}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Dhammaan dalalka",
+    "locations_backToCountries": "Dib ugu noqo dalalka",
+    "locations_backToCities": "Dib ugu noqo magaalooyinka {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Dooro {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Dooro {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Server la waafaqsan lama heli karo.",
+    "externalLink_failed": "Xiriirkan lama furi karo. Waad koobiyeyn kartaa oo browser-kaaga ku furi kartaa.",
+    "externalLink_copy": "Koobiyee xiriirka",
+    "externalLink_copied": "Xiriirka waa la koobiyeeyay",
+    "externalLink_copyFailed": "Xiriirka lama koobiyeyn karo. Dooro cinwaanka hoose.",
+    "settings_deleteAccount": "Tirtir akoonkayga",
+    "settings_deleteAccountDetail": "Eeg habka codsiga tirtirista akoonka",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Dooro isdiiwaangelintaada VPN.",
+    "billing_subscribe": "Isdiiwaangeli",
+    "billing_choosePlan": "Dooro qorshe si aad u sii waddo.",
+    "billing_monthly": "Bille",
+    "billing_yearly": "Sannadle",
+    "billing_continue": "Ku sii wad Google Play",
+    "billing_restore": "Soo celi iibsiyada",
+    "billing_manage": "Maamul isdiiwaangelinta",
+    "billing_deleteAccountWarning": "Haddii aad leedahay isdiiwaangelin Google Play ah, tirtirista akoonkaaga FuzeVPN ma joojinayso cusboonaysiinteeda. Cusboonaysiinta si gooni ah ugu maamul ama ku jooji Google Play.",
+    "billing_deleteAccountContinue": "Sii wad codsiga tirtirista akoonka",
+    "billing_refresh": "Cusboonaysii gelitaanka",
+    "billing_loadingPlans": "Qorshayaasha waa la soo rarayaa…",
+    "billing_unavailable": "Hadda ma jiraan qorshayaal la heli karo. Mar dambe isku day.",
+    "billing_comingSoon": "Isdiiwaangelinnada dhawaan ayaa la heli doonaa.",
+    "billing_priceDisclosure": "Qiimaha waxaa bixiya Google Play. Wadarta ugu dambeysa iyo canshuuraha khuseeya waa la xaqiijiyaa ka hor intaadan xaqiijin.",
+    "billing_renewalMonthly": "Waxaa si toos ah loo cusboonaysiiyaa bil kasta ilaa la joojiyo. Goor kasta waxaad ka joojin kartaa isdiiwaangelinnada Google Play.",
+    "billing_renewalYearly": "Waxaa si toos ah loo cusboonaysiiyaa sannad kasta ilaa la joojiyo. Goor kasta waxaad ka joojin kartaa isdiiwaangelinnada Google Play.",
+    "billing_active": "Gelitaankaaga Premium wuu firfircoon yahay",
+    "billing_accessUntil": "Gelitaanku wuxuu socdaa ilaa {date}.",
+    "billing_webManaged": "Isdiiwaangelintaada waxaa lagu maamulaa mareegta FuzeVPN.",
+    "billing_playManaged": "Isdiiwaangelintaada waxaa maamula Google Play.",
+    "billing_playOnHold": "Isdiiwaangelintaada Google Play waa la hakiyay ama waxay sugaysaa lacag bixin. Fur “Maamul isdiiwaangelinta” si aad ugu hagaajiso Google Play.",
+    "billing_playReceiptUnlinked": "Akoonkan Google Play horeba wuxuu leeyahay isdiiwaangelin Fuze Premium ah oo aan u firfircoonayn akoonkan FuzeVPN. Fur “Maamul isdiiwaangelinta” si aad ugu eegto Google Play.",
+    "billing_inactive": "Isdiiwaangelin firfircoon ma jirto.",
+    "billing_checkingAccess": "Gelitaankaaga waa la hubinayaa…",
+    "billing_restoring": "Iibsiyada waa la soo celinayaa…",
+    "billing_pending": "Lacag bixinta waa la sugayaa. Gelitaankaaga waa la hawlgelin doonaa marka la xaqiijiyo.",
+    "billing_cancelled": "Iibsiga waa la joojiyay. Isdiiwaangelin cusub lama hawlgelin.",
+    "billing_verifying": "Iibsiga waa la xaqiijinayaa…",
+    "billing_success": "Isdiiwaangelinta waa la hawlgeliyay. Gelitaankaaga Premium waa diyaar.",
+    "billing_restored": "Iibsiyadaada waa la soo celiyay.",
+    "billing_restoreEmpty": "Akoonkan Google Play ma laha iibsi la soo celin karo.",
+    "billing_catalogError": "Qorshayaasha lama soo rari karo. Isku day mar kale.",
+    "billing_purchaseError": "Iibsiga lama bilaabi karo. Isku day mar kale.",
+    "billing_verificationError": "Xaqiijinta iibsiga si ku meel gaar ah looma heli karo. Soo celi iibsiyada si aad mar kale isku daydo.",
+    "billing_restoreError": "Iibsiyada lama soo celin karo. Isku day mar kale.",
+    "billing_managementError": "Maamulka isdiiwaangelinta lama furi karo. Isku day mar kale.",
+    "billing_storeUnavailable": "Google Play looma heli karo aaladdan.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "VPN-kaaga, si fudud.",
+    "welcome_description": "Ilaali xidhiidhkaaga. Asturnaantaada gacanta ku hay.",
+    "welcome_start": "Bilow",
+    "welcome_alreadyPurchased": "Horeba ma iibsatay?",
+    "welcome_noAccountRequired": "Akoon looma baahna si aad u bilowdo.",
+    "guest_accountTitle": "Akoonka lama xiriirin",
+    "guest_accountDescription": "Soo celi iibsiyadaada adigoo isticmaalaya isla akoonka Google Play si aad isdiiwaangelintaada ugu isticmaasho aalad kale.",
+    "guest_existingSubscriberSignIn": "Horeba ma isdiiwaangashay? Soo gal",
+    "guest_claimTitle": "Ku qaado FuzeVPN meel kasta",
+    "guest_claimDescription": "Samee akoon si aad isdiiwaangelintaada ugu gasho aaladahaaga kale. Tallaabadan waa ikhtiyaari.",
+    "guest_skip": "Mar dambe",
+    "guest_activationTitle": "Fuze Premium wuu firfircoon yahay",
+    "guest_activationDescription": "Isdiiwaangelintaada waa diyaar. Isticmaal VPN-kaaga oo samee akoon goor kasta oo aad rabto.",
+    "guest_useVpn": "Isticmaal VPN-kayga",
+    "guest_loginRequired": "Iibsigan horeba waxaa lagu xiriiriyay akoon FuzeVPN ah. Soo gal akoonkaas si aad u gasho isdiiwaangelintaada.",
+    "guest_signOutWarning": "Isdiiwaangelintaada waad dib u heli kartaa adigoo iibsiyada soo celinaya isla akoonka Google Play.",
+    "guest_profileUnavailable": "Akoonkaaga horeba waa la xiriiriyay. Soo gal si aad u aragto oo aad u maamusho macluumaadkaaga.",
+    "billing_acceptance": "Marka aad sii wadato, waxaad aqbashaa Shuruudaha Isticmaalka iyo Siyaasadda Asturnaanta.",
+    "guest_verifyEmailReminder": "Xaqiiji cinwaanka iimaylkaaga si aad akoonkaaga u ilaaliso. Waad sii isticmaali kartaa VPN-kaaga.",
+    "guest_serviceUnavailable": "Adeegga si ku meel gaar ah looma heli karo. Wax yar ka dib isku day mar kale.",
+    "guest_restoreError": "Iibsiyadaada lama soo celin karin. Mar kale isku day adigoo isticmaalaya akoonka Google Play ee lagu iibsaday.",
+    "guest_claimSuccess": "Akoonkaaga waa la sameeyay. Isdiiwaangelintaada iyo gelitaankaaga VPN waa la ilaaliyay.",
+    "guest_emailExists": "Iimaylkan horeba waa la isticmaalayaa. Dooro cinwaan kale ama soo gal akoonkaaga jira. Iibsigaaga weli waa laga heli karaa Google Play.",
+    "guest_claimError": "Akoonkaaga lama abuuri karin. Waad sii isticmaali kartaa VPN-kaaga, mar dambena isku day.",
+    "guest_secureStorageError": "Fadhigaaga aaladdan lama ammaanin karin. Isku day mar kale.",
+    "guest_premiumRequired": "Dooro isdiiwaangelin si aad VPN-kaaga u shido.",
+    "welcome_viewPlans": "Eeg qorshayaasha",
+    "google_continue": "Ku sii wad Google",
+    "google_or": "ama",
+    "google_title": "Akoonkaaga FuzeVPN",
+    "google_settingUp": "Dhammaystir abuurista akoonkaaga",
+    "google_country": "Dalka aad degan tahay",
+    "google_profileDescription": "Dooro dalkaaga oo eeg labada dukumeenti si aad akoonkaaga FuzeVPN u abuurto.",
+    "google_claimDescription": "Ku xiriiri akoonkaaga martida ah Google. Isdiiwaangelintaada iyo aaladdaada waxay ku sii xiran yihiin akoonkan.",
+    "google_linkTitle": "Ku xiriiri Google FuzeVPN",
+    "google_linkDescription": "Xaqiiji gelitaanka akoonkaaga FuzeVPN ee jira. Tallaabadan ma weydiisanayso erayga sirta ah ee Google-kaaga.",
+    "google_password": "Erayga sirta FuzeVPN",
+    "google_linkAccount": "Xaqiiji xiriirka",
+    "google_requestEmail": "Iimayl xaqiijin ii soo dir",
+    "google_emailInstructions": "Fur iimaylka FuzeVPN oo geli koodhka xaqiijinta.",
+    "google_emailCode": "Koodhka xaqiijinta iimaylka",
+    "google_confirmEmail": "Xaqiiji koodhka",
+    "google_restart": "Dooro akoon Google kale",
+    "google_resume": "Hubi isku daygan",
+    "google_unavailable": "Soo galitaanka Google lama heli karo. Waxaad isticmaali kartaa iimaylka iyo erayga sirta.",
+    "google_expired": "Isku daygan wuu dhacay. Iska daa oo mar kale bilow.",
+    "google_conflict": "Akoonkan Google horeba waxaa loogu xiriiriyay meel kale. Akoonkaaga hadda jira iyo isdiiwaangelintaada waa la ilaaliyay.",
+    "google_error": "Soo galitaanka Google wuu fashilmay. Isku day mar kale; gelitaankaaga hadda jira waa la ilaaliyay.",
+    "google_uncertain": "Natiijada lama xaqiijin karin. Hubi isku daygan ama iska daa ka hor intaadan mar kale bilaabin.",
+    "google_cancelFailed": "Joojinta lama xaqiijin karin. Mar kale isku day inaad iska daayso ka hor intaadan shaashaddan ka bixin.",
+    "google_cancelled": "Soo galitaanka Google waa la joojiyay.",
+    "google_selecting": "Dooro akoonkaaga Google…",
+    "google_verifying": "Akoonkaaga waa la hubinayaa…",
+    "google_emailUnavailable": "Iimaylka xaqiijinta lama diri karin. Mar dambe isku day.",
+    "google_emailSent": "Iimaylka xaqiijinta waa la diray. Hubi sanduuqa iimaylkaaga.",
+    "google_rateLimited": "Fadlan sug ka hor intaadan mar kale isku dayin.",
+    "google_busy": "Google lama heli karo inta hawl kale socoto (xidhiidhka VPN, akoonka ama marti). Isku day marka ay dhammaato; gelitaankaaga hadda jira waa la ilaaliyay.",
+    "google_invalidPassword": "Erayga sirta FuzeVPN ma sax aha. Akoonkaaga hadda jira waa la ilaaliyay.",
+    "google_invalidCode": "Koodhka xaqiijinta ma sax aha ama wuu dhacay.",
+    "google_accountChanged": "Fadhigaaga waa isbeddelay. Iska daa isku daygan ka hor intaadan mar kale bilaabin.",
+    "google_invalidResponse": "Jawaabta lama xaqiijin karin. Gelitaankaaga hadda jira waa la ilaaliyay.",
+    "google_invalidRegistration": "Hubi dalkaaga iyo labada oggolaansho.",
+    "google_consentRequired": "Dooro dalkaaga oo aqbal labada dukumeenti si aad u sii waddo.",
+    "google_challengeRequired": "Hubin amni oo dheeraad ah ayaa loo baahan yahay. Gelitaankaaga hadda jira waa la ilaaliyay.",
+    "google_challengeUnavailable": "Hubinta amniga lama heli karo. Mar dambe isku day.",
+    "google_intentMismatch": "Isku day hore oo soo galitaanka Google ah weli waa sugaysaa. Iska daa ka hor intaadan bilaabin hawshan.",
+    "google_challengeBlocked": "Hubinta amniga ee loo baahan yahay kuma jirto barnaamijkan. Hawshan hadda lama dhammaystiri karo.",
+    "google_solveChallenge": "Dhammaystir hubinta amniga",
+    "google_challengeTitle": "Hubinta amniga",
+    "google_challengeReady": "Xaqiijinta waa dhammaatay. Hadda waad xaqiijin kartaa abuurista akoonkaaga.",
+    "google_challengeExpired": "Xaqiijinta way dhacday. Mar kale dhammaystir ka hor intaadan xaqiijin.",
+    "google_challengeCancelled": "Xaqiijinta waa la joojiyay. Mar kale waad isku dayi kartaa.",
+    "google_challengeFailed": "Hubinta amniga way guuldareysatay. Isku day mar kale.",
+    "billing_trialTitle": "Bilaash ku tijaabi Fuze Premium",
+    "billing_trialSubtitle": "Ilaali xidhiidhkaaga laga bilaabo maanta.",
+    "billing_trialWeeks": "Tijaabo bilaash ah oo 2 toddobaad ah",
+    "billing_trialDays": "Tijaabo bilaash ah oo {days} maalin ah",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Bilow tijaabadayda bilaashka ah",
+    "billing_trialFirstCharge": "Haddii aad maanta bilowdo, lacagta ugu horreysa waxaa la filayaa in laga qaado {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Waxaa si toos ah loo cusboonaysiiyaa qiimaha la sheegay. Si aan lacag laguu qaadin, Google Play ku jooji ka hor inta tijaabadu dhammaanayso.",
+    "billing_trialThenMonthly": "Kadibna {price} bil kasta",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Kadibna {price} sannad kasta",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Dooro qorshahaaga",
+    "billing_selectionHint": "Dooro qorshe si aad u sii waddo.",
+    "billing_benefitConnection": "Xidhiidh la sireeyay",
+    "billing_benefitPrivacy": "Asturnaanta internetka",
+    "billing_benefitNoAccount": "Diiwaangelin looma baahna",
+    "billing_cancellation": "Ku jooji Google Play",
+    "billing_premiumTitle": "Xidhiidh si fiican loo ilaaliyay.",
+    "billing_premiumSubtitle": "Ilaali xidhiidhkaaga, sida kuu habboon.",
+    "billing_priceMonthly": "bil kasta",
+    "billing_priceYearly": "sannad kasta",
+    "billing_trialToday": "Maanta wax lacag ah ma bixinayso",
+    "billing_trialConfirmation": "Google Play wuxuu xaqiijiyaa taariikhaha, wadarta ugu dambeysa iyo canshuuraha khuseeya ka hor intaadan xaqiijin.",
+    "billing_offerChanged": "Shuruudaha dalabkan way is beddeleen. Cusboonaysii qorshayaasha oo mar kale dooro.",
+    "status_waitingNetwork": "Shabakad ayaa la sugayaa",
+    "status_waitingNetworkDetail": "Shabakad ma jirto. VPN-ku wuu hubin doonaa xidhiidhka marka shabakaddu dib u soo noqoto.",
+    "locations_favoriteLoadFailed": "Kuwa la jecel yahay lama soo rari karin. Isku day mar kale.",
+    "locations_favoritesLoading": "Kuwa la jecel yahay waa la soo rarayaa…"
+  },
+  "android": {
+    "vpn_notification_channel": "Xidhiidhka VPN",
+    "vpn_notification_channel_description": "Wuxuu muujiyaa marka xidhiidhka FuzeVPN uu firfircoon yahay.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "Xidhiidhka %1$s wuu firfircoon yahay",
+    "vpn_notification_connecting": "Xidhiidhka %1$s waa la samaynayaa",
+    "vpn_notification_disconnecting": "Joojinaya %1$s",
+    "vpn_notification_interrupted": "Xidhiidhka %1$s wuu go’ay",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Diyaar · %1$s · %2$s",
+    "vpn_tile_connected": "Ku xidhan · %1$s · %2$s",
+    "vpn_tile_connecting": "Ku xidhmaya %1$s…",
+    "vpn_tile_disconnecting": "Joojinaya…",
+    "vpn_tile_interrupted": "%1$s wuu go’ay",
+    "vpn_tile_setup_required": "Marka hore fur barnaamijka",
+    "vpn_tile_working": "Hawsha VPN-ka waa socotaa…",
+    "vpn_notification_reconnecting": "Dib ku xidhmaya… · %1$s",
+    "vpn_system_action_required": "Tallaabo ayaa loo baahan yahay gudaha dejinta Android",
+    "vpn_tile_reconnecting": "Dib ku xidhmaya… · %1$s",
+    "vpn_notification_waiting_network": "Shabakad ayaa la sugayaa · %1$s",
+    "vpn_tile_waiting_network": "Shabakad ayaa la sugayaa · %1$s"
+  },
+  "countries": {
+    "AC": "Jasiiradda Asensiyoon",
+    "AD": "Andora",
+    "AE": "Midawga Imaaraatka Carabta",
+    "AF": "Afgaanistaan",
+    "AG": "Antigua & Barbuuda",
+    "AI": "Anguula",
+    "AL": "Albaaniya",
+    "AM": "Armeeniya",
+    "AO": "Angoola",
+    "AQ": "Antaarktika",
+    "AR": "Arjentiina",
+    "AS": "Samowa Ameerika",
+    "AT": "Awsteriya",
+    "AU": "Awstaraaliya",
+    "AW": "Aruba",
+    "AX": "Jasiiradda Aland",
+    "AZ": "Asarbajan",
+    "BA": "Boosniya & Harsegofina",
+    "BB": "Baarbadoos",
+    "BD": "Bangaladhesh",
+    "BE": "Biljam",
+    "BF": "Burkiina Faaso",
+    "BG": "Bulgaariya",
+    "BH": "Baxreyn",
+    "BI": "Burundi",
+    "BJ": "Biniin",
+    "BL": "St. Baathelemiy",
+    "BM": "Barmuuda",
+    "BN": "Buruneey",
+    "BO": "Boliifiya",
+    "BQ": "Karibiyaan Nadarlands",
+    "BR": "Baraasiil",
+    "BS": "Bahaamas",
+    "BT": "Buutan",
+    "BV": "Buufet Island",
+    "BW": "Botuswaana",
+    "BY": "Belarus",
+    "BZ": "Beliis",
+    "CA": "Kanada",
+    "CC": "Jasiiradda Kookoos",
+    "CD": "Jamhuuriyadda Dimuquraadiga Kongo",
+    "CF": "Jamhuuriyadda Afrikada Dhexe",
+    "CG": "Kongo",
+    "CH": "Swiiserlaand",
+    "CI": "Ayfori Koost",
+    "CK": "Jasiiradda Kook",
+    "CL": "Jili",
+    "CM": "Kaameruun",
+    "CN": "Shiinaha",
+    "CO": "Koloombiya",
+    "CP": "Jasiiradda Kilibarton",
+    "CQ": "Sark",
+    "CR": "Costa Rica",
+    "CU": "Kuuba",
+    "CV": "Jasiiradda Kayb Faarde",
+    "CW": "Kurakaaw",
+    "CX": "Jasiiradda Kirismas",
+    "CY": "Qubrus",
+    "CZ": "Jekiya",
+    "DE": "Jarmal",
+    "DG": "Diyeego Karsiya",
+    "DJ": "Jabuuti",
+    "DK": "Denmark",
+    "DM": "Dominika",
+    "DO": "Jamhuuriyadda Dominika",
+    "DZ": "Aljeeriya",
+    "EA": "Seyuta & Meliila",
+    "EC": "Ikuwadoor",
+    "EE": "Estooniya",
+    "EG": "Masar",
+    "EH": "Saxaraha Galbeed",
+    "ER": "Eritreeya",
+    "ES": "Isbeyn",
+    "ET": "Itoobiya",
+    "EU": "Midowga Yurub",
+    "EZ": "Yurusoon",
+    "FI": "Finland",
+    "FJ": "Fiji",
+    "FK": "Jaziiradaha Fooklaan",
+    "FM": "Mikroneesiya",
+    "FO": "Jasiiradda Faroo",
+    "FR": "Faransiis",
+    "GA": "Gaaboon",
+    "GB": "Boqortooyada Midowday",
+    "GD": "Giriinaada",
+    "GE": "Joorjiya",
+    "GF": "Faransiis Gini",
+    "GG": "Guurnsey",
+    "GH": "Gaana",
+    "GI": "Gibraltar",
+    "GL": "Greenland",
+    "GM": "Gambiya",
+    "GN": "Gini",
+    "GP": "Guadeluub",
+    "GQ": "Ekuwatooriyal Gini",
+    "GR": "Giriig",
+    "GS": "Jasiiradda Joorjiyada Koonfureed & Sandwij",
+    "GT": "Guwaatamaala",
+    "GU": "Guaam",
+    "GW": "Gini-Bisaaw",
+    "GY": "Guyana",
+    "HK": "Hong Kong",
+    "HM": "Jasiiradda Haad & MakDonald",
+    "HN": "Honduras",
+    "HR": "Korweeshiya",
+    "HT": "Haiti",
+    "HU": "Hangari",
+    "IC": "Jasiiradda Kanari",
+    "ID": "Indoneesiya",
+    "IE": "Ayrlaand",
+    "IL": "Israaʼiil",
+    "IM": "Jasiiradda Isle of Man",
+    "IN": "Hindiya",
+    "IO": "Dhul xadeedka Badweynta Hindiya ee Ingiriiska",
+    "IQ": "Ciraaq",
+    "IR": "Iiraan",
+    "IS": "Ayslaand",
+    "IT": "Talyaani",
+    "JE": "Jaarsey",
+    "JM": "Jamaaika",
+    "JO": "Urdun",
+    "JP": "Jabaan",
+    "KE": "Kenya",
+    "KG": "Kirgistaan",
+    "KH": "Kamboodiya",
+    "KI": "Kiribati",
+    "KM": "Komooros",
+    "KN": "St. Kitts iyo Nevis",
+    "KP": "Kuuriyada Waqooyi",
+    "KR": "Kuuriyada Koonfureed",
+    "KW": "Kuwayt",
+    "KY": "Cayman Islands",
+    "KZ": "Kasaakhistaan",
+    "LA": "Laos",
+    "LB": "Lubnaan",
+    "LC": "St. Lusia",
+    "LI": "Liyjtensteyn",
+    "LK": "Sirilaanka",
+    "LR": "Laybeeriya",
+    "LS": "Losooto",
+    "LT": "Lituweeniya",
+    "LU": "Luksemboorg",
+    "LV": "Latfiya",
+    "LY": "Liibya",
+    "MA": "Morooko",
+    "MC": "Moonako",
+    "MD": "Moldofa",
+    "ME": "Moontenegro",
+    "MF": "St. Maartin",
+    "MG": "Madagaskar",
+    "MH": "Jasiiradda Maarshal",
+    "MK": "Masedooniya Waqooyi",
+    "ML": "Maali",
+    "MM": "Mayanmar",
+    "MN": "Mongooliya",
+    "MO": "Makaaw",
+    "MP": "Jasiiradda Waqooyiga Mariaana",
+    "MQ": "Maartinik",
+    "MR": "Muritaaniya",
+    "MS": "Montserrat",
+    "MT": "Maalta",
+    "MU": "Mawrishiyaas",
+    "MV": "Maaldiifis",
+    "MW": "Malaawi",
+    "MX": "Meksiko",
+    "MY": "Malaysiya",
+    "MZ": "Musambiik",
+    "NA": "Namiibiya",
+    "NC": "Jasiiradda Niyuu Kaledooniya",
+    "NE": "Nayjer",
+    "NF": "Jasiiradda Noorfolk",
+    "NG": "Nayjeeriya",
+    "NI": "Nikaraaguwa",
+    "NL": "Nederlaands",
+    "NO": "Noorweey",
+    "NP": "Nebaal",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "Niyuusiilaand",
+    "OM": "Cumaan",
+    "PA": "Baanama",
+    "PE": "Beeru",
+    "PF": "Booliyneesiya Faransiiska",
+    "PG": "Babwa Niyuu Gini",
+    "PH": "Filibiin",
+    "PK": "Bakistaan",
+    "PL": "Booland",
+    "PM": "St. Pierre iyo Miquelon",
+    "PN": "Bitkairn",
+    "PR": "Bueerto Riiko",
+    "PS": "Dhulka Falastiiniyiinta daanta galbeed iyo marinka qasa",
+    "PT": "Bortugaal",
+    "PW": "Balaaw",
+    "PY": "Baraguaay",
+    "QA": "Qadar",
+    "QO": "Dhulxeebeedka Osheeniya",
+    "RE": "Riyuuniyon",
+    "RO": "Rumaaniya",
+    "RS": "Seerbiya",
+    "RU": "Ruush",
+    "RW": "Ruwanda",
+    "SA": "Sacuudi Carabiya",
+    "SB": "Jasiiradda Solomon",
+    "SC": "Sishelis",
+    "SD": "Suudaan",
+    "SE": "Iswidhan",
+    "SG": "Singaboor",
+    "SH": "Saynt Helena",
+    "SI": "Islofeeniya",
+    "SJ": "Jasiiradda Sfaldbaad & Jaan Mayen",
+    "SK": "Islofaakiya",
+    "SL": "Siraaliyoon",
+    "SM": "San Marino",
+    "SN": "Sinigaal",
+    "SO": "Soomaaliya",
+    "SR": "Surineym",
+    "SS": "Koonfur Suudaan",
+    "ST": "Sao Tome & Birincibal",
+    "SV": "El Salfadoor",
+    "SX": "Siint Maarteen",
+    "SY": "Suuriya",
+    "SZ": "Eswaatiini",
+    "TA": "Tiristan da Kunha",
+    "TC": "Turks & Kaikos Island",
+    "TD": "Jaad",
+    "TF": "Dhul xadeedka Koonfureed ee Faransiiska",
+    "TG": "Toogo",
+    "TH": "Taylaand",
+    "TJ": "Tajikistan",
+    "TK": "Tokelaaw",
+    "TL": "Timor-Leste",
+    "TM": "Turkmenistan",
+    "TN": "Tuniisiya",
+    "TO": "Tonga",
+    "TR": "Turki",
+    "TT": "Tirinidaad & Tobago",
+    "TV": "Tufaalu",
+    "TW": "Taywaan",
+    "TZ": "Tansaaniya",
+    "UA": "Yukrayn",
+    "UG": "Ugaanda",
+    "UM": "Jasiiradaha ka baxsan Maraykanka",
+    "UN": "Qaramada Midoobay",
+    "US": "Maraykanka",
+    "UY": "Uruguwaay",
+    "UZ": "Usbakistan",
+    "VA": "Magaalada Faatikaan",
+    "VC": "St. Finsent & Girenadiins",
+    "VE": "Fenisuweela",
+    "VG": "Biritish Farjin Island",
+    "VI": "U.S Fargin Island",
+    "VN": "Fiyetnaam",
+    "VU": "Fanuaatu",
+    "WF": "Walis & Futuna",
+    "WS": "Samoowa",
+    "XA": "Lahjadaha Pseudo",
+    "XB": "Pseudo-Bidi",
+    "XK": "Koosofo",
+    "YE": "Yaman",
+    "YT": "Mayotte",
+    "ZA": "Koonfur Afrika",
+    "ZM": "Saambiya",
+    "ZW": "Simbaabwe",
+    "ZZ": "Gobol aan la aqoonin"
+  }
+}

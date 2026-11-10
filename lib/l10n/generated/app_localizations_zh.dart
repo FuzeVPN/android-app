@@ -501,6 +501,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get action_cancel => '取消';
 
   @override
+  String get action_close => '关闭';
+
+  @override
+  String get action_copy => '复制';
+
+  @override
   String get action_signOut => '退出登录';
 
   @override
@@ -2450,6 +2456,12 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get action_cancel => '取消';
+
+  @override
+  String get action_close => '关闭';
+
+  @override
+  String get action_copy => '复制';
 
   @override
   String get action_signOut => '退出登录';
@@ -4402,6 +4414,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get action_cancel => '取消';
+
+  @override
+  String get action_close => '關閉';
+
+  @override
+  String get action_copy => '複製';
 
   @override
   String get action_signOut => '登出';

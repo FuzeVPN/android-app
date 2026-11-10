@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Lidhja VPN</string>
+    <string name="vpn_notification_channel_description">Tregon kur është aktive një lidhje FuzeVPN.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Lidhja %1$s është aktive</string>
+    <string name="vpn_notification_connecting">Lidhja %1$s po vendoset</string>
+    <string name="vpn_notification_disconnecting">Duke u shkëputur nga %1$s</string>
+    <string name="vpn_notification_interrupted">Lidhja %1$s u ndërpre</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Gati · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">I lidhur · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Duke u lidhur me %1$s…</string>
+    <string name="vpn_tile_disconnecting">Duke u shkëputur…</string>
+    <string name="vpn_tile_interrupted">%1$s u ndërpre</string>
+    <string name="vpn_tile_setup_required">Hapni fillimisht aplikacionin</string>
+    <string name="vpn_tile_working">Veprimi i VPN-së është në vazhdim…</string>
+    <string name="vpn_notification_reconnecting">Duke u rilidhur… · %1$s</string>
+    <string name="vpn_system_action_required">Nevojitet një veprim në cilësimet e Android</string>
+    <string name="vpn_tile_reconnecting">Duke u rilidhur… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Në pritje të rrjetit · %1$s</string>
+    <string name="vpn_tile_waiting_network">Në pritje të rrjetit · %1$s</string>
+</resources>

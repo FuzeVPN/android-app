@@ -38,21 +38,35 @@ bool locationMatchesQuery(
   ).split(' ').where((s) => s.isNotEmpty);
   if (terms.isEmpty) return true;
   final countryCode = normalizeLocationCountryCode(location.countryCode);
-  final haystack = normalizeLocationSearch(
+  final ownText = normalizeLocationSearch(
     [
       location.city,
       location.displayName,
       location.countryCode,
       countryCode,
       locationCountryName(location, languageCode),
-      for (final language in localizedCountryNames.keys)
-        locationCountryName(location, language),
-      if (countryCode == 'GB') 'UK Britain',
-      if (countryCode == 'US') 'USA United States America',
     ].join(' '),
   );
+  final haystack = '$ownText ${_countrySearchText(countryCode)}';
   return terms.every(haystack.contains);
 }
+
+/// Country names in every bundled language, normalized once per country:
+/// they do not depend on the location or the query.
+final _countrySearchCache = <String, String>{};
+
+String _countrySearchText(String countryCode) =>
+    _countrySearchCache.putIfAbsent(
+      countryCode,
+      () => normalizeLocationSearch(
+        [
+          for (final language in localizedCountryNames.keys)
+            countryName(countryCode, language),
+          if (countryCode == 'GB') 'UK Britain',
+          if (countryCode == 'US') 'USA United States America',
+        ].join(' '),
+      ),
+    );
 
 String normalizeLocationSearch(String value) {
   final buffer = StringBuffer();

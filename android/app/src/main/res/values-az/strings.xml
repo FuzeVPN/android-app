@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN bağlantısı</string>
+    <string name="vpn_notification_channel_description">FuzeVPN bağlantısının aktiv olduğunu göstərir.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s bağlantısı aktivdir</string>
+    <string name="vpn_notification_connecting">%1$s bağlantısı qurulur</string>
+    <string name="vpn_notification_disconnecting">%1$s bağlantısı kəsilir</string>
+    <string name="vpn_notification_interrupted">%1$s bağlantısı pozuldu</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Hazırdır · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Qoşulub · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s qoşulur…</string>
+    <string name="vpn_tile_disconnecting">Bağlantı kəsilir…</string>
+    <string name="vpn_tile_interrupted">%1$s bağlantısı pozuldu</string>
+    <string name="vpn_tile_setup_required">Əvvəlcə tətbiqi açın</string>
+    <string name="vpn_tile_working">VPN əməliyyatı davam edir…</string>
+    <string name="vpn_notification_reconnecting">Yenidən qoşulur… · %1$s</string>
+    <string name="vpn_system_action_required">Android ayarlarında əlavə addım tələb olunur</string>
+    <string name="vpn_tile_reconnecting">Yenidən qoşulur… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Şəbəkə gözlənilir · %1$s</string>
+    <string name="vpn_tile_waiting_network">Şəbəkə gözlənilir · %1$s</string>
+</resources>

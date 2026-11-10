@@ -72,7 +72,7 @@ de session empêche la suite du démarrage. Le contrôle correspondant est
 `changeLocationAndConnect()` dans `lib/app_controller_location_change.dart`.
 
 La recherche locale ignore la casse, les accents latins et les séparateurs.
-Elle compare ville, nom de serveur, code pays et noms de pays des trente langues
+Elle compare ville, nom de serveur, code pays et noms de pays des soixante-dix langues
 embarquées. Les villes et serveurs restent ceux du catalogue reçu. Recherche
 et favoris affichent directement les serveurs ; quitter ces modes retrouve la
 navigation hiérarchique. Les serveurs incompatibles avec le protocole effectif

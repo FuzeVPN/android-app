@@ -1,0 +1,1036 @@
+{
+  "locale": "sk",
+  "arb": {
+    "vpnDisclosure_title": "Chráňte svoje pripojenie",
+    "vpnDisclosure_body": "FuzeVPN používa službu VPN systému Android (VpnService) na vytvorenie šifrovaného tunela medzi týmto zariadením a servermi FuzeVPN.",
+    "vpnDisclosure_dataBody": "Keď je VPN aktívna, internetová komunikácia vašich aplikácií, cieľové adresy a požiadavky DNS prechádzajú týmto tunelom na smerovanie vášho pripojenia, a to aj vtedy, keď FuzeVPN beží na pozadí.",
+    "vpnDisclosure_statusBody": "Aplikácia používa stav pripojenia, jeho trvanie a objem prenesených údajov na zobrazenie vášho VPN pripojenia. Kedykoľvek ho môžete zastaviť.",
+    "vpnDisclosure_privacy": "Ochrana súkromia",
+    "vpnDisclosure_accept": "Prijať a pokračovať",
+    "vpnDisclosure_decline": "Teraz nie",
+    "accountRestoration_title": "Účet je dočasne nedostupný",
+    "accountRestoration_message": "Vaša relácia zostala zachovaná. Ak chcete obnoviť účet, skúste to znova. VPN pripojenie môžete spravovať aj tu.",
+    "action_retry": "Skúsiť znova",
+    "session_endingTitle": "Ukončenie relácie",
+    "session_ending": "Ukončuje sa relácia: VPN sa zastavuje a prebieha vyčistenie…",
+    "session_stopFailed": "Vypnutie VPN nebolo potvrdené. Pred novým prihlásením to skúste znova.",
+    "session_cleanupFailed": "VPN je zastavená, ale odstránenie relácie nebolo potvrdené. Skúste vyčistenie znova.",
+    "session_retryStop": "Skúsiť vypnutie znova",
+    "session_retryCleanup": "Skúsiť vyčistenie znova",
+    "@@locale": "sk",
+    "appTitle": "FuzeVPN",
+    "startup": "Bezpečne pripravujeme FuzeVPN…",
+    "nav_connection": "Pripojenie",
+    "nav_locations": "Lokality",
+    "nav_account": "Účet",
+    "nav_devices": "Zariadenia",
+    "nav_settings": "Nastavenia",
+    "action_refresh": "Obnoviť",
+    "auth_tab_login": "Prihlásiť sa",
+    "auth_tab_register": "Registrácia",
+    "auth_stepAccount": "Účet",
+    "auth_stepIdentity": "Identita",
+    "auth_stepAddress": "Adresa a súhlasy",
+    "auth_stepProgress": "Krok {current} z {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "Vaša VPN, jednoducho.",
+    "auth_keysLocal": "Vaše súkromné kľúče VPN zostávajú v tomto zariadení.",
+    "form_email": "E-mailová adresa",
+    "form_password": "Heslo",
+    "form_showPassword": "Zobraziť heslo",
+    "form_hidePassword": "Skryť heslo",
+    "form_passwordMin": "8–72 bajtov UTF-8. Niektoré znaky zaberajú viac ako jeden bajt.",
+    "form_firstName": "Meno",
+    "form_lastName": "Priezvisko",
+    "form_phone": "Telefón (+33612345678)",
+    "form_address": "Adresa",
+    "form_address2": "Doplnok k adrese (nepovinné)",
+    "form_postalCode": "PSČ",
+    "form_city": "Mesto",
+    "form_country": "Kód krajiny (napr. FR)",
+    "action_login": "Prihlásiť sa",
+    "action_createAccount": "Vytvoriť účet",
+    "action_createMyAccount": "Vytvoriť môj účet",
+    "action_next": "Pokračovať",
+    "action_previous": "Späť",
+    "action_forgotPassword": "Zabudli ste heslo?",
+    "auth_noAccount": "Ešte nemáte účet?",
+    "auth_requiredInformation": "Vytvorte si účet v troch krokoch.",
+    "auth_termsPrefix": "Súhlasím s ",
+    "auth_termsLink": "podmienkami používania",
+    "auth_privacyPrefix": "Súhlasím so ",
+    "auth_privacyLink": "zásadami ochrany osobných údajov",
+    "auth_consentRequired": "Na vytvorenie účtu je potrebný váš súhlas.",
+    "validation_required": "Toto pole je povinné.",
+    "validation_email": "Zadajte platnú e-mailovú adresu.",
+    "validation_password": "Heslo je príliš krátke: musí mať aspoň 8 bajtov UTF-8.",
+    "validation_passwordTooLong": "Heslo je príliš dlhé: môže mať najviac 72 bajtov UTF-8.",
+    "validation_phone": "Použite medzinárodný formát, napríklad +33612345678.",
+    "validation_country": "Použite dvojpísmenový kód krajiny, napríklad FR.",
+    "passwordReset_title": "Obnovenie hesla",
+    "passwordReset_description": "Zadajte e-mailovú adresu svojho účtu a požiadajte o odkaz na obnovenie hesla.",
+    "passwordReset_send": "Odoslať odkaz",
+    "connection_title": "Vaše pripojenie",
+    "connection_subtitle": "Vyberte lokalitu a potom zapnite VPN.",
+    "connection_prepare": "Pripravení na pripojenie?",
+    "connection_advancedOptions": "Rozšírené možnosti",
+    "connection_location": "Lokalita",
+    "connection_chooseLocation": "Vyberte lokalitu",
+    "connection_protocol": "Protokol",
+    "connection_connect": "Pripojiť",
+    "connection_connecting": "Pripájanie…",
+    "connection_disconnect": "Odpojiť",
+    "connection_disconnecting": "Odpájanie",
+    "connection_locationChange": "Mení sa lokalita…",
+    "connection_unavailable": "{protocol} nie je k dispozícii",
+    "connection_activeLocation": "Aktívna lokalita",
+    "connection_duration": "Trvanie",
+    "connection_received": "Prijaté",
+    "connection_sent": "Odoslané",
+    "connection_lastHandshake": "Posledná bezpečná výmena",
+    "connection_handshakeAgo": "pred {duration}",
+    "verification_title": "Potvrďte svoju e-mailovú adresu",
+    "verification_message": "Potvrďte svoju e-mailovú adresu, aby ste mohli používať VPN v tomto telefóne.",
+    "verification_resend": "Znova odoslať e-mail",
+    "migration_title": "Zmena lokality",
+    "migration_draining": "Pripravuje sa zmena lokality…",
+    "migration_activating": "Aktivuje sa nový server…",
+    "migration_ready": "Lokalita bola aktualizovaná.",
+    "migration_blocked": "Zmena lokality vyžaduje zásah na serveri. Skúste to neskôr alebo kontaktujte podporu.",
+    "migration_progress": "Priebeh zmeny lokality",
+    "migration_retryDelay": "Čas medzi kontrolami: {seconds} s.",
+    "migration_resume": "Pokračovať v zmene lokality",
+    "status_authorizing": "Vyžaduje sa oprávnenie",
+    "status_authorizingDetail": "Potvrďte žiadosť systému Android o povolenie VPN.",
+    "status_preparing": "Príprava",
+    "status_preparingDetail": "Pripravuje sa vaše zabezpečené pripojenie.",
+    "status_reconnecting": "Opätovné pripájanie…",
+    "status_reconnectingDetail": "Pripojenie bolo prerušené. VPN sa pokúša znova pripojiť.",
+    "status_connecting": "Pripájanie",
+    "status_connectingDetail": "Pripájanie k serveru VPN…",
+    "status_connected": "Pripojené",
+    "status_connectedDetail": "Vaše VPN pripojenie je aktívne.",
+    "status_disconnecting": "Odpájanie",
+    "status_disconnectingDetail": "Vaše VPN pripojenie sa ukončuje.",
+    "status_error": "Pripojenie nie je k dispozícii",
+    "status_errorDetail": "VPN pripojenie nebolo potvrdené. Skúste to znova.",
+    "status_idle": "Odpojené",
+    "status_idleDetail": "Pripojte VPN a chráňte svoje pripojenie.",
+    "trust_note": "Zatvorenie aplikácie nezastaví VPN. Na zastavenie použite možnosť Odpojiť.",
+    "locations_none": "Momentálne nie sú k dispozícii žiadne lokality.",
+    "locations_available": "Vyberte ďalšiu lokalitu.",
+    "locations_selected": "Vybraná lokalita",
+    "locations_select": "Vybrať túto lokalitu",
+    "locations_lockedTunnel": "Ak chcete zmeniť lokalitu, odpojte VPN.",
+    "locations_lockedMigration": "Počkajte, kým sa zmena lokality dokončí.",
+    "devices_title": "Vaše zariadenia",
+    "devices_used": "{count} / {limit} zariadení",
+    "devices_refresh": "Obnoviť zariadenia",
+    "devices_empty": "Zatiaľ nie je zaregistrované žiadne zariadenie VPN.",
+    "devices_firstConnection": "Váš telefón sa pridá pri prvom pripojení.",
+    "devices_thisDevice": "Toto zariadenie",
+    "devices_added": "Pridané {date}",
+    "devices_unnamed": "Nepomenované zariadenie",
+    "action_remove": "Odstrániť",
+    "settings_title": "Nastavenia",
+    "settings_subtitle": "Vaše predvoľby a účet na jednom mieste.",
+    "settings_appearance": "Vzhľad",
+    "settings_language": "Jazyk",
+    "settings_languageDescription": "Zvolený jazyk sa použije aj v upozorneniach VPN.",
+    "settings_account": "Účet",
+    "settings_signOut": "Odhlásiť sa",
+    "settings_privacy": "Zásady ochrany osobných údajov",
+    "settings_terms": "Podmienky používania",
+    "settings_security": "Bezpečnosť a transparentnosť",
+    "settings_licenses": "Licencie komponentov",
+    "settings_licensesDetail": "Softvér použitý v aplikácii",
+    "settings_licensesLegalese": "Zdrojový kód aplikácie a jej komponentov s licenciou MPL-2.0: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "VPN zostane zapnutá, keď opustíte aplikáciu. Na jej zastavenie použite možnosť Odpojiť na karte Pripojenie.",
+    "theme_system": "Podľa systému",
+    "theme_light": "Svetlý",
+    "theme_dark": "Tmavý",
+    "language_system": "Jazyk telefónu",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Odstrániť toto zariadenie?",
+    "dialog_removeCurrent": "Tento telefón sa odpojí od VPN a stratí prístup. Údaje o jeho pripojení k VPN sa odstránia po potvrdení zo strany servera.",
+    "dialog_removeOther": "Prístup k VPN pre „{name}“ bude odobratý. Túto akciu nie je možné vrátiť späť.",
+    "dialog_signOut": "Odhlásiť sa?",
+    "dialog_signOutMessage": "VPN sa zastaví a budete sa musieť znova prihlásiť. Vaše šifrované kľúče VPN zostanú v tomto telefóne na ďalšie pripojenie.",
+    "action_cancel": "Zrušiť",
+    "action_close": "Zavrieť",
+    "action_copy": "Kopírovať",
+    "action_signOut": "Odhlásiť sa",
+    "notice_close": "Zavrieť správu",
+    "notice_sessionExpired_title": "Relácia vypršala",
+    "notice_sessionExpired_message": "Vaša relácia vypršala. Prihláste sa znova.",
+    "notice_connectionFailed_title": "Pripojenie zlyhalo",
+    "notice_invalidCredentials_message": "Nesprávna e-mailová adresa alebo heslo.",
+    "notice_emailVerification_title": "Vyžaduje sa potvrdenie e-mailu",
+    "notice_emailVerification_message": "Pred pridaním zariadenia VPN potvrďte svoju e-mailovú adresu.",
+    "notice_rateLimited_title": "Príliš veľa pokusov",
+    "notice_deviceLimit_title": "Dosiahnutý limit zariadení",
+    "notice_deviceLimit_message": "Pred pridaním ďalšieho zariadenia odstráňte jedno existujúce.",
+    "notice_identityRenewal_title": "Identitu VPN je potrebné obnoviť",
+    "notice_identityRenewal_message": "Táto identita bola odstránená. Vytvorte novú lokálnu identitu.",
+    "notice_migrationPending_title": "Prebieha zmena lokality",
+    "notice_migrationPending_message": "Zmena lokality už prebieha.",
+    "notice_migrationBlocked_title": "Zmena lokality je zablokovaná",
+    "notice_migrationBlocked_message": "Zmena lokality vyžaduje zásah na serveri. Skúste to neskôr alebo kontaktujte podporu.",
+    "notice_targetUnavailable_title": "Server je dočasne nedostupný",
+    "notice_targetUnavailable_message": "Tento server je dočasne nedostupný.",
+    "notice_networkUnavailable_title": "Internetové pripojenie nie je k dispozícii",
+    "notice_networkUnavailable_message": "Skontrolujte pripojenie a skúste to znova.",
+    "notice_permissionDenied_title": "Oprávnenie pre VPN bolo zamietnuté",
+    "notice_permissionDenied_message": "Spustite pripojenie znova a potvrďte žiadosť systému Android o oprávnenie.",
+    "notice_wireguardTimeout_title": "Server neodpovedá",
+    "notice_wireguardTimeout_message": "Pripojenie WireGuard trvalo príliš dlho. Skúste to znova alebo vyberte inú lokalitu.",
+    "notice_tlsFailed_title": "Zabezpečené pripojenie bolo odmietnuté",
+    "notice_tlsFailed_message": "Server neprijal pripojenie OpenVPN. Skúste to znova. Ak problém pretrváva, spustite diagnostiku.",
+    "notice_tunRejected_title": "Android odmietol rozhranie VPN",
+    "notice_tunRejected_message": "Android odmietol sieťovú konfiguráciu, ktorú požadoval OpenVPN.",
+    "notice_openvpnStart_title": "OpenVPN sa nepodarilo spustiť",
+    "notice_openvpnStart_message": "Modul OpenVPN sa nepodarilo úplne spustiť. Skúste to znova. Ak problém pretrváva, kontaktujte podporu.",
+    "notice_diagnosticCode": "Diagnostický kód: {code}",
+    "notice_generic_title": "VPN pripojenie zlyhalo",
+    "notice_generic_message": "Došlo k chybe. Skúste to neskôr.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Účet bol vytvorený} password_reset_sent{Žiadosť o obnovenie hesla bola prijatá} verification_email_sent{Overovací e-mail bol odoslaný} location_migration_pending{Prebieha zmena lokality} vpn_sign_in_required{Vyžaduje sa prihlásenie} protocol_unavailable_at_location{Protokol nie je k dispozícii} vpn_permission_denied{Oprávnenie pre VPN bolo zamietnuté} revoked_identity_device_limit{Dosiahnutý limit zariadení} tunnel_start_unexpected{VPN sa nepodarilo spustiť} flutter_disconnect_timeout{Odpojenie nebolo potvrdené} flutter_disconnect_unexpected{Nepodarilo sa odpojiť} device_revoked{Zariadenie bolo odstránené} revoke_unexpected{Zariadenie sa nepodarilo odstrániť} identity_renewal_unexpected{Identitu sa nepodarilo obnoviť} openvpn_renewal_unexpected{Profil OpenVPN sa nepodarilo obnoviť} location_migration_blocked{Zmena lokality je zablokovaná} location_migration_slow{Zmena lokality stále prebieha} location_migration_conflict{Zmenu lokality je potrebné obnoviť} location_migration_verification_failed{Zmena lokality nebola potvrdená} location_migration_device_changed{Zariadenie sa počas zmeny lokality zmenilo} tunnel_stop_failed{Zmena lokality nie je k dispozícii} device_clock_ahead{Hodiny zariadenia idú napred} other{Operácia zlyhala}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Účet bol vytvorený, ale overovací e-mail sa nepodarilo odoslať. V aplikácii použite možnosť Znova odoslať e-mail.} password_reset_sent{Vaša žiadosť bola prijatá. Ak k tejto adrese patrí účet, môžete dostať e-mail. Skontrolujte aj priečinok so spamom.} verification_email_sent{Práve bol odoslaný nový overovací e-mail.} location_migration_pending{Presun na lokalitu {target} sa stále pripravuje. Môžete v ňom pokračovať bez opätovného vytvárania zariadenia.} vpn_sign_in_required{Pred spustením VPN sa prihláste do svojho účtu.} protocol_unavailable_at_location{Vybraný protokol táto lokalita neponúka. Obnovte lokality alebo vyberte iný protokol.} vpn_permission_denied{Android zamietol oprávnenie pre VPN. Spustite pripojenie znova a potvrďte systémovú žiadosť.} revoked_identity_device_limit{Prístup k VPN pre toto zariadenie bol odobratý a dosiahli ste limit zariadení. Odstráňte zariadenie v časti Účet → Spravovať moje zariadenia.} tunnel_start_unexpected{Neočakávaná chyba prerušila prípravu tunela. Skontrolujte diagnostický kód a skúste to znova.} flutter_disconnect_timeout{Android včas nepotvrdil zastavenie VPN. Skúste ju zastaviť znova.} flutter_disconnect_unexpected{Neočakávaná chyba zabránila potvrdeniu zastavenia tunela.} device_revoked{Prístup tohto zariadenia k VPN bol odobratý a jeho lokálne tajné údaje boli odstránené.} revoke_unexpected{Zariadenie sa nepodarilo odstrániť. Obnovte zoznam a skúste to znova.} identity_renewal_unexpected{Novú identitu VPN sa nepodarilo vytvoriť. Obnovte zariadenia a skúste to znova.} openvpn_renewal_unexpected{Profil OpenVPN sa nepodarilo obnoviť. Skúste to znova alebo skontrolujte diagnostický kód.} location_migration_blocked{Server momentálne nemôže túto zmenu dokončiť. Zariadenie a jeho lokálna identita boli zachované.} location_migration_slow{Server stále pripravuje presun na lokalitu {target}. O chvíľu použite možnosť Pokračovať.} location_migration_conflict{Stav zariadenia sa na serveri zmenil. Obnovte zariadenia a potom pokračujte v zmene.} location_migration_verification_failed{Server nepotvrdil novú lokalitu. Predchádzajúca lokálna identita bola zachovaná.} location_migration_device_changed{Zariadenie vrátené serverom sa už nezhoduje so zariadením, pre ktoré sa lokalita mení. Pred ďalším pokusom obnovte zariadenia.} tunnel_stop_failed{Pred novým pripojením sa musí úplne zastaviť predchádzajúci tunel.} device_clock_ahead{Hodiny tohto zariadenia idú napred. Zapnite automatický dátum a čas, aby ste zostali prihlásení.} other{Operáciu sa nepodarilo dokončiť. Skúste to znova alebo odošlite diagnostický kód podpore.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Relácia vypršala} invalid_credentials{Prihlásenie zlyhalo} email_verification_required{Vyžaduje sa potvrdenie e-mailu} verification_email_cooldown{E-mail už bol odoslaný} rate_limited{Príliš veľa pokusov} invalid_registration{Údaje treba opraviť} email_exists{Účet už existuje} invalid_profile{Neplatný profil} invalid_device{Neplatné zariadenie} invalid_location{Lokalita nie je k dispozícii} device_limit{Dosiahnutý limit zariadení} device_exists{Identita VPN sa už používa} device_identity_revoked{Identitu VPN je potrebné obnoviť} device_location_locked{Zmenu lokality je potrebné obnoviť} location_migration_pending{Prebieha zmena lokality} location_migration_blocked{Zmena lokality je zablokovaná} target_ca_mismatch{Nekompatibilný server OpenVPN} location_migration_conflict{Zmenu lokality je potrebné obnoviť} server_full{Server je plný} capacity_unavailable{Lokalita je dočasne nedostupná} target_unavailable{Server je dočasne nedostupný} not_found{Položka sa nenašla} invalid_openvpn_csr{Neplatná identita OpenVPN} openvpn_profile_exists{Profil OpenVPN už existuje} openvpn_profile_revoked{Profil OpenVPN bol zrušený} openvpn_operation_pending{Operácia OpenVPN prebieha} openvpn_operation_terminal{Operácia OpenVPN bola prerušená} openvpn_address_unavailable{Adresa OpenVPN nie je k dispozícii} openvpn_profile_conflict{Konflikt OpenVPN} openvpn_signer_unavailable{OpenVPN nie je k dispozícii} email_delivery_unavailable{Odosielanie e-mailov nie je k dispozícii} invalid_token{Neplatný odkaz} network_unavailable{Internetové pripojenie nie je k dispozícii} invalid_json{Neplatná požiadavka} invalid_api_response{Neplatná odpoveď servera} ipv6_unavailable{IPv6 nie je k dispozícii} invalid_ip_families{Konfigurácia siete bola odmietnutá} other{Služba nie je k dispozícii}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Vaša relácia vypršala. Prihláste sa znova.} invalid_credentials{Nesprávna e-mailová adresa alebo heslo.} email_verification_required{Pred pridaním zariadenia VPN potvrďte svoju e-mailovú adresu.} invalid_registration{Skontrolujte zadané údaje a súhlasy.} email_exists{Účet s touto e-mailovou adresou už existuje.} invalid_profile{Skontrolujte údaje svojho profilu.} invalid_device{Neplatný názov alebo lokálna identita tohto zariadenia.} invalid_location{Obnovte zoznam lokalít a skúste to znova.} device_limit{Pred pridaním ďalšieho zariadenia odstráňte jedno existujúce.} device_exists{Táto identita VPN je už prepojená s iným účtom.} device_identity_revoked{Táto identita bola odstránená. Je potrebné vytvoriť novú lokálnu identitu.} device_location_locked{Lokalita tohto zariadenia sa práve zmenila. Aplikácia bude pokračovať v prebiehajúcej zmene.} location_migration_pending{Zmena lokality už prebieha.} location_migration_blocked{Zmena lokality vyžaduje zásah na serveri. Skúste to neskôr alebo kontaktujte podporu.} target_ca_mismatch{Tento server zatiaľ nie je kompatibilný s aktuálnym profilom OpenVPN.} location_migration_conflict{Obnovte zariadenia a potom skúste zmenu lokality znova.} server_full{Táto lokalita dosiahla limit pripojení. Vyberte inú lokalitu alebo to skúste neskôr.} capacity_unavailable{Momentálne sa nedá overiť, či je táto lokalita k dispozícii. Vyberte inú lokalitu alebo to skúste neskôr.} target_unavailable{Tento server je dočasne nedostupný.} not_found{Táto položka už nie je vo vašom účte k dispozícii.} invalid_openvpn_csr{Vytvorte novú identitu OpenVPN a skúste to znova.} openvpn_profile_exists{Pre toto zariadenie už existuje profil OpenVPN.} openvpn_profile_revoked{Ak chcete pokračovať, obnovte profil OpenVPN.} openvpn_operation_pending{Zmena sa ešte uplatňuje. Skúste to neskôr.} openvpn_operation_terminal{Vytvorte novú identitu OpenVPN a skúste to znova.} openvpn_address_unavailable{Momentálne nie je k dispozícii žiadna adresa OpenVPN.} openvpn_profile_conflict{Profil sa zmenil. Obnovte zariadenia a skúste to znova.} openvpn_signer_unavailable{Služba OpenVPN je dočasne nedostupná.} email_delivery_unavailable{E-mail sa nepodarilo odoslať. Skúste to neskôr.} invalid_token{Tento odkaz je neplatný alebo vypršal. Vyžiadajte si nový.} network_unavailable{Skontrolujte internetové pripojenie a skúste to znova.} invalid_json{Skontrolujte zadané údaje a skúste to znova.} invalid_api_response{Server vrátil neočakávanú odpoveď. Skúste to neskôr.} ipv6_unavailable{Server momentálne nemôže aktivovať IPv6. Skúste to neskôr.} invalid_ip_families{Konfigurácia tunela je neúplná alebo nezodpovedá povoleným adresám. Skúste to znova z aplikácie.} other{Došlo k chybe servera. Skúste to neskôr.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Skúste to znova o chvíľu.",
+    "notice_retryAfter": "{seconds, plural, one{Skúste to znova o {seconds} sekundu.} few{Skúste to znova o {seconds} sekundy.} other{Skúste to znova o {seconds} sekúnd.}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{Skúste to znova o {minutes} minútu.} few{Skúste to znova o {minutes} minúty.} other{Skúste to znova o {minutes} minút.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{Skúste to znova o {hours} hodinu.} few{Skúste to znova o {hours} hodiny.} other{Skúste to znova o {hours} hodín.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Obnovenie systémovej VPN nie je k dispozícii} system_vpn_resume_corrupt{Neplatné obnovenie systémovej VPN} system_vpn_resume_session_invalid{Neplatná relácia obnovenia VPN} system_vpn_resume_identity_changed{Identita VPN sa zmenila} system_vpn_resume_identity_invalid{Neplatná identita obnovenia VPN} system_vpn_resume_storage_failed{Úložisko obnovenia VPN nie je k dispozícii} system_vpn_resume_network_timeout{Žiadna sieť pre obnovenie VPN} system_vpn_resume_blocked{Obnovenie VPN je zablokované} system_vpn_resume_failed{Obnovenie VPN zlyhalo} system_vpn_resume_error_invalid{Neplatná chyba obnovenia VPN} wireguard_identity_store_failed{Identita WireGuard sa neuložila} wireguard_identity_unavailable{Identita WireGuard nie je k dispozícii} vpn_host_destroyed{Hostiteľ VPN v systéme Android bol zastavený} vpn_host_unavailable{Hostiteľ VPN v systéme Android nie je k dispozícii} vpn_permission_required{Vyžaduje sa oprávnenie VPN} vpn_permission_denied{Oprávnenie VPN bolo zamietnuté} vpn_permission_request_failed{Nepodarilo sa požiadať o oprávnenie} wireguard_foreground_service_unavailable{Služba WireGuard nie je k dispozícii} wireguard_identity_invalid{Neplatný lokálny kľúč WireGuard} wireguard_identity_in_use{Identita WireGuard sa už používa} wireguard_configuration_invalid{Neplatná konfigurácia WireGuard} wireguard_operation_pending{Operácia WireGuard stále prebieha} wireguard_start_failed{Spustenie WireGuard bolo odmietnuté} wireguard_stop_timeout{Zastavenie WireGuard nebolo potvrdené} wireguard_handshake_timeout{WireGuard neodpovedá} openvpn_connection_timeout{OpenVPN neodpovedá} openvpn_core_unavailable{Modul OpenVPN nie je k dispozícii} openvpn_operation_pending{Relácia OpenVPN je stále aktívna} openvpn_stop_timeout{Zastavenie OpenVPN nebolo potvrdené} openvpn_profile_unavailable{Chýba lokálny profil OpenVPN} openvpn_native_failed{Natívne volanie OpenVPN bolo prerušené} openvpn_key_generation_failed{Nepodarilo sa vytvoriť kľúč OpenVPN P-256} openvpn_csr_generation_failed{Nepodarilo sa vytvoriť CSR pre OpenVPN} openvpn_identity_store_failed{Identita OpenVPN sa neuložila} openvpn_identity_clear_failed{Odstránenie OpenVPN nebolo úplné} openvpn_identity_in_use{Identita OpenVPN sa stále používa} openvpn_tls_verification_required{Chýba overenie TLS pre OpenVPN} openvpn_cipher_invalid{Neplatná šifra OpenVPN} openvpn_profile_rejected{Profil OpenVPN bol odmietnutý} openvpn_identity_inconsistent{Nezhodná identita OpenVPN} tls_handshake_failed{Vyjednávanie OpenVPN bolo odmietnuté} tls_alert_unknown_ca{Certifikát klienta OpenVPN nebol rozpoznaný} tls_alert_bad_certificate{Certifikát klienta OpenVPN bol odmietnutý} tls_alert_unsupported_certificate{Nepodporovaný certifikát OpenVPN} tls_client_certificate_required{Vyžaduje sa certifikát klienta OpenVPN} tls_alert_misc{Výstraha TLS pre OpenVPN} tls_signature_algorithm_rejected{Nepodporovaný podpis OpenVPN} tls_handshake_rejected{Vyjednávanie TLS pre OpenVPN bolo odmietnuté} tls_version_rejected{Nekompatibilná verzia TLS pre OpenVPN} tls_certificate_expired{Platnosť certifikátu TLS vypršala} tls_certificate_revoked{Certifikát TLS bol zrušený} transport_failed{Server OpenVPN je nedostupný} tun_configuration_rejected{Nepodarilo sa vytvoriť rozhranie OpenVPN} tun_setup_failed{Nastavenie TUN pre OpenVPN zlyhalo} tun_interface_create_failed{Vytvorenie rozhrania OpenVPN zlyhalo} tun_interface_disabled{Rozhranie OpenVPN je vypnuté} tun_halted{Rozhranie OpenVPN bolo prerušené} tun_already_established{Rozhranie OpenVPN je už otvorené} tun_addresses_missing{Chýba adresa OpenVPN} tun_routes_missing{Chýbajú trasy OpenVPN} tun_dns_missing{Chýba DNS pre OpenVPN} tun_permission_revoked{Oprávnenie VPN bolo zrušené} tun_establish_returned_null{Android odmietol rozhranie VPN} openvpn_service_start_failed{Služba OpenVPN nie je k dispozícii} openvpn_operation_timeout{Prekročený časový limit volania OpenVPN} openvpn_start_failed{Spustenie OpenVPN bolo odmietnuté} openvpn_connection_failed{Pripojenie OpenVPN bolo prerušené} openvpn_core_status_error{OpenVPN Core skončil s chybou} openvpn_stopped_before_connected{OpenVPN sa zastavil pred pripojením} openvpn_auth_failed{Overenie OpenVPN bolo odmietnuté} openvpn_client_setup_failed{Nastavenie klienta OpenVPN zlyhalo} openvpn_client_halted{Klient OpenVPN bol prerušený} openvpn_client_restart{Vyžiadané reštartovanie OpenVPN} openvpn_inactive_timeout{Nečinnosť OpenVPN trvala príliš dlho} openvpn_session_expired{Relácia OpenVPN vypršala} openvpn_credentials_required{Nepodporované overenie OpenVPN} openvpn_proxy_failed{Prenos OpenVPN cez sprostredkovateľa zlyhal} openvpn_compression_failed{Kompresia OpenVPN bola odmietnutá} openvpn_ntlm_crypto_unavailable{Šifrovanie NTLM pre OpenVPN nie je k dispozícii} openvpn_feature_unsupported{Nepodporovaná funkcia OpenVPN} network_unavailable{Internetové pripojenie nie je k dispozícii} network_lost{Sieť nie je k dispozícii} certificate_validation_failed{Certifikát servera bol odmietnutý} openvpn_certificate_expired{Platnosť certifikátu OpenVPN vypršala} tunnel_active_for_another_account{Tunel iného účtu je stále aktívny} tunnel_already_active{Natívny tunel je už aktívny} tunnel_stop_timeout{Zastavenie {protocol} nebolo potvrdené} tunnel_disconnected{Pripojenie cez {protocol} bolo prerušené} native_bridge_unavailable{Prepojenie so systémom Android nie je k dispozícii} native_operation_failed{Operácia v systéme Android bola prerušená} invalid_arguments{Neúplné parametre VPN} invalid_account_id{Neplatný účet VPN} invalid_device_id{Neplatný identifikátor zariadenia} storage_key_not_allowed{Kľúč úložiska bol odmietnutý} secure_storage_read_failed{Bezpečné čítanie zlyhalo} secure_storage_write_failed{Bezpečný zápis zlyhal} key_generation_failed{Nepodarilo sa vygenerovať kľúč WireGuard} csr_generation_failed{Nepodarilo sa vygenerovať CSR pre OpenVPN} openvpn_recovery_exhausted{Automatické zotavenie OpenVPN už bolo použité} openvpn_recovery_failed{Automatické zotavenie OpenVPN zlyhalo} openvpn_renewal_required{Vyžaduje sa obnovenie certifikátu OpenVPN} other{Nezaradená natívna chyba VPN}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android nenašiel žiadnu reláciu VPN, ktorú by bolo možné obnoviť. Spustite nové pripojenie v aplikácii.} system_vpn_resume_corrupt{Uložené údaje na obnovenie VPN sú neplatné a nebudú použité. Spustite nové pripojenie.} system_vpn_resume_session_invalid{Uložená relácia už nemôže obnoviť VPN. Prihláste sa znova v aplikácii.} system_vpn_resume_identity_changed{Lokálna identita VPN sa zmenila. Obnovenie bolo zastavené. Spustite nové pripojenie.} system_vpn_resume_identity_invalid{Identita na obnovenie je neplatná. Spustite nové pripojenie.} system_vpn_resume_storage_failed{Android nemohol prečítať ani aktualizovať zašifrované údaje na obnovenie. Spustite nové pripojenie.} system_vpn_resume_network_timeout{Android nenašiel včas sieť na obnovenie VPN. Skúste to znova, keď bude sieť k dispozícii.} system_vpn_resume_blocked{Obnovenie VPN je zablokované. Skontrolujte nastavenia systému Android a potom spustite nové pripojenie.} system_vpn_resume_failed{Obnovenie VPN systémom Android zlyhalo. Spustite nové pripojenie v aplikácii.} system_vpn_resume_error_invalid{Android vrátil nepoužiteľnú chybu obnovenia. Spustite nové pripojenie.} wireguard_identity_store_failed{Android nemohol uložiť zašifrovanú identitu WireGuard tohto účtu.} wireguard_identity_unavailable{Pre toto pripojenie nie je k dispozícii žiadna použiteľná identita WireGuard.} vpn_host_destroyed{Komponent systému Android, v ktorom beží VPN, bol zastavený. Spustite nové pripojenie.} vpn_host_unavailable{Android nemôže vytvoriť komponent, v ktorom beží VPN. Skúste to znova po kontrole nastavení VPN.} openvpn_renewal_required{Certifikát pred pripojením vyžaduje úkon v aplikácii.} openvpn_recovery_failed{Automatické zotavenie zlyhalo. Spustite nové pripojenie v aplikácii.} openvpn_recovery_exhausted{Automatické zotavenie už bolo použité. Spustite nové pripojenie v aplikácii.} vpn_permission_required{Pred spustením tunela vyžaduje Android nové povolenie VPN.} vpn_permission_denied{Ak chcete pokračovať, povoľte FuzeVPN v žiadosti systému Android.} vpn_permission_request_failed{Android nemohol otvoriť obrazovku povolenia VPN.} wireguard_foreground_service_unavailable{Android nemohol udržať službu WireGuard v popredí.} wireguard_identity_invalid{Zašifrovaný kľúč WireGuard tohto účtu je nečitateľný alebo neplatný.} wireguard_identity_in_use{Kľúč WireGuard tohto účtu stále používa iná operácia.} wireguard_configuration_invalid{Prijatá adresa, DNS, kľúč servera alebo trasy pre WireGuard sú neplatné.} wireguard_operation_pending{Predchádzajúca operácia WireGuard ešte neuvoľnila svoju natívnu službu.} wireguard_start_failed{Modul WireGuard odmietol aktiváciu konfigurácie.} wireguard_stop_timeout{Služba WireGuard v stanovenom čase nepotvrdila uvoľnenie rozhrania VPN.} wireguard_handshake_timeout{Tunel v stanovenom čase nepotvrdil bezpečnú výmenu so serverom.} openvpn_connection_timeout{OpenVPN v stanovenom čase nepotvrdil pripojenie k serveru.} openvpn_core_unavailable{Táto verzia aplikácie neobsahuje použiteľný modul OpenVPN.} openvpn_operation_pending{Natívny modul stále uchováva predchádzajúcu reláciu OpenVPN a odmieta vytvoriť druhú.} openvpn_stop_timeout{OpenVPN Core v stanovenom čase nepotvrdil, že jeho natívna relácia sa zastavila a bola zrušená.} openvpn_profile_unavailable{Pre toto pripojenie sa nedá načítať žiadny overený profil OpenVPN.} openvpn_native_failed{Chyba aplikácie prerušila OpenVPN. Skúste sa pripojiť znova. Ak problém pretrváva, spustite diagnostiku.} openvpn_key_generation_failed{Android Keystore nemohol vytvoriť ani prečítať neexportovateľný súkromný kľúč P-256.} openvpn_csr_generation_failed{Kľúč v Android Keystore nemohol podpísať žiadosť o certifikát OpenVPN.} openvpn_identity_store_failed{Certifikát alebo profil OpenVPN sa nepodarilo uložiť do zašifrovaného úložiska.} openvpn_identity_clear_failed{Android nemohol odstrániť celú lokálnu identitu OpenVPN tohto účtu.} openvpn_identity_in_use{Natívna relácia OpenVPN stále používa kľúč alebo certifikát tohto zariadenia.} openvpn_tls_verification_required{Profil výslovne nevyžaduje overenie certifikátu servera.} openvpn_cipher_invalid{Server poskytol šifrovací algoritmus, ktorý nie je v zozname povolených.} openvpn_profile_rejected{Profil prijatý od servera je nekompatibilný. Vytvorte toto zariadenie nanovo a skúste to znova.} openvpn_identity_inconsistent{Certifikát nezodpovedá bezpečnej identite tohto telefónu. Nebol nahradený žiadny lokálny profil.} tls_handshake_failed{Server odmietol vyjednávanie TLS. Ak problém pretrváva, znova vytvorte profil.} tls_alert_unknown_ca{Server nerozpoznáva certifikačnú autoritu certifikátu tohto zariadenia. Je potrebné skontrolovať server OpenVPN.} tls_alert_bad_certificate{Server odmietol certifikát tohto zariadenia. Pred ďalším pokusom zariadenie znova vytvorte.} tls_alert_unsupported_certificate{Server nepodporuje typ bezpečného certifikátu, ktorý používa Android.} tls_client_certificate_required{Server vyžaduje certifikát klienta, ale OpenVPN Core ho nedokázal predložiť.} tls_alert_misc{Server vrátil výstrahu TLS mimo kategórií certifikátu a verzie.} tls_signature_algorithm_rejected{Server odmietol algoritmus ECDSA P-256 kľúča z Android Keystore.} tls_handshake_rejected{Server prerušil vyjednávanie TLS pred pripojením.} tls_version_rejected{Klient a server nenašli spoločnú verziu TLS.} tls_certificate_expired{Certifikát predložený počas pripojenia už stratil platnosť.} tls_certificate_revoked{Certifikát predložený počas pripojenia bol zrušený.} transport_failed{Server OpenVPN momentálne neodpovedá v aktuálnej sieti. Skúste to o chvíľu znova.} tun_configuration_rejected{Android odmietol sieťovú konfiguráciu, ktorú požadoval OpenVPN.} tun_setup_failed{OpenVPN Core odmietol sieťový plán pred vytvorením rozhrania v systéme Android.} tun_interface_create_failed{OpenVPN Core nemohol získať rozhranie TUN od VpnService systému Android.} tun_interface_disabled{Android alebo OpenVPN Core vypol rozhranie TUN počas pripojenia.} tun_halted{OpenVPN Core dostal žiadosť o zastavenie rozhrania TUN.} tun_already_established{OpenVPN požiadal o druhé rozhranie v rovnakom pripojení. Tunel bol z bezpečnostných dôvodov zastavený.} tun_addresses_missing{Server neposkytol použiteľnú adresu tunela.} tun_routes_missing{Server neposkytol použiteľné trasy tunela.} tun_dns_missing{Server neposkytol použiteľný server DNS.} tun_permission_revoked{Android počas pripojenia zrušil oprávnenie VPN.} tun_establish_returned_null{Android rozhranie nevytvoril, zvyčajne preto, že je stále aktívna iná VPN.} openvpn_service_start_failed{Android nemohol spustiť službu OpenVPN v popredí.} openvpn_operation_timeout{Volanie JNI na OpenVPN Core prekročilo maximálnu dobu trvania.} openvpn_start_failed{Služba systému Android je pripravená, ale OpenVPN Core neprijal spustenie profilu.} openvpn_connection_failed{OpenVPN Core sa zastavil skôr, ako vydal udalosť CONNECTED.} openvpn_core_status_error{Natívna slučka OpenVPN skončila chybou bez konkrétnejšej koncovej udalosti.} openvpn_stopped_before_connected{Natívna slučka OpenVPN sa zastavila pred pripojením bez výslovnej chyby OpenVPN Core.} openvpn_auth_failed{Server OpenVPN odmietol overenie profilu.} openvpn_client_setup_failed{OpenVPN Core nedokázal inicializovať klienta pred sieťovým pripojením.} openvpn_client_halted{OpenVPN Core dostal koncový príkaz na zastavenie klienta.} openvpn_client_restart{OpenVPN Core požiadal o reštart svojej transportnej relácie.} openvpn_inactive_timeout{OpenVPN Core ukončil reláciu po časovom limite nečinnosti.} openvpn_session_expired{Server oznámil, že relácia OpenVPN vypršala.} openvpn_credentials_required{Server alebo proxy vyžaduje interaktívne prihlasovacie údaje, ktoré nie sú súčasťou tohto certifikačného profilu.} openvpn_proxy_failed{OpenVPN Core nahlásil zlyhanie nakonfigurovaného proxy servera alebo relé.} openvpn_compression_failed{OpenVPN Core odmietol režim kompresie oznámený profilom alebo serverom.} openvpn_ntlm_crypto_unavailable{Profil vyžaduje šifrovanie NTLM, ktoré nie je v tejto verzii k dispozícii.} openvpn_feature_unsupported{Profil alebo server vyžaduje funkciu, ktorá v tomto klientovi pre Android chýba.} network_unavailable{Nie je k dispozícii žiadna použiteľná fyzická sieť.} network_lost{Tunel bol zastavený po strate siete.} certificate_validation_failed{Identitu servera OpenVPN sa nepodarilo overiť.} openvpn_certificate_expired{Pred opätovným pripojením obnovte profil OpenVPN.} tunnel_active_for_another_account{Pred týmto pripojením musí byť zastavený tunel patriaci inému účtu.} tunnel_already_active{Android hlási, že predchádzajúca relácia VPN stále používa rozhranie.} tunnel_stop_timeout{Modul {protocol} v stanovenom čase nepotvrdil uvoľnenie rozhrania VPN.} tunnel_disconnected{Natívny modul nahlásil, že tunel sa po spustení neočakávane ukončil.} native_bridge_unavailable{Aplikácia nemá prístup k službe VPN systému Android. Zatvorte aplikáciu, znova ju otvorte a skúste to znova.} native_operation_failed{Chyba aplikácie prerušila operáciu VPN. Skúste to znova. Ak problém pretrváva, spustite diagnostiku.} invalid_arguments{Informácie potrebné pre túto operáciu VPN sú neúplné. Skúste to znova. Ak problém pretrváva, spustite diagnostiku.} invalid_account_id{Natívna operácia nie je spojená s platným identifikátorom účtu.} invalid_device_id{Identifikátor zariadenia odoslaný natívnemu modulu chýba alebo je neplatný.} storage_key_not_allowed{Prepojenie so systémom Android zablokovalo kľúč, ktorý nie je v povolenom zozname úložiska.} secure_storage_read_failed{Android Keystore nedokázal dešifrovať lokálne údaje tohto účtu.} secure_storage_write_failed{Android Keystore nedokázal zašifrovať ani uložiť lokálne údaje.} key_generation_failed{Android nemohol vytvoriť ani prečítať kľúč WireGuard v zabezpečenom úložisku.} csr_generation_failed{Android Keystore nemohol vytvoriť ani podpísať žiadosť CSR P-256 pre OpenVPN.} other{Nezdokumentovaná natívna vetva zlyhala. Pošlite podpore diagnostický kód zobrazený nižšie.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Žiadosť o povolenie je už otvorená",
+    "notice_permissionRequestInProgress_message": "Žiadosť o povolenie VPN v systéme Android sa už zobrazuje. Dokončite ju a potom to skúste znova.",
+    "notice_permissionRequestInterrupted_title": "Žiadosť o povolenie VPN bola prerušená",
+    "notice_permissionRequestInterrupted_message": "Obrazovka povolenia VPN sa zavrela skôr, než aplikácia dostala odpoveď.",
+    "notice_openvpnProofMissing_title": "Pripojenie OpenVPN nebolo potvrdené",
+    "notice_openvpnProofMissing_message": "Pripojenie OpenVPN sa nepodarilo potvrdiť. Z bezpečnostných dôvodov bolo zastavené. Skúste to znova.",
+    "openvpnCleanup_title": "Profil OpenVPN bol zrušený",
+    "openvpnCleanup_working": "Zastavovanie a odstraňovanie zrušeného profilu OpenVPN…",
+    "openvpnCleanup_stopFailed": "Vypnutie OpenVPN nebolo potvrdené. Pred vytvorením nového profilu to skúste znova.",
+    "openvpnCleanup_cleanupFailed": "Zrušený profil OpenVPN sa nepodarilo úplne odstrániť. Skúste vyčistenie znova.",
+    "openvpnCleanup_complete": "Zrušený profil OpenVPN bol odstránený. Ak chcete vytvoriť nový, klepnite na tlačidlo Pripojiť.",
+    "network_title": "Konfigurácia siete",
+    "network_ipv4Fallback": "IPv6 je dočasne nedostupný. Príprava pokračuje pomocou IPv4.",
+    "network_rejectedTitle": "Konfigurácia siete bola odmietnutá",
+    "network_rejectedMessage": "Konfigurácia tunela je neúplná alebo nezodpovedá povoleným adresám. Skúste to znova z aplikácie.",
+    "network_unreadableTitle": "Lokálna konfigurácia sa nedá prečítať",
+    "network_unreadableMessage": "Uloženú konfiguráciu siete OpenVPN nie je možné použiť. Ak ju chcete aktualizovať, znova sa pripojte z aplikácie.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Ochrana siete",
+    "protection_subtitle": "Blokovať priamy prístup na internet, ak sa VPN odpojí.",
+    "protection_active": "Ochrana systému je aktívna",
+    "protection_alwaysOnOnly": "Funkcia Vždy zapnutá VPN je aktívna; zapnite blokovanie pripojení bez VPN",
+    "protection_inactive": "Ochrana systému nie je aktívna",
+    "protection_unknown": "Skontrolujte ochranu systému",
+    "protection_openSettings": "Otvoriť nastavenia systému Android",
+    "protection_dialogTitle": "Nastavenie ochrany siete",
+    "protection_dialogMessage": "Systém Android spravuje vždy zapnutú VPN a blokovanie pripojení bez VPN. Skontrolujte, či je vybraná aplikácia FuzeVPN, a v systémových nastaveniach zapnite blokovanie.",
+    "protection_dialogOpen": "Otvoriť nastavenia",
+    "session_systemProtectionNote": "Ak Android stále blokuje komunikáciu mimo VPN, otvorte systémové nastavenia a skontrolujte alebo zmeňte túto ochranu.",
+    "diagnostics_title": "Diagnostika",
+    "diagnostics_settingsTitle": "Diagnostika aplikácie",
+    "diagnostics_automaticTitle": "Odosielať dôležité chyby",
+    "diagnostics_automaticDescription": "Zdieľať krátke technické hlásenie, keď nastane dôležitá chyba.",
+    "diagnostics_privacy": "Odoslané hlásenia sa spájajú s prihláseným účtom a uchovávajú sa 30 dní. Neobsahujú históriu prehliadania, heslá ani kľúče VPN.",
+    "diagnostics_manualOpen": "Spustiť diagnostiku",
+    "diagnostics_localDescription": "Vytvorí sa hlásenie o stave aplikácie a VPN. Vaše pripojenie zostane nezmenené.",
+    "diagnostics_sendReport": "Odoslať hlásenie",
+    "diagnostics_sendHint": "Ak chcete hlásenie uchovať v tomto zariadení, nechajte toto políčko nezaškrtnuté.",
+    "diagnostics_signedOut": "Ak chcete odoslať hlásenie, prihláste sa do svojho účtu.",
+    "diagnostics_localLifetime": "Uložte toto hlásenie do telefónu, aby vám zostalo aj po zatvorení aplikácie.",
+    "diagnostics_run": "Spustiť diagnostiku",
+    "diagnostics_rerun": "Spustiť diagnostiku znova",
+    "diagnostics_running": "Kontroluje sa…",
+    "diagnostics_sending": "Odosielanie hlásenia…",
+    "diagnostics_prepared": "Hlásenie je pripravené v tomto zariadení",
+    "diagnostics_queued": "Hlásenie čaká na odoslanie",
+    "diagnostics_sent": "Hlásenie bolo prijaté",
+    "diagnostics_failed": "Odoslanie zlyhalo. Hlásenie uložené v zariadení je stále k dispozícii.",
+    "diagnostics_preparationFailed": "Diagnostické hlásenie sa nepodarilo pripraviť. Skúste to znova.",
+    "diagnostics_authenticationRequired": "Ak chcete hlásenie odoslať, prihláste sa znova.",
+    "diagnostics_retry": "Skúsiť odoslanie znova",
+    "diagnostics_export": "Uložiť hlásenie",
+    "diagnostics_exportFailed": "Hlásenie sa nepodarilo exportovať. Skúste to znova z lokálneho hlásenia.",
+    "diagnostics_preferenceFailed": "Toto nastavenie sa nepodarilo uložiť. Skúste to znova.",
+    "diagnostics_receipt": "Referenčný kód: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Prijaté {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Uchované do {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Toto hlásenie už bolo prijaté.",
+    "diagnostics_preview": "Ukážka hlásenia",
+    "diagnostics_eventCount": "{count, plural, =0{Nie sú priložené žiadne technické udalosti} =1{Je priložená 1 technická udalosť} few{Sú priložené {count} technické udalosti} other{Je priložených {count} technických udalostí}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Technické podrobnosti",
+    "diagnostics_empty": "Zatiaľ nebolo pripravené žiadne diagnostické hlásenie.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Stav tunela} handshake{Potvrdenie pripojenia} certificate{Certifikát VPN} kill_switch{Ochrana systému Android} connectivity{Dostupná sieť} api_reachability{Prístup k službe} secure_storage{Zabezpečené úložisko} other{Lokálna kontrola}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Overené} failed{Vyžaduje pozornosť} skipped{Netestované – bez aktívnej kontroly} unknown{Informácie nie sú k dispozícii} other{Informácie nie sú k dispozícii}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Vitajte vo FuzeVPN",
+    "connection_changeLocation": "Zmeniť lokalitu",
+    "connection_details": "Podrobnosti o pripojení",
+    "locations_searchLabel": "Hľadať mesto alebo krajinu",
+    "locations_clearSearch": "Vymazať vyhľadávanie",
+    "locations_filterAll": "Všetky",
+    "locations_filterFavorites": "Obľúbené",
+    "locations_results": "{count, plural, one{{count} lokalita} few{{count} lokality} other{{count} lokalít}}",
+    "locations_noResults": "Nenašli sa žiadne lokality",
+    "locations_noResultsHint": "Skúste iné mesto alebo krajinu.",
+    "locations_noFavorites": "Vaše obľúbené lokality máte vždy po ruke",
+    "locations_noFavoritesHint": "Klepnite na hviezdičku vedľa lokality a uložte ju sem.",
+    "locations_showAll": "Zobraziť všetky lokality",
+    "locations_addFavorite": "Pridať {name} medzi obľúbené",
+    "locations_removeFavorite": "Odstrániť {name} z obľúbených",
+    "locations_favoriteSaveFailed": "Obľúbenú lokalitu sa nepodarilo uložiť. Skúste to znova.",
+    "locations_emptyTitle": "Nie sú k dispozícii žiadne lokality",
+    "locations_emptyHint": "Obnovte zoznam a skúste to znova.",
+    "devices_manage": "Spravovať moje zariadenia",
+    "settings_personalization": "Prispôsobte si aplikáciu",
+    "settings_safety": "Ochrana",
+    "settings_help": "Potrebujete pomoc?",
+    "settings_about": "O aplikácii FuzeVPN",
+    "diagnostics_heading": "Zistite príčinu problému s pripojením",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Dostupné} pending{Príprava} revoked{Odstránené} expired{Platnosť vypršala} other{Stav nie je k dispozícii}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Nastavenie sa neuložilo",
+    "notice_preferenceSave_message": "Vaša voľba sa zatiaľ uplatňuje, ale nepodarilo sa ju uložiť. Skúste to znova, aby sa zachovala aj po zatvorení aplikácie.",
+    "connection_androidDisconnectHint": "Ak Android ponecháva VPN aktívnu, v nastaveniach, ktoré sa otvoria, vypnite možnosť Vždy zapnutá VPN.",
+    "protection_learnMore": "Viac o ochrane systému Android",
+    "protection_guideWhy": "Táto ochrana zabráni aplikáciám priamo používať internet, ak sa VPN odpojí. Nastavuje sa v systéme Android.",
+    "protection_guideAlwaysOnTitle": "Vždy zapnutá VPN",
+    "protection_guideAlwaysOn": "Android udržiava službu VPN v chode a po reštarte telefónu ju môže znova spustiť.",
+    "protection_guideBlockTitle": "Blokovať pripojenia bez VPN",
+    "protection_guideBlock": "Toto nastavenie zabraňuje tomu, aby komunikácia obchádzala VPN, a to aj pri prerušení pripojenia.",
+    "protection_guideWarning": "Ak je toto blokovanie zapnuté, prístup na internet zostane vypnutý, kým sa nepripojíte k VPN.",
+    "protection_guideStepsTitle": "Zapnutie ochrany",
+    "protection_guideStep1": "Tlačidlom nižšie otvorte nastavenia VPN v systéme Android.",
+    "protection_guideStep2": "Vedľa položky FuzeVPN otvorte možnosti pomocou ikony ozubeného kolieska.",
+    "protection_guideStep3": "Zapnite možnosť Vždy zapnutá VPN a potom Blokovať pripojenia bez VPN, ak sú tieto možnosti k dispozícii.",
+    "protection_guideManufacturers": "Názvy sa líšia podľa telefónu. V prípade potreby vyhľadajte VPN v nastaveniach, zvyčajne v časti Sieť a internet.",
+    "protection_guideDisableTitle": "Vypnutie tejto ochrany",
+    "protection_guideDisable": "V rovnakých nastaveniach vypnite možnosť Blokovať pripojenia bez VPN, aby ste mohli používať internet aj bez VPN. Ak už nechcete, aby ju Android znova spúšťal, vypnite aj možnosť Vždy zapnutá VPN.",
+    "protection_guideManual": "Tieto nastavenia určujete v systéme Android. Aplikácia FuzeVPN ich za vás nemení.",
+    "locations_changeTitle": "Zmeniť lokalitu?",
+    "locations_changeActive": "VPN sa odpojí a potom sa pokúsi pripojiť k lokalite {name}.",
+    "locations_changeIdle": "VPN sa pokúsi pripojiť k lokalite {name}.",
+    "locations_confirmChange": "Zmeniť a pripojiť",
+    "locations_changeBusy": "Prebieha zmena. Pred výberom inej lokality počkajte.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Automatický výber",
+    "locations_cities": "Mestá",
+    "locations_servers": "Servery",
+    "locations_viewCities": "Zobraziť mestá v krajine {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Zobraziť servery v lokalite {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} krajina} few{{count} krajiny} other{{count} krajín}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} mesto} few{{count} mestá} other{{count} miest}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} server} few{{count} servery} other{{count} serverov}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Všetky krajiny",
+    "locations_backToCountries": "Späť na krajiny",
+    "locations_backToCities": "Späť na mestá v krajine {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Vybrať {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Vybrať {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Nie je k dispozícii žiadny kompatibilný server.",
+    "externalLink_failed": "Tento odkaz sa nepodarilo otvoriť. Môžete ho skopírovať a otvoriť vo svojom prehliadači.",
+    "externalLink_copy": "Kopírovať odkaz",
+    "externalLink_copied": "Odkaz bol skopírovaný",
+    "externalLink_copyFailed": "Odkaz sa nepodarilo skopírovať. Označte adresu nižšie.",
+    "settings_deleteAccount": "Odstrániť môj účet",
+    "settings_deleteAccountDetail": "Zobraziť postup žiadosti o odstránenie účtu",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Vyberte si predplatné VPN.",
+    "billing_subscribe": "Predplatiť",
+    "billing_choosePlan": "Ak chcete pokračovať, vyberte si plán.",
+    "billing_monthly": "Mesačne",
+    "billing_yearly": "Ročne",
+    "billing_continue": "Pokračovať cez Google Play",
+    "billing_restore": "Obnoviť nákupy",
+    "billing_manage": "Spravovať predplatné",
+    "billing_deleteAccountWarning": "Ak máte predplatné cez Google Play, odstránenie účtu FuzeVPN jeho automatické obnovovanie nezruší. Obnovovanie spravujte alebo zrušte osobitne v Google Play.",
+    "billing_deleteAccountContinue": "Pokračovať k žiadosti o odstránenie účtu",
+    "billing_refresh": "Obnoviť prístup",
+    "billing_loadingPlans": "Načítavanie plánov…",
+    "billing_unavailable": "Momentálne nie sú k dispozícii žiadne plány. Skúste to neskôr.",
+    "billing_comingSoon": "Predplatné bude čoskoro k dispozícii.",
+    "billing_priceDisclosure": "Cenu poskytuje Google Play. Konečná suma a príslušné dane sa zobrazia pred vaším potvrdením.",
+    "billing_renewalMonthly": "Predplatné sa automaticky obnovuje každý mesiac, ak ho nezrušíte. Kedykoľvek ho môžete zrušiť v časti Predplatné v Google Play.",
+    "billing_renewalYearly": "Predplatné sa automaticky obnovuje každý rok, ak ho nezrušíte. Kedykoľvek ho môžete zrušiť v časti Predplatné v Google Play.",
+    "billing_active": "Váš prístup Premium je aktívny",
+    "billing_accessUntil": "Prístup do {date}.",
+    "billing_webManaged": "Vaše predplatné sa spravuje na webovej stránke FuzeVPN.",
+    "billing_playManaged": "Vaše predplatné spravuje Google Play.",
+    "billing_playOnHold": "Vaše predplatné v Google Play je pozastavené alebo čaká na platbu. Otvorte „Spravovať predplatné“ a vyriešte to v Google Play.",
+    "billing_playReceiptUnlinked": "Tento účet Google Play už má predplatné Fuze Premium, ktoré nie je aktívne pre tento účet FuzeVPN. Otvorte „Spravovať predplatné“ a pozrite si ho v Google Play.",
+    "billing_inactive": "Žiadne aktívne predplatné.",
+    "billing_checkingAccess": "Overovanie vášho prístupu…",
+    "billing_restoring": "Obnovovanie nákupov…",
+    "billing_pending": "Platba čaká na spracovanie. Váš prístup sa aktivuje po potvrdení.",
+    "billing_cancelled": "Nákup bol zrušený. Nové predplatné sa neaktivovalo.",
+    "billing_verifying": "Overovanie nákupu…",
+    "billing_success": "Predplatné je aktivované. Váš prístup Premium je pripravený.",
+    "billing_restored": "Vaše nákupy boli obnovené.",
+    "billing_restoreEmpty": "Pre tento účet Google Play nie sú žiadne nákupy na obnovenie.",
+    "billing_catalogError": "Plány sa nepodarilo načítať. Skúste to znova.",
+    "billing_purchaseError": "Nákup sa nepodarilo spustiť. Skúste to znova.",
+    "billing_verificationError": "Overenie nákupu je dočasne nedostupné. Skúste to znova pomocou možnosti Obnoviť nákupy.",
+    "billing_restoreError": "Nákupy sa nepodarilo obnoviť. Skúste to znova.",
+    "billing_managementError": "Správu predplatného sa nepodarilo otvoriť. Skúste to znova.",
+    "billing_storeUnavailable": "Google Play nie je v tomto zariadení k dispozícii.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "Vaša VPN, jednoducho.",
+    "welcome_description": "Chráňte svoje pripojenie. Majte kontrolu nad svojím súkromím.",
+    "welcome_start": "Začať",
+    "welcome_alreadyPurchased": "Už ste si zakúpili predplatné?",
+    "welcome_noAccountRequired": "Na začiatok nepotrebujete účet.",
+    "guest_accountTitle": "Účet nie je prepojený",
+    "guest_accountDescription": "Obnovte svoje nákupy pomocou rovnakého účtu Google Play, aby ste mohli predplatné používať na inom zariadení.",
+    "guest_existingSubscriberSignIn": "Už ste predplatiteľ? Prihláste sa",
+    "guest_claimTitle": "Používajte FuzeVPN všade",
+    "guest_claimDescription": "Vytvorte si účet, aby ste mali prístup k predplatnému aj na ostatných zariadeniach. Tento krok je nepovinný.",
+    "guest_skip": "Možno neskôr",
+    "guest_activationTitle": "Fuze Premium je aktívny",
+    "guest_activationDescription": "Vaše predplatné je pripravené. Používajte VPN a účet si vytvorte, kedykoľvek budete chcieť.",
+    "guest_useVpn": "Použiť VPN",
+    "guest_loginRequired": "Tento nákup je už prepojený s účtom FuzeVPN. Ak chcete získať prístup k predplatnému, prihláste sa do tohto účtu.",
+    "guest_signOutWarning": "Predplatné získate späť obnovením nákupov pomocou rovnakého účtu Google Play.",
+    "guest_profileUnavailable": "Váš účet je už prepojený. Prihláste sa, aby ste si mohli zobraziť a spravovať svoje údaje.",
+    "billing_acceptance": "Pokračovaním súhlasíte s podmienkami používania a zásadami ochrany osobných údajov.",
+    "guest_verifyEmailReminder": "Potvrďte svoju e-mailovú adresu, aby bol váš účet zabezpečený. VPN môžete ďalej používať.",
+    "guest_serviceUnavailable": "Služba je dočasne nedostupná. Skúste to o chvíľu znova.",
+    "guest_restoreError": "Vaše nákupy sa nepodarilo obnoviť. Skúste to znova s účtom Google Play, ktorý ste použili na nákup.",
+    "guest_claimSuccess": "Váš účet bol vytvorený. Vaše predplatné a prístup k VPN sú zachované.",
+    "guest_emailExists": "Táto e-mailová adresa sa už používa. Použite inú adresu alebo sa prihláste do existujúceho účtu. Váš nákup zostáva dostupný cez Google Play.",
+    "guest_claimError": "Účet sa nepodarilo vytvoriť. Môžete ďalej používať VPN a skúsiť to neskôr.",
+    "guest_secureStorageError": "Reláciu sa na tomto zariadení nepodarilo zabezpečiť. Skúste to znova.",
+    "guest_premiumRequired": "Ak chcete aktivovať VPN, vyberte si predplatné.",
+    "welcome_viewPlans": "Zobraziť plány",
+    "google_continue": "Pokračovať cez Google",
+    "google_or": "alebo",
+    "google_title": "Váš účet FuzeVPN",
+    "google_settingUp": "Dokončite vytváranie účtu",
+    "google_country": "Krajina bydliska",
+    "google_profileDescription": "Vyberte svoju krajinu a prečítajte si dva dokumenty, aby ste mohli vytvoriť účet FuzeVPN.",
+    "google_claimDescription": "Prepojte svoj hosťovský účet s účtom Google. Vaše predplatné a zariadenie zostanú priradené k tomuto účtu.",
+    "google_linkTitle": "Prepojiť účet Google s FuzeVPN",
+    "google_linkDescription": "Potvrďte prístup k svojmu existujúcemu účtu FuzeVPN. Tento krok nevyžaduje heslo k vášmu účtu Google.",
+    "google_password": "Heslo k účtu FuzeVPN",
+    "google_linkAccount": "Potvrdiť prepojenie",
+    "google_requestEmail": "Poslať mi potvrdzovací e-mail",
+    "google_emailInstructions": "Otvorte e-mail od FuzeVPN a zadajte potvrdzovací kód.",
+    "google_emailCode": "Potvrdzovací kód z e-mailu",
+    "google_confirmEmail": "Potvrdiť kód",
+    "google_restart": "Vybrať iný účet Google",
+    "google_resume": "Skontrolovať tento pokus",
+    "google_unavailable": "Prihlásenie cez Google nie je k dispozícii. Môžete použiť e-mail a heslo.",
+    "google_expired": "Tento pokus vypršal. Zrušte ho a začnite znova.",
+    "google_conflict": "Tento účet Google je už prepojený inde. Váš aktuálny účet a predplatné zostanú zachované.",
+    "google_error": "Prihlásenie cez Google zlyhalo. Skúste to znova; váš aktuálny prístup zostáva zachovaný.",
+    "google_uncertain": "Výsledok sa nepodarilo potvrdiť. Skontrolujte tento pokus alebo ho pred novým začatím zrušte.",
+    "google_cancelFailed": "Zrušenie sa nepodarilo potvrdiť. Skúste zrušenie zopakovať, skôr než opustíte túto obrazovku.",
+    "google_cancelled": "Prihlásenie cez Google bolo zrušené.",
+    "google_selecting": "Vyberte si účet Google…",
+    "google_verifying": "Kontrola vášho účtu…",
+    "google_emailUnavailable": "Potvrdzovací e-mail sa nepodarilo odoslať. Skúste to neskôr.",
+    "google_emailSent": "Potvrdzovací e-mail bol odoslaný. Skontrolujte si doručenú poštu.",
+    "google_rateLimited": "Počkajte, prosím, a skúste to znova.",
+    "google_busy": "Google nie je k dispozícii, kým prebieha iná operácia (pripojenie VPN, účet alebo hosť). Skúste to znova po jej dokončení; váš aktuálny prístup zostáva zachovaný.",
+    "google_invalidPassword": "Heslo k účtu FuzeVPN nie je správne. Váš aktuálny účet zostáva zachovaný.",
+    "google_invalidCode": "Potvrdzovací kód je neplatný alebo vypršal.",
+    "google_accountChanged": "Vaša relácia sa zmenila. Pred novým začatím zrušte tento pokus.",
+    "google_invalidResponse": "Odpoveď sa nepodarilo overiť. Váš aktuálny prístup zostáva zachovaný.",
+    "google_invalidRegistration": "Skontrolujte svoju krajinu a oba súhlasy.",
+    "google_consentRequired": "Ak chcete pokračovať, vyberte krajinu a súhlaste s oboma dokumentmi.",
+    "google_challengeRequired": "Vyžaduje sa ďalšia bezpečnostná kontrola. Váš aktuálny prístup zostáva zachovaný.",
+    "google_challengeUnavailable": "Bezpečnostná kontrola nie je k dispozícii. Skúste to neskôr.",
+    "google_intentMismatch": "Predchádzajúci pokus o prihlásenie cez Google ešte čaká na vybavenie. Pred začatím tejto operácie ho zrušte.",
+    "google_challengeBlocked": "Požadovaná bezpečnostná kontrola nie je v tejto aplikácii k dispozícii. Túto operáciu nie je momentálne možné dokončiť.",
+    "google_solveChallenge": "Dokončite bezpečnostnú kontrolu",
+    "google_challengeTitle": "Bezpečnostná kontrola",
+    "google_challengeReady": "Overenie je dokončené. Teraz môžete potvrdiť vytvorenie účtu.",
+    "google_challengeExpired": "Overenie vypršalo. Pred potvrdením ho dokončite znova.",
+    "google_challengeCancelled": "Overenie bolo zrušené. Môžete ho skúsiť znova.",
+    "google_challengeFailed": "Bezpečnostná kontrola zlyhala. Skúste to znova.",
+    "billing_trialTitle": "Vyskúšajte Fuze Premium zadarmo",
+    "billing_trialSubtitle": "Chráňte svoje pripojenie už dnes.",
+    "billing_trialWeeks": "2-týždňová bezplatná skúšobná verzia",
+    "billing_trialDays": "{days}-dňová bezplatná skúšobná verzia",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Spustiť bezplatnú skúšobnú verziu",
+    "billing_trialFirstCharge": "Ak začnete dnes, prvá platba by mala prebehnúť {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Automaticky sa obnovuje za uvedenú cenu. Ak sa chcete vyhnúť poplatku, zrušte predplatné v Google Play pred koncom skúšobnej verzie.",
+    "billing_trialThenMonthly": "Potom {price} mesačne",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Potom {price} ročne",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Vyberte si plán",
+    "billing_selectionHint": "Ak chcete pokračovať, vyberte plán.",
+    "billing_benefitConnection": "Šifrované pripojenie",
+    "billing_benefitPrivacy": "Ochrana súkromia online",
+    "billing_benefitNoAccount": "Registrácia nie je potrebná",
+    "billing_cancellation": "Zrušenie v Google Play",
+    "billing_premiumTitle": "Lepšie chránené pripojenie.",
+    "billing_premiumSubtitle": "Chráňte svoje pripojenie vlastným tempom.",
+    "billing_priceMonthly": "mesačne",
+    "billing_priceYearly": "ročne",
+    "billing_trialToday": "Dnes nič neplatíte",
+    "billing_trialConfirmation": "Pred vaším potvrdením Google Play zobrazí dátumy, konečnú sumu a príslušné dane.",
+    "billing_offerChanged": "Podmienky tejto ponuky sa zmenili. Obnovte plány a vyberte si znova.",
+    "status_waitingNetwork": "Čakanie na sieť",
+    "status_waitingNetworkDetail": "Žiadna sieť nie je k dispozícii. Keď sa sieť obnoví, VPN overí pripojenie.",
+    "locations_favoriteLoadFailed": "Obľúbené položky sa nepodarilo načítať. Skúste to znova.",
+    "locations_favoritesLoading": "Načítavanie obľúbených položiek…"
+  },
+  "android": {
+    "vpn_notification_channel": "VPN pripojenie",
+    "vpn_notification_channel_description": "Zobrazuje, kedy je pripojenie FuzeVPN aktívne.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "Pripojenie %1$s je aktívne",
+    "vpn_notification_connecting": "Prebieha pripojenie %1$s",
+    "vpn_notification_disconnecting": "Odpájanie %1$s",
+    "vpn_notification_interrupted": "Pripojenie %1$s bolo prerušené",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Pripravené · %1$s · %2$s",
+    "vpn_tile_connected": "Pripojené · %1$s · %2$s",
+    "vpn_tile_connecting": "Pripájanie %1$s…",
+    "vpn_tile_disconnecting": "Odpájanie…",
+    "vpn_tile_interrupted": "Prerušené · %1$s",
+    "vpn_tile_setup_required": "Najprv otvorte aplikáciu",
+    "vpn_tile_working": "Prebieha operácia VPN…",
+    "vpn_notification_reconnecting": "Opätovné pripájanie… · %1$s",
+    "vpn_system_action_required": "Vyžaduje sa zásah v nastaveniach systému Android",
+    "vpn_tile_reconnecting": "Opätovné pripájanie… · %1$s",
+    "vpn_notification_waiting_network": "Čaká sa na sieť · %1$s",
+    "vpn_tile_waiting_network": "Čaká sa na sieť · %1$s"
+  },
+  "countries": {
+    "AC": "Ascension",
+    "AD": "Andorra",
+    "AE": "Spojené arabské emiráty",
+    "AF": "Afganistan",
+    "AG": "Antigua a Barbuda",
+    "AI": "Anguilla",
+    "AL": "Albánsko",
+    "AM": "Arménsko",
+    "AO": "Angola",
+    "AQ": "Antarktída",
+    "AR": "Argentína",
+    "AS": "Americká Samoa",
+    "AT": "Rakúsko",
+    "AU": "Austrália",
+    "AW": "Aruba",
+    "AX": "Alandy",
+    "AZ": "Azerbajdžan",
+    "BA": "Bosna a Hercegovina",
+    "BB": "Barbados",
+    "BD": "Bangladéš",
+    "BE": "Belgicko",
+    "BF": "Burkina Faso",
+    "BG": "Bulharsko",
+    "BH": "Bahrajn",
+    "BI": "Burundi",
+    "BJ": "Benin",
+    "BL": "Svätý Bartolomej",
+    "BM": "Bermudy",
+    "BN": "Brunej",
+    "BO": "Bolívia",
+    "BQ": "Karibské Holandsko",
+    "BR": "Brazília",
+    "BS": "Bahamy",
+    "BT": "Bhután",
+    "BV": "Bouvetov ostrov",
+    "BW": "Botswana",
+    "BY": "Bielorusko",
+    "BZ": "Belize",
+    "CA": "Kanada",
+    "CC": "Kokosové ostrovy",
+    "CD": "Konžská demokratická republika",
+    "CF": "Stredoafrická republika",
+    "CG": "Konžská republika",
+    "CH": "Švajčiarsko",
+    "CI": "Pobrežie Slonoviny",
+    "CK": "Cookove ostrovy",
+    "CL": "Čile",
+    "CM": "Kamerun",
+    "CN": "Čína",
+    "CO": "Kolumbia",
+    "CP": "Clipperton",
+    "CQ": "Sark",
+    "CR": "Kostarika",
+    "CU": "Kuba",
+    "CV": "Kapverdy",
+    "CW": "Curaçao",
+    "CX": "Vianočný ostrov",
+    "CY": "Cyprus",
+    "CZ": "Česko",
+    "DE": "Nemecko",
+    "DG": "Diego Garcia",
+    "DJ": "Džibutsko",
+    "DK": "Dánsko",
+    "DM": "Dominika",
+    "DO": "Dominikánska republika",
+    "DZ": "Alžírsko",
+    "EA": "Ceuta a Melilla",
+    "EC": "Ekvádor",
+    "EE": "Estónsko",
+    "EG": "Egypt",
+    "EH": "Západná Sahara",
+    "ER": "Eritrea",
+    "ES": "Španielsko",
+    "ET": "Etiópia",
+    "EU": "Európska únia",
+    "EZ": "eurozóna",
+    "FI": "Fínsko",
+    "FJ": "Fidži",
+    "FK": "Falklandy",
+    "FM": "Mikronézia",
+    "FO": "Faerské ostrovy",
+    "FR": "Francúzsko",
+    "GA": "Gabon",
+    "GB": "Spojené kráľovstvo",
+    "GD": "Grenada",
+    "GE": "Gruzínsko",
+    "GF": "Francúzska Guyana",
+    "GG": "Guernsey",
+    "GH": "Ghana",
+    "GI": "Gibraltár",
+    "GL": "Grónsko",
+    "GM": "Gambia",
+    "GN": "Guinea",
+    "GP": "Guadeloupe",
+    "GQ": "Rovníková Guinea",
+    "GR": "Grécko",
+    "GS": "Južná Georgia a Južné Sandwichove ostrovy",
+    "GT": "Guatemala",
+    "GU": "Guam",
+    "GW": "Guinea-Bissau",
+    "GY": "Guyana",
+    "HK": "Hongkong – OAO Číny",
+    "HM": "Heardov ostrov a Macdonaldove ostrovy",
+    "HN": "Honduras",
+    "HR": "Chorvátsko",
+    "HT": "Haiti",
+    "HU": "Maďarsko",
+    "IC": "Kanárske ostrovy",
+    "ID": "Indonézia",
+    "IE": "Írsko",
+    "IL": "Izrael",
+    "IM": "Ostrov Man",
+    "IN": "India",
+    "IO": "Britské indickooceánske územie",
+    "IQ": "Irak",
+    "IR": "Irán",
+    "IS": "Island",
+    "IT": "Taliansko",
+    "JE": "Jersey",
+    "JM": "Jamajka",
+    "JO": "Jordánsko",
+    "JP": "Japonsko",
+    "KE": "Keňa",
+    "KG": "Kirgizsko",
+    "KH": "Kambodža",
+    "KI": "Kiribati",
+    "KM": "Komory",
+    "KN": "Svätý Krištof a Nevis",
+    "KP": "Severná Kórea",
+    "KR": "Južná Kórea",
+    "KW": "Kuvajt",
+    "KY": "Kajmanie ostrovy",
+    "KZ": "Kazachstan",
+    "LA": "Laos",
+    "LB": "Libanon",
+    "LC": "Svätá Lucia",
+    "LI": "Lichtenštajnsko",
+    "LK": "Srí Lanka",
+    "LR": "Libéria",
+    "LS": "Lesotho",
+    "LT": "Litva",
+    "LU": "Luxembursko",
+    "LV": "Lotyšsko",
+    "LY": "Líbya",
+    "MA": "Maroko",
+    "MC": "Monako",
+    "MD": "Moldavsko",
+    "ME": "Čierna Hora",
+    "MF": "Svätý Martin (fr.)",
+    "MG": "Madagaskar",
+    "MH": "Marshallove ostrovy",
+    "MK": "Severné Macedónsko",
+    "ML": "Mali",
+    "MM": "Mjanmarsko",
+    "MN": "Mongolsko",
+    "MO": "Macao – OAO Číny",
+    "MP": "Severné Mariány",
+    "MQ": "Martinik",
+    "MR": "Mauritánia",
+    "MS": "Montserrat",
+    "MT": "Malta",
+    "MU": "Maurícius",
+    "MV": "Maldivy",
+    "MW": "Malawi",
+    "MX": "Mexiko",
+    "MY": "Malajzia",
+    "MZ": "Mozambik",
+    "NA": "Namíbia",
+    "NC": "Nová Kaledónia",
+    "NE": "Niger",
+    "NF": "Norfolk",
+    "NG": "Nigéria",
+    "NI": "Nikaragua",
+    "NL": "Holandsko",
+    "NO": "Nórsko",
+    "NP": "Nepál",
+    "NR": "Nauru",
+    "NU": "Niue",
+    "NZ": "Nový Zéland",
+    "OM": "Omán",
+    "PA": "Panama",
+    "PE": "Peru",
+    "PF": "Francúzska Polynézia",
+    "PG": "Papua-Nová Guinea",
+    "PH": "Filipíny",
+    "PK": "Pakistan",
+    "PL": "Poľsko",
+    "PM": "Saint Pierre a Miquelon",
+    "PN": "Pitcairnove ostrovy",
+    "PR": "Portoriko",
+    "PS": "Palestínske územia",
+    "PT": "Portugalsko",
+    "PW": "Palau",
+    "PY": "Paraguaj",
+    "QA": "Katar",
+    "QO": "ostatné Tichomorie",
+    "RE": "Réunion",
+    "RO": "Rumunsko",
+    "RS": "Srbsko",
+    "RU": "Rusko",
+    "RW": "Rwanda",
+    "SA": "Saudská Arábia",
+    "SB": "Šalamúnove ostrovy",
+    "SC": "Seychely",
+    "SD": "Sudán",
+    "SE": "Švédsko",
+    "SG": "Singapur",
+    "SH": "Svätá Helena",
+    "SI": "Slovinsko",
+    "SJ": "Svalbard a Jan Mayen",
+    "SK": "Slovensko",
+    "SL": "Sierra Leone",
+    "SM": "San Maríno",
+    "SN": "Senegal",
+    "SO": "Somálsko",
+    "SR": "Surinam",
+    "SS": "Južný Sudán",
+    "ST": "Svätý Tomáš a Princov ostrov",
+    "SV": "Salvádor",
+    "SX": "Svätý Martin (hol.)",
+    "SY": "Sýria",
+    "SZ": "Eswatini",
+    "TA": "Tristan da Cunha",
+    "TC": "Turks a Caicos",
+    "TD": "Čad",
+    "TF": "Francúzske južné a antarktické územia",
+    "TG": "Togo",
+    "TH": "Thajsko",
+    "TJ": "Tadžikistan",
+    "TK": "Tokelau",
+    "TL": "Východný Timor",
+    "TM": "Turkménsko",
+    "TN": "Tunisko",
+    "TO": "Tonga",
+    "TR": "Turecko",
+    "TT": "Trinidad a Tobago",
+    "TV": "Tuvalu",
+    "TW": "Taiwan",
+    "TZ": "Tanzánia",
+    "UA": "Ukrajina",
+    "UG": "Uganda",
+    "UM": "Menšie odľahlé ostrovy USA",
+    "UN": "Organizácia Spojených národov",
+    "US": "Spojené štáty",
+    "UY": "Uruguaj",
+    "UZ": "Uzbekistan",
+    "VA": "Vatikán",
+    "VC": "Svätý Vincent a Grenadíny",
+    "VE": "Venezuela",
+    "VG": "Britské Panenské ostrovy",
+    "VI": "Americké Panenské ostrovy",
+    "VN": "Vietnam",
+    "VU": "Vanuatu",
+    "WF": "Wallis a Futuna",
+    "WS": "Samoa",
+    "XA": "falošná diakritika",
+    "XB": "obrátenie sprava doľava",
+    "XK": "Kosovo",
+    "YE": "Jemen",
+    "YT": "Mayotte",
+    "ZA": "Južná Afrika",
+    "ZM": "Zambia",
+    "ZW": "Zimbabwe",
+    "ZZ": "neznámy región"
+  }
+}

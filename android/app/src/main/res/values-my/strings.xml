@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN ချိတ်ဆက်မှု</string>
+    <string name="vpn_notification_channel_description">FuzeVPN ချိတ်ဆက်မှု အလုပ်လုပ်နေချိန်ကို ပြသသည်။</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s ချိတ်ဆက်မှု အလုပ်လုပ်နေသည်</string>
+    <string name="vpn_notification_connecting">%1$s ချိတ်ဆက်နေသည်</string>
+    <string name="vpn_notification_disconnecting">%1$s ချိတ်ဆက်မှု ဖြတ်နေသည်</string>
+    <string name="vpn_notification_interrupted">%1$s ချိတ်ဆက်မှု ပြတ်တောက်သွားသည်</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">အဆင်သင့် · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">ချိတ်ဆက်ထားသည် · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s ချိတ်ဆက်နေသည်…</string>
+    <string name="vpn_tile_disconnecting">ချိတ်ဆက်မှု ဖြတ်နေသည်…</string>
+    <string name="vpn_tile_interrupted">%1$s ပြတ်တောက်သွားသည်</string>
+    <string name="vpn_tile_setup_required">အက်ပ်ကို အရင်ဖွင့်ပါ</string>
+    <string name="vpn_tile_working">VPN လုပ်ဆောင်နေသည်…</string>
+    <string name="vpn_notification_reconnecting">ပြန်ချိတ်ဆက်နေသည်… · %1$s</string>
+    <string name="vpn_system_action_required">Android ဆက်တင်များတွင် လုပ်ဆောင်ရန် လိုအပ်သည်</string>
+    <string name="vpn_tile_reconnecting">ပြန်ချိတ်ဆက်နေသည်… · %1$s</string>
+    <string name="vpn_notification_waiting_network">ကွန်ရက်ကို စောင့်နေသည် · %1$s</string>
+    <string name="vpn_tile_waiting_network">ကွန်ရက်ကို စောင့်နေသည် · %1$s</string>
+</resources>

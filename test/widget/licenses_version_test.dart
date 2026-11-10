@@ -14,6 +14,7 @@ import 'package:fuzevpn_android/core/repositories.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/l10n/app_copy.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 
@@ -78,8 +79,7 @@ void main() {
                   locale: locale,
                   supportedLocales: AppLanguages.supportedLocales,
                   localeListResolutionCallback: AppLanguages.resolve,
-                  localizationsDelegates:
-                      AppLocalizations.localizationsDelegates,
+                  localizationsDelegates: AppLocalizationDelegates.all,
                   theme: FuzeVpnTheme.light(),
                   home: HomeShell(controller: h.controller),
                 ),

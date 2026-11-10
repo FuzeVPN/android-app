@@ -1,0 +1,745 @@
+{
+  "vpnDisclosure_title": "Ulanishingizni himoya qiling",
+  "vpnDisclosure_body": "FuzeVPN ushbu qurilma bilan FuzeVPN serverlari oʻrtasida shifrlangan tunnel yaratish uchun Android’ning VPN xizmatidan (VpnService) foydalanadi.",
+  "vpnDisclosure_dataBody": "VPN faol boʻlganda, ilovalaringizning Internet trafigi, maqsad manzillari va DNS soʻrovlari ulanishingizni yoʻnaltirish uchun shu tunnel orqali oʻtadi, hatto FuzeVPN fonda ishlayotgan boʻlsa ham.",
+  "vpnDisclosure_statusBody": "Ilova VPN ulanishingizni koʻrsatish uchun ulanish holati, uning davomiyligi va uzatilgan maʼlumot hajmidan foydalanadi. Uni istalgan vaqtda toʻxtatishingiz mumkin.",
+  "vpnDisclosure_privacy": "Maxfiylik",
+  "vpnDisclosure_accept": "Qabul qilish va davom etish",
+  "vpnDisclosure_decline": "Hozir emas",
+  "accountRestoration_title": "Hisob vaqtincha mavjud emas",
+  "accountRestoration_message": "Seansingiz saqlab qolindi. Hisobingizni tiklash uchun qayta urinib koʻring. VPN ulanishini bu yerda hamon boshqarishingiz mumkin.",
+  "action_retry": "Qayta urinish",
+  "session_endingTitle": "Seans yakunlanmoqda",
+  "session_ending": "Seans yakunlanmoqda: VPN toʻxtatilmoqda va tozalanmoqda…",
+  "session_stopFailed": "VPN’ning toʻxtatilishi tasdiqlanmadi. Hisobga yana kirishdan oldin qayta urinib koʻring.",
+  "session_cleanupFailed": "VPN toʻxtatildi, ammo seansni oʻchirish tasdiqlanmadi. Tozalashni takrorlang.",
+  "session_retryStop": "Toʻxtatishni takrorlash",
+  "session_retryCleanup": "Tozalashni takrorlash",
+  "@@locale": "uz",
+  "appTitle": "FuzeVPN",
+  "startup": "FuzeVPN xavfsiz tayyorlanmoqda…",
+  "nav_connection": "Ulanish",
+  "nav_locations": "Joylashuvlar",
+  "nav_account": "Hisob",
+  "nav_devices": "Qurilmalar",
+  "nav_settings": "Sozlamalar",
+  "action_refresh": "Yangilash",
+  "auth_tab_login": "Hisobga kirish",
+  "auth_tab_register": "Roʻyxatdan oʻtish",
+  "auth_stepAccount": "Hisob",
+  "auth_stepIdentity": "Shaxsiy maʼlumot",
+  "auth_stepAddress": "Manzil va roziliklar",
+  "auth_stepProgress": "{total} qadamdan {current}-qadam",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "VPN’ingiz — sodda va qulay.",
+  "auth_keysLocal": "Shaxsiy VPN kalitlaringiz shu qurilmada saqlanadi.",
+  "form_email": "E-pochta manzili",
+  "form_password": "Parol",
+  "form_showPassword": "Parolni koʻrsatish",
+  "form_hidePassword": "Parolni yashirish",
+  "form_passwordMin": "8–72 ta UTF-8 bayt. Baʼzi belgilar bir necha bayt egallaydi.",
+  "form_firstName": "Ism",
+  "form_lastName": "Familiya",
+  "form_phone": "Telefon raqami (+33612345678)",
+  "form_address": "Manzil",
+  "form_address2": "Manzilning 2-qatori (ixtiyoriy)",
+  "form_postalCode": "Pochta indeksi",
+  "form_city": "Shahar",
+  "form_country": "Mamlakat kodi (masalan, FR)",
+  "action_login": "Hisobga kirish",
+  "action_createAccount": "Hisob yaratish",
+  "action_createMyAccount": "Hisobimni yaratish",
+  "action_next": "Davom etish",
+  "action_previous": "Orqaga",
+  "action_forgotPassword": "Parolni unutdingizmi?",
+  "auth_noAccount": "Hali hisobingiz yoʻqmi?",
+  "auth_requiredInformation": "Hisobingizni uch qadamda yarating.",
+  "auth_termsPrefix": "Men ",
+  "auth_termsLink": "foydalanish shartlarini qabul qilaman",
+  "auth_privacyPrefix": "Men ",
+  "auth_privacyLink": "maxfiylik siyosatini qabul qilaman",
+  "auth_consentRequired": "Hisob yaratish uchun roziligingiz talab qilinadi.",
+  "validation_required": "Bu maydon toʻldirilishi shart.",
+  "validation_email": "Toʻgʻri e-pochta manzilini kiriting.",
+  "validation_password": "Parol juda qisqa: kamida 8 ta UTF-8 bayt boʻlishi kerak.",
+  "validation_passwordTooLong": "Parol juda uzun: eng koʻpi bilan 72 ta UTF-8 bayt boʻlishi kerak.",
+  "validation_phone": "Xalqaro formatdan foydalaning, masalan, +33612345678.",
+  "validation_country": "Ikki harfli mamlakat kodidan foydalaning, masalan, FR.",
+  "passwordReset_title": "Parolni tiklash",
+  "passwordReset_description": "Parolni tiklash havolasini olish uchun hisobingizga bogʻlangan e-pochta manzilini kiriting.",
+  "passwordReset_send": "Havolani yuborish",
+  "connection_title": "Ulanishingiz",
+  "connection_subtitle": "Joylashuvni tanlang, soʻng VPN’ni yoqing.",
+  "connection_prepare": "Ulanishga tayyormisiz?",
+  "connection_advancedOptions": "Qoʻshimcha sozlamalar",
+  "connection_location": "Joylashuv",
+  "connection_chooseLocation": "Joylashuvni tanlang",
+  "connection_protocol": "Protokol",
+  "connection_connect": "Ulanish",
+  "connection_connecting": "Ulanmoqda…",
+  "connection_disconnect": "Uzish",
+  "connection_disconnecting": "Uzilmoqda",
+  "connection_locationChange": "Joylashuv oʻzgartirilmoqda…",
+  "connection_unavailable": "{protocol} mavjud emas",
+  "connection_activeLocation": "Faol joylashuv",
+  "connection_duration": "Davomiyligi",
+  "connection_received": "Qabul qilingan",
+  "connection_sent": "Yuborilgan",
+  "connection_lastHandshake": "Oxirgi xavfsiz almashinuv",
+  "connection_handshakeAgo": "{duration} oldin",
+  "verification_title": "E-pochta manzilingizni tasdiqlang",
+  "verification_message": "Bu telefonda VPN’dan foydalanish uchun e-pochta manzilingizni tasdiqlang.",
+  "verification_resend": "Xatni qayta yuborish",
+  "migration_title": "Joylashuvni oʻzgartirish",
+  "migration_draining": "Joylashuvni oʻzgartirish tayyorlanmoqda…",
+  "migration_activating": "Yangi server faollashtirilmoqda…",
+  "migration_ready": "Joylashuv yangilandi.",
+  "migration_blocked": "Joylashuvni oʻzgartirish uchun server aralashuvi talab qilinadi. Keyinroq qayta urinib koʻring yoki qoʻllab-quvvatlash xizmatiga murojaat qiling.",
+  "migration_progress": "Joylashuvni oʻzgartirish jarayoni",
+  "migration_retryDelay": "Tekshiruvlar oraligʻi: {seconds} s.",
+  "migration_resume": "Davom ettirish",
+  "status_authorizing": "Ruxsat talab qilinadi",
+  "status_authorizingDetail": "VPN’ga ruxsat berish uchun Android soʻrovini qabul qiling.",
+  "status_preparing": "Tayyorlanmoqda",
+  "status_preparingDetail": "Xavfsiz ulanishingiz tayyorlanmoqda.",
+  "status_reconnecting": "Qayta ulanmoqda…",
+  "status_reconnectingDetail": "Ulanish uzildi. VPN qayta ulanishga urinmoqda.",
+  "status_connecting": "Ulanmoqda",
+  "status_connectingDetail": "VPN serveriga ulanmoqda…",
+  "status_connected": "Ulangan",
+  "status_connectedDetail": "VPN ulanishingiz faol.",
+  "status_disconnecting": "Uzilmoqda",
+  "status_disconnectingDetail": "VPN ulanishingiz toʻxtatilmoqda.",
+  "status_error": "Ulanish mavjud emas",
+  "status_errorDetail": "VPN ulanishi tasdiqlanmadi. Qayta urinib koʻring.",
+  "status_idle": "Uzilgan",
+  "status_idleDetail": "Ulanishingizni himoya qilish uchun VPN’ga ulaning.",
+  "trust_note": "Ilovani yopish VPN’ni toʻxtatmaydi. Uni toʻxtatish uchun Uzish tugmasidan foydalaning.",
+  "locations_none": "Hozircha mavjud joylashuvlar yoʻq.",
+  "locations_available": "Keyingi joylashuvingizni tanlang.",
+  "locations_selected": "Tanlangan joylashuv",
+  "locations_select": "Bu joylashuvni tanlash",
+  "locations_lockedTunnel": "Joylashuvni oʻzgartirish uchun VPN’ni uzing.",
+  "locations_lockedMigration": "Joylashuvni oʻzgartirish tugashini kuting.",
+  "devices_title": "Qurilmalaringiz",
+  "devices_used": "{count} / {limit} ta qurilma",
+  "devices_refresh": "Qurilmalarni yangilash",
+  "devices_empty": "Hali hech qanday VPN qurilmasi roʻyxatdan oʻtmagan.",
+  "devices_firstConnection": "Telefoningiz birinchi ulanishda qoʻshiladi.",
+  "devices_thisDevice": "Bu qurilma",
+  "devices_added": "{date} kuni qoʻshilgan",
+  "devices_unnamed": "Nomsiz qurilma",
+  "action_remove": "Olib tashlash",
+  "settings_title": "Sozlamalar",
+  "settings_subtitle": "Sozlamalaringiz va hisobingiz — bir joyda.",
+  "settings_appearance": "Koʻrinish",
+  "settings_language": "Til",
+  "settings_languageDescription": "Tanlangan til VPN bildirishnomalariga ham qoʻllanadi.",
+  "settings_account": "Hisob",
+  "settings_signOut": "Hisobdan chiqish",
+  "settings_privacy": "Maxfiylik siyosati",
+  "settings_terms": "Foydalanish shartlari",
+  "settings_security": "Xavfsizlik va shaffoflik",
+  "settings_licenses": "Komponent litsenziyalari",
+  "settings_licensesDetail": "Ilovada ishlatilgan dasturiy taʼminot",
+  "settings_licensesLegalese": "Ilova va uning MPL-2.0 komponentlarining manba kodi: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_background": "Ilovadan chiqqaningizda ham VPN ishlashda davom etadi. Uni toʻxtatish uchun Ulanish boʻlimidagi Uzish tugmasidan foydalaning.",
+  "theme_system": "Tizim",
+  "theme_light": "Yorugʻ",
+  "theme_dark": "Qorongʻi",
+  "language_system": "Telefon tili",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Bu qurilmani olib tashlaysizmi?",
+  "dialog_removeCurrent": "Bu telefon VPN’dan uziladi va kirish huquqini yoʻqotadi. Uning VPN ulanish maʼlumotlari server tasdiqlaganidan soʻng oʻchiriladi.",
+  "dialog_removeOther": "“{name}” uchun VPN kirish huquqi bekor qilinadi. Bu amalni qaytarib boʻlmaydi.",
+  "dialog_signOut": "Hisobdan chiqasizmi?",
+  "dialog_signOutMessage": "VPN toʻxtaydi va hisobingizga qaytadan kirishingiz kerak boʻladi. Shifrlangan VPN kalitlaringiz keyingi ulanish uchun shu telefonda qoladi.",
+  "action_cancel": "Bekor qilish",
+  "action_close": "Yopish",
+  "action_copy": "Nusxa olish",
+  "action_signOut": "Hisobdan chiqish",
+  "notice_close": "Xabarni yopish",
+  "notice_sessionExpired_title": "Seans muddati tugadi",
+  "notice_sessionExpired_message": "Seansingiz muddati tugadi. Qaytadan hisobga kiring.",
+  "notice_connectionFailed_title": "Ulanib boʻlmadi",
+  "notice_invalidCredentials_message": "E-pochta manzili yoki parol notoʻgʻri.",
+  "notice_emailVerification_title": "E-pochtani tasdiqlash talab qilinadi",
+  "notice_emailVerification_message": "VPN qurilmasini qoʻshishdan oldin e-pochta manzilingizni tasdiqlang.",
+  "notice_rateLimited_title": "Urinishlar juda koʻp",
+  "notice_deviceLimit_title": "Qurilmalar limitiga yetildi",
+  "notice_deviceLimit_message": "Yangi qurilma qoʻshishdan oldin mavjud qurilmalardan birini olib tashlang.",
+  "notice_identityRenewal_title": "VPN identifikatori yangilanishi kerak",
+  "notice_identityRenewal_message": "Bu identifikator olib tashlandi. Yangi mahalliy identifikator yarating.",
+  "notice_migrationPending_title": "Joylashuvni oʻzgartirish davom etmoqda",
+  "notice_migrationPending_message": "Joylashuvni oʻzgartirish allaqachon davom etmoqda.",
+  "notice_migrationBlocked_title": "Joylashuvni oʻzgartirish bloklandi",
+  "notice_migrationBlocked_message": "Joylashuvni oʻzgartirish uchun server aralashuvi talab qilinadi. Keyinroq qayta urinib koʻring yoki qoʻllab-quvvatlash xizmatiga murojaat qiling.",
+  "notice_targetUnavailable_title": "Server vaqtincha mavjud emas",
+  "notice_targetUnavailable_message": "Bu server vaqtincha mavjud emas.",
+  "notice_networkUnavailable_title": "Internet ulanishi mavjud emas",
+  "notice_networkUnavailable_message": "Ulanishingizni tekshirib, qayta urinib koʻring.",
+  "notice_permissionDenied_title": "VPN uchun ruxsat rad etildi",
+  "notice_permissionDenied_message": "Ulanishni qaytadan boshlang va Android ruxsat soʻrovini qabul qiling.",
+  "notice_wireguardTimeout_title": "Server javob bermayapti",
+  "notice_wireguardTimeout_message": "WireGuard ulanishi juda uzoq davom etdi. Qayta urinib koʻring yoki boshqa joylashuvni tanlang.",
+  "notice_tlsFailed_title": "Xavfsiz ulanish rad etildi",
+  "notice_tlsFailed_message": "Server OpenVPN ulanishini qabul qilmadi. Qayta urinib koʻring. Muammo davom etsa, diagnostikani ishga tushiring.",
+  "notice_tunRejected_title": "Android VPN interfeysini rad etdi",
+  "notice_tunRejected_message": "Android OpenVPN soʻragan tarmoq sozlamalarini rad etdi.",
+  "notice_openvpnStart_title": "OpenVPN ishga tushmadi",
+  "notice_openvpnStart_message": "OpenVPN dvigateli ishga tushishni yakunlay olmadi. Qayta urinib koʻring. Muammo davom etsa, qoʻllab-quvvatlash xizmatiga murojaat qiling.",
+  "notice_diagnosticCode": "Diagnostika kodi: {code}",
+  "notice_generic_title": "VPN’ga ulanib boʻlmadi",
+  "notice_generic_message": "Xatolik yuz berdi. Keyinroq qayta urinib koʻring.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Hisob yaratildi} password_reset_sent{Parolni tiklash soʻrovi qabul qilindi} verification_email_sent{Tasdiqlash xati yuborildi} location_migration_pending{Joylashuvni oʻzgartirish davom etmoqda} vpn_sign_in_required{Hisobga kirish talab qilinadi} protocol_unavailable_at_location{Protokol mavjud emas} vpn_permission_denied{VPN uchun ruxsat rad etildi} revoked_identity_device_limit{Qurilmalar limitiga yetildi} tunnel_start_unexpected{VPN ishga tushmadi} flutter_disconnect_timeout{Uzilish tasdiqlanmadi} flutter_disconnect_unexpected{Uzib boʻlmadi} device_revoked{Qurilma olib tashlandi} revoke_unexpected{Qurilmani olib tashlab boʻlmadi} identity_renewal_unexpected{Identifikatorni yangilab boʻlmadi} openvpn_renewal_unexpected{OpenVPN’ni yangilab boʻlmadi} location_migration_blocked{Joylashuvni oʻzgartirish bloklandi} location_migration_slow{Joylashuvni oʻzgartirish hali davom etmoqda} location_migration_conflict{Joylashuvni oʻzgartirishni yangilash kerak} location_migration_verification_failed{Joylashuvni oʻzgartirish tasdiqlanmadi} location_migration_device_changed{Joylashuvni oʻzgartirish vaqtida qurilma oʻzgardi} tunnel_stop_failed{Joylashuvni oʻzgartirib boʻlmaydi} device_clock_ahead{Qurilma soati oldinga ketgan} other{Amal bajarilmadi}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Hisob yaratildi, ammo tasdiqlash xatini yuborib boʻlmadi. Ilovadagi qayta yuborish tugmasidan foydalaning.} password_reset_sent{Soʻrovingiz qabul qilindi. Agar bu manzilga mos hisob mavjud boʻlsa, sizga xat kelishi mumkin. Spam jildini ham tekshiring.} verification_email_sent{Yangi tasdiqlash xati hozirgina yuborildi.} location_migration_pending{{target} joylashuviga oʻtish hali tayyorlanmoqda. Qurilmani qayta yaratmasdan davom ettirishingiz mumkin.} vpn_sign_in_required{VPN’ni ishga tushirishdan oldin hisobingizga kiring.} protocol_unavailable_at_location{Tanlangan protokol bu joylashuvda taklif etilmaydi. Joylashuvlarni yangilang yoki boshqa protokolni tanlang.} vpn_permission_denied{Android VPN uchun ruxsat bermadi. Ulanishni qaytadan boshlang va tizim soʻrovini qabul qiling.} revoked_identity_device_limit{Bu qurilmaning VPN kirish huquqi olib tashlandi va qurilmalar limitiga yetildi. Hisob → Qurilmalarimni boshqarish boʻlimida qurilmani olib tashlang.} tunnel_start_unexpected{Kutilmagan xatolik tunnelni tayyorlashni toʻxtatdi. Diagnostika kodini tekshirib, qayta urinib koʻring.} flutter_disconnect_timeout{Android VPN’ning oʻz vaqtida toʻxtaganini tasdiqlamadi. Uni qayta toʻxtatib koʻring.} flutter_disconnect_unexpected{Kutilmagan xatolik tunnel toʻxtaganini tasdiqlashga toʻsqinlik qildi.} device_revoked{Qurilmaning VPN kirish huquqi bekor qilindi va uning mahalliy maxfiy maʼlumotlari oʻchirildi.} revoke_unexpected{Qurilmani olib tashlab boʻlmadi. Roʻyxatni yangilab, qayta urinib koʻring.} identity_renewal_unexpected{Yangi VPN identifikatorini yaratib boʻlmadi. Qurilmalarni yangilab, qayta urinib koʻring.} openvpn_renewal_unexpected{OpenVPN profilini yangilab boʻlmadi. Qayta urinib koʻring yoki diagnostika kodini tekshiring.} location_migration_blocked{Server bu oʻzgarishni hozir amalga oshira olmaydi. Qurilma va uning mahalliy identifikatori saqlab qolindi.} location_migration_slow{Server hali {target} joylashuviga oʻtishni tayyorlamoqda. Bir ozdan soʻng “Davom ettirish” tugmasidan foydalaning.} location_migration_conflict{Qurilma holati serverda oʻzgardi. Qurilmalarni yangilab, soʻng joylashuvni oʻzgartirishni davom ettiring.} location_migration_verification_failed{Server yangi joylashuvni tasdiqlamadi. Oldingi mahalliy identifikator saqlab qolindi.} location_migration_device_changed{Server qaytargan qurilma oʻzgartirilayotgan qurilmaga mos kelmaydi. Qaytadan urinishdan oldin qurilmalarni yangilang.} tunnel_stop_failed{Yangi ulanishdan oldin avvalgi tunnel butunlay toʻxtatilishi kerak.} device_clock_ahead{Qurilma soati oldinga ketgan koʻrinadi. Hisobingizga kirgan holda qolish uchun avtomatik sana va vaqtni yoqing.} other{Amalni bajarib boʻlmadi. Qayta urinib koʻring yoki diagnostika kodini qoʻllab-quvvatlash xizmatiga yuboring.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Seans muddati tugadi} invalid_credentials{Hisobga kirib boʻlmadi} email_verification_required{E-pochtani tasdiqlash talab qilinadi} verification_email_cooldown{Xat allaqachon yuborilgan} rate_limited{Urinishlar juda koʻp} invalid_registration{Maʼlumotlarni tuzatish kerak} email_exists{Hisob allaqachon mavjud} invalid_profile{Profil notoʻgʻri} invalid_device{Qurilma notoʻgʻri} invalid_location{Joylashuv mavjud emas} device_limit{Qurilmalar limitiga yetildi} device_exists{VPN identifikatori allaqachon ishlatilmoqda} device_identity_revoked{VPN identifikatorini yangilash kerak} device_location_locked{Joylashuvni oʻzgartirishni yangilash kerak} location_migration_pending{Joylashuvni oʻzgartirish davom etmoqda} location_migration_blocked{Joylashuvni oʻzgartirish bloklandi} target_ca_mismatch{OpenVPN serveri mos emas} location_migration_conflict{Joylashuvni oʻzgartirishni yangilash kerak} server_full{Server toʻla} capacity_unavailable{Joylashuv vaqtincha mavjud emas} target_unavailable{Server vaqtincha mavjud emas} not_found{Element topilmadi} invalid_openvpn_csr{OpenVPN identifikatori notoʻgʻri} openvpn_profile_exists{OpenVPN profili allaqachon mavjud} openvpn_profile_revoked{OpenVPN profili bekor qilingan} openvpn_operation_pending{OpenVPN amali bajarilmoqda} openvpn_operation_terminal{OpenVPN amali uzildi} openvpn_address_unavailable{OpenVPN manzili mavjud emas} openvpn_profile_conflict{OpenVPN ziddiyati} openvpn_signer_unavailable{OpenVPN mavjud emas} email_delivery_unavailable{E-pochta xizmati mavjud emas} invalid_token{Havola yaroqsiz} network_unavailable{Internet ulanishi mavjud emas} invalid_json{Soʻrov notoʻgʻri} invalid_api_response{Server javobi notoʻgʻri} ipv6_unavailable{IPv6 mavjud emas} invalid_ip_families{Tarmoq sozlamasi rad etildi} other{Xizmat mavjud emas}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Seansingiz muddati tugadi. Qaytadan hisobga kiring.} invalid_credentials{E-pochta manzili yoki parol notoʻgʻri.} email_verification_required{VPN qurilmasini qoʻshishdan oldin e-pochta manzilingizni tasdiqlang.} invalid_registration{Soʻralgan maʼlumotlar va roziliklarni tekshiring.} email_exists{Bu e-pochta manzili bilan allaqachon hisob mavjud.} invalid_profile{Profil maʼlumotlaringizni tekshiring.} invalid_device{Bu qurilmaning nomi yoki mahalliy identifikatori notoʻgʻri.} invalid_location{Joylashuvlar roʻyxatini yangilab, qayta urinib koʻring.} device_limit{Boshqa qurilma qoʻshishdan oldin mavjud qurilmalardan birini olib tashlang.} device_exists{Bu VPN identifikatori boshqa hisobga bogʻlangan.} device_identity_revoked{Bu identifikator olib tashlangan. Yangi mahalliy identifikator yaratish kerak.} device_location_locked{Bu qurilmaning joylashuvi endigina oʻzgardi. Ilova jarayondagi oʻzgartirishni davom ettiradi.} location_migration_pending{Joylashuvni oʻzgartirish allaqachon davom etmoqda.} location_migration_blocked{Joylashuvni oʻzgartirish uchun server aralashuvi talab qilinadi. Keyinroq qayta urinib koʻring yoki qoʻllab-quvvatlash xizmatiga murojaat qiling.} target_ca_mismatch{Bu server hozircha joriy OpenVPN profiliga mos emas.} location_migration_conflict{Qurilmalar roʻyxatini yangilab, joylashuvni qayta oʻzgartirib koʻring.} server_full{Bu joylashuvda ulanishlar limitiga yetilgan. Boshqa joylashuvni tanlang yoki keyinroq qayta urinib koʻring.} capacity_unavailable{Bu joylashuvning hozir mavjudligini tasdiqlab boʻlmayapti. Boshqa joylashuvni tanlang yoki keyinroq qayta urinib koʻring.} target_unavailable{Bu server vaqtincha mavjud emas.} not_found{Bu element hisobingizda endi mavjud emas.} invalid_openvpn_csr{Yangi OpenVPN identifikatorini yarating va qayta urinib koʻring.} openvpn_profile_exists{Bu qurilma uchun OpenVPN profili allaqachon mavjud.} openvpn_profile_revoked{Davom etish uchun OpenVPN profilini yangilang.} openvpn_operation_pending{Oʻzgarish hali tarqalmoqda. Keyinroq qayta urinib koʻring.} openvpn_operation_terminal{Yangi OpenVPN identifikatorini yarating va qayta urinib koʻring.} openvpn_address_unavailable{Hozirda OpenVPN manzili mavjud emas.} openvpn_profile_conflict{Profil oʻzgardi. Qurilmalar roʻyxatini yangilab, qayta urinib koʻring.} openvpn_signer_unavailable{OpenVPN xizmati vaqtincha mavjud emas.} email_delivery_unavailable{Xatni yuborib boʻlmadi. Keyinroq qayta urinib koʻring.} invalid_token{Bu havola yaroqsiz yoki muddati tugagan. Yangisini soʻrang.} network_unavailable{Internet ulanishingizni tekshirib, qayta urinib koʻring.} invalid_json{Kiritilgan maʼlumotlarni tekshirib, qayta urinib koʻring.} invalid_api_response{Server kutilmagan javob qaytardi. Keyinroq qayta urinib koʻring.} ipv6_unavailable{Server hozir IPv6’ni faollashtira olmaydi. Keyinroq qayta urinib koʻring.} invalid_ip_families{Tunnel sozlamasi toʻliq emas yoki ruxsat etilgan manzillarga mos kelmaydi. Ilovadan qayta urinib koʻring.} other{Serverda xatolik yuz berdi. Keyinroq qayta urinib koʻring.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Bir ozdan soʻng qayta urinib koʻring.",
+  "notice_retryAfter": "{seconds, plural, one{{seconds} soniyadan keyin qayta urinib koʻring.} other{{seconds} soniyadan keyin qayta urinib koʻring.}}",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterMinutes": "{minutes, plural, one{{minutes} daqiqadan keyin qayta urinib koʻring.} other{{minutes} daqiqadan keyin qayta urinib koʻring.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{{hours} soatdan keyin qayta urinib koʻring.} other{{hours} soatdan keyin qayta urinib koʻring.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Tizim VPN’ini davom ettirib boʻlmaydi} system_vpn_resume_corrupt{Tizim VPN’ini davom ettirish maʼlumotlari notoʻgʻri} system_vpn_resume_session_invalid{VPN’ni davom ettirish seansi notoʻgʻri} system_vpn_resume_identity_changed{VPN identifikatori oʻzgardi} system_vpn_resume_identity_invalid{VPN’ni davom ettirish identifikatori notoʻgʻri} system_vpn_resume_storage_failed{VPN’ni davom ettirish xotirasi mavjud emas} system_vpn_resume_network_timeout{VPN’ni davom ettirish uchun tarmoq yoʻq} system_vpn_resume_blocked{VPN’ni davom ettirish bloklandi} system_vpn_resume_failed{VPN’ni davom ettirib boʻlmadi} system_vpn_resume_error_invalid{VPN’ni davom ettirish xatosi notoʻgʻri} wireguard_identity_store_failed{WireGuard identifikatori saqlanmadi} wireguard_identity_unavailable{WireGuard identifikatori mavjud emas} vpn_host_destroyed{Android VPN komponenti toʻxtatildi} vpn_host_unavailable{Android VPN komponenti mavjud emas} vpn_permission_required{VPN ruxsati talab qilinadi} vpn_permission_denied{VPN ruxsati rad etildi} vpn_permission_request_failed{Ruxsat soʻrab boʻlmadi} wireguard_foreground_service_unavailable{WireGuard xizmati mavjud emas} wireguard_identity_invalid{Mahalliy WireGuard kaliti notoʻgʻri} wireguard_identity_in_use{WireGuard identifikatori allaqachon ishlatilmoqda} wireguard_configuration_invalid{WireGuard sozlamalari notoʻgʻri} wireguard_operation_pending{WireGuard amali hali faol} wireguard_start_failed{WireGuard’ni ishga tushirish rad etildi} wireguard_stop_timeout{WireGuard toʻxtatilishi tasdiqlanmadi} wireguard_handshake_timeout{WireGuard javob bermadi} openvpn_connection_timeout{OpenVPN javob bermadi} openvpn_core_unavailable{OpenVPN dvigateli mavjud emas} openvpn_operation_pending{OpenVPN seansi hali faol} openvpn_stop_timeout{OpenVPN toʻxtatilishi tasdiqlanmadi} openvpn_profile_unavailable{Mahalliy OpenVPN profili topilmadi} openvpn_native_failed{OpenVPN ichki chaqiruvi uzildi} openvpn_key_generation_failed{OpenVPN P-256 kalitini yaratib boʻlmadi} openvpn_csr_generation_failed{OpenVPN CSR’ni yaratib boʻlmadi} openvpn_identity_store_failed{OpenVPN identifikatori saqlanmadi} openvpn_identity_clear_failed{OpenVPN identifikatori toʻliq oʻchirilmadi} openvpn_identity_in_use{OpenVPN identifikatori hali ishlatilmoqda} openvpn_tls_verification_required{OpenVPN TLS tekshiruvi yoʻq} openvpn_cipher_invalid{OpenVPN shifri notoʻgʻri} openvpn_profile_rejected{OpenVPN profili rad etildi} openvpn_identity_inconsistent{OpenVPN identifikatori mos emas} tls_handshake_failed{OpenVPN muzokarasi rad etildi} tls_alert_unknown_ca{OpenVPN mijoz sertifikati tanilmadi} tls_alert_bad_certificate{OpenVPN mijoz sertifikati rad etildi} tls_alert_unsupported_certificate{OpenVPN sertifikati qoʻllab-quvvatlanmaydi} tls_client_certificate_required{OpenVPN mijoz sertifikati talab qilinadi} tls_alert_misc{OpenVPN TLS ogohlantirishi} tls_signature_algorithm_rejected{OpenVPN imzosi qoʻllab-quvvatlanmaydi} tls_handshake_rejected{OpenVPN TLS muzokarasi rad etildi} tls_version_rejected{OpenVPN TLS versiyasi mos emas} tls_certificate_expired{TLS sertifikati muddati tugagan} tls_certificate_revoked{TLS sertifikati bekor qilingan} transport_failed{OpenVPN serveriga ulanib boʻlmadi} tun_configuration_rejected{OpenVPN interfeysini yaratib boʻlmadi} tun_setup_failed{OpenVPN TUN sozlamasi bajarilmadi} tun_interface_create_failed{OpenVPN interfeysi yaratilmadi} tun_interface_disabled{OpenVPN interfeysi oʻchirilgan} tun_halted{OpenVPN interfeysi uzildi} tun_already_established{OpenVPN interfeysi allaqachon ochiq} tun_addresses_missing{OpenVPN manzili yoʻq} tun_routes_missing{OpenVPN marshrutlari yoʻq} tun_dns_missing{OpenVPN DNS’i yoʻq} tun_permission_revoked{VPN ruxsati bekor qilingan} tun_establish_returned_null{Android VPN interfeysini rad etdi} openvpn_service_start_failed{OpenVPN xizmati mavjud emas} openvpn_operation_timeout{OpenVPN chaqiruvi vaqti tugadi} openvpn_start_failed{OpenVPN’ni ishga tushirish rad etildi} openvpn_connection_failed{OpenVPN ulanishi uzildi} openvpn_core_status_error{OpenVPN Core xato bilan tugadi} openvpn_stopped_before_connected{OpenVPN ulanishdan oldin toʻxtadi} openvpn_auth_failed{OpenVPN autentifikatsiyasi rad etildi} openvpn_client_setup_failed{OpenVPN mijozini sozlab boʻlmadi} openvpn_client_halted{OpenVPN mijozi uzildi} openvpn_client_restart{OpenVPN qayta ishga tushirilishi soʻraldi} openvpn_inactive_timeout{OpenVPN uzoq vaqt faol emas} openvpn_session_expired{OpenVPN seansi muddati tugagan} openvpn_credentials_required{OpenVPN autentifikatsiyasi qoʻllab-quvvatlanmaydi} openvpn_proxy_failed{OpenVPN oraliq transporti ishlamadi} openvpn_compression_failed{OpenVPN siqish rad etildi} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM shifrlash mavjud emas} openvpn_feature_unsupported{OpenVPN funksiyasi qoʻllab-quvvatlanmaydi} network_unavailable{Internet ulanishi mavjud emas} network_lost{Tarmoq mavjud emas} certificate_validation_failed{Server sertifikati rad etildi} openvpn_certificate_expired{OpenVPN sertifikati muddati tugagan} tunnel_active_for_another_account{Boshqa hisobning tunneli hali faol} tunnel_already_active{Ichki tunnel allaqachon faol} tunnel_stop_timeout{{protocol} toʻxtatilishi tasdiqlanmadi} tunnel_disconnected{{protocol} uzildi} native_bridge_unavailable{Android koʻprigi mavjud emas} native_operation_failed{Android amali uzildi} invalid_arguments{VPN parametrlari toʻliq emas} invalid_account_id{VPN hisobi notoʻgʻri} invalid_device_id{Qurilma identifikatori notoʻgʻri} storage_key_not_allowed{Xotira kaliti rad etildi} secure_storage_read_failed{Xavfsiz oʻqib boʻlmadi} secure_storage_write_failed{Xavfsiz yozib boʻlmadi} key_generation_failed{WireGuard kalitini yaratib boʻlmadi} csr_generation_failed{OpenVPN CSR’ni yaratib boʻlmadi} openvpn_recovery_exhausted{OpenVPN’ni tiklash allaqachon ishlatilgan} openvpn_recovery_failed{OpenVPN’ni tiklab boʻlmadi} openvpn_renewal_required{OpenVPN sertifikatini yangilash talab qilinadi} other{Tasniflanmagan ichki VPN xatosi}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android davom ettirish mumkin boʻlgan VPN seansini topa olmadi. Ilovada yangi ulanishni boshlang.} system_vpn_resume_corrupt{VPN’ni davom ettirish uchun saqlangan maʼlumotlar notoʻgʻri va ishlatilmaydi. Yangi ulanishni boshlang.} system_vpn_resume_session_invalid{Saqlangan seans endi VPN’ni davom ettira olmaydi. Ilovada hisobga qayta kiring.} system_vpn_resume_identity_changed{Mahalliy VPN identifikatori oʻzgardi. Davom ettirish toʻxtatildi; yangi ulanishni boshlang.} system_vpn_resume_identity_invalid{Davom ettirish uchun identifikator notoʻgʻri. Yangi ulanishni boshlang.} system_vpn_resume_storage_failed{Android davom ettirish uchun shifrlangan maʼlumotlarni oʻqiy yoki yangilay olmadi. Yangi ulanishni boshlang.} system_vpn_resume_network_timeout{Android VPN’ni davom ettirish uchun vaqtida tarmoq topa olmadi. Tarmoq mavjud boʻlganda qayta urinib koʻring.} system_vpn_resume_blocked{VPN’ni davom ettirish bloklangan. Android sozlamalarini tekshiring, soʻng yangi ulanishni boshlang.} system_vpn_resume_failed{Android VPN’ni davom ettira olmadi. Ilovada yangi ulanishni boshlang.} system_vpn_resume_error_invalid{Android yaroqsiz davom ettirish xatosini qaytardi. Yangi ulanishni boshlang.} wireguard_identity_store_failed{Android bu hisobning shifrlangan WireGuard identifikatorini saqlay olmadi.} wireguard_identity_unavailable{Bu ulanish uchun yaroqli WireGuard identifikatori mavjud emas.} vpn_host_destroyed{VPN’ni boshqaradigan Android komponenti toʻxtatildi. Yangi ulanishni boshlang.} vpn_host_unavailable{Android VPN’ni boshqaradigan komponentni yarata olmaydi. VPN sozlamalarini tekshirib, qayta urinib koʻring.} openvpn_renewal_required{Ulanishdan oldin sertifikat boʻyicha ilovada amal bajarish talab qilinadi.} openvpn_recovery_failed{Avtomatik tiklab boʻlmadi. Ilovada yangi ulanishni boshlang.} openvpn_recovery_exhausted{Avtomatik tiklash allaqachon ishlatilgan. Ilovada yangi ulanishni boshlang.} vpn_permission_required{Tunnelni ishga tushirishdan oldin Android yangi VPN ruxsatini talab qiladi.} vpn_permission_denied{Davom etish uchun Android soʻrovida FuzeVPN’ga ruxsat bering.} vpn_permission_request_failed{Android VPN ruxsati ekranini ocha olmadi.} wireguard_foreground_service_unavailable{Android WireGuard xizmatini oldingi planda saqlay olmadi.} wireguard_identity_invalid{Bu hisobning shifrlangan WireGuard kaliti oʻqib boʻlmaydigan yoki notoʻgʻri.} wireguard_identity_in_use{Boshqa amal hali bu hisobning WireGuard kalitidan foydalanmoqda.} wireguard_configuration_invalid{Qabul qilingan WireGuard manzili, DNS, server kaliti yoki marshrutlari notoʻgʻri.} wireguard_operation_pending{Oldingi WireGuard amali hali ichki xizmatini boʻshatmagan.} wireguard_start_failed{WireGuard dvigateli sozlamani faollashtirishni rad etdi.} wireguard_stop_timeout{WireGuard xizmati belgilangan vaqt ichida VPN interfeysini boʻshatganini tasdiqlamadi.} wireguard_handshake_timeout{Tunnel belgilangan vaqtda server bilan xavfsiz almashinuvni tasdiqlamadi.} openvpn_connection_timeout{OpenVPN belgilangan vaqtda serverga ulanishni tasdiqlamadi.} openvpn_core_unavailable{Bu ilova versiyasida yaroqli OpenVPN dvigateli mavjud emas.} openvpn_operation_pending{Ichki dvigatel hali oldingi OpenVPN seansini ushlab turibdi va ikkinchisini yaratishni rad etadi.} openvpn_stop_timeout{OpenVPN Core belgilangan vaqt ichida ichki seansi toʻxtaganini va yoʻq qilinganini tasdiqlamadi.} openvpn_profile_unavailable{Bu ulanish uchun tasdiqlangan OpenVPN profilini oʻqib boʻlmaydi.} openvpn_native_failed{Ilova xatosi OpenVPN’ni uzdi. Qayta ulanib koʻring. Muammo davom etsa, diagnostikani ishga tushiring.} openvpn_key_generation_failed{Android Keystore eksport qilib boʻlmaydigan P-256 shaxsiy kalitini yarata yoki oʻqiy olmadi.} openvpn_csr_generation_failed{Android Keystore kaliti OpenVPN sertifikat soʻrovini imzolay olmadi.} openvpn_identity_store_failed{OpenVPN sertifikati yoki profili shifrlangan xotirada saqlanmadi.} openvpn_identity_clear_failed{Android bu hisob uchun mahalliy OpenVPN identifikatorining hammasini oʻchira olmadi.} openvpn_identity_in_use{Ichki OpenVPN seansi hali bu qurilmaning kaliti yoki sertifikatidan foydalanmoqda.} openvpn_tls_verification_required{Profilda server sertifikatini tekshirish aniq talab qilinmagan.} openvpn_cipher_invalid{Server ruxsat etilgan roʻyxatda boʻlmagan shifrlash algoritmini yubordi.} openvpn_profile_rejected{Serverdan olingan profil mos emas. Qurilmani qayta yaratib, yana urinib koʻring.} openvpn_identity_inconsistent{Sertifikat bu telefonning xavfsiz identifikatoriga mos kelmaydi. Mahalliy profil almashtirilmadi.} tls_handshake_failed{Server TLS muzokarasini rad etdi. Muammo davom etsa, profilni qayta yarating.} tls_alert_unknown_ca{Server bu qurilma sertifikatini chiqargan sertifikat organini (CA) tanimaydi. OpenVPN serverini tekshirish kerak.} tls_alert_bad_certificate{Server bu qurilma sertifikatini rad etdi. Qayta urinishdan oldin qurilmani qayta yarating.} tls_alert_unsupported_certificate{Server Android ishlatadigan xavfsiz sertifikat turini qoʻllab-quvvatlamaydi.} tls_client_certificate_required{Server mijoz sertifikatini talab qiladi, ammo OpenVPN Core uni taqdim eta olmadi.} tls_alert_misc{Server sertifikat va versiya toifalariga kirmaydigan TLS ogohlantirishini qaytardi.} tls_signature_algorithm_rejected{Server Android Keystore kalitining ECDSA P-256 algoritmini rad etdi.} tls_handshake_rejected{Server ulanishdan oldin TLS muzokarasini uzdi.} tls_version_rejected{Mijoz va server umumiy TLS versiyasini topa olmadi.} tls_certificate_expired{Ulanish vaqtida taqdim etilgan sertifikat muddati tugagan.} tls_certificate_revoked{Ulanish vaqtida taqdim etilgan sertifikat bekor qilingan.} transport_failed{OpenVPN serveri joriy tarmoqda javob bermayapti. Bir ozdan soʻng qayta urinib koʻring.} tun_configuration_rejected{Android OpenVPN soʻragan tarmoq sozlamasini rad etdi.} tun_setup_failed{OpenVPN Core Android interfeysini yaratishdan oldin tarmoq rejasini rad etdi.} tun_interface_create_failed{OpenVPN Core Android VpnService’dan TUN interfeysini ola olmadi.} tun_interface_disabled{Ulanish vaqtida Android yoki OpenVPN Core TUN interfeysini oʻchirib qoʻydi.} tun_halted{OpenVPN Core TUN interfeysini toʻxtatish soʻrovini oldi.} tun_already_established{OpenVPN bir xil ulanishda ikkinchi interfeysni soʻradi. Xavfsizlik uchun tunnel toʻxtatildi.} tun_addresses_missing{Server yaroqli tunnel manzilini bermadi.} tun_routes_missing{Server yaroqli tunnel marshrutlarini bermadi.} tun_dns_missing{Server yaroqli DNS serverini bermadi.} tun_permission_revoked{Android ulanish vaqtida VPN ruxsatini bekor qildi.} tun_establish_returned_null{Android interfeysni yaratmadi, odatda boshqa VPN hali faol boʻlgani uchun.} openvpn_service_start_failed{Android OpenVPN xizmatini oldingi planda ishga tushira olmadi.} openvpn_operation_timeout{OpenVPN Core’ga JNI chaqiruvi belgilangan maksimal vaqtdan oshib ketdi.} openvpn_start_failed{Android xizmati tayyor, ammo OpenVPN Core profilni ishga tushirishni qabul qilmadi.} openvpn_connection_failed{OpenVPN Core CONNECTED hodisasini yuborishdan oldin toʻxtadi.} openvpn_core_status_error{Ichki OpenVPN sikli xato bilan tugadi va aniqroq yakuniy hodisa boʻlmadi.} openvpn_stopped_before_connected{Ichki OpenVPN sikli CONNECTED holatidan oldin, aniq Core xatosisiz toʻxtadi.} openvpn_auth_failed{OpenVPN serveri profil autentifikatsiyasini rad etdi.} openvpn_client_setup_failed{OpenVPN Core tarmoq ulanishidan oldin mijozni ishga tushira olmadi.} openvpn_client_halted{OpenVPN Core mijozni yakuniy toʻxtatish buyrugʻini oldi.} openvpn_client_restart{OpenVPN Core transport seansini qayta ishga tushirishni soʻradi.} openvpn_inactive_timeout{OpenVPN Core faolsizlik vaqti tugagach seansni yopdi.} openvpn_session_expired{Server OpenVPN seansi muddati tugaganini xabar qildi.} openvpn_credentials_required{Server yoki proksi bu sertifikat profiliga kirmaydigan interaktiv kirish maʼlumotlarini soʻramoqda.} openvpn_proxy_failed{OpenVPN Core sozlangan proksi yoki oraliq uzatgich ishlamayotganini xabar qildi.} openvpn_compression_failed{OpenVPN Core profil yoki server eʼlon qilgan siqish rejimini rad etdi.} openvpn_ntlm_crypto_unavailable{Profil bu versiyada mavjud boʻlmagan NTLM shifrlashni soʻraydi.} openvpn_feature_unsupported{Profil yoki server bu Android mijozida mavjud boʻlmagan funksiyani talab qiladi.} network_unavailable{Foydalanish mumkin boʻlgan jismoniy tarmoq mavjud emas.} network_lost{Tarmoq uzilgandan soʻng tunnel toʻxtatildi.} certificate_validation_failed{OpenVPN serverining identifikatori tasdiqlanmadi.} openvpn_certificate_expired{Qayta ulanishdan oldin OpenVPN profilini yangilang.} tunnel_active_for_another_account{Bu ulanishdan oldin boshqa hisobga tegishli tunnel toʻxtatilishi kerak.} tunnel_already_active{Android oldingi VPN seansi hali interfeysdan foydalanayotganini xabar qiladi.} tunnel_stop_timeout{{protocol} dvigateli belgilangan vaqt ichida VPN interfeysini boʻshatganini tasdiqlamadi.} tunnel_disconnected{Ichki dvigatel ishga tushgandan soʻng tunnel kutilmaganda tugaganini xabar qildi.} native_bridge_unavailable{Ilova Android VPN xizmatiga kira olmaydi. Ilovani yopib, qayta oching va yana urinib koʻring.} native_operation_failed{Ilova xatosi VPN amalini uzdi. Qayta urinib koʻring. Muammo davom etsa, diagnostikani ishga tushiring.} invalid_arguments{Bu VPN amali uchun zarur maʼlumotlar toʻliq emas. Qayta urinib koʻring. Muammo davom etsa, diagnostikani ishga tushiring.} invalid_account_id{Ichki amal yaroqli hisob identifikatoriga bogʻlanmagan.} invalid_device_id{Ichki dvigatelga yuborilgan qurilma identifikatori yoʻq yoki notoʻgʻri.} storage_key_not_allowed{Android koʻprigi ruxsat etilgan xotira roʻyxatidan tashqaridagi kalitni blokladi.} secure_storage_read_failed{Android Keystore bu hisobning mahalliy maʼlumotlarini deshifrlay olmadi.} secure_storage_write_failed{Android Keystore mahalliy maʼlumotlarni shifrlay yoki saqlay olmadi.} key_generation_failed{Android xavfsiz xotirada WireGuard kalitini yarata yoki oʻqiy olmadi.} csr_generation_failed{Android Keystore OpenVPN P-256 CSR’ni yarata yoki imzolay olmadi.} other{Hujjatlashtirilmagan ichki kod yoʻli ishlamay qoldi. Quyida koʻrsatilgan diagnostika kodini qoʻllab-quvvatlash xizmatiga yuboring.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Ruxsat soʻrovi allaqachon ochiq",
+  "notice_permissionRequestInProgress_message": "Android VPN ruxsati soʻrovi allaqachon koʻrsatilmoqda. Qayta urinishdan oldin uni yakunlang.",
+  "notice_permissionRequestInterrupted_title": "VPN ruxsati soʻrovi toʻxtatildi",
+  "notice_permissionRequestInterrupted_message": "Ilova javobni olishdan oldin VPN ruxsati oynasi yopildi.",
+  "notice_openvpnProofMissing_title": "OpenVPN ulanishi tasdiqlanmadi",
+  "notice_openvpnProofMissing_message": "OpenVPN ulanishini tasdiqlab boʻlmadi. Xavfsizlik uchun u toʻxtatildi. Qayta urinib koʻring.",
+  "openvpnCleanup_title": "OpenVPN profili bekor qilindi",
+  "openvpnCleanup_working": "Bekor qilingan OpenVPN profili toʻxtatilmoqda va oʻchirilmoqda…",
+  "openvpnCleanup_stopFailed": "OpenVPN’ning toʻxtatilishi tasdiqlanmadi. Yangi profil yaratishdan oldin qayta urinib koʻring.",
+  "openvpnCleanup_cleanupFailed": "Bekor qilingan OpenVPN profilini toʻliq oʻchirib boʻlmadi. Tozalashni takrorlang.",
+  "openvpnCleanup_complete": "Bekor qilingan OpenVPN profili oʻchirildi. Yangisini yaratish uchun Ulanish tugmasini bosing.",
+  "network_title": "Tarmoq sozlamalari",
+  "network_ipv4Fallback": "IPv6 vaqtincha mavjud emas. Tayyorlash IPv4 bilan davom etmoqda.",
+  "network_rejectedTitle": "Tarmoq sozlamasi rad etildi",
+  "network_rejectedMessage": "Tunnel sozlamasi toʻliq emas yoki ruxsat etilgan manzillarga mos kelmaydi. Ilovadan qayta urinib koʻring.",
+  "network_unreadableTitle": "Mahalliy sozlamani oʻqib boʻlmaydi",
+  "network_unreadableMessage": "Saqlangan OpenVPN tarmoq sozlamasidan foydalanib boʻlmaydi. Uni yangilash uchun ilovadan qayta ulaning.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Tarmoq himoyasi",
+  "protection_subtitle": "VPN uzilsa, Internetga toʻgʻridan-toʻgʻri kirishni bloklang.",
+  "protection_active": "Tizim himoyasi faol",
+  "protection_alwaysOnOnly": "Doimiy VPN yoqilgan; VPN’siz ulanishlarni bloklashni yoqing",
+  "protection_inactive": "Tizim himoyasi faol emas",
+  "protection_unknown": "Tizim himoyasini tekshiring",
+  "protection_openSettings": "Android sozlamalarini ochish",
+  "protection_dialogTitle": "Tarmoq himoyasini sozlang",
+  "protection_dialogMessage": "Android doimiy VPN va VPN’siz ulanishlarni bloklashni boshqaradi. FuzeVPN tanlanganini tekshiring va tizim sozlamalarida bloklashni yoqing.",
+  "protection_dialogOpen": "Sozlamalarni ochish",
+  "session_systemProtectionNote": "Agar Android hali ham VPN’siz trafikni bloklayotgan boʻlsa, bu himoyani tekshirish yoki oʻzgartirish uchun tizim sozlamalarini oching.",
+  "diagnostics_title": "Diagnostika",
+  "diagnostics_settingsTitle": "Ilova diagnostikasi",
+  "diagnostics_automaticTitle": "Muhim xatolarni yuborish",
+  "diagnostics_automaticDescription": "Muhim xato yuz berganda qisqa texnik hisobot yuboriladi.",
+  "diagnostics_privacy": "Yuborilgan hisobotlar hisobingizga bogʻlanadi va 30 kun davomida saqlanadi. Ularda brauzer tarixi, parollar yoki VPN kalitlari boʻlmaydi.",
+  "diagnostics_manualOpen": "Diagnostikani ishga tushirish",
+  "diagnostics_localDescription": "Ilova va VPN holati hisobotini yarating. Ulanishingiz oʻzgarmaydi.",
+  "diagnostics_sendReport": "Hisobotni yuborish",
+  "diagnostics_sendHint": "Hisobotni shu qurilmada saqlash uchun bu katakchani belgilamasdan qoldiring.",
+  "diagnostics_signedOut": "Hisobot yuborish uchun hisobingizga kiring.",
+  "diagnostics_localLifetime": "Ilova yopilgandan keyin ham saqlanib qolishi uchun hisobotni telefoningizga saqlang.",
+  "diagnostics_run": "Diagnostikani ishga tushirish",
+  "diagnostics_rerun": "Diagnostikani qayta ishga tushirish",
+  "diagnostics_running": "Tekshirilmoqda…",
+  "diagnostics_sending": "Hisobot yuborilmoqda…",
+  "diagnostics_prepared": "Hisobot shu qurilmada tayyor",
+  "diagnostics_queued": "Hisobot yuborilishni kutmoqda",
+  "diagnostics_sent": "Hisobot qabul qilindi",
+  "diagnostics_failed": "Yuborish amalga oshmadi. Mahalliy hisobot hali ham mavjud.",
+  "diagnostics_preparationFailed": "Diagnostika hisobotini tayyorlab boʻlmadi. Qayta urinib koʻring.",
+  "diagnostics_authenticationRequired": "Hisobotni yuborish uchun qayta kiring.",
+  "diagnostics_retry": "Qayta yuborish",
+  "diagnostics_export": "Hisobotni saqlash",
+  "diagnostics_exportFailed": "Eksport qilib boʻlmadi. Mahalliy hisobotdan qayta urinib koʻring.",
+  "diagnostics_preferenceFailed": "Bu sozlamani saqlab boʻlmadi. Qayta urinib koʻring.",
+  "diagnostics_receipt": "Hisobot kodi: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "{date} kuni qabul qilingan",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "{date} gacha saqlanadi",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Bu hisobot avval qabul qilingan edi.",
+  "diagnostics_preview": "Hisobotni oldindan koʻrish",
+  "diagnostics_eventCount": "{count, plural, =0{Texnik hodisalar biriktirilmagan} =1{1 ta texnik hodisa biriktirilgan} other{{count} ta texnik hodisa biriktirilgan}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Texnik tafsilotlar",
+  "diagnostics_empty": "Hali diagnostika hisoboti tayyorlanmagan.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Tunnel holati} handshake{Ulanishni tasdiqlash} certificate{VPN sertifikati} kill_switch{Android himoyasi} connectivity{Mavjud tarmoq} api_reachability{Xizmatga ulanish} secure_storage{Xavfsiz saqlash} other{Mahalliy tekshiruv}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Tekshirildi} failed{Diqqat talab qiladi} skipped{Sinalmagan — faol tekshiruv yoʻq} unknown{Maʼlumot mavjud emas} other{Maʼlumot mavjud emas}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "FuzeVPN’ga xush kelibsiz",
+  "connection_changeLocation": "Joylashuvni oʻzgartirish",
+  "connection_details": "Ulanish tafsilotlari",
+  "locations_searchLabel": "Shahar yoki mamlakatni qidirish",
+  "locations_clearSearch": "Qidiruvni tozalash",
+  "locations_filterAll": "Barchasi",
+  "locations_filterFavorites": "Sevimlilar",
+  "locations_results": "{count, plural, one{{count} ta joylashuv} other{{count} ta joylashuv}}",
+  "locations_noResults": "Joylashuvlar topilmadi",
+  "locations_noResultsHint": "Boshqa shahar yoki mamlakatni sinab koʻring.",
+  "locations_noFavorites": "Sevimli joylashuvlaringiz shu yerda",
+  "locations_noFavoritesHint": "Joylashuv yonidagi yulduzchani bosib, uni shu yerda saqlang.",
+  "locations_showAll": "Barcha joylashuvlarni koʻrish",
+  "locations_addFavorite": "Sevimlilarga qoʻshish: {name}",
+  "locations_removeFavorite": "Sevimlilardan olib tashlash: {name}",
+  "locations_favoriteSaveFailed": "Sevimli joylashuvni saqlab boʻlmadi. Qayta urinib koʻring.",
+  "locations_emptyTitle": "Joylashuvlar mavjud emas",
+  "locations_emptyHint": "Qayta urinib koʻrish uchun roʻyxatni yangilang.",
+  "devices_manage": "Qurilmalarimni boshqarish",
+  "settings_personalization": "Oʻzingizga moslang",
+  "settings_safety": "Himoya",
+  "settings_help": "Yordam kerakmi?",
+  "settings_about": "FuzeVPN haqida",
+  "diagnostics_heading": "Ulanish muammosini tushunish",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Mavjud} pending{Tayyorlanmoqda} revoked{Olib tashlangan} expired{Muddati tugagan} other{Holat mavjud emas}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Sozlama saqlanmadi",
+  "notice_preferenceSave_message": "Tanlovingiz hozircha qoʻllanilgan, ammo saqlanmadi. Ilovani yopgandan keyin ham saqlab qolish uchun qayta urinib koʻring.",
+  "connection_androidDisconnectHint": "Agar Android VPN’ni faol holda ushlab tursa, ochiladigan sozlamalarda Doimiy VPN’ni oʻchiring.",
+  "protection_learnMore": "Android himoyasi haqida bilib oling",
+  "protection_guideWhy": "Bu himoya VPN uzilganda ilovalarning Internetga toʻgʻridan-toʻgʻri ulanishiga yoʻl qoʻymaydi. U Android’da sozlanadi.",
+  "protection_guideAlwaysOnTitle": "Doimiy VPN",
+  "protection_guideAlwaysOn": "Android VPN xizmatini doimiy yoniq saqlaydi va telefon qayta yoqilgandan keyin uni qayta ishga tushirishi mumkin.",
+  "protection_guideBlockTitle": "VPN’siz ulanishlarni bloklash",
+  "protection_guideBlock": "Bu sozlama ulanish uzilib qolgan vaqtda ham trafikning VPN’siz oʻtib ketishiga yoʻl qoʻymaydi.",
+  "protection_guideWarning": "Bu bloklash yoqilgan boʻlsa, VPN ulanmaguncha Internetga kirib boʻlmaydi.",
+  "protection_guideStepsTitle": "Himoyani yoqish",
+  "protection_guideStep1": "Quyidagi tugma orqali Android VPN sozlamalarini oching.",
+  "protection_guideStep2": "FuzeVPN yonidagi tishli gʻildirak belgisi orqali sozlamalarni oching.",
+  "protection_guideStep3": "Agar mavjud boʻlsa, “Doimiy VPN”ni, soʻng “VPN’siz ulanishlarni bloklash”ni yoqing.",
+  "protection_guideManufacturers": "Nomlar telefon modeliga qarab farq qilishi mumkin. Kerak boʻlsa, “Sozlamalar”da “VPN”ni qidiring — odatda “Tarmoq va internet” boʻlimida boʻladi.",
+  "protection_guideDisableTitle": "Bu himoyani oʻchirish",
+  "protection_guideDisable": "Xuddi shu sozlamalarda VPN’siz ulanishlarni bloklashni oʻchiring, shunda VPN’siz Internetdan foydalanish mumkin boʻladi. Agar Android uni qayta ishga tushirishini istamasangiz, “Doimiy VPN”ni ham oʻchiring.",
+  "protection_guideManual": "Bu sozlamalarni Android’da oʻzingiz tanlaysiz. FuzeVPN ularni siz uchun oʻzgartirmaydi.",
+  "locations_changeTitle": "Joylashuvni oʻzgartirasizmi?",
+  "locations_changeActive": "VPN uziladi, soʻng {name} joylashuviga ulanishga urinadi.",
+  "locations_changeIdle": "VPN {name} joylashuviga ulanishga urinadi.",
+  "locations_confirmChange": "Oʻzgartirish va ulanish",
+  "locations_changeBusy": "Oʻzgartirish davom etmoqda. Boshqa joylashuvni tanlashdan oldin kuting.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Avtomatik tanlash",
+  "locations_cities": "Shaharlar",
+  "locations_servers": "Serverlar",
+  "locations_viewCities": "{name} shaharlarini koʻrish",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "{name} serverlarini koʻrish",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} ta mamlakat} other{{count} ta mamlakat}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} ta shahar} other{{count} ta shahar}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} ta server} other{{count} ta server}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Barcha mamlakatlar",
+  "locations_backToCountries": "Mamlakatlarga qaytish",
+  "locations_backToCities": "{name} shaharlariga qaytish",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Tanlash: {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Tanlash: {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Mos keladigan server mavjud emas.",
+  "externalLink_failed": "Bu havolani ochib boʻlmadi. Uni nusxalab, brauzeringizda ochishingiz mumkin.",
+  "externalLink_copy": "Havolani nusxalash",
+  "externalLink_copied": "Havola nusxalandi",
+  "externalLink_copyFailed": "Havolani nusxalab boʻlmadi. Quyidagi manzilni belgilang.",
+  "settings_deleteAccount": "Hisobimni oʻchirish",
+  "settings_deleteAccountDetail": "Hisobni oʻchirish soʻrovi tartibini koʻrish",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "VPN obunangizni tanlang.",
+  "billing_subscribe": "Obuna boʻlish",
+  "billing_choosePlan": "Davom etish uchun tarifni tanlang.",
+  "billing_monthly": "Oylik",
+  "billing_yearly": "Yillik",
+  "billing_continue": "Google Play orqali davom etish",
+  "billing_restore": "Xaridlarni tiklash",
+  "billing_manage": "Obunani boshqarish",
+  "billing_deleteAccountWarning": "Agar Google Play obunangiz boʻlsa, FuzeVPN hisobingizni oʻchirish uning avtomatik yangilanishini bekor qilmaydi. Yangilanishni Google Play’da alohida boshqaring yoki bekor qiling.",
+  "billing_deleteAccountContinue": "Hisobni oʻchirish soʻroviga oʻtish",
+  "billing_refresh": "Kirish huquqini yangilash",
+  "billing_loadingPlans": "Tariflar yuklanmoqda…",
+  "billing_unavailable": "Hozircha tariflar mavjud emas. Keyinroq qayta urinib koʻring.",
+  "billing_comingSoon": "Obunalar tez orada mavjud boʻladi.",
+  "billing_priceDisclosure": "Narx Google Play tomonidan taqdim etiladi. Yakuniy summa va amaldagi soliqlar tasdiqlashdan oldin koʻrsatiladi.",
+  "billing_renewalMonthly": "Bekor qilinmasa, har oy avtomatik yangilanadi. Istalgan vaqtda Google Play obunalarida bekor qilishingiz mumkin.",
+  "billing_renewalYearly": "Bekor qilinmasa, har yili avtomatik yangilanadi. Istalgan vaqtda Google Play obunalarida bekor qilishingiz mumkin.",
+  "billing_active": "Premium kirish huquqingiz faol",
+  "billing_accessUntil": "Kirish huquqi {date} gacha amal qiladi.",
+  "billing_webManaged": "Obunangiz FuzeVPN veb-saytida boshqariladi.",
+  "billing_playManaged": "Obunangiz Google Play tomonidan boshqariladi.",
+  "billing_playOnHold": "Google Play obunangiz toʻxtatilgan yoki toʻlovni kutmoqda. Uni Google Play’da tuzatish uchun “Obunani boshqarish”ni oching.",
+  "billing_playReceiptUnlinked": "Bu Google Play hisobida FuzeVPN hisobingiz uchun faol boʻlmagan Fuze Premium obunasi bor. Uni Google Play’da koʻrib chiqish uchun “Obunani boshqarish”ni oching.",
+  "billing_inactive": "Faol obuna yoʻq.",
+  "billing_checkingAccess": "Kirish huquqingiz tekshirilmoqda…",
+  "billing_restoring": "Xaridlar tiklanmoqda…",
+  "billing_pending": "Toʻlov kutilmoqda. Tasdiqlangandan soʻng kirish huquqingiz faollashadi.",
+  "billing_cancelled": "Xarid bekor qilindi. Yangi obuna faollashtirilmadi.",
+  "billing_verifying": "Xarid tekshirilmoqda…",
+  "billing_success": "Obuna faollashtirildi. Premium kirish huquqingiz tayyor.",
+  "billing_restored": "Xaridlaringiz tiklandi.",
+  "billing_restoreEmpty": "Bu Google Play hisobi uchun tiklanadigan xaridlar yoʻq.",
+  "billing_catalogError": "Tariflarni yuklab boʻlmadi. Qayta urinib koʻring.",
+  "billing_purchaseError": "Xaridni boshlab boʻlmadi. Qayta urinib koʻring.",
+  "billing_verificationError": "Xaridni tekshirish vaqtincha mavjud emas. Qayta urinish uchun xaridlarni tiklang.",
+  "billing_restoreError": "Xaridlarni tiklab boʻlmadi. Qayta urinib koʻring.",
+  "billing_managementError": "Obunani boshqarishni ochib boʻlmadi. Qayta urinib koʻring.",
+  "billing_storeUnavailable": "Bu qurilmada Google Play mavjud emas.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "VPN’ingiz — sodda va qulay.",
+  "welcome_description": "Ulanishingizni himoya qiling. Maxfiyligingizni oʻz nazoratingizda saqlang.",
+  "welcome_start": "Boshlash",
+  "welcome_alreadyPurchased": "Allaqachon sotib olganmisiz?",
+  "welcome_noAccountRequired": "Boshlash uchun hisob kerak emas.",
+  "guest_accountTitle": "Hisob bogʻlanmagan",
+  "guest_accountDescription": "Obunangizdan boshqa qurilmada foydalanish uchun xuddi shu Google Play hisobi bilan xaridlaringizni tiklang.",
+  "guest_existingSubscriberSignIn": "Allaqachon obunachimisiz? Hisobga kiring",
+  "guest_claimTitle": "FuzeVPN’ni hamma joyda ishlating",
+  "guest_claimDescription": "Obunangizdan boshqa qurilmalaringizda foydalanish uchun hisob yarating. Bu qadam ixtiyoriy.",
+  "guest_skip": "Keyinroq",
+  "guest_activationTitle": "Fuze Premium faol",
+  "guest_activationDescription": "Obunangiz tayyor. VPN’dan foydalaning va istalgan vaqtda hisob yarating.",
+  "guest_useVpn": "VPN’dan foydalanish",
+  "guest_loginRequired": "Bu xarid allaqachon FuzeVPN hisobiga bogʻlangan. Obunangizdan foydalanish uchun oʻsha hisobga kiring.",
+  "guest_signOutWarning": "Xuddi shu Google Play hisobi bilan xaridlarni tiklab, obunangizni qaytarib olishingiz mumkin.",
+  "guest_profileUnavailable": "Hisobingiz allaqachon bogʻlangan. Tafsilotlarni koʻrish va boshqarish uchun hisobga kiring.",
+  "billing_acceptance": "Davom etish orqali foydalanish shartlari va maxfiylik siyosatiga rozilik bildirasiz.",
+  "guest_verifyEmailReminder": "Hisobingizni himoyalash uchun e-pochta manzilingizni tasdiqlang. VPN’dan foydalanishda davom etishingiz mumkin.",
+  "guest_serviceUnavailable": "Xizmat vaqtincha mavjud emas. Biroz vaqtdan soʻng qayta urinib koʻring.",
+  "guest_restoreError": "Xaridlaringizni tiklab boʻlmadi. Xarid uchun ishlatilgan Google Play hisobi bilan qayta urinib koʻring.",
+  "guest_claimSuccess": "Hisobingiz yaratildi. Obunangiz va VPN’ga kirish huquqingiz saqlanib qoldi.",
+  "guest_emailExists": "Bu e-pochta manzili allaqachon band. Boshqa manzil tanlang yoki mavjud hisobingizga kiring. Xaridingiz Google Play orqali mavjud boʻlib qoladi.",
+  "guest_claimError": "Hisobingizni yaratib boʻlmadi. VPN’dan foydalanishda davom etishingiz va keyinroq qayta urinib koʻrishingiz mumkin.",
+  "guest_secureStorageError": "Seansingizni bu qurilmada himoyalab boʻlmadi. Qayta urinib koʻring.",
+  "guest_premiumRequired": "VPN’ni faollashtirish uchun obunani tanlang.",
+  "welcome_viewPlans": "Tariflarni koʻrish",
+  "google_continue": "Google orqali davom etish",
+  "google_or": "yoki",
+  "google_title": "FuzeVPN hisobingiz",
+  "google_settingUp": "Hisobingizni yaratishni yakunlang",
+  "google_country": "Yashash mamlakati",
+  "google_profileDescription": "FuzeVPN hisobingizni yaratish uchun mamlakatingizni tanlang va ikkala hujjat bilan tanishib chiqing.",
+  "google_claimDescription": "Mehmon hisobingizni Google’ga bogʻlang. Obunangiz va qurilmangiz shu hisobga bogʻlangan holda qoladi.",
+  "google_linkTitle": "Google’ni FuzeVPN’ga bogʻlash",
+  "google_linkDescription": "Mavjud FuzeVPN hisobingizga kirishni tasdiqlang. Bu qadamda Google parolingiz soʻralmaydi.",
+  "google_password": "FuzeVPN paroli",
+  "google_linkAccount": "Bogʻlashni tasdiqlash",
+  "google_requestEmail": "Tasdiqlash xatini yuborish",
+  "google_emailInstructions": "FuzeVPN’dan kelgan e-pochtani oching va tasdiqlash kodini kiriting.",
+  "google_emailCode": "E-pochta tasdiqlash kodi",
+  "google_confirmEmail": "Kodni tasdiqlash",
+  "google_restart": "Boshqa Google hisobini tanlash",
+  "google_resume": "Bu urinishni tekshirish",
+  "google_unavailable": "Google orqali kirish mavjud emas. E-pochta va parol orqali kirishingiz mumkin.",
+  "google_expired": "Bu urinish muddati tugagan. Uni bekor qilib, qaytadan boshlang.",
+  "google_conflict": "Bu Google hisobi boshqa joyda allaqachon bogʻlangan. Joriy hisobingiz va obunangiz saqlanib qoladi.",
+  "google_error": "Google orqali kirib boʻlmadi. Qayta urinib koʻring; joriy kirish huquqingiz saqlanib qoladi.",
+  "google_uncertain": "Natija tasdiqlanmadi. Qayta boshlashdan oldin bu urinishni tekshiring yoki bekor qiling.",
+  "google_cancelFailed": "Bekor qilish tasdiqlanmadi. Bu ekrandan chiqishdan oldin yana bekor qilib koʻring.",
+  "google_cancelled": "Google orqali kirish bekor qilindi.",
+  "google_selecting": "Google hisobingizni tanlang…",
+  "google_verifying": "Hisobingiz tekshirilmoqda…",
+  "google_emailUnavailable": "Tasdiqlash xatini yuborib boʻlmadi. Keyinroq qayta urinib koʻring.",
+  "google_emailSent": "Tasdiqlash xati yuborildi. Pochta qutingizni tekshiring.",
+  "google_rateLimited": "Iltimos, qayta urinishdan oldin biroz kuting.",
+  "google_busy": "Boshqa amal bajarilayotganda (VPN ulanishi, hisob yoki mehmon) Google mavjud emas. Amal tugagach, qayta urinib koʻring; joriy kirish huquqingiz saqlanib qoladi.",
+  "google_invalidPassword": "FuzeVPN paroli notoʻgʻri. Joriy hisobingiz saqlanib qoladi.",
+  "google_invalidCode": "Tasdiqlash kodi notoʻgʻri yoki muddati tugagan.",
+  "google_accountChanged": "Seansingiz oʻzgardi. Qayta boshlashdan oldin bu urinishni bekor qiling.",
+  "google_invalidResponse": "Javobni tasdiqlab boʻlmadi. Joriy kirish huquqingiz saqlanib qoladi.",
+  "google_invalidRegistration": "Mamlakatingizni va ikkala rozilikni tekshiring.",
+  "google_consentRequired": "Davom etish uchun mamlakatingizni tanlang va ikkala hujjatni qabul qiling.",
+  "google_challengeRequired": "Qoʻshimcha xavfsizlik tekshiruvi talab qilinadi. Joriy kirish huquqingiz saqlanib qoladi.",
+  "google_challengeUnavailable": "Xavfsizlik tekshiruvi mavjud emas. Keyinroq qayta urinib koʻring.",
+  "google_intentMismatch": "Oldingi Google orqali kirish urinishi hali kutilmoqda. Bu amalni boshlashdan oldin uni bekor qiling.",
+  "google_challengeBlocked": "Talab qilinadigan xavfsizlik tekshiruvi bu ilovada mavjud emas. Bu amalni hozir yakunlab boʻlmaydi.",
+  "google_solveChallenge": "Xavfsizlik tekshiruvidan oʻting",
+  "google_challengeTitle": "Xavfsizlik tekshiruvi",
+  "google_challengeReady": "Tekshiruv yakunlandi. Endi hisob yaratishni tasdiqlashingiz mumkin.",
+  "google_challengeExpired": "Tekshiruv muddati tugadi. Tasdiqlashdan oldin uni qayta bajaring.",
+  "google_challengeCancelled": "Tekshiruv bekor qilindi. Uni qayta bajarishingiz mumkin.",
+  "google_challengeFailed": "Xavfsizlik tekshiruvi amalga oshmadi. Qayta urinib koʻring.",
+  "billing_trialTitle": "Fuze Premium’ni bepul sinab koʻring",
+  "billing_trialSubtitle": "Ulanishingizni bugundan boshlab himoya qiling.",
+  "billing_trialWeeks": "2 haftalik bepul sinov",
+  "billing_trialDays": "{days} kunlik bepul sinov",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Bepul sinovni boshlash",
+  "billing_trialFirstCharge": "Bugun boshlasangiz, birinchi toʻlov {date} sanasida kutiladi.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Koʻrsatilgan narxda avtomatik yangilanadi. Toʻlov yechilmasligi uchun sinov muddati tugashidan oldin Google Play’da bekor qiling.",
+  "billing_trialThenMonthly": "Keyin oyiga {price}",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Keyin yiliga {price}",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Tarifingizni tanlang",
+  "billing_selectionHint": "Davom etish uchun tarifni tanlang.",
+  "billing_benefitConnection": "Shifrlangan ulanish",
+  "billing_benefitPrivacy": "Onlayn maxfiylik",
+  "billing_benefitNoAccount": "Roʻyxatdan oʻtish shart emas",
+  "billing_cancellation": "Google Play’da bekor qilish",
+  "billing_premiumTitle": "Yaxshiroq himoyalangan ulanish.",
+  "billing_premiumSubtitle": "Ulanishingizni oʻzingizga qulay tarzda himoya qiling.",
+  "billing_priceMonthly": "oyiga",
+  "billing_priceYearly": "yiliga",
+  "billing_trialToday": "Bugun toʻlash shart emas",
+  "billing_trialConfirmation": "Google Play sanalar, yakuniy summa va amaldagi soliqlarni tasdiqlashdan oldin koʻrsatadi.",
+  "billing_offerChanged": "Bu taklifning shartlari oʻzgardi. Tariflarni yangilab, yana tanlang.",
+  "status_waitingNetwork": "Tarmoq kutilmoqda",
+  "status_waitingNetworkDetail": "Tarmoq mavjud emas. Tarmoq qaytgach, VPN ulanishni tekshiradi.",
+  "locations_favoriteLoadFailed": "Sevimlilarni yuklab boʻlmadi. Qayta urinib koʻring.",
+  "locations_favoritesLoading": "Sevimlilar yuklanmoqda…"
+}

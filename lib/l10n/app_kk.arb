@@ -1,0 +1,745 @@
+{
+  "vpnDisclosure_title": "Қосылымыңызды қорғаңыз",
+  "vpnDisclosure_body": "FuzeVPN осы құрылғы мен FuzeVPN серверлері арасында шифрланған туннель құру үшін Android жүйесінің VPN қызметін (VpnService) пайдаланады.",
+  "vpnDisclosure_dataBody": "VPN белсенді болған кезде қолданбаларыңыздың интернет трафигі, межелі мекенжайлары және DNS сұраулары қосылымыңызды бағыттау үшін осы туннель арқылы өтеді, тіпті FuzeVPN фондық режимде болса да.",
+  "vpnDisclosure_statusBody": "Қолданба VPN қосылымыңызды көрсету үшін қосылым күйін, оның ұзақтығын және тасымалданған деректер көлемін пайдаланады. Оны кез келген уақытта тоқтата аласыз.",
+  "vpnDisclosure_privacy": "Құпиялылық",
+  "vpnDisclosure_accept": "Қабылдап, жалғастыру",
+  "vpnDisclosure_decline": "Қазір емес",
+  "accountRestoration_title": "Аккаунт уақытша қолжетімсіз",
+  "accountRestoration_message": "Сеансыңыз сақталды. Аккаунтыңызды қалпына келтіру үшін қайталап көріңіз; VPN қосылымын осы жерде әлі де басқаруға болады.",
+  "action_retry": "Қайталау",
+  "session_endingTitle": "Сеансты аяқтау",
+  "session_ending": "Сеанс аяқталуда: VPN тоқтатылып, тазалануда…",
+  "session_stopFailed": "VPN тоқтатылғаны расталмады. Қайта кірмес бұрын қайталап көріңіз.",
+  "session_cleanupFailed": "VPN тоқтатылды, бірақ сеансты өшіру расталмады. Тазалауды қайталап көріңіз.",
+  "session_retryStop": "Тоқтатуды қайталау",
+  "session_retryCleanup": "Тазалауды қайталау",
+  "@@locale": "kk",
+  "appTitle": "FuzeVPN",
+  "startup": "FuzeVPN қауіпсіз түрде дайындалуда…",
+  "nav_connection": "Қосылым",
+  "nav_locations": "Орындар",
+  "nav_account": "Аккаунт",
+  "nav_devices": "Құрылғылар",
+  "nav_settings": "Параметрлер",
+  "action_refresh": "Жаңарту",
+  "auth_tab_login": "Кіру",
+  "auth_tab_register": "Тіркелу",
+  "auth_stepAccount": "Аккаунт",
+  "auth_stepIdentity": "Жеке деректер",
+  "auth_stepAddress": "Мекенжай және келісімдер",
+  "auth_stepProgress": "Қадам {current} / {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "Сіздің VPN — қарапайым әрі оңай.",
+  "auth_keysLocal": "Жеке VPN кілттеріңіз осы құрылғыда қалады.",
+  "form_email": "Электрондық пошта мекенжайы",
+  "form_password": "Құпия сөз",
+  "form_showPassword": "Құпия сөзді көрсету",
+  "form_hidePassword": "Құпия сөзді жасыру",
+  "form_passwordMin": "8–72 UTF-8 байт. Кейбір таңбалар бірнеше байт алады.",
+  "form_firstName": "Аты",
+  "form_lastName": "Тегі",
+  "form_phone": "Телефон (+33612345678)",
+  "form_address": "Мекенжай",
+  "form_address2": "Мекенжай, 2-жол (міндетті емес)",
+  "form_postalCode": "Пошта индексі",
+  "form_city": "Қала",
+  "form_country": "Ел коды (мысалы, FR)",
+  "action_login": "Кіру",
+  "action_createAccount": "Аккаунт жасау",
+  "action_createMyAccount": "Аккаунтымды жасау",
+  "action_next": "Жалғастыру",
+  "action_previous": "Артқа",
+  "action_forgotPassword": "Құпия сөзді ұмыттыңыз ба?",
+  "auth_noAccount": "Әлі аккаунтыңыз жоқ па?",
+  "auth_requiredInformation": "Аккаунтыңызды үш қадамда жасаңыз.",
+  "auth_termsPrefix": "Мен келісемін: ",
+  "auth_termsLink": "пайдалану шарттары",
+  "auth_privacyPrefix": "Мен келісемін: ",
+  "auth_privacyLink": "құпиялылық саясаты",
+  "auth_consentRequired": "Аккаунт жасау үшін келісіміңіз қажет.",
+  "validation_required": "Бұл өріс міндетті.",
+  "validation_email": "Жарамды электрондық пошта мекенжайын енгізіңіз.",
+  "validation_password": "Құпия сөз тым қысқа: кемінде 8 UTF-8 байт болуы керек.",
+  "validation_passwordTooLong": "Құпия сөз тым ұзын: ең көбі 72 UTF-8 байт болуы керек.",
+  "validation_phone": "Халықаралық пішімді пайдаланыңыз, мысалы, +33612345678.",
+  "validation_country": "Екі әріптен тұратын ел кодын пайдаланыңыз, мысалы, FR.",
+  "passwordReset_title": "Құпия сөзді қалпына келтіру",
+  "passwordReset_description": "Құпия сөзді қалпына келтіру сілтемесін сұрау үшін аккаунтыңыздың электрондық пошта мекенжайын енгізіңіз.",
+  "passwordReset_send": "Сілтемені жіберу",
+  "connection_title": "Қосылымыңыз",
+  "connection_subtitle": "Орынды таңдаңыз, содан кейін VPN-ді қосыңыз.",
+  "connection_prepare": "Қосылуға дайынсыз ба?",
+  "connection_advancedOptions": "Қосымша параметрлер",
+  "connection_location": "Орын",
+  "connection_chooseLocation": "Орынды таңдаңыз",
+  "connection_protocol": "Протокол",
+  "connection_connect": "Қосылу",
+  "connection_connecting": "Қосылып жатыр…",
+  "connection_disconnect": "Ажырату",
+  "connection_disconnecting": "Ажыратылып жатыр",
+  "connection_locationChange": "Орын өзгертілуде…",
+  "connection_unavailable": "{protocol} қолжетімсіз",
+  "connection_activeLocation": "Белсенді орын",
+  "connection_duration": "Ұзақтығы",
+  "connection_received": "Қабылданған",
+  "connection_sent": "Жіберілген",
+  "connection_lastHandshake": "Соңғы қауіпсіз алмасу",
+  "connection_handshakeAgo": "{duration} бұрын",
+  "verification_title": "Электрондық пошта мекенжайыңызды растаңыз",
+  "verification_message": "Осы телефонда VPN-ді пайдалану үшін электрондық пошта мекенжайыңызды растаңыз.",
+  "verification_resend": "Хатты қайта жіберу",
+  "migration_title": "Орынды өзгерту",
+  "migration_draining": "Орынды өзгертуге дайындалуда…",
+  "migration_activating": "Жаңа сервер іске қосылуда…",
+  "migration_ready": "Орын жаңартылды.",
+  "migration_blocked": "Орынды өзгерту үшін сервер тарапынан араласу қажет. Кейінірек қайталап көріңіз немесе қолдау қызметіне хабарласыңыз.",
+  "migration_progress": "Орынды өзгерту барысы",
+  "migration_retryDelay": "Тексерулер арасындағы кідіріс: {seconds} с.",
+  "migration_resume": "Орынды өзгертуді жалғастыру",
+  "status_authorizing": "Рұқсат қажет",
+  "status_authorizingDetail": "VPN-ге рұқсат беру үшін Android сұрауын қабылдаңыз.",
+  "status_preparing": "Дайындалуда",
+  "status_preparingDetail": "Қауіпсіз қосылымыңыз дайындалуда.",
+  "status_reconnecting": "Қайта қосылуда…",
+  "status_reconnectingDetail": "Қосылым үзілді. VPN қайта қосылуға тырысуда.",
+  "status_connecting": "Қосылып жатыр",
+  "status_connectingDetail": "VPN серверіне қосылып жатыр…",
+  "status_connected": "Қосылды",
+  "status_connectedDetail": "VPN қосылымыңыз белсенді.",
+  "status_disconnecting": "Ажыратылып жатыр",
+  "status_disconnectingDetail": "VPN қосылымыңыз тоқтатылып жатыр.",
+  "status_error": "Қосылым қолжетімсіз",
+  "status_errorDetail": "VPN қосылымы расталмады. Қайталап көріңіз.",
+  "status_idle": "Ажыратылды",
+  "status_idleDetail": "Қосылымыңызды қорғау үшін VPN-ді қосыңыз.",
+  "trust_note": "Қолданбаны жапқан кезде VPN тоқтамайды. Оны тоқтату үшін Ажырату түймесін пайдаланыңыз.",
+  "locations_none": "Қазір қолжетімді орындар жоқ.",
+  "locations_available": "Келесі орныңызды таңдаңыз.",
+  "locations_selected": "Таңдалған орын",
+  "locations_select": "Осы орынды таңдау",
+  "locations_lockedTunnel": "Орынды өзгерту үшін VPN-ді ажыратыңыз.",
+  "locations_lockedMigration": "Орынды өзгерту аяқталғанша күтіңіз.",
+  "devices_title": "Құрылғыларыңыз",
+  "devices_used": "{count} / {limit} құрылғы",
+  "devices_refresh": "Құрылғыларды жаңарту",
+  "devices_empty": "Әлі VPN құрылғысы тіркелмеген.",
+  "devices_firstConnection": "Телефоныңыз алғашқы қосылым кезінде тізімге қосылады.",
+  "devices_thisDevice": "Осы құрылғы",
+  "devices_added": "{date} күні қосылған",
+  "devices_unnamed": "Атаусыз құрылғы",
+  "action_remove": "Алып тастау",
+  "settings_title": "Параметрлер",
+  "settings_subtitle": "Параметрлеріңіз бен аккаунтыңыз бір жерде.",
+  "settings_appearance": "Сыртқы түрі",
+  "settings_language": "Тіл",
+  "settings_languageDescription": "Таңдаған тіліңіз VPN хабарландыруларына да қолданылады.",
+  "settings_account": "Аккаунт",
+  "settings_signOut": "Шығу",
+  "settings_privacy": "Құпиялылық саясаты",
+  "settings_terms": "Пайдалану шарттары",
+  "settings_security": "Қауіпсіздік және ашықтық",
+  "settings_licenses": "Компоненттер лицензиялары",
+  "settings_licensesDetail": "Қолданбада пайдаланылатын бағдарламалық жасақтама",
+  "settings_licensesLegalese": "Қолданба мен оның MPL-2.0 компоненттерінің бастапқы коды: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_background": "Қолданбадан шыққан кезде VPN қосулы күйінде қалады. Оны тоқтату үшін Қосылым қойындысындағы Ажырату түймесін пайдаланыңыз.",
+  "theme_system": "Жүйелік",
+  "theme_light": "Ашық",
+  "theme_dark": "Қараңғы",
+  "language_system": "Телефон тілі",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Осы құрылғыны алып тастайсыз ба?",
+  "dialog_removeCurrent": "Бұл телефон VPN-нен ажырап, қолжетімділігін жоғалтады. Оның VPN қосылымының деректері сервер растағаннан кейін өшіріледі.",
+  "dialog_removeOther": "«{name}» құрылғысының VPN қолжетімділігі жойылады. Бұл әрекетті болдырмау мүмкін емес.",
+  "dialog_signOut": "Аккаунттан шығасыз ба?",
+  "dialog_signOutMessage": "VPN тоқтайды, ал аккаунтыңызға қайтадан кіру қажет болады. Шифрланған VPN кілттеріңіз келесі қосылым үшін осы телефонда сақталады.",
+  "action_cancel": "Бас тарту",
+  "action_close": "Жабу",
+  "action_copy": "Көшіру",
+  "action_signOut": "Шығу",
+  "notice_close": "Хабарламаны жабу",
+  "notice_sessionExpired_title": "Сеанс мерзімі аяқталды",
+  "notice_sessionExpired_message": "Сеансыңыздың мерзімі аяқталды. Қайтадан кіріңіз.",
+  "notice_connectionFailed_title": "Қосылым орнатылмады",
+  "notice_invalidCredentials_message": "Электрондық пошта мекенжайы немесе құпия сөз дұрыс емес.",
+  "notice_emailVerification_title": "Электрондық поштаны растау қажет",
+  "notice_emailVerification_message": "VPN құрылғысын қосар алдында электрондық пошта мекенжайыңызды растаңыз.",
+  "notice_rateLimited_title": "Тым көп әрекет жасалды",
+  "notice_deviceLimit_title": "Құрылғы шегіне жетті",
+  "notice_deviceLimit_message": "Басқа құрылғы қосар алдында бар құрылғыны алып тастаңыз.",
+  "notice_identityRenewal_title": "VPN сәйкестендіруін жаңарту қажет",
+  "notice_identityRenewal_message": "Бұл сәйкестендіру жойылды. Жаңа жергілікті сәйкестендіру жасаңыз.",
+  "notice_migrationPending_title": "Орынды өзгерту жүріп жатыр",
+  "notice_migrationPending_message": "Орынды өзгерту қазірдің өзінде жүріп жатыр.",
+  "notice_migrationBlocked_title": "Орынды өзгерту бұғатталды",
+  "notice_migrationBlocked_message": "Орынды өзгерту үшін сервер тарапынан араласу қажет. Кейінірек қайталап көріңіз немесе қолдау қызметіне хабарласыңыз.",
+  "notice_targetUnavailable_title": "Сервер уақытша қолжетімсіз",
+  "notice_targetUnavailable_message": "Бұл сервер уақытша қолжетімсіз.",
+  "notice_networkUnavailable_title": "Интернет қосылымы қолжетімсіз",
+  "notice_networkUnavailable_message": "Қосылымыңызды тексеріп, қайталап көріңіз.",
+  "notice_permissionDenied_title": "VPN рұқсаты берілмеді",
+  "notice_permissionDenied_message": "Қосылымды қайтадан бастап, Android рұқсат сұрауын қабылдаңыз.",
+  "notice_wireguardTimeout_title": "Сервер жауап бермейді",
+  "notice_wireguardTimeout_message": "WireGuard қосылымы тым ұзаққа созылды. Қайталап көріңіз немесе басқа орынды таңдаңыз.",
+  "notice_tlsFailed_title": "Қауіпсіз қосылым қабылданбады",
+  "notice_tlsFailed_message": "Сервер OpenVPN қосылымын қабылдамады. Қайталап көріңіз. Мәселе сақталса, диагностиканы іске қосыңыз.",
+  "notice_tunRejected_title": "Android VPN интерфейсін қабылдамады",
+  "notice_tunRejected_message": "Android OpenVPN сұраған желі конфигурациясын қабылдамады.",
+  "notice_openvpnStart_title": "OpenVPN іске қосылмады",
+  "notice_openvpnStart_message": "OpenVPN қозғалтқышын толық іске қосу мүмкін болмады. Қайталап көріңіз. Мәселе сақталса, қолдау қызметіне хабарласыңыз.",
+  "notice_diagnosticCode": "Диагностика коды: {code}",
+  "notice_generic_title": "VPN қосылымы орнатылмады",
+  "notice_generic_message": "Қате орын алды. Кейінірек қайталап көріңіз.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{Аккаунт жасалды} password_reset_sent{Құпия сөзді қалпына келтіру сұрауы қабылданды} verification_email_sent{Растау хаты жіберілді} location_migration_pending{Орынды өзгерту жүріп жатыр} vpn_sign_in_required{Кіру қажет} protocol_unavailable_at_location{Протокол қолжетімсіз} vpn_permission_denied{VPN рұқсаты берілмеді} revoked_identity_device_limit{Құрылғы шегіне жетті} tunnel_start_unexpected{VPN іске қосылмады} flutter_disconnect_timeout{Ажырату расталмады} flutter_disconnect_unexpected{Ажырату мүмкін болмады} device_revoked{Құрылғы алынып тасталды} revoke_unexpected{Құрылғыны алып тастау мүмкін болмады} identity_renewal_unexpected{Сәйкестендіруді жаңарту мүмкін болмады} openvpn_renewal_unexpected{OpenVPN-ді жаңарту мүмкін болмады} location_migration_blocked{Орынды өзгерту бұғатталды} location_migration_slow{Орынды өзгерту әлі жүріп жатыр} location_migration_conflict{Орынды өзгертуді жаңарту қажет} location_migration_verification_failed{Орынды өзгерту расталмады} location_migration_device_changed{Орынды өзгерту кезінде құрылғы өзгерді} tunnel_stop_failed{Орынды өзгерту қолжетімсіз} device_clock_ahead{Құрылғы уақыты алға кеткен} other{Операция орындалмады}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{Аккаунт жасалды, бірақ растау хатын жіберу мүмкін болмады. Қолданбадағы «Хатты қайта жіберу» түймесін пайдаланыңыз.} password_reset_sent{Сұрауыңыз қабылданды. Осы мекенжайға сәйкес аккаунт болса, хат келуі мүмкін. «Спам» қалтасын да тексеріңіз.} verification_email_sent{Жаңа растау хаты жіберілді.} location_migration_pending{Мына орынға көшу әлі дайындалуда: {target}. Құрылғыны қайта жасамай-ақ жалғастыра аласыз.} vpn_sign_in_required{VPN-ді іске қоспас бұрын аккаунтыңызға кіріңіз.} protocol_unavailable_at_location{Таңдалған протокол бұл орында ұсынылмайды. Орындарды жаңартыңыз немесе басқа протоколды таңдаңыз.} vpn_permission_denied{Android VPN рұқсатын бермеді. Қосылымды қайтадан бастап, жүйелік сұрауды қабылдаңыз.} revoked_identity_device_limit{Осы құрылғының VPN қолжетімділігі жойылды және құрылғы шегіне жетті. Аккаунт → Құрылғыларымды басқару бөлімінен бір құрылғыны алып тастаңыз.} tunnel_start_unexpected{Күтпеген қате туннельді дайындауды үзді. Диагностика кодын тексеріп, қайталап көріңіз.} flutter_disconnect_timeout{Android VPN-нің уақытында тоқтағанын растамады. Оны қайтадан тоқтатып көріңіз.} flutter_disconnect_unexpected{Күтпеген қате туннельдің тоқтағанын растауға кедергі болды.} device_revoked{Құрылғының VPN қолжетімділігі жойылды, оның жергілікті құпия деректері өшірілді.} revoke_unexpected{Құрылғыны алып тастау мүмкін болмады. Тізімді жаңартып, қайталап көріңіз.} identity_renewal_unexpected{Жаңа VPN сәйкестендіруін жасау мүмкін болмады. Құрылғыларды жаңартып, қайталап көріңіз.} openvpn_renewal_unexpected{OpenVPN профилін жаңарту мүмкін болмады. Қайталап көріңіз немесе диагностика кодын тексеріңіз.} location_migration_blocked{Сервер бұл өзгерісті қазір аяқтай алмайды. Құрылғы мен оның жергілікті сәйкестендіруі сақталды.} location_migration_slow{Сервер мына орынға көшуді әлі дайындап жатыр: {target}. Біраз уақыттан кейін «Орынды өзгертуді жалғастыру» түймесін пайдаланыңыз.} location_migration_conflict{Құрылғы күйі серверде өзгерді. Құрылғыларды жаңартып, өзгерісті жалғастырыңыз.} location_migration_verification_failed{Сервер жаңа орынды растамады. Бұрынғы жергілікті сәйкестендіру сақталды.} location_migration_device_changed{Сервер қайтарған құрылғы өзгертіліп жатқан құрылғыға сәйкес емес. Қайталап көрмес бұрын құрылғыларды жаңартыңыз.} tunnel_stop_failed{Жаңа қосылымға дейін алдыңғы туннель толық тоқтатылуы керек.} device_clock_ahead{Бұл құрылғының уақыты алға кеткен сияқты. Аккаунттан шығып қалмау үшін күн мен уақытты автоматты түрде орнатуды қосыңыз.} other{Операцияны аяқтау мүмкін болмады. Қайталап көріңіз немесе диагностика кодын қолдау қызметіне жіберіңіз.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Сеанс мерзімі аяқталды} invalid_credentials{Кіру сәтсіз аяқталды} email_verification_required{Электрондық поштаны растау қажет} verification_email_cooldown{Хат бұрын жіберілген} rate_limited{Тым көп әрекет жасалды} invalid_registration{Ақпаратты түзету қажет} email_exists{Аккаунт бұрыннан бар} invalid_profile{Профиль жарамсыз} invalid_device{Құрылғы жарамсыз} invalid_location{Орын қолжетімсіз} device_limit{Құрылғы шегіне жетті} device_exists{VPN сәйкестендіруі қолданыста} device_identity_revoked{VPN сәйкестендіруін жаңарту қажет} device_location_locked{Орынды өзгертуді жаңарту қажет} location_migration_pending{Орынды өзгерту жүріп жатыр} location_migration_blocked{Орынды өзгерту бұғатталды} target_ca_mismatch{OpenVPN сервері үйлесімсіз} location_migration_conflict{Орынды өзгертуді жаңарту қажет} server_full{Сервер толы} capacity_unavailable{Орын уақытша қолжетімсіз} target_unavailable{Сервер уақытша қолжетімсіз} not_found{Элемент табылмады} invalid_openvpn_csr{OpenVPN сәйкестендіруі жарамсыз} openvpn_profile_exists{OpenVPN профилі бұрыннан бар} openvpn_profile_revoked{OpenVPN профилінің күші жойылды} openvpn_operation_pending{OpenVPN операциясы орындалуда} openvpn_operation_terminal{OpenVPN операциясы үзілді} openvpn_address_unavailable{OpenVPN мекенжайы қолжетімсіз} openvpn_profile_conflict{OpenVPN қақтығысы} openvpn_signer_unavailable{OpenVPN қолжетімсіз} email_delivery_unavailable{Электрондық пошта қолжетімсіз} invalid_token{Сілтеме жарамсыз} network_unavailable{Интернет қосылымы қолжетімсіз} invalid_json{Сұрау жарамсыз} invalid_api_response{Сервердің жауабы жарамсыз} ipv6_unavailable{IPv6 қолжетімсіз} invalid_ip_families{Желі конфигурациясы қабылданбады} other{Қызмет қолжетімсіз}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Сеансыңыздың мерзімі аяқталды. Қайтадан кіріңіз.} invalid_credentials{Электрондық пошта мекенжайы немесе құпия сөз дұрыс емес.} email_verification_required{VPN құрылғысын қосар алдында электрондық пошта мекенжайыңызды растаңыз.} invalid_registration{Сұралған ақпаратты және келісімдерді тексеріңіз.} email_exists{Бұл электрондық пошта мекенжайымен аккаунт бұрыннан бар.} invalid_profile{Профиль ақпаратын тексеріңіз.} invalid_device{Осы құрылғының атауы немесе жергілікті сәйкестендіруі жарамсыз.} invalid_location{Орындар тізімін жаңартып, қайталап көріңіз.} device_limit{Жаңа құрылғы қосар алдында бар құрылғыны алып тастаңыз.} device_exists{Бұл VPN сәйкестендіруі басқа аккаунтқа байланыстырылған.} device_identity_revoked{Бұл сәйкестендіру жойылды. Жаңа жергілікті сәйкестендіру жасалуы қажет.} device_location_locked{Осы құрылғының орны жаңа ғана өзгерді. Қолданба орындалып жатқан өзгерісті жалғастырады.} location_migration_pending{Орынды өзгерту қазірдің өзінде жүріп жатыр.} location_migration_blocked{Орынды өзгерту үшін сервер тарапынан араласу қажет. Кейінірек қайталап көріңіз немесе қолдау қызметіне хабарласыңыз.} target_ca_mismatch{Бұл сервер ағымдағы OpenVPN профилімен әлі үйлеспейді.} location_migration_conflict{Құрылғылар тізімін жаңартып, орынды өзгертуді қайталап көріңіз.} server_full{Бұл орын қосылымдар шегіне жетті. Басқа орынды таңдаңыз немесе кейінірек қайталап көріңіз.} capacity_unavailable{Бұл орынның қазір қолжетімді екенін растай алмаймыз. Басқа орынды таңдаңыз немесе кейінірек қайталап көріңіз.} target_unavailable{Бұл сервер уақытша қолжетімсіз.} not_found{Бұл элемент енді аккаунтыңызда қолжетімсіз.} invalid_openvpn_csr{Жаңа OpenVPN сәйкестендіруін жасап, қайталап көріңіз.} openvpn_profile_exists{Бұл құрылғы үшін OpenVPN профилі бұрыннан бар.} openvpn_profile_revoked{Жалғастыру үшін OpenVPN профилін жаңартыңыз.} openvpn_operation_pending{Өзгеріс әлі таралып жатыр. Кейінірек қайталап көріңіз.} openvpn_operation_terminal{Жаңа OpenVPN сәйкестендіруін жасап, қайталап көріңіз.} openvpn_address_unavailable{Қазір қолжетімді OpenVPN мекенжайы жоқ.} openvpn_profile_conflict{Профиль өзгерді. Құрылғылар тізімін жаңартып, қайталап көріңіз.} openvpn_signer_unavailable{OpenVPN қызметі уақытша қолжетімсіз.} email_delivery_unavailable{Хатты жіберу мүмкін болмады. Кейінірек қайталап көріңіз.} invalid_token{Бұл сілтеме жарамсыз немесе мерзімі аяқталды. Жаңасын сұраңыз.} network_unavailable{Интернет қосылымын тексеріп, қайталап көріңіз.} invalid_json{Енгізілген ақпаратты тексеріп, қайталап көріңіз.} invalid_api_response{Сервер күтпеген жауап қайтарды. Кейінірек қайталап көріңіз.} ipv6_unavailable{Сервер қазір IPv6 протоколын белсендіре алмайды. Кейінірек қайталап көріңіз.} invalid_ip_families{Туннель конфигурациясы толық емес немесе рұқсат етілген мекенжайларға сәйкес келмейді. Қолданбадан қайталап көріңіз.} other{Сервер қатесі орын алды. Кейінірек қайталап көріңіз.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Бірнеше сәттен кейін қайталап көріңіз.",
+  "notice_retryAfter": "{seconds, plural, one{{seconds} секундтан кейін қайталап көріңіз.} other{{seconds} секундтан кейін қайталап көріңіз.}}",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterMinutes": "{minutes, plural, one{{minutes} минуттан кейін қайталап көріңіз.} other{{minutes} минуттан кейін қайталап көріңіз.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{{hours} сағаттан кейін қайталап көріңіз.} other{{hours} сағаттан кейін қайталап көріңіз.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Жүйелік VPN жалғастыру мүмкін емес} system_vpn_resume_corrupt{Жүйелік VPN жалғастыру жарамсыз} system_vpn_resume_session_invalid{VPN жалғастыру сеансы жарамсыз} system_vpn_resume_identity_changed{VPN сәйкестендіруі өзгерді} system_vpn_resume_identity_invalid{VPN жалғастыру сәйкестендіруі жарамсыз} system_vpn_resume_storage_failed{VPN жалғастыру деректерін сақтау қолжетімсіз} system_vpn_resume_network_timeout{VPN жалғастыру үшін желі жоқ} system_vpn_resume_blocked{VPN жалғастыру бұғатталды} system_vpn_resume_failed{VPN жалғастыру сәтсіз аяқталды} system_vpn_resume_error_invalid{VPN жалғастыру қатесі жарамсыз} wireguard_identity_store_failed{WireGuard сәйкестендіруі сақталмады} wireguard_identity_unavailable{WireGuard сәйкестендіруі қолжетімсіз} vpn_host_destroyed{Android VPN компоненті тоқтатылды} vpn_host_unavailable{Android VPN компоненті қолжетімсіз} vpn_permission_required{VPN рұқсаты қажет} vpn_permission_denied{VPN рұқсаты берілмеді} vpn_permission_request_failed{Рұқсат сұрау мүмкін болмады} wireguard_foreground_service_unavailable{WireGuard қызметі қолжетімсіз} wireguard_identity_invalid{Жергілікті WireGuard кілті жарамсыз} wireguard_identity_in_use{WireGuard сәйкестендіруі қолданыста} wireguard_configuration_invalid{WireGuard конфигурациясы жарамсыз} wireguard_operation_pending{WireGuard әрекеті әлі орындалуда} wireguard_start_failed{WireGuard іске қосу қабылданбады} wireguard_stop_timeout{WireGuard тоқтатылуы расталмады} wireguard_handshake_timeout{WireGuard жауап бермеді} openvpn_connection_timeout{OpenVPN жауап бермеді} openvpn_core_unavailable{OpenVPN қозғалтқышы қолжетімсіз} openvpn_operation_pending{OpenVPN сеансы әлі белсенді} openvpn_stop_timeout{OpenVPN тоқтатылуы расталмады} openvpn_profile_unavailable{Жергілікті OpenVPN профилі жоқ} openvpn_native_failed{OpenVPN шақыруы үзілді} openvpn_key_generation_failed{OpenVPN P-256 кілтін жасау мүмкін болмады} openvpn_csr_generation_failed{OpenVPN CSR жасау мүмкін болмады} openvpn_identity_store_failed{OpenVPN сәйкестендіруі сақталмады} openvpn_identity_clear_failed{OpenVPN толық жойылмады} openvpn_identity_in_use{OpenVPN сәйкестендіруі әлі қолданыста} openvpn_tls_verification_required{OpenVPN TLS тексеруі жоқ} openvpn_cipher_invalid{OpenVPN шифрі жарамсыз} openvpn_profile_rejected{OpenVPN профилі қабылданбады} openvpn_identity_inconsistent{OpenVPN сәйкестендіруі үйлеспейді} tls_handshake_failed{OpenVPN келіссөзі қабылданбады} tls_alert_unknown_ca{OpenVPN клиент сертификаты танылмады} tls_alert_bad_certificate{OpenVPN клиент сертификаты қабылданбады} tls_alert_unsupported_certificate{Қолдау көрсетілмейтін OpenVPN сертификаты} tls_client_certificate_required{OpenVPN клиент сертификаты қажет} tls_alert_misc{OpenVPN TLS ескертуі} tls_signature_algorithm_rejected{Қолдау көрсетілмейтін OpenVPN қолтаңбасы} tls_handshake_rejected{OpenVPN TLS келіссөзі қабылданбады} tls_version_rejected{OpenVPN TLS нұсқасы сәйкес келмейді} tls_certificate_expired{TLS сертификатының мерзімі аяқталды} tls_certificate_revoked{TLS сертификатының күші жойылды} transport_failed{OpenVPN сервері қолжетімсіз} tun_configuration_rejected{OpenVPN интерфейсін жасау мүмкін болмады} tun_setup_failed{OpenVPN TUN орнату сәтсіз аяқталды} tun_interface_create_failed{OpenVPN интерфейсін жасау сәтсіз аяқталды} tun_interface_disabled{OpenVPN интерфейсі өшірілді} tun_halted{OpenVPN интерфейсі үзілді} tun_already_established{OpenVPN интерфейсі қазірдің өзінде ашық} tun_addresses_missing{OpenVPN мекенжайы жоқ} tun_routes_missing{OpenVPN бағыттары жоқ} tun_dns_missing{OpenVPN DNS жоқ} tun_permission_revoked{VPN рұқсаты қайтарып алынды} tun_establish_returned_null{Android VPN интерфейсін қабылдамады} openvpn_service_start_failed{OpenVPN қызметі қолжетімсіз} openvpn_operation_timeout{OpenVPN шақыруының күту уақыты аяқталды} openvpn_start_failed{OpenVPN іске қосу қабылданбады} openvpn_connection_failed{OpenVPN қосылымы үзілді} openvpn_core_status_error{OpenVPN қозғалтқышықатемен аяқталды} openvpn_stopped_before_connected{OpenVPN қосылмай тұрып тоқтады} openvpn_auth_failed{OpenVPN аутентификациясы қабылданбады} openvpn_client_setup_failed{OpenVPN клиентін орнату сәтсіз аяқталды} openvpn_client_halted{OpenVPN клиенті үзілді} openvpn_client_restart{OpenVPN қайта іске қосу сұралды} openvpn_inactive_timeout{OpenVPN тым ұзақ белсенді емес} openvpn_session_expired{OpenVPN сеансының мерзімі аяқталды} openvpn_credentials_required{Қолдау көрсетілмейтін OpenVPN аутентификациясы} openvpn_proxy_failed{OpenVPN аралық қосылымы сәтсіз} openvpn_compression_failed{OpenVPN сығымдауы қабылданбады} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM шифрлауы қолжетімсіз} openvpn_feature_unsupported{Қолдау көрсетілмейтін OpenVPN мүмкіндігі} network_unavailable{Интернет қосылымы қолжетімсіз} network_lost{Желі қолжетімсіз} certificate_validation_failed{Сервер сертификаты қабылданбады} openvpn_certificate_expired{OpenVPN сертификатының мерзімі аяқталды} tunnel_active_for_another_account{Басқа аккаунттың туннелі әлі белсенді} tunnel_already_active{Туннель қазірдің өзінде белсенді} tunnel_stop_timeout{{protocol} тоқтатылуы расталмады} tunnel_disconnected{{protocol} үзілді} native_bridge_unavailable{Android көпірі қолжетімсіз} native_operation_failed{Android операциясы үзілді} invalid_arguments{VPN параметрлері толық емес} invalid_account_id{VPN аккаунты жарамсыз} invalid_device_id{Құрылғы идентификаторы жарамсыз} storage_key_not_allowed{Сақтау кілті қабылданбады} secure_storage_read_failed{Қауіпсіз оқу сәтсіз аяқталды} secure_storage_write_failed{Қауіпсіз жазу сәтсіз аяқталды} key_generation_failed{WireGuard кілтін жасау мүмкін болмады} csr_generation_failed{OpenVPN CSR жасау мүмкін болмады} openvpn_recovery_exhausted{OpenVPN қалпына келтіру қазірдің өзінде пайдаланылды} openvpn_recovery_failed{OpenVPN қалпына келтіру сәтсіз аяқталды} openvpn_renewal_required{OpenVPN сертификатын жаңарту қажет} other{Жіктелмеген VPN қатесі}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android жалғастыруға болатын VPN сеансын таппады. Қолданбада жаңа қосылымды бастаңыз.} system_vpn_resume_corrupt{Сақталған VPN жалғастыру деректері жарамсыз, сондықтан пайдаланылмайды. Жаңа қосылымды бастаңыз.} system_vpn_resume_session_invalid{Сақталған сеанс енді VPN-ді жалғастыра алмайды. Қолданбаға қайта кіріңіз.} system_vpn_resume_identity_changed{Жергілікті VPN сәйкестендіруі өзгерді. Жалғастыру тоқтатылды; жаңа қосылымды бастаңыз.} system_vpn_resume_identity_invalid{Жалғастыруға арналған сәйкестендіру жарамсыз. Жаңа қосылымды бастаңыз.} system_vpn_resume_storage_failed{Android шифрланған жалғастыру деректерін оқи немесе жаңарта алмады. Жаңа қосылымды бастаңыз.} system_vpn_resume_network_timeout{Android VPN-ді жалғастыру үшін уақтылы желі таппады. Желі қолжетімді болғанда қайталап көріңіз.} system_vpn_resume_blocked{VPN жалғастыру бұғатталды. Android параметрлерін тексеріңіз, содан кейін жаңа қосылымды бастаңыз.} system_vpn_resume_failed{Android VPN жалғастыру сәтсіз аяқталды. Қолданбада жаңа қосылымды бастаңыз.} system_vpn_resume_error_invalid{Android жарамсыз жалғастыру қатесін қайтарды. Жаңа қосылымды бастаңыз.} wireguard_identity_store_failed{Android осы аккаунттың шифрланған WireGuard сәйкестендіруін сақтай алмады.} wireguard_identity_unavailable{Бұл қосылым үшін пайдалануға болатын WireGuard сәйкестендіруі жоқ.} vpn_host_destroyed{VPN-ді қамтитын Android компоненті тоқтатылды. Жаңа қосылымды бастаңыз.} vpn_host_unavailable{Android VPN-ді қамтитын компонентті жасай алмайды. VPN параметрлерін тексергеннен кейін қайталап көріңіз.} openvpn_renewal_required{Сертификат үшін қосылмас бұрын қолданбада әрекет ету қажет.} openvpn_recovery_failed{Автоматты қалпына келтіру сәтсіз аяқталды. Қолданбада жаңа қосылымды бастаңыз.} openvpn_recovery_exhausted{Автоматты қалпына келтіру қазірдің өзінде пайдаланылды. Қолданбада жаңа қосылымды бастаңыз.} vpn_permission_required{Туннельді іске қосар алдында Android жаңа VPN рұқсатын талап етеді.} vpn_permission_denied{Жалғастыру үшін Android сұрауында FuzeVPN-ге рұқсат беріңіз.} vpn_permission_request_failed{Android VPN рұқсат экранын аша алмады.} wireguard_foreground_service_unavailable{Android WireGuard қызметін алдыңғы планда ұстай алмады.} wireguard_identity_invalid{Бұл аккаунттың шифрланған WireGuard кілті оқылмайды немесе жарамсыз.} wireguard_identity_in_use{Басқа әрекет әлі бұл аккаунттың WireGuard кілтін пайдаланып жатыр.} wireguard_configuration_invalid{Алынған WireGuard мекенжайы, DNS, сервер кілті немесе бағыттар жарамсыз.} wireguard_operation_pending{Алдыңғы WireGuard әрекеті жергілікті қызметін әлі босатқан жоқ.} wireguard_start_failed{WireGuard қозғалтқышы конфигурацияны іске қосудан бас тартты.} wireguard_stop_timeout{WireGuard қызметі белгіленген уақыт ішінде VPN интерфейсінің босатылғанын растаған жоқ.} wireguard_handshake_timeout{Туннель сервермен уақтылы байланыс орнатуды растаған жоқ.} openvpn_connection_timeout{OpenVPN серверге қосылуды уақтылы растаған жоқ.} openvpn_core_unavailable{Бұл қолданба нұсқасында пайдалануға болатын OpenVPN қозғалтқышы жоқ.} openvpn_operation_pending{Жергілікті қозғалтқыш әлі алдыңғы OpenVPN сеансын ұстап тұр және екінші сеансты жасаудан бас тартады.} openvpn_stop_timeout{OpenVPN қозғалтқышыбелгіленген уақыт ішінде өзінің жергілікті сеансы тоқтатылып, жойылғанын растаған жоқ.} openvpn_profile_unavailable{Бұл қосылым үшін расталған OpenVPN профилін оқу мүмкін емес.} openvpn_native_failed{Қолданба қатесі OpenVPN жұмысын үзді. Қайтадан қосылып көріңіз. Мәселе сақталса, диагностиканы іске қосыңыз.} openvpn_key_generation_failed{Android Keystore экспортталмайтын P-256 жеке кілтін жасай немесе оқи алмады.} openvpn_csr_generation_failed{Android Keystore кілті OpenVPN сертификаты сұрауына қол қоя алмады.} openvpn_identity_store_failed{OpenVPN сертификатын немесе профилін шифрланған сақтау орнына сақтау мүмкін болмады.} openvpn_identity_clear_failed{Android осы аккаунттың жергілікті OpenVPN сәйкестендіруін толық жоя алмады.} openvpn_identity_in_use{Жергілікті OpenVPN сеансы әлі осы құрылғының кілтін немесе сертификатын пайдаланып жатыр.} openvpn_tls_verification_required{Профиль сервер сертификатын тексеруді анық талап етпейді.} openvpn_cipher_invalid{Сервер рұқсат етілген тізімде жоқ шифрлау алгоритмін жіберді.} openvpn_profile_rejected{Серверден алынған профиль үйлеспейді. Осы құрылғыны қайта жасап, қайталап көріңіз.} openvpn_identity_inconsistent{Сертификат осы телефонның қауіпсіз сәйкестендіруіне сәйкес келмейді. Жергілікті профиль ауыстырылмады.} tls_handshake_failed{Сервер TLS келіссөзін қабылдамады. Мәселе сақталса, профильді қайта жасаңыз.} tls_alert_unknown_ca{Сервер осы құрылғының сертификатын берген орталықты танымайды. OpenVPN серверін тексеру қажет.} tls_alert_bad_certificate{Сервер осы құрылғының сертификатын қабылдамады. Қайталап көрмес бұрын құрылғыны қайта жасаңыз.} tls_alert_unsupported_certificate{Сервер Android пайдаланатын қауіпсіз сертификат түрін қолдамайды.} tls_client_certificate_required{Сервер клиент сертификатын талап етеді, бірақ OpenVPN қозғалтқышыоны көрсете алмады.} tls_alert_misc{Сервер сертификат пен нұсқа санаттарынан тыс TLS ескертуін қайтарды.} tls_signature_algorithm_rejected{Сервер Android Keystore кілтінің ECDSA P-256 алгоритмін қабылдамады.} tls_handshake_rejected{Сервер қосылудан бұрын TLS келіссөзін үзді.} tls_version_rejected{Клиент пен сервер ортақ TLS нұсқасын таппады.} tls_certificate_expired{Қосылу кезінде көрсетілген сертификаттың мерзімі аяқталды.} tls_certificate_revoked{Қосылу кезінде көрсетілген сертификаттың күші жойылған.} transport_failed{OpenVPN сервері ағымдағы желіде жауап бермейді. Біраздан кейін қайталап көріңіз.} tun_configuration_rejected{Android OpenVPN сұраған желі конфигурациясын қабылдамады.} tun_setup_failed{OpenVPN қозғалтқышыAndroid интерфейсін жасамас бұрын желі жоспарын қабылдамады.} tun_interface_create_failed{OpenVPN қозғалтқышыAndroid VpnService-тен TUN интерфейсін ала алмады.} tun_interface_disabled{Қосылу кезінде Android немесе OpenVPN қозғалтқышыTUN интерфейсін өшірді.} tun_halted{OpenVPN қозғалтқышыTUN интерфейсін тоқтату туралы сұрау алды.} tun_already_established{OpenVPN бір қосылымда екінші интерфейсті сұрады. Қауіпсіздік үшін туннель тоқтатылды.} tun_addresses_missing{Сервер пайдалануға болатын туннель мекенжайын бермеді.} tun_routes_missing{Сервер пайдалануға болатын туннель бағыттарын бермеді.} tun_dns_missing{Сервер пайдалануға болатын DNS серверін бермеді.} tun_permission_revoked{Қосылу кезінде Android VPN рұқсатын қайтарып алды.} tun_establish_returned_null{Android интерфейсті жасаған жоқ, әдетте басқа VPN әлі белсенді болғандықтан.} openvpn_service_start_failed{Android OpenVPN қызметін алдыңғы планда іске қоса алмады.} openvpn_operation_timeout{OpenVPN қозғалтқышына жасалған JNI шақыруы рұқсат етілген ең ұзақ уақыттан асып кетті.} openvpn_start_failed{Android қызметі дайын, бірақ OpenVPN қозғалтқышыпрофильді іске қосуды қабылдамады.} openvpn_connection_failed{OpenVPN қозғалтқышыCONNECTED оқиғасын шығармай тұрып тоқтады.} openvpn_core_status_error{Жергілікті OpenVPN циклі қатемен аяқталды, нақтырақ соңғы оқиға жоқ.} openvpn_stopped_before_connected{Жергілікті OpenVPN циклі CONNECTED күйіне жетпей тоқтады, қозғалтқыштың анық қатесінсіз.} openvpn_auth_failed{OpenVPN сервері профильдің аутентификациясын қабылдамады.} openvpn_client_setup_failed{OpenVPN қозғалтқышыжелі қосылымына дейін клиентті іске қоса алмады.} openvpn_client_halted{OpenVPN қозғалтқышыклиентті толық тоқтату туралы сұрау алды.} openvpn_client_restart{OpenVPN қозғалтқышыөзінің тасымалдау сеансын қайта бастауды сұрады.} openvpn_inactive_timeout{OpenVPN қозғалтқышыбелсенді емес уақыт өткеннен кейін сеансты жапты.} openvpn_session_expired{Сервер OpenVPN сеансының мерзімі аяқталғанын хабарлады.} openvpn_credentials_required{Сервер немесе прокси осы сертификат профиліне кірмейтін интерактивті кіру деректерін сұрайды.} openvpn_proxy_failed{OpenVPN қозғалтқышыбаптанған прокси немесе аралық сервердің қатесін хабарлады.} openvpn_compression_failed{OpenVPN қозғалтқышыпрофиль немесе сервер хабарлаған сығымдау режимін қабылдамады.} openvpn_ntlm_crypto_unavailable{Профиль осы нұсқада қолжетімсіз NTLM шифрлауын сұрайды.} openvpn_feature_unsupported{Профиль немесе сервер осы Android клиентінде жоқ мүмкіндікті талап етеді.} network_unavailable{Пайдалануға болатын физикалық желі жоқ.} network_lost{Желі байланысы үзілгеннен кейін туннель тоқтатылды.} certificate_validation_failed{OpenVPN серверінің түпнұсқалығын тексеру мүмкін болмады.} openvpn_certificate_expired{Қайта қосылмас бұрын OpenVPN профилін жаңартыңыз.} tunnel_active_for_another_account{Бұл қосылым алдында басқа аккаунтқа тиесілі туннель тоқтатылуы керек.} tunnel_already_active{Android алдыңғы VPN сеансы әлі интерфейсті пайдаланып тұрғанын хабарлайды.} tunnel_stop_timeout{{protocol} қозғалтқышы белгіленген уақыт ішінде VPN интерфейсінің босатылғанын растаған жоқ.} tunnel_disconnected{Жергілікті қозғалтқыш туннельдің іске қосылғаннан кейін күтпеген жерден аяқталғанын хабарлады.} native_bridge_unavailable{Қолданба Android VPN қызметіне кіре алмайды. Қолданбаны жабыңыз, қайта ашыңыз, содан кейін қайталап көріңіз.} native_operation_failed{Қолданба қатесі VPN әрекетін үзді. Қайталап көріңіз. Мәселе сақталса, диагностиканы іске қосыңыз.} invalid_arguments{Осы VPN әрекетіне қажетті ақпарат толық емес. Қайталап көріңіз. Мәселе сақталса, диагностиканы іске қосыңыз.} invalid_account_id{Жергілікті әрекет жарамды аккаунт идентификаторымен байланысты емес.} invalid_device_id{Жергілікті қозғалтқышқа жіберілген құрылғы идентификаторы жоқ немесе жарамсыз.} storage_key_not_allowed{Android көпірі рұқсат етілген сақтау тізімінен тыс кілтті бұғаттады.} secure_storage_read_failed{Android Keystore осы аккаунттың жергілікті деректерінің шифрын аша алмады.} secure_storage_write_failed{Android Keystore жергілікті деректерді шифрлай немесе сақтай алмады.} key_generation_failed{Android қауіпсіз сақтауда WireGuard кілтін жасай немесе оқи алмады.} csr_generation_failed{Android Keystore OpenVPN P-256 CSR жасай немесе қол қоя алмады.} other{Құжатталмаған жергілікті бөлім сәтсіз аяқталды. Төменде көрсетілген диагностика кодын қолдау қызметіне жіберіңіз.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Рұқсат сұрауы бұрыннан ашық",
+  "notice_permissionRequestInProgress_message": "Android VPN рұқсатының сұрауы әлі көрсетіліп тұр. Қайталамас бұрын оны аяқтаңыз.",
+  "notice_permissionRequestInterrupted_title": "VPN рұқсатын сұрау үзілді",
+  "notice_permissionRequestInterrupted_message": "Қолданба жауап алғанға дейін VPN рұқсаты экраны жабылды.",
+  "notice_openvpnProofMissing_title": "OpenVPN қосылымы расталмады",
+  "notice_openvpnProofMissing_message": "OpenVPN қосылымын растау мүмкін болмады. Қауіпсіздік үшін ол тоқтатылды. Қайталап көріңіз.",
+  "openvpnCleanup_title": "OpenVPN профилінің күші жойылды",
+  "openvpnCleanup_working": "Күші жойылған OpenVPN профилі тоқтатылып, өшірілуде…",
+  "openvpnCleanup_stopFailed": "OpenVPN тоқтатылғаны расталмады. Жаңа профиль жасамас бұрын қайталап көріңіз.",
+  "openvpnCleanup_cleanupFailed": "Күші жойылған OpenVPN профилі толық өшірілмеді. Тазалауды қайталап көріңіз.",
+  "openvpnCleanup_complete": "Күші жойылған OpenVPN профилі өшірілді. Жаңасын жасау үшін «Қосылу» түймесін басыңыз.",
+  "network_title": "Желі конфигурациясы",
+  "network_ipv4Fallback": "IPv6 уақытша қолжетімсіз. Дайындық IPv4 арқылы жалғасады.",
+  "network_rejectedTitle": "Желі конфигурациясы қабылданбады",
+  "network_rejectedMessage": "Туннель конфигурациясы толық емес немесе рұқсат етілген мекенжайларға сәйкес келмейді. Қолданбадан қайталап көріңіз.",
+  "network_unreadableTitle": "Жергілікті конфигурация оқылмайды",
+  "network_unreadableMessage": "Сақталған OpenVPN желі конфигурациясын пайдалану мүмкін емес. Оны жаңарту үшін қолданбадан қайта қосылыңыз.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Желіні қорғау",
+  "protection_subtitle": "VPN ажыраса, интернетке тікелей қолжетімділікті бұғаттаңыз.",
+  "protection_active": "Жүйелік қорғау белсенді",
+  "protection_alwaysOnOnly": "Үнемі қосулы VPN белсенді; VPN-сіз қосылымдарды бұғаттауды қосыңыз",
+  "protection_inactive": "Жүйелік қорғау белсенді емес",
+  "protection_unknown": "Жүйелік қорғауды тексеріңіз",
+  "protection_openSettings": "Android параметрлерін ашу",
+  "protection_dialogTitle": "Желіні қорғауды орнату",
+  "protection_dialogMessage": "Android үнемі қосулы VPN-ді және VPN-сіз қосылымдарды бұғаттауды басқарады. FuzeVPN таңдалғанын тексеріп, жүйелік параметрлерде бұғаттауды қосыңыз.",
+  "protection_dialogOpen": "Параметрлерді ашу",
+  "session_systemProtectionNote": "Android VPN-сіз трафикті әлі де бұғаттап тұрса, бұл қорғанысты тексеру немесе өзгерту үшін жүйелік параметрлерді ашыңыз.",
+  "diagnostics_title": "Диагностика",
+  "diagnostics_settingsTitle": "Қолданба диагностикасы",
+  "diagnostics_automaticTitle": "Маңызды қателерді жіберу",
+  "diagnostics_automaticDescription": "Маңызды қате орын алғанда шағын техникалық есеп жіберіледі.",
+  "diagnostics_privacy": "Жіберілген есептер кірген аккаунтпен байланысты және 30 күн бойы сақталады. Олар шолу тарихын, құпия сөздерді немесе VPN кілттерін қамтымайды.",
+  "diagnostics_manualOpen": "Диагностиканы іске қосу",
+  "diagnostics_localDescription": "Қолданба мен VPN күйі туралы есеп жасаңыз. Қосылымыңыз өзгеріссіз қалады.",
+  "diagnostics_sendReport": "Есепті жіберу",
+  "diagnostics_sendHint": "Есепті осы құрылғыда қалдыру үшін бұл құсбелгіні қоймаңыз.",
+  "diagnostics_signedOut": "Есеп жіберу үшін аккаунтыңызға кіріңіз.",
+  "diagnostics_localLifetime": "Есеп қолданбаны жапқаннан кейін де сақталуы үшін оны телефонға сақтаңыз.",
+  "diagnostics_run": "Диагностиканы іске қосу",
+  "diagnostics_rerun": "Диагностиканы қайта іске қосу",
+  "diagnostics_running": "Тексерілуде…",
+  "diagnostics_sending": "Есеп жіберілуде…",
+  "diagnostics_prepared": "Есеп осы құрылғыда дайын",
+  "diagnostics_queued": "Есеп жіберілуін күтуде",
+  "diagnostics_sent": "Есеп алынды",
+  "diagnostics_failed": "Жіберу сәтсіз аяқталды. Жергілікті есеп әлі қолжетімді.",
+  "diagnostics_preparationFailed": "Диагностика есебін дайындау мүмкін болмады. Қайталап көріңіз.",
+  "diagnostics_authenticationRequired": "Есепті жіберу үшін қайта кіріңіз.",
+  "diagnostics_retry": "Жіберуді қайталау",
+  "diagnostics_export": "Есепті сақтау",
+  "diagnostics_exportFailed": "Экспорттау мүмкін болмады. Жергілікті есептен қайталап көріңіз.",
+  "diagnostics_preferenceFailed": "Бұл параметрді сақтау мүмкін болмады. Қайталап көріңіз.",
+  "diagnostics_receipt": "Анықтамалық код: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "{date} күні алынды",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "{date} күніне дейін сақталады",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "Бұл есеп бұрын алынған.",
+  "diagnostics_preview": "Есепті алдын ала қарау",
+  "diagnostics_eventCount": "{count, plural, =0{Техникалық оқиғалар тіркелмеген} =1{1 техникалық оқиға тіркелген} other{{count} техникалық оқиға тіркелген}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Техникалық мәліметтер",
+  "diagnostics_empty": "Диагностика есебі әлі дайындалған жоқ.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Туннель күйі} handshake{Қосылымды растау} certificate{VPN сертификаты} kill_switch{Android қорғанысы} connectivity{Қолжетімді желі} api_reachability{Қызметке қолжетімділік} secure_storage{Қауіпсіз сақтау} other{Жергілікті тексеру}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{Тексерілді} failed{Назар аудару қажет} skipped{Сыналмады — белсенді тексеру жоқ} unknown{Ақпарат қолжетімсіз} other{Ақпарат қолжетімсіз}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "FuzeVPN-ге қош келдіңіз",
+  "connection_changeLocation": "Орынды өзгерту",
+  "connection_details": "Қосылым мәліметтері",
+  "locations_searchLabel": "Қаланы немесе елді іздеу",
+  "locations_clearSearch": "Іздеуді тазалау",
+  "locations_filterAll": "Барлығы",
+  "locations_filterFavorites": "Таңдаулылар",
+  "locations_results": "{count, plural, one{{count} орын} other{{count} орын}}",
+  "locations_noResults": "Орын табылмады",
+  "locations_noResultsHint": "Басқа қала немесе ел іздеп көріңіз.",
+  "locations_noFavorites": "Таңдаулыларыңыз қолыңыздың ұшында",
+  "locations_noFavoritesHint": "Осы жерде сақтау үшін орынның жанындағы жұлдызшаны түртіңіз.",
+  "locations_showAll": "Барлық орындарды көру",
+  "locations_addFavorite": "Таңдаулыларға қосу: {name}",
+  "locations_removeFavorite": "Таңдаулылардан алып тастау: {name}",
+  "locations_favoriteSaveFailed": "Таңдаулыны сақтау мүмкін болмады. Қайталап көріңіз.",
+  "locations_emptyTitle": "Қолжетімді орындар жоқ",
+  "locations_emptyHint": "Қайталап көру үшін тізімді жаңартыңыз.",
+  "devices_manage": "Құрылғыларымды басқару",
+  "settings_personalization": "Өзіңізге ыңғайлы етіңіз",
+  "settings_safety": "Қорғаныс",
+  "settings_help": "Көмек қажет пе?",
+  "settings_about": "FuzeVPN туралы",
+  "diagnostics_heading": "Қосылым мәселесін түсіну",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Қолжетімді} pending{Дайындалуда} revoked{Алып тасталды} expired{Мерзімі аяқталды} other{Күйі қолжетімсіз}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Параметр сақталмады",
+  "notice_preferenceSave_message": "Таңдауыңыз қазір қолданылып тұр, бірақ сақталмады. Қолданбаны жапқаннан кейін де сақтау үшін қайталап көріңіз.",
+  "connection_androidDisconnectHint": "Android VPN-ді белсенді ұстап тұрса, ашылатын параметрлерде «Үнемі қосулы VPN» опциясын өшіріңіз.",
+  "protection_learnMore": "Android қорғанысы туралы толығырақ білу",
+  "protection_guideWhy": "Бұл қорғаныс VPN ажыратылған кезде қолданбалардың интернетке тікелей қосылуына жол бермейді. Ол Android жүйесінде реттеледі.",
+  "protection_guideAlwaysOnTitle": "Үнемі қосулы VPN",
+  "protection_guideAlwaysOn": "Android VPN қызметін іске қосулы ұстайды және телефон қайта жүктелгеннен кейін оны қайта іске қоса алады.",
+  "protection_guideBlockTitle": "VPN-сіз қосылымдарды бұғаттау",
+  "protection_guideBlock": "Бұл параметр қосылым үзілген кезде де трафиктің VPN-ді айналып өтуіне жол бермейді.",
+  "protection_guideWarning": "Бұл бұғаттау қосулы болса, VPN қосылғанға дейін интернетке қосылу мүмкін болмайды.",
+  "protection_guideStepsTitle": "Қорғанысты қосу",
+  "protection_guideStep1": "Төмендегі түйме арқылы Android VPN параметрлерін ашыңыз.",
+  "protection_guideStep2": "FuzeVPN атауының жанындағы тісті доңғалақ белгішесі арқылы опцияларды ашыңыз.",
+  "protection_guideStep3": "Қолжетімді болса, алдымен «Үнемі қосулы VPN», содан кейін «VPN-сіз қосылымдарды бұғаттау» опцияларын қосыңыз.",
+  "protection_guideManufacturers": "Атаулар телефонға байланысты әртүрлі болады. Қажет болса, параметрлерде «VPN» деп іздеңіз, көбінесе «Желі және интернет» бөлімінде болады.",
+  "protection_guideDisableTitle": "Бұл қорғанысты өшіру",
+  "protection_guideDisable": "Сол параметрлерде VPN-сіз интернетті пайдалану үшін «VPN-сіз қосылымдарды бұғаттау» опциясын өшіріңіз. Егер Android VPN қызметін қайта іске қоспауын қаласаңыз, «Үнемі қосулы VPN» опциясын да өшіріңіз.",
+  "protection_guideManual": "Бұл параметрлерді Android жүйесінде өзіңіз таңдайсыз. FuzeVPN оларды сіз үшін өзгертпейді.",
+  "locations_changeTitle": "Орынды өзгертесіз бе?",
+  "locations_changeActive": "VPN ажыратылады, содан кейін мына орынға қосылуға тырысады: {name}.",
+  "locations_changeIdle": "VPN мына орынға қосылуға тырысады: {name}.",
+  "locations_confirmChange": "Өзгертіп, қосылу",
+  "locations_changeBusy": "Өзгерту жүріп жатыр. Басқа орынды таңдау үшін аяқталуын күтіңіз.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Автоматты таңдау",
+  "locations_cities": "Қалалар",
+  "locations_servers": "Серверлер",
+  "locations_viewCities": "{name} қалаларын көру",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "{name} серверлерін көру",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{{count} ел} other{{count} ел}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{{count} қала} other{{count} қала}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{{count} сервер} other{{count} сервер}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Барлық елдер",
+  "locations_backToCountries": "Елдерге оралу",
+  "locations_backToCities": "{name} қалаларына оралу",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Таңдау: {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Таңдау: {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Сәйкес келетін сервер жоқ.",
+  "externalLink_failed": "Бұл сілтемені ашу мүмкін емес. Оны көшіріп, браузеріңізде ашуыңызға болады.",
+  "externalLink_copy": "Сілтемені көшіру",
+  "externalLink_copied": "Сілтеме көшірілді",
+  "externalLink_copyFailed": "Сілтемені көшіру мүмкін болмады. Төмендегі мекенжайды таңдаңыз.",
+  "settings_deleteAccount": "Аккаунтымды жою",
+  "settings_deleteAccountDetail": "Аккаунтты жою сұрауының рәсімін көру",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "VPN жазылымыңызды таңдаңыз.",
+  "billing_subscribe": "Жазылу",
+  "billing_choosePlan": "Жалғастыру үшін тарифті таңдаңыз.",
+  "billing_monthly": "Айлық",
+  "billing_yearly": "Жылдық",
+  "billing_continue": "Google Play арқылы жалғастыру",
+  "billing_restore": "Сатып алуларды қалпына келтіру",
+  "billing_manage": "Жазылымды басқару",
+  "billing_deleteAccountWarning": "Google Play жазылымыңыз болса, FuzeVPN аккаунтыңызды жою оның ұзартылуын тоқтатпайды. Ұзартуды Google Play арқылы бөлек басқарыңыз немесе тоқтатыңыз.",
+  "billing_deleteAccountContinue": "Аккаунтты жою сұрауына өту",
+  "billing_refresh": "Қолжетімділікті жаңарту",
+  "billing_loadingPlans": "Тарифтер жүктелуде…",
+  "billing_unavailable": "Қазір тарифтер қолжетімсіз. Кейінірек қайталап көріңіз.",
+  "billing_comingSoon": "Жазылымдар жақында қолжетімді болады.",
+  "billing_priceDisclosure": "Бағаны Google Play ұсынады. Соңғы сома мен қолданылатын салықтар сіз растамас бұрын нақтыланады.",
+  "billing_renewalMonthly": "Бас тартылмаса, ай сайын автоматты түрде ұзартылады. Жазылымнан Google Play ішінде кез келген уақытта бас тарта аласыз.",
+  "billing_renewalYearly": "Бас тартылмаса, жыл сайын автоматты түрде ұзартылады. Жазылымнан Google Play ішінде кез келген уақытта бас тарта аласыз.",
+  "billing_active": "Premium қолжетімділігіңіз белсенді",
+  "billing_accessUntil": "Қолжетімділік {date} күніне дейін.",
+  "billing_webManaged": "Жазылымыңыз FuzeVPN веб-сайтында басқарылады.",
+  "billing_playManaged": "Жазылымыңыз Google Play арқылы басқарылады.",
+  "billing_playOnHold": "Google Play жазылымыңыз кідіртілген немесе төлемді күтуде. Оны Google Play ішінде түзету үшін «Жазылымды басқару» бөлімін ашыңыз.",
+  "billing_playReceiptUnlinked": "Бұл Google Play аккаунтында осы FuzeVPN аккаунты үшін белсенді емес Fuze Premium жазылымы бар. Оны Google Play ішінде қарау үшін «Жазылымды басқару» бөлімін ашыңыз.",
+  "billing_inactive": "Белсенді жазылым жоқ.",
+  "billing_checkingAccess": "Қолжетімділігіңіз тексерілуде…",
+  "billing_restoring": "Сатып алулар қалпына келтірілуде…",
+  "billing_pending": "Төлем күтілуде. Растағаннан кейін қолжетімділігіңіз белсендіріледі.",
+  "billing_cancelled": "Сатып алудан бас тартылды. Жаңа жазылым белсендірілмеді.",
+  "billing_verifying": "Сатып алу тексерілуде…",
+  "billing_success": "Жазылым белсендірілді. Premium қолжетімділігіңіз дайын.",
+  "billing_restored": "Сатып алуларыңыз қалпына келтірілді.",
+  "billing_restoreEmpty": "Бұл Google Play аккаунты үшін қалпына келтіретін сатып алулар жоқ.",
+  "billing_catalogError": "Тарифтерді жүктеу мүмкін болмады. Қайталап көріңіз.",
+  "billing_purchaseError": "Сатып алуды бастау мүмкін болмады. Қайталап көріңіз.",
+  "billing_verificationError": "Сатып алуды тексеру уақытша қолжетімсіз. Қайталап көру үшін сатып алуларды қалпына келтіріңіз.",
+  "billing_restoreError": "Сатып алуларды қалпына келтіру мүмкін болмады. Қайталап көріңіз.",
+  "billing_managementError": "Жазылымды басқару бетін ашу мүмкін болмады. Қайталап көріңіз.",
+  "billing_storeUnavailable": "Бұл құрылғыда Google Play қолжетімсіз.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "Сіздің VPN — қарапайым әрі оңай.",
+  "welcome_description": "Қосылымыңызды қорғаңыз. Құпиялылығыңызды өз бақылауыңызда ұстаңыз.",
+  "welcome_start": "Бастау",
+  "welcome_alreadyPurchased": "Бұрын сатып алғансыз ба?",
+  "welcome_noAccountRequired": "Бастау үшін аккаунт қажет емес.",
+  "guest_accountTitle": "Аккаунт байланыстырылмаған",
+  "guest_accountDescription": "Жазылымыңызды басқа құрылғыда пайдалану үшін сол Google Play аккаунтымен сатып алуларыңызды қалпына келтіріңіз.",
+  "guest_existingSubscriberSignIn": "Жазылғансыз ба? Кіріңіз",
+  "guest_claimTitle": "FuzeVPN-ді өзіңізбен бірге алыңыз",
+  "guest_claimDescription": "Жазылымыңызға басқа құрылғыларыңызда қол жеткізу үшін аккаунт жасаңыз. Бұл қадам міндетті емес.",
+  "guest_skip": "Кейінірек",
+  "guest_activationTitle": "Fuze Premium белсенді",
+  "guest_activationDescription": "Жазылымыңыз дайын. VPN-ді пайдаланыңыз және қалаған уақытта аккаунт жасаңыз.",
+  "guest_useVpn": "VPN-ді пайдалану",
+  "guest_loginRequired": "Бұл сатып алу бұрыннан FuzeVPN аккаунтына байланыстырылған. Жазылымыңызға қол жеткізу үшін сол аккаунтқа кіріңіз.",
+  "guest_signOutWarning": "Сол Google Play аккаунтымен сатып алуларыңызды қалпына келтіру арқылы жазылымыңызды қайта алуға болады.",
+  "guest_profileUnavailable": "Аккаунтыңыз бұрыннан байланыстырылған. Мәліметтеріңізді көру және басқару үшін кіріңіз.",
+  "billing_acceptance": "Жалғастыру арқылы Пайдалану шарттарын және Құпиялылық саясатын қабылдайсыз.",
+  "guest_verifyEmailReminder": "Аккаунтыңызды қорғау үшін электрондық пошта мекенжайыңызды растаңыз. VPN-ді пайдалануды жалғастыра аласыз.",
+  "guest_serviceUnavailable": "Қызмет уақытша қолжетімсіз. Біраздан кейін қайталап көріңіз.",
+  "guest_restoreError": "Сатып алуларыңызды қалпына келтіру мүмкін болмады. Сатып алу үшін пайдаланылған Google Play аккаунтымен қайталап көріңіз.",
+  "guest_claimSuccess": "Аккаунтыңыз жасалды. Жазылымыңыз бен VPN қолжетімділігіңіз сақталды.",
+  "guest_emailExists": "Бұл электрондық пошта мекенжайы бұрыннан пайдаланылып жатыр. Басқа мекенжай таңдаңыз немесе бар аккаунтыңызға кіріңіз. Сатып алуыңыз Google Play арқылы қолжетімді күйде қалады.",
+  "guest_claimError": "Аккаунтыңызды жасау мүмкін болмады. VPN-ді пайдалануды жалғастыра аласыз және кейінірек қайталап көре аласыз.",
+  "guest_secureStorageError": "Бұл құрылғыда сеансыңызды қорғау мүмкін болмады. Қайталап көріңіз.",
+  "guest_premiumRequired": "VPN-ді белсендіру үшін жазылымды таңдаңыз.",
+  "welcome_viewPlans": "Тарифтерді көру",
+  "google_continue": "Google арқылы жалғастыру",
+  "google_or": "немесе",
+  "google_title": "FuzeVPN аккаунтыңыз",
+  "google_settingUp": "Аккаунтты жасауды аяқтаңыз",
+  "google_country": "Тұрғылықты ел",
+  "google_profileDescription": "FuzeVPN аккаунтын жасау үшін еліңізді таңдап, екі құжатпен танысыңыз.",
+  "google_claimDescription": "Қонақ аккаунтыңызды Google аккаунтына байланыстырыңыз. Жазылымыңыз бен құрылғыңыз осы аккаунтқа байланысты болып қалады.",
+  "google_linkTitle": "Google аккаунтын FuzeVPN-мен байланыстыру",
+  "google_linkDescription": "Қолданыстағы FuzeVPN аккаунтыңызға қол жеткізуді растаңыз. Бұл қадам Google құпия сөзіңізді сұрамайды.",
+  "google_password": "FuzeVPN құпия сөзі",
+  "google_linkAccount": "Байланыстыруды растау",
+  "google_requestEmail": "Растау хатын жіберу",
+  "google_emailInstructions": "FuzeVPN хатын ашып, растау кодын енгізіңіз.",
+  "google_emailCode": "Электрондық поштаны растау коды",
+  "google_confirmEmail": "Кодты растау",
+  "google_restart": "Басқа Google аккаунтын таңдау",
+  "google_resume": "Осы әрекетті тексеру",
+  "google_unavailable": "Google арқылы кіру қолжетімсіз. Электрондық пошта мен құпия сөз арқылы кіре аласыз.",
+  "google_expired": "Бұл әрекеттің мерзімі аяқталды. Бас тартып, қайтадан бастаңыз.",
+  "google_conflict": "Бұл Google аккаунты басқа жерде бұрыннан байланыстырылған. Ағымдағы аккаунтыңыз бен жазылымыңыз сақталады.",
+  "google_error": "Google арқылы кіру сәтсіз аяқталды. Қайталап көріңіз; ағымдағы қолжетімділігіңіз сақталады.",
+  "google_uncertain": "Нәтиже расталмады. Қайтадан бастамас бұрын осы әрекетті тексеріңіз немесе одан бас тартыңыз.",
+  "google_cancelFailed": "Бас тарту расталмады. Осы экраннан шықпас бұрын қайтадан бас тартып көріңіз.",
+  "google_cancelled": "Google арқылы кіруден бас тартылды.",
+  "google_selecting": "Google аккаунтыңызды таңдаңыз…",
+  "google_verifying": "Аккаунтыңыз тексерілуде…",
+  "google_emailUnavailable": "Растау хатын жіберу мүмкін болмады. Кейінірек қайталап көріңіз.",
+  "google_emailSent": "Растау хаты жіберілді. Кіріс хаттарыңызды тексеріңіз.",
+  "google_rateLimited": "Қайтадан әрекет жасамас бұрын күтіңіз.",
+  "google_busy": "Басқа операция орындалып жатқан кезде (VPN қосылымы, аккаунт немесе қонақ) Google қолжетімсіз. Ол аяқталғаннан кейін қайталап көріңіз; ағымдағы қолжетімділігіңіз сақталады.",
+  "google_invalidPassword": "FuzeVPN құпия сөзі дұрыс емес. Ағымдағы аккаунтыңыз сақталады.",
+  "google_invalidCode": "Растау коды жарамсыз немесе мерзімі аяқталған.",
+  "google_accountChanged": "Сеансыңыз өзгерді. Қайтадан бастамас бұрын осы әрекеттен бас тартыңыз.",
+  "google_invalidResponse": "Жауапты растау мүмкін болмады. Ағымдағы қолжетімділігіңіз сақталады.",
+  "google_invalidRegistration": "Еліңізді және екі келісімді тексеріңіз.",
+  "google_consentRequired": "Жалғастыру үшін еліңізді таңдап, екі құжатты қабылдаңыз.",
+  "google_challengeRequired": "Қосымша қауіпсіздік тексеруі қажет. Ағымдағы қолжетімділігіңіз сақталады.",
+  "google_challengeUnavailable": "Қауіпсіздік тексеруі қолжетімсіз. Кейінірек қайталап көріңіз.",
+  "google_intentMismatch": "Google арқылы кірудің алдыңғы әрекеті әлі күтуде. Бұл операцияны бастамас бұрын одан бас тартыңыз.",
+  "google_challengeBlocked": "Қажетті қауіпсіздік тексеруі осы қолданбада қолжетімсіз. Бұл операцияны қазір аяқтау мүмкін емес.",
+  "google_solveChallenge": "Қауіпсіздік тексеруін аяқтау",
+  "google_challengeTitle": "Қауіпсіздік тексеруі",
+  "google_challengeReady": "Тексеру аяқталды. Енді аккаунтыңызды жасауды растай аласыз.",
+  "google_challengeExpired": "Тексеру мерзімі аяқталды. Растамас бұрын оны қайтадан аяқтаңыз.",
+  "google_challengeCancelled": "Тексеруден бас тартылды. Қайталап көре аласыз.",
+  "google_challengeFailed": "Қауіпсіздік тексеруі сәтсіз аяқталды. Қайталап көріңіз.",
+  "billing_trialTitle": "Fuze Premium-ды тегін көріңіз",
+  "billing_trialSubtitle": "Бүгіннен бастап қосылымыңызды қорғаңыз.",
+  "billing_trialWeeks": "2 апталық тегін сынақ",
+  "billing_trialDays": "{days} күндік тегін сынақ",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Тегін сынақты бастау",
+  "billing_trialFirstCharge": "Бүгін бастасаңыз, алғашқы төлем {date} күні күтіледі.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Көрсетілген бағамен автоматты түрде ұзартылады. Төлем алынбауы үшін сынақ мерзімі аяқталғанға дейін Google Play ішінде жазылымнан бас тартыңыз.",
+  "billing_trialThenMonthly": "Содан кейін айына {price}",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Содан кейін жылына {price}",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Тарифті таңдаңыз",
+  "billing_selectionHint": "Жалғастыру үшін бір тарифті таңдаңыз.",
+  "billing_benefitConnection": "Шифрланған қосылым",
+  "billing_benefitPrivacy": "Желідегі құпиялылық",
+  "billing_benefitNoAccount": "Тіркелу қажет емес",
+  "billing_cancellation": "Google Play ішінде бас тарту",
+  "billing_premiumTitle": "Анағұрлым қорғалған қосылым.",
+  "billing_premiumSubtitle": "Қосылымыңызды өз қарқыныңызбен қорғаңыз.",
+  "billing_priceMonthly": "айына",
+  "billing_priceYearly": "жылына",
+  "billing_trialToday": "Бүгін төлейтін ештеңе жоқ",
+  "billing_trialConfirmation": "Сіз растамас бұрын Google Play күндерді, соңғы соманы және қолданылатын салықтарды растайды.",
+  "billing_offerChanged": "Бұл ұсыныстың шарттары өзгерді. Тарифтерді жаңартып, қайтадан таңдаңыз.",
+  "status_waitingNetwork": "Желіні күтуде",
+  "status_waitingNetworkDetail": "Желі қолжетімсіз. Желі қайтып келгенде VPN қосылымды тексереді.",
+  "locations_favoriteLoadFailed": "Таңдаулыларды жүктеу мүмкін болмады. Қайталап көріңіз.",
+  "locations_favoritesLoading": "Таңдаулылар жүктелуде…"
+}

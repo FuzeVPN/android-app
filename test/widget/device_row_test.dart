@@ -6,6 +6,7 @@ import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 import 'package:intl/intl.dart';
@@ -68,7 +69,7 @@ void main() {
               MaterialApp(
                 locale: Locale(language),
                 supportedLocales: AppLocalizations.supportedLocales,
-                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                localizationsDelegates: AppLocalizationDelegates.all,
                 theme: dark ? FuzeVpnTheme.dark() : FuzeVpnTheme.light(),
                 home: Scaffold(
                   body: SingleChildScrollView(
@@ -196,7 +197,7 @@ void main() {
         MaterialApp(
           locale: const Locale('fr'),
           supportedLocales: AppLocalizations.supportedLocales,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           theme: FuzeVpnTheme.light(),
           home: Scaffold(body: AccountPage(controller: controller)),
         ),
@@ -243,7 +244,7 @@ void main() {
 Widget _deviceApp(VpnAppController controller, VpnDevice device) => MaterialApp(
   locale: const Locale('fr'),
   supportedLocales: AppLocalizations.supportedLocales,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   theme: FuzeVpnTheme.light(),
   home: Scaffold(
     body: SingleChildScrollView(

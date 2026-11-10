@@ -6,13 +6,17 @@ import org.junit.Assert.assertNull
 import org.junit.Test
 
 class NativeLocalePolicyTest {
-    @Test fun allThirtyRequestedTagsRoundTripWithoutLosingChineseScripts() {
+    @Test fun allSeventyRequestedTagsRoundTripWithoutLosingChineseScripts() {
         val expected = setOf(
             "en", "es", "pt", "de", "fr", "ar", "tr", "ja", "id", "ru",
             "it", "ko", "pl", "nl", "hi", "vi", "uk", "th", "zh-Hans", "zh-Hant",
             "fa", "ur", "fil", "ms", "ro", "cs", "sv", "da", "nb", "el",
+            "bn", "sw", "my", "km", "uz", "ne", "si", "ta", "te", "mr",
+            "gu", "ha", "am", "hu", "bg", "fi", "sk", "hr", "sr", "he",
+            "pa", "kn", "ml", "or", "ps", "lt", "lv", "et", "sl", "sq",
+            "kk", "az", "hy", "ka", "lo", "mg", "so", "yo", "ig", "rw",
         )
-        assertEquals(30, NativeLocalePolicy.supportedTags.size)
+        assertEquals(70, NativeLocalePolicy.supportedTags.size)
         assertEquals(expected, NativeLocalePolicy.supportedTags)
         for (tag in expected) {
             assertEquals(tag, NativeLocalePolicy.canonicalTag(tag))
@@ -29,7 +33,10 @@ class NativeLocalePolicyTest {
             "vi-VN" to "vi", "uk-UA" to "uk", "th-TH" to "th", "fa-IR" to "fa",
             "ur-PK" to "ur", "fil-PH" to "fil", "ms-MY" to "ms", "ro-RO" to "ro",
             "cs-CZ" to "cs", "sv-SE" to "sv", "da-DK" to "da", "nb-NO" to "nb",
-            "el-GR" to "el",
+            "el-GR" to "el", "bn-BD" to "bn", "bn-IN" to "bn", "sw-KE" to "sw",
+            "he-IL" to "he", "sr-RS" to "sr", "sr-Latn-RS" to "sr", "uz-UZ" to "uz",
+            "pa-IN" to "pa", "ps-AF" to "ps", "hu-HU" to "hu", "fi-FI" to "fi",
+            "az-AZ" to "az", "rw-RW" to "rw", "yo-NG" to "yo",
         )
         for ((tag, expected) in regional) {
             assertEquals(tag, expected, NativeLocalePolicy.canonicalTag(tag))
@@ -38,8 +45,18 @@ class NativeLocalePolicyTest {
     }
 
     @Test fun legacyAndroidAliasesUseCanonicalSupportedTags() {
-        for ((legacy, canonical) in mapOf("in-ID" to "id", "tl-PH" to "fil", "no-NO" to "nb")) {
+        for ((legacy, canonical) in mapOf("in-ID" to "id", "tl-PH" to "fil", "no-NO" to "nb", "iw-IL" to "he")) {
             assertEquals(canonical, NativeLocalePolicy.canonicalTag(legacy))
+        }
+    }
+
+    @Test fun systemLanguagesInAnotherScriptMoveOnToTheNextLanguage() {
+        for (tag in listOf("pa-Arab-PK", "uz-Arab-AF", "az-Arab-IR")) {
+            assertNull(tag, NativeLocalePolicy.canonicalTag(tag))
+        }
+        assertEquals("ur", NativeLocalePolicy.resolve(null, listOf("pa-Arab-PK", "ur-PK")))
+        for ((tag, expected) in mapOf("pa-Guru-IN" to "pa", "sr-Latn-RS" to "sr", "uz-Cyrl-UZ" to "uz", "az-Cyrl-AZ" to "az")) {
+            assertEquals(tag, expected, NativeLocalePolicy.canonicalTag(tag))
         }
     }
 
@@ -89,7 +106,7 @@ class NativeLocalePolicyTest {
 
     @Test fun FrenchRemainsTheFinalFallback() {
         assertEquals("fr", NativeLocalePolicy.resolve(null, emptyList()))
-        assertEquals("fr", NativeLocalePolicy.resolve("xx", listOf("fi-FI", "he-IL")))
+        assertEquals("fr", NativeLocalePolicy.resolve("xx", listOf("xh-ZA", "zu-ZA")))
     }
 
     @Test fun parsingNeverDependsOnTheHostDefaultLanguage() {

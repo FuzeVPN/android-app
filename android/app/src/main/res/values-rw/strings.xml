@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Ihuza rya VPN</string>
+    <string name="vpn_notification_channel_description">Yerekana igihe ihuza rya FuzeVPN rikora.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Ihuza rya %1$s rirakora</string>
+    <string name="vpn_notification_connecting">Ihuza rya %1$s ririmo gukorwa</string>
+    <string name="vpn_notification_disconnecting">Irimo guhagarika %1$s</string>
+    <string name="vpn_notification_interrupted">Ihuza rya %1$s ryacitse</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Byiteguye · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Byahujwe · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Irimo guhuza %1$s…</string>
+    <string name="vpn_tile_disconnecting">Irimo guhagarika…</string>
+    <string name="vpn_tile_interrupted">Ihuza ryacitse · %1$s</string>
+    <string name="vpn_tile_setup_required">Mubanze mufungure porogaramu</string>
+    <string name="vpn_tile_working">Igikorwa cya VPN kirimo gukorwa…</string>
+    <string name="vpn_notification_reconnecting">Irongera guhuza… · %1$s</string>
+    <string name="vpn_system_action_required">Hakenewe igikorwa mu igenamiterere rya Android</string>
+    <string name="vpn_tile_reconnecting">Irongera guhuza… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Irategereje urusobe · %1$s</string>
+    <string name="vpn_tile_waiting_network">Irategereje urusobe · %1$s</string>
+</resources>

@@ -1,0 +1,1036 @@
+{
+  "locale": "ka",
+  "arb": {
+    "vpnDisclosure_title": "დაიცავით თქვენი კავშირი",
+    "vpnDisclosure_body": "FuzeVPN იყენებს Android-ის VPN სერვისს (VpnService) ამ მოწყობილობასა და FuzeVPN სერვერებს შორის დაშიფრული გვირაბის შესაქმნელად.",
+    "vpnDisclosure_dataBody": "როცა VPN აქტიურია, თქვენი აპების ინტერნეტ-ტრაფიკი, დანიშნულების მისამართები და DNS მოთხოვნები ამ გვირაბში გადის თქვენი კავშირის მარშრუტიზაციისთვის, მაშინაც კი, როცა FuzeVPN ფონურ რეჟიმში მუშაობს.",
+    "vpnDisclosure_statusBody": "აპი იყენებს კავშირის სტატუსს, მის ხანგრძლივობასა და გადაცემული მონაცემების მოცულობას, რათა აჩვენოს თქვენი VPN კავშირი. მისი გათიშვა ნებისმიერ დროს შეგიძლიათ.",
+    "vpnDisclosure_privacy": "კონფიდენციალურობა",
+    "vpnDisclosure_accept": "მიღება და გაგრძელება",
+    "vpnDisclosure_decline": "ახლა არა",
+    "accountRestoration_title": "ანგარიში დროებით მიუწვდომელია",
+    "accountRestoration_message": "თქვენი სესია შენარჩუნებულია. ანგარიშის აღსადგენად სცადეთ ხელახლა. VPN კავშირის მართვა აქაც შეგიძლიათ.",
+    "action_retry": "ხელახლა ცდა",
+    "session_endingTitle": "სესიის დასრულება",
+    "session_ending": "სესია სრულდება: VPN ითიშება და მიმდინარეობს გასუფთავება…",
+    "session_stopFailed": "VPN-ის გათიშვა არ დადასტურდა. ხელახლა შესვლამდე სცადეთ ისევ.",
+    "session_cleanupFailed": "VPN გათიშულია, მაგრამ სესიის წაშლა არ დადასტურდა. სცადეთ გასუფთავება ხელახლა.",
+    "session_retryStop": "გათიშვის ხელახლა ცდა",
+    "session_retryCleanup": "გასუფთავების ხელახლა ცდა",
+    "@@locale": "ka",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN უსაფრთხოდ მზადდება…",
+    "nav_connection": "კავშირი",
+    "nav_locations": "მდებარეობები",
+    "nav_account": "ანგარიში",
+    "nav_devices": "მოწყობილობები",
+    "nav_settings": "პარამეტრები",
+    "action_refresh": "განახლება",
+    "auth_tab_login": "შესვლა",
+    "auth_tab_register": "რეგისტრაცია",
+    "auth_stepAccount": "ანგარიში",
+    "auth_stepIdentity": "პირადი მონაცემები",
+    "auth_stepAddress": "მისამართი და შეთანხმებები",
+    "auth_stepProgress": "ნაბიჯი {current} {total}-დან",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "თქვენი VPN, მარტივად.",
+    "auth_keysLocal": "თქვენი პირადი VPN გასაღებები ამ მოწყობილობაზე რჩება.",
+    "form_email": "ელფოსტის მისამართი",
+    "form_password": "პაროლი",
+    "form_showPassword": "პაროლის ჩვენება",
+    "form_hidePassword": "პაროლის დამალვა",
+    "form_passwordMin": "8–72 UTF-8 ბაიტი. ზოგიერთი სიმბოლო ერთზე მეტ ბაიტს იკავებს.",
+    "form_firstName": "სახელი",
+    "form_lastName": "გვარი",
+    "form_phone": "ტელეფონი (+33612345678)",
+    "form_address": "მისამართი",
+    "form_address2": "მისამართის მე-2 სტრიქონი (არასავალდებულო)",
+    "form_postalCode": "საფოსტო ინდექსი",
+    "form_city": "ქალაქი",
+    "form_country": "ქვეყნის კოდი (მაგ. FR)",
+    "action_login": "შესვლა",
+    "action_createAccount": "ანგარიშის შექმნა",
+    "action_createMyAccount": "ჩემი ანგარიშის შექმნა",
+    "action_next": "გაგრძელება",
+    "action_previous": "უკან",
+    "action_forgotPassword": "დაგავიწყდათ პაროლი?",
+    "auth_noAccount": "ჯერ არ გაქვთ ანგარიში?",
+    "auth_requiredInformation": "შექმენით ანგარიში სამ ნაბიჯში.",
+    "auth_termsPrefix": "ვეთანხმები ",
+    "auth_termsLink": "გამოყენების პირობებს",
+    "auth_privacyPrefix": "ვეთანხმები ",
+    "auth_privacyLink": "კონფიდენციალურობის პოლიტიკას",
+    "auth_consentRequired": "ანგარიშის შესაქმნელად თქვენი თანხმობაა საჭირო.",
+    "validation_required": "ეს ველი სავალდებულოა.",
+    "validation_email": "შეიყვანეთ სწორი ელფოსტის მისამართი.",
+    "validation_password": "პაროლი ძალიან მოკლეა: მინიმუმ 8 UTF-8 ბაიტი.",
+    "validation_passwordTooLong": "პაროლი ძალიან გრძელია: მაქსიმუმ 72 UTF-8 ბაიტი.",
+    "validation_phone": "გამოიყენეთ საერთაშორისო ფორმატი, მაგალითად +33612345678.",
+    "validation_country": "გამოიყენეთ ორასოიანი ქვეყნის კოდი, მაგალითად FR.",
+    "passwordReset_title": "პაროლის აღდგენა",
+    "passwordReset_description": "შეიყვანეთ თქვენი ანგარიშის ელფოსტის მისამართი პაროლის აღდგენის ბმულის მოსათხოვნად.",
+    "passwordReset_send": "ბმულის გაგზავნა",
+    "connection_title": "თქვენი კავშირი",
+    "connection_subtitle": "აირჩიეთ მდებარეობა და შემდეგ ჩართეთ VPN.",
+    "connection_prepare": "მზად ხართ დასაკავშირებლად?",
+    "connection_advancedOptions": "დამატებითი პარამეტრები",
+    "connection_location": "მდებარეობა",
+    "connection_chooseLocation": "აირჩიეთ მდებარეობა",
+    "connection_protocol": "პროტოკოლი",
+    "connection_connect": "დაკავშირება",
+    "connection_connecting": "მიმდინარეობს დაკავშირება…",
+    "connection_disconnect": "გათიშვა",
+    "connection_disconnecting": "მიმდინარეობს გათიშვა",
+    "connection_locationChange": "მიმდინარეობს მდებარეობის შეცვლა…",
+    "connection_unavailable": "{protocol} მიუწვდომელია",
+    "connection_activeLocation": "აქტიური მდებარეობა",
+    "connection_duration": "ხანგრძლივობა",
+    "connection_received": "მიღებული",
+    "connection_sent": "გაგზავნილი",
+    "connection_lastHandshake": "ბოლო უსაფრთხო გაცვლა",
+    "connection_handshakeAgo": "{duration} წინ",
+    "verification_title": "დაადასტურეთ თქვენი ელფოსტის მისამართი",
+    "verification_message": "დაადასტურეთ თქვენი ელფოსტის მისამართი, რათა ამ ტელეფონზე VPN გამოიყენოთ.",
+    "verification_resend": "ელფოსტის ხელახლა გაგზავნა",
+    "migration_title": "მდებარეობის შეცვლა",
+    "migration_draining": "მდებარეობის შეცვლის მომზადება…",
+    "migration_activating": "ახალი სერვერის გააქტიურება…",
+    "migration_ready": "მდებარეობა განახლდა.",
+    "migration_blocked": "მდებარეობის შეცვლა სერვერის ჩარევას მოითხოვს. სცადეთ მოგვიანებით ან დაუკავშირდით მხარდაჭერას.",
+    "migration_progress": "მდებარეობის შეცვლის პროგრესი",
+    "migration_retryDelay": "შემოწმებებს შორის დაყოვნება: {seconds} წმ.",
+    "migration_resume": "მდებარეობის შეცვლის გაგრძელება",
+    "status_authorizing": "საჭიროა ნებართვა",
+    "status_authorizingDetail": "VPN-ის დასაშვებად დაეთანხმეთ Android-ის მოთხოვნას.",
+    "status_preparing": "მომზადება",
+    "status_preparingDetail": "თქვენი უსაფრთხო კავშირი მზადდება.",
+    "status_reconnecting": "ხელახლა დაკავშირება…",
+    "status_reconnectingDetail": "კავშირი შეწყდა. VPN ხელახლა დაკავშირებას ცდილობს.",
+    "status_connecting": "მიმდინარეობს დაკავშირება",
+    "status_connectingDetail": "მიმდინარეობს დაკავშირება VPN სერვერთან…",
+    "status_connected": "დაკავშირებულია",
+    "status_connectedDetail": "თქვენი VPN კავშირი აქტიურია.",
+    "status_disconnecting": "მიმდინარეობს გათიშვა",
+    "status_disconnectingDetail": "თქვენი VPN კავშირი ითიშება.",
+    "status_error": "კავშირი მიუწვდომელია",
+    "status_errorDetail": "VPN კავშირი დადასტურებული არ არის. სცადეთ ხელახლა.",
+    "status_idle": "გათიშულია",
+    "status_idleDetail": "ჩართეთ VPN, რომ დაიცვათ თქვენი კავშირი.",
+    "trust_note": "აპის დახურვა VPN-ს არ გათიშავს. მის გასათიშად გამოიყენეთ „გათიშვა“.",
+    "locations_none": "ამჟამად მდებარეობები ხელმისაწვდომი არ არის.",
+    "locations_available": "აირჩიეთ შემდეგი მდებარეობა.",
+    "locations_selected": "არჩეული მდებარეობა",
+    "locations_select": "ამ მდებარეობის არჩევა",
+    "locations_lockedTunnel": "მდებარეობის შესაცვლელად გათიშეთ VPN.",
+    "locations_lockedMigration": "დაელოდეთ მდებარეობის შეცვლის დასრულებას.",
+    "devices_title": "თქვენი მოწყობილობები",
+    "devices_used": "{count} / {limit} მოწყობილობა",
+    "devices_refresh": "მოწყობილობების განახლება",
+    "devices_empty": "VPN მოწყობილობა ჯერ არ არის რეგისტრირებული.",
+    "devices_firstConnection": "თქვენი ტელეფონი პირველი კავშირისას დაემატება.",
+    "devices_thisDevice": "ეს მოწყობილობა",
+    "devices_added": "დამატებულია: {date}",
+    "devices_unnamed": "უსახელო მოწყობილობა",
+    "action_remove": "წაშლა",
+    "settings_title": "პარამეტრები",
+    "settings_subtitle": "თქვენი პარამეტრები და ანგარიში ერთ ადგილას.",
+    "settings_appearance": "გარეგნობა",
+    "settings_language": "ენა",
+    "settings_languageDescription": "არჩეული ენა VPN შეტყობინებებზეც გავრცელდება.",
+    "settings_account": "ანგარიში",
+    "settings_signOut": "გასვლა",
+    "settings_privacy": "კონფიდენციალურობის პოლიტიკა",
+    "settings_terms": "გამოყენების პირობები",
+    "settings_security": "უსაფრთხოება და გამჭვირვალობა",
+    "settings_licenses": "კომპონენტების ლიცენზიები",
+    "settings_licensesDetail": "აპში გამოყენებული პროგრამული უზრუნველყოფა",
+    "settings_licensesLegalese": "აპისა და მისი MPL-2.0 კომპონენტების საწყისი კოდი: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "VPN ჩართული რჩება, როცა აპიდან გახვალთ. მის გასათიშად გამოიყენეთ „გათიშვა“ ჩანართში „კავშირი“.",
+    "theme_system": "სისტემური",
+    "theme_light": "ნათელი",
+    "theme_dark": "მუქი",
+    "language_system": "ტელეფონის ენა",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "წაიშალოს ეს მოწყობილობა?",
+    "dialog_removeCurrent": "ეს ტელეფონი VPN-იდან გაითიშება და წვდომას დაკარგავს. მისი VPN კავშირის მონაცემები სერვერის დადასტურების შემდეგ წაიშლება.",
+    "dialog_removeOther": "„{name}“ მოწყობილობას VPN წვდომა ჩამოერთმევა. ამ მოქმედების გაუქმება შეუძლებელია.",
+    "dialog_signOut": "ანგარიშიდან გასვლა?",
+    "dialog_signOutMessage": "VPN გაითიშება და ხელახლა შესვლა მოგიწევთ. თქვენი დაშიფრული VPN გასაღებები ამ ტელეფონზე შენარჩუნდება შემდეგი კავშირისთვის.",
+    "action_cancel": "გაუქმება",
+    "action_close": "დახურვა",
+    "action_copy": "კოპირება",
+    "action_signOut": "გასვლა",
+    "notice_close": "შეტყობინების დახურვა",
+    "notice_sessionExpired_title": "სესიის ვადა ამოიწურა",
+    "notice_sessionExpired_message": "თქვენი სესიის ვადა ამოიწურა. ხელახლა შედით ანგარიშში.",
+    "notice_connectionFailed_title": "კავშირი ვერ დამყარდა",
+    "notice_invalidCredentials_message": "ელფოსტის მისამართი ან პაროლი არასწორია.",
+    "notice_emailVerification_title": "საჭიროა ელფოსტის დადასტურება",
+    "notice_emailVerification_message": "VPN მოწყობილობის დამატებამდე დაადასტურეთ თქვენი ელფოსტის მისამართი.",
+    "notice_rateLimited_title": "ძალიან ბევრი მცდელობა",
+    "notice_deviceLimit_title": "მოწყობილობების ლიმიტი ამოიწურა",
+    "notice_deviceLimit_message": "სხვა მოწყობილობის დამატებამდე წაშალეთ არსებული მოწყობილობა.",
+    "notice_identityRenewal_title": "VPN-ის იდენტობა უნდა განახლდეს",
+    "notice_identityRenewal_message": "ეს იდენტობა წაიშალა. შექმენით ახალი ლოკალური იდენტობა.",
+    "notice_migrationPending_title": "მდებარეობის შეცვლა მიმდინარეობს",
+    "notice_migrationPending_message": "მდებარეობის შეცვლა უკვე მიმდინარეობს.",
+    "notice_migrationBlocked_title": "მდებარეობის შეცვლა დაბლოკილია",
+    "notice_migrationBlocked_message": "მდებარეობის შეცვლა სერვერის ჩარევას მოითხოვს. სცადეთ მოგვიანებით ან დაუკავშირდით მხარდაჭერას.",
+    "notice_targetUnavailable_title": "სერვერი დროებით მიუწვდომელია",
+    "notice_targetUnavailable_message": "ეს სერვერი დროებით მიუწვდომელია.",
+    "notice_networkUnavailable_title": "ინტერნეტ-კავშირი მიუწვდომელია",
+    "notice_networkUnavailable_message": "შეამოწმეთ კავშირი და სცადეთ ხელახლა.",
+    "notice_permissionDenied_title": "VPN-ის ნებართვა უარყოფილია",
+    "notice_permissionDenied_message": "ხელახლა დაიწყეთ კავშირი და დაადასტურეთ Android-ის ნებართვის მოთხოვნა.",
+    "notice_wireguardTimeout_title": "სერვერი არ პასუხობს",
+    "notice_wireguardTimeout_message": "WireGuard კავშირის დამყარებას ზედმეტად დიდი დრო დასჭირდა. სცადეთ ხელახლა ან აირჩიეთ სხვა მდებარეობა.",
+    "notice_tlsFailed_title": "უსაფრთხო კავშირი უარყოფილია",
+    "notice_tlsFailed_message": "სერვერმა არ მიიღო OpenVPN კავშირი. სცადეთ ხელახლა. თუ პრობლემა გრძელდება, გაუშვით დიაგნოსტიკა.",
+    "notice_tunRejected_title": "Android-მა VPN ინტერფეისი უარყო",
+    "notice_tunRejected_message": "Android-მა უარყო OpenVPN-ის მიერ მოთხოვნილი ქსელის კონფიგურაცია.",
+    "notice_openvpnStart_title": "OpenVPN-ის გაშვება ვერ მოხერხდა",
+    "notice_openvpnStart_message": "OpenVPN-ის ძრავის გაშვება ბოლომდე ვერ დასრულდა. სცადეთ ხელახლა. თუ პრობლემა გრძელდება, დაუკავშირდით მხარდაჭერას.",
+    "notice_diagnosticCode": "დიაგნოსტიკის კოდი: {code}",
+    "notice_generic_title": "VPN კავშირი ვერ დამყარდა",
+    "notice_generic_message": "მოხდა შეცდომა. სცადეთ მოგვიანებით.",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{ანგარიში შეიქმნა} password_reset_sent{პაროლის აღდგენის მოთხოვნა მიღებულია} verification_email_sent{დადასტურების ელფოსტა გაიგზავნა} location_migration_pending{მდებარეობის შეცვლა მიმდინარეობს} vpn_sign_in_required{საჭიროა შესვლა} protocol_unavailable_at_location{პროტოკოლი მიუწვდომელია} vpn_permission_denied{VPN-ის ნებართვა უარყოფილია} revoked_identity_device_limit{მოწყობილობების ლიმიტი ამოიწურა} tunnel_start_unexpected{VPN-ის გაშვება ვერ მოხერხდა} flutter_disconnect_timeout{გათიშვა არ არის დადასტურებული} flutter_disconnect_unexpected{გათიშვა ვერ მოხერხდა} device_revoked{მოწყობილობა წაიშალა} revoke_unexpected{მოწყობილობის წაშლა ვერ მოხერხდა} identity_renewal_unexpected{იდენტობის განახლება ვერ მოხერხდა} openvpn_renewal_unexpected{OpenVPN-ის განახლება ვერ მოხერხდა} location_migration_blocked{მდებარეობის შეცვლა დაბლოკილია} location_migration_slow{მდებარეობის შეცვლა კვლავ მიმდინარეობს} location_migration_conflict{მდებარეობის შეცვლას განახლება სჭირდება} location_migration_verification_failed{მდებარეობის შეცვლა დადასტურებული არ არის} location_migration_device_changed{მოწყობილობა შეიცვალა მდებარეობის შეცვლისას} tunnel_stop_failed{მდებარეობის შეცვლა მიუწვდომელია} device_clock_ahead{მოწყობილობის საათი წინ უსწრებს} other{ოპერაცია ვერ შესრულდა}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{ანგარიში შეიქმნა, მაგრამ დადასტურების ელფოსტის გაგზავნა ვერ მოხერხდა. აპში გამოიყენეთ ხელახლა გაგზავნის ფუნქცია.} password_reset_sent{თქვენი მოთხოვნა მიღებულია. თუ ამ მისამართით ანგარიში არსებობს, შესაძლოა ელფოსტა მიიღოთ. გთხოვთ, ასევე შეამოწმოთ სპამის საქაღალდე.} verification_email_sent{ახალი დადასტურების ელფოსტა ახლახან გაიგზავნა.} location_migration_pending{მდებარეობაზე „{target}“ გადასვლა ჯერ კიდევ მზადდება. შეგიძლიათ გააგრძელოთ ის მოწყობილობის ხელახლა შექმნის გარეშე.} vpn_sign_in_required{VPN-ის დაწყებამდე შედით თქვენს ანგარიშში.} protocol_unavailable_at_location{ამ მდებარეობაზე არჩეული პროტოკოლი ხელმისაწვდომი არ არის. განაახლეთ მდებარეობები ან აირჩიეთ სხვა პროტოკოლი.} vpn_permission_denied{Android-მა VPN-ის ნებართვა უარყო. ხელახლა დაიწყეთ კავშირი და დაადასტურეთ სისტემური მოთხოვნა.} revoked_identity_device_limit{ამ მოწყობილობის VPN წვდომა წაიშალა და მოწყობილობების ლიმიტი ამოიწურა. წაშალეთ მოწყობილობა აქ: ანგარიში → ჩემი მოწყობილობების მართვა.} tunnel_start_unexpected{გვირაბის მომზადება მოულოდნელი შეცდომის გამო შეწყდა. შეამოწმეთ დიაგნოსტიკის კოდი და სცადეთ ხელახლა.} flutter_disconnect_timeout{Android-მა დროულად ვერ დაადასტურა VPN-ის გათიშვა. სცადეთ გათიშვა ხელახლა.} flutter_disconnect_unexpected{მოულოდნელი შეცდომის გამო გვირაბის გათიშვა ვერ დადასტურდა.} device_revoked{მოწყობილობის VPN წვდომა გაუქმდა და მისი ლოკალური საიდუმლო მონაცემები წაიშალა.} revoke_unexpected{მოწყობილობის წაშლა ვერ მოხერხდა. განაახლეთ სია და სცადეთ ხელახლა.} identity_renewal_unexpected{ახალი VPN იდენტობის შექმნა ვერ მოხერხდა. განაახლეთ მოწყობილობები და სცადეთ ხელახლა.} openvpn_renewal_unexpected{OpenVPN-ის პროფილის განახლება ვერ მოხერხდა. სცადეთ ხელახლა ან შეამოწმეთ დიაგნოსტიკის კოდი.} location_migration_blocked{სერვერს ამ ცვლილების დასრულება ამჟამად არ შეუძლია. მოწყობილობა და მისი ლოკალური იდენტობა შენარჩუნდა.} location_migration_slow{სერვერი ჯერ კიდევ ამზადებს გადასვლას მდებარეობაზე „{target}“. ცოტა ხანში გამოიყენეთ „გაგრძელება“.} location_migration_conflict{მოწყობილობის მდგომარეობა სერვერზე შეიცვალა. განაახლეთ მოწყობილობები და შემდეგ გააგრძელეთ ცვლილება.} location_migration_verification_failed{სერვერმა ახალი მდებარეობა ვერ დაადასტურა. წინა ლოკალური იდენტობა შენარჩუნდა.} location_migration_device_changed{სერვერის მიერ დაბრუნებული მოწყობილობა აღარ შეესაბამება შესაცვლელ მოწყობილობას. განაახლეთ მოწყობილობები და სცადეთ ხელახლა.} tunnel_stop_failed{ახალ კავშირამდე წინა გვირაბი სრულად უნდა გაითიშოს.} device_clock_ahead{ამ მოწყობილობის საათი, როგორც ჩანს, წინ უსწრებს. ანგარიშში შესული რომ დარჩეთ, ჩართეთ ავტომატური თარიღი და დრო.} other{ოპერაციის დასრულება ვერ მოხერხდა. სცადეთ ხელახლა ან გაუგზავნეთ დიაგნოსტიკის კოდი მხარდაჭერას.}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{სესიის ვადა ამოიწურა} invalid_credentials{შესვლა ვერ მოხერხდა} email_verification_required{საჭიროა ელფოსტის დადასტურება} verification_email_cooldown{ელფოსტა უკვე გაიგზავნა} rate_limited{ძალიან ბევრი მცდელობა} invalid_registration{საჭიროა ინფორმაციის შესწორება} email_exists{ანგარიში უკვე არსებობს} invalid_profile{არასწორი პროფილი} invalid_device{არასწორი მოწყობილობა} invalid_location{მდებარეობა მიუწვდომელია} device_limit{მოწყობილობების ლიმიტი ამოიწურა} device_exists{VPN-ის იდენტობა უკვე გამოიყენება} device_identity_revoked{VPN-ის იდენტობა უნდა განახლდეს} device_location_locked{მდებარეობის შეცვლას განახლება სჭირდება} location_migration_pending{მდებარეობის შეცვლა მიმდინარეობს} location_migration_blocked{მდებარეობის შეცვლა დაბლოკილია} target_ca_mismatch{OpenVPN სერვერი შეუთავსებელია} location_migration_conflict{მდებარეობის შეცვლას განახლება სჭირდება} server_full{სერვერი სავსეა} capacity_unavailable{მდებარეობა დროებით მიუწვდომელია} target_unavailable{სერვერი დროებით მიუწვდომელია} not_found{ელემენტი ვერ მოიძებნა} invalid_openvpn_csr{არასწორი OpenVPN იდენტობა} openvpn_profile_exists{OpenVPN პროფილი უკვე არსებობს} openvpn_profile_revoked{OpenVPN პროფილი გაუქმებულია} openvpn_operation_pending{OpenVPN ოპერაცია მიმდინარეობს} openvpn_operation_terminal{OpenVPN ოპერაცია შეწყდა} openvpn_address_unavailable{OpenVPN მისამართი მიუწვდომელია} openvpn_profile_conflict{OpenVPN კონფლიქტი} openvpn_signer_unavailable{OpenVPN მიუწვდომელია} email_delivery_unavailable{ელფოსტა მიუწვდომელია} invalid_token{არასწორი ბმული} network_unavailable{ინტერნეტ-კავშირი მიუწვდომელია} invalid_json{არასწორი მოთხოვნა} invalid_api_response{სერვერის არასწორი პასუხი} ipv6_unavailable{IPv6 მიუწვდომელია} invalid_ip_families{ქსელის კონფიგურაცია უარყოფილია} other{სერვისი მიუწვდომელია}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{თქვენი სესიის ვადა ამოიწურა. ხელახლა შედით ანგარიშში.} invalid_credentials{ელფოსტის მისამართი ან პაროლი არასწორია.} email_verification_required{VPN მოწყობილობის დამატებამდე დაადასტურეთ თქვენი ელფოსტის მისამართი.} invalid_registration{შეამოწმეთ მოთხოვნილი ინფორმაცია და თანხმობები.} email_exists{ამ ელფოსტის მისამართით ანგარიში უკვე არსებობს.} invalid_profile{შეამოწმეთ თქვენი პროფილის ინფორმაცია.} invalid_device{ამ მოწყობილობის სახელი ან ლოკალური იდენტობა არასწორია.} invalid_location{განაახლეთ მდებარეობების სია და ხელახლა სცადეთ.} device_limit{ახალი მოწყობილობის დამატებამდე წაშალეთ არსებული მოწყობილობა.} device_exists{ეს VPN იდენტობა უკვე მიბმულია სხვა ანგარიშზე.} device_identity_revoked{ეს იდენტობა წაიშალა. საჭიროა ახალი ლოკალური იდენტობის შექმნა.} device_location_locked{ამ მოწყობილობის მდებარეობა ახლახან შეიცვალა. აპი გააგრძელებს მიმდინარე ცვლილებას.} location_migration_pending{მდებარეობის შეცვლა უკვე მიმდინარეობს.} location_migration_blocked{მდებარეობის შეცვლას სერვერის ჩარევა სჭირდება. სცადეთ მოგვიანებით ან დაუკავშირდით მხარდაჭერას.} target_ca_mismatch{ეს სერვერი ჯერ არ არის თავსებადი მიმდინარე OpenVPN პროფილთან.} location_migration_conflict{განაახლეთ მოწყობილობები და ხელახლა სცადეთ მდებარეობის შეცვლა.} server_full{ამ მდებარეობამ კავშირების ლიმიტს მიაღწია. აირჩიეთ სხვა მდებარეობა ან სცადეთ მოგვიანებით.} capacity_unavailable{ვერ ვადასტურებთ, არის თუ არა ეს მდებარეობა ახლა ხელმისაწვდომი. აირჩიეთ სხვა მდებარეობა ან სცადეთ მოგვიანებით.} target_unavailable{ეს სერვერი დროებით მიუწვდომელია.} not_found{ეს ელემენტი თქვენს ანგარიშზე აღარ არის ხელმისაწვდომი.} invalid_openvpn_csr{შექმენით ახალი OpenVPN იდენტობა და ხელახლა სცადეთ.} openvpn_profile_exists{ამ მოწყობილობისთვის OpenVPN პროფილი უკვე არსებობს.} openvpn_profile_revoked{გასაგრძელებლად განაახლეთ OpenVPN პროფილი.} openvpn_operation_pending{ცვლილება ჯერ კიდევ ვრცელდება. სცადეთ მოგვიანებით.} openvpn_operation_terminal{შექმენით ახალი OpenVPN იდენტობა და ხელახლა სცადეთ.} openvpn_address_unavailable{ამჟამად OpenVPN მისამართი ხელმისაწვდომი არ არის.} openvpn_profile_conflict{პროფილი შეიცვალა. განაახლეთ მოწყობილობები და ხელახლა სცადეთ.} openvpn_signer_unavailable{OpenVPN სერვისი დროებით მიუწვდომელია.} email_delivery_unavailable{ელფოსტა ვერ გაიგზავნა. სცადეთ მოგვიანებით.} invalid_token{ეს ბმული არასწორია ან მისი ვადა ამოიწურა. მოითხოვეთ ახალი.} network_unavailable{შეამოწმეთ ინტერნეტ-კავშირი და სცადეთ ხელახლა.} invalid_json{შეამოწმეთ შეყვანილი ინფორმაცია და ხელახლა სცადეთ.} invalid_api_response{სერვერმა მოულოდნელი პასუხი დააბრუნა. სცადეთ მოგვიანებით.} ipv6_unavailable{სერვერს ამჟამად IPv6-ის გააქტიურება არ შეუძლია. სცადეთ მოგვიანებით.} invalid_ip_families{გვირაბის კონფიგურაცია არასრულია ან არ შეესაბამება ნებადართულ მისამართებს. სცადეთ აპიდან ხელახლა.} other{მოხდა სერვერის შეცდომა. სცადეთ მოგვიანებით.}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "ცოტა ხანში ხელახლა სცადეთ.",
+    "notice_retryAfter": "{seconds, plural, one{{seconds} წამში ხელახლა სცადეთ.} other{{seconds} წამში ხელახლა სცადეთ.}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{{minutes} წუთში ხელახლა სცადეთ.} other{{minutes} წუთში ხელახლა სცადეთ.}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{{hours} საათში ხელახლა სცადეთ.} other{{hours} საათში ხელახლა სცადეთ.}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{სისტემური VPN-ის გაგრძელება მიუწვდომელია} system_vpn_resume_corrupt{სისტემური VPN-ის გაგრძელება არასწორია} system_vpn_resume_session_invalid{VPN-ის გაგრძელების სესია არასწორია} system_vpn_resume_identity_changed{VPN-ის იდენტობა შეიცვალა} system_vpn_resume_identity_invalid{VPN-ის გაგრძელების იდენტობა არასწორია} system_vpn_resume_storage_failed{VPN-ის გაგრძელების საცავი მიუწვდომელია} system_vpn_resume_network_timeout{VPN-ის გასაგრძელებლად ქსელი არ არის} system_vpn_resume_blocked{VPN-ის გაგრძელება დაბლოკილია} system_vpn_resume_failed{VPN-ის გაგრძელება ვერ მოხერხდა} system_vpn_resume_error_invalid{VPN-ის გაგრძელების შეცდომა არასწორია} wireguard_identity_store_failed{WireGuard-ის იდენტობა ვერ შეინახა} wireguard_identity_unavailable{WireGuard-ის იდენტობა მიუწვდომელია} vpn_host_destroyed{Android-ის VPN მასპინძელი გაჩერდა} vpn_host_unavailable{Android-ის VPN მასპინძელი მიუწვდომელია} vpn_permission_required{VPN-ის ნებართვა საჭიროა} vpn_permission_denied{VPN-ის ნებართვა უარყოფილია} vpn_permission_request_failed{ნებართვის მოთხოვნა ვერ მოხერხდა} wireguard_foreground_service_unavailable{WireGuard-ის სერვისი მიუწვდომელია} wireguard_identity_invalid{ლოკალური WireGuard გასაღები არასწორია} wireguard_identity_in_use{WireGuard-ის იდენტობა უკვე გამოიყენება} wireguard_configuration_invalid{WireGuard-ის კონფიგურაცია არასწორია} wireguard_operation_pending{WireGuard-ის ოპერაცია ჯერ კიდევ აქტიურია} wireguard_start_failed{WireGuard-ის გაშვება უარყოფილია} wireguard_stop_timeout{WireGuard-ის გათიშვა არ დადასტურდა} wireguard_handshake_timeout{WireGuard არ უპასუხა} openvpn_connection_timeout{OpenVPN არ უპასუხა} openvpn_core_unavailable{OpenVPN-ის ძრავა მიუწვდომელია} openvpn_operation_pending{OpenVPN-ის სესია ჯერ კიდევ აქტიურია} openvpn_stop_timeout{OpenVPN-ის გათიშვა არ დადასტურდა} openvpn_profile_unavailable{ლოკალური OpenVPN პროფილი ვერ მოიძებნა} openvpn_native_failed{OpenVPN-ის ნატიური გამოძახება შეწყდა} openvpn_key_generation_failed{OpenVPN-ის P-256 გასაღების შექმნა ვერ მოხერხდა} openvpn_csr_generation_failed{OpenVPN-ის CSR-ის შექმნა ვერ მოხერხდა} openvpn_identity_store_failed{OpenVPN-ის იდენტობა ვერ შეინახა} openvpn_identity_clear_failed{OpenVPN-ის იდენტობის წაშლა არასრულია} openvpn_identity_in_use{OpenVPN-ის იდენტობა ჯერ კიდევ გამოიყენება} openvpn_tls_verification_required{OpenVPN-ის TLS გადამოწმება არ არის მითითებული} openvpn_cipher_invalid{OpenVPN-ის შიფრი არასწორია} openvpn_profile_rejected{OpenVPN-ის პროფილი უარყოფილია} openvpn_identity_inconsistent{OpenVPN-ის იდენტობა არათანმიმდევრულია} tls_handshake_failed{OpenVPN-ის მოლაპარაკება უარყოფილია} tls_alert_unknown_ca{OpenVPN-ის კლიენტის სერტიფიკატი ამოუცნობია} tls_alert_bad_certificate{OpenVPN-ის კლიენტის სერტიფიკატი უარყოფილია} tls_alert_unsupported_certificate{OpenVPN-ის სერტიფიკატი მხარდაუჭერელია} tls_client_certificate_required{OpenVPN-ის კლიენტის სერტიფიკატი საჭიროა} tls_alert_misc{OpenVPN-ის TLS-ის გაფრთხილება} tls_signature_algorithm_rejected{OpenVPN-ის ხელმოწერა მხარდაუჭერელია} tls_handshake_rejected{OpenVPN-ის TLS-ის მოლაპარაკება უარყოფილია} tls_version_rejected{OpenVPN-ის TLS-ის ვერსია შეუთავსებელია} tls_certificate_expired{TLS სერტიფიკატის ვადა ამოიწურა} tls_certificate_revoked{TLS სერტიფიკატი გაუქმებულია} transport_failed{OpenVPN-ის სერვერი მიუწვდომელია} tun_configuration_rejected{OpenVPN-ის ინტერფეისის შექმნა ვერ მოხერხდა} tun_setup_failed{OpenVPN-ის TUN-ის დაყენება ვერ მოხერხდა} tun_interface_create_failed{OpenVPN-ის ინტერფეისის შექმნა ვერ მოხერხდა} tun_interface_disabled{OpenVPN-ის ინტერფეისი გამორთულია} tun_halted{OpenVPN-ის ინტერფეისი შეწყდა} tun_already_established{OpenVPN-ის ინტერფეისი უკვე გახსნილია} tun_addresses_missing{OpenVPN-ის მისამართი აკლია} tun_routes_missing{OpenVPN-ის მარშრუტები აკლია} tun_dns_missing{OpenVPN-ის DNS აკლია} tun_permission_revoked{VPN-ის ნებართვა გაუქმდა} tun_establish_returned_null{Android-მა VPN-ის ინტერფეისი უარყო} openvpn_service_start_failed{OpenVPN-ის სერვისი მიუწვდომელია} openvpn_operation_timeout{OpenVPN-ის გამოძახების დრო ამოიწურა} openvpn_start_failed{OpenVPN-ის გაშვება უარყოფილია} openvpn_connection_failed{OpenVPN-ის კავშირი შეწყდა} openvpn_core_status_error{OpenVPN Core შეცდომით დასრულდა} openvpn_stopped_before_connected{OpenVPN შეჩერდა დაკავშირებამდე} openvpn_auth_failed{OpenVPN-ის ავთენტიფიკაცია უარყოფილია} openvpn_client_setup_failed{OpenVPN-ის კლიენტის დაყენება ვერ მოხერხდა} openvpn_client_halted{OpenVPN-ის კლიენტი შეწყდა} openvpn_client_restart{OpenVPN-ის გადატვირთვა მოთხოვნილია} openvpn_inactive_timeout{OpenVPN ძალიან დიდხანს უმოქმედო იყო} openvpn_session_expired{OpenVPN-ის სესიის ვადა ამოიწურა} openvpn_credentials_required{OpenVPN-ის ავთენტიფიკაცია მხარდაუჭერელია} openvpn_proxy_failed{OpenVPN-ის შუალედური ტრანსპორტი ვერ მუშაობს} openvpn_compression_failed{OpenVPN-ის შეკუმშვა უარყოფილია} openvpn_ntlm_crypto_unavailable{OpenVPN-ის NTLM-ის დაშიფვრა მიუწვდომელია} openvpn_feature_unsupported{OpenVPN-ის ფუნქცია მხარდაუჭერელია} network_unavailable{ინტერნეტ-კავშირი მიუწვდომელია} network_lost{ქსელი მიუწვდომელია} certificate_validation_failed{სერვერის სერტიფიკატი უარყოფილია} openvpn_certificate_expired{OpenVPN-ის სერტიფიკატის ვადა ამოიწურა} tunnel_active_for_another_account{სხვა ანგარიშის გვირაბი ჯერ კიდევ აქტიურია} tunnel_already_active{ნატიური გვირაბი უკვე აქტიურია} tunnel_stop_timeout{{protocol}-ის გათიშვა არ დადასტურდა} tunnel_disconnected{{protocol} შეწყდა} native_bridge_unavailable{Android-ის ხიდი მიუწვდომელია} native_operation_failed{Android-ის ოპერაცია შეწყდა} invalid_arguments{VPN-ის პარამეტრები არასრულია} invalid_account_id{არასწორი VPN ანგარიში} invalid_device_id{მოწყობილობის იდენტიფიკატორი არასწორია} storage_key_not_allowed{შენახვის გასაღები უარყოფილია} secure_storage_read_failed{უსაფრთხო წაკითხვა ვერ მოხერხდა} secure_storage_write_failed{უსაფრთხო ჩაწერა ვერ მოხერხდა} key_generation_failed{WireGuard-ის გასაღების შექმნა ვერ მოხერხდა} csr_generation_failed{OpenVPN-ის CSR-ის შექმნა ვერ მოხერხდა} openvpn_recovery_exhausted{OpenVPN-ის აღდგენა უკვე გამოყენებულია} openvpn_recovery_failed{OpenVPN-ის აღდგენა ვერ მოხერხდა} openvpn_renewal_required{OpenVPN-ის სერტიფიკატის განახლება საჭიროა} other{არაკლასიფიცირებული ნატიური VPN შეცდომა}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android-მა ვერ იპოვა გასაგრძელებელი VPN სესია. აპში დაამყარეთ ახალი კავშირი.} system_vpn_resume_corrupt{შენახული VPN-ის გაგრძელების მონაცემები არასწორია და გამოყენებული არ იქნება. დაამყარეთ ახალი კავშირი.} system_vpn_resume_session_invalid{შენახული სესიით VPN-ის გაგრძელება აღარ არის შესაძლებელი. აპში ხელახლა შედით ანგარიშში.} system_vpn_resume_identity_changed{ლოკალური VPN-ის იდენტობა შეიცვალა. გაგრძელება შეჩერდა; დაამყარეთ ახალი კავშირი.} system_vpn_resume_identity_invalid{VPN-ის გაგრძელების იდენტობა არასწორია. დაამყარეთ ახალი კავშირი.} system_vpn_resume_storage_failed{Android-მა ვერ წაიკითხა ან ვერ განაახლა გაგრძელების დაშიფრული მონაცემები. დაამყარეთ ახალი კავშირი.} system_vpn_resume_network_timeout{Android-მა დროულად ვერ იპოვა ქსელი VPN-ის გასაგრძელებლად. სცადეთ ხელახლა, როცა ქსელი ხელმისაწვდომი იქნება.} system_vpn_resume_blocked{VPN-ის გაგრძელება დაბლოკილია. შეამოწმეთ Android-ის პარამეტრები, შემდეგ დაამყარეთ ახალი კავშირი.} system_vpn_resume_failed{Android-ის მიერ VPN-ის გაგრძელება ვერ მოხერხდა. აპში დაამყარეთ ახალი კავშირი.} system_vpn_resume_error_invalid{Android-მა გაგრძელების გამოუსადეგი შეცდომა დააბრუნა. დაამყარეთ ახალი კავშირი.} wireguard_identity_store_failed{Android-მა ვერ შეინახა ამ ანგარიშის დაშიფრული WireGuard იდენტობა.} wireguard_identity_unavailable{ამ კავშირისთვის გამოსადეგი WireGuard იდენტობა არ არის.} vpn_host_destroyed{Android-ის კომპონენტი, რომელიც VPN-ს მასპინძლობს, გაჩერდა. დაამყარეთ ახალი კავშირი.} vpn_host_unavailable{Android ვერ ქმნის კომპონენტს, რომელიც VPN-ს მასპინძლობს. შეამოწმეთ VPN-ის პარამეტრები და სცადეთ ხელახლა.} openvpn_renewal_required{სერტიფიკატის გამო დაკავშირებამდე აპში მოქმედებაა საჭირო.} openvpn_recovery_failed{ავტომატური აღდგენა ვერ მოხერხდა. აპში დაამყარეთ ახალი კავშირი.} openvpn_recovery_exhausted{ავტომატური აღდგენა უკვე გამოყენებულია. აპში დაამყარეთ ახალი კავშირი.} vpn_permission_required{Android-ს გვირაბის დაწყებამდე VPN-ის ახალი ნებართვა სჭირდება.} vpn_permission_denied{გასაგრძელებლად Android-ის მოთხოვნაში დართეთ ნებართვა FuzeVPN-ს.} vpn_permission_request_failed{Android-მა ვერ გახსნა VPN-ის ნებართვის ეკრანი.} wireguard_foreground_service_unavailable{Android-მა ვერ შეინარჩუნა WireGuard-ის სერვისი წინა პლანზე.} wireguard_identity_invalid{ამ ანგარიშის დაშიფრული WireGuard გასაღები ვერ იკითხება ან არასწორია.} wireguard_identity_in_use{სხვა ოპერაცია ჯერ კიდევ იყენებს ამ ანგარიშის WireGuard გასაღებს.} wireguard_configuration_invalid{მიღებული WireGuard მისამართი, DNS, სერვერის გასაღები ან მარშრუტები არასწორია.} wireguard_operation_pending{წინა WireGuard ოპერაციას თავისი ნატიური სერვისი ჯერ არ გაუთავისუფლებია.} wireguard_start_failed{WireGuard-ის ძრავამ კონფიგურაციის გააქტიურებაზე უარი თქვა.} wireguard_stop_timeout{WireGuard-ის სერვისმა დადგენილ დროში ვერ დაადასტურა VPN ინტერფეისის გათავისუფლება.} wireguard_handshake_timeout{გვირაბმა დროულად ვერ დაადასტურა კავშირი სერვერთან.} openvpn_connection_timeout{OpenVPN-მა დროულად ვერ დაადასტურა კავშირი სერვერთან.} openvpn_core_unavailable{ამ აპის ვერსიაში გამოსადეგი OpenVPN ძრავა არ არის.} openvpn_operation_pending{ნატიური ძრავა ჯერ კიდევ იყენებს OpenVPN-ის წინა სესიას და მეორე სესიის შექმნაზე უარს ამბობს.} openvpn_stop_timeout{OpenVPN Core-მა დადგენილ დროში ვერ დაადასტურა, რომ მისი ნატიური სესია შეჩერდა და გაუქმდა.} openvpn_profile_unavailable{ამ კავშირისთვის გადამოწმებული OpenVPN პროფილი ვერ იკითხება.} openvpn_native_failed{აპის შეცდომის გამო OpenVPN-ის მუშაობა შეწყდა. სცადეთ ხელახლა დაკავშირება. თუ პრობლემა გრძელდება, გაუშვით დიაგნოსტიკა.} openvpn_key_generation_failed{Android Keystore-მა ვერ შექმნა ან ვერ წაიკითხა არაექსპორტირებადი P-256 პირადი გასაღები.} openvpn_csr_generation_failed{Android Keystore-ის გასაღებით ვერ მოხერხდა OpenVPN-ის სერტიფიკატის მოთხოვნის (CSR) ხელმოწერა.} openvpn_identity_store_failed{OpenVPN-ის სერტიფიკატი ან პროფილი ვერ შეინახა დაშიფრულ საცავში.} openvpn_identity_clear_failed{Android-მა ამ ანგარიშის ლოკალური OpenVPN იდენტობა სრულად ვერ წაშალა.} openvpn_identity_in_use{ნატიური OpenVPN-ის სესია ჯერ კიდევ იყენებს ამ მოწყობილობის გასაღებს ან სერტიფიკატს.} openvpn_tls_verification_required{პროფილი მკაფიოდ არ ითხოვს სერვერის სერტიფიკატის გადამოწმებას.} openvpn_cipher_invalid{სერვერმა მიაწოდა დაშიფვრის ალგორითმი, რომელიც დაშვებული ალგორითმების სიაში არ შედის.} openvpn_profile_rejected{სერვერიდან მიღებული პროფილი შეუთავსებელია. ხელახლა შექმენით ეს მოწყობილობა და სცადეთ ხელახლა.} openvpn_identity_inconsistent{სერტიფიკატი არ შეესაბამება ამ ტელეფონის უსაფრთხო იდენტობას. ლოკალური პროფილი არ შეცვლილა.} tls_handshake_failed{სერვერმა უარყო TLS მოლაპარაკება. თუ პრობლემა გრძელდება, ხელახლა შექმენით პროფილი.} tls_alert_unknown_ca{სერვერი ამ მოწყობილობის სერტიფიკატის გამცემს არ ცნობს. უნდა შემოწმდეს OpenVPN-ის სერვერი.} tls_alert_bad_certificate{სერვერმა უარყო ამ მოწყობილობის სერტიფიკატი. ხელახლა შექმენით მოწყობილობა და შემდეგ სცადეთ ხელახლა.} tls_alert_unsupported_certificate{სერვერი არ უჭერს მხარს Android-ის მიერ გამოყენებულ უსაფრთხო სერტიფიკატის ტიპს.} tls_client_certificate_required{სერვერს კლიენტის სერტიფიკატი სჭირდება, მაგრამ OpenVPN Core ვერ წარადგენს მას.} tls_alert_misc{სერვერმა დააბრუნა TLS-ის გაფრთხილება, რომელიც სერტიფიკატისა და ვერსიის კატეგორიებს არ მიეკუთვნება.} tls_signature_algorithm_rejected{სერვერმა უარყო Android Keystore-ის გასაღების ECDSA P-256 ალგორითმი.} tls_handshake_rejected{სერვერმა TLS მოლაპარაკება კავშირის დამყარებამდე შეწყვიტა.} tls_version_rejected{კლიენტმა და სერვერმა საერთო TLS ვერსია ვერ იპოვეს.} tls_certificate_expired{კავშირის დროს წარდგენილი სერტიფიკატის ვადა ამოიწურა.} tls_certificate_revoked{კავშირის დროს წარდგენილი სერტიფიკატი გაუქმებულია.} transport_failed{OpenVPN-ის სერვერი მიმდინარე ქსელში არ პასუხობს. ცოტა ხანში სცადეთ ხელახლა.} tun_configuration_rejected{Android-მა უარყო OpenVPN-ის მიერ მოთხოვნილი ქსელის კონფიგურაცია.} tun_setup_failed{OpenVPN Core-მა უარყო ქსელის გეგმა Android-ის ინტერფეისის შექმნამდე.} tun_interface_create_failed{OpenVPN Core-მა ვერ მიიღო TUN-ის ინტერფეისი Android VpnService-ისგან.} tun_interface_disabled{Android-მა ან OpenVPN Core-მა კავშირის დროს გამორთო TUN-ის ინტერფეისი.} tun_halted{OpenVPN Core-მა მიიღო მოთხოვნა TUN-ის ინტერფეისის შეჩერებაზე.} tun_already_established{OpenVPN-მა მოითხოვა მეორე ინტერფეისი იმავე კავშირში. უსაფრთხოებისთვის გვირაბი შეჩერდა.} tun_addresses_missing{სერვერმა არ მიაწოდა გამოსადეგი გვირაბის მისამართი.} tun_routes_missing{სერვერმა არ მიაწოდა გამოსადეგი გვირაბის მარშრუტები.} tun_dns_missing{სერვერმა არ მიაწოდა გამოსადეგი DNS სერვერი.} tun_permission_revoked{Android-მა კავშირის დროს გააუქმა VPN-ის ნებართვა.} tun_establish_returned_null{Android-მა ინტერფეისი არ შექმნა, ჩვეულებრივ იმიტომ, რომ სხვა VPN ჯერ კიდევ აქტიურია.} openvpn_service_start_failed{Android-მა ვერ დაიწყო OpenVPN-ის წინა პლანის სერვისი.} openvpn_operation_timeout{OpenVPN Core-ის JNI გამოძახებამ დასაშვები დრო გადააჭარბა.} openvpn_start_failed{Android-ის სერვისი მზადაა, მაგრამ OpenVPN Core-მა პროფილის გაშვებაზე უარი თქვა.} openvpn_connection_failed{OpenVPN Core შეჩერდა CONNECTED მოვლენის გაგზავნამდე.} openvpn_core_status_error{ნატიური OpenVPN-ის ციკლი შეცდომით დასრულდა და უფრო კონკრეტული საბოლოო მოვლენა არ ყოფილა.} openvpn_stopped_before_connected{ნატიური OpenVPN-ის ციკლი CONNECTED-მდე შეჩერდა, OpenVPN Core-ის მკაფიო შეცდომის გარეშე.} openvpn_auth_failed{OpenVPN-ის სერვერმა უარყო პროფილის ავთენტიფიკაცია.} openvpn_client_setup_failed{OpenVPN Core-მა ვერ მოამზადა კლიენტი ქსელურ კავშირამდე.} openvpn_client_halted{OpenVPN Core-მა მიიღო კლიენტის საბოლოო გაჩერების მოთხოვნა.} openvpn_client_restart{OpenVPN Core-მა მოითხოვა სატრანსპორტო სესიის გადატვირთვა.} openvpn_inactive_timeout{OpenVPN Core-მა სესია დახურა უმოქმედობის ლიმიტის გადაჭარბების შემდეგ.} openvpn_session_expired{სერვერმა აცნობა, რომ OpenVPN-ის სესიის ვადა ამოიწურა.} openvpn_credentials_required{სერვერი ან პროქსი ითხოვს ინტერაქტიულად შესატან ავტორიზაციის მონაცემებს, რომლებიც ამ სერტიფიკატის პროფილის ნაწილი არ არის.} openvpn_proxy_failed{OpenVPN Core-მა აცნობა კონფიგურირებული პროქსის ან რელეს შეცდომა.} openvpn_compression_failed{OpenVPN Core-მა უარყო პროფილის ან სერვერის მიერ გამოცხადებული შეკუმშვის რეჟიმი.} openvpn_ntlm_crypto_unavailable{პროფილი ითხოვს NTLM-ის დაშიფვრას, რომელიც ამ ვერსიაში მიუწვდომელია.} openvpn_feature_unsupported{პროფილს ან სერვერს სჭირდება ფუნქცია, რომელიც ამ Android კლიენტში არ არის.} network_unavailable{გამოსადეგი ფიზიკური ქსელი ხელმისაწვდომი არ არის.} network_lost{გვირაბი შეჩერდა ქსელის დაკარგვის შემდეგ.} certificate_validation_failed{OpenVPN-ის სერვერის იდენტობა ვერ გადამოწმდა.} openvpn_certificate_expired{ხელახლა დაკავშირებამდე განაახლეთ OpenVPN-ის პროფილი.} tunnel_active_for_another_account{ამ კავშირამდე უნდა გაითიშოს სხვა ანგარიშის გვირაბი.} tunnel_already_active{Android აცნობებს, რომ წინა VPN სესია ჯერ კიდევ იყენებს ინტერფეისს.} tunnel_stop_timeout{{protocol}-ის ძრავამ დადგენილ დროში ვერ დაადასტურა VPN ინტერფეისის გათავისუფლება.} tunnel_disconnected{ნატიურმა ძრავამ აცნობა, რომ გვირაბი დაწყების შემდეგ მოულოდნელად დასრულდა.} native_bridge_unavailable{აპს Android-ის VPN სერვისზე წვდომა არ აქვს. დახურეთ და ხელახლა გახსენით აპი, შემდეგ სცადეთ ხელახლა.} native_operation_failed{აპის შეცდომის გამო VPN-ის ოპერაცია შეწყდა. სცადეთ ხელახლა. თუ პრობლემა გრძელდება, გაუშვით დიაგნოსტიკა.} invalid_arguments{ამ VPN-ის ოპერაციისთვის საჭირო ინფორმაცია არასრულია. სცადეთ ხელახლა. თუ პრობლემა გრძელდება, გაუშვით დიაგნოსტიკა.} invalid_account_id{ნატიური ოპერაცია ანგარიშის სწორ იდენტიფიკატორთან არ არის დაკავშირებული.} invalid_device_id{ნატიური ძრავისთვის გაგზავნილი მოწყობილობის იდენტიფიკატორი არ არის მითითებული ან არასწორია.} storage_key_not_allowed{Android-ის ხიდმა დაბლოკა გასაღები, რომელიც დაშვებული შენახვის სიაში არ შედის.} secure_storage_read_failed{Android Keystore-მა ვერ გაშიფრა ამ ანგარიშის ლოკალური მონაცემები.} secure_storage_write_failed{Android Keystore-მა ვერ დაშიფრა ან ვერ შეინახა ლოკალური მონაცემები.} key_generation_failed{Android-მა ვერ შექმნა ან ვერ წაიკითხა WireGuard-ის გასაღები დაცულ საცავში.} csr_generation_failed{Android Keystore-მა ვერ შექმნა ან ხელი ვერ მოაწერა OpenVPN P-256 CSR-ს.} other{მოხდა გაუთვალისწინებელი ნატიური შეცდომა. გაუგზავნეთ მხარდაჭერას ქვემოთ ნაჩვენები დიაგნოსტიკის კოდი.}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "ნებართვის მოთხოვნა უკვე ღიაა",
+    "notice_permissionRequestInProgress_message": "VPN-ის ნებართვის მოთხოვნა Android-ზე უკვე ნაჩვენებია. დაასრულეთ ის და შემდეგ სცადეთ ხელახლა.",
+    "notice_permissionRequestInterrupted_title": "VPN-ის ნებართვის მოთხოვნა შეწყდა",
+    "notice_permissionRequestInterrupted_message": "VPN-ის ნებართვის ეკრანი დაიხურა, სანამ აპი პასუხს მიიღებდა.",
+    "notice_openvpnProofMissing_title": "OpenVPN კავშირი არ დადასტურდა",
+    "notice_openvpnProofMissing_message": "OpenVPN კავშირის დადასტურება ვერ მოხერხდა. უსაფრთხოების მიზნით ის გაითიშა. სცადეთ ხელახლა.",
+    "openvpnCleanup_title": "OpenVPN პროფილი გაუქმებულია",
+    "openvpnCleanup_working": "გაუქმებული OpenVPN პროფილი ითიშება და იშლება…",
+    "openvpnCleanup_stopFailed": "OpenVPN-ის გათიშვა არ დადასტურდა. ახალი პროფილის შექმნამდე სცადეთ ხელახლა.",
+    "openvpnCleanup_cleanupFailed": "გაუქმებული OpenVPN პროფილი სრულად ვერ წაიშალა. სცადეთ გასუფთავება ხელახლა.",
+    "openvpnCleanup_complete": "გაუქმებული OpenVPN პროფილი წაიშალა. ახლის შესაქმნელად შეეხეთ ღილაკს „დაკავშირება“.",
+    "network_title": "ქსელის კონფიგურაცია",
+    "network_ipv4Fallback": "IPv6 დროებით მიუწვდომელია. მომზადება გრძელდება IPv4-ით.",
+    "network_rejectedTitle": "ქსელის კონფიგურაცია უარყოფილია",
+    "network_rejectedMessage": "გვირაბის კონფიგურაცია არასრულია ან არ შეესაბამება ნებადართულ მისამართებს. სცადეთ აპიდან ხელახლა.",
+    "network_unreadableTitle": "ლოკალური კონფიგურაცია ვერ იკითხება",
+    "network_unreadableMessage": "შენახული OpenVPN ქსელის კონფიგურაცია ვერ გამოიყენება. მის გასაახლებლად აპიდან ხელახლა დაუკავშირდით VPN-ს.",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "ქსელის დაცვა",
+    "protection_subtitle": "დაბლოკეთ პირდაპირი წვდომა ინტერნეტზე, თუ VPN გაითიშება.",
+    "protection_active": "სისტემური დაცვა ჩართულია",
+    "protection_alwaysOnOnly": "„ყოველთვის ჩართული VPN“ ჩართულია; ჩართეთ „VPN-ის გარეშე კავშირების დაბლოკვა“",
+    "protection_inactive": "სისტემური დაცვა გამორთულია",
+    "protection_unknown": "შეამოწმეთ სისტემური დაცვა",
+    "protection_openSettings": "Android-ის პარამეტრების გახსნა",
+    "protection_dialogTitle": "ქსელის დაცვის დაყენება",
+    "protection_dialogMessage": "Android მართავს „ყოველთვის ჩართულ VPN-ს“ და VPN-ის გარეშე კავშირების დაბლოკვას. შეამოწმეთ, რომ არჩეულია FuzeVPN, და სისტემის პარამეტრებში ჩართეთ დაბლოკვა.",
+    "protection_dialogOpen": "პარამეტრების გახსნა",
+    "session_systemProtectionNote": "თუ Android კვლავ ბლოკავს ტრაფიკს VPN-ის გარეშე, ამ დაცვის შესამოწმებლად ან შესაცვლელად გახსენით სისტემის პარამეტრები.",
+    "diagnostics_title": "დიაგნოსტიკა",
+    "diagnostics_settingsTitle": "აპის დიაგნოსტიკა",
+    "diagnostics_automaticTitle": "მნიშვნელოვანი შეცდომების გაგზავნა",
+    "diagnostics_automaticDescription": "მნიშვნელოვანი შეცდომის დროს გააზიარეთ მოკლე ტექნიკური მოხსენება.",
+    "diagnostics_privacy": "გაგზავნილი მოხსენებები უკავშირდება ანგარიშს, რომელშიც ხართ შესული, და ინახება 30 დღე. ისინი არ შეიცავს დათვალიერების ისტორიას, პაროლებს ან VPN გასაღებებს.",
+    "diagnostics_manualOpen": "დიაგნოსტიკის გაშვება",
+    "diagnostics_localDescription": "შექმენით მოხსენება აპისა და VPN-ის მდგომარეობის შესახებ. თქვენი კავშირი უცვლელი რჩება.",
+    "diagnostics_sendReport": "მოხსენების გაგზავნა",
+    "diagnostics_sendHint": "ამ მოწყობილობაზე მოხსენების შესანახად დატოვეთ ეს ველი მოუნიშნავი.",
+    "diagnostics_signedOut": "მოხსენების გასაგზავნად შედით ანგარიშში.",
+    "diagnostics_localLifetime": "მოხსენება აპის დახურვის შემდეგაც რომ დარჩეს, შეინახეთ ის ტელეფონზე.",
+    "diagnostics_run": "დიაგნოსტიკის გაშვება",
+    "diagnostics_rerun": "დიაგნოსტიკის ხელახლა გაშვება",
+    "diagnostics_running": "მიმდინარეობს შემოწმება…",
+    "diagnostics_sending": "მოხსენება იგზავნება…",
+    "diagnostics_prepared": "მოხსენება მზადაა ამ მოწყობილობაზე",
+    "diagnostics_queued": "მოხსენება გასაგზავნად ელოდება",
+    "diagnostics_sent": "მოხსენება მიღებულია",
+    "diagnostics_failed": "გაგზავნა ვერ მოხერხდა. თქვენი ლოკალური მოხსენება კვლავ ხელმისაწვდომია.",
+    "diagnostics_preparationFailed": "დიაგნოსტიკის მოხსენების მომზადება ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "diagnostics_authenticationRequired": "მოხსენების გასაგზავნად ხელახლა შედით ანგარიშში.",
+    "diagnostics_retry": "გაგზავნის ხელახლა ცდა",
+    "diagnostics_export": "მოხსენების შენახვა",
+    "diagnostics_exportFailed": "შენახვა ვერ მოხერხდა. სცადეთ ხელახლა ლოკალური მოხსენებიდან.",
+    "diagnostics_preferenceFailed": "ეს პარამეტრი ვერ შეინახა. სცადეთ ხელახლა.",
+    "diagnostics_receipt": "საცნობარო კოდი: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "მიღების თარიღი: {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "ინახება ამ თარიღამდე: {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "ეს მოხსენება უკვე მიღებული იყო.",
+    "diagnostics_preview": "მოხსენების გადახედვა",
+    "diagnostics_eventCount": "{count, plural, =0{ტექნიკური მოვლენები თან არ ერთვის} =1{თან ერთვის 1 ტექნიკური მოვლენა} other{თან ერთვის {count} ტექნიკური მოვლენა}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "ტექნიკური დეტალები",
+    "diagnostics_empty": "დიაგნოსტიკის მოხსენება ჯერ არ მომზადებულა.",
+    "diagnostics_checkName": "{id, select, tunnel_connection{გვირაბის მდგომარეობა} handshake{კავშირის დადასტურება} certificate{VPN სერტიფიკატი} kill_switch{Android-ის დაცვა} connectivity{ხელმისაწვდომი ქსელი} api_reachability{სერვისზე წვდომა} secure_storage{უსაფრთხო საცავი} other{ლოკალური შემოწმება}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{შემოწმებულია} failed{საჭიროებს ყურადღებას} skipped{არ შემოწმებულა — აქტიური შემოწმების გარეშე} unknown{ინფორმაცია მიუწვდომელია} other{ინფორმაცია მიუწვდომელია}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "მოგესალმებით FuzeVPN-ში",
+    "connection_changeLocation": "მდებარეობის შეცვლა",
+    "connection_details": "კავშირის დეტალები",
+    "locations_searchLabel": "ქალაქის ან ქვეყნის ძიება",
+    "locations_clearSearch": "ძიების გასუფთავება",
+    "locations_filterAll": "ყველა",
+    "locations_filterFavorites": "რჩეულები",
+    "locations_results": "{count, plural, one{{count} მდებარეობა} other{{count} მდებარეობა}}",
+    "locations_noResults": "მდებარეობები ვერ მოიძებნა",
+    "locations_noResultsHint": "სცადეთ სხვა ქალაქი ან ქვეყანა.",
+    "locations_noFavorites": "თქვენი რჩეულები ყოველთვის ახლოს",
+    "locations_noFavoritesHint": "შეეხეთ ვარსკვლავს მდებარეობის გვერდით, რომ აქ შეინახოთ.",
+    "locations_showAll": "ყველა მდებარეობის ნახვა",
+    "locations_addFavorite": "დაამატეთ {name} რჩეულებში",
+    "locations_removeFavorite": "წაშალეთ {name} რჩეულებიდან",
+    "locations_favoriteSaveFailed": "რჩეული ვერ შეინახა. სცადეთ ხელახლა.",
+    "locations_emptyTitle": "მდებარეობები ხელმისაწვდომი არ არის",
+    "locations_emptyHint": "სცადეთ ხელახლა სიის განახლებით.",
+    "devices_manage": "ჩემი მოწყობილობების მართვა",
+    "settings_personalization": "მოარგეთ თქვენს გემოვნებას",
+    "settings_safety": "დაცვა",
+    "settings_help": "გჭირდებათ დახმარება?",
+    "settings_about": "FuzeVPN-ის შესახებ",
+    "diagnostics_heading": "კავშირის პრობლემის გარკვევა",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{ხელმისაწვდომია} pending{მზადდება} revoked{წაშლილია} expired{ვადაგასულია} other{სტატუსი მიუწვდომელია}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "პარამეტრი არ შენახულა",
+    "notice_preferenceSave_message": "თქვენი არჩევანი ამჟამად გამოიყენება, მაგრამ შენახვა ვერ მოხერხდა. სცადეთ ხელახლა, რომ აპის დახურვის შემდეგაც შენარჩუნდეს.",
+    "connection_androidDisconnectHint": "თუ Android VPN-ს აქტიურს ტოვებს, გახსნილ პარამეტრებში გამორთეთ „ყოველთვის ჩართული VPN“.",
+    "protection_learnMore": "გაიგეთ მეტი Android-ის დაცვის შესახებ",
+    "protection_guideWhy": "ეს დაცვა ხელს უშლის აპებს, VPN-ის გათიშვისას ინტერნეტით პირდაპირ ისარგებლონ. ის Android-ში ყენდება.",
+    "protection_guideAlwaysOnTitle": "ყოველთვის ჩართული VPN",
+    "protection_guideAlwaysOn": "Android-ს შეუძლია VPN სერვისი ჩართული შეინარჩუნოს და ტელეფონის გადატვირთვის შემდეგ ხელახლა გაუშვას.",
+    "protection_guideBlockTitle": "VPN-ის გარეშე კავშირების დაბლოკვა",
+    "protection_guideBlock": "ეს პარამეტრი ხელს უშლის ტრაფიკს, VPN-ის გვერდის ავლით გავიდეს, მათ შორის კავშირის შეწყვეტისას.",
+    "protection_guideWarning": "ამ დაბლოკვის ჩართვისას ინტერნეტზე წვდომა გამორთული დარჩება, სანამ VPN არ დაკავშირდება.",
+    "protection_guideStepsTitle": "დაცვის ჩართვა",
+    "protection_guideStep1": "ქვემოთ მოცემული ღილაკით გახსენით Android-ის VPN პარამეტრები.",
+    "protection_guideStep2": "პარამეტრების გასახსნელად შეეხეთ კბილანას ხატულას FuzeVPN-ის გვერდით.",
+    "protection_guideStep3": "თუ ეს პარამეტრები ხელმისაწვდომია, ჩართეთ „ყოველთვის ჩართული VPN“, შემდეგ კი „VPN-ის გარეშე კავშირების დაბლოკვა“.",
+    "protection_guideManufacturers": "სახელწოდებები ტელეფონის მიხედვით განსხვავდება. საჭიროების შემთხვევაში პარამეტრებში მოძებნეთ „VPN“ — ის ხშირად განყოფილებაშია „ქსელი და ინტერნეტი“.",
+    "protection_guideDisableTitle": "ამ დაცვის გამორთვა",
+    "protection_guideDisable": "იმავე პარამეტრებში გამორთეთ „VPN-ის გარეშე კავშირების დაბლოკვა“, რათა VPN-ის გარეშე ინტერნეტით ისარგებლოთ. ასევე გამორთეთ „ყოველთვის ჩართული VPN“, თუ აღარ გსურთ, რომ Android-მა VPN ხელახლა გაუშვას.",
+    "protection_guideManual": "ამ პარამეტრებს Android-ში თავად ირჩევთ. FuzeVPN მათ თქვენ მაგივრად არ ცვლის.",
+    "locations_changeTitle": "შეიცვალოს მდებარეობა?",
+    "locations_changeActive": "VPN გაითიშება, შემდეგ კი შეეცდება დაკავშირებას მდებარეობასთან: {name}.",
+    "locations_changeIdle": "VPN შეეცდება დაკავშირებას მდებარეობასთან: {name}.",
+    "locations_confirmChange": "შეცვლა და დაკავშირება",
+    "locations_changeBusy": "მიმდინარეობს ცვლილება. სხვა მდებარეობის არჩევამდე დაელოდეთ.",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "ავტომატური არჩევა",
+    "locations_cities": "ქალაქები",
+    "locations_servers": "სერვერები",
+    "locations_viewCities": "ქალაქების ნახვა: {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "სერვერების ნახვა: {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} ქვეყანა} other{{count} ქვეყანა}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} ქალაქი} other{{count} ქალაქი}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} სერვერი} other{{count} სერვერი}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "ყველა ქვეყანა",
+    "locations_backToCountries": "ქვეყნებზე დაბრუნება",
+    "locations_backToCities": "ქალაქებზე დაბრუნება: {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "აირჩიეთ {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "აირჩიეთ {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "თავსებადი სერვერი ხელმისაწვდომი არ არის.",
+    "externalLink_failed": "ამ ბმულის გახსნა ვერ მოხერხდა. შეგიძლიათ დააკოპიროთ და ბრაუზერში გახსნათ.",
+    "externalLink_copy": "ბმულის კოპირება",
+    "externalLink_copied": "ბმული კოპირებულია",
+    "externalLink_copyFailed": "ბმულის კოპირება ვერ მოხერხდა. ქვემოთ მოცემული მისამართი მონიშნეთ.",
+    "settings_deleteAccount": "ჩემი ანგარიშის წაშლა",
+    "settings_deleteAccountDetail": "ანგარიშის წაშლის მოთხოვნის პროცედურის ნახვა",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "აირჩიეთ თქვენი VPN გამოწერა.",
+    "billing_subscribe": "გამოწერა",
+    "billing_choosePlan": "გასაგრძელებლად აირჩიეთ გეგმა.",
+    "billing_monthly": "ყოველთვიური",
+    "billing_yearly": "ყოველწლიური",
+    "billing_continue": "გაგრძელება Google Play-ით",
+    "billing_restore": "შესყიდვების აღდგენა",
+    "billing_manage": "გამოწერის მართვა",
+    "billing_deleteAccountWarning": "თუ გაქვთ Google Play-ის გამოწერა, FuzeVPN-ის ანგარიშის წაშლა მის განახლებას არ აუქმებს. განახლება ცალკე მართეთ ან გააუქმეთ Google Play-ში.",
+    "billing_deleteAccountContinue": "ანგარიშის წაშლის მოთხოვნაზე გადასვლა",
+    "billing_refresh": "წვდომის განახლება",
+    "billing_loadingPlans": "გეგმები იტვირთება…",
+    "billing_unavailable": "ამჟამად გეგმები ხელმისაწვდომი არ არის. სცადეთ მოგვიანებით.",
+    "billing_comingSoon": "გამოწერები მალე ხელმისაწვდომი იქნება.",
+    "billing_priceDisclosure": "ფასს Google Play ადგენს. საბოლოო თანხა და გადასახადები თქვენს დადასტურებამდე დაზუსტდება.",
+    "billing_renewalMonthly": "ავტომატურად ახლდება ყოველთვიურად, თუ არ გააუქმებთ. ნებისმიერ დროს შეგიძლიათ გააუქმოთ Google Play-ის გამოწერებში.",
+    "billing_renewalYearly": "ავტომატურად ახლდება ყოველწლიურად, თუ არ გააუქმებთ. ნებისმიერ დროს შეგიძლიათ გააუქმოთ Google Play-ის გამოწერებში.",
+    "billing_active": "თქვენი Premium წვდომა აქტიურია",
+    "billing_accessUntil": "წვდომა მოქმედებს შემდეგ თარიღამდე: {date}.",
+    "billing_webManaged": "თქვენს გამოწერას FuzeVPN-ის ვებსაიტზე მართავთ.",
+    "billing_playManaged": "თქვენს გამოწერას Google Play მართავს.",
+    "billing_playOnHold": "თქვენი Google Play-ის გამოწერა შეჩერებულია ან გადახდას ელოდება. მის გასასწორებლად Google Play-ში გახსენით „გამოწერის მართვა“.",
+    "billing_playReceiptUnlinked": "ამ Google Play-ის ანგარიშს უკვე აქვს Fuze Premium-ის გამოწერა, რომელიც ამ FuzeVPN-ის ანგარიშისთვის აქტიური არ არის. მის გადასამოწმებლად Google Play-ში გახსენით „გამოწერის მართვა“.",
+    "billing_inactive": "აქტიური გამოწერა არ არის.",
+    "billing_checkingAccess": "თქვენი წვდომის შემოწმება…",
+    "billing_restoring": "შესყიდვების აღდგენა…",
+    "billing_pending": "გადახდა მოლოდინშია. წვდომა დადასტურების შემდეგ გააქტიურდება.",
+    "billing_cancelled": "შესყიდვა გაუქმდა. ახალი გამოწერა არ გააქტიურებულა.",
+    "billing_verifying": "შესყიდვის შემოწმება…",
+    "billing_success": "გამოწერა გააქტიურებულია. თქვენი Premium წვდომა მზადაა.",
+    "billing_restored": "თქვენი შესყიდვები აღდგენილია.",
+    "billing_restoreEmpty": "ამ Google Play-ის ანგარიშზე აღსადგენი შესყიდვები არ არის.",
+    "billing_catalogError": "გეგმების ჩატვირთვა ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "billing_purchaseError": "შესყიდვის დაწყება ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "billing_verificationError": "შესყიდვის შემოწმება დროებით ხელმისაწვდომი არ არის. სცადეთ ხელახლა შესყიდვების აღდგენით.",
+    "billing_restoreError": "შესყიდვების აღდგენა ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "billing_managementError": "გამოწერის მართვის გახსნა ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "billing_storeUnavailable": "Google Play ამ მოწყობილობაზე ხელმისაწვდომი არ არის.",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "თქვენი VPN, მარტივად.",
+    "welcome_description": "დაიცავით თქვენი კავშირი და თავად მართეთ თქვენი კონფიდენციალურობა.",
+    "welcome_start": "დაწყება",
+    "welcome_alreadyPurchased": "უკვე იყიდეთ?",
+    "welcome_noAccountRequired": "დასაწყებად ანგარიში საჭირო არ არის.",
+    "guest_accountTitle": "ანგარიში მიბმული არ არის",
+    "guest_accountDescription": "აღადგინეთ თქვენი შესყიდვები იმავე Google Play-ის ანგარიშით, რათა სხვა მოწყობილობაზეც გამოიყენოთ თქვენი გამოწერა.",
+    "guest_existingSubscriberSignIn": "უკვე გაქვთ გამოწერა? შედით",
+    "guest_claimTitle": "FuzeVPN ყველგან თქვენთან ერთად",
+    "guest_claimDescription": "შექმენით ანგარიში, რომ თქვენი გამოწერით სხვა მოწყობილობებზეც ისარგებლოთ. ეს ნაბიჯი არასავალდებულოა.",
+    "guest_skip": "მოგვიანებით",
+    "guest_activationTitle": "Fuze Premium გააქტიურებულია",
+    "guest_activationDescription": "თქვენი გამოწერა მზადაა. გამოიყენეთ თქვენი VPN და ანგარიში შექმენით, როდესაც მოისურვებთ.",
+    "guest_useVpn": "VPN-ის გამოყენება",
+    "guest_loginRequired": "ეს შესყიდვა უკვე მიბმულია FuzeVPN-ის ანგარიშზე. თქვენს გამოწერაზე წვდომისთვის შედით ამ ანგარიშში.",
+    "guest_signOutWarning": "თქვენი გამოწერის აღდგენა შეგიძლიათ იმავე Google Play-ის ანგარიშით, შესყიდვების აღდგენის გზით.",
+    "guest_profileUnavailable": "თქვენი ანგარიში უკვე მიბმულია. შედით თქვენი მონაცემების სანახავად და სამართავად.",
+    "billing_acceptance": "გაგრძელებით თქვენ ეთანხმებით გამოყენების პირობებსა და კონფიდენციალურობის პოლიტიკას.",
+    "guest_verifyEmailReminder": "დაადასტურეთ თქვენი ელფოსტის მისამართი, რათა ანგარიში დაიცვათ. VPN-ის გამოყენებას შეგიძლიათ განაგრძოთ.",
+    "guest_serviceUnavailable": "სერვისი დროებით ხელმისაწვდომი არ არის. ცოტა ხანში სცადეთ ხელახლა.",
+    "guest_restoreError": "თქვენი შესყიდვების აღდგენა ვერ მოხერხდა. სცადეთ ხელახლა იმ Google Play-ის ანგარიშით, რომლითაც შეიძინეთ.",
+    "guest_claimSuccess": "თქვენი ანგარიში შეიქმნა. თქვენი გამოწერა და VPN-ზე წვდომა შენარჩუნებულია.",
+    "guest_emailExists": "ეს ელფოსტა უკვე გამოიყენება. აირჩიეთ სხვა მისამართი ან შედით არსებულ ანგარიშში. თქვენი შესყიდვა Google Play-ით ხელმისაწვდომი დარჩება.",
+    "guest_claimError": "თქვენი ანგარიშის შექმნა ვერ მოხერხდა. VPN-ის გამოყენებას შეგიძლიათ განაგრძოთ და მოგვიანებით სცადეთ ხელახლა.",
+    "guest_secureStorageError": "სესიის დაცვა ამ მოწყობილობაზე ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "guest_premiumRequired": "თქვენი VPN-ის გასააქტიურებლად აირჩიეთ გამოწერა.",
+    "welcome_viewPlans": "გეგმების ნახვა",
+    "google_continue": "გაგრძელება Google-ით",
+    "google_or": "ან",
+    "google_title": "თქვენი FuzeVPN-ის ანგარიში",
+    "google_settingUp": "დაასრულეთ ანგარიშის შექმნა",
+    "google_country": "საცხოვრებელი ქვეყანა",
+    "google_profileDescription": "აირჩიეთ თქვენი ქვეყანა და გადახედეთ ორ დოკუმენტს FuzeVPN-ის ანგარიშის შესაქმნელად.",
+    "google_claimDescription": "მიაბით თქვენი სტუმრის ანგარიში Google-ს. თქვენი გამოწერა და მოწყობილობა ამ ანგარიშზე დარჩება მიბმული.",
+    "google_linkTitle": "Google-ის მიბმა FuzeVPN-ზე",
+    "google_linkDescription": "დაადასტურეთ წვდომა არსებულ FuzeVPN-ის ანგარიშზე. ეს ნაბიჯი თქვენს Google პაროლს არ მოითხოვს.",
+    "google_password": "FuzeVPN-ის პაროლი",
+    "google_linkAccount": "მიბმის დადასტურება",
+    "google_requestEmail": "დადასტურების ელფოსტის გამოგზავნა",
+    "google_emailInstructions": "გახსენით FuzeVPN-ის ელფოსტა და შეიყვანეთ დადასტურების კოდი.",
+    "google_emailCode": "ელფოსტით დადასტურების კოდი",
+    "google_confirmEmail": "კოდის დადასტურება",
+    "google_restart": "სხვა Google ანგარიშის არჩევა",
+    "google_resume": "ამ მცდელობის შემოწმება",
+    "google_unavailable": "Google-ით შესვლა ხელმისაწვდომი არ არის. შეგიძლიათ გამოიყენოთ ელფოსტა და პაროლი.",
+    "google_expired": "ეს მცდელობა ვადაგასულია. გააუქმეთ იგი და ხელახლა დაიწყეთ.",
+    "google_conflict": "ეს Google ანგარიში უკვე სხვაგან არის მიბმული. თქვენი მიმდინარე ანგარიში და გამოწერა შენარჩუნებულია.",
+    "google_error": "Google-ით შესვლა ვერ მოხერხდა. სცადეთ ხელახლა; თქვენი მიმდინარე წვდომა შენარჩუნებულია.",
+    "google_uncertain": "შედეგის დადასტურება ვერ მოხერხდა. ხელახლა დაწყებამდე შეამოწმეთ ეს მცდელობა ან გააუქმეთ.",
+    "google_cancelFailed": "გაუქმება ვერ დადასტურდა. ეკრანიდან გასვლამდე სცადეთ ხელახლა გაუქმება.",
+    "google_cancelled": "Google-ით შესვლა გაუქმდა.",
+    "google_selecting": "აირჩიეთ თქვენი Google ანგარიში…",
+    "google_verifying": "თქვენი ანგარიშის შემოწმება…",
+    "google_emailUnavailable": "დადასტურების ელფოსტის გაგზავნა ვერ მოხერხდა. სცადეთ მოგვიანებით.",
+    "google_emailSent": "დადასტურების ელფოსტა გაიგზავნა. შეამოწმეთ შემომავალი წერილები.",
+    "google_rateLimited": "გთხოვთ, ცოტა ხანს დაელოდეთ და ხელახლა სცადეთ.",
+    "google_busy": "Google ხელმისაწვდომი არ არის, სანამ სხვა ოპერაცია მიმდინარეობს (VPN-ის კავშირი, ანგარიში ან სტუმარი). სცადეთ ხელახლა, როცა ის დასრულდება; თქვენი მიმდინარე წვდომა შენარჩუნებულია.",
+    "google_invalidPassword": "FuzeVPN-ის პაროლი არასწორია. თქვენი მიმდინარე ანგარიში შენარჩუნებულია.",
+    "google_invalidCode": "დადასტურების კოდი არასწორია ან ვადაგასულია.",
+    "google_accountChanged": "თქვენი სესია შეიცვალა. ხელახლა დაწყებამდე გააუქმეთ ეს მცდელობა.",
+    "google_invalidResponse": "პასუხის დადასტურება ვერ მოხერხდა. თქვენი მიმდინარე წვდომა შენარჩუნებულია.",
+    "google_invalidRegistration": "შეამოწმეთ თქვენი ქვეყანა და ორივე თანხმობა.",
+    "google_consentRequired": "გასაგრძელებლად აირჩიეთ თქვენი ქვეყანა და დაეთანხმეთ ორივე დოკუმენტს.",
+    "google_challengeRequired": "საჭიროა დამატებითი უსაფრთხოების შემოწმება. თქვენი მიმდინარე წვდომა შენარჩუნებულია.",
+    "google_challengeUnavailable": "უსაფრთხოების შემოწმება ხელმისაწვდომი არ არის. სცადეთ მოგვიანებით.",
+    "google_intentMismatch": "Google-ით შესვლის წინა მცდელობა ჯერ კიდევ მოლოდინშია. ამ ოპერაციის დაწყებამდე გააუქმეთ იგი.",
+    "google_challengeBlocked": "საჭირო უსაფრთხოების შემოწმება ამ აპში ხელმისაწვდომი არ არის. ამ ოპერაციის დასრულება ახლა შეუძლებელია.",
+    "google_solveChallenge": "უსაფრთხოების შემოწმების დასრულება",
+    "google_challengeTitle": "უსაფრთხოების შემოწმება",
+    "google_challengeReady": "შემოწმება დასრულდა. ახლა შეგიძლიათ დაადასტუროთ ანგარიშის შექმნა.",
+    "google_challengeExpired": "შემოწმების ვადა ამოიწურა. დადასტურებამდე ხელახლა დაასრულეთ ის.",
+    "google_challengeCancelled": "შემოწმება გაუქმდა. შეგიძლიათ ხელახლა სცადოთ.",
+    "google_challengeFailed": "უსაფრთხოების შემოწმება წარუმატებლად დასრულდა. სცადეთ ხელახლა.",
+    "billing_trialTitle": "სცადეთ Fuze Premium უფასოდ",
+    "billing_trialSubtitle": "დაიცავით თქვენი კავშირი დღესვე.",
+    "billing_trialWeeks": "2-კვირიანი უფასო საცდელი პერიოდი",
+    "billing_trialDays": "{days}-დღიანი უფასო საცდელი პერიოდი",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "უფასო საცდელი პერიოდის დაწყება",
+    "billing_trialFirstCharge": "თუ დღეს დაიწყებთ, პირველი ჩამოწერის მოსალოდნელი თარიღია {date}.",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "ავტომატურად განახლდება მითითებული ფასით. ჩამოწერის თავიდან ასაცილებლად გააუქმეთ Google Play-ში საცდელი პერიოდის დასრულებამდე.",
+    "billing_trialThenMonthly": "შემდეგ {price} თვეში",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "შემდეგ {price} წელიწადში",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "აირჩიეთ თქვენი გეგმა",
+    "billing_selectionHint": "გასაგრძელებლად აირჩიეთ გეგმა.",
+    "billing_benefitConnection": "დაშიფრული კავშირი",
+    "billing_benefitPrivacy": "ონლაინ კონფიდენციალურობა",
+    "billing_benefitNoAccount": "რეგისტრაცია არ არის საჭირო",
+    "billing_cancellation": "გაუქმება Google Play-ში",
+    "billing_premiumTitle": "უფრო დაცული კავშირი.",
+    "billing_premiumSubtitle": "დაიცავით კავშირი ისე, როგორც თქვენთვის მოსახერხებელია.",
+    "billing_priceMonthly": "თვეში",
+    "billing_priceYearly": "წელიწადში",
+    "billing_trialToday": "დღეს გადასახდელი არაფერია",
+    "billing_trialConfirmation": "Google Play დაადასტურებს თარიღებს, საბოლოო თანხასა და გადასახადებს, სანამ თქვენ დაადასტურებთ.",
+    "billing_offerChanged": "ამ შეთავაზების პირობები შეიცვალა. განაახლეთ გეგმები და ხელახლა აირჩიეთ.",
+    "status_waitingNetwork": "ქსელის მოლოდინში",
+    "status_waitingNetworkDetail": "ქსელი ხელმისაწვდომი არ არის. ქსელის დაბრუნებისას VPN კავშირს შეამოწმებს.",
+    "locations_favoriteLoadFailed": "რჩეულების ჩატვირთვა ვერ მოხერხდა. სცადეთ ხელახლა.",
+    "locations_favoritesLoading": "რჩეულები იტვირთება…"
+  },
+  "android": {
+    "vpn_notification_channel": "VPN კავშირი",
+    "vpn_notification_channel_description": "აჩვენებს, როდის არის FuzeVPN კავშირი აქტიური.",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s კავშირი აქტიურია",
+    "vpn_notification_connecting": "%1$s კავშირის დამყარება მიმდინარეობს",
+    "vpn_notification_disconnecting": "%1$s-ის გათიშვა მიმდინარეობს",
+    "vpn_notification_interrupted": "%1$s კავშირი შეწყდა",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "მზადაა · %1$s · %2$s",
+    "vpn_tile_connected": "დაკავშირებულია · %1$s · %2$s",
+    "vpn_tile_connecting": "მიმდინარეობს დაკავშირება %1$s…",
+    "vpn_tile_disconnecting": "მიმდინარეობს გათიშვა…",
+    "vpn_tile_interrupted": "%1$s შეწყდა",
+    "vpn_tile_setup_required": "ჯერ გახსენით აპი",
+    "vpn_tile_working": "VPN-ის ოპერაცია მიმდინარეობს…",
+    "vpn_notification_reconnecting": "ხელახლა დაკავშირება… · %1$s",
+    "vpn_system_action_required": "საჭიროა მოქმედება Android-ის პარამეტრებში",
+    "vpn_tile_reconnecting": "ხელახლა დაკავშირება… · %1$s",
+    "vpn_notification_waiting_network": "ქსელის მოლოდინში · %1$s",
+    "vpn_tile_waiting_network": "ქსელის მოლოდინში · %1$s"
+  },
+  "countries": {
+    "AC": "ამაღლების კუნძული",
+    "AD": "ანდორა",
+    "AE": "არაბთა გაერთიანებული საამიროები",
+    "AF": "ავღანეთი",
+    "AG": "ანტიგუა და ბარბუდა",
+    "AI": "ანგილია",
+    "AL": "ალბანეთი",
+    "AM": "სომხეთი",
+    "AO": "ანგოლა",
+    "AQ": "ანტარქტიკა",
+    "AR": "არგენტინა",
+    "AS": "ამერიკის სამოა",
+    "AT": "ავსტრია",
+    "AU": "ავსტრალია",
+    "AW": "არუბა",
+    "AX": "ალანდის კუნძულები",
+    "AZ": "აზერბაიჯანი",
+    "BA": "ბოსნია და ჰერცეგოვინა",
+    "BB": "ბარბადოსი",
+    "BD": "ბანგლადეში",
+    "BE": "ბელგია",
+    "BF": "ბურკინა-ფასო",
+    "BG": "ბულგარეთი",
+    "BH": "ბაჰრეინი",
+    "BI": "ბურუნდი",
+    "BJ": "ბენინი",
+    "BL": "სენ-ბართელმი",
+    "BM": "ბერმუდა",
+    "BN": "ბრუნეი",
+    "BO": "ბოლივია",
+    "BQ": "კარიბის ნიდერლანდები",
+    "BR": "ბრაზილია",
+    "BS": "ბაჰამის კუნძულები",
+    "BT": "ბუტანი",
+    "BV": "ბუვე",
+    "BW": "ბოტსვანა",
+    "BY": "ბელარუსი",
+    "BZ": "ბელიზი",
+    "CA": "კანადა",
+    "CC": "ქოქოსის (კილინგის) კუნძულები",
+    "CD": "კონგო - კინშასა",
+    "CF": "ცენტრალური აფრიკის რესპუბლიკა",
+    "CG": "კონგო - ბრაზავილი",
+    "CH": "შვეიცარია",
+    "CI": "კოტ-დივუარი",
+    "CK": "კუკის კუნძულები",
+    "CL": "ჩილე",
+    "CM": "კამერუნი",
+    "CN": "ჩინეთი",
+    "CO": "კოლუმბია",
+    "CP": "კლიპერტონის კუნძული",
+    "CQ": "სარკი",
+    "CR": "კოსტა-რიკა",
+    "CU": "კუბა",
+    "CV": "კაბო-ვერდე",
+    "CW": "კიურასაო",
+    "CX": "შობის კუნძული",
+    "CY": "კვიპროსი",
+    "CZ": "ჩეხეთი",
+    "DE": "გერმანია",
+    "DG": "დიეგო-გარსია",
+    "DJ": "ჯიბუტი",
+    "DK": "დანია",
+    "DM": "დომინიკა",
+    "DO": "დომინიკელთა რესპუბლიკა",
+    "DZ": "ალჟირი",
+    "EA": "სეუტა და მელილა",
+    "EC": "ეკვადორი",
+    "EE": "ესტონეთი",
+    "EG": "ეგვიპტე",
+    "EH": "დასავლეთ საჰარა",
+    "ER": "ერიტრეა",
+    "ES": "ესპანეთი",
+    "ET": "ეთიოპია",
+    "EU": "ევროკავშირი",
+    "EZ": "ევროზონა",
+    "FI": "ფინეთი",
+    "FJ": "ფიჯი",
+    "FK": "ფოლკლენდის კუნძულები",
+    "FM": "მიკრონეზია",
+    "FO": "ფარერის კუნძულები",
+    "FR": "საფრანგეთი",
+    "GA": "გაბონი",
+    "GB": "გაერთიანებული სამეფო",
+    "GD": "გრენადა",
+    "GE": "საქართველო",
+    "GF": "საფრანგეთის გვიანა",
+    "GG": "გერნსი",
+    "GH": "განა",
+    "GI": "გიბრალტარი",
+    "GL": "გრენლანდია",
+    "GM": "გამბია",
+    "GN": "გვინეა",
+    "GP": "გვადელუპა",
+    "GQ": "ეკვატორული გვინეა",
+    "GR": "საბერძნეთი",
+    "GS": "სამხრეთ ჯორჯია და სამხრეთ სენდვიჩის კუნძულები",
+    "GT": "გვატემალა",
+    "GU": "გუამი",
+    "GW": "გვინეა-ბისაუ",
+    "GY": "გაიანა",
+    "HK": "ჰონკონგის სპეციალური ადმინისტრაციული რეგიონი, ჩინეთი",
+    "HM": "ჰერდი და მაკდონალდის კუნძულები",
+    "HN": "ჰონდურასი",
+    "HR": "ხორვატია",
+    "HT": "ჰაიტი",
+    "HU": "უნგრეთი",
+    "IC": "კანარის კუნძულები",
+    "ID": "ინდონეზია",
+    "IE": "ირლანდია",
+    "IL": "ისრაელი",
+    "IM": "მენის კუნძული",
+    "IN": "ინდოეთი",
+    "IO": "ბრიტანეთის ტერიტორია ინდოეთის ოკეანეში",
+    "IQ": "ერაყი",
+    "IR": "ირანი",
+    "IS": "ისლანდია",
+    "IT": "იტალია",
+    "JE": "ჯერსი",
+    "JM": "იამაიკა",
+    "JO": "იორდანია",
+    "JP": "იაპონია",
+    "KE": "კენია",
+    "KG": "ყირგიზეთი",
+    "KH": "კამბოჯა",
+    "KI": "კირიბატი",
+    "KM": "კომორის კუნძულები",
+    "KN": "სენტ-კიტსი და ნევისი",
+    "KP": "ჩრდილოეთ კორეა",
+    "KR": "სამხრეთ კორეა",
+    "KW": "ქუვეითი",
+    "KY": "კაიმანის კუნძულები",
+    "KZ": "ყაზახეთი",
+    "LA": "ლაოსი",
+    "LB": "ლიბანი",
+    "LC": "სენტ-ლუსია",
+    "LI": "ლიხტენშტაინი",
+    "LK": "შრი-ლანკა",
+    "LR": "ლიბერია",
+    "LS": "ლესოთო",
+    "LT": "ლიეტუვა",
+    "LU": "ლუქსემბურგი",
+    "LV": "ლატვია",
+    "LY": "ლიბია",
+    "MA": "მაროკო",
+    "MC": "მონაკო",
+    "MD": "მოლდოვა",
+    "ME": "მონტენეგრო",
+    "MF": "სენ-მარტენი",
+    "MG": "მადაგასკარი",
+    "MH": "მარშალის კუნძულები",
+    "MK": "ჩრდილოეთ მაკედონია",
+    "ML": "მალი",
+    "MM": "მიანმარი (ბირმა)",
+    "MN": "მონღოლეთი",
+    "MO": "მაკაოს სპეციალური ადმინისტრაციული რეგიონი, ჩინეთი",
+    "MP": "ჩრდილოეთ მარიანას კუნძულები",
+    "MQ": "მარტინიკა",
+    "MR": "მავრიტანია",
+    "MS": "მონსერატი",
+    "MT": "მალტა",
+    "MU": "მავრიკი",
+    "MV": "მალდივები",
+    "MW": "მალავი",
+    "MX": "მექსიკა",
+    "MY": "მალაიზია",
+    "MZ": "მოზამბიკი",
+    "NA": "ნამიბია",
+    "NC": "ახალი კალედონია",
+    "NE": "ნიგერი",
+    "NF": "ნორფოლკის კუნძული",
+    "NG": "ნიგერია",
+    "NI": "ნიკარაგუა",
+    "NL": "ნიდერლანდები",
+    "NO": "ნორვეგია",
+    "NP": "ნეპალი",
+    "NR": "ნაურუ",
+    "NU": "ნიუე",
+    "NZ": "ახალი ზელანდია",
+    "OM": "ომანი",
+    "PA": "პანამა",
+    "PE": "პერუ",
+    "PF": "საფრანგეთის პოლინეზია",
+    "PG": "პაპუა-ახალი გვინეა",
+    "PH": "ფილიპინები",
+    "PK": "პაკისტანი",
+    "PL": "პოლონეთი",
+    "PM": "სენ-პიერი და მიკელონი",
+    "PN": "პიტკერნის კუნძულები",
+    "PR": "პუერტო-რიკო",
+    "PS": "პალესტინის ტერიტორიები",
+    "PT": "პორტუგალია",
+    "PW": "პალაუ",
+    "PY": "პარაგვაი",
+    "QA": "კატარი",
+    "QO": "შორეული ოკეანეთი",
+    "RE": "რეუნიონი",
+    "RO": "რუმინეთი",
+    "RS": "სერბეთი",
+    "RU": "რუსეთი",
+    "RW": "რუანდა",
+    "SA": "საუდის არაბეთი",
+    "SB": "სოლომონის კუნძულები",
+    "SC": "სეიშელის კუნძულები",
+    "SD": "სუდანი",
+    "SE": "შვედეთი",
+    "SG": "სინგაპური",
+    "SH": "წმინდა ელენეს კუნძული",
+    "SI": "სლოვენია",
+    "SJ": "შპიცბერგენი და იან-მაიენი",
+    "SK": "სლოვაკეთი",
+    "SL": "სიერა-ლეონე",
+    "SM": "სან-მარინო",
+    "SN": "სენეგალი",
+    "SO": "სომალი",
+    "SR": "სურინამი",
+    "SS": "სამხრეთ სუდანი",
+    "ST": "სან-ტომე და პრინსიპი",
+    "SV": "სალვადორი",
+    "SX": "სინტ-მარტენი",
+    "SY": "სირია",
+    "SZ": "ესვატინი",
+    "TA": "ტრისტან-და-კუნია",
+    "TC": "თერქს-ქაიქოსის კუნძულები",
+    "TD": "ჩადი",
+    "TF": "ფრანგული სამხრეთის ტერიტორიები",
+    "TG": "ტოგო",
+    "TH": "ტაილანდი",
+    "TJ": "ტაჯიკეთი",
+    "TK": "ტოკელაუ",
+    "TL": "ტიმორ-ლესტე",
+    "TM": "თურქმენეთი",
+    "TN": "ტუნისი",
+    "TO": "ტონგა",
+    "TR": "თურქეთი",
+    "TT": "ტრინიდადი და ტობაგო",
+    "TV": "ტუვალუ",
+    "TW": "ტაივანი",
+    "TZ": "ტანზანია",
+    "UA": "უკრაინა",
+    "UG": "უგანდა",
+    "UM": "აშშ-ის შორეული კუნძულები",
+    "UN": "გაერო",
+    "US": "ამერიკის შეერთებული შტატები",
+    "UY": "ურუგვაი",
+    "UZ": "უზბეკეთი",
+    "VA": "ვატიკანი",
+    "VC": "სენტ-ვინსენტი და გრენადინები",
+    "VE": "ვენესუელა",
+    "VG": "ბრიტანეთის ვირჯინის კუნძულები",
+    "VI": "აშშ-ის ვირჯინის კუნძულები",
+    "VN": "ვიეტნამი",
+    "VU": "ვანუატუ",
+    "WF": "უოლისი და ფუტუნა",
+    "WS": "სამოა",
+    "XA": "ფსევდო-აქცენტები",
+    "XB": "ფსევდო-ორმიმართულებიანი",
+    "XK": "კოსოვო",
+    "YE": "იემენი",
+    "YT": "მაიოტა",
+    "ZA": "სამხრეთ აფრიკის რესპუბლიკა",
+    "ZM": "ზამბია",
+    "ZW": "ზიმბაბვე",
+    "ZZ": "უცნობი რეგიონი"
+  }
+}

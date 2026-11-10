@@ -530,6 +530,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get action_cancel => 'Abbrechen';
 
   @override
+  String get action_close => 'Schließen';
+
+  @override
+  String get action_copy => 'Kopieren';
+
+  @override
   String get action_signOut => 'Abmelden';
 
   @override

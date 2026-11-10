@@ -176,6 +176,8 @@
     "dialog_signOut": "Mag-sign out?",
     "dialog_signOutMessage": "Ihihinto ang VPN at kakailanganin mong mag-sign in muli. Mananatili sa teleponong ito ang iyong mga naka-encrypt na VPN key para sa susunod mong koneksyon.",
     "action_cancel": "Kanselahin",
+    "action_close": "Isara",
+    "action_copy": "Kopyahin",
     "action_signOut": "Mag-sign out",
     "notice_close": "I-dismiss ang mensahe",
     "notice_sessionExpired_title": "Nag-expire ang session",

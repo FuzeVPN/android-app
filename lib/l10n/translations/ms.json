@@ -176,6 +176,8 @@
     "dialog_signOut": "Log keluar?",
     "dialog_signOutMessage": "VPN akan dihentikan dan anda perlu log masuk semula. Kunci VPN anda yang disulitkan akan kekal pada telefon ini untuk sambungan anda yang seterusnya.",
     "action_cancel": "Batal",
+    "action_close": "Tutup",
+    "action_copy": "Salin",
     "action_signOut": "Log keluar",
     "notice_close": "Tutup mesej",
     "notice_sessionExpired_title": "Sesi tamat tempoh",

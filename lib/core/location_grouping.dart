@@ -94,8 +94,8 @@ List<LocationCountryGroup> groupLocations(
 /// secondary, numbers are natural, and letters which a language sorts
 /// separately keep their place (sv `Ö` after `Z`, cs `Ch` after `H`, uk `І`
 /// after `И`, fa `گ` after `ک`, ur `آ` after the `ا` block, Thai pre-vowels
-/// by their consonant). Equal
-/// labels use [tieBreak], so the result never depends on the input order.
+/// by their consonant), and Latin follows a non-Latin script. Equal labels use
+/// [tieBreak], so the result never depends on the input order.
 List<T> sortedByLocalizedLabel<T>(
   Iterable<T> items,
   String Function(T item) label, {
@@ -121,7 +121,7 @@ List<T> sortedByLocalizedLabel<T>(
 
 // A letter sorted after [base] as a separate letter becomes base + marker.
 // Markers are above every code unit a key can otherwise contain.
-const _after1 = '￱', _after2 = '￲', _after3 = '￳';
+const _after1 = '￱', _after2 = '￲', _after3 = '￳', _after4 = '￴';
 
 /// Script-wide primary equivalences (CLDR root order).
 const _scriptOrder = <String, String>{
@@ -131,11 +131,24 @@ const _scriptOrder = <String, String>{
   // Cyrillic: ё is е; ґ, є, і, ї follow г, е, и.
   'ё': 'е', 'ґ': 'г$_after1', 'є': 'е$_after1', 'і': 'и$_after1',
   'ї': 'и$_after2',
+  // Serbian, Macedonian and Kazakh letters follow their base letter; ѓ, ќ
+  // and ў are accents.
+  'ә': 'а$_after1', 'ѓ': 'г', 'ғ': 'г$_after2', 'ђ': 'д$_after1',
+  'ѕ': 'з$_after1', 'ј': 'й$_after1', 'ќ': 'к', 'қ': 'к$_after1',
+  'љ': 'л$_after1', 'ң': 'н$_after1', 'њ': 'н$_after2', 'ө': 'о$_after1',
+  'ћ': 'т$_after1', 'ў': 'у', 'ү': 'у$_after1', 'ұ': 'у$_after2',
+  'һ': 'х$_after1', 'џ': 'ч$_after1',
   // Persian and Urdu letters follow their Arabic base letters.
   'پ': 'ب$_after1', 'ٹ': 'ت$_after1', 'چ': 'ج$_after1', 'ڈ': 'د$_after1',
   'ڑ': 'ر$_after1', 'ژ': 'ز$_after1', 'ک': 'ك', 'گ': 'ك$_after1',
   'ں': 'ن$_after1', 'ہ': 'ه', 'ۀ': 'ه', 'ھ': 'ه$_after1', 'ی': 'ي',
   'ے': 'ي$_after1',
+  // Lao: ສ follows ຈ, ໜ and ໝ are ຫນ and ຫມ; tone marks and niggahita are
+  // secondary.
+  'ສ': 'ຈ$_after1', 'ໜ': 'ຫນ', 'ໝ': 'ຫມ', '\u0EC8': '', '\u0EC9': '',
+  '\u0ECA': '', '\u0ECB': '', '\u0ECC': '', '\u0ECD': '',
+  // Zero-width spaces and joiners are ignored, not word breaks.
+  '\u200B': '', '\u200C': '', '\u200D': '',
 };
 
 const _nordic = <String, String>{
@@ -144,6 +157,22 @@ const _nordic = <String, String>{
   'ø': 'z$_after2',
   'ö': 'z$_after2',
   'å': 'z$_after3',
+};
+const _swedish = <String, String>{
+  // Also CLDR fi.
+  'å': 'z$_after1',
+  'ä': 'z$_after2',
+  'æ': 'z$_after2',
+  'ö': 'z$_after3',
+  'ø': 'z$_after3',
+};
+const _southSlavic = <String, String>{
+  // CLDR hr and sl.
+  'č': 'c$_after1',
+  'ć': 'c$_after2',
+  'đ': 'd$_after2',
+  'š': 's$_after1',
+  'ž': 'z$_after1',
 };
 const _persoArabic = <String, String>{
   // و precedes ه in the Persian and Urdu alphabets.
@@ -165,13 +194,8 @@ const _urdu = <String, String>{
 
 /// Letters that the language sorts as separate letters (CLDR tailorings).
 const _languageOrder = <String, Map<String, String>>{
-  'sv': {
-    'å': 'z$_after1',
-    'ä': 'z$_after2',
-    'æ': 'z$_after2',
-    'ö': 'z$_after3',
-    'ø': 'z$_after3',
-  },
+  'sv': _swedish,
+  'fi': _swedish,
   'da': _nordic,
   'nb': _nordic,
   'tr': {
@@ -254,21 +278,335 @@ const _languageOrder = <String, Map<String, String>>{
   'ar': {'أ': 'ا', 'إ': 'ا'},
   'fa': _persoArabic,
   'ur': _urdu,
+  // CLDR ps: Pashto letters follow their Arabic base; ې, ۍ and ئ are ی.
+  'ps': {
+    'ټ': 'ت$_after1',
+    'ځ': 'ج$_after1',
+    'چ': 'ج$_after2',
+    'څ': 'ج$_after3',
+    'ډ': 'د$_after1',
+    'ړ': 'ر$_after1',
+    'ږ': 'ز$_after2',
+    'ښ': 'ش$_after1',
+    'ګ': 'ك$_after1',
+    'ڼ': 'ن$_after1',
+    'ؤ': 'و',
+    'ې': 'ي',
+    'ۍ': 'ي',
+    'ئ': 'ي',
+  },
+  // CLDR kk: ұ precedes ү, ё follows е and і follows ы.
+  'kk': {
+    'ё': 'е$_after1',
+    'ұ': 'у$_after1',
+    'ү': 'у$_after2',
+    'і': 'ы$_after1',
+  },
+  // CLDR hy: և sorts as եվ.
+  'hy': {'և': 'եվ'},
+  // Azerbaijani: x follows h, q follows k and w follows z.
+  'az': {
+    'ç': 'c$_after1',
+    'ə': 'e$_after1',
+    'ğ': 'g$_after1',
+    'x': 'h$_after1',
+    'ı': 'h$_after2',
+    'q': 'k$_after1',
+    'ö': 'o$_after1',
+    'ş': 's$_after1',
+    'ü': 'u$_after1',
+    'w': 'z$_after1',
+  },
+  // Estonian: š z ž come before t, õ ä ö ü between w and x.
+  'et': {
+    'š': 's$_after1',
+    'z': 's$_after2',
+    'ž': 's$_after3',
+    'õ': 'w$_after1',
+    'ä': 'w$_after2',
+    'ö': 'w$_after3',
+    'ü': 'w$_after4',
+  },
+  'hu': {
+    'ö': 'o$_after1',
+    'ő': 'o$_after1',
+    'ü': 'u$_after1',
+    'ű': 'u$_after1',
+  },
+  'sk': {
+    'ä': 'a$_after1',
+    'č': 'c$_after1',
+    'ô': 'o$_after1',
+    'ř': 'r$_after1',
+    'š': 's$_after1',
+    'ž': 'z$_after1',
+  },
+  'hr': _southSlavic,
+  'sl': _southSlavic,
+  // Lithuanian y is i plus a secondary difference.
+  'lt': {'č': 'c$_after1', 'y': 'i', 'š': 's$_after1', 'ž': 'z$_after1'},
+  // Latvian: long vowels and cedilla letters are letters; y follows i.
+  'lv': {
+    'ā': 'a$_after1',
+    'č': 'c$_after1',
+    'ē': 'e$_after1',
+    'ģ': 'g$_after1',
+    'y': 'i$_after1',
+    'ī': 'i$_after2',
+    'ķ': 'k$_after1',
+    'ļ': 'l$_after1',
+    'ņ': 'n$_after1',
+    'ō': 'o$_after1',
+    'ŗ': 'r$_after1',
+    'š': 's$_after1',
+    'ū': 'u$_after1',
+    'ž': 'z$_after1',
+  },
+  'sq': {'ç': 'c$_after1', 'ë': 'e$_after1'},
+  'ha': {
+    'ɓ': 'b$_after1',
+    'ɗ': 'd$_after1',
+    'ƙ': 'k$_after1',
+    'ƴ': 'y$_after1',
+  },
+  'yo': {'ẹ': 'e$_after1', 'ọ': 'o$_after1', 'ṣ': 's$_after1'},
+  'ig': {
+    'ị': 'i$_after1',
+    'ṅ': 'n$_after1',
+    'ọ': 'o$_after1',
+    'ụ': 'u$_after1',
+  },
+  // Indic scripts: letters that CLDR moves, and signs that it ignores.
+  'mr': {'\u0901': '\u0902', 'ळ': 'ह$_after1'},
+  'ne': {'\u0901': '', '\u0902': ''},
+  'gu': {'ળ': 'હ$_after1'},
+  'kn': {'ಳ': 'ಹ$_after1'},
+  'or': {'ୟ': 'ଯ', 'ୱ': 'ଵ$_after1'},
+  // Gurmukhi vowels sort by bearer (ੳ: ਉ ਊ ਓ, then ਅ ਆ ਐ ਔ, then ੲ: ਇ ਈ ਏ)
+  // and ਸ ਹ precede ਕ; the virama precedes the vowel signs.
+  'pa': {
+    'ਉ': 'ਅ',
+    'ਊ': 'ਅ$_after1',
+    'ਓ': 'ਅ$_after2',
+    'ਅ': 'ਆ',
+    'ਆ': 'ਆ$_after1',
+    'ਐ': 'ਆ$_after2',
+    'ਔ': 'ਆ$_after3',
+    'ਸ': 'ਏ$_after1',
+    'ਹ': 'ਏ$_after2',
+    'ੜ': 'ਵ$_after1',
+    '\u0A4D': 'ਵ$_after2',
+    '\u0A02': '',
+    '\u0A3C': '',
+    '\u0A70': '',
+    '\u0A71': '',
+  },
+  // Tamil: ஃ follows the vowels; ழ ள ற ன and then the Grantha letters follow வ.
+  'ta': {
+    'ஃ': 'ஔ$_after1',
+    'ழ': 'வ$_after1',
+    'ள': 'வ$_after2',
+    'ற': 'வ$_after3',
+    'ன': 'வ$_after4',
+    'ஜ': 'வ$_after4$_after1',
+  },
+  // Malayalam: ള ഴ റ follow ഹ; chillus and anusvara are consonant + virama.
+  'ml': {
+    'ള': 'ഹ$_after1',
+    'ഴ': 'ഹ$_after2',
+    'റ': 'ഹ$_after3',
+    '\u0D4D': _malayalamVirama,
+    'ൺ': 'ണ$_malayalamVirama',
+    'ൻ': 'ന$_malayalamVirama',
+    'ർ': 'ര$_malayalamVirama',
+    'ൽ': 'ല$_malayalamVirama',
+    'ൾ': 'ഹ$_after1$_malayalamVirama',
+    '\u0D02': 'മ$_malayalamVirama',
+  },
+  // Sinhala: ෲ ෟ ෳ follow ෘ; al-lakuna follows every vowel sign.
+  'si': {
+    '\u0DF2': '\u0DD8$_after1',
+    '\u0DDF': '\u0DD8$_after2',
+    '\u0DF3': '\u0DD8$_after3',
+    '\u0DCA': '\u0DDE$_after1',
+  },
+  // Myanmar ါ is ာ; independent vowels are အ + vowel (ဩ and ဪ as ော, ော်).
+  'my': {
+    '\u102B': '\u102C',
+    'ဣ': 'အ\u102D',
+    'ဤ': 'အ\u102E',
+    'ဥ': 'အ\u102F',
+    'ဦ': 'အ\u1030',
+    'ဧ': 'အ\u1031',
+    'ဩ': 'အ\u1032$_after1',
+    'ဪ': 'အ\u1032$_after2',
+  },
+  // Khmer independent vowels are អ + vowel; register and diacritic signs are
+  // secondary.
+  'km': {
+    'ឥ': 'អ\u17B7',
+    'ឦ': 'អ\u17B8',
+    'ឧ': 'អ\u17BB',
+    'ឱ': 'អ\u17C4',
+    '\u17C9': '',
+    '\u17CA': '',
+    '\u17CB': '',
+    '\u17CD': '',
+    '\u17D0': '',
+  },
 };
 
-final _thaiPreVowel = RegExp('([เ-ไ])([ก-ฮ])');
+// Malayalam virama: after the last vowel sign, the au length mark.
+const _malayalamVirama = '\u0D57$_after1';
+
+/// Letter sequences that the language sorts as one letter (CLDR
+/// contractions). They are replaced before [_languageOrder] applies.
+const _contractions = <String, Map<String, String>>{
+  'cs': {'ch': 'h$_after1'},
+  'sk': {'ch': 'h$_after1', 'dz': 'd$_after1', 'dž': 'd$_after2'},
+  'hr': {'dž': 'd$_after1', 'lj': 'l$_after1', 'nj': 'n$_after1'},
+  'hu': {
+    'cs': 'c$_after1',
+    'dz': 'd$_after1',
+    'dzs': 'd$_after2',
+    'gy': 'g$_after1',
+    'ly': 'l$_after1',
+    'ny': 'n$_after1',
+    'sz': 's$_after1',
+    'ty': 't$_after1',
+    'zs': 'z$_after1',
+  },
+  'sq': {
+    'dh': 'd$_after1',
+    'gj': 'g$_after1',
+    'll': 'l$_after1',
+    'nj': 'n$_after1',
+    'rr': 'r$_after1',
+    'sh': 's$_after1',
+    'th': 't$_after1',
+    'xh': 'x$_after1',
+    'zh': 'z$_after1',
+  },
+  // Uzbek oʻ gʻ sh ch follow z.
+  'uz': {
+    'oʻ': 'z$_after1',
+    'gʻ': 'z$_after2',
+    'sh': 'z$_after3',
+    'ch': 'z$_after4',
+  },
+  'ha': {'sh': 's$_after1', 'ts': 't$_after1'},
+  'yo': {'gb': 'g$_after1'},
+  // Igbo ch precedes c.
+  'ig': {
+    'ch': 'b$_after1',
+    'gb': 'g$_after1',
+    'gh': 'g$_after2',
+    'gw': 'g$_after3',
+    'kp': 'k$_after1',
+    'kw': 'k$_after2',
+    'nw': 'n$_after2',
+    'ny': 'n$_after3',
+    'sh': 's$_after1',
+  },
+  // Conjuncts sorted after the last consonant.
+  'mr': {'क\u094Dष': 'ह$_after2', 'ज\u094Dञ': 'ह$_after3'},
+  'or': {'କ\u0B4Dଷ': 'ହ$_after1'},
+  // Myanmar vowels: o and aw follow ai, ui follows the anusvara.
+  'my': {
+    '\u1031\u102C': '\u1032$_after1',
+    '\u1031\u102B': '\u1032$_after1',
+    '\u1031\u102C\u103A': '\u1032$_after2',
+    '\u1031\u102B\u103A': '\u1032$_after2',
+    '\u102D\u102F': '\u1036$_after1',
+  },
+  // Khmer vowels with nikahit or reahmuk follow the plain vowels.
+  'km': {
+    '\u17BB\u17C6': '\u17C5$_after1',
+    '\u17B6\u17C6': '\u17C6$_after1',
+    '\u17B7\u17C7': '\u17C7$_after1',
+    '\u17BB\u17C7': '\u17C7$_after2',
+    '\u17C1\u17C7': '\u17C7$_after3',
+    '\u17C4\u17C7': '\u17C7$_after4',
+  },
+};
+
+// Longest sequence first, as CLDR matches contractions.
+final _contractionPatterns = {
+  for (final entry in _contractions.entries)
+    entry.key: RegExp(
+      (entry.value.keys.toList()..sort((a, b) => b.length.compareTo(a.length)))
+          .join('|'),
+    ),
+};
+// Myanmar rhymes sort by final consonant, then vowel: a final consonant (with
+// asat, or stacked with a virama) moves ahead of its vowel as virama + letter,
+// after every vowel sign and tone and before the medials. Only ေ ာ ိ ု and
+// their compounds form rhymes, and not with a dot below before the asat.
+final _myanmarRhyme = RegExp(
+  '(\u1031?[\u102B\u102C]?|\u102D?\u102F?)([က-အ])(\u1037?)'
+  '(?:\u103A\u1039?|\u1039)',
+);
+// Tamil sorts a pure consonant (with virama) before the same consonant with a
+// vowel: the virama is dropped and the inherent vowel is spelled out, after
+// every consonant and before the vowel signs.
+final _tamilSyllable = RegExp('([க-ஹ])([\u0BBE-\u0BCD]?)');
+const _tamilInherentVowel = 'ஹ$_after4';
+// Thai and Lao pre-vowels are written first but sorted after their consonant.
+final _preVowels = {
+  'th': RegExp('([เ-ไ])([ก-ฮ])'),
+  'lo': RegExp('([ເ-ໄ])([ກ-ຮໜ-ໟ])'),
+};
 final _combiningMarks = RegExp(r'[̀-ͯ]');
-final _separators = RegExp(r'[^\p{L}\p{M}\p{N}￱-￳]+', unicode: true);
+final _separators = RegExp(r'[^\p{L}\p{M}\p{N}￱-￴]+', unicode: true);
+
+/// Languages whose own script sorts ahead of Latin (CLDR reorder): every UI
+/// language written in another script but Japanese. Their Latin letters become
+/// fullwidth, above every other letter of a key and below the markers.
+const _latinLast = {
+  // Cyrillic, Greek, Armenian, Georgian, Hebrew, Arabic and Ethiopic.
+  'am', 'ar', 'bg', 'el', 'fa', 'he', 'hy', 'ka', 'kk', 'ps', 'ru', 'sr',
+  'uk', 'ur',
+  // Indic and Southeast Asian scripts, Hangul and Han.
+  'bn', 'gu', 'hi', 'km', 'kn', 'ko', 'lo', 'ml', 'mr', 'my', 'ne', 'or',
+  'pa', 'si', 'ta', 'te', 'th', 'zh',
+};
+final _latinLetter = RegExp('[a-z]');
 
 String _sortKey(String value, String language) {
   var text = value;
-  // Turkish keeps dotless and dotted I distinct.
-  if (language == 'tr') text = text.replaceAll('I', 'ı').replaceAll('İ', 'i');
+  // Turkish and Azerbaijani keep dotless and dotted I distinct.
+  if (language == 'tr' || language == 'az') {
+    text = text.replaceAll('I', 'ı').replaceAll('İ', 'i');
+  }
   text = text.toLowerCase();
-  if (language == 'cs') text = text.replaceAll('ch', 'h$_after1');
-  // Thai pre-vowels are written first but sorted after their consonant.
-  if (language == 'th') {
-    text = text.replaceAllMapped(_thaiPreVowel, (m) => '${m[2]}${m[1]}');
+  if (language == 'my') {
+    text = text.replaceAllMapped(
+      _myanmarRhyme,
+      (m) => m[3]!.isEmpty
+          ? '\u1039${m[2]}${m[1]}'
+          : '${m[1]}\u1039${m[2]}${m[3]}',
+    );
+  }
+  final contractions = _contractions[language];
+  if (contractions != null) {
+    text = text.replaceAllMapped(
+      _contractionPatterns[language]!,
+      (m) => contractions[m[0]]!,
+    );
+  }
+  if (language == 'ta') {
+    text = text.replaceAllMapped(
+      _tamilSyllable,
+      (m) => switch (m[2]) {
+        '' => '${m[1]}$_tamilInherentVowel',
+        '\u0BCD' => m[1]!,
+        _ => m[0]!,
+      },
+    );
+  }
+  final preVowel = _preVowels[language];
+  if (preVowel != null) {
+    text = text.replaceAllMapped(preVowel, (m) => '${m[2]}${m[1]}');
   }
   final tailoring = _languageOrder[language] ?? const <String, String>{};
   final buffer = StringBuffer();
@@ -281,11 +619,16 @@ String _sortKey(String value, String language) {
           char,
     );
   }
-  return buffer
+  final key = buffer
       .toString()
       .replaceAll(_combiningMarks, '')
       .replaceAll(_separators, ' ')
       .trim();
+  if (!_latinLast.contains(language)) return key;
+  return key.replaceAllMapped(
+    _latinLetter,
+    (m) => String.fromCharCode(m[0]!.codeUnitAt(0) + 0xFEE0),
+  );
 }
 
 /// Selects only from the supplied current group. This is a deterministic choice,

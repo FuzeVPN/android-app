@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">ការតភ្ជាប់ VPN</string>
+    <string name="vpn_notification_channel_description">បង្ហាញនៅពេលការតភ្ជាប់ FuzeVPN កំពុងដំណើរការ។</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">ការតភ្ជាប់ %1$s កំពុងដំណើរការ</string>
+    <string name="vpn_notification_connecting">កំពុងភ្ជាប់ %1$s</string>
+    <string name="vpn_notification_disconnecting">កំពុងផ្តាច់ %1$s</string>
+    <string name="vpn_notification_interrupted">ការតភ្ជាប់ %1$s ត្រូវបានរំខាន</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">ត្រៀមរួចរាល់ · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">បានភ្ជាប់ · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">កំពុងភ្ជាប់ %1$s…</string>
+    <string name="vpn_tile_disconnecting">កំពុងផ្តាច់…</string>
+    <string name="vpn_tile_interrupted">%1$s ត្រូវបានរំខាន</string>
+    <string name="vpn_tile_setup_required">សូមបើកកម្មវិធីជាមុនសិន</string>
+    <string name="vpn_tile_working">ប្រតិបត្តិការ VPN កំពុងដំណើរការ…</string>
+    <string name="vpn_notification_reconnecting">កំពុងភ្ជាប់ឡើងវិញ… · %1$s</string>
+    <string name="vpn_system_action_required">ត្រូវការសកម្មភាពនៅក្នុងការកំណត់ Android</string>
+    <string name="vpn_tile_reconnecting">កំពុងភ្ជាប់ឡើងវិញ… · %1$s</string>
+    <string name="vpn_notification_waiting_network">កំពុងរង់ចាំបណ្តាញ · %1$s</string>
+    <string name="vpn_tile_waiting_network">កំពុងរង់ចាំបណ្តាញ · %1$s</string>
+</resources>

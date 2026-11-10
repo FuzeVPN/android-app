@@ -2,7 +2,7 @@
 
 [English](README.md)
 
-L'application FuzeVPN pour Android : tunnels WireGuard et OpenVPN, trente
+L'application FuzeVPN pour Android : tunnels WireGuard et OpenVPN, soixante-dix
 langues, abonnements Google Play et accès invité. Elle fonctionne sur
 **Android 8.0 (API 26) ou ultérieur** ; son package est `com.fuzevpn`.
 
@@ -48,7 +48,7 @@ Détails dans les [notes de version](docs/RELEASE_NOTES.md).
 - Mention VPN dédiée avec accord explicite avant la permission Android et
   possibilité de refuser. Voir le [parcours à filmer](docs/VPN_DISCLOSURE.md).
 - Emplacements par pays/ville, recherche, favoris et changement confirmé.
-- Trente langues, thèmes clair/sombre et interfaces de droite à gauche.
+- Soixante-dix langues, thèmes clair/sombre et interfaces de droite à gauche.
 - Diagnostics soumis au consentement et stockage local chiffré.
 - Abonnements Google Play, prix localisés et restauration des achats.
 - Compte invité, création facultative d'un compte et connexion Google.

@@ -375,6 +375,83 @@ void main() {
       'ur': ['IN', 'PK', 'GE', 'CA', 'LB', 'HT', 'YE', 'UA'],
       // แคนาดา ชาด ไต้หวัน ไทย ไนจีเรีย เยอรมนี: pre-vowels follow their consonant.
       'th': ['CA', 'TD', 'TW', 'TH', 'NG', 'DE'],
+      // Newer UI languages (ICU 78.3 / CLDR 48).
+      // Гвајана, Гватемала, Јамајка, Мађарска, Маурицијус, Пољска, Португалија,
+      // Шри Ланка: ђ ј љ follow д и л.
+      'sr': ['GY', 'GT', 'JM', 'HU', 'MU', 'PL', 'PT', 'LK'],
+      // Ауғанстан, Аустрия, Әзірбайжан, Болгария, Біріккен Араб Әмірліктері,
+      // Қазақстан, Ұлыбритания, Үндістан, Ямайка: ғ ә қ ұ ү і are letters.
+      'kk': ['AF', 'AT', 'AZ', 'BG', 'AE', 'KZ', 'GB', 'IN', 'JM'],
+      // انټيګوا او باربودا اندونیزیا پورتګال پورتو ریکو تاجکستان تائيوان
+      // ټرينيډاډ او ټوباګو سوډان سویډن سویلي کوریا: ټ ډ ګ follow ت د ک.
+      'ps': ['AG', 'ID', 'PT', 'PR', 'TJ', 'TW', 'TT', 'SD', 'SE', 'KR'],
+      // ເກົາຫຼີໃຕ້, ເກົາຫຼີເໜືອ, ຈໍເຈຍ, ຈີນ, ສະເປນ, ສະວາບາ ແລະ ແຢນ ມາເຢນ,
+      // ສະຫະລາຊະອານາຈັກ, ວາລລິສ ແລະ ຟູຕູນາ, ໝູ່ເກາະ ເຄແມນ, ອາເຈນທິນາ, ໄຮຕິ:
+      // pre-vowels follow their consonant.
+      'lo': ['KR', 'KP', 'GE', 'CN', 'ES', 'SJ', 'GB', 'WF', 'KY', 'AR', 'HT'],
+      // Cersi, Çad, Əfqanıstan, Fransa Qvianası, Fransa Polineziyası,
+      // Xorvatiya, İraq, İran, Lixtenşteyn, Liviya: q follows k, x follows h.
+      'az': ['JE', 'TD', 'AF', 'GF', 'PF', 'HR', 'IQ', 'IR', 'LI', 'LY'],
+      // Gruusia, Gröönimaa, Kosovo, Kõrgõzstan, Küpros, Leedu, Läti,
+      // Svaasimaa, Süüria, Šveits, Zimbabwe, Turks ja Caicos, Türkmenistan,
+      // Wallis ja Futuna, Ühendkuningriik: š and z follow s; õ ä ö ü are
+      // separate letters (ü after w).
+      'et': [
+        'GE',
+        'GL',
+        'XK',
+        'KG',
+        'CY',
+        'LT',
+        'LV',
+        'SZ',
+        'SY',
+        'CH',
+        'ZW',
+        'TC',
+        'TM',
+        'WF',
+        'GB',
+      ],
+      // Curaçao, Csehország, Oroszország, Örményország,
+      // Turks- és Caicos-szigetek, Türkmenisztán: cs, ö and ü are letters.
+      'hu': ['CW', 'CZ', 'RU', 'AM', 'TC', 'TM'],
+      // Fidži, Färsaaret, Italia, Itä-Timor, Laos, Länsi-Sahara, Pakistan,
+      // Päiväntasaajan Guinea, Venezuela, Venäjä: ä follows z.
+      'fi': ['FJ', 'FO', 'IT', 'TL', 'LA', 'EH', 'PK', 'GQ', 'VE', 'RU'],
+      // Cookove ostrovy, Čína, Honduras, Chorvátsko, Salvádor,
+      // Spojené arabské emiráty, Šalamúnove ostrovy, Španielsko: č follows c,
+      // ch follows h.
+      'sk': ['CK', 'CN', 'HN', 'HR', 'SV', 'AE', 'SB', 'ES'],
+      // Cipar, Čile, Norveška, Njemačka, Srbija, Sudan, Sveta Helena,
+      // Španjolska, Šri Lanka, Švedska: č follows c, nj follows n.
+      'hr': ['CY', 'CL', 'NO', 'DE', 'RS', 'SD', 'SH', 'ES', 'LK', 'SE'],
+      // Centrinės Afrikos Respublika, Čekija, Nyderlandai, Norvegija,
+      // Rytų Timoras, Rusija, Siera Leonė, Šiaurės Makedonija, Zambija,
+      // Žaliasis Kyšulys: y is i.
+      'lt': ['CF', 'CZ', 'NL', 'NO', 'TL', 'RU', 'SL', 'MK', 'ZM', 'CV'],
+      // Beliza, Beļģija, Centrālāfrikas Republika, Čehija, Ekvadora, Ēģipte,
+      // Islande, Īrija, Lietuva, Lībija: ļ č ē ī are letters.
+      'lv': ['BZ', 'BE', 'CF', 'CZ', 'EC', 'EG', 'IS', 'IE', 'LT', 'LY'],
+      // Côte d’Ivoire, Çeki, Granadë, Greqi, Grënlandë, Gjibraltar, Islandë,
+      // Ishulli Norfolk, Sierra-Leone, Shqipëri: ë, gj and sh are letters.
+      'sq': ['CI', 'CZ', 'GD', 'GR', 'GL', 'GI', 'IS', 'NF', 'SL', 'AL'],
+      // ကနေဒါ, ကင်မရွန်း, စိန့်ကစ်နှင့်နီဗီစ်, စင့်မာတင်, ဘူလ်ဂေးရီးယား,
+      // ဘယ်လ်ဂျီယမ်, မောင့်စဲရက်, မက်ကဆီကို, ဥဇဘက်ကစ္စတန်, ဩစတြေးလျ,
+      // အယ်လ်ဘေးနီးယား: rhymes by final consonant.
+      'my': ['CA', 'CM', 'KN', 'SX', 'BG', 'BE', 'MS', 'MX', 'UZ', 'AU', 'AL'],
+      // அர்மேனியா, அர்ஜென்டினா, அரூபா, உக்ரைன், உகாண்டா, ஓமன், ஃபிஜி,
+      // கம்போடியா, கனடா, டர்க்ஸ் & கைகோஸ் தீவுகள், ஜோர்டான்: pure consonants
+      // first.
+      'ta': ['AM', 'AR', 'AW', 'UA', 'UG', 'OM', 'FJ', 'KH', 'CA', 'TC', 'JO'],
+      // അൻഡോറ, അന്റാർട്ടിക്ക, അംഗോള, അസർബൈജാൻ, ഇസ്രായേൽ, ഇറ്റലി, എൽ സാൽവദോർ,
+      // എസ്റ്റോണിയ, ജർമ്മനി, ജോർദ്ദാൻ: chillus are consonant + virama.
+      'ml': ['AD', 'AQ', 'AO', 'AZ', 'IL', 'IT', 'SV', 'EE', 'DE', 'JO'],
+      // ਉਜ਼ਬੇਕਿਸਤਾਨ, ਓਮਾਨ, ਅੰਗੁਇਲਾ, ਅਲੈਂਡ ਟਾਪੂ, ਐਂਟੀਗੁਆ ਅਤੇ ਬਾਰਬੁਡਾ, ਈਰਾਨ,
+      // ਸਪੇਨ, ਹੰਗਰੀ, ਹੋਂਡੁਰਸ, ਕੁੱਕ ਟਾਪੂ, ਕੁਵੈਤ: vowels by bearer.
+      'pa': ['UZ', 'OM', 'AI', 'AX', 'AG', 'IR', 'ES', 'HU', 'HN', 'CK', 'KW'],
+      // అంగోలా, జింబాబ్వే, U.S. బయట ఉన్న దీవులు: Latin last.
+      'te': ['AO', 'ZW', 'UM'],
     };
     for (final entry in expected.entries) {
       test('${entry.key} sorts by its own alphabet', () {
@@ -384,29 +461,38 @@ void main() {
       });
     }
 
-    test('ar sorts hamza alef with alef, madda alef first; fa keeps آ apart', () {
-      // آيسلندا إثيوبيا إسبانيا إستونيا أفغانستان الأرجنتين الإكوادور
-      // الإمارات… ألبانيا الجزائر أوغندا باكستان (ICU 78.3 / CLDR 48, ar)
-      const arabic = [
-        'IS',
-        'ET',
-        'ES',
-        'EE',
-        'AF',
-        'AR',
-        'EC',
-        'AE',
-        'AL',
-        'DZ',
-        'UG',
-        'PK',
-      ];
-      expect(order('ar', arabic), arabic);
-      expect(order('ar', [...arabic]..shuffle()), arabic);
-      // آرژانتین آلمان اتیوپی اسپانیا استرالیا
-      const persian = ['AR', 'DE', 'ET', 'ES', 'AU'];
-      expect(order('fa', [...persian]..shuffle()), persian);
+    test('an unknown code follows a non-Latin script, except in Japanese', () {
+      // Австрия, Япония, XY; XY, オーストリア, 日本 (ICU 78.3 / CLDR 48).
+      expect(order('ru', ['AT', 'JP', 'XY']), ['AT', 'JP', 'XY']);
+      expect(order('ja', ['XY', 'AT', 'JP']), ['XY', 'AT', 'JP']);
     });
+
+    test(
+      'ar sorts hamza alef with alef, madda alef first; fa keeps آ apart',
+      () {
+        // آيسلندا إثيوبيا إسبانيا إستونيا أفغانستان الأرجنتين الإكوادور
+        // الإمارات… ألبانيا الجزائر أوغندا باكستان (ICU 78.3 / CLDR 48, ar)
+        const arabic = [
+          'IS',
+          'ET',
+          'ES',
+          'EE',
+          'AF',
+          'AR',
+          'EC',
+          'AE',
+          'AL',
+          'DZ',
+          'UG',
+          'PK',
+        ];
+        expect(order('ar', arabic), arabic);
+        expect(order('ar', [...arabic]..shuffle()), arabic);
+        // آرژانتین آلمان اتیوپی اسپانیا استرالیا
+        const persian = ['AR', 'DE', 'ET', 'ES', 'AU'];
+        expect(order('fa', [...persian]..shuffle()), persian);
+      },
+    );
 
     // Réaudit final du 30/10/2026, B22 (A03-google-04) : en ourdou, les noms
     // en آ suivaient l'ordre des unités de code et passaient devant tout le

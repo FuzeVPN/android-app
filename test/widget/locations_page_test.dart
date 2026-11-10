@@ -13,6 +13,7 @@ import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 import 'package:fuzevpn_android/widgets/country_flag.dart';
@@ -1561,7 +1562,7 @@ class _LocationsHarness {
         theme: FuzeVpnTheme.light(),
         darkTheme: FuzeVpnTheme.dark(),
         themeMode: theme,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: AppLocalizationDelegates.all,
         supportedLocales: AppLocalizations.supportedLocales,
         home: Scaffold(
           body: primaryOnly

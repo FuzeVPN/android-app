@@ -19,7 +19,7 @@ et le retour ne donnent aucun accord et n’activent pas le VPN. Le lien
 pas acceptation. La permission VPN d’Android reste une étape distincte.
 
 Cette mention est séparée des conditions d’utilisation et du consentement aux
-diagnostics. Elle est traduite dans les trente langues du client. Sur petit
+diagnostics. Elle est traduite dans les soixante-dix langues du client. Sur petit
 écran ou avec texte agrandi, le contenu peut défiler et les deux actions
 restent accessibles.
 

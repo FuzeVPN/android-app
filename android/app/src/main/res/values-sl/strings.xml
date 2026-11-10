@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Povezava VPN</string>
+    <string name="vpn_notification_channel_description">Prikazuje, kdaj je povezava FuzeVPN aktivna.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Povezava %1$s je aktivna</string>
+    <string name="vpn_notification_connecting">Povezava %1$s poteka</string>
+    <string name="vpn_notification_disconnecting">Prekinjanje povezave %1$s</string>
+    <string name="vpn_notification_interrupted">Povezava %1$s je prekinjena</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Pripravljeno · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Povezano · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Povezovanje: %1$s…</string>
+    <string name="vpn_tile_disconnecting">Prekinjanje povezave…</string>
+    <string name="vpn_tile_interrupted">Prekinjeno · %1$s</string>
+    <string name="vpn_tile_setup_required">Najprej odprite aplikacijo</string>
+    <string name="vpn_tile_working">Poteka dejanje VPN…</string>
+    <string name="vpn_notification_reconnecting">Ponovno povezovanje… · %1$s</string>
+    <string name="vpn_system_action_required">Potrebno je dejanje v nastavitvah sistema Android</string>
+    <string name="vpn_tile_reconnecting">Ponovno povezovanje… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Čakanje na omrežje · %1$s</string>
+    <string name="vpn_tile_waiting_network">Čakanje na omrežje · %1$s</string>
+</resources>

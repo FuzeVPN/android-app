@@ -19,6 +19,7 @@ import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/google_auth_controller.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 

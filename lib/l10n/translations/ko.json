@@ -176,6 +176,8 @@
     "dialog_signOut": "로그아웃하시겠습니까?",
     "dialog_signOutMessage": "VPN이 중지되며 다시 로그인해야 합니다. 다음 연결을 위해 암호화된 VPN 키는 이 휴대전화에 보관됩니다.",
     "action_cancel": "취소",
+    "action_close": "닫기",
+    "action_copy": "복사",
     "action_signOut": "로그아웃",
     "notice_close": "메시지 닫기",
     "notice_sessionExpired_title": "세션 만료",

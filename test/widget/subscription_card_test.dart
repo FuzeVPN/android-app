@@ -9,6 +9,7 @@ import 'package:fuzevpn_android/core/play_billing.dart';
 import 'package:fuzevpn_android/features/billing/subscription_card.dart';
 import 'package:fuzevpn_android/l10n/app_copy.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 
 const _billingReview = bool.fromEnvironment('FUZEVPN_BILLING_REVIEW');
@@ -695,7 +696,7 @@ Widget _app(
 }) => MaterialApp(
   locale: locale,
   supportedLocales: AppLocalizations.supportedLocales,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   theme: dark ? FuzeVpnTheme.dark() : FuzeVpnTheme.light(),
   builder: review
       ? (context, child) => Stack(

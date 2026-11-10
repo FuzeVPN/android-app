@@ -522,6 +522,12 @@ class AppLocalizationsTh extends AppLocalizations {
   String get action_cancel => 'ยกเลิก';
 
   @override
+  String get action_close => 'ปิด';
+
+  @override
+  String get action_copy => 'คัดลอก';
+
+  @override
   String get action_signOut => 'ออกจากระบบ';
 
   @override

@@ -523,6 +523,8 @@ abstract final class AppCopy {
       'dialog.signOut' => localizations.dialog_signOut,
       'dialog.signOutMessage' => localizations.dialog_signOutMessage,
       'action.cancel' => localizations.action_cancel,
+      'action.close' => localizations.action_close,
+      'action.copy' => localizations.action_copy,
       'action.signOut' => localizations.action_signOut,
       'notice.close' => localizations.notice_close,
       'notice.diagnosticCode' => localizations.notice_diagnosticCode(

@@ -535,6 +535,12 @@ class AppLocalizationsEl extends AppLocalizations {
   String get action_cancel => 'Ακύρωση';
 
   @override
+  String get action_close => 'Κλείσιμο';
+
+  @override
+  String get action_copy => 'Αντιγραφή';
+
+  @override
   String get action_signOut => 'Αποσύνδεση';
 
   @override

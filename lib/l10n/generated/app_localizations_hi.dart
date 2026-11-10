@@ -525,6 +525,12 @@ class AppLocalizationsHi extends AppLocalizations {
   String get action_cancel => 'रद्द करें';
 
   @override
+  String get action_close => 'बंद करें';
+
+  @override
+  String get action_copy => 'कॉपी करें';
+
+  @override
   String get action_signOut => 'साइन आउट करें';
 
   @override

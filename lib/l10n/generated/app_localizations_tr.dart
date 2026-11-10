@@ -523,6 +523,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get action_cancel => 'İptal';
 
   @override
+  String get action_close => 'Kapat';
+
+  @override
+  String get action_copy => 'Kopyala';
+
+  @override
   String get action_signOut => 'Oturumu kapat';
 
   @override

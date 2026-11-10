@@ -527,6 +527,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get action_cancel => 'Annuler';
 
   @override
+  String get action_close => 'Fermer';
+
+  @override
+  String get action_copy => 'Copier';
+
+  @override
   String get action_signOut => 'Déconnecter';
 
   @override

@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">የVPN ግንኙነት</string>
+    <string name="vpn_notification_channel_description">የFuzeVPN ግንኙነት ንቁ መሆኑን ያመለክታል።</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s ግንኙነት ንቁ ነው</string>
+    <string name="vpn_notification_connecting">%1$s ግንኙነት በሂደት ላይ ነው</string>
+    <string name="vpn_notification_disconnecting">%1$s ግንኙነት በማቋረጥ ላይ</string>
+    <string name="vpn_notification_interrupted">%1$s ግንኙነት ተስተጓጉሏል</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">ዝግጁ · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">ተገናኝቷል · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s በመገናኘት ላይ…</string>
+    <string name="vpn_tile_disconnecting">ግንኙነት በማቋረጥ ላይ…</string>
+    <string name="vpn_tile_interrupted">%1$s ተስተጓጉሏል</string>
+    <string name="vpn_tile_setup_required">በመጀመሪያ መተግበሪያውን ይክፈቱ</string>
+    <string name="vpn_tile_working">የVPN ስራ በሂደት ላይ…</string>
+    <string name="vpn_notification_reconnecting">እንደገና በመገናኘት ላይ… · %1$s</string>
+    <string name="vpn_system_action_required">በAndroid ቅንብሮች ውስጥ እርምጃ ያስፈልጋል</string>
+    <string name="vpn_tile_reconnecting">እንደገና በመገናኘት ላይ… · %1$s</string>
+    <string name="vpn_notification_waiting_network">አውታረ መረብን በመጠበቅ ላይ · %1$s</string>
+    <string name="vpn_tile_waiting_network">አውታረ መረብን በመጠበቅ ላይ · %1$s</string>
+</resources>

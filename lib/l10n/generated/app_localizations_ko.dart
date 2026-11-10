@@ -507,6 +507,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get action_cancel => '취소';
 
   @override
+  String get action_close => '닫기';
+
+  @override
+  String get action_copy => '복사';
+
+  @override
   String get action_signOut => '로그아웃';
 
   @override

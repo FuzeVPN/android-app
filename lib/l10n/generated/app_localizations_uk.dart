@@ -530,6 +530,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get action_cancel => 'Скасувати';
 
   @override
+  String get action_close => 'Закрити';
+
+  @override
+  String get action_copy => 'Копіювати';
+
+  @override
   String get action_signOut => 'Вийти';
 
   @override

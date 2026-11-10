@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN қосылымы</string>
+    <string name="vpn_notification_channel_description">FuzeVPN қосылымы белсенді болған кезде көрсетеді.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s қосылымы белсенді</string>
+    <string name="vpn_notification_connecting">%1$s қосылымы орнатылуда</string>
+    <string name="vpn_notification_disconnecting">%1$s ажыратылып жатыр</string>
+    <string name="vpn_notification_interrupted">%1$s қосылымы үзілді</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Дайын · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Қосылды · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s қосылып жатыр…</string>
+    <string name="vpn_tile_disconnecting">Ажыратылып жатыр…</string>
+    <string name="vpn_tile_interrupted">%1$s үзілді</string>
+    <string name="vpn_tile_setup_required">Алдымен қолданбаны ашыңыз</string>
+    <string name="vpn_tile_working">VPN операциясы орындалуда…</string>
+    <string name="vpn_notification_reconnecting">Қайта қосылуда… · %1$s</string>
+    <string name="vpn_system_action_required">Android параметрлерінде әрекет қажет</string>
+    <string name="vpn_tile_reconnecting">Қайта қосылуда… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Желіні күтуде · %1$s</string>
+    <string name="vpn_tile_waiting_network">Желіні күтуде · %1$s</string>
+</resources>

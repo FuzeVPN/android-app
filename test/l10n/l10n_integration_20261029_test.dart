@@ -1,5 +1,5 @@
 // Intégration de localisation du 29/10/2026 (Helper1, par délégation de la
-// racine), sur les 30 langues livrées :
+// racine), sur les 70 langues livrées :
 //  * device_clock_ahead (C4-04) dans notice_controller_title et _message ;
 //  * google.busy (R2), billing.playOnHold et billing.playReceiptUnlinked (R5) ;
 //  * notice.retryAfter lisible au-delà de 120 s, en minutes puis en heures
@@ -27,7 +27,7 @@ String _controller(
 );
 
 void main() {
-  group('nouvelles clés (30 langues)', () {
+  group('nouvelles clés (70 langues)', () {
     test('google.busy et les deux messages Play sont traduits', () {
       for (final language in AppLanguages.all) {
         final l = lookupAppLocalizations(language.locale);
@@ -43,7 +43,10 @@ void main() {
         }
         // Both Play messages name the action shown next to them.
         final manage = AppCopy.resolve(l, 'billing.manage');
-        for (final key in ['billing.playOnHold', 'billing.playReceiptUnlinked']) {
+        for (final key in [
+          'billing.playOnHold',
+          'billing.playReceiptUnlinked',
+        ]) {
           expect(
             AppCopy.resolve(l, key),
             contains(manage),
@@ -85,7 +88,10 @@ void main() {
         'L’heure de cet appareil semble en avance. Activez la date et '
         'l’heure automatiques pour rester connecté.',
       );
-      expect(_controller(en, 'title', 'device_clock_ahead'), 'Device clock ahead');
+      expect(
+        _controller(en, 'title', 'device_clock_ahead'),
+        'Device clock ahead',
+      );
       expect(
         _controller(en, 'message', 'device_clock_ahead'),
         'This device’s clock seems to be ahead. Turn on automatic date and '
@@ -129,7 +135,7 @@ void main() {
   });
 
   group('notice.retryAfter au-delà de 120 s', () {
-    test('minutes puis heures, arrondies au-dessus (30 langues)', () {
+    test('minutes puis heures, arrondies au-dessus (70 langues)', () {
       // (secondes reçues, nombre affiché)
       const cases = <(int, int)>[
         (121, 3),
@@ -219,7 +225,11 @@ void main() {
       expected.forEach((tag, cases) {
         final l = lookupAppLocalizations(Locale(tag));
         cases.forEach((seconds, fragment) {
-          expect(_retry(l, seconds), contains(fragment), reason: '$tag $seconds');
+          expect(
+            _retry(l, seconds),
+            contains(fragment),
+            reason: '$tag $seconds',
+          );
         });
       });
     });
@@ -231,10 +241,13 @@ void main() {
     });
   });
 
-  test('location_migration_slow cite la destination (30 langues)', () {
+  test('location_migration_slow cite la destination (70 langues)', () {
     for (final language in AppLanguages.all) {
       final l = lookupAppLocalizations(language.locale);
-      for (final code in ['location_migration_slow', 'location_migration_pending']) {
+      for (final code in [
+        'location_migration_slow',
+        'location_migration_pending',
+      ]) {
         expect(
           _controller(l, 'message', code, 'Zürich 7'),
           contains('Zürich 7'),

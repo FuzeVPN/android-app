@@ -176,6 +176,8 @@
     "dialog_signOut": "Вийти?",
     "dialog_signOutMessage": "VPN буде зупинено, і вам доведеться ввійти знову. Ваші зашифровані ключі VPN залишаться на цьому телефоні для наступного підключення.",
     "action_cancel": "Скасувати",
+    "action_close": "Закрити",
+    "action_copy": "Копіювати",
     "action_signOut": "Вийти",
     "notice_close": "Закрити повідомлення",
     "notice_sessionExpired_title": "Термін дії сеансу минув",

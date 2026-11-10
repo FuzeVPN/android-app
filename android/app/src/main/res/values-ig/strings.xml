@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Njikọ VPN</string>
+    <string name="vpn_notification_channel_description">Na-egosi mgbe njikọ FuzeVPN na-arụ ọrụ.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Njikọ %1$s na-arụ ọrụ</string>
+    <string name="vpn_notification_connecting">Na-eme njikọ %1$s</string>
+    <string name="vpn_notification_disconnecting">Na-akwụsị njikọ %1$s</string>
+    <string name="vpn_notification_interrupted">Njikọ %1$s kwụsịrị</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Dị njikere · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Ejikọrọ · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Na-ejikọ %1$s…</string>
+    <string name="vpn_tile_disconnecting">Na-akwụsị njikọ…</string>
+    <string name="vpn_tile_interrupted">%1$s kwụsịrị</string>
+    <string name="vpn_tile_setup_required">Buru ụzọ mepee ngwa ahụ</string>
+    <string name="vpn_tile_working">Ọrụ VPN na-aga n’ihu…</string>
+    <string name="vpn_notification_reconnecting">Na-ejikọ ọzọ… · %1$s</string>
+    <string name="vpn_system_action_required">Achọrọ ka ị mee ihe na ntọala Android</string>
+    <string name="vpn_tile_reconnecting">Na-ejikọ ọzọ… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Na-echere netwọkụ · %1$s</string>
+    <string name="vpn_tile_waiting_network">Na-echere netwọkụ · %1$s</string>
+</resources>

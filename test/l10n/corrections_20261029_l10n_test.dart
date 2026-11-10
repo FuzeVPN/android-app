@@ -1,6 +1,6 @@
 // Corrections du 29/10/2026, sous-lot interface et localisation :
 // A16-ui-l10n-02 (vérification), -03, -04, -07, A05-models-02 et
-// A17-supply-chain-05 côté textes, sur les 30 langues livrées.
+// A17-supply-chain-05 côté textes, sur les langues livrées (70).
 // Les contre-exemples viennent de audit-complet-20261028/repros/A16-ui-l10n/
 // (a16_l10n_counterexamples_test, a16_retry_after_plural_test,
 // a16_country_picker_order_test), assertions inversées.
@@ -45,13 +45,13 @@ String _retry(AppLocalizations l, Object? seconds) =>
     AppCopy.resolve(l, 'notice.retryAfter', arguments: {'seconds': seconds});
 
 void main() {
-  test('les 30 langues livrées sont couvertes', () {
-    expect(AppLanguages.all, hasLength(30));
+  test('les 70 langues livrées sont couvertes', () {
+    expect(AppLanguages.all, hasLength(70));
   });
 
   group('A16-ui-l10n-03 titres natifs', () {
     test('openvpn_recovery_exhausted et openvpn_recovery_failed ont un titre '
-        'spécifique (30 langues)', () {
+        'spécifique (70 langues)', () {
       for (final language in AppLanguages.all) {
         final l = lookupAppLocalizations(language.locale);
         final generic = l.notice_native_title('__unknown__', 'OpenVPN');
@@ -70,7 +70,7 @@ void main() {
       }
     });
 
-    test('chaque cas de message natif a son propre titre (30 langues)', () {
+    test('chaque cas de message natif a son propre titre (70 langues)', () {
       final source = _sourceArb();
       final messages = _selectCases(source['notice_native_message']! as String)
         ..remove('other');
@@ -148,7 +148,7 @@ void main() {
     });
 
     test(
-      'le nombre est conservé et rien ne reste non résolu (30 langues, 0..120)',
+      'le nombre est conservé et rien ne reste non résolu (70 langues, 0..120)',
       () {
         for (final language in AppLanguages.all) {
           final l = lookupAppLocalizations(language.locale);
@@ -203,8 +203,8 @@ void main() {
       }
     });
 
-    test('aucun nom de pays en double dans une langue (30 langues)', () {
-      expect(translatedCountryNames, hasLength(30));
+    test('aucun nom de pays en double dans une langue (70 langues)', () {
+      expect(translatedCountryNames, hasLength(70));
       translatedCountryNames.forEach((tag, names) {
         final seen = <String, String>{};
         final duplicates = <String>[];
@@ -220,7 +220,7 @@ void main() {
   });
 
   test(
-    'A05-models-02 : libellé localisé pour un appareil sans nom (30 langues)',
+    'A05-models-02 : libellé localisé pour un appareil sans nom (70 langues)',
     () {
       final labels = <String, String>{};
       for (final language in AppLanguages.all) {
@@ -239,7 +239,7 @@ void main() {
   );
 
   test('A17-supply-chain-05 : indication des sources dans l écran de licences '
-      '(30 langues)', () {
+      '(70 langues)', () {
     const url = 'https://github.com/FuzeVPN/android-app';
     for (final language in AppLanguages.all) {
       final l = lookupAppLocalizations(language.locale);
@@ -258,7 +258,7 @@ void main() {
   });
 
   test('A16-ui-l10n-02 : location_migration_slow interpole la destination '
-      '(30 langues)', () {
+      '(70 langues)', () {
     const target = 'Frankfurt 02';
     for (final language in AppLanguages.all) {
       final l = lookupAppLocalizations(language.locale);

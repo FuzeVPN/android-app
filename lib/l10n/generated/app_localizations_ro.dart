@@ -527,6 +527,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get action_cancel => 'Anulează';
 
   @override
+  String get action_close => 'Închideți';
+
+  @override
+  String get action_copy => 'Copiați';
+
+  @override
   String get action_signOut => 'Deconectare';
 
   @override

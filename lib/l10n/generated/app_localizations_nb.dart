@@ -524,6 +524,12 @@ class AppLocalizationsNb extends AppLocalizations {
   String get action_cancel => 'Avbryt';
 
   @override
+  String get action_close => 'Lukk';
+
+  @override
+  String get action_copy => 'Kopiér';
+
+  @override
   String get action_signOut => 'Logg ut';
 
   @override

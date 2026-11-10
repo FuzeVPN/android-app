@@ -12,7 +12,7 @@ import 'package:fuzevpn_android/core/play_billing.dart';
 import 'package:fuzevpn_android/features/billing/subscription_card.dart';
 import 'package:fuzevpn_android/l10n/app_copy.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
-import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 
 const _owner = 'opaque-owner';
 const _plan = PlaySubscriptionPlan(
@@ -143,7 +143,7 @@ Widget _page(VpnAppController controller) => MaterialApp(
   locale: const Locale('fr'),
   supportedLocales: AppLanguages.supportedLocales,
   localeListResolutionCallback: AppLanguages.resolve,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   home: SubscriptionPaywallPage(controller: controller),
 );
 

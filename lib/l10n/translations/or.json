@@ -1,0 +1,1036 @@
+{
+  "locale": "or",
+  "arb": {
+    "vpnDisclosure_title": "ଆପଣଙ୍କ ସଂଯୋଗ ସୁରକ୍ଷିତ କରନ୍ତୁ",
+    "vpnDisclosure_body": "FuzeVPN ଏହି ଡିଭାଇସ୍ ଓ FuzeVPN ସର୍ଭର ମଧ୍ୟରେ ଏକ ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ଟନେଲ ତିଆରି କରିବା ପାଇଁ Android VPN ସେବା (VpnService) ବ୍ୟବହାର କରେ।",
+    "vpnDisclosure_dataBody": "VPN ସକ୍ରିୟ ଥିବା ବେଳେ ଆପଣଙ୍କ ଆପ୍‌ଗୁଡ଼ିକର ଇଣ୍ଟରନେଟ୍ ଟ୍ରାଫିକ୍, ଗନ୍ତବ୍ୟ ଠିକଣା ଓ DNS ଅନୁରୋଧ ଆପଣଙ୍କ ସଂଯୋଗକୁ ରାଉଟ୍ କରିବା ପାଇଁ ଏହି ଟନେଲ ଦେଇ ଯାଏ, FuzeVPN ପୃଷ୍ଠଭୂମିରେ ଥିଲେ ମଧ୍ୟ।",
+    "vpnDisclosure_statusBody": "ଆପଣଙ୍କ VPN ସଂଯୋଗ ଦେଖାଇବା ପାଇଁ ଆପ୍ ସଂଯୋଗର ସ୍ଥିତି, ଅବଧି ଓ ସ୍ଥାନାନ୍ତରିତ ଡାଟାର ପରିମାଣ ବ୍ୟବହାର କରେ। ଆପଣ ଯେକୌଣସି ସମୟରେ ଏହାକୁ ବନ୍ଦ କରିପାରିବେ।",
+    "vpnDisclosure_privacy": "ଗୋପନୀୟତା",
+    "vpnDisclosure_accept": "ସ୍ୱୀକାର କରି ଜାରି ରଖନ୍ତୁ",
+    "vpnDisclosure_decline": "ବର୍ତ୍ତମାନ ନୁହେଁ",
+    "accountRestoration_title": "ଆକାଉଣ୍ଟ ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ",
+    "accountRestoration_message": "ଆପଣଙ୍କ ସେସନ୍ ରଖାଯାଇଛି। ଆକାଉଣ୍ଟ ପୁନରୁଦ୍ଧାର କରିବାକୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ; ଆପଣ ଏଠାରେ ଏବେ ବି VPN ସଂଯୋଗ ପରିଚାଳନା କରିପାରିବେ।",
+    "action_retry": "ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ",
+    "session_endingTitle": "ସେସନ୍ ସମାପ୍ତ କରାଯାଉଛି",
+    "session_ending": "ସେସନ୍ ସମାପ୍ତ କରାଯାଉଛି: VPN ବନ୍ଦ କରି ସଫା କରାଯାଉଛି…",
+    "session_stopFailed": "VPN ବନ୍ଦ ହେବା ନିଶ୍ଚିତ ହୋଇନାହିଁ। ପୁନର୍ବାର ସାଇନ୍ ଇନ୍ କରିବା ପୂର୍ବରୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "session_cleanupFailed": "VPN ବନ୍ଦ ହୋଇଛି, କିନ୍ତୁ ସେସନ୍ ହଟାଯିବା ନିଶ୍ଚିତ ହୋଇନାହିଁ। ସଫା କରିବାକୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "session_retryStop": "ପୁଣି ବନ୍ଦ କରନ୍ତୁ",
+    "session_retryCleanup": "ପୁଣି ସଫା କରନ୍ତୁ",
+    "@@locale": "or",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN ସୁରକ୍ଷିତ ଭାବେ ପ୍ରସ୍ତୁତ ହେଉଛି…",
+    "nav_connection": "ସଂଯୋଗ",
+    "nav_locations": "ଅବସ୍ଥାନ",
+    "nav_account": "ଆକାଉଣ୍ଟ",
+    "nav_devices": "ଡିଭାଇସ୍",
+    "nav_settings": "ସେଟିଂସ୍",
+    "action_refresh": "ରିଫ୍ରେଶ୍ କରନ୍ତୁ",
+    "auth_tab_login": "ସାଇନ୍ ଇନ୍",
+    "auth_tab_register": "ସାଇନ୍ ଅପ୍",
+    "auth_stepAccount": "ଆକାଉଣ୍ଟ",
+    "auth_stepIdentity": "ପରିଚୟ",
+    "auth_stepAddress": "ଠିକଣା ଓ ସମ୍ମତି",
+    "auth_stepProgress": "ପଦକ୍ଷେପ {current} / {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "ଆପଣଙ୍କ VPN, ସହଜ ଓ ସରଳ।",
+    "auth_keysLocal": "ଆପଣଙ୍କ ବ୍ୟକ୍ତିଗତ VPN ଚାବି ଏହି ଡିଭାଇସ୍‌ରେ ହିଁ ରହେ।",
+    "form_email": "ଇମେଲ ଠିକଣା",
+    "form_password": "ପାସୱାର୍ଡ",
+    "form_showPassword": "ପାସୱାର୍ଡ ଦେଖାନ୍ତୁ",
+    "form_hidePassword": "ପାସୱାର୍ଡ ଲୁଚାନ୍ତୁ",
+    "form_passwordMin": "8ରୁ 72 UTF-8 ବାଇଟ୍। କେତେକ ଅକ୍ଷରରେ ଏକରୁ ଅଧିକ ବାଇଟ୍ ଲାଗେ।",
+    "form_firstName": "ପ୍ରଥମ ନାମ",
+    "form_lastName": "ଶେଷ ନାମ",
+    "form_phone": "ଫୋନ୍ (+33612345678)",
+    "form_address": "ଠିକଣା",
+    "form_address2": "ଠିକଣା ଧାଡ଼ି 2 (ଇଚ୍ଛାଧୀନ)",
+    "form_postalCode": "ପୋଷ୍ଟାଲ୍ କୋଡ୍",
+    "form_city": "ସହର",
+    "form_country": "ଦେଶ କୋଡ୍ (ଯଥା FR)",
+    "action_login": "ସାଇନ୍ ଇନ୍ କରନ୍ତୁ",
+    "action_createAccount": "ଆକାଉଣ୍ଟ ତିଆରି କରନ୍ତୁ",
+    "action_createMyAccount": "ମୋ ଆକାଉଣ୍ଟ ତିଆରି କରନ୍ତୁ",
+    "action_next": "ଜାରି ରଖନ୍ତୁ",
+    "action_previous": "ଫେରନ୍ତୁ",
+    "action_forgotPassword": "ପାସୱାର୍ଡ ଭୁଲିଯାଇଛନ୍ତି କି?",
+    "auth_noAccount": "ଆପଣଙ୍କର ଏପର୍ଯ୍ୟନ୍ତ ଆକାଉଣ୍ଟ ନାହିଁ କି?",
+    "auth_requiredInformation": "ତିନି ପଦକ୍ଷେପରେ ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ତିଆରି କରନ୍ତୁ।",
+    "auth_termsPrefix": "ମୁଁ ସ୍ୱୀକାର କରୁଛି: ",
+    "auth_termsLink": "ବ୍ୟବହାରର ସର୍ତ୍ତାବଳୀ",
+    "auth_privacyPrefix": "ମୁଁ ସ୍ୱୀକାର କରୁଛି: ",
+    "auth_privacyLink": "ଗୋପନୀୟତା ନୀତି",
+    "auth_consentRequired": "ଆକାଉଣ୍ଟ ତିଆରି କରିବା ପାଇଁ ଆପଣଙ୍କ ସମ୍ମତି ଆବଶ୍ୟକ।",
+    "validation_required": "ଏହି ଫିଲ୍ଡ ଆବଶ୍ୟକ।",
+    "validation_email": "ଏକ ବୈଧ ଇମେଲ ଠିକଣା ଲେଖନ୍ତୁ।",
+    "validation_password": "ପାସୱାର୍ଡ ବହୁତ ଛୋଟ: ଅତି କମରେ 8 UTF-8 ବାଇଟ୍ ଦରକାର।",
+    "validation_passwordTooLong": "ପାସୱାର୍ଡ ବହୁତ ଲମ୍ବା: ସର୍ବାଧିକ 72 UTF-8 ବାଇଟ୍ ହୋଇପାରିବ।",
+    "validation_phone": "ଆନ୍ତର୍ଜାତୀୟ ଫର୍ମାଟ୍ ବ୍ୟବହାର କରନ୍ତୁ, ଯଥା +33612345678।",
+    "validation_country": "ଦୁଇ ଅକ୍ଷରର ଦେଶ କୋଡ୍ ବ୍ୟବହାର କରନ୍ତୁ, ଯଥା FR।",
+    "passwordReset_title": "ପାସୱାର୍ଡ ରିସେଟ୍ କରନ୍ତୁ",
+    "passwordReset_description": "ପାସୱାର୍ଡ ରିସେଟ୍ ଲିଙ୍କ୍ ପାଇଁ ଅନୁରୋଧ କରିବାକୁ ଆପଣଙ୍କ ଆକାଉଣ୍ଟର ଇମେଲ ଠିକଣା ଲେଖନ୍ତୁ।",
+    "passwordReset_send": "ଲିଙ୍କ୍ ପଠାନ୍ତୁ",
+    "connection_title": "ଆପଣଙ୍କ ସଂଯୋଗ",
+    "connection_subtitle": "ଏକ ଅବସ୍ଥାନ ବାଛନ୍ତୁ, ତା’ପରେ ଆପଣଙ୍କ VPN ଚାଲୁ କରନ୍ତୁ।",
+    "connection_prepare": "ସଂଯୁକ୍ତ ହେବାକୁ ପ୍ରସ୍ତୁତ ଅଛନ୍ତି କି?",
+    "connection_advancedOptions": "ଉନ୍ନତ ବିକଳ୍ପ",
+    "connection_location": "ଅବସ୍ଥାନ",
+    "connection_chooseLocation": "ଏକ ଅବସ୍ଥାନ ବାଛନ୍ତୁ",
+    "connection_protocol": "ପ୍ରୋଟୋକଲ",
+    "connection_connect": "ସଂଯୋଗ କରନ୍ତୁ",
+    "connection_connecting": "ସଂଯୁକ୍ତ ହେଉଛି…",
+    "connection_disconnect": "ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ",
+    "connection_disconnecting": "ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେଉଛି",
+    "connection_locationChange": "ଅବସ୍ଥାନ ବଦଳାଯାଉଛି…",
+    "connection_unavailable": "{protocol} ଉପଲବ୍ଧ ନାହିଁ",
+    "connection_activeLocation": "ସକ୍ରିୟ ଅବସ୍ଥାନ",
+    "connection_duration": "ଅବଧି",
+    "connection_received": "ପ୍ରାପ୍ତ",
+    "connection_sent": "ପ୍ରେରିତ",
+    "connection_lastHandshake": "ଶେଷ ସୁରକ୍ଷିତ ଆଦାନପ୍ରଦାନ",
+    "connection_handshakeAgo": "{duration} ପୂର୍ବେ",
+    "verification_title": "ଆପଣଙ୍କ ଇମେଲ ଠିକଣା ନିଶ୍ଚିତ କରନ୍ତୁ",
+    "verification_message": "ଏହି ଫୋନ୍‌ରେ VPN ବ୍ୟବହାର କରିବା ପାଇଁ ଆପଣଙ୍କ ଇମେଲ ଠିକଣା ନିଶ୍ଚିତ କରନ୍ତୁ।",
+    "verification_resend": "ଇମେଲ ପୁଣି ପଠାନ୍ତୁ",
+    "migration_title": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ",
+    "migration_draining": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ପାଇଁ ପ୍ରସ୍ତୁତ ହେଉଛି…",
+    "migration_activating": "ନୂଆ ସର୍ଭର ସକ୍ରିୟ କରାଯାଉଛି…",
+    "migration_ready": "ଅବସ୍ଥାନ ଅଦ୍ୟତନ ହୋଇଛି।",
+    "migration_blocked": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ପାଇଁ ସର୍ଭର ହସ୍ତକ୍ଷେପ ଆବଶ୍ୟକ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ କିମ୍ବା ସହାୟତା ଦଳ ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+    "migration_progress": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନର ଅଗ୍ରଗତି",
+    "migration_retryDelay": "ଯାଞ୍ଚ ମଧ୍ୟରେ ବିଳମ୍ବ: {seconds} ସେକେଣ୍ଡ।",
+    "migration_resume": "ପରିବର୍ତ୍ତନ ପୁନଃ ଆରମ୍ଭ କରନ୍ତୁ",
+    "status_authorizing": "ଅନୁମତି ଆବଶ୍ୟକ",
+    "status_authorizingDetail": "VPN ଅନୁମତି ଦେବା ପାଇଁ Android ଅନୁରୋଧକୁ ସ୍ୱୀକାର କରନ୍ତୁ।",
+    "status_preparing": "ପ୍ରସ୍ତୁତ ହେଉଛି",
+    "status_preparingDetail": "ଆପଣଙ୍କ ସୁରକ୍ଷିତ ସଂଯୋଗ ପ୍ରସ୍ତୁତ ହେଉଛି।",
+    "status_reconnecting": "ପୁନର୍ବାର ସଂଯୁକ୍ତ ହେଉଛି…",
+    "status_reconnectingDetail": "ସଂଯୋଗ ବାଧା ପଡ଼ିଛି। VPN ପୁନର୍ବାର ସଂଯୁକ୍ତ ହେବାକୁ ଚେଷ୍ଟା କରୁଛି।",
+    "status_connecting": "ସଂଯୁକ୍ତ ହେଉଛି",
+    "status_connectingDetail": "VPN ସର୍ଭର ସହିତ ସଂଯୁକ୍ତ ହେଉଛି…",
+    "status_connected": "ସଂଯୁକ୍ତ",
+    "status_connectedDetail": "ଆପଣଙ୍କ VPN ସଂଯୋଗ ସକ୍ରିୟ ଅଛି।",
+    "status_disconnecting": "ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେଉଛି",
+    "status_disconnectingDetail": "ଆପଣଙ୍କ VPN ସଂଯୋଗ ବନ୍ଦ ହେଉଛି।",
+    "status_error": "ସଂଯୋଗ ଉପଲବ୍ଧ ନାହିଁ",
+    "status_errorDetail": "VPN ସଂଯୋଗ ନିଶ୍ଚିତ ହୋଇନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "status_idle": "ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ",
+    "status_idleDetail": "ଆପଣଙ୍କ ସଂଯୋଗ ସୁରକ୍ଷିତ ରଖିବା ପାଇଁ VPN ସଂଯୋଗ କରନ୍ତୁ।",
+    "trust_note": "ଆପ୍ ବନ୍ଦ କଲେ VPN ବନ୍ଦ ହୁଏ ନାହିଁ। ଏହାକୁ ବନ୍ଦ କରିବାକୁ “ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ” ଦବାନ୍ତୁ।",
+    "locations_none": "ଏବେ କୌଣସି ଅବସ୍ଥାନ ଉପଲବ୍ଧ ନାହିଁ।",
+    "locations_available": "ଆପଣଙ୍କ ପରବର୍ତ୍ତୀ ଅବସ୍ଥାନ ବାଛନ୍ତୁ।",
+    "locations_selected": "ଚୟନିତ ଅବସ୍ଥାନ",
+    "locations_select": "ଏହି ଅବସ୍ଥାନ ବାଛନ୍ତୁ",
+    "locations_lockedTunnel": "ଅବସ୍ଥାନ ବଦଳାଇବାକୁ VPN ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ।",
+    "locations_lockedMigration": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ସମାପ୍ତ ହେବା ପର୍ଯ୍ୟନ୍ତ ଅପେକ୍ଷା କରନ୍ତୁ।",
+    "devices_title": "ଆପଣଙ୍କ ଡିଭାଇସ୍",
+    "devices_used": "{count} / {limit} ଡିଭାଇସ୍",
+    "devices_refresh": "ଡିଭାଇସ୍ ରିଫ୍ରେଶ୍ କରନ୍ତୁ",
+    "devices_empty": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି VPN ଡିଭାଇସ୍ ପଞ୍ଜୀକୃତ ହୋଇନାହିଁ।",
+    "devices_firstConnection": "ପ୍ରଥମ ସଂଯୋଗ ସମୟରେ ଆପଣଙ୍କ ଫୋନ୍ ଯୋଡ଼ାଯିବ।",
+    "devices_thisDevice": "ଏହି ଡିଭାଇସ୍",
+    "devices_added": "{date}ରେ ଯୋଡ଼ାଯାଇଥିଲା",
+    "devices_unnamed": "ନାମବିହୀନ ଡିଭାଇସ୍",
+    "action_remove": "ହଟାନ୍ତୁ",
+    "settings_title": "ସେଟିଂସ୍",
+    "settings_subtitle": "ଆପଣଙ୍କ ପସନ୍ଦ ଓ ଆକାଉଣ୍ଟ, ସବୁ ଗୋଟିଏ ଜାଗାରେ।",
+    "settings_appearance": "ଦୃଶ୍ୟ",
+    "settings_language": "ଭାଷା",
+    "settings_languageDescription": "ଆପଣ ବାଛିଥିବା ଭାଷା VPN ବିଜ୍ଞପ୍ତି ପାଇଁ ମଧ୍ୟ ଲାଗୁ ହେବ।",
+    "settings_account": "ଆକାଉଣ୍ଟ",
+    "settings_signOut": "ସାଇନ୍ ଆଉଟ୍ କରନ୍ତୁ",
+    "settings_privacy": "ଗୋପନୀୟତା ନୀତି",
+    "settings_terms": "ବ୍ୟବହାରର ସର୍ତ୍ତାବଳୀ",
+    "settings_security": "ସୁରକ୍ଷା ଓ ସ୍ୱଚ୍ଛତା",
+    "settings_licenses": "ଉପାଦାନର ଲାଇସେନ୍ସ",
+    "settings_licensesDetail": "ଆପ୍‌ରେ ବ୍ୟବହୃତ ସଫ୍ଟୱେର୍",
+    "settings_licensesLegalese": "ଆପ୍ ଏବଂ ଏହାର MPL-2.0 ଉପାଦାନଗୁଡ଼ିକର ସୋର୍ସ କୋଡ୍: {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "ଆପ୍ ଛାଡ଼ିଲେ ମଧ୍ୟ VPN ଚାଲୁ ରହେ। ଏହାକୁ ବନ୍ଦ କରିବାକୁ “ସଂଯୋଗ” ଟ୍ୟାବ୍‌ରେ “ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ କରନ୍ତୁ” ଦବାନ୍ତୁ।",
+    "theme_system": "ସିଷ୍ଟମ୍",
+    "theme_light": "ଲାଇଟ୍",
+    "theme_dark": "ଡାର୍କ୍",
+    "language_system": "ଫୋନ୍ ଭାଷା",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "ଏହି ଡିଭାଇସ୍ ହଟାଇବେ କି?",
+    "dialog_removeCurrent": "ଏହି ଫୋନ୍‌ର VPN ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେବ ଏବଂ ଏହା ପ୍ରବେଶାଧିକାର ହରାଇବ। ସର୍ଭର ନିଶ୍ଚିତ କଲା ପରେ ଏହାର VPN ସଂଯୋଗ ଡାଟା ହଟାଯିବ।",
+    "dialog_removeOther": "“{name}” ପାଇଁ VPN ପ୍ରବେଶାଧିକାର ପ୍ରତ୍ୟାହାର କରାଯିବ। ଏହି କାର୍ଯ୍ୟ ଫେରାଇ ହେବ ନାହିଁ।",
+    "dialog_signOut": "ସାଇନ୍ ଆଉଟ୍ କରିବେ କି?",
+    "dialog_signOutMessage": "VPN ବନ୍ଦ ହେବ ଏବଂ ଆପଣଙ୍କୁ ପୁନର୍ବାର ସାଇନ୍ ଇନ୍ କରିବାକୁ ପଡ଼ିବ। ଆପଣଙ୍କ ପରବର୍ତ୍ତୀ ସଂଯୋଗ ପାଇଁ ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା VPN ଚାବି ଏହି ଫୋନ୍‌ରେ ରହିବ।",
+    "action_cancel": "ବାତିଲ କରନ୍ତୁ",
+    "action_close": "ବନ୍ଦ କରନ୍ତୁ",
+    "action_copy": "କପି କରନ୍ତୁ",
+    "action_signOut": "ସାଇନ୍ ଆଉଟ୍ କରନ୍ତୁ",
+    "notice_close": "ବାର୍ତ୍ତା ବନ୍ଦ କରନ୍ତୁ",
+    "notice_sessionExpired_title": "ସେସନ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି",
+    "notice_sessionExpired_message": "ଆପଣଙ୍କ ସେସନ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି। ପୁନର୍ବାର ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।",
+    "notice_connectionFailed_title": "ସଂଯୋଗ ବିଫଳ ହେଲା",
+    "notice_invalidCredentials_message": "ଇମେଲ ଠିକଣା କିମ୍ବା ପାସୱାର୍ଡ ଭୁଲ ଅଛି।",
+    "notice_emailVerification_title": "ଇମେଲ ନିଶ୍ଚିତକରଣ ଆବଶ୍ୟକ",
+    "notice_emailVerification_message": "VPN ଡିଭାଇସ୍ ଯୋଡ଼ିବା ପୂର୍ବରୁ ଆପଣଙ୍କ ଇମେଲ ଠିକଣା ନିଶ୍ଚିତ କରନ୍ତୁ।",
+    "notice_rateLimited_title": "ବହୁତ ଥର ଚେଷ୍ଟା କରାଯାଇଛି",
+    "notice_deviceLimit_title": "ଡିଭାଇସ୍ ସୀମାରେ ପହଞ୍ଚିଛି",
+    "notice_deviceLimit_message": "ଆଉ ଏକ ଡିଭାଇସ୍ ଯୋଡ଼ିବା ପୂର୍ବରୁ ଏକ ବିଦ୍ୟମାନ ଡିଭାଇସ୍ ହଟାନ୍ତୁ।",
+    "notice_identityRenewal_title": "VPN ପରିଚୟ ନବୀକରଣ କରିବାକୁ ପଡ଼ିବ",
+    "notice_identityRenewal_message": "ଏହି ପରିଚୟ ହଟାଯାଇଛି। ଏକ ନୂଆ ସ୍ଥାନୀୟ ପରିଚୟ ତିଆରି କରନ୍ତୁ।",
+    "notice_migrationPending_title": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଚାଲିଛି",
+    "notice_migrationPending_message": "ଏକ ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ପୂର୍ବରୁ ଚାଲିଛି।",
+    "notice_migrationBlocked_title": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଅବରୋଧ ହୋଇଛି",
+    "notice_migrationBlocked_message": "ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ପାଇଁ ସର୍ଭର ହସ୍ତକ୍ଷେପ ଆବଶ୍ୟକ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ କିମ୍ବା ସହାୟତା ଦଳ ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+    "notice_targetUnavailable_title": "ସର୍ଭର ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ",
+    "notice_targetUnavailable_message": "ଏହି ସର୍ଭର ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ।",
+    "notice_networkUnavailable_title": "ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ଉପଲବ୍ଧ ନାହିଁ",
+    "notice_networkUnavailable_message": "ଆପଣଙ୍କ ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "notice_permissionDenied_title": "VPN ଅନୁମତି ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି",
+    "notice_permissionDenied_message": "ସଂଯୋଗ ପୁନର୍ବାର ଆରମ୍ଭ କରନ୍ତୁ ଏବଂ Android ଅନୁମତି ଅନୁରୋଧ ସ୍ୱୀକାର କରନ୍ତୁ।",
+    "notice_wireguardTimeout_title": "ସର୍ଭର ସାଡ଼ା ଦେଉନାହିଁ",
+    "notice_wireguardTimeout_message": "WireGuard ସଂଯୋଗ ବହୁତ ସମୟ ନେଲା। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ କିମ୍ବା ଅନ୍ୟ ଏକ ଅବସ୍ଥାନ ବାଛନ୍ତୁ।",
+    "notice_tlsFailed_title": "ସୁରକ୍ଷିତ ସଂଯୋଗ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି",
+    "notice_tlsFailed_message": "ସର୍ଭର OpenVPN ସଂଯୋଗ ଗ୍ରହଣ କରିନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ। ସମସ୍ୟା ଜାରି ରହିଲେ ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ ଚଲାନ୍ତୁ।",
+    "notice_tunRejected_title": "Android ଦ୍ୱାରା VPN ଇଣ୍ଟରଫେସ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି",
+    "notice_tunRejected_message": "OpenVPN ଦ୍ୱାରା ଅନୁରୋଧ ହୋଇଥିବା ନେଟୱର୍କ ବିନ୍ୟାସ Android ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି।",
+    "notice_openvpnStart_title": "OpenVPN ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ",
+    "notice_openvpnStart_message": "OpenVPN ଇଞ୍ଜିନ୍ ଆରମ୍ଭ ସମ୍ପୂର୍ଣ୍ଣ କରିପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ। ସମସ୍ୟା ଜାରି ରହିଲେ ସହାୟତା ଦଳ ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+    "notice_diagnosticCode": "ଡାଏଗ୍ନୋଷ୍ଟିକ୍ କୋଡ୍: {code}",
+    "notice_generic_title": "VPN ସଂଯୋଗ ବିଫଳ ହେଲା",
+    "notice_generic_message": "ଏକ ତ୍ରୁଟି ଘଟିଛି। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{ଆକାଉଣ୍ଟ ତିଆରି ହୋଇଛି} password_reset_sent{ପାସୱାର୍ଡ ରିସେଟ୍ ଅନୁରୋଧ ପ୍ରାପ୍ତ ହୋଇଛି} verification_email_sent{ଯାଞ୍ଚ ଇମେଲ ପଠାଯାଇଛି} location_migration_pending{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଚାଲିଛି} vpn_sign_in_required{ସାଇନ୍ ଇନ୍ ଆବଶ୍ୟକ} protocol_unavailable_at_location{ପ୍ରୋଟୋକଲ ଉପଲବ୍ଧ ନାହିଁ} vpn_permission_denied{VPN ଅନୁମତି ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} revoked_identity_device_limit{ଡିଭାଇସ୍ ସୀମାରେ ପହଞ୍ଚିଛି} tunnel_start_unexpected{VPN ଆରମ୍ଭ ହୋଇପାରିଲା ନାହିଁ} flutter_disconnect_timeout{ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେବା ନିଶ୍ଚିତ ହୋଇନାହିଁ} flutter_disconnect_unexpected{ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ କରିହେଲା ନାହିଁ} device_revoked{ଡିଭାଇସ୍ ହଟାଯାଇଛି} revoke_unexpected{ଡିଭାଇସ୍ ହଟାଯାଇପାରିଲା ନାହିଁ} identity_renewal_unexpected{ପରିଚୟ ନବୀକରଣ ହୋଇପାରିଲା ନାହିଁ} openvpn_renewal_unexpected{OpenVPN ନବୀକରଣ ହୋଇପାରିଲା ନାହିଁ} location_migration_blocked{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଅବରୋଧ ହୋଇଛି} location_migration_slow{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଏବେ ବି ଚାଲିଛି} location_migration_conflict{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ରିଫ୍ରେଶ୍ ଆବଶ୍ୟକ} location_migration_verification_failed{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ନିଶ୍ଚିତ ହୋଇନାହିଁ} location_migration_device_changed{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ସମୟରେ ଡିଭାଇସ୍ ବଦଳିଛି} tunnel_stop_failed{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଉପଲବ୍ଧ ନାହିଁ} device_clock_ahead{ଡିଭାଇସ୍ ଘଡ଼ି ଆଗରେ ଅଛି} other{କାର୍ଯ୍ୟ ବିଫଳ ହେଲା}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{ଆକାଉଣ୍ଟ ତିଆରି ହୋଇଛି, କିନ୍ତୁ ଯାଞ୍ଚ ଇମେଲ ପଠାଯାଇପାରିଲା ନାହିଁ। ଆପ୍‌ରେ “ଇମେଲ ପୁଣି ପଠାନ୍ତୁ” ବ୍ୟବହାର କରନ୍ତୁ।} password_reset_sent{ଆପଣଙ୍କ ଅନୁରୋଧ ପ୍ରାପ୍ତ ହୋଇଛି। ଏହି ଠିକଣା ସହିତ ଆକାଉଣ୍ଟ ମେଳ ଖାଇଲେ, ଆପଣ ଏକ ଇମେଲ ପାଇପାରନ୍ତି। ଦୟାକରି ସ୍ପାମ୍ ଫୋଲ୍ଡର୍ ମଧ୍ୟ ଯାଞ୍ଚ କରନ୍ତୁ।} verification_email_sent{ଏକ ନୂଆ ଯାଞ୍ଚ ଇମେଲ ଏଇମାତ୍ର ପଠାଯାଇଛି।} location_migration_pending{{target}କୁ ସ୍ଥାନାନ୍ତର ଏବେ ବି ପ୍ରସ୍ତୁତ ହେଉଛି। ଡିଭାଇସ୍ ପୁଣି ତିଆରି ନକରି ଆପଣ ଏହାକୁ ପୁନଃ ଆରମ୍ଭ କରିପାରିବେ।} vpn_sign_in_required{VPN ଆରମ୍ଭ କରିବା ପୂର୍ବରୁ ଆପଣଙ୍କ ଆକାଉଣ୍ଟରେ ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।} protocol_unavailable_at_location{ଏହି ଅବସ୍ଥାନରେ ଚୟନିତ ପ୍ରୋଟୋକଲ ଉପଲବ୍ଧ ନାହିଁ। ଅବସ୍ଥାନ ରିଫ୍ରେଶ୍ କରନ୍ତୁ କିମ୍ବା ଅନ୍ୟ ଏକ ପ୍ରୋଟୋକଲ ବାଛନ୍ତୁ।} vpn_permission_denied{Android ଦ୍ୱାରା VPN ଅନୁମତି ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି। ସଂଯୋଗ ପୁନର୍ବାର ଆରମ୍ଭ କରନ୍ତୁ ଏବଂ ସିଷ୍ଟମ୍ ଅନୁରୋଧ ସ୍ୱୀକାର କରନ୍ତୁ।} revoked_identity_device_limit{ଏହି ଡିଭାଇସ୍‌ର VPN ପ୍ରବେଶାଧିକାର ହଟାଯାଇଛି ଏବଂ ଡିଭାଇସ୍ ସୀମାରେ ପହଞ୍ଚିଛି। ଆକାଉଣ୍ଟ → “ମୋ ଡିଭାଇସ୍ ପରିଚାଳନା କରନ୍ତୁ” ଅଧୀନରେ ଏକ ଡିଭାଇସ୍ ହଟାନ୍ତୁ।} tunnel_start_unexpected{ଏକ ଅପ୍ରତ୍ୟାଶିତ ତ୍ରୁଟି ଟନେଲ ପ୍ରସ୍ତୁତିକୁ ବାଧା ଦେଇଛି। ଡାଏଗ୍ନୋଷ୍ଟିକ୍ କୋଡ୍ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} flutter_disconnect_timeout{Android ସମୟ ମଧ୍ୟରେ VPN ବନ୍ଦ ହୋଇଛି ବୋଲି ନିଶ୍ଚିତ କରିନାହିଁ। ପୁଣି ବନ୍ଦ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ।} flutter_disconnect_unexpected{ଏକ ଅପ୍ରତ୍ୟାଶିତ ତ୍ରୁଟି ଟନେଲ ବନ୍ଦ ହୋଇଥିବା ନିଶ୍ଚିତ କରିବାକୁ ବାଧା ଦେଇଛି।} device_revoked{ଡିଭାଇସ୍‌ର VPN ପ୍ରବେଶାଧିକାର ପ୍ରତ୍ୟାହାର କରାଯାଇଛି ଏବଂ ଏହାର ସ୍ଥାନୀୟ ଗୁପ୍ତ ସୂଚନା ହଟାଯାଇଛି।} revoke_unexpected{ଡିଭାଇସ୍ ହଟାଯାଇପାରିଲା ନାହିଁ। ତାଲିକା ରିଫ୍ରେଶ୍ କରନ୍ତୁ ଏବଂ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} identity_renewal_unexpected{ନୂଆ VPN ପରିଚୟ ତିଆରି ହୋଇପାରିଲା ନାହିଁ। ଡିଭାଇସ୍ ରିଫ୍ରେଶ୍ କରନ୍ତୁ ଏବଂ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} openvpn_renewal_unexpected{OpenVPN ପ୍ରୋଫାଇଲ୍ ନବୀକରଣ ହୋଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ କିମ୍ବା ଡାଏଗ୍ନୋଷ୍ଟିକ୍ କୋଡ୍ ଯାଞ୍ଚ କରନ୍ତୁ।} location_migration_blocked{ସର୍ଭର ଏବେ ଏହି ପରିବର୍ତ୍ତନ ସମାପ୍ତ କରିପାରିବ ନାହିଁ। ଡିଭାଇସ୍ ଓ ଏହାର ସ୍ଥାନୀୟ ପରିଚୟ ରଖାଯାଇଛି।} location_migration_slow{ସର୍ଭର ଏବେ ବି {target}କୁ ସ୍ଥାନାନ୍ତର ପ୍ରସ୍ତୁତ କରୁଛି। କିଛି ସମୟ ପରେ “ପୁନଃ ଆରମ୍ଭ କରନ୍ତୁ” ବ୍ୟବହାର କରନ୍ତୁ।} location_migration_conflict{ସର୍ଭରରେ ଡିଭାଇସ୍‌ର ସ୍ଥିତି ବଦଳିଛି। ଡିଭାଇସ୍ ରିଫ୍ରେଶ୍ କରନ୍ତୁ, ତା’ପରେ ପରିବର୍ତ୍ତନ ପୁନଃ ଆରମ୍ଭ କରନ୍ତୁ।} location_migration_verification_failed{ସର୍ଭର ନୂଆ ଅବସ୍ଥାନ ନିଶ୍ଚିତ କରିନାହିଁ। ପୂର୍ବ ସ୍ଥାନୀୟ ପରିଚୟ ରଖାଯାଇଛି।} location_migration_device_changed{ସର୍ଭର ଫେରାଇଥିବା ଡିଭାଇସ୍ ବଦଳାଯାଉଥିବା ଡିଭାଇସ୍ ସହ ଆଉ ମେଳ ଖାଉନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରିବା ପୂର୍ବରୁ ଡିଭାଇସ୍ ରିଫ୍ରେଶ୍ କରନ୍ତୁ।} tunnel_stop_failed{ନୂଆ ସଂଯୋଗ ପୂର୍ବରୁ ପୂର୍ବ ଟନେଲ ସମ୍ପୂର୍ଣ୍ଣ ଭାବେ ବନ୍ଦ ହେବା ଆବଶ୍ୟକ।} device_clock_ahead{ଏହି ଡିଭାଇସ୍‌ର ଘଡ଼ି ଆଗରେ ଥିବା ପରି ମନେ ହେଉଛି। ସାଇନ୍ ଇନ୍ ରହିବା ପାଇଁ ସ୍ୱୟଂଚାଳିତ ତାରିଖ ଓ ସମୟ ଚାଲୁ କରନ୍ତୁ।} other{କାର୍ଯ୍ୟ ସମାପ୍ତ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ କିମ୍ବା ଡାଏଗ୍ନୋଷ୍ଟିକ୍ କୋଡ୍ ସହାୟତା ଦଳକୁ ପଠାନ୍ତୁ।}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{ସେସନ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି} invalid_credentials{ସାଇନ୍ ଇନ୍ ବିଫଳ ହେଲା} email_verification_required{ଇମେଲ ନିଶ୍ଚିତକରଣ ଆବଶ୍ୟକ} verification_email_cooldown{ଇମେଲ ପୂର୍ବରୁ ପଠାଯାଇଛି} rate_limited{ବହୁତ ଥର ଚେଷ୍ଟା କରାଯାଇଛି} invalid_registration{ସୂଚନା ସଂଶୋଧନ କରିବା ଆବଶ୍ୟକ} email_exists{ଆକାଉଣ୍ଟ ପୂର୍ବରୁ ଅଛି} invalid_profile{ଅବୈଧ ପ୍ରୋଫାଇଲ୍} invalid_device{ଅବୈଧ ଡିଭାଇସ୍} invalid_location{ଅବସ୍ଥାନ ଉପଲବ୍ଧ ନାହିଁ} device_limit{ଡିଭାଇସ୍ ସୀମାରେ ପହଞ୍ଚିଛି} device_exists{VPN ପରିଚୟ ପୂର୍ବରୁ ବ୍ୟବହୃତ ହେଉଛି} device_identity_revoked{VPN ପରିଚୟ ନବୀକରଣ କରିବା ଆବଶ୍ୟକ} device_location_locked{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ରିଫ୍ରେଶ୍ ଆବଶ୍ୟକ} location_migration_pending{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଚାଲିଛି} location_migration_blocked{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ଅବରୋଧ ହୋଇଛି} target_ca_mismatch{OpenVPN ସର୍ଭର ସୁସଙ୍ଗତ ନୁହେଁ} location_migration_conflict{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ରିଫ୍ରେଶ୍ ଆବଶ୍ୟକ} server_full{ସର୍ଭର ପୂର୍ଣ୍ଣ} capacity_unavailable{ଅବସ୍ଥାନ ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ} target_unavailable{ସର୍ଭର ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ} not_found{ଆଇଟମ୍ ମିଳିଲା ନାହିଁ} invalid_openvpn_csr{ଅବୈଧ OpenVPN ପରିଚୟ} openvpn_profile_exists{OpenVPN ପ୍ରୋଫାଇଲ୍ ପୂର୍ବରୁ ଅଛି} openvpn_profile_revoked{OpenVPN ପ୍ରୋଫାଇଲ୍ ପ୍ରତ୍ୟାହାର କରାଯାଇଛି} openvpn_operation_pending{OpenVPN କାର୍ଯ୍ୟ ଚାଲିଛି} openvpn_operation_terminal{OpenVPN କାର୍ଯ୍ୟ ବାଧା ପଡ଼ିଛି} openvpn_address_unavailable{OpenVPN ଠିକଣା ଉପଲବ୍ଧ ନାହିଁ} openvpn_profile_conflict{OpenVPN ସଂଘାତ} openvpn_signer_unavailable{OpenVPN ଉପଲବ୍ଧ ନାହିଁ} email_delivery_unavailable{ଇମେଲ ଉପଲବ୍ଧ ନାହିଁ} invalid_token{ଅବୈଧ ଲିଙ୍କ୍} network_unavailable{ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ଉପଲବ୍ଧ ନାହିଁ} invalid_json{ଅବୈଧ ଅନୁରୋଧ} invalid_api_response{ଅବୈଧ ସର୍ଭର ପ୍ରତିକ୍ରିୟା} ipv6_unavailable{IPv6 ଉପଲବ୍ଧ ନାହିଁ} invalid_ip_families{ନେଟୱର୍କ ବିନ୍ୟାସ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} other{ସେବା ଉପଲବ୍ଧ ନାହିଁ}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{ଆପଣଙ୍କ ସେସନ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି। ପୁନର୍ବାର ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।} invalid_credentials{ଇମେଲ ଠିକଣା କିମ୍ବା ପାସୱାର୍ଡ ଭୁଲ ଅଛି।} email_verification_required{VPN ଡିଭାଇସ୍ ଯୋଡ଼ିବା ପୂର୍ବରୁ ଆପଣଙ୍କ ଇମେଲ ଠିକଣା ନିଶ୍ଚିତ କରନ୍ତୁ।} invalid_registration{ଅନୁରୋଧ କରାଯାଇଥିବା ସୂଚନା ଓ ସମ୍ମତି ଯାଞ୍ଚ କରନ୍ତୁ।} email_exists{ଏହି ଇମେଲ ଠିକଣା ପୂର୍ବରୁ ଏକ ଆକାଉଣ୍ଟରେ ବ୍ୟବହୃତ ହେଉଛି।} invalid_profile{ଆପଣଙ୍କ ପ୍ରୋଫାଇଲ୍ ସୂଚନା ଯାଞ୍ଚ କରନ୍ତୁ।} invalid_device{ଏହି ଡିଭାଇସ୍‌ର ନାମ କିମ୍ବା ସ୍ଥାନୀୟ ପରିଚୟ ଅବୈଧ ଅଛି।} invalid_location{ଅବସ୍ଥାନ ତାଲିକା ରିଫ୍ରେଶ୍ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} device_limit{ଅନ୍ୟ ଏକ ଡିଭାଇସ୍ ଯୋଡ଼ିବା ପୂର୍ବରୁ ଏକ ବିଦ୍ୟମାନ ଡିଭାଇସ୍ ହଟାନ୍ତୁ।} device_exists{ଏହି VPN ପରିଚୟ ପୂର୍ବରୁ ଅନ୍ୟ ଏକ ଆକାଉଣ୍ଟ ସହ ଲିଙ୍କ୍ ହୋଇଛି।} device_identity_revoked{ଏହି ପରିଚୟ ହଟାଯାଇଛି। ଏକ ନୂଆ ସ୍ଥାନୀୟ ପରିଚୟ ତିଆରି କରିବା ଆବଶ୍ୟକ।} device_location_locked{ଏହି ଡିଭାଇସ୍‌ର ଅବସ୍ଥାନ ଏଇମାତ୍ର ବଦଳିଛି। ଆପ୍ ଚାଲିଥିବା ପରିବର୍ତ୍ତନକୁ ପୁନଃ ଆରମ୍ଭ କରିବ।} location_migration_pending{ଏକ ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ପୂର୍ବରୁ ଚାଲିଛି।} location_migration_blocked{ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ପାଇଁ ସର୍ଭର ହସ୍ତକ୍ଷେପ ଆବଶ୍ୟକ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ କିମ୍ବା ସହାୟତା ଦଳ ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ।} target_ca_mismatch{ଏହି ସର୍ଭର ବର୍ତ୍ତମାନର OpenVPN ପ୍ରୋଫାଇଲ୍ ସହ ଏପର୍ଯ୍ୟନ୍ତ ସୁସଙ୍ଗତ ନୁହେଁ।} location_migration_conflict{ଡିଭାଇସ୍ ରିଫ୍ରେଶ୍ କରନ୍ତୁ, ତା’ପରେ ଅବସ୍ଥାନ ପରିବର୍ତ୍ତନ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} server_full{ଏହି ଅବସ୍ଥାନର ସଂଯୋଗ ସୀମା ପୂରଣ ହୋଇଛି। ଅନ୍ୟ ଅବସ୍ଥାନ ବାଛନ୍ତୁ କିମ୍ବା ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} capacity_unavailable{ଏହି ଅବସ୍ଥାନ ବର୍ତ୍ତମାନ ଉପଲବ୍ଧ କି ନୁହେଁ ତାହା ନିଶ୍ଚିତ କରାଯାଇପାରୁନାହିଁ। ଅନ୍ୟ ଅବସ୍ଥାନ ବାଛନ୍ତୁ କିମ୍ବା ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} target_unavailable{ଏହି ସର୍ଭର ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ।} not_found{ଏହି ଆଇଟମ୍ ଆଉ ଆପଣଙ୍କ ଆକାଉଣ୍ଟରେ ଉପଲବ୍ଧ ନାହିଁ।} invalid_openvpn_csr{ଏକ ନୂଆ OpenVPN ପରିଚୟ ତିଆରି କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} openvpn_profile_exists{ଏହି ଡିଭାଇସ୍ ପାଇଁ ଏକ OpenVPN ପ୍ରୋଫାଇଲ୍ ପୂର୍ବରୁ ଅଛି।} openvpn_profile_revoked{ଜାରି ରଖିବା ପାଇଁ OpenVPN ପ୍ରୋଫାଇଲ୍ ନବୀକରଣ କରନ୍ତୁ।} openvpn_operation_pending{ପରିବର୍ତ୍ତନ ଏବେ ବି ଲାଗୁ ହେଉଛି। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} openvpn_operation_terminal{ଏକ ନୂଆ OpenVPN ପରିଚୟ ତିଆରି କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} openvpn_address_unavailable{ବର୍ତ୍ତମାନ କୌଣସି OpenVPN ଠିକଣା ଉପଲବ୍ଧ ନାହିଁ।} openvpn_profile_conflict{ପ୍ରୋଫାଇଲ୍ ବଦଳିଛି। ଡିଭାଇସ୍ ରିଫ୍ରେଶ୍ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} openvpn_signer_unavailable{OpenVPN ସେବା ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ।} email_delivery_unavailable{ଇମେଲ ପଠାଯାଇପାରିଲା ନାହିଁ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} invalid_token{ଏହି ଲିଙ୍କ୍ ଅବୈଧ କିମ୍ବା ମିଆଦ ଶେଷ ହୋଇଛି। ଏକ ନୂଆ ଲିଙ୍କ୍ ମାଗନ୍ତୁ।} network_unavailable{ଆପଣଙ୍କ ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ଯାଞ୍ଚ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} invalid_json{ଆପଣ ଦେଇଥିବା ସୂଚନା ଯାଞ୍ଚ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} invalid_api_response{ସର୍ଭର ଏକ ଅପ୍ରତ୍ୟାଶିତ ପ୍ରତିକ୍ରିୟା ଫେରାଇଛି। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} ipv6_unavailable{ସର୍ଭର ବର୍ତ୍ତମାନ IPv6 ସକ୍ରିୟ କରିପାରୁନାହିଁ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} invalid_ip_families{ଟନେଲ ବିନ୍ୟାସ ଅସମ୍ପୂର୍ଣ୍ଣ କିମ୍ବା ଅନୁମୋଦିତ ଠିକଣା ସହ ମେଳ ଖାଉନାହିଁ। ଆପ୍‌ରୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} other{ସର୍ଭରରେ ଏକ ତ୍ରୁଟି ଘଟିଛି। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "କିଛି ସମୟ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "notice_retryAfter": "{seconds, plural, one{{seconds} ସେକେଣ୍ଡ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} other{{seconds} ସେକେଣ୍ଡ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{{minutes} ମିନିଟ୍ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} other{{minutes} ମିନିଟ୍ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{{hours} ଘଣ୍ଟା ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} other{{hours} ଘଣ୍ଟା ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{ସିଷ୍ଟମ୍ VPN ପୁନଃ ଆରମ୍ଭ ଉପଲବ୍ଧ ନାହିଁ} system_vpn_resume_corrupt{ଅବୈଧ ସିଷ୍ଟମ୍ VPN ପୁନଃ ଆରମ୍ଭ} system_vpn_resume_session_invalid{ଅବୈଧ VPN ପୁନଃ ଆରମ୍ଭ ସେସନ୍} system_vpn_resume_identity_changed{VPN ପରିଚୟ ବଦଳିଯାଇଛି} system_vpn_resume_identity_invalid{ଅବୈଧ VPN ପୁନଃ ଆରମ୍ଭ ପରିଚୟ} system_vpn_resume_storage_failed{VPN ପୁନଃ ଆରମ୍ଭ ଷ୍ଟୋରେଜ୍ ଉପଲବ୍ଧ ନାହିଁ} system_vpn_resume_network_timeout{VPN ପୁନଃ ଆରମ୍ଭ ପାଇଁ ନେଟୱର୍କ ମିଳିନାହିଁ} system_vpn_resume_blocked{VPN ପୁନଃ ଆରମ୍ଭ ଅବରୋଧ ହୋଇଛି} system_vpn_resume_failed{VPN ପୁନଃ ଆରମ୍ଭ ବିଫଳ ହୋଇଛି} system_vpn_resume_error_invalid{ଅବୈଧ VPN ପୁନଃ ଆରମ୍ଭ ତ୍ରୁଟି} wireguard_identity_store_failed{WireGuard ପରିଚୟ ସଞ୍ଚୟ ହୋଇନାହିଁ} wireguard_identity_unavailable{WireGuard ପରିଚୟ ଉପଲବ୍ଧ ନାହିଁ} vpn_host_destroyed{Android VPN ହୋଷ୍ଟ ବନ୍ଦ ହୋଇଛି} vpn_host_unavailable{Android VPN ହୋଷ୍ଟ ଉପଲବ୍ଧ ନାହିଁ} vpn_permission_required{VPN ଅନୁମତି ଆବଶ୍ୟକ} vpn_permission_denied{VPN ଅନୁମତି ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} vpn_permission_request_failed{ଅନୁମତି ଅନୁରୋଧ କରାଯାଇପାରିଲା ନାହିଁ} wireguard_foreground_service_unavailable{WireGuard ସେବା ଉପଲବ୍ଧ ନାହିଁ} wireguard_identity_invalid{ଅବୈଧ ସ୍ଥାନୀୟ WireGuard ଚାବି} wireguard_identity_in_use{WireGuard ପରିଚୟ ପୂର୍ବରୁ ବ୍ୟବହୃତ ହେଉଛି} wireguard_configuration_invalid{ଅବୈଧ WireGuard ବିନ୍ୟାସ} wireguard_operation_pending{WireGuard କାର୍ଯ୍ୟ ଏବେ ବି ସକ୍ରିୟ ଅଛି} wireguard_start_failed{WireGuard ଆରମ୍ଭ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} wireguard_stop_timeout{WireGuard ବନ୍ଦ ନିଶ୍ଚିତ ହୋଇନାହିଁ} wireguard_handshake_timeout{WireGuard ସାଡ଼ା ଦେଉନାହିଁ} openvpn_connection_timeout{OpenVPN ସାଡ଼ା ଦେଉନାହିଁ} openvpn_core_unavailable{OpenVPN ଇଞ୍ଜିନ୍ ଉପଲବ୍ଧ ନାହିଁ} openvpn_operation_pending{OpenVPN ସେସନ୍ ଏବେ ବି ସକ୍ରିୟ ଅଛି} openvpn_stop_timeout{OpenVPN ବନ୍ଦ ନିଶ୍ଚିତ ହୋଇନାହିଁ} openvpn_profile_unavailable{ସ୍ଥାନୀୟ OpenVPN ପ୍ରୋଫାଇଲ୍ ମିଳୁନାହିଁ} openvpn_native_failed{OpenVPN ନେଟିଭ୍ କଲ୍ ବାଧା ପଡ଼ିଛି} openvpn_key_generation_failed{OpenVPN P-256 ଚାବି ସୃଷ୍ଟି କରିହେଲା ନାହିଁ} openvpn_csr_generation_failed{OpenVPN CSR ସୃଷ୍ଟି କରିହେଲା ନାହିଁ} openvpn_identity_store_failed{OpenVPN ପରିଚୟ ସଞ୍ଚୟ ହୋଇନାହିଁ} openvpn_identity_clear_failed{OpenVPN ହଟାଇବା ଅସମ୍ପୂର୍ଣ୍ଣ} openvpn_identity_in_use{OpenVPN ପରିଚୟ ଏବେ ବି ବ୍ୟବହୃତ ହେଉଛି} openvpn_tls_verification_required{OpenVPN TLS ଯାଞ୍ଚ ନାହିଁ} openvpn_cipher_invalid{ଅବୈଧ OpenVPN ସାଇଫର୍} openvpn_profile_rejected{OpenVPN ପ୍ରୋଫାଇଲ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} openvpn_identity_inconsistent{ଅସଙ୍ଗତ OpenVPN ପରିଚୟ} tls_handshake_failed{OpenVPN ବୁଝାମଣା ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} tls_alert_unknown_ca{OpenVPN କ୍ଲାଏଣ୍ଟ ସାର୍ଟିଫିକେଟ୍ ଚିହ୍ନଟ ହୋଇନାହିଁ} tls_alert_bad_certificate{OpenVPN କ୍ଲାଏଣ୍ଟ ସାର୍ଟିଫିକେଟ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} tls_alert_unsupported_certificate{ଅସମର୍ଥିତ OpenVPN ସାର୍ଟିଫିକେଟ୍} tls_client_certificate_required{OpenVPN କ୍ଲାଏଣ୍ଟ ସାର୍ଟିଫିକେଟ୍ ଆବଶ୍ୟକ} tls_alert_misc{OpenVPN TLS ସତର୍କବାଣୀ} tls_signature_algorithm_rejected{ଅସମର୍ଥିତ OpenVPN ସ୍ୱାକ୍ଷର} tls_handshake_rejected{OpenVPN TLS ବୁଝାମଣା ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} tls_version_rejected{OpenVPN TLS ସଂସ୍କରଣ ସୁସଙ୍ଗତ ନୁହେଁ} tls_certificate_expired{TLS ସାର୍ଟିଫିକେଟ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି} tls_certificate_revoked{TLS ସାର୍ଟିଫିକେଟ୍ ପ୍ରତ୍ୟାହାର କରାଯାଇଛି} transport_failed{OpenVPN ସର୍ଭର ପହଞ୍ଚି ହେଉନାହିଁ} tun_configuration_rejected{OpenVPN ଇଣ୍ଟରଫେସ୍ ସୃଷ୍ଟି କରିହେଲା ନାହିଁ} tun_setup_failed{OpenVPN TUN ସେଟଅପ୍ ବିଫଳ ହୋଇଛି} tun_interface_create_failed{OpenVPN ଇଣ୍ଟରଫେସ୍ ସୃଷ୍ଟି ବିଫଳ ହୋଇଛି} tun_interface_disabled{OpenVPN ଇଣ୍ଟରଫେସ୍ ଅକ୍ଷମ ହୋଇଛି} tun_halted{OpenVPN ଇଣ୍ଟରଫେସ୍ ବାଧା ପଡ଼ିଛି} tun_already_established{OpenVPN ଇଣ୍ଟରଫେସ୍ ପୂର୍ବରୁ ଖୋଲା ଅଛି} tun_addresses_missing{OpenVPN ଠିକଣା ନାହିଁ} tun_routes_missing{OpenVPN ରାଉଟ୍ ନାହିଁ} tun_dns_missing{OpenVPN DNS ନାହିଁ} tun_permission_revoked{VPN ଅନୁମତି ପ୍ରତ୍ୟାହାର କରାଯାଇଛି} tun_establish_returned_null{Android ଦ୍ୱାରା VPN ଇଣ୍ଟରଫେସ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} openvpn_service_start_failed{OpenVPN ସେବା ଉପଲବ୍ଧ ନାହିଁ} openvpn_operation_timeout{OpenVPN କଲ୍ ସମୟ ଶେଷ ହୋଇଛି} openvpn_start_failed{OpenVPN ଆରମ୍ଭ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} openvpn_connection_failed{OpenVPN ସଂଯୋଗ ବାଧା ପଡ଼ିଛି} openvpn_core_status_error{OpenVPN ଇଞ୍ଜିନ୍ ତ୍ରୁଟି ସହ ଶେଷ ହୋଇଛି} openvpn_stopped_before_connected{ସଂଯୋଗ ପୂର୍ବରୁ OpenVPN ବନ୍ଦ ହୋଇଗଲା} openvpn_auth_failed{OpenVPN ପ୍ରମାଣୀକରଣ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} openvpn_client_setup_failed{OpenVPN କ୍ଲାଏଣ୍ଟ ସେଟଅପ୍ ବିଫଳ ହୋଇଛି} openvpn_client_halted{OpenVPN କ୍ଲାଏଣ୍ଟ ବାଧା ପଡ଼ିଛି} openvpn_client_restart{OpenVPN ପୁନଃ ଆରମ୍ଭ ଅନୁରୋଧ କରାଯାଇଛି} openvpn_inactive_timeout{OpenVPN ବହୁ ସମୟ ନିଷ୍କ୍ରିୟ ରହିଛି} openvpn_session_expired{OpenVPN ସେସନ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି} openvpn_credentials_required{ଅସମର୍ଥିତ OpenVPN ପ୍ରମାଣୀକରଣ} openvpn_proxy_failed{OpenVPN ମଧ୍ୟବର୍ତ୍ତୀ ଟ୍ରାନ୍ସପୋର୍ଟ ବିଫଳ ହୋଇଛି} openvpn_compression_failed{OpenVPN ସଙ୍କୋଚନ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} openvpn_ntlm_crypto_unavailable{OpenVPN NTLM ଏନକ୍ରିପ୍ସନ୍ ଉପଲବ୍ଧ ନାହିଁ} openvpn_feature_unsupported{ଅସମର୍ଥିତ OpenVPN ବୈଶିଷ୍ଟ୍ୟ} network_unavailable{ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ଉପଲବ୍ଧ ନାହିଁ} network_lost{ନେଟୱର୍କ ଉପଲବ୍ଧ ନାହିଁ} certificate_validation_failed{ସର୍ଭର ସାର୍ଟିଫିକେଟ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} openvpn_certificate_expired{OpenVPN ସାର୍ଟିଫିକେଟ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି} tunnel_active_for_another_account{ଅନ୍ୟ ଆକାଉଣ୍ଟର ଟନେଲ ଏବେ ବି ସକ୍ରିୟ ଅଛି} tunnel_already_active{ନେଟିଭ୍ ଟନେଲ ପୂର୍ବରୁ ସକ୍ରିୟ ଅଛି} tunnel_stop_timeout{{protocol} ବନ୍ଦ ନିଶ୍ଚିତ ହୋଇନାହିଁ} tunnel_disconnected{{protocol} ବାଧା ପଡ଼ିଛି} native_bridge_unavailable{Android ବ୍ରିଜ୍ ଉପଲବ୍ଧ ନାହିଁ} native_operation_failed{Android କାର୍ଯ୍ୟ ବାଧା ପଡ଼ିଛି} invalid_arguments{ଅସମ୍ପୂର୍ଣ୍ଣ VPN ପାରାମିଟର} invalid_account_id{ଅବୈଧ VPN ଆକାଉଣ୍ଟ} invalid_device_id{ଅବୈଧ ଡିଭାଇସ୍ ଆଇଡି} storage_key_not_allowed{ଷ୍ଟୋରେଜ୍ ଚାବି ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି} secure_storage_read_failed{ସୁରକ୍ଷିତ ପଢ଼ିବା ବିଫଳ ହୋଇଛି} secure_storage_write_failed{ସୁରକ୍ଷିତ ଲେଖିବା ବିଫଳ ହୋଇଛି} key_generation_failed{WireGuard ଚାବି ସୃଷ୍ଟି କରିହେଲା ନାହିଁ} csr_generation_failed{OpenVPN CSR ସୃଷ୍ଟି କରିହେଲା ନାହିଁ} openvpn_recovery_exhausted{OpenVPN ପୁନରୁଦ୍ଧାର ପୂର୍ବରୁ ବ୍ୟବହୃତ ହୋଇଛି} openvpn_recovery_failed{OpenVPN ପୁନରୁଦ୍ଧାର ବିଫଳ ହୋଇଛି} openvpn_renewal_required{OpenVPN ସାର୍ଟିଫିକେଟ୍ ନବୀକରଣ ଆବଶ୍ୟକ} other{ଅବର୍ଗୀକୃତ ନେଟିଭ୍ VPN ତ୍ରୁଟି}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ପୁନଃ ଆରମ୍ଭ ଯୋଗ୍ୟ VPN ସେସନ୍ ଖୋଜିପାରୁନାହିଁ। ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} system_vpn_resume_corrupt{ସଞ୍ଚିତ VPN ପୁନଃ ଆରମ୍ଭ ତଥ୍ୟ ଅବୈଧ ହୋଇଥିବାରୁ ଏହା ବ୍ୟବହାର କରାଯିବ ନାହିଁ। ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} system_vpn_resume_session_invalid{ସଞ୍ଚିତ ସେସନ୍ ଆଉ VPN ପୁନଃ ଆରମ୍ଭ କରିପାରିବ ନାହିଁ। ଆପ୍‌ରେ ପୁନର୍ବାର ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।} system_vpn_resume_identity_changed{ସ୍ଥାନୀୟ VPN ପରିଚୟ ବଦଳିଯାଇଛି। ପୁନଃ ଆରମ୍ଭ ବନ୍ଦ ହୋଇଛି; ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} system_vpn_resume_identity_invalid{ପୁନଃ ଆରମ୍ଭ ପାଇଁ ପରିଚୟ ଅବୈଧ। ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} system_vpn_resume_storage_failed{Android ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ପୁନଃ ଆରମ୍ଭ ତଥ୍ୟ ପଢ଼ିପାରିଲା ନାହିଁ କିମ୍ବା ଅଦ୍ୟତନ କରିପାରିଲା ନାହିଁ। ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} system_vpn_resume_network_timeout{VPN ପୁନଃ ଆରମ୍ଭ କରିବା ପାଇଁ Android ନିର୍ଦ୍ଧାରିତ ସମୟ ମଧ୍ୟରେ ନେଟୱର୍କ ପାଇଲା ନାହିଁ। ନେଟୱର୍କ ଉପଲବ୍ଧ ଥିବା ବେଳେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} system_vpn_resume_blocked{VPN ପୁନଃ ଆରମ୍ଭ ଅବରୋଧ ହୋଇଛି। Android ସେଟିଂସ୍ ଯାଞ୍ଚ କରନ୍ତୁ, ତା’ପରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} system_vpn_resume_failed{Android VPN ପୁନଃ ଆରମ୍ଭ ବିଫଳ ହୋଇଛି। ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} system_vpn_resume_error_invalid{Android ଏକ ବ୍ୟବହାରଯୋଗ୍ୟ ନଥିବା ପୁନଃ ଆରମ୍ଭ ତ୍ରୁଟି ଫେରାଇଛି। ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} wireguard_identity_store_failed{Android ଏହି ଆକାଉଣ୍ଟର ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା WireGuard ପରିଚୟ ସଞ୍ଚୟ କରିପାରିଲା ନାହିଁ।} wireguard_identity_unavailable{ଏହି ସଂଯୋଗ ପାଇଁ ବ୍ୟବହାରଯୋଗ୍ୟ କୌଣସି WireGuard ପରିଚୟ ଉପଲବ୍ଧ ନାହିଁ।} vpn_host_destroyed{VPN ଚଲାଉଥିବା Android ଉପାଦାନ ବନ୍ଦ ହୋଇଯାଇଛି। ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} vpn_host_unavailable{Android VPN ଚଲାଉଥିବା ଉପାଦାନ ତିଆରି କରିପାରୁନାହିଁ। VPN ସେଟିଂସ୍ ଯାଞ୍ଚ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} openvpn_renewal_required{ସଂଯୋଗ ପୂର୍ବରୁ ସାର୍ଟିଫିକେଟ୍ ପାଇଁ ଆପ୍‌ରେ ଏକ କାର୍ଯ୍ୟ ଆବଶ୍ୟକ।} openvpn_recovery_failed{ସ୍ୱୟଂଚାଳିତ ପୁନରୁଦ୍ଧାର ବିଫଳ ହୋଇଛି। ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} openvpn_recovery_exhausted{ସ୍ୱୟଂଚାଳିତ ପୁନରୁଦ୍ଧାର ପୂର୍ବରୁ ବ୍ୟବହୃତ ହୋଇସାରିଛି। ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।} vpn_permission_required{ଟନେଲ ଆରମ୍ଭ କରିବା ପୂର୍ବରୁ Android ଏକ ନୂଆ VPN ଅନୁମତି ଆବଶ୍ୟକ କରେ।} vpn_permission_denied{ଜାରି ରଖିବା ପାଇଁ Android ଅନୁରୋଧରେ FuzeVPNକୁ ଅନୁମତି ଦିଅନ୍ତୁ।} vpn_permission_request_failed{Android VPN ଅନୁମତି ସ୍କ୍ରିନ୍ ଖୋଲିପାରିଲା ନାହିଁ।} wireguard_foreground_service_unavailable{Android WireGuard ସେବାକୁ ଅଗ୍ରଭୂମିରେ ରଖିପାରିଲା ନାହିଁ।} wireguard_identity_invalid{ଏହି ଆକାଉଣ୍ଟର ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା WireGuard ଚାବି ପଢ଼ିହେଉନାହିଁ କିମ୍ବା ଅବୈଧ।} wireguard_identity_in_use{ଅନ୍ୟ ଏକ କାର୍ଯ୍ୟ ଏବେ ବି ଏହି ଆକାଉଣ୍ଟର WireGuard ଚାବି ବ୍ୟବହାର କରୁଛି।} wireguard_configuration_invalid{ପ୍ରାପ୍ତ WireGuard ଠିକଣା, DNS, ସର୍ଭର ଚାବି କିମ୍ବା ରାଉଟ୍ ଅବୈଧ।} wireguard_operation_pending{ପୂର୍ବ WireGuard କାର୍ଯ୍ୟ ଏପର୍ଯ୍ୟନ୍ତ ନିଜର ନେଟିଭ୍ ସେବା ମୁକ୍ତ କରିନାହିଁ।} wireguard_start_failed{WireGuard ଇଞ୍ଜିନ୍ ବିନ୍ୟାସ ସକ୍ରିୟ କରିବାକୁ ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି।} wireguard_stop_timeout{ନିର୍ଦ୍ଧାରିତ ସମୟ ସୀମା ମଧ୍ୟରେ WireGuard ସେବା VPN ଇଣ୍ଟରଫେସ୍ ମୁକ୍ତ ହୋଇଥିବା ନିଶ୍ଚିତ କରିନାହିଁ।} wireguard_handshake_timeout{ସମୟ ମଧ୍ୟରେ ଟନେଲ ସର୍ଭର ସହ ହ୍ୟାଣ୍ଡସେକ୍ ନିଶ୍ଚିତ କରିନାହିଁ।} openvpn_connection_timeout{ସମୟ ମଧ୍ୟରେ OpenVPN ସର୍ଭର ସହ ସଂଯୋଗ ନିଶ୍ଚିତ କରିନାହିଁ।} openvpn_core_unavailable{ଏହି ଆପ୍ ସଂସ୍କରଣରେ ବ୍ୟବହାରଯୋଗ୍ୟ OpenVPN ଇଞ୍ଜିନ୍ ନାହିଁ।} openvpn_operation_pending{ନେଟିଭ୍ ଇଞ୍ଜିନ୍ ଏବେ ବି ପୂର୍ବ OpenVPN ସେସନ୍ ଧରି ରଖିଛି ଏବଂ ଦ୍ୱିତୀୟ ଏକ ସେସନ୍ ସୃଷ୍ଟି କରିବାକୁ ମନା କରୁଛି।} openvpn_stop_timeout{ନିର୍ଦ୍ଧାରିତ ସମୟ ସୀମା ମଧ୍ୟରେ OpenVPN ଇଞ୍ଜିନ୍ ନିଜର ନେଟିଭ୍ ସେସନ୍ ବନ୍ଦ ହୋଇ ସମ୍ପୂର୍ଣ୍ଣ ମୁକ୍ତ ହୋଇଥିବା ନିଶ୍ଚିତ କରିନାହିଁ।} openvpn_profile_unavailable{ଏହି ସଂଯୋଗ ପାଇଁ ଯାଞ୍ଚ ହୋଇଥିବା କୌଣସି OpenVPN ପ୍ରୋଫାଇଲ୍ ପଢ଼ାଯାଇପାରିବ ନାହିଁ।} openvpn_native_failed{ଏକ ଆପ୍ ତ୍ରୁଟି OpenVPNକୁ ବାଧା ଦେଇଛି। ପୁଣି ସଂଯୋଗ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ। ସମସ୍ୟା ଜାରି ରହିଲେ, ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ ଚଲାନ୍ତୁ।} openvpn_key_generation_failed{Android Keystore ଏକ୍ସପୋର୍ଟ କରାଯାଇପାରୁନଥିବା P-256 ବ୍ୟକ୍ତିଗତ ଚାବି ସୃଷ୍ଟି କିମ୍ବା ପଢ଼ିପାରିଲା ନାହିଁ।} openvpn_csr_generation_failed{Android Keystore ଚାବି OpenVPN ସାର୍ଟିଫିକେଟ୍ ଅନୁରୋଧରେ ସ୍ୱାକ୍ଷର କରିପାରିଲା ନାହିଁ।} openvpn_identity_store_failed{OpenVPN ସାର୍ଟିଫିକେଟ୍ କିମ୍ବା ପ୍ରୋଫାଇଲ୍ ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ଷ୍ଟୋରେଜ୍‌ରେ ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ।} openvpn_identity_clear_failed{Android ଏହି ଆକାଉଣ୍ଟ ପାଇଁ ସ୍ଥାନୀୟ OpenVPN ପରିଚୟ ସମ୍ପୂର୍ଣ୍ଣ ଭାବେ ହଟାଇପାରିଲା ନାହିଁ।} openvpn_identity_in_use{ଏକ ନେଟିଭ୍ OpenVPN ସେସନ୍ ଏବେ ବି ଏହି ଡିଭାଇସ୍‌ର ଚାବି କିମ୍ବା ସାର୍ଟିଫିକେଟ୍ ବ୍ୟବହାର କରୁଛି।} openvpn_tls_verification_required{ପ୍ରୋଫାଇଲ୍ ସ୍ପଷ୍ଟ ଭାବେ ସର୍ଭର ସାର୍ଟିଫିକେଟ୍ ଯାଞ୍ଚ ଆବଶ୍ୟକ କରୁନାହିଁ।} openvpn_cipher_invalid{ସର୍ଭର ଏକ ଏନକ୍ରିପ୍ସନ୍ ଆଲଗୋରିଦମ୍ ଦେଇଛି ଯାହା ଅନୁମୋଦିତ ତାଲିକାରେ ନାହିଁ।} openvpn_profile_rejected{ସର୍ଭରରୁ ପ୍ରାପ୍ତ ପ୍ରୋଫାଇଲ୍ ସୁସଙ୍ଗତ ନୁହେଁ। ଏହି ଡିଭାଇସ୍ ପୁଣି ତିଆରି କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} openvpn_identity_inconsistent{ସାର୍ଟିଫିକେଟ୍ ଏହି ଫୋନ୍‌ର ସୁରକ୍ଷିତ ପରିଚୟ ସହ ମେଳ ଖାଉନାହିଁ। କୌଣସି ସ୍ଥାନୀୟ ପ୍ରୋଫାଇଲ୍ ବଦଳାଯାଇନାହିଁ।} tls_handshake_failed{ସର୍ଭର TLS ବୁଝାମଣା ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି। ସମସ୍ୟା ଜାରି ରହିଲେ ପ୍ରୋଫାଇଲ୍ ପୁଣି ତିଆରି କରନ୍ତୁ।} tls_alert_unknown_ca{ସର୍ଭର ଏହି ଡିଭାଇସ୍ ସାର୍ଟିଫିକେଟ୍‌ର ପ୍ରାଧିକାରୀକୁ ଚିହ୍ନିପାରୁନାହିଁ। OpenVPN ସର୍ଭର ଯାଞ୍ଚ କରିବା ଆବଶ୍ୟକ।} tls_alert_bad_certificate{ସର୍ଭର ଏହି ଡିଭାଇସ୍ ସାର୍ଟିଫିକେଟ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି। ପୁଣି ଚେଷ୍ଟା କରିବା ପୂର୍ବରୁ ଡିଭାଇସ୍ ପୁଣି ତିଆରି କରନ୍ତୁ।} tls_alert_unsupported_certificate{Android ବ୍ୟବହାର କରୁଥିବା ସୁରକ୍ଷିତ ସାର୍ଟିଫିକେଟ୍ ପ୍ରକାର ସର୍ଭର ସମର୍ଥନ କରୁନାହିଁ।} tls_client_certificate_required{ସର୍ଭରକୁ କ୍ଲାଏଣ୍ଟ ସାର୍ଟିଫିକେଟ୍ ଆବଶ୍ୟକ, କିନ୍ତୁ OpenVPN ଇଞ୍ଜିନ୍ ଏହା ଉପସ୍ଥାପନ କରିପାରିଲା ନାହିଁ।} tls_alert_misc{ସର୍ଭର ସାର୍ଟିଫିକେଟ୍ ଓ ସଂସ୍କରଣ ଶ୍ରେଣୀ ବାହାରେ ଏକ TLS ସତର୍କବାଣୀ ଫେରାଇଛି।} tls_signature_algorithm_rejected{ସର୍ଭର Android Keystore ଚାବିର ECDSA P-256 ଆଲଗୋରିଦମ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି।} tls_handshake_rejected{ସଂଯୋଗ ପୂର୍ବରୁ ସର୍ଭର TLS ବୁଝାମଣାକୁ ବାଧା ଦେଇଛି।} tls_version_rejected{କ୍ଲାଏଣ୍ଟ ଓ ସର୍ଭର ଉଭୟ ସମର୍ଥନ କରୁଥିବା କୌଣସି TLS ସଂସ୍କରଣ ମିଳିଲା ନାହିଁ।} tls_certificate_expired{ସଂଯୋଗ ସମୟରେ ଉପସ୍ଥାପିତ ସାର୍ଟିଫିକେଟ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି।} tls_certificate_revoked{ସଂଯୋଗ ସମୟରେ ଉପସ୍ଥାପିତ ସାର୍ଟିଫିକେଟ୍ ପ୍ରତ୍ୟାହାର କରାଯାଇଛି।} transport_failed{ବର୍ତ୍ତମାନର ନେଟୱର୍କରେ OpenVPN ସର୍ଭର ସାଡ଼ା ଦେଉନାହିଁ। କିଛି ସମୟ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} tun_configuration_rejected{OpenVPN ଅନୁରୋଧ କରିଥିବା ନେଟୱର୍କ ବିନ୍ୟାସ Android ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି।} tun_setup_failed{Android ଇଣ୍ଟରଫେସ୍ ସୃଷ୍ଟି ପୂର୍ବରୁ OpenVPN ଇଞ୍ଜିନ୍ ନେଟୱର୍କ ଯୋଜନା ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି।} tun_interface_create_failed{OpenVPN ଇଞ୍ଜିନ୍, Android VpnService ଠାରୁ TUN ଇଣ୍ଟରଫେସ୍ ପାଇପାରିଲା ନାହିଁ।} tun_interface_disabled{ସଂଯୋଗ ସମୟରେ Android କିମ୍ବା OpenVPN ଇଞ୍ଜିନ୍ TUN ଇଣ୍ଟରଫେସ୍ ଅକ୍ଷମ କରିଦେଇଛି।} tun_halted{OpenVPN ଇଞ୍ଜିନ୍ TUN ଇଣ୍ଟରଫେସ୍ ବନ୍ଦ କରିବାକୁ ଏକ ଅନୁରୋଧ ପାଇଛି।} tun_already_established{ଏକ ସଂଯୋଗରେ OpenVPN ଦ୍ୱିତୀୟ ଏକ ଇଣ୍ଟରଫେସ୍ ଅନୁରୋଧ କରିଥିଲା। ସୁରକ୍ଷା ପାଇଁ ଟନେଲ ବନ୍ଦ କରାଯାଇଛି।} tun_addresses_missing{ସର୍ଭର ବ୍ୟବହାରଯୋଗ୍ୟ ଟନେଲ ଠିକଣା ପ୍ରଦାନ କରିନାହିଁ।} tun_routes_missing{ସର୍ଭର ବ୍ୟବହାରଯୋଗ୍ୟ ଟନେଲ ରାଉଟ୍ ପ୍ରଦାନ କରିନାହିଁ।} tun_dns_missing{ସର୍ଭର ବ୍ୟବହାରଯୋଗ୍ୟ DNS ସର୍ଭର ପ୍ରଦାନ କରିନାହିଁ।} tun_permission_revoked{ସଂଯୋଗ ସମୟରେ Android VPN ଅନୁମତି ପ୍ରତ୍ୟାହାର କରିଛି।} tun_establish_returned_null{Android ଇଣ୍ଟରଫେସ୍ ତିଆରି କରିନାହିଁ, ସାଧାରଣତଃ ଅନ୍ୟ ଏକ VPN ଏବେ ବି ସକ୍ରିୟ ଥିବାରୁ।} openvpn_service_start_failed{Android OpenVPN ଅଗ୍ରଭୂମି ସେବା ଆରମ୍ଭ କରିପାରିଲା ନାହିଁ।} openvpn_operation_timeout{OpenVPN ଇଞ୍ଜିନ୍ ପ୍ରତି ଏକ JNI କଲ୍ ନିର୍ଦ୍ଧାରିତ ସର୍ବାଧିକ ସମୟ ଅତିକ୍ରମ କରିଛି।} openvpn_start_failed{Android ସେବା ପ୍ରସ୍ତୁତ, କିନ୍ତୁ OpenVPN ଇଞ୍ଜିନ୍ ପ୍ରୋଫାଇଲ୍ ଆରମ୍ଭ ଗ୍ରହଣ କରିନାହିଁ।} openvpn_connection_failed{CONNECTED ଇଭେଣ୍ଟ ପଠାଇବା ପୂର୍ବରୁ OpenVPN ଇଞ୍ଜିନ୍ ବନ୍ଦ ହୋଇଗଲା।} openvpn_core_status_error{ନେଟିଭ୍ OpenVPN ଲୁପ୍ ଏକ ତ୍ରୁଟି ସହ ଶେଷ ହୋଇଛି, ଏବଂ ଅଧିକ ନିର୍ଦ୍ଦିଷ୍ଟ ଶେଷ ଇଭେଣ୍ଟ ନାହିଁ।} openvpn_stopped_before_connected{ନେଟିଭ୍ OpenVPN ଲୁପ୍ CONNECTED ପୂର୍ବରୁ ବନ୍ଦ ହୋଇଗଲା, ସ୍ପଷ୍ଟ ଇଞ୍ଜିନ୍ ତ୍ରୁଟି ବିନା।} openvpn_auth_failed{OpenVPN ସର୍ଭର ପ୍ରୋଫାଇଲ୍ ପ୍ରମାଣୀକରଣ ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି।} openvpn_client_setup_failed{ନେଟୱର୍କ ସଂଯୋଗ ପୂର୍ବରୁ OpenVPN ଇଞ୍ଜିନ୍ କ୍ଲାଏଣ୍ଟ ଆରମ୍ଭ କରିପାରିଲା ନାହିଁ।} openvpn_client_halted{OpenVPN ଇଞ୍ଜିନ୍ କ୍ଲାଏଣ୍ଟରୁ ଚୂଡ଼ାନ୍ତ ବନ୍ଦ ଅନୁରୋଧ ପାଇଛି।} openvpn_client_restart{OpenVPN ଇଞ୍ଜିନ୍ ନିଜର ଟ୍ରାନ୍ସପୋର୍ଟ ସେସନ୍‌ର ପୁନଃ ଆରମ୍ଭ ଅନୁରୋଧ କରିଛି।} openvpn_inactive_timeout{ନିଷ୍କ୍ରିୟତା ସମୟ ସୀମା ପରେ OpenVPN ଇଞ୍ଜିନ୍ ସେସନ୍ ବନ୍ଦ କରିଦେଇଛି।} openvpn_session_expired{ସର୍ଭର ଜଣାଇଛି ଯେ OpenVPN ସେସନ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି।} openvpn_credentials_required{ସର୍ଭର କିମ୍ବା ପ୍ରକ୍ସି ଏହି ସାର୍ଟିଫିକେଟ୍ ପ୍ରୋଫାଇଲ୍‌ର ଅଂଶ ନଥିବା ଇଣ୍ଟରାକ୍ଟିଭ୍ ପରିଚୟପତ୍ର ମାଗୁଛି।} openvpn_proxy_failed{OpenVPN ଇଞ୍ଜିନ୍ ବିନ୍ୟାସିତ ପ୍ରକ୍ସି କିମ୍ବା ରିଲେରେ ବିଫଳତା ଜଣାଇଛି।} openvpn_compression_failed{ପ୍ରୋଫାଇଲ୍ ବା ସର୍ଭର ଘୋଷଣା କରିଥିବା ସଙ୍କୋଚନ ମୋଡ୍ OpenVPN ଇଞ୍ଜିନ୍ ପ୍ରତ୍ୟାଖ୍ୟାନ କରିଛି।} openvpn_ntlm_crypto_unavailable{ପ୍ରୋଫାଇଲ୍ ଏକ NTLM ଏନକ୍ରିପ୍ସନ୍ ଅନୁରୋଧ କରୁଛି ଯାହା ଏହି ସଂସ୍କରଣରେ ଉପଲବ୍ଧ ନାହିଁ।} openvpn_feature_unsupported{ପ୍ରୋଫାଇଲ୍ କିମ୍ବା ସର୍ଭରକୁ ଏହି Android କ୍ଲାଏଣ୍ଟରେ ନଥିବା ଏକ ବୈଶିଷ୍ଟ୍ୟ ଆବଶ୍ୟକ।} network_unavailable{କୌଣସି ବ୍ୟବହାରଯୋଗ୍ୟ ଭୌତିକ ନେଟୱର୍କ ଉପଲବ୍ଧ ନାହିଁ।} network_lost{ନେଟୱର୍କ ସଂଯୋଗ ଚାଲିଯିବା ପରେ ଟନେଲ ବନ୍ଦ କରାଯାଇଛି।} certificate_validation_failed{OpenVPN ସର୍ଭରର ପରିଚୟ ଯାଞ୍ଚ କରାଯାଇପାରିଲା ନାହିଁ।} openvpn_certificate_expired{ପୁନଃ ସଂଯୋଗ କରିବା ପୂର୍ବରୁ OpenVPN ପ୍ରୋଫାଇଲ୍ ନବୀକରଣ କରନ୍ତୁ।} tunnel_active_for_another_account{ଏହି ସଂଯୋଗ ପୂର୍ବରୁ ଅନ୍ୟ ଆକାଉଣ୍ଟର ଟନେଲ ବନ୍ଦ ହେବା ଆବଶ୍ୟକ।} tunnel_already_active{Android ଜଣାଉଛି ଯେ ପୂର୍ବ VPN ସେସନ୍ ଏବେ ବି ଇଣ୍ଟରଫେସ୍ ବ୍ୟବହାର କରୁଛି।} tunnel_stop_timeout{ନିର୍ଦ୍ଧାରିତ ସମୟ ସୀମା ମଧ୍ୟରେ {protocol} ଇଞ୍ଜିନ୍ VPN ଇଣ୍ଟରଫେସ୍ ମୁକ୍ତ ହୋଇଥିବା ନିଶ୍ଚିତ କରିନାହିଁ।} tunnel_disconnected{ଆରମ୍ଭ ପରେ ଟନେଲ ଅପ୍ରତ୍ୟାଶିତ ଭାବେ ଶେଷ ହୋଇଥିବା ନେଟିଭ୍ ଇଞ୍ଜିନ୍ ଜଣାଇଛି।} native_bridge_unavailable{ଆପ୍ Android VPN ସେବାକୁ ଆକ୍ସେସ୍ କରିପାରୁନାହିଁ। ଆପ୍ ବନ୍ଦ କରି ପୁଣି ଖୋଲନ୍ତୁ, ତା’ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।} native_operation_failed{ଏକ ଆପ୍ ତ୍ରୁଟି VPN କାର୍ଯ୍ୟକୁ ବାଧା ଦେଇଛି। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ। ସମସ୍ୟା ଜାରି ରହିଲେ, ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ ଚଲାନ୍ତୁ।} invalid_arguments{ଏହି VPN କାର୍ଯ୍ୟ ପାଇଁ ଆବଶ୍ୟକୀୟ ସୂଚନା ଅସମ୍ପୂର୍ଣ୍ଣ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ। ସମସ୍ୟା ଜାରି ରହିଲେ, ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ ଚଲାନ୍ତୁ।} invalid_account_id{ନେଟିଭ୍ କାର୍ଯ୍ୟ ଏକ ବୈଧ ଆକାଉଣ୍ଟ ଆଇଡି ସହିତ ଜଡ଼ିତ ନୁହେଁ।} invalid_device_id{ନେଟିଭ୍ ଇଞ୍ଜିନ୍‌କୁ ପଠାଯାଇଥିବା ଡିଭାଇସ୍ ଆଇଡି ନାହିଁ କିମ୍ବା ଅବୈଧ।} storage_key_not_allowed{Android ବ୍ରିଜ୍ ଅନୁମୋଦିତ ଷ୍ଟୋରେଜ୍ ତାଲିକା ବାହାରେ ଥିବା ଏକ ଚାବି ଅବରୋଧ କରିଛି।} secure_storage_read_failed{Android Keystore ଏହି ଆକାଉଣ୍ଟର ସ୍ଥାନୀୟ ତଥ୍ୟ ଡିକ୍ରିପ୍ଟ କରିପାରିଲା ନାହିଁ।} secure_storage_write_failed{Android Keystore ସ୍ଥାନୀୟ ତଥ୍ୟ ଏନକ୍ରିପ୍ଟ କିମ୍ବା ସଞ୍ଚୟ କରିପାରିଲା ନାହିଁ।} key_generation_failed{Android ସୁରକ୍ଷିତ ଷ୍ଟୋରେଜ୍‌ରେ WireGuard ଚାବି ସୃଷ୍ଟି କିମ୍ବା ପଢ଼ିପାରିଲା ନାହିଁ।} csr_generation_failed{Android Keystore OpenVPN P-256 CSR ସୃଷ୍ଟି କିମ୍ବା ସ୍ୱାକ୍ଷର କରିପାରିଲା ନାହିଁ।} other{ଡକ୍ୟୁମେଣ୍ଟ ହୋଇନଥିବା ଏକ ନେଟିଭ୍ ଶାଖା ବିଫଳ ହୋଇଛି। ତଳେ ଦେଖାଯାଇଥିବା ଡାଏଗ୍ନୋଷ୍ଟିକ୍ କୋଡ୍ ସହାୟତା ଦଳକୁ ପଠାନ୍ତୁ।}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "ଅନୁମତି ଅନୁରୋଧ ପୂର୍ବରୁ ଖୋଲା ଅଛି",
+    "notice_permissionRequestInProgress_message": "Android VPN ଅନୁମତି ଅନୁରୋଧ ପୂର୍ବରୁ ଦେଖାଯାଉଛି। ପୁଣି ଚେଷ୍ଟା କରିବା ପୂର୍ବରୁ ଏହାକୁ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।",
+    "notice_permissionRequestInterrupted_title": "VPN ଅନୁମତି ଅନୁରୋଧ ବାଧା ପଡ଼ିଲା",
+    "notice_permissionRequestInterrupted_message": "ଆପ୍ ପ୍ରତିକ୍ରିୟା ପାଇବା ପୂର୍ବରୁ VPN ଅନୁମତି ସ୍କ୍ରିନ୍ ବନ୍ଦ ହୋଇଗଲା।",
+    "notice_openvpnProofMissing_title": "OpenVPN ସଂଯୋଗ ନିଶ୍ଚିତ ହୋଇନାହିଁ",
+    "notice_openvpnProofMissing_message": "OpenVPN ସଂଯୋଗ ନିଶ୍ଚିତ ହୋଇପାରିଲା ନାହିଁ। ସୁରକ୍ଷା ପାଇଁ ଏହାକୁ ବନ୍ଦ କରାଯାଇଛି। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "openvpnCleanup_title": "OpenVPN ପ୍ରୋଫାଇଲ୍ ପ୍ରତ୍ୟାହାର କରାଯାଇଛି",
+    "openvpnCleanup_working": "ପ୍ରତ୍ୟାହାର କରାଯାଇଥିବା OpenVPN ପ୍ରୋଫାଇଲ୍ ବନ୍ଦ କରି ହଟାଯାଉଛି…",
+    "openvpnCleanup_stopFailed": "OpenVPN ବନ୍ଦ ହେବା ନିଶ୍ଚିତ ହୋଇନାହିଁ। ନୂଆ ପ୍ରୋଫାଇଲ୍ ତିଆରି କରିବା ପୂର୍ବରୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "openvpnCleanup_cleanupFailed": "ପ୍ରତ୍ୟାହାର କରାଯାଇଥିବା OpenVPN ପ୍ରୋଫାଇଲ୍ ସମ୍ପୂର୍ଣ୍ଣ ଭାବେ ହଟାଯାଇପାରିଲା ନାହିଁ। ସଫା କରିବାକୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "openvpnCleanup_complete": "ପ୍ରତ୍ୟାହାର କରାଯାଇଥିବା OpenVPN ପ୍ରୋଫାଇଲ୍ ହଟାଯାଇଛି। ଏକ ନୂଆ ପ୍ରୋଫାଇଲ୍ ତିଆରି କରିବାକୁ “ସଂଯୋଗ କରନ୍ତୁ” ଟାପ୍ କରନ୍ତୁ।",
+    "network_title": "ନେଟୱର୍କ ବିନ୍ୟାସ",
+    "network_ipv4Fallback": "IPv6 ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ। IPv4 ସହ ପ୍ରସ୍ତୁତି ଜାରି ରହିଛି।",
+    "network_rejectedTitle": "ନେଟୱର୍କ ବିନ୍ୟାସ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି",
+    "network_rejectedMessage": "ଟନେଲ ବିନ୍ୟାସ ଅସମ୍ପୂର୍ଣ୍ଣ କିମ୍ବା ଅନୁମୋଦିତ ଠିକଣା ସହ ମେଳ ଖାଉନାହିଁ। ଆପ୍‌ରୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "network_unreadableTitle": "ସ୍ଥାନୀୟ ବିନ୍ୟାସ ପଢ଼ିହେଉନାହିଁ",
+    "network_unreadableMessage": "ସଞ୍ଚିତ OpenVPN ନେଟୱର୍କ ବିନ୍ୟାସ ବ୍ୟବହାର କରାଯାଇପାରିବ ନାହିଁ। ଏହାକୁ ଅଦ୍ୟତନ କରିବା ପାଇଁ ଆପ୍‌ରୁ ପୁନର୍ବାର ସଂଯୋଗ କରନ୍ତୁ।",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "ନେଟୱର୍କ ସୁରକ୍ଷା",
+    "protection_subtitle": "ଯଦି VPN ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହୁଏ, ସିଧାସଳଖ ଇଣ୍ଟରନେଟ୍ ପ୍ରବେଶ ଅବରୋଧ କରନ୍ତୁ।",
+    "protection_active": "ସିଷ୍ଟମ୍ ସୁରକ୍ଷା ସକ୍ରିୟ",
+    "protection_alwaysOnOnly": "ସର୍ବଦା ଚାଲୁ ଥିବା VPN ସକ୍ରିୟ; VPN ବାହାରେ ଅବରୋଧ ଚାଲୁ କରନ୍ତୁ",
+    "protection_inactive": "ସିଷ୍ଟମ୍ ସୁରକ୍ଷା ନିଷ୍କ୍ରିୟ",
+    "protection_unknown": "ସିଷ୍ଟମ୍ ସୁରକ୍ଷା ଯାଞ୍ଚ କରନ୍ତୁ",
+    "protection_openSettings": "Android ସେଟିଂସ୍ ଖୋଲନ୍ତୁ",
+    "protection_dialogTitle": "ନେଟୱର୍କ ସୁରକ୍ଷା ସେଟଅପ୍ କରନ୍ତୁ",
+    "protection_dialogMessage": "Android ସର୍ବଦା ଚାଲୁ ଥିବା VPN ଏବଂ VPN ବାହାରେ ସଂଯୋଗ ଅବରୋଧକୁ ପରିଚାଳନା କରେ। FuzeVPN ଚୟନ ହୋଇଛି କି ନାହିଁ ଯାଞ୍ଚ କରନ୍ତୁ ଏବଂ ସିଷ୍ଟମ୍ ସେଟିଂସ୍‌ରେ ଅବରୋଧ ସକ୍ରିୟ କରନ୍ତୁ।",
+    "protection_dialogOpen": "ସେଟିଂସ୍ ଖୋଲନ୍ତୁ",
+    "session_systemProtectionNote": "ଯଦି Android ଏବେ ମଧ୍ୟ VPN ବାହାରେ ଟ୍ରାଫିକ୍ ଅବରୋଧ କରୁଥାଏ, ଏହି ସୁରକ୍ଷା ଯାଞ୍ଚ କିମ୍ବା ବଦଳାଇବା ପାଇଁ ସିଷ୍ଟମ୍ ସେଟିଂସ୍ ଖୋଲନ୍ତୁ।",
+    "diagnostics_title": "ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ",
+    "diagnostics_settingsTitle": "ଆପ୍ ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ",
+    "diagnostics_automaticTitle": "ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ତ୍ରୁଟି ପଠାନ୍ତୁ",
+    "diagnostics_automaticDescription": "ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ତ୍ରୁଟି ଘଟିଲେ ଏକ ଛୋଟ ବୈଷୟିକ ରିପୋର୍ଟ ପଠାନ୍ତୁ।",
+    "diagnostics_privacy": "ପଠାଯାଇଥିବା ରିପୋର୍ଟଗୁଡ଼ିକ ସାଇନ୍ ଇନ୍ ଥିବା ଆକାଉଣ୍ଟ ସହ ଲିଙ୍କ୍ ହୋଇଥାଏ ଏବଂ 30 ଦିନ ପର୍ଯ୍ୟନ୍ତ ରଖାଯାଏ। ସେଥିରେ ବ୍ରାଉଜିଂ ଇତିହାସ, ପାସୱାର୍ଡ କିମ୍ବା VPN ଚାବି ଥାଏ ନାହିଁ।",
+    "diagnostics_manualOpen": "ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ ଚଲାନ୍ତୁ",
+    "diagnostics_localDescription": "ଆପ୍ ଓ VPN ସ୍ଥିତିର ଏକ ରିପୋର୍ଟ ତିଆରି କରନ୍ତୁ। ଆପଣଙ୍କ ସଂଯୋଗ ଅପରିବର୍ତ୍ତିତ ରହିବ।",
+    "diagnostics_sendReport": "ରିପୋର୍ଟ ପଠାନ୍ତୁ",
+    "diagnostics_sendHint": "ଏହି ଡିଭାଇସ୍‌ରେ ରିପୋର୍ଟ ରଖିବା ପାଇଁ ଏହି ବାକ୍ସ ଅଣଚିହ୍ନିତ ରଖନ୍ତୁ।",
+    "diagnostics_signedOut": "ରିପୋର୍ଟ ପଠାଇବା ପାଇଁ ଆପଣଙ୍କ ଆକାଉଣ୍ଟରେ ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।",
+    "diagnostics_localLifetime": "ଆପ୍ ବନ୍ଦ କରିବା ପରେ ଏହି ରିପୋର୍ଟ ରଖିବା ପାଇଁ ଆପଣଙ୍କ ଫୋନ୍‌ରେ ଏହାକୁ ସଞ୍ଚୟ କରନ୍ତୁ।",
+    "diagnostics_run": "ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ ଚଲାନ୍ତୁ",
+    "diagnostics_rerun": "ପୁନର୍ବାର ଡାଏଗ୍ନୋଷ୍ଟିକ୍ସ ଚଲାନ୍ତୁ",
+    "diagnostics_running": "ଯାଞ୍ଚ ହେଉଛି…",
+    "diagnostics_sending": "ରିପୋର୍ଟ ପଠାଯାଉଛି…",
+    "diagnostics_prepared": "ଏହି ଡିଭାଇସ୍‌ରେ ରିପୋର୍ଟ ପ୍ରସ୍ତୁତ",
+    "diagnostics_queued": "ରିପୋର୍ଟ ପଠାଯିବା ପାଇଁ ଅପେକ୍ଷାରେ ଅଛି",
+    "diagnostics_sent": "ରିପୋର୍ଟ ପ୍ରାପ୍ତ ହୋଇଛି",
+    "diagnostics_failed": "ପଠାଇବା ବିଫଳ ହେଲା। ଆପଣଙ୍କ ସ୍ଥାନୀୟ ରିପୋର୍ଟ ଏବେ ମଧ୍ୟ ଉପଲବ୍ଧ ଅଛି।",
+    "diagnostics_preparationFailed": "ଡାଏଗ୍ନୋଷ୍ଟିକ୍ ରିପୋର୍ଟ ପ୍ରସ୍ତୁତ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "diagnostics_authenticationRequired": "ରିପୋର୍ଟ ପଠାଇବା ପାଇଁ ପୁନର୍ବାର ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।",
+    "diagnostics_retry": "ପୁଣି ପଠାନ୍ତୁ",
+    "diagnostics_export": "ରିପୋର୍ଟ ସଞ୍ଚୟ କରନ୍ତୁ",
+    "diagnostics_exportFailed": "ଏକ୍ସପୋର୍ଟ ବିଫଳ ହେଲା। ସ୍ଥାନୀୟ ରିପୋର୍ଟରୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "diagnostics_preferenceFailed": "ଏହି ସେଟିଂସ୍ ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "diagnostics_receipt": "ସନ୍ଦର୍ଭ: {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "{date}ରେ ପ୍ରାପ୍ତ ହୋଇଛି",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "{date} ପର୍ଯ୍ୟନ୍ତ ରଖାଯିବ",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "ଏହି ରିପୋର୍ଟ ପୂର୍ବରୁ ପ୍ରାପ୍ତ ହୋଇସାରିଛି।",
+    "diagnostics_preview": "ରିପୋର୍ଟ ପୂର୍ବାବଲୋକନ",
+    "diagnostics_eventCount": "{count, plural, =0{କୌଣସି ବୈଷୟିକ ଇଭେଣ୍ଟ ଯୋଡ଼ାଯାଇନାହିଁ} =1{1ଟି ବୈଷୟିକ ଇଭେଣ୍ଟ ଯୋଡ଼ାଯାଇଛି} other{{count}ଟି ବୈଷୟିକ ଇଭେଣ୍ଟ ଯୋଡ଼ାଯାଇଛି}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "ବୈଷୟିକ ବିବରଣୀ",
+    "diagnostics_empty": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଏଗ୍ନୋଷ୍ଟିକ୍ ରିପୋର୍ଟ ପ୍ରସ୍ତୁତ ହୋଇନାହିଁ।",
+    "diagnostics_checkName": "{id, select, tunnel_connection{ଟନେଲ ସ୍ଥିତି} handshake{ସଂଯୋଗ ନିଶ୍ଚିତକରଣ} certificate{VPN ସାର୍ଟିଫିକେଟ୍} kill_switch{Android ସୁରକ୍ଷା} connectivity{ଉପଲବ୍ଧ ନେଟୱର୍କ} api_reachability{ସେବା ପ୍ରବେଶ} secure_storage{ସୁରକ୍ଷିତ ଷ୍ଟୋରେଜ୍} other{ସ୍ଥାନୀୟ ଯାଞ୍ଚ}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{ଯାଞ୍ଚ ହୋଇଛି} failed{ଧ୍ୟାନ ଆବଶ୍ୟକ} skipped{ପରୀକ୍ଷା ହୋଇନାହିଁ — କୌଣସି ସକ୍ରିୟ ଯାଞ୍ଚ ନାହିଁ} unknown{ସୂଚନା ଉପଲବ୍ଧ ନାହିଁ} other{ସୂଚନା ଉପଲବ୍ଧ ନାହିଁ}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "FuzeVPNକୁ ସ୍ୱାଗତ",
+    "connection_changeLocation": "ଅବସ୍ଥାନ ବଦଳାନ୍ତୁ",
+    "connection_details": "ସଂଯୋଗ ବିବରଣୀ",
+    "locations_searchLabel": "ଏକ ସହର କିମ୍ବା ଦେଶ ଖୋଜନ୍ତୁ",
+    "locations_clearSearch": "ସନ୍ଧାନ ସଫା କରନ୍ତୁ",
+    "locations_filterAll": "ସମସ୍ତ",
+    "locations_filterFavorites": "ମନପସନ୍ଦ",
+    "locations_results": "{count, plural, one{{count}ଟି ଅବସ୍ଥାନ} other{{count}ଟି ଅବସ୍ଥାନ}}",
+    "locations_noResults": "କୌଣସି ଅବସ୍ଥାନ ମିଳିଲା ନାହିଁ",
+    "locations_noResultsHint": "ଅନ୍ୟ ଏକ ସହର କିମ୍ବା ଦେଶ ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "locations_noFavorites": "ଆପଣଙ୍କ ମନପସନ୍ଦ ଅବସ୍ଥାନ, ସହଜରେ ଉପଲବ୍ଧ",
+    "locations_noFavoritesHint": "ଏଠାରେ ସଞ୍ଚୟ କରିବାକୁ ଅବସ୍ଥାନ ପାଖରେ ଥିବା ତାରକା ଉପରେ ଟାପ୍ କରନ୍ତୁ।",
+    "locations_showAll": "ସମସ୍ତ ଅବସ୍ଥାନ ଦେଖନ୍ତୁ",
+    "locations_addFavorite": "{name}କୁ ମନପସନ୍ଦରେ ଯୋଡ଼ନ୍ତୁ",
+    "locations_removeFavorite": "{name}କୁ ମନପସନ୍ଦରୁ ହଟାନ୍ତୁ",
+    "locations_favoriteSaveFailed": "ମନପସନ୍ଦ ଅବସ୍ଥାନଟି ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "locations_emptyTitle": "କୌଣସି ଅବସ୍ଥାନ ଉପଲବ୍ଧ ନାହିଁ",
+    "locations_emptyHint": "ପୁଣି ଚେଷ୍ଟା କରିବାକୁ ତାଲିକା ରିଫ୍ରେଶ୍ କରନ୍ତୁ।",
+    "devices_manage": "ମୋ ଡିଭାଇସ୍ ପରିଚାଳନା କରନ୍ତୁ",
+    "settings_personalization": "ନିଜ ପସନ୍ଦ ଅନୁସାରେ ସଜାନ୍ତୁ",
+    "settings_safety": "ସୁରକ୍ଷା",
+    "settings_help": "ସହାୟତା ଦରକାର କି?",
+    "settings_about": "FuzeVPN ବିଷୟରେ",
+    "diagnostics_heading": "ସଂଯୋଗ ସମସ୍ୟା ବୁଝନ୍ତୁ",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{ଉପଲବ୍ଧ} pending{ପ୍ରସ୍ତୁତ ହେଉଛି} revoked{ହଟାଯାଇଛି} expired{ମିଆଦ ଶେଷ} other{ସ୍ଥିତି ଉପଲବ୍ଧ ନାହିଁ}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "ପସନ୍ଦ ସଞ୍ଚୟ ହୋଇନାହିଁ",
+    "notice_preferenceSave_message": "ଆପଣଙ୍କ ପସନ୍ଦ ବର୍ତ୍ତମାନ ପାଇଁ ଲାଗୁ ହୋଇଛି, କିନ୍ତୁ ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ। ଆପ୍ ବନ୍ଦ କରିବା ପରେ ଏହାକୁ ରଖିବା ପାଇଁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "connection_androidDisconnectHint": "ଯଦି Android VPNକୁ ସକ୍ରିୟ ରଖେ, ଖୋଲୁଥିବା ସେଟିଂସ୍‌ରେ ସର୍ବଦା ଚାଲୁ ଥିବା VPN ବନ୍ଦ କରନ୍ତୁ।",
+    "protection_learnMore": "Android ସୁରକ୍ଷା ବିଷୟରେ ଜାଣନ୍ତୁ",
+    "protection_guideWhy": "VPN ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେଲେ, ଏହି ସୁରକ୍ଷା ଆପ୍‌ଗୁଡ଼ିକୁ ସିଧାସଳଖ ଇଣ୍ଟରନେଟ୍ ବ୍ୟବହାର କରିବାରୁ ରୋକିଥାଏ। ଏହା Androidରେ ବିନ୍ୟାସ କରାଯାଏ।",
+    "protection_guideAlwaysOnTitle": "ସର୍ବଦା ଚାଲୁ ଥିବା VPN",
+    "protection_guideAlwaysOn": "Android VPN ସେବାକୁ ଚାଲୁ ରଖେ ଏବଂ ଫୋନ୍ ପୁନଃ ଚାଲୁ ହେବା ପରେ ଏହାକୁ ପୁନର୍ବାର ଆରମ୍ଭ କରିପାରେ।",
+    "protection_guideBlockTitle": "VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ",
+    "protection_guideBlock": "ଏହି ସେଟିଂସ୍ ସଂଯୋଗ ବାଧା ପଡ଼ିଲେ ମଧ୍ୟ VPN ବାହାରେ ଡାଟା ଯିବାକୁ ରୋକେ।",
+    "protection_guideWarning": "ଏହି ଅବରୋଧ ସକ୍ରିୟ ଥିଲେ, VPN ସଂଯୁକ୍ତ ନହେବା ପର୍ଯ୍ୟନ୍ତ ଇଣ୍ଟରନେଟ୍ ବନ୍ଦ ରହିବ।",
+    "protection_guideStepsTitle": "ସୁରକ୍ଷା ଚାଲୁ କରନ୍ତୁ",
+    "protection_guideStep1": "ତଳେ ଥିବା ବଟନ୍ ବ୍ୟବହାର କରି Android VPN ସେଟିଂସ୍ ଖୋଲନ୍ତୁ।",
+    "protection_guideStep2": "FuzeVPN ପାଖରେ ଥିବା ଗିଅର୍ ଆଇକନ୍ ବ୍ୟବହାର କରି ବିକଳ୍ପଗୁଡ଼ିକ ଖୋଲନ୍ତୁ।",
+    "protection_guideStep3": "ଉପଲବ୍ଧ ଥିଲେ, “ସର୍ବଦା ଚାଲୁ ଥିବା VPN” ସକ୍ରିୟ କରନ୍ତୁ, ତା’ପରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ସକ୍ରିୟ କରନ୍ତୁ।",
+    "protection_guideManufacturers": "ଫୋନ୍ ଅନୁସାରେ ନାମ ଭିନ୍ନ ହୋଇପାରେ। ଆବଶ୍ୟକ ହେଲେ, ସେଟିଂସ୍‌ରେ VPN ଖୋଜନ୍ତୁ, ସାଧାରଣତଃ ନେଟୱର୍କ ଏବଂ ଇଣ୍ଟରନେଟ୍ ଅଧୀନରେ।",
+    "protection_guideDisableTitle": "ଏହି ସୁରକ୍ଷା ବନ୍ଦ କରନ୍ତୁ",
+    "protection_guideDisable": "ସେହି ସେଟିଂସ୍‌ରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ବନ୍ଦ କରନ୍ତୁ, ଯାହାଫଳରେ VPN ବିନା ଇଣ୍ଟରନେଟ୍ ବ୍ୟବହାର କରିହେବ। ଯଦି ଆପଣ ଆଉ ଚାହାନ୍ତି ନାହିଁ ଯେ Android ଏହାକୁ ପୁନର୍ବାର ଆରମ୍ଭ କରୁ, ତେବେ “ସର୍ବଦା ଚାଲୁ ଥିବା VPN” ମଧ୍ୟ ବନ୍ଦ କରନ୍ତୁ।",
+    "protection_guideManual": "ଏହି ସେଟିଂସ୍ ଆପଣ Androidରେ ନିଜେ ବାଛନ୍ତି। FuzeVPN ଆପଣଙ୍କ ପାଇଁ ସେଗୁଡ଼ିକୁ ବଦଳାଏ ନାହିଁ।",
+    "locations_changeTitle": "ଅବସ୍ଥାନ ବଦଳାଇବେ କି?",
+    "locations_changeActive": "VPN ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେବ, ତା’ପରେ {name} ସହ ସଂଯୋଗ କରିବାକୁ ଚେଷ୍ଟା କରାଯିବ।",
+    "locations_changeIdle": "VPN {name} ସହ ସଂଯୋଗ କରିବାକୁ ଚେଷ୍ଟା କରିବ।",
+    "locations_confirmChange": "ବଦଳାନ୍ତୁ ଏବଂ ସଂଯୋଗ କରନ୍ତୁ",
+    "locations_changeBusy": "ଏକ ପରିବର୍ତ୍ତନ ଚାଲିଛି। ଅନ୍ୟ ଅବସ୍ଥାନ ବାଛିବା ପୂର୍ବରୁ ଅପେକ୍ଷା କରନ୍ତୁ।",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "ସ୍ୱୟଂଚାଳିତ ଚୟନ",
+    "locations_cities": "ସହର",
+    "locations_servers": "ସର୍ଭର",
+    "locations_viewCities": "{name}ର ସହରଗୁଡ଼ିକ ଦେଖନ୍ତୁ",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "{name}ର ସର୍ଭରଗୁଡ଼ିକ ଦେଖନ୍ତୁ",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count}ଟି ଦେଶ} other{{count}ଟି ଦେଶ}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count}ଟି ସହର} other{{count}ଟି ସହର}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count}ଟି ସର୍ଭର} other{{count}ଟି ସର୍ଭର}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "ସମସ୍ତ ଦେଶ",
+    "locations_backToCountries": "ଦେଶଗୁଡ଼ିକୁ ଫେରନ୍ତୁ",
+    "locations_backToCities": "{name}ର ସହରଗୁଡ଼ିକୁ ଫେରନ୍ତୁ",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "{name} ବାଛନ୍ତୁ",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "{name} ବାଛନ୍ତୁ",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "କୌଣସି ସୁସଙ୍ଗତ ସର୍ଭର ଉପଲବ୍ଧ ନାହିଁ।",
+    "externalLink_failed": "ଏହି ଲିଙ୍କ୍ ଖୋଲିପାରିଲା ନାହିଁ। ଆପଣ ଏହାକୁ କପି କରି ଆପଣଙ୍କ ବ୍ରାଉଜରରେ ଖୋଲିପାରିବେ।",
+    "externalLink_copy": "ଲିଙ୍କ୍ କପି କରନ୍ତୁ",
+    "externalLink_copied": "ଲିଙ୍କ୍ କପି ହୋଇଛି",
+    "externalLink_copyFailed": "ଲିଙ୍କ୍ କପି କରିପାରିଲା ନାହିଁ। ତଳେ ଥିବା ଠିକଣା ଚୟନ କରନ୍ତୁ।",
+    "settings_deleteAccount": "ମୋ ଆକାଉଣ୍ଟ ଡିଲିଟ୍ କରନ୍ତୁ",
+    "settings_deleteAccountDetail": "ଆକାଉଣ୍ଟ ଡିଲିଟ୍ ଅନୁରୋଧ ପ୍ରକ୍ରିୟା ଦେଖନ୍ତୁ",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "ଆପଣଙ୍କ VPN ସଦସ୍ୟତା ବାଛନ୍ତୁ।",
+    "billing_subscribe": "ସଦସ୍ୟତା ନିଅନ୍ତୁ",
+    "billing_choosePlan": "ଜାରି ରଖିବାକୁ ଏକ ଯୋଜନା ବାଛନ୍ତୁ।",
+    "billing_monthly": "ମାସିକ",
+    "billing_yearly": "ବାର୍ଷିକ",
+    "billing_continue": "Google Play ସହ ଜାରି ରଖନ୍ତୁ",
+    "billing_restore": "କ୍ରୟ ପୁନଃସ୍ଥାପନ କରନ୍ତୁ",
+    "billing_manage": "ସଦସ୍ୟତା ପରିଚାଳନା କରନ୍ତୁ",
+    "billing_deleteAccountWarning": "ଯଦି ଆପଣଙ୍କର Google Play ସଦସ୍ୟତା ଅଛି, ତେବେ ଆପଣଙ୍କ FuzeVPN ଆକାଉଣ୍ଟ ଡିଲିଟ୍ କରିବା ଦ୍ୱାରା ଏହାର ନବୀକରଣ ବାତିଲ ହେବ ନାହିଁ। Google Playରେ ଏହି ନବୀକରଣ ଅଲଗାରେ ପରିଚାଳନା କିମ୍ବା ବାତିଲ କରନ୍ତୁ।",
+    "billing_deleteAccountContinue": "ଆକାଉଣ୍ଟ ଡିଲିଟ୍ ଅନୁରୋଧ ପାଇଁ ଜାରି ରଖନ୍ତୁ",
+    "billing_refresh": "ପ୍ରବେଶାଧିକାର ରିଫ୍ରେଶ୍ କରନ୍ତୁ",
+    "billing_loadingPlans": "ଯୋଜନାଗୁଡ଼ିକ ଲୋଡ୍ ହେଉଛି…",
+    "billing_unavailable": "ବର୍ତ୍ତମାନ କୌଣସି ଯୋଜନା ଉପଲବ୍ଧ ନାହିଁ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "billing_comingSoon": "ସଦସ୍ୟତା ଶୀଘ୍ର ଉପଲବ୍ଧ ହେବ।",
+    "billing_priceDisclosure": "ମୂଲ୍ୟ Google Play ଦ୍ୱାରା ପ୍ରଦାନ କରାଯାଇଛି। ଆପଣ ନିଶ୍ଚିତ କରିବା ପୂର୍ବରୁ ଚୂଡ଼ାନ୍ତ ରାଶି ଏବଂ ପ୍ରଯୁଜ୍ୟ କର ନିଶ୍ଚିତ କରାଯିବ।",
+    "billing_renewalMonthly": "ବାତିଲ ନକରିଲେ ପ୍ରତି ମାସ ସ୍ୱୟଂଚାଳିତ ଭାବେ ନବୀକରଣ ହେବ। ଆପଣ ଯେକୌଣସି ସମୟରେ Google Play ସଦସ୍ୟତାରେ ବାତିଲ କରିପାରିବେ।",
+    "billing_renewalYearly": "ବାତିଲ ନକରିଲେ ପ୍ରତି ବର୍ଷ ସ୍ୱୟଂଚାଳିତ ଭାବେ ନବୀକରଣ ହେବ। ଆପଣ ଯେକୌଣସି ସମୟରେ Google Play ସଦସ୍ୟତାରେ ବାତିଲ କରିପାରିବେ।",
+    "billing_active": "ଆପଣଙ୍କ Premium ପ୍ରବେଶାଧିକାର ସକ୍ରିୟ ଅଛି",
+    "billing_accessUntil": "{date} ପର୍ଯ୍ୟନ୍ତ ପ୍ରବେଶାଧିକାର।",
+    "billing_webManaged": "ଆପଣଙ୍କ ସଦସ୍ୟତା FuzeVPN ୱେବସାଇଟ୍‌ରେ ପରିଚାଳିତ ହୁଏ।",
+    "billing_playManaged": "ଆପଣଙ୍କ ସଦସ୍ୟତା Google Play ଦ୍ୱାରା ପରିଚାଳିତ ହୁଏ।",
+    "billing_playOnHold": "ଆପଣଙ୍କ Google Play ସଦସ୍ୟତା ସ୍ଥଗିତ ଅଛି କିମ୍ବା ଦେୟ ପାଇଁ ଅପେକ୍ଷାରେ ଅଛି। Google Playରେ ଏହାକୁ ଠିକ୍ କରିବାକୁ “ସଦସ୍ୟତା ପରିଚାଳନା କରନ୍ତୁ” ଖୋଲନ୍ତୁ।",
+    "billing_playReceiptUnlinked": "ଏହି Google Play ଆକାଉଣ୍ଟରେ ପୂର୍ବରୁ ଏକ Fuze Premium ସଦସ୍ୟତା ଅଛି, ଯାହା ଏହି FuzeVPN ଆକାଉଣ୍ଟ ପାଇଁ ସକ୍ରିୟ ନୁହେଁ। Google Playରେ ଏହାକୁ ଯାଞ୍ଚ କରିବାକୁ “ସଦସ୍ୟତା ପରିଚାଳନା କରନ୍ତୁ” ଖୋଲନ୍ତୁ।",
+    "billing_inactive": "କୌଣସି ସକ୍ରିୟ ସଦସ୍ୟତା ନାହିଁ।",
+    "billing_checkingAccess": "ଆପଣଙ୍କ ପ୍ରବେଶାଧିକାର ଯାଞ୍ଚ ହେଉଛି…",
+    "billing_restoring": "କ୍ରୟ ପୁନଃସ୍ଥାପନ ହେଉଛି…",
+    "billing_pending": "ଦେୟ ଅପେକ୍ଷାରେ ଅଛି। ନିଶ୍ଚିତକରଣ ପରେ ଆପଣଙ୍କ ପ୍ରବେଶାଧିକାର ସକ୍ରିୟ ହେବ।",
+    "billing_cancelled": "କ୍ରୟ ବାତିଲ ହୋଇଛି। କୌଣସି ନୂଆ ସଦସ୍ୟତା ସକ୍ରିୟ ହୋଇନାହିଁ।",
+    "billing_verifying": "କ୍ରୟ ଯାଞ୍ଚ ହେଉଛି…",
+    "billing_success": "ସଦସ୍ୟତା ସକ୍ରିୟ ହୋଇଛି। ଆପଣଙ୍କ Premium ପ୍ରବେଶାଧିକାର ପ୍ରସ୍ତୁତ।",
+    "billing_restored": "ଆପଣଙ୍କ କ୍ରୟ ପୁନଃସ୍ଥାପନ ହୋଇଛି।",
+    "billing_restoreEmpty": "ଏହି Google Play ଆକାଉଣ୍ଟ ପାଇଁ ପୁନଃସ୍ଥାପନ କରିବାକୁ କୌଣସି କ୍ରୟ ନାହିଁ।",
+    "billing_catalogError": "ଯୋଜନା ଲୋଡ୍ କରିପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "billing_purchaseError": "କ୍ରୟ ଆରମ୍ଭ କରିପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "billing_verificationError": "କ୍ରୟ ଯାଞ୍ଚ ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରିବାକୁ କ୍ରୟ ପୁନଃସ୍ଥାପନ କରନ୍ତୁ।",
+    "billing_restoreError": "କ୍ରୟ ପୁନଃସ୍ଥାପନ କରିପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "billing_managementError": "ସଦସ୍ୟତା ପରିଚାଳନା ଖୋଲିପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "billing_storeUnavailable": "ଏହି ଡିଭାଇସ୍‌ରେ Google Play ଉପଲବ୍ଧ ନାହିଁ।",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "ଆପଣଙ୍କ VPN, ସହଜ ଓ ସରଳ।",
+    "welcome_description": "ଆପଣଙ୍କ ସଂଯୋଗକୁ ସୁରକ୍ଷିତ କରନ୍ତୁ। ଆପଣଙ୍କ ଗୋପନୀୟତା ଉପରେ ନିୟନ୍ତ୍ରଣ ରଖନ୍ତୁ।",
+    "welcome_start": "ଆରମ୍ଭ କରନ୍ତୁ",
+    "welcome_alreadyPurchased": "ପୂର୍ବରୁ କିଣିଛନ୍ତି କି?",
+    "welcome_noAccountRequired": "ଆରମ୍ଭ କରିବା ପାଇଁ ଆକାଉଣ୍ଟ ଆବଶ୍ୟକ ନାହିଁ।",
+    "guest_accountTitle": "ଆକାଉଣ୍ଟ ଲିଙ୍କ୍ ହୋଇନାହିଁ",
+    "guest_accountDescription": "ଅନ୍ୟ ଡିଭାଇସ୍‌ରେ ଆପଣଙ୍କ ସଦସ୍ୟତା ବ୍ୟବହାର କରିବାକୁ ସମାନ Google Play ଆକାଉଣ୍ଟ ସହ ଆପଣଙ୍କ କ୍ରୟ ପୁନଃସ୍ଥାପନ କରନ୍ତୁ।",
+    "guest_existingSubscriberSignIn": "ପୂର୍ବରୁ ସଦସ୍ୟତା ନେଇଛନ୍ତି କି? ସାଇନ୍ ଇନ୍ କରନ୍ତୁ",
+    "guest_claimTitle": "FuzeVPNକୁ ସାଙ୍ଗରେ ନିଅନ୍ତୁ",
+    "guest_claimDescription": "ଆପଣଙ୍କ ଅନ୍ୟ ଡିଭାଇସ୍‌ଗୁଡ଼ିକରେ ସଦସ୍ୟତା ବ୍ୟବହାର କରିବାକୁ ଏକ ଆକାଉଣ୍ଟ ତିଆରି କରନ୍ତୁ। ଏହି ପଦକ୍ଷେପ ଇଚ୍ଛାଧୀନ।",
+    "guest_skip": "ପରେ ହେଉ",
+    "guest_activationTitle": "Fuze Premium ସକ୍ରିୟ ଅଛି",
+    "guest_activationDescription": "ଆପଣଙ୍କ ସଦସ୍ୟତା ପ୍ରସ୍ତୁତ। ଆପଣଙ୍କ VPN ବ୍ୟବହାର କରନ୍ତୁ ଏବଂ ଯେତେବେଳେ ଚାହିଁବେ ଆକାଉଣ୍ଟ ତିଆରି କରନ୍ତୁ।",
+    "guest_useVpn": "ମୋ VPN ବ୍ୟବହାର କରନ୍ତୁ",
+    "guest_loginRequired": "ଏହି କ୍ରୟ ପୂର୍ବରୁ ଏକ FuzeVPN ଆକାଉଣ୍ଟ ସହ ଲିଙ୍କ୍ ହୋଇଛି। ଆପଣଙ୍କ ସଦସ୍ୟତା ପାଇବାକୁ ସେହି ଆକାଉଣ୍ଟରେ ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।",
+    "guest_signOutWarning": "ସମାନ Google Play ଆକାଉଣ୍ଟ ସହ କ୍ରୟ ପୁନଃସ୍ଥାପନ କରି ଆପଣ ନିଜ ସଦସ୍ୟତା ପୁନଃପ୍ରାପ୍ତ କରିପାରିବେ।",
+    "guest_profileUnavailable": "ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ପୂର୍ବରୁ ଲିଙ୍କ୍ ହୋଇଛି। ଆପଣଙ୍କ ବିବରଣୀ ଦେଖିବା ଓ ପରିଚାଳନା କରିବା ପାଇଁ ସାଇନ୍ ଇନ୍ କରନ୍ତୁ।",
+    "billing_acceptance": "ଜାରି ରଖିଲେ, ଆପଣ ବ୍ୟବହାରର ସର୍ତ୍ତାବଳୀ ଏବଂ ଗୋପନୀୟତା ନୀତି ସ୍ୱୀକାର କରୁଛନ୍ତି।",
+    "guest_verifyEmailReminder": "ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ସୁରକ୍ଷିତ କରିବାକୁ ଆପଣଙ୍କ ଇମେଲ ଠିକଣା ନିଶ୍ଚିତ କରନ୍ତୁ। ଆପଣ ନିଜ VPN ବ୍ୟବହାର ଜାରି ରଖିପାରିବେ।",
+    "guest_serviceUnavailable": "ସେବା ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ। ଅଳ୍ପ ସମୟ ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "guest_restoreError": "ଆପଣଙ୍କ କ୍ରୟ ପୁନଃସ୍ଥାପନ କରାଯାଇପାରିଲା ନାହିଁ। କ୍ରୟ ପାଇଁ ବ୍ୟବହୃତ Google Play ଆକାଉଣ୍ଟ ସହ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "guest_claimSuccess": "ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ତିଆରି ହୋଇଛି। ଆପଣଙ୍କ ସଦସ୍ୟତା ଏବଂ VPN ପ୍ରବେଶାଧିକାର ଅକ୍ଷୁଣ୍ଣ ରହିଛି।",
+    "guest_emailExists": "ଏହି ଇମେଲ ପୂର୍ବରୁ ବ୍ୟବହୃତ ହେଉଛି। ଅନ୍ୟ ଠିକଣା ବାଛନ୍ତୁ କିମ୍ବା ଆପଣଙ୍କ ବିଦ୍ୟମାନ ଆକାଉଣ୍ଟରେ ସାଇନ୍ ଇନ୍ କରନ୍ତୁ। ଆପଣଙ୍କ କ୍ରୟ Google Play ମାଧ୍ୟମରେ ଉପଲବ୍ଧ ରହିବ।",
+    "guest_claimError": "ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ତିଆରି କରାଯାଇପାରିଲା ନାହିଁ। ଆପଣ ନିଜ VPN ବ୍ୟବହାର ଜାରି ରଖିପାରିବେ ଏବଂ ପରେ ପୁଣି ଚେଷ୍ଟା କରିପାରିବେ।",
+    "guest_secureStorageError": "ଏହି ଡିଭାଇସ୍‌ରେ ଆପଣଙ୍କ ସେସନ୍ ସୁରକ୍ଷିତ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "guest_premiumRequired": "ଆପଣଙ୍କ VPN ସକ୍ରିୟ କରିବାକୁ ଏକ ସଦସ୍ୟତା ବାଛନ୍ତୁ।",
+    "welcome_viewPlans": "ଯୋଜନାଗୁଡ଼ିକ ଦେଖନ୍ତୁ",
+    "google_continue": "Google ସହ ଜାରି ରଖନ୍ତୁ",
+    "google_or": "କିମ୍ବା",
+    "google_title": "ଆପଣଙ୍କ FuzeVPN ଆକାଉଣ୍ଟ",
+    "google_settingUp": "ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ତିଆରି ସମାପ୍ତ କରନ୍ତୁ",
+    "google_country": "ବାସସ୍ଥାନର ଦେଶ",
+    "google_profileDescription": "ଆପଣଙ୍କ ଦେଶ ବାଛନ୍ତୁ ଏବଂ ଆପଣଙ୍କ FuzeVPN ଆକାଉଣ୍ଟ ତିଆରି କରିବାକୁ ଦୁଇଟି ଦଲିଲ ପଢ଼ନ୍ତୁ।",
+    "google_claimDescription": "ଆପଣଙ୍କ ଅତିଥି ଆକାଉଣ୍ଟକୁ Google ସହ ଲିଙ୍କ୍ କରନ୍ତୁ। ଆପଣଙ୍କ ସଦସ୍ୟତା ଏବଂ ଡିଭାଇସ୍ ଏହି ଆକାଉଣ୍ଟ ସହ ଯୋଡ଼ା ରହିବ।",
+    "google_linkTitle": "FuzeVPN ସହ Google ଲିଙ୍କ୍ କରନ୍ତୁ",
+    "google_linkDescription": "ଆପଣଙ୍କ ବିଦ୍ୟମାନ FuzeVPN ଆକାଉଣ୍ଟକୁ ପ୍ରବେଶ ନିଶ୍ଚିତ କରନ୍ତୁ। ଏହି ପଦକ୍ଷେପରେ ଆପଣଙ୍କ Google ପାସୱାର୍ଡ ମାଗାଯିବ ନାହିଁ।",
+    "google_password": "FuzeVPN ପାସୱାର୍ଡ",
+    "google_linkAccount": "ଲିଙ୍କ୍ ନିଶ୍ଚିତ କରନ୍ତୁ",
+    "google_requestEmail": "ମୋତେ ନିଶ୍ଚିତକରଣ ଇମେଲ ପଠାନ୍ତୁ",
+    "google_emailInstructions": "FuzeVPN ଇମେଲ ଖୋଲନ୍ତୁ ଏବଂ ନିଶ୍ଚିତକରଣ କୋଡ୍ ଲେଖନ୍ତୁ।",
+    "google_emailCode": "ଇମେଲ ନିଶ୍ଚିତକରଣ କୋଡ୍",
+    "google_confirmEmail": "କୋଡ୍ ନିଶ୍ଚିତ କରନ୍ତୁ",
+    "google_restart": "ଅନ୍ୟ Google ଆକାଉଣ୍ଟ ବାଛନ୍ତୁ",
+    "google_resume": "ଏହି ପ୍ରୟାସ ଯାଞ୍ଚ କରନ୍ତୁ",
+    "google_unavailable": "Google ସାଇନ୍ ଇନ୍ ଉପଲବ୍ଧ ନାହିଁ। ଆପଣ ଇମେଲ ଏବଂ ପାସୱାର୍ଡ ବ୍ୟବହାର କରିପାରିବେ।",
+    "google_expired": "ଏହି ପ୍ରୟାସର ମିଆଦ ଶେଷ ହୋଇଛି। ଏହାକୁ ବାତିଲ କରନ୍ତୁ ଏବଂ ପୁଣି ଆରମ୍ଭ କରନ୍ତୁ।",
+    "google_conflict": "ଏହି Google ଆକାଉଣ୍ଟ ଅନ୍ୟତ୍ର ପୂର୍ବରୁ ଲିଙ୍କ୍ ହୋଇଛି। ଆପଣଙ୍କ ବର୍ତ୍ତମାନର ଆକାଉଣ୍ଟ ଏବଂ ସଦସ୍ୟତା ରଖାଯାଇଛି।",
+    "google_error": "Google ସାଇନ୍ ଇନ୍ ବିଫଳ ହୋଇଛି। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ; ଆପଣଙ୍କ ବର୍ତ୍ତମାନର ପ୍ରବେଶାଧିକାର ରଖାଯାଇଛି।",
+    "google_uncertain": "ଫଳାଫଳ ନିଶ୍ଚିତ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଆରମ୍ଭ କରିବା ପୂର୍ବରୁ ଏହି ପ୍ରୟାସ ଯାଞ୍ଚ କରନ୍ତୁ କିମ୍ବା ଏହାକୁ ବାତିଲ କରନ୍ତୁ।",
+    "google_cancelFailed": "ବାତିଲ ନିଶ୍ଚିତ କରାଯାଇପାରିଲା ନାହିଁ। ଏହି ସ୍କ୍ରିନ୍ ଛାଡ଼ିବା ପୂର୍ବରୁ ପୁଣି ବାତିଲ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "google_cancelled": "Google ସାଇନ୍ ଇନ୍ ବାତିଲ ହୋଇଛି।",
+    "google_selecting": "ଆପଣଙ୍କ Google ଆକାଉଣ୍ଟ ବାଛନ୍ତୁ…",
+    "google_verifying": "ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ଯାଞ୍ଚ ହେଉଛି…",
+    "google_emailUnavailable": "ନିଶ୍ଚିତକରଣ ଇମେଲ ପଠାଯାଇପାରିଲା ନାହିଁ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "google_emailSent": "ନିଶ୍ଚିତକରଣ ଇମେଲ ପଠାଯାଇଛି। ଆପଣଙ୍କ ଇନବକ୍ସ ଯାଞ୍ଚ କରନ୍ତୁ।",
+    "google_rateLimited": "ପୁଣି ଚେଷ୍ଟା କରିବା ପୂର୍ବରୁ ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ।",
+    "google_busy": "ଅନ୍ୟ ଏକ କାର୍ଯ୍ୟ ଚାଲିଥିବା ସମୟରେ Google ଉପଲବ୍ଧ ନାହିଁ (VPN ସଂଯୋଗ, ଆକାଉଣ୍ଟ କିମ୍ବା ଅତିଥି)। ଏହା ସମାପ୍ତ ହେଲେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ; ଆପଣଙ୍କ ବର୍ତ୍ତମାନର ପ୍ରବେଶାଧିକାର ରଖାଯାଇଛି।",
+    "google_invalidPassword": "FuzeVPN ପାସୱାର୍ଡ ଭୁଲ ଅଛି। ଆପଣଙ୍କ ବର୍ତ୍ତମାନର ଆକାଉଣ୍ଟ ରଖାଯାଇଛି।",
+    "google_invalidCode": "ନିଶ୍ଚିତକରଣ କୋଡ୍ ଅବୈଧ କିମ୍ବା ମିଆଦ ଶେଷ ହୋଇଛି।",
+    "google_accountChanged": "ଆପଣଙ୍କ ସେସନ୍ ବଦଳି ଯାଇଛି। ପୁଣି ଆରମ୍ଭ କରିବା ପୂର୍ବରୁ ଏହି ପ୍ରୟାସ ବାତିଲ କରନ୍ତୁ।",
+    "google_invalidResponse": "ପ୍ରତିକ୍ରିୟା ଯାଞ୍ଚ କରାଯାଇପାରିଲା ନାହିଁ। ଆପଣଙ୍କ ବର୍ତ୍ତମାନର ପ୍ରବେଶାଧିକାର ରଖାଯାଇଛି।",
+    "google_invalidRegistration": "ଆପଣଙ୍କ ଦେଶ ଏବଂ ଉଭୟ ସମ୍ମତି ଯାଞ୍ଚ କରନ୍ତୁ।",
+    "google_consentRequired": "ଜାରି ରଖିବାକୁ ଆପଣଙ୍କ ଦେଶ ବାଛନ୍ତୁ ଏବଂ ଦୁଇଟି ଦଲିଲ ସ୍ୱୀକାର କରନ୍ତୁ।",
+    "google_challengeRequired": "ଏକ ଅତିରିକ୍ତ ସୁରକ୍ଷା ଯାଞ୍ଚ ଆବଶ୍ୟକ। ଆପଣଙ୍କ ବର୍ତ୍ତମାନର ପ୍ରବେଶାଧିକାର ରଖାଯାଇଛି।",
+    "google_challengeUnavailable": "ସୁରକ୍ଷା ଯାଞ୍ଚ ଉପଲବ୍ଧ ନାହିଁ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "google_intentMismatch": "ପୂର୍ବ Google ସାଇନ୍ ଇନ୍ ପ୍ରୟାସ ଏପର୍ଯ୍ୟନ୍ତ ଅପେକ୍ଷାରେ ଅଛି। ଏହି କାର୍ଯ୍ୟ ଆରମ୍ଭ କରିବା ପୂର୍ବରୁ ଏହାକୁ ବାତିଲ କରନ୍ତୁ।",
+    "google_challengeBlocked": "ଆବଶ୍ୟକ ସୁରକ୍ଷା ଯାଞ୍ଚ ଏହି ଆପ୍‌ରେ ଉପଲବ୍ଧ ନାହିଁ। ଏହି କାର୍ଯ୍ୟ ବର୍ତ୍ତମାନ ସମାପ୍ତ କରାଯାଇପାରିବ ନାହିଁ।",
+    "google_solveChallenge": "ସୁରକ୍ଷା ଯାଞ୍ଚ ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ",
+    "google_challengeTitle": "ସୁରକ୍ଷା ଯାଞ୍ଚ",
+    "google_challengeReady": "ଯାଞ୍ଚ ସମ୍ପୂର୍ଣ୍ଣ ହୋଇଛି। ଏବେ ଆପଣ ନିଜ ଆକାଉଣ୍ଟ ତିଆରି ନିଶ୍ଚିତ କରିପାରିବେ।",
+    "google_challengeExpired": "ଯାଞ୍ଚର ମିଆଦ ଶେଷ ହୋଇଛି। ନିଶ୍ଚିତ କରିବା ପୂର୍ବରୁ ପୁଣି ସମ୍ପୂର୍ଣ୍ଣ କରନ୍ତୁ।",
+    "google_challengeCancelled": "ଯାଞ୍ଚ ବାତିଲ ହୋଇଛି। ଆପଣ ପୁଣି ଚେଷ୍ଟା କରିପାରିବେ।",
+    "google_challengeFailed": "ସୁରକ୍ଷା ଯାଞ୍ଚ ବିଫଳ ହୋଇଛି। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "billing_trialTitle": "Fuze Premium ମାଗଣାରେ ଚେଷ୍ଟା କରନ୍ତୁ",
+    "billing_trialSubtitle": "ଆଜିଠାରୁ ଆପଣଙ୍କ ସଂଯୋଗକୁ ସୁରକ୍ଷିତ କରନ୍ତୁ।",
+    "billing_trialWeeks": "2 ସପ୍ତାହର ମାଗଣା ଟ୍ରାଏଲ୍",
+    "billing_trialDays": "{days} ଦିନର ମାଗଣା ଟ୍ରାଏଲ୍",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "ମୋ ମାଗଣା ଟ୍ରାଏଲ୍ ଆରମ୍ଭ କରନ୍ତୁ",
+    "billing_trialFirstCharge": "ଆଜି ଆରମ୍ଭ କଲେ, ଆପଣଙ୍କ ପ୍ରଥମ ଚାର୍ଜ {date}ରେ ହେବ ବୋଲି ଆକଳନ କରାଯାଇଛି।",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "ଘୋଷିତ ମୂଲ୍ୟରେ ସ୍ୱୟଂଚାଳିତ ଭାବେ ନବୀକରଣ ହେବ। ଚାର୍ଜ ଏଡ଼ାଇବାକୁ ଟ୍ରାଏଲ୍ ଶେଷ ହେବା ପୂର୍ବରୁ Google Playରେ ବାତିଲ କରନ୍ତୁ।",
+    "billing_trialThenMonthly": "ଏହା ପରେ ପ୍ରତି ମାସ {price}",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "ଏହା ପରେ ପ୍ରତି ବର୍ଷ {price}",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "ଆପଣଙ୍କ ଯୋଜନା ବାଛନ୍ତୁ",
+    "billing_selectionHint": "ଜାରି ରଖିବାକୁ ଏକ ଯୋଜନା ଚୟନ କରନ୍ତୁ।",
+    "billing_benefitConnection": "ଏନକ୍ରିପ୍ଟ ହୋଇଥିବା ସଂଯୋଗ",
+    "billing_benefitPrivacy": "ଅନଲାଇନ୍ ଗୋପନୀୟତା",
+    "billing_benefitNoAccount": "ପଞ୍ଜୀକରଣ ଆବଶ୍ୟକ ନାହିଁ",
+    "billing_cancellation": "Google Playରେ ବାତିଲ କରନ୍ତୁ",
+    "billing_premiumTitle": "ଆପଣଙ୍କ ସଂଯୋଗ, ଅଧିକ ସୁରକ୍ଷିତ।",
+    "billing_premiumSubtitle": "ନିଜ ଗତିରେ ଆପଣଙ୍କ ସଂଯୋଗ ସୁରକ୍ଷିତ କରନ୍ତୁ।",
+    "billing_priceMonthly": "ପ୍ରତି ମାସ",
+    "billing_priceYearly": "ପ୍ରତି ବର୍ଷ",
+    "billing_trialToday": "ଆଜି କୌଣସି ଦେୟ ନାହିଁ",
+    "billing_trialConfirmation": "ଆପଣ ନିଶ୍ଚିତ କରିବା ପୂର୍ବରୁ Google Play ତାରିଖ, ଚୂଡ଼ାନ୍ତ ରାଶି ଏବଂ ପ୍ରଯୁଜ୍ୟ କର ନିଶ୍ଚିତ କରେ।",
+    "billing_offerChanged": "ଏହି ଅଫର୍‌ର ସର୍ତ୍ତ ବଦଳିଛି। ଯୋଜନାଗୁଡ଼ିକ ରିଫ୍ରେଶ୍ କରି ପୁଣି ବାଛନ୍ତୁ।",
+    "status_waitingNetwork": "ନେଟୱର୍କ ପାଇଁ ଅପେକ୍ଷା କରୁଛି",
+    "status_waitingNetworkDetail": "କୌଣସି ନେଟୱର୍କ ଉପଲବ୍ଧ ନାହିଁ। ନେଟୱର୍କ ଫେରିଲେ VPN ସଂଯୋଗ ଯାଞ୍ଚ କରିବ।",
+    "locations_favoriteLoadFailed": "ମନପସନ୍ଦ ଅବସ୍ଥାନ ଲୋଡ୍ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
+    "locations_favoritesLoading": "ମନପସନ୍ଦ ଅବସ୍ଥାନ ଲୋଡ୍ ହେଉଛି…"
+  },
+  "android": {
+    "vpn_notification_channel": "VPN ସଂଯୋଗ",
+    "vpn_notification_channel_description": "FuzeVPN ସଂଯୋଗ ସକ୍ରିୟ ଥିବା ବେଳେ ସୂଚିତ କରେ।",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s ସଂଯୋଗ ସକ୍ରିୟ",
+    "vpn_notification_connecting": "%1$s ସଂଯୁକ୍ତ ହେଉଛି",
+    "vpn_notification_disconnecting": "%1$s ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେଉଛି",
+    "vpn_notification_interrupted": "%1$s ସଂଯୋଗ ବାଧା ପଡ଼ିଛି",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "ପ୍ରସ୍ତୁତ · %1$s · %2$s",
+    "vpn_tile_connected": "ସଂଯୁକ୍ତ · %1$s · %2$s",
+    "vpn_tile_connecting": "%1$s ସଂଯୁକ୍ତ ହେଉଛି…",
+    "vpn_tile_disconnecting": "ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେଉଛି…",
+    "vpn_tile_interrupted": "%1$s ବାଧା ପଡ଼ିଛି",
+    "vpn_tile_setup_required": "ପ୍ରଥମେ ଆପ୍ ଖୋଲନ୍ତୁ",
+    "vpn_tile_working": "VPN ପ୍ରକ୍ରିୟା ଚାଲିଛି…",
+    "vpn_notification_reconnecting": "ପୁନର୍ବାର ସଂଯୁକ୍ତ ହେଉଛି… · %1$s",
+    "vpn_system_action_required": "Android ସେଟିଂସ୍‌ରେ ପଦକ୍ଷେପ ନେବା ଆବଶ୍ୟକ",
+    "vpn_tile_reconnecting": "ପୁନର୍ବାର ସଂଯୁକ୍ତ ହେଉଛି… · %1$s",
+    "vpn_notification_waiting_network": "ନେଟୱର୍କ ପାଇଁ ଅପେକ୍ଷା କରୁଛି · %1$s",
+    "vpn_tile_waiting_network": "ନେଟୱର୍କ ପାଇଁ ଅପେକ୍ଷା କରୁଛି · %1$s"
+  },
+  "countries": {
+    "AC": "ଆସେନସିଅନ୍‌ ଦ୍ୱୀପ",
+    "AD": "ଆଣ୍ଡୋରା",
+    "AE": "ସଂଯୁକ୍ତ ଆରବ ଏମିରେଟସ୍",
+    "AF": "ଆଫଗାନିସ୍ତାନ୍",
+    "AG": "ଆଣ୍ଟିଗୁଆ ଏବଂ ବାରବୁଦା",
+    "AI": "ଆଙ୍ଗୁଇଲ୍ଲା",
+    "AL": "ଆଲବାନିଆ",
+    "AM": "ଆର୍ମେନିଆ",
+    "AO": "ଆଙ୍ଗୋଲା",
+    "AQ": "ଆଣ୍ଟାର୍କାଟିକା",
+    "AR": "ଆର୍ଜେଣ୍ଟିନା",
+    "AS": "ଆମେରିକାନ୍ ସାମୋଆ",
+    "AT": "ଅଷ୍ଟ୍ରିଆ",
+    "AU": "ଅଷ୍ଟ୍ରେଲିଆ",
+    "AW": "ଆରୁବା",
+    "AX": "ଅଲାଣ୍ଡ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "AZ": "ଆଜେରବାଇଜାନ୍",
+    "BA": "ବୋସନିଆ ଏବଂ ହର୍ଜଗୋଭିନା",
+    "BB": "ବାରବାଡୋସ୍",
+    "BD": "ବାଂଲାଦେଶ",
+    "BE": "ବେଲଜିୟମ୍",
+    "BF": "ବୁର୍କିନା ଫାସୋ",
+    "BG": "ବୁଲଗେରିଆ",
+    "BH": "ବାହାରିନ୍",
+    "BI": "ବୁରୁଣ୍ଡି",
+    "BJ": "ବେନିନ୍",
+    "BL": "ସେଣ୍ଟ ବାର୍ଥେଲେମି",
+    "BM": "ବର୍ମୁଡା",
+    "BN": "ବ୍ରୁନେଇ",
+    "BO": "ବୋଲିଭିଆ",
+    "BQ": "କାରବିୟନ୍‌ ନେଦରଲ୍ୟାଣ୍ଡ",
+    "BR": "ବ୍ରାଜିଲ୍",
+    "BS": "ବାହାମାସ୍",
+    "BT": "ଭୁଟାନ",
+    "BV": "ବୌଭେଟ୍‌ ଦ୍ୱୀପ",
+    "BW": "ବୋଟସ୍ୱାନା",
+    "BY": "ବେଲାରୁଷ୍",
+    "BZ": "ବେଲିଜ୍",
+    "CA": "କାନାଡା",
+    "CC": "କୋକୋସ୍ (କୀଲିଂ) ଦ୍ୱୀପପୁଞ୍ଜ",
+    "CD": "କଙ୍ଗୋ (ଡିଆରସି)",
+    "CF": "ମଧ୍ୟ ଆଫ୍ରିକୀୟ ସାଧାରଣତନ୍ତ୍ର",
+    "CG": "କଙ୍ଗୋ-ବ୍ରାଜିଭିଲ୍ଲେ",
+    "CH": "ସ୍ୱିଜରଲ୍ୟାଣ୍ଡ",
+    "CI": "କୋତ୍ ଡି ଭ୍ୱାର୍",
+    "CK": "କୁକ୍‌ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "CL": "ଚିଲି",
+    "CM": "କାମେରୁନ୍",
+    "CN": "ଚୀନ୍‌",
+    "CO": "କଲମ୍ବିଆ",
+    "CP": "କ୍ଲିପରଟନ୍‌ ଦ୍ୱୀପ",
+    "CQ": "ସର୍କ୍‌",
+    "CR": "କୋଷ୍ଟା ରିକା",
+    "CU": "କ୍ୟୁବା",
+    "CV": "କେପ୍ ଭର୍ଦେ",
+    "CW": "କୁରାକାଓ",
+    "CX": "ଖ୍ରୀଷ୍ଟମାସ ଦ୍ୱୀପ",
+    "CY": "ସାଇପ୍ରସ୍",
+    "CZ": "ଚେଚିଆ",
+    "DE": "ଜର୍ମାନୀ",
+    "DG": "ଡିଏଗୋ ଗାର୍ସିଆ",
+    "DJ": "ଜିବୋଟି",
+    "DK": "ଡେନମାର୍କ",
+    "DM": "ଡୋମିନିକା",
+    "DO": "ଡୋମିନିକାନ୍‌ ସାଧାରଣତନ୍ତ୍ର",
+    "DZ": "ଆଲଜେରିଆ",
+    "EA": "ସିଉଟା ଏବଂ ମେଲିଲା",
+    "EC": "ଇକ୍ୱେଡର୍‌",
+    "EE": "ଏସ୍ତୋନିଆ",
+    "EG": "ଇଜିପ୍ଟ",
+    "EH": "ପଶ୍ଚିମ ସାହାରା",
+    "ER": "ଇରିଟ୍ରିୟା",
+    "ES": "ସ୍ପେନ୍",
+    "ET": "ଇଥିଓପିଆ",
+    "EU": "ୟୁରୋପୀୟ ସଂଘ",
+    "EZ": "ୟୁରୋକ୍ଷେତ୍ର",
+    "FI": "ଫିନଲ୍ୟାଣ୍ଡ",
+    "FJ": "ଫିଜି",
+    "FK": "ଫକ୍‌ଲ୍ୟାଣ୍ଡ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "FM": "ମାଇକ୍ରୋନେସିଆ",
+    "FO": "ଫାରୋଇ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "FR": "ଫ୍ରାନ୍ସ",
+    "GA": "ଗାବୋନ୍",
+    "GB": "ଯୁକ୍ତରାଜ୍ୟ",
+    "GD": "ଗ୍ରେନାଡା",
+    "GE": "ଜର୍ଜିଆ",
+    "GF": "ଫ୍ରେଞ୍ଚ ଗୁଇନା",
+    "GG": "ଗୁଏରନେସି",
+    "GH": "ଘାନା",
+    "GI": "ଜିବ୍ରାଲ୍ଟର୍",
+    "GL": "ଗ୍ରୀନଲ୍ୟାଣ୍ଡ",
+    "GM": "ଗାମ୍ବିଆ",
+    "GN": "ଗୁଇନିଆ",
+    "GP": "ଗୁଆଡେଲୋପ୍",
+    "GQ": "ଇକ୍ବାଟୋରିଆଲ୍ ଗୁଇନିଆ",
+    "GR": "ଗ୍ରୀସ୍",
+    "GS": "ଦକ୍ଷିଣ ଜର୍ଜିଆ ଏବଂ ଦକ୍ଷିଣ ସାଣ୍ଡୱିଚ୍ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "GT": "ଗୁଏତମାଲା",
+    "GU": "ଗୁଆମ୍",
+    "GW": "ଗୁଇନିଆ-ବିସାଉ",
+    "GY": "ଗୁଇନା",
+    "HK": "ହଂ କଂ ଏସଏଆର୍‌ ଚାଇନା",
+    "HM": "ହାର୍ଡ୍‌ ଏବଂ ମ୍ୟାକଡୋନାଲ୍ଡ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "HN": "ହୋଣ୍ଡୁରାସ୍‌",
+    "HR": "କ୍ରୋଏସିଆ",
+    "HT": "ହାଇତି",
+    "HU": "ହଙ୍ଗେରୀ",
+    "IC": "କେନେରୀ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "ID": "ଇଣ୍ଡୋନେସିଆ",
+    "IE": "ଆୟରଲ୍ୟାଣ୍ଡ",
+    "IL": "ଇସ୍ରାଏଲ୍",
+    "IM": "ଆଇଲ୍‌ ଅଫ୍‌ ମ୍ୟାନ୍‌",
+    "IN": "ଭାରତ",
+    "IO": "ବ୍ରିଟିଶ୍‌ ଭାରତୀୟ ମହାସାଗର କ୍ଷେତ୍ର",
+    "IQ": "ଇରାକ୍",
+    "IR": "ଇରାନ",
+    "IS": "ଆଇସଲ୍ୟାଣ୍ଡ",
+    "IT": "ଇଟାଲୀ",
+    "JE": "ଜର୍ସି",
+    "JM": "ଜାମାଇକା",
+    "JO": "ଜୋର୍ଡାନ୍",
+    "JP": "ଜାପାନ",
+    "KE": "କେନିୟା",
+    "KG": "କିର୍ଗିଜିସ୍ତାନ",
+    "KH": "କାମ୍ବୋଡିଆ",
+    "KI": "କିରିବାଟି",
+    "KM": "କୋମୋରସ୍",
+    "KN": "ସେଣ୍ଟ କିଟସ୍‌ ଏବଂ ନେଭିସ୍‌",
+    "KP": "ଉତ୍ତର କୋରିଆ",
+    "KR": "ଦକ୍ଷିଣ କୋରିଆ",
+    "KW": "କୁଏତ୍",
+    "KY": "କେମ୍ୟାନ୍‌ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "KZ": "କାଜାଖସ୍ତାନ୍‌",
+    "LA": "ଲାଓସ୍",
+    "LB": "ଲେବାନନ୍",
+    "LC": "ସେଣ୍ଟ ଲୁସିଆ",
+    "LI": "ଲିକ୍ଟନ୍‌ଷ୍ଟାଇନ୍‌",
+    "LK": "ଶ୍ରୀଲଙ୍କା",
+    "LR": "ଲାଇବେରିଆ",
+    "LS": "ଲେସୋଥୋ",
+    "LT": "ଲିଥୁଆନିଆ",
+    "LU": "ଲକ୍ସେମବର୍ଗ",
+    "LV": "ଲାଟଭିଆ",
+    "LY": "ଲିବ୍ୟା",
+    "MA": "ମୋରୋକ୍କୋ",
+    "MC": "ମୋନାକୋ",
+    "MD": "ମୋଲଡୋଭା",
+    "ME": "ମଣ୍ଟେନିଗ୍ରୋ",
+    "MF": "ସେଣ୍ଟ ମାର୍ଟିନ୍",
+    "MG": "ମାଡାଗାସ୍କର୍",
+    "MH": "ମାର୍ଶାଲ୍ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "MK": "ଉତ୍ତର ମାସେଡୋନିଆ",
+    "ML": "ମାଲି",
+    "MM": "ମିଆଁମାର",
+    "MN": "ମଙ୍ଗୋଲିଆ",
+    "MO": "ମାକାଉ ଏସଏଆର୍‌ ଚାଇନା",
+    "MP": "ଉତ୍ତର ମାରିଆନା ଦ୍ୱୀପପୁଞ୍ଜ",
+    "MQ": "ମାର୍ଟିନିକ୍ୟୁ",
+    "MR": "ମୌରିଟାନିଆ",
+    "MS": "ମଣ୍ଟେସେରାଟ୍",
+    "MT": "ମାଲ୍ଟା",
+    "MU": "ମରିସସ",
+    "MV": "ମାଲଦିଭସ୍‌",
+    "MW": "ମାଲୱି",
+    "MX": "ମେକ୍ସିକୋ",
+    "MY": "ମାଲେସିଆ",
+    "MZ": "ମୋଜାମ୍ବିକ୍‌",
+    "NA": "ନାମିବିଆ",
+    "NC": "ନୂତନ କାଲେଡୋନିଆ",
+    "NE": "ନାଇଜର",
+    "NF": "ନର୍ଫକ୍ ଦ୍ୱୀପ",
+    "NG": "ନାଇଜେରିଆ",
+    "NI": "ନିକାରାଗୁଆ",
+    "NL": "ନେଦରଲ୍ୟାଣ୍ଡ",
+    "NO": "ନରୱେ",
+    "NP": "ନେପାଳ",
+    "NR": "ନାଉରୁ",
+    "NU": "ନିଉ",
+    "NZ": "ନ୍ୟୁଜିଲାଣ୍ଡ",
+    "OM": "ଓମାନ୍",
+    "PA": "ପାନାମା",
+    "PE": "ପେରୁ",
+    "PF": "ଫ୍ରେଞ୍ଚ ପଲିନେସିଆ",
+    "PG": "ପପୁଆ ନ୍ୟୁ ଗିନି",
+    "PH": "ଫିଲିପାଇନସ୍",
+    "PK": "ପାକିସ୍ତାନ",
+    "PL": "ପୋଲାଣ୍ଡ",
+    "PM": "ସେଣ୍ଟ ପିଏରେ ଏବଂ ମିକ୍ୱେଲନ୍‌",
+    "PN": "ପିଟକାଇରିନ୍‌ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "PR": "ପୁଏର୍ତ୍ତୋ ରିକୋ",
+    "PS": "ପାଲେଷ୍ଟେନିୟ ଭୂଭାଗ",
+    "PT": "ପର୍ତ୍ତୁଗାଲ୍",
+    "PW": "ପାଲାଉ",
+    "PY": "ପାରାଗୁଏ",
+    "QA": "କତାର୍",
+    "QO": "ସୀମାନ୍ତବର୍ତ୍ତୀ ଓସିନିଆ",
+    "RE": "ରିୟୁନିଅନ୍",
+    "RO": "ରୋମାନିଆ",
+    "RS": "ସର୍ବିଆ",
+    "RU": "ରୁଷିଆ",
+    "RW": "ରାୱାଣ୍ଡା",
+    "SA": "ସାଉଦି ଆରବିଆ",
+    "SB": "ସୋଲୋମନ୍‌ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "SC": "ସେଚେଲସ୍",
+    "SD": "ସୁଦାନ",
+    "SE": "ସ୍ୱିଡେନ୍‌",
+    "SG": "ସିଙ୍ଗାପୁର୍",
+    "SH": "ସେଣ୍ଟ ହେଲେନା",
+    "SI": "ସ୍ଲୋଭେନିଆ",
+    "SJ": "ସାଲବାର୍ଡ ଏବଂ ଜାନ୍‌ ମାୟେନ୍‌",
+    "SK": "ସ୍ଲୋଭାକିଆ",
+    "SL": "ସିଏରା ଲିଓନ",
+    "SM": "ସାନ୍ ମାରିନୋ",
+    "SN": "ସେନେଗାଲ୍",
+    "SO": "ସୋମାଲିଆ",
+    "SR": "ସୁରିନାମ",
+    "SS": "ଦକ୍ଷିଣ ସୁଦାନ",
+    "ST": "ସାଓ ଟୋମେ ଏବଂ ପ୍ରିନସିପି",
+    "SV": "ଏଲ୍ ସାଲଭାଡୋର୍",
+    "SX": "ସିଣ୍ଟ ମାର୍ଟୀନ୍‌",
+    "SY": "ସିରିଆ",
+    "SZ": "ଇସ୍ୱାତିନୀ",
+    "TA": "ଟ୍ରାଇଷ୍ଟନ୍‌ ଦା କୁନ୍‌ଚା",
+    "TC": "ତୁର୍କସ୍‌ ଏବଂ କାଇକୋସ୍‌ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "TD": "ଚାଦ୍",
+    "TF": "ଫରାସୀ ଦକ୍ଷିଣ କ୍ଷେତ୍ର",
+    "TG": "ଟୋଗୋ",
+    "TH": "ଥାଇଲ୍ୟାଣ୍ଡ",
+    "TJ": "ତାଜିକିସ୍ଥାନ୍",
+    "TK": "ଟୋକେଲାଉ",
+    "TL": "ତିମୋର୍-ଲେଷ୍ଟେ",
+    "TM": "ତୁର୍କମେନିସ୍ତାନ",
+    "TN": "ଟ୍ୟୁନିସିଆ",
+    "TO": "ଟୋଙ୍ଗା",
+    "TR": "ତୁର୍କୀ",
+    "TT": "ତ୍ରିନିଦାଦ୍ ଏବଂ ଟୋବାଗୋ",
+    "TV": "ତୁଭାଲୁ",
+    "TW": "ତାଇୱାନ",
+    "TZ": "ତାଞ୍ଜାନିଆ",
+    "UA": "ୟୁକ୍ରେନ୍",
+    "UG": "ଉଗାଣ୍ଡା",
+    "UM": "ଯୁକ୍ତରାଷ୍ଟ୍ର ଆଉଟ୍‌ଲାଇଙ୍ଗ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "UN": "ଜାତିସଂଘ",
+    "US": "ଯୁକ୍ତ ରାଷ୍ଟ୍ର",
+    "UY": "ଉରୁଗୁଏ",
+    "UZ": "ଉଜବେକିସ୍ତାନ",
+    "VA": "ଭାଟିକାନ୍ ସିଟି",
+    "VC": "ସେଣ୍ଟ ଭିନସେଣ୍ଟ ଏବଂ ଗ୍ରେନାଡାଇନ୍ସ",
+    "VE": "ଭେନେଜୁଏଲା",
+    "VG": "ବ୍ରିଟିଶ୍‌ ଭର୍ଜିନ୍ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "VI": "ଯୁକ୍ତରାଷ୍ଟ୍ର ଭର୍ଜିନ୍ ଦ୍ୱୀପପୁଞ୍ଜ",
+    "VN": "ଭିଏତନାମ୍",
+    "VU": "ଭାନୁଆତୁ",
+    "WF": "ୱାଲିସ୍ ଏବଂ ଫୁତୁନା",
+    "WS": "ସାମୋଆ",
+    "XA": "ସିୟୁଡୋ-ଏସେଣ୍ଟ",
+    "XB": "ସିୟୁଡୋ-ବିଡି",
+    "XK": "କୋସୋଭୋ",
+    "YE": "ୟେମେନ୍",
+    "YT": "ମାୟୋଟେ",
+    "ZA": "ଦକ୍ଷିଣ ଆଫ୍ରିକା",
+    "ZM": "ଜାମ୍ବିଆ",
+    "ZW": "ଜିମ୍ବାୱେ",
+    "ZZ": "ଅଜଣା ଅଞ୍ଚଳ"
+  }
+}

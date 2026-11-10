@@ -1,0 +1,2251 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Malayalam (`ml`).
+class AppLocalizationsMl extends AppLocalizations {
+  AppLocalizationsMl([String locale = 'ml']) : super(locale);
+
+  @override
+  String get vpnDisclosure_title => 'നിങ്ങളുടെ കണക്ഷൻ സുരക്ഷിതമാക്കുക';
+
+  @override
+  String get vpnDisclosure_body =>
+      'ഈ ഉപകരണത്തിനും FuzeVPN സെർവറുകൾക്കും ഇടയിൽ എൻക്രിപ്റ്റ് ചെയ്ത ടണൽ സൃഷ്ടിക്കാൻ FuzeVPN, Android-ന്റെ VPN സേവനം (VpnService) ഉപയോഗിക്കുന്നു.';
+
+  @override
+  String get vpnDisclosure_dataBody =>
+      'VPN സജീവമായിരിക്കുമ്പോൾ, FuzeVPN പശ്ചാത്തലത്തിലായിരിക്കുമ്പോൾ പോലും, നിങ്ങളുടെ ആപ്പുകളുടെ ഇന്റർനെറ്റ് ട്രാഫിക്, ലക്ഷ്യസ്ഥാന വിലാസങ്ങൾ, DNS അഭ്യർത്ഥനകൾ എന്നിവ നിങ്ങളുടെ കണക്ഷൻ റൂട്ട് ചെയ്യുന്നതിനായി ഈ ടണലിലൂടെ കടന്നുപോകുന്നു.';
+
+  @override
+  String get vpnDisclosure_statusBody =>
+      'നിങ്ങളുടെ VPN കണക്ഷൻ പ്രദർശിപ്പിക്കാൻ ആപ്പ് കണക്ഷന്റെ നില, അതിന്റെ ദൈർഘ്യം, കൈമാറ്റം ചെയ്ത ഡാറ്റയുടെ അളവ് എന്നിവ ഉപയോഗിക്കുന്നു. എപ്പോൾ വേണമെങ്കിലും നിങ്ങൾക്ക് ഇത് നിർത്താം.';
+
+  @override
+  String get vpnDisclosure_privacy => 'സ്വകാര്യത';
+
+  @override
+  String get vpnDisclosure_accept => 'അംഗീകരിച്ച് തുടരുക';
+
+  @override
+  String get vpnDisclosure_decline => 'ഇപ്പോൾ വേണ്ട';
+
+  @override
+  String get accountRestoration_title => 'അക്കൗണ്ട് താൽക്കാലികമായി ലഭ്യമല്ല';
+
+  @override
+  String get accountRestoration_message =>
+      'നിങ്ങളുടെ സെഷൻ സംരക്ഷിച്ചിട്ടുണ്ട്. അക്കൗണ്ട് പുനഃസ്ഥാപിക്കാൻ വീണ്ടും ശ്രമിക്കുക; ഇവിടെ നിന്ന് ഇപ്പോഴും VPN കണക്ഷൻ നിയന്ത്രിക്കാം.';
+
+  @override
+  String get action_retry => 'വീണ്ടും ശ്രമിക്കുക';
+
+  @override
+  String get session_endingTitle => 'സെഷൻ അവസാനിപ്പിക്കുന്നു';
+
+  @override
+  String get session_ending =>
+      'സെഷൻ അവസാനിപ്പിക്കുന്നു: VPN നിർത്തുകയും വൃത്തിയാക്കുകയും ചെയ്യുന്നു…';
+
+  @override
+  String get session_stopFailed =>
+      'VPN നിർത്തിയത് സ്ഥിരീകരിക്കാനായില്ല. വീണ്ടും സൈൻ ഇൻ ചെയ്യുന്നതിന് മുമ്പ് ഒന്നുകൂടി ശ്രമിക്കുക.';
+
+  @override
+  String get session_cleanupFailed =>
+      'VPN നിർത്തി, പക്ഷേ സെഷൻ നീക്കം ചെയ്തത് സ്ഥിരീകരിക്കാനായില്ല. വൃത്തിയാക്കാൻ വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get session_retryStop => 'നിർത്താൻ വീണ്ടും ശ്രമിക്കുക';
+
+  @override
+  String get session_retryCleanup => 'വൃത്തിയാക്കാൻ വീണ്ടും ശ്രമിക്കുക';
+
+  @override
+  String get appTitle => 'FuzeVPN';
+
+  @override
+  String get startup => 'FuzeVPN സുരക്ഷിതമായി തയ്യാറാക്കുന്നു…';
+
+  @override
+  String get nav_connection => 'കണക്ഷൻ';
+
+  @override
+  String get nav_locations => 'ലൊക്കേഷനുകൾ';
+
+  @override
+  String get nav_account => 'അക്കൗണ്ട്';
+
+  @override
+  String get nav_devices => 'ഉപകരണങ്ങൾ';
+
+  @override
+  String get nav_settings => 'ക്രമീകരണങ്ങൾ';
+
+  @override
+  String get action_refresh => 'പുതുക്കുക';
+
+  @override
+  String get auth_tab_login => 'സൈൻ ഇൻ';
+
+  @override
+  String get auth_tab_register => 'സൈൻ അപ്പ്';
+
+  @override
+  String get auth_stepAccount => 'അക്കൗണ്ട്';
+
+  @override
+  String get auth_stepIdentity => 'ഐഡന്റിറ്റി';
+
+  @override
+  String get auth_stepAddress => 'വിലാസവും കരാറുകളും';
+
+  @override
+  String auth_stepProgress(Object current, Object total) {
+    return 'ഘട്ടം $current / $total';
+  }
+
+  @override
+  String get auth_tagline => 'നിങ്ങളുടെ VPN, ലളിതമായി.';
+
+  @override
+  String get auth_keysLocal =>
+      'നിങ്ങളുടെ സ്വകാര്യ VPN കീകൾ ഈ ഉപകരണത്തിൽ തന്നെ തുടരും.';
+
+  @override
+  String get form_email => 'ഇമെയിൽ വിലാസം';
+
+  @override
+  String get form_password => 'പാസ്‌വേഡ്';
+
+  @override
+  String get form_showPassword => 'പാസ്‌വേഡ് കാണിക്കുക';
+
+  @override
+  String get form_hidePassword => 'പാസ്‌വേഡ് മറയ്ക്കുക';
+
+  @override
+  String get form_passwordMin =>
+      '8 മുതൽ 72 വരെ UTF-8 ബൈറ്റുകൾ. ചില അക്ഷരങ്ങൾ ഒന്നിലധികം ബൈറ്റുകൾ ഉപയോഗിക്കുന്നു.';
+
+  @override
+  String get form_firstName => 'ആദ്യ പേര്';
+
+  @override
+  String get form_lastName => 'അവസാന പേര്';
+
+  @override
+  String get form_phone => 'ഫോൺ (+33612345678)';
+
+  @override
+  String get form_address => 'വിലാസം';
+
+  @override
+  String get form_address2 => 'വിലാസത്തിന്റെ രണ്ടാം വരി (ഓപ്‌ഷണൽ)';
+
+  @override
+  String get form_postalCode => 'പോസ്റ്റൽ കോഡ്';
+
+  @override
+  String get form_city => 'നഗരം';
+
+  @override
+  String get form_country => 'രാജ്യ കോഡ് (ഉദാ. FR)';
+
+  @override
+  String get action_login => 'സൈൻ ഇൻ ചെയ്യുക';
+
+  @override
+  String get action_createAccount => 'അക്കൗണ്ട് സൃഷ്ടിക്കുക';
+
+  @override
+  String get action_createMyAccount => 'എന്റെ അക്കൗണ്ട് സൃഷ്ടിക്കുക';
+
+  @override
+  String get action_next => 'തുടരുക';
+
+  @override
+  String get action_previous => 'മടങ്ങുക';
+
+  @override
+  String get action_forgotPassword => 'പാസ്‌വേഡ് മറന്നോ?';
+
+  @override
+  String get auth_noAccount => 'ഇതുവരെ അക്കൗണ്ട് ഇല്ലേ?';
+
+  @override
+  String get auth_requiredInformation =>
+      'മൂന്ന് ഘട്ടങ്ങളിലായി നിങ്ങളുടെ അക്കൗണ്ട് സൃഷ്ടിക്കുക.';
+
+  @override
+  String get auth_termsPrefix => 'ഞാൻ അംഗീകരിക്കുന്നു: ';
+
+  @override
+  String get auth_termsLink => 'ഉപയോഗ നിബന്ധനകൾ';
+
+  @override
+  String get auth_privacyPrefix => 'ഞാൻ അംഗീകരിക്കുന്നു: ';
+
+  @override
+  String get auth_privacyLink => 'സ്വകാര്യതാ നയം';
+
+  @override
+  String get auth_consentRequired =>
+      'അക്കൗണ്ട് സൃഷ്ടിക്കാൻ നിങ്ങളുടെ സമ്മതം ആവശ്യമാണ്.';
+
+  @override
+  String get validation_required => 'ഈ ഫീൽഡ് നിർബന്ധമാണ്.';
+
+  @override
+  String get validation_email => 'സാധുവായ ഇമെയിൽ വിലാസം നൽകുക.';
+
+  @override
+  String get validation_password =>
+      'പാസ്‌വേഡ് വളരെ ചെറുതാണ്: കുറഞ്ഞത് 8 UTF-8 ബൈറ്റുകൾ വേണം.';
+
+  @override
+  String get validation_passwordTooLong =>
+      'പാസ്‌വേഡ് വളരെ നീളമുള്ളതാണ്: പരമാവധി 72 UTF-8 ബൈറ്റുകൾ മാത്രം.';
+
+  @override
+  String get validation_phone =>
+      'അന്താരാഷ്ട്ര ഫോർമാറ്റ് ഉപയോഗിക്കുക, ഉദാഹരണത്തിന് +33612345678.';
+
+  @override
+  String get validation_country =>
+      'രണ്ടക്ഷര രാജ്യ കോഡ് ഉപയോഗിക്കുക, ഉദാഹരണത്തിന് FR.';
+
+  @override
+  String get passwordReset_title => 'പാസ്‌വേഡ് പുനഃസജ്ജമാക്കുക';
+
+  @override
+  String get passwordReset_description =>
+      'പാസ്‌വേഡ് പുനഃസജ്ജമാക്കൽ ലിങ്ക് അഭ്യർത്ഥിക്കാൻ നിങ്ങളുടെ അക്കൗണ്ടിന്റെ ഇമെയിൽ വിലാസം നൽകുക.';
+
+  @override
+  String get passwordReset_send => 'ലിങ്ക് അയയ്ക്കുക';
+
+  @override
+  String get connection_title => 'നിങ്ങളുടെ കണക്ഷൻ';
+
+  @override
+  String get connection_subtitle =>
+      'ഒരു ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക, തുടർന്ന് നിങ്ങളുടെ VPN ഓണാക്കുക.';
+
+  @override
+  String get connection_prepare => 'ബന്ധിപ്പിക്കാൻ തയ്യാറാണോ?';
+
+  @override
+  String get connection_advancedOptions => 'വിപുലമായ ഓപ്‌ഷനുകൾ';
+
+  @override
+  String get connection_location => 'ലൊക്കേഷൻ';
+
+  @override
+  String get connection_chooseLocation => 'ഒരു ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക';
+
+  @override
+  String get connection_protocol => 'പ്രോട്ടോക്കോൾ';
+
+  @override
+  String get connection_connect => 'ബന്ധിപ്പിക്കുക';
+
+  @override
+  String get connection_connecting => 'ബന്ധിപ്പിക്കുന്നു…';
+
+  @override
+  String get connection_disconnect => 'വിച്ഛേദിക്കുക';
+
+  @override
+  String get connection_disconnecting => 'വിച്ഛേദിക്കുന്നു';
+
+  @override
+  String get connection_locationChange => 'ലൊക്കേഷൻ മാറ്റുന്നു…';
+
+  @override
+  String connection_unavailable(Object protocol) {
+    return '$protocol ലഭ്യമല്ല';
+  }
+
+  @override
+  String get connection_activeLocation => 'സജീവ ലൊക്കേഷൻ';
+
+  @override
+  String get connection_duration => 'ദൈർഘ്യം';
+
+  @override
+  String get connection_received => 'ലഭിച്ചത്';
+
+  @override
+  String get connection_sent => 'അയച്ചത്';
+
+  @override
+  String get connection_lastHandshake => 'അവസാന സുരക്ഷിത കൈമാറ്റം';
+
+  @override
+  String connection_handshakeAgo(Object duration) {
+    return '$duration മുമ്പ്';
+  }
+
+  @override
+  String get verification_title => 'നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക';
+
+  @override
+  String get verification_message =>
+      'ഈ ഫോണിൽ VPN ഉപയോഗിക്കാൻ നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക.';
+
+  @override
+  String get verification_resend => 'ഇമെയിൽ വീണ്ടും അയയ്ക്കുക';
+
+  @override
+  String get migration_title => 'ലൊക്കേഷൻ മാറ്റം';
+
+  @override
+  String get migration_draining => 'ലൊക്കേഷൻ മാറ്റം തയ്യാറാക്കുന്നു…';
+
+  @override
+  String get migration_activating => 'പുതിയ സെർവർ സജീവമാക്കുന്നു…';
+
+  @override
+  String get migration_ready => 'ലൊക്കേഷൻ അപ്‌ഡേറ്റ് ചെയ്തു.';
+
+  @override
+  String get migration_blocked =>
+      'ലൊക്കേഷൻ മാറ്റത്തിന് സെർവർ ഇടപെടൽ ആവശ്യമാണ്. പിന്നീട് വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ പിന്തുണയുമായി ബന്ധപ്പെടുക.';
+
+  @override
+  String get migration_progress => 'ലൊക്കേഷൻ മാറ്റത്തിന്റെ പുരോഗതി';
+
+  @override
+  String migration_retryDelay(Object seconds) {
+    return 'പരിശോധനകൾക്കിടയിലെ കാലതാമസം: $seconds സെക്കൻഡ്.';
+  }
+
+  @override
+  String get migration_resume => 'ലൊക്കേഷൻ മാറ്റം തുടരുക';
+
+  @override
+  String get status_authorizing => 'അനുമതി ആവശ്യമാണ്';
+
+  @override
+  String get status_authorizingDetail =>
+      'VPN അനുവദിക്കാൻ Android അഭ്യർത്ഥന സ്വീകരിക്കുക.';
+
+  @override
+  String get status_preparing => 'ഒരുക്കുന്നു';
+
+  @override
+  String get status_preparingDetail =>
+      'നിങ്ങളുടെ സുരക്ഷിത കണക്ഷൻ തയ്യാറാക്കുന്നു.';
+
+  @override
+  String get status_reconnecting => 'വീണ്ടും കണക്ട് ചെയ്യുന്നു…';
+
+  @override
+  String get status_reconnectingDetail =>
+      'കണക്ഷൻ തടസ്സപ്പെട്ടു. VPN വീണ്ടും ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുന്നു.';
+
+  @override
+  String get status_connecting => 'കണക്ട് ചെയ്യുന്നു';
+
+  @override
+  String get status_connectingDetail => 'VPN സെർവറുമായി ബന്ധിപ്പിക്കുന്നു…';
+
+  @override
+  String get status_connected => 'ബന്ധിതമായി';
+
+  @override
+  String get status_connectedDetail => 'നിങ്ങളുടെ VPN കണക്ഷൻ സജീവമാണ്.';
+
+  @override
+  String get status_disconnecting => 'ഡിസ്കണക്ട് ചെയ്യുന്നു';
+
+  @override
+  String get status_disconnectingDetail => 'നിങ്ങളുടെ VPN കണക്ഷൻ നിർത്തുകയാണ്.';
+
+  @override
+  String get status_error => 'കണക്ഷൻ ലഭ്യമല്ല';
+
+  @override
+  String get status_errorDetail =>
+      'VPN കണക്ഷൻ സ്ഥിരീകരിച്ചിട്ടില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get status_idle => 'വിച്ഛേദിച്ചു';
+
+  @override
+  String get status_idleDetail =>
+      'നിങ്ങളുടെ കണക്ഷൻ സംരക്ഷിക്കാൻ VPN ബന്ധിപ്പിക്കുക.';
+
+  @override
+  String get trust_note =>
+      'ആപ്പ് അടയ്ക്കുന്നത് VPN നിർത്തില്ല. VPN നിർത്താൻ “വിച്ഛേദിക്കുക” ഉപയോഗിക്കുക.';
+
+  @override
+  String get locations_none => 'നിലവിൽ ലൊക്കേഷനുകളൊന്നും ലഭ്യമല്ല.';
+
+  @override
+  String get locations_available => 'നിങ്ങളുടെ അടുത്ത ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get locations_selected => 'തിരഞ്ഞെടുത്ത ലൊക്കേഷൻ';
+
+  @override
+  String get locations_select => 'ഈ ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക';
+
+  @override
+  String get locations_lockedTunnel => 'ലൊക്കേഷൻ മാറ്റാൻ VPN വിച്ഛേദിക്കുക.';
+
+  @override
+  String get locations_lockedMigration =>
+      'ലൊക്കേഷൻ മാറ്റം പൂർത്തിയാകുന്നതുവരെ കാത്തിരിക്കുക.';
+
+  @override
+  String get devices_title => 'നിങ്ങളുടെ ഉപകരണങ്ങൾ';
+
+  @override
+  String devices_used(Object count, Object limit) {
+    return '$count / $limit ഉപകരണങ്ങൾ';
+  }
+
+  @override
+  String get devices_refresh => 'ഉപകരണങ്ങൾ പുതുക്കുക';
+
+  @override
+  String get devices_empty =>
+      'ഇതുവരെ VPN ഉപകരണമൊന്നും രജിസ്റ്റർ ചെയ്തിട്ടില്ല.';
+
+  @override
+  String get devices_firstConnection =>
+      'ആദ്യമായി ബന്ധിപ്പിക്കുമ്പോൾ നിങ്ങളുടെ ഫോൺ ചേർക്കും.';
+
+  @override
+  String get devices_thisDevice => 'ഈ ഉപകരണം';
+
+  @override
+  String devices_added(Object date) {
+    return '$date-ന് ചേർത്തു';
+  }
+
+  @override
+  String get devices_unnamed => 'പേരില്ലാത്ത ഉപകരണം';
+
+  @override
+  String get action_remove => 'നീക്കം ചെയ്യുക';
+
+  @override
+  String get settings_title => 'ക്രമീകരണങ്ങൾ';
+
+  @override
+  String get settings_subtitle =>
+      'നിങ്ങളുടെ മുൻഗണനകളും അക്കൗണ്ടും ഒരിടത്ത് തന്നെ.';
+
+  @override
+  String get settings_appearance => 'രൂപഭാവം';
+
+  @override
+  String get settings_language => 'ഭാഷ';
+
+  @override
+  String get settings_languageDescription =>
+      'നിങ്ങൾ തിരഞ്ഞെടുത്ത ഭാഷ VPN അറിയിപ്പുകൾക്കും ബാധകമാകും.';
+
+  @override
+  String get settings_account => 'അക്കൗണ്ട്';
+
+  @override
+  String get settings_signOut => 'സൈൻ ഔട്ട് ചെയ്യുക';
+
+  @override
+  String get settings_privacy => 'സ്വകാര്യതാ നയം';
+
+  @override
+  String get settings_terms => 'ഉപയോഗ നിബന്ധനകൾ';
+
+  @override
+  String get settings_security => 'സുരക്ഷയും സുതാര്യതയും';
+
+  @override
+  String get settings_licenses => 'ഘടക ലൈസൻസുകൾ';
+
+  @override
+  String get settings_licensesDetail => 'ആപ്പിൽ ഉപയോഗിക്കുന്ന സോഫ്റ്റ്‌വെയർ';
+
+  @override
+  String settings_licensesLegalese(String url) {
+    return 'ആപ്പിന്റെയും അതിന്റെ MPL-2.0 ഘടകങ്ങളുടെയും സോഴ്സ് കോഡ്: $url';
+  }
+
+  @override
+  String get settings_background =>
+      'ആപ്പ് വിട്ടുപോകുമ്പോഴും VPN ഓണായിരിക്കും. നിർത്താൻ, കണക്ഷൻ ടാബിലെ “വിച്ഛേദിക്കുക” ഉപയോഗിക്കുക.';
+
+  @override
+  String get theme_system => 'സിസ്റ്റം';
+
+  @override
+  String get theme_light => 'ലൈറ്റ്';
+
+  @override
+  String get theme_dark => 'ഡാർക്ക്';
+
+  @override
+  String get language_system => 'ഫോൺ ഭാഷ';
+
+  @override
+  String get language_fr => 'Français';
+
+  @override
+  String get language_en => 'English';
+
+  @override
+  String get language_es => 'Español';
+
+  @override
+  String get language_de => 'Deutsch';
+
+  @override
+  String get dialog_removeDevice => 'ഈ ഉപകരണം നീക്കം ചെയ്യണോ?';
+
+  @override
+  String get dialog_removeCurrent =>
+      'ഈ ഫോൺ VPN-ൽ നിന്ന് വിച്ഛേദിക്കപ്പെടുകയും ആക്‌സസ് നഷ്ടപ്പെടുകയും ചെയ്യും. സെർവർ സ്ഥിരീകരിച്ച ശേഷം അതിന്റെ VPN കണക്ഷൻ ഡാറ്റ നീക്കം ചെയ്യും.';
+
+  @override
+  String dialog_removeOther(Object name) {
+    return '“$name”-ന്റെ VPN ആക്‌സസ് റദ്ദാക്കും. ഇത് പഴയപടിയാക്കാനാവില്ല.';
+  }
+
+  @override
+  String get dialog_signOut => 'സൈൻ ഔട്ട് ചെയ്യണോ?';
+
+  @override
+  String get dialog_signOutMessage =>
+      'VPN നിലയ്ക്കും, നിങ്ങൾ വീണ്ടും സൈൻ ഇൻ ചെയ്യേണ്ടിവരും. അടുത്ത കണക്ഷനായി നിങ്ങളുടെ എൻക്രിപ്റ്റ് ചെയ്ത VPN കീകൾ ഈ ഫോണിൽ തന്നെ തുടരും.';
+
+  @override
+  String get action_cancel => 'റദ്ദാക്കുക';
+
+  @override
+  String get action_close => 'അടയ്ക്കുക';
+
+  @override
+  String get action_copy => 'പകർത്തുക';
+
+  @override
+  String get action_signOut => 'സൈൻ ഔട്ട് ചെയ്യുക';
+
+  @override
+  String get notice_close => 'സന്ദേശം അടയ്ക്കുക';
+
+  @override
+  String get notice_sessionExpired_title => 'സെഷൻ കാലഹരണപ്പെട്ടു';
+
+  @override
+  String get notice_sessionExpired_message =>
+      'നിങ്ങളുടെ സെഷൻ കാലഹരണപ്പെട്ടു. വീണ്ടും സൈൻ ഇൻ ചെയ്യുക.';
+
+  @override
+  String get notice_connectionFailed_title => 'കണക്ഷൻ പരാജയപ്പെട്ടു';
+
+  @override
+  String get notice_invalidCredentials_message =>
+      'ഇമെയിൽ വിലാസമോ പാസ്‌വേഡോ തെറ്റാണ്.';
+
+  @override
+  String get notice_emailVerification_title => 'ഇമെയിൽ സ്ഥിരീകരണം ആവശ്യമാണ്';
+
+  @override
+  String get notice_emailVerification_message =>
+      'VPN ഉപകരണം ചേർക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക.';
+
+  @override
+  String get notice_rateLimited_title => 'വളരെയധികം ശ്രമങ്ങൾ നടത്തി';
+
+  @override
+  String get notice_deviceLimit_title => 'ഉപകരണ പരിധിയിലെത്തി';
+
+  @override
+  String get notice_deviceLimit_message =>
+      'മറ്റൊന്ന് ചേർക്കുന്നതിന് മുമ്പ് നിലവിലുള്ള ഒരു ഉപകരണം നീക്കം ചെയ്യുക.';
+
+  @override
+  String get notice_identityRenewal_title => 'VPN ഐഡന്റിറ്റി പുതുക്കേണ്ടതുണ്ട്';
+
+  @override
+  String get notice_identityRenewal_message =>
+      'ഈ ഐഡന്റിറ്റി നീക്കം ചെയ്തു. ഉപകരണത്തിൽ ഒരു പുതിയ ഐഡന്റിറ്റി സൃഷ്ടിക്കുക.';
+
+  @override
+  String get notice_migrationPending_title => 'ലൊക്കേഷൻ മാറ്റം പുരോഗമിക്കുന്നു';
+
+  @override
+  String get notice_migrationPending_message =>
+      'ഒരു ലൊക്കേഷൻ മാറ്റം ഇതിനകം പുരോഗമിക്കുന്നുണ്ട്.';
+
+  @override
+  String get notice_migrationBlocked_title => 'ലൊക്കേഷൻ മാറ്റം തടഞ്ഞു';
+
+  @override
+  String get notice_migrationBlocked_message =>
+      'ലൊക്കേഷൻ മാറ്റത്തിന് സെർവർ ഇടപെടൽ ആവശ്യമാണ്. പിന്നീട് വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ പിന്തുണയുമായി ബന്ധപ്പെടുക.';
+
+  @override
+  String get notice_targetUnavailable_title => 'സെർവർ താൽക്കാലികമായി ലഭ്യമല്ല';
+
+  @override
+  String get notice_targetUnavailable_message =>
+      'ഈ സെർവർ താൽക്കാലികമായി ലഭ്യമല്ല.';
+
+  @override
+  String get notice_networkUnavailable_title => 'ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല';
+
+  @override
+  String get notice_networkUnavailable_message =>
+      'നിങ്ങളുടെ കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get notice_permissionDenied_title => 'VPN അനുമതി നിരസിച്ചു';
+
+  @override
+  String get notice_permissionDenied_message =>
+      'കണക്ഷൻ വീണ്ടും ആരംഭിച്ച് Android അനുമതി അഭ്യർത്ഥന സ്വീകരിക്കുക.';
+
+  @override
+  String get notice_wireguardTimeout_title => 'സെർവർ പ്രതികരിക്കുന്നില്ല';
+
+  @override
+  String get notice_wireguardTimeout_message =>
+      'WireGuard കണക്ഷന് വളരെ സമയമെടുത്തു. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ മറ്റൊരു ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get notice_tlsFailed_title => 'സുരക്ഷിത കണക്ഷൻ നിരസിച്ചു';
+
+  @override
+  String get notice_tlsFailed_message =>
+      'സെർവർ OpenVPN കണക്ഷൻ സ്വീകരിച്ചില്ല. വീണ്ടും ശ്രമിക്കുക. പ്രശ്നം തുടരുകയാണെങ്കിൽ ഡയഗ്നോസ്റ്റിക്‌സ് പ്രവർത്തിപ്പിക്കുക.';
+
+  @override
+  String get notice_tunRejected_title => 'VPN ഇന്റർഫേസ് Android നിരസിച്ചു';
+
+  @override
+  String get notice_tunRejected_message =>
+      'OpenVPN ആവശ്യപ്പെട്ട നെറ്റ്‌വർക്ക് കോൺഫിഗറേഷൻ Android നിരസിച്ചു.';
+
+  @override
+  String get notice_openvpnStart_title => 'OpenVPN-ന് ആരംഭിക്കാനായില്ല';
+
+  @override
+  String get notice_openvpnStart_message =>
+      'OpenVPN എഞ്ചിന് പൂർണ്ണമായി ആരംഭിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക. പ്രശ്നം തുടരുകയാണെങ്കിൽ പിന്തുണയുമായി ബന്ധപ്പെടുക.';
+
+  @override
+  String notice_diagnosticCode(Object code) {
+    return 'ഡയഗ്നോസ്റ്റിക് കോഡ്: $code';
+  }
+
+  @override
+  String get notice_generic_title => 'VPN കണക്ഷൻ പരാജയപ്പെട്ടു';
+
+  @override
+  String get notice_generic_message =>
+      'ഒരു പിശക് സംഭവിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String notice_controller_title(String code) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'account_created_email_unavailable': 'അക്കൗണ്ട് സൃഷ്ടിച്ചു',
+      'password_reset_sent': 'പാസ്‌വേഡ് പുനഃസജ്ജമാക്കാനുള്ള അഭ്യർത്ഥന ലഭിച്ചു',
+      'verification_email_sent': 'സ്ഥിരീകരണ ഇമെയിൽ അയച്ചു',
+      'location_migration_pending': 'ലൊക്കേഷൻ മാറ്റം പുരോഗമിക്കുന്നു',
+      'vpn_sign_in_required': 'സൈൻ ഇൻ ആവശ്യമാണ്',
+      'protocol_unavailable_at_location': 'പ്രോട്ടോക്കോൾ ലഭ്യമല്ല',
+      'vpn_permission_denied': 'VPN അനുമതി നിരസിച്ചു',
+      'revoked_identity_device_limit': 'ഉപകരണ പരിധിയിലെത്തി',
+      'tunnel_start_unexpected': 'VPN ആരംഭിക്കാനായില്ല',
+      'flutter_disconnect_timeout': 'വിച്ഛേദിക്കൽ സ്ഥിരീകരിച്ചില്ല',
+      'flutter_disconnect_unexpected': 'വിച്ഛേദിക്കാനായില്ല',
+      'device_revoked': 'ഉപകരണം നീക്കം ചെയ്തു',
+      'revoke_unexpected': 'ഉപകരണം നീക്കം ചെയ്യാനായില്ല',
+      'identity_renewal_unexpected': 'ഐഡന്റിറ്റി പുതുക്കാനായില്ല',
+      'openvpn_renewal_unexpected': 'OpenVPN പുതുക്കാനായില്ല',
+      'location_migration_blocked': 'ലൊക്കേഷൻ മാറ്റം തടഞ്ഞു',
+      'location_migration_slow': 'ലൊക്കേഷൻ മാറ്റം ഇപ്പോഴും പുരോഗമിക്കുന്നു',
+      'location_migration_conflict': 'ലൊക്കേഷൻ മാറ്റം പുതുക്കേണ്ടതുണ്ട്',
+      'location_migration_verification_failed':
+          'ലൊക്കേഷൻ മാറ്റം സ്ഥിരീകരിച്ചില്ല',
+      'location_migration_device_changed': 'ലൊക്കേഷൻ മാറ്റത്തിനിടെ ഉപകരണം മാറി',
+      'tunnel_stop_failed': 'ലൊക്കേഷൻ മാറ്റം ലഭ്യമല്ല',
+      'device_clock_ahead': 'ഉപകരണ ക്ലോക്ക് മുന്നിലാണ്',
+      'other': 'പ്രവർത്തനം പരാജയപ്പെട്ടു',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_controller_message(String code, String target) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'account_created_email_unavailable':
+          'അക്കൗണ്ട് സൃഷ്ടിച്ചു, പക്ഷേ സ്ഥിരീകരണ ഇമെയിൽ അയയ്ക്കാനായില്ല. ആപ്പിൽ “ഇമെയിൽ വീണ്ടും അയയ്ക്കുക” തിരഞ്ഞെടുക്കുക.',
+      'password_reset_sent':
+          'നിങ്ങളുടെ അഭ്യർത്ഥന ലഭിച്ചു. ഈ വിലാസവുമായി ബന്ധപ്പെട്ട ഒരു അക്കൗണ്ടുണ്ടെങ്കിൽ ഇമെയിൽ ലഭിച്ചേക്കാം. സ്പാം ഫോൾഡറും പരിശോധിക്കുക.',
+      'verification_email_sent':
+          'ഒരു പുതിയ സ്ഥിരീകരണ ഇമെയിൽ ഇപ്പോൾ അയച്ചിട്ടുണ്ട്.',
+      'location_migration_pending':
+          '$target-ലേക്കുള്ള മാറ്റം ഇപ്പോഴും തയ്യാറാക്കുകയാണ്. ഉപകരണം വീണ്ടും സൃഷ്ടിക്കാതെ നിങ്ങൾക്ക് ഇത് തുടരാം.',
+      'vpn_sign_in_required':
+          'VPN ആരംഭിക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്യുക.',
+      'protocol_unavailable_at_location':
+          'തിരഞ്ഞെടുത്ത പ്രോട്ടോക്കോൾ ഈ ലൊക്കേഷനിൽ ലഭ്യമല്ല. ലൊക്കേഷനുകൾ പുതുക്കുക അല്ലെങ്കിൽ മറ്റൊരു പ്രോട്ടോക്കോൾ തിരഞ്ഞെടുക്കുക.',
+      'vpn_permission_denied':
+          'VPN അനുമതി Android നിരസിച്ചു. കണക്ഷൻ വീണ്ടും ആരംഭിച്ച് സിസ്റ്റം അഭ്യർത്ഥന സ്വീകരിക്കുക.',
+      'revoked_identity_device_limit':
+          'ഈ ഉപകരണത്തിന്റെ VPN ആക്‌സസ് നീക്കം ചെയ്തു, ഉപകരണ പരിധിയിലും എത്തിയിരിക്കുന്നു. അക്കൗണ്ട് → എന്റെ ഉപകരണങ്ങൾ മാനേജ് ചെയ്യുക എന്നതിൽ ഒരു ഉപകരണം നീക്കം ചെയ്യുക.',
+      'tunnel_start_unexpected':
+          'ഒരു അപ്രതീക്ഷിത പിശക് ടണൽ തയ്യാറാക്കുന്നത് തടസ്സപ്പെടുത്തി. ഡയഗ്നോസ്റ്റിക് കോഡ് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
+      'flutter_disconnect_timeout':
+          'സമയത്തിനുള്ളിൽ VPN നിർത്തിയതായി Android സ്ഥിരീകരിച്ചില്ല. വീണ്ടും നിർത്താൻ ശ്രമിക്കുക.',
+      'flutter_disconnect_unexpected':
+          'ടണൽ നിർത്തിയതായി സ്ഥിരീകരിക്കുന്നത് ഒരു അപ്രതീക്ഷിത പിശക് തടഞ്ഞു.',
+      'device_revoked':
+          'ഉപകരണത്തിന്റെ VPN ആക്‌സസ് റദ്ദാക്കി, ഉപകരണത്തിലെ രഹസ്യ വിവരങ്ങൾ നീക്കം ചെയ്തു.',
+      'revoke_unexpected':
+          'ഉപകരണം നീക്കം ചെയ്യാനായില്ല. പട്ടിക പുതുക്കി വീണ്ടും ശ്രമിക്കുക.',
+      'identity_renewal_unexpected':
+          'പുതിയ VPN ഐഡന്റിറ്റി സൃഷ്ടിക്കാനായില്ല. ഉപകരണങ്ങൾ പുതുക്കി വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_renewal_unexpected':
+          'OpenVPN പ്രൊഫൈൽ പുതുക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ ഡയഗ്നോസ്റ്റിക് കോഡ് പരിശോധിക്കുക.',
+      'location_migration_blocked':
+          'ഈ മാറ്റം ഇപ്പോൾ സെർവറിന് പൂർത്തിയാക്കാനാവില്ല. ഉപകരണവും ഉപകരണത്തിലെ ഐഡന്റിറ്റിയും നിലനിർത്തി.',
+      'location_migration_slow':
+          '$target-ലേക്കുള്ള മാറ്റം സെർവർ ഇപ്പോഴും തയ്യാറാക്കുകയാണ്. കുറച്ച് സമയത്തിന് ശേഷം “ലൊക്കേഷൻ മാറ്റം തുടരുക” തിരഞ്ഞെടുക്കുക.',
+      'location_migration_conflict':
+          'സെർവറിൽ ഉപകരണത്തിന്റെ നില മാറി. ഉപകരണങ്ങൾ പുതുക്കിയ ശേഷം മാറ്റം തുടരുക.',
+      'location_migration_verification_failed':
+          'പുതിയ ലൊക്കേഷൻ സെർവർ സ്ഥിരീകരിച്ചില്ല. ഉപകരണത്തിലെ മുൻ ഐഡന്റിറ്റി നിലനിർത്തി.',
+      'location_migration_device_changed':
+          'സെർവർ തിരികെ നൽകിയ ഉപകരണം മാറ്റം വരുത്തുന്ന ഉപകരണവുമായി ഇപ്പോൾ പൊരുത്തപ്പെടുന്നില്ല. വീണ്ടും ശ്രമിക്കുന്നതിന് മുമ്പ് ഉപകരണങ്ങൾ പുതുക്കുക.',
+      'tunnel_stop_failed':
+          'മുൻ ടണൽ പൂർണ്ണമായി നിർത്തിയ ശേഷമേ പുതിയ കണക്ഷൻ സാധ്യമാകൂ.',
+      'device_clock_ahead':
+          'ഈ ഉപകരണത്തിന്റെ ക്ലോക്ക് മുന്നിലാണെന്ന് തോന്നുന്നു. സൈൻ ഇൻ ചെയ്ത നിലയിൽ തുടരാൻ സ്വയമേവയുള്ള തീയതിയും സമയവും ഓണാക്കുക.',
+      'other':
+          'പ്രവർത്തനം പൂർത്തിയാക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ ഡയഗ്നോസ്റ്റിക് കോഡ് പിന്തുണാ ടീമിന് അയയ്ക്കുക.',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_api_title(String code) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'unauthorized': 'സെഷൻ കാലഹരണപ്പെട്ടു',
+      'invalid_credentials': 'സൈൻ ഇൻ പരാജയപ്പെട്ടു',
+      'email_verification_required': 'ഇമെയിൽ സ്ഥിരീകരണം ആവശ്യമാണ്',
+      'verification_email_cooldown': 'ഇമെയിൽ ഇതിനകം അയച്ചു',
+      'rate_limited': 'വളരെയധികം ശ്രമങ്ങൾ നടത്തി',
+      'invalid_registration': 'വിവരങ്ങൾ തിരുത്തേണ്ടതുണ്ട്',
+      'email_exists': 'അക്കൗണ്ട് ഇതിനകം നിലവിലുണ്ട്',
+      'invalid_profile': 'അസാധുവായ പ്രൊഫൈൽ',
+      'invalid_device': 'അസാധുവായ ഉപകരണം',
+      'invalid_location': 'ലൊക്കേഷൻ ലഭ്യമല്ല',
+      'device_limit': 'ഉപകരണ പരിധിയിലെത്തി',
+      'device_exists': 'ഈ VPN ഐഡന്റിറ്റി ഇതിനകം ഉപയോഗത്തിലുണ്ട്',
+      'device_identity_revoked': 'VPN ഐഡന്റിറ്റി പുതുക്കേണ്ടതുണ്ട്',
+      'device_location_locked': 'ലൊക്കേഷൻ മാറ്റം പുതുക്കേണ്ടതുണ്ട്',
+      'location_migration_pending': 'ലൊക്കേഷൻ മാറ്റം പുരോഗമിക്കുന്നു',
+      'location_migration_blocked': 'ലൊക്കേഷൻ മാറ്റം തടഞ്ഞു',
+      'target_ca_mismatch': 'അനുയോജ്യമല്ലാത്ത OpenVPN സെർവർ',
+      'location_migration_conflict': 'ലൊക്കേഷൻ മാറ്റം പുതുക്കേണ്ടതുണ്ട്',
+      'server_full': 'സെർവർ നിറഞ്ഞു',
+      'capacity_unavailable': 'ലൊക്കേഷൻ താൽക്കാലികമായി ലഭ്യമല്ല',
+      'target_unavailable': 'സെർവർ താൽക്കാലികമായി ലഭ്യമല്ല',
+      'not_found': 'ഇനം കണ്ടെത്തിയില്ല',
+      'invalid_openvpn_csr': 'അസാധുവായ OpenVPN ഐഡന്റിറ്റി',
+      'openvpn_profile_exists': 'OpenVPN പ്രൊഫൈൽ ഇതിനകം നിലവിലുണ്ട്',
+      'openvpn_profile_revoked': 'OpenVPN പ്രൊഫൈൽ റദ്ദാക്കി',
+      'openvpn_operation_pending': 'OpenVPN പ്രവർത്തനം പുരോഗമിക്കുന്നു',
+      'openvpn_operation_terminal': 'OpenVPN പ്രവർത്തനം തടസ്സപ്പെട്ടു',
+      'openvpn_address_unavailable': 'OpenVPN വിലാസം ലഭ്യമല്ല',
+      'openvpn_profile_conflict': 'OpenVPN വൈരുദ്ധ്യം',
+      'openvpn_signer_unavailable': 'OpenVPN ലഭ്യമല്ല',
+      'email_delivery_unavailable': 'ഇമെയിൽ ലഭ്യമല്ല',
+      'invalid_token': 'അസാധുവായ ലിങ്ക്',
+      'network_unavailable': 'ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല',
+      'invalid_json': 'അസാധുവായ അഭ്യർത്ഥന',
+      'invalid_api_response': 'അസാധുവായ സെർവർ പ്രതികരണം',
+      'ipv6_unavailable': 'IPv6 ലഭ്യമല്ല',
+      'invalid_ip_families': 'നെറ്റ്‌വർക്ക് കോൺഫിഗറേഷൻ നിരസിച്ചു',
+      'other': 'സേവനം ലഭ്യമല്ല',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_api_message(String code) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'unauthorized': 'നിങ്ങളുടെ സെഷൻ കാലഹരണപ്പെട്ടു. വീണ്ടും സൈൻ ഇൻ ചെയ്യുക.',
+      'invalid_credentials': 'ഇമെയിൽ വിലാസമോ പാസ്‌വേഡോ തെറ്റാണ്.',
+      'email_verification_required':
+          'VPN ഉപകരണം ചേർക്കുന്നതിന് മുമ്പ് നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക.',
+      'invalid_registration':
+          'ആവശ്യപ്പെട്ട വിവരങ്ങളും സമ്മതങ്ങളും പരിശോധിക്കുക.',
+      'email_exists':
+          'ഈ ഇമെയിൽ വിലാസം ഉപയോഗിക്കുന്ന ഒരു അക്കൗണ്ട് ഇതിനകം ഉണ്ട്.',
+      'invalid_profile': 'നിങ്ങളുടെ പ്രൊഫൈൽ വിവരങ്ങൾ പരിശോധിക്കുക.',
+      'invalid_device': 'ഈ ഉപകരണത്തിന്റെ പേരോ ഐഡന്റിറ്റിയോ അസാധുവാണ്.',
+      'invalid_location': 'ലൊക്കേഷൻ പട്ടിക പുതുക്കി വീണ്ടും ശ്രമിക്കുക.',
+      'device_limit':
+          'മറ്റൊരു ഉപകരണം ചേർക്കുന്നതിന് മുമ്പ് നിലവിലുള്ള ഒരു ഉപകരണം നീക്കം ചെയ്യുക.',
+      'device_exists':
+          'ഈ VPN ഐഡന്റിറ്റി മറ്റൊരു അക്കൗണ്ടുമായി ഇതിനകം ബന്ധിപ്പിച്ചിരിക്കുന്നു.',
+      'device_identity_revoked':
+          'ഈ ഐഡന്റിറ്റി നീക്കം ചെയ്തു. ഉപകരണത്തിൽ ഒരു പുതിയ ഐഡന്റിറ്റി സൃഷ്ടിക്കേണ്ടതുണ്ട്.',
+      'device_location_locked':
+          'ഈ ഉപകരണത്തിന്റെ ലൊക്കേഷൻ ഇപ്പോൾ മാറി. നടന്നുകൊണ്ടിരിക്കുന്ന മാറ്റം ആപ്പ് തുടരും.',
+      'location_migration_pending':
+          'ഒരു ലൊക്കേഷൻ മാറ്റം ഇതിനകം പുരോഗമിക്കുന്നുണ്ട്.',
+      'location_migration_blocked':
+          'ലൊക്കേഷൻ മാറ്റത്തിന് സെർവർ ഇടപെടൽ ആവശ്യമാണ്. പിന്നീട് വീണ്ടും ശ്രമിക്കുക അല്ലെങ്കിൽ പിന്തുണയുമായി ബന്ധപ്പെടുക.',
+      'target_ca_mismatch':
+          'ഈ സെർവർ നിലവിലെ OpenVPN പ്രൊഫൈലിന് ഇതുവരെ അനുയോജ്യമല്ല.',
+      'location_migration_conflict':
+          'ഉപകരണങ്ങൾ പുതുക്കിയ ശേഷം ലൊക്കേഷൻ മാറ്റാൻ വീണ്ടും ശ്രമിക്കുക.',
+      'server_full':
+          'ഈ ലൊക്കേഷൻ അതിന്റെ കണക്ഷൻ പരിധിയിലെത്തി. മറ്റൊരു ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
+      'capacity_unavailable':
+          'ഈ ലൊക്കേഷൻ ഇപ്പോൾ ലഭ്യമാണോ എന്ന് ഉറപ്പാക്കാനാവുന്നില്ല. മറ്റൊരു ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
+      'target_unavailable': 'ഈ സെർവർ താൽക്കാലികമായി ലഭ്യമല്ല.',
+      'not_found': 'ഈ ഇനം ഇനി നിങ്ങളുടെ അക്കൗണ്ടിൽ ലഭ്യമല്ല.',
+      'invalid_openvpn_csr':
+          'പുതിയ OpenVPN ഐഡന്റിറ്റി സൃഷ്ടിച്ച് വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_profile_exists':
+          'ഈ ഉപകരണത്തിനായി ഒരു OpenVPN പ്രൊഫൈൽ ഇതിനകം നിലവിലുണ്ട്.',
+      'openvpn_profile_revoked': 'തുടരാൻ OpenVPN പ്രൊഫൈൽ പുതുക്കുക.',
+      'openvpn_operation_pending':
+          'മാറ്റം ഇപ്പോഴും പ്രാബല്യത്തിൽ വരുന്നു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_operation_terminal':
+          'പുതിയ OpenVPN ഐഡന്റിറ്റി സൃഷ്ടിച്ച് വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_address_unavailable': 'നിലവിൽ OpenVPN വിലാസം ഒന്നും ലഭ്യമല്ല.',
+      'openvpn_profile_conflict':
+          'പ്രൊഫൈൽ മാറിയിരിക്കുന്നു. ഉപകരണങ്ങൾ പുതുക്കി വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_signer_unavailable': 'OpenVPN സേവനം താൽക്കാലികമായി ലഭ്യമല്ല.',
+      'email_delivery_unavailable':
+          'ഇമെയിൽ അയയ്ക്കാനായില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
+      'invalid_token':
+          'ഈ ലിങ്ക് അസാധുവാണ്, അല്ലെങ്കിൽ കാലഹരണപ്പെട്ടു. പുതിയ ലിങ്ക് അഭ്യർത്ഥിക്കുക.',
+      'network_unavailable':
+          'നിങ്ങളുടെ ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
+      'invalid_json': 'നൽകിയ വിവരങ്ങൾ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക.',
+      'invalid_api_response':
+          'സെർവർ പ്രതീക്ഷിക്കാത്ത ഒരു പ്രതികരണം നൽകി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
+      'ipv6_unavailable':
+          'ഇപ്പോൾ IPv6 സജീവമാക്കാൻ സെർവറിന് കഴിയുന്നില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
+      'invalid_ip_families':
+          'ടണൽ കോൺഫിഗറേഷൻ അപൂർണ്ണമാണ്, അല്ലെങ്കിൽ അനുവദിച്ച വിലാസങ്ങളുമായി പൊരുത്തപ്പെടുന്നില്ല. ആപ്പിൽ നിന്ന് വീണ്ടും ശ്രമിക്കുക.',
+      'other': 'ഒരു സെർവർ പിശക് സംഭവിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get notice_retryLater => 'കുറച്ച് സമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String notice_retryAfter(int seconds) {
+    String _temp0 = intl.Intl.pluralLogic(
+      seconds,
+      locale: localeName,
+      other: '$seconds സെക്കൻഡിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+      one: '$seconds സെക്കൻഡിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterMinutes(int minutes) {
+    String _temp0 = intl.Intl.pluralLogic(
+      minutes,
+      locale: localeName,
+      other: '$minutes മിനിറ്റിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+      one: '$minutes മിനിറ്റിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_retryAfterHours(int hours) {
+    String _temp0 = intl.Intl.pluralLogic(
+      hours,
+      locale: localeName,
+      other: '$hours മണിക്കൂറിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+      one: '$hours മണിക്കൂറിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notice_native_title(String code, String protocol) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'system_vpn_resume_unavailable': 'സിസ്റ്റം VPN പുനരാരംഭം ലഭ്യമല്ല',
+      'system_vpn_resume_corrupt': 'സിസ്റ്റം VPN പുനരാരംഭം അസാധുവാണ്',
+      'system_vpn_resume_session_invalid': 'VPN പുനരാരംഭ സെഷൻ അസാധുവാണ്',
+      'system_vpn_resume_identity_changed': 'VPN ഐഡന്റിറ്റി മാറി',
+      'system_vpn_resume_identity_invalid': 'VPN പുനരാരംഭ ഐഡന്റിറ്റി അസാധുവാണ്',
+      'system_vpn_resume_storage_failed': 'VPN പുനരാരംഭ സ്റ്റോറേജ് ലഭ്യമല്ല',
+      'system_vpn_resume_network_timeout':
+          'VPN പുനരാരംഭിക്കാൻ നെറ്റ്‌വർക്ക് ഇല്ല',
+      'system_vpn_resume_blocked': 'VPN പുനരാരംഭം തടഞ്ഞു',
+      'system_vpn_resume_failed': 'VPN പുനരാരംഭം പരാജയപ്പെട്ടു',
+      'system_vpn_resume_error_invalid': 'VPN പുനരാരംഭ പിശക് അസാധുവാണ്',
+      'wireguard_identity_store_failed': 'WireGuard ഐഡന്റിറ്റി സംരക്ഷിച്ചില്ല',
+      'wireguard_identity_unavailable': 'WireGuard ഐഡന്റിറ്റി ലഭ്യമല്ല',
+      'vpn_host_destroyed': 'Android VPN ഹോസ്റ്റ് നിലച്ചു',
+      'vpn_host_unavailable': 'Android VPN ഹോസ്റ്റ് ലഭ്യമല്ല',
+      'vpn_permission_required': 'VPN അനുമതി ആവശ്യമാണ്',
+      'vpn_permission_denied': 'VPN അനുമതി നിരസിച്ചു',
+      'vpn_permission_request_failed': 'അനുമതി അഭ്യർത്ഥിക്കാനായില്ല',
+      'wireguard_foreground_service_unavailable': 'WireGuard സേവനം ലഭ്യമല്ല',
+      'wireguard_identity_invalid': 'ഉപകരണത്തിലെ WireGuard കീ അസാധുവാണ്',
+      'wireguard_identity_in_use':
+          'WireGuard ഐഡന്റിറ്റി ഇതിനകം ഉപയോഗത്തിലുണ്ട്',
+      'wireguard_configuration_invalid': 'WireGuard കോൺഫിഗറേഷൻ അസാധുവാണ്',
+      'wireguard_operation_pending': 'WireGuard പ്രവർത്തനം ഇപ്പോഴും സജീവമാണ്',
+      'wireguard_start_failed': 'WireGuard ആരംഭം നിരസിച്ചു',
+      'wireguard_stop_timeout': 'WireGuard നിർത്തൽ സ്ഥിരീകരിച്ചില്ല',
+      'wireguard_handshake_timeout': 'WireGuard പ്രതികരിച്ചില്ല',
+      'openvpn_connection_timeout': 'OpenVPN പ്രതികരിച്ചില്ല',
+      'openvpn_core_unavailable': 'OpenVPN എഞ്ചിൻ ലഭ്യമല്ല',
+      'openvpn_operation_pending': 'OpenVPN സെഷൻ ഇപ്പോഴും സജീവമാണ്',
+      'openvpn_stop_timeout': 'OpenVPN നിർത്തൽ സ്ഥിരീകരിച്ചില്ല',
+      'openvpn_profile_unavailable': 'ഉപകരണത്തിലെ OpenVPN പ്രൊഫൈൽ കാണാനില്ല',
+      'openvpn_native_failed': 'OpenVPN നേറ്റീവ് കോൾ തടസ്സപ്പെട്ടു',
+      'openvpn_key_generation_failed': 'OpenVPN P-256 കീ സൃഷ്ടിക്കാനായില്ല',
+      'openvpn_csr_generation_failed': 'OpenVPN CSR സൃഷ്ടിക്കാനായില്ല',
+      'openvpn_identity_store_failed': 'OpenVPN ഐഡന്റിറ്റി സംരക്ഷിച്ചില്ല',
+      'openvpn_identity_clear_failed': 'OpenVPN നീക്കം ചെയ്യൽ അപൂർണ്ണമാണ്',
+      'openvpn_identity_in_use': 'OpenVPN ഐഡന്റിറ്റി ഇപ്പോഴും ഉപയോഗത്തിലുണ്ട്',
+      'openvpn_tls_verification_required': 'OpenVPN TLS പരിശോധന കാണാനില്ല',
+      'openvpn_cipher_invalid': 'OpenVPN സൈഫർ അസാധുവാണ്',
+      'openvpn_profile_rejected': 'OpenVPN പ്രൊഫൈൽ നിരസിച്ചു',
+      'openvpn_identity_inconsistent': 'പൊരുത്തമില്ലാത്ത OpenVPN ഐഡന്റിറ്റി',
+      'tls_handshake_failed': 'OpenVPN നെഗോഷ്യേഷൻ നിരസിച്ചു',
+      'tls_alert_unknown_ca':
+          'OpenVPN ക്ലയന്റ് സർട്ടിഫിക്കറ്റ് തിരിച്ചറിഞ്ഞില്ല',
+      'tls_alert_bad_certificate': 'OpenVPN ക്ലയന്റ് സർട്ടിഫിക്കറ്റ് നിരസിച്ചു',
+      'tls_alert_unsupported_certificate':
+          'പിന്തുണയ്ക്കാത്ത OpenVPN സർട്ടിഫിക്കറ്റ്',
+      'tls_client_certificate_required':
+          'OpenVPN ക്ലയന്റ് സർട്ടിഫിക്കറ്റ് ആവശ്യമാണ്',
+      'tls_alert_misc': 'OpenVPN TLS അലേർട്ട്',
+      'tls_signature_algorithm_rejected': 'പിന്തുണയ്ക്കാത്ത OpenVPN സിഗ്നേച്ചർ',
+      'tls_handshake_rejected': 'OpenVPN TLS നെഗോഷ്യേഷൻ നിരസിച്ചു',
+      'tls_version_rejected': 'അനുയോജ്യമല്ലാത്ത OpenVPN TLS പതിപ്പ്',
+      'tls_certificate_expired': 'TLS സർട്ടിഫിക്കറ്റിന്റെ കാലാവധി കഴിഞ്ഞു',
+      'tls_certificate_revoked': 'TLS സർട്ടിഫിക്കറ്റ് റദ്ദാക്കി',
+      'transport_failed': 'OpenVPN സെർവറിൽ എത്താനാകുന്നില്ല',
+      'tun_configuration_rejected': 'OpenVPN ഇന്റർഫേസ് സൃഷ്ടിക്കാനായില്ല',
+      'tun_setup_failed': 'OpenVPN TUN സജ്ജീകരണം പരാജയപ്പെട്ടു',
+      'tun_interface_create_failed':
+          'OpenVPN ഇന്റർഫേസ് സൃഷ്ടിക്കൽ പരാജയപ്പെട്ടു',
+      'tun_interface_disabled': 'OpenVPN ഇന്റർഫേസ് പ്രവർത്തനരഹിതമാക്കി',
+      'tun_halted': 'OpenVPN ഇന്റർഫേസ് തടസ്സപ്പെട്ടു',
+      'tun_already_established': 'OpenVPN ഇന്റർഫേസ് ഇതിനകം തുറന്നിട്ടുണ്ട്',
+      'tun_addresses_missing': 'OpenVPN വിലാസം കാണാനില്ല',
+      'tun_routes_missing': 'OpenVPN റൂട്ടുകൾ കാണാനില്ല',
+      'tun_dns_missing': 'OpenVPN DNS കാണാനില്ല',
+      'tun_permission_revoked': 'VPN അനുമതി റദ്ദാക്കി',
+      'tun_establish_returned_null': 'VPN ഇന്റർഫേസ് Android നിരസിച്ചു',
+      'openvpn_service_start_failed': 'OpenVPN സേവനം ലഭ്യമല്ല',
+      'openvpn_operation_timeout': 'OpenVPN കോൾ സമയം കഴിഞ്ഞു',
+      'openvpn_start_failed': 'OpenVPN ആരംഭം നിരസിച്ചു',
+      'openvpn_connection_failed': 'OpenVPN കണക്ഷൻ തടസ്സപ്പെട്ടു',
+      'openvpn_core_status_error': 'OpenVPN എഞ്ചിൻ പിശകോടെ അവസാനിച്ചു',
+      'openvpn_stopped_before_connected':
+          'ബന്ധിപ്പിക്കുന്നതിന് മുമ്പ് OpenVPN നിലച്ചു',
+      'openvpn_auth_failed': 'OpenVPN പ്രാമാണീകരണം നിരസിച്ചു',
+      'openvpn_client_setup_failed': 'OpenVPN ക്ലയന്റ് സജ്ജീകരണം പരാജയപ്പെട്ടു',
+      'openvpn_client_halted': 'OpenVPN ക്ലയന്റ് തടസ്സപ്പെട്ടു',
+      'openvpn_client_restart': 'OpenVPN പുനരാരംഭം അഭ്യർത്ഥിച്ചു',
+      'openvpn_inactive_timeout': 'OpenVPN വളരെ നേരം നിഷ്ക്രിയമായി',
+      'openvpn_session_expired': 'OpenVPN സെഷന്റെ കാലാവധി കഴിഞ്ഞു',
+      'openvpn_credentials_required': 'പിന്തുണയ്ക്കാത്ത OpenVPN പ്രാമാണീകരണം',
+      'openvpn_proxy_failed': 'OpenVPN ഇടനില ട്രാൻസ്പോർട്ട് പരാജയപ്പെട്ടു',
+      'openvpn_compression_failed': 'OpenVPN കംപ്രഷൻ നിരസിച്ചു',
+      'openvpn_ntlm_crypto_unavailable': 'OpenVPN NTLM എൻക്രിപ്ഷൻ ലഭ്യമല്ല',
+      'openvpn_feature_unsupported': 'പിന്തുണയ്ക്കാത്ത OpenVPN ഫീച്ചർ',
+      'network_unavailable': 'ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല',
+      'network_lost': 'നെറ്റ്‌വർക്ക് ലഭ്യമല്ല',
+      'certificate_validation_failed': 'സെർവർ സർട്ടിഫിക്കറ്റ് നിരസിച്ചു',
+      'openvpn_certificate_expired':
+          'OpenVPN സർട്ടിഫിക്കറ്റിന്റെ കാലാവധി കഴിഞ്ഞു',
+      'tunnel_active_for_another_account':
+          'മറ്റൊരു അക്കൗണ്ടിന്റെ ടണൽ ഇപ്പോഴും സജീവമാണ്',
+      'tunnel_already_active': 'നേറ്റീവ് ടണൽ ഇതിനകം സജീവമാണ്',
+      'tunnel_stop_timeout': '$protocol നിർത്തൽ സ്ഥിരീകരിച്ചില്ല',
+      'tunnel_disconnected': '$protocol തടസ്സപ്പെട്ടു',
+      'native_bridge_unavailable': 'Android ബ്രിഡ്ജ് ലഭ്യമല്ല',
+      'native_operation_failed': 'Android പ്രവർത്തനം തടസ്സപ്പെട്ടു',
+      'invalid_arguments': 'VPN പാരാമീറ്ററുകൾ അപൂർണ്ണമാണ്',
+      'invalid_account_id': 'VPN അക്കൗണ്ട് അസാധുവാണ്',
+      'invalid_device_id': 'ഉപകരണ ഐഡന്റിഫയർ അസാധുവാണ്',
+      'storage_key_not_allowed': 'സ്റ്റോറേജ് കീ നിരസിച്ചു',
+      'secure_storage_read_failed': 'സുരക്ഷിതമായി വായിക്കാനായില്ല',
+      'secure_storage_write_failed': 'സുരക്ഷിതമായി എഴുതാനായില്ല',
+      'key_generation_failed': 'WireGuard കീ സൃഷ്ടിക്കാനായില്ല',
+      'csr_generation_failed': 'OpenVPN CSR സൃഷ്ടിക്കാനായില്ല',
+      'openvpn_recovery_exhausted': 'OpenVPN വീണ്ടെടുക്കൽ ഇതിനകം ഉപയോഗിച്ചു',
+      'openvpn_recovery_failed': 'OpenVPN വീണ്ടെടുക്കൽ പരാജയപ്പെട്ടു',
+      'openvpn_renewal_required': 'OpenVPN സർട്ടിഫിക്കറ്റ് പുതുക്കൽ ആവശ്യമാണ്',
+      'other': 'തരംതിരിക്കാത്ത നേറ്റീവ് VPN പിശക്',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String notice_native_message(String code, String protocol) {
+    String _temp0 = intl.Intl.selectLogic(code, {
+      'system_vpn_resume_unavailable':
+          'പുനരാരംഭിക്കാവുന്ന VPN സെഷൻ Android-ന് കണ്ടെത്താനായില്ല. ആപ്പിൽ ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'system_vpn_resume_corrupt':
+          'സംരക്ഷിച്ച VPN പുനരാരംഭ ഡാറ്റ അസാധുവാണ്, അത് ഉപയോഗിക്കില്ല. ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'system_vpn_resume_session_invalid':
+          'സംരക്ഷിച്ച സെഷന് ഇനി VPN പുനരാരംഭിക്കാനാകില്ല. ആപ്പിൽ വീണ്ടും സൈൻ ഇൻ ചെയ്യുക.',
+      'system_vpn_resume_identity_changed':
+          'ഉപകരണത്തിലെ VPN ഐഡന്റിറ്റി മാറി. പുനരാരംഭം നിർത്തി; ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'system_vpn_resume_identity_invalid':
+          'പുനരാരംഭിക്കാനുള്ള ഐഡന്റിറ്റി അസാധുവാണ്. ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'system_vpn_resume_storage_failed':
+          'എൻക്രിപ്റ്റ് ചെയ്ത പുനരാരംഭ ഡാറ്റ വായിക്കാനോ പുതുക്കാനോ Android-ന് കഴിഞ്ഞില്ല. ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'system_vpn_resume_network_timeout':
+          'VPN പുനരാരംഭിക്കാൻ നിശ്ചിത സമയത്തിനുള്ളിൽ നെറ്റ്‌വർക്ക് കണ്ടെത്താൻ Android-ന് കഴിഞ്ഞില്ല. നെറ്റ്‌വർക്ക് ലഭ്യമാകുമ്പോൾ വീണ്ടും ശ്രമിക്കുക.',
+      'system_vpn_resume_blocked':
+          'VPN പുനരാരംഭം തടഞ്ഞിരിക്കുന്നു. Android ക്രമീകരണങ്ങൾ പരിശോധിച്ച ശേഷം ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'system_vpn_resume_failed':
+          'Android VPN പുനരാരംഭം പരാജയപ്പെട്ടു. ആപ്പിൽ ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'system_vpn_resume_error_invalid':
+          'Android ഉപയോഗയോഗ്യമല്ലാത്ത ഒരു പുനരാരംഭ പിശക് തിരികെ നൽകി. ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'wireguard_identity_store_failed':
+          'ഈ അക്കൗണ്ടിന്റെ എൻക്രിപ്റ്റ് ചെയ്ത WireGuard ഐഡന്റിറ്റി Android-ന് സംരക്ഷിക്കാനായില്ല.',
+      'wireguard_identity_unavailable':
+          'ഈ കണക്ഷനായി ഉപയോഗയോഗ്യമായ WireGuard ഐഡന്റിറ്റി ലഭ്യമല്ല.',
+      'vpn_host_destroyed':
+          'VPN-നെ ഹോസ്റ്റ് ചെയ്യുന്ന Android ഘടകം നിലച്ചു. ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'vpn_host_unavailable':
+          'VPN-നെ ഹോസ്റ്റ് ചെയ്യുന്ന ഘടകം സൃഷ്ടിക്കാൻ Android-ന് കഴിയുന്നില്ല. VPN ക്രമീകരണങ്ങൾ പരിശോധിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_renewal_required':
+          'ബന്ധിപ്പിക്കുന്നതിന് മുമ്പ് സർട്ടിഫിക്കറ്റിന് ആപ്പിൽ ഒരു നടപടി ആവശ്യമാണ്.',
+      'openvpn_recovery_failed':
+          'സ്വയമേവയുള്ള വീണ്ടെടുക്കൽ പരാജയപ്പെട്ടു. ആപ്പിൽ ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'openvpn_recovery_exhausted':
+          'സ്വയമേവയുള്ള വീണ്ടെടുക്കൽ ഇതിനകം ഉപയോഗിച്ചു കഴിഞ്ഞു. ആപ്പിൽ ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
+      'vpn_permission_required':
+          'ടണൽ ആരംഭിക്കുന്നതിന് മുമ്പ് Android-ന് പുതിയ VPN അനുമതി ആവശ്യമാണ്.',
+      'vpn_permission_denied':
+          'തുടരാൻ Android അഭ്യർത്ഥനയിൽ FuzeVPN-നെ അനുവദിക്കുക.',
+      'vpn_permission_request_failed':
+          'VPN അനുമതി സ്ക്രീൻ തുറക്കാൻ Android-ന് കഴിഞ്ഞില്ല.',
+      'wireguard_foreground_service_unavailable':
+          'WireGuard സേവനം ഫോർഗ്രൗണ്ടിൽ നിലനിർത്താൻ Android-ന് കഴിഞ്ഞില്ല.',
+      'wireguard_identity_invalid':
+          'ഈ അക്കൗണ്ടിന്റെ എൻക്രിപ്റ്റ് ചെയ്ത WireGuard കീ വായിക്കാനാകാത്തതോ അസാധുവായതോ ആണ്.',
+      'wireguard_identity_in_use':
+          'ഈ അക്കൗണ്ടിന്റെ WireGuard കീ മറ്റൊരു പ്രവർത്തനം ഇപ്പോഴും ഉപയോഗിക്കുന്നു.',
+      'wireguard_configuration_invalid':
+          'ലഭിച്ച WireGuard വിലാസം, DNS, സെർവർ കീ, അല്ലെങ്കിൽ റൂട്ടുകൾ അസാധുവാണ്.',
+      'wireguard_operation_pending':
+          'മുമ്പത്തെ WireGuard പ്രവർത്തനം അതിന്റെ നേറ്റീവ് സേവനം ഇതുവരെ റിലീസ് ചെയ്തിട്ടില്ല.',
+      'wireguard_start_failed':
+          'കോൺഫിഗറേഷൻ സജീവമാക്കുന്നത് WireGuard എഞ്ചിൻ നിരസിച്ചു.',
+      'wireguard_stop_timeout':
+          'നിശ്ചിത സമയപരിധിക്കുള്ളിൽ VPN ഇന്റർഫേസ് റിലീസ് ചെയ്തതായി WireGuard സേവനം സ്ഥിരീകരിച്ചില്ല.',
+      'wireguard_handshake_timeout':
+          'നിശ്ചിത സമയത്തിനുള്ളിൽ സെർവറുമായുള്ള ഹാൻഡ്‌ഷേക്ക് ടണൽ സ്ഥിരീകരിച്ചില്ല.',
+      'openvpn_connection_timeout':
+          'നിശ്ചിത സമയത്തിനുള്ളിൽ സെർവറുമായുള്ള കണക്ഷൻ OpenVPN സ്ഥിരീകരിച്ചില്ല.',
+      'openvpn_core_unavailable':
+          'ഈ ആപ്പ് പതിപ്പിൽ ഉപയോഗയോഗ്യമായ OpenVPN എഞ്ചിൻ ഇല്ല.',
+      'openvpn_operation_pending':
+          'മുമ്പത്തെ OpenVPN സെഷൻ ഇപ്പോഴും നേറ്റീവ് എഞ്ചിനിലുണ്ട്. രണ്ടാമതൊന്ന് സൃഷ്ടിക്കാൻ അത് വിസമ്മതിക്കുന്നു.',
+      'openvpn_stop_timeout':
+          'നിശ്ചിത സമയപരിധിക്കുള്ളിൽ അതിന്റെ നേറ്റീവ് സെഷൻ നിർത്തി ഇല്ലാതാക്കിയതായി OpenVPN എഞ്ചിൻ സ്ഥിരീകരിച്ചില്ല.',
+      'openvpn_profile_unavailable':
+          'ഈ കണക്ഷനായി സാധൂകരിച്ച OpenVPN പ്രൊഫൈൽ വായിക്കാനാകില്ല.',
+      'openvpn_native_failed':
+          'ആപ്പിലെ ഒരു പിശക് OpenVPN-നെ തടസ്സപ്പെടുത്തി. വീണ്ടും ബന്ധിപ്പിക്കാൻ ശ്രമിക്കുക. പ്രശ്നം തുടരുന്നെങ്കിൽ ഡയഗ്നോസ്റ്റിക്‌സ് പ്രവർത്തിപ്പിക്കുക.',
+      'openvpn_key_generation_failed':
+          'Android Keystore-ന് എക്‌സ്‌പോർട്ട് ചെയ്യാനാകാത്ത P-256 സ്വകാര്യ കീ സൃഷ്ടിക്കാനോ വായിക്കാനോ കഴിഞ്ഞില്ല.',
+      'openvpn_csr_generation_failed':
+          'OpenVPN സർട്ടിഫിക്കറ്റ് അഭ്യർത്ഥനയിൽ ഒപ്പിടാൻ Android Keystore കീയ്ക്ക് കഴിഞ്ഞില്ല.',
+      'openvpn_identity_store_failed':
+          'OpenVPN സർട്ടിഫിക്കറ്റോ പ്രൊഫൈലോ എൻക്രിപ്റ്റ് ചെയ്ത സ്റ്റോറേജിൽ സംരക്ഷിക്കാനായില്ല.',
+      'openvpn_identity_clear_failed':
+          'ഈ അക്കൗണ്ടിനായി ഉപകരണത്തിലുള്ള OpenVPN ഐഡന്റിറ്റി പൂർണ്ണമായി നീക്കം ചെയ്യാൻ Android-ന് കഴിഞ്ഞില്ല.',
+      'openvpn_identity_in_use':
+          'ഈ ഉപകരണത്തിന്റെ കീയോ സർട്ടിഫിക്കറ്റോ ഒരു നേറ്റീവ് OpenVPN സെഷൻ ഇപ്പോഴും ഉപയോഗിക്കുന്നു.',
+      'openvpn_tls_verification_required':
+          'ഈ പ്രൊഫൈൽ സെർവർ സർട്ടിഫിക്കറ്റ് പരിശോധന വ്യക്തമായി ആവശ്യപ്പെടുന്നില്ല.',
+      'openvpn_cipher_invalid':
+          'അനുവദനീയമായ പട്ടികയിൽ ഇല്ലാത്ത ഒരു എൻക്രിപ്ഷൻ അൽഗോരിതം സെർവർ നൽകി.',
+      'openvpn_profile_rejected':
+          'സെർവറിൽ നിന്ന് ലഭിച്ച പ്രൊഫൈൽ അനുയോജ്യമല്ല. ഈ ഉപകരണം വീണ്ടും സൃഷ്ടിച്ച ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_identity_inconsistent':
+          'സർട്ടിഫിക്കറ്റ് ഈ ഫോണിന്റെ സുരക്ഷിത ഐഡന്റിറ്റിയുമായി പൊരുത്തപ്പെടുന്നില്ല. ഉപകരണത്തിലെ പ്രൊഫൈലൊന്നും മാറ്റിയിട്ടില്ല.',
+      'tls_handshake_failed':
+          'സെർവർ TLS നെഗോഷ്യേഷൻ നിരസിച്ചു. പ്രശ്നം തുടരുന്നെങ്കിൽ പ്രൊഫൈൽ വീണ്ടും സൃഷ്ടിക്കുക.',
+      'tls_alert_unknown_ca':
+          'ഈ ഉപകരണ സർട്ടിഫിക്കറ്റിന്റെ സർട്ടിഫിക്കറ്റ് അതോറിറ്റിയെ സെർവർ തിരിച്ചറിയുന്നില്ല. OpenVPN സെർവർ പരിശോധിക്കേണ്ടതുണ്ട്.',
+      'tls_alert_bad_certificate':
+          'ഈ ഉപകരണ സർട്ടിഫിക്കറ്റ് സെർവർ നിരസിച്ചു. വീണ്ടും ശ്രമിക്കുന്നതിന് മുമ്പ് ഉപകരണം വീണ്ടും സൃഷ്ടിക്കുക.',
+      'tls_alert_unsupported_certificate':
+          'Android ഉപയോഗിക്കുന്ന സുരക്ഷിത സർട്ടിഫിക്കറ്റ് തരം സെർവർ പിന്തുണയ്ക്കുന്നില്ല.',
+      'tls_client_certificate_required':
+          'സെർവറിന് ക്ലയന്റ് സർട്ടിഫിക്കറ്റ് ആവശ്യമാണ്, എന്നാൽ അത് സമർപ്പിക്കാൻ OpenVPN എഞ്ചിന് കഴിഞ്ഞില്ല.',
+      'tls_alert_misc':
+          'സർട്ടിഫിക്കറ്റ്, പതിപ്പ് വിഭാഗങ്ങൾക്ക് പുറത്തുള്ള ഒരു TLS അലേർട്ട് സെർവർ തിരികെ നൽകി.',
+      'tls_signature_algorithm_rejected':
+          'Android Keystore കീയുടെ ECDSA P-256 അൽഗോരിതം സെർവർ നിരസിച്ചു.',
+      'tls_handshake_rejected':
+          'കണക്ഷൻ സ്ഥാപിക്കുന്നതിന് മുമ്പ് സെർവർ TLS നെഗോഷ്യേഷൻ തടസ്സപ്പെടുത്തി.',
+      'tls_version_rejected':
+          'ക്ലയന്റിനും സെർവറിനും പൊതുവായ ഒരു TLS പതിപ്പ് കണ്ടെത്താനായില്ല.',
+      'tls_certificate_expired':
+          'കണക്ഷൻ സമയത്ത് സമർപ്പിച്ച സർട്ടിഫിക്കറ്റിന്റെ കാലാവധി കഴിഞ്ഞു.',
+      'tls_certificate_revoked':
+          'കണക്ഷൻ സമയത്ത് സമർപ്പിച്ച സർട്ടിഫിക്കറ്റ് റദ്ദാക്കിയിരിക്കുന്നു.',
+      'transport_failed':
+          'നിലവിലെ നെറ്റ്‌വർക്കിൽ OpenVPN സെർവർ പ്രതികരിക്കുന്നില്ല. കുറച്ച് സമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+      'tun_configuration_rejected':
+          'OpenVPN ആവശ്യപ്പെട്ട നെറ്റ്‌വർക്ക് കോൺഫിഗറേഷൻ Android നിരസിച്ചു.',
+      'tun_setup_failed':
+          'Android ഇന്റർഫേസ് സൃഷ്ടിക്കുന്നതിന് മുമ്പ് OpenVPN എഞ്ചിൻനെറ്റ്‌വർക്ക് പ്ലാൻ നിരസിച്ചു.',
+      'tun_interface_create_failed':
+          'Android VpnService-ൽ നിന്ന് TUN ഇന്റർഫേസ് നേടാൻ OpenVPN എഞ്ചിന് കഴിഞ്ഞില്ല.',
+      'tun_interface_disabled':
+          'കണക്ഷനിടെ Android-ഓ OpenVPN എഞ്ചിനോ TUN ഇന്റർഫേസ് പ്രവർത്തനരഹിതമാക്കി.',
+      'tun_halted':
+          'TUN ഇന്റർഫേസ് നിർത്താനുള്ള അഭ്യർത്ഥന OpenVPN എഞ്ചിന് ലഭിച്ചു.',
+      'tun_already_established':
+          'ഒരേ കണക്ഷനിൽ രണ്ടാമതൊരു ഇന്റർഫേസ് OpenVPN ആവശ്യപ്പെട്ടു. സുരക്ഷയ്ക്കായി ടണൽ നിർത്തി.',
+      'tun_addresses_missing': 'ഉപയോഗയോഗ്യമായ ടണൽ വിലാസം സെർവർ നൽകിയില്ല.',
+      'tun_routes_missing': 'ഉപയോഗയോഗ്യമായ ടണൽ റൂട്ടുകൾ സെർവർ നൽകിയില്ല.',
+      'tun_dns_missing': 'ഉപയോഗയോഗ്യമായ DNS സെർവർ ഒന്നും സെർവർ നൽകിയില്ല.',
+      'tun_permission_revoked': 'കണക്ഷനിടെ VPN അനുമതി Android റദ്ദാക്കി.',
+      'tun_establish_returned_null':
+          'സാധാരണയായി മറ്റൊരു VPN ഇപ്പോഴും സജീവമായതിനാൽ Android ഇന്റർഫേസ് സൃഷ്ടിച്ചില്ല.',
+      'openvpn_service_start_failed':
+          'OpenVPN ഫോർഗ്രൗണ്ട് സേവനം ആരംഭിക്കാൻ Android-ന് കഴിഞ്ഞില്ല.',
+      'openvpn_operation_timeout':
+          'OpenVPN എഞ്ചിനിലേക്കുള്ള JNI കോൾ പരമാവധി സമയപരിധി കവിഞ്ഞു.',
+      'openvpn_start_failed':
+          'Android സേവനം തയ്യാറാണ്, എന്നാൽ പ്രൊഫൈൽ ആരംഭിക്കുന്നത് OpenVPN എഞ്ചിൻ സ്വീകരിച്ചില്ല.',
+      'openvpn_connection_failed':
+          'CONNECTED ഇവന്റ് പുറപ്പെടുവിക്കുന്നതിന് മുമ്പ് OpenVPN എഞ്ചിൻ നിലച്ചു.',
+      'openvpn_core_status_error':
+          'നേറ്റീവ് OpenVPN ലൂപ്പ് പിശകോടെ അവസാനിച്ചു. കൂടുതൽ വ്യക്തമായ അന്തിമ ഇവന്റൊന്നും ലഭിച്ചില്ല.',
+      'openvpn_stopped_before_connected':
+          'വ്യക്തമായ എഞ്ചിൻ പിശകില്ലാതെ, CONNECTED-ന് മുമ്പ് നേറ്റീവ് OpenVPN ലൂപ്പ് നിലച്ചു.',
+      'openvpn_auth_failed': 'പ്രൊഫൈൽ പ്രാമാണീകരണം OpenVPN സെർവർ നിരസിച്ചു.',
+      'openvpn_client_setup_failed':
+          'നെറ്റ്‌വർക്ക് കണക്ഷന് മുമ്പ് ക്ലയന്റ് സജ്ജമാക്കാൻ OpenVPN എഞ്ചിന് കഴിഞ്ഞില്ല.',
+      'openvpn_client_halted':
+          'ക്ലയന്റ് അന്തിമമായി നിർത്തണമെന്ന അഭ്യർത്ഥന OpenVPN എഞ്ചിന് ലഭിച്ചു.',
+      'openvpn_client_restart':
+          'അതിന്റെ ട്രാൻസ്പോർട്ട് സെഷൻ പുനരാരംഭിക്കണമെന്ന് OpenVPN എഞ്ചിൻ അഭ്യർത്ഥിച്ചു.',
+      'openvpn_inactive_timeout':
+          'നിഷ്ക്രിയ സമയപരിധിക്ക് ശേഷം OpenVPN എഞ്ചിൻ സെഷൻ അടച്ചു.',
+      'openvpn_session_expired':
+          'OpenVPN സെഷന്റെ കാലാവധി കഴിഞ്ഞതായി സെർവർ അറിയിച്ചു.',
+      'openvpn_credentials_required':
+          'ഈ സർട്ടിഫിക്കറ്റ് പ്രൊഫൈലിന്റെ ഭാഗമല്ലാത്ത ഇന്ററാക്ടീവ് ക്രെഡൻഷ്യലുകൾ സെർവറോ പ്രോക്സിയോ ആവശ്യപ്പെടുന്നു.',
+      'openvpn_proxy_failed':
+          'കോൺഫിഗർ ചെയ്ത പ്രോക്സിയോ റിലേയോ പരാജയപ്പെട്ടതായി OpenVPN എഞ്ചിൻ അറിയിച്ചു.',
+      'openvpn_compression_failed':
+          'പ്രൊഫൈലോ സെർവറോ അറിയിച്ച കംപ്രഷൻ മോഡ് OpenVPN എഞ്ചിൻ നിരസിച്ചു.',
+      'openvpn_ntlm_crypto_unavailable':
+          'ഈ പതിപ്പിൽ ലഭ്യമല്ലാത്ത NTLM എൻക്രിപ്ഷൻ പ്രൊഫൈൽ ആവശ്യപ്പെടുന്നു.',
+      'openvpn_feature_unsupported':
+          'ഈ Android ക്ലയന്റിൽ ഇല്ലാത്ത ഒരു ഫീച്ചർ പ്രൊഫൈലോ സെർവറോ ആവശ്യപ്പെടുന്നു.',
+      'network_unavailable': 'ഉപയോഗയോഗ്യമായ ഫിസിക്കൽ നെറ്റ്‌വർക്ക് ലഭ്യമല്ല.',
+      'network_lost': 'നെറ്റ്‌വർക്ക് നഷ്ടപ്പെട്ടതിന് ശേഷം ടണൽ നിർത്തി.',
+      'certificate_validation_failed':
+          'OpenVPN സെർവറിന്റെ ഐഡന്റിറ്റി സ്ഥിരീകരിക്കാനായില്ല.',
+      'openvpn_certificate_expired':
+          'വീണ്ടും ബന്ധിപ്പിക്കുന്നതിന് മുമ്പ് OpenVPN പ്രൊഫൈൽ പുതുക്കുക.',
+      'tunnel_active_for_another_account':
+          'ഈ കണക്ഷൻ ആരംഭിക്കുന്നതിന് മുമ്പ് മറ്റൊരു അക്കൗണ്ടിന്റെ ടണൽ നിർത്തണം.',
+      'tunnel_already_active':
+          'മുമ്പത്തെ VPN സെഷൻ ഇപ്പോഴും ഇന്റർഫേസ് ഉപയോഗിക്കുന്നതായി Android അറിയിക്കുന്നു.',
+      'tunnel_stop_timeout':
+          'നിശ്ചിത സമയപരിധിക്കുള്ളിൽ VPN ഇന്റർഫേസ് റിലീസ് ചെയ്തതായി $protocol എഞ്ചിൻ സ്ഥിരീകരിച്ചില്ല.',
+      'tunnel_disconnected':
+          'ആരംഭിച്ചതിന് ശേഷം ടണൽ അപ്രതീക്ഷിതമായി അവസാനിച്ചതായി നേറ്റീവ് എഞ്ചിൻ അറിയിച്ചു.',
+      'native_bridge_unavailable':
+          'ആപ്പിന് Android VPN സേവനം ആക്‌സസ് ചെയ്യാനാകില്ല. ആപ്പ് അടച്ച് വീണ്ടും തുറന്ന ശേഷം വീണ്ടും ശ്രമിക്കുക.',
+      'native_operation_failed':
+          'ആപ്പിലെ ഒരു പിശക് VPN പ്രവർത്തനം തടസ്സപ്പെടുത്തി. വീണ്ടും ശ്രമിക്കുക. പ്രശ്നം തുടരുന്നെങ്കിൽ ഡയഗ്നോസ്റ്റിക്‌സ് പ്രവർത്തിപ്പിക്കുക.',
+      'invalid_arguments':
+          'ഈ VPN പ്രവർത്തനത്തിന് ആവശ്യമായ വിവരങ്ങൾ അപൂർണ്ണമാണ്. വീണ്ടും ശ്രമിക്കുക. പ്രശ്നം തുടരുന്നെങ്കിൽ ഡയഗ്നോസ്റ്റിക്‌സ് പ്രവർത്തിപ്പിക്കുക.',
+      'invalid_account_id':
+          'നേറ്റീവ് പ്രവർത്തനം സാധുവായ അക്കൗണ്ട് ഐഡന്റിഫയറുമായി ബന്ധപ്പെട്ടിട്ടില്ല.',
+      'invalid_device_id':
+          'നേറ്റീവ് എഞ്ചിനിലേക്ക് അയച്ച ഉപകരണ ഐഡന്റിഫയർ ഇല്ലാത്തതോ അസാധുവായതോ ആണ്.',
+      'storage_key_not_allowed':
+          'അനുവദനീയമായ സ്റ്റോറേജ് പട്ടികയ്ക്ക് പുറത്തുള്ള ഒരു കീ Android ബ്രിഡ്ജ് തടഞ്ഞു.',
+      'secure_storage_read_failed':
+          'ഈ അക്കൗണ്ടിന്റെ ഉപകരണത്തിലുള്ള ഡാറ്റ ഡീക്രിപ്റ്റ് ചെയ്യാൻ Android Keystore-ന് കഴിഞ്ഞില്ല.',
+      'secure_storage_write_failed':
+          'ഉപകരണത്തിലെ ഡാറ്റ എൻക്രിപ്റ്റ് ചെയ്യാനോ സംരക്ഷിക്കാനോ Android Keystore-ന് കഴിഞ്ഞില്ല.',
+      'key_generation_failed':
+          'സുരക്ഷിത സ്റ്റോറേജിൽ WireGuard കീ സൃഷ്ടിക്കാനോ വായിക്കാനോ Android-ന് കഴിഞ്ഞില്ല.',
+      'csr_generation_failed':
+          'OpenVPN P-256 CSR സൃഷ്ടിക്കാനോ ഒപ്പിടാനോ Android Keystore-ന് കഴിഞ്ഞില്ല.',
+      'other':
+          'ഡോക്യുമെന്റ് ചെയ്യാത്ത ഒരു നേറ്റീവ് കോഡ് ഭാഗം പരാജയപ്പെട്ടു. താഴെ കാണിച്ചിരിക്കുന്ന ഡയഗ്നോസ്റ്റിക് കോഡ് പിന്തുണാ ടീമിന് അയയ്ക്കുക.',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get notice_permissionRequestInProgress_title =>
+      'അനുമതി അഭ്യർത്ഥന ഇതിനകം തുറന്നിരിക്കുന്നു';
+
+  @override
+  String get notice_permissionRequestInProgress_message =>
+      'Android VPN അനുമതി അഭ്യർത്ഥന ഇതിനകം പ്രദർശിപ്പിച്ചിരിക്കുന്നു. വീണ്ടും ശ്രമിക്കുന്നതിന് മുമ്പ് ഇത് പൂർത്തിയാക്കുക.';
+
+  @override
+  String get notice_permissionRequestInterrupted_title =>
+      'VPN അനുമതി അഭ്യർത്ഥന തടസ്സപ്പെട്ടു';
+
+  @override
+  String get notice_permissionRequestInterrupted_message =>
+      'ആപ്പിന് പ്രതികരണം ലഭിക്കുന്നതിന് മുമ്പ് VPN അനുമതി സ്ക്രീൻ അടഞ്ഞു.';
+
+  @override
+  String get notice_openvpnProofMissing_title =>
+      'OpenVPN കണക്ഷൻ സ്ഥിരീകരിച്ചില്ല';
+
+  @override
+  String get notice_openvpnProofMissing_message =>
+      'OpenVPN കണക്ഷൻ സ്ഥിരീകരിക്കാനായില്ല. സുരക്ഷയ്ക്കായി അത് നിർത്തി. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get openvpnCleanup_title => 'OpenVPN പ്രൊഫൈൽ റദ്ദാക്കി';
+
+  @override
+  String get openvpnCleanup_working =>
+      'റദ്ദാക്കിയ OpenVPN പ്രൊഫൈൽ നിർത്തുകയും നീക്കം ചെയ്യുകയും ചെയ്യുന്നു…';
+
+  @override
+  String get openvpnCleanup_stopFailed =>
+      'OpenVPN നിർത്തുന്നത് സ്ഥിരീകരിച്ചിട്ടില്ല. പുതിയ പ്രൊഫൈൽ സൃഷ്ടിക്കുന്നതിന് മുമ്പ് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get openvpnCleanup_cleanupFailed =>
+      'റദ്ദാക്കിയ OpenVPN പ്രൊഫൈൽ പൂർണ്ണമായി നീക്കം ചെയ്യാനായില്ല. വൃത്തിയാക്കാൻ വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get openvpnCleanup_complete =>
+      'റദ്ദാക്കിയ OpenVPN പ്രൊഫൈൽ നീക്കം ചെയ്തു. പുതിയത് സൃഷ്ടിക്കാൻ “ബന്ധിപ്പിക്കുക” ടാപ്പ് ചെയ്യുക.';
+
+  @override
+  String get network_title => 'നെറ്റ്‌വർക്ക് കോൺഫിഗറേഷൻ';
+
+  @override
+  String get network_ipv4Fallback =>
+      'IPv6 താൽക്കാലികമായി ലഭ്യമല്ല. IPv4 ഉപയോഗിച്ച് തയ്യാറാക്കൽ തുടരുന്നു.';
+
+  @override
+  String get network_rejectedTitle => 'നെറ്റ്‌വർക്ക് കോൺഫിഗറേഷൻ നിരസിച്ചു';
+
+  @override
+  String get network_rejectedMessage =>
+      'ടണൽ കോൺഫിഗറേഷൻ അപൂർണ്ണമാണ്, അല്ലെങ്കിൽ അനുവദിച്ച വിലാസങ്ങളുമായി പൊരുത്തപ്പെടുന്നില്ല. ആപ്പിൽ നിന്ന് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get network_unreadableTitle =>
+      'ഉപകരണത്തിലെ കോൺഫിഗറേഷൻ വായിക്കാനാവുന്നില്ല';
+
+  @override
+  String get network_unreadableMessage =>
+      'സംരക്ഷിച്ച OpenVPN നെറ്റ്‌വർക്ക് കോൺഫിഗറേഷൻ ഉപയോഗിക്കാനാവില്ല. അത് പുതുക്കാൻ ആപ്പിൽ നിന്ന് വീണ്ടും ബന്ധിപ്പിക്കുക.';
+
+  @override
+  String get network_ipv4 => 'IPv4';
+
+  @override
+  String get network_dualStack => 'IPv4 + IPv6';
+
+  @override
+  String get protection_title => 'നെറ്റ്‌വർക്ക് സംരക്ഷണം';
+
+  @override
+  String get protection_subtitle =>
+      'VPN വിച്ഛേദിച്ചാൽ നേരിട്ടുള്ള ഇന്റർനെറ്റ് ആക്‌സസ് തടയുക.';
+
+  @override
+  String get protection_active => 'സിസ്റ്റം സംരക്ഷണം സജീവം';
+
+  @override
+  String get protection_alwaysOnOnly =>
+      'എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN പ്രവർത്തനക്ഷമമാണ്; VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുന്നത് ഓണാക്കുക';
+
+  @override
+  String get protection_inactive => 'സിസ്റ്റം സംരക്ഷണം സജീവമല്ല';
+
+  @override
+  String get protection_unknown => 'സിസ്റ്റം സംരക്ഷണം പരിശോധിക്കുക';
+
+  @override
+  String get protection_openSettings => 'Android ക്രമീകരണങ്ങൾ തുറക്കുക';
+
+  @override
+  String get protection_dialogTitle => 'നെറ്റ്‌വർക്ക് സംരക്ഷണം സജ്ജീകരിക്കുക';
+
+  @override
+  String get protection_dialogMessage =>
+      'എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN, VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയൽ എന്നിവ Android ആണ് നിയന്ത്രിക്കുന്നത്. FuzeVPN തിരഞ്ഞെടുത്തിട്ടുണ്ടോ എന്ന് പരിശോധിച്ച്, സിസ്റ്റം ക്രമീകരണങ്ങളിൽ തടയൽ ഓണാക്കുക.';
+
+  @override
+  String get protection_dialogOpen => 'ക്രമീകരണങ്ങൾ തുറക്കുക';
+
+  @override
+  String get session_systemProtectionNote =>
+      'VPN-ന് പുറത്തുള്ള ട്രാഫിക് Android ഇപ്പോഴും തടയുന്നുണ്ടെങ്കിൽ, ഈ സംരക്ഷണം പരിശോധിക്കുന്നതിനോ മാറ്റുന്നതിനോ സിസ്റ്റം ക്രമീകരണങ്ങൾ തുറക്കുക.';
+
+  @override
+  String get diagnostics_title => 'ഡയഗ്നോസ്റ്റിക്‌സ്';
+
+  @override
+  String get diagnostics_settingsTitle => 'ആപ്പ് ഡയഗ്നോസ്റ്റിക്‌സ്';
+
+  @override
+  String get diagnostics_automaticTitle => 'പ്രധാന പിശകുകൾ അയയ്ക്കുക';
+
+  @override
+  String get diagnostics_automaticDescription =>
+      'ഒരു പ്രധാന പിശക് സംഭവിക്കുമ്പോൾ ഒരു ചെറിയ സാങ്കേതിക റിപ്പോർട്ട് പങ്കിടുക.';
+
+  @override
+  String get diagnostics_privacy =>
+      'അയച്ച റിപ്പോർട്ടുകൾ സൈൻ ഇൻ ചെയ്ത അക്കൗണ്ടുമായി ബന്ധപ്പെടുത്തി 30 ദിവസം സൂക്ഷിക്കും. അവയിൽ ബ്രൗസിംഗ് ചരിത്രമോ പാസ്‌വേഡുകളോ VPN കീകളോ ഉണ്ടാകില്ല.';
+
+  @override
+  String get diagnostics_manualOpen => 'ഡയഗ്നോസ്റ്റിക്‌സ് പ്രവർത്തിപ്പിക്കുക';
+
+  @override
+  String get diagnostics_localDescription =>
+      'ആപ്പിന്റെയും VPN-ന്റെയും നില സംബന്ധിച്ച ഒരു റിപ്പോർട്ട് തയ്യാറാക്കുക. നിങ്ങളുടെ കണക്ഷൻ മാറ്റമില്ലാതെ തുടരും.';
+
+  @override
+  String get diagnostics_sendReport => 'റിപ്പോർട്ട് അയയ്ക്കുക';
+
+  @override
+  String get diagnostics_sendHint =>
+      'റിപ്പോർട്ട് ഈ ഉപകരണത്തിൽ സൂക്ഷിക്കാൻ ഈ ബോക്‌സ് ടിക്ക് ചെയ്യാതെ വിടുക.';
+
+  @override
+  String get diagnostics_signedOut =>
+      'റിപ്പോർട്ട് അയയ്ക്കാൻ നിങ്ങളുടെ അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്യുക.';
+
+  @override
+  String get diagnostics_localLifetime =>
+      'ആപ്പ് അടച്ചതിന് ശേഷവും ഈ റിപ്പോർട്ട് സൂക്ഷിക്കാൻ അത് നിങ്ങളുടെ ഫോണിൽ സംരക്ഷിക്കുക.';
+
+  @override
+  String get diagnostics_run => 'ഡയഗ്നോസ്റ്റിക്‌സ് പ്രവർത്തിപ്പിക്കുക';
+
+  @override
+  String get diagnostics_rerun =>
+      'ഡയഗ്നോസ്റ്റിക്‌സ് വീണ്ടും പ്രവർത്തിപ്പിക്കുക';
+
+  @override
+  String get diagnostics_running => 'പരിശോധിക്കുന്നു…';
+
+  @override
+  String get diagnostics_sending => 'റിപ്പോർട്ട് അയയ്ക്കുന്നു…';
+
+  @override
+  String get diagnostics_prepared => 'റിപ്പോർട്ട് ഈ ഉപകരണത്തിൽ തയ്യാറാണ്';
+
+  @override
+  String get diagnostics_queued => 'റിപ്പോർട്ട് അയയ്ക്കാൻ കാത്തിരിക്കുന്നു';
+
+  @override
+  String get diagnostics_sent => 'റിപ്പോർട്ട് ലഭിച്ചു';
+
+  @override
+  String get diagnostics_failed =>
+      'അയയ്ക്കാനായില്ല. ഉപകരണത്തിലെ റിപ്പോർട്ട് ഇപ്പോഴും ലഭ്യമാണ്.';
+
+  @override
+  String get diagnostics_preparationFailed =>
+      'ഡയഗ്നോസ്റ്റിക് റിപ്പോർട്ട് തയ്യാറാക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get diagnostics_authenticationRequired =>
+      'റിപ്പോർട്ട് അയയ്ക്കാൻ വീണ്ടും സൈൻ ഇൻ ചെയ്യുക.';
+
+  @override
+  String get diagnostics_retry => 'അയയ്ക്കാൻ വീണ്ടും ശ്രമിക്കുക';
+
+  @override
+  String get diagnostics_export => 'റിപ്പോർട്ട് സംരക്ഷിക്കുക';
+
+  @override
+  String get diagnostics_exportFailed =>
+      'സംരക്ഷിക്കാനായില്ല. ഉപകരണത്തിലെ റിപ്പോർട്ടിൽ നിന്ന് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get diagnostics_preferenceFailed =>
+      'ഈ ക്രമീകരണം സംരക്ഷിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String diagnostics_receipt(Object id) {
+    return 'റഫറൻസ്: $id';
+  }
+
+  @override
+  String diagnostics_received(Object date) {
+    return '$date-ന് ലഭിച്ചു';
+  }
+
+  @override
+  String diagnostics_expires(Object date) {
+    return '$date വരെ സൂക്ഷിക്കും';
+  }
+
+  @override
+  String get diagnostics_duplicate => 'ഈ റിപ്പോർട്ട് ഇതിനകം ലഭിച്ചിരുന്നു.';
+
+  @override
+  String get diagnostics_preview => 'റിപ്പോർട്ട് പ്രിവ്യൂ';
+
+  @override
+  String diagnostics_eventCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count സാങ്കേതിക ഇവന്റുകൾ ഉൾപ്പെടുത്തി',
+      one: '1 സാങ്കേതിക ഇവന്റ് ഉൾപ്പെടുത്തി',
+      zero: 'സാങ്കേതിക ഇവന്റുകളൊന്നും ഉൾപ്പെടുത്തിയിട്ടില്ല',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get diagnostics_technical => 'സാങ്കേതിക വിശദാംശങ്ങൾ';
+
+  @override
+  String get diagnostics_empty =>
+      'ഇതുവരെ ഡയഗ്നോസ്റ്റിക് റിപ്പോർട്ടൊന്നും തയ്യാറാക്കിയിട്ടില്ല.';
+
+  @override
+  String diagnostics_checkName(String id) {
+    String _temp0 = intl.Intl.selectLogic(id, {
+      'tunnel_connection': 'ടണൽ നില',
+      'handshake': 'കണക്ഷൻ സ്ഥിരീകരണം',
+      'certificate': 'VPN സർട്ടിഫിക്കറ്റ്',
+      'kill_switch': 'Android സംരക്ഷണം',
+      'connectivity': 'ലഭ്യമായ നെറ്റ്‌വർക്ക്',
+      'api_reachability': 'സേവന ആക്‌സസ്',
+      'secure_storage': 'സുരക്ഷിത സ്റ്റോറേജ്',
+      'other': 'ഉപകരണത്തിലെ പരിശോധന',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String diagnostics_checkResult(String result) {
+    String _temp0 = intl.Intl.selectLogic(result, {
+      'passed': 'പരിശോധിച്ചു',
+      'failed': 'ശ്രദ്ധ ആവശ്യമാണ്',
+      'skipped': 'പരീക്ഷിച്ചിട്ടില്ല — സജീവ പരിശോധനയില്ല',
+      'unknown': 'വിവരം ലഭ്യമല്ല',
+      'other': 'വിവരം ലഭ്യമല്ല',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get auth_welcome => 'FuzeVPN-ലേക്ക് സ്വാഗതം';
+
+  @override
+  String get connection_changeLocation => 'ലൊക്കേഷൻ മാറ്റുക';
+
+  @override
+  String get connection_details => 'കണക്ഷൻ വിശദാംശങ്ങൾ';
+
+  @override
+  String get locations_searchLabel => 'ഒരു നഗരമോ രാജ്യമോ തിരയുക';
+
+  @override
+  String get locations_clearSearch => 'തിരയൽ മായ്ക്കുക';
+
+  @override
+  String get locations_filterAll => 'എല്ലാം';
+
+  @override
+  String get locations_filterFavorites => 'പ്രിയപ്പെട്ടവ';
+
+  @override
+  String locations_results(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ലൊക്കേഷനുകൾ',
+      one: '$count ലൊക്കേഷൻ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get locations_noResults => 'ലൊക്കേഷനുകളൊന്നും കണ്ടെത്തിയില്ല';
+
+  @override
+  String get locations_noResultsHint =>
+      'മറ്റൊരു നഗരമോ രാജ്യമോ തിരയാൻ ശ്രമിക്കുക.';
+
+  @override
+  String get locations_noFavorites =>
+      'നിങ്ങളുടെ പ്രിയപ്പെട്ടവ, കൈയെത്തും ദൂരത്ത്';
+
+  @override
+  String get locations_noFavoritesHint =>
+      'ഒരു ലൊക്കേഷന് അടുത്തുള്ള നക്ഷത്രത്തിൽ ടാപ്പ് ചെയ്ത് അത് ഇവിടെ സംരക്ഷിക്കുക.';
+
+  @override
+  String get locations_showAll => 'എല്ലാ ലൊക്കേഷനുകളും കാണുക';
+
+  @override
+  String locations_addFavorite(String name) {
+    return '$name പ്രിയപ്പെട്ടവയിലേക്ക് ചേർക്കുക';
+  }
+
+  @override
+  String locations_removeFavorite(String name) {
+    return '$name പ്രിയപ്പെട്ടവയിൽ നിന്ന് നീക്കം ചെയ്യുക';
+  }
+
+  @override
+  String get locations_favoriteSaveFailed =>
+      'പ്രിയപ്പെട്ടത് സംരക്ഷിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get locations_emptyTitle => 'ലൊക്കേഷനുകളൊന്നും ലഭ്യമല്ല';
+
+  @override
+  String get locations_emptyHint => 'വീണ്ടും ശ്രമിക്കാൻ പട്ടിക പുതുക്കുക.';
+
+  @override
+  String get devices_manage => 'എന്റെ ഉപകരണങ്ങൾ മാനേജ് ചെയ്യുക';
+
+  @override
+  String get settings_personalization => 'നിങ്ങളുടേതാക്കുക';
+
+  @override
+  String get settings_safety => 'സംരക്ഷണം';
+
+  @override
+  String get settings_help => 'സഹായം വേണോ?';
+
+  @override
+  String get settings_about => 'FuzeVPN-നെക്കുറിച്ച്';
+
+  @override
+  String get diagnostics_heading => 'ഒരു കണക്ഷൻ പ്രശ്നം മനസ്സിലാക്കുക';
+
+  @override
+  String devices_profileStatus(String status) {
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'active': 'ലഭ്യമാണ്',
+      'pending': 'തയ്യാറാക്കുന്നു',
+      'revoked': 'നീക്കം ചെയ്തു',
+      'expired': 'കാലഹരണപ്പെട്ടു',
+      'other': 'നില ലഭ്യമല്ല',
+    });
+    return '$_temp0';
+  }
+
+  @override
+  String get notice_preferenceSave_title => 'മുൻഗണന സംരക്ഷിച്ചില്ല';
+
+  @override
+  String get notice_preferenceSave_message =>
+      'നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ് ഇപ്പോൾ പ്രാബല്യത്തിലുണ്ട്, പക്ഷേ സംരക്ഷിക്കാനായില്ല. ആപ്പ് അടച്ചതിന് ശേഷവും ഇത് നിലനിർത്താൻ വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get connection_androidDisconnectHint =>
+      'VPN-നെ Android സജീവമായി നിലനിർത്തുന്നുണ്ടെങ്കിൽ, തുറക്കുന്ന ക്രമീകരണങ്ങളിൽ എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN ഓഫ് ചെയ്യുക.';
+
+  @override
+  String get protection_learnMore => 'Android സംരക്ഷണത്തെക്കുറിച്ച് അറിയുക';
+
+  @override
+  String get protection_guideWhy =>
+      'VPN വിച്ഛേദിക്കപ്പെട്ടാൽ ആപ്പുകൾ നേരിട്ട് ഇന്റർനെറ്റ് ഉപയോഗിക്കുന്നത് ഈ സംരക്ഷണം തടയുന്നു. ഇത് Android-ലാണ് ക്രമീകരിക്കുന്നത്.';
+
+  @override
+  String get protection_guideAlwaysOnTitle =>
+      'എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN';
+
+  @override
+  String get protection_guideAlwaysOn =>
+      'VPN സേവനം Android പ്രവർത്തനക്ഷമമായി നിലനിർത്തുന്നു, ഫോൺ റീസ്റ്റാർട്ട് ചെയ്ത ശേഷം അത് വീണ്ടും ആരംഭിക്കാനും Android-ന് കഴിയും.';
+
+  @override
+  String get protection_guideBlockTitle => 'VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക';
+
+  @override
+  String get protection_guideBlock =>
+      'കണക്ഷൻ തടസ്സപ്പെടുമ്പോൾ ഉൾപ്പെടെ, ട്രാഫിക് VPN മറികടന്ന് പോകുന്നത് ഈ ക്രമീകരണം തടയുന്നു.';
+
+  @override
+  String get protection_guideWarning =>
+      'ഈ തടയൽ ഓണാക്കിയിരിക്കുമ്പോൾ, VPN ബന്ധിപ്പിക്കുന്നതുവരെ ഇന്റർനെറ്റ് ആക്‌സസ് ഓഫായിരിക്കും.';
+
+  @override
+  String get protection_guideStepsTitle => 'സംരക്ഷണം ഓണാക്കുക';
+
+  @override
+  String get protection_guideStep1 =>
+      'താഴെയുള്ള ബട്ടൺ ഉപയോഗിച്ച് Android VPN ക്രമീകരണങ്ങൾ തുറക്കുക.';
+
+  @override
+  String get protection_guideStep2 =>
+      'FuzeVPN-ന് അടുത്തുള്ള ഗിയർ ഐക്കൺ ഉപയോഗിച്ച് ഓപ്‌ഷനുകൾ തുറക്കുക.';
+
+  @override
+  String get protection_guideStep3 =>
+      'ഈ ഓപ്‌ഷനുകൾ ലഭ്യമാണെങ്കിൽ, “എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN”, തുടർന്ന് “VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക” എന്നിവ ഓണാക്കുക.';
+
+  @override
+  String get protection_guideManufacturers =>
+      'ഫോൺ അനുസരിച്ച് പേരുകൾ വ്യത്യാസപ്പെടാം. ആവശ്യമെങ്കിൽ ക്രമീകരണങ്ങളിൽ VPN എന്ന് തിരയുക. ഇത് പലപ്പോഴും “നെറ്റ്‌വർക്കും ഇന്റർനെറ്റും” എന്നതിന് കീഴിലായിരിക്കും.';
+
+  @override
+  String get protection_guideDisableTitle => 'ഈ സംരക്ഷണം ഓഫാക്കുക';
+
+  @override
+  String get protection_guideDisable =>
+      'അതേ ക്രമീകരണങ്ങളിൽ, VPN ഇല്ലാതെ ഇന്റർനെറ്റ് ആക്‌സസ് അനുവദിക്കാൻ VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുന്നത് ഓഫാക്കുക. VPN വീണ്ടും ആരംഭിക്കാൻ Android-നെ അനുവദിക്കേണ്ടതില്ലെങ്കിൽ എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN കൂടി ഓഫാക്കുക.';
+
+  @override
+  String get protection_guideManual =>
+      'ഈ ക്രമീകരണങ്ങൾ Android-ൽ നിങ്ങളാണ് തിരഞ്ഞെടുക്കുന്നത്. FuzeVPN ഇവ നിങ്ങൾക്കായി മാറ്റുന്നില്ല.';
+
+  @override
+  String get locations_changeTitle => 'ലൊക്കേഷൻ മാറ്റണോ?';
+
+  @override
+  String locations_changeActive(String name) {
+    return 'VPN വിച്ഛേദിച്ച ശേഷം $name-ലേക്ക് ബന്ധിപ്പിക്കാൻ ശ്രമിക്കും.';
+  }
+
+  @override
+  String locations_changeIdle(String name) {
+    return '$name-ലേക്ക് ബന്ധിപ്പിക്കാൻ VPN ശ്രമിക്കും.';
+  }
+
+  @override
+  String get locations_confirmChange => 'മാറ്റി ബന്ധിപ്പിക്കുക';
+
+  @override
+  String get locations_changeBusy =>
+      'ഒരു മാറ്റം പുരോഗമിക്കുകയാണ്. മറ്റൊരു ലൊക്കേഷൻ തിരഞ്ഞെടുക്കുന്നതിന് മുമ്പ് കാത്തിരിക്കുക.';
+
+  @override
+  String get locations_automaticSelection => 'സ്വയമേവ തിരഞ്ഞെടുക്കൽ';
+
+  @override
+  String get locations_cities => 'നഗരങ്ങൾ';
+
+  @override
+  String get locations_servers => 'സെർവറുകൾ';
+
+  @override
+  String locations_viewCities(String name) {
+    return '$name-ലെ നഗരങ്ങൾ കാണുക';
+  }
+
+  @override
+  String locations_viewServers(String name) {
+    return '$name-ലെ സെർവറുകൾ കാണുക';
+  }
+
+  @override
+  String locations_countryCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count രാജ്യങ്ങൾ',
+      one: '$count രാജ്യം',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String locations_cityCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count നഗരങ്ങൾ',
+      one: '$count നഗരം',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String locations_serverCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count സെർവറുകൾ',
+      one: '$count സെർവർ',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get locations_allCountries => 'എല്ലാ രാജ്യങ്ങളും';
+
+  @override
+  String get locations_backToCountries => 'രാജ്യങ്ങളിലേക്ക് മടങ്ങുക';
+
+  @override
+  String locations_backToCities(String name) {
+    return '$name-ലെ നഗരങ്ങളിലേക്ക് മടങ്ങുക';
+  }
+
+  @override
+  String locations_chooseCountry(String name) {
+    return '$name തിരഞ്ഞെടുക്കുക';
+  }
+
+  @override
+  String locations_chooseCity(String name) {
+    return '$name തിരഞ്ഞെടുക്കുക';
+  }
+
+  @override
+  String get locations_noCompatibleServer => 'അനുയോജ്യമായ സെർവർ ലഭ്യമല്ല.';
+
+  @override
+  String get externalLink_failed =>
+      'ഈ ലിങ്ക് തുറക്കാനായില്ല. ഇത് പകർത്തി നിങ്ങളുടെ ബ്രൗസറിൽ തുറക്കാം.';
+
+  @override
+  String get externalLink_copy => 'ലിങ്ക് പകർത്തുക';
+
+  @override
+  String get externalLink_copied => 'ലിങ്ക് പകർത്തി';
+
+  @override
+  String get externalLink_copyFailed =>
+      'ലിങ്ക് പകർത്താനായില്ല. താഴെയുള്ള വിലാസം തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get settings_deleteAccount => 'എന്റെ അക്കൗണ്ട് ഇല്ലാതാക്കുക';
+
+  @override
+  String get settings_deleteAccountDetail =>
+      'അക്കൗണ്ട് ഇല്ലാതാക്കാനുള്ള അഭ്യർത്ഥനയുടെ നടപടിക്രമം കാണുക';
+
+  @override
+  String get billing_title => 'Fuze Premium';
+
+  @override
+  String get billing_subtitle =>
+      'നിങ്ങളുടെ VPN സബ്‌സ്‌ക്രിപ്‌ഷൻ തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get billing_subscribe => 'സബ്‌സ്‌ക്രൈബ് ചെയ്യുക';
+
+  @override
+  String get billing_choosePlan => 'തുടരാൻ ഒരു പ്ലാൻ തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get billing_monthly => 'പ്രതിമാസം';
+
+  @override
+  String get billing_yearly => 'വാർഷികം';
+
+  @override
+  String get billing_continue => 'Google Play ഉപയോഗിച്ച് തുടരുക';
+
+  @override
+  String get billing_restore => 'വാങ്ങലുകൾ പുനഃസ്ഥാപിക്കുക';
+
+  @override
+  String get billing_manage => 'സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ് ചെയ്യുക';
+
+  @override
+  String get billing_deleteAccountWarning =>
+      'നിങ്ങൾക്ക് Google Play സബ്‌സ്‌ക്രിപ്‌ഷൻ ഉണ്ടെങ്കിൽ, FuzeVPN അക്കൗണ്ട് ഇല്ലാതാക്കിയാലും അതിന്റെ പുതുക്കൽ റദ്ദാകില്ല. പുതുക്കൽ Google Play-യിൽ പ്രത്യേകമായി മാനേജ് ചെയ്യുകയോ റദ്ദാക്കുകയോ ചെയ്യുക.';
+
+  @override
+  String get billing_deleteAccountContinue =>
+      'അക്കൗണ്ട് ഇല്ലാതാക്കാനുള്ള അഭ്യർത്ഥനയിലേക്ക് തുടരുക';
+
+  @override
+  String get billing_refresh => 'ആക്‌സസ് പുതുക്കുക';
+
+  @override
+  String get billing_loadingPlans => 'പ്ലാനുകൾ ലോഡ് ചെയ്യുന്നു…';
+
+  @override
+  String get billing_unavailable =>
+      'ഇപ്പോൾ പ്ലാനുകൾ ലഭ്യമല്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get billing_comingSoon => 'സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ ഉടൻ വരുന്നു.';
+
+  @override
+  String get billing_priceDisclosure =>
+      'വില നൽകുന്നത് Google Play ആണ്. നിങ്ങൾ അംഗീകരിക്കുന്നതിന് മുമ്പ് അന്തിമ തുകയും ബാധകമായ നികുതികളും സ്ഥിരീകരിക്കും.';
+
+  @override
+  String get billing_renewalMonthly =>
+      'റദ്ദാക്കാത്തപക്ഷം എല്ലാ മാസവും സ്വയമേവ പുതുക്കും. Google Play സബ്‌സ്‌ക്രിപ്‌ഷനുകളിൽ ഏത് സമയത്തും റദ്ദാക്കാം.';
+
+  @override
+  String get billing_renewalYearly =>
+      'റദ്ദാക്കാത്തപക്ഷം എല്ലാ വർഷവും സ്വയമേവ പുതുക്കും. Google Play സബ്‌സ്‌ക്രിപ്‌ഷനുകളിൽ ഏത് സമയത്തും റദ്ദാക്കാം.';
+
+  @override
+  String get billing_active => 'നിങ്ങളുടെ പ്രീമിയം ആക്‌സസ് സജീവമാണ്';
+
+  @override
+  String billing_accessUntil(String date) {
+    return '$date വരെ ആക്‌സസ്.';
+  }
+
+  @override
+  String get billing_webManaged =>
+      'നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ FuzeVPN വെബ്‌സൈറ്റിലാണ് മാനേജ് ചെയ്യുന്നത്.';
+
+  @override
+  String get billing_playManaged =>
+      'നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ് ചെയ്യുന്നത് Google Play ആണ്.';
+
+  @override
+  String get billing_playOnHold =>
+      'നിങ്ങളുടെ Google Play സബ്‌സ്‌ക്രിപ്‌ഷൻ താൽക്കാലികമായി നിർത്തിവെച്ചിരിക്കുകയോ പണമടയ്ക്കലിനായി കാത്തിരിക്കുകയോ ആണ്. ഇത് Google Play-യിൽ ശരിയാക്കാൻ “സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ് ചെയ്യുക” തുറക്കുക.';
+
+  @override
+  String get billing_playReceiptUnlinked =>
+      'ഈ Google Play അക്കൗണ്ടിൽ ഇതിനകം ഒരു Fuze Premium സബ്‌സ്‌ക്രിപ്‌ഷൻ ഉണ്ട്, അത് ഈ FuzeVPN അക്കൗണ്ടിൽ സജീവമല്ല. ഇത് Google Play-യിൽ പരിശോധിക്കാൻ “സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ് ചെയ്യുക” തുറക്കുക.';
+
+  @override
+  String get billing_inactive => 'സജീവമായ സബ്‌സ്‌ക്രിപ്‌ഷൻ ഇല്ല.';
+
+  @override
+  String get billing_checkingAccess => 'നിങ്ങളുടെ ആക്‌സസ് പരിശോധിക്കുന്നു…';
+
+  @override
+  String get billing_restoring => 'വാങ്ങലുകൾ പുനഃസ്ഥാപിക്കുന്നു…';
+
+  @override
+  String get billing_pending =>
+      'പേയ്‌മെന്റ് ഇനിയും തീർപ്പായിട്ടില്ല. സ്ഥിരീകരണത്തിന് ശേഷം നിങ്ങളുടെ ആക്‌സസ് സജീവമാകും.';
+
+  @override
+  String get billing_cancelled =>
+      'വാങ്ങൽ റദ്ദാക്കി. പുതിയ സബ്‌സ്‌ക്രിപ്‌ഷനൊന്നും സജീവമാക്കിയിട്ടില്ല.';
+
+  @override
+  String get billing_verifying => 'വാങ്ങൽ സ്ഥിരീകരിക്കുന്നു…';
+
+  @override
+  String get billing_success =>
+      'സബ്‌സ്‌ക്രിപ്‌ഷൻ സജീവമാക്കി. നിങ്ങളുടെ പ്രീമിയം ആക്‌സസ് തയ്യാറാണ്.';
+
+  @override
+  String get billing_restored => 'നിങ്ങളുടെ വാങ്ങലുകൾ പുനഃസ്ഥാപിച്ചു.';
+
+  @override
+  String get billing_restoreEmpty =>
+      'ഈ Google Play അക്കൗണ്ടിൽ പുനഃസ്ഥാപിക്കാൻ വാങ്ങലുകളൊന്നുമില്ല.';
+
+  @override
+  String get billing_catalogError =>
+      'പ്ലാനുകൾ ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get billing_purchaseError =>
+      'വാങ്ങൽ ആരംഭിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get billing_verificationError =>
+      'വാങ്ങൽ സ്ഥിരീകരണം താൽക്കാലികമായി ലഭ്യമല്ല. വീണ്ടും ശ്രമിക്കാൻ വാങ്ങലുകൾ പുനഃസ്ഥാപിക്കുക.';
+
+  @override
+  String get billing_restoreError =>
+      'വാങ്ങലുകൾ പുനഃസ്ഥാപിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get billing_managementError =>
+      'സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ്‌മെന്റ് തുറക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get billing_storeUnavailable => 'ഈ ഉപകരണത്തിൽ Google Play ലഭ്യമല്ല.';
+
+  @override
+  String get welcome_title => 'നിങ്ങളുടെ VPN, ലളിതമായി.';
+
+  @override
+  String get welcome_description =>
+      'നിങ്ങളുടെ കണക്ഷൻ സംരക്ഷിക്കുക. നിങ്ങളുടെ സ്വകാര്യതയുടെ നിയന്ത്രണം കൈയിൽ വയ്ക്കുക.';
+
+  @override
+  String get welcome_start => 'ആരംഭിക്കുക';
+
+  @override
+  String get welcome_alreadyPurchased => 'നേരത്തേ വാങ്ങിയിട്ടുണ്ടോ?';
+
+  @override
+  String get welcome_noAccountRequired => 'ആരംഭിക്കാൻ അക്കൗണ്ട് ആവശ്യമില്ല.';
+
+  @override
+  String get guest_accountTitle => 'അക്കൗണ്ട് ബന്ധിപ്പിച്ചിട്ടില്ല';
+
+  @override
+  String get guest_accountDescription =>
+      'മറ്റൊരു ഉപകരണത്തിൽ നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ ഉപയോഗിക്കാൻ അതേ Google Play അക്കൗണ്ട് ഉപയോഗിച്ച് വാങ്ങലുകൾ പുനഃസ്ഥാപിക്കുക.';
+
+  @override
+  String get guest_existingSubscriberSignIn =>
+      'നേരത്തേ സബ്‌സ്‌ക്രൈബ് ചെയ്തിട്ടുണ്ടോ? സൈൻ ഇൻ ചെയ്യുക';
+
+  @override
+  String get guest_claimTitle => 'FuzeVPN നിങ്ങളോടൊപ്പം കൊണ്ടുപോകുക';
+
+  @override
+  String get guest_claimDescription =>
+      'നിങ്ങളുടെ മറ്റ് ഉപകരണങ്ങളിൽ സബ്‌സ്‌ക്രിപ്‌ഷൻ ആക്‌സസ് ചെയ്യാൻ ഒരു അക്കൗണ്ട് സൃഷ്ടിക്കുക. ഈ ഘട്ടം ഓപ്‌ഷണൽ ആണ്.';
+
+  @override
+  String get guest_skip => 'പിന്നീട് ആകാം';
+
+  @override
+  String get guest_activationTitle => 'Fuze Premium സജീവമാണ്';
+
+  @override
+  String get guest_activationDescription =>
+      'നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ തയ്യാറാണ്. നിങ്ങളുടെ VPN ഉപയോഗിക്കുകയും ഇഷ്ടമുള്ളപ്പോൾ അക്കൗണ്ട് സൃഷ്ടിക്കുകയും ചെയ്യാം.';
+
+  @override
+  String get guest_useVpn => 'എന്റെ VPN ഉപയോഗിക്കുക';
+
+  @override
+  String get guest_loginRequired =>
+      'ഈ വാങ്ങൽ ഇതിനകം ഒരു FuzeVPN അക്കൗണ്ടുമായി ബന്ധിപ്പിച്ചിട്ടുണ്ട്. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ ആക്‌സസ് ചെയ്യാൻ ആ അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്യുക.';
+
+  @override
+  String get guest_signOutWarning =>
+      'അതേ Google Play അക്കൗണ്ട് ഉപയോഗിച്ച് വാങ്ങലുകൾ പുനഃസ്ഥാപിച്ച് നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷൻ വീണ്ടെടുക്കാം.';
+
+  @override
+  String get guest_profileUnavailable =>
+      'നിങ്ങളുടെ അക്കൗണ്ട് ഇതിനകം ബന്ധിപ്പിച്ചിട്ടുണ്ട്. നിങ്ങളുടെ വിവരങ്ങൾ കാണാനും മാനേജ് ചെയ്യാനും സൈൻ ഇൻ ചെയ്യുക.';
+
+  @override
+  String get billing_acceptance =>
+      'തുടരുന്നതിലൂടെ, നിങ്ങൾ ഉപയോഗ നിബന്ധനകളും സ്വകാര്യതാ നയവും അംഗീകരിക്കുന്നു.';
+
+  @override
+  String get guest_verifyEmailReminder =>
+      'അക്കൗണ്ട് സുരക്ഷിതമാക്കാൻ നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക. VPN ഉപയോഗിക്കുന്നത് തുടരാം.';
+
+  @override
+  String get guest_serviceUnavailable =>
+      'സേവനം താൽക്കാലികമായി ലഭ്യമല്ല. കുറച്ച് സമയത്തിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get guest_restoreError =>
+      'നിങ്ങളുടെ വാങ്ങലുകൾ പുനഃസ്ഥാപിക്കാനായില്ല. വാങ്ങാൻ ഉപയോഗിച്ച Google Play അക്കൗണ്ടിൽ വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get guest_claimSuccess =>
+      'നിങ്ങളുടെ അക്കൗണ്ട് സൃഷ്ടിച്ചു. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷനും VPN ആക്‌സസും നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get guest_emailExists =>
+      'ഈ ഇമെയിൽ ഇതിനകം ഉപയോഗത്തിലുണ്ട്. മറ്റൊരു വിലാസം തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ നിലവിലുള്ള അക്കൗണ്ടിൽ സൈൻ ഇൻ ചെയ്യുക. നിങ്ങളുടെ വാങ്ങൽ Google Play വഴി ലഭ്യമായി തുടരും.';
+
+  @override
+  String get guest_claimError =>
+      'നിങ്ങളുടെ അക്കൗണ്ട് സൃഷ്ടിക്കാനായില്ല. നിങ്ങൾക്ക് VPN ഉപയോഗം തുടരാം; പിന്നീട് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get guest_secureStorageError =>
+      'ഈ ഉപകരണത്തിൽ നിങ്ങളുടെ സെഷൻ സുരക്ഷിതമാക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get guest_premiumRequired =>
+      'നിങ്ങളുടെ VPN സജീവമാക്കാൻ ഒരു സബ്‌സ്‌ക്രിപ്‌ഷൻ തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get welcome_viewPlans => 'പ്ലാനുകൾ കാണുക';
+
+  @override
+  String get google_continue => 'Google ഉപയോഗിച്ച് തുടരുക';
+
+  @override
+  String get google_or => 'അല്ലെങ്കിൽ';
+
+  @override
+  String get google_title => 'നിങ്ങളുടെ FuzeVPN അക്കൗണ്ട്';
+
+  @override
+  String get google_settingUp => 'അക്കൗണ്ട് സൃഷ്ടിക്കൽ പൂർത്തിയാക്കുക';
+
+  @override
+  String get google_country => 'താമസിക്കുന്ന രാജ്യം';
+
+  @override
+  String get google_profileDescription =>
+      'നിങ്ങളുടെ FuzeVPN അക്കൗണ്ട് സൃഷ്ടിക്കാൻ നിങ്ങളുടെ രാജ്യം തിരഞ്ഞെടുത്ത് രണ്ട് രേഖകളും പരിശോധിക്കുക.';
+
+  @override
+  String get google_claimDescription =>
+      'നിങ്ങളുടെ അതിഥി അക്കൗണ്ട് Google-മായി ബന്ധിപ്പിക്കുക. നിങ്ങളുടെ സബ്‌സ്‌ക്രിപ്‌ഷനും ഉപകരണവും ഈ അക്കൗണ്ടുമായി ബന്ധപ്പെട്ടിരിക്കും.';
+
+  @override
+  String get google_linkTitle => 'Google-നെ FuzeVPN-മായി ബന്ധിപ്പിക്കുക';
+
+  @override
+  String get google_linkDescription =>
+      'നിലവിലുള്ള FuzeVPN അക്കൗണ്ടിലേക്കുള്ള ആക്‌സസ് സ്ഥിരീകരിക്കുക. ഈ ഘട്ടത്തിൽ നിങ്ങളുടെ Google പാസ്‌വേഡ് ആവശ്യപ്പെടില്ല.';
+
+  @override
+  String get google_password => 'FuzeVPN പാസ്‌വേഡ്';
+
+  @override
+  String get google_linkAccount => 'ബന്ധിപ്പിക്കൽ സ്ഥിരീകരിക്കുക';
+
+  @override
+  String get google_requestEmail => 'എനിക്ക് സ്ഥിരീകരണ ഇമെയിൽ അയയ്ക്കുക';
+
+  @override
+  String get google_emailInstructions =>
+      'FuzeVPN-ൽ നിന്നുള്ള ഇമെയിൽ തുറന്ന് സ്ഥിരീകരണ കോഡ് നൽകുക.';
+
+  @override
+  String get google_emailCode => 'ഇമെയിൽ സ്ഥിരീകരണ കോഡ്';
+
+  @override
+  String get google_confirmEmail => 'കോഡ് സ്ഥിരീകരിക്കുക';
+
+  @override
+  String get google_restart => 'മറ്റൊരു Google അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക';
+
+  @override
+  String get google_resume => 'ഈ ശ്രമം പരിശോധിക്കുക';
+
+  @override
+  String get google_unavailable =>
+      'Google സൈൻ ഇൻ ലഭ്യമല്ല. ഇമെയിലും പാസ്‌വേഡും ഉപയോഗിക്കാം.';
+
+  @override
+  String get google_expired =>
+      'ഈ ശ്രമത്തിന്റെ സമയം കഴിഞ്ഞു. ഇത് റദ്ദാക്കി വീണ്ടും ആരംഭിക്കുക.';
+
+  @override
+  String get google_conflict =>
+      'ഈ Google അക്കൗണ്ട് മറ്റൊരിടത്ത് ഇതിനകം ബന്ധിപ്പിച്ചിട്ടുണ്ട്. നിങ്ങളുടെ നിലവിലെ അക്കൗണ്ടും സബ്‌സ്‌ക്രിപ്‌ഷനും നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get google_error =>
+      'Google സൈൻ ഇൻ പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക; നിലവിലെ ആക്‌സസ് നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get google_uncertain =>
+      'ഫലം സ്ഥിരീകരിക്കാനായില്ല. വീണ്ടും ആരംഭിക്കുന്നതിന് മുമ്പ് ഈ ശ്രമം പരിശോധിക്കുക അല്ലെങ്കിൽ റദ്ദാക്കുക.';
+
+  @override
+  String get google_cancelFailed =>
+      'റദ്ദാക്കൽ സ്ഥിരീകരിക്കാനായില്ല. ഈ സ്ക്രീൻ വിടുന്നതിന് മുമ്പ് വീണ്ടും റദ്ദാക്കാൻ ശ്രമിക്കുക.';
+
+  @override
+  String get google_cancelled => 'Google സൈൻ ഇൻ റദ്ദാക്കി.';
+
+  @override
+  String get google_selecting => 'നിങ്ങളുടെ Google അക്കൗണ്ട് തിരഞ്ഞെടുക്കുക…';
+
+  @override
+  String get google_verifying => 'നിങ്ങളുടെ അക്കൗണ്ട് പരിശോധിക്കുന്നു…';
+
+  @override
+  String get google_emailUnavailable =>
+      'സ്ഥിരീകരണ ഇമെയിൽ അയയ്ക്കാനായില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get google_emailSent =>
+      'സ്ഥിരീകരണ ഇമെയിൽ അയച്ചു. നിങ്ങളുടെ ഇൻബോക്‌സ് പരിശോധിക്കുക.';
+
+  @override
+  String get google_rateLimited =>
+      'വീണ്ടും ശ്രമിക്കുന്നതിന് മുമ്പ് ദയവായി കാത്തിരിക്കുക.';
+
+  @override
+  String get google_busy =>
+      'മറ്റൊരു പ്രവർത്തനം നടക്കുന്നതിനാൽ (VPN കണക്ഷൻ, അക്കൗണ്ട് അല്ലെങ്കിൽ അതിഥി) Google ഇപ്പോൾ ലഭ്യമല്ല. ഇത് പൂർത്തിയായ ശേഷം വീണ്ടും ശ്രമിക്കുക; നിലവിലെ ആക്‌സസ് നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get google_invalidPassword =>
+      'FuzeVPN പാസ്‌വേഡ് തെറ്റാണ്. നിങ്ങളുടെ നിലവിലെ അക്കൗണ്ട് നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get google_invalidCode =>
+      'സ്ഥിരീകരണ കോഡ് അസാധുവോ കാലഹരണപ്പെട്ടതോ ആണ്.';
+
+  @override
+  String get google_accountChanged =>
+      'നിങ്ങളുടെ സെഷൻ മാറിയിരിക്കുന്നു. വീണ്ടും ആരംഭിക്കുന്നതിന് മുമ്പ് ഈ ശ്രമം റദ്ദാക്കുക.';
+
+  @override
+  String get google_invalidResponse =>
+      'പ്രതികരണം സാധൂകരിക്കാനായില്ല. നിങ്ങളുടെ നിലവിലെ ആക്‌സസ് നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get google_invalidRegistration =>
+      'നിങ്ങളുടെ രാജ്യവും രണ്ട് സമ്മതങ്ങളും പരിശോധിക്കുക.';
+
+  @override
+  String get google_consentRequired =>
+      'തുടരാൻ നിങ്ങളുടെ രാജ്യം തിരഞ്ഞെടുത്ത് രണ്ട് രേഖകളും അംഗീകരിക്കുക.';
+
+  @override
+  String get google_challengeRequired =>
+      'അധിക സുരക്ഷാ പരിശോധന ആവശ്യമാണ്. നിങ്ങളുടെ നിലവിലെ ആക്‌സസ് നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get google_challengeUnavailable =>
+      'സുരക്ഷാ പരിശോധന ലഭ്യമല്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get google_intentMismatch =>
+      'മുമ്പത്തെ Google സൈൻ ഇൻ ശ്രമം ഇനിയും തീർപ്പായിട്ടില്ല. ഈ പ്രവർത്തനം ആരംഭിക്കുന്നതിന് മുമ്പ് അത് റദ്ദാക്കുക.';
+
+  @override
+  String get google_challengeBlocked =>
+      'ആവശ്യമായ സുരക്ഷാ പരിശോധന ഈ ആപ്പിൽ ലഭ്യമല്ല. ഈ പ്രവർത്തനം ഇപ്പോൾ പൂർത്തിയാക്കാനാവില്ല.';
+
+  @override
+  String get google_solveChallenge => 'സുരക്ഷാ പരിശോധന പൂർത്തിയാക്കുക';
+
+  @override
+  String get google_challengeTitle => 'സുരക്ഷാ പരിശോധന';
+
+  @override
+  String get google_challengeReady =>
+      'സ്ഥിരീകരണം പൂർത്തിയായി. ഇനി നിങ്ങളുടെ അക്കൗണ്ട് സൃഷ്ടിക്കൽ സ്ഥിരീകരിക്കാം.';
+
+  @override
+  String get google_challengeExpired =>
+      'സ്ഥിരീകരണത്തിന്റെ സമയം കഴിഞ്ഞു. സ്ഥിരീകരിക്കുന്നതിന് മുമ്പ് വീണ്ടും പൂർത്തിയാക്കുക.';
+
+  @override
+  String get google_challengeCancelled =>
+      'സ്ഥിരീകരണം റദ്ദാക്കി. വീണ്ടും ശ്രമിക്കാം.';
+
+  @override
+  String get google_challengeFailed =>
+      'സുരക്ഷാ പരിശോധന പരാജയപ്പെട്ടു. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get billing_trialTitle => 'Fuze Premium സൗജന്യമായി പരീക്ഷിക്കുക';
+
+  @override
+  String get billing_trialSubtitle =>
+      'ഇന്ന് മുതൽ നിങ്ങളുടെ കണക്ഷൻ സംരക്ഷിക്കുക.';
+
+  @override
+  String get billing_trialWeeks => '2 ആഴ്ചത്തെ സൗജന്യ ട്രയൽ';
+
+  @override
+  String billing_trialDays(String days) {
+    return '$days ദിവസത്തെ സൗജന്യ ട്രയൽ';
+  }
+
+  @override
+  String get billing_trialStart => 'എന്റെ സൗജന്യ ട്രയൽ ആരംഭിക്കുക';
+
+  @override
+  String billing_trialFirstCharge(String date) {
+    return 'ഇന്ന് ആരംഭിച്ചാൽ, ആദ്യ ചാർജ് $date-ന് പ്രതീക്ഷിക്കുന്നു.';
+  }
+
+  @override
+  String get billing_trialTerms =>
+      'പറഞ്ഞിരിക്കുന്ന വിലയിൽ സ്വയമേവ പുതുക്കും. ചാർജ് ഒഴിവാക്കാൻ ട്രയൽ അവസാനിക്കുന്നതിന് മുമ്പ് Google Play-യിൽ റദ്ദാക്കുക.';
+
+  @override
+  String billing_trialThenMonthly(String price) {
+    return 'പിന്നീട് പ്രതിമാസം $price';
+  }
+
+  @override
+  String billing_trialThenYearly(String price) {
+    return 'പിന്നീട് പ്രതിവർഷം $price';
+  }
+
+  @override
+  String get billing_choosePeriod => 'നിങ്ങളുടെ പ്ലാൻ തിരഞ്ഞെടുക്കുക';
+
+  @override
+  String get billing_selectionHint => 'തുടരാൻ ഒരു പ്ലാൻ തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get billing_benefitConnection => 'എൻക്രിപ്റ്റ് ചെയ്ത കണക്ഷൻ';
+
+  @override
+  String get billing_benefitPrivacy => 'ഓൺലൈൻ സ്വകാര്യത';
+
+  @override
+  String get billing_benefitNoAccount => 'രജിസ്ട്രേഷൻ ആവശ്യമില്ല';
+
+  @override
+  String get billing_cancellation => 'Google Play-യിൽ റദ്ദാക്കുക';
+
+  @override
+  String get billing_premiumTitle => 'കൂടുതൽ സംരക്ഷിതമായ കണക്ഷൻ.';
+
+  @override
+  String get billing_premiumSubtitle =>
+      'നിങ്ങളുടെ സൗകര്യത്തിനനുസരിച്ച് നിങ്ങളുടെ കണക്ഷൻ സംരക്ഷിക്കുക.';
+
+  @override
+  String get billing_priceMonthly => 'പ്രതിമാസം';
+
+  @override
+  String get billing_priceYearly => 'പ്രതിവർഷം';
+
+  @override
+  String get billing_trialToday => 'ഇന്ന് പണമടയ്ക്കേണ്ടതില്ല';
+
+  @override
+  String get billing_trialConfirmation =>
+      'നിങ്ങൾ അംഗീകരിക്കുന്നതിന് മുമ്പ് തീയതികളും അന്തിമ തുകയും ബാധകമായ നികുതികളും Google Play സ്ഥിരീകരിക്കും.';
+
+  @override
+  String get billing_offerChanged =>
+      'ഈ ഓഫറിന്റെ നിബന്ധനകൾ മാറിയിരിക്കുന്നു. പ്ലാനുകൾ പുതുക്കി വീണ്ടും തിരഞ്ഞെടുക്കുക.';
+
+  @override
+  String get status_waitingNetwork => 'നെറ്റ്വർക്ക് കാത്തിരിപ്പ്';
+
+  @override
+  String get status_waitingNetworkDetail =>
+      'നെറ്റ്‌വർക്ക് ലഭ്യമല്ല. നെറ്റ്‌വർക്ക് തിരികെ വരുമ്പോൾ VPN കണക്ഷൻ പരിശോധിക്കും.';
+
+  @override
+  String get locations_favoriteLoadFailed =>
+      'പ്രിയപ്പെട്ടവ ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get locations_favoritesLoading => 'പ്രിയപ്പെട്ടവ ലോഡ് ചെയ്യുന്നു…';
+}

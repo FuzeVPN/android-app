@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/app_controller.dart';
 import 'package:fuzevpn_android/l10n/app_copy.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/widgets/notice_card.dart';
 
@@ -471,6 +472,6 @@ Widget _localizedApp(Locale locale, Widget child) => MaterialApp(
     Locale('es'),
     Locale('de'),
   ],
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   home: Scaffold(body: child),
 );

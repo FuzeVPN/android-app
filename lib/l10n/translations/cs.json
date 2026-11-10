@@ -176,6 +176,8 @@
     "dialog_signOut": "Odhlásit se?",
     "dialog_signOutMessage": "VPN se zastaví a budete se muset znovu přihlásit. Vaše šifrované klíče VPN zůstanou v tomto telefonu pro příští připojení.",
     "action_cancel": "Zrušit",
+    "action_close": "Zavřít",
+    "action_copy": "Kopírovat",
     "action_signOut": "Odhlásit se",
     "notice_close": "Zavřít oznámení",
     "notice_sessionExpired_title": "Relace vypršela",

@@ -176,6 +176,8 @@
     "dialog_signOut": "Logge ut?",
     "dialog_signOutMessage": "VPN stoppes, og du må logge inn på nytt. De krypterte VPN-nøklene dine blir på denne telefonen til neste tilkobling.",
     "action_cancel": "Avbryt",
+    "action_close": "Lukk",
+    "action_copy": "Kopiér",
     "action_signOut": "Logg ut",
     "notice_close": "Lukk meldingen",
     "notice_sessionExpired_title": "Økten er utløpt",

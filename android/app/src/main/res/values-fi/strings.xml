@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN-yhteys</string>
+    <string name="vpn_notification_channel_description">Näyttää, kun FuzeVPN-yhteys on aktiivinen.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s-yhteys aktiivinen</string>
+    <string name="vpn_notification_connecting">%1$s-yhteyttä muodostetaan</string>
+    <string name="vpn_notification_disconnecting">Katkaistaan %1$s-yhteyttä</string>
+    <string name="vpn_notification_interrupted">%1$s-yhteys keskeytyi</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Valmis · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Yhdistetty · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s-yhteyttä muodostetaan…</string>
+    <string name="vpn_tile_disconnecting">Katkaistaan yhteyttä…</string>
+    <string name="vpn_tile_interrupted">%1$s-yhteys keskeytyi</string>
+    <string name="vpn_tile_setup_required">Avaa sovellus ensin</string>
+    <string name="vpn_tile_working">VPN-toiminto käynnissä…</string>
+    <string name="vpn_notification_reconnecting">Yhdistetään uudelleen… · %1$s</string>
+    <string name="vpn_system_action_required">Toimenpide vaaditaan Android-asetuksissa</string>
+    <string name="vpn_tile_reconnecting">Yhdistetään uudelleen… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Odotetaan verkkoyhteyttä · %1$s</string>
+    <string name="vpn_tile_waiting_network">Odotetaan verkkoyhteyttä · %1$s</string>
+</resources>

@@ -9,11 +9,20 @@ abstract final class AppFormats {
     WidgetsBinding.instance.platformDispatcher.locales,
   );
 
+  /// Flutter ships date patterns for most app languages; the others (Hausa,
+  /// Malagasy, Somali, Yoruba, Igbo, Kinyarwanda) use day-first British
+  /// English patterns instead of throwing.
+  static String _dateLocale(BuildContext context) => Intl.verifiedLocale(
+    localeOf(context).toString(),
+    DateFormat.localeExists,
+    onFailure: (_) => 'en_GB',
+  )!;
+
   /// API instants are UTC; they are shown on the device's local calendar day.
   static String date(BuildContext context, DateTime value) =>
-      DateFormat.yMd(localeOf(context).toString()).format(value.toLocal());
+      DateFormat.yMd(_dateLocale(context)).format(value.toLocal());
 
   /// Financial dates spell out the month to avoid day/month ambiguity.
   static String longDate(BuildContext context, DateTime value) =>
-      DateFormat.yMMMMd(localeOf(context).toString()).format(value.toLocal());
+      DateFormat.yMMMMd(_dateLocale(context)).format(value.toLocal());
 }

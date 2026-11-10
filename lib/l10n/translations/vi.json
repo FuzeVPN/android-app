@@ -176,6 +176,8 @@
     "dialog_signOut": "Đăng xuất?",
     "dialog_signOutMessage": "VPN sẽ dừng và bạn sẽ phải đăng nhập lại. Các khóa VPN đã mã hóa của bạn vẫn được giữ trên điện thoại này để sử dụng cho lần kết nối tiếp theo.",
     "action_cancel": "Hủy",
+    "action_close": "Đóng",
+    "action_copy": "Sao chép",
     "action_signOut": "Đăng xuất",
     "notice_close": "Bỏ qua thông báo",
     "notice_sessionExpired_title": "Phiên đã hết hạn",

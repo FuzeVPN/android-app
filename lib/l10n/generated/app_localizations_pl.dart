@@ -527,6 +527,12 @@ class AppLocalizationsPl extends AppLocalizations {
   String get action_cancel => 'Anuluj';
 
   @override
+  String get action_close => 'Zamknij';
+
+  @override
+  String get action_copy => 'Kopiuj';
+
+  @override
   String get action_signOut => 'Wyloguj się';
 
   @override

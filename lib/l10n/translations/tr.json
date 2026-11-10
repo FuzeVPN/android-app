@@ -176,6 +176,8 @@
     "dialog_signOut": "Oturum kapatılsın mı?",
     "dialog_signOutMessage": "VPN durdurulacak ve yeniden oturum açmanız gerekecek. Şifrelenmiş VPN anahtarlarınız bir sonraki bağlantınız için bu telefonda kalacak.",
     "action_cancel": "İptal",
+    "action_close": "Kapat",
+    "action_copy": "Kopyala",
     "action_signOut": "Oturumu kapat",
     "notice_close": "Mesajı kapat",
     "notice_sessionExpired_title": "Oturumun süresi doldu",

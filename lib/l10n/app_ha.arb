@@ -1,0 +1,745 @@
+{
+  "vpnDisclosure_title": "Ku kare haɗinku",
+  "vpnDisclosure_body": "FuzeVPN yana amfani da sabis ɗin VPN na Android (VpnService) don ƙirƙirar ɓoyayyen rami tsakanin wannan na’ura da sabobin FuzeVPN.",
+  "vpnDisclosure_dataBody": "Yayin da VPN ke aiki, zirga-zirgar intanet ɗin manhajojinku, adiresoshin inda za a je da buƙatun DNS suna wucewa ta wannan rami don tura haɗinku, ko da FuzeVPN yana gudana a bayan fage.",
+  "vpnDisclosure_statusBody": "Manhajar tana amfani da matsayin haɗin, tsawon lokacinsa da yawan bayanan da aka tura don nuna haɗin VPN ɗinku. Kuna iya dakatar da shi a kowane lokaci.",
+  "vpnDisclosure_privacy": "Keɓantawa",
+  "vpnDisclosure_accept": "Karɓa kuma ci gaba",
+  "vpnDisclosure_decline": "Ba yanzu ba",
+  "accountRestoration_title": "Asusu ba ya samuwa na ɗan lokaci",
+  "accountRestoration_message": "An ajiye zaman shiganku. Ku sake gwadawa don dawo da asusunku; har yanzu kuna iya sarrafa haɗin VPN a nan.",
+  "action_retry": "Sake gwadawa",
+  "session_endingTitle": "Ana rufe zaman shiga",
+  "session_ending": "Ana rufe zaman shiga: ana dakatar da VPN kuma ana tsaftacewa…",
+  "session_stopFailed": "Ba a tabbatar da rufe VPN ba. Ku sake gwadawa kafin ku sake shiga asusu.",
+  "session_cleanupFailed": "An dakatar da VPN, amma ba a tabbatar da share zaman shiga ba. Ku sake gwada tsaftacewa.",
+  "session_retryStop": "Sake gwada rufewa",
+  "session_retryCleanup": "Sake gwada tsaftacewa",
+  "@@locale": "ha",
+  "appTitle": "FuzeVPN",
+  "startup": "Ana shirya FuzeVPN cikin tsaro…",
+  "nav_connection": "Haɗi",
+  "nav_locations": "Wurare",
+  "nav_account": "Asusu",
+  "nav_devices": "Na’urori",
+  "nav_settings": "Saituna",
+  "action_refresh": "Sabunta",
+  "auth_tab_login": "Shiga asusu",
+  "auth_tab_register": "Yi rajista",
+  "auth_stepAccount": "Asusu",
+  "auth_stepIdentity": "Bayanan kai",
+  "auth_stepAddress": "Adireshi da yarjejeniyoyi",
+  "auth_stepProgress": "Mataki na {current} cikin {total}",
+  "@auth_stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "Object"
+      },
+      "total": {
+        "type": "Object"
+      }
+    }
+  },
+  "auth_tagline": "VPN ɗinku, cikin sauƙi.",
+  "auth_keysLocal": "Maɓallan VPN ɗinku na sirri suna nan a wannan na’ura.",
+  "form_email": "Adireshin imel",
+  "form_password": "Kalmar sirri",
+  "form_showPassword": "Nuna kalmar sirri",
+  "form_hidePassword": "Ɓoye kalmar sirri",
+  "form_passwordMin": "Byte 8–72 na UTF-8. Wasu haruffa suna amfani da fiye da byte ɗaya.",
+  "form_firstName": "Sunan farko",
+  "form_lastName": "Sunan ƙarshe",
+  "form_phone": "Lambar waya (+33612345678)",
+  "form_address": "Adireshi",
+  "form_address2": "Layin adireshi na 2 (na zaɓi)",
+  "form_postalCode": "Lambar gidan waya",
+  "form_city": "Birni",
+  "form_country": "Lambar ƙasa (misali FR)",
+  "action_login": "Shiga asusu",
+  "action_createAccount": "Ƙirƙiri asusu",
+  "action_createMyAccount": "Ƙirƙiri asusuna",
+  "action_next": "Ci gaba",
+  "action_previous": "Koma baya",
+  "action_forgotPassword": "Kun manta kalmar sirri?",
+  "auth_noAccount": "Ba ku da asusu tukuna?",
+  "auth_requiredInformation": "Ku ƙirƙiri asusunku cikin matakai uku.",
+  "auth_termsPrefix": "Na amince da ",
+  "auth_termsLink": "sharuɗɗan amfani",
+  "auth_privacyPrefix": "Na amince da ",
+  "auth_privacyLink": "manufar keɓantawa",
+  "auth_consentRequired": "Ana buƙatar amincewarku don ƙirƙirar asusu.",
+  "validation_required": "Ana buƙatar cika wannan filin.",
+  "validation_email": "Shigar da ingantaccen adireshin imel.",
+  "validation_password": "Kalmar sirri ta yi gajarta: aƙalla byte 8 na UTF-8.",
+  "validation_passwordTooLong": "Kalmar sirri ta yi tsawo: iyakar byte 72 na UTF-8.",
+  "validation_phone": "Yi amfani da tsarin ƙasa da ƙasa, misali +33612345678.",
+  "validation_country": "Yi amfani da lambar ƙasa mai haruffa biyu, misali FR.",
+  "passwordReset_title": "Sake saita kalmar sirri",
+  "passwordReset_description": "Shigar da adireshin imel na asusunku don neman hanyar haɗin sake saita kalmar sirri.",
+  "passwordReset_send": "Aika hanyar haɗi",
+  "connection_title": "Haɗinku",
+  "connection_subtitle": "Ku zaɓi wuri, sannan ku kunna VPN ɗinku.",
+  "connection_prepare": "Kuna shirye ku haɗa?",
+  "connection_advancedOptions": "Zaɓuɓɓukan ci gaba",
+  "connection_location": "Wuri",
+  "connection_chooseLocation": "Zaɓi wuri",
+  "connection_protocol": "Ƙa’ida",
+  "connection_connect": "Haɗa",
+  "connection_connecting": "Ana haɗawa…",
+  "connection_disconnect": "Katse haɗi",
+  "connection_disconnecting": "Ana katse haɗi",
+  "connection_locationChange": "Ana canza wuri…",
+  "connection_unavailable": "{protocol} ba ya samuwa",
+  "connection_activeLocation": "Wuri mai aiki",
+  "connection_duration": "Tsawon lokaci",
+  "connection_received": "An karɓa",
+  "connection_sent": "An aika",
+  "connection_lastHandshake": "Musayar tsaro ta ƙarshe",
+  "connection_handshakeAgo": "{duration} da suka wuce",
+  "verification_title": "Ku tabbatar da adireshin imel ɗinku",
+  "verification_message": "Ku tabbatar da adireshin imel ɗinku don amfani da VPN a wannan waya.",
+  "verification_resend": "Sake aika imel",
+  "migration_title": "Canjin wuri",
+  "migration_draining": "Ana shirya canjin wuri…",
+  "migration_activating": "Ana kunna sabuwar sabar…",
+  "migration_ready": "An sabunta wuri.",
+  "migration_blocked": "Canjin wuri yana buƙatar shiga tsakani daga sabar. Ku sake gwadawa daga baya ko ku tuntuɓi tallafi.",
+  "migration_progress": "Ci gaban canjin wuri",
+  "migration_retryDelay": "Tazara tsakanin dubawa: daƙiƙa {seconds}.",
+  "migration_resume": "Ci gaba da canjin wuri",
+  "status_authorizing": "Ana buƙatar izini",
+  "status_authorizingDetail": "Ku karɓi buƙatar Android don ba VPN izini.",
+  "status_preparing": "Ana shiryawa",
+  "status_preparingDetail": "Ana shirya haɗinku mai tsaro.",
+  "status_reconnecting": "Ana sake haɗawa…",
+  "status_reconnectingDetail": "An katse haɗin. VPN yana ƙoƙarin sake haɗawa.",
+  "status_connecting": "Ana haɗawa",
+  "status_connectingDetail": "Ana haɗawa da sabar VPN…",
+  "status_connected": "An haɗa",
+  "status_connectedDetail": "Haɗin VPN ɗinku yana aiki.",
+  "status_disconnecting": "Ana katse haɗi",
+  "status_disconnectingDetail": "Haɗin VPN ɗinku yana tsayawa.",
+  "status_error": "Haɗi ba ya samuwa",
+  "status_errorDetail": "Ba a tabbatar da haɗin VPN ba. Ku sake gwadawa.",
+  "status_idle": "An katse haɗi",
+  "status_idleDetail": "Ku haɗa VPN don kare haɗinku.",
+  "trust_note": "Rufe manhajar ba ya katse VPN. Don katse shi, ku yi amfani da Katse haɗi.",
+  "locations_none": "Babu wurare da ake samu a yanzu.",
+  "locations_available": "Ku zaɓi wuri na gaba.",
+  "locations_selected": "Wurin da aka zaɓa",
+  "locations_select": "Zaɓi wannan wuri",
+  "locations_lockedTunnel": "Ku katse VPN don canza wuri.",
+  "locations_lockedMigration": "Ku jira canjin wuri ya kammala.",
+  "devices_title": "Na’urorinku",
+  "devices_used": "Na’urori {count} / {limit}",
+  "devices_refresh": "Sabunta na’urori",
+  "devices_empty": "Babu na’urar VPN da aka yi wa rajista tukuna.",
+  "devices_firstConnection": "Za a ƙara wayarku a haɗin farko.",
+  "devices_thisDevice": "Wannan na’ura",
+  "devices_added": "An ƙara a ranar {date}",
+  "devices_unnamed": "Na’ura marar suna",
+  "action_remove": "Cire",
+  "settings_title": "Saituna",
+  "settings_subtitle": "Zaɓuɓɓukanku da asusunku, duka a wuri ɗaya.",
+  "settings_appearance": "Kamanni",
+  "settings_language": "Harshe",
+  "settings_languageDescription": "Harshen da kuka zaɓa ya shafi sanarwar VPN ma.",
+  "settings_account": "Asusu",
+  "settings_signOut": "Fita daga asusu",
+  "settings_privacy": "Manufar keɓantawa",
+  "settings_terms": "Sharuɗɗan amfani",
+  "settings_security": "Tsaro da bayyana gaskiya",
+  "settings_licenses": "Lasisin sassan manhaja",
+  "settings_licensesDetail": "Kayayyakin manhaja da ake amfani da su a cikin manhajar",
+  "settings_licensesLegalese": "Lambar tushe ta manhajar da sassanta na MPL-2.0: {url}",
+  "@settings_licensesLegalese": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_background": "VPN yana ci gaba da aiki idan kun bar manhajar. Don katse shi, ku yi amfani da Katse haɗi a shafin Haɗi.",
+  "theme_system": "Tsarin na’ura",
+  "theme_light": "Haske",
+  "theme_dark": "Duhu",
+  "language_system": "Harshen waya",
+  "language_fr": "Français",
+  "language_en": "English",
+  "language_es": "Español",
+  "language_de": "Deutsch",
+  "dialog_removeDevice": "Cire wannan na’ura?",
+  "dialog_removeCurrent": "Wannan waya za ta katse haɗi da VPN kuma ta rasa damar shiga. Za a share bayanan haɗin VPN ɗinta bayan sabar ta tabbatar.",
+  "dialog_removeOther": "Za a soke damar shiga VPN ga “{name}”. Ba za a iya warware wannan ba.",
+  "dialog_signOut": "Fita daga asusu?",
+  "dialog_signOutMessage": "VPN zai tsaya, kuma sai kun sake shiga asusu. Maɓallan VPN ɗinku da aka ɓoye za su kasance a wannan waya don haɗinku na gaba.",
+  "action_cancel": "Soke",
+  "action_close": "Rufe",
+  "action_copy": "Kwafa",
+  "action_signOut": "Fita daga asusu",
+  "notice_close": "Rufe saƙon",
+  "notice_sessionExpired_title": "Zaman shiga ya ƙare",
+  "notice_sessionExpired_message": "Zaman shiganku ya ƙare. Ku sake shiga asusu.",
+  "notice_connectionFailed_title": "Haɗi ya gaza",
+  "notice_invalidCredentials_message": "Adireshin imel ko kalmar sirri ba daidai ba ne.",
+  "notice_emailVerification_title": "Ana buƙatar tabbatar da imel",
+  "notice_emailVerification_message": "Ku tabbatar da adireshin imel ɗinku kafin ku ƙara na’urar VPN.",
+  "notice_rateLimited_title": "An yi yunƙurori da yawa",
+  "notice_deviceLimit_title": "An kai iyakar na’urori",
+  "notice_deviceLimit_message": "Ku cire wata na’ura da ke akwai kafin ku ƙara wata.",
+  "notice_identityRenewal_title": "Dole ne a sabunta shaidar VPN",
+  "notice_identityRenewal_message": "An cire wannan shaida. Ku ƙirƙiri sabuwar shaida ta gida.",
+  "notice_migrationPending_title": "Canjin wuri yana gudana",
+  "notice_migrationPending_message": "Canjin wuri yana gudana a yanzu.",
+  "notice_migrationBlocked_title": "An toshe canjin wuri",
+  "notice_migrationBlocked_message": "Canjin wuri yana buƙatar shiga tsakani daga sabar. Ku sake gwadawa daga baya ko ku tuntuɓi tallafi.",
+  "notice_targetUnavailable_title": "Sabar ba ta samuwa na ɗan lokaci",
+  "notice_targetUnavailable_message": "Wannan sabar ba ta samuwa na ɗan lokaci.",
+  "notice_networkUnavailable_title": "Haɗin intanet ba ya samuwa",
+  "notice_networkUnavailable_message": "Ku duba haɗinku, sannan ku sake gwadawa.",
+  "notice_permissionDenied_title": "An ƙi izinin VPN",
+  "notice_permissionDenied_message": "Ku sake fara haɗi, kuma ku karɓi buƙatar izinin Android.",
+  "notice_wireguardTimeout_title": "Sabar ba ta amsawa",
+  "notice_wireguardTimeout_message": "Haɗin WireGuard ya ɗauki lokaci mai tsawo. Ku sake gwadawa ko ku zaɓi wani wuri.",
+  "notice_tlsFailed_title": "An ƙi haɗin tsaro",
+  "notice_tlsFailed_message": "Sabar ba ta karɓi haɗin OpenVPN ba. Ku sake gwadawa. Idan matsalar ta ci gaba, ku fara bincike.",
+  "notice_tunRejected_title": "Android ta ƙi mahaɗar VPN",
+  "notice_tunRejected_message": "Android ta ƙi saitin hanyar sadarwa da OpenVPN ya nema.",
+  "notice_openvpnStart_title": "OpenVPN bai iya farawa ba",
+  "notice_openvpnStart_message": "Injin OpenVPN bai iya kammala farawa ba. Ku sake gwadawa. Idan matsalar ta ci gaba, ku tuntuɓi tallafi.",
+  "notice_diagnosticCode": "Lambar rahoton bincike: {code}",
+  "notice_generic_title": "Haɗin VPN ya gaza",
+  "notice_generic_message": "An samu matsala. Ku sake gwadawa daga baya.",
+  "notice_controller_title": "{code, select, account_created_email_unavailable{An ƙirƙiri asusu} password_reset_sent{An karɓi buƙatar sake saita kalmar sirri} verification_email_sent{An aika imel na tabbatarwa} location_migration_pending{Canjin wuri yana gudana} vpn_sign_in_required{Ana buƙatar shiga asusu} protocol_unavailable_at_location{Ƙa’ida ba ta samuwa} vpn_permission_denied{An ƙi izinin VPN} revoked_identity_device_limit{An kai iyakar na’urori} tunnel_start_unexpected{VPN bai iya farawa ba} flutter_disconnect_timeout{Ba a tabbatar da katse haɗi ba} flutter_disconnect_unexpected{Ba a iya katse haɗi ba} device_revoked{An cire na’ura} revoke_unexpected{Ba a iya cire na’ura ba} identity_renewal_unexpected{Ba a iya sabunta shaida ba} openvpn_renewal_unexpected{Ba a iya sabunta OpenVPN ba} location_migration_blocked{An toshe canjin wuri} location_migration_slow{Canjin wuri yana ci gaba har yanzu} location_migration_conflict{Canjin wuri yana buƙatar sabuntawa} location_migration_verification_failed{Ba a tabbatar da canjin wuri ba} location_migration_device_changed{Na’ura ta canza yayin canjin wuri} tunnel_stop_failed{Canjin wuri ba ya samuwa} device_clock_ahead{Agogon na’ura ya yi gaba} other{Aiki bai yi nasara ba}}",
+  "@notice_controller_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_controller_message": "{code, select, account_created_email_unavailable{An ƙirƙiri asusun, amma ba a iya aika imel ɗin tabbatarwa ba. Ku yi amfani da zaɓin sake aikawa a cikin manhajar.} password_reset_sent{An karɓi buƙatarku. Idan akwai asusu mai wannan adireshin, ƙila ku karɓi imel. Ku kuma duba babban fayil ɗin spam.} verification_email_sent{An aika sabon imel na tabbatarwa.} location_migration_pending{Ana ci gaba da shirya canji zuwa {target}. Kuna iya ci gaba da shi ba tare da sake ƙirƙirar na’ura ba.} vpn_sign_in_required{Ku shiga asusunku kafin ku fara VPN.} protocol_unavailable_at_location{Wannan wuri ba ya bayar da ƙa’idar da kuka zaɓa. Ku sabunta wurare ko ku zaɓi wata ƙa’ida.} vpn_permission_denied{Android ta ƙi izinin VPN. Ku sake fara haɗi, kuma ku karɓi buƙatar tsarin.} revoked_identity_device_limit{An cire damar VPN ta wannan na’ura kuma an kai iyakar na’urori. Ku cire na’ura a ƙarƙashin Asusu → Sarrafa na’urorina.} tunnel_start_unexpected{Wata matsala da ba a yi tsammani ba ta katse shirya ramin. Ku duba lambar rahoton bincike, sannan ku sake gwadawa.} flutter_disconnect_timeout{Android ba ta tabbatar da cewa VPN ya tsaya a kan lokaci ba. Ku sake gwada dakatar da shi.} flutter_disconnect_unexpected{Wata matsala da ba a yi tsammani ba ta hana tabbatar da cewa ramin ya tsaya.} device_revoked{An soke damar VPN ta na’urar, kuma an cire bayanan sirrinta na gida.} revoke_unexpected{Ba a iya cire na’urar ba. Ku sabunta jerin, sannan ku sake gwadawa.} identity_renewal_unexpected{Ba a iya ƙirƙirar sabuwar shaidar VPN ba. Ku sabunta na’urori, sannan ku sake gwadawa.} openvpn_renewal_unexpected{Ba a iya sabunta bayanin martabar OpenVPN ba. Ku sake gwadawa ko ku duba lambar rahoton bincike.} location_migration_blocked{Sabar ba za ta iya kammala wannan canjin yanzu ba. An ajiye na’urar da shaidarta ta gida.} location_migration_slow{Sabar har yanzu tana shirya canji zuwa {target}. Ku ci gaba da canjin bayan ɗan lokaci.} location_migration_conflict{Yanayin na’urar ya canza a sabar. Ku sabunta na’urori, sannan ku ci gaba da canjin.} location_migration_verification_failed{Sabar ba ta tabbatar da sabon wurin ba. An ajiye tsohuwar shaidar gida.} location_migration_device_changed{Na’urar da sabar ta dawo da ita ba ta dace da wadda ake canzawa ba. Ku sabunta na’urori kafin ku sake gwadawa.} tunnel_stop_failed{Dole ne a dakatar da ramin da ya gabata gaba ɗaya kafin sabon haɗi.} device_clock_ahead{Agogon wannan na’ura ya yi gaba. Ku kunna kwanan wata da lokaci na atomatik don ku ci gaba da shiga.} other{Ba a iya kammala aikin ba. Ku sake gwadawa ko ku aika lambar rahoton bincike ga tallafi.}}",
+  "@notice_controller_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "target": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_title": "{code, select, unauthorized{Zaman shiga ya ƙare} invalid_credentials{Shiga bai yi nasara ba} email_verification_required{Ana buƙatar tabbatar da imel} verification_email_cooldown{An riga an aika imel} rate_limited{An yi yunƙurori da yawa} invalid_registration{Dole a gyara bayanai} email_exists{Asusu ya riga ya wanzu} invalid_profile{Bayanin asusu ba daidai ba ne} invalid_device{Na’ura ba daidai ba ce} invalid_location{Wuri ba ya samuwa} device_limit{An kai iyakar na’urori} device_exists{Shaidar VPN tana cikin amfani} device_identity_revoked{Dole ne a sabunta shaidar VPN} device_location_locked{Canjin wuri yana buƙatar sabuntawa} location_migration_pending{Canjin wuri yana gudana} location_migration_blocked{An toshe canjin wuri} target_ca_mismatch{Sabar OpenVPN ba ta dace ba} location_migration_conflict{Canjin wuri yana buƙatar sabuntawa} server_full{Sabar ta cika} capacity_unavailable{Wuri ba ya samuwa na ɗan lokaci} target_unavailable{Sabar ba ta samuwa na ɗan lokaci} not_found{Ba a sami abin ba} invalid_openvpn_csr{Shaidar OpenVPN ba daidai ba ce} openvpn_profile_exists{Bayanin martabar OpenVPN ya riga ya wanzu} openvpn_profile_revoked{An soke bayanin martabar OpenVPN} openvpn_operation_pending{Aikin OpenVPN yana gudana} openvpn_operation_terminal{An katse aikin OpenVPN} openvpn_address_unavailable{Adireshin OpenVPN ba ya samuwa} openvpn_profile_conflict{Saɓani a OpenVPN} openvpn_signer_unavailable{OpenVPN ba ya samuwa} email_delivery_unavailable{Imel ba ya samuwa} invalid_token{Hanyar haɗi ba ta da inganci} network_unavailable{Haɗin intanet ba ya samuwa} invalid_json{Buƙata ba daidai ba ce} invalid_api_response{Amsar sabar ba daidai ba ce} ipv6_unavailable{IPv6 ba ya samuwa} invalid_ip_families{An ƙi saitin hanyar sadarwa} other{Sabis ba ya samuwa}}",
+  "@notice_api_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_api_message": "{code, select, unauthorized{Zaman shiganku ya ƙare. Ku sake shiga asusunku.} invalid_credentials{Adireshin imel ko kalmar sirri ba daidai ba ne.} email_verification_required{Ku tabbatar da adireshin imel ɗinku kafin ku ƙara na’urar VPN.} invalid_registration{Ku duba bayanan da aka nema da kuma amincewarku.} email_exists{Wani asusu yana amfani da wannan adireshin imel.} invalid_profile{Ku duba bayanan asusunku.} invalid_device{Sunan wannan na’ura ko shaidarta ta gida ba daidai ba ne.} invalid_location{Ku sabunta jerin wurare, sannan ku sake gwadawa.} device_limit{Ku cire wata na’ura da ke akwai kafin ku ƙara wata.} device_exists{An riga an haɗa wannan shaidar VPN da wani asusu.} device_identity_revoked{An cire wannan shaida. Dole ne a ƙirƙiri sabuwar shaida ta gida.} device_location_locked{Wurin wannan na’ura ya canza yanzu haka. Manhajar za ta ci gaba da canjin da ke gudana.} location_migration_pending{Canjin wuri yana gudana a yanzu.} location_migration_blocked{Canjin wuri yana buƙatar shiga tsakani daga sabar. Ku sake gwadawa daga baya ko ku tuntuɓi tallafi.} target_ca_mismatch{Wannan sabar ba ta dace da bayanin martabar OpenVPN na yanzu ba tukuna.} location_migration_conflict{Ku sabunta na’urori, sannan ku sake gwada canjin wuri.} server_full{Wannan wuri ya kai iyakar haɗinsa. Ku zaɓi wani wuri ko ku sake gwadawa daga baya.} capacity_unavailable{Ba za mu iya tabbatar da cewa wannan wuri yana samuwa a yanzu ba. Ku zaɓi wani wuri ko ku sake gwadawa daga baya.} target_unavailable{Wannan sabar ba ta samuwa na ɗan lokaci.} not_found{Wannan abu ba ya ƙara samuwa a asusunku.} invalid_openvpn_csr{Ku ƙirƙiri sabuwar shaidar OpenVPN, sannan ku sake gwadawa.} openvpn_profile_exists{Akwai bayanin martabar OpenVPN na wannan na’ura.} openvpn_profile_revoked{Ku sabunta bayanin martabar OpenVPN don ci gaba.} openvpn_operation_pending{Canjin yana ci gaba da yaɗuwa. Ku sake gwadawa daga baya.} openvpn_operation_terminal{Ku ƙirƙiri sabuwar shaidar OpenVPN, sannan ku sake gwadawa.} openvpn_address_unavailable{Babu adireshin OpenVPN da ke samuwa a yanzu.} openvpn_profile_conflict{Bayanin martaba ya canza. Ku sabunta na’urori, sannan ku sake gwadawa.} openvpn_signer_unavailable{Sabis ɗin OpenVPN ba ya samuwa na ɗan lokaci.} email_delivery_unavailable{Ba a iya aika imel ba. Ku sake gwadawa daga baya.} invalid_token{Wannan hanyar haɗi ba ta da inganci ko kuma ta ƙare. Ku nemi sabuwa.} network_unavailable{Ku duba haɗin intanet ɗinku, sannan ku sake gwadawa.} invalid_json{Ku duba bayanan da kuka shigar, sannan ku sake gwadawa.} invalid_api_response{Sabar ta mayar da amsa da ba a yi tsammani ba. Ku sake gwadawa daga baya.} ipv6_unavailable{Sabar ba za ta iya kunna IPv6 a yanzu ba. Ku sake gwadawa daga baya.} invalid_ip_families{Saitin ramin bai cika ba ko kuma bai dace da adiresoshin da aka ba da izini ba. Ku sake gwadawa daga manhajar.} other{An samu matsalar sabar. Ku sake gwadawa daga baya.}}",
+  "@notice_api_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_retryLater": "Ku sake gwadawa bayan ɗan lokaci.",
+  "notice_retryAfter": "{seconds, plural, one{Ku sake gwadawa bayan daƙiƙa {seconds}.} other{Ku sake gwadawa bayan daƙiƙoƙi {seconds}.}}",
+  "@notice_retryAfter": {
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterMinutes": "{minutes, plural, one{Ku sake gwadawa bayan minti {minutes}.} other{Ku sake gwadawa bayan mintuna {minutes}.}}",
+  "@notice_retryAfterMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_retryAfterHours": "{hours, plural, one{Ku sake gwadawa bayan awa {hours}.} other{Ku sake gwadawa bayan awanni {hours}.}}",
+  "@notice_retryAfterHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "notice_native_title": "{code, select, system_vpn_resume_unavailable{Ba za a iya ci gaba da VPN na tsarin ba} system_vpn_resume_corrupt{Ci gaban VPN na tsarin ba shi da inganci} system_vpn_resume_session_invalid{Zaman ci gaban VPN ba shi da inganci} system_vpn_resume_identity_changed{Shaidar VPN ta canza} system_vpn_resume_identity_invalid{Shaidar ci gaban VPN ba ta da inganci} system_vpn_resume_storage_failed{Ma’ajiyar ci gaban VPN ba ta samuwa} system_vpn_resume_network_timeout{Ba a sami hanyar sadarwa don ci gaban VPN ba} system_vpn_resume_blocked{An toshe ci gaban VPN} system_vpn_resume_failed{Ci gaban VPN ya gaza} system_vpn_resume_error_invalid{Kuskuren ci gaban VPN ba shi da inganci} wireguard_identity_store_failed{Ba a adana shaidar WireGuard ba} wireguard_identity_unavailable{Shaidar WireGuard ba ta samuwa} vpn_host_destroyed{Ɓangaren VPN na Android ya tsaya} vpn_host_unavailable{Ɓangaren VPN na Android ba ya samuwa} vpn_permission_required{Ana buƙatar izinin VPN} vpn_permission_denied{An ƙi izinin VPN} vpn_permission_request_failed{Ba a iya neman izini ba} wireguard_foreground_service_unavailable{Sabis ɗin WireGuard ba ya samuwa} wireguard_identity_invalid{Maɓallin WireGuard na gida ba shi da inganci} wireguard_identity_in_use{Shaidar WireGuard tana cikin amfani} wireguard_configuration_invalid{Saitin WireGuard ba shi da inganci} wireguard_operation_pending{Aikin WireGuard har yanzu yana gudana} wireguard_start_failed{An ƙi fara WireGuard} wireguard_stop_timeout{Ba a tabbatar da dakatar da WireGuard ba} wireguard_handshake_timeout{WireGuard bai amsa ba} openvpn_connection_timeout{OpenVPN bai amsa ba} openvpn_core_unavailable{Injin OpenVPN ba ya samuwa} openvpn_operation_pending{Zaman OpenVPN har yanzu yana aiki} openvpn_stop_timeout{Ba a tabbatar da dakatar da OpenVPN ba} openvpn_profile_unavailable{Bayanin martabar OpenVPN na gida ya ɓace} openvpn_native_failed{Kiran OpenVPN na asali ya katse} openvpn_key_generation_failed{Ba a iya ƙirƙirar maɓallin OpenVPN na P-256 ba} openvpn_csr_generation_failed{Ba a iya ƙirƙirar buƙatar CSR ta OpenVPN ba} openvpn_identity_store_failed{Ba a adana shaidar OpenVPN ba} openvpn_identity_clear_failed{Cire OpenVPN bai cika ba} openvpn_identity_in_use{Shaidar OpenVPN har yanzu tana cikin amfani} openvpn_tls_verification_required{Tabbatar da TLS na OpenVPN ya ɓace} openvpn_cipher_invalid{Hanyar ɓoye ta OpenVPN ba ta da inganci} openvpn_profile_rejected{An ƙi bayanin martabar OpenVPN} openvpn_identity_inconsistent{Shaidar OpenVPN ba ta dace ba} tls_handshake_failed{An ƙi tattaunawar OpenVPN} tls_alert_unknown_ca{Ba a gane takardar shaidar abokin ciniki ta OpenVPN ba} tls_alert_bad_certificate{An ƙi takardar shaidar abokin ciniki ta OpenVPN} tls_alert_unsupported_certificate{Ba a goyi bayan takardar shaidar OpenVPN ba} tls_client_certificate_required{Ana buƙatar takardar shaidar abokin ciniki ta OpenVPN} tls_alert_misc{Gargaɗin TLS na OpenVPN} tls_signature_algorithm_rejected{Ba a goyi bayan sa hannun OpenVPN ba} tls_handshake_rejected{An ƙi tattaunawar TLS ta OpenVPN} tls_version_rejected{Sigar TLS ta OpenVPN ba ta dace ba} tls_certificate_expired{Takardar shaidar TLS ta ƙare} tls_certificate_revoked{An soke takardar shaidar TLS} transport_failed{Ba a iya isa sabar OpenVPN ba} tun_configuration_rejected{Ba a iya ƙirƙirar mahaɗar OpenVPN ba} tun_setup_failed{Saitin TUN na OpenVPN ya gaza} tun_interface_create_failed{Ƙirƙirar mahaɗar OpenVPN ta gaza} tun_interface_disabled{An kashe mahaɗar OpenVPN} tun_halted{Mahaɗar OpenVPN ta katse} tun_already_established{Mahaɗar OpenVPN ta riga ta buɗe} tun_addresses_missing{Adireshin OpenVPN ya ɓace} tun_routes_missing{Hanyoyin OpenVPN sun ɓace} tun_dns_missing{DNS na OpenVPN ya ɓace} tun_permission_revoked{An soke izinin VPN} tun_establish_returned_null{Android ta ƙi mahaɗar VPN} openvpn_service_start_failed{Sabis ɗin OpenVPN ba ya samuwa} openvpn_operation_timeout{Kiran OpenVPN ya wuce lokaci} openvpn_start_failed{An ƙi fara OpenVPN} openvpn_connection_failed{Haɗin OpenVPN ya katse} openvpn_core_status_error{OpenVPN Core ya ƙare da kuskure} openvpn_stopped_before_connected{OpenVPN ya tsaya kafin haɗi} openvpn_auth_failed{An ƙi tantancewar OpenVPN} openvpn_client_setup_failed{Saitin abokin ciniki na OpenVPN ya gaza} openvpn_client_halted{Abokin ciniki na OpenVPN ya katse} openvpn_client_restart{An nemi sake farawar OpenVPN} openvpn_inactive_timeout{OpenVPN bai yi aiki ba na dogon lokaci} openvpn_session_expired{Zaman OpenVPN ya ƙare} openvpn_credentials_required{Ba a goyi bayan tantancewar OpenVPN ba} openvpn_proxy_failed{Sufurin tsaka-tsaki na OpenVPN ya gaza} openvpn_compression_failed{An ƙi matsawar OpenVPN} openvpn_ntlm_crypto_unavailable{Ɓoyewar NTLM ta OpenVPN ba ta samuwa} openvpn_feature_unsupported{Ba a goyi bayan fasalin OpenVPN ba} network_unavailable{Haɗin intanet ba ya samuwa} network_lost{Hanyar sadarwa ba ta samuwa} certificate_validation_failed{An ƙi takardar shaidar sabar} openvpn_certificate_expired{Takardar shaidar OpenVPN ta ƙare} tunnel_active_for_another_account{Rami na wani asusu har yanzu yana aiki} tunnel_already_active{Rami na asali yana aiki tuni} tunnel_stop_timeout{Ba a tabbatar da dakatar da {protocol} ba} tunnel_disconnected{{protocol} ya katse} native_bridge_unavailable{Gadar Android ba ta samuwa} native_operation_failed{Aikin Android ya katse} invalid_arguments{Sigogin VPN ba su cika ba} invalid_account_id{Asusun VPN ba shi da inganci} invalid_device_id{Mai gano na’ura ba shi da inganci} storage_key_not_allowed{An ƙi maɓallin ma’ajiya} secure_storage_read_failed{Karatu daga ma’ajiya mai tsaro ya gaza} secure_storage_write_failed{Rubutu a ma’ajiya mai tsaro ya gaza} key_generation_failed{Ba a iya ƙirƙirar maɓallin WireGuard ba} csr_generation_failed{Ba a iya ƙirƙirar buƙatar CSR ta OpenVPN ba} openvpn_recovery_exhausted{An riga an yi amfani da dawo da OpenVPN} openvpn_recovery_failed{Dawo da OpenVPN ya gaza} openvpn_renewal_required{Ana buƙatar sabunta takardar shaidar OpenVPN} other{Kuskuren VPN na asali wanda ba a rarraba ba}}",
+  "@notice_native_title": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android ba ta iya samun zaman VPN da za a iya ci gaba da shi ba. Ku fara sabon haɗi a cikin manhajar.} system_vpn_resume_corrupt{Bayanan ci gaban VPN da aka adana ba su da inganci, don haka ba za a yi amfani da su ba. Ku fara sabon haɗi.} system_vpn_resume_session_invalid{Zaman da aka adana ba zai ƙara iya ci gaba da VPN ba. Ku sake shiga asusu a cikin manhajar.} system_vpn_resume_identity_changed{Shaidar VPN ta gida ta canza. An dakatar da ci gaba; ku fara sabon haɗi.} system_vpn_resume_identity_invalid{Shaidar da za a yi amfani da ita don ci gaba ba ta da inganci. Ku fara sabon haɗi.} system_vpn_resume_storage_failed{Android ba ta iya karantawa ko sabunta bayanan ci gaba da aka ɓoye ba. Ku fara sabon haɗi.} system_vpn_resume_network_timeout{Android ba ta sami hanyar sadarwa cikin lokaci don ci gaba da VPN ba. Ku sake gwadawa idan an samu hanyar sadarwa.} system_vpn_resume_blocked{An toshe ci gaba da VPN. Ku duba saitunan Android, sannan ku fara sabon haɗi.} system_vpn_resume_failed{Ci gaba da VPN a Android ya gaza. Ku fara sabon haɗi a cikin manhajar.} system_vpn_resume_error_invalid{Android ta dawo da kuskuren ci gaba wanda ba za a iya amfani da shi ba. Ku fara sabon haɗi.} wireguard_identity_store_failed{Android ba ta iya adana shaidar WireGuard da aka ɓoye ta wannan asusu ba.} wireguard_identity_unavailable{Babu shaidar WireGuard da za a iya amfani da ita don wannan haɗin.} vpn_host_destroyed{An dakatar da ɓangaren Android da ke gudanar da VPN. Ku fara sabon haɗi.} vpn_host_unavailable{Android ba ta iya ƙirƙirar ɓangaren da ke gudanar da VPN ba. Ku sake gwadawa bayan kun duba saitunan VPN.} openvpn_renewal_required{Takardar shaidar tana buƙatar wani mataki a cikin manhajar kafin haɗi.} openvpn_recovery_failed{Dawo da haɗi ta atomatik ya gaza. Ku fara sabon haɗi a cikin manhajar.} openvpn_recovery_exhausted{An riga an yi amfani da dawo da haɗi ta atomatik. Ku fara sabon haɗi a cikin manhajar.} vpn_permission_required{Android tana buƙatar sabon izinin VPN kafin fara ramin.} vpn_permission_denied{Ku ba da izini ga FuzeVPN a cikin buƙatar Android don ci gaba.} vpn_permission_request_failed{Android ba ta iya buɗe allon izinin VPN ba.} wireguard_foreground_service_unavailable{Android ba ta iya ci gaba da sabis ɗin WireGuard a sahun gaba ba.} wireguard_identity_invalid{Maɓallin WireGuard da aka ɓoye na wannan asusu ba za a iya karanta shi ba ko kuma ba shi da inganci.} wireguard_identity_in_use{Wani aiki har yanzu yana amfani da maɓallin WireGuard na wannan asusu.} wireguard_configuration_invalid{Adireshi, DNS, maɓallin sabar, ko hanyoyin WireGuard da aka karɓa ba su da inganci.} wireguard_operation_pending{Aikin WireGuard da ya gabata bai saki sabis ɗinsa na asali ba tukuna.} wireguard_start_failed{Injin WireGuard ya ƙi kunna saitin.} wireguard_stop_timeout{Sabis ɗin WireGuard bai tabbatar da sakin mahaɗar VPN cikin lokacin da aka ƙayyade ba.} wireguard_handshake_timeout{Ramin bai tabbatar da musafaha da sabar cikin lokaci ba.} openvpn_connection_timeout{OpenVPN bai tabbatar da haɗi da sabar cikin lokaci ba.} openvpn_core_unavailable{Wannan sigar manhajar ba ta ƙunshe da injin OpenVPN da za a iya amfani da shi ba.} openvpn_operation_pending{Injin na asali har yanzu yana riƙe da zaman OpenVPN na baya kuma ya ƙi ƙirƙirar na biyu.} openvpn_stop_timeout{OpenVPN Core bai tabbatar da cewa zamansa na asali ya tsaya kuma an share shi cikin lokacin da aka ƙayyade ba.} openvpn_profile_unavailable{Ba a iya karanta ingantaccen bayanin martabar OpenVPN don wannan haɗin ba.} openvpn_native_failed{Kuskuren manhaja ya katse OpenVPN. Ku sake gwada haɗi. Idan matsalar ta ci gaba, ku fara bincike.} openvpn_key_generation_failed{Android Keystore ba ta iya ƙirƙira ko karanta maɓallin sirri na P-256 wanda ba za a iya fitar da shi ba.} openvpn_csr_generation_failed{Maɓallin Android Keystore bai iya sanya hannu kan buƙatar takardar shaidar OpenVPN ba.} openvpn_identity_store_failed{Ba a iya adana takardar shaida ko bayanin martabar OpenVPN a cikin ma’ajiyar da aka ɓoye ba.} openvpn_identity_clear_failed{Android ba ta iya cire dukkan shaidar OpenVPN ta gida ta wannan asusu ba.} openvpn_identity_in_use{Wani zaman OpenVPN na asali har yanzu yana amfani da maɓalli ko takardar shaidar wannan na’ura.} openvpn_tls_verification_required{Bayanin martaba bai bayyana sarai cewa yana buƙatar tabbatar da takardar shaidar sabar ba.} openvpn_cipher_invalid{Sabar ta aika hanyar ɓoye da ba ta cikin jerin da aka yarda da su.} openvpn_profile_rejected{Bayanin martaba da aka karɓa daga sabar bai dace ba. Ku sake ƙirƙirar wannan na’ura, sannan ku sake gwadawa.} openvpn_identity_inconsistent{Takardar shaidar ba ta dace da shaidar tsaro ta wannan waya ba. Ba a maye gurbin wani bayanin martaba na gida ba.} tls_handshake_failed{Sabar ta ƙi tattaunawar TLS. Ku sake ƙirƙirar bayanin martaba idan matsalar ta ci gaba.} tls_alert_unknown_ca{Sabar ba ta gane hukumar da ta bayar da takardar shaidar wannan na’ura ba. Dole ne a duba sabar OpenVPN.} tls_alert_bad_certificate{Sabar ta ƙi takardar shaidar wannan na’ura. Ku sake ƙirƙirar na’urar kafin ku sake gwadawa.} tls_alert_unsupported_certificate{Sabar ba ta goyi bayan nau’in takardar shaida mai tsaro da Android ke amfani da shi ba.} tls_client_certificate_required{Sabar tana buƙatar takardar shaidar abokin ciniki, amma OpenVPN Core ya kasa gabatar da ɗaya.} tls_alert_misc{Sabar ta aika gargaɗin TLS wanda ba ya cikin rukunin takardar shaida ko sigar.} tls_signature_algorithm_rejected{Sabar ta ƙi tsarin ECDSA P-256 na maɓallin Android Keystore.} tls_handshake_rejected{Sabar ta katse tattaunawar TLS kafin haɗi.} tls_version_rejected{Abokin ciniki da sabar ba su da sigar TLS iri ɗaya.} tls_certificate_expired{Takardar shaidar da aka gabatar yayin haɗi ta ƙare.} tls_certificate_revoked{An soke takardar shaidar da aka gabatar yayin haɗi.} transport_failed{Sabar OpenVPN ba ta amsa a kan hanyar sadarwa ta yanzu ba. Ku sake gwadawa bayan ɗan lokaci kaɗan.} tun_configuration_rejected{Android ta ƙi saitin hanyar sadarwa da OpenVPN ya nema.} tun_setup_failed{OpenVPN Core ya ƙi tsarin hanyar sadarwa kafin ƙirƙirar mahaɗar Android.} tun_interface_create_failed{OpenVPN Core ya kasa samun mahaɗar TUN daga VpnService na Android.} tun_interface_disabled{Android ko OpenVPN Core sun kashe mahaɗar TUN yayin haɗi.} tun_halted{OpenVPN Core ya karɓi buƙatar dakatar da mahaɗar TUN.} tun_already_established{OpenVPN ya nemi mahaɗa ta biyu a cikin haɗi ɗaya. An dakatar da ramin don tsaro.} tun_addresses_missing{Sabar ba ta bayar da adireshin rami da za a iya amfani da shi ba.} tun_routes_missing{Sabar ba ta bayar da hanyoyin rami da za a iya amfani da su ba.} tun_dns_missing{Sabar ba ta bayar da sabar DNS da za a iya amfani da ita ba.} tun_permission_revoked{Android ta soke izinin VPN yayin haɗi.} tun_establish_returned_null{Android ba ta ƙirƙiri mahaɗar ba, galibi saboda wani VPN har yanzu yana aiki.} openvpn_service_start_failed{Android ba ta iya fara sabis ɗin OpenVPN a sahun gaba ba.} openvpn_operation_timeout{Kiran JNI zuwa OpenVPN Core ya wuce matsakaicin lokacinsa.} openvpn_start_failed{Sabis ɗin Android a shirye yake, amma OpenVPN Core bai karɓi fara bayanin martaba ba.} openvpn_connection_failed{OpenVPN Core ya tsaya kafin ya aika lamarin CONNECTED.} openvpn_core_status_error{Madauki na OpenVPN na asali ya ƙare da kuskure ba tare da wani takamaiman lamari na ƙarshe ba.} openvpn_stopped_before_connected{Madauki na OpenVPN na asali ya tsaya kafin CONNECTED, ba tare da bayyanannen kuskure daga Core ba.} openvpn_auth_failed{Sabar OpenVPN ta ƙi tantance bayanin martaba.} openvpn_client_setup_failed{OpenVPN Core ya kasa shirya abokin ciniki kafin haɗin hanyar sadarwa.} openvpn_client_halted{OpenVPN Core ya karɓi umarnin dakatar da abokin ciniki na ƙarshe.} openvpn_client_restart{OpenVPN Core ya nemi sake farawar zaman sufurinsa.} openvpn_inactive_timeout{OpenVPN Core ya rufe zaman bayan lokacin rashin aiki ya ƙare.} openvpn_session_expired{Sabar ta bayyana cewa zaman OpenVPN ya ƙare.} openvpn_credentials_required{Sabar ko wakili suna neman bayanan shiga na mu’amala waɗanda ba sa cikin wannan bayanin martabar takardar shaida.} openvpn_proxy_failed{OpenVPN Core ya bayyana gazawar wakili ko mai isar da bayanai da aka saita.} openvpn_compression_failed{OpenVPN Core ya ƙi yanayin matsawa da bayanin martaba ko sabar suka sanar.} openvpn_ntlm_crypto_unavailable{Bayanin martaba yana neman ɓoyewar NTLM wadda ba ta samuwa a wannan sigar.} openvpn_feature_unsupported{Bayanin martaba ko sabar yana buƙatar fasalin da ya ɓace daga wannan abokin ciniki na Android.} network_unavailable{Babu hanyar sadarwa ta zahiri da za a iya amfani da ita.} network_lost{An dakatar da ramin bayan hanyar sadarwa ta ɓace.} certificate_validation_failed{Ba a iya tabbatar da shaidar sabar OpenVPN ba.} openvpn_certificate_expired{Ku sabunta bayanin martabar OpenVPN kafin ku sake haɗi.} tunnel_active_for_another_account{Dole ne ramin wani asusu ya tsaya kafin wannan haɗin.} tunnel_already_active{Android ta bayyana cewa zaman VPN na baya har yanzu yana amfani da mahaɗar.} tunnel_stop_timeout{Injin {protocol} bai tabbatar da sakin mahaɗar VPN cikin lokacin da aka ƙayyade ba.} tunnel_disconnected{Injin na asali ya bayyana cewa ramin ya ƙare ba zato ba tsammani bayan an fara shi.} native_bridge_unavailable{Manhajar ba za ta iya shiga sabis ɗin VPN na Android ba. Ku rufe manhajar, ku sake buɗe ta, sannan ku sake gwadawa.} native_operation_failed{Kuskuren manhaja ya katse aikin VPN. Ku sake gwadawa. Idan matsalar ta ci gaba, ku fara bincike.} invalid_arguments{Bayanan da ake buƙata don wannan aikin VPN ba su cika ba. Ku sake gwadawa. Idan matsalar ta ci gaba, ku fara bincike.} invalid_account_id{Aikin na asali ba shi da alaƙa da ingantaccen mai gano asusu.} invalid_device_id{Mai gano na’urar da aka aika wa injin na asali ya ɓace ko kuma ba shi da inganci.} storage_key_not_allowed{Gadar Android ta toshe maɓalli wanda ba ya cikin jerin ma’ajiyar da aka yarda da su.} secure_storage_read_failed{Android Keystore ba ta iya warware ɓoyayyun bayanan gida na wannan asusu ba.} secure_storage_write_failed{Android Keystore ba ta iya ɓoye ko adana bayanan gida ba.} key_generation_failed{Android ba ta iya ƙirƙira ko karanta maɓallin WireGuard a cikin ma’ajiya mai tsaro ba.} csr_generation_failed{Android Keystore ba ta iya ƙirƙira ko sanya hannu kan CSR na OpenVPN P-256 ba.} other{Wani reshe na asali wanda ba a rubuta ba ya gaza. Ku aika lambar rahoton bincike da ke ƙasa ga tallafi.}}",
+  "@notice_native_message": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      },
+      "protocol": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_permissionRequestInProgress_title": "Buƙatar izini ta riga ta buɗe",
+  "notice_permissionRequestInProgress_message": "Buƙatar izinin VPN na Android tana nan a buɗe. Ku kammala ta kafin ku sake gwadawa.",
+  "notice_permissionRequestInterrupted_title": "An katse buƙatar izinin VPN",
+  "notice_permissionRequestInterrupted_message": "Allon izinin VPN ya rufe kafin manhajar ta karɓi amsa.",
+  "notice_openvpnProofMissing_title": "Ba a tabbatar da haɗin OpenVPN ba",
+  "notice_openvpnProofMissing_message": "Ba a iya tabbatar da haɗin OpenVPN ba. An dakatar da shi don tsaro. Ku sake gwadawa.",
+  "openvpnCleanup_title": "An soke bayanin martabar OpenVPN",
+  "openvpnCleanup_working": "Ana dakatar da bayanin martabar OpenVPN da aka soke, sannan ana cire shi…",
+  "openvpnCleanup_stopFailed": "Ba a tabbatar da rufe OpenVPN ba. Ku sake gwadawa kafin ku ƙirƙiri sabon bayanin martaba.",
+  "openvpnCleanup_cleanupFailed": "Ba a iya cire bayanin martabar OpenVPN da aka soke gaba ɗaya ba. Ku sake gwada cirewar.",
+  "openvpnCleanup_complete": "An cire bayanin martabar OpenVPN da aka soke. Ku taɓa Haɗa don ƙirƙirar sabo.",
+  "network_title": "Saitin hanyar sadarwa",
+  "network_ipv4Fallback": "IPv6 ba ya samuwa na ɗan lokaci. Ana ci gaba da shiri da IPv4.",
+  "network_rejectedTitle": "An ƙi saitin hanyar sadarwa",
+  "network_rejectedMessage": "Saitin ramin bai cika ba ko kuma bai dace da adiresoshin da aka ba da izini ba. Ku sake gwadawa daga manhajar.",
+  "network_unreadableTitle": "Ba a iya karanta saitin gida ba",
+  "network_unreadableMessage": "Ba za a iya amfani da saitin hanyar sadarwar OpenVPN da aka adana ba. Ku sake haɗawa daga manhajar don sabunta shi.",
+  "network_ipv4": "IPv4",
+  "network_dualStack": "IPv4 + IPv6",
+  "protection_title": "Kariyar hanyar sadarwa",
+  "protection_subtitle": "Toshe samun intanet kai tsaye idan VPN ya katse.",
+  "protection_active": "Kariyar tsarin tana aiki",
+  "protection_alwaysOnOnly": "An kunna VPN mai aiki koyaushe; ana buƙatar kunna toshe haɗi ba tare da VPN ba",
+  "protection_inactive": "Kariyar tsarin ba ta aiki",
+  "protection_unknown": "Ku duba kariyar tsarin",
+  "protection_openSettings": "Buɗe saitunan Android",
+  "protection_dialogTitle": "Saita kariyar hanyar sadarwa",
+  "protection_dialogMessage": "Android tana sarrafa VPN mai aiki koyaushe da toshe haɗin da ke wajen VPN. Ku tabbata an zaɓi FuzeVPN, sannan ku kunna toshewa a saitunan tsarin.",
+  "protection_dialogOpen": "Buɗe saituna",
+  "session_systemProtectionNote": "Idan Android har yanzu tana toshe zirga-zirga a wajen VPN, ku buɗe saitunan tsarin don dubawa ko canza wannan kariyar.",
+  "diagnostics_title": "Rahoton bincike",
+  "diagnostics_settingsTitle": "Rahoton bincike na manhaja",
+  "diagnostics_automaticTitle": "Aika muhimman kurakurai",
+  "diagnostics_automaticDescription": "Ku raba ƙaramin rahoton fasaha lokacin da wani muhimmin kuskure ya faru.",
+  "diagnostics_privacy": "Rahotannin da aka aika suna da alaƙa da asusun da aka shiga, kuma ana ajiye su na tsawon kwanaki 30. Ba su ƙunshi tarihin lilo, kalmomin sirri ko maɓallan VPN ba.",
+  "diagnostics_manualOpen": "Fara bincike",
+  "diagnostics_localDescription": "Ku ƙirƙiri rahoton yanayin manhaja da VPN. Haɗinku zai kasance yadda yake.",
+  "diagnostics_sendReport": "Aika rahoton",
+  "diagnostics_sendHint": "Kada ku yi alama a wannan akwati don ajiye rahoton a kan wannan na’ura.",
+  "diagnostics_signedOut": "Ku shiga asusunku don aika rahoto.",
+  "diagnostics_localLifetime": "Ku ajiye wannan rahoto a wayarku don ci gaba da samunsa bayan kun rufe manhajar.",
+  "diagnostics_run": "Fara bincike",
+  "diagnostics_rerun": "Sake fara bincike",
+  "diagnostics_running": "Ana dubawa…",
+  "diagnostics_sending": "Ana aika rahoto…",
+  "diagnostics_prepared": "Rahoto a shirye yake a wannan na’ura",
+  "diagnostics_queued": "Rahoto yana jiran a aika shi",
+  "diagnostics_sent": "An karɓi rahoton",
+  "diagnostics_failed": "Aika bai yi nasara ba. Rahotonku na gida yana nan.",
+  "diagnostics_preparationFailed": "Ba a iya shirya rahoton bincike ba. Ku sake gwadawa.",
+  "diagnostics_authenticationRequired": "Ku sake shiga asusu don aika rahoton.",
+  "diagnostics_retry": "Sake gwada aikawa",
+  "diagnostics_export": "Ajiye rahoto",
+  "diagnostics_exportFailed": "Fitar da rahoto bai yi nasara ba. Ku sake gwadawa daga rahoton na gida.",
+  "diagnostics_preferenceFailed": "Ba a iya ajiye wannan saitin ba. Ku sake gwadawa.",
+  "diagnostics_receipt": "Lambar bin diddigi: {id}",
+  "@diagnostics_receipt": {
+    "placeholders": {
+      "id": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_received": "An karɓa a ranar {date}",
+  "@diagnostics_received": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_expires": "Za a ajiye shi har zuwa {date}",
+  "@diagnostics_expires": {
+    "placeholders": {
+      "date": {
+        "type": "Object"
+      }
+    }
+  },
+  "diagnostics_duplicate": "An riga an karɓi wannan rahoton.",
+  "diagnostics_preview": "Duba rahoton",
+  "diagnostics_eventCount": "{count, plural, =0{Ba a haɗa wani lamarin fasaha ba} =1{An haɗa lamarin fasaha 1} other{An haɗa lamuran fasaha {count}}}",
+  "@diagnostics_eventCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "diagnostics_technical": "Cikakkun bayanan fasaha",
+  "diagnostics_empty": "Ba a shirya wani rahoton bincike ba tukuna.",
+  "diagnostics_checkName": "{id, select, tunnel_connection{Yanayin rami} handshake{Tabbatar da haɗi} certificate{Takardar shaidar VPN} kill_switch{Kariyar Android} connectivity{Hanyar sadarwa da ke akwai} api_reachability{Samun damar sabis} secure_storage{Ma’ajiya mai tsaro} other{Binciken gida}}",
+  "@diagnostics_checkName": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "diagnostics_checkResult": "{result, select, passed{An duba} failed{Yana buƙatar kulawa} skipped{Ba a gwada ba — babu gwaji mai aiki} unknown{Bayani ba ya samuwa} other{Bayani ba ya samuwa}}",
+  "@diagnostics_checkResult": {
+    "placeholders": {
+      "result": {
+        "type": "String"
+      }
+    }
+  },
+  "auth_welcome": "Barka da zuwa FuzeVPN",
+  "connection_changeLocation": "Canza wuri",
+  "connection_details": "Cikakkun bayanan haɗi",
+  "locations_searchLabel": "Bincika birni ko ƙasa",
+  "locations_clearSearch": "Share bincike",
+  "locations_filterAll": "Duka",
+  "locations_filterFavorites": "Waɗanda aka fi so",
+  "locations_results": "{count, plural, one{wuri {count}} other{wurare {count}}}",
+  "locations_noResults": "Ba a sami wuri ba",
+  "locations_noResultsHint": "Ku gwada wani birni ko ƙasa.",
+  "locations_noFavorites": "Waɗanda kuka fi so, a kusa da ku",
+  "locations_noFavoritesHint": "Ku taɓa tauraron da ke gefen wuri don ajiye shi a nan.",
+  "locations_showAll": "Duba dukkan wurare",
+  "locations_addFavorite": "Ƙara {name} cikin waɗanda aka fi so",
+  "locations_removeFavorite": "Cire {name} daga waɗanda aka fi so",
+  "locations_favoriteSaveFailed": "Ba a iya ajiye wanda aka fi so ba. Ku sake gwadawa.",
+  "locations_emptyTitle": "Babu wuri da ke samuwa",
+  "locations_emptyHint": "Ku sabunta jerin don sake gwadawa.",
+  "devices_manage": "Sarrafa na’urorina",
+  "settings_personalization": "Keɓance shi yadda kuke so",
+  "settings_safety": "Kariya",
+  "settings_help": "Kuna buƙatar taimako?",
+  "settings_about": "Game da FuzeVPN",
+  "diagnostics_heading": "Fahimtar matsalar haɗi",
+  "@locations_results": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@locations_addFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_removeFavorite": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "devices_profileStatus": "{status, select, active{Akwai} pending{Ana shiryawa} revoked{An cire} expired{Ya ƙare} other{Matsayi ba ya samuwa}}",
+  "@devices_profileStatus": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "notice_preferenceSave_title": "Ba a ajiye zaɓi ba",
+  "notice_preferenceSave_message": "Zaɓinku yana aiki yanzu, amma ba a iya ajiye shi ba. Ku sake gwadawa don ci gaba da shi bayan kun rufe manhajar.",
+  "connection_androidDisconnectHint": "Idan Android ta ci gaba da kunna VPN, ku kashe VPN mai aiki koyaushe a saitunan da za su buɗe.",
+  "protection_learnMore": "Koyi game da kariyar Android",
+  "protection_guideWhy": "Wannan kariyar tana hana manhajoji amfani da intanet kai tsaye idan VPN ya katse. Ana saita ta a Android.",
+  "protection_guideAlwaysOnTitle": "VPN mai aiki koyaushe",
+  "protection_guideAlwaysOn": "Android tana ci gaba da gudanar da sabis ɗin VPN kuma tana iya sake kunna shi bayan wayar ta sake farawa.",
+  "protection_guideBlockTitle": "Toshe haɗi ba tare da VPN ba",
+  "protection_guideBlock": "Wannan saitin yana hana zirga-zirga ketare VPN, har da lokacin da haɗin ya katse.",
+  "protection_guideWarning": "Idan an kunna wannan toshewar, intanet zai kasance a kashe har sai an haɗa VPN.",
+  "protection_guideStepsTitle": "Kunna kariya",
+  "protection_guideStep1": "Ku buɗe saitunan VPN na Android ta maɓallin da ke ƙasa.",
+  "protection_guideStep2": "Ku buɗe zaɓuɓɓuka ta gunkin saituna da ke kusa da FuzeVPN.",
+  "protection_guideStep3": "Ku kunna VPN mai aiki koyaushe, sannan ku kunna Toshe haɗi ba tare da VPN ba, idan waɗannan zaɓuɓɓukan suna nan.",
+  "protection_guideManufacturers": "Sunaye sun bambanta daga waya zuwa waya. Idan ya zama dole, ku nemi VPN a Saituna, sau da yawa a ƙarƙashin Hanyar sadarwa da intanet.",
+  "protection_guideDisableTitle": "Kashe wannan kariyar",
+  "protection_guideDisable": "A cikin waɗannan saitunan, ku kashe toshe haɗi ba tare da VPN ba don ba da damar shiga intanet ba tare da VPN ba. Ku kuma kashe VPN mai aiki koyaushe idan ba ku son Android ta sake kunna shi.",
+  "protection_guideManual": "Ku ne kuke zaɓar waɗannan saitunan a Android. FuzeVPN ba ya canza muku su.",
+  "locations_changeTitle": "Canza wuri?",
+  "locations_changeActive": "VPN zai katse haɗi, sannan ya yi ƙoƙarin haɗawa da {name}.",
+  "locations_changeIdle": "VPN zai yi ƙoƙarin haɗawa da {name}.",
+  "locations_confirmChange": "Canza kuma haɗa",
+  "locations_changeBusy": "Ana yin canji a yanzu. Ku jira kafin ku zaɓi wani wuri.",
+  "@locations_changeActive": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@locations_changeIdle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_automaticSelection": "Zaɓi na atomatik",
+  "locations_cities": "Birane",
+  "locations_servers": "Sabobi",
+  "locations_viewCities": "Duba birane a {name}",
+  "@locations_viewCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_viewServers": "Duba sabobi a {name}",
+  "@locations_viewServers": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_countryCount": "{count, plural, one{ƙasa {count}} other{ƙasashe {count}}}",
+  "@locations_countryCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_cityCount": "{count, plural, one{birni {count}} other{birane {count}}}",
+  "@locations_cityCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_serverCount": "{count, plural, one{sabar {count}} other{sabobi {count}}}",
+  "@locations_serverCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "locations_allCountries": "Duk ƙasashe",
+  "locations_backToCountries": "Koma zuwa ƙasashe",
+  "locations_backToCities": "Koma zuwa birane a {name}",
+  "@locations_backToCities": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCountry": "Zaɓi {name}",
+  "@locations_chooseCountry": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_chooseCity": "Zaɓi {name}",
+  "@locations_chooseCity": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locations_noCompatibleServer": "Babu sabar da ta dace.",
+  "externalLink_failed": "Ba a iya buɗe wannan hanyar haɗi ba. Kuna iya kwafa ta ku buɗe ta a burauzarku.",
+  "externalLink_copy": "Kwafi hanyar haɗi",
+  "externalLink_copied": "An kwafi hanyar haɗi",
+  "externalLink_copyFailed": "Ba a iya kwafa hanyar haɗin ba. Ku zaɓi adireshin da ke ƙasa.",
+  "settings_deleteAccount": "Goge asusuna",
+  "settings_deleteAccountDetail": "Duba matakan buƙatar goge asusu",
+  "billing_title": "Fuze Premium",
+  "billing_subtitle": "Ku zaɓi biyan kuɗin VPN ɗinku.",
+  "billing_subscribe": "Yi rajista",
+  "billing_choosePlan": "Ku zaɓi tsari don ci gaba.",
+  "billing_monthly": "Kowane wata",
+  "billing_yearly": "Kowace shekara",
+  "billing_continue": "Ci gaba da Google Play",
+  "billing_restore": "Dawo da sayayya",
+  "billing_manage": "Sarrafa biyan kuɗi",
+  "billing_deleteAccountWarning": "Idan kuna da biyan kuɗin Google Play, goge asusun FuzeVPN ɗinku ba zai soke sabuntawarsa ba. Ku sarrafa ko ku soke sabuntawar daban a Google Play.",
+  "billing_deleteAccountContinue": "Ci gaba zuwa buƙatar goge asusu",
+  "billing_refresh": "Sabunta damar shiga",
+  "billing_loadingPlans": "Ana ɗora tsare-tsare…",
+  "billing_unavailable": "Babu tsare-tsare da ake samu yanzu. Ku sake gwadawa daga baya.",
+  "billing_comingSoon": "Biyan kuɗi zai kasance nan ba da jimawa ba.",
+  "billing_priceDisclosure": "Google Play ne ke bayar da farashin. Ana tabbatar da jimillar kuɗi da harajin da ya dace kafin ku tabbatar.",
+  "billing_renewalMonthly": "Ana sabunta shi ta atomatik kowane wata sai dai idan an soke shi. Kuna iya soke a kowane lokaci a cikin biyan kuɗin Google Play.",
+  "billing_renewalYearly": "Ana sabunta shi ta atomatik kowace shekara sai dai idan an soke shi. Kuna iya soke a kowane lokaci a cikin biyan kuɗin Google Play.",
+  "billing_active": "Damar shiga Premium ɗinku tana aiki",
+  "billing_accessUntil": "Damar shiga har zuwa {date}.",
+  "billing_webManaged": "Ana sarrafa biyan kuɗinku a gidan yanar gizon FuzeVPN.",
+  "billing_playManaged": "Google Play ne ke sarrafa biyan kuɗinku.",
+  "billing_playOnHold": "Biyan kuɗin Google Play ɗinku yana kan dakatarwa ko yana jiran biyan kuɗi. Ku buɗe “Sarrafa biyan kuɗi” don gyara shi a Google Play.",
+  "billing_playReceiptUnlinked": "Wannan asusun Google Play ya riga ya mallaki biyan kuɗin Fuze Premium wanda ba ya aiki a wannan asusun FuzeVPN. Ku buɗe “Sarrafa biyan kuɗi” don duba shi a Google Play.",
+  "billing_inactive": "Babu biyan kuɗi mai aiki.",
+  "billing_checkingAccess": "Ana duba damar shiganku…",
+  "billing_restoring": "Ana dawo da sayayya…",
+  "billing_pending": "Ana jiran biyan kuɗi. Damar shiganku za ta fara aiki bayan an tabbatar da shi.",
+  "billing_cancelled": "An soke sayayyar. Ba a kunna sabon biyan kuɗi ba.",
+  "billing_verifying": "Ana tabbatar da sayayya…",
+  "billing_success": "An kunna biyan kuɗi. Damar shiganku ta Premium a shirye take.",
+  "billing_restored": "An dawo da sayayyarku.",
+  "billing_restoreEmpty": "Babu sayayya da za a dawo da ita don wannan asusun Google Play.",
+  "billing_catalogError": "Ba a iya ɗora tsare-tsare ba. Ku sake gwadawa.",
+  "billing_purchaseError": "Ba a iya fara sayayya ba. Ku sake gwadawa.",
+  "billing_verificationError": "Tabbatar da sayayya ba ya samuwa na ɗan lokaci. Ku dawo da sayayya don sake gwadawa.",
+  "billing_restoreError": "Ba a iya dawo da sayayya ba. Ku sake gwadawa.",
+  "billing_managementError": "Ba a iya buɗe shafin sarrafa biyan kuɗi ba. Ku sake gwadawa.",
+  "billing_storeUnavailable": "Google Play ba ya samuwa a wannan na’ura.",
+  "@billing_accessUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "welcome_title": "VPN ɗinku, cikin sauƙi.",
+  "welcome_description": "Ku kare haɗinku. Ku ci gaba da sarrafa keɓantawarku.",
+  "welcome_start": "Fara",
+  "welcome_alreadyPurchased": "Kun riga kun saya?",
+  "welcome_noAccountRequired": "Ba a buƙatar asusu don fara amfani.",
+  "guest_accountTitle": "Ba a danganta asusu ba",
+  "guest_accountDescription": "Ku dawo da sayayyarku ta amfani da asusun Google Play iri ɗaya don amfani da biyan kuɗinku a wata na’ura.",
+  "guest_existingSubscriberSignIn": "Kuna da biyan kuɗi tuni? Shiga asusu",
+  "guest_claimTitle": "Ku ɗauki FuzeVPN tare da ku",
+  "guest_claimDescription": "Ku ƙirƙiri asusu don samun damar biyan kuɗinku a sauran na’urorinku. Wannan mataki na zaɓi ne.",
+  "guest_skip": "Wataƙila daga baya",
+  "guest_activationTitle": "Fuze Premium yana aiki",
+  "guest_activationDescription": "Biyan kuɗinku a shirye yake. Ku yi amfani da VPN ɗinku kuma ku ƙirƙiri asusu duk lokacin da kuke so.",
+  "guest_useVpn": "Yi amfani da VPN ɗina",
+  "guest_loginRequired": "An riga an danganta wannan sayayya da asusun FuzeVPN. Ku shiga wannan asusun don samun damar biyan kuɗinku.",
+  "guest_signOutWarning": "Kuna iya sake samun biyan kuɗinku ta hanyar dawo da sayayya da asusun Google Play iri ɗaya.",
+  "guest_profileUnavailable": "An riga an danganta asusunku. Ku shiga don duba da sarrafa bayananku.",
+  "billing_acceptance": "Ta hanyar ci gaba, kun amince da sharuɗɗan amfani da kuma manufar keɓantawa.",
+  "guest_verifyEmailReminder": "Ku tabbatar da adireshin imel ɗinku don kare asusunku. Kuna iya ci gaba da amfani da VPN ɗinku.",
+  "guest_serviceUnavailable": "Sabis ɗin ba ya samuwa na ɗan lokaci. Ku sake gwadawa bayan ɗan lokaci kaɗan.",
+  "guest_restoreError": "Ba a iya dawo da sayayyarku ba. Ku sake gwadawa da asusun Google Play da aka yi amfani da shi wajen sayayyar.",
+  "guest_claimSuccess": "An ƙirƙiri asusunku. An kiyaye biyan kuɗinku da damar shiga VPN ɗinku.",
+  "guest_emailExists": "An riga an yi amfani da wannan adireshin imel. Ku zaɓi wani adireshi ko ku shiga asusunku da ke akwai. Sayayyarku za ta ci gaba da samuwa ta Google Play.",
+  "guest_claimError": "Ba a iya ƙirƙirar asusunku ba. Kuna iya ci gaba da amfani da VPN ɗinku kuma ku sake gwadawa daga baya.",
+  "guest_secureStorageError": "Ba a iya kare zaman shiganku a wannan na’ura ba. Ku sake gwadawa.",
+  "guest_premiumRequired": "Ku zaɓi biyan kuɗi don kunna VPN ɗinku.",
+  "welcome_viewPlans": "Duba tsare-tsare",
+  "google_continue": "Ci gaba da Google",
+  "google_or": "ko",
+  "google_title": "Asusun FuzeVPN ɗinku",
+  "google_settingUp": "Ku kammala ƙirƙirar asusunku",
+  "google_country": "Ƙasar zama",
+  "google_profileDescription": "Ku zaɓi ƙasarku, sannan ku duba takardu biyu don ƙirƙirar asusun FuzeVPN ɗinku.",
+  "google_claimDescription": "Ku danganta asusun baƙonku da Google. Biyan kuɗinku da na’urarku za su ci gaba da kasancewa a wannan asusun.",
+  "google_linkTitle": "Danganta Google da FuzeVPN",
+  "google_linkDescription": "Ku tabbatar da damar shiga asusun FuzeVPN ɗinku da ke akwai. Wannan mataki ba ya neman kalmar sirrin Google ɗinku.",
+  "google_password": "Kalmar sirrin FuzeVPN",
+  "google_linkAccount": "Tabbatar da danganta",
+  "google_requestEmail": "Aika mini imel ɗin tabbatarwa",
+  "google_emailInstructions": "Ku buɗe imel ɗin FuzeVPN, sannan ku shigar da lambar tabbatarwa.",
+  "google_emailCode": "Lambar tabbatarwa ta imel",
+  "google_confirmEmail": "Tabbatar da lambar",
+  "google_restart": "Zaɓi wani asusun Google",
+  "google_resume": "Duba wannan yunƙurin",
+  "google_unavailable": "Shiga da Google ba ya samuwa. Kuna iya amfani da imel da kalmar sirri.",
+  "google_expired": "Wannan yunƙurin ya ƙare. Ku soke shi, sannan ku sake farawa.",
+  "google_conflict": "An riga an danganta wannan asusun Google a wani wuri. An kiyaye asusunku da biyan kuɗinku na yanzu.",
+  "google_error": "Shiga da Google ya gaza. Ku sake gwadawa; an kiyaye damar shiganku ta yanzu.",
+  "google_uncertain": "Ba a iya tabbatar da sakamakon ba. Ku duba wannan yunƙurin ko ku soke shi kafin ku sake farawa.",
+  "google_cancelFailed": "Ba a iya tabbatar da soke shi ba. Ku sake gwada soke shi kafin ku bar wannan allon.",
+  "google_cancelled": "An soke shiga da Google.",
+  "google_selecting": "Ku zaɓi asusun Google ɗinku…",
+  "google_verifying": "Ana duba asusunku…",
+  "google_emailUnavailable": "Ba a iya aika imel ɗin tabbatarwa ba. Ku sake gwadawa daga baya.",
+  "google_emailSent": "An aika imel ɗin tabbatarwa. Ku duba akwatin saƙonku.",
+  "google_rateLimited": "Don Allah ku jira kafin ku sake gwadawa.",
+  "google_busy": "Shiga da Google ba ya samuwa yayin da wani aiki ke gudana (haɗin VPN, asusu ko baƙo). Ku sake gwadawa idan ya ƙare; an kiyaye damar shiganku ta yanzu.",
+  "google_invalidPassword": "Kalmar sirrin FuzeVPN ba daidai ba ce. An kiyaye asusunku na yanzu.",
+  "google_invalidCode": "Lambar tabbatarwa ba ta da inganci ko ta ƙare.",
+  "google_accountChanged": "Zaman shiganku ya canza. Ku soke wannan yunƙurin kafin ku sake farawa.",
+  "google_invalidResponse": "Ba a iya tabbatar da amsar ba. An kiyaye damar shiganku ta yanzu.",
+  "google_invalidRegistration": "Ku duba ƙasarku da amincewa biyun.",
+  "google_consentRequired": "Ku zaɓi ƙasarku, sannan ku karɓi takardu biyun don ci gaba.",
+  "google_challengeRequired": "Ana buƙatar ƙarin binciken tsaro. An kiyaye damar shiganku ta yanzu.",
+  "google_challengeUnavailable": "Binciken tsaro ba ya samuwa. Ku sake gwadawa daga baya.",
+  "google_intentMismatch": "Yunƙurin shiga da Google na baya har yanzu yana jira. Ku soke shi kafin ku fara wannan aikin.",
+  "google_challengeBlocked": "Binciken tsaron da ake buƙata ba ya samuwa a cikin wannan manhaja. Ba za a iya kammala wannan aikin yanzu ba.",
+  "google_solveChallenge": "Kammala binciken tsaro",
+  "google_challengeTitle": "Binciken tsaro",
+  "google_challengeReady": "An kammala tabbatarwa. Yanzu za ku iya tabbatar da ƙirƙirar asusunku.",
+  "google_challengeExpired": "Tabbatarwar ta ƙare. Ku sake kammala ta kafin ku tabbatar.",
+  "google_challengeCancelled": "An soke tabbatarwa. Kuna iya sake gwadawa.",
+  "google_challengeFailed": "Binciken tsaro ya gaza. Ku sake gwadawa.",
+  "billing_trialTitle": "Gwada Fuze Premium kyauta",
+  "billing_trialSubtitle": "Ku fara kare haɗinku daga yau.",
+  "billing_trialWeeks": "Gwajin kyauta na makonni 2",
+  "billing_trialDays": "Gwajin kyauta na kwanaki {days}",
+  "@billing_trialDays": {
+    "description": "Free trial duration returned by Google Play, in days.",
+    "placeholders": {
+      "days": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialStart": "Fara gwajina na kyauta",
+  "billing_trialFirstCharge": "Idan kuka fara yau, ana sa ran caji na farko a ranar {date}.",
+  "@billing_trialFirstCharge": {
+    "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialTerms": "Ana sabunta shi ta atomatik a farashin da aka bayyana. Don kauce wa caji, ku soke a Google Play kafin gwajin ya ƙare.",
+  "billing_trialThenMonthly": "Sannan {price} kowane wata",
+  "@billing_trialThenMonthly": {
+    "description": "Exact localized recurring monthly price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_trialThenYearly": "Sannan {price} kowace shekara",
+  "@billing_trialThenYearly": {
+    "description": "Exact localized recurring annual price returned by Google Play.",
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "billing_choosePeriod": "Ku zaɓi tsarinku",
+  "billing_selectionHint": "Ku zaɓi tsari don ci gaba.",
+  "billing_benefitConnection": "Ɓoyayyen haɗi",
+  "billing_benefitPrivacy": "Keɓantawa a intanet",
+  "billing_benefitNoAccount": "Ba a buƙatar rajista",
+  "billing_cancellation": "Soke a Google Play",
+  "billing_premiumTitle": "Haɗi mai ƙarin kariya.",
+  "billing_premiumSubtitle": "Ku kare haɗinku yadda kuka ga dama.",
+  "billing_priceMonthly": "kowane wata",
+  "billing_priceYearly": "kowace shekara",
+  "billing_trialToday": "Babu abin da za ku biya a yau",
+  "billing_trialConfirmation": "Google Play zai tabbatar da kwanakin, jimillar kuɗi da harajin da ya dace kafin ku tabbatar.",
+  "billing_offerChanged": "Sharuɗɗan wannan tayin sun canza. Ku sabunta tsare-tsaren, sannan ku sake zaɓa.",
+  "status_waitingNetwork": "Ana jiran hanyar sadarwa",
+  "status_waitingNetworkDetail": "Babu hanyar sadarwa da ake samu. VPN zai tabbatar da haɗin lokacin da hanyar sadarwa ta dawo.",
+  "locations_favoriteLoadFailed": "Ba a iya ɗora waɗanda aka fi so ba. Ku sake gwadawa.",
+  "locations_favoritesLoading": "Ana ɗora waɗanda aka fi so…"
+}

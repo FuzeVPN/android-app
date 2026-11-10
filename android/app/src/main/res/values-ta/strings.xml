@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN இணைப்பு</string>
+    <string name="vpn_notification_channel_description">FuzeVPN இணைப்பு செயலில் இருக்கும்போது இதைக் காட்டும்.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s இணைப்பு செயலில் உள்ளது</string>
+    <string name="vpn_notification_connecting">%1$s இணைப்பு நடைபெறுகிறது</string>
+    <string name="vpn_notification_disconnecting">%1$s துண்டிக்கப்படுகிறது</string>
+    <string name="vpn_notification_interrupted">%1$s இணைப்பு தடைபட்டது</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">தயார் · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">இணைக்கப்பட்டது · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s இணைக்கிறது…</string>
+    <string name="vpn_tile_disconnecting">துண்டிக்கிறது…</string>
+    <string name="vpn_tile_interrupted">%1$s தடைபட்டது</string>
+    <string name="vpn_tile_setup_required">முதலில் பயன்பாட்டைத் திறக்கவும்</string>
+    <string name="vpn_tile_working">VPN செயல்பாடு நடைபெறுகிறது…</string>
+    <string name="vpn_notification_reconnecting">மீண்டும் இணைக்கிறது… · %1$s</string>
+    <string name="vpn_system_action_required">Android அமைப்புகளில் நடவடிக்கை தேவை</string>
+    <string name="vpn_tile_reconnecting">மீண்டும் இணைக்கிறது… · %1$s</string>
+    <string name="vpn_notification_waiting_network">நெட்வொர்க்கிற்காகக் காத்திருக்கிறது · %1$s</string>
+    <string name="vpn_tile_waiting_network">நெட்வொர்க்கிற்காகக் காத்திருக்கிறது · %1$s</string>
+</resources>

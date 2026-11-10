@@ -525,6 +525,12 @@ class AppLocalizationsUr extends AppLocalizations {
   String get action_cancel => 'منسوخ کریں';
 
   @override
+  String get action_close => 'بند کریں';
+
+  @override
+  String get action_copy => 'کاپی کریں';
+
+  @override
   String get action_signOut => 'سائن آؤٹ کریں';
 
   @override

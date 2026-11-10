@@ -529,6 +529,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get action_cancel => 'Annulla';
 
   @override
+  String get action_close => 'Chiudi';
+
+  @override
+  String get action_copy => 'Copia';
+
+  @override
   String get action_signOut => 'Esci';
 
   @override

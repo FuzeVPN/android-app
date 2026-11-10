@@ -12,6 +12,7 @@ import 'package:fuzevpn_android/core/play_billing.dart';
 import 'package:fuzevpn_android/features/billing/premium_offer_widgets.dart';
 import 'package:fuzevpn_android/features/billing/subscription_card.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 
 const _preview = bool.fromEnvironment('FUZEVPN_TRIAL_PREVIEWS');
@@ -492,7 +493,7 @@ Widget _localized(
   locale: locale,
   supportedLocales: AppLanguages.supportedLocales,
   localeListResolutionCallback: AppLanguages.resolve,
-  localizationsDelegates: AppLocalizations.localizationsDelegates,
+  localizationsDelegates: AppLocalizationDelegates.all,
   theme: dark ? FuzeVpnTheme.dark() : FuzeVpnTheme.light(),
   home: home,
 );

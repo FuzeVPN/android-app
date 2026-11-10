@@ -525,6 +525,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get action_cancel => 'Cancelar';
 
   @override
+  String get action_close => 'Cerrar';
+
+  @override
+  String get action_copy => 'Copiar';
+
+  @override
   String get action_signOut => 'Cerrar sesión';
 
   @override

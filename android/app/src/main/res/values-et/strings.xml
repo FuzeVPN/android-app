@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN-ühendus</string>
+    <string name="vpn_notification_channel_description">Näitab, millal FuzeVPN-ühendus on aktiivne.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s-ühendus on aktiivne</string>
+    <string name="vpn_notification_connecting">%1$s-ühenduse loomine on pooleli</string>
+    <string name="vpn_notification_disconnecting">%1$s-ühenduse katkestamine</string>
+    <string name="vpn_notification_interrupted">%1$s-ühendus katkes</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Valmis · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Ühendatud · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Ühendamine: %1$s…</string>
+    <string name="vpn_tile_disconnecting">Ühenduse katkestamine…</string>
+    <string name="vpn_tile_interrupted">%1$s katkes</string>
+    <string name="vpn_tile_setup_required">Ava kõigepealt rakendus</string>
+    <string name="vpn_tile_working">VPN-i toiming on pooleli…</string>
+    <string name="vpn_notification_reconnecting">Uuesti ühendamine… · %1$s</string>
+    <string name="vpn_system_action_required">Vajalik toiming Androidi seadetes</string>
+    <string name="vpn_tile_reconnecting">Uuesti ühendamine… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Võrgu ootamine · %1$s</string>
+    <string name="vpn_tile_waiting_network">Võrgu ootamine · %1$s</string>
+</resources>

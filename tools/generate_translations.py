@@ -7,7 +7,11 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 PACKS = ROOT / 'lib/l10n/translations'
-LANGUAGES = 'en es pt de fr ar tr ja id ru it ko pl nl hi vi uk th zh-Hans zh-Hant fa ur fil ms ro cs sv da nb el'.split()
+LANGUAGES = ('en es pt de fr ar tr ja id ru it ko pl nl hi vi uk th zh-Hans zh-Hant fa ur fil ms ro cs sv da nb el '
+             'bn sw my km uz ne si ta te mr gu ha am hu bg fi sk hr sr he pa kn ml or ps lt lv et sl sq kk az hy ka lo mg so yo ig rw').split()
+# Android resource folders keep Java's legacy codes for Indonesian and Hebrew.
+# Preferences, Flutter and translation packs use the canonical BCP-47 codes.
+LEGACY_QUALIFIERS = {'id': 'in', 'he': 'iw'}
 # These catalogues include localized descriptions for translator metadata.
 LOCALIZED_METADATA = {'en', 'es', 'de', 'fr'}
 # Each select case of the message needs its own title case (A16-ui-l10n-03).
@@ -124,7 +128,7 @@ def validate(pack, source, language):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--require-all', action='store_true', help='Compatibility option; all 30 packs are always required.')
+    parser.add_argument('--require-all', action='store_true', help=f'Compatibility option; all {len(LANGUAGES)} packs are always required.')
     parser.add_argument('--check', action='store_true', help='Validate all packs and check generated files without writing.')
     args = parser.parse_args()
     try:
@@ -149,13 +153,11 @@ def generate(args, parser):
         outputs[ROOT / f'lib/l10n/app_{language.replace("-", "_")}.arb'] = json.dumps(arb, ensure_ascii=False, indent=2) + '\n'
         if language == 'zh-Hans':
             # Flutter requires a base catalogue for script-specific locales.
-            # The public registry still exposes only Hans and Hant (30 choices).
+            # The public registry still exposes only Hans and Hant.
             fallback = dict(arb)
             fallback['@@locale'] = 'zh'
             outputs[ROOT / 'lib/l10n/app_zh.arb'] = json.dumps(fallback, ensure_ascii=False, indent=2) + '\n'
-        # Android resource folders retain Java's legacy Indonesian code.
-        # Preferences, Flutter and translation packs use canonical BCP-47 "id".
-        qualifier = 'b+' + language.replace('-', '+') if '-' in language else {'id': 'in'}.get(language, language)
+        qualifier = 'b+' + language.replace('-', '+') if '-' in language else LEGACY_QUALIFIERS.get(language, language)
         resource_dir = 'values' if language == 'fr' else f'values-{qualifier}'
         output = ROOT / f'android/app/src/main/res/{resource_dir}/strings.xml'
         resources = ET.Element('resources')
@@ -180,7 +182,7 @@ def generate(args, parser):
         for path, content in outputs.items():
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(content, encoding='utf-8')
-    print(f'Validated 30/30 complete packs and {len(outputs)} generated files.')
+    print(f'Validated {len(LANGUAGES)}/{len(LANGUAGES)} complete packs and {len(outputs)} generated files.')
 
 
 if __name__ == '__main__':

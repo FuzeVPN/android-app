@@ -10,6 +10,7 @@ import 'package:fuzevpn_android/core/api_client.dart';
 import 'package:fuzevpn_android/core/diagnostics.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 import 'package:fuzevpn_android/widgets/country_flag.dart';
@@ -580,7 +581,7 @@ class _DiagnosticHarness {
         theme: FuzeVpnTheme.light(),
         darkTheme: FuzeVpnTheme.dark(),
         themeMode: theme,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: AppLocalizationDelegates.all,
         supportedLocales: AppLocalizations.supportedLocales,
         home: DiagnosticsPage(controller: controller),
       ),

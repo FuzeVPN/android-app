@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN ulanishi</string>
+    <string name="vpn_notification_channel_description">FuzeVPN ulanishi faol boʻlganini koʻrsatadi.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s ulanishi faol</string>
+    <string name="vpn_notification_connecting">%1$s ulanishi davom etmoqda</string>
+    <string name="vpn_notification_disconnecting">%1$s uzilmoqda</string>
+    <string name="vpn_notification_interrupted">%1$s ulanishi uzildi</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Tayyor · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Ulangan · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s ulanmoqda…</string>
+    <string name="vpn_tile_disconnecting">Uzilmoqda…</string>
+    <string name="vpn_tile_interrupted">%1$s uzildi</string>
+    <string name="vpn_tile_setup_required">Avval ilovani oching</string>
+    <string name="vpn_tile_working">VPN amali bajarilmoqda…</string>
+    <string name="vpn_notification_reconnecting">Qayta ulanmoqda… · %1$s</string>
+    <string name="vpn_system_action_required">Android sozlamalarida amal bajarish kerak</string>
+    <string name="vpn_tile_reconnecting">Qayta ulanmoqda… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Tarmoq kutilmoqda · %1$s</string>
+    <string name="vpn_tile_waiting_network">Tarmoq kutilmoqda · %1$s</string>
+</resources>

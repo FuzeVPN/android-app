@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Muunganisho wa VPN</string>
+    <string name="vpn_notification_channel_description">Inaonyesha wakati muunganisho wa FuzeVPN unapofanya kazi.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Muunganisho wa %1$s unatumika</string>
+    <string name="vpn_notification_connecting">Muunganisho wa %1$s unaanzishwa</string>
+    <string name="vpn_notification_disconnecting">Inatenganisha %1$s</string>
+    <string name="vpn_notification_interrupted">Muunganisho wa %1$s umekatizwa</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Tayari · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Imeunganishwa · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Inaunganisha %1$s…</string>
+    <string name="vpn_tile_disconnecting">Inatenganishwa…</string>
+    <string name="vpn_tile_interrupted">%1$s imekatizwa</string>
+    <string name="vpn_tile_setup_required">Fungua programu kwanza</string>
+    <string name="vpn_tile_working">Operesheni ya VPN inaendelea…</string>
+    <string name="vpn_notification_reconnecting">Inaunganishwa tena… · %1$s</string>
+    <string name="vpn_system_action_required">Hatua inahitajika katika mipangilio ya Android</string>
+    <string name="vpn_tile_reconnecting">Inaunganishwa tena… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Inasubiri mtandao · %1$s</string>
+    <string name="vpn_tile_waiting_network">Inasubiri mtandao · %1$s</string>
+</resources>

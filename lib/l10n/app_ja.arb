@@ -174,6 +174,8 @@
   "dialog_signOut": "サインアウトしますか？",
   "dialog_signOutMessage": "VPNが停止し、再度サインインする必要があります。暗号化されたVPNキーは次回の接続のため、このスマートフォンに保存されます。",
   "action_cancel": "キャンセル",
+  "action_close": "閉じる",
+  "action_copy": "コピー",
   "action_signOut": "サインアウト",
   "notice_close": "メッセージを閉じる",
   "notice_sessionExpired_title": "セッションの有効期限が切れました",

@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN जडान</string>
+    <string name="vpn_notification_channel_description">FuzeVPN जडान सक्रिय हुँदा संकेत गर्छ।</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s जडान सक्रिय</string>
+    <string name="vpn_notification_connecting">%1$s जडान हुँदै</string>
+    <string name="vpn_notification_disconnecting">%1$s को जडान विच्छेद हुँदै</string>
+    <string name="vpn_notification_interrupted">%1$s जडान बाधित भयो</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">तयार · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">जडान भएको · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s जडान हुँदै…</string>
+    <string name="vpn_tile_disconnecting">जडान विच्छेद हुँदै…</string>
+    <string name="vpn_tile_interrupted">%1$s बाधित भयो</string>
+    <string name="vpn_tile_setup_required">पहिले एप खोल्नुहोस्</string>
+    <string name="vpn_tile_working">VPN कार्य जारी छ…</string>
+    <string name="vpn_notification_reconnecting">पुनः जडान हुँदै… · %1$s</string>
+    <string name="vpn_system_action_required">Android सेटिङमा कारबाही आवश्यक छ</string>
+    <string name="vpn_tile_reconnecting">पुनः जडान हुँदै… · %1$s</string>
+    <string name="vpn_notification_waiting_network">नेटवर्कको प्रतीक्षा गर्दै · %1$s</string>
+    <string name="vpn_tile_waiting_network">नेटवर्कको प्रतीक्षा गर्दै · %1$s</string>
+</resources>

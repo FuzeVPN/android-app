@@ -1,0 +1,1036 @@
+{
+  "locale": "hy",
+  "arb": {
+    "vpnDisclosure_title": "Պաշտպանեք ձեր կապը",
+    "vpnDisclosure_body": "FuzeVPN-ն օգտագործում է Android-ի VPN ծառայությունը (VpnService)՝ այս սարքի և FuzeVPN սերվերների միջև գաղտնագրված թունել ստեղծելու համար։",
+    "vpnDisclosure_dataBody": "Երբ VPN-ն ակտիվ է, ձեր հավելվածների ինտերնետ տրաֆիկը, նպատակակետի հասցեները և DNS հարցումներն անցնում են այս թունելով՝ ձեր կապն ուղղորդելու համար, նույնիսկ երբ FuzeVPN-ը ֆոնային ռեժիմում է։",
+    "vpnDisclosure_statusBody": "Հավելվածն օգտագործում է կապի կարգավիճակը, դրա տևողությունը և փոխանցված տվյալների քանակը՝ ձեր VPN կապը ցուցադրելու համար։ Կարող եք այն դադարեցնել ցանկացած պահի։",
+    "vpnDisclosure_privacy": "Գաղտնիություն",
+    "vpnDisclosure_accept": "Ընդունել և շարունակել",
+    "vpnDisclosure_decline": "Ոչ հիմա",
+    "accountRestoration_title": "Հաշիվը ժամանակավորապես անհասանելի է",
+    "accountRestoration_message": "Ձեր սեսիան պահպանվել է։ Նորից փորձեք՝ հաշիվը վերականգնելու համար։ Այստեղ դեռ կարող եք կառավարել VPN կապը։",
+    "action_retry": "Նորից փորձել",
+    "session_endingTitle": "Սեսիայի ավարտում",
+    "session_ending": "Սեսիան ավարտվում է։ VPN-ը դադարեցվում է, տվյալները մաքրվում են…",
+    "session_stopFailed": "VPN-ի անջատումը չի հաստատվել։ Նորից փորձեք, նախքան կրկին մուտք գործելը։",
+    "session_cleanupFailed": "VPN-ը դադարեցված է, բայց սեսիայի հեռացումը չի հաստատվել։ Նորից փորձեք մաքրումը։",
+    "session_retryStop": "Նորից փորձել անջատումը",
+    "session_retryCleanup": "Նորից փորձել մաքրումը",
+    "@@locale": "hy",
+    "appTitle": "FuzeVPN",
+    "startup": "FuzeVPN-ն անվտանգ նախապատրաստվում է…",
+    "nav_connection": "Կապ",
+    "nav_locations": "Վայրեր",
+    "nav_account": "Հաշիվ",
+    "nav_devices": "Սարքեր",
+    "nav_settings": "Կարգավորումներ",
+    "action_refresh": "Թարմացնել",
+    "auth_tab_login": "Մուտք գործել",
+    "auth_tab_register": "Գրանցվել",
+    "auth_stepAccount": "Հաշիվ",
+    "auth_stepIdentity": "Ինքնություն",
+    "auth_stepAddress": "Հասցե և համաձայնություններ",
+    "auth_stepProgress": "Քայլ {current} / {total}",
+    "@auth_stepProgress": {
+      "placeholders": {
+        "current": {
+          "type": "Object"
+        },
+        "total": {
+          "type": "Object"
+        }
+      }
+    },
+    "auth_tagline": "Ձեր VPN-ը՝ պարզ և հարմար։",
+    "auth_keysLocal": "Ձեր գաղտնի VPN բանալիները մնում են այս սարքում։",
+    "form_email": "Էլփոստի հասցե",
+    "form_password": "Գաղտնաբառ",
+    "form_showPassword": "Ցույց տալ գաղտնաբառը",
+    "form_hidePassword": "Թաքցնել գաղտնաբառը",
+    "form_passwordMin": "8–72 UTF-8 բայթ։ Որոշ նիշեր զբաղեցնում են մեկից ավելի բայթ։",
+    "form_firstName": "Անուն",
+    "form_lastName": "Ազգանուն",
+    "form_phone": "Հեռախոս (+33612345678)",
+    "form_address": "Հասցե",
+    "form_address2": "Հասցեի լրացուցիչ տող (ոչ պարտադիր)",
+    "form_postalCode": "Փոստային ինդեքս",
+    "form_city": "Քաղաք",
+    "form_country": "Երկրի կոդ (օրինակ՝ FR)",
+    "action_login": "Մուտք գործել",
+    "action_createAccount": "Ստեղծել հաշիվ",
+    "action_createMyAccount": "Ստեղծել իմ հաշիվը",
+    "action_next": "Շարունակել",
+    "action_previous": "Հետ",
+    "action_forgotPassword": "Մոռացե՞լ եք գաղտնաբառը",
+    "auth_noAccount": "Դեռ հաշիվ չունե՞ք",
+    "auth_requiredInformation": "Ստեղծեք ձեր հաշիվը երեք քայլով։",
+    "auth_termsPrefix": "Ես ընդունում եմ ",
+    "auth_termsLink": "օգտագործման պայմանները",
+    "auth_privacyPrefix": "Ես ընդունում եմ ",
+    "auth_privacyLink": "գաղտնիության քաղաքականությունը",
+    "auth_consentRequired": "Հաշիվ ստեղծելու համար անհրաժեշտ է ձեր համաձայնությունը։",
+    "validation_required": "Այս դաշտը պարտադիր է։",
+    "validation_email": "Մուտքագրեք վավեր էլփոստի հասցե։",
+    "validation_password": "Գաղտնաբառը շատ կարճ է։ Անհրաժեշտ է առնվազն 8 UTF-8 բայթ։",
+    "validation_passwordTooLong": "Գաղտնաբառը շատ երկար է։ Թույլատրվում է առավելագույնը 72 UTF-8 բայթ։",
+    "validation_phone": "Օգտագործեք միջազգային ձևաչափ, օրինակ՝ +33612345678։",
+    "validation_country": "Օգտագործեք երկու տառից բաղկացած երկրի կոդ, օրինակ՝ FR։",
+    "passwordReset_title": "Գաղտնաբառի վերականգնում",
+    "passwordReset_description": "Մուտքագրեք ձեր հաշվի էլփոստի հասցեն՝ գաղտնաբառի վերականգնման հղում ստանալու համար։",
+    "passwordReset_send": "Ուղարկել հղումը",
+    "connection_title": "Ձեր կապը",
+    "connection_subtitle": "Ընտրեք վայր, ապա միացրեք ձեր VPN-ը։",
+    "connection_prepare": "Պատրա՞ստ եք միանալ",
+    "connection_advancedOptions": "Լրացուցիչ կարգավորումներ",
+    "connection_location": "Վայր",
+    "connection_chooseLocation": "Ընտրեք վայր",
+    "connection_protocol": "Պրոտոկոլ",
+    "connection_connect": "Միանալ",
+    "connection_connecting": "Միանում է…",
+    "connection_disconnect": "Անջատել",
+    "connection_disconnecting": "Անջատվում է",
+    "connection_locationChange": "Վայրը փոխվում է…",
+    "connection_unavailable": "{protocol} անհասանելի է",
+    "connection_activeLocation": "Ակտիվ վայր",
+    "connection_duration": "Տևողություն",
+    "connection_received": "Ստացված",
+    "connection_sent": "Ուղարկված",
+    "connection_lastHandshake": "Վերջին անվտանգ փոխանակում",
+    "connection_handshakeAgo": "{duration} առաջ",
+    "verification_title": "Հաստատեք ձեր էլփոստի հասցեն",
+    "verification_message": "Հաստատեք ձեր էլփոստի հասցեն՝ այս հեռախոսում VPN-ն օգտագործելու համար։",
+    "verification_resend": "Նորից ուղարկել նամակը",
+    "migration_title": "Վայրի փոփոխություն",
+    "migration_draining": "Վայրի փոփոխությունը նախապատրաստվում է…",
+    "migration_activating": "Նոր սերվերն ակտիվացվում է…",
+    "migration_ready": "Վայրը թարմացվել է։",
+    "migration_blocked": "Վայրի փոփոխությունը պահանջում է սերվերի միջամտություն։ Նորից փորձեք ավելի ուշ կամ դիմեք աջակցության ծառայությանը։",
+    "migration_progress": "Վայրի փոփոխության առաջընթաց",
+    "migration_retryDelay": "Ստուգումների միջև ընդմիջում՝ {seconds} վրկ։",
+    "migration_resume": "Շարունակել վայրի փոփոխությունը",
+    "status_authorizing": "Պահանջվում է թույլատրում",
+    "status_authorizingDetail": "Ընդունեք Android-ի հարցումը՝ VPN-ին թույլտվություն տալու համար։",
+    "status_preparing": "Պատրաստվում է",
+    "status_preparingDetail": "Ձեր անվտանգ կապը նախապատրաստվում է։",
+    "status_reconnecting": "Նորից միանում է…",
+    "status_reconnectingDetail": "Կապն ընդհատվել է։ VPN-ը փորձում է նորից միանալ։",
+    "status_connecting": "Միանում է",
+    "status_connectingDetail": "Միանում է VPN սերվերին…",
+    "status_connected": "Միացված է",
+    "status_connectedDetail": "Ձեր VPN կապն ակտիվ է։",
+    "status_disconnecting": "Անջատվում է",
+    "status_disconnectingDetail": "Ձեր VPN կապը դադարեցվում է։",
+    "status_error": "Կապն անհասանելի է",
+    "status_errorDetail": "VPN կապը չի հաստատվել։ Նորից փորձեք։",
+    "status_idle": "Անջատված է",
+    "status_idleDetail": "Միացրեք VPN-ը՝ ձեր կապը պաշտպանելու համար։",
+    "trust_note": "Հավելվածը փակելը VPN-ը չի անջատում։ Այն անջատելու համար օգտագործեք «Անջատել» կոճակը։",
+    "locations_none": "Այս պահին հասանելի վայրեր չկան։",
+    "locations_available": "Ընտրեք հաջորդ վայրը։",
+    "locations_selected": "Ընտրված վայր",
+    "locations_select": "Ընտրել այս վայրը",
+    "locations_lockedTunnel": "Վայրը փոխելու համար անջատեք VPN-ը։",
+    "locations_lockedMigration": "Սպասեք, մինչև վայրի փոփոխությունն ավարտվի։",
+    "devices_title": "Ձեր սարքերը",
+    "devices_used": "{count} / {limit} սարք",
+    "devices_refresh": "Թարմացնել սարքերը",
+    "devices_empty": "Դեռ ոչ մի VPN սարք գրանցված չէ։",
+    "devices_firstConnection": "Ձեր հեռախոսը կավելացվի առաջին միացման ժամանակ։",
+    "devices_thisDevice": "Այս սարքը",
+    "devices_added": "Ավելացվել է՝ {date}",
+    "devices_unnamed": "Անանուն սարք",
+    "action_remove": "Հեռացնել",
+    "settings_title": "Կարգավորումներ",
+    "settings_subtitle": "Ձեր նախընտրանքներն ու հաշիվը՝ մեկ տեղում։",
+    "settings_appearance": "Արտաքին տեսք",
+    "settings_language": "Լեզու",
+    "settings_languageDescription": "Ընտրված լեզուն կիրառվում է նաև VPN ծանուցումների համար։",
+    "settings_account": "Հաշիվ",
+    "settings_signOut": "Դուրս գալ",
+    "settings_privacy": "Գաղտնիության քաղաքականություն",
+    "settings_terms": "Օգտագործման պայմաններ",
+    "settings_security": "Անվտանգություն և թափանցիկություն",
+    "settings_licenses": "Բաղադրիչների լիցենզիաներ",
+    "settings_licensesDetail": "Հավելվածում օգտագործվող ծրագրեր",
+    "settings_licensesLegalese": "Հավելվածի և դրա MPL-2.0 բաղադրիչների սկզբնական կոդը՝ {url}",
+    "@settings_licensesLegalese": {
+      "placeholders": {
+        "url": {
+          "type": "String"
+        }
+      }
+    },
+    "settings_background": "Հավելվածից դուրս գալիս VPN-ը մնում է միացված։ Այն անջատելու համար օգտագործեք «Կապ» ներդիրի «Անջատել» կոճակը։",
+    "theme_system": "Համակարգային",
+    "theme_light": "Բաց",
+    "theme_dark": "Մուգ",
+    "language_system": "Հեռախոսի լեզուն",
+    "language_fr": "Français",
+    "language_en": "English",
+    "language_es": "Español",
+    "language_de": "Deutsch",
+    "dialog_removeDevice": "Հեռացնե՞լ այս սարքը",
+    "dialog_removeCurrent": "Այս հեռախոսը VPN-ից կանջատվի և կկորցնի հասանելիությունը։ Դրա VPN կապի տվյալները կհեռացվեն սերվերի հաստատումից հետո։",
+    "dialog_removeOther": "«{name}» սարքի VPN հասանելիությունը կչեղարկվի։ Այս գործողությունը հնարավոր չէ հետարկել։",
+    "dialog_signOut": "Դուրս գա՞լ",
+    "dialog_signOutMessage": "VPN-ը կդադարեցվի, և դուք պետք է նորից մուտք գործեք։ Ձեր գաղտնագրված VPN բանալիները կմնան այս հեռախոսում՝ հաջորդ միացման համար։",
+    "action_cancel": "Չեղարկել",
+    "action_close": "Փակել",
+    "action_copy": "Պատճենել",
+    "action_signOut": "Դուրս գալ",
+    "notice_close": "Փակել հաղորդագրությունը",
+    "notice_sessionExpired_title": "Սեսիայի ժամկետը լրացել է",
+    "notice_sessionExpired_message": "Ձեր սեսիայի ժամկետը լրացել է։ Նորից մուտք գործեք։",
+    "notice_connectionFailed_title": "Չհաջողվեց միանալ",
+    "notice_invalidCredentials_message": "Էլփոստի հասցեն կամ գաղտնաբառը սխալ է։",
+    "notice_emailVerification_title": "Պահանջվում է էլփոստի հաստատում",
+    "notice_emailVerification_message": "Նախքան VPN սարք ավելացնելը հաստատեք ձեր էլփոստի հասցեն։",
+    "notice_rateLimited_title": "Չափազանց շատ փորձեր",
+    "notice_deviceLimit_title": "Սարքերի սահմանաչափը սպառվել է",
+    "notice_deviceLimit_message": "Նոր սարք ավելացնելուց առաջ հեռացրեք առկա սարքերից մեկը։",
+    "notice_identityRenewal_title": "VPN ինքնությունը պետք է թարմացվի",
+    "notice_identityRenewal_message": "Այս ինքնությունը հեռացվել է։ Ստեղծեք նոր տեղական ինքնություն։",
+    "notice_migrationPending_title": "Վայրի փոփոխությունն ընթացքի մեջ է",
+    "notice_migrationPending_message": "Վայրի փոփոխությունն արդեն ընթացքի մեջ է։",
+    "notice_migrationBlocked_title": "Վայրի փոփոխությունն արգելափակված է",
+    "notice_migrationBlocked_message": "Վայրի փոփոխությունը պահանջում է սերվերի միջամտություն։ Նորից փորձեք ավելի ուշ կամ դիմեք աջակցության ծառայությանը։",
+    "notice_targetUnavailable_title": "Սերվերը ժամանակավորապես անհասանելի է",
+    "notice_targetUnavailable_message": "Այս սերվերը ժամանակավորապես անհասանելի է։",
+    "notice_networkUnavailable_title": "Ինտերնետ կապը հասանելի չէ",
+    "notice_networkUnavailable_message": "Ստուգեք ձեր կապը և նորից փորձեք։",
+    "notice_permissionDenied_title": "VPN-ի թույլտվությունը մերժվել է",
+    "notice_permissionDenied_message": "Նորից սկսեք միացումը և ընդունեք Android-ի թույլտվության հարցումը։",
+    "notice_wireguardTimeout_title": "Սերվերը չի պատասխանում",
+    "notice_wireguardTimeout_message": "WireGuard կապը չափազանց երկար տևեց։ Նորից փորձեք կամ ընտրեք այլ վայր։",
+    "notice_tlsFailed_title": "Անվտանգ կապը մերժվել է",
+    "notice_tlsFailed_message": "Սերվերը չընդունեց OpenVPN կապը։ Նորից փորձեք։ Եթե խնդիրը շարունակվի, գործարկեք ախտորոշում։",
+    "notice_tunRejected_title": "Android-ը մերժել է VPN միջերեսը",
+    "notice_tunRejected_message": "Android-ը մերժել է OpenVPN-ի պահանջած ցանցի կազմաձևումը։",
+    "notice_openvpnStart_title": "OpenVPN-ը չհաջողվեց գործարկել",
+    "notice_openvpnStart_message": "OpenVPN շարժիչը չկարողացավ ամբողջությամբ գործարկվել։ Նորից փորձեք։ Եթե խնդիրը շարունակվի, դիմեք աջակցության ծառայությանը։",
+    "notice_diagnosticCode": "Ախտորոշման կոդ՝ {code}",
+    "notice_generic_title": "Չհաջողվեց միանալ VPN-ին",
+    "notice_generic_message": "Սխալ է տեղի ունեցել։ Նորից փորձեք ավելի ուշ։",
+    "notice_controller_title": "{code, select, account_created_email_unavailable{Հաշիվը ստեղծվել է} password_reset_sent{Գաղտնաբառի վերականգնման հարցումը ստացվել է} verification_email_sent{Հաստատման նամակն ուղարկվել է} location_migration_pending{Վայրի փոփոխությունն ընթացքի մեջ է} vpn_sign_in_required{Պահանջվում է մուտք գործել} protocol_unavailable_at_location{Պրոտոկոլն անհասանելի է} vpn_permission_denied{VPN-ի թույլտվությունը մերժվել է} revoked_identity_device_limit{Սարքերի սահմանաչափը սպառվել է} tunnel_start_unexpected{VPN-ը չհաջողվեց գործարկել} flutter_disconnect_timeout{Անջատումը չի հաստատվել} flutter_disconnect_unexpected{Չհաջողվեց անջատել} device_revoked{Սարքը հեռացվել է} revoke_unexpected{Սարքը չհաջողվեց հեռացնել} identity_renewal_unexpected{Ինքնությունը չհաջողվեց թարմացնել} openvpn_renewal_unexpected{OpenVPN պրոֆիլը չհաջողվեց թարմացնել} location_migration_blocked{Վայրի փոփոխությունն արգելափակված է} location_migration_slow{Վայրի փոփոխությունը դեռ ընթացքի մեջ է} location_migration_conflict{Վայրի փոփոխությունը պետք է թարմացվի} location_migration_verification_failed{Վայրի փոփոխությունը չի հաստատվել} location_migration_device_changed{Սարքը փոխվել է վայրի փոփոխության ընթացքում} tunnel_stop_failed{Վայրի փոփոխությունը հասանելի չէ} device_clock_ahead{Սարքի ժամացույցն առաջ է} other{Գործողությունը չհաջողվեց}}",
+    "@notice_controller_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_controller_message": "{code, select, account_created_email_unavailable{Հաշիվը ստեղծվել է, բայց հաստատման նամակը չհաջողվեց ուղարկել։ Օգտագործեք հավելվածի «Նորից ուղարկել» գործողությունը։} password_reset_sent{Ձեր հարցումը ստացվել է։ Եթե այս հասցեին համապատասխանող հաշիվ կա, կարող եք նամակ ստանալ։ Ստուգեք նաև սպամի թղթապանակը։} verification_email_sent{Նոր հաստատման նամակն արդեն ուղարկվել է։} location_migration_pending{Դեպի {target} տեղափոխումը դեռ նախապատրաստվում է։ Կարող եք այն շարունակել՝ առանց սարքը նորից ստեղծելու։} vpn_sign_in_required{Նախքան VPN-ը գործարկելը մուտք գործեք ձեր հաշիվ։} protocol_unavailable_at_location{Ընտրված պրոտոկոլն այս վայրում չի առաջարկվում։ Թարմացրեք վայրերը կամ ընտրեք այլ պրոտոկոլ։} vpn_permission_denied{Android-ը մերժել է VPN-ի թույլտվությունը։ Նորից սկսեք միացումը և ընդունեք համակարգի հարցումը։} revoked_identity_device_limit{Այս սարքի VPN հասանելիությունը հեռացվել է, և սարքերի սահմանաչափը սպառվել է։ Հեռացրեք սարք «Հաշիվ → Կառավարել իմ սարքերը» բաժնում։} tunnel_start_unexpected{Անսպասելի սխալն ընդհատեց թունելի նախապատրաստումը։ Ստուգեք ախտորոշման կոդը և նորից փորձեք։} flutter_disconnect_timeout{Android-ը ժամանակին չհաստատեց, որ VPN-ը դադարել է։ Նորից փորձեք այն դադարեցնել։} flutter_disconnect_unexpected{Անսպասելի սխալի պատճառով չհաջողվեց հաստատել թունելի դադարեցումը։} device_revoked{Սարքի VPN հասանելիությունը չեղարկվել է, և դրա տեղական գաղտնի տվյալները հեռացվել են։} revoke_unexpected{Սարքը չհաջողվեց հեռացնել։ Թարմացրեք ցանկը և նորից փորձեք։} identity_renewal_unexpected{Նոր VPN ինքնությունը չհաջողվեց ստեղծել։ Թարմացրեք սարքերը և նորից փորձեք։} openvpn_renewal_unexpected{OpenVPN պրոֆիլը չհաջողվեց թարմացնել։ Նորից փորձեք կամ ստուգեք ախտորոշման կոդը։} location_migration_blocked{Սերվերը հիմա չի կարող ավարտել այս փոփոխությունը։ Սարքը և դրա տեղական ինքնությունը պահպանվել են։} location_migration_slow{Սերվերը դեռ նախապատրաստում է տեղափոխումը դեպի {target}։ Մի փոքր անց օգտագործեք «Շարունակել» կոճակը։} location_migration_conflict{Սարքի վիճակը փոխվել է սերվերում։ Թարմացրեք սարքերը, ապա շարունակեք վայրի փոփոխությունը։} location_migration_verification_failed{Սերվերը չհաստատեց նոր վայրը։ Նախորդ տեղական ինքնությունը պահպանվել է։} location_migration_device_changed{Սերվերի վերադարձրած սարքն այլևս չի համապատասխանում փոփոխվող սարքին։ Նորից փորձելուց առաջ թարմացրեք սարքերը։} tunnel_stop_failed{Նոր կապը միացնելուց առաջ նախորդ թունելը պետք է լրիվ դադարեցվի։} device_clock_ahead{Այս սարքի ժամացույցը, կարծես, առաջ է ընկել։ Միացրեք ավտոմատ ամսաթիվն ու ժամը, որպեսզի մնաք մուտք գործած։} other{Գործողությունը չհաջողվեց ավարտել։ Նորից փորձեք կամ ուղարկեք ախտորոշման կոդն աջակցության ծառայությանը։}}",
+    "@notice_controller_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "target": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_title": "{code, select, unauthorized{Սեսիայի ժամկետը լրացել է} invalid_credentials{Չհաջողվեց մուտք գործել} email_verification_required{Պահանջվում է էլփոստի հաստատում} verification_email_cooldown{Նամակն արդեն ուղարկվել է} rate_limited{Չափազանց շատ փորձեր} invalid_registration{Տվյալները պետք է ուղղվեն} email_exists{Հաշիվն արդեն գոյություն ունի} invalid_profile{Անվավեր պրոֆիլ} invalid_device{Անվավեր սարք} invalid_location{Վայրը հասանելի չէ} device_limit{Սարքերի սահմանաչափը սպառվել է} device_exists{VPN ինքնությունն արդեն օգտագործվում է} device_identity_revoked{VPN ինքնությունը պետք է թարմացվի} device_location_locked{Վայրի փոփոխությունը պետք է թարմացվի} location_migration_pending{Վայրի փոփոխությունն ընթացքի մեջ է} location_migration_blocked{Վայրի փոփոխությունն արգելափակված է} target_ca_mismatch{Անհամատեղելի OpenVPN սերվեր} location_migration_conflict{Վայրի փոփոխությունը պետք է թարմացվի} server_full{Սերվերը լցված է} capacity_unavailable{Վայրը ժամանակավորապես անհասանելի է} target_unavailable{Սերվերը ժամանակավորապես անհասանելի է} not_found{Տարրը չի գտնվել} invalid_openvpn_csr{Անվավեր OpenVPN ինքնություն} openvpn_profile_exists{OpenVPN պրոֆիլն արդեն գոյություն ունի} openvpn_profile_revoked{OpenVPN պրոֆիլը չեղարկված է} openvpn_operation_pending{OpenVPN գործողությունն ընթացքի մեջ է} openvpn_operation_terminal{OpenVPN գործողությունն ընդհատվել է} openvpn_address_unavailable{OpenVPN հասցեն հասանելի չէ} openvpn_profile_conflict{OpenVPN-ի հակասություն} openvpn_signer_unavailable{OpenVPN-ը հասանելի չէ} email_delivery_unavailable{Նամակների ուղարկումը հասանելի չէ} invalid_token{Անվավեր հղում} network_unavailable{Ինտերնետ կապը հասանելի չէ} invalid_json{Անվավեր հարցում} invalid_api_response{Անվավեր սերվերի պատասխան} ipv6_unavailable{IPv6-ը հասանելի չէ} invalid_ip_families{Ցանցի կազմաձևումը մերժվել է} other{Ծառայությունը հասանելի չէ}}",
+    "@notice_api_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_api_message": "{code, select, unauthorized{Ձեր սեսիայի ժամկետը լրացել է։ Նորից մուտք գործեք։} invalid_credentials{Էլփոստի հասցեն կամ գաղտնաբառը սխալ է։} email_verification_required{Նախքան VPN սարք ավելացնելը հաստատեք ձեր էլփոստի հասցեն։} invalid_registration{Ստուգեք պահանջված տվյալները և համաձայնությունները։} email_exists{Այս էլփոստի հասցեով արդեն կա հաշիվ։} invalid_profile{Ստուգեք ձեր պրոֆիլի տվյալները։} invalid_device{Այս սարքի անունը կամ տեղական ինքնությունն անվավեր է։} invalid_location{Թարմացրեք վայրերի ցանկը և նորից փորձեք։} device_limit{Նոր սարք ավելացնելուց առաջ հեռացրեք առկա սարքերից մեկը։} device_exists{Այս VPN ինքնությունն արդեն կապված է այլ հաշվի հետ։} device_identity_revoked{Այս ինքնությունը հեռացվել է։ Պետք է ստեղծվի նոր տեղական ինքնություն։} device_location_locked{Այս սարքի վայրը հենց նոր փոխվել է։ Հավելվածը կշարունակի ընթացիկ փոփոխությունը։} location_migration_pending{Վայրի փոփոխությունն արդեն ընթացքի մեջ է։} location_migration_blocked{Վայրի փոփոխությունը պահանջում է սերվերի միջամտություն։ Նորից փորձեք ավելի ուշ կամ դիմեք աջակցության ծառայությանը։} target_ca_mismatch{Այս սերվերը դեռ համատեղելի չէ ընթացիկ OpenVPN պրոֆիլի հետ։} location_migration_conflict{Թարմացրեք սարքերը և նորից փորձեք վայրի փոփոխությունը։} server_full{Այս վայրը հասել է միացումների սահմանին։ Ընտրեք այլ վայր կամ նորից փորձեք ավելի ուշ։} capacity_unavailable{Չենք կարող հաստատել, արդյոք այս վայրն այս պահին հասանելի է։ Ընտրեք այլ վայր կամ նորից փորձեք ավելի ուշ։} target_unavailable{Այս սերվերը ժամանակավորապես անհասանելի է։} not_found{Այս տարրն այլևս հասանելի չէ ձեր հաշվում։} invalid_openvpn_csr{Ստեղծեք նոր OpenVPN ինքնություն և նորից փորձեք։} openvpn_profile_exists{Այս սարքի համար արդեն կա OpenVPN պրոֆիլ։} openvpn_profile_revoked{Շարունակելու համար թարմացրեք OpenVPN պրոֆիլը։} openvpn_operation_pending{Փոփոխությունը դեռ տարածվում է։ Նորից փորձեք ավելի ուշ։} openvpn_operation_terminal{Ստեղծեք նոր OpenVPN ինքնություն և նորից փորձեք։} openvpn_address_unavailable{OpenVPN հասցե այս պահին հասանելի չէ։} openvpn_profile_conflict{Պրոֆիլը փոխվել է։ Թարմացրեք սարքերը և նորից փորձեք։} openvpn_signer_unavailable{OpenVPN ծառայությունը ժամանակավորապես անհասանելի է։} email_delivery_unavailable{Նամակը չհաջողվեց ուղարկել։ Նորից փորձեք ավելի ուշ։} invalid_token{Այս հղումն անվավեր է կամ ժամկետն անցել է։ Պահանջեք նորը։} network_unavailable{Ստուգեք ձեր ինտերնետ կապը և նորից փորձեք։} invalid_json{Ստուգեք մուտքագրված տվյալները և նորից փորձեք։} invalid_api_response{Սերվերն անսպասելի պատասխան վերադարձրեց։ Նորից փորձեք ավելի ուշ։} ipv6_unavailable{Սերվերն այս պահին չի կարող միացնել IPv6-ը։ Նորից փորձեք ավելի ուշ։} invalid_ip_families{Թունելի կազմաձևումը թերի է կամ չի համապատասխանում թույլատրված հասցեներին։ Նորից փորձեք հավելվածից։} other{Սերվերում սխալ է տեղի ունեցել։ Նորից փորձեք ավելի ուշ։}}",
+    "@notice_api_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_retryLater": "Նորից փորձեք մի փոքր անց։",
+    "notice_retryAfter": "{seconds, plural, one{Նորից փորձեք {seconds} վայրկյան անց։} other{Նորից փորձեք {seconds} վայրկյան անց։}}",
+    "@notice_retryAfter": {
+      "placeholders": {
+        "seconds": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterMinutes": "{minutes, plural, one{Նորից փորձեք {minutes} րոպե անց։} other{Նորից փորձեք {minutes} րոպե անց։}}",
+    "@notice_retryAfterMinutes": {
+      "placeholders": {
+        "minutes": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_retryAfterHours": "{hours, plural, one{Նորից փորձեք {hours} ժամ անց։} other{Նորից փորձեք {hours} ժամ անց։}}",
+    "@notice_retryAfterHours": {
+      "placeholders": {
+        "hours": {
+          "type": "int"
+        }
+      }
+    },
+    "notice_native_title": "{code, select, system_vpn_resume_unavailable{Համակարգային VPN-ի վերսկսումը հասանելի չէ} system_vpn_resume_corrupt{Անվավեր համակարգային VPN-ի վերսկսում} system_vpn_resume_session_invalid{Անվավեր VPN-ի վերսկսման սեսիա} system_vpn_resume_identity_changed{VPN-ի ինքնությունը փոխվել է} system_vpn_resume_identity_invalid{Անվավեր VPN-ի վերսկսման ինքնություն} system_vpn_resume_storage_failed{VPN-ի վերսկսման պահոցը հասանելի չէ} system_vpn_resume_network_timeout{VPN-ի վերսկսման համար ցանց չկա} system_vpn_resume_blocked{VPN-ի վերսկսումն արգելափակված է} system_vpn_resume_failed{VPN-ի վերսկսումը չհաջողվեց} system_vpn_resume_error_invalid{VPN-ի վերսկսման անվավեր սխալ} wireguard_identity_store_failed{WireGuard-ի ինքնությունը չի պահպանվել} wireguard_identity_unavailable{WireGuard-ի ինքնությունը հասանելի չէ} vpn_host_destroyed{Android-ի VPN բաղադրիչը դադարեցվել է} vpn_host_unavailable{Android-ի VPN բաղադրիչը հասանելի չէ} vpn_permission_required{Պահանջվում է VPN-ի թույլտվություն} vpn_permission_denied{VPN-ի թույլտվությունը մերժվել է} vpn_permission_request_failed{Չհաջողվեց թույլտվություն խնդրել} wireguard_foreground_service_unavailable{WireGuard ծառայությունը հասանելի չէ} wireguard_identity_invalid{Անվավեր տեղական WireGuard բանալի} wireguard_identity_in_use{WireGuard-ի ինքնությունն արդեն օգտագործվում է} wireguard_configuration_invalid{Անվավեր WireGuard կազմաձևում} wireguard_operation_pending{WireGuard-ի գործողությունը դեռ ակտիվ է} wireguard_start_failed{WireGuard-ի մեկնարկը մերժվել է} wireguard_stop_timeout{WireGuard-ի դադարեցումը չի հաստատվել} wireguard_handshake_timeout{WireGuard-ը չի պատասխանում} openvpn_connection_timeout{OpenVPN-ը չի պատասխանում} openvpn_core_unavailable{OpenVPN շարժիչը հասանելի չէ} openvpn_operation_pending{OpenVPN սեսիան դեռ ակտիվ է} openvpn_stop_timeout{OpenVPN-ի դադարեցումը չի հաստատվել} openvpn_profile_unavailable{Տեղական OpenVPN պրոֆիլը բացակայում է} openvpn_native_failed{OpenVPN-ի համակարգային կանչն ընդհատվել է} openvpn_key_generation_failed{Չհաջողվեց ստեղծել OpenVPN-ի P-256 բանալին} openvpn_csr_generation_failed{Չհաջողվեց ստեղծել OpenVPN-ի CSR-ը} openvpn_identity_store_failed{OpenVPN-ի ինքնությունը չի պահպանվել} openvpn_identity_clear_failed{OpenVPN-ի հեռացումը թերի է} openvpn_identity_in_use{OpenVPN-ի ինքնությունը դեռ օգտագործվում է} openvpn_tls_verification_required{OpenVPN-ի TLS ստուգումը բացակայում է} openvpn_cipher_invalid{Անվավեր OpenVPN գաղտնագրում} openvpn_profile_rejected{OpenVPN-ի պրոֆիլը մերժվել է} openvpn_identity_inconsistent{Անհամապատասխան OpenVPN ինքնություն} tls_handshake_failed{OpenVPN-ի բանակցությունը մերժվել է} tls_alert_unknown_ca{OpenVPN-ի հաճախորդի վկայագիրը չի ճանաչվել} tls_alert_bad_certificate{OpenVPN-ի հաճախորդի վկայագիրը մերժվել է} tls_alert_unsupported_certificate{Չաջակցվող OpenVPN վկայագիր} tls_client_certificate_required{Պահանջվում է OpenVPN-ի հաճախորդի վկայագիր} tls_alert_misc{OpenVPN-ի TLS ահազանգ} tls_signature_algorithm_rejected{Չաջակցվող OpenVPN ստորագրություն} tls_handshake_rejected{OpenVPN-ի TLS բանակցությունը մերժվել է} tls_version_rejected{Անհամատեղելի OpenVPN TLS տարբերակ} tls_certificate_expired{TLS վկայագիրը ժամկետանց է} tls_certificate_revoked{TLS վկայագիրը չեղարկվել է} transport_failed{OpenVPN սերվերն անհասանելի է} tun_configuration_rejected{Չհաջողվեց ստեղծել OpenVPN-ի միջերեսը} tun_setup_failed{OpenVPN TUN-ի կարգավորումը չհաջողվեց} tun_interface_create_failed{OpenVPN-ի միջերեսի ստեղծումը չհաջողվեց} tun_interface_disabled{OpenVPN-ի միջերեսն անջատված է} tun_halted{OpenVPN-ի միջերեսն ընդհատվել է} tun_already_established{OpenVPN-ի միջերեսն արդեն բաց է} tun_addresses_missing{OpenVPN-ի հասցեն բացակայում է} tun_routes_missing{OpenVPN-ի երթուղիները բացակայում են} tun_dns_missing{OpenVPN-ի DNS-ը բացակայում է} tun_permission_revoked{VPN-ի թույլտվությունը չեղարկվել է} tun_establish_returned_null{Android-ը մերժել է VPN միջերեսը} openvpn_service_start_failed{OpenVPN ծառայությունը հասանելի չէ} openvpn_operation_timeout{OpenVPN-ի կանչի ժամանակը սպառվել է} openvpn_start_failed{OpenVPN-ի մեկնարկը մերժվել է} openvpn_connection_failed{OpenVPN-ի միացումն ընդհատվել է} openvpn_core_status_error{OpenVPN-ի միջուկն ավարտվեց սխալով} openvpn_stopped_before_connected{OpenVPN-ը կանգ առավ միանալուց առաջ} openvpn_auth_failed{OpenVPN-ի նույնականացումը մերժվել է} openvpn_client_setup_failed{OpenVPN-ի հաճախորդի կարգավորումը չհաջողվեց} openvpn_client_halted{OpenVPN-ի հաճախորդն ընդհատվել է} openvpn_client_restart{Պահանջվել է OpenVPN-ի վերամեկնարկ} openvpn_inactive_timeout{OpenVPN-ը չափազանց երկար անգործուն է} openvpn_session_expired{OpenVPN սեսիայի ժամկետն անցել է} openvpn_credentials_required{Չաջակցվող OpenVPN նույնականացում} openvpn_proxy_failed{OpenVPN-ի միջանկյալ փոխանցումը չհաջողվեց} openvpn_compression_failed{OpenVPN-ի սեղմումը մերժվել է} openvpn_ntlm_crypto_unavailable{OpenVPN-ի NTLM գաղտնագրումը հասանելի չէ} openvpn_feature_unsupported{Չաջակցվող OpenVPN գործառույթ} network_unavailable{Ինտերնետ կապը հասանելի չէ} network_lost{Ցանցը հասանելի չէ} certificate_validation_failed{Սերվերի վկայագիրը մերժվել է} openvpn_certificate_expired{OpenVPN-ի վկայագիրը ժամկետանց է} tunnel_active_for_another_account{Մեկ այլ հաշվի թունելը դեռ ակտիվ է} tunnel_already_active{Թունելն արդեն ակտիվ է} tunnel_stop_timeout{{protocol}-ի դադարեցումը չի հաստատվել} tunnel_disconnected{{protocol} ընդհատվել է} native_bridge_unavailable{Android-ի կամուրջը հասանելի չէ} native_operation_failed{Android-ի գործողությունն ընդհատվել է} invalid_arguments{VPN-ի պարամետրերը թերի են} invalid_account_id{Անվավեր VPN հաշիվ} invalid_device_id{Անվավեր սարքի նույնացուցիչ} storage_key_not_allowed{Պահոցի բանալին մերժվել է} secure_storage_read_failed{Անվտանգ ընթերցումը չհաջողվեց} secure_storage_write_failed{Անվտանգ գրառումը չհաջողվեց} key_generation_failed{Չհաջողվեց ստեղծել WireGuard բանալին} csr_generation_failed{Չհաջողվեց ստեղծել OpenVPN-ի CSR-ը} openvpn_recovery_exhausted{OpenVPN-ի վերականգնումն արդեն օգտագործվել է} openvpn_recovery_failed{OpenVPN-ի վերականգնումը չհաջողվեց} openvpn_renewal_required{Պահանջվում է OpenVPN-ի վկայագրի թարմացում} other{Չդասակարգված VPN սխալ}}",
+    "@notice_native_title": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_native_message": "{code, select, system_vpn_resume_unavailable{Android-ը չի գտնում վերսկսելի VPN սեսիա։ Հավելվածում սկսեք նոր միացում։} system_vpn_resume_corrupt{Պահպանված VPN-ի վերսկսման տվյալներն անվավեր են և չեն օգտագործվի։ Սկսեք նոր միացում։} system_vpn_resume_session_invalid{Պահպանված սեսիան այլևս չի կարող վերսկսել VPN-ը։ Հավելվածում նորից մուտք գործեք։} system_vpn_resume_identity_changed{VPN-ի տեղական ինքնությունը փոխվել է։ Վերսկսումը դադարեցվել է։ Սկսեք նոր միացում։} system_vpn_resume_identity_invalid{Վերսկսման ինքնությունն անվավեր է։ Սկսեք նոր միացում։} system_vpn_resume_storage_failed{Android-ը չկարողացավ կարդալ կամ թարմացնել գաղտնագրված վերսկսման տվյալները։ Սկսեք նոր միացում։} system_vpn_resume_network_timeout{Android-ը ժամանակին ցանց չգտավ VPN-ը վերսկսելու համար։ Նորից փորձեք, երբ ցանցը հասանելի լինի։} system_vpn_resume_blocked{VPN-ի վերսկսումն արգելափակված է։ Ստուգեք Android-ի կարգավորումները, ապա սկսեք նոր միացում։} system_vpn_resume_failed{Android-ում VPN-ի վերսկսումը չհաջողվեց։ Հավելվածում սկսեք նոր միացում։} system_vpn_resume_error_invalid{Android-ը վերադարձրեց անօգտագործելի վերսկսման սխալ։ Սկսեք նոր միացում։} wireguard_identity_store_failed{Android-ը չկարողացավ պահպանել այս հաշվի գաղտնագրված WireGuard ինքնությունը։} wireguard_identity_unavailable{Այս միացման համար օգտագործելի WireGuard ինքնություն չկա։} vpn_host_destroyed{VPN-ն աշխատեցնող Android բաղադրիչը դադարեցվել է։ Սկսեք նոր միացում։} vpn_host_unavailable{Android-ը չի կարող ստեղծել VPN-ն աշխատեցնող բաղադրիչը։ Ստուգեք VPN-ի կարգավորումները և նորից փորձեք։} openvpn_renewal_required{Վկայագիրը միանալուց առաջ պահանջում է գործողություն հավելվածում։} openvpn_recovery_failed{Ավտոմատ վերականգնումը չհաջողվեց։ Հավելվածում սկսեք նոր միացում։} openvpn_recovery_exhausted{Ավտոմատ վերականգնումն արդեն օգտագործվել է։ Հավելվածում սկսեք նոր միացում։} vpn_permission_required{Android-ը թունելը մեկնարկելուց առաջ պահանջում է VPN-ի նոր թույլտվություն։} vpn_permission_denied{Շարունակելու համար Android-ի հարցումում թույլատրեք FuzeVPN-ին։} vpn_permission_request_failed{Android-ը չկարողացավ բացել VPN-ի թույլտվության էկրանը։} wireguard_foreground_service_unavailable{Android-ը չկարողացավ WireGuard ծառայությունը պահել առաջին պլանում։} wireguard_identity_invalid{Այս հաշվի գաղտնագրված WireGuard բանալին անընթեռնելի է կամ անվավեր։} wireguard_identity_in_use{Մեկ այլ գործողություն դեռ օգտագործում է այս հաշվի WireGuard բանալին։} wireguard_configuration_invalid{Ստացված WireGuard հասցեն, DNS-ը, սերվերի բանալին կամ երթուղիներն անվավեր են։} wireguard_operation_pending{Նախորդ WireGuard գործողությունը դեռ չի ազատել իր համակարգային ծառայությունը։} wireguard_start_failed{WireGuard շարժիչը մերժել է կազմաձևման ակտիվացումը։} wireguard_stop_timeout{WireGuard ծառայությունը սահմանված ժամանակում չհաստատեց VPN միջերեսի ազատումը։} wireguard_handshake_timeout{Թունելը ժամանակին չհաստատեց սերվերի հետ կապի հաստատումը։} openvpn_connection_timeout{OpenVPN-ը ժամանակին չհաստատեց միացումը սերվերի հետ։} openvpn_core_unavailable{Հավելվածի այս տարբերակը չի պարունակում օգտագործելի OpenVPN շարժիչ։} openvpn_operation_pending{Համակարգային շարժիչը դեռ պահում է OpenVPN-ի նախորդ սեսիան և մերժում է երկրորդի ստեղծումը։} openvpn_stop_timeout{OpenVPN-ի միջուկը սահմանված ժամանակում չհաստատեց, որ իր համակարգային սեսիան դադարել և ոչնչացվել է։} openvpn_profile_unavailable{Այս միացման համար վավերացված OpenVPN պրոֆիլ չի կարող կարդացվել։} openvpn_native_failed{Հավելվածի սխալն ընդհատեց OpenVPN-ը։ Նորից փորձեք միանալ։ Եթե խնդիրը շարունակվում է, գործարկեք ախտորոշում։} openvpn_key_generation_failed{Android Keystore-ը չկարողացավ ստեղծել կամ կարդալ չարտահանվող P-256 գաղտնի բանալին։} openvpn_csr_generation_failed{Android Keystore-ի բանալին չկարողացավ ստորագրել OpenVPN-ի վկայագրի հարցումը։} openvpn_identity_store_failed{OpenVPN-ի վկայագիրը կամ պրոֆիլը չկարողացան պահպանվել գաղտնագրված պահոցում։} openvpn_identity_clear_failed{Android-ը չկարողացավ ամբողջությամբ հեռացնել այս հաշվի OpenVPN-ի տեղական ինքնությունը։} openvpn_identity_in_use{OpenVPN-ի համակարգային սեսիան դեռ օգտագործում է այս սարքի բանալին կամ վկայագիրը։} openvpn_tls_verification_required{Պրոֆիլը բացահայտ չի պահանջում սերվերի վկայագրի ստուգում։} openvpn_cipher_invalid{Սերվերը տրամադրել է թույլատրելի ցանկում չընդգրկված գաղտնագրման ալգորիթմ։} openvpn_profile_rejected{Սերվերից ստացված պրոֆիլն անհամատեղելի է։ Վերստեղծեք այս սարքը և նորից փորձեք։} openvpn_identity_inconsistent{Վկայագիրը չի համապատասխանում այս հեռախոսի անվտանգ ինքնությանը։ Տեղական պրոֆիլը չի փոխարինվել։} tls_handshake_failed{Սերվերը մերժեց TLS բանակցությունը։ Եթե խնդիրը շարունակվում է, վերստեղծեք պրոֆիլը։} tls_alert_unknown_ca{Սերվերը չի ճանաչում այս սարքի վկայագիրը տրամադրած մարմինը։ Ստուգեք OpenVPN սերվերը։} tls_alert_bad_certificate{Սերվերը մերժեց այս սարքի վկայագիրը։ Նորից փորձելուց առաջ վերստեղծեք սարքը։} tls_alert_unsupported_certificate{Սերվերը չի աջակցում Android-ի օգտագործած անվտանգ վկայագրի տեսակը։} tls_client_certificate_required{Սերվերը պահանջում է հաճախորդի վկայագիր, բայց OpenVPN-ի միջուկը չկարողացավ այն ներկայացնել։} tls_alert_misc{Սերվերը վերադարձրել է TLS ահազանգ, որը չի վերաբերում վկայագրի և տարբերակի կատեգորիաներին։} tls_signature_algorithm_rejected{Սերվերը մերժեց Android Keystore բանալու ECDSA P-256 ալգորիթմը։} tls_handshake_rejected{Սերվերը միանալուց առաջ ընդհատեց TLS բանակցությունը։} tls_version_rejected{Հաճախորդը և սերվերն ընդհանուր TLS տարբերակ չգտան։} tls_certificate_expired{Միացման ընթացքում ներկայացված վկայագրի ժամկետն անցել է։} tls_certificate_revoked{Միացման ընթացքում ներկայացված վկայագիրը չեղարկվել է։} transport_failed{OpenVPN սերվերն ընթացիկ ցանցում չի պատասխանում։ Քիչ անց նորից փորձեք։} tun_configuration_rejected{Android-ը մերժել է OpenVPN-ի պահանջած ցանցի կազմաձևումը։} tun_setup_failed{OpenVPN-ի միջուկը մերժեց ցանցի սխեման՝ նախքան Android միջերեսը ստեղծելը։} tun_interface_create_failed{OpenVPN-ի միջուկը չկարողացավ ստանալ TUN միջերեսը Android VpnService-ից։} tun_interface_disabled{Android-ը կամ OpenVPN-ի միջուկը միացման ընթացքում անջատեց TUN միջերեսը։} tun_halted{OpenVPN-ի միջուկը ստացավ TUN միջերեսը դադարեցնելու հարցում։} tun_already_established{OpenVPN-ը նույն միացման մեջ երկրորդ միջերես պահանջեց։ Թունելն անվտանգության համար դադարեցվեց։} tun_addresses_missing{Սերվերն օգտագործելի թունելի հասցե չտրամադրեց։} tun_routes_missing{Սերվերն օգտագործելի թունելի երթուղիներ չտրամադրեց։} tun_dns_missing{Սերվերն օգտագործելի DNS սերվեր չտրամադրեց։} tun_permission_revoked{Android-ը միացման ընթացքում չեղարկեց VPN-ի թույլտվությունը։} tun_establish_returned_null{Android-ը միջերեսը չստեղծեց, սովորաբար այն պատճառով, որ մեկ այլ VPN դեռ ակտիվ է։} openvpn_service_start_failed{Android-ը չկարողացավ մեկնարկել OpenVPN առաջին պլանի ծառայությունը։} openvpn_operation_timeout{OpenVPN-ի միջուկին ուղղված JNI կանչը գերազանցել է առավելագույն թույլատրելի տևողությունը։} openvpn_start_failed{Android ծառայությունը պատրաստ է, բայց OpenVPN-ի միջուկը չընդունեց պրոֆիլի մեկնարկը։} openvpn_connection_failed{OpenVPN-ի միջուկը կանգ առավ՝ նախքան CONNECTED իրադարձության թողարկումը։} openvpn_core_status_error{OpenVPN-ի համակարգային ցիկլը սխալով ավարտվեց՝ առանց ավելի կոնկրետ վերջնական իրադարձության։} openvpn_stopped_before_connected{OpenVPN-ի համակարգային ցիկլը կանգ առավ CONNECTED-ից առաջ՝ առանց միջուկի հստակ սխալի։} openvpn_auth_failed{OpenVPN սերվերը մերժեց պրոֆիլի նույնականացումը։} openvpn_client_setup_failed{OpenVPN-ի միջուկը չկարողացավ նախապատրաստել հաճախորդը ցանցային միացումից առաջ։} openvpn_client_halted{OpenVPN-ի միջուկը ստացավ հաճախորդի վերջնական դադարեցման հրաման։} openvpn_client_restart{OpenVPN-ի միջուկը պահանջեց իր փոխանցման սեսիայի վերամեկնարկը։} openvpn_inactive_timeout{OpenVPN-ի միջուկը փակեց սեսիան անգործության ժամկետը լրանալուց հետո։} openvpn_session_expired{Սերվերը հայտնեց, որ OpenVPN սեսիայի ժամկետն անցել է։} openvpn_credentials_required{Սերվերը կամ միջնորդը պահանջում է ինտերակտիվ մուտքի տվյալներ, որոնք այս պրոֆիլում նախատեսված չեն։} openvpn_proxy_failed{OpenVPN-ի միջուկը հայտնեց կազմաձևված միջնորդի կամ փոխանցող սերվերի խափանման մասին։} openvpn_compression_failed{OpenVPN-ի միջուկը մերժեց պրոֆիլի կամ սերվերի հայտարարած սեղմման ռեժիմը։} openvpn_ntlm_crypto_unavailable{Պրոֆիլը պահանջում է NTLM գաղտնագրում, որն այս տարբերակում հասանելի չէ։} openvpn_feature_unsupported{Պրոֆիլը կամ սերվերը պահանջում է գործառույթ, որը բացակայում է այս Android հաճախորդից։} network_unavailable{Օգտագործելի ֆիզիկական ցանց հասանելի չէ։} network_lost{Թունելը դադարեցվեց ցանցի կապը կորցնելուց հետո։} certificate_validation_failed{OpenVPN սերվերի ինքնությունը չհաջողվեց ստուգել։} openvpn_certificate_expired{Նորից միանալուց առաջ թարմացրեք OpenVPN պրոֆիլը։} tunnel_active_for_another_account{Այս միացումից առաջ պետք է դադարեցվի մեկ այլ հաշվին պատկանող թունելը։} tunnel_already_active{Android-ը հայտնում է, որ VPN-ի նախորդ սեսիան դեռ օգտագործում է միջերեսը։} tunnel_stop_timeout{{protocol} շարժիչը սահմանված ժամանակում չհաստատեց VPN միջերեսի ազատումը։} tunnel_disconnected{Համակարգային շարժիչը հայտնեց, որ թունելը մեկնարկից հետո անսպասելիորեն ավարտվեց։} native_bridge_unavailable{Հավելվածը չի կարող կապ հաստատել Android-ի VPN ծառայության հետ։ Փակեք և նորից բացեք հավելվածը, ապա նորից փորձեք։} native_operation_failed{Հավելվածի սխալն ընդհատեց VPN-ի գործողությունը։ Նորից փորձեք։ Եթե խնդիրը շարունակվում է, գործարկեք ախտորոշում։} invalid_arguments{Այս VPN գործողության համար անհրաժեշտ տեղեկությունները թերի են։ Նորից փորձեք։ Եթե խնդիրը շարունակվում է, գործարկեք ախտորոշում։} invalid_account_id{Համակարգային գործողությունը կապված չէ վավեր հաշվի նույնացուցչի հետ։} invalid_device_id{Համակարգային շարժիչին ուղարկված սարքի նույնացուցիչը բացակայում է կամ անվավեր է։} storage_key_not_allowed{Android-ի կամուրջն արգելափակեց թույլատրված պահոցի ցանկից դուրս գտնվող բանալին։} secure_storage_read_failed{Android Keystore-ը չկարողացավ վերծանել այս հաշվի տեղական տվյալները։} secure_storage_write_failed{Android Keystore-ը չկարողացավ գաղտնագրել կամ պահպանել տեղական տվյալները։} key_generation_failed{Android-ը չկարողացավ ստեղծել կամ կարդալ WireGuard բանալին անվտանգ պահոցում։} csr_generation_failed{Android Keystore-ը չկարողացավ ստեղծել կամ ստորագրել OpenVPN P-256 CSR-ը։} other{Չփաստաթղթավորված համակարգային ճյուղում սխալ է տեղի ունեցել։ Ստորև ցուցադրված ախտորոշման կոդն ուղարկեք աջակցության ծառայությանը։}}",
+    "@notice_native_message": {
+      "placeholders": {
+        "code": {
+          "type": "String"
+        },
+        "protocol": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_permissionRequestInProgress_title": "Թույլտվության հարցումն արդեն բաց է",
+    "notice_permissionRequestInProgress_message": "Android VPN-ի թույլտվության հարցումն արդեն ցուցադրված է։ Նախ ավարտեք այն, ապա նորից փորձեք։",
+    "notice_permissionRequestInterrupted_title": "VPN-ի թույլտվության հարցումն ընդհատվել է",
+    "notice_permissionRequestInterrupted_message": "VPN-ի թույլտվության էկրանը փակվել է, մինչ հավելվածը պատասխան ստանար։",
+    "notice_openvpnProofMissing_title": "OpenVPN-ի միացումը չի հաստատվել",
+    "notice_openvpnProofMissing_message": "OpenVPN-ի միացումը չհաջողվեց հաստատել։ Անվտանգության համար այն դադարեցվել է։ Նորից փորձեք։",
+    "openvpnCleanup_title": "OpenVPN պրոֆիլը չեղարկվել է",
+    "openvpnCleanup_working": "Չեղարկված OpenVPN պրոֆիլը դադարեցվում և հեռացվում է…",
+    "openvpnCleanup_stopFailed": "OpenVPN-ի դադարեցումը չի հաստատվել։ Նորից փորձեք, նախքան նոր պրոֆիլ ստեղծելը։",
+    "openvpnCleanup_cleanupFailed": "Չեղարկված OpenVPN պրոֆիլը չհաջողվեց ամբողջությամբ հեռացնել։ Նորից փորձեք մաքրումը։",
+    "openvpnCleanup_complete": "Չեղարկված OpenVPN պրոֆիլը հեռացվել է։ Նորը ստեղծելու համար հպեք «Միանալ»։",
+    "network_title": "Ցանցի կազմաձևում",
+    "network_ipv4Fallback": "IPv6-ը ժամանակավորապես հասանելի չէ։ Նախապատրաստումը շարունակվում է IPv4-ով։",
+    "network_rejectedTitle": "Ցանցի կազմաձևումը մերժվել է",
+    "network_rejectedMessage": "Թունելի կազմաձևումը թերի է կամ չի համապատասխանում թույլատրված հասցեներին։ Նորից փորձեք հավելվածից։",
+    "network_unreadableTitle": "Տեղական կազմաձևումն անընթեռնելի է",
+    "network_unreadableMessage": "Պահպանված OpenVPN ցանցի կազմաձևումը հնարավոր չէ օգտագործել։ Նորից միացեք հավելվածից՝ այն թարմացնելու համար։",
+    "network_ipv4": "IPv4",
+    "network_dualStack": "IPv4 + IPv6",
+    "protection_title": "Ցանցի պաշտպանություն",
+    "protection_subtitle": "Արգելափակեք անմիջական ինտերնետ մուտքը, եթե VPN-ը խզվի։",
+    "protection_active": "Համակարգի պաշտպանությունը միացված է",
+    "protection_alwaysOnOnly": "Միշտ միացված VPN-ն ակտիվ է։ Միացրեք VPN-ից դուրս արգելափակումը։",
+    "protection_inactive": "Համակարգի պաշտպանությունն անջատված է",
+    "protection_unknown": "Ստուգեք համակարգի պաշտպանությունը",
+    "protection_openSettings": "Բացել Android-ի կարգավորումները",
+    "protection_dialogTitle": "Կարգավորեք ցանցի պաշտպանությունը",
+    "protection_dialogMessage": "Android-ը կառավարում է միշտ միացված VPN-ը և VPN-ից դուրս կապերի արգելափակումը։ Ստուգեք, որ FuzeVPN-ն ընտրված է, և համակարգի կարգավորումներում միացրեք արգելափակումը։",
+    "protection_dialogOpen": "Բացել կարգավորումները",
+    "session_systemProtectionNote": "Եթե Android-ը դեռ արգելափակում է VPN-ից դուրս տրաֆիկը, բացեք համակարգի կարգավորումները՝ այս պաշտպանությունը ստուգելու կամ փոխելու համար։",
+    "diagnostics_title": "Ախտորոշում",
+    "diagnostics_settingsTitle": "Հավելվածի ախտորոշում",
+    "diagnostics_automaticTitle": "Ուղարկել կարևոր սխալները",
+    "diagnostics_automaticDescription": "Կարևոր սխալի դեպքում կիսվեք փոքր տեխնիկական հաշվետվությամբ։",
+    "diagnostics_privacy": "Ուղարկված հաշվետվությունները կապված են մուտք գործած հաշվի հետ և պահվում են 30 օր։ Դրանք չեն պարունակում դիտարկման պատմություն, գաղտնաբառեր կամ VPN բանալիներ։",
+    "diagnostics_manualOpen": "Գործարկել ախտորոշումը",
+    "diagnostics_localDescription": "Ստեղծեք հավելվածի և VPN-ի վիճակի հաշվետվություն։ Ձեր միացումը չի փոխվի։",
+    "diagnostics_sendReport": "Ուղարկել հաշվետվությունը",
+    "diagnostics_sendHint": "Թողեք այս վանդակը չնշված, որպեսզի հաշվետվությունը մնա այս սարքում։",
+    "diagnostics_signedOut": "Մուտք գործեք ձեր հաշիվ՝ հաշվետվությունն ուղարկելու համար։",
+    "diagnostics_localLifetime": "Պահեք այս հաշվետվությունը ձեր հեռախոսում, որպեսզի հավելվածը փակելուց հետո այն մնա։",
+    "diagnostics_run": "Գործարկել ախտորոշումը",
+    "diagnostics_rerun": "Կրկին գործարկել ախտորոշումը",
+    "diagnostics_running": "Ստուգվում է…",
+    "diagnostics_sending": "Հաշվետվությունն ուղարկվում է…",
+    "diagnostics_prepared": "Հաշվետվությունը պատրաստ է այս սարքում",
+    "diagnostics_queued": "Հաշվետվությունը սպասում է ուղարկման",
+    "diagnostics_sent": "Հաշվետվությունը ստացվել է",
+    "diagnostics_failed": "Ուղարկումը չհաջողվեց։ Ձեր տեղական հաշվետվությունը դեռ հասանելի է։",
+    "diagnostics_preparationFailed": "Ախտորոշման հաշվետվությունը չհաջողվեց պատրաստել։ Նորից փորձեք։",
+    "diagnostics_authenticationRequired": "Հաշվետվությունն ուղարկելու համար նորից մուտք գործեք։",
+    "diagnostics_retry": "Նորից ուղարկել",
+    "diagnostics_export": "Պահել հաշվետվությունը",
+    "diagnostics_exportFailed": "Արտահանումը չհաջողվեց։ Նորից փորձեք տեղական հաշվետվությունից։",
+    "diagnostics_preferenceFailed": "Այս կարգավորումը չհաջողվեց պահպանել։ Նորից փորձեք։",
+    "diagnostics_receipt": "Հղման կոդ՝ {id}",
+    "@diagnostics_receipt": {
+      "placeholders": {
+        "id": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_received": "Ստացվել է՝ {date}",
+    "@diagnostics_received": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_expires": "Պահվում է մինչև {date}",
+    "@diagnostics_expires": {
+      "placeholders": {
+        "date": {
+          "type": "Object"
+        }
+      }
+    },
+    "diagnostics_duplicate": "Այս հաշվետվությունն արդեն ստացվել էր։",
+    "diagnostics_preview": "Հաշվետվության նախադիտում",
+    "diagnostics_eventCount": "{count, plural, =0{Տեխնիկական իրադարձություններ կցված չեն} =1{Կցված է 1 տեխնիկական իրադարձություն} other{Կցված է {count} տեխնիկական իրադարձություն}}",
+    "@diagnostics_eventCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "diagnostics_technical": "Տեխնիկական մանրամասներ",
+    "diagnostics_empty": "Դեռ ոչ մի ախտորոշման հաշվետվություն չի պատրաստվել։",
+    "diagnostics_checkName": "{id, select, tunnel_connection{Թունելի վիճակ} handshake{Կապի հաստատում} certificate{VPN վկայագիր} kill_switch{Android-ի պաշտպանություն} connectivity{Հասանելի ցանց} api_reachability{Ծառայության հասանելիություն} secure_storage{Անվտանգ պահոց} other{Տեղական ստուգում}}",
+    "@diagnostics_checkName": {
+      "placeholders": {
+        "id": {
+          "type": "String"
+        }
+      }
+    },
+    "diagnostics_checkResult": "{result, select, passed{Ստուգված է} failed{Պահանջում է ուշադրություն} skipped{Չի ստուգվել — ակտիվ ստուգում չկա} unknown{Տեղեկությունը հասանելի չէ} other{Տեղեկությունը հասանելի չէ}}",
+    "@diagnostics_checkResult": {
+      "placeholders": {
+        "result": {
+          "type": "String"
+        }
+      }
+    },
+    "auth_welcome": "Բարի գալուստ FuzeVPN",
+    "connection_changeLocation": "Փոխել վայրը",
+    "connection_details": "Կապի մանրամասներ",
+    "locations_searchLabel": "Որոնել քաղաք կամ երկիր",
+    "locations_clearSearch": "Մաքրել որոնումը",
+    "locations_filterAll": "Բոլորը",
+    "locations_filterFavorites": "Ընտրյալներ",
+    "locations_results": "{count, plural, one{{count} վայր} other{{count} վայր}}",
+    "locations_noResults": "Վայրեր չեն գտնվել",
+    "locations_noResultsHint": "Փորձեք մեկ այլ քաղաք կամ երկիր։",
+    "locations_noFavorites": "Ձեր ընտրյալները միշտ ձեռքի տակ",
+    "locations_noFavoritesHint": "Հպեք վայրի կողքի աստղիկին՝ այն այստեղ պահելու համար։",
+    "locations_showAll": "Տեսնել բոլոր վայրերը",
+    "locations_addFavorite": "Ավելացնել ընտրյալներին՝ {name}",
+    "locations_removeFavorite": "Հեռացնել ընտրյալներից՝ {name}",
+    "locations_favoriteSaveFailed": "Ընտրյալը չհաջողվեց պահպանել։ Նորից փորձեք։",
+    "locations_emptyTitle": "Վայրեր հասանելի չեն",
+    "locations_emptyHint": "Թարմացրեք ցանկը՝ նորից փորձելու համար։",
+    "devices_manage": "Կառավարել իմ սարքերը",
+    "settings_personalization": "Ըստ ձեր ճաշակի",
+    "settings_safety": "Պաշտպանություն",
+    "settings_help": "Օգնության կարիք ունե՞ք",
+    "settings_about": "FuzeVPN-ի մասին",
+    "diagnostics_heading": "Հասկանալ միացման խնդիրը",
+    "@locations_results": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "@locations_addFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_removeFavorite": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "devices_profileStatus": "{status, select, active{Հասանելի} pending{Նախապատրաստվում է} revoked{Հեռացված} expired{Ժամկետն անցել է} other{Կարգավիճակը հասանելի չէ}}",
+    "@devices_profileStatus": {
+      "placeholders": {
+        "status": {
+          "type": "String"
+        }
+      }
+    },
+    "notice_preferenceSave_title": "Կարգավորումը չի պահպանվել",
+    "notice_preferenceSave_message": "Ձեր ընտրությունն առայժմ կիրառվում է, բայց չի պահպանվել։ Նորից փորձեք, որպեսզի այն պահպանվի նաև հավելվածը փակելուց հետո։",
+    "connection_androidDisconnectHint": "Եթե Android-ը շարունակում է VPN-ն ակտիվ պահել, բացվող կարգավորումներում անջատեք «Միշտ միացված VPN»-ը։",
+    "protection_learnMore": "Իմանալ Android-ի պաշտպանության մասին",
+    "protection_guideWhy": "Այս պաշտպանությունը թույլ չի տալիս հավելվածներին ուղղակիորեն օգտվել ինտերնետից, եթե VPN-ն անջատվի։ Այն կարգավորվում է Android-ում։",
+    "protection_guideAlwaysOnTitle": "Միշտ միացված VPN",
+    "protection_guideAlwaysOn": "Android-ը VPN ծառայությունը մշտապես աշխատեցնում է և կարող է այն նորից գործարկել հեռախոսի վերագործարկումից հետո։",
+    "protection_guideBlockTitle": "Արգելափակել առանց VPN-ի կապերը",
+    "protection_guideBlock": "Այս կարգավորումը թույլ չի տալիս տրաֆիկին շրջանցել VPN-ը, ներառյալ կապի ընդհատման ժամանակ։",
+    "protection_guideWarning": "Երբ այս արգելափակումը միացված է, ինտերնետը մնում է անջատված, մինչև VPN-ը միանա։",
+    "protection_guideStepsTitle": "Միացնել պաշտպանությունը",
+    "protection_guideStep1": "Ներքևի կոճակով բացեք Android-ի VPN կարգավորումները։",
+    "protection_guideStep2": "Բացեք ընտրանքները FuzeVPN-ի կողքի ատամնանիվի պատկերակով։",
+    "protection_guideStep3": "Եթե այս ընտրանքները հասանելի են, միացրեք «Միշտ միացված VPN»-ը, ապա՝ «Արգելափակել առանց VPN-ի կապերը»։",
+    "protection_guideManufacturers": "Անունները տարբերվում են՝ կախված հեռախոսից։ Անհրաժեշտության դեպքում կարգավորումներում որոնեք «VPN», հաճախ՝ «Ցանց և ինտերնետ» բաժնում։",
+    "protection_guideDisableTitle": "Անջատել այս պաշտպանությունը",
+    "protection_guideDisable": "Նույն կարգավորումներում անջատեք «Արգելափակել առանց VPN-ի կապերը»՝ VPN-ից դուրս ինտերնետ մուտք թույլ տալու համար։ Եթե այլևս չեք ցանկանում, որ Android-ը նորից գործարկի VPN-ը, անջատեք նաև «Միշտ միացված VPN»-ը։",
+    "protection_guideManual": "Այս կարգավորումները դուք եք ընտրում Android-ում։ FuzeVPN-ը դրանք ձեր փոխարեն չի փոխում։",
+    "locations_changeTitle": "Փոխե՞լ վայրը",
+    "locations_changeActive": "VPN-ը կանջատվի, ապա կփորձի միանալ հետևյալ վայրին՝ {name}։",
+    "locations_changeIdle": "VPN-ը կփորձի միանալ հետևյալ վայրին՝ {name}։",
+    "locations_confirmChange": "Փոխել և միանալ",
+    "locations_changeBusy": "Փոփոխությունն ընթացքի մեջ է։ Մեկ այլ վայր ընտրելուց առաջ սպասեք։",
+    "@locations_changeActive": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "@locations_changeIdle": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_automaticSelection": "Ավտոմատ ընտրություն",
+    "locations_cities": "Քաղաքներ",
+    "locations_servers": "Սերվերներ",
+    "locations_viewCities": "Տեսնել քաղաքները՝ {name}",
+    "@locations_viewCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_viewServers": "Տեսնել սերվերները՝ {name}",
+    "@locations_viewServers": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_countryCount": "{count, plural, one{{count} երկիր} other{{count} երկիր}}",
+    "@locations_countryCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_cityCount": "{count, plural, one{{count} քաղաք} other{{count} քաղաք}}",
+    "@locations_cityCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_serverCount": "{count, plural, one{{count} սերվեր} other{{count} սերվեր}}",
+    "@locations_serverCount": {
+      "placeholders": {
+        "count": {
+          "type": "int"
+        }
+      }
+    },
+    "locations_allCountries": "Բոլոր երկրները",
+    "locations_backToCountries": "Վերադառնալ երկրներին",
+    "locations_backToCities": "Վերադառնալ քաղաքներին՝ {name}",
+    "@locations_backToCities": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCountry": "Ընտրել {name}",
+    "@locations_chooseCountry": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_chooseCity": "Ընտրել {name}",
+    "@locations_chooseCity": {
+      "placeholders": {
+        "name": {
+          "type": "String"
+        }
+      }
+    },
+    "locations_noCompatibleServer": "Համատեղելի սերվեր հասանելի չէ։",
+    "externalLink_failed": "Այս հղումը չհաջողվեց բացել։ Կարող եք պատճենել այն և բացել բրաուզերում։",
+    "externalLink_copy": "Պատճենել հղումը",
+    "externalLink_copied": "Հղումը պատճենվեց",
+    "externalLink_copyFailed": "Հղումը չհաջողվեց պատճենել։ Ընտրեք ստորև եղած հասցեն։",
+    "settings_deleteAccount": "Ջնջել իմ հաշիվը",
+    "settings_deleteAccountDetail": "Դիտել հաշիվը ջնջելու հայտի ընթացակարգը",
+    "billing_title": "Fuze Premium",
+    "billing_subtitle": "Ընտրեք ձեր VPN բաժանորդագրությունը։",
+    "billing_subscribe": "Բաժանորդագրվել",
+    "billing_choosePlan": "Շարունակելու համար ընտրեք սակագին։",
+    "billing_monthly": "Ամսական",
+    "billing_yearly": "Տարեկան",
+    "billing_continue": "Շարունակել Google Play-ով",
+    "billing_restore": "Վերականգնել գնումները",
+    "billing_manage": "Կառավարել բաժանորդագրությունը",
+    "billing_deleteAccountWarning": "Եթե ունեք Google Play-ի բաժանորդագրություն, FuzeVPN հաշիվը ջնջելը չի չեղարկում դրա ավտոմատ երկարացումը։ Երկարացումը կառավարեք կամ չեղարկեք առանձին՝ Google Play-ում։",
+    "billing_deleteAccountContinue": "Անցնել հաշվի ջնջման հայտին",
+    "billing_refresh": "Թարմացնել հասանելիությունը",
+    "billing_loadingPlans": "Սակագները բեռնվում են…",
+    "billing_unavailable": "Այս պահին սակագներ հասանելի չեն։ Նորից փորձեք ավելի ուշ։",
+    "billing_comingSoon": "Բաժանորդագրությունները շուտով հասանելի կլինեն։",
+    "billing_priceDisclosure": "Գինը տրամադրում է Google Play-ը։ Վերջնական գումարը և կիրառվող հարկերը հաստատվում են նախքան ձեր հաստատումը։",
+    "billing_renewalMonthly": "Ավտոմատ երկարացվում է ամեն ամիս, քանի դեռ չեք չեղարկել։ Կարող եք ցանկացած պահի չեղարկել Google Play-ի բաժանորդագրություններում։",
+    "billing_renewalYearly": "Ավտոմատ երկարացվում է ամեն տարի, քանի դեռ չեք չեղարկել։ Կարող եք ցանկացած պահի չեղարկել Google Play-ի բաժանորդագրություններում։",
+    "billing_active": "Ձեր Premium հասանելիությունն ակտիվ է",
+    "billing_accessUntil": "Հասանելիություն մինչև {date}։",
+    "billing_webManaged": "Ձեր բաժանորդագրությունը կառավարվում է FuzeVPN կայքում։",
+    "billing_playManaged": "Ձեր բաժանորդագրությունը կառավարվում է Google Play-ի կողմից։",
+    "billing_playOnHold": "Ձեր Google Play բաժանորդագրությունը կասեցված է կամ սպասում է վճարման։ Google Play-ում այն շտկելու համար բացեք «Կառավարել բաժանորդագրությունը»։",
+    "billing_playReceiptUnlinked": "Այս Google Play հաշիվն արդեն ունի Fuze Premium բաժանորդագրություն, որն այս FuzeVPN հաշվի համար ակտիվ չէ։ Google Play-ում այն դիտելու համար բացեք «Կառավարել բաժանորդագրությունը»։",
+    "billing_inactive": "Ակտիվ բաժանորդագրություն չկա։",
+    "billing_checkingAccess": "Ձեր հասանելիությունը ստուգվում է…",
+    "billing_restoring": "Գնումները վերականգնվում են…",
+    "billing_pending": "Վճարումը սպասման մեջ է։ Ձեր հասանելիությունը կակտիվանա հաստատումից հետո։",
+    "billing_cancelled": "Գնումը չեղարկվել է։ Նոր բաժանորդագրություն չի ակտիվացվել։",
+    "billing_verifying": "Գնումը ստուգվում է…",
+    "billing_success": "Բաժանորդագրությունն ակտիվացվել է։ Ձեր Premium հասանելիությունը պատրաստ է։",
+    "billing_restored": "Ձեր գնումները վերականգնվել են։",
+    "billing_restoreEmpty": "Այս Google Play հաշվի համար վերականգնելու գնումներ չկան։",
+    "billing_catalogError": "Սակագները չհաջողվեց բեռնել։ Նորից փորձեք։",
+    "billing_purchaseError": "Գնումը չհաջողվեց սկսել։ Նորից փորձեք։",
+    "billing_verificationError": "Գնման ստուգումը ժամանակավորապես հասանելի չէ։ Նորից փորձելու համար վերականգնեք գնումները։",
+    "billing_restoreError": "Գնումները չհաջողվեց վերականգնել։ Նորից փորձեք։",
+    "billing_managementError": "Բաժանորդագրության կառավարումը չհաջողվեց բացել։ Նորից փորձեք։",
+    "billing_storeUnavailable": "Google Play-ն այս սարքում հասանելի չէ։",
+    "@billing_accessUntil": {
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "welcome_title": "Ձեր VPN-ը՝ պարզ և հարմար։",
+    "welcome_description": "Պաշտպանեք ձեր կապը։ Վերահսկեք ձեր գաղտնիությունը։",
+    "welcome_start": "Սկսել",
+    "welcome_alreadyPurchased": "Արդեն գնե՞լ եք",
+    "welcome_noAccountRequired": "Սկսելու համար հաշիվ պետք չէ։",
+    "guest_accountTitle": "Հաշիվը կապված չէ",
+    "guest_accountDescription": "Վերականգնեք ձեր գնումները նույն Google Play հաշվով՝ բաժանորդագրությունն այլ սարքում օգտագործելու համար։",
+    "guest_existingSubscriberSignIn": "Արդեն բաժանորդագրվա՞ծ եք։ Մուտք գործեք",
+    "guest_claimTitle": "Վերցրեք FuzeVPN-ը ձեզ հետ",
+    "guest_claimDescription": "Ստեղծեք հաշիվ՝ բաժանորդագրությունը ձեր մյուս սարքերում օգտագործելու համար։ Այս քայլը պարտադիր չէ։",
+    "guest_skip": "Ավելի ուշ",
+    "guest_activationTitle": "Fuze Premium-ն ակտիվ է",
+    "guest_activationDescription": "Ձեր բաժանորդագրությունը պատրաստ է։ Օգտագործեք ձեր VPN-ը և ստեղծեք հաշիվ, երբ ցանկանաք։",
+    "guest_useVpn": "Օգտագործել իմ VPN-ը",
+    "guest_loginRequired": "Այս գնումն արդեն կապված է FuzeVPN հաշվի հետ։ Մուտք գործեք այդ հաշիվ՝ ձեր բաժանորդագրությունն օգտագործելու համար։",
+    "guest_signOutWarning": "Ձեր բաժանորդագրությունը կարող եք վերականգնել՝ նույն Google Play հաշվով գնումները վերականգնելով։",
+    "guest_profileUnavailable": "Ձեր հաշիվն արդեն կապված է։ Մուտք գործեք՝ ձեր տվյալները դիտելու և կառավարելու համար։",
+    "billing_acceptance": "Շարունակելով՝ դուք ընդունում եք օգտագործման պայմանները և գաղտնիության քաղաքականությունը։",
+    "guest_verifyEmailReminder": "Հաստատեք ձեր էլփոստի հասցեն՝ հաշվի անվտանգությունն ապահովելու համար։ Կարող եք շարունակել օգտագործել ձեր VPN-ը։",
+    "guest_serviceUnavailable": "Ծառայությունը ժամանակավորապես հասանելի չէ։ Նորից փորձեք քիչ հետո։",
+    "guest_restoreError": "Ձեր գնումները չհաջողվեց վերականգնել։ Նորից փորձեք այն Google Play հաշվով, որով կատարվել էր գնումը։",
+    "guest_claimSuccess": "Ձեր հաշիվը ստեղծվել է։ Ձեր բաժանորդագրությունը և VPN-ի հասանելիությունը պահպանված են։",
+    "guest_emailExists": "Այս էլփոստն արդեն օգտագործվում է։ Ընտրեք այլ հասցե կամ մուտք գործեք ձեր գոյություն ունեցող հաշիվ։ Ձեր գնումը մնում է հասանելի Google Play-ի միջոցով։",
+    "guest_claimError": "Ձեր հաշիվը չհաջողվեց ստեղծել։ Կարող եք շարունակել օգտվել ձեր VPN-ից և ավելի ուշ նորից փորձել։",
+    "guest_secureStorageError": "Ձեր սեսիան չհաջողվեց անվտանգ պահպանել այս սարքում։ Նորից փորձեք։",
+    "guest_premiumRequired": "Ընտրեք բաժանորդագրություն՝ ձեր VPN-ն ակտիվացնելու համար։",
+    "welcome_viewPlans": "Դիտել սակագները",
+    "google_continue": "Շարունակել Google-ով",
+    "google_or": "կամ",
+    "google_title": "Ձեր FuzeVPN հաշիվը",
+    "google_settingUp": "Ավարտեք հաշվի ստեղծումը",
+    "google_country": "Բնակության երկիր",
+    "google_profileDescription": "Ընտրեք ձեր երկիրը և կարդացեք երկու փաստաթղթերը՝ FuzeVPN հաշիվը ստեղծելու համար։",
+    "google_claimDescription": "Կապեք ձեր հյուրի հաշիվը Google-ին։ Ձեր բաժանորդագրությունը և սարքը մնում են այս հաշվին կապված։",
+    "google_linkTitle": "Կապել Google-ը FuzeVPN-ի հետ",
+    "google_linkDescription": "Հաստատեք ձեր առկա FuzeVPN հաշվի հասանելիությունը։ Այս քայլը չի պահանջում ձեր Google գաղտնաբառը։",
+    "google_password": "FuzeVPN գաղտնաբառ",
+    "google_linkAccount": "Հաստատել կապը",
+    "google_requestEmail": "Ուղարկել ինձ հաստատման նամակ",
+    "google_emailInstructions": "Բացեք FuzeVPN-ի նամակը և մուտքագրեք հաստատման կոդը։",
+    "google_emailCode": "Էլփոստի հաստատման կոդ",
+    "google_confirmEmail": "Հաստատել կոդը",
+    "google_restart": "Ընտրել այլ Google հաշիվ",
+    "google_resume": "Ստուգել այս փորձը",
+    "google_unavailable": "Google-ով մուտքը հասանելի չէ։ Կարող եք օգտագործել էլփոստն ու գաղտնաբառը։",
+    "google_expired": "Այս փորձի ժամկետը լրացել է։ Չեղարկեք այն և նորից սկսեք։",
+    "google_conflict": "Այս Google հաշիվն արդեն կապված է մեկ այլ հաշվի հետ։ Ձեր ներկա հաշիվը և բաժանորդագրությունը պահպանվում են։",
+    "google_error": "Google-ով մուտքը չհաջողվեց։ Նորից փորձեք։ Ձեր ներկա հասանելիությունը պահպանվում է։",
+    "google_uncertain": "Արդյունքը հաստատել չհաջողվեց։ Ստուգեք այս փորձը կամ չեղարկեք այն նորից սկսելուց առաջ։",
+    "google_cancelFailed": "Չեղարկումը հաստատել չհաջողվեց։ Այս էկրանից դուրս գալուց առաջ նորից փորձեք չեղարկել։",
+    "google_cancelled": "Google-ով մուտքը չեղարկվեց։",
+    "google_selecting": "Ընտրեք ձեր Google հաշիվը…",
+    "google_verifying": "Ձեր հաշիվը ստուգվում է…",
+    "google_emailUnavailable": "Հաստատման նամակը չհաջողվեց ուղարկել։ Նորից փորձեք ավելի ուշ։",
+    "google_emailSent": "Հաստատման նամակն ուղարկվել է։ Ստուգեք ձեր մուտքի արկղը։",
+    "google_rateLimited": "Խնդրում ենք սպասել, նախքան նորից փորձելը։",
+    "google_busy": "Google-ը հասանելի չէ, մինչ ընթանում է մեկ այլ գործողություն (VPN միացում, հաշիվ կամ հյուր)։ Նորից փորձեք, երբ այն ավարտվի։ Ձեր ներկա հասանելիությունը պահպանվում է։",
+    "google_invalidPassword": "FuzeVPN գաղտնաբառը սխալ է։ Ձեր ներկա հաշիվը պահպանվում է։",
+    "google_invalidCode": "Հաստատման կոդը սխալ է կամ ժամկետն անցել է։",
+    "google_accountChanged": "Ձեր սեսիան փոխվել է։ Նորից սկսելուց առաջ չեղարկեք այս փորձը։",
+    "google_invalidResponse": "Պատասխանը հաստատել չհաջողվեց։ Ձեր ներկա հասանելիությունը պահպանվում է։",
+    "google_invalidRegistration": "Ստուգեք ձեր երկիրը և երկու համաձայնությունները։",
+    "google_consentRequired": "Շարունակելու համար ընտրեք ձեր երկիրը և ընդունեք երկու փաստաթղթերը։",
+    "google_challengeRequired": "Պահանջվում է լրացուցիչ անվտանգության ստուգում։ Ձեր ներկա հասանելիությունը պահպանվում է։",
+    "google_challengeUnavailable": "Անվտանգության ստուգումը հասանելի չէ։ Նորից փորձեք ավելի ուշ։",
+    "google_intentMismatch": "Google-ով մուտքի նախորդ փորձը դեռ սպասման մեջ է։ Այս գործողությունը սկսելուց առաջ չեղարկեք այն։",
+    "google_challengeBlocked": "Պահանջվող անվտանգության ստուգումն այս հավելվածում հասանելի չէ։ Այս գործողությունը ներկայումս հնարավոր չէ ավարտել։",
+    "google_solveChallenge": "Անցնել անվտանգության ստուգումը",
+    "google_challengeTitle": "Անվտանգության ստուգում",
+    "google_challengeReady": "Ստուգումն ավարտված է։ Այժմ կարող եք հաստատել ձեր հաշվի ստեղծումը։",
+    "google_challengeExpired": "Ստուգման ժամկետն անցել է։ Հաստատելուց առաջ անցեք այն նորից։",
+    "google_challengeCancelled": "Ստուգումը չեղարկվեց։ Կարող եք նորից փորձել։",
+    "google_challengeFailed": "Անվտանգության ստուգումը չհաջողվեց։ Նորից փորձեք։",
+    "billing_trialTitle": "Փորձեք Fuze Premium-ն անվճար",
+    "billing_trialSubtitle": "Սկսեք պաշտպանել ձեր կապն այսօրվանից։",
+    "billing_trialWeeks": "2-շաբաթյա անվճար փորձաշրջան",
+    "billing_trialDays": "{days}-օրյա անվճար փորձաշրջան",
+    "@billing_trialDays": {
+      "description": "Free trial duration returned by Google Play, in days.",
+      "placeholders": {
+        "days": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialStart": "Սկսել իմ անվճար փորձաշրջանը",
+    "billing_trialFirstCharge": "Եթե սկսեք այսօր, առաջին վճարումը նախատեսված է հետևյալ ամսաթվին՝ {date}։",
+    "@billing_trialFirstCharge": {
+      "description": "Estimated first charge date when starting today; Google Play confirms before purchase.",
+      "placeholders": {
+        "date": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialTerms": "Ավտոմատ երկարացվում է նշված գնով։ Վճարումից խուսափելու համար չեղարկեք Google Play-ում մինչև փորձաշրջանի ավարտը։",
+    "billing_trialThenMonthly": "Ապա՝ {price} ամսական",
+    "@billing_trialThenMonthly": {
+      "description": "Exact localized recurring monthly price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_trialThenYearly": "Ապա՝ {price} տարեկան",
+    "@billing_trialThenYearly": {
+      "description": "Exact localized recurring annual price returned by Google Play.",
+      "placeholders": {
+        "price": {
+          "type": "String"
+        }
+      }
+    },
+    "billing_choosePeriod": "Ընտրեք ձեր սակագինը",
+    "billing_selectionHint": "Շարունակելու համար ընտրեք սակագին։",
+    "billing_benefitConnection": "Գաղտնագրված կապ",
+    "billing_benefitPrivacy": "Առցանց գաղտնիություն",
+    "billing_benefitNoAccount": "Գրանցում չի պահանջվում",
+    "billing_cancellation": "Չեղարկել Google Play-ում",
+    "billing_premiumTitle": "Ավելի լավ պաշտպանված կապ։",
+    "billing_premiumSubtitle": "Պաշտպանեք ձեր կապը՝ ձեր սեփական տեմպով։",
+    "billing_priceMonthly": "ամսական",
+    "billing_priceYearly": "տարեկան",
+    "billing_trialToday": "Այսօր վճարելու ոչինչ չկա",
+    "billing_trialConfirmation": "Google Play-ը հաստատում է ամսաթվերը, վերջնական գումարը և կիրառվող հարկերը՝ նախքան ձեր հաստատումը։",
+    "billing_offerChanged": "Այս առաջարկի պայմանները փոխվել են։ Թարմացրեք սակագները և նորից ընտրեք։",
+    "status_waitingNetwork": "Սպասում է ցանցին",
+    "status_waitingNetworkDetail": "Ցանց հասանելի չէ։ VPN-ը կստուգի կապը, երբ ցանցը վերադառնա։",
+    "locations_favoriteLoadFailed": "Ընտրյալները չհաջողվեց բեռնել։ Նորից փորձեք։",
+    "locations_favoritesLoading": "Ընտրյալները բեռնվում են…"
+  },
+  "android": {
+    "vpn_notification_channel": "VPN կապ",
+    "vpn_notification_channel_description": "Ցույց է տալիս, երբ FuzeVPN կապն ակտիվ է։",
+    "vpn_notification_title": "FuzeVPN",
+    "vpn_notification_connected": "%1$s կապն ակտիվ է",
+    "vpn_notification_connecting": "%1$s կապը հաստատվում է",
+    "vpn_notification_disconnecting": "%1$s անջատվում է",
+    "vpn_notification_interrupted": "%1$s կապն ընդհատվել է",
+    "vpn_tile_label": "FuzeVPN",
+    "vpn_tile_ready": "Պատրաստ է · %1$s · %2$s",
+    "vpn_tile_connected": "Միացված է · %1$s · %2$s",
+    "vpn_tile_connecting": "Միանում է %1$s…",
+    "vpn_tile_disconnecting": "Անջատվում է…",
+    "vpn_tile_interrupted": "%1$s ընդհատվել է",
+    "vpn_tile_setup_required": "Նախ բացեք հավելվածը",
+    "vpn_tile_working": "VPN գործողությունն ընթացքի մեջ է…",
+    "vpn_notification_reconnecting": "Նորից միանում է… · %1$s",
+    "vpn_system_action_required": "Անհրաժեշտ է գործողություն Android-ի կարգավորումներում",
+    "vpn_tile_reconnecting": "Նորից միանում է… · %1$s",
+    "vpn_notification_waiting_network": "Սպասում է ցանցին · %1$s",
+    "vpn_tile_waiting_network": "Սպասում է ցանցին · %1$s"
+  },
+  "countries": {
+    "AC": "Համբարձման կղզի",
+    "AD": "Անդորրա",
+    "AE": "Արաբական Միացյալ Էմիրություններ",
+    "AF": "Աֆղանստան",
+    "AG": "Անտիգուա և Բարբուդա",
+    "AI": "Անգուիլա",
+    "AL": "Ալբանիա",
+    "AM": "Հայաստան",
+    "AO": "Անգոլա",
+    "AQ": "Անտարկտիդա",
+    "AR": "Արգենտինա",
+    "AS": "Ամերիկյան Սամոա",
+    "AT": "Ավստրիա",
+    "AU": "Ավստրալիա",
+    "AW": "Արուբա",
+    "AX": "Ալանդյան կղզիներ",
+    "AZ": "Ադրբեջան",
+    "BA": "Բոսնիա և Հերցեգովինա",
+    "BB": "Բարբադոս",
+    "BD": "Բանգլադեշ",
+    "BE": "Բելգիա",
+    "BF": "Բուրկինա Ֆասո",
+    "BG": "Բուլղարիա",
+    "BH": "Բահրեյն",
+    "BI": "Բուրունդի",
+    "BJ": "Բենին",
+    "BL": "Սեն Բարտելմի",
+    "BM": "Բերմուդներ",
+    "BN": "Բրունեյ",
+    "BO": "Բոլիվիա",
+    "BQ": "Կարիբյան Նիդեռլանդներ",
+    "BR": "Բրազիլիա",
+    "BS": "Բահամյան կղզիներ",
+    "BT": "Բութան",
+    "BV": "Բուվե կղզի",
+    "BW": "Բոտսվանա",
+    "BY": "Բելառուս",
+    "BZ": "Բելիզ",
+    "CA": "Կանադա",
+    "CC": "Կոկոսյան (Քիլինգ) կղզիներ",
+    "CD": "Կոնգո - Կինշասա",
+    "CF": "Կենտրոնական Աֆրիկյան Հանրապետություն",
+    "CG": "Կոնգո - Բրազավիլ",
+    "CH": "Շվեյցարիա",
+    "CI": "Կոտ դ՚Իվուար",
+    "CK": "Կուկի կղզիներ",
+    "CL": "Չիլի",
+    "CM": "Կամերուն",
+    "CN": "Չինաստան",
+    "CO": "Կոլումբիա",
+    "CP": "Քլիփերթոն կղզի",
+    "CQ": "Սարկ կղզի",
+    "CR": "Կոստա Ռիկա",
+    "CU": "Կուբա",
+    "CV": "Կաբո Վերդե",
+    "CW": "Կյուրասաո",
+    "CX": "Սուրբ Ծննդյան կղզի",
+    "CY": "Կիպրոս",
+    "CZ": "Չեխիա",
+    "DE": "Գերմանիա",
+    "DG": "Դիեգո Գարսիա",
+    "DJ": "Ջիբութի",
+    "DK": "Դանիա",
+    "DM": "Դոմինիկա",
+    "DO": "Դոմինիկյան Հանրապետություն",
+    "DZ": "Ալժիր",
+    "EA": "Սեուտա և Մելիլյա",
+    "EC": "Էկվադոր",
+    "EE": "Էստոնիա",
+    "EG": "Եգիպտոս",
+    "EH": "Արևմտյան Սահարա",
+    "ER": "Էրիթրեա",
+    "ES": "Իսպանիա",
+    "ET": "Եթովպիա",
+    "EU": "Եվրոպական Միություն",
+    "EZ": "Եվրագոտի",
+    "FI": "Ֆինլանդիա",
+    "FJ": "Ֆիջի",
+    "FK": "Ֆոլքլենդյան կղզիներ",
+    "FM": "Միկրոնեզիա",
+    "FO": "Ֆարերյան կղզիներ",
+    "FR": "Ֆրանսիա",
+    "GA": "Գաբոն",
+    "GB": "Միացյալ Թագավորություն",
+    "GD": "Գրենադա",
+    "GE": "Վրաստան",
+    "GF": "Ֆրանսիական Գվիանա",
+    "GG": "Գերնսի",
+    "GH": "Գանա",
+    "GI": "Ջիբրալթար",
+    "GL": "Գրենլանդիա",
+    "GM": "Գամբիա",
+    "GN": "Գվինեա",
+    "GP": "Գվադելուպա",
+    "GQ": "Հասարակածային Գվինեա",
+    "GR": "Հունաստան",
+    "GS": "Հարավային Ջորջիա և Հարավային Սենդվիչյան կղզիներ",
+    "GT": "Գվատեմալա",
+    "GU": "Գուամ",
+    "GW": "Գվինեա-Բիսաու",
+    "GY": "Գայանա",
+    "HK": "Հոնկոնգի ՀՎՇ",
+    "HM": "Հերդ կղզի և ՄակԴոնալդի կղզիներ",
+    "HN": "Հոնդուրաս",
+    "HR": "Խորվաթիա",
+    "HT": "Հայիթի",
+    "HU": "Հունգարիա",
+    "IC": "Կանարյան կղզիներ",
+    "ID": "Ինդոնեզիա",
+    "IE": "Իռլանդիա",
+    "IL": "Իսրայել",
+    "IM": "Մեն կղզի",
+    "IN": "Հնդկաստան",
+    "IO": "Բրիտանական տարածք Հնդկական Օվկիանոսում",
+    "IQ": "Իրաք",
+    "IR": "Իրան",
+    "IS": "Իսլանդիա",
+    "IT": "Իտալիա",
+    "JE": "Ջերսի",
+    "JM": "Ճամայկա",
+    "JO": "Հորդանան",
+    "JP": "Ճապոնիա",
+    "KE": "Քենիա",
+    "KG": "Ղրղզստան",
+    "KH": "Կամբոջա",
+    "KI": "Կիրիբատի",
+    "KM": "Կոմորյան կղզիներ",
+    "KN": "Սենթ Քիտս և Նևիս",
+    "KP": "Հյուսիսային Կորեա",
+    "KR": "Հարավային Կորեա",
+    "KW": "Քուվեյթ",
+    "KY": "Կայմանյան կղզիներ",
+    "KZ": "Ղազախստան",
+    "LA": "Լաոս",
+    "LB": "Լիբանան",
+    "LC": "Սենթ Լյուսիա",
+    "LI": "Լիխտենշտեյն",
+    "LK": "Շրի Լանկա",
+    "LR": "Լիբերիա",
+    "LS": "Լեսոտո",
+    "LT": "Լիտվա",
+    "LU": "Լյուքսեմբուրգ",
+    "LV": "Լատվիա",
+    "LY": "Լիբիա",
+    "MA": "Մարոկկո",
+    "MC": "Մոնակո",
+    "MD": "Մոլդովա",
+    "ME": "Չեռնոգորիա",
+    "MF": "Սեն Մարտեն",
+    "MG": "Մադագասկար",
+    "MH": "Մարշալյան կղզիներ",
+    "MK": "Հյուսիսային Մակեդոնիա",
+    "ML": "Մալի",
+    "MM": "Մյանմա (Բիրմա)",
+    "MN": "Մոնղոլիա",
+    "MO": "Չինաստանի Մակաո ՀՎՇ",
+    "MP": "Հյուսիսային Մարիանյան կղզիներ",
+    "MQ": "Մարտինիկա",
+    "MR": "Մավրիտանիա",
+    "MS": "Մոնսեռատ",
+    "MT": "Մալթա",
+    "MU": "Մավրիկիոս",
+    "MV": "Մալդիվներ",
+    "MW": "Մալավի",
+    "MX": "Մեքսիկա",
+    "MY": "Մալայզիա",
+    "MZ": "Մոզամբիկ",
+    "NA": "Նամիբիա",
+    "NC": "Նոր Կալեդոնիա",
+    "NE": "Նիգեր",
+    "NF": "Նորֆոլկ կղզի",
+    "NG": "Նիգերիա",
+    "NI": "Նիկարագուա",
+    "NL": "Նիդեռլանդներ",
+    "NO": "Նորվեգիա",
+    "NP": "Նեպալ",
+    "NR": "Նաուրու",
+    "NU": "Նիուե",
+    "NZ": "Նոր Զելանդիա",
+    "OM": "Օման",
+    "PA": "Պանամա",
+    "PE": "Պերու",
+    "PF": "Ֆրանսիական Պոլինեզիա",
+    "PG": "Պապուա Նոր Գվինեա",
+    "PH": "Ֆիլիպիններ",
+    "PK": "Պակիստան",
+    "PL": "Լեհաստան",
+    "PM": "Սեն Պիեռ և Միքելոն",
+    "PN": "Պիտկեռն կղզիներ",
+    "PR": "Պուերտո Ռիկո",
+    "PS": "Պաղեստինյան տարածքներ",
+    "PT": "Պորտուգալիա",
+    "PW": "Պալաու",
+    "PY": "Պարագվայ",
+    "QA": "Կատար",
+    "QO": "Արտաքին Օվկիանիա",
+    "RE": "Ռեյունիոն",
+    "RO": "Ռումինիա",
+    "RS": "Սերբիա",
+    "RU": "Ռուսաստան",
+    "RW": "Ռուանդա",
+    "SA": "Սաուդյան Արաբիա",
+    "SB": "Սողոմոնյան կղզիներ",
+    "SC": "Սեյշելներ",
+    "SD": "Սուդան",
+    "SE": "Շվեդիա",
+    "SG": "Սինգապուր",
+    "SH": "Սուրբ Հեղինեի կղզի",
+    "SI": "Սլովենիա",
+    "SJ": "Սվալբարդ և Յան Մայեն",
+    "SK": "Սլովակիա",
+    "SL": "Սիեռա Լեոնե",
+    "SM": "Սան Մարինո",
+    "SN": "Սենեգալ",
+    "SO": "Սոմալի",
+    "SR": "Սուրինամ",
+    "SS": "Հարավային Սուդան",
+    "ST": "Սան Տոմե և Փրինսիպի",
+    "SV": "Սալվադոր",
+    "SX": "Սինտ Մարտեն",
+    "SY": "Սիրիա",
+    "SZ": "Էսվատինի",
+    "TA": "Տրիստան դա Կունյա",
+    "TC": "Թըրքս և Կայկոս կղզիներ",
+    "TD": "Չադ",
+    "TF": "Ֆրանսիական Հարավային Տարածքներ",
+    "TG": "Տոգո",
+    "TH": "Թաիլանդ",
+    "TJ": "Տաջիկստան",
+    "TK": "Տոկելաու",
+    "TL": "Թիմոր Լեշտի",
+    "TM": "Թուրքմենստան",
+    "TN": "Թունիս",
+    "TO": "Տոնգա",
+    "TR": "Թուրքիա",
+    "TT": "Տրինիդադ և Տոբագո",
+    "TV": "Տուվալու",
+    "TW": "Թայվան",
+    "TZ": "Տանզանիա",
+    "UA": "Ուկրաինա",
+    "UG": "Ուգանդա",
+    "UM": "Արտաքին կղզիներ (ԱՄՆ)",
+    "UN": "Միավորված ազգերի կազմակերպություն",
+    "US": "Միացյալ Նահանգներ",
+    "UY": "Ուրուգվայ",
+    "UZ": "Ուզբեկստան",
+    "VA": "Վատիկան",
+    "VC": "Սենթ Վինսենթ և Գրենադիններ",
+    "VE": "Վենեսուելա",
+    "VG": "Բրիտանական Վիրջինյան կղզիներ",
+    "VI": "ԱՄՆ Վիրջինյան կղզիներ",
+    "VN": "Վիետնամ",
+    "VU": "Վանուատու",
+    "WF": "Ուոլիս և Ֆուտունա",
+    "WS": "Սամոա",
+    "XA": "կեղծ տարբերիչներ",
+    "XB": "կեղծ երկուղղված",
+    "XK": "Կոսովո",
+    "YE": "Եմեն",
+    "YT": "Մայոտ",
+    "ZA": "Հարավաֆրիկյան Հանրապետություն",
+    "ZM": "Զամբիա",
+    "ZW": "Զիմբաբվե",
+    "ZZ": "Անհայտ տարածաշրջան"
+  }
+}

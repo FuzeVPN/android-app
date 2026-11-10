@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">Àsopọ̀ VPN</string>
+    <string name="vpn_notification_channel_description">Ó fi hàn nígbà tí àsopọ̀ FuzeVPN ń ṣiṣẹ́.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">Àsopọ̀ %1$s ń ṣiṣẹ́</string>
+    <string name="vpn_notification_connecting">Àsopọ̀ %1$s ń lọ lọ́wọ́</string>
+    <string name="vpn_notification_disconnecting">Ń gé àsopọ̀ %1$s</string>
+    <string name="vpn_notification_interrupted">Àsopọ̀ %1$s ti dáwọ́ dúró</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">Ti ṣetán · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">Ti sopọ̀ · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">Ń sopọ̀ %1$s…</string>
+    <string name="vpn_tile_disconnecting">Ń gé àsopọ̀…</string>
+    <string name="vpn_tile_interrupted">%1$s ti dáwọ́ dúró</string>
+    <string name="vpn_tile_setup_required">Ẹ kọ́kọ́ ṣí ohun èlò náà</string>
+    <string name="vpn_tile_working">Iṣẹ́ VPN ń lọ lọ́wọ́…</string>
+    <string name="vpn_notification_reconnecting">Ń tún sopọ̀… · %1$s</string>
+    <string name="vpn_system_action_required">Ó nílò ìgbésẹ̀ nínú ìṣètò Android</string>
+    <string name="vpn_tile_reconnecting">Ń tún sopọ̀… · %1$s</string>
+    <string name="vpn_notification_waiting_network">Ń dúró de nẹ́tíwọ́ọ̀kì · %1$s</string>
+    <string name="vpn_tile_waiting_network">Ń dúró de nẹ́tíwọ́ọ̀kì · %1$s</string>
+</resources>

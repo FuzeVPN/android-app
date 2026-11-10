@@ -3,13 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fuzevpn_android/l10n/app_copy.dart';
 import 'package:fuzevpn_android/l10n/app_formats.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/widgets/language_settings.dart';
 
 void main() {
   test('formatting retains regions without adding translation choices', () {
-    expect(AppLanguages.all, hasLength(30));
-    expect(AppLanguages.supportedLocales, hasLength(30));
+    expect(AppLanguages.all, hasLength(70));
+    expect(AppLanguages.supportedLocales, hasLength(70));
     expect(
       AppLanguages.resolve([const Locale('en', 'GB')], []),
       const Locale('en'),
@@ -65,7 +66,7 @@ void main() {
         MaterialApp(
           supportedLocales: AppLanguages.supportedLocales,
           localeListResolutionCallback: AppLanguages.resolve,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           home: Builder(
             builder: (context) => Text(
               '${AppFormats.date(context, DateTime(2026, 11, 2))}\n'
@@ -79,6 +80,36 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  testWidgets('every language formats dates; those without Flutter date data '
+      'use day-first English', (tester) async {
+    addTearDown(tester.platformDispatcher.clearLocalesTestValue);
+    for (final language in AppLanguages.all) {
+      tester.platformDispatcher.localesTestValue = [language.locale];
+      await tester.pumpWidget(
+        MaterialApp(
+          locale: language.locale,
+          supportedLocales: AppLanguages.supportedLocales,
+          localizationsDelegates: AppLocalizationDelegates.all,
+          home: Builder(
+            builder: (context) => Text(
+              '${AppFormats.date(context, DateTime(2026, 11, 2))}\n'
+              '${AppFormats.longDate(context, DateTime(2026, 11, 2))}',
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: language.tag);
+      if (const {'ha', 'mg', 'so', 'yo', 'ig', 'rw'}.contains(language.tag)) {
+        expect(
+          find.text('02/11/2026\n2 November 2026'),
+          findsOneWidget,
+          reason: language.tag,
+        );
+      }
+    }
+  });
 
   for (final language in AppLanguages.all) {
     test(
@@ -151,7 +182,7 @@ void main() {
           locale: Locale(language),
           supportedLocales: AppLanguages.supportedLocales,
           localeListResolutionCallback: AppLanguages.resolve,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          localizationsDelegates: AppLocalizationDelegates.all,
           home: Scaffold(
             body: LanguageSettings(locale: Locale(language), onChanged: (_) {}),
           ),

@@ -527,6 +527,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get action_cancel => 'Annuleren';
 
   @override
+  String get action_close => 'Sluiten';
+
+  @override
+  String get action_copy => 'Kopiëren';
+
+  @override
   String get action_signOut => 'Afmelden';
 
   @override

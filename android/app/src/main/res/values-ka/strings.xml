@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN კავშირი</string>
+    <string name="vpn_notification_channel_description">აჩვენებს, როდის არის FuzeVPN კავშირი აქტიური.</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s კავშირი აქტიურია</string>
+    <string name="vpn_notification_connecting">%1$s კავშირის დამყარება მიმდინარეობს</string>
+    <string name="vpn_notification_disconnecting">%1$s-ის გათიშვა მიმდინარეობს</string>
+    <string name="vpn_notification_interrupted">%1$s კავშირი შეწყდა</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">მზადაა · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">დაკავშირებულია · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">მიმდინარეობს დაკავშირება %1$s…</string>
+    <string name="vpn_tile_disconnecting">მიმდინარეობს გათიშვა…</string>
+    <string name="vpn_tile_interrupted">%1$s შეწყდა</string>
+    <string name="vpn_tile_setup_required">ჯერ გახსენით აპი</string>
+    <string name="vpn_tile_working">VPN-ის ოპერაცია მიმდინარეობს…</string>
+    <string name="vpn_notification_reconnecting">ხელახლა დაკავშირება… · %1$s</string>
+    <string name="vpn_system_action_required">საჭიროა მოქმედება Android-ის პარამეტრებში</string>
+    <string name="vpn_tile_reconnecting">ხელახლა დაკავშირება… · %1$s</string>
+    <string name="vpn_notification_waiting_network">ქსელის მოლოდინში · %1$s</string>
+    <string name="vpn_tile_waiting_network">ქსელის მოლოდინში · %1$s</string>
+</resources>

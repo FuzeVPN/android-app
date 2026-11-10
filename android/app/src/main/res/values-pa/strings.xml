@@ -1,0 +1,22 @@
+<resources>
+    <string name="vpn_notification_channel">VPN ਕਨੈਕਸ਼ਨ</string>
+    <string name="vpn_notification_channel_description">ਦੱਸਦਾ ਹੈ ਕਿ FuzeVPN ਕਨੈਕਸ਼ਨ ਕਦੋਂ ਸਰਗਰਮ ਹੈ।</string>
+    <string name="vpn_notification_title">FuzeVPN</string>
+    <string name="vpn_notification_connected">%1$s ਕਨੈਕਸ਼ਨ ਸਰਗਰਮ</string>
+    <string name="vpn_notification_connecting">%1$s ਕਨੈਕਸ਼ਨ ਬਣਾਇਆ ਜਾ ਰਿਹਾ ਹੈ</string>
+    <string name="vpn_notification_disconnecting">%1$s ਡਿਸਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ</string>
+    <string name="vpn_notification_interrupted">%1$s ਕਨੈਕਸ਼ਨ ਵਿੱਚ ਵਿਘਨ ਪਿਆ</string>
+    <string name="vpn_tile_label">FuzeVPN</string>
+    <string name="vpn_tile_ready">ਤਿਆਰ · %1$s · %2$s</string>
+    <string name="vpn_tile_connected">ਕਨੈਕਟ ਹੋਇਆ · %1$s · %2$s</string>
+    <string name="vpn_tile_connecting">%1$s ਨਾਲ ਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
+    <string name="vpn_tile_disconnecting">ਡਿਸਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
+    <string name="vpn_tile_interrupted">%1$s ਵਿੱਚ ਵਿਘਨ ਪਿਆ</string>
+    <string name="vpn_tile_setup_required">ਪਹਿਲਾਂ ਐਪ ਖੋਲ੍ਹੋ</string>
+    <string name="vpn_tile_working">VPN ਕਾਰਵਾਈ ਜਾਰੀ ਹੈ…</string>
+    <string name="vpn_notification_reconnecting">ਮੁੜ ਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ… · %1$s</string>
+    <string name="vpn_system_action_required">Android ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਕਾਰਵਾਈ ਲੋੜੀਂਦੀ ਹੈ</string>
+    <string name="vpn_tile_reconnecting">ਮੁੜ ਕਨੈਕਟ ਹੋ ਰਿਹਾ ਹੈ… · %1$s</string>
+    <string name="vpn_notification_waiting_network">ਨੈੱਟਵਰਕ ਦੀ ਉਡੀਕ ਹੈ · %1$s</string>
+    <string name="vpn_tile_waiting_network">ਨੈੱਟਵਰਕ ਦੀ ਉਡੀਕ ਹੈ · %1$s</string>
+</resources>

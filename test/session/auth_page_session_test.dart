@@ -14,7 +14,7 @@ import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
 import 'package:fuzevpn_android/features/auth/auth_page.dart';
 import 'package:fuzevpn_android/l10n/app_languages.dart';
-import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
+import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 import 'package:fuzevpn_android/widgets/google_sign_in_button.dart';
 import 'package:fuzevpn_android/widgets/notice_card.dart';
@@ -84,7 +84,7 @@ void main() {
         locale: const Locale('fr'),
         supportedLocales: AppLanguages.supportedLocales,
         localeListResolutionCallback: AppLanguages.resolve,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: AppLocalizationDelegates.all,
         theme: FuzeVpnTheme.light(),
         home: AuthenticationPage(controller: h.controller, loginOnly: true),
       ),
@@ -175,7 +175,7 @@ void main() {
         locale: const Locale('fr'),
         supportedLocales: AppLanguages.supportedLocales,
         localeListResolutionCallback: AppLanguages.resolve,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: AppLocalizationDelegates.all,
         theme: FuzeVpnTheme.light(),
         home: AuthenticationPage(controller: h.controller, loginOnly: true),
       ),
@@ -271,7 +271,7 @@ void main() {
         locale: const Locale('fr'),
         supportedLocales: AppLanguages.supportedLocales,
         localeListResolutionCallback: AppLanguages.resolve,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: AppLocalizationDelegates.all,
         theme: FuzeVpnTheme.light(),
         home: Scaffold(body: AuthenticationDialog(controller: h.controller)),
       ),

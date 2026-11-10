@@ -174,6 +174,8 @@
   "dialog_signOut": "Sair?",
   "dialog_signOutMessage": "A VPN será parada e você precisará entrar novamente. Suas chaves VPN criptografadas permanecerão neste telefone para sua próxima conexão.",
   "action_cancel": "Cancelar",
+  "action_close": "Fechar",
+  "action_copy": "Copiar",
   "action_signOut": "Sair",
   "notice_close": "Dispensar mensagem",
   "notice_sessionExpired_title": "Sessão expirada",

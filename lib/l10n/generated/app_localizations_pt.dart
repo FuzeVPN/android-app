@@ -527,6 +527,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get action_cancel => 'Cancelar';
 
   @override
+  String get action_close => 'Fechar';
+
+  @override
+  String get action_copy => 'Copiar';
+
+  @override
   String get action_signOut => 'Sair';
 
   @override
