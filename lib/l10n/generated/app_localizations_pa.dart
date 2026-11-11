@@ -528,6 +528,9 @@ class AppLocalizationsPa extends AppLocalizations {
   String get action_copy => 'ਕਾਪੀ ਕਰੋ';
 
   @override
+  String get action_renew => 'ਨਵਿਆਓ';
+
+  @override
   String get action_signOut => 'ਸਾਈਨ ਆਉਟ ਕਰੋ';
 
   @override
@@ -1015,7 +1018,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN ਚਲਾਉਣ ਵਾਲਾ ਕੰਪੋਨੈਂਟ ਨਹੀਂ ਬਣਾ ਸਕਦਾ। VPN ਸੈਟਿੰਗਾਂ ਜਾਂਚਣ ਤੋਂ ਬਾਅਦ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
       'openvpn_renewal_required':
-          'ਕਨੈਕਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਸਰਟੀਫ਼ਿਕੇਟ ਲਈ ਐਪ ਵਿੱਚ ਕਾਰਵਾਈ ਕਰਨੀ ਪਵੇਗੀ।',
+          'OpenVPN ਸਰਟੀਫ਼ਿਕੇਟ ਆਪਣੇ-ਆਪ ਨਵਿਆਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਐਪ ਵਿੱਚ ਨਵਾਂ ਕਨੈਕਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ।',
       'openvpn_recovery_failed':
           'ਆਟੋਮੈਟਿਕ ਬਹਾਲੀ ਅਸਫ਼ਲ ਰਹੀ। ਐਪ ਵਿੱਚ ਨਵਾਂ ਕਨੈਕਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ।',
       'openvpn_recovery_exhausted':
@@ -1153,7 +1156,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN ਸਰਵਰ ਦੀ ਪਛਾਣ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ।',
       'openvpn_certificate_expired':
-          'ਮੁੜ ਕਨੈਕਟ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ OpenVPN ਪ੍ਰੋਫ਼ਾਈਲ ਨਵਿਆਓ।',
+          'OpenVPN ਸਰਟੀਫ਼ਿਕੇਟ ਦੀ ਮਿਆਦ ਪੁੱਗ ਗਈ ਹੈ। ਇਸ ਨੂੰ ਨਵਿਆਉਣ ਲਈ ਐਪ ਵਿੱਚ ਨਵਾਂ ਕਨੈਕਸ਼ਨ ਸ਼ੁਰੂ ਕਰੋ।',
       'tunnel_active_for_another_account':
           'ਇਸ ਕਨੈਕਸ਼ਨ ਤੋਂ ਪਹਿਲਾਂ ਕਿਸੇ ਹੋਰ ਖਾਤੇ ਦੀ ਟਨਲ ਬੰਦ ਕਰਨੀ ਪਵੇਗੀ।',
       'tunnel_already_active':
@@ -1556,6 +1559,23 @@ class AppLocalizationsPa extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'ਜੇ Android VPN ਨੂੰ ਚਾਲੂ ਰੱਖਦਾ ਹੈ, ਤਾਂ ਖੁੱਲ੍ਹਣ ਵਾਲੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN ਬੰਦ ਕਰੋ।';
+
+  @override
+  String get connection_certificate => 'OpenVPN ਸਰਟੀਫ਼ਿਕੇਟ';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date ਤੱਕ ਵੈਧ';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date ਨੂੰ ਮਿਆਦ ਪੁੱਗ ਗਈ';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'ਅਗਲੇ ਕਨੈਕਸ਼ਨ ਵੇਲੇ ਆਪਣੇ-ਆਪ ਨਵਿਆਇਆ ਜਾਵੇਗਾ।';
 
   @override
   String get protection_learnMore => 'Android ਸੁਰੱਖਿਆ ਬਾਰੇ ਜਾਣੋ';

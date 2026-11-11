@@ -274,4 +274,16 @@ class OpenVpnRecoveryTest {
         }
         assertEquals("openvpn_profile_unavailable", OpenVpnRecoveryAttempt.profileFailure("missing", false))
     }
+
+    // The bridge renews exactly the certificates a local restart refuses as due. A certificate
+    // that is simply missing is never renewed: there is no profile to replace.
+    @Test fun renewalIsDueExactlyWhenTheLocalRestartRefusesTheCertificateAsDue() {
+        for (status in listOf("valid", "expiring", "expired", "missing")) for (pending in listOf(false, true)) {
+            assertEquals("$status pending=$pending",
+                OpenVpnRecoveryAttempt.profileFailure(status, pending) == "openvpn_renewal_required",
+                OpenVpnCertificateStatus(status, null, pending).renewalDue)
+        }
+        assertFalse(OpenVpnCertificateStatus("valid", null, false).renewalDue)
+        assertFalse(OpenVpnCertificateStatus("missing", null, false).renewalDue)
+    }
 }

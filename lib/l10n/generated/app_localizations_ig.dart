@@ -526,6 +526,9 @@ class AppLocalizationsIg extends AppLocalizations {
   String get action_copy => 'Depụta';
 
   @override
+  String get action_renew => 'Megharịa';
+
+  @override
   String get action_signOut => 'Pụọ n’akaụntụ';
 
   @override
@@ -1003,7 +1006,7 @@ class AppLocalizationsIg extends AppLocalizations {
       'vpn_host_unavailable':
           'Android enweghị ike imepụta akụkụ na-ebu VPN. Nwaa ọzọ mgbe ị lelechara ntọala VPN.',
       'openvpn_renewal_required':
-          'Asambodo ahụ chọrọ ka ị mee ihe na ngwa ahụ tupu ijikọ.',
+          'Enweghị ike imegharị asambodo OpenVPN akpaaka. Malite njikọ ọhụrụ na ngwa ahụ.',
       'openvpn_recovery_failed':
           'Mgbake akpaaka emeghị nke ọma. Malite njikọ ọhụrụ na ngwa ahụ.',
       'openvpn_recovery_exhausted':
@@ -1133,7 +1136,7 @@ class AppLocalizationsIg extends AppLocalizations {
       'certificate_validation_failed':
           'Enweghị ike inyocha njirimara sava OpenVPN.',
       'openvpn_certificate_expired':
-          'Megharịa profaịlụ OpenVPN tupu ijikọ ọzọ.',
+          'Asambodo OpenVPN agwụla oge. Malite njikọ ọhụrụ na ngwa ahụ iji megharịa ya.',
       'tunnel_active_for_another_account':
           'A ghaghị ịkwụsị tunnel nke akaụntụ ọzọ tupu njikọ a.',
       'tunnel_already_active':
@@ -1532,6 +1535,23 @@ class AppLocalizationsIg extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Ọ bụrụ na Android ka na-edobe VPN n’ọrụ, gbanyụọ VPN na-arụ ọrụ mgbe niile na ntọala ndị ga-emeghe.';
+
+  @override
+  String get connection_certificate => 'Asambodo OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Ọ dị ire ruo $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Ọ gwụrụ oge na $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'A ga-emegharị ya akpaaka na njikọ na-esote.';
 
   @override
   String get protection_learnMore => 'Mụta banyere nchebe Android';

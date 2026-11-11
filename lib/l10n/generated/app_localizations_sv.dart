@@ -529,6 +529,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get action_copy => 'Kopiera';
 
   @override
+  String get action_renew => 'Förnya';
+
+  @override
   String get action_signOut => 'Logga ut';
 
   @override
@@ -1035,7 +1038,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'vpn_host_unavailable':
           'Android kan inte skapa komponenten som är värd för VPN. Försök igen efter att ha kontrollerat VPN-inställningarna.',
       'openvpn_renewal_required':
-          'Certifikatet kräver en åtgärd i appen innan anslutning.',
+          'OpenVPN-certifikatet kunde inte förnyas automatiskt. Starta en ny anslutning i appen.',
       'openvpn_recovery_failed':
           'Den automatiska återställningen misslyckades. Starta en ny anslutning i appen.',
       'openvpn_recovery_exhausted':
@@ -1176,7 +1179,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN-serverns identitet kunde inte verifieras.',
       'openvpn_certificate_expired':
-          'Förnya OpenVPN-profilen innan du ansluter igen.',
+          'OpenVPN-certifikatet har löpt ut. Starta en ny anslutning i appen för att förnya det.',
       'tunnel_active_for_another_account':
           'En tunnel som tillhör ett annat konto måste stoppas innan den här anslutningen kan startas.',
       'tunnel_already_active':
@@ -1582,6 +1585,23 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Om Android låter VPN vara aktivt kan du stänga av VPN alltid på i inställningarna som öppnas.';
+
+  @override
+  String get connection_certificate => 'OpenVPN-certifikat';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Giltigt till $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Löpte ut $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Förnyas automatiskt vid nästa anslutning.';
 
   @override
   String get protection_learnMore => 'Läs mer om Android-skydd';

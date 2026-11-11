@@ -179,14 +179,13 @@ internal class OpenVpnController(context: Context) {
     /**
      * Returns a stable digest of the already active OpenVPN identity.  This
      * path is strictly read-only: it never creates a CSR/key, clears a corrupt
-     * record, or resolves a pending renewal/revocation cleanup.
+     * record, or resolves a pending renewal/revocation cleanup. A certificate
+     * that is due for renewal, or a renewal already prepared, still names
+     * this identity: the reconnection decides whether it renews first.
      */
     fun existingIdentityFingerprint(accountId: String, deviceId: String): String {
         revocations.requireUsable(accountId, deviceId)
         val identity = identityFor(accountId, deviceId, removeCorrupt = false)
-        if (pendingGeneration(identity, removeCorrupt = false) != null) {
-            throw VpnNativeException("openvpn_renewal_required")
-        }
         val csr = readResumeIdentityValue(identity, csrSlot(identity.identityId), "openvpn_csr_required")
         if (!isCsrPem(csr)) throw VpnNativeException("openvpn_csr_required")
         val existing = try {
@@ -216,12 +215,6 @@ internal class OpenVpnController(context: Context) {
         }
         if (!sameCertificateInstant(storedNotAfter, certificateNotAfter)) {
             throw VpnNativeException("openvpn_certificate_expiry_mismatch")
-        }
-        val now = Instant.now()
-        when {
-            !certificateNotAfter.isAfter(now) -> throw VpnNativeException("openvpn_certificate_expired")
-            !certificateNotAfter.isAfter(now.plusSeconds(RENEWAL_WINDOW_SECONDS)) ->
-                throw VpnNativeException("openvpn_renewal_required")
         }
         val profile = readResumeIdentityValue(
             identity,
@@ -256,16 +249,13 @@ internal class OpenVpnController(context: Context) {
      * Returns evidence only while [confirmConnected] is publishing the proven
      * active tunnel. This deliberately never reads storage or calls JNI while
      * the session callback monitor is held; bootstrap, tile, and restart
-     * admission continue to use [existingIdentityFingerprint].
+     * admission continue to use [existingIdentityFingerprint]. The remaining
+     * lifetime of the certificate is not part of this proof: a reconnection
+     * renews a certificate that is due.
      */
     fun currentConnectionIdentityFingerprint(accountId: String, deviceId: String): String {
         val connection = connectionIdentity
             ?: throw VpnNativeException("openvpn_connection_proof_missing")
-        val now = Instant.now()
-        if (!connection.certificateNotAfter.isAfter(now)) throw VpnNativeException("openvpn_certificate_expired")
-        if (!connection.certificateNotAfter.isAfter(now.plusSeconds(RENEWAL_WINDOW_SECONDS))) {
-            throw VpnNativeException("openvpn_renewal_required")
-        }
         val active = activeSession
         if (active == null || active.accountId != accountId || active.deviceId != deviceId || !connection.isUsable(
                 accountId = accountId,
@@ -275,8 +265,6 @@ internal class OpenVpnController(context: Context) {
                 nativeGeneration = sessionGeneration,
                 nativeHandlePresent = nativeHandle != 0L,
                 operationUncertain = operationUncertain,
-                now = now,
-                renewalWindowSeconds = RENEWAL_WINDOW_SECONDS,
             )) {
             throw VpnNativeException("openvpn_connection_proof_missing")
         }
@@ -521,7 +509,6 @@ internal class OpenVpnController(context: Context) {
                 certificate = validatedProfile.certificatePem,
                 canonicalProfile = validatedProfile.canonical,
                 networkFingerprint = validatedProfile.network.encode(),
-                certificateNotAfter = certificateNotAfter,
             )
         } catch (error: VpnNativeException) {
             return@withLock failed(error.code)
@@ -632,7 +619,6 @@ internal class OpenVpnController(context: Context) {
                 certificate = certificatePem,
                 canonicalProfile = canonicalProfile,
                 networkFingerprint = networkFingerprint,
-                certificateNotAfter = certificateNotAfter,
                 nativeGeneration = sessionGeneration,
             )
         }
@@ -1113,7 +1099,6 @@ internal class OpenVpnController(context: Context) {
         certificate: String,
         canonicalProfile: String,
         networkFingerprint: String,
-        certificateNotAfter: Instant,
         nativeGeneration: Long = -1L,
     ): CurrentOpenVpnConnectionIdentity = CurrentOpenVpnConnectionIdentity(
         accountId = identity.accountId,
@@ -1121,7 +1106,6 @@ internal class OpenVpnController(context: Context) {
         identityAlias = identity.identityAlias,
         identityGeneration = identity.generation.wireValue,
         nativeGeneration = nativeGeneration,
-        certificateNotAfter = certificateNotAfter,
         fingerprint = fingerprintIdentity(
             identity.generation.wireValue,
             csr,
@@ -1486,6 +1470,9 @@ internal data class OpenVpnCertificateStatus(
     val notAfter: Instant?,
     val renewalPending: Boolean,
 ) {
+    /** The certificate must be replaced before the next connection, by the application or a reconnection. */
+    val renewalDue: Boolean get() = renewalPending || status == "expired" || status == "expiring"
+
     fun toMap(): Map<String, Any?> = mapOf(
         "status" to status,
         "not_after" to notAfter?.toString(),

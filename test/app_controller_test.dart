@@ -30,6 +30,7 @@ part 'support/favorite_controller_cases.dart';
 part 'support/google_controller_cases.dart';
 part 'support/location_change_controller_cases.dart';
 part 'support/location_capacity_controller_cases.dart';
+part 'support/openvpn_certificate_cases.dart';
 part 'support/wireguard_roaming_cases.dart';
 
 const Location _frankfurt = Location(
@@ -139,6 +140,7 @@ void main() {
   auditRegressionTests();
   apiRefreshTests();
   googleControllerTests();
+  openVpnCertificateTests();
   group('VPN disclosure cancellation', () {
     test(
       'WireGuard cancellation is silent and leaves identity ready for retry',
@@ -3626,11 +3628,19 @@ class _FakeTunnel implements VpnTunnelGateway, VpnSystemProtectionGateway {
     return openVpnCsr;
   }
 
+  final List<String> certificateStatusReads = <String>[];
+
+  // No await without a hook: the answer keeps its place among the microtasks.
   @override
   Future<OpenVpnCertificateStatus> getOpenVpnCertificateStatus({
     required String accountId,
     required String deviceId,
-  }) async => openVpnCertificateStatus;
+  }) async {
+    certificateStatusReads.add('$accountId/$deviceId');
+    final Future<void> Function()? hook = hooks['getOpenVpnCertificateStatus'];
+    if (hook != null) await hook();
+    return openVpnCertificateStatus;
+  }
 
   @override
   Future<String> getOrCreateWireGuardPublicKey({

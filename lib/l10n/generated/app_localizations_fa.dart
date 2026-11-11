@@ -531,6 +531,9 @@ class AppLocalizationsFa extends AppLocalizations {
   String get action_copy => 'کپی کردن';
 
   @override
+  String get action_renew => 'تمدید';
+
+  @override
   String get action_signOut => 'خروج';
 
   @override
@@ -1013,7 +1016,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'vpn_host_unavailable':
           'Android نمی‌تواند مؤلفه میزبان وی‌پی‌ان را ایجاد کند. پس از بررسی تنظیمات وی‌پی‌ان دوباره تلاش کنید.',
       'openvpn_renewal_required':
-          'گواهی پیش از اتصال به اقدامی در برنامه نیاز دارد.',
+          'تمدید خودکار گواهی OpenVPN ناموفق بود. اتصال جدیدی در برنامه آغاز کنید.',
       'openvpn_recovery_failed':
           'بازیابی خودکار ناموفق بود. اتصال جدیدی در برنامه آغاز کنید.',
       'openvpn_recovery_exhausted':
@@ -1145,7 +1148,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'network_lost': 'پس از قطع شبکه، تونل متوقف شد.',
       'certificate_validation_failed': 'هویت سرور OpenVPN تأیید نشد.',
       'openvpn_certificate_expired':
-          'پیش از اتصال دوباره، نمایه OpenVPN را نوسازی کنید.',
+          'گواهی OpenVPN منقضی شده است. برای تمدید آن، اتصال جدیدی در برنامه آغاز کنید.',
       'tunnel_active_for_another_account':
           'پیش از این اتصال، تونل متعلق به حساب دیگری باید متوقف شود.',
       'tunnel_already_active':
@@ -1544,6 +1547,23 @@ class AppLocalizationsFa extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'اگر Android وی‌پی‌ان را فعال نگه می‌دارد، وی‌پی‌ان همیشه‌روشن را در تنظیماتی که باز می‌شوند خاموش کنید.';
+
+  @override
+  String get connection_certificate => 'گواهی OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'معتبر تا $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'در $date منقضی شد';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'در اتصال بعدی خودکار تمدید می‌شود.';
 
   @override
   String get protection_learnMore => 'آشنایی بیشتر با محافظت Android';

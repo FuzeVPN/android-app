@@ -29,7 +29,11 @@ ou ultérieur. Le namespace Kotlin `com.fuzevpn.android` reste celui des classes
 et des symboles JNI ; les composants du manifeste sont entièrement qualifiés.
 Elle utilise l'origine `https://api.fuzevpn.com/`. La variable
 de compilation `FUZEVPN_API_BASE_URL` n'est lue qu'en debug ; release et profile
-utilisent toujours l'origine de production.
+utilisent toujours l'origine de production. Le renouvellement natif du
+certificat OpenVPN suit la même règle : Gradle lit cette variable dans
+`dart-defines` pour le seul type de build debug (`BuildConfig.DEBUG_API_BASE_URL`),
+et le natif ne l'accepte qu'en HTTPS, le trafic en clair étant interdit par le
+manifeste.
 
 ## Interface et choix d'emplacement
 
@@ -213,6 +217,38 @@ publiée qu'avec une activation validée. L'ancienne génération est libérée 
 une preuve native de connexion. Une divergence entre `not_after` API et le
 certificat produit `openvpn_certificate_expiry_mismatch`.
 
+Les reconnexions que le natif fait seul renouvellent aussi un certificat à
+échéance : reprise après une perte de transport ou un changement de réseau,
+clic sur la tuile, reprise système du VPN permanent. Sans Flutter, le pont
+envoie alors la seule requête API qu'il connaisse, `POST .../openvpn/renew`
+(`OpenVpnRenewalContract`, `OpenVpnRenewalApi`), avec le jeton de la session
+stockée et le CSR de la génération en attente, puis démarre Core avec
+l'activation reçue, validée comme celle d'une connexion Flutter. La requête
+n'envoie pas `ip_families` : le serveur garde les familles de l'appareil. Elle
+part sur un réseau physique validé (`Network.openConnection`), parce que le TUN
+retenu pendant une reprise rejette tout paquet routé par le VPN ; Android le
+permet à l'application propriétaire du VPN, y compris avec « Bloquer les
+connexions sans VPN ». Elle n'est jamais répétée : après une réponse perdue, la
+tentative suivante présente le même CSR, auquel le serveur répond par le
+certificat déjà émis. Une commande reçue entre-temps l'abandonne aussitôt.
+
+Tout refus (session, abonnement, profil révoqué, quota, serveur ou réseau
+injoignable, réponse invalide) termine comme avant ce renouvellement : arrêt
+avec `openvpn_renewal_required`, ou `network_unavailable` sans réseau physique,
+notification, reprise bloquée. L'identité active et le CSR en attente sont
+conservés ; une connexion lancée dans l'application renouvelle alors avec le
+traitement d'erreurs du compte. Seuls un motif fixe ou le statut HTTP sont
+journalisés, jamais le corps, l'URL ni le jeton. Après un renouvellement
+réussi, l'état de reprise et le profil de la tuile sont réécrits pour la
+nouvelle identité et le réseau de l'activation, sans rendre la reprise sur
+échec déjà consommée.
+
+Un tunnel resté connecté n'est pas interrompu pour renouveler : le serveur
+révoque l'ancien certificat à chaque renouvellement. Il l'est à sa prochaine
+reconnexion. Les options de connexion affichent l'échéance du certificat
+stocké et un bouton « Renouveler », qui arrête le tunnel, renouvelle et
+reconnecte en OpenVPN.
+
 ### Erreurs et reprises
 
 | Code ou situation | Réaction du client |
@@ -267,11 +303,13 @@ l'interface et la tuile orientent vers les réglages Android.
 
 La reprise système utilise seulement un profil local ayant déjà obtenu une
 preuve native de connexion, avec vérification de sa session et de son identité.
-Elle ne prépare pas une nouvelle identité par l'API. L'accès au stockage
+Elle ne prépare pas une nouvelle identité par l'API, sauf pour renouveler un
+certificat OpenVPN à échéance (voir « Profil et renouvellement OpenVPN »).
+L'accès au stockage
 Keystore peut nécessiter le premier déverrouillage après redémarrage. Un échec
 de reprise reste bloqué jusqu'à une nouvelle connexion explicite. La reprise
 OpenVPN après perte de transport possède un budget borné, conservé avec l'état
-de reprise ; elle ne contourne pas révocation, expiration ou renouvellement.
+de reprise ; elle ne contourne ni une révocation ni un renouvellement refusé.
 Quand elle reconnecte avec le même plan réseau, elle réutilise l'interface TUN
 conservée au lieu d'en établir une nouvelle : sur Android 11 à 16, chaque
 nouvelle interface fait couper par le système les connexions TCP en cours.
@@ -316,9 +354,10 @@ mémoire, ANR, ressources, permission retirée ou fournisseur mort. Un arrêt fo
 annule la marque, même processus déjà mort ; un démarrage d'appareil l'efface.
 Android 10 n'enregistre pas la raison d'une mort : seule la sentinelle y reprend.
 
-La tuile Réglages rapides reconnecte ce dernier profil validé sans accès API.
-Elle ouvre l'application lorsqu'une préparation, un consentement VPN ou un
-renouvellement est requis. La déconnexion du compte et la suppression de
+La tuile Réglages rapides reconnecte ce dernier profil validé sans autre accès
+API que le renouvellement d'un certificat OpenVPN à échéance. Elle ouvre
+l'application lorsqu'une préparation ou un consentement VPN est requis, ou
+quand ce renouvellement est refusé. La déconnexion du compte et la suppression de
 l'identité invalident ce raccourci. Le runtime Maven de debug ne propose pas
 le mode VPN permanent.
 

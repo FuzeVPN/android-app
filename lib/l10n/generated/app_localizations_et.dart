@@ -530,6 +530,9 @@ class AppLocalizationsEt extends AppLocalizations {
   String get action_copy => 'Kopeeri';
 
   @override
+  String get action_renew => 'Uuenda';
+
+  @override
   String get action_signOut => 'Logi välja';
 
   @override
@@ -1029,7 +1032,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ei saa luua VPN-i käitavat komponenti. Kontrolli VPN-i seadeid ja proovi uuesti.',
       'openvpn_renewal_required':
-          'Sertifikaat nõuab enne ühendamist toimingut rakenduses.',
+          'OpenVPN-i sertifikaati ei õnnestunud automaatselt uuendada. Loo rakenduses uus ühendus.',
       'openvpn_recovery_failed':
           'Automaatne taastamine ebaõnnestus. Loo rakenduses uus ühendus.',
       'openvpn_recovery_exhausted':
@@ -1168,7 +1171,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN-i serveri identiteeti ei õnnestunud kontrollida.',
       'openvpn_certificate_expired':
-          'Uuenda enne uuesti ühendamist OpenVPN-i profiili.',
+          'OpenVPN-i sertifikaat on aegunud. Selle uuendamiseks loo rakenduses uus ühendus.',
       'tunnel_active_for_another_account':
           'Enne selle ühenduse loomist tuleb peatada teise konto tunnel.',
       'tunnel_already_active':
@@ -1570,6 +1573,23 @@ class AppLocalizationsEt extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Kui Android hoiab VPN-i aktiivsena, lülita avanevates seadetes välja „Alati sees VPN“.';
+
+  @override
+  String get connection_certificate => 'OpenVPN-i sertifikaat';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Kehtib kuni $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Aegus $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Uuendatakse automaatselt järgmise ühenduse loomisel.';
 
   @override
   String get protection_learnMore => 'Lisateave Androidi kaitse kohta';

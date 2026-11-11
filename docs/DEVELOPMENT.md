@@ -469,10 +469,11 @@ Compléter cette matrice avec les scénarios suivants :
 | Keystore / XKey | Exécuter les tests Android ciblés de stockage, CSR et signatures avec une vraie clé non exportable. |
 | Réseau réel | Vérifier l'IP publique, DNS, routage IPv4/IPv6 et la réaction aux changements Wi-Fi/mobile. |
 | Arrière-plan | Vérifier le tunnel et sa notification après verrouillage et fermeture de l'interface. |
-| Réglages rapides | Reconnecter et arrêter le dernier profil validé pour chaque protocole, sans appel API de préparation. |
+| Réglages rapides | Reconnecter et arrêter le dernier profil validé pour chaque protocole, sans appel API de préparation (hors renouvellement d'un certificat OpenVPN à échéance). |
 | VPN permanent / blocage sans VPN | Vérifier les options système, l'absence de fuite hors tunnel et la reprise après redémarrage et déverrouillage. |
 | Révocation et session | Vérifier arrêt, effacement limité à l'identité concernée, perte de session et changement de compte. |
 | Renouvellement OpenVPN | Utiliser un certificat à J-7 ou expiré ; vérifier `/renew`, reprise du même CSR et conservation de l'identité active en cas d'échec API. |
+| Renouvellement OpenVPN sans l'application | Avec ce même certificat, sans ouvrir l'application : changer de réseau pendant le tunnel, cliquer la tuile, puis redémarrer avec le VPN permanent et « Bloquer les connexions sans VPN ». Vérifier que la requête `/renew` part hors du tunnel, que le tunnel revient avec le nouveau certificat et que la reprise suivante n'appelle plus l'API. Rejouer avec l'API injoignable : arrêt sur `openvpn_renewal_required`, puis renouvellement par « Se connecter » avec le même CSR. Build debug : `--dart-define=FUZEVPN_API_BASE_URL=https://…` vaut aussi pour cette requête native. |
 | Consentement et interruptions | Refuser la permission VPN, interrompre une préparation et confirmer l'absence de boucle ou de second tunnel. |
 | Interface | Vérifier hiérarchie, recherche, favoris, confirmation, capacité refusée, soixante-dix langues, RTL et notifications. |
 | Diagnostics | Vérifier consentements séparés, export, absence de secrets et exactitude des contrôles inconnus/non exécutés. |
@@ -688,7 +689,7 @@ découvertes par les tests JVM Gradle ; leurs reçus restent séparés et
 obligatoires. L'agrégateur exige au moins les cas exécutés le 30 octobre 2026
 (`HOST_JUNIT_MINIMUMS` de `tools/validation_support.py`) : 44 tests JUnit et
 20 scénarios JavaScript pour `turnstile-bridge`, 27 tests pour
-`command-epochs` et 94 pour `bridge-host` (2 novembre 2026). Chaque plancher
+`command-epochs` et 102 pour `bridge-host` (11 novembre 2026). Chaque plancher
 JUnit est égal au
 nombre de `@Test` des sources de sa suite (contrôlé par `tools/tests`) : un
 cas ajouté doit relever le plancher dans le même changement. Aucun de ces

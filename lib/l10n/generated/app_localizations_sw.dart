@@ -532,6 +532,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get action_copy => 'Nakili';
 
   @override
+  String get action_renew => 'Fanya upya';
+
+  @override
   String get action_signOut => 'Ondoka';
 
   @override
@@ -1041,7 +1044,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'vpn_host_unavailable':
           'Android haiwezi kuunda sehemu inayoendesha VPN. Jaribu tena baada ya kuangalia mipangilio ya VPN.',
       'openvpn_renewal_required':
-          'Cheti kinahitaji hatua kwenye programu kabla ya kuunganishwa.',
+          'Cheti cha OpenVPN hakikuweza kufanywa upya kiotomatiki. Anzisha muunganisho mpya kwenye programu.',
       'openvpn_recovery_failed':
           'Urejeshaji wa kiotomatiki umeshindwa. Anzisha muunganisho mpya kwenye programu.',
       'openvpn_recovery_exhausted':
@@ -1181,7 +1184,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'certificate_validation_failed':
           'Utambulisho wa seva ya OpenVPN haukuweza kuthibitishwa.',
       'openvpn_certificate_expired':
-          'Fanya upya wasifu wa OpenVPN kabla ya kuunganisha tena.',
+          'Cheti cha OpenVPN kimeisha muda. Anzisha muunganisho mpya kwenye programu ili kukifanya upya.',
       'tunnel_active_for_another_account':
           'Handaki la akaunti nyingine lazima lisimamishwe kabla ya muunganisho huu.',
       'tunnel_already_active':
@@ -1584,6 +1587,23 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android ikiendelea kuiweka VPN hai, zima “VPN ya kila wakati” kwenye mipangilio itakayofunguka.';
+
+  @override
+  String get connection_certificate => 'Cheti cha OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Halali hadi $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Kiliisha muda tarehe $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Kitafanywa upya kiotomatiki wakati wa muunganisho ujao.';
 
   @override
   String get protection_learnMore => 'Jifunze kuhusu ulinzi wa Android';

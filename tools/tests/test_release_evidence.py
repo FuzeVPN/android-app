@@ -100,7 +100,7 @@ class MaintainedReleaseTest(unittest.TestCase):
         (directory/'dependency-integrity').mkdir()
         (directory/'dependency-integrity/results.json').write_text(json.dumps([{'passed': True}]*4), encoding='utf-8')
         # Cases executed by each host suite on 30/10/2026 (validation_support minimums).
-        for name, count in [('turnstile-bridge', 44), ('command-epochs', 27), ('bridge-host', 94)]:
+        for name, count in [('turnstile-bridge', 44), ('command-epochs', 27), ('bridge-host', 102)]:
             folder = directory/name
             folder.mkdir()
             (folder/'compile.log').write_text('synthetic compilation success', encoding='utf-8')
@@ -448,7 +448,7 @@ class MaintainedReleaseTest(unittest.TestCase):
         self.assertEqual(44, data['checks']['turnstile-bridge']['junit']['passed'])
         self.assertEqual(20, data['checks']['turnstile-bridge']['javascript']['passed'])
         self.assertEqual(27, data['checks']['command-epochs']['junit']['passed'])
-        self.assertEqual(94, data['checks']['bridge-host']['junit']['passed'])
+        self.assertEqual(102, data['checks']['bridge-host']['junit']['passed'])
         self.assertEqual(17, data['checks']['wireguard-gate']['passed'])
         self.assertTrue({'turnstile-bridge/result.json',
                          'turnstile-bridge/junit.log', 'turnstile-bridge/javascript.log',

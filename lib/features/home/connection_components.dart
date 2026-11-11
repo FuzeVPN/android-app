@@ -923,8 +923,75 @@ class ProtocolOptions extends StatelessWidget {
                   .toList(growable: false),
             ),
           ),
+          if (displayedProtocol == VpnProtocol.openVpn &&
+              controller.openVpnCertificate?.notAfter != null) ...<Widget>[
+            const SizedBox(height: 18),
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: _OpenVpnCertificate(controller: controller),
+            ),
+          ],
         ],
       ),
+    );
+  }
+}
+
+/// Lifetime of the stored OpenVPN certificate. Connections and the native
+/// reconnections renew it themselves when it is due; the button renews it at
+/// once, which reconnects with OpenVPN.
+class _OpenVpnCertificate extends StatelessWidget {
+  const _OpenVpnCertificate({required this.controller});
+
+  final VpnAppController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    final OpenVpnCertificateStatus certificate = controller.openVpnCertificate!;
+    final ThemeData theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          context.copy('connection.certificate'),
+          style: theme.textTheme.labelLarge,
+        ),
+        const SizedBox(height: 4),
+        // The button moves under the date on a narrow screen or with large text.
+        Wrap(
+          spacing: 12,
+          runSpacing: 4,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: <Widget>[
+            Text(
+              context.copy(
+                certificate.phase == OpenVpnCertificatePhase.expired
+                    ? 'connection.certificateExpired'
+                    : 'connection.certificateValidUntil',
+                arguments: <String, Object?>{
+                  'date': AppFormats.longDate(context, certificate.notAfter!),
+                },
+              ),
+              key: const ValueKey('openvpn-certificate-validity'),
+            ),
+            TextButton(
+              key: const ValueKey('openvpn-certificate-renew'),
+              onPressed: controller.canRenewOpenVpnCertificate
+                  ? controller.renewOpenVpnProfile
+                  : null,
+              child: Text(context.copy('action.renew')),
+            ),
+          ],
+        ),
+        if (certificate.requiresRenewal)
+          Text(
+            context.copy('connection.certificateAutoRenewal'),
+            key: const ValueKey('openvpn-certificate-auto-renewal'),
+            style: theme.textTheme.bodySmall?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+            ),
+          ),
+      ],
     );
   }
 }

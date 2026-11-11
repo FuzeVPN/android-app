@@ -533,6 +533,9 @@ class AppLocalizationsOr extends AppLocalizations {
   String get action_copy => 'କପି କରନ୍ତୁ';
 
   @override
+  String get action_renew => 'ନବୀକରଣ କରନ୍ତୁ';
+
+  @override
   String get action_signOut => 'ସାଇନ୍ ଆଉଟ୍ କରନ୍ତୁ';
 
   @override
@@ -1032,7 +1035,7 @@ class AppLocalizationsOr extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN ଚଲାଉଥିବା ଉପାଦାନ ତିଆରି କରିପାରୁନାହିଁ। VPN ସେଟିଂସ୍ ଯାଞ୍ଚ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
       'openvpn_renewal_required':
-          'ସଂଯୋଗ ପୂର୍ବରୁ ସାର୍ଟିଫିକେଟ୍ ପାଇଁ ଆପ୍‌ରେ ଏକ କାର୍ଯ୍ୟ ଆବଶ୍ୟକ।',
+          'OpenVPN ସାର୍ଟିଫିକେଟ୍ ସ୍ୱୟଂଚାଳିତ ଭାବେ ନବୀକରଣ କରାଯାଇପାରିଲା ନାହିଁ। ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।',
       'openvpn_recovery_failed':
           'ସ୍ୱୟଂଚାଳିତ ପୁନରୁଦ୍ଧାର ବିଫଳ ହୋଇଛି। ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।',
       'openvpn_recovery_exhausted':
@@ -1170,7 +1173,7 @@ class AppLocalizationsOr extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN ସର୍ଭରର ପରିଚୟ ଯାଞ୍ଚ କରାଯାଇପାରିଲା ନାହିଁ।',
       'openvpn_certificate_expired':
-          'ପୁନଃ ସଂଯୋଗ କରିବା ପୂର୍ବରୁ OpenVPN ପ୍ରୋଫାଇଲ୍ ନବୀକରଣ କରନ୍ତୁ।',
+          'OpenVPN ସାର୍ଟିଫିକେଟ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି। ଏହାକୁ ନବୀକରଣ କରିବାକୁ ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।',
       'tunnel_active_for_another_account':
           'ଏହି ସଂଯୋଗ ପୂର୍ବରୁ ଅନ୍ୟ ଆକାଉଣ୍ଟର ଟନେଲ ବନ୍ଦ ହେବା ଆବଶ୍ୟକ।',
       'tunnel_already_active':
@@ -1574,6 +1577,23 @@ class AppLocalizationsOr extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'ଯଦି Android VPNକୁ ସକ୍ରିୟ ରଖେ, ଖୋଲୁଥିବା ସେଟିଂସ୍‌ରେ ସର୍ବଦା ଚାଲୁ ଥିବା VPN ବନ୍ଦ କରନ୍ତୁ।';
+
+  @override
+  String get connection_certificate => 'OpenVPN ସାର୍ଟିଫିକେଟ୍';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date ପର୍ଯ୍ୟନ୍ତ ବୈଧ';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$dateରେ ମିଆଦ ଶେଷ ହୋଇଛି';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'ପରବର୍ତ୍ତୀ ସଂଯୋଗ ସମୟରେ ସ୍ୱୟଂଚାଳିତ ଭାବେ ନବୀକରଣ ହେବ।';
 
   @override
   String get protection_learnMore => 'Android ସୁରକ୍ଷା ବିଷୟରେ ଜାଣନ୍ତୁ';

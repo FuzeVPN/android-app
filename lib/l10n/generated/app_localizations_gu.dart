@@ -531,6 +531,9 @@ class AppLocalizationsGu extends AppLocalizations {
   String get action_copy => 'કૉપિ કરો';
 
   @override
+  String get action_renew => 'નવીકરણ કરો';
+
+  @override
   String get action_signOut => 'સાઇન આઉટ કરો';
 
   @override
@@ -1014,7 +1017,7 @@ class AppLocalizationsGu extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN ચલાવતો ઘટક બનાવી શકતું નથી. VPN સેટિંગ્સ તપાસ્યા પછી ફરી પ્રયાસ કરો.',
       'openvpn_renewal_required':
-          'કનેક્ટ કરતાં પહેલાં ઍપમાં સર્ટિફિકેટ માટે કાર્યવાહી કરવી જરૂરી છે.',
+          'OpenVPN સર્ટિફિકેટનું આપમેળે નવીકરણ થઈ શક્યું નથી. ઍપમાં નવું કનેક્શન શરૂ કરો.',
       'openvpn_recovery_failed':
           'આપમેળે પુનઃપ્રાપ્તિ નિષ્ફળ ગઈ. ઍપમાં નવું કનેક્શન શરૂ કરો.',
       'openvpn_recovery_exhausted':
@@ -1150,7 +1153,7 @@ class AppLocalizationsGu extends AppLocalizations {
       'network_lost': 'નેટવર્ક ખોવાયા પછી ટનલ બંધ કરવામાં આવી.',
       'certificate_validation_failed': 'OpenVPN સર્વરની ઓળખ ચકાસી શકાઈ નથી.',
       'openvpn_certificate_expired':
-          'ફરી કનેક્ટ કરતાં પહેલાં OpenVPN પ્રોફાઇલનું નવીકરણ કરો.',
+          'OpenVPN સર્ટિફિકેટની મુદત પૂરી થઈ ગઈ છે. તેનું નવીકરણ કરવા માટે ઍપમાં નવું કનેક્શન શરૂ કરો.',
       'tunnel_active_for_another_account':
           'આ કનેક્શન પહેલાં બીજા એકાઉન્ટની ટનલ બંધ થવી જરૂરી છે.',
       'tunnel_already_active':
@@ -1554,6 +1557,23 @@ class AppLocalizationsGu extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'જો Android VPN ચાલુ રાખે, તો ખૂલતી સેટિંગ્સમાં “હંમેશાં-ચાલુ VPN” બંધ કરો.';
+
+  @override
+  String get connection_certificate => 'OpenVPN સર્ટિફિકેટ';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date સુધી માન્ય';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$dateના રોજ મુદત પૂરી થઈ';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'આગામી કનેક્શન વખતે આપમેળે નવીકરણ થશે.';
 
   @override
   String get protection_learnMore => 'Android સુરક્ષા વિશે જાણો';

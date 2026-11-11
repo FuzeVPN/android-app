@@ -520,6 +520,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get action_copy => 'העתקה';
 
   @override
+  String get action_renew => 'חדש עכשיו';
+
+  @override
   String get action_signOut => 'התנתק מהחשבון';
 
   @override
@@ -988,7 +991,8 @@ class AppLocalizationsHe extends AppLocalizations {
           'רכיב Android שמארח את ה-VPN הופסק. התחל חיבור חדש.',
       'vpn_host_unavailable':
           'Android לא יכול ליצור את הרכיב שמארח את ה-VPN. נסה שוב לאחר בדיקת הגדרות ה-VPN.',
-      'openvpn_renewal_required': 'התעודה דורשת פעולה באפליקציה לפני החיבור.',
+      'openvpn_renewal_required':
+          'לא ניתן היה לחדש את תעודת OpenVPN אוטומטית. התחל חיבור חדש באפליקציה.',
       'openvpn_recovery_failed':
           'השחזור האוטומטי נכשל. התחל חיבור חדש באפליקציה.',
       'openvpn_recovery_exhausted':
@@ -1110,7 +1114,8 @@ class AppLocalizationsHe extends AppLocalizations {
       'network_unavailable': 'אין רשת פיזית זמינה.',
       'network_lost': 'המנהרה הופסקה לאחר שהרשת נותקה.',
       'certificate_validation_failed': 'לא ניתן לאמת את זהות שרת OpenVPN.',
-      'openvpn_certificate_expired': 'חדש את פרופיל OpenVPN לפני החיבור מחדש.',
+      'openvpn_certificate_expired':
+          'פג תוקף תעודת OpenVPN. התחל חיבור חדש באפליקציה כדי לחדש אותה.',
       'tunnel_active_for_another_account':
           'מנהרה ששייכת לחשבון אחר חייבת להיעצר לפני החיבור הזה.',
       'tunnel_already_active':
@@ -1506,6 +1511,22 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'אם Android משאיר את ה-VPN פעיל, כבה את “VPN תמיד פעיל” בהגדרות שייפתחו.';
+
+  @override
+  String get connection_certificate => 'תעודת OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'בתוקף עד $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'פג תוקפה ב-$date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal => 'תתחדש אוטומטית בחיבור הבא.';
 
   @override
   String get protection_learnMore => 'מידע נוסף על הגנת Android';

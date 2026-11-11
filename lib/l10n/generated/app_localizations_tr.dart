@@ -529,6 +529,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get action_copy => 'Kopyala';
 
   @override
+  String get action_renew => 'Yenile';
+
+  @override
   String get action_signOut => 'Oturumu kapat';
 
   @override
@@ -1031,7 +1034,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN\'i barındıran bileşeni oluşturamıyor. VPN ayarlarını kontrol ettikten sonra tekrar deneyin.',
       'openvpn_renewal_required':
-          'Bağlanmadan önce sertifika için uygulamada işlem yapılması gerekiyor.',
+          'OpenVPN sertifikası otomatik olarak yenilenemedi. Uygulamada yeni bir bağlantı başlatın.',
       'openvpn_recovery_failed':
           'Otomatik kurtarma başarısız oldu. Uygulamada yeni bir bağlantı başlatın.',
       'openvpn_recovery_exhausted':
@@ -1169,7 +1172,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN sunucusunun kimliği doğrulanamadı.',
       'openvpn_certificate_expired':
-          'Yeniden bağlanmadan önce OpenVPN profilini yenileyin.',
+          'OpenVPN sertifikasının süresi doldu. Yenilemek için uygulamada yeni bir bağlantı başlatın.',
       'tunnel_active_for_another_account':
           'Bu bağlantıdan önce başka bir hesaba ait tünel durdurulmalı.',
       'tunnel_already_active':
@@ -1571,6 +1574,23 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android VPN\'i etkin tutmaya devam ederse açılan ayarlardan Her zaman açık VPN\'i kapatın.';
+
+  @override
+  String get connection_certificate => 'OpenVPN sertifikası';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date tarihine kadar geçerli';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Süresi $date tarihinde doldu';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Bir sonraki bağlantıda otomatik olarak yenilenir.';
 
   @override
   String get protection_learnMore => 'Android koruması hakkında bilgi alın';

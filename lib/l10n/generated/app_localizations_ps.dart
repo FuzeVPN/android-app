@@ -528,6 +528,9 @@ class AppLocalizationsPs extends AppLocalizations {
   String get action_copy => 'کاپی';
 
   @override
+  String get action_renew => 'نوی کړئ';
+
+  @override
   String get action_signOut => 'ووځئ';
 
   @override
@@ -1003,7 +1006,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'vpn_host_unavailable':
           'Android نشي کولای هغه برخه جوړه کړي چې VPN کوربه توب کوي. د VPN تنظیمات وګورئ او بیا هڅه وکړئ.',
       'openvpn_renewal_required':
-          'سرټیفیکېټ له وصلېدو مخکې په اپلیکیشن کې یوه کړنه غواړي.',
+          'د OpenVPN سرټیفیکېټ په اتوماتیک ډول نوی نه شو کړای. په اپلیکیشن کې نوی اتصال پیل کړئ.',
       'openvpn_recovery_failed':
           'اتوماتیک بیا رغونه ناکامه شوه. په اپلیکیشن کې نوی اتصال پیل کړئ.',
       'openvpn_recovery_exhausted':
@@ -1134,7 +1137,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'network_lost': 'د شبکې له لاسه ورکولو وروسته تونل ودرول شو.',
       'certificate_validation_failed': 'د OpenVPN سرور هویت تایید نشو.',
       'openvpn_certificate_expired':
-          'له بیا وصلېدو مخکې د OpenVPN پروفایل نوی کړئ.',
+          'د OpenVPN سرټیفیکېټ ختم شوی دی. د نوي کولو لپاره یې په اپلیکیشن کې نوی اتصال پیل کړئ.',
       'tunnel_active_for_another_account':
           'له دې اتصال مخکې باید د بل حساب تونل ودرول شي.',
       'tunnel_already_active':
@@ -1533,6 +1536,23 @@ class AppLocalizationsPs extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'که Android VPN فعال وساتي، په هغو تنظیماتو کې چې خلاصېږي، همېشه فعال VPN غیرفعال کړئ.';
+
+  @override
+  String get connection_certificate => 'د OpenVPN سرټیفیکېټ';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'تر $date پورې اعتبار لري';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'په $date ختم شوی';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'په راتلونکي اتصال کې په اتوماتیک ډول نوی کېږي.';
 
   @override
   String get protection_learnMore => 'د Android د ساتنې په اړه زده کړئ';

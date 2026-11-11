@@ -531,6 +531,9 @@ class AppLocalizationsFi extends AppLocalizations {
   String get action_copy => 'Kopioi';
 
   @override
+  String get action_renew => 'Uusi nyt';
+
+  @override
   String get action_signOut => 'Kirjaudu ulos';
 
   @override
@@ -1035,7 +1038,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ei voi luoda VPN:ää isännöivää komponenttia. Yritä uudelleen, kun olet tarkistanut VPN-asetukset.',
       'openvpn_renewal_required':
-          'Varmenne vaatii toimenpiteen sovelluksessa ennen yhdistämistä.',
+          'OpenVPN-varmennetta ei voitu uusia automaattisesti. Aloita uusi yhteys sovelluksessa.',
       'openvpn_recovery_failed':
           'Automaattinen palautus epäonnistui. Aloita uusi yhteys sovelluksessa.',
       'openvpn_recovery_exhausted':
@@ -1174,7 +1177,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN-palvelimen identiteettiä ei voitu vahvistaa.',
       'openvpn_certificate_expired':
-          'Uudista OpenVPN-profiili, ennen kuin yhdistät uudelleen.',
+          'OpenVPN-varmenne on vanhentunut. Aloita uusi yhteys sovelluksessa, niin varmenne uusitaan.',
       'tunnel_active_for_another_account':
           'Toisen tilin tunnelin on pysähdyttävä ennen tätä yhteyttä.',
       'tunnel_already_active':
@@ -1577,6 +1580,23 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Jos Android pitää VPN-yhteyden aktiivisena, poista avautuvissa asetuksissa käytöstä Aina päällä oleva VPN.';
+
+  @override
+  String get connection_certificate => 'OpenVPN-varmenne';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Voimassa $date asti';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Vanhentunut $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Uusitaan automaattisesti, kun yhdistät seuraavan kerran.';
 
   @override
   String get protection_learnMore => 'Lue lisää Android-suojauksesta';

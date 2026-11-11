@@ -528,6 +528,9 @@ class AppLocalizationsTh extends AppLocalizations {
   String get action_copy => 'คัดลอก';
 
   @override
+  String get action_renew => 'ต่ออายุ';
+
+  @override
   String get action_signOut => 'ออกจากระบบ';
 
   @override
@@ -1017,7 +1020,8 @@ class AppLocalizationsTh extends AppLocalizations {
           'ส่วนประกอบ Android ที่โฮสต์ VPN ถูกหยุดแล้ว เริ่มการเชื่อมต่อใหม่',
       'vpn_host_unavailable':
           'Android สร้างส่วนประกอบที่โฮสต์ VPN ไม่ได้ ลองอีกครั้งหลังตรวจสอบการตั้งค่า VPN',
-      'openvpn_renewal_required': 'ใบรับรองต้องดำเนินการในแอปก่อนเชื่อมต่อ',
+      'openvpn_renewal_required':
+          'ไม่สามารถต่ออายุใบรับรอง OpenVPN โดยอัตโนมัติได้ เริ่มการเชื่อมต่อใหม่ในแอป',
       'openvpn_recovery_failed':
           'กู้คืนอัตโนมัติล้มเหลว เริ่มการเชื่อมต่อใหม่ในแอป',
       'openvpn_recovery_exhausted':
@@ -1151,7 +1155,8 @@ class AppLocalizationsTh extends AppLocalizations {
       'network_lost': 'อุโมงค์ถูกหยุดหลังเครือข่ายขาดหาย',
       'certificate_validation_failed':
           'ยืนยันข้อมูลระบุตัวตนของเซิร์ฟเวอร์ OpenVPN ไม่ได้',
-      'openvpn_certificate_expired': 'ต่ออายุโปรไฟล์ OpenVPN ก่อนเชื่อมต่อใหม่',
+      'openvpn_certificate_expired':
+          'ใบรับรอง OpenVPN หมดอายุแล้ว เริ่มการเชื่อมต่อใหม่ในแอปเพื่อต่ออายุ',
       'tunnel_active_for_another_account':
           'ต้องหยุดอุโมงค์ของบัญชีอื่นก่อนการเชื่อมต่อนี้',
       'tunnel_already_active':
@@ -1552,6 +1557,23 @@ class AppLocalizationsTh extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'หาก Android ยังคงเปิด VPN อยู่ ให้ปิด VPN แบบเปิดตลอดเวลาในการตั้งค่าที่เปิดขึ้น';
+
+  @override
+  String get connection_certificate => 'ใบรับรอง OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'ใช้ได้จนถึง $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'หมดอายุเมื่อ $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'จะต่ออายุอัตโนมัติเมื่อเชื่อมต่อครั้งถัดไป';
 
   @override
   String get protection_learnMore => 'เรียนรู้เกี่ยวกับการปกป้องของ Android';

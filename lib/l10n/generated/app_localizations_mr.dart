@@ -529,6 +529,9 @@ class AppLocalizationsMr extends AppLocalizations {
   String get action_copy => 'कॉपी करा';
 
   @override
+  String get action_renew => 'नूतनीकरण करा';
+
+  @override
   String get action_signOut => 'साइन आउट करा';
 
   @override
@@ -1021,7 +1024,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'vpn_host_unavailable':
           'VPN होस्ट करणारा घटक Android तयार करू शकत नाही. VPN सेटिंग्ज तपासल्यानंतर पुन्हा प्रयत्न करा.',
       'openvpn_renewal_required':
-          'कनेक्ट करण्यापूर्वी ॲपमध्ये प्रमाणपत्रासाठी एक कृती करणे आवश्यक आहे.',
+          'OpenVPN प्रमाणपत्राचे आपोआप नूतनीकरण होऊ शकले नाही. ॲपमध्ये नवीन कनेक्शन सुरू करा.',
       'openvpn_recovery_failed':
           'स्वयंचलित पुनर्प्राप्ती अयशस्वी झाली. ॲपमध्ये नवीन कनेक्शन सुरू करा.',
       'openvpn_recovery_exhausted':
@@ -1160,7 +1163,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN सर्व्हरची ओळख पडताळता आली नाही.',
       'openvpn_certificate_expired':
-          'पुन्हा कनेक्ट करण्यापूर्वी OpenVPN प्रोफाइलचे नूतनीकरण करा.',
+          'OpenVPN प्रमाणपत्राची मुदत संपली आहे. त्याचे नूतनीकरण करण्यासाठी ॲपमध्ये नवीन कनेक्शन सुरू करा.',
       'tunnel_active_for_another_account':
           'या कनेक्शनपूर्वी दुसऱ्या खात्याचा टनेल थांबणे आवश्यक आहे.',
       'tunnel_already_active':
@@ -1563,6 +1566,23 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android VPN सक्रिय ठेवत असेल, तर उघडणाऱ्या सेटिंग्जमध्ये नेहमी-चालू VPN बंद करा.';
+
+  @override
+  String get connection_certificate => 'OpenVPN प्रमाणपत्र';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date पर्यंत वैध';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date रोजी मुदत संपली';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'पुढील कनेक्शनच्या वेळी आपोआप नूतनीकरण होईल.';
 
   @override
   String get protection_learnMore => 'Android संरक्षणाबद्दल जाणून घ्या';

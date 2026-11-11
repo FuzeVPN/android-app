@@ -532,6 +532,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get action_copy => 'Másolás';
 
   @override
+  String get action_renew => 'Megújítás';
+
+  @override
   String get action_signOut => 'Kijelentkezés';
 
   @override
@@ -1040,7 +1043,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'vpn_host_unavailable':
           'Az Android nem tudja létrehozni a VPN-t futtató összetevőt. Ellenőrizze a VPN-beállításokat, majd próbálja újra.',
       'openvpn_renewal_required':
-          'A tanúsítvány az alkalmazásban végrehajtandó műveletet igényel a csatlakozás előtt.',
+          'Az OpenVPN-tanúsítványt nem sikerült automatikusan megújítani. Indítson új kapcsolatot az alkalmazásban.',
       'openvpn_recovery_failed':
           'Az automatikus helyreállítás sikertelen. Indítson új kapcsolatot az alkalmazásban.',
       'openvpn_recovery_exhausted':
@@ -1181,7 +1184,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'certificate_validation_failed':
           'Az OpenVPN-szerver azonosságát nem sikerült ellenőrizni.',
       'openvpn_certificate_expired':
-          'Újracsatlakozás előtt újítsa meg az OpenVPN-profilt.',
+          'Az OpenVPN-tanúsítvány lejárt. A megújításához indítson új kapcsolatot az alkalmazásban.',
       'tunnel_active_for_another_account':
           'Egy másik fiókhoz tartozó alagútnak le kell állnia, mielőtt ez a kapcsolat létrejön.',
       'tunnel_already_active':
@@ -1583,6 +1586,23 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Ha az Android továbbra is aktívan tartja a VPN-t, kapcsolja ki a megnyíló beállításokban a „Mindig bekapcsolt VPN” lehetőséget.';
+
+  @override
+  String get connection_certificate => 'OpenVPN-tanúsítvány';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Érvényes eddig: $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Lejárt: $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'A következő csatlakozáskor automatikusan megújul.';
 
   @override
   String get protection_learnMore => 'Tudjon meg többet az Android-védelemről';

@@ -201,6 +201,7 @@ const _nativeWireFields = <String>{
   'certificate_pem',
   'challenge_id',
   'connected_at',
+  'csr_pem',
   'csr_sha256',
   'device_id',
   'diagnostic_span_id',

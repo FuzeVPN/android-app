@@ -534,6 +534,9 @@ class AppLocalizationsDa extends AppLocalizations {
   String get action_copy => 'Kopiér';
 
   @override
+  String get action_renew => 'Forny';
+
+  @override
   String get action_signOut => 'Log ud';
 
   @override
@@ -1032,7 +1035,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'vpn_host_unavailable':
           'Android kan ikke oprette komponenten, der er vært for VPN. Prøv igen efter at have kontrolleret VPN-indstillingerne.',
       'openvpn_renewal_required':
-          'Certifikatet kræver en handling i appen, før der kan oprettes forbindelse.',
+          'OpenVPN-certifikatet kunne ikke fornyes automatisk. Start en ny forbindelse i appen.',
       'openvpn_recovery_failed':
           'Automatisk gendannelse mislykkedes. Start en ny forbindelse i appen.',
       'openvpn_recovery_exhausted':
@@ -1171,7 +1174,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN-serverens identitet kunne ikke bekræftes.',
       'openvpn_certificate_expired':
-          'Forny OpenVPN-profilen, før du opretter forbindelse igen.',
+          'OpenVPN-certifikatet er udløbet. Start en ny forbindelse i appen for at forny det.',
       'tunnel_active_for_another_account':
           'En tunnel, der tilhører en anden konto, skal stoppes, før denne forbindelse kan oprettes.',
       'tunnel_already_active':
@@ -1574,6 +1577,23 @@ class AppLocalizationsDa extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Hvis Android holder VPN aktiv, skal du slå VPN altid til fra i de indstillinger, der åbnes.';
+
+  @override
+  String get connection_certificate => 'OpenVPN-certifikat';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Gyldigt indtil $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Udløbet $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Fornyes automatisk næste gang, du opretter forbindelse.';
 
   @override
   String get protection_learnMore => 'Læs om Android-beskyttelse';

@@ -533,6 +533,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get action_copy => 'Копировать';
 
   @override
+  String get action_renew => 'Обновить';
+
+  @override
   String get action_signOut => 'Выйти';
 
   @override
@@ -1044,7 +1047,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'vpn_host_unavailable':
           'Android не может создать компонент, обслуживающий VPN. Повторите попытку после проверки настроек VPN.',
       'openvpn_renewal_required':
-          'Перед подключением сертификат требует действия в приложении.',
+          'Не удалось автоматически обновить сертификат OpenVPN. Запустите новое подключение в приложении.',
       'openvpn_recovery_failed':
           'Автоматическое восстановление не удалось. Запустите новое подключение в приложении.',
       'openvpn_recovery_exhausted':
@@ -1180,7 +1183,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'certificate_validation_failed':
           'Не удалось проверить идентичность сервера OpenVPN.',
       'openvpn_certificate_expired':
-          'Обновите профиль OpenVPN перед повторным подключением.',
+          'Сертификат OpenVPN истёк. Чтобы обновить его, запустите новое подключение в приложении.',
       'tunnel_active_for_another_account':
           'Перед этим подключением необходимо остановить туннель другой учётной записи.',
       'tunnel_already_active':
@@ -1586,6 +1589,23 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Если Android продолжает поддерживать VPN активным, отключите постоянно включённый VPN в открывшихся настройках.';
+
+  @override
+  String get connection_certificate => 'Сертификат OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Действителен до $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Истёк $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Обновится автоматически при следующем подключении.';
 
   @override
   String get protection_learnMore => 'Подробнее о защите Android';

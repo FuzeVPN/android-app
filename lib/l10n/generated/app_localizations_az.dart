@@ -530,6 +530,9 @@ class AppLocalizationsAz extends AppLocalizations {
   String get action_copy => 'Kopyalayın';
 
   @override
+  String get action_renew => 'Yeniləyin';
+
+  @override
   String get action_signOut => 'Hesabdan çıxın';
 
   @override
@@ -1035,7 +1038,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN-i işlədən komponenti yarada bilmir. VPN ayarlarını yoxladıqdan sonra yenidən cəhd edin.',
       'openvpn_renewal_required':
-          'Qoşulmazdan əvvəl tətbiqdə sertifikat üçün tələb olunan addımı tamamlayın.',
+          'OpenVPN sertifikatını avtomatik yeniləmək mümkün olmadı. Tətbiqdə yeni bağlantı başladın.',
       'openvpn_recovery_failed':
           'Avtomatik bərpa uğursuz oldu. Tətbiqdə yeni bağlantı başladın.',
       'openvpn_recovery_exhausted':
@@ -1177,7 +1180,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN serverinin kimliyi təsdiqlənə bilmədi.',
       'openvpn_certificate_expired':
-          'Yenidən qoşulmazdan əvvəl OpenVPN profilini yeniləyin.',
+          'OpenVPN sertifikatının müddəti bitib. Onu yeniləmək üçün tətbiqdə yeni bağlantı başladın.',
       'tunnel_active_for_another_account':
           'Bu bağlantıdan əvvəl başqa hesaba aid tunel dayandırılmalıdır.',
       'tunnel_already_active':
@@ -1581,6 +1584,23 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android VPN-i aktiv saxlayırsa, açılan ayarlarda Həmişə aktiv VPN-i söndürün.';
+
+  @override
+  String get connection_certificate => 'OpenVPN sertifikatı';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date tarixinə qədər etibarlıdır';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Müddəti $date tarixində bitib';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Növbəti bağlantı zamanı avtomatik yenilənir.';
 
   @override
   String get protection_learnMore =>

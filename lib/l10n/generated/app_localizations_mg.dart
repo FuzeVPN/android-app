@@ -535,6 +535,9 @@ class AppLocalizationsMg extends AppLocalizations {
   String get action_copy => 'Adikao';
 
   @override
+  String get action_renew => 'Havaozy';
+
+  @override
   String get action_signOut => 'Hivoaka';
 
   @override
@@ -1053,7 +1056,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'vpn_host_unavailable':
           'Tsy afaka namorona ny singa mampiantrano ny VPN ny Android. Andramo indray aorian’ny fijerena ny fikirana VPN.',
       'openvpn_renewal_required':
-          'Mila hetsika ao amin’ny fampiharana ny sertifika alohan’ny hifandraisana.',
+          'Tsy nahomby ny fanavaozana ho azy ny sertifika OpenVPN. Atombohy ny fifandraisana vaovao ao amin’ny fampiharana.',
       'openvpn_recovery_failed':
           'Tsy nahomby ny fanarenana ho azy. Atombohy ny fifandraisana vaovao ao amin’ny fampiharana.',
       'openvpn_recovery_exhausted':
@@ -1195,7 +1198,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'certificate_validation_failed':
           'Tsy voamarina ny fanamarinan-tena an’ny mpizara OpenVPN.',
       'openvpn_certificate_expired':
-          'Havaozy ny profil OpenVPN alohan’ny hifandrayana indray.',
+          'Lany daty ny sertifika OpenVPN. Atombohy ny fifandraisana vaovao ao amin’ny fampiharana mba hanavao azy.',
       'tunnel_active_for_another_account':
           'Tsy maintsy ampiatoina ny tunnel an’ny kaonty hafa alohan’ity fifandraisana ity.',
       'tunnel_already_active':
@@ -1600,6 +1603,23 @@ class AppLocalizationsMg extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Raha mbola mitazona ny VPN mavitrika ny Android, vonoy ny “VPN mavitrika mandrakariva” ao amin’ny fikirana izay misokatra.';
+
+  @override
+  String get connection_certificate => 'Sertifika OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Manan-kery hatramin’ny $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Lany daty tamin’ny $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Havaozina ho azy amin’ny fifandraisana manaraka.';
 
   @override
   String get protection_learnMore => 'Fantaro ny momba ny fiarovana Android';

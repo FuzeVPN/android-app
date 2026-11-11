@@ -537,6 +537,9 @@ class AppLocalizationsFil extends AppLocalizations {
   String get action_copy => 'Kopyahin';
 
   @override
+  String get action_renew => 'I-renew';
+
+  @override
   String get action_signOut => 'Mag-sign out';
 
   @override
@@ -1074,7 +1077,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'vpn_host_unavailable':
           'Hindi magawa ng Android ang component na nagho-host ng VPN. Subukan muli pagkatapos suriin ang mga setting ng VPN.',
       'openvpn_renewal_required':
-          'Nangangailangan ang certificate ng aksyon sa app bago kumonekta.',
+          'Hindi awtomatikong na-renew ang certificate ng OpenVPN. Magsimula ng bagong koneksyon sa app.',
       'openvpn_recovery_failed':
           'Nabigo ang awtomatikong pag-recover. Magsimula ng bagong koneksyon sa app.',
       'openvpn_recovery_exhausted':
@@ -1216,7 +1219,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'certificate_validation_failed':
           'Hindi ma-verify ang pagkakakilanlan ng OpenVPN server.',
       'openvpn_certificate_expired':
-          'I-renew ang profile ng OpenVPN bago muling kumonekta.',
+          'Nag-expire na ang certificate ng OpenVPN. Magsimula ng bagong koneksyon sa app upang i-renew ito.',
       'tunnel_active_for_another_account':
           'Dapat munang mahinto ang tunnel ng ibang account bago ang koneksyong ito.',
       'tunnel_already_active':
@@ -1621,6 +1624,23 @@ class AppLocalizationsFil extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Kung pinananatiling aktibo ng Android ang VPN, i-off ang Always-on VPN sa mga setting na bubukas.';
+
+  @override
+  String get connection_certificate => 'Certificate ng OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'May bisa hanggang $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Nag-expire noong $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Awtomatikong ire-renew sa susunod na koneksyon.';
 
   @override
   String get protection_learnMore =>

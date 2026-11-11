@@ -528,6 +528,9 @@ class AppLocalizationsHy extends AppLocalizations {
   String get action_copy => 'Պատճենել';
 
   @override
+  String get action_renew => 'Թարմացնել';
+
+  @override
   String get action_signOut => 'Դուրս գալ';
 
   @override
@@ -1027,7 +1030,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'vpn_host_unavailable':
           'Android-ը չի կարող ստեղծել VPN-ն աշխատեցնող բաղադրիչը։ Ստուգեք VPN-ի կարգավորումները և նորից փորձեք։',
       'openvpn_renewal_required':
-          'Վկայագիրը միանալուց առաջ պահանջում է գործողություն հավելվածում։',
+          'OpenVPN-ի վկայագրի ավտոմատ թարմացումը չհաջողվեց։ Հավելվածում սկսեք նոր միացում։',
       'openvpn_recovery_failed':
           'Ավտոմատ վերականգնումը չհաջողվեց։ Հավելվածում սկսեք նոր միացում։',
       'openvpn_recovery_exhausted':
@@ -1166,7 +1169,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN սերվերի ինքնությունը չհաջողվեց ստուգել։',
       'openvpn_certificate_expired':
-          'Նորից միանալուց առաջ թարմացրեք OpenVPN պրոֆիլը։',
+          'OpenVPN-ի վկայագրի ժամկետն անցել է։ Այն թարմացնելու համար հավելվածում սկսեք նոր միացում։',
       'tunnel_active_for_another_account':
           'Այս միացումից առաջ պետք է դադարեցվի մեկ այլ հաշվին պատկանող թունելը։',
       'tunnel_already_active':
@@ -1569,6 +1572,23 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Եթե Android-ը շարունակում է VPN-ն ակտիվ պահել, բացվող կարգավորումներում անջատեք «Միշտ միացված VPN»-ը։';
+
+  @override
+  String get connection_certificate => 'OpenVPN-ի վկայագիր';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Վավեր է մինչև $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Ժամկետն անցել է՝ $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Ավտոմատ կթարմացվի հաջորդ միացման ժամանակ։';
 
   @override
   String get protection_learnMore => 'Իմանալ Android-ի պաշտպանության մասին';

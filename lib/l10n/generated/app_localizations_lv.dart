@@ -534,6 +534,9 @@ class AppLocalizationsLv extends AppLocalizations {
   String get action_copy => 'Kopēt';
 
   @override
+  String get action_renew => 'Atjaunot';
+
+  @override
   String get action_signOut => 'Izrakstīties';
 
   @override
@@ -1032,7 +1035,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'vpn_host_unavailable':
           'Android nevar izveidot komponentu, kas darbina VPN. Pārbaudiet VPN iestatījumus un mēģiniet vēlreiz.',
       'openvpn_renewal_required':
-          'Pirms savienošanās sertifikātam nepieciešama darbība lietotnē.',
+          'OpenVPN sertifikātu neizdevās atjaunot automātiski. Lietotnē sāciet jaunu savienojumu.',
       'openvpn_recovery_failed':
           'Automātiskā atkopšana neizdevās. Lietotnē sāciet jaunu savienojumu.',
       'openvpn_recovery_exhausted':
@@ -1173,7 +1176,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN servera identitāti nevarēja pārbaudīt.',
       'openvpn_certificate_expired':
-          'Pirms atkārtotas savienošanās atjaunojiet OpenVPN profilu.',
+          'OpenVPN sertifikāta derīgums ir beidzies. Lai atjaunotu sertifikātu, lietotnē sāciet jaunu savienojumu.',
       'tunnel_active_for_another_account':
           'Pirms šī savienojuma jāaptur cita konta tunelis.',
       'tunnel_already_active':
@@ -1576,6 +1579,23 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Ja Android uztur VPN aktīvu, atvērtajos iestatījumos izslēdziet „Vienmēr ieslēgts VPN“.';
+
+  @override
+  String get connection_certificate => 'OpenVPN sertifikāts';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Derīgs līdz $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Derīgums beidzās $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Tiks automātiski atjaunots nākamajā savienošanās reizē.';
 
   @override
   String get protection_learnMore => 'Uzziniet par Android aizsardzību';

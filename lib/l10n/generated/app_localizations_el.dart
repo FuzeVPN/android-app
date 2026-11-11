@@ -541,6 +541,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get action_copy => 'Αντιγραφή';
 
   @override
+  String get action_renew => 'Ανανέωση';
+
+  @override
   String get action_signOut => 'Αποσύνδεση';
 
   @override
@@ -1074,7 +1077,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'vpn_host_unavailable':
           'Το Android δεν μπορεί να δημιουργήσει το στοιχείο που φιλοξενεί το VPN. Δοκιμάστε ξανά αφού ελέγξετε τις ρυθμίσεις VPN.',
       'openvpn_renewal_required':
-          'Το πιστοποιητικό απαιτεί ενέργεια στην εφαρμογή πριν από τη σύνδεση.',
+          'Δεν ήταν δυνατή η αυτόματη ανανέωση του πιστοποιητικού OpenVPN. Ξεκινήστε νέα σύνδεση στην εφαρμογή.',
       'openvpn_recovery_failed':
           'Η αυτόματη ανάκτηση απέτυχε. Ξεκινήστε νέα σύνδεση στην εφαρμογή.',
       'openvpn_recovery_exhausted':
@@ -1216,7 +1219,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'certificate_validation_failed':
           'Δεν ήταν δυνατή η επαλήθευση της ταυτότητας του διακομιστή OpenVPN.',
       'openvpn_certificate_expired':
-          'Ανανεώστε το προφίλ OpenVPN πριν επανασυνδεθείτε.',
+          'Το πιστοποιητικό OpenVPN έχει λήξει. Ξεκινήστε νέα σύνδεση στην εφαρμογή για να το ανανεώσετε.',
       'tunnel_active_for_another_account':
           'Μια σήραγγα που ανήκει σε άλλον λογαριασμό πρέπει να σταματήσει πριν από αυτή τη σύνδεση.',
       'tunnel_already_active':
@@ -1622,6 +1625,23 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Αν το Android διατηρεί ενεργό το VPN, απενεργοποιήστε το VPN σε μόνιμη λειτουργία από τις ρυθμίσεις που ανοίγουν.';
+
+  @override
+  String get connection_certificate => 'Πιστοποιητικό OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Ισχύει έως $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Έληξε: $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Θα ανανεωθεί αυτόματα στην επόμενη σύνδεση.';
 
   @override
   String get protection_learnMore => 'Μάθετε για την προστασία Android';

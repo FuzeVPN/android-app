@@ -1184,6 +1184,140 @@ class AndroidVpnBridgeHostTest {
         assertEquals("network_unavailable", record.errorCode)
     }
 
+    // OpenVPN certificates last 90 days. One that was due (7 days or less left, expired, or a
+    // renewal left pending) ended every recovery, tile click and system restore in
+    // openvpn_renewal_required until the user opened the application. They now renew it
+    // themselves, and the resume is armed again for the identity the renewal created.
+    @Test fun networkChangeRenewsACertificateThatIsDue() {
+        connectOpenVpn()
+        HarnessControl.openVpnCertificate = "expiring"
+        loseNetwork()
+        eventually("reconnected") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf(RECONNECTING, OPENVPN_CONNECTED), events.takeLast(2))
+        assertEquals(listOf("https://api.fuzevpn.com/v1/devices/$DEVICE/profiles/openvpn/renew Bearer host-test-token"),
+            HarnessControl.renewalRequests.toList())
+        assertEquals(1, HarnessControl.openVpnCsrRequests)
+        assertEquals("the renewed activation did not start Core", 2, HarnessControl.openVpnConnects)
+        assertEquals("a local restart used the certificate that was due", 0, HarnessControl.openVpnReconnects)
+        // The recovery restart keeps the TUN hold, as a local restart does.
+        assertEquals(listOf("start(reconnecting=false)", "start(reconnecting=true)"),
+            HarnessControl.openVpnService.toList())
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.READY, record.status)
+        assertEquals(HarnessControl.RENEWED_OPENVPN_IDENTITY, record.identityFingerprint)
+        assertFalse("a network change spent the failure retry", record.recoveryConsumed)
+        // The certificate is valid again: the next change restarts locally, without the API.
+        loseNetwork()
+        eventually("second reconnect") { sink.events.count { it == OPENVPN_CONNECTED } == 3 }
+        assertEquals(1, HarnessControl.renewalRequests.size)
+        assertEquals(1, HarnessControl.openVpnReconnects)
+    }
+
+    // Arming the resume again for the renewed identity must not give the failure retry back.
+    @Test fun aRenewalDuringTheFailureRetryKeepsThatRetrySpent() {
+        connectOpenVpn()
+        HarnessControl.openVpnCertificate = "expired"
+        engine().coreReconnectRequired()
+        eventually("renewed and reconnected") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertEquals(1, HarnessControl.renewalRequests.size)
+        val record = registry().snapshot()!!
+        assertEquals(HarnessControl.RENEWED_OPENVPN_IDENTITY, record.identityFingerprint)
+        assertTrue("re-arming after the renewal gave the failure retry back", record.recoveryConsumed)
+        engine().coreReconnectRequired()
+        eventually("exhausted recovery published") { bridge.quickTileState().messageCode == "openvpn_recovery_exhausted" }
+        assertEquals(1, HarnessControl.renewalRequests.size)
+    }
+
+    // Whatever the server refuses ends as before the automatic renewal: the session stops with a
+    // notice and the resume is blocked. The active identity and the pending CSR are kept, so the
+    // next start (here the tile) presents the same CSR and never needs the application either.
+    @Test fun aRefusedRenewalEndsInRenewalRequiredAndTheNextStartRenewsWithThePendingCsr() {
+        connectOpenVpn()
+        HarnessControl.openVpnCertificate = "expiring"
+        HarnessControl.renewalResponse = { 503 to """{"error":"openvpn_signer_unavailable"}""" }
+        loseNetwork()
+        eventually("renewal refused") { bridge.quickTileState().messageCode == "openvpn_renewal_required" }
+        eventually("TUN hold released") { HarnessControl.openVpnService.lastOrNull() == "stop" }
+        val events = settledEvents()
+        assertEquals(events.toString(), "error/openvpn/openvpn_renewal_required", events.last())
+        assertTrue(HarnessControl.notifications.toString(),
+            HarnessControl.notifications.contains("startProtocol(OPENVPN,ERROR,reconnecting=false,action=true)"))
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.BLOCKED, record.status)
+        assertEquals("openvpn_renewal_required", record.errorCode)
+        assertEquals("the active identity changed without a certificate", WireGuardController.IDENTITY, HarnessControl.openVpnIdentity)
+        assertTrue("the pending CSR was dropped", HarnessControl.openVpnRenewalPending)
+        assertEquals(1, HarnessControl.openVpnConnects)
+        assertEquals(0, HarnessControl.openVpnReconnects)
+        HarnessControl.renewalResponse = { HarnessControl.renewedActivation(it) }
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>(null), tileCallbacks.toList())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(2, HarnessControl.renewalRequests.size)
+        assertEquals(0, HarnessControl.openVpnReconnects)
+        assertEquals(HarnessControl.RENEWED_OPENVPN_IDENTITY, registry().snapshot()!!.identityFingerprint)
+    }
+
+    @Test fun aTileClickRenewsAnExpiredCertificateInsteadOfOpeningTheApplication() {
+        connectOpenVpn()
+        assertNull(call("disconnect").await().error)
+        HarnessControl.openVpnCertificate = "expired"
+        HarnessControl.renewalResponse = { HarnessControl.renewedActivation(it, "10.9.0.7/32") }
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>(null), tileCallbacks.toList())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(VpnProtocol.OPENVPN, bridge.quickTileState().protocol)
+        assertEquals(1, HarnessControl.renewalRequests.size)
+        assertEquals(0, HarnessControl.openVpnReconnects)
+        assertTrue(TileService.launches.toString(), TileService.launches.isEmpty())
+        // The tile and the resume describe the tunnel network of the renewed activation.
+        val stored = QuickTileProfile.decode(SecureKeystoreStore.raw(SecureStorageKeyPolicy.quickTileProfile())!!)!!
+        assertEquals(TunnelNetworkSpec.ipv4("10.9.0.7/32", listOf("0.0.0.0/0")), stored.openVpnNetwork)
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.READY, record.status)
+        assertEquals(stored, record.profile)
+        assertEquals(HarnessControl.RENEWED_OPENVPN_IDENTITY, record.identityFingerprint)
+        assertFalse(record.recoveryConsumed)
+    }
+
+    // The renewal needs a physical network of its own: without one the notice names the network.
+    @Test fun aRenewalWithoutAPhysicalNetworkIsReportedAsNetworkUnavailable() {
+        connectOpenVpn()
+        assertNull(call("disconnect").await().error)
+        HarnessControl.openVpnCertificate = "expired"
+        HarnessControl.renewalResponse = {
+            throw com.fuzevpn.android.openvpn.OpenVpnRenewalRefused(com.fuzevpn.android.openvpn.OpenVpnRenewalRefused.NETWORK)
+        }
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>("network_unavailable"), tileCallbacks.toList())
+        assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+        assertEquals("network_unavailable", bridge.quickTileState().messageCode)
+        assertEquals(1, HarnessControl.openVpnConnects)
+        assertTrue("the pending CSR was dropped", HarnessControl.openVpnRenewalPending)
+    }
+
+    // A slow server must not hold the tunnel mutex against the user: the request is abandoned
+    // at the receipt of the next command, and its CSR stays pending for the next attempt.
+    @Test fun aStopReceivedDuringTheRenewalRequestIsNotKeptWaiting() {
+        connectOpenVpn()
+        HarnessControl.openVpnCertificate = "expiring"
+        HarnessControl.renewalHold = true
+        try {
+            loseNetwork()
+            eventually("renewal request sent") { HarnessControl.renewalRequests.size == 1 }
+            assertNull(call("disconnect").await().error)
+            assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        } finally { HarnessControl.renewalHold = false }
+        assertEquals(1, HarnessControl.openVpnConnects)
+        assertNull("tombstone", registry().snapshot())
+        assertTrue("the pending CSR was dropped", HarnessControl.openVpnRenewalPending)
+        Thread.sleep(300)
+        val events = settledEvents()
+        assertEquals(events.toString(), "idle/null/null", events.last())
+        assertFalse(events.toString(), events.any { it.endsWith("/openvpn_renewal_required") })
+    }
+
     @Test fun wireGuardSessionNeverTriggersOpenVpnLoss() {
         signIn()
         assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
@@ -1239,6 +1373,42 @@ class AndroidVpnBridgeHostTest {
         assertEquals(1, HarnessControl.openVpnReconnects)
         assertEquals(1, HarnessControl.hostStarts)
         assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+    }
+
+    // The permanent VPN of a phone left alone for weeks: the restore renews a certificate that
+    // is due instead of blocking until the application is opened, and stays restorable.
+    @Test fun processRestartRenewsACertificateThatIsDue() {
+        armed { connectOpenVpn(); OPENVPN_CONNECTED }
+        HarnessControl.openVpnCertificate = "expiring"
+        processDeath()
+        processRestart()
+        eventually("restored", seconds = 10) { sink.events.contains(OPENVPN_CONNECTED) }
+        assertEquals(1, HarnessControl.renewalRequests.size)
+        assertEquals("a local restart used the certificate that was due", 0, HarnessControl.openVpnReconnects)
+        assertEquals(1, HarnessControl.hostStarts)
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.READY, record.status)
+        assertEquals(HarnessControl.RENEWED_OPENVPN_IDENTITY, record.identityFingerprint)
+        assertFalse(record.recoveryConsumed)
+    }
+
+    @Test fun aRefusedRenewalDuringARestoreBlocksLikeAnyFailedRestore() {
+        armed { connectOpenVpn(); OPENVPN_CONNECTED }
+        HarnessControl.openVpnCertificate = "expired"
+        HarnessControl.renewalResponse = { 401 to """{"error":"unauthorized"}""" }
+        processDeath()
+        processRestart()
+        settleSystemJob()
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.BLOCKED, record.status)
+        assertEquals("openvpn_renewal_required", record.errorCode)
+        assertTrue(settledEvents().toString(), settledEvents().contains("error/openvpn/openvpn_renewal_required"))
+        assertTrue(HarnessControl.notifications.toString(),
+            HarnessControl.notifications.contains("startProtocol(OPENVPN,ERROR,reconnecting=false,action=true)"))
+        assertEquals(1, HarnessControl.renewalRequests.size)
+        assertEquals(0, HarnessControl.openVpnReconnects)
+        assertEquals("the active identity changed without a certificate", WireGuardController.IDENTITY, HarnessControl.openVpnIdentity)
+        assertTrue("the pending CSR was dropped", HarnessControl.openVpnRenewalPending)
     }
 
     @Test fun userDisconnectDisarmsAtReceiptAndTheRestartRestoresNothing() {

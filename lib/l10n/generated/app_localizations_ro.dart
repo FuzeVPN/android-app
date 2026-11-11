@@ -533,6 +533,9 @@ class AppLocalizationsRo extends AppLocalizations {
   String get action_copy => 'Copiați';
 
   @override
+  String get action_renew => 'Reînnoiește';
+
+  @override
   String get action_signOut => 'Deconectare';
 
   @override
@@ -1051,7 +1054,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'vpn_host_unavailable':
           'Android nu poate crea componenta care găzduiește VPN-ul. Încearcă din nou după ce verifici setările VPN.',
       'openvpn_renewal_required':
-          'Certificatul necesită o acțiune în aplicație înainte de conectare.',
+          'Certificatul OpenVPN nu a putut fi reînnoit automat. Pornește o conexiune nouă din aplicație.',
       'openvpn_recovery_failed':
           'Recuperarea automată a eșuat. Pornește o conexiune nouă din aplicație.',
       'openvpn_recovery_exhausted':
@@ -1193,7 +1196,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'certificate_validation_failed':
           'Identitatea serverului OpenVPN nu a putut fi verificată.',
       'openvpn_certificate_expired':
-          'Reînnoiește profilul OpenVPN înainte de reconectare.',
+          'Certificatul OpenVPN a expirat. Pornește o conexiune nouă din aplicație pentru a-l reînnoi.',
       'tunnel_active_for_another_account':
           'Un tunel care aparține altui cont trebuie oprit înainte de această conexiune.',
       'tunnel_already_active':
@@ -1599,6 +1602,23 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Dacă Android menține VPN-ul activ, dezactivează VPN-ul permanent din setările care se deschid.';
+
+  @override
+  String get connection_certificate => 'Certificat OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Valabil până la $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Expirat la $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Se va reînnoi automat la următoarea conectare.';
 
   @override
   String get protection_learnMore => 'Află mai multe despre protecția Android';

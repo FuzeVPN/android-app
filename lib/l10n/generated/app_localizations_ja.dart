@@ -512,6 +512,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get action_copy => 'コピー';
 
   @override
+  String get action_renew => '更新';
+
+  @override
   String get action_signOut => 'サインアウト';
 
   @override
@@ -959,7 +962,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'vpn_host_destroyed': 'VPNをホストするAndroidコンポーネントが停止しました。新しい接続を開始してください。',
       'vpn_host_unavailable':
           'AndroidはVPNをホストするコンポーネントを作成できません。VPN設定を確認してからもう一度試してください。',
-      'openvpn_renewal_required': '接続する前に、アプリで証明書への対応が必要です。',
+      'openvpn_renewal_required': 'OpenVPN証明書を自動更新できませんでした。アプリで新しい接続を開始してください。',
       'openvpn_recovery_failed': '自動復旧に失敗しました。アプリで新しい接続を開始してください。',
       'openvpn_recovery_exhausted': '自動復旧はすでに使用されています。アプリで新しい接続を開始してください。',
       'vpn_permission_required': 'トンネルを開始する前に、Androidで新しいVPN認証が必要です。',
@@ -1058,7 +1061,8 @@ class AppLocalizationsJa extends AppLocalizations {
       'network_unavailable': '使用できる物理ネットワークがありません。',
       'network_lost': 'ネットワークが失われたためトンネルを停止しました。',
       'certificate_validation_failed': 'OpenVPNサーバーのIDを検証できませんでした。',
-      'openvpn_certificate_expired': '再接続する前にOpenVPNプロファイルを更新してください。',
+      'openvpn_certificate_expired':
+          'OpenVPN証明書の有効期限が切れています。更新するには、アプリで新しい接続を開始してください。',
       'tunnel_active_for_another_account':
           'この接続の前に、別のアカウントに属するトンネルを停止する必要があります。',
       'tunnel_already_active': 'Androidによると、以前のVPNセッションがまだインターフェースを使用しています。',
@@ -1438,6 +1442,22 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'AndroidがVPNをアクティブなままにする場合は、開いた設定で常時接続VPNをオフにしてください。';
+
+  @override
+  String get connection_certificate => 'OpenVPN証明書';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$dateまで有効';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$dateに有効期限切れ';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal => '次回の接続時に自動更新されます。';
 
   @override
   String get protection_learnMore => 'Androidの保護について詳しく見る';

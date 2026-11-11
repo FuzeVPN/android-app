@@ -353,9 +353,70 @@ class VpnAppController extends ChangeNotifier {
       _revocationResult = null;
       _revocationOperation = null;
       _revocationTask = null;
+      // The certificate shown belongs to the previous device.
+      openVpnCertificate = null;
+      _certificateReads++;
     }
     _currentDeviceId = value;
   }
+
+  /// Lifetime of this device's stored OpenVPN certificate, for display only:
+  /// whether a connection renews it is decided again at that connection, and
+  /// by the native reconnections. Null without a stored certificate.
+  OpenVpnCertificateStatus? openVpnCertificate;
+  int _certificateReads = 0;
+
+  /// Reads the certificate again after anything that can replace it. A failed
+  /// read shows nothing; an answer for a previous account or device is dropped.
+  Future<void> _refreshOpenVpnCertificate() async {
+    final int read = ++_certificateReads;
+    final String? account = profile?.userId;
+    final String? device = currentDeviceId;
+    OpenVpnCertificateStatus? status;
+    if (account != null && device != null) {
+      try {
+        status = await _tunnel.getOpenVpnCertificateStatus(
+          accountId: account,
+          deviceId: device,
+        );
+      } catch (_) {
+        status = null;
+      }
+    }
+    if (_disposed || read != _certificateReads) return;
+    if (status?.notAfter == null) status = null;
+    final OpenVpnCertificateStatus? shown = openVpnCertificate;
+    if (shown?.phase == status?.phase &&
+        shown?.notAfter == status?.notAfter &&
+        shown?.renewalPending == status?.renewalPending) {
+      return;
+    }
+    openVpnCertificate = status;
+    notifyListeners();
+  }
+
+  /// Renewing stops the tunnel, replaces the certificate and reconnects with
+  /// OpenVPN: it is offered from a settled state only, like a protocol change.
+  bool get canRenewOpenVpnCertificate =>
+      !_disposed &&
+      !isInitializing &&
+      !isAuthenticating &&
+      !isRestoringAccount &&
+      !isConnecting &&
+      !isChangingLocation &&
+      !isIdentityBusy &&
+      !isRevoking &&
+      !isDisconnecting &&
+      !isLocationMigrationLocked &&
+      openVpnRevocation == null &&
+      openVpnCertificate != null &&
+      (tunnelState.phase == VpnRuntimePhase.idle ||
+          tunnelState.phase == VpnRuntimePhase.error ||
+          tunnelState.phase == VpnRuntimePhase.connected) &&
+      (activeDeviceLocation ?? selectedLocation)?.supports(
+            VpnProtocol.openVpn,
+          ) ==
+          true;
 
   _MigrationContext? _migrationContext;
   _MigrationContext? _migrationStartRequest;
@@ -2874,6 +2935,7 @@ class VpnAppController extends ChangeNotifier {
       // Every account publication ends here: a catalogue missed before it
       // (offline start, failed reload) is loaded now, in the background.
       _reloadCatalogueIfMissing();
+      unawaited(_refreshOpenVpnCertificate());
       return true;
     } on ApiFailure catch (error) {
       check();
@@ -3720,6 +3782,13 @@ class VpnAppController extends ChangeNotifier {
     _noticeNativeError(state);
     // An active tunnel hid a missing catalogue; a stopped one would show it.
     if (!isTunnelActive && isSignedIn) _reloadCatalogueIfMissing();
+    // A connection, also one native code made alone, may have renewed it.
+    if (!countersOnly &&
+        (state.phase == VpnRuntimePhase.connected ||
+            state.phase == VpnRuntimePhase.idle ||
+            state.phase == VpnRuntimePhase.error)) {
+      unawaited(_refreshOpenVpnCertificate());
+    }
     if (!countersOnly) notifyListeners();
   }
 

@@ -530,6 +530,9 @@ class AppLocalizationsLo extends AppLocalizations {
   String get action_copy => 'ສຳເນົາ';
 
   @override
+  String get action_renew => 'ຕໍ່ອາຍຸ';
+
+  @override
   String get action_signOut => 'ອອກຈາກລະບົບ';
 
   @override
@@ -1010,7 +1013,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ບໍ່ສາມາດສ້າງສ່ວນປະກອບທີ່ໂຮສ VPN ໄດ້. ກະລຸນາລອງໃໝ່ຫຼັງຈາກກວດສອບການຕັ້ງຄ່າ VPN.',
       'openvpn_renewal_required':
-          'ໃບຮັບຮອງຕ້ອງການການດຳເນີນການໃນແອັບກ່ອນເຊື່ອມຕໍ່.',
+          'ບໍ່ສາມາດຕໍ່ອາຍຸໃບຮັບຮອງ OpenVPN ໂດຍອັດຕະໂນມັດໄດ້. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບ.',
       'openvpn_recovery_failed':
           'ການກູ້ຄືນອັດຕະໂນມັດລົ້ມເຫຼວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບ.',
       'openvpn_recovery_exhausted':
@@ -1144,7 +1147,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'certificate_validation_failed':
           'ບໍ່ສາມາດກວດສອບຕົວຕົນຂອງເຊີບເວີ OpenVPN ໄດ້.',
       'openvpn_certificate_expired':
-          'ກະລຸນາຕໍ່ອາຍຸໂປຣໄຟລ໌ OpenVPN ກ່ອນເຊື່ອມຕໍ່ໃໝ່.',
+          'ໃບຮັບຮອງ OpenVPN ໝົດອາຍຸແລ້ວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບເພື່ອຕໍ່ອາຍຸ.',
       'tunnel_active_for_another_account':
           'ອຸໂມງຂອງບັນຊີອື່ນຕ້ອງຢຸດກ່ອນການເຊື່ອມຕໍ່ນີ້.',
       'tunnel_already_active':
@@ -1545,6 +1548,23 @@ class AppLocalizationsLo extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'ຖ້າ Android ຍັງເປີດ VPN ຢູ່, ກະລຸນາປິດ VPN ເປີດຕະຫຼອດເວລາໃນການຕັ້ງຄ່າທີ່ເປີດຂຶ້ນມາ.';
+
+  @override
+  String get connection_certificate => 'ໃບຮັບຮອງ OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'ໃຊ້ໄດ້ຈົນເຖິງ $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'ໝົດອາຍຸເມື່ອ $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'ຈະຕໍ່ອາຍຸອັດຕະໂນມັດເມື່ອເຊື່ອມຕໍ່ຄັ້ງຕໍ່ໄປ.';
 
   @override
   String get protection_learnMore => 'ຮຽນຮູ້ກ່ຽວກັບການປົກປ້ອງ Android';

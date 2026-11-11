@@ -532,6 +532,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get action_copy => 'কপি করুন';
 
   @override
+  String get action_renew => 'নবায়ন করুন';
+
+  @override
   String get action_signOut => 'সাইন আউট করুন';
 
   @override
@@ -1033,7 +1036,7 @@ class AppLocalizationsBn extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN চালানো উপাদানটি তৈরি করতে পারছে না। VPN সেটিংস দেখে আবার চেষ্টা করুন।',
       'openvpn_renewal_required':
-          'সংযুক্ত হওয়ার আগে অ্যাপে সার্টিফিকেট সংক্রান্ত একটি কাজ করতে হবে।',
+          'OpenVPN সার্টিফিকেট স্বয়ংক্রিয়ভাবে নবায়ন করা যায়নি। অ্যাপে নতুন সংযোগ শুরু করুন।',
       'openvpn_recovery_failed':
           'স্বয়ংক্রিয় পুনরুদ্ধার ব্যর্থ হয়েছে। অ্যাপে নতুন সংযোগ শুরু করুন।',
       'openvpn_recovery_exhausted':
@@ -1172,7 +1175,7 @@ class AppLocalizationsBn extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN সার্ভারের পরিচয় যাচাই করা যায়নি।',
       'openvpn_certificate_expired':
-          'আবার সংযুক্ত হওয়ার আগে OpenVPN প্রোফাইল নবায়ন করুন।',
+          'OpenVPN সার্টিফিকেটের মেয়াদ শেষ হয়ে গেছে। এটি নবায়ন করতে অ্যাপে নতুন সংযোগ শুরু করুন।',
       'tunnel_active_for_another_account':
           'এই সংযোগের আগে অন্য অ্যাকাউন্টের একটি টানেল বন্ধ হওয়া প্রয়োজন।',
       'tunnel_already_active':
@@ -1576,6 +1579,23 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android যদি VPN সক্রিয় রাখে, তাহলে যে সেটিংস খুলবে সেখানে সর্বদা-চালু VPN বন্ধ করুন।';
+
+  @override
+  String get connection_certificate => 'OpenVPN সার্টিফিকেট';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date পর্যন্ত বৈধ';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date তারিখে মেয়াদ শেষ হয়েছে';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'পরবর্তী সংযোগের সময় স্বয়ংক্রিয়ভাবে নবায়ন হবে।';
 
   @override
   String get protection_learnMore => 'Android সুরক্ষা সম্পর্কে জানুন';

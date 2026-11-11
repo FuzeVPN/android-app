@@ -532,6 +532,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get action_copy => 'Salin';
 
   @override
+  String get action_renew => 'Perbaharui';
+
+  @override
   String get action_signOut => 'Log keluar';
 
   @override
@@ -1029,7 +1032,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'vpn_host_unavailable':
           'Android tidak dapat mencipta komponen yang menjadi hos VPN. Cuba lagi selepas menyemak tetapan VPN.',
       'openvpn_renewal_required':
-          'Sijil memerlukan tindakan dalam aplikasi sebelum menyambung.',
+          'Sijil OpenVPN tidak dapat diperbaharui secara automatik. Mulakan sambungan baharu dalam aplikasi.',
       'openvpn_recovery_failed':
           'Pemulihan automatik gagal. Mulakan sambungan baharu dalam aplikasi.',
       'openvpn_recovery_exhausted':
@@ -1171,7 +1174,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'certificate_validation_failed':
           'Identiti pelayan OpenVPN tidak dapat disahkan.',
       'openvpn_certificate_expired':
-          'Perbaharui profil OpenVPN sebelum menyambung semula.',
+          'Sijil OpenVPN telah tamat tempoh. Mulakan sambungan baharu dalam aplikasi untuk memperbaharuinya.',
       'tunnel_active_for_another_account':
           'Terowong milik akaun lain mesti dihentikan sebelum sambungan ini.',
       'tunnel_already_active':
@@ -1574,6 +1577,23 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Jika Android mengekalkan VPN aktif, matikan VPN sentiasa hidup dalam tetapan yang dibuka.';
+
+  @override
+  String get connection_certificate => 'Sijil OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Sah sehingga $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Telah tamat tempoh pada $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Diperbaharui secara automatik pada sambungan seterusnya.';
 
   @override
   String get protection_learnMore => 'Ketahui tentang perlindungan Android';

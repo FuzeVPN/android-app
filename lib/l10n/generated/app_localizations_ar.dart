@@ -522,6 +522,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get action_copy => 'نسخ';
 
   @override
+  String get action_renew => 'تجديد';
+
+  @override
   String get action_signOut => 'تسجيل الخروج';
 
   @override
@@ -1006,7 +1009,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'vpn_host_unavailable':
           'لا يستطيع Android إنشاء المكوّن الذي يستضيف VPN. حاول مرة أخرى بعد التحقق من إعدادات VPN.',
       'openvpn_renewal_required':
-          'تتطلب الشهادة إجراءً في التطبيق قبل الاتصال.',
+          'تعذّر تجديد شهادة OpenVPN تلقائيًا. ابدأ اتصالًا جديدًا في التطبيق.',
       'openvpn_recovery_failed':
           'فشلت الاستعادة التلقائية. ابدأ اتصالًا جديدًا في التطبيق.',
       'openvpn_recovery_exhausted':
@@ -1129,7 +1132,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'network_unavailable': 'لا تتوفر شبكة فعلية قابلة للاستخدام.',
       'network_lost': 'أُوقف النفق بعد فقدان الشبكة.',
       'certificate_validation_failed': 'تعذر التحقق من هوية خادم OpenVPN.',
-      'openvpn_certificate_expired': 'جدّد ملف OpenVPN قبل إعادة الاتصال.',
+      'openvpn_certificate_expired':
+          'انتهت صلاحية شهادة OpenVPN. ابدأ اتصالًا جديدًا في التطبيق لتجديدها.',
       'tunnel_active_for_another_account':
           'يجب إيقاف نفق تابع لحساب آخر قبل هذا الاتصال.',
       'tunnel_already_active':
@@ -1532,6 +1536,23 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'إذا أبقى Android VPN نشطًا، فأوقف VPN الدائم في الإعدادات التي ستُفتح.';
+
+  @override
+  String get connection_certificate => 'شهادة OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'صالحة حتى $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'انتهت صلاحيتها في $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'تتجدد تلقائيًا عند الاتصال التالي.';
 
   @override
   String get protection_learnMore => 'تعرّف على حماية Android';

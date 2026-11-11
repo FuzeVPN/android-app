@@ -532,6 +532,9 @@ class AppLocalizationsUz extends AppLocalizations {
   String get action_copy => 'Nusxa olish';
 
   @override
+  String get action_renew => 'Yangilash';
+
+  @override
   String get action_signOut => 'Hisobdan chiqish';
 
   @override
@@ -1047,7 +1050,7 @@ class AppLocalizationsUz extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN’ni boshqaradigan komponentni yarata olmaydi. VPN sozlamalarini tekshirib, qayta urinib koʻring.',
       'openvpn_renewal_required':
-          'Ulanishdan oldin sertifikat boʻyicha ilovada amal bajarish talab qilinadi.',
+          'OpenVPN sertifikatini avtomatik yangilab boʻlmadi. Ilovada yangi ulanishni boshlang.',
       'openvpn_recovery_failed':
           'Avtomatik tiklab boʻlmadi. Ilovada yangi ulanishni boshlang.',
       'openvpn_recovery_exhausted':
@@ -1186,7 +1189,7 @@ class AppLocalizationsUz extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN serverining identifikatori tasdiqlanmadi.',
       'openvpn_certificate_expired':
-          'Qayta ulanishdan oldin OpenVPN profilini yangilang.',
+          'OpenVPN sertifikati muddati tugagan. Uni yangilash uchun ilovada yangi ulanishni boshlang.',
       'tunnel_active_for_another_account':
           'Bu ulanishdan oldin boshqa hisobga tegishli tunnel toʻxtatilishi kerak.',
       'tunnel_already_active':
@@ -1590,6 +1593,23 @@ class AppLocalizationsUz extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Agar Android VPN’ni faol holda ushlab tursa, ochiladigan sozlamalarda Doimiy VPN’ni oʻchiring.';
+
+  @override
+  String get connection_certificate => 'OpenVPN sertifikati';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date gacha amal qiladi';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Muddati $date kuni tugagan';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Keyingi ulanishda avtomatik yangilanadi.';
 
   @override
   String get protection_learnMore => 'Android himoyasi haqida bilib oling';

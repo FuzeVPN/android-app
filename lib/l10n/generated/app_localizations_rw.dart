@@ -536,6 +536,9 @@ class AppLocalizationsRw extends AppLocalizations {
   String get action_copy => 'Koporora';
 
   @override
+  String get action_renew => 'Kuvugurura';
+
+  @override
   String get action_signOut => 'Gusohoka';
 
   @override
@@ -1051,7 +1054,7 @@ class AppLocalizationsRw extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ntishobora gukora igice cyakira VPN. Mwongere mugerageze nyuma yo kureba igenamiterere rya VPN.',
       'openvpn_renewal_required':
-          'Icyemezo gisaba igikorwa muri porogaramu mbere yo guhuza.',
+          'Kuvugurura icyemezo cya OpenVPN mu buryo bwikora ntibyashobotse. Mutangire ihuza rishya muri porogaramu.',
       'openvpn_recovery_failed':
           'Kugarura mu buryo bwikora ntibyashobotse. Mutangire ihuza rishya muri porogaramu.',
       'openvpn_recovery_exhausted':
@@ -1190,7 +1193,7 @@ class AppLocalizationsRw extends AppLocalizations {
       'certificate_validation_failed':
           'Ntibyashobotse kugenzura umwirondoro wa seriveri ya OpenVPN.',
       'openvpn_certificate_expired':
-          'Muvugurure profayili ya OpenVPN mbere yo kongera guhuza.',
+          'Icyemezo cya OpenVPN cyarangiye. Mutangire ihuza rishya muri porogaramu kugira ngo kivugururwe.',
       'tunnel_active_for_another_account':
           'Umuyoboro w’indi konti ugomba guhagarara mbere y’iri huza.',
       'tunnel_already_active':
@@ -1595,6 +1598,23 @@ class AppLocalizationsRw extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Niba Android ikomeje gutuma VPN ikora, muzimye “VPN ihora ikora” mu igenamiterere rifunguka.';
+
+  @override
+  String get connection_certificate => 'Icyemezo cya OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Gifite agaciro kugeza tariki $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Cyarangiye tariki $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Kizavugururwa mu buryo bwikora ku ihuza ritaha.';
 
   @override
   String get protection_learnMore => 'Mumenye byinshi ku burinzi bwa Android';
