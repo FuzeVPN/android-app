@@ -532,6 +532,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get action_copy => 'Salin';
 
   @override
+  String get action_renew => 'Perbarui';
+
+  @override
   String get action_signOut => 'Keluar';
 
   @override
@@ -1026,7 +1029,7 @@ class AppLocalizationsId extends AppLocalizations {
       'vpn_host_unavailable':
           'Android tidak dapat membuat komponen yang menjadi host VPN. Coba lagi setelah memeriksa pengaturan VPN.',
       'openvpn_renewal_required':
-          'Sertifikat memerlukan tindakan di aplikasi sebelum terhubung.',
+          'Sertifikat OpenVPN tidak dapat diperbarui otomatis. Mulai koneksi baru di aplikasi.',
       'openvpn_recovery_failed':
           'Pemulihan otomatis gagal. Mulai koneksi baru di aplikasi.',
       'openvpn_recovery_exhausted':
@@ -1165,7 +1168,7 @@ class AppLocalizationsId extends AppLocalizations {
       'certificate_validation_failed':
           'Identitas server OpenVPN tidak dapat diverifikasi.',
       'openvpn_certificate_expired':
-          'Perbarui profil OpenVPN sebelum terhubung kembali.',
+          'Sertifikat OpenVPN telah kedaluwarsa. Mulai koneksi baru di aplikasi untuk memperbaruinya.',
       'tunnel_active_for_another_account':
           'Tunnel milik akun lain harus dihentikan sebelum koneksi ini.',
       'tunnel_already_active':
@@ -1568,6 +1571,23 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Jika Android tetap mempertahankan VPN aktif, matikan VPN selalu aktif di pengaturan yang terbuka.';
+
+  @override
+  String get connection_certificate => 'Sertifikat OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Berlaku hingga $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Telah kedaluwarsa pada $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Diperbarui otomatis pada koneksi berikutnya.';
 
   @override
   String get protection_learnMore => 'Pelajari perlindungan Android';

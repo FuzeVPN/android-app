@@ -527,6 +527,9 @@ class AppLocalizationsKm extends AppLocalizations {
   String get action_copy => 'ចម្លង';
 
   @override
+  String get action_renew => 'បន្តសុពលភាព';
+
+  @override
   String get action_signOut => 'ចេញពីគណនី';
 
   @override
@@ -1020,7 +1023,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'vpn_host_unavailable':
           'Android មិនអាចបង្កើតសមាសធាតុដែលដំណើរការ VPN បានទេ។ សូមព្យាយាមម្តងទៀតបន្ទាប់ពីពិនិត្យការកំណត់ VPN។',
       'openvpn_renewal_required':
-          'វិញ្ញាបនបត្រត្រូវការសកម្មភាពមួយនៅក្នុងកម្មវិធីមុនពេលភ្ជាប់។',
+          'មិនអាចបន្តសុពលភាពវិញ្ញាបនបត្រ OpenVPN ដោយស្វ័យប្រវត្តិបានទេ។ សូមចាប់ផ្តើមការតភ្ជាប់ថ្មីនៅក្នុងកម្មវិធី។',
       'openvpn_recovery_failed':
           'ការស្តារស្វ័យប្រវត្តិបានបរាជ័យ។ សូមចាប់ផ្តើមការតភ្ជាប់ថ្មីនៅក្នុងកម្មវិធី។',
       'openvpn_recovery_exhausted':
@@ -1158,7 +1161,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'certificate_validation_failed':
           'អត្តសញ្ញាណម៉ាស៊ីនមេ OpenVPN មិនអាចផ្ទៀងផ្ទាត់បានទេ។',
       'openvpn_certificate_expired':
-          'សូមបន្តសុពលភាពប្រវត្តិរូប OpenVPN មុនពេលភ្ជាប់ឡើងវិញ។',
+          'វិញ្ញាបនបត្រ OpenVPN បានផុតកំណត់។ សូមចាប់ផ្តើមការតភ្ជាប់ថ្មីនៅក្នុងកម្មវិធី ដើម្បីបន្តសុពលភាព។',
       'tunnel_active_for_another_account':
           'ផ្លូវតុនែលដែលជារបស់គណនីមួយទៀតត្រូវតែបញ្ឈប់មុនពេលការតភ្ជាប់នេះ។',
       'tunnel_already_active':
@@ -1560,6 +1563,23 @@ class AppLocalizationsKm extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'ប្រសិនបើ Android នៅតែរក្សា VPN ឱ្យដំណើរការ សូមបិទ VPN បើកជានិច្ច នៅក្នុងការកំណត់ដែលនឹងបើកឡើង។';
+
+  @override
+  String get connection_certificate => 'វិញ្ញាបនបត្រ OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'មានសុពលភាពរហូតដល់ $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'បានផុតកំណត់កាលពី $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'នឹងបន្តសុពលភាពដោយស្វ័យប្រវត្តិនៅពេលភ្ជាប់លើកក្រោយ។';
 
   @override
   String get protection_learnMore => 'ស្វែងយល់ពីការការពារ Android';

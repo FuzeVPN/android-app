@@ -243,6 +243,13 @@ abstract final class AppCopy {
         localizations.notice_preferenceSave_message,
       'connection.androidDisconnectHint' =>
         localizations.connection_androidDisconnectHint,
+      'connection.certificate' => localizations.connection_certificate,
+      'connection.certificateValidUntil' =>
+        localizations.connection_certificateValidUntil(arguments['date'] ?? ''),
+      'connection.certificateExpired' =>
+        localizations.connection_certificateExpired(arguments['date'] ?? ''),
+      'connection.certificateAutoRenewal' =>
+        localizations.connection_certificateAutoRenewal,
       'devices.profileStatus' => localizations.devices_profileStatus(
         arguments['status'] as String? ?? '',
       ),
@@ -525,6 +532,7 @@ abstract final class AppCopy {
       'action.cancel' => localizations.action_cancel,
       'action.close' => localizations.action_close,
       'action.copy' => localizations.action_copy,
+      'action.renew' => localizations.action_renew,
       'action.signOut' => localizations.action_signOut,
       'notice.close' => localizations.notice_close,
       'notice.diagnosticCode' => localizations.notice_diagnosticCode(

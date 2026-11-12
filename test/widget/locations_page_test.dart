@@ -1793,6 +1793,16 @@ class _LocationsTunnel implements VpnTunnelGateway {
     events.add(observed);
   }
 
+  // Read for display after each settled tunnel state: never a tunnel action.
+  @override
+  Future<OpenVpnCertificateStatus> getOpenVpnCertificateStatus({
+    required String accountId,
+    required String deviceId,
+  }) async => const OpenVpnCertificateStatus(
+    phase: OpenVpnCertificatePhase.missing,
+    renewalPending: false,
+  );
+
   @override
   dynamic noSuchMethod(Invocation invocation) {
     unexpectedCalls++;

@@ -533,6 +533,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get action_copy => 'Kopírovať';
 
   @override
+  String get action_renew => 'Obnoviť';
+
+  @override
   String get action_signOut => 'Odhlásiť sa';
 
   @override
@@ -1034,7 +1037,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'vpn_host_unavailable':
           'Android nemôže vytvoriť komponent, v ktorom beží VPN. Skúste to znova po kontrole nastavení VPN.',
       'openvpn_renewal_required':
-          'Certifikát pred pripojením vyžaduje úkon v aplikácii.',
+          'Certifikát OpenVPN sa nepodarilo automaticky obnoviť. Spustite nové pripojenie v aplikácii.',
       'openvpn_recovery_failed':
           'Automatické zotavenie zlyhalo. Spustite nové pripojenie v aplikácii.',
       'openvpn_recovery_exhausted':
@@ -1170,7 +1173,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'certificate_validation_failed':
           'Identitu servera OpenVPN sa nepodarilo overiť.',
       'openvpn_certificate_expired':
-          'Pred opätovným pripojením obnovte profil OpenVPN.',
+          'Platnosť certifikátu OpenVPN vypršala. Ak ho chcete obnoviť, spustite nové pripojenie v aplikácii.',
       'tunnel_active_for_another_account':
           'Pred týmto pripojením musí byť zastavený tunel patriaci inému účtu.',
       'tunnel_already_active':
@@ -1576,6 +1579,23 @@ class AppLocalizationsSk extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Ak Android ponecháva VPN aktívnu, v nastaveniach, ktoré sa otvoria, vypnite možnosť Vždy zapnutá VPN.';
+
+  @override
+  String get connection_certificate => 'Certifikát OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Platný do $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Platnosť vypršala $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Pri najbližšom pripojení sa automaticky obnoví.';
 
   @override
   String get protection_learnMore => 'Viac o ochrane systému Android';

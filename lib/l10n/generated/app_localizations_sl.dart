@@ -529,6 +529,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get action_copy => 'Kopiraj';
 
   @override
+  String get action_renew => 'Obnovi';
+
+  @override
   String get action_signOut => 'Odjava';
 
   @override
@@ -1037,7 +1040,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ne more ustvariti komponente, ki gosti VPN. Preverite nastavitve VPN-ja in poskusite znova.',
       'openvpn_renewal_required':
-          'Potrdilo pred povezavo zahteva ukrep v aplikaciji.',
+          'Potrdila OpenVPN ni bilo mogoče samodejno obnoviti. V aplikaciji vzpostavite novo povezavo.',
       'openvpn_recovery_failed':
           'Samodejna obnovitev ni uspela. V aplikaciji vzpostavite novo povezavo.',
       'openvpn_recovery_exhausted':
@@ -1176,7 +1179,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'certificate_validation_failed':
           'Identitete strežnika OpenVPN ni bilo mogoče preveriti.',
       'openvpn_certificate_expired':
-          'Pred ponovno povezavo obnovite profil OpenVPN.',
+          'Potrdilo OpenVPN je poteklo. Če ga želite obnoviti, v aplikaciji vzpostavite novo povezavo.',
       'tunnel_active_for_another_account':
           'Tunel, ki pripada drugemu računu, se mora pred to povezavo ustaviti.',
       'tunnel_already_active':
@@ -1582,6 +1585,23 @@ class AppLocalizationsSl extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Če Android ohranja VPN aktiven, v nastavitvah, ki se odprejo, izklopite „Vedno vklopljen VPN“.';
+
+  @override
+  String get connection_certificate => 'Potrdilo OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Velja do $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Poteklo $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Ob naslednji povezavi se bo samodejno obnovilo.';
 
   @override
   String get protection_learnMore => 'Preberite več o zaščiti Androida';

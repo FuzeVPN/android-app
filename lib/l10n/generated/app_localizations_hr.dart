@@ -530,6 +530,9 @@ class AppLocalizationsHr extends AppLocalizations {
   String get action_copy => 'Kopiraj';
 
   @override
+  String get action_renew => 'Obnovi';
+
+  @override
   String get action_signOut => 'Odjavi se';
 
   @override
@@ -1028,7 +1031,7 @@ class AppLocalizationsHr extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ne može stvoriti komponentu koja pokreće VPN. Pokušajte ponovo nakon provjere VPN postavki.',
       'openvpn_renewal_required':
-          'Certifikat zahtijeva radnju u aplikaciji prije povezivanja.',
+          'Automatska obnova OpenVPN certifikata nije uspjela. Pokrenite novu vezu u aplikaciji.',
       'openvpn_recovery_failed':
           'Automatski oporavak nije uspio. Pokrenite novu vezu u aplikaciji.',
       'openvpn_recovery_exhausted':
@@ -1169,7 +1172,7 @@ class AppLocalizationsHr extends AppLocalizations {
       'certificate_validation_failed':
           'Identitet OpenVPN poslužitelja nije mogao biti provjeren.',
       'openvpn_certificate_expired':
-          'Prije ponovnog povezivanja obnovite OpenVPN profil.',
+          'OpenVPN certifikat je istekao. Pokrenite novu vezu u aplikaciji da biste ga obnovili.',
       'tunnel_active_for_another_account':
           'Tunel koji pripada drugom računu mora biti zaustavljen prije ove veze.',
       'tunnel_already_active':
@@ -1574,6 +1577,23 @@ class AppLocalizationsHr extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Ako Android održava VPN aktivnim, isključite opciju „Uvijek uključen VPN” u postavkama koje se otvore.';
+
+  @override
+  String get connection_certificate => 'OpenVPN certifikat';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Vrijedi do $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Istekao $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Automatski će se obnoviti pri sljedećem povezivanju.';
 
   @override
   String get protection_learnMore => 'Saznajte više o zaštiti u Androidu';

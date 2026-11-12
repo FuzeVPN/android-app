@@ -535,6 +535,9 @@ class AppLocalizationsSo extends AppLocalizations {
   String get action_copy => 'Koobiyee';
 
   @override
+  String get action_renew => 'Cusboonaysii';
+
+  @override
   String get action_signOut => 'Ka bax';
 
   @override
@@ -1057,7 +1060,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ma abuuri karo qaybta martigelinaysa VPN-ka. Hubi dejinta VPN, kadibna isku day mar kale.',
       'openvpn_renewal_required':
-          'Shahaadadu waxay u baahan tahay tallaabo laga qaado barnaamijka ka hor inta aan la ku xidhin.',
+          'Shahaadada OpenVPN si toos ah looma cusboonaysiin karin. Barnaamijka ka bilow xidhiidh cusub.',
       'openvpn_recovery_failed':
           'Soo kabashada toos ah way guuldareysatay. Barnaamijka ka bilow xidhiidh cusub.',
       'openvpn_recovery_exhausted':
@@ -1200,7 +1203,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'certificate_validation_failed':
           'Aqoonsiga server-ka OpenVPN lama xaqiijin karin.',
       'openvpn_certificate_expired':
-          'Cusboonaysii profiilka OpenVPN ka hor inta aadan dib ugu xidhmin.',
+          'Shahaadada OpenVPN way dhacday. Barnaamijka ka bilow xidhiidh cusub si loo cusboonaysiiyo.',
       'tunnel_active_for_another_account':
           'Tunnel ka tirsan akoon kale waa in la joojiyaa ka hor xidhiidhkan.',
       'tunnel_already_active':
@@ -1605,6 +1608,23 @@ class AppLocalizationsSo extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Haddii Android uu VPN-ka firfircoon hayo, ka demi “VPN had iyo jeer” dejinta furmaysa.';
+
+  @override
+  String get connection_certificate => 'Shahaadada OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Waxay ansax tahay ilaa $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Waxay dhacday $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Waxaa si toos ah loo cusboonaysiin doonaa marka xigta ee aad ku xidhanto.';
 
   @override
   String get protection_learnMore => 'Wax ka baro ilaalinta Android';

@@ -531,6 +531,9 @@ class AppLocalizationsKa extends AppLocalizations {
   String get action_copy => 'კოპირება';
 
   @override
+  String get action_renew => 'განახლება';
+
+  @override
   String get action_signOut => 'გასვლა';
 
   @override
@@ -1033,7 +1036,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ვერ ქმნის კომპონენტს, რომელიც VPN-ს მასპინძლობს. შეამოწმეთ VPN-ის პარამეტრები და სცადეთ ხელახლა.',
       'openvpn_renewal_required':
-          'სერტიფიკატის გამო დაკავშირებამდე აპში მოქმედებაა საჭირო.',
+          'OpenVPN-ის სერტიფიკატის ავტომატურად განახლება ვერ მოხერხდა. აპში დაამყარეთ ახალი კავშირი.',
       'openvpn_recovery_failed':
           'ავტომატური აღდგენა ვერ მოხერხდა. აპში დაამყარეთ ახალი კავშირი.',
       'openvpn_recovery_exhausted':
@@ -1174,7 +1177,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN-ის სერვერის იდენტობა ვერ გადამოწმდა.',
       'openvpn_certificate_expired':
-          'ხელახლა დაკავშირებამდე განაახლეთ OpenVPN-ის პროფილი.',
+          'OpenVPN-ის სერტიფიკატის ვადა ამოიწურა. მის განსაახლებლად აპში დაამყარეთ ახალი კავშირი.',
       'tunnel_active_for_another_account':
           'ამ კავშირამდე უნდა გაითიშოს სხვა ანგარიშის გვირაბი.',
       'tunnel_already_active':
@@ -1575,6 +1578,23 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'თუ Android VPN-ს აქტიურს ტოვებს, გახსნილ პარამეტრებში გამორთეთ „ყოველთვის ჩართული VPN“.';
+
+  @override
+  String get connection_certificate => 'OpenVPN-ის სერტიფიკატი';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'მოქმედებს ამ თარიღამდე: $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'ვადა ამოიწურა: $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'შემდეგი დაკავშირებისას ავტომატურად განახლდება.';
 
   @override
   String get protection_learnMore => 'გაიგეთ მეტი Android-ის დაცვის შესახებ';

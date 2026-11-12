@@ -530,6 +530,9 @@ class AppLocalizationsNe extends AppLocalizations {
   String get action_copy => 'कपी गर्नुहोस्';
 
   @override
+  String get action_renew => 'नवीकरण गर्नुहोस्';
+
+  @override
   String get action_signOut => 'साइन आउट गर्नुहोस्';
 
   @override
@@ -1016,7 +1019,7 @@ class AppLocalizationsNe extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ले VPN चलाउने कम्पोनेन्ट बनाउन सक्दैन। VPN सेटिङ जाँचेर फेरि प्रयास गर्नुहोस्।',
       'openvpn_renewal_required':
-          'जडान गर्नुअघि प्रमाणपत्रका लागि एपमा कारबाही आवश्यक छ।',
+          'OpenVPN प्रमाणपत्र स्वतः नवीकरण हुन सकेन। एपमा नयाँ जडान सुरु गर्नुहोस्।',
       'openvpn_recovery_failed':
           'स्वचालित पुनर्प्राप्ति असफल भयो। एपमा नयाँ जडान सुरु गर्नुहोस्।',
       'openvpn_recovery_exhausted':
@@ -1152,7 +1155,7 @@ class AppLocalizationsNe extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN सर्भरको पहिचान प्रमाणित गर्न सकिएन।',
       'openvpn_certificate_expired':
-          'फेरि जडान गर्नुअघि OpenVPN प्रोफाइल नवीकरण गर्नुहोस्।',
+          'OpenVPN प्रमाणपत्रको म्याद सकिएको छ। यसलाई नवीकरण गर्न एपमा नयाँ जडान सुरु गर्नुहोस्।',
       'tunnel_active_for_another_account':
           'यो जडान गर्नुअघि अर्को खाताको टनेल रोकिनुपर्छ।',
       'tunnel_already_active':
@@ -1555,6 +1558,23 @@ class AppLocalizationsNe extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android ले VPN सक्रिय राखेमा, खुल्ने सेटिङमा सधैं सक्रिय VPN बन्द गर्नुहोस्।';
+
+  @override
+  String get connection_certificate => 'OpenVPN प्रमाणपत्र';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date सम्म मान्य';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date मा म्याद सकियो';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'अर्को पटक जडान गर्दा स्वतः नवीकरण हुनेछ।';
 
   @override
   String get protection_learnMore => 'Android सुरक्षाबारे थप जान्नुहोस्';

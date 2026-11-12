@@ -535,6 +535,9 @@ class AppLocalizationsMy extends AppLocalizations {
   String get action_copy => 'မိတ္တူကူးရန်';
 
   @override
+  String get action_renew => 'သက်တမ်းတိုးရန်';
+
+  @override
   String get action_signOut => 'အကောင့်မှ ထွက်ရန်';
 
   @override
@@ -1044,7 +1047,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'vpn_host_unavailable':
           'VPN ကို လည်ပတ်စေသော အစိတ်အပိုင်းကို Android က ဖန်တီး၍ မရပါ။ VPN ဆက်တင်များကို စစ်ဆေးပြီးနောက် ထပ်ကြိုးစားပါ။',
       'openvpn_renewal_required':
-          'ချိတ်ဆက်မီ လက်မှတ်အတွက် အက်ပ်တွင် လုပ်ဆောင်ရန် လိုအပ်ပါသည်။',
+          'OpenVPN လက်မှတ်ကို အလိုအလျောက် သက်တမ်းမတိုးနိုင်ခဲ့ပါ။ အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။',
       'openvpn_recovery_failed':
           'အလိုအလျောက် ပြန်လည်ရယူမှု မအောင်မြင်ပါ။ အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။',
       'openvpn_recovery_exhausted':
@@ -1185,7 +1188,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN ဆာဗာ အထောက်အထားကို စစ်ဆေး၍ မရပါ။',
       'openvpn_certificate_expired':
-          'ပြန်ချိတ်ဆက်မီ OpenVPN ပရိုဖိုင်ကို သက်တမ်းတိုးပါ။',
+          'OpenVPN လက်မှတ် သက်တမ်းကုန်သွားပါပြီ။ သက်တမ်းတိုးရန် အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။',
       'tunnel_active_for_another_account':
           'ဤချိတ်ဆက်မှုမပြုလုပ်မီ အခြားအကောင့်နှင့်ဆိုင်သော တန်နယ်ကို ရပ်တန့်ရန် လိုအပ်ပါသည်။',
       'tunnel_already_active':
@@ -1588,6 +1591,23 @@ class AppLocalizationsMy extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android က VPN ကို ဆက်ဖွင့်ထားပါက ဖွင့်လာသော ဆက်တင်များတွင် အမြဲဖွင့်ထားသော VPN ကို ပိတ်ပါ။';
+
+  @override
+  String get connection_certificate => 'OpenVPN လက်မှတ်';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date အထိ သက်တမ်းရှိသည်';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date တွင် သက်တမ်းကုန်ခဲ့သည်';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'နောက်တစ်ကြိမ် ချိတ်ဆက်သည့်အခါ အလိုအလျောက် သက်တမ်းတိုးပါမည်။';
 
   @override
   String get protection_learnMore => 'Android အကာအကွယ်အကြောင်း လေ့လာရန်';

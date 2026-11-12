@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.android.build.api.artifact.SingleArtifact
+import java.util.Base64
 
 plugins {
     id("com.android.application")
@@ -16,6 +17,17 @@ val usePatchedWireGuardAar = providers.gradleProperty("fuzevpn.usePatchedWireGua
 val patchedWireGuardAar = rootProject.file(
     "third_party/wireguard-android/dist/tunnel-1.0.20260102-fuzevpn-fgs.aar",
 )
+// Debug builds only: the Dart client's FUZEVPN_API_BASE_URL override must also reach the native
+// certificate renewal. Flutter passes each --dart-define base64-encoded in "dart-defines".
+val debugApiBaseUrl = providers.gradleProperty("dart-defines").map { defines ->
+    defines.split(",")
+        .mapNotNull { runCatching { String(Base64.getDecoder().decode(it), Charsets.UTF_8) }.getOrNull() }
+        .firstOrNull { it.startsWith("FUZEVPN_API_BASE_URL=") }
+        ?.substringAfter("=")
+        // Embedded in a Java string literal: nothing outside this URL shape is accepted.
+        ?.takeIf { Regex("https://[A-Za-z0-9.-]+(:[0-9]{1,5})?(/[A-Za-z0-9._~/-]*)?").matches(it) }
+        .orEmpty()
+}.orElse("")
 val nativeBundleRoot = file("src/main/cpp/third_party")
 val nativeBundleManifest = rootProject.file("native-provenance/bundle.sha256")
 val verifyNativeBundle = tasks.register("verifyNativeBundle") {
@@ -163,6 +175,7 @@ android.buildTypes.configureEach {
     val selected = usePatchedWireGuardAar.get()
     val needsPatchedRuntime = type != "debug" || selected
     buildConfigField("boolean", "USE_PATCHED_WIREGUARD_AAR", needsPatchedRuntime.toString())
+    buildConfigField("String", "DEBUG_API_BASE_URL", "\"${if (type == "debug") debugApiBaseUrl.get() else ""}\"")
     val verification = tasks.register("verify${type.replaceFirstChar { it.uppercaseChar() }}WireGuardAar") {
         group = "verification"
         description = "Verify the approved WireGuard runtime for $type"

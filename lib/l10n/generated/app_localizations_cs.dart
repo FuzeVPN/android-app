@@ -531,6 +531,9 @@ class AppLocalizationsCs extends AppLocalizations {
   String get action_copy => 'Kopírovat';
 
   @override
+  String get action_renew => 'Obnovit';
+
+  @override
   String get action_signOut => 'Odhlásit se';
 
   @override
@@ -1027,7 +1030,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'vpn_host_unavailable':
           'Android nemůže vytvořit komponentu hostující VPN. Po kontrole nastavení VPN to zkuste znovu.',
       'openvpn_renewal_required':
-          'Před připojením je nutné provést akci v aplikaci kvůli certifikátu.',
+          'Certifikát OpenVPN se nepodařilo automaticky obnovit. Spusťte nové připojení v aplikaci.',
       'openvpn_recovery_failed':
           'Automatické obnovení se nezdařilo. Spusťte nové připojení v aplikaci.',
       'openvpn_recovery_exhausted':
@@ -1160,7 +1163,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'certificate_validation_failed':
           'Identitu serveru OpenVPN se nepodařilo ověřit.',
       'openvpn_certificate_expired':
-          'Před opětovným připojením obnovte profil OpenVPN.',
+          'Platnost certifikátu OpenVPN vypršela. Spusťte nové připojení v aplikaci a certifikát se obnoví.',
       'tunnel_active_for_another_account':
           'Před tímto připojením je nutné zastavit tunel patřící jinému účtu.',
       'tunnel_already_active':
@@ -1565,6 +1568,23 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Pokud Android udržuje VPN aktivní, vypněte v otevřeném nastavení možnost VPN stále zapnutá.';
+
+  @override
+  String get connection_certificate => 'Certifikát OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Platný do $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Platnost vypršela $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Při příštím připojení se automaticky obnoví.';
 
   @override
   String get protection_learnMore => 'Další informace o ochraně Androidu';

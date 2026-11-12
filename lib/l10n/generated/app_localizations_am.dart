@@ -518,6 +518,9 @@ class AppLocalizationsAm extends AppLocalizations {
   String get action_copy => 'ቅዳ';
 
   @override
+  String get action_renew => 'ያድሱ';
+
+  @override
   String get action_signOut => 'ይውጡ';
 
   @override
@@ -976,7 +979,8 @@ class AppLocalizationsAm extends AppLocalizations {
       'vpn_host_destroyed': 'VPNን የሚያስተናግደው የAndroid አካል ቆሟል። አዲስ ግንኙነት ይጀምሩ።',
       'vpn_host_unavailable':
           'Android VPNን የሚያስተናግድ አካል መፍጠር አይችልም። የVPN ቅንብሮችን ካረጋገጡ በኋላ እንደገና ይሞክሩ።',
-      'openvpn_renewal_required': 'ሰርተፍኬቱ ከመገናኘትዎ በፊት በመተግበሪያው ውስጥ እርምጃ ይፈልጋል።',
+      'openvpn_renewal_required':
+          'የOpenVPN ሰርተፍኬቱን በራስ-ሰር ማደስ አልተቻለም። በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።',
       'openvpn_recovery_failed':
           'ራስ-ሰር መልሶ ማግኘት አልተሳካም። በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።',
       'openvpn_recovery_exhausted':
@@ -1098,7 +1102,8 @@ class AppLocalizationsAm extends AppLocalizations {
       'network_unavailable': 'ጥቅም ላይ የሚውል አካላዊ አውታረ መረብ አይገኝም።',
       'network_lost': 'አውታረ መረቡ ከጠፋ በኋላ ቱነሉ ቆሟል።',
       'certificate_validation_failed': 'የOpenVPN አገልጋዩ ማንነት ሊረጋገጥ አልቻለም።',
-      'openvpn_certificate_expired': 'እንደገና ከመገናኘትዎ በፊት የOpenVPN መገለጫውን ያድሱ።',
+      'openvpn_certificate_expired':
+          'የOpenVPN ሰርተፍኬቱ ጊዜው አልፎበታል። ለማደስ በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።',
       'tunnel_active_for_another_account':
           'ከዚህ ግንኙነት በፊት የሌላ መለያ ቱነል መቆም አለበት።',
       'tunnel_already_active':
@@ -1484,6 +1489,23 @@ class AppLocalizationsAm extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android VPNን ንቁ አድርጎ ካቆየው፣ በሚከፈቱት ቅንብሮች ውስጥ ሁልጊዜ የበራ VPNን ያጥፉ።';
+
+  @override
+  String get connection_certificate => 'የOpenVPN ሰርተፍኬት';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'እስከ $date ድረስ ያገለግላል';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'በ$date ጊዜው አልፎበታል';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'በሚቀጥለው ግንኙነት ጊዜ በራስ-ሰር ይታደሳል።';
 
   @override
   String get protection_learnMore => 'ስለ Android ጥበቃ ይወቁ';

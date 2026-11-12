@@ -529,6 +529,9 @@ class AppLocalizationsHa extends AppLocalizations {
   String get action_copy => 'Kwafa';
 
   @override
+  String get action_renew => 'Sabunta';
+
+  @override
   String get action_signOut => 'Fita daga asusu';
 
   @override
@@ -1035,7 +1038,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'vpn_host_unavailable':
           'Android ba ta iya ƙirƙirar ɓangaren da ke gudanar da VPN ba. Ku sake gwadawa bayan kun duba saitunan VPN.',
       'openvpn_renewal_required':
-          'Takardar shaidar tana buƙatar wani mataki a cikin manhajar kafin haɗi.',
+          'Ba a iya sabunta takardar shaidar OpenVPN ta atomatik ba. Ku fara sabon haɗi a cikin manhajar.',
       'openvpn_recovery_failed':
           'Dawo da haɗi ta atomatik ya gaza. Ku fara sabon haɗi a cikin manhajar.',
       'openvpn_recovery_exhausted':
@@ -1172,7 +1175,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'certificate_validation_failed':
           'Ba a iya tabbatar da shaidar sabar OpenVPN ba.',
       'openvpn_certificate_expired':
-          'Ku sabunta bayanin martabar OpenVPN kafin ku sake haɗi.',
+          'Takardar shaidar OpenVPN ta ƙare. Ku fara sabon haɗi a cikin manhajar don sabunta ta.',
       'tunnel_active_for_another_account':
           'Dole ne ramin wani asusu ya tsaya kafin wannan haɗin.',
       'tunnel_already_active':
@@ -1573,6 +1576,23 @@ class AppLocalizationsHa extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Idan Android ta ci gaba da kunna VPN, ku kashe VPN mai aiki koyaushe a saitunan da za su buɗe.';
+
+  @override
+  String get connection_certificate => 'Takardar shaidar OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Tana aiki har zuwa $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Ta ƙare a ranar $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Za a sabunta takardar shaidar ta atomatik a haɗi na gaba.';
 
   @override
   String get protection_learnMore => 'Koyi game da kariyar Android';

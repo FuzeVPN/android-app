@@ -529,6 +529,9 @@ class AppLocalizationsSr extends AppLocalizations {
   String get action_copy => 'Копирај';
 
   @override
+  String get action_renew => 'Обнови';
+
+  @override
   String get action_signOut => 'Одјави се';
 
   @override
@@ -1023,7 +1026,7 @@ class AppLocalizationsSr extends AppLocalizations {
       'vpn_host_unavailable':
           'Android не може да креира компоненту у којој ради VPN. Проверите подешавања VPN-а и покушајте поново.',
       'openvpn_renewal_required':
-          'Сертификат захтева радњу у апликацији пре повезивања.',
+          'Аутоматско обнављање OpenVPN сертификата није успело. Покрените нову везу у апликацији.',
       'openvpn_recovery_failed':
           'Аутоматски опоравак није успео. Покрените нову везу у апликацији.',
       'openvpn_recovery_exhausted':
@@ -1161,7 +1164,7 @@ class AppLocalizationsSr extends AppLocalizations {
       'certificate_validation_failed':
           'Идентитет OpenVPN сервера није могао да се верификује.',
       'openvpn_certificate_expired':
-          'Обновите OpenVPN профил пре поновног повезивања.',
+          'OpenVPN сертификат је истекао. Покрените нову везу у апликацији да бисте га обновили.',
       'tunnel_active_for_another_account':
           'Тунел који припада другом налогу мора да се заустави пре ове везе.',
       'tunnel_already_active':
@@ -1566,6 +1569,23 @@ class AppLocalizationsSr extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Ако Android и даље држи VPN активним, искључите „Увек укључен VPN“ у подешавањима која се отварају.';
+
+  @override
+  String get connection_certificate => 'OpenVPN сертификат';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Важи до $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Истекао $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Аутоматски ће се обновити при следећем повезивању.';
 
   @override
   String get protection_learnMore => 'Сазнајте више о Android заштити';

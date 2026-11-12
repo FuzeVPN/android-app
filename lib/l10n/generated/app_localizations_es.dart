@@ -531,6 +531,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get action_copy => 'Copiar';
 
   @override
+  String get action_renew => 'Renovar';
+
+  @override
   String get action_signOut => 'Cerrar sesión';
 
   @override
@@ -1038,7 +1041,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'vpn_host_unavailable':
           'Android no puede crear el componente que aloja la VPN. Inténtelo de nuevo tras comprobar los ajustes de VPN.',
       'openvpn_renewal_required':
-          'El certificado requiere una acción en la aplicación antes de conectar.',
+          'El certificado OpenVPN no se ha podido renovar automáticamente. Inicia una nueva conexión en la aplicación.',
       'openvpn_recovery_failed':
           'La reconexión automática ha fallado. Inicia una nueva conexión en la aplicación.',
       'openvpn_recovery_exhausted':
@@ -1180,7 +1183,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'certificate_validation_failed':
           'No se pudo verificar la identidad del servidor OpenVPN.',
       'openvpn_certificate_expired':
-          'Renueva el perfil OpenVPN antes de volver a conectarte.',
+          'El certificado OpenVPN ha caducado. Inicia una nueva conexión en la aplicación para renovarlo.',
       'tunnel_active_for_another_account':
           'Hay que detener el túnel de otra cuenta antes de esta conexión.',
       'tunnel_already_active':
@@ -1584,6 +1587,23 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Si Android mantiene activa la VPN, desactiva « VPN siempre activada » en los ajustes que se abren.';
+
+  @override
+  String get connection_certificate => 'Certificado OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Válido hasta el $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Caducó el $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Se renovará automáticamente en la próxima conexión.';
 
   @override
   String get protection_learnMore => 'Entender la protección de Android';

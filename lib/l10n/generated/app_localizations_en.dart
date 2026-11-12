@@ -529,6 +529,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get action_copy => 'Copy';
 
   @override
+  String get action_renew => 'Renew';
+
+  @override
   String get action_signOut => 'Sign out';
 
   @override
@@ -1017,7 +1020,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'vpn_host_unavailable':
           'Android cannot create the component hosting the VPN. Try again after checking VPN settings.',
       'openvpn_renewal_required':
-          'The certificate requires an action in the app before connecting.',
+          'The OpenVPN certificate could not be renewed automatically. Start a new connection in the app.',
       'openvpn_recovery_failed':
           'Automatic recovery failed. Start a new connection in the app.',
       'openvpn_recovery_exhausted':
@@ -1156,7 +1159,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'certificate_validation_failed':
           'The OpenVPN server identity could not be verified.',
       'openvpn_certificate_expired':
-          'Renew the OpenVPN profile before reconnecting.',
+          'The OpenVPN certificate has expired. Start a new connection in the app to renew it.',
       'tunnel_active_for_another_account':
           'A tunnel belonging to another account must stop before this connection.',
       'tunnel_already_active':
@@ -1558,6 +1561,23 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'If Android keeps the VPN active, turn off Always-on VPN in the settings that open.';
+
+  @override
+  String get connection_certificate => 'OpenVPN certificate';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Valid until $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Expired on $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Renewed automatically at the next connection.';
 
   @override
   String get protection_learnMore => 'Learn about Android protection';

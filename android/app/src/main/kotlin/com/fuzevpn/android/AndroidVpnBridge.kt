@@ -19,7 +19,11 @@ import androidx.core.content.ContextCompat
 import com.fuzevpn.android.openvpn.OpenVpnController
 import com.fuzevpn.android.openvpn.OpenVpnRecoveryPolicy
 import com.fuzevpn.android.openvpn.OpenVpnRecoveryAttempt
+import com.fuzevpn.android.openvpn.OpenVpnRenewalApi
+import com.fuzevpn.android.openvpn.OpenVpnRenewalContract
+import com.fuzevpn.android.openvpn.OpenVpnRenewalRefused
 import com.fuzevpn.android.openvpn.OpenVpnRevocationState
+import com.fuzevpn.android.openvpn.OpenVpnStartResult
 import com.fuzevpn.android.openvpn.RevokedOpenVpnIdentity
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
@@ -149,6 +153,9 @@ internal class AndroidVpnBridge(
     // the lazy delegate when compiling with Kotlin 2.3.
     private val openVpn: OpenVpnController by lazy {
         OpenVpnController(appContext)
+    }
+    private val openVpnRenewal: OpenVpnRenewalApi by lazy {
+        OpenVpnRenewalApi(appContext, OpenVpnRenewalContract.baseUrl(BuildConfig.DEBUG, BuildConfig.DEBUG_API_BASE_URL))
     }
 
     @Volatile
@@ -485,23 +492,27 @@ internal class AndroidVpnBridge(
         VpnProtocol.OPENVPN -> openVpn.existingIdentityFingerprint(profile.accountId, profile.deviceId)
     }
 
-    private fun recordProvenConnection(profile: QuickTileProfile, restoring: Boolean, sessionPayload: String? = null) {
+    private fun recordProvenConnection(profile: QuickTileProfile, restoring: Boolean, sessionPayload: String? = null,
+        renewedRecoveryConsumed: Boolean? = null) {
         // Explicit starts retain their validated session only while holding the
         // operation mutex. Publication still checks the live session ticket,
         // request epoch and expiry. System restoration keeps its strict reads.
         val session = sessionPayload ?: localSession(profile)
         if (validateSystemVpnSessionPayload(session) == null) throw VpnNativeException("system_vpn_resume_session_invalid")
-        val identity = if (restoring) localIdentity(profile) else when (profile.protocol) {
+        // An automatic renewal replaced the identity the record names: only this proven
+        // connection can name the new one, and the failure-recovery budget stays as it was.
+        val completes = restoring && renewedRecoveryConsumed == null
+        val identity = if (completes) localIdentity(profile) else when (profile.protocol) {
             VpnProtocol.WIREGUARD -> wireGuard.currentConnectionIdentityFingerprint(profile.accountId)
             VpnProtocol.OPENVPN -> openVpn.currentConnectionIdentityFingerprint(profile.accountId, profile.deviceId)
         }
         try {
-            if (restoring) {
+            if (completes) {
                 if (resumeRegistry.complete(session, identity) == null) throw VpnNativeException("system_vpn_resume_identity_changed")
             } else {
                 // Write the tile first: a failed durable resume write never arms a restart.
                 quickTileProfiles.write(profile)
-                resumeRegistry.arm(profile, session, identity)
+                resumeRegistry.arm(profile, session, identity, renewedRecoveryConsumed ?: false)
             }
             resumeState = "ready"
             resumeError = null
@@ -1724,8 +1735,9 @@ internal class AndroidVpnBridge(
     /**
      * Handles one explicit Quick Settings click. A connect is permitted only
      * for a profile that previously reached native CONNECTED and only when the
-     * Android VPN permission is already granted. No API call or permission UI
-     * can originate from this background entry point. The permission is
+     * Android VPN permission is already granted. No permission UI can originate
+     * from this background entry point, and no API call except the renewal of
+     * an OpenVPN certificate that is due (renewOpenVpn). The permission is
      * checked after every local check, as VpnService.prepare revokes another
      * app's VPN: a click refused locally never calls it.
      */
@@ -1870,13 +1882,9 @@ internal class AndroidVpnBridge(
         ensureVpnAuthorized()
         ensureNoCrossAccountTunnel(profile.accountId)
         if (activeProtocol != null) disconnectLocked(userInitiated = false)
-        val certificateStatus = openVpn.certificateStatus(profile.accountId, profile.deviceId)
-        if (certificateStatus.renewalPending ||
-            certificateStatus.status == "expired" ||
-            certificateStatus.status == "expiring"
-        ) {
-            throw VpnNativeException("openvpn_renewal_required")
-        }
+        // A certificate that is due is renewed below, once the host is ready, instead of
+        // sending the user back to the application.
+        val renewal = openVpn.certificateStatus(profile.accountId, profile.deviceId).renewalDue
         setActiveMetadata(
             profile.accountId,
             profile.deviceId,
@@ -1894,10 +1902,15 @@ internal class AndroidVpnBridge(
         emitState(VpnStatus.CONNECTING, VpnProtocol.OPENVPN, null)
         activeProtocol = VpnProtocol.OPENVPN
         markOpenVpnStart()
+        val isCurrent = { sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch }
+        // The renewed activation may carry another tunnel network than the profile's.
+        var proven = profile
         val started = try {
-            openVpn.reconnectLocal(profile.accountId, profile.deviceId, profile.openVpnNetwork) {
-                sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch
-            }
+            if (renewal) {
+                val renewed = renewOpenVpn(profile.accountId, profile.deviceId, isCurrent)
+                proven = profile.copy(openVpnNetwork = renewed.network)
+                renewed.started
+            } else openVpn.reconnectLocal(profile.accountId, profile.deviceId, profile.openVpnNetwork, isCurrent)
         } catch (error: Throwable) {
             val stopped = runCatching { openVpn.disconnect() }.getOrDefault(false)
             if (stopped) clearOpenVpnActiveLocked()
@@ -1911,7 +1924,8 @@ internal class AndroidVpnBridge(
         }
         try {
             checkRequest(requestEpoch)
-            publishOpenVpnConnection(profile, restoring, if (restoring) null else connectionSession)
+            publishOpenVpnConnection(proven, restoring, if (restoring) null else connectionSession,
+                renewedRecoveryConsumed = if (renewal && restoring) recoveryConsumed else null)
         } catch (error: Exception) {
             val stopped = openVpn.disconnect()
             if (stopped) clearOpenVpnActiveLocked()
@@ -1919,6 +1933,38 @@ internal class AndroidVpnBridge(
         }
         systemRestoreHoldOpen = false
         true
+    }
+
+    private class RenewedOpenVpn(val started: OpenVpnStartResult, val network: TunnelNetworkSpec)
+
+    /**
+     * Under the tunnel mutex, Core stopped: replaces a certificate that is due, then starts
+     * Core with the new identity. This renewal is the only control-plane request made without
+     * Flutter, so that a recovery, a tile click or a system restore never needs the application
+     * opened for it. Whatever the server or the network refuses is published as
+     * openvpn_renewal_required: a connection started in the application then renews with the
+     * account's own error handling, and presents the CSR kept pending here.
+     */
+    private suspend fun renewOpenVpn(accountId: String, deviceId: String, isCurrent: () -> Boolean): RenewedOpenVpn {
+        val activation = try {
+            val session = localSession(accountId, deviceId)
+            openVpnRenewal.renew(session, deviceId, openVpn.getOrCreateCsr(accountId, deviceId, renewal = true), isCurrent)
+        } catch (refused: OpenVpnRenewalRefused) {
+            // Fixed reasons and HTTP statuses only: the device trace of a refused renewal.
+            Log.i(LOG_TAG, "OpenVPN renewal: refused, ${refused.reason}")
+            throw VpnNativeException(
+                if (refused.reason == OpenVpnRenewalRefused.NETWORK) "network_unavailable" else "openvpn_renewal_required",
+                refused,
+            )
+        }
+        val network = try {
+            TunnelNetworkSpec.from(activation, legacyOpenVpn = true)
+        } catch (error: Exception) {
+            throw VpnNativeException("openvpn_renewal_required", error)
+        }
+        if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
+        Log.i(LOG_TAG, "OpenVPN renewal: certificate received")
+        return RenewedOpenVpn(openVpn.connect(accountId, deviceId, activation, isCurrent = isCurrent), network)
     }
 
     /**
@@ -2357,7 +2403,9 @@ internal class AndroidVpnBridge(
                     try {
                         ensureVpnAuthorized()
                         val certificate = openVpn.certificateStatus(target.accountId, target.deviceId)
-                        OpenVpnRecoveryAttempt.profileFailure(certificate.status, certificate.renewalPending)?.let {
+                        // A certificate that is due is renewed below instead of ending the session.
+                        val renewal = certificate.renewalDue
+                        if (!renewal) OpenVpnRecoveryAttempt.profileFailure(certificate.status, certificate.renewalPending)?.let {
                             throw VpnNativeException(it)
                         }
                         OpenVpnService.start(appContext, reconnecting = true)
@@ -2365,7 +2413,10 @@ internal class AndroidVpnBridge(
                             throw VpnNativeException("openvpn_service_start_failed")
                         }
                         markOpenVpnStart()
-                        val started = openVpn.reconnectLocal(target.accountId, target.deviceId) {
+                        val renewed = if (renewal) renewOpenVpn(target.accountId, target.deviceId) {
+                            isRecoveryCurrent(target)
+                        } else null
+                        val started = renewed?.started ?: openVpn.reconnectLocal(target.accountId, target.deviceId) {
                             isRecoveryCurrent(target)
                         }
                         if (!started.isConnected() || !openVpn.isConnected()) {
@@ -2376,7 +2427,10 @@ internal class AndroidVpnBridge(
                             clearOpenVpnActiveLocked()
                             return@withTunnelOperation
                         }
-                        publishOpenVpnConnection()
+                        if (renewed == null) publishOpenVpnConnection()
+                        else publishOpenVpnConnection(QuickTileProfile(VpnProtocol.OPENVPN, target.accountId, target.deviceId,
+                            target.locationId, target.locationName, openVpnNetwork = renewed.network),
+                            renewedRecoveryConsumed = resumeRegistry.snapshot()?.recoveryConsumed ?: true)
                         Log.i(LOG_TAG, "OpenVPN recovery: connected")
                     } finally { openVpnTransition = false }
                 } },
@@ -2414,11 +2468,12 @@ internal class AndroidVpnBridge(
         }
     }
 
-    private fun publishOpenVpnConnection(profile: QuickTileProfile? = null, restoring: Boolean = false, sessionPayload: String? = null) {
+    private fun publishOpenVpnConnection(profile: QuickTileProfile? = null, restoring: Boolean = false, sessionPayload: String? = null,
+        renewedRecoveryConsumed: Boolean? = null) {
         sessionLifecycle.check(activeSessionEpoch)
         if (!openVpn.confirmConnected {
             sessionLifecycle.current(activeSessionEpoch) {
-                if (profile != null) recordProvenConnection(profile, restoring, sessionPayload)
+                if (profile != null) recordProvenConnection(profile, restoring, sessionPayload, renewedRecoveryConsumed)
                 recoveryPolicy.connected(openVpn.sessionGeneration)
                 recoveryOwnsSession = false
                 connectedAtMillis = System.currentTimeMillis()

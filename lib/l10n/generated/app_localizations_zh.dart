@@ -507,6 +507,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get action_copy => '复制';
 
   @override
+  String get action_renew => '更新';
+
+  @override
   String get action_signOut => '退出登录';
 
   @override
@@ -923,7 +926,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'wireguard_identity_unavailable': '此连接没有可用的 WireGuard 身份。',
       'vpn_host_destroyed': '托管 VPN 的 Android 组件已停止。请开始新的连接。',
       'vpn_host_unavailable': 'Android 无法创建托管 VPN 的组件。请检查 VPN 设置后重试。',
-      'openvpn_renewal_required': '连接前需要在应用中对证书执行操作。',
+      'openvpn_renewal_required': '未能自动更新 OpenVPN 证书。请在应用中开始新的连接。',
       'openvpn_recovery_failed': '自动恢复失败。请在应用中开始新的连接。',
       'openvpn_recovery_exhausted': '自动恢复已使用过。请在应用中开始新的连接。',
       'vpn_permission_required': '启动隧道前，Android 需要新的 VPN 授权。',
@@ -999,7 +1002,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'network_unavailable': '没有可用的物理网络。',
       'network_lost': '网络丢失后隧道已停止。',
       'certificate_validation_failed': '无法验证 OpenVPN 服务器身份。',
-      'openvpn_certificate_expired': '重新连接前请续订 OpenVPN 配置文件。',
+      'openvpn_certificate_expired': 'OpenVPN 证书已过期。请在应用中开始新的连接以更新证书。',
       'tunnel_active_for_another_account': '属于另一个账户的隧道必须先停止，才能进行此连接。',
       'tunnel_already_active': 'Android 报告之前的 VPN 会话仍在使用此接口。',
       'tunnel_stop_timeout': '$protocol 引擎未在规定时间内确认释放 VPN 接口。',
@@ -1362,6 +1365,22 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       '如果 Android 仍保持 VPN 活跃，请在打开的设置中关闭“始终开启的 VPN”。';
+
+  @override
+  String get connection_certificate => 'OpenVPN 证书';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '有效期至 $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '已于 $date 过期';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal => '下次连接时将自动更新。';
 
   @override
   String get protection_learnMore => '了解 Android 保护功能';
@@ -2464,6 +2483,9 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get action_copy => '复制';
 
   @override
+  String get action_renew => '更新';
+
+  @override
   String get action_signOut => '退出登录';
 
   @override
@@ -2880,7 +2902,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'wireguard_identity_unavailable': '此连接没有可用的 WireGuard 身份。',
       'vpn_host_destroyed': '托管 VPN 的 Android 组件已停止。请开始新的连接。',
       'vpn_host_unavailable': 'Android 无法创建托管 VPN 的组件。请检查 VPN 设置后重试。',
-      'openvpn_renewal_required': '连接前需要在应用中对证书执行操作。',
+      'openvpn_renewal_required': '未能自动更新 OpenVPN 证书。请在应用中开始新的连接。',
       'openvpn_recovery_failed': '自动恢复失败。请在应用中开始新的连接。',
       'openvpn_recovery_exhausted': '自动恢复已使用过。请在应用中开始新的连接。',
       'vpn_permission_required': '启动隧道前，Android 需要新的 VPN 授权。',
@@ -2956,7 +2978,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'network_unavailable': '没有可用的物理网络。',
       'network_lost': '网络丢失后隧道已停止。',
       'certificate_validation_failed': '无法验证 OpenVPN 服务器身份。',
-      'openvpn_certificate_expired': '重新连接前请续订 OpenVPN 配置文件。',
+      'openvpn_certificate_expired': 'OpenVPN 证书已过期。请在应用中开始新的连接以更新证书。',
       'tunnel_active_for_another_account': '属于另一个账户的隧道必须先停止，才能进行此连接。',
       'tunnel_already_active': 'Android 报告之前的 VPN 会话仍在使用此接口。',
       'tunnel_stop_timeout': '$protocol 引擎未在规定时间内确认释放 VPN 接口。',
@@ -3319,6 +3341,22 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   @override
   String get connection_androidDisconnectHint =>
       '如果 Android 仍保持 VPN 活跃，请在打开的设置中关闭“始终开启的 VPN”。';
+
+  @override
+  String get connection_certificate => 'OpenVPN 证书';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '有效期至 $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '已于 $date 过期';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal => '下次连接时将自动更新。';
 
   @override
   String get protection_learnMore => '了解 Android 保护功能';
@@ -4422,6 +4460,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get action_copy => '複製';
 
   @override
+  String get action_renew => '更新';
+
+  @override
   String get action_signOut => '登出';
 
   @override
@@ -4841,7 +4882,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'wireguard_identity_unavailable': '此連線沒有可用的 WireGuard 身分。',
       'vpn_host_destroyed': '承載 VPN 的 Android 元件已停止。請開始新的連線。',
       'vpn_host_unavailable': 'Android 無法建立承載 VPN 的元件。請檢查 VPN 設定後再試一次。',
-      'openvpn_renewal_required': '憑證需要您在應用程式中採取動作後才能連線。',
+      'openvpn_renewal_required': '無法自動更新 OpenVPN 憑證。請在應用程式中開始新的連線。',
       'openvpn_recovery_failed': '自動復原失敗。請在應用程式中開始新的連線。',
       'openvpn_recovery_exhausted': '自動復原已使用過。請在應用程式中開始新的連線。',
       'vpn_permission_required': 'Android 需要新的 VPN 授權，才能啟動通道。',
@@ -4918,7 +4959,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'network_unavailable': '沒有可用的實體網路。',
       'network_lost': '網路遺失後，通道已停止。',
       'certificate_validation_failed': '無法驗證 OpenVPN 伺服器身分。',
-      'openvpn_certificate_expired': '請在重新連線前更新 OpenVPN 設定檔。',
+      'openvpn_certificate_expired': 'OpenVPN 憑證已過期。請在應用程式中開始新的連線以更新憑證。',
       'tunnel_active_for_another_account': '屬於其他帳戶的通道必須停止後，才能建立此連線。',
       'tunnel_already_active': 'Android 回報先前的 VPN 工作階段仍在使用此介面。',
       'tunnel_stop_timeout': '$protocol 引擎未在時限內確認釋放 VPN 介面。',
@@ -5283,6 +5324,22 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   @override
   String get connection_androidDisconnectHint =>
       '如果 Android 讓 VPN 保持啟用，請在開啟的設定中關閉「永遠開啟的 VPN」。';
+
+  @override
+  String get connection_certificate => 'OpenVPN 憑證';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '有效期限至 $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '已於 $date 過期';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal => '下次連線時將自動更新。';
 
   @override
   String get protection_learnMore => '了解 Android 保護功能';

@@ -530,6 +530,9 @@ class AppLocalizationsNb extends AppLocalizations {
   String get action_copy => 'Kopiér';
 
   @override
+  String get action_renew => 'Forny';
+
+  @override
   String get action_signOut => 'Logg ut';
 
   @override
@@ -1032,7 +1035,7 @@ class AppLocalizationsNb extends AppLocalizations {
       'vpn_host_unavailable':
           'Android kan ikke opprette komponenten som er vert for VPN. Prøv igjen etter å ha kontrollert VPN-innstillingene.',
       'openvpn_renewal_required':
-          'Sertifikatet krever en handling i appen før tilkobling.',
+          'OpenVPN-sertifikatet kunne ikke fornyes automatisk. Start en ny tilkobling i appen.',
       'openvpn_recovery_failed':
           'Automatisk gjenoppretting mislyktes. Start en ny tilkobling i appen.',
       'openvpn_recovery_exhausted':
@@ -1170,7 +1173,7 @@ class AppLocalizationsNb extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN-serverens identitet kunne ikke bekreftes.',
       'openvpn_certificate_expired':
-          'Forny OpenVPN-profilen før du kobler til på nytt.',
+          'OpenVPN-sertifikatet er utløpt. Start en ny tilkobling i appen for å fornye det.',
       'tunnel_active_for_another_account':
           'En tunnel som tilhører en annen konto, må stoppes før denne tilkoblingen.',
       'tunnel_already_active':
@@ -1572,6 +1575,23 @@ class AppLocalizationsNb extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Hvis Android holder VPN aktiv, slår du av Alltid på-VPN i innstillingene som åpnes.';
+
+  @override
+  String get connection_certificate => 'OpenVPN-sertifikat';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Gyldig til $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Utløpt $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Fornyes automatisk ved neste tilkobling.';
 
   @override
   String get protection_learnMore => 'Lær mer om Android-beskyttelse';

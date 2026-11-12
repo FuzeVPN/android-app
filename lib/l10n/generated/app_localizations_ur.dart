@@ -531,6 +531,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get action_copy => 'کاپی کریں';
 
   @override
+  String get action_renew => 'تجدید کریں';
+
+  @override
   String get action_signOut => 'سائن آؤٹ کریں';
 
   @override
@@ -1032,7 +1035,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN کی میزبانی کرنے والا جزو نہیں بنا سکتا۔ VPN ترتیبات چیک کرنے کے بعد دوبارہ کوشش کریں۔',
       'openvpn_renewal_required':
-          'کنیکٹ کرنے سے پہلے سرٹیفکیٹ کے لیے ایپ میں کارروائی ضروری ہے۔',
+          'OpenVPN سرٹیفکیٹ کی خودکار تجدید نہیں ہو سکی۔ ایپ میں نیا کنکشن شروع کریں۔',
       'openvpn_recovery_failed':
           'خودکار بحالی ناکام ہو گئی۔ ایپ میں نیا کنکشن شروع کریں۔',
       'openvpn_recovery_exhausted':
@@ -1167,7 +1170,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN سرور کی شناخت کی تصدیق نہیں ہو سکی۔',
       'openvpn_certificate_expired':
-          'دوبارہ کنیکٹ کرنے سے پہلے OpenVPN پروفائل کی تجدید کریں۔',
+          'OpenVPN سرٹیفکیٹ کی میعاد ختم ہو گئی ہے۔ اس کی تجدید کے لیے ایپ میں نیا کنکشن شروع کریں۔',
       'tunnel_active_for_another_account':
           'اس کنکشن سے پہلے دوسرے اکاؤنٹ سے متعلق ٹَنل رکنا ضروری ہے۔',
       'tunnel_already_active':
@@ -1569,6 +1572,23 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'اگر Android VPN کو فعال رکھتا ہے تو کھلنے والی ترتیبات میں ہمیشہ فعال VPN بند کریں۔';
+
+  @override
+  String get connection_certificate => 'OpenVPN سرٹیفکیٹ';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date تک کارآمد';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date کو میعاد ختم ہو گئی';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'اگلے کنکشن پر خودکار تجدید ہو جائے گی۔';
 
   @override
   String get protection_learnMore => 'Android کے تحفظ کے بارے میں مزید جانیں';

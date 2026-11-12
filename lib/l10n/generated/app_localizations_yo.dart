@@ -529,6 +529,9 @@ class AppLocalizationsYo extends AppLocalizations {
   String get action_copy => 'Dàkọ';
 
   @override
+  String get action_renew => 'Sọdọ̀tun';
+
+  @override
   String get action_signOut => 'Jáde';
 
   @override
@@ -1015,7 +1018,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'vpn_host_unavailable':
           'Android kò lè ṣẹ̀dá èròjà tó ń gbà VPN lálejò. Ẹ tún gbìyànjú lẹ́yìn tí ẹ bá ti ṣàyẹ̀wò ìṣètò VPN.',
       'openvpn_renewal_required':
-          'Ìwé-ẹ̀rí nílò ìgbésẹ̀ nínú ohun èlò náà ṣáájú àsopọ̀.',
+          'Ìsọdọ̀tun aládàáṣe ti ìwé-ẹ̀rí OpenVPN kùnà. Ẹ bẹ̀rẹ̀ àsopọ̀ tuntun nínú ohun èlò náà.',
       'openvpn_recovery_failed':
           'Ìmúpadàbọ̀sípò aládàáṣe kùnà. Ẹ bẹ̀rẹ̀ àsopọ̀ tuntun nínú ohun èlò náà.',
       'openvpn_recovery_exhausted':
@@ -1148,7 +1151,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'certificate_validation_failed':
           'A kò lè jẹ́rìí sí ìdánimọ̀ olùpín OpenVPN.',
       'openvpn_certificate_expired':
-          'Ẹ sọ pírófáìlì OpenVPN di tuntun kí ẹ tó tún sopọ̀.',
+          'Ìwé-ẹ̀rí OpenVPN ti parí. Ẹ bẹ̀rẹ̀ àsopọ̀ tuntun nínú ohun èlò náà láti sọ ọ́ di tuntun.',
       'tunnel_active_for_another_account':
           'Ọ̀nà ìsopọ̀ ààbò tó jẹ́ ti àkántì mìíràn gbọ́dọ̀ dúró kí àsopọ̀ yìí tó bẹ̀rẹ̀.',
       'tunnel_already_active':
@@ -1550,6 +1553,23 @@ class AppLocalizationsYo extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Tí Android bá ń jẹ́ kí VPN wà lórí, ẹ pa VPN nígbà gbogbo nínú ìṣètò tí ó ṣí.';
+
+  @override
+  String get connection_certificate => 'Ìwé-ẹ̀rí OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Ó wúlò títí di $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Ó parí ní $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Yóò sọdọ̀tun fúnra rẹ̀ nígbà àsopọ̀ tó kàn.';
 
   @override
   String get protection_learnMore => 'Kọ́ nípa ààbò Android';

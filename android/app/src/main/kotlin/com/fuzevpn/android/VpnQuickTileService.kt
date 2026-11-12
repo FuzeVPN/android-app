@@ -31,7 +31,7 @@ private inline fun tileDebug(message: () -> String) {
     if (BuildConfig.DEBUG) Log.d("FuzeVpnTile", message())
 }
 
-/** User-controlled reconnect/disconnect entry point with no API access. */
+/** User-controlled reconnect/disconnect entry point; its only API access is the bridge's OpenVPN certificate renewal. */
 class VpnQuickTileService : TileService() {
     private val tileScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     private var destroyed = false

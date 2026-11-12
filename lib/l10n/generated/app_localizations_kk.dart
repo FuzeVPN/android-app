@@ -527,6 +527,9 @@ class AppLocalizationsKk extends AppLocalizations {
   String get action_copy => 'Көшіру';
 
   @override
+  String get action_renew => 'Жаңарту';
+
+  @override
   String get action_signOut => 'Шығу';
 
   @override
@@ -1028,7 +1031,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'vpn_host_unavailable':
           'Android VPN-ді қамтитын компонентті жасай алмайды. VPN параметрлерін тексергеннен кейін қайталап көріңіз.',
       'openvpn_renewal_required':
-          'Сертификат үшін қосылмас бұрын қолданбада әрекет ету қажет.',
+          'OpenVPN сертификатын автоматты түрде жаңарту мүмкін болмады. Қолданбада жаңа қосылымды бастаңыз.',
       'openvpn_recovery_failed':
           'Автоматты қалпына келтіру сәтсіз аяқталды. Қолданбада жаңа қосылымды бастаңыз.',
       'openvpn_recovery_exhausted':
@@ -1166,7 +1169,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN серверінің түпнұсқалығын тексеру мүмкін болмады.',
       'openvpn_certificate_expired':
-          'Қайта қосылмас бұрын OpenVPN профилін жаңартыңыз.',
+          'OpenVPN сертификатының мерзімі аяқталды. Оны жаңарту үшін қолданбада жаңа қосылымды бастаңыз.',
       'tunnel_active_for_another_account':
           'Бұл қосылым алдында басқа аккаунтқа тиесілі туннель тоқтатылуы керек.',
       'tunnel_already_active':
@@ -1566,6 +1569,23 @@ class AppLocalizationsKk extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android VPN-ді белсенді ұстап тұрса, ашылатын параметрлерде «Үнемі қосулы VPN» опциясын өшіріңіз.';
+
+  @override
+  String get connection_certificate => 'OpenVPN сертификаты';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date күніне дейін жарамды';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Мерзімі $date күні аяқталды';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Келесі қосылу кезінде автоматты түрде жаңартылады.';
 
   @override
   String get protection_learnMore => 'Android қорғанысы туралы толығырақ білу';

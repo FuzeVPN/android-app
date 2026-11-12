@@ -58,6 +58,31 @@ internal object HarnessControl {
     @Volatile var openVpnStartGate: Gate? = null
     /** OpenVpnService calls: "start(reconnecting=…)" and "stop" (the TUN hold release). */
     val openVpnService: MutableList<String> = Collections.synchronizedList(mutableListOf())
+    /** The stored certificate as certificateStatus reports it: "valid", "expiring", "expired" or "missing". */
+    @Volatile var openVpnCertificate = "valid"
+    /** A renewal CSR is stored and not yet activated, as after getOrCreateCsr(renewal = true). */
+    @Volatile var openVpnRenewalPending = false
+    /** Fingerprint of the active OpenVPN identity; a renewed activation replaces it. */
+    @Volatile var openVpnIdentity = WireGuardController.IDENTITY
+    @Volatile var openVpnCsrRequests = 0
+    /** False makes Core end a start from an activation without CONNECTED. */
+    @Volatile var openVpnConnect: () -> Boolean = { true }
+    /** Renewal requests the bridge sent: "url authorization". */
+    val renewalRequests: MutableList<String> = Collections.synchronizedList(mutableListOf())
+    /** The server's answer to a renewal (status, body); may throw what the transport would. */
+    @Volatile var renewalResponse: (deviceId: String) -> Pair<Int, String> = { renewedActivation(it) }
+    /** Keeps a renewal request unanswered, as a slow server would, while it stays current. */
+    @Volatile var renewalHold = false
+
+    const val RENEWED_OPENVPN_IDENTITY = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    private const val PEM = "-----BEGIN CERTIFICATE-----\\ntest\\n-----END CERTIFICATE-----"
+
+    /** A 201 as the API returns it for an IPv4 device. */
+    fun renewedActivation(deviceId: String, address: String = "10.9.0.2/32"): Pair<Int, String> = 201 to """{"device_id":"$deviceId",
+        "protocol":"openvpn","address":"$address","dns":["10.9.0.1"],"endpoint":"203.0.113.10",
+        "server_name":"paris-01.openvpn.test","remote_cert_tls_server":true,"ca_certificate_pem":"$PEM",
+        "certificate_pem":"$PEM","certificate_serial":"0b","not_after":"2099-01-01T00:00:00Z",
+        "ciphers":["AES-256-GCM"],"tls_crypt_v2_client_key":"client-key"}"""
     /** SystemVpnResumeSentinel.sync decisions, in order (true = armed). */
     val sentinel: MutableList<Boolean> = Collections.synchronizedList(mutableListOf())
     /** VPN host starts the bridge itself requested (a process-restart restore). */
@@ -75,6 +100,9 @@ internal object HarnessControl {
         wireGuardStopGate = null; tileProfileReadGate = null
         openVpnConnects = 0; openVpnReconnects = 0; openVpnStops = 0; openVpnNetworkLosses = 0
         openVpnReconnect = { true }; openVpnStartGate = null; openVpnService.clear()
+        openVpnCertificate = "valid"; openVpnRenewalPending = false; openVpnIdentity = WireGuardController.IDENTITY
+        openVpnCsrRequests = 0; openVpnConnect = { true }
+        renewalRequests.clear(); renewalResponse = { renewedActivation(it) }; renewalHold = false
         sentinel.clear(); hostStarts = 0; hostStartFailure = null
     }
 }

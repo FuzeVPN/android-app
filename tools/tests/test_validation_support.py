@@ -460,7 +460,7 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
         self.assertEqual(44, data['checks']['turnstile-bridge']['junit']['passed'])
         self.assertEqual(20, data['checks']['turnstile-bridge']['javascript']['passed'])
         self.assertEqual(27, data['checks']['command-epochs']['junit']['passed'])
-        self.assertEqual(94, data['checks']['bridge-host']['junit']['passed'])
+        self.assertEqual(102, data['checks']['bridge-host']['junit']['passed'])
 
     def test_runs_below_the_cases_executed_on_30_october_are_refused(self):
         # Integration of corrections-20261029: Turnstile 44 JUnit + 20 JavaScript
@@ -472,10 +472,12 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
         # with its physical networks listed instead of the refused callback (campaign vm31j, 02/11), then 87
         # with only its default physical network followed (campaign vm31k, 02/11), then 91 with that
         # default matched by its legacy type and APN (IMS beside it, Wi-Fi gap, dual SIM, 02/11), then 94
-        # with that default suspended, blocked (APN cleared) or replaced by one of the same APN (02/11).
+        # with that default suspended, blocked (APN cleared) or replaced by one of the same APN (02/11), then
+        # 102 with the OpenVPN certificate renewed by a recovery, a tile click or a system restore (11/11).
         # The former floors (35, 15, 14, 26, then 26, 33 and 43) or one lost case no longer qualify.
         for name, filename, count in [('turnstile-bridge','junit.log',35), ('turnstile-bridge','junit.log',43),
                                       ('command-epochs','result.log',14), ('command-epochs','result.log',26),
+                                      ('bridge-host','result.log',101), ('bridge-host','result.log',94),
                                       ('bridge-host','result.log',93), ('bridge-host','result.log',92), ('bridge-host','result.log',91),
                                       ('bridge-host','result.log',90), ('bridge-host','result.log',89),
                                       ('bridge-host','result.log',88), ('bridge-host','result.log',87),
@@ -500,7 +502,7 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
             with self.subTest(javascript=count), self.assertRaisesRegex(support.ValidationError, 'scenarios'):
                 support.summarize(self.directory)
         path.write_text(original)
-        self.assertEqual({'turnstile-bridge': 44, 'command-epochs': 27, 'bridge-host': 94}, support.HOST_JUNIT_MINIMUMS)
+        self.assertEqual({'turnstile-bridge': 44, 'command-epochs': 27, 'bridge-host': 102}, support.HOST_JUNIT_MINIMUMS)
         self.assertEqual(20, support.TURNSTILE_JAVASCRIPT_MINIMUM)
 
     def test_each_floor_is_the_number_of_cases_versioned_in_its_suite(self):
@@ -615,7 +617,7 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
 
     def test_host_junit_rejects_skips_missing_cases_and_duplicate_success(self):
         for name, filename, count in [('turnstile-bridge','junit.log',44),('command-epochs','result.log',27),
-                                      ('bridge-host','result.log',94)]:
+                                      ('bridge-host','result.log',102)]:
             path = self.directory/name/filename
             original = path.read_text()
             variations = [original.replace('.'*count, '.'*(count-1)+'I'),
@@ -638,14 +640,14 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
 
     def test_future_added_cases_are_counted_without_raising_a_fixed_ceiling(self):
         for name, filename, count in [('turnstile-bridge','junit.log',45),('command-epochs','result.log',28),
-                                      ('bridge-host','result.log',95)]:
+                                      ('bridge-host','result.log',103)]:
             (self.directory/name/filename).write_text('JUnit version 4.13.2\n'+'.'*count+'\nTime: 0.01\n\nOK ('+str(count)+' tests)\n')
         (self.directory/'turnstile-bridge/javascript.log').write_text('Generated HTML/JavaScript: PASS (21 scenarios, no network)\n')
         data = support.summarize(self.directory)
         self.assertEqual(45,data['checks']['turnstile-bridge']['junit']['passed'])
         self.assertEqual(21,data['checks']['turnstile-bridge']['javascript']['passed'])
         self.assertEqual(28,data['checks']['command-epochs']['junit']['passed'])
-        self.assertEqual(95,data['checks']['bridge-host']['junit']['passed'])
+        self.assertEqual(103,data['checks']['bridge-host']['junit']['passed'])
 
     def test_duplicate_step_names_cannot_hide_ambiguous_execution_receipts(self):
         self.steps_path.write_text(json.dumps(self.steps+[next(s for s in self.steps if s['name']=='command-epochs')]))

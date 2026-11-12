@@ -533,6 +533,9 @@ class AppLocalizationsLt extends AppLocalizations {
   String get action_copy => 'Kopijuoti';
 
   @override
+  String get action_renew => 'Atnaujinti';
+
+  @override
   String get action_signOut => 'Atsijungti nuo paskyros';
 
   @override
@@ -1024,7 +1027,7 @@ class AppLocalizationsLt extends AppLocalizations {
       'vpn_host_unavailable':
           'Android negali sukurti komponento, kuriame veiktų VPN. Patikrinę VPN nustatymus, bandykite dar kartą.',
       'openvpn_renewal_required':
-          'Prieš prisijungiant programoje reikia atlikti su sertifikatu susijusį veiksmą.',
+          'Nepavyko automatiškai atnaujinti OpenVPN sertifikato. Programoje pradėkite naują ryšį.',
       'openvpn_recovery_failed':
           'Automatinis atkūrimas nepavyko. Programoje pradėkite naują ryšį.',
       'openvpn_recovery_exhausted':
@@ -1161,7 +1164,7 @@ class AppLocalizationsLt extends AppLocalizations {
       'certificate_validation_failed':
           'Nepavyko patikrinti OpenVPN serverio tapatybės.',
       'openvpn_certificate_expired':
-          'Prieš prisijungdami iš naujo atnaujinkite OpenVPN profilį.',
+          'OpenVPN sertifikato galiojimas baigėsi. Norėdami atnaujinti sertifikatą, programoje pradėkite naują ryšį.',
       'tunnel_active_for_another_account':
           'Prieš šį ryšį turi būti sustabdytas kitos paskyros tunelis.',
       'tunnel_already_active':
@@ -1566,6 +1569,23 @@ class AppLocalizationsLt extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Jei Android palieka VPN aktyvų, atsidariusiuose nustatymuose išjunkite „Visada įjungtas VPN“.';
+
+  @override
+  String get connection_certificate => 'OpenVPN sertifikatas';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Galioja iki $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Galiojimas baigėsi $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Bus automatiškai atnaujintas kitą kartą prisijungiant.';
 
   @override
   String get protection_learnMore => 'Sužinokite daugiau apie Android apsaugą';

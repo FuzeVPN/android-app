@@ -536,6 +536,9 @@ class AppLocalizationsTa extends AppLocalizations {
   String get action_copy => 'நகலெடு';
 
   @override
+  String get action_renew => 'புதுப்பிக்கவும்';
+
+  @override
   String get action_signOut => 'வெளியேறவும்';
 
   @override
@@ -1046,7 +1049,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'vpn_host_unavailable':
           'VPN-ஐ இயக்கும் கூறை Android-ஆல் உருவாக்க முடியவில்லை. VPN அமைப்புகளைச் சரிபார்த்த பிறகு மீண்டும் முயற்சிக்கவும்.',
       'openvpn_renewal_required':
-          'இணைப்பதற்கு முன் பயன்பாட்டில் இந்தச் சான்றிதழுக்கான நடவடிக்கை தேவை.',
+          'OpenVPN சான்றிதழைத் தானாகப் புதுப்பிக்க முடியவில்லை. பயன்பாட்டில் புதிய இணைப்பைத் தொடங்கவும்.',
       'openvpn_recovery_failed':
           'தானியங்கி மீட்பு தோல்வியடைந்தது. பயன்பாட்டில் புதிய இணைப்பைத் தொடங்கவும்.',
       'openvpn_recovery_exhausted':
@@ -1189,7 +1192,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN சர்வரின் அடையாளத்தைச் சரிபார்க்க முடியவில்லை.',
       'openvpn_certificate_expired':
-          'மீண்டும் இணைப்பதற்கு முன் OpenVPN சுயவிவரத்தைப் புதுப்பிக்கவும்.',
+          'OpenVPN சான்றிதழ் காலாவதியாகிவிட்டது. அதைப் புதுப்பிக்கப் பயன்பாட்டில் புதிய இணைப்பைத் தொடங்கவும்.',
       'tunnel_active_for_another_account':
           'இந்த இணைப்புக்கு முன் மற்றொரு கணக்கிற்குச் சொந்தமான சுரங்கப்பாதை நிறுத்தப்பட வேண்டும்.',
       'tunnel_already_active':
@@ -1595,6 +1598,23 @@ class AppLocalizationsTa extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android VPN-ஐத் தொடர்ந்து செயலில் வைத்திருந்தால், திறக்கும் அமைப்புகளில் “எப்போதும் இயக்கத்தில் உள்ள VPN” விருப்பத்தை முடக்கவும்.';
+
+  @override
+  String get connection_certificate => 'OpenVPN சான்றிதழ்';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date வரை செல்லுபடியாகும்';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date அன்று காலாவதியானது';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'அடுத்த முறை இணைக்கும்போது தானாகப் புதுப்பிக்கப்படும்.';
 
   @override
   String get protection_learnMore => 'Android பாதுகாப்பு பற்றி அறியவும்';

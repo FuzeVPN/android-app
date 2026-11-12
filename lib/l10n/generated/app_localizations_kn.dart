@@ -531,6 +531,9 @@ class AppLocalizationsKn extends AppLocalizations {
   String get action_copy => 'ಕಾಪಿ ಮಾಡಿ';
 
   @override
+  String get action_renew => 'ನವೀಕರಿಸಿ';
+
+  @override
   String get action_signOut => 'ಸೈನ್ ಔಟ್';
 
   @override
@@ -1018,7 +1021,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'vpn_host_unavailable':
           'VPN ಅನ್ನು ಹೋಸ್ಟ್ ಮಾಡುವ ಘಟಕವನ್ನು ರಚಿಸಲು Android ಗೆ ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿದ ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
       'openvpn_renewal_required':
-          'ಸಂಪರ್ಕಿಸುವ ಮೊದಲು ಪ್ರಮಾಣಪತ್ರಕ್ಕಾಗಿ ಆ್ಯಪ್‌ನಲ್ಲಿ ಕ್ರಮ ಕೈಗೊಳ್ಳಬೇಕು.',
+          'OpenVPN ಪ್ರಮಾಣಪತ್ರವನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಆ್ಯಪ್‌ನಲ್ಲಿ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಪ್ರಾರಂಭಿಸಿ.',
       'openvpn_recovery_failed':
           'ಸ್ವಯಂಚಾಲಿತ ಮರುಪಡೆಯುವಿಕೆ ವಿಫಲವಾಗಿದೆ. ಆ್ಯಪ್‌ನಲ್ಲಿ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಪ್ರಾರಂಭಿಸಿ.',
       'openvpn_recovery_exhausted':
@@ -1157,7 +1160,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'certificate_validation_failed':
           'OpenVPN ಸರ್ವರ್‌ನ ಗುರುತನ್ನು ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
       'openvpn_certificate_expired':
-          'ಮತ್ತೆ ಸಂಪರ್ಕಿಸುವ ಮೊದಲು OpenVPN ಪ್ರೊಫೈಲ್ ಅನ್ನು ನವೀಕರಿಸಿ.',
+          'OpenVPN ಪ್ರಮಾಣಪತ್ರದ ಅವಧಿ ಮುಗಿದಿದೆ. ಅದನ್ನು ನವೀಕರಿಸಲು ಆ್ಯಪ್‌ನಲ್ಲಿ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಪ್ರಾರಂಭಿಸಿ.',
       'tunnel_active_for_another_account':
           'ಈ ಸಂಪರ್ಕದ ಮೊದಲು ಇನ್ನೊಂದು ಖಾತೆಗೆ ಸೇರಿದ ಟನಲ್ ನಿಲ್ಲಬೇಕು.',
       'tunnel_already_active':
@@ -1561,6 +1564,23 @@ class AppLocalizationsKn extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android VPN ಅನ್ನು ಸಕ್ರಿಯವಾಗಿಯೇ ಇರಿಸಿದರೆ, ತೆರೆಯುವ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಅನ್ನು ಆಫ್ ಮಾಡಿ.';
+
+  @override
+  String get connection_certificate => 'OpenVPN ಪ್ರಮಾಣಪತ್ರ';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date ವರೆಗೆ ಮಾನ್ಯ';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date ರಂದು ಅವಧಿ ಮುಗಿದಿದೆ';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'ಮುಂದಿನ ಬಾರಿ ಸಂಪರ್ಕಿಸಿದಾಗ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ನವೀಕರಣಗೊಳ್ಳುತ್ತದೆ.';
 
   @override
   String get protection_learnMore => 'Android ರಕ್ಷಣೆಯ ಬಗ್ಗೆ ತಿಳಿಯಿರಿ';

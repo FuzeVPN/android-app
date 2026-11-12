@@ -5,6 +5,7 @@ object BuildConfig {
     const val DEBUG = false
     const val BUILD_TYPE = "release"
     const val USE_PATCHED_WIREGUARD_AAR = true
+    const val DEBUG_API_BASE_URL = ""
 }
 
 object R {

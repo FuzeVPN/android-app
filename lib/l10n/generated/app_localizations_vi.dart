@@ -528,6 +528,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get action_copy => 'Sao chép';
 
   @override
+  String get action_renew => 'Gia hạn';
+
+  @override
   String get action_signOut => 'Đăng xuất';
 
   @override
@@ -1019,7 +1022,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'vpn_host_unavailable':
           'Android không thể tạo thành phần lưu trữ VPN. Hãy kiểm tra cài đặt VPN rồi thử lại.',
       'openvpn_renewal_required':
-          'Chứng chỉ cần được xử lý trong ứng dụng trước khi kết nối.',
+          'Không thể tự động gia hạn chứng chỉ OpenVPN. Hãy bắt đầu kết nối mới trong ứng dụng.',
       'openvpn_recovery_failed':
           'Khôi phục tự động thất bại. Hãy bắt đầu kết nối mới trong ứng dụng.',
       'openvpn_recovery_exhausted':
@@ -1156,7 +1159,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'certificate_validation_failed':
           'Không thể xác minh danh tính máy chủ OpenVPN.',
       'openvpn_certificate_expired':
-          'Hãy gia hạn hồ sơ OpenVPN trước khi kết nối lại.',
+          'Chứng chỉ OpenVPN đã hết hạn. Hãy bắt đầu kết nối mới trong ứng dụng để gia hạn chứng chỉ.',
       'tunnel_active_for_another_account':
           'Đường hầm của tài khoản khác phải dừng trước kết nối này.',
       'tunnel_already_active':
@@ -1558,6 +1561,23 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Nếu Android vẫn giữ VPN hoạt động, hãy tắt VPN luôn bật trong phần cài đặt được mở.';
+
+  @override
+  String get connection_certificate => 'Chứng chỉ OpenVPN';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return 'Có hiệu lực đến $date';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return 'Đã hết hạn vào $date';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal =>
+      'Tự động gia hạn ở lần kết nối tiếp theo.';
 
   @override
   String get protection_learnMore => 'Tìm hiểu về bảo vệ Android';

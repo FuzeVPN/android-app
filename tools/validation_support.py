@@ -333,7 +333,7 @@ HOST_BOUNDARY_FILES = {
 # on 31/10/2026 after lot K of corrections-20261031): a run with fewer has lost
 # tests. A receipt with more is counted; tools/tests pins each floor to the @Test
 # count of its sources.
-HOST_JUNIT_MINIMUMS = {"turnstile-bridge": 44, "command-epochs": 27, "bridge-host": 94}
+HOST_JUNIT_MINIMUMS = {"turnstile-bridge": 44, "command-epochs": 27, "bridge-host": 102}
 TURNSTILE_JAVASCRIPT_MINIMUM = 20
 # Named cases of tools/test_wireguard_release_gate.ps1, which the runner runs
 # without -Only. native-libraries-approved proves that the AAR's wireguard-tools

@@ -513,6 +513,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get action_copy => '복사';
 
   @override
+  String get action_renew => '갱신';
+
+  @override
   String get action_signOut => '로그아웃';
 
   @override
@@ -963,7 +966,8 @@ class AppLocalizationsKo extends AppLocalizations {
       'vpn_host_destroyed': 'VPN을 호스팅하던 Android 구성 요소가 중지되었습니다. 새 연결을 시작하세요.',
       'vpn_host_unavailable':
           'Android에서 VPN을 호스팅할 구성 요소를 만들 수 없습니다. VPN 설정을 확인한 후 다시 시도하세요.',
-      'openvpn_renewal_required': '연결하기 전에 인증서에 대해 앱에서 조치가 필요합니다.',
+      'openvpn_renewal_required':
+          'OpenVPN 인증서를 자동으로 갱신하지 못했습니다. 앱에서 새 연결을 시작하세요.',
       'openvpn_recovery_failed': '자동 복구에 실패했습니다. 앱에서 새 연결을 시작하세요.',
       'openvpn_recovery_exhausted': '자동 복구가 이미 사용되었습니다. 앱에서 새 연결을 시작하세요.',
       'vpn_permission_required': '터널을 시작하기 전에 Android에 새 VPN 승인이 필요합니다.',
@@ -1069,7 +1073,8 @@ class AppLocalizationsKo extends AppLocalizations {
       'network_unavailable': '사용 가능한 물리적 네트워크가 없습니다.',
       'network_lost': '네트워크가 끊긴 후 터널이 중지되었습니다.',
       'certificate_validation_failed': 'OpenVPN 서버 신원을 확인하지 못했습니다.',
-      'openvpn_certificate_expired': '다시 연결하기 전에 OpenVPN 프로필을 갱신하세요.',
+      'openvpn_certificate_expired':
+          'OpenVPN 인증서가 만료되었습니다. 갱신하려면 앱에서 새 연결을 시작하세요.',
       'tunnel_active_for_another_account':
           '이 연결을 시작하려면 다른 계정에 속한 터널을 중지해야 합니다.',
       'tunnel_already_active': 'Android에서 이전 VPN 세션이 아직 인터페이스를 사용 중이라고 보고했습니다.',
@@ -1446,6 +1451,22 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get connection_androidDisconnectHint =>
       'Android에서 VPN을 계속 활성 상태로 유지하는 경우 열리는 설정에서 항상 사용 VPN을 끄세요.';
+
+  @override
+  String get connection_certificate => 'OpenVPN 인증서';
+
+  @override
+  String connection_certificateValidUntil(Object date) {
+    return '$date까지 유효';
+  }
+
+  @override
+  String connection_certificateExpired(Object date) {
+    return '$date에 만료됨';
+  }
+
+  @override
+  String get connection_certificateAutoRenewal => '다음 연결 시 자동으로 갱신됩니다.';
 
   @override
   String get protection_learnMore => 'Android 보호에 대해 알아보기';
