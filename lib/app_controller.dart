@@ -413,10 +413,23 @@ class VpnAppController extends ChangeNotifier {
       (tunnelState.phase == VpnRuntimePhase.idle ||
           tunnelState.phase == VpnRuntimePhase.error ||
           tunnelState.phase == VpnRuntimePhase.connected) &&
-      (activeDeviceLocation ?? selectedLocation)?.supports(
-            VpnProtocol.openVpn,
-          ) ==
-          true;
+      _renewalLocationOffersOpenVpn;
+
+  /// The device list names a device's location without its protocols: only
+  /// the catalogue row tells whether OpenVPN is offered there. A location the
+  /// loaded catalogue does not list is left to the server, which refuses the
+  /// renewal with its own notice.
+  bool get _renewalLocationOffersOpenVpn {
+    final Location? device = activeDeviceLocation;
+    final Location? location = device ?? selectedLocation;
+    if (location == null) return false;
+    for (final Location offered in locations) {
+      if (offered.id == location.id) {
+        return offered.supports(VpnProtocol.openVpn);
+      }
+    }
+    return device != null || location.supports(VpnProtocol.openVpn);
+  }
 
   _MigrationContext? _migrationContext;
   _MigrationContext? _migrationStartRequest;
@@ -2388,6 +2401,9 @@ class VpnAppController extends ChangeNotifier {
             isConnecting = false;
             notifyListeners();
           }
+          // A refused renewal leaves its request pending without any tunnel
+          // state to announce it.
+          unawaited(_refreshOpenVpnCertificate());
         }
       } on SessionOperationCancelled {
         return;

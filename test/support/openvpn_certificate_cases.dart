@@ -15,6 +15,30 @@ const OpenVpnCertificateStatus _noCertificate = OpenVpnCertificateStatus(
   renewalPending: false,
 );
 
+/// A device's location as the account-device list sends it: identity and
+/// label, never the protocol list, which only a catalogue row carries.
+Location _listed(Location location) => Location(
+  id: location.id,
+  city: location.city,
+  countryCode: location.countryCode,
+  displayName: location.displayName,
+);
+
+/// A restored account whose device list names this device, as the API does
+/// from the first refresh after its registration.
+Future<_RestoredHarness> _certificateHarness({
+  void Function(_FakeApi, _FakeSessionStore, _FakeTunnel)? prepare,
+}) => _restoredHarness(
+  events: [],
+  prepare: (api, store, tunnel) {
+    api.deviceListResult = _devices(
+      'device-current',
+      location: _listed(_frankfurt),
+    );
+    prepare?.call(api, store, tunnel);
+  },
+);
+
 /// OpenVPN certificates last 90 days. Connections and the native reconnections
 /// renew one that is due; the connection options show its lifetime and offer
 /// the renewal that no screen offered before.
@@ -26,8 +50,7 @@ void openVpnCertificateTests() {
   group('OpenVPN certificate lifetime', () {
     test('a restored account publishes its stored certificate, and nothing '
         'without one', () async {
-      final h = await _restoredHarness(
-        events: [],
+      final h = await _certificateHarness(
         prepare: (api, store, tunnel) => tunnel.openVpnCertificateStatus =
             _certificate(OpenVpnCertificatePhase.valid, renewed),
       );
@@ -40,7 +63,7 @@ void openVpnCertificateTests() {
         contains('user-a/device-current'),
       );
 
-      final none = await _restoredHarness(events: []);
+      final none = await _certificateHarness();
       addTearDown(none.close);
       await pumpEventQueue();
       expect(none.controller.openVpnCertificate, isNull);
@@ -49,8 +72,7 @@ void openVpnCertificateTests() {
 
     test('a reconnection that renewed the certificate without the application '
         'is read again from the tunnel state', () async {
-      final h = await _restoredHarness(
-        events: [],
+      final h = await _certificateHarness(
         prepare: (api, store, tunnel) => tunnel.openVpnCertificateStatus =
             _certificate(OpenVpnCertificatePhase.expiring, soon),
       );
@@ -87,8 +109,7 @@ void openVpnCertificateTests() {
 
     test('a failed read shows nothing and a late answer for another device is '
         'dropped', () async {
-      final h = await _restoredHarness(
-        events: [],
+      final h = await _certificateHarness(
         prepare: (api, store, tunnel) => tunnel.openVpnCertificateStatus =
             _certificate(OpenVpnCertificatePhase.valid, renewed),
       );
@@ -114,8 +135,7 @@ void openVpnCertificateTests() {
     });
 
     test('renewal is offered from a settled state only', () async {
-      final h = await _restoredHarness(
-        events: [],
+      final h = await _certificateHarness(
         prepare: (api, store, tunnel) => tunnel.openVpnCertificateStatus =
             _certificate(OpenVpnCertificatePhase.valid, renewed),
       );
@@ -143,7 +163,25 @@ void openVpnCertificateTests() {
       expect(h.controller.canRenewOpenVpnCertificate, isFalse);
     });
 
-    test('renewal is not offered where the location has no OpenVPN', () async {
+    // The device list names the location without its protocols: reading them
+    // there disabled the button as soon as the list included this device
+    // (found on the Android 14 VM, 11/11/2026).
+    test(
+      'renewal stays offered once the device list names this device',
+      () async {
+        final h = await _certificateHarness(
+          prepare: (api, store, tunnel) => tunnel.openVpnCertificateStatus =
+              _certificate(OpenVpnCertificatePhase.valid, renewed),
+        );
+        addTearDown(h.close);
+        await pumpEventQueue();
+        expect(h.controller.activeDeviceLocation?.id, 'frankfurt-01');
+        expect(h.controller.activeDeviceLocation?.supportedProtocols, isEmpty);
+        expect(h.controller.canRenewOpenVpnCertificate, isTrue);
+      },
+    );
+
+    test('renewal is not offered where the catalogue has no OpenVPN', () async {
       const wireGuardOnly = Location(
         id: 'paris-01',
         city: 'Paris',
@@ -151,13 +189,12 @@ void openVpnCertificateTests() {
         displayName: 'Paris 1',
         supportedProtocols: <VpnProtocol>{VpnProtocol.wireGuard},
       );
-      final h = await _restoredHarness(
-        events: [],
+      final h = await _certificateHarness(
         prepare: (api, store, tunnel) {
           api.locationsResult = const <Location>[wireGuardOnly];
           api.deviceListResult = _devices(
             'device-current',
-            location: wireGuardOnly,
+            location: _listed(wireGuardOnly),
           );
           tunnel.openVpnCertificateStatus = _certificate(
             OpenVpnCertificatePhase.valid,
@@ -169,6 +206,56 @@ void openVpnCertificateTests() {
       await pumpEventQueue();
       expect(h.controller.openVpnCertificate, isNotNull);
       expect(h.controller.canRenewOpenVpnCertificate, isFalse);
+    });
+
+    test('a device location the catalogue does not list leaves the renewal to '
+        'the server', () async {
+      final h = await _certificateHarness(
+        prepare: (api, store, tunnel) {
+          api.locationsResult = const <Location>[_frankfurt02];
+          tunnel.openVpnCertificateStatus = _certificate(
+            OpenVpnCertificatePhase.valid,
+            renewed,
+          );
+        },
+      );
+      addTearDown(h.close);
+      await pumpEventQueue();
+      expect(h.controller.activeDeviceLocation?.id, 'frankfurt-01');
+      expect(h.controller.canRenewOpenVpnCertificate, isTrue);
+    });
+
+    // Native code keeps the request it prepared when the API cannot be
+    // reached. No tunnel state follows a refusal before any tunnel started.
+    test('a renewal the network refused shows its pending request at '
+        'once', () async {
+      final h = await _certificateHarness(
+        prepare: (api, store, tunnel) {
+          api.renewOpenVpnFailure = const ApiNetworkException();
+          tunnel.openVpnCertificateStatus = _certificate(
+            OpenVpnCertificatePhase.valid,
+            renewed,
+          );
+        },
+      );
+      addTearDown(h.close);
+      await pumpEventQueue();
+      expect(h.controller.openVpnCertificate?.requiresRenewal, isFalse);
+      h.tunnel.hooks['getOrCreateOpenVpnCsr'] = () async {
+        h.tunnel.openVpnCertificateStatus = _certificate(
+          OpenVpnCertificatePhase.valid,
+          renewed,
+          renewalPending: true,
+        );
+      };
+
+      await h.controller.renewOpenVpnProfile();
+      await pumpEventQueue();
+      expect(h.api.renewOpenVpnCalls, 1);
+      expect(h.tunnel.openVpnConnections, isEmpty);
+      expect(h.controller.notice, isNotNull);
+      expect(h.controller.openVpnCertificate?.renewalPending, isTrue);
+      expect(h.controller.openVpnCertificate?.requiresRenewal, isTrue);
     });
 
     Future<void> showOptions(
@@ -200,8 +287,7 @@ void openVpnCertificateTests() {
     testWidgets('the options show the lifetime and renew on request', (
       tester,
     ) async {
-      final h = await _restoredHarness(
-        events: [],
+      final h = await _certificateHarness(
         prepare: (api, store, tunnel) {
           api.openVpnActivation = _openVpnActivation('device-current');
           tunnel.openVpnCertificateStatus = _certificate(
@@ -250,8 +336,7 @@ void openVpnCertificateTests() {
 
     testWidgets('an expired certificate says so, and the button is disabled '
         'while a tunnel is being started', (tester) async {
-      final h = await _restoredHarness(
-        events: [],
+      final h = await _certificateHarness(
         prepare: (api, store, tunnel) => tunnel.openVpnCertificateStatus =
             _certificate(OpenVpnCertificatePhase.expired, soon),
       );
@@ -287,8 +372,7 @@ void openVpnCertificateTests() {
         addTearDown(tester.view.resetPhysicalSize);
         addTearDown(tester.view.resetDevicePixelRatio);
         addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
-        final h = await _restoredHarness(
-          events: [],
+        final h = await _certificateHarness(
           prepare: (api, store, tunnel) => tunnel.openVpnCertificateStatus =
               _certificate(OpenVpnCertificatePhase.expiring, soon),
         );
