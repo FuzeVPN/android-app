@@ -52,6 +52,15 @@ class ConnectionState {
     return std::nullopt;
   }
 
+  // The Core worker stopped making progress while connected (blocked in a
+  // synchronous send whose socket never drains): Core itself reports nothing.
+  // Same outcome as a transport interruption, reported once; never before the
+  // proof, never after a stop request.
+  constexpr std::optional<ConnectionUpdate> Stalled() {
+    if (phase_ != Phase::kConnected) return std::nullopt;
+    return Interrupt("openvpn_reconnect_required", true);
+  }
+
   constexpr void RequestStop() { phase_ = Phase::kStopping; }
 
   constexpr ConnectionUpdate Complete(bool error) {

@@ -1,14 +1,68 @@
 #include <cassert>
+#include <algorithm>
 #include <atomic>
 #include <chrono>
+#include <condition_variable>
 #include <future>
 #include <iostream>
 #include <stdexcept>
+#include <string>
+#include <thread>
+#include <vector>
 #include "../../main/cpp/openvpn_core_adapter.cpp"
+
+// Offline stand-ins for the descriptor calls: numbers only, observed by the
+// fixture. A duplicate is the protected number plus 1000.
+namespace fuzevpn::openvpn::socket_ops {
+int Duplicate(int fd) noexcept {
+  std::lock_guard<std::mutex> lock(native_fixture::mutex);
+  ++native_fixture::duplicates_open;
+  return fd + 1000;
+}
+void Shutdown(int fd) noexcept {
+  std::lock_guard<std::mutex> lock(native_fixture::mutex);
+  if (fd == native_fixture::protected_socket + 1000) native_fixture::transport_shutdown = true;
+  native_fixture::changed.notify_all();
+}
+void Close(int) noexcept {
+  std::lock_guard<std::mutex> lock(native_fixture::mutex);
+  --native_fixture::duplicates_open;
+}
+}  // namespace fuzevpn::openvpn::socket_ops
 
 using namespace fuzevpn::openvpn;
 using namespace std::chrono_literals;
 namespace {
+// Records every reported state as "state/reason".
+class Recorder final : public PlatformCallbacks {
+ public:
+  void OnCoreState(std::string_view state, std::string_view reason) override {
+    std::lock_guard<std::mutex> lock(mutex_);
+    states_.push_back(std::string(state) + "/" + std::string(reason));
+    changed_.notify_all();
+  }
+  bool WaitFor(const std::string& entry, std::chrono::milliseconds timeout) {
+    std::unique_lock<std::mutex> lock(mutex_);
+    return changed_.wait_for(lock, timeout, [&] { return Has(entry); });
+  }
+  bool Seen(const std::string& entry) {
+    std::lock_guard<std::mutex> lock(mutex_);
+    return Has(entry);
+  }
+  int EstablishTun(const TunPlan&) override { return -1; }
+  bool ProtectSocket(int) override { return true; }
+  std::optional<std::string> PkiCertificate(std::string_view) override { return std::nullopt; }
+  std::optional<std::string> PkiSign(std::string_view, std::string_view, std::string_view,
+                                    std::string_view, std::string_view) override { return std::nullopt; }
+
+ private:
+  bool Has(const std::string& entry) const {
+    return std::find(states_.begin(), states_.end(), entry) != states_.end();
+  }
+  std::mutex mutex_;
+  std::condition_variable changed_;
+  std::vector<std::string> states_;
+};
 class Callbacks final : public PlatformCallbacks {
  public:
   std::atomic<bool> throw_state{false};
@@ -115,6 +169,103 @@ int main() {
     assert(session.Start(Profile(), "offline.alias", &callbacks));
     session.Stop();
     assert(native_fixture::stop_observed && !session.IsConnected());
+    ++cases;
+  }
+  // The production pacing: Core ticks every second, 15 silent seconds while
+  // connected make a stall, and a stop gets 3 s on its own before the
+  // transport is shut down, well inside the 10 s Android waits for it.
+  {
+    const CoreTimings timings;
+    assert(timings.tick == 1000ms && timings.stall_checks == 15 && timings.stop_grace == 3000ms);
+    ++cases;
+  }
+  // The 13 November freeze: a connected worker blocked in a synchronous send
+  // whose socket never drains ignores the stop token. Stop must shut the
+  // protected transport down to wake it, join it, and close its duplicate.
+  {
+    native_fixture::Reset();
+    native_fixture::hold_send = true;
+    Recorder recorder;
+    CoreTimings timings;
+    timings.stall_checks = 1000;  // Keep stall reports out of this case.
+    timings.stop_grace = 100ms;
+    OpenVpn3CoreSession session(timings);
+    assert(session.Start(Profile(), "offline.alias", &recorder));
+    assert(recorder.WaitFor("connected/connected", 2s));
+    assert(session.IsConnected());
+    {
+      // The replaced transport's duplicate is already closed: only the current one is kept.
+      std::lock_guard<std::mutex> lock(native_fixture::mutex);
+      assert(native_fixture::duplicates_open == 1);
+    }
+    auto stopped = std::async(std::launch::async, [&] { session.Stop(); });
+    // Without the shutdown, Stop waits on the worker forever.
+    assert(stopped.wait_for(5s) == std::future_status::ready);
+    stopped.get();
+    assert(native_fixture::transport_shutdown);
+    assert(native_fixture::duplicates_open == 0);
+    assert(!session.IsConnected());
+    ++cases;
+  }
+  // The same worker, left alone while connected: it stops ticking, and the
+  // session reports a recoverable interruption once instead of staying
+  // "connected" with a tunnel that carries nothing.
+  {
+    native_fixture::Reset();
+    native_fixture::hold_send = true;
+    Recorder recorder;
+    CoreTimings timings;
+    timings.tick = 10ms;
+    timings.stall_checks = 50;
+    timings.stop_grace = 100ms;
+    OpenVpn3CoreSession session(timings);
+    assert(session.Start(Profile(), "offline.alias", &recorder));
+    assert(recorder.WaitFor("connected/connected", 2s));
+    assert(recorder.WaitFor("error/openvpn_reconnect_required", 5s));
+    assert(!session.IsConnected());
+    session.Stop();
+    assert(native_fixture::transport_shutdown && native_fixture::duplicates_open == 0);
+    ++cases;
+  }
+  // A handshake longer than the stall limit, without a tick, is not a stall,
+  // and it must not end the watch: the stall that follows is still reported.
+  {
+    native_fixture::Reset();
+    native_fixture::hold_send = true;
+    native_fixture::connect_delay_ms = 800;
+    Recorder recorder;
+    CoreTimings timings;
+    timings.tick = 10ms;
+    timings.stall_checks = 50;
+    timings.stop_grace = 100ms;
+    OpenVpn3CoreSession session(timings);
+    assert(session.Start(Profile(), "offline.alias", &recorder));
+    assert(recorder.WaitFor("connected/connected", 3s));
+    assert(recorder.WaitFor("error/openvpn_reconnect_required", 5s));
+    session.Stop();
+    assert(native_fixture::transport_shutdown && native_fixture::duplicates_open == 0);
+    ++cases;
+  }
+  // A healthy worker ticks at the period the session asked Core for: never
+  // reported as stalled, and stopped by the token without any shutdown.
+  {
+    native_fixture::Reset();
+    native_fixture::tick = true;
+    Recorder recorder;
+    CoreTimings timings;
+    timings.tick = 10ms;
+    timings.stall_checks = 50;
+    timings.stop_grace = 2s;
+    OpenVpn3CoreSession session(timings);
+    assert(session.Start(Profile(), "offline.alias", &recorder));
+    assert(native_fixture::clock_tick_ms == 10);
+    assert(recorder.WaitFor("connected/connected", 2s));
+    std::this_thread::sleep_for(800ms);
+    assert(!recorder.Seen("error/openvpn_reconnect_required"));
+    assert(session.IsConnected());
+    session.Stop();
+    assert(native_fixture::stop_observed && !native_fixture::transport_shutdown);
+    assert(native_fixture::duplicates_open == 0);
     ++cases;
   }
   {

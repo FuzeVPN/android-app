@@ -331,6 +331,19 @@ type VPN et les interfaces se lisent par les appels sans contrôle de paquet
 (`getAllNetworks`, `getActiveNetworkInfo`, `getNetworkInfo`, `getLinkProperties`).
 Android 12 a corrigé la cause.
 
+Le Core OpenVPN envoie chaque paquet UDP de façon synchrone sur son unique fil.
+Si les paquets sont retenus sous le socket sans être jetés, cet envoi attend sans
+limite. Le tunnel ne transporte plus rien, aucun événement ne remonte, et une
+demande d'arrêt n'est jamais traitée. L'adaptateur natif garde une copie du
+socket de transport protégé et s'en sert de deux façons :
+- **pendant la connexion :** une surveillance suit les battements que le Core
+  émet chaque seconde (`clock_tick`). Quinze regards de suite sans battement,
+  tunnel connecté, comptent comme une interruption récupérable
+  (`openvpn_reconnect_required`) et lancent la reprise habituelle ;
+- **à l'arrêt :** si le fil du Core n'a pas fini au bout de 3 s, l'adaptateur
+  coupe ce socket (`shutdown`). L'envoi bloqué échoue, et l'arrêt se termine
+  bien avant les 10 s qu'Android lui accorde.
+
 Après la mort du processus, Android ne relance pas le service VPN qu'il a déjà
 délié. Un service sans liaison ni premier plan, `SystemVpnResumeSentinel`
 (START_STICKY), est donc démarré tant qu'une mort serait suivie d'une reprise :

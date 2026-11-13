@@ -144,11 +144,53 @@ constexpr int CauseAndStopCases() {
   return cases;
 }
 
+// A Core worker that stops ticking while connected (blocked in a synchronous
+// send) is a recoverable interruption, reported once: never before the
+// connection proof, never after a stop request.
+constexpr int StallCases() {
+  int cases = 0;
+  {
+    ConnectionState state;
+    assert(!state.Stalled());  // Connecting: Android bounds the handshake wait itself.
+    state.Event("CONNECTED", false, "");
+    const auto update = state.Stalled();
+    assert(update && update->state == "error" && update->reason == "openvpn_reconnect_required");
+    assert(!state.connected());
+    assert(!state.Stalled());
+    assert(!state.Event("CONNECTED", false, ""));
+    state.RequestStop();
+    assert(state.Complete(false).reason == "openvpn_reconnect_required");
+    ++cases;
+  }
+  {
+    ConnectionState state;
+    state.Event("CONNECTED", false, "");
+    state.RequestStop();
+    assert(!state.Stalled());  // The user's stop is not an interruption.
+    assert(state.Complete(false).reason == "disconnected");
+    ++cases;
+  }
+  {
+    ConnectionState state;
+    state.Event("CONNECTED", false, "");
+    assert(state.Stalled());
+    state.RequestStop();
+    // A later definitive failure still outranks the recoverable stall.
+    assert(state.Event("TLS_ALERT_BAD_CERTIFICATE", true, "tls_alert_bad_certificate")->reason ==
+           "tls_alert_bad_certificate");
+    assert(state.Complete(false).reason == "tls_alert_bad_certificate");
+    ++cases;
+  }
+  return cases;
+}
+
 // These assertions exercise the production state machine during compilation
 // on every Android ABI, even when no phone is attached. NDEBUG must stay off.
 static_assert(LifecycleCases() == 11);
 static_assert(CauseAndStopCases() == 5);
+static_assert(StallCases() == 3);
 
 int main() {
   std::cout << LifecycleCases() << " native connection lifecycle cases passed\n";
+  std::cout << StallCases() << " native worker stall cases passed\n";
 }
