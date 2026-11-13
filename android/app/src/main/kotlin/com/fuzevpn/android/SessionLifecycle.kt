@@ -37,13 +37,21 @@ internal enum class SessionEndCause(val wireValue: String) {
 
 /** Process-retained admission fence; no token or identity is retained here. */
 internal class SessionLifecycle {
+    /**
+     * Open to commands, or closed by an end. A closed session carries how far that end went:
+     * in progress, finished complete, or finished incomplete (see [SessionTermination]).
+     */
+    private sealed interface State {
+        object Open : State
+        class Closed(val termination: SessionTermination) : State
+    }
+
     private var epoch = 0L
-    private var accepting = true
-    @Volatile var termination: SessionTermination? = null
-        private set
+    @Volatile private var state: State = State.Open
+    val termination: SessionTermination? get() = (state as? State.Closed)?.termination
 
     @Synchronized fun ticket() = epoch
-    @Synchronized fun isCurrent(ticket: Long) = epoch == ticket && accepting
+    @Synchronized fun isCurrent(ticket: Long) = epoch == ticket && state is State.Open
     @Synchronized fun check(ticket: Long) {
         if (!isCurrent(ticket)) throw VpnNativeException("session_operation_cancelled")
     }
@@ -74,8 +82,7 @@ internal class SessionLifecycle {
 
     fun activate(ticket: Long, prepare: () -> Unit = {}, action: () -> Unit) = mutate(ticket, prepare) {
         action()
-        accepting = true
-        termination = null
+        state = State.Open
     }
     fun beginEnd(expired: Boolean): Long = beginEnd(if (expired) SessionEndCause.EXPIRED else SessionEndCause.VOLUNTARY)
 
@@ -86,19 +93,19 @@ internal class SessionLifecycle {
         val unfinished = termination?.takeIf { !it.complete }
         val sessionExpired = cause == SessionEndCause.EXPIRED || unfinished?.sessionExpired == true
         val revoke = cause == SessionEndCause.VOLUNTARY || unfinished?.revokeGuestRecovery == true
-        if (termination?.inProgress == true) {
-            termination = termination?.copy(sessionExpired = sessionExpired, revokeGuestRecovery = revoke)
+        val running = termination?.takeIf { it.inProgress }
+        if (running != null) {
+            state = State.Closed(running.copy(sessionExpired = sessionExpired, revokeGuestRecovery = revoke))
             return epoch
         }
         epoch++
-        accepting = false
-        termination = SessionTermination(inProgress = true, sessionExpired = sessionExpired, revokeGuestRecovery = revoke)
+        state = State.Closed(SessionTermination(inProgress = true, sessionExpired = sessionExpired, revokeGuestRecovery = revoke))
         return epoch
     }
     @Synchronized fun finish(result: SessionTermination): SessionTermination {
         val completed = result.copy(sessionExpired = result.sessionExpired || termination?.sessionExpired == true,
             revokeGuestRecovery = result.revokeGuestRecovery || termination?.revokeGuestRecovery == true)
-        termination = completed
+        state = State.Closed(completed)
         return completed
     }
 }

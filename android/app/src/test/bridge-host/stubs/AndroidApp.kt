@@ -7,7 +7,9 @@ import kotlinx.coroutines.android.HarnessMain
 open class Activity : Context() {
     /** Android posts to the UI looper; the harness looper is HarnessMain. */
     open fun runOnUiThread(action: Runnable) { HarnessMain.post(action) }
-    open fun requestPermissions(permissions: Array<String>, requestCode: Int) {}
+    /** Request codes of the permission dialogs this activity was asked to show. */
+    val permissionRequests: MutableList<Int> = java.util.Collections.synchronizedList(mutableListOf())
+    open fun requestPermissions(permissions: Array<String>, requestCode: Int) { permissionRequests += requestCode }
     open fun startActivityForResult(intent: Intent, requestCode: Int) { startedActivities += intent }
     companion object { const val RESULT_OK = -1 }
 }

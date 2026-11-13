@@ -65,18 +65,17 @@ internal class PhysicalNetworkTracker<T>(
     private var changedAtClock: WireGuardClockSample? = null
     private val clockContinuity = WireGuardClockContinuity()
 
+    /** Called after each real change of [usable]; one that leaves it empty begins an outage. */
     private fun recordChange() {
         generation++
         changedAtClock = clockSample(clockMillis, monotonicNanos).also { clockContinuity.observe(it) }
         changedAtMillis = changedAtClock?.millis
+        if (usable.isEmpty()) outageGeneration++
     }
 
     @Synchronized fun update(network: T, available: Boolean) {
         val changed = if (available) usable.add(network) else usable.remove(network)
-        if (changed) {
-            recordChange()
-            if (usable.isEmpty()) outageGeneration++
-        }
+        if (changed) recordChange()
     }
 
     @Synchronized fun snapshot() = PhysicalNetworkSnapshot(usable.isNotEmpty(), generation, outageGeneration,
@@ -87,11 +86,9 @@ internal class PhysicalNetworkTracker<T>(
     @Synchronized fun reconcile(expectedGeneration: Long, networks: Set<T>): Boolean {
         if (generation != expectedGeneration) return false
         if (usable == networks) return true
-        val wasAvailable = usable.isNotEmpty()
         usable.clear()
         usable.addAll(networks)
         recordChange()
-        if (wasAvailable && usable.isEmpty()) outageGeneration++
         return true
     }
 }
@@ -121,10 +118,15 @@ internal class WireGuardRecoveryPolicy(
     var state = State.CONNECTED
         private set
 
+    /** The only write of [state]: a baseline never outlives the stay in RECOVERING that read it. */
+    private fun enter(next: State) {
+        state = next
+        baseline = null
+    }
+
     fun start(tunnelInstance: Long, physical: PhysicalNetworkSnapshot, statistics: TunnelStatistics? = null) {
         instance = tunnelInstance
         network = physical
-        baseline = null
         connectedStatistics = statistics
         preLossHandshake = statistics?.latestHandshakeMillis
         recoveryNotBeforeMillis = physical.changedAtMillis
@@ -133,7 +135,7 @@ internal class WireGuardRecoveryPolicy(
         clockContinuity.observe(clockSample(clockMillis, monotonicNanos))
         recoveryClockTrusted = clockContinuity.generation == 0L
         lastClockUpdateContinuous = recoveryClockTrusted
-        state = if (physical.available) State.CONNECTED else State.WAITING_NETWORK
+        enter(if (physical.available) State.CONNECTED else State.WAITING_NETWORK)
     }
 
     fun stop() { instance = null; baseline = null; connectedStatistics = null; preLossHandshake = null }
@@ -166,11 +168,9 @@ internal class WireGuardRecoveryPolicy(
             recoveryNotBeforeMillis = network.changedAtMillis
         }
         if (!physical.available) {
-            state = State.WAITING_NETWORK
-            baseline = null
+            enter(State.WAITING_NETWORK)
         } else if (state == State.WAITING_NETWORK || physical.outageGeneration != network.outageGeneration) {
-            state = State.RECOVERING
-            baseline = null
+            enter(State.RECOVERING)
         } else if (physical.generation != network.generation && state == State.RECOVERING) {
             baseline = null
         }
@@ -212,7 +212,7 @@ internal class WireGuardRecoveryPolicy(
                 } == true
             } == true
             if (freshAfterNetworkChange) {
-                state = State.CONNECTED
+                enter(State.CONNECTED)
                 connectedStatistics = statistics
                 return
             }
@@ -223,8 +223,7 @@ internal class WireGuardRecoveryPolicy(
             it > (before.latestHandshakeMillis ?: 0L)
         } == true
         if (freshHandshake || statistics.receivedBytes > before.receivedBytes) {
-            state = State.CONNECTED
-            baseline = null
+            enter(State.CONNECTED)
             connectedStatistics = statistics
             recoveryClockTrusted = readClockTrusted
         }

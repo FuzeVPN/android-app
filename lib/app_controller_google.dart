@@ -6,8 +6,7 @@ extension _GoogleAccountOperations on VpnAppController {
         !_sessionOperation.isCurrent &&
         sessionTermination == null &&
         !_disposed) {
-      _sessionOperation = SessionOperation();
-      _sessionExpired = false;
+      _openSessionScope();
     }
     return GoogleIdentitySnapshot(
       userId: profile?.userId,
@@ -36,7 +35,7 @@ extension _GoogleAccountOperations on VpnAppController {
         _guestActionOwner != null ||
         _guestRenewing ||
         _guestResuming ||
-        _guestRetryTimer != null) {
+        _guestRetryDelay != null) {
       return false;
     }
     if (purpose == GoogleAuthPurpose.claim) {
@@ -94,8 +93,7 @@ extension _GoogleAccountOperations on VpnAppController {
       if (_disposed || sessionTermination != null || !isCurrent()) return false;
     }
     _sessionOperation.invalidate();
-    _sessionOperation = SessionOperation();
-    _sessionExpired = false;
+    _openSessionScope();
     final operation = _sessionOperation;
     operation.check();
     if (!isCurrent()) return false;

@@ -70,14 +70,12 @@ internal class WireGuardController(
     @Volatile
     private var activeTunnel: ManagedTunnel? = null
 
+    /**
+     * What the first handshake of [activeTunnel] proved. Written on the engine worker only:
+     * published once that handshake is seen, dropped when DOWN is confirmed.
+     */
     @Volatile
-    private var activePeerKey: Key? = null
-
-    @Volatile
-    private var activationStatistics: TunnelStatistics? = null
-
-    @Volatile
-    private var connectedIdentity: Pair<String, String>? = null
+    private var provenConnection: ProvenConnection? = null
 
     @Volatile
     private var stopping = false
@@ -134,7 +132,7 @@ internal class WireGuardController(
 
     /** Evidence from the key actually loaded into this proven tunnel; never waits for the engine. */
     fun currentConnectionIdentityFingerprint(accountId: String): String = run {
-        val identity = connectedIdentity
+        val identity = provenConnection?.identity
         if (isOperationUncertain() || !isConnected() || identity?.first != accountId) {
             throw VpnNativeException("wireguard_identity_unavailable")
         }
@@ -157,8 +155,7 @@ internal class WireGuardController(
         activeTunnel?.let {
             throw VpnNativeException("tunnel_already_active")
         }
-        connectedIdentity = null
-        activationStatistics = null
+        provenConnection = null
         val privateKey = NativeConnectionTiming.span(timing, "wireguard_identity_config") {
             privateKeyFor(request.accountId, requireExistingIdentity)
         }
@@ -195,15 +192,14 @@ internal class WireGuardController(
             safeStop(tunnel)
             throw VpnNativeException("wireguard_configuration_invalid", error)
         }
-        val connected = NativeConnectionTiming.span(timing, "wireguard_handshake_wait") {
+        val activation = NativeConnectionTiming.span(timing, "wireguard_handshake_wait") {
             waitForHandshake(tunnel, peerKey, isCurrent)
         }
-        if (!connected) {
+        if (activation == null) {
             safeStop(tunnel)
             false
         } else {
-            activePeerKey = peerKey
-            connectedIdentity = request.accountId to identityFingerprint
+            provenConnection = ProvenConnection(peerKey, activation, request.accountId to identityFingerprint)
             operationUncertain = false
             true
         }
@@ -214,7 +210,7 @@ internal class WireGuardController(
         val tunnel = activeTunnel ?: return !isOperationUncertain()
         return try {
             NativeConnectionTiming.span(timing, "wireguard_stop_worker") { runBackend(timeouts.stopMillis, ownsTunnel = true) {
-                connectedIdentity = null
+                withdrawIdentityProof()
                 stopping = true
                 try {
                     backend.setState(tunnel, Tunnel.State.DOWN, null)
@@ -241,14 +237,14 @@ internal class WireGuardController(
     fun isConnected(): Boolean = activeTunnel?.let { backend.getState(it) == Tunnel.State.UP } == true
 
     /** The successful activation read, scoped to the active instance/peer. */
-    fun recoveryBaseline(): TunnelStatistics? = activationStatistics.takeIf {
-        activeTunnel != null && activePeerKey != null && !isOperationUncertain()
+    fun recoveryBaseline(): TunnelStatistics? = provenConnection?.activationStatistics.takeIf {
+        activeTunnel != null && !isOperationUncertain()
     }
 
     /** A read never owns the TUN: its expiry leaves the tunnel's proof intact. */
     fun statistics(): TunnelStatistics {
         val tunnel = activeTunnel ?: return TunnelStatistics()
-        val peerKey = activePeerKey ?: return TunnelStatistics()
+        val peerKey = provenConnection?.peerKey ?: return TunnelStatistics()
         return runBackend(timeouts.statisticsMillis) {
             val peer = backend.getStatistics(tunnel).peer(peerKey)
                 ?: return@runBackend TunnelStatistics()
@@ -345,10 +341,11 @@ internal class WireGuardController(
         initializedBackend.setState(tunnel, Tunnel.State.UP, configuration)
     }
 
-    private fun waitForHandshake(tunnel: ManagedTunnel, peerKey: Key, isCurrent: () -> Boolean): Boolean {
+    /** The statistics that show the peer's first handshake, or null when none was seen. */
+    private fun waitForHandshake(tunnel: ManagedTunnel, peerKey: Key, isCurrent: () -> Boolean): TunnelStatistics? {
         val deadline = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(HANDSHAKE_TIMEOUT_MS)
         while (System.nanoTime() < deadline) {
-            if (!isCurrent()) return false
+            if (!isCurrent()) return null
             val stats = backend.getStatistics(tunnel).peer(peerKey)
             val latestHandshake = stats?.latestHandshakeEpochMillis() ?: 0L
             // connect rejects an active/uncertain tunnel before activation, so
@@ -357,21 +354,20 @@ internal class WireGuardController(
             // Any positive handshake proves this instance even if the local
             // wall clock moved or activation returned long after negotiation.
             if (latestHandshake > 0L) {
-                activationStatistics = TunnelStatistics(
+                return TunnelStatistics(
                     receivedBytes = stats!!.rxBytes().coerceAtLeast(0L),
                     sentBytes = stats.txBytes().coerceAtLeast(0L),
                     latestHandshakeMillis = latestHandshake,
                 )
-                return true
             }
             try {
                 Thread.sleep(HANDSHAKE_POLL_MS)
             } catch (_: InterruptedException) {
                 Thread.currentThread().interrupt()
-                return false
+                return null
             }
         }
-        return false
+        return null
     }
 
     /**
@@ -380,7 +376,7 @@ internal class WireGuardController(
      * Android TUN: preserve the marker and block later connects on failure.
      */
     private fun safeStop(tunnel: ManagedTunnel) {
-        connectedIdentity = null
+        withdrawIdentityProof()
         stopping = true
         val stopped = try {
             backend.setState(tunnel, Tunnel.State.DOWN, null)
@@ -400,11 +396,15 @@ internal class WireGuardController(
         }
     }
 
+    /** A stop begins: the tunnel proves no identity from here on, even if DOWN is never confirmed. */
+    private fun withdrawIdentityProof() {
+        provenConnection = provenConnection?.let { ProvenConnection(it.peerKey, it.activationStatistics, null) }
+    }
+
     /** Positive DOWN confirmation; atomic with [markStopUnconfirmed]. */
     private fun releaseTunnel() = synchronized(this) {
         activeTunnel = null
-        activePeerKey = null
-        activationStatistics = null
+        provenConnection = null
         operationUncertain = false
     }
 
@@ -483,6 +483,13 @@ internal class WireGuardController(
             const val WITHDRAWN = 4
         }
     }
+
+    private class ProvenConnection(
+        val peerKey: Key,
+        val activationStatistics: TunnelStatistics,
+        /** Account and key fingerprint; withdrawn as soon as a stop begins. */
+        val identity: Pair<String, String>?,
+    )
 
     private class ManagedTunnel(
         private val name: String,

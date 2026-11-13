@@ -148,8 +148,8 @@ après la relecture `/v1/me` décrite ci-dessous pour un claim. Ce traitement de
 `google_context_consumed` est une hypothèse du client, à confirmer dans le
 contrat serveur. Une fois l’annulation confirmée par l’API (succès ou l’un de
 ces deux refus), l’écran se ferme même si l’effacement local du ticket échoue,
-comme après une connexion admise. Le contrôleur Google, qui vit autant que le
-processus de l’application, retient alors ce ticket : s’il relit la copie
+comme après une connexion admise. Dans ces deux cas, le contrôleur Google, qui
+vit autant que le processus de l’application, retient ce ticket : s’il relit la copie
 périmée restée sur le disque (ouverture de l’écran, reprise, Retour ou
 Annuler), il ne la présente plus à l’API, ni pour la décrire ni pour
 l’annuler (ni pour la relecture `/v1/me` d’un claim : une conversion déjà

@@ -247,6 +247,54 @@ int main() {
     Destroy(handle); ++cases;
   }
   {
+    // Before any Destroy a handle is busy while started and reusable after Stop.
+    mock.ResetFailures(); const auto handle = Create(); assert(Start(handle));
+    const int starts = control.starts;
+    assert(!Start(handle)); assert(control.starts == starts);
+    assert(mock.java_calls == 1); // session_busy; the running session is untouched
+    assert(NativeIsConnected(&environment, nullptr, handle) == JNI_TRUE);
+    assert(NativeStop(&environment, nullptr, handle) == JNI_TRUE);
+    assert(mock.java_calls == 3); // disconnecting, idle
+    assert(NativeIsConnected(&environment, nullptr, handle) == JNI_FALSE);
+    assert(Start(handle)); assert(control.starts == starts + 1);
+    Destroy(handle); ++cases;
+  }
+  {
+    // A Destroy whose Stop throws on a started session: the core still answers
+    // proof queries, Start is refused for good without a callback, and a later
+    // Stop or Destroy stops the core again.
+    mock.ResetFailures(); const auto handle = Create(); assert(Start(handle));
+    control.throw_stop = true;
+    assert(NativeDestroy(&environment, nullptr, handle) == JNI_FALSE);
+    assert(mock.java_calls == 1); // disconnecting; no idle while the core runs
+    assert(NativeIsConnected(&environment, nullptr, handle) == JNI_TRUE);
+    assert(NativeStop(&environment, nullptr, handle) == JNI_FALSE);
+    assert(mock.java_calls == 2 && FindSession(handle));
+    control.throw_stop = false;
+    const int starts = control.starts, stops = control.stops;
+    assert(NativeStop(&environment, nullptr, handle) == JNI_TRUE);
+    assert(control.stops == stops + 1 && mock.java_calls == 4); // disconnecting, idle
+    assert(NativeIsConnected(&environment, nullptr, handle) == JNI_FALSE);
+    assert(!Start(handle)); assert(control.starts == starts && mock.java_calls == 4);
+    assert(NativeStop(&environment, nullptr, handle) == JNI_TRUE);
+    assert(control.stops == stops + 2 && mock.java_calls == 4);
+    Destroy(handle);
+    assert(control.stops == stops + 3 && mock.java_calls == 4); ++cases;
+  }
+  {
+    // The same refusal when the session was never started: nothing is emitted.
+    mock.ResetFailures(); const auto handle = Create();
+    control.throw_stop = true;
+    assert(NativeDestroy(&environment, nullptr, handle) == JNI_FALSE);
+    control.throw_stop = false;
+    const int starts = control.starts;
+    assert(FindSession(handle) && !Start(handle)); assert(control.starts == starts);
+    assert(NativeIsConnected(&environment, nullptr, handle) == JNI_FALSE);
+    assert(mock.java_calls == 0);
+    Destroy(handle);
+    assert(mock.java_calls == 0); ++cases;
+  }
+  {
     mock.ResetFailures(); const auto handle = Create(); assert(Start(handle));
     auto retained = FindSession(handle);
     { std::lock_guard<std::mutex> lock(control.mutex);

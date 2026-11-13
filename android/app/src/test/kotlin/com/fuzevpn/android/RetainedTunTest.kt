@@ -155,6 +155,9 @@ class RetainedTunTest {
         assertNull(held(retained))
     }
 
-    private fun held(retained: RetainedTun<Handle, String>): Handle? =
-        RetainedTun::class.java.getDeclaredField("current").apply { isAccessible = true }.get(retained) as Handle?
+    private fun held(retained: RetainedTun<Handle, String>): Handle? {
+        val current = RetainedTun::class.java.getDeclaredField("current").apply { isAccessible = true }.get(retained)
+            ?: return null
+        return current.javaClass.getDeclaredField("handle").apply { isAccessible = true }.get(current) as Handle
+    }
 }

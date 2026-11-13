@@ -182,10 +182,7 @@ class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
   }
 
   void _onBillingChanged() {
-    final billing = widget.controller.billing;
-    if (billing.plans.isEmpty ||
-        billing.messageKey == 'billing.offerChanged' ||
-        !billing.plans.any((plan) => _selectedOffer?.sameOffer(plan) == true)) {
+    if (_offerWithdrawn(widget.controller.billing, _selectedOffer)) {
       _selectedOffer = null;
     }
   }
@@ -252,9 +249,7 @@ class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
           profile?.canUseVpn == true &&
           hasAccess;
       final busy = controller.isGuestActionBusy || billing.isBusy;
-      final selected = billing.plans
-          .where((plan) => _selectedOffer?.sameOffer(plan) == true)
-          .firstOrNull;
+      final selected = _offeredPlan(billing, _selectedOffer);
       final canPurchase =
           !busy &&
           !hasAccess &&
@@ -494,6 +489,23 @@ class _SubscriptionPaywallPageState extends State<SubscriptionPaywallPage> {
   ];
 }
 
+// The paywall page and the selection sheet keep the selected offer the same
+// way: these two rules are shared, the rest of each screen is its own.
+
+/// The catalogue's current plan for the selected [offer], or null when it is
+/// not sold any more.
+PlaySubscriptionPlan? _offeredPlan(
+  BillingController billing,
+  PlaySubscriptionPlan? offer,
+) => billing.plans.where((plan) => offer?.sameOffer(plan) == true).firstOrNull;
+
+/// Whether the selection of [offer] must be dropped: the catalogue is empty,
+/// Play reported a changed offer, or the catalogue no longer contains it.
+bool _offerWithdrawn(BillingController billing, PlaySubscriptionPlan? offer) =>
+    billing.plans.isEmpty ||
+    billing.messageKey == 'billing.offerChanged' ||
+    !billing.plans.any((plan) => offer?.sameOffer(plan) == true);
+
 bool _isGooglePlay(BillingSubscription? subscription) =>
     subscription?.provider == 'google_play';
 
@@ -578,12 +590,7 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
   }
 
   void _onBillingChanged() {
-    final controller = widget.controller;
-    if (controller.plans.isEmpty ||
-        controller.messageKey == 'billing.offerChanged' ||
-        !controller.plans.any(
-          (plan) => _selectedOffer?.sameOffer(plan) == true,
-        )) {
+    if (_offerWithdrawn(widget.controller, _selectedOffer)) {
       _selectedOffer = null;
     }
     if (_currentAccount || _closing || !mounted) return;
@@ -610,9 +617,7 @@ class _SubscriptionSelectionState extends State<_SubscriptionSelection> {
       final controller = widget.controller;
       final hasAccess = controller.subscription?.hasAccess ?? false;
       final plans = controller.plans;
-      final selected = plans
-          .where((plan) => _selectedOffer?.sameOffer(plan) == true)
-          .firstOrNull;
+      final selected = _offeredPlan(controller, _selectedOffer);
       final canPurchase =
           _currentAccount &&
           controller.purchaseAllowed &&

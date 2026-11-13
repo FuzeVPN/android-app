@@ -825,6 +825,55 @@ void _confirmedCancellationTests() {
     expect(f.auth.hasPendingIntent, isFalse);
     expect(tester.takeException(), isNull);
   });
+
+  // The controller refuses a second cancellation while one is in flight. A
+  // restart starts with one: leaving meanwhile was reported as a failed
+  // cancellation, then the sign-in started again.
+  for (final exit in ['AppBar Back', 'system Back', 'Cancel']) {
+    testWidgets('$exit waits for the cancellation of a restart instead of '
+        'reporting a failed one', (tester) async {
+      final f = _RealGoogle();
+      addTearDown(f.app.dispose);
+      f.picker.supported = false;
+      await _open(tester, f.app);
+      expect(f.auth.state.step, GoogleAuthStep.failure);
+      expect(f.picker.capabilityReads, 1);
+      final cancelFailed = lookupAppLocalizations(
+        const Locale('fr'),
+      ).google_cancelFailed;
+      final restart = find.byKey(const ValueKey('google-restart'));
+      await _reveal(tester, restart);
+      final read = Completer<void>();
+      f.store.readGate = read.future;
+      await tester.tap(restart);
+      await tester.pump();
+      expect(f.auth.isBusy, isTrue);
+      final back = find.byType(BackButton);
+      final cancel = find.byKey(const ValueKey('google-cancel'));
+      if (exit == 'system Back') {
+        await tester.binding.handlePopRoute();
+      } else {
+        await tester.tap(exit == 'Cancel' ? cancel : back);
+      }
+      await tester.pump();
+      expect(find.text(cancelFailed), findsNothing);
+      expect(find.byType(GoogleAuthenticationPage), findsOneWidget);
+      expect(tester.widget<BackButton>(back).onPressed, isNull);
+      expect(tester.widget<TextButton>(cancel).onPressed, isNull);
+      read.complete();
+      await tester.pumpAndSettle();
+      // The restart went on alone: one new attempt, and no failure notice.
+      expect(f.picker.capabilityReads, 2);
+      expect(f.auth.state.step, GoogleAuthStep.failure);
+      expect(find.text(cancelFailed), findsNothing);
+      expect(find.byType(GoogleAuthenticationPage), findsOneWidget);
+      expect(tester.widget<BackButton>(back).onPressed, isNotNull);
+      await _exitGoogle(tester, 'system Back');
+      expect(find.byType(GoogleAuthenticationPage), findsNothing);
+      expect(find.byKey(const ValueKey('google-parent')), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
 }
 
 Future<void> _exitGoogle(WidgetTester tester, String exit) async {
@@ -841,7 +890,7 @@ class _RealGoogle {
   _RealGoogle() {
     auth = GoogleAuthController(
       api: api,
-      gateway: _RealPicker(),
+      gateway: picker,
       pendingStore: store,
       challengeGateway: _NoChallenge(),
       identity: () => const GoogleIdentitySnapshot(),
@@ -854,6 +903,7 @@ class _RealGoogle {
 
   final api = _CancelApi();
   final store = _PendingStore();
+  final picker = _RealPicker();
   late final GoogleAuthController auth;
   late final WelcomeUiController app;
 }
@@ -861,9 +911,14 @@ class _RealGoogle {
 class _PendingStore implements GooglePendingAuthStore {
   String? payload;
   Object? clearFailure;
+  Future<void>? readGate;
   int clears = 0;
   @override
-  Future<String?> readPendingAuthentication() async => payload;
+  Future<String?> readPendingAuthentication() async {
+    await readGate;
+    return payload;
+  }
+
   @override
   Future<void> writePendingAuthentication(String value) async {
     payload = value;
@@ -879,9 +934,14 @@ class _PendingStore implements GooglePendingAuthStore {
 }
 
 class _RealPicker implements GoogleCredentialGateway {
+  bool supported = true;
+  int capabilityReads = 0;
   @override
-  Future<GoogleCredentialCapabilities> getCapabilities() async =>
-      const GoogleCredentialCapabilities(supported: true);
+  Future<GoogleCredentialCapabilities> getCapabilities() async {
+    capabilityReads++;
+    return GoogleCredentialCapabilities(supported: supported);
+  }
+
   @override
   Future<GoogleCredentialResult> signIn({
     required String requestId,

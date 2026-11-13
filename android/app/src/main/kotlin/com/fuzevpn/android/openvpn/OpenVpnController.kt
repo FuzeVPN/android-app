@@ -80,10 +80,6 @@ internal class OpenVpnController(context: Context) {
     @Volatile
     private var activeSession: ActiveSession? = null
 
-    /** Last locally validated profile eligible for one no-API reconnect. */
-    @Volatile
-    private var lastValidatedSession: ActiveSession? = null
-
     /**
      * Connection-scoped evidence assembled while Core is started.  It is never
      * restored from storage: a process restart must use the strict resume
@@ -282,7 +278,7 @@ internal class OpenVpnController(context: Context) {
             val active = activeSession
             if (connection != null && active != null && connection.nativeGeneration == generation &&
                 connection.identityAlias == active.identityAlias &&
-                connection.identityGeneration == active.generation.wireValue && connection.persisted) {
+                connection.identityGeneration == active.generation.wireValue) {
                 connectionIdentity = connection.copy(confirmed = true)
                 published = true
                 publish()
@@ -400,12 +396,7 @@ internal class OpenVpnController(context: Context) {
             if (storedNotAfter == null || !sameCertificateInstant(storedNotAfter, notAfter)) {
                 throw VpnNativeException("openvpn_certificate_expiry_mismatch")
             }
-            val now = Instant.now()
-            val status = when {
-                !notAfter.isAfter(now) -> "expired"
-                !notAfter.isAfter(now.plusSeconds(RENEWAL_WINDOW_SECONDS)) -> "expiring"
-                else -> "valid"
-            }
+            val status = OpenVpnCertificateLifetime.at(Instant.now(), notAfter).status
             return OpenVpnCertificateStatus(status, notAfter, pending != null)
         }
 
@@ -420,6 +411,7 @@ internal class OpenVpnController(context: Context) {
         val cancellation = cancellationEpoch.get()
         fun requestIsCurrent() = cancellationEpoch.get() == cancellation && isCurrent()
         clearConnectionIdentity()
+        sessionEvents.startRequested()
         if (!requestIsCurrent()) return@withLock failed("session_operation_cancelled")
         revocations.requireUsable(accountId, deviceId)
         val renewal = activation["renewal"] as? Boolean ?: false
@@ -524,7 +516,6 @@ internal class OpenVpnController(context: Context) {
 
         val started = startValidatedProfileLocked(identity, profile.canonical, profile.network, ::requestIsCurrent, timing)
         if (started.isConnected()) {
-            lastValidatedSession = identity
             if (renewal && previousIdentity.identityAlias != identity.identityAlias) {
                 runCatching { deleteIdentity(previousIdentity) }
             }
@@ -543,6 +534,7 @@ internal class OpenVpnController(context: Context) {
         val cancellation = cancellationEpoch.get()
         fun requestIsCurrent() = cancellationEpoch.get() == cancellation && isCurrent()
         clearConnectionIdentity()
+        sessionEvents.startRequested()
         if (!requestIsCurrent()) return@withLock failed("session_operation_cancelled")
         revocations.requireUsable(accountId, deviceId)
         // Recheck under the identity mutex: renewal can begin after the bridge
@@ -574,10 +566,10 @@ internal class OpenVpnController(context: Context) {
             val notAfter = secureStore.read(identity.scope, notAfterSlot(identity.identityId))
                 ?.let(Instant::parse)
                 ?: return@withLock failed("openvpn_profile_unavailable")
-            val now = Instant.now()
-            if (!notAfter.isAfter(now)) return@withLock failed("openvpn_certificate_expired")
-            if (!notAfter.isAfter(now.plusSeconds(RENEWAL_WINDOW_SECONDS))) {
-                return@withLock failed("openvpn_renewal_required")
+            when (OpenVpnCertificateLifetime.at(Instant.now(), notAfter)) {
+                OpenVpnCertificateLifetime.EXPIRED -> return@withLock failed("openvpn_certificate_expired")
+                OpenVpnCertificateLifetime.EXPIRING -> return@withLock failed("openvpn_renewal_required")
+                OpenVpnCertificateLifetime.VALID -> Unit
             }
             certificateNotAfter = notAfter
         } catch (_: Exception) {
@@ -592,7 +584,7 @@ internal class OpenVpnController(context: Context) {
             if (!sameCertificateInstant(certificateNotAfter, validatedNotAfter)) {
                 return@withLock failed("openvpn_certificate_expiry_mismatch")
             }
-            if (!validatedNotAfter.isAfter(Instant.now().plusSeconds(RENEWAL_WINDOW_SECONDS))) {
+            if (OpenVpnCertificateLifetime.at(Instant.now(), validatedNotAfter).renewalDue) {
                 return@withLock failed("openvpn_renewal_required")
             }
             certificatePem = certificate
@@ -725,7 +717,6 @@ internal class OpenVpnController(context: Context) {
         try {
             secureStore.deleteByKeyPrefix(scope, OPENVPN_SLOT_PREFIX)
             deleteKeyStoreAliases(accountAliasPrefix(accountId))
-            if (lastValidatedSession?.accountId == accountId) lastValidatedSession = null
         } catch (error: Exception) {
             throw VpnNativeException("openvpn_identity_clear_failed", error)
         }
@@ -890,7 +881,6 @@ internal class OpenVpnController(context: Context) {
             ),
         )
         keyStore().takeIf { it.containsAlias(identity.identityAlias) }?.deleteEntry(identity.identityAlias)
-        if (lastValidatedSession?.identityAlias == identity.identityAlias) lastValidatedSession = null
     }
 
     private fun getOrCreateP256Key(alias: String): KeyMaterial {
@@ -1432,7 +1422,6 @@ internal class OpenVpnController(context: Context) {
         private const val CREATE_TIMEOUT_MS = 5_000L
         private const val START_TIMEOUT_MS = 10_000L
         private const val CONNECTION_TIMEOUT_MS = 30_000L
-        private const val RENEWAL_WINDOW_SECONDS = 7L * 24L * 60L * 60L
         private const val LEGACY_IPV4_NETWORK_FINGERPRINT = "legacy_ipv4_network_v1"
         private const val STOP_TIMEOUT_MS = 10_000L
         private const val DESTROY_TIMEOUT_MS = 10_000L
@@ -1471,13 +1460,40 @@ internal data class OpenVpnCertificateStatus(
     val renewalPending: Boolean,
 ) {
     /** The certificate must be replaced before the next connection, by the application or a reconnection. */
-    val renewalDue: Boolean get() = renewalPending || status == "expired" || status == "expiring"
+    val renewalDue: Boolean get() = OpenVpnCertificateLifetime.renewalDue(status, renewalPending)
 
     fun toMap(): Map<String, Any?> = mapOf(
         "status" to status,
         "not_after" to notAfter?.toString(),
         "renewal_pending" to renewalPending,
     )
+}
+
+/**
+ * Where a stored certificate stands against its expiry and the renewal window. [status] is
+ * the wire value of [OpenVpnCertificateStatus.status]; a missing certificate has no lifetime.
+ */
+internal enum class OpenVpnCertificateLifetime(val status: String) {
+    EXPIRED("expired"),
+    EXPIRING("expiring"),
+    VALID("valid");
+
+    /** Expired or inside the renewal window: to be replaced before the next connection. */
+    val renewalDue: Boolean get() = this != VALID
+
+    companion object {
+        private const val RENEWAL_WINDOW_SECONDS = 7L * 24L * 60L * 60L
+
+        fun at(now: Instant, notAfter: Instant): OpenVpnCertificateLifetime = when {
+            !notAfter.isAfter(now) -> EXPIRED
+            !notAfter.isAfter(now.plusSeconds(RENEWAL_WINDOW_SECONDS)) -> EXPIRING
+            else -> VALID
+        }
+
+        /** The same rule for a reported status; a renewal already prepared is due whatever the lifetime. */
+        fun renewalDue(status: String, renewalPending: Boolean): Boolean =
+            renewalPending || entries.any { it.renewalDue && it.status == status }
+    }
 }
 
 /**

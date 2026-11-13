@@ -55,9 +55,10 @@ class NativeSecurityChallengeGateway implements SecurityChallengeGateway {
 
   final MethodChannel _channel;
   final Duration solveTimeout;
-  String? _activeRequestId;
-  Completer<void>? _cancelled;
-  int _generation = 0;
+
+  /// The one request in flight. A cancelled or finished request is no longer
+  /// this object, even if a later request reuses its identifier.
+  _ActiveSolve? _active;
 
   @override
   Future<SecurityChallengeResult> solve({
@@ -70,11 +71,9 @@ class NativeSecurityChallengeGateway implements SecurityChallengeGateway {
         !_validLabel(cancelLabel, 64)) {
       throw SecurityChallengeException('invalid_request');
     }
-    if (_activeRequestId != null) throw SecurityChallengeException('busy');
-    final generation = ++_generation;
-    final cancelled = Completer<void>();
-    _activeRequestId = requestId;
-    _cancelled = cancelled;
+    if (_active != null) throw SecurityChallengeException('busy');
+    final active = _ActiveSolve(requestId);
+    _active = active;
     try {
       final raw = await Future.any<Object?>([
         _invoke('solve', {
@@ -82,11 +81,11 @@ class NativeSecurityChallengeGateway implements SecurityChallengeGateway {
           'title': title,
           'cancelLabel': cancelLabel,
         }),
-        cancelled.future.then<Object?>(
+        active.cancelled.future.then<Object?>(
           (_) => throw SecurityChallengeException('cancelled'),
         ),
       ]).timeout(solveTimeout);
-      if (generation != _generation || _activeRequestId != requestId) {
+      if (!identical(_active, active)) {
         throw SecurityChallengeException('cancelled');
       }
       if (raw is! Map ||
@@ -105,10 +104,7 @@ class NativeSecurityChallengeGateway implements SecurityChallengeGateway {
       // The user did not cancel: the provider never produced a terminal result.
       throw SecurityChallengeException('provider_error');
     } finally {
-      if (generation == _generation && _activeRequestId == requestId) {
-        _activeRequestId = null;
-        _cancelled = null;
-      }
+      if (identical(_active, active)) _active = null;
     }
   }
 
@@ -117,12 +113,10 @@ class NativeSecurityChallengeGateway implements SecurityChallengeGateway {
     if (!_validId(requestId)) {
       throw SecurityChallengeException('invalid_request');
     }
-    if (_activeRequestId == requestId) {
-      _generation++;
-      _activeRequestId = null;
-      final cancelled = _cancelled;
-      _cancelled = null;
-      if (cancelled != null && !cancelled.isCompleted) cancelled.complete();
+    final active = _active;
+    if (active != null && active.requestId == requestId) {
+      _active = null;
+      if (!active.cancelled.isCompleted) active.cancelled.complete();
     }
     try {
       await _invoke('cancel', {
@@ -156,4 +150,12 @@ class NativeSecurityChallengeGateway implements SecurityChallengeGateway {
       value.trim().isNotEmpty &&
       value.length <= maxLength &&
       !value.contains(RegExp(r'[\x00-\x1f\x7f-\x9f]'));
+}
+
+class _ActiveSolve {
+  _ActiveSolve(this.requestId);
+  final String requestId;
+
+  /// Completed by a cancellation, which ends the wait for the native answer.
+  final Completer<void> cancelled = Completer<void>();
 }

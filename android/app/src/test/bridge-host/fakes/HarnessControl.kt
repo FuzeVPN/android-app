@@ -30,6 +30,8 @@ internal object HarnessControl {
     @Volatile var readKeyMissing = false
     /** Only the next store read throws this code, as a transient Keystore failure. */
     @Volatile var readFailureOnce: String? = null
+    /** Every store write throws this code, as a Keystore that cannot encrypt would; a purge still succeeds. */
+    @Volatile var writeFailure: String? = null
     /** getOrCreatePublicKey throws this code, as the real engine does while a stop is uncertain. */
     @Volatile var publicKeyFailure: String? = null
     /** Holds getOrCreateWireGuardPublicKey inside the tunnel mutex. */
@@ -93,7 +95,7 @@ internal object HarnessControl {
     fun reset() {
         notifications.clear(); locales.clear(); purges.clear()
         identityGate = null; identityFailure = null; resumeReadGate = null; publicKeyGate = null; readFailure = null
-        purgeGate = null; readKeyMissing = false; readFailureOnce = null; publicKeyFailure = null
+        purgeGate = null; readKeyMissing = false; readFailureOnce = null; writeFailure = null; publicKeyFailure = null
         wireGuardConnect = { true }; wireGuardConnectGate = null
         wireGuardConnects = 0; wireGuardStops = 0; wireGuardUp = false
         wireGuardStopResult = true; errorNotificationFailure = null

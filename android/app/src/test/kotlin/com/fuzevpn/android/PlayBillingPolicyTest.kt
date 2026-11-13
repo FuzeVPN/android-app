@@ -194,7 +194,7 @@ class PlayBillingPolicyTest {
         assertEquals(first, gate.returnedFlow())
         // Pausing/destroying the Activity does not open a second payment slot.
         assertNull(gate.reserve())
-        gate.finishLaunched()
+        gate.release(first)
         assertNull(gate.returnedFlow())
         val second = gate.reserve()!!
         assertFalse(first == second)
@@ -206,13 +206,29 @@ class PlayBillingPolicyTest {
     }
 
     @Test
-    fun unrelatedPurchaseUpdatesCannotReleaseAnUnlaunchedSelection() {
+    fun onlyAnOpenPaymentRemembersThatItsHostWasLeft() {
         val gate = PlayBillingFlowGate()
-        val selection = gate.reserve()!!
-        gate.finishLaunched()
-        assertNull(gate.reserve())
-        gate.release(selection)
-        assertTrue(gate.reserve() != null)
+        // With nothing reserved, or a selection still being prepared, a pause is not a return from Play.
+        gate.onHostPaused()
+        val flow = gate.reserve("opaque-account-a")!!
+        gate.onHostPaused()
+        gate.markLaunched(flow + 1)
+        assertFalse(gate.isLaunched(flow))
+        gate.markLaunched(flow)
+        assertTrue(gate.isLaunched(flow))
+        assertNull(gate.returnedFlow())
+        gate.onHostPaused()
+        // Marking again forgets neither the pause nor the owner.
+        gate.markLaunched(flow)
+        assertEquals(flow, gate.returnedFlow())
+        assertEquals("opaque-account-a", gate.ownerFor(flow))
+        gate.release(flow)
+        assertNull(gate.returnedFlow())
+        // The next payment starts inside its host again.
+        val next = gate.reserve()!!
+        gate.markLaunched(next)
+        assertNull(gate.returnedFlow())
+        assertNull(gate.ownerFor(next))
     }
 
     @Test

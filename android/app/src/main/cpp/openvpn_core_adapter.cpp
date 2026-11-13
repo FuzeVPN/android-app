@@ -7,6 +7,7 @@
 
 #include "openvpn_core.h"
 #include "openvpn_connection_state.h"
+#include "openvpn_socket_ops.h"
 
 #include <client/ovpncli.cpp>
 
@@ -14,6 +15,7 @@
 #include <algorithm>
 #include <chrono>
 #include <condition_variable>
+#include <cstdint>
 #include <mutex>
 #include <thread>
 #include <utility>
@@ -129,12 +131,46 @@ const char* FailureForEvent(const ::openvpn::ClientAPI::Event& event) {
   return "connection_failed";
 }
 
+// Core sends every UDP packet synchronously on its single worker thread. When
+// the socket's send buffer stays full (packets held below the socket, never
+// dropped), that send waits in poll() with no timeout: no traffic, no timer,
+// no event, and a posted stop never runs. This keeps a duplicate of the
+// transport socket Core protected last, so the session can wake that send.
+class TransportSocket {
+ public:
+  TransportSocket() = default;
+  TransportSocket(const TransportSocket&) = delete;
+  TransportSocket& operator=(const TransportSocket&) = delete;
+  ~TransportSocket() { Replace(-1); }
+
+  // On Core's worker, for each transport socket it opens. Core closes the
+  // previous socket itself; the previous duplicate, which still holds it open,
+  // is closed here (the last one with the client).
+  void Track(int fd) noexcept { Replace(socket_ops::Duplicate(fd)); }
+
+  void Shutdown() noexcept {
+    std::lock_guard<std::mutex> lock(mutex_);
+    if (duplicate_ >= 0) socket_ops::Shutdown(duplicate_);
+  }
+
+ private:
+  void Replace(int fd) noexcept {
+    int previous = -1;
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      previous = std::exchange(duplicate_, fd);
+    }
+    if (previous >= 0) socket_ops::Close(previous);
+  }
+
+  std::mutex mutex_;
+  int duplicate_ = -1;
+};
+
 class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
  public:
-  AndroidCoreClient(PlatformCallbacks* callbacks, std::string pki_alias, NetworkPolicy network,
-                    ::openvpn::Stop* stop)
-      : callbacks_(callbacks), pki_alias_(std::move(pki_alias)), network_(std::move(network)),
-        stop_(stop) {}
+  AndroidCoreClient(PlatformCallbacks* callbacks, NetworkPolicy network, ::openvpn::Stop* stop)
+      : callbacks_(callbacks), network_(std::move(network)), stop_(stop) {}
 
   ~AndroidCoreClient() override { CloseTun(); }
 
@@ -145,8 +181,25 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
     // Android's VpnService.protect() is required before connecting each
     // transport socket.  There is no permissive fallback because it leaks the
     // OpenVPN control channel into the tunnel.
-    return callbacks_ != nullptr && callbacks_->ProtectSocket(static_cast<int>(socket));
+    if (callbacks_ == nullptr || !callbacks_->ProtectSocket(static_cast<int>(socket))) return false;
+    transport_.Track(static_cast<int>(socket));
+    return true;
   }
+
+  // Called by Core on its worker every Config::clockTickMS.
+  void clock_tick() override { ticks_.fetch_add(1, std::memory_order_relaxed); }
+
+  std::uint64_t ticks() const { return ticks_.load(std::memory_order_relaxed); }
+
+  // From the session's watchdog, never from Core's worker.
+  void ReportStall() {
+    std::lock_guard<std::mutex> lock(state_mutex_);
+    const auto update = connection_state_.Stalled();
+    if (update) Emit(update->state, update->reason);
+  }
+
+  // Makes a send blocked on the transport fail, so a posted stop can run.
+  void AbortTransport() { transport_.Shutdown(); }
 
   void event(const ::openvpn::ClientAPI::Event& event) override {
     std::string failure = FailureForEvent(event);
@@ -396,7 +449,6 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
   }
 
   PlatformCallbacks* callbacks_ = nullptr;
-  std::string pki_alias_;
   mutable std::mutex state_mutex_;
   ConnectionState connection_state_;
   std::mutex tun_mutex_;
@@ -404,10 +456,25 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
   const NetworkPolicy network_;
   std::string tun_failure_reason_;
   ::openvpn::Stop* const stop_;
+  TransportSocket transport_;
+  std::atomic<std::uint64_t> ticks_{0};
+};
+
+struct CoreTimings {
+  // Core calls clock_tick() at this period; the watchdog looks as often.
+  std::chrono::milliseconds tick{1000};
+  // Consecutive looks without a tick, while connected, that make a stall.
+  // Counted in looks, not elapsed time: a process frozen as a whole (both
+  // threads) is not mistaken for a stalled worker when it thaws.
+  int stall_checks = 15;
+  // How long a stop runs on Core's own before the transport is shut down.
+  // Android bounds the whole native stop at 10 s.
+  std::chrono::milliseconds stop_grace{3000};
 };
 
 class OpenVpn3CoreSession final : public CoreSession {
  public:
+  explicit OpenVpn3CoreSession(CoreTimings timings = {}) : timings_(timings) {}
   ~OpenVpn3CoreSession() override { Stop(); }
 
   bool Start(ValidatedProfile profile, std::string_view pki_alias,
@@ -420,7 +487,7 @@ class OpenVpn3CoreSession final : public CoreSession {
       return false;
     }
     stop_ = std::make_unique<::openvpn::Stop>();
-    client_ = std::make_unique<AndroidCoreClient>(callbacks, std::string(pki_alias), std::move(profile.network), stop_.get());
+    client_ = std::make_unique<AndroidCoreClient>(callbacks, std::move(profile.network), stop_.get());
     ::openvpn::ClientAPI::Config config;
     ScopedStringErase erase_config(config.content);
     config.content = std::move(profile.content);
@@ -428,6 +495,7 @@ class OpenVpn3CoreSession final : public CoreSession {
     config.compressionMode = "no";
     config.externalPkiAlias = std::string(pki_alias);
     config.connTimeout = 30;
+    config.clockTickMS = static_cast<unsigned int>(timings_.tick.count());
     const auto evaluation = client_->eval_config(config);
     if (evaluation.error || !evaluation.externalPki || !evaluation.autologin) {
       SecureErase(&config.content);
@@ -441,7 +509,13 @@ class OpenVpn3CoreSession final : public CoreSession {
     // Core's external stop token retains an early request until its reactor
     // installs the stop scope. OpenVPNClient::stop() alone ignores that window.
     // Keep the token alive until the client and all its scopes are destroyed.
+    {
+      std::lock_guard<std::mutex> lock(worker_mutex_);
+      worker_done_ = false;
+      stopping_ = false;
+    }
     try {
+      watchdog_ = std::thread([this]() noexcept { Watch(); });
       client_thread_ = std::thread([this]() noexcept {
         ::openvpn::ClientAPI::Status status;
         try {
@@ -455,8 +529,14 @@ class OpenVpn3CoreSession final : public CoreSession {
             client_->Complete(status);
           } catch (...) {}
         }
+        {
+          std::lock_guard<std::mutex> lock(worker_mutex_);
+          worker_done_ = true;
+        }
+        worker_changed_.notify_all();
       });
     } catch (...) {
+      EndWatch();
       client_.reset();
       stop_.reset();
       throw;
@@ -469,7 +549,17 @@ class OpenVpn3CoreSession final : public CoreSession {
       client_->RequestStop();
       stop_->stop();
     }
-    if (client_thread_.joinable()) client_thread_.join();
+    EndWatch();
+    if (client_thread_.joinable()) {
+      // Core stops on its own worker. A worker blocked in a synchronous send
+      // never gets there: shut its transport down so that send fails, then
+      // join. The duplicate goes with the client.
+      std::unique_lock<std::mutex> lock(worker_mutex_);
+      const bool ended = worker_changed_.wait_for(lock, timings_.stop_grace, [this] { return worker_done_; });
+      lock.unlock();
+      if (!ended && client_ != nullptr) client_->AbortTransport();
+      client_thread_.join();
+    }
     client_.reset();
     stop_.reset();
   }
@@ -488,10 +578,51 @@ class OpenVpn3CoreSession final : public CoreSession {
   }
 
  private:
+  // Beside the worker until it ends or a stop is requested. A worker blocked
+  // in a synchronous send stops ticking and Core reports nothing, while
+  // Android shows a connected tunnel that carries no traffic: report that once
+  // as a recoverable interruption, so Android stops this session (see Stop())
+  // and recovers.
+  void Watch() noexcept {
+    try {
+      std::uint64_t seen = client_->ticks();
+      int silent = 0;
+      std::unique_lock<std::mutex> lock(worker_mutex_);
+      while (!worker_changed_.wait_for(lock, timings_.tick, [this] { return worker_done_ || stopping_; })) {
+        lock.unlock();
+        const std::uint64_t now = client_->ticks();
+        silent = (now == seen && client_->IsConnected()) ? silent + 1 : 0;
+        seen = now;
+        if (silent >= timings_.stall_checks) {
+          client_->ReportStall();
+          return;
+        }
+        lock.lock();
+      }
+    } catch (...) {
+      // Nothing may escape this thread and terminate the process.
+    }
+  }
+
+  void EndWatch() {
+    {
+      std::lock_guard<std::mutex> lock(worker_mutex_);
+      stopping_ = true;
+    }
+    worker_changed_.notify_all();
+    if (watchdog_.joinable()) watchdog_.join();
+  }
+
+  const CoreTimings timings_;
   // Declared first so Core's AsioStopScopes never outlive the external token.
   std::unique_ptr<::openvpn::Stop> stop_;
   std::unique_ptr<AndroidCoreClient> client_;
   std::thread client_thread_;
+  std::thread watchdog_;
+  std::mutex worker_mutex_;
+  std::condition_variable worker_changed_;
+  bool worker_done_ = false;
+  bool stopping_ = false;
 };
 
 }  // namespace

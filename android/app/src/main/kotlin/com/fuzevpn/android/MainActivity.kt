@@ -41,13 +41,18 @@ class MainActivity : FlutterActivity() {
     }
 
     override fun cleanUpFlutterEngine(flutterEngine: FlutterEngine) {
+        closeEngineBridges()
+        super.cleanUpFlutterEngine(flutterEngine)
+    }
+
+    /** The bridges of one Flutter engine, closed once: by its cleanup or by onDestroy. */
+    private fun closeEngineBridges() {
         turnstileBridge?.close()
         turnstileBridge = null
         googleAuthBridge?.close()
         googleAuthBridge = null
         billingBridge?.close()
         billingBridge = null
-        super.cleanUpFlutterEngine(flutterEngine)
     }
 
     @Deprecated("Deprecated in Android SDK")
@@ -66,12 +71,7 @@ class MainActivity : FlutterActivity() {
     }
 
     override fun onDestroy() {
-        turnstileBridge?.close()
-        turnstileBridge = null
-        googleAuthBridge?.close()
-        googleAuthBridge = null
-        billingBridge?.close()
-        billingBridge = null
+        closeEngineBridges()
         vpnBridge?.detachFromActivity(this)
         vpnBridge = null
         super.onDestroy()

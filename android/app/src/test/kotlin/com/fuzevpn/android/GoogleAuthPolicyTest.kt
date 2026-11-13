@@ -90,9 +90,36 @@ class GoogleAuthPolicyTest {
 
     @Test fun credentialStateClearCannotBeCancelledByAPickerRequestId() {
         val gate = GoogleAuthFlowGate()
-        val clear = gate.reserve(null)
+        val clear = gate.reserveClearState()
         assertNull(gate.cancel("previous-request"))
         assertEquals("busy", assertThrows(GoogleAuthException::class.java) { gate.reserve("one") }.code)
         assertTrue(gate.finish(clear))
+    }
+
+    @Test fun eachCredentialStateClearHasItsOwnIdentity() {
+        val gate = GoogleAuthFlowGate()
+        val first = gate.reserveClearState()
+        assertEquals("busy", assertThrows(GoogleAuthException::class.java) { gate.reserveClearState() }.code)
+        assertTrue(gate.finish(first))
+        val second = gate.reserveClearState()
+        assertFalse(gate.isCurrent(first))
+        assertFalse(gate.finish(first))
+        assertTrue(gate.isCurrent(second))
+        assertTrue(gate.finish(second))
+    }
+
+    @Test fun aClosedGateRejectsEveryLaterTransition() {
+        val idle = GoogleAuthFlowGate()
+        assertNull(idle.close())
+        assertEquals("unavailable", assertThrows(GoogleAuthException::class.java) { idle.reserve("one") }.code)
+        assertEquals("unavailable", assertThrows(GoogleAuthException::class.java) { idle.reserveClearState() }.code)
+        assertNull(idle.cancel("one"))
+
+        val busy = GoogleAuthFlowGate()
+        val ticket = busy.reserve("one")
+        assertSame(ticket, busy.close())
+        assertFalse(busy.isCurrent(ticket))
+        assertNull(busy.cancel("one"))
+        assertFalse(busy.finish(ticket))
     }
 }

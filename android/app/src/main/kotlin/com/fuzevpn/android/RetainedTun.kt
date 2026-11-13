@@ -10,31 +10,28 @@ import java.lang.ref.WeakReference
  * closes, and a failed close never leaves a handle held.
  */
 internal class RetainedTun<T : Closeable, K : Any> {
-    private var current: T? = null
-    private var plan: K? = null
-    private var host: WeakReference<Any>? = null
+    /** A handle with the plan and the host it was established for: held and dropped as one. */
+    private class Held<T, K>(val handle: T, val plan: K, val host: WeakReference<Any>)
+
+    private var current: Held<T, K>? = null
 
     @Synchronized fun replace(next: T, nextPlan: K, nextHost: Any) {
-        val old = current
-        current = next
-        plan = nextPlan
-        host = WeakReference(nextHost)
+        val old = current?.handle
+        current = Held(next, nextPlan, WeakReference(nextHost))
         if (old !== next) runCatching { old?.close() }
     }
 
     @Synchronized fun release() {
-        val old = current
+        val old = current?.handle
         current = null
-        plan = null
-        host = null
         runCatching { old?.close() }
     }
 
     /** Why [reuse] would refuse [wanted] from [requester] before looking at the handle; null if it would not. */
     @Synchronized fun refusal(wanted: K, requester: Any): String? = when {
         current == null -> "none retained"
-        host?.get() !== requester -> "another VPN host"
-        plan != wanted -> "another network plan"
+        current?.host?.get() !== requester -> "another VPN host"
+        current?.plan != wanted -> "another network plan"
         else -> null
     }
 
@@ -47,8 +44,8 @@ internal class RetainedTun<T : Closeable, K : Any> {
      */
     @Synchronized fun <R : Any> reuse(wanted: K, requester: Any, copy: (T) -> R?): R? {
         val held = current ?: return null
-        if (host?.get() !== requester || plan != wanted) return null
-        return try { copy(held) } catch (_: Exception) { null }
+        if (held.host.get() !== requester || held.plan != wanted) return null
+        return try { copy(held.handle) } catch (_: Exception) { null }
     }
 }
 

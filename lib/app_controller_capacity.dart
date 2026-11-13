@@ -36,8 +36,10 @@ extension _LocationCapacityRecovery on VpnAppController {
     final capacityGeneration = ++_capacityRejectionGeneration;
     final selectionGeneration = _locationSelectionGeneration;
     _capacityRejectedLocations[locationId] = capacityGeneration;
-    locations = List<Location>.unmodifiable(
-      locations.where((item) => item.id != locationId),
+    _setCatalogue(
+      List<Location>.unmodifiable(
+        locations.where((item) => item.id != locationId),
+      ),
     );
     isLoadingLocations = true;
     notifyListeners();
@@ -49,10 +51,12 @@ extension _LocationCapacityRecovery on VpnAppController {
       final received = await _api.locations();
       check();
       if (ownsPublication()) {
-        locations = _filterCapacityRejections(
-          received,
-          capacityGeneration,
-          rejectedLocationId: locationId,
+        _setCatalogue(
+          _filterCapacityRejections(
+            received,
+            capacityGeneration,
+            rejectedLocationId: locationId,
+          ),
         );
       }
     } on SessionOperationCancelled {

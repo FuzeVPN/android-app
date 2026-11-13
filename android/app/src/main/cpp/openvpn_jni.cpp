@@ -386,8 +386,8 @@ class NativeSession final {
     ScopedStringErase erase_profile(profile);
     ScopedStringErase erase_alias(alias);
     std::lock_guard<std::mutex> lock(mutex_);
-    if (!valid() || destroying_) return false;
-    if (started_) {
+    if (!valid() || (lifecycle_ != Lifecycle::kIdle && lifecycle_ != Lifecycle::kStarted)) return false;
+    if (lifecycle_ == Lifecycle::kStarted) {
       callbacks_->OnCoreState("error", "session_busy");
       SecureErase(&profile);
       SecureErase(&alias);
@@ -408,9 +408,10 @@ class NativeSession final {
       return false;
     }
     validated->network = std::move(network);
-    started_ = core_->Start(std::move(*validated), alias, callbacks_.get());
+    const bool accepted = core_->Start(std::move(*validated), alias, callbacks_.get());
+    if (accepted) lifecycle_ = Lifecycle::kStarted;
     SecureErase(&alias);
-    return started_;
+    return accepted;
   }
 
   void Stop() {
@@ -420,12 +421,13 @@ class NativeSession final {
 
   bool Destroy() {
     std::lock_guard<std::mutex> lock(mutex_);
-    if (destroyed_) return true;
+    if (lifecycle_ == Lifecycle::kDestroyed) return true;
     // An already admitted Start must finish before this lock is acquired;
     // a later Start cannot revive the object after it leaves the registry.
-    destroying_ = true;
+    if (lifecycle_ == Lifecycle::kIdle) lifecycle_ = Lifecycle::kDestroying;
+    else if (lifecycle_ == Lifecycle::kStarted) lifecycle_ = Lifecycle::kDestroyingStarted;
     StopLocked();
-    destroyed_ = true;
+    lifecycle_ = Lifecycle::kDestroyed;
     return true;
   }
 
@@ -435,32 +437,42 @@ class NativeSession final {
   }
 
   void StopLocked() {
-    if (started_) Emit("disconnecting", "disconnecting");
+    if (started()) Emit("disconnecting", "disconnecting");
     // Also clean a partially initialized client after a failed Start.
     core_->Stop();
-    const bool was_started = started_;
-    started_ = false;
+    const bool was_started = started();
+    if (lifecycle_ == Lifecycle::kStarted) lifecycle_ = Lifecycle::kIdle;
+    else if (lifecycle_ == Lifecycle::kDestroyingStarted) lifecycle_ = Lifecycle::kDestroying;
     if (was_started) Emit("idle", "disconnected");
   }
 
  public:
   bool IsConnected() const {
     std::lock_guard<std::mutex> lock(mutex_);
-    return started_ && core_->IsConnected();
+    return started() && core_->IsConnected();
   }
 
   CoreStatistics Statistics() const {
     std::lock_guard<std::mutex> lock(mutex_);
-    return started_ ? core_->Statistics() : CoreStatistics{};
+    return started() ? core_->Statistics() : CoreStatistics{};
   }
 
  private:
+  // kIdle <-> kStarted until the first Destroy, which retires the session for
+  // good. Only a Destroy whose Stop threw leaves kDestroying or
+  // kDestroyingStarted behind: Start stays refused, and a later Stop or
+  // Destroy stops the core again.
+  enum class Lifecycle { kIdle, kStarted, kDestroying, kDestroyingStarted, kDestroyed };
+
+  // The core was started and no Stop has returned since.
+  bool started() const {
+    return lifecycle_ == Lifecycle::kStarted || lifecycle_ == Lifecycle::kDestroyingStarted;
+  }
+
   mutable std::mutex mutex_;
   std::unique_ptr<JniPlatformCallbacks> callbacks_;
   std::unique_ptr<CoreSession> core_;
-  bool started_ = false;
-  bool destroying_ = false;
-  bool destroyed_ = false;
+  Lifecycle lifecycle_ = Lifecycle::kIdle;
 };
 
 std::mutex sessions_mutex;

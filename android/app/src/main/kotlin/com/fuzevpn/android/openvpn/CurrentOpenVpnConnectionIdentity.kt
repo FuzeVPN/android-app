@@ -8,7 +8,6 @@ internal data class CurrentOpenVpnConnectionIdentity(
     val identityGeneration: String,
     val nativeGeneration: Long,
     val fingerprint: String,
-    val persisted: Boolean = true,
     val confirmed: Boolean = false,
 ) {
     fun isUsable(
@@ -19,7 +18,7 @@ internal data class CurrentOpenVpnConnectionIdentity(
         nativeGeneration: Long,
         nativeHandlePresent: Boolean,
         operationUncertain: Boolean,
-    ): Boolean = confirmed && persisted && nativeHandlePresent && !operationUncertain &&
+    ): Boolean = confirmed && nativeHandlePresent && !operationUncertain &&
         this.accountId == accountId && this.deviceId == deviceId &&
         this.identityAlias == identityAlias && this.identityGeneration == identityGeneration &&
         this.nativeGeneration == nativeGeneration

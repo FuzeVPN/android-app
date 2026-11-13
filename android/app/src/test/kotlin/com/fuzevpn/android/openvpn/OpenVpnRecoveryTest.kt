@@ -15,6 +15,7 @@ import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Test
+import java.time.Instant
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
@@ -197,6 +198,92 @@ class OpenVpnRecoveryTest {
         assertEquals("tls_certificate_revoked", events.failureCode)
     }
 
+    // A recovery stops the interrupted session, then restarts. A restart refused before it began a
+    // session (no usable network, an unreadable profile) publishes nothing into the finished one:
+    // the bridge reads sessionFailure before the start's own code, and reported the stopped
+    // session's openvpn_reconnect_required as the cause of the failed recovery.
+    @Test fun aStartRefusedBeforeItsSessionDoesNotInheritTheFinishedSessionsFailure() = runTest {
+        val events = OpenVpnSessionEvents()
+        val generation = events.begin()
+        events.publish(generation, OpenVpnNativeState.fromNative("connected", ""))
+        events.interrupt("openvpn_reconnect_required")
+        events.requestStop()
+        events.finish()
+        // The recovery's stop still reads what interrupted that session.
+        assertEquals("openvpn_reconnect_required", events.failureCode)
+
+        events.startRequested()
+        events.publish(events.generation, OpenVpnNativeState.error("network_unavailable"))
+        assertNull(events.failureCode)
+        assertEquals(generation, events.generation)
+        // Nothing of the refusal reaches the consumer of the finished session.
+        assertEquals(listOf(VpnStatus.CONNECTING, VpnStatus.CONNECTED, VpnStatus.ERROR,
+            VpnStatus.DISCONNECTING, VpnStatus.IDLE), events.flow.take(5).toList().map { it.state.toVpnStatus() })
+        events.begin()
+        assertEquals(VpnStatus.CONNECTING, events.flow.take(1).toList().single().state.toVpnStatus())
+    }
+
+    @Test fun aStartRequestLeavesTheFailureOfASessionThatIsNotFinished() {
+        val events = OpenVpnSessionEvents()
+        events.startRequested()
+        assertNull(events.failureCode)
+        val generation = events.begin()
+        events.publish(generation, OpenVpnNativeState.error("tls_certificate_revoked"))
+        events.startRequested()
+        assertEquals("tls_certificate_revoked", events.failureCode)
+        events.requestStop()
+        events.startRequested()
+        assertEquals("tls_certificate_revoked", events.failureCode)
+    }
+
+    @Test fun beforeTheFirstSessionNoCallbackIsServedAndAnErrorClosesTheGate() {
+        // Generation 0 has no gate of its own yet: only its callbacks are refused.
+        OpenVpnSessionEvents().let { unstarted ->
+            unstarted.publish(0L, OpenVpnNativeState.fromNative("connected", ""))
+            assertTrue(unstarted.confirmConnected(0L) {})
+        }
+        val events = OpenVpnSessionEvents()
+        assertEquals(-1, events.callback(0L, -1) { fail("No session began"); 0 })
+        events.interrupt("openvpn_reconnect_required") // No proof to interrupt.
+        assertNull(events.failureCode)
+        events.interrupt("tun_permission_revoked", requireProof = false)
+        assertEquals("tun_permission_revoked", events.failureCode)
+        events.publish(0L, OpenVpnNativeState.fromNative("connected", ""))
+        assertFalse(events.snapshot.isConnected())
+        assertFalse(events.confirmConnected(0L) { fail("An interrupted gate published protection") })
+    }
+
+    @Test fun aStopRequestedAfterTheEndPublishesNothing() = runTest {
+        val events = OpenVpnSessionEvents()
+        val generation = events.begin()
+        events.finish()
+        events.requestStop()
+        events.publish(generation, OpenVpnNativeState.error("tls_certificate_revoked"))
+        events.interrupt("tun_permission_revoked", requireProof = false)
+        assertNull(events.failureCode)
+        assertEquals(VpnStatus.IDLE, events.snapshot.toVpnStatus())
+        val fresh = events.begin()
+        assertEquals(listOf(generation to VpnStatus.CONNECTING, generation to VpnStatus.IDLE, fresh to VpnStatus.CONNECTING),
+            events.flow.take(3).toList().map { it.generation to it.state.toVpnStatus() })
+    }
+
+    @Test fun anInterruptedSessionStillStopsAndIgnoresLaterInterruptions() = runTest {
+        val events = OpenVpnSessionEvents()
+        val generation = events.begin()
+        events.publish(generation, OpenVpnNativeState.error("openvpn_reconnect_required"))
+        // Interrupted, not stopping: a revoked permission is still published and becomes the cause.
+        events.interrupt("tun_permission_revoked", requireProof = false)
+        assertEquals("tun_permission_revoked", events.failureCode)
+        events.requestStop()
+        events.interrupt("vpn_host_destroyed", requireProof = false)
+        assertEquals(-1, events.callback(generation, -1) { fail("Callback served while stopping"); 0 })
+        events.publish(generation, OpenVpnNativeState.fromNative("connected", ""))
+        events.finish()
+        assertEquals(listOf(VpnStatus.CONNECTING, VpnStatus.ERROR, VpnStatus.ERROR, VpnStatus.DISCONNECTING, VpnStatus.IDLE),
+            events.flow.take(5).toList().map { it.state.toVpnStatus() })
+        assertEquals("tun_permission_revoked", events.failureCode)
+    }
+
     @Test fun networkReturnWaitsTwoSecondsAndStopsBeforeRestart() = runTest {
         val order = mutableListOf<String>()
         var network = false
@@ -285,5 +372,26 @@ class OpenVpnRecoveryTest {
         }
         assertFalse(OpenVpnCertificateStatus("valid", null, false).renewalDue)
         assertFalse(OpenVpnCertificateStatus("missing", null, false).renewalDue)
+    }
+
+    // One rule for the reported status, the local restart's refusals and the bridge's renewal.
+    @Test fun theCertificateLifetimeNamesTheReportedStatusAndDecidesTheRenewal() {
+        val now = Instant.parse("2026-11-12T08:00:00Z")
+        val window = 7L * 24L * 60L * 60L
+        fun lifetime(secondsLeft: Long) = OpenVpnCertificateLifetime.at(now, now.plusSeconds(secondsLeft))
+        assertEquals(OpenVpnCertificateLifetime.EXPIRED, lifetime(-1))
+        assertEquals(OpenVpnCertificateLifetime.EXPIRED, lifetime(0))
+        assertEquals(OpenVpnCertificateLifetime.EXPIRING, lifetime(1))
+        assertEquals(OpenVpnCertificateLifetime.EXPIRING, lifetime(window))
+        assertEquals(OpenVpnCertificateLifetime.VALID, lifetime(window + 1))
+        assertEquals(listOf("expired", "expiring", "valid"), OpenVpnCertificateLifetime.entries.map { it.status })
+        for (entry in OpenVpnCertificateLifetime.entries) {
+            assertEquals(entry.name, entry != OpenVpnCertificateLifetime.VALID, entry.renewalDue)
+            assertEquals(entry.name, entry.renewalDue, OpenVpnCertificateStatus(entry.status, null, false).renewalDue)
+            assertEquals(entry.name, entry.renewalDue, OpenVpnCertificateLifetime.renewalDue(entry.status, false))
+            assertTrue(entry.name, OpenVpnCertificateLifetime.renewalDue(entry.status, true))
+        }
+        assertFalse(OpenVpnCertificateLifetime.renewalDue("missing", false))
+        assertTrue(OpenVpnCertificateLifetime.renewalDue("missing", true))
     }
 }

@@ -186,54 +186,52 @@ internal data class PlayBillingPlan(
 
 /** A process-wide guard also covers an Activity being recreated while Play is open. */
 internal class PlayBillingFlowGate {
+    private sealed interface Flow {
+        data object Idle : Flow
+        sealed class Active(val id: Long, val ownerId: String?) : Flow
+        /** Reserved while the pre-payment checks run: Play's sheet is not open. */
+        class Preparing(id: Long, ownerId: String?) : Active(id, ownerId)
+        /** Play's sheet was opened; [leftHost] once the host paused under it. */
+        class Launched(id: Long, ownerId: String?, val leftHost: Boolean) : Active(id, ownerId)
+    }
+
     private var nextId = 0L
-    private var activeId: Long? = null
-    private var accountId: String? = null
-    private var launched = false
-    private var leftHost = false
+    private var flow: Flow = Flow.Idle
 
     fun reserve(ownerId: String? = null): Long? {
-        if (activeId != null) return null
+        if (flow != Flow.Idle) return null
         nextId += 1
-        activeId = nextId
-        accountId = ownerId
-        launched = false
-        leftHost = false
-        return activeId
+        flow = Flow.Preparing(nextId, ownerId)
+        return nextId
     }
 
     fun markLaunched(id: Long) {
-        if (activeId == id) launched = true
+        val current = flow
+        if (current is Flow.Preparing && current.id == id) {
+            flow = Flow.Launched(id, current.ownerId, leftHost = false)
+        }
     }
 
-    fun isLaunched(id: Long): Boolean = activeId == id && launched
+    fun isLaunched(id: Long): Boolean = (flow as? Flow.Launched)?.id == id
 
-    fun currentFlowId(): Long? = activeId
+    fun currentFlowId(): Long? = (flow as? Flow.Active)?.id
 
-    fun ownerFor(id: Long): String? = if (activeId == id) accountId else null
+    fun ownerFor(id: Long): String? = (flow as? Flow.Active)?.takeIf { it.id == id }?.ownerId
 
     fun invalidatePreparation(): Long? {
-        val id = activeId ?: return null
-        if (launched) return null
-        release(id)
-        return id
+        val current = flow as? Flow.Preparing ?: return null
+        flow = Flow.Idle
+        return current.id
     }
 
     fun onHostPaused() {
-        if (launched) leftHost = true
+        val current = flow
+        if (current is Flow.Launched) flow = Flow.Launched(current.id, current.ownerId, leftHost = true)
     }
 
-    fun returnedFlow(): Long? = activeId?.takeIf { launched && leftHost }
+    fun returnedFlow(): Long? = (flow as? Flow.Launched)?.takeIf { it.leftHost }?.id
 
     fun release(id: Long) {
-        if (activeId != id) return
-        activeId = null
-        accountId = null
-        launched = false
-        leftHost = false
-    }
-
-    fun finishLaunched() {
-        if (launched) activeId?.let(::release)
+        if (currentFlowId() == id) flow = Flow.Idle
     }
 }

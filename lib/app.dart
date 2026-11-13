@@ -42,8 +42,16 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
   late final bool _ownsController;
   ApiHttpTransport? _diagnosticTransport;
   var _navigatorKey = GlobalKey<NavigatorState>();
-  String? _navigatorScope;
+  _RootScope? _navigatorScope;
   bool _pendingSettled = false;
+
+  /// What owns the whole screen: a mandatory cleanup replaces the application
+  /// and its routes.
+  _RootScope get _rootScope => _controller.sessionTermination != null
+      ? _RootScope.sessionCleanup
+      : _controller.openVpnRevocation != null
+      ? _RootScope.openVpnCleanup
+      : _RootScope.app;
 
   /// A pending account restoration is owned by the restoration page, whatever
   /// produced it: a sign-in accepted by the server, or an automatic guest
@@ -66,11 +74,7 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
   }
 
   GlobalKey<NavigatorState> _currentNavigatorKey() {
-    final scope = _controller.sessionTermination != null
-        ? 'session-cleanup'
-        : _controller.openVpnRevocation != null
-        ? 'openvpn-cleanup'
-        : 'app';
+    final scope = _rootScope;
     if (_navigatorScope != scope) {
       _navigatorScope = scope;
       _navigatorKey = GlobalKey<NavigatorState>();
@@ -151,13 +155,7 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
     builder: (BuildContext context, Widget? child) => MaterialApp(
       navigatorKey: _currentNavigatorKey(),
       // Dismiss account dialogs too when the mandatory cleanup screen takes over.
-      key: ValueKey<String>(
-        _controller.sessionTermination != null
-            ? 'session-cleanup'
-            : _controller.openVpnRevocation != null
-            ? 'openvpn-cleanup'
-            : 'app',
-      ),
+      key: ValueKey<String>(_rootScope.key),
       onGenerateTitle: (BuildContext context) =>
           AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
@@ -172,19 +170,35 @@ class _FuzeVpnAppState extends State<FuzeVpnApp> with WidgetsBindingObserver {
         value: FuzeVpnTheme.systemUiOverlayStyle(Theme.of(context).brightness),
         child: child!,
       ),
-      home: _controller.sessionTermination != null
-          ? _SessionTerminationPage(controller: _controller)
-          : _controller.openVpnRevocation != null
-          ? _OpenVpnRevocationPage(controller: _controller)
-          : _controller.isInitializing
-          ? const _StartupPage()
-          : _controller.hasPendingAccountRestoration
-          ? _AccountRestorationPage(controller: _controller)
-          : _controller.canShowHome
-          ? HomeShell(controller: _controller)
-          : WelcomePage(controller: _controller),
+      home: switch (_rootScope) {
+        _RootScope.sessionCleanup => _SessionTerminationPage(
+          controller: _controller,
+        ),
+        _RootScope.openVpnCleanup => _OpenVpnRevocationPage(
+          controller: _controller,
+        ),
+        _RootScope.app =>
+          _controller.isInitializing
+              ? const _StartupPage()
+              : _controller.hasPendingAccountRestoration
+              ? _AccountRestorationPage(controller: _controller)
+              : _controller.canShowHome
+              ? HomeShell(controller: _controller)
+              : WelcomePage(controller: _controller),
+      },
     ),
   );
+}
+
+/// The three owners of the whole screen, each with its own navigator: [key]
+/// keys the application, so a change of owner drops the previous routes.
+enum _RootScope {
+  sessionCleanup('session-cleanup'),
+  openVpnCleanup('openvpn-cleanup'),
+  app('app');
+
+  const _RootScope(this.key);
+  final String key;
 }
 
 class _AccountRestorationPage extends StatelessWidget {

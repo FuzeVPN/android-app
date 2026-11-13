@@ -80,9 +80,7 @@ class TunnelHero extends StatelessWidget {
       controller.tunnelState,
       phase,
     );
-    final VpnProtocol displayedProtocol = controller.isTunnelActive
-        ? controller.tunnelState.protocol ?? controller.selectedProtocol
-        : controller.selectedProtocol;
+    final VpnProtocol displayedProtocol = _effectiveProtocol(controller);
     final Color statusColor = switch (phase) {
       VpnRuntimePhase.connected => FuzeVpnTheme.successDark,
       VpnRuntimePhase.error => FuzeVpnTheme.errorDark,
@@ -860,9 +858,7 @@ class ProtocolOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Location? selected = controller.selectedLocation;
-    final VpnProtocol displayedProtocol = controller.isTunnelActive
-        ? controller.tunnelState.protocol ?? controller.selectedProtocol
-        : controller.selectedProtocol;
+    final VpnProtocol displayedProtocol = _effectiveProtocol(controller);
     return Card(
       clipBehavior: Clip.antiAlias,
       child: ExpansionTile(
@@ -1015,6 +1011,52 @@ class _ConnectionOptionIcon extends StatelessWidget {
   );
 }
 
+/// What the main button of the connection card offers.
+enum _PrimaryVpnMode {
+  /// An attempt that is not connected yet can be cancelled.
+  cancel,
+
+  /// The tunnel is stopping: disabled, with a progress indicator.
+  stopping,
+
+  /// The tunnel is connected and can be stopped.
+  disconnect,
+
+  /// A location change or its migration is under way: disabled.
+  changingLocation,
+
+  /// Other connection work is under way: disabled.
+  connecting,
+
+  /// Nothing is under way: a connection can be started.
+  connect,
+}
+
+_PrimaryVpnMode _primaryVpnMode(VpnAppController controller) {
+  final VpnRuntimePhase phase = controller.tunnelState.phase;
+  if (controller.canCancelConnectionAttempt && !controller.isConnected) {
+    return _PrimaryVpnMode.cancel;
+  }
+  if (controller.isConnected ||
+      controller.isDisconnecting ||
+      phase == VpnRuntimePhase.disconnecting) {
+    return controller.isDisconnecting || phase == VpnRuntimePhase.disconnecting
+        ? _PrimaryVpnMode.stopping
+        : _PrimaryVpnMode.disconnect;
+  }
+  if (controller.isChangingLocation || controller.isLocationMigrationPending) {
+    return _PrimaryVpnMode.changingLocation;
+  }
+  // Nothing is stopping or changing location here.
+  final bool busy =
+      controller.isConnecting ||
+      controller.isStartingLocationMigration ||
+      phase == VpnRuntimePhase.authorizing ||
+      phase == VpnRuntimePhase.preparing ||
+      phase == VpnRuntimePhase.connecting;
+  return busy ? _PrimaryVpnMode.connecting : _PrimaryVpnMode.connect;
+}
+
 class PrimaryVpnAction extends StatelessWidget {
   const PrimaryVpnAction({super.key, required this.controller});
 
@@ -1022,16 +1064,7 @@ class PrimaryVpnAction extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool busy =
-        controller.isChangingLocation ||
-        controller.isConnecting ||
-        controller.isLocationMigrationPending ||
-        controller.isStartingLocationMigration ||
-        controller.isDisconnecting ||
-        controller.tunnelState.phase == VpnRuntimePhase.authorizing ||
-        controller.tunnelState.phase == VpnRuntimePhase.preparing ||
-        controller.tunnelState.phase == VpnRuntimePhase.connecting ||
-        controller.tunnelState.phase == VpnRuntimePhase.disconnecting;
+    final _PrimaryVpnMode mode = _primaryVpnMode(controller);
     final ButtonStyle actionStyle = FilledButton.styleFrom(
       minimumSize: const Size(double.infinity, 60),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
@@ -1042,91 +1075,97 @@ class PrimaryVpnAction extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       textStyle: Theme.of(context).textTheme.titleMedium,
     );
-    if (controller.canCancelConnectionAttempt && !controller.isConnected) {
-      return FilledButton.icon(
-        style: actionStyle,
-        onPressed: controller.tunnelState.isReconnecting
-            ? controller.requestUserDisconnect
-            : controller.cancelConnectionAttempt,
-        icon: const Icon(Icons.close),
-        label: Text(context.copy('action.cancel'), textAlign: TextAlign.center),
-      );
-    }
-    if (controller.isConnected ||
-        controller.isDisconnecting ||
-        controller.tunnelState.phase == VpnRuntimePhase.disconnecting) {
-      final bool isStopping =
-          controller.isDisconnecting ||
-          controller.tunnelState.phase == VpnRuntimePhase.disconnecting;
-      final Widget action = FilledButton.icon(
-        style: actionStyle.copyWith(
-          backgroundColor: WidgetStateProperty.resolveWith(
-            (states) => states.contains(WidgetState.disabled)
-                ? const Color(0xFF354149)
-                : FuzeVpnTheme.paper,
+    switch (mode) {
+      case _PrimaryVpnMode.cancel:
+        return FilledButton.icon(
+          style: actionStyle,
+          onPressed: controller.tunnelState.isReconnecting
+              ? controller.requestUserDisconnect
+              : controller.cancelConnectionAttempt,
+          icon: const Icon(Icons.close),
+          label: Text(
+            context.copy('action.cancel'),
+            textAlign: TextAlign.center,
           ),
-        ),
-        // A native CONNECTED event is sufficient proof to let the user stop
-        // immediately. Do not keep this safety action disabled because an
-        // unrelated controller future has not returned yet.
-        onPressed: isStopping ? null : controller.requestUserDisconnect,
-        icon: isStopping
-            ? const SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: Color(0xFFC6BEB2),
-                ),
-              )
-            : const Icon(Icons.power_settings_new, size: 26),
-        label: Text(
-          context.copy(
-            isStopping ? 'connection.disconnecting' : 'connection.disconnect',
-          ),
-          textAlign: TextAlign.center,
-        ),
-      );
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          action,
-          if (controller.supportsSystemProtectionSettings &&
-              controller.systemProtection.alwaysOn != false) ...<Widget>[
-            const SizedBox(height: 12),
-            Text(
-              context.copy('connection.androidDisconnectHint'),
-              textAlign: TextAlign.center,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: const Color(0xFFC6BEB2)),
+        );
+      case _PrimaryVpnMode.stopping:
+      case _PrimaryVpnMode.disconnect:
+        final bool isStopping = mode == _PrimaryVpnMode.stopping;
+        final Widget action = FilledButton.icon(
+          style: actionStyle.copyWith(
+            backgroundColor: WidgetStateProperty.resolveWith(
+              (states) => states.contains(WidgetState.disabled)
+                  ? const Color(0xFF354149)
+                  : FuzeVpnTheme.paper,
             ),
-          ],
-        ],
-      );
-    }
-    return FilledButton.icon(
-      style: actionStyle,
-      onPressed: busy || controller.isIdentityBusy ? null : controller.connect,
-      icon: busy
-          ? const SizedBox(
-              width: 18,
-              height: 18,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Color(0xFFC6BEB2),
+          ),
+          // A native CONNECTED event is sufficient proof to let the user stop
+          // immediately. Do not keep this safety action disabled because an
+          // unrelated controller future has not returned yet.
+          onPressed: isStopping ? null : controller.requestUserDisconnect,
+          icon: isStopping
+              ? const SizedBox(
+                  width: 20,
+                  height: 20,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Color(0xFFC6BEB2),
+                  ),
+                )
+              : const Icon(Icons.power_settings_new, size: 26),
+          label: Text(
+            context.copy(
+              isStopping ? 'connection.disconnecting' : 'connection.disconnect',
+            ),
+            textAlign: TextAlign.center,
+          ),
+        );
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            action,
+            if (controller.supportsSystemProtectionSettings &&
+                controller.systemProtection.alwaysOn != false) ...<Widget>[
+              const SizedBox(height: 12),
+              Text(
+                context.copy('connection.androidDisconnectHint'),
+                textAlign: TextAlign.center,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: const Color(0xFFC6BEB2)),
               ),
-            )
-          : const Icon(Icons.power_settings_new, size: 26),
-      label: Text(
-        controller.isChangingLocation || controller.isLocationMigrationPending
-            ? context.copy('connection.locationChange')
-            : busy
-            ? context.copy('connection.connecting')
-            : context.copy('connection.connect'),
-        textAlign: TextAlign.center,
-      ),
-    );
+            ],
+          ],
+        );
+      case _PrimaryVpnMode.changingLocation:
+      case _PrimaryVpnMode.connecting:
+      case _PrimaryVpnMode.connect:
+        final bool busy = mode != _PrimaryVpnMode.connect;
+        return FilledButton.icon(
+          style: actionStyle,
+          onPressed: busy || controller.isIdentityBusy
+              ? null
+              : controller.connect,
+          icon: busy
+              ? const SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: Color(0xFFC6BEB2),
+                  ),
+                )
+              : const Icon(Icons.power_settings_new, size: 26),
+          label: Text(
+            mode == _PrimaryVpnMode.changingLocation
+                ? context.copy('connection.locationChange')
+                : busy
+                ? context.copy('connection.connecting')
+                : context.copy('connection.connect'),
+            textAlign: TextAlign.center,
+          ),
+        );
+    }
   }
 }
 

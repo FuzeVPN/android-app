@@ -50,11 +50,15 @@ class WireGuardHandshakeTest {
         }
     }
 
-    private fun waitForHandshake(controller: WireGuardController, isCurrent: () -> Boolean): Boolean =
+    /** The activation statistics the controller would publish as its proof, or null without a handshake. */
+    private fun activation(controller: WireGuardController, isCurrent: () -> Boolean): TunnelStatistics? =
         WireGuardController::class.java.getDeclaredMethod(
             "waitForHandshake", managedTunnelClass, Key::class.java,
             kotlin.jvm.functions.Function0::class.java,
-        ).apply { isAccessible = true }.invoke(controller, tunnel, peerKey, isCurrent) as Boolean
+        ).apply { isAccessible = true }.invoke(controller, tunnel, peerKey, isCurrent) as TunnelStatistics?
+
+    private fun waitForHandshake(controller: WireGuardController, isCurrent: () -> Boolean): Boolean =
+        activation(controller, isCurrent) != null
 
     @Test fun handshakeCompletedDuringActivationSurvivesADelayedBackendReturn() {
         val backend = FakeBackend()
@@ -101,12 +105,17 @@ class WireGuardHandshakeTest {
     @Test fun recoveryBaselineRetainsTheActivationProofOnlyForAnActiveInstance() {
         val backend = FakeBackend().apply { readStatistics = { statistics(5_000) } }
         val controller = controller(backend)
-        assertTrue(waitForHandshake(controller) { backend.sampleCount == 0 })
+        val activation = activation(controller) { backend.sampleCount == 0 }
+        assertEquals(TunnelStatistics(100, 200, 5_000), activation)
+        // The proof connect() publishes after that handshake, here without an active tunnel.
+        val proof = Class.forName("com.fuzevpn.android.WireGuardController\$ProvenConnection")
+            .getDeclaredConstructor(Key::class.java, TunnelStatistics::class.java, Pair::class.java)
+            .apply { isAccessible = true }.newInstance(peerKey, activation, null)
+        WireGuardController::class.java.getDeclaredField("provenConnection").apply { isAccessible = true }
+            .set(controller, proof)
         assertNull(controller.recoveryBaseline())
         WireGuardController::class.java.getDeclaredField("activeTunnel").apply { isAccessible = true }
             .set(controller, tunnel)
-        WireGuardController::class.java.getDeclaredField("activePeerKey").apply { isAccessible = true }
-            .set(controller, peerKey)
         assertEquals(TunnelStatistics(100, 200, 5_000), controller.recoveryBaseline())
         WireGuardController::class.java.getDeclaredField("operationUncertain").apply { isAccessible = true }
             .setBoolean(controller, true)

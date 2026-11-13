@@ -427,6 +427,47 @@ void locationCapacityControllerTests() {
         expect(h.tunnel.disconnectCalls, 0);
       },
     );
+
+    for (final recovery in ['empty', 'failed']) {
+      test(
+        'a catalogue left empty by a capacity refusal (recovery $recovery) is '
+        'asked again on resume',
+        () async {
+          final h = await _capacityHarness();
+          addTearDown(h.close);
+          h.api.registerDeviceFailure = const ApiException(
+            statusCode: 409,
+            errorCode: 'server_full',
+          );
+          // With a failed recovery, the refused location is the only one the
+          // server listed: its local exclusion empties the catalogue.
+          if (recovery == 'failed') h.api.locationsResult = [_frankfurt];
+          h.api.hooks['registerDevice'] = () async {
+            if (recovery == 'empty') {
+              h.api.locationsResult = [];
+            } else {
+              h.api.locationsFailure = const ApiNetworkException();
+            }
+          };
+
+          await h.controller.connect();
+
+          expect(h.api.catalogueCalls, 2); // IP capability + recovery.
+          expect(h.controller.locations, isEmpty);
+          expect(h.controller.isLoadingLocations, isFalse);
+
+          // An empty catalogue is not a loaded one, whatever emptied it.
+          h.api.locationsFailure = null;
+          h.api.locationsResult = [_frankfurt, _frankfurt02];
+          await h.controller.onAppResumed();
+          await pumpEventQueue();
+          expect(h.api.catalogueCalls, 3);
+          expect(h.controller.locations, [_frankfurt, _frankfurt02]);
+          expect(h.api.registerDeviceCalls, hasLength(1));
+          expect(h.tunnel.wireGuardConnections, isEmpty);
+        },
+      );
+    }
   });
 }
 

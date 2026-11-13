@@ -62,33 +62,53 @@ internal object GoogleAuthPolicy {
 
 /** Identity, rather than requestId alone, prevents an old callback winning a retry. */
 internal class GoogleAuthFlowGate {
-    internal class Ticket internal constructor(val requestId: String?)
-    private var current: Ticket? = null
-    private var closed = false
+    /** One reserved operation; its kind is its type. */
+    internal sealed class Ticket {
+        /** The explicit picker, the only kind a request id can cancel. */
+        class SignIn internal constructor(val requestId: String) : Ticket()
+        class ClearState internal constructor() : Ticket()
+    }
 
-    @Synchronized fun reserve(requestId: String?): Ticket {
-        if (closed) throw GoogleAuthException("unavailable")
-        if (current != null) throw GoogleAuthException("busy")
-        return Ticket(requestId).also { current = it }
+    private sealed interface State {
+        data object Idle : State
+        class Active(val ticket: Ticket) : State
+        /** Terminal: nothing is reserved or finished any more. */
+        data object Closed : State
+    }
+
+    private var state: State = State.Idle
+
+    @Synchronized fun reserve(requestId: String): Ticket = activate(Ticket.SignIn(requestId))
+
+    @Synchronized fun reserveClearState(): Ticket = activate(Ticket.ClearState())
+
+    private fun activate(ticket: Ticket): Ticket {
+        when (state) {
+            State.Closed -> throw GoogleAuthException("unavailable")
+            is State.Active -> throw GoogleAuthException("busy")
+            State.Idle -> state = State.Active(ticket)
+        }
+        return ticket
     }
 
     @Synchronized fun finish(ticket: Ticket): Boolean {
-        if (closed || current !== ticket) return false
-        current = null
+        if (!isCurrent(ticket)) return false
+        state = State.Idle
         return true
     }
 
-    @Synchronized fun isCurrent(ticket: Ticket): Boolean = !closed && current === ticket
+    @Synchronized fun isCurrent(ticket: Ticket): Boolean = (state as? State.Active)?.ticket === ticket
 
     @Synchronized fun cancel(requestId: String): Ticket? {
-        val ticket = current?.takeIf { it.requestId == requestId } ?: return null
-        current = null
+        val ticket = (state as? State.Active)?.ticket as? Ticket.SignIn ?: return null
+        if (ticket.requestId != requestId) return null
+        state = State.Idle
         return ticket
     }
 
     @Synchronized fun close(): Ticket? {
-        if (closed) return null
-        closed = true
-        return current.also { current = null }
+        val ticket = (state as? State.Active)?.ticket
+        state = State.Closed
+        return ticket
     }
 }

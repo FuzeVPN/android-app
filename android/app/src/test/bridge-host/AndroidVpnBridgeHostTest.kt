@@ -11,6 +11,7 @@ import android.net.SystemPackageConnectivityManager
 import android.net.VpnService
 import android.os.UserManager
 import android.service.quicksettings.TileService
+import androidx.core.content.ContextCompat
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
@@ -81,6 +82,7 @@ class AndroidVpnBridgeHostTest {
         SharedVpnHost.flags = false to false
         com.fuzevpn.android.openvpn.OpenVpnController.network = true
         android.os.Build.VERSION.SDK_INT = 34
+        ContextCompat.granted = true
         context.services[ConnectivityManager::class.java] = ConnectivityManager()
         ConnectivityManager.reset()
         android.provider.Settings.Secure.reset()
@@ -1961,6 +1963,151 @@ class AndroidVpnBridgeHostTest {
         assertEquals(1, HarnessControl.openVpnReconnects)
         assertEquals("the poll signalled the loss before Core", 0, HarnessControl.openVpnNetworkLosses)
         assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    // Explicit state machines (12/11), consent request. The activity is destroyed while Android's
+    // consent dialog is shown (a relaunch, "don't keep activities"): its answer reaches nobody.
+    // The bridge kept AUTHORIZING: the next activity showed a request still open, and the tile
+    // stayed unavailable, until another command published.
+    @Test fun aConsentRequestLostWithItsActivityDoesNotStayAuthorizing() {
+        signIn()
+        val request = askConsent()
+        assertEquals(VpnStatus.AUTHORIZING, bridge.quickTileState().status)
+        HarnessMain.run { bridge.detachFromActivity(activity) }
+        assertEquals("activity_destroyed", request.await().error)
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        // The next activity reads that state; the late answer of the lost dialog changes nothing.
+        HarnessMain.run { AndroidVpnBridge.obtain(context, object : Activity() {}, object : BinaryMessenger {}) }
+        assertEquals("idle", (call("getState").await().value as Map<*, *>)["status"])
+        HarnessMain.run { bridge.onActivityResult(9811, Activity.RESULT_OK) }
+        HarnessMain.drain()
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+    }
+
+    // Same request, answered, but the consent cannot be stored: the answer carries the failure
+    // and no state followed AUTHORIZING.
+    @Test fun aConsentThatCannotBeStoredDoesNotStayAuthorizing() {
+        signIn()
+        val request = askConsent()
+        VpnService.consentIntent = null
+        HarnessControl.writeFailure = "secure_storage_write_failed"
+        HarnessMain.run { bridge.onActivityResult(9811, Activity.RESULT_OK) }
+        assertEquals("secure_storage_write_failed", request.await().error)
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        val events = settledEvents()
+        assertEquals(events.toString(), listOf("authorizing/null/null", "idle/null/null"), events.takeLast(2))
+    }
+
+    // The session ends while the dialog is shown: the end publishes its own states, and the late
+    // answer, refused, publishes nothing over them.
+    @Test fun aConsentAnsweredAfterTheSessionEndedPublishesNothing() {
+        signIn()
+        val request = askConsent()
+        assertNotNull(call("storageClearSession", mapOf("reason" to "voluntary")).await().value)
+        val ended = settledEvents()
+        assertEquals(ended.toString(), "idle/null/null", ended.last())
+        VpnService.consentIntent = null
+        HarnessMain.run { bridge.onActivityResult(9811, Activity.RESULT_OK) }
+        assertEquals("session_operation_cancelled", request.await().error)
+        assertEquals(ended, settledEvents())
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+    }
+
+    // An engine kept after a stop that was not confirmed, and Android's consent lost meanwhile.
+    // Granted, the request publishes nothing (IDLE would deny the engine): AUTHORIZING is left to
+    // the command Dart sends next, here a stop that times out again. That engine's old error
+    // published first would reach Dart in the middle of that command as a new failure.
+    // Abandoned, the request leaves that engine's error published again.
+    @Test fun aConsentRequestOverARetainedEngineLeavesItsStopErrorPublished() {
+        retainedEngineAfterStopTimeout()
+        val granted = askConsent()
+        assertEquals(VpnStatus.AUTHORIZING, bridge.quickTileState().status)
+        VpnService.consentIntent = null
+        HarnessMain.run { bridge.onActivityResult(9811, Activity.RESULT_OK) }
+        assertEquals(true, granted.await().value)
+        assertEquals("authorizing/null/null", published())
+        assertEquals("wireguard_stop_timeout", call("disconnect").await().error)
+        assertEquals("error/wireguard/wireguard_stop_timeout", published())
+        val abandoned = askConsent(dialogs = 2)
+        assertEquals(VpnStatus.AUTHORIZING, bridge.quickTileState().status)
+        HarnessMain.run { bridge.detachFromActivity(activity) }
+        assertEquals("activity_destroyed", abandoned.await().error)
+        assertEquals("error/wireguard/wireguard_stop_timeout", published())
+    }
+
+    // Explicit state machines (12/11), notification permission. The system dialog goes with its
+    // activity (the task removed while it is shown): no answer ever comes, and the request stayed
+    // pending for the life of the process, so the permission was never asked again.
+    @Test fun aNotificationRequestLostWithItsActivityIsAskedAgain() {
+        signIn()
+        ContextCompat.granted = false
+        assertEquals(true, call("requestVpnPermission").await().value)
+        eventually("notification permission requested") { activity.permissionRequests.size == 1 }
+        // While its dialog is shown, a second consent opens no second dialog.
+        assertEquals(true, call("requestVpnPermission").await().value)
+        HarnessMain.drain()
+        assertEquals(1, activity.permissionRequests.size)
+        HarnessMain.run { bridge.detachFromActivity(activity) }
+        val next = object : Activity() {}
+        HarnessMain.run { AndroidVpnBridge.obtain(context, next, object : BinaryMessenger {}) }
+        assertEquals(true, call("requestVpnPermission").await().value)
+        eventually("asked again by the next activity") { next.permissionRequests.size == 1 }
+        assertEquals(1, activity.permissionRequests.size)
+    }
+
+    // Explicit state machines (12/11), resume record. A resume write fails while the tunnel stays
+    // up (the bridge then shows that failure instead of the record); the tunnel later ends on its
+    // own and the record is blocked with that cause. The bridge kept showing the storage failure.
+    @Test fun anUnexpectedTunnelEndAfterAFailedResumeWriteShowsItsCause() {
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        HarnessControl.writeFailure = "secure_storage_write_failed"
+        assertEquals("secure_storage_write_failed",
+            call("prepareTunnelRequest", mapOf("account_id" to ACCOUNT)).await().error)
+        HarnessControl.writeFailure = null
+        assertEquals("blocked" to "secure_storage_write_failed", shownResume())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        WireGuardController.current!!.tunnelWentDown()
+        eventually("interruption published") { published() == "error/wireguard/tunnel_disconnected" }
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.BLOCKED, record.status)
+        assertEquals("tunnel_disconnected", record.errorCode)
+        assertEquals("blocked" to "tunnel_disconnected", shownResume())
+    }
+
+    // Process-restart arming. The purge of a session end deletes the resume record, but only the
+    // record's own writes updated the arming: when the tombstone before the purge could not be
+    // written (a Keystore that cannot encrypt still deletes), the restart was armed again as
+    // soon as the command had answered, with no record left to restore.
+    @Test fun aSessionEndDisarmsTheRestartEvenWhenItsTombstoneWasNotWritten() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        HarnessControl.writeFailure = "secure_storage_write_failed"
+        val end = call("storageClearSession", mapOf("reason" to "voluntary")).await().value as Map<*, *>
+        HarnessControl.writeFailure = null
+        assertEquals(true, end["tunnel_stopped"])
+        assertEquals(true, end["session_cleared"])
+        assertNull(SecureKeystoreStore.raw(SecureStorageKeyPolicy.systemVpnResume()))
+        HarnessMain.drain()
+        assertEquals(HarnessControl.sentinel.toString(), false, HarnessControl.sentinel.lastOrNull())
+    }
+
+    /** A consent request whose dialog (the [dialogs]-th of this test) Android now shows. */
+    private fun askConsent(dialogs: Int = 1): ResultProbe {
+        VpnService.consentIntent = Intent("android.net.vpn.CONSENT")
+        val request = call("requestVpnPermission", mapOf("disclosure_accepted" to true))
+        eventually("consent dialog") { activity.startedActivities.count { it.action == "android.net.vpn.CONSENT" } == dialogs }
+        assertTrue("the request must wait for the dialog", request.pending)
+        return request
+    }
+
+    /** The bridge's state, as the events name it. */
+    private fun published(): String = bridge.quickTileState().let {
+        "${it.status.wireValue}/${it.protocol?.wireValue}/${it.messageCode}"
+    }
+
+    /** resume_state and resume_error as getSystemVpnProtection answers them. */
+    private fun shownResume(): Pair<Any?, Any?> = (call("getSystemVpnProtection").await().value as Map<*, *>).let {
+        it["resume_state"] to it["resume_error"]
     }
 
     /** Connected through [connect] with the permanent VPN off, then on: the restart is armed. */

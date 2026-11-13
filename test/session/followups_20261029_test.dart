@@ -99,6 +99,30 @@ void main() {
       expect(h.api.createdCredentials, isEmpty);
     });
 
+    test('a pending B that expires behind a failing opt-out keeps the guest '
+        'away for this process', () async {
+      final expiry = DateTime.now().add(const Duration(seconds: 1));
+      final h = _pendingRegisteredB(session('token-b', expiry));
+      addTearDown(h.close);
+      h.api.meScript['token-b'] = <Object>[unauthorized];
+      h.store.autoResumeWriteFailure = _writeFailure;
+      await h.controller.initialize();
+      expect(h.controller.hasPendingAccountRestoration, isTrue);
+      while (!DateTime.now().isAfter(expiry)) {
+        await Future<void>.delayed(const Duration(milliseconds: 20));
+      }
+      // An expiry, unlike a sign-out, does not revoke recovery: the marker
+      // the opt-out could not clear is still there.
+      await h.controller.retryAccountRestoration();
+      await pumpEventQueue();
+      expect(h.store.causes, [SessionEndCause.expired], reason: observe(h));
+      expect(h.store.autoResume, isTrue);
+      expect(h.controller.sessionTermination, isNull);
+      await h.controller.onAppResumed();
+      expect(h.api.createdCredentials, isEmpty, reason: observe(h));
+      expect(h.controller.profile, isNull);
+    });
+
     test('control: a guest alone still resumes normally', () async {
       final h = SessionHarness.guest(session('token-a0', pastExpiry));
       addTearDown(h.close);

@@ -77,8 +77,10 @@ class NativeGoogleCredentialGateway
   NativeGoogleCredentialGateway({MethodChannel? channel})
     : _channel = channel ?? const MethodChannel('com.fuzevpn/google_auth');
   final MethodChannel _channel;
-  String? _activeRequestId;
-  int _generation = 0;
+
+  /// The one sign-in in flight. A cancelled or finished request is no longer
+  /// this object, even if a later request reuses its identifier.
+  _ActiveSignIn? _active;
 
   @override
   Future<GoogleCredentialCapabilities> getCapabilities() async {
@@ -114,16 +116,16 @@ class NativeGoogleCredentialGateway
         !_printable(nonce)) {
       throw GoogleCredentialException('invalid_request');
     }
-    if (_activeRequestId != null) throw GoogleCredentialException('busy');
-    final generation = ++_generation;
-    _activeRequestId = requestId;
+    if (_active != null) throw GoogleCredentialException('busy');
+    final active = _ActiveSignIn(requestId);
+    _active = active;
     try {
       final raw = await _invoke('signIn', {
         'requestId': requestId,
         'serverClientId': serverClientId,
         'nonce': nonce,
       });
-      if (generation != _generation || _activeRequestId != requestId) {
+      if (!identical(_active, active)) {
         throw GoogleCredentialException('cancelled');
       }
       if (raw is! Map ||
@@ -138,14 +140,12 @@ class NativeGoogleCredentialGateway
       }
       return GoogleCredentialResult(requestId: requestId, idToken: token);
     } catch (_) {
-      if (generation != _generation || _activeRequestId != requestId) {
+      if (!identical(_active, active)) {
         throw GoogleCredentialException('cancelled');
       }
       rethrow;
     } finally {
-      if (generation == _generation && _activeRequestId == requestId) {
-        _activeRequestId = null;
-      }
+      if (identical(_active, active)) _active = null;
     }
   }
 
@@ -154,17 +154,13 @@ class NativeGoogleCredentialGateway
     if (!_validRequestIdentifier(requestId)) {
       throw GoogleCredentialException('invalid_request');
     }
-    if (_activeRequestId == requestId) {
-      _generation++;
-      _activeRequestId = null;
-    }
+    if (_active?.requestId == requestId) _active = null;
     await _invoke('cancelSignIn', {'requestId': requestId});
   }
 
   @override
   Future<void> clearCredentialState() async {
-    _generation++;
-    _activeRequestId = null;
+    _active = null;
     await _invoke('clearCredentialState');
   }
 
@@ -205,6 +201,11 @@ class NativeGoogleCredentialGateway
       throw GoogleCredentialException('provider_error');
     }
   }
+}
+
+class _ActiveSignIn {
+  _ActiveSignIn(this.requestId);
+  final String requestId;
 }
 
 bool _validPendingAuthentication(String payload) {

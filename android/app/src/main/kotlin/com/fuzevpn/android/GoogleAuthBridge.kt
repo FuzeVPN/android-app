@@ -160,8 +160,8 @@ internal class GoogleAuthBridge(
     }
 
     private fun clearState(result: MethodChannel.Result) {
-        operation?.ticket?.requestId?.let(::cancel)
-        val active = Operation(gate.reserve(null), result)
+        (operation?.ticket as? GoogleAuthFlowGate.Ticket.SignIn)?.let { cancel(it.requestId) }
+        val active = Operation(gate.reserveClearState(), result)
         operation = active
         try {
             manager.clearCredentialStateAsync(ClearCredentialStateRequest(), active.signal, executor,

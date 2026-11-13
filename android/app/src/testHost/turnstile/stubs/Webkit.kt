@@ -52,7 +52,10 @@ class WebView(activity: Activity): ViewGroup() {
     val settings = WebSettings()
     var webChromeClient: WebChromeClient? = null
     var webViewClient = WebViewClient()
+    /** Lets a test move the clock between two steps of one bridge callback. */
+    var beforeUrlRead: (() -> Unit)? = null
     var url: String? = initialUrl
+        get() { beforeUrlRead?.invoke(); return field }
     var destroyed = false
     var evaluationCount = 0
     var pendingEvaluation: ((String?) -> Unit)? = null

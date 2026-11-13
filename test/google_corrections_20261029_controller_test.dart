@@ -67,6 +67,8 @@ void main() {
   _afterCrashTests();
   _finalMinorTests();
   _confirmedCancellationMemoryTests();
+  _admittedIntentMemoryTests();
+  _loadedTicketAnchorTests();
 }
 
 void _retryAfterDuringBackTests() {
@@ -1554,6 +1556,169 @@ void _confirmedCancellationMemoryTests() {
       expect(h.store.clears, 2);
       expect(h.c.state.step, GoogleAuthStep.idle);
     });
+  });
+}
+
+/// State machines (12/11): an intent admitted in this process is remembered
+/// like a confirmed cancellation while its local removal fails. The server has
+/// consumed that ticket, so its stale copy is never resumed, described or
+/// cancelled through the API: only its removal is retried.
+void _admittedIntentMemoryTests() {
+  group('An intent admitted in this process is not resumed from its stale '
+      'copy', () {
+    final storageFailed = GoogleCredentialException('secure_storage_failed');
+
+    test('authenticate: checking the attempt and Back ask the server nothing, '
+        'and reopening starts a new Google choice', () async {
+      final h = _H();
+      addTearDown(h.close);
+      await h.c.begin(GoogleAuthPurpose.authenticate);
+      h.store.clearFailure = storageFailed;
+      await h.submit();
+      expect(h.c.state.step, GoogleAuthStep.authenticated);
+      expect(h.store.clears, 1);
+      expect(h.store.payload, contains('rotated-ticket-fixture'));
+      final inspected = h.api.inspectedTickets.length;
+
+      await h.c.resume();
+      expect(h.store.clears, 2);
+      expect(h.c.state.step, GoogleAuthStep.authenticated);
+      expect(h.c.hasPendingIntent, isFalse);
+      expect(await h.c.cancel(), isTrue);
+      expect(h.api.inspectedTickets, hasLength(inspected));
+      expect(h.api.cancelledTickets, isEmpty);
+
+      await h.c.begin(GoogleAuthPurpose.authenticate);
+      expect(h.store.clears, 3);
+      expect(h.gateway.selections, 2);
+      expect(h.api.created, 2);
+      expect(h.api.cancelledTickets, isEmpty);
+      expect(h.c.state.step, GoogleAuthStep.registrationRequired);
+      // The new intent is live: its cancellation still goes through the API.
+      h.store.clearFailure = null;
+      expect(await h.c.cancel(), isTrue);
+      expect(h.api.cancelledTickets, ['rotated-ticket-fixture']);
+      expect(h.store.payload, isNull);
+    });
+
+    test('claim: the converted guest signing in afterwards is not blocked by '
+        'the stale claim ticket', () async {
+      final h = _H(guest: true);
+      addTearDown(h.close);
+      await h.c.begin(GoogleAuthPurpose.claim);
+      h.claimed = true;
+      h.store.clearFailure = storageFailed;
+      await h.submit();
+      expect(h.c.state.step, GoogleAuthStep.authenticated);
+      expect(h.store.payload, contains('rotated-ticket-fixture'));
+      final claimReads = h.claimReads;
+
+      h.api.purpose = 'authenticate';
+      await h.c.begin(GoogleAuthPurpose.authenticate);
+      expect(h.c.state.block, isNull);
+      expect(h.gateway.selections, 2);
+      expect(h.claimReads, claimReads);
+      expect(h.api.cancelledTickets, isEmpty);
+      expect(h.c.state.step, GoogleAuthStep.registrationRequired);
+    });
+
+    test('once the removal works the stale copy is gone without any API '
+        'call', () async {
+      final h = _H();
+      addTearDown(h.close);
+      await h.c.begin(GoogleAuthPurpose.authenticate);
+      h.store.clearFailure = storageFailed;
+      await h.submit();
+      final inspected = h.api.inspectedTickets.length;
+      h.store.clearFailure = null;
+      await h.c.resume();
+      expect(h.store.payload, isNull);
+      expect(h.api.inspectedTickets, hasLength(inspected));
+      expect(h.api.cancelledTickets, isEmpty);
+      expect(h.c.state.step, GoogleAuthStep.authenticated);
+    });
+
+    test('control: a new process no longer knows it and resumes the copy '
+        'through the API', () async {
+      final h = _H();
+      addTearDown(h.close);
+      await h.c.begin(GoogleAuthPurpose.authenticate);
+      h.store.clearFailure = storageFailed;
+      await h.submit();
+      final inspected = h.api.inspectedTickets.length;
+      h.restart();
+      await h.c.begin(GoogleAuthPurpose.authenticate);
+      expect(h.api.inspectedTickets, hasLength(inspected + 1));
+      expect(h.gateway.selections, 1);
+    });
+  });
+}
+
+/// State machines (12/11): a ticket that Cancel loads from the store is
+/// anchored to the session of that moment, as in a new process, never to the
+/// anchor left by an earlier attempt of this process.
+void _loadedTicketAnchorTests() {
+  group('A ticket loaded by Cancel gets its own anchor', () {
+    for (final renewed in [true, false]) {
+      test(
+        'a persisted claim is reconciled through /me with the current '
+        'session (bearer renewed since an earlier attempt: $renewed)',
+        () async {
+          final api = _Api()..purpose = 'claim';
+          final store = _Store()
+            ..payload = _storedIntent(purpose: 'claim', userId: 'guest-fixture')
+            ..readFailure = GoogleCredentialException('secure_storage_failed');
+          var session = const GoogleIdentitySnapshot(
+            userId: 'guest-fixture',
+            accessToken: 'guest-bearer-fixture',
+            isGuest: true,
+          );
+          var canBegin = true;
+          final claimBearers = <String?>[];
+          final c = GoogleAuthController(
+            api: api,
+            gateway: _Gateway(),
+            pendingStore: store,
+            challengeGateway: _Security(),
+            identity: () => session,
+            identityMatches: (before) => identical(before, session),
+            canBegin: (_) => canBegin,
+            admitClaim: (before, isCurrent) async {
+              claimBearers.add(before.accessToken);
+              return isCurrent();
+            },
+          );
+          addTearDown(c.dispose);
+          // An opening anchors the session, then cannot read the store.
+          await c.begin(GoogleAuthPurpose.claim);
+          expect(c.state.messageKey, 'google.unavailable');
+          expect(await c.cancel(), isTrue);
+          expect(c.hasPendingIntent, isFalse);
+
+          if (renewed) {
+            session = const GoogleIdentitySnapshot(
+              userId: 'guest-fixture',
+              accessToken: 'renewed-bearer-fixture',
+              isGuest: true,
+            );
+          }
+          // The store answers again. The screen is reopened while another
+          // operation owns the session, then left: Cancel loads the ticket.
+          store.readFailure = null;
+          canBegin = false;
+          await c.begin(GoogleAuthPurpose.claim);
+          expect(c.state.messageKey, 'google.busy');
+          expect(await c.cancel(), isTrue);
+          // The committed conversion is recognised, never cancelled.
+          expect(claimBearers, [
+            renewed ? 'renewed-bearer-fixture' : 'guest-bearer-fixture',
+          ]);
+          expect(api.cancelledTickets, isEmpty);
+          expect(c.state.step, GoogleAuthStep.authenticated);
+          expect(store.payload, isNull);
+        },
+      );
+    }
   });
 }
 

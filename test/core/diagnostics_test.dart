@@ -497,6 +497,66 @@ void main() {
     },
   );
 
+  test(
+    'a prepared report expired by a getter is announced after that read',
+    () async {
+      final clock = _Clock();
+      final service = _service(_Transport(), clock);
+      final report = _full(service);
+      var notifications = 0;
+      service.addListener(() => notifications++);
+      clock.advance(
+        const Duration(hours: 24) - const Duration(milliseconds: 1),
+      );
+      expect(service.preparedReport, same(report));
+      await Future<void>.delayed(Duration.zero);
+      expect(notifications, 0);
+      clock.advance(const Duration(milliseconds: 1));
+      // The getter may run during a build: nothing is notified inside it.
+      expect(service.preparedReport, isNull);
+      expect(service.status, DiagnosticStatus.idle);
+      expect(notifications, 0);
+      await Future<void>.delayed(Duration.zero);
+      expect(notifications, 1);
+      // A later read changes nothing and announces nothing.
+      expect(service.preparedReport, isNull);
+      expect(service.pendingCount, 0);
+      expect(service.pendingBytes, 0);
+      await Future<void>.delayed(Duration.zero);
+      expect(notifications, 1);
+    },
+  );
+
+  test(
+    'a queued manual report expired by a getter is announced exactly once',
+    () async {
+      final transport = _Transport()
+        ..respond = (_) => _failure(503, 'diagnostics_unavailable');
+      final clock = _Clock();
+      final service = _service(transport, clock);
+      await service.sendManual(_full(service));
+      expect(service.status, DiagnosticStatus.queued);
+      expect(service.pendingCount, 1);
+      var expiryNotifications = 0;
+      service.addListener(() {
+        if (service.lastFailure?.code == 'report_expired') {
+          expiryNotifications++;
+        }
+      });
+      clock.advance(const Duration(hours: 24));
+      expect(service.pendingCount, 0);
+      expect(service.status, DiagnosticStatus.failed);
+      expect(service.lastFailure?.code, 'report_expired');
+      await Future<void>.delayed(Duration.zero);
+      expect(expiryNotifications, 1);
+      // The queue drain finds nothing left to expire or to announce.
+      await service.retryPending();
+      await Future<void>.delayed(Duration.zero);
+      expect(expiryNotifications, 1);
+      expect(transport.requests, hasLength(1));
+    },
+  );
+
   test('ring is capped at 1000 events and ten monotonic minutes', () {
     final clock = _Clock();
     final service = _service(_Transport(), clock);

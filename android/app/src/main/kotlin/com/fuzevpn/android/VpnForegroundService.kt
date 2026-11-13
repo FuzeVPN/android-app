@@ -21,10 +21,15 @@ import java.util.Locale
  * from GoBackend$VpnService, which also owns the TUN descriptor.
  */
 class VpnForegroundService : Service() {
-    private var protocol: VpnProtocol? = null
-    private var status: VpnStatus = VpnStatus.CONNECTING
-    private var reconnecting = false
-    private var waitingForNetwork = false
+    /** What the notification shows: replaced as a whole by each start or update. */
+    private data class Content(
+        val protocol: VpnProtocol? = null,
+        val status: VpnStatus = VpnStatus.CONNECTING,
+        val reconnecting: Boolean = false,
+        val waitingForNetwork: Boolean = false,
+    )
+
+    private var content = Content()
 
     override fun onCreate() {
         super.onCreate()
@@ -40,26 +45,27 @@ class VpnForegroundService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         when (intent?.action) {
-            ACTION_STOP -> stopForegroundAndSelf()
             ACTION_START, ACTION_UPDATE, null -> {
-                protocol = VpnProtocol.fromWireValue(intent?.getStringExtra(EXTRA_PROTOCOL))
-                status = VpnStatus.entries.firstOrNull { it.wireValue == intent?.getStringExtra(EXTRA_STATUS) }
-                    ?: VpnStatus.CONNECTING
-                reconnecting = intent?.getBooleanExtra("reconnecting", false) == true
-                waitingForNetwork = intent?.getBooleanExtra("waiting_network", false) == true
-                showForeground(protocol, status)
+                content = Content(
+                    protocol = VpnProtocol.fromWireValue(intent?.getStringExtra(EXTRA_PROTOCOL)),
+                    status = VpnStatus.entries.firstOrNull { it.wireValue == intent?.getStringExtra(EXTRA_STATUS) }
+                        ?: VpnStatus.CONNECTING,
+                    reconnecting = intent?.getBooleanExtra("reconnecting", false) == true,
+                    waitingForNetwork = intent?.getBooleanExtra("waiting_network", false) == true,
+                )
+                showForeground()
             }
-            ACTION_RELOCALIZE -> showForeground(protocol, status)
+            ACTION_RELOCALIZE -> showForeground()
         }
         // Do not restart a tunnel after a process kill: v1 explicitly does
         // not implement always-on/lockdown behavior.
         return START_NOT_STICKY
     }
 
-    private fun showForeground(protocol: VpnProtocol?, status: VpnStatus) {
+    private fun showForeground() {
         ensureChannel(this)
-        val notification = notificationFor(this, protocol, status, reconnecting = reconnecting,
-            waitingForNetwork = waitingForNetwork)
+        val notification = notificationFor(this, content.protocol, content.status, reconnecting = content.reconnecting,
+            waitingForNetwork = content.waitingForNetwork)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startForeground(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
         } else {
@@ -67,17 +73,11 @@ class VpnForegroundService : Service() {
         }
     }
 
-    private fun stopForegroundAndSelf() {
-        stopForeground(STOP_FOREGROUND_REMOVE)
-        stopSelf()
-    }
-
     companion object {
         const val NOTIFICATION_ID = 10101
         private const val CHANNEL_ID = "fuzevpn_connection"
         private const val ACTION_START = "com.fuzevpn.android.vpn.START"
         private const val ACTION_UPDATE = "com.fuzevpn.android.vpn.UPDATE"
-        private const val ACTION_STOP = "com.fuzevpn.android.vpn.STOP"
         private const val ACTION_RELOCALIZE = "com.fuzevpn.android.vpn.RELOCALIZE"
         private const val EXTRA_PROTOCOL = "protocol"
         private const val EXTRA_STATUS = "status"

@@ -22,8 +22,8 @@ class _LocationsPageState extends State<LocationsPage> {
   final _scroll = ScrollController();
   bool _favoritesOnly = false;
   bool _confirmingChange = false;
-  String? _countryCode;
-  String? _cityKey;
+  // The country being browsed and, once one of them is opened, its city.
+  ({String countryCode, String? cityKey})? _browsing;
 
   @override
   void initState() {
@@ -37,23 +37,24 @@ class _LocationsPageState extends State<LocationsPage> {
     if (!identical(widget.controller, oldWidget.controller)) {
       oldWidget.controller.removeListener(_catalogueChanged);
       widget.controller.addListener(_catalogueChanged);
-      _countryCode = null;
-      _cityKey = null;
+      _browsing = null;
     }
   }
 
   void _catalogueChanged() {
-    if (_countryCode == null) return;
+    final browsing = _browsing;
+    if (browsing == null) return;
     final country = groupLocations(
       widget.controller.locations,
       languageCode: 'en',
-    ).where((group) => group.countryCode == _countryCode).firstOrNull;
+    ).where((group) => group.countryCode == browsing.countryCode).firstOrNull;
     final cityExists =
-        country?.cities.any((city) => city.key == _cityKey) ?? false;
-    if (country == null || (_cityKey != null && !cityExists)) {
+        country?.cities.any((city) => city.key == browsing.cityKey) ?? false;
+    if (country == null || (browsing.cityKey != null && !cityExists)) {
       setState(() {
-        if (country == null) _countryCode = null;
-        _cityKey = null;
+        _browsing = country == null
+            ? null
+            : (countryCode: browsing.countryCode, cityKey: null);
       });
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted && _scroll.hasClients) _scroll.jumpTo(0);
@@ -79,14 +80,15 @@ class _LocationsPageState extends State<LocationsPage> {
   }
 
   void _goBack() => _navigate(() {
+    final browsing = _browsing;
     if (_search.text.trim().isNotEmpty) {
       _search.clear();
     } else if (_favoritesOnly) {
       _favoritesOnly = false;
-    } else if (_cityKey != null) {
-      _cityKey = null;
+    } else if (browsing != null && browsing.cityKey != null) {
+      _browsing = (countryCode: browsing.countryCode, cityKey: null);
     } else {
-      _countryCode = null;
+      _browsing = null;
     }
   });
 
@@ -199,11 +201,12 @@ class _LocationsPageState extends State<LocationsPage> {
         controller.locations,
         languageCode: language,
       );
+      final browsing = _browsing;
       final country = groups
-          .where((group) => group.countryCode == _countryCode)
+          .where((group) => group.countryCode == browsing?.countryCode)
           .firstOrNull;
       final city = country?.cities
-          .where((group) => group.key == _cityKey)
+          .where((group) => group.key == browsing?.cityKey)
           .firstOrNull;
       final flat = _favoritesOnly || query.isNotEmpty;
       final hasBack = flat || country != null;
@@ -434,8 +437,10 @@ class _LocationsPageState extends State<LocationsPage> {
                             count: group.cities.length,
                             isCountry: true,
                             onBrowse: () => _navigate(() {
-                              _countryCode = group.countryCode;
-                              _cityKey = null;
+                              _browsing = (
+                                countryCode: group.countryCode,
+                                cityKey: null,
+                              );
                             }),
                           )
                         : _cityRow(group as LocationCityGroup),
@@ -473,7 +478,13 @@ class _LocationsPageState extends State<LocationsPage> {
     servers: city.servers,
     count: city.servers.length,
     isCountry: false,
-    onBrowse: () => _navigate(() => _cityKey = city.key),
+    // A city is only opened inside the country being browsed.
+    onBrowse: () => _navigate(() {
+      final browsing = _browsing;
+      if (browsing != null) {
+        _browsing = (countryCode: browsing.countryCode, cityKey: city.key);
+      }
+    }),
   );
 
   Widget _groupRow({
@@ -858,9 +869,7 @@ class LocationRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selected = _currentLocationId(controller) == location.id;
-    final effectiveProtocol = controller.isTunnelActive
-        ? controller.tunnelState.protocol ?? controller.selectedProtocol
-        : controller.selectedProtocol;
+    final effectiveProtocol = _effectiveProtocol(controller);
     final compatible = location.supports(effectiveProtocol);
     final locked =
         !selectionEnabled || !controller.canChangeLocation || !compatible;
