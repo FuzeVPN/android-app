@@ -131,10 +131,8 @@ const char* FailureForEvent(const ::openvpn::ClientAPI::Event& event) {
 
 class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
  public:
-  AndroidCoreClient(PlatformCallbacks* callbacks, std::string pki_alias, NetworkPolicy network,
-                    ::openvpn::Stop* stop)
-      : callbacks_(callbacks), pki_alias_(std::move(pki_alias)), network_(std::move(network)),
-        stop_(stop) {}
+  AndroidCoreClient(PlatformCallbacks* callbacks, NetworkPolicy network, ::openvpn::Stop* stop)
+      : callbacks_(callbacks), network_(std::move(network)), stop_(stop) {}
 
   ~AndroidCoreClient() override { CloseTun(); }
 
@@ -396,7 +394,6 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
   }
 
   PlatformCallbacks* callbacks_ = nullptr;
-  std::string pki_alias_;
   mutable std::mutex state_mutex_;
   ConnectionState connection_state_;
   std::mutex tun_mutex_;
@@ -420,7 +417,7 @@ class OpenVpn3CoreSession final : public CoreSession {
       return false;
     }
     stop_ = std::make_unique<::openvpn::Stop>();
-    client_ = std::make_unique<AndroidCoreClient>(callbacks, std::string(pki_alias), std::move(profile.network), stop_.get());
+    client_ = std::make_unique<AndroidCoreClient>(callbacks, std::move(profile.network), stop_.get());
     ::openvpn::ClientAPI::Config config;
     ScopedStringErase erase_config(config.content);
     config.content = std::move(profile.content);

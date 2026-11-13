@@ -41,9 +41,6 @@ class CurrentOpenVpnConnectionIdentityTest {
         assertFalse(identity.copy(confirmed = false).isUsable(
             "account", "device", "alias", "a", 7L, true, false,
         ))
-        assertFalse(identity.copy(persisted = false).isUsable(
-            "account", "device", "alias", "a", 7L, true, false,
-        ))
     }
 
     // A certificate inside its renewal window, or expired while its tunnel stays up, still proves
@@ -60,7 +57,7 @@ class CurrentOpenVpnConnectionIdentityTest {
             val body = controller.substring(start, controller.indexOf("\n    }\n", start))
             assertTrue(proof, start >= 0)
             for (refusal in listOf("openvpn_renewal_required", "openvpn_certificate_expired", "RENEWAL_WINDOW_SECONDS",
-                "pendingGeneration(")) {
+                "OpenVpnCertificateLifetime", "pendingGeneration(")) {
                 assertFalse("$proof still refuses with $refusal", body.contains(refusal))
             }
         }

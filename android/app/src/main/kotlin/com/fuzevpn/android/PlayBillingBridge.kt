@@ -33,11 +33,9 @@ internal class PlayBillingBridge private constructor(
     private val operations = linkedSetOf<Operation>()
     private val setupWaiters = linkedMapOf<Operation, (PlayBillingClient) -> Unit>()
     private var eventSink: EventChannel.EventSink? = null
-    private var billingClient: PlayBillingClient? = null
+    private var connection: Connection = Connection.NoClient
     private var clientGeneration = 0
-    private var connectionEstablished = false
-    private var connecting = false
-    private var setupTimeout: Runnable? = null
+    private val billingClient: PlayBillingClient? get() = (connection as? Connection.Open)?.client
     private var closed = false
     private var hostResumed = false
     private var recoveringFlow: Long? = null
@@ -120,8 +118,7 @@ internal class PlayBillingBridge private constructor(
         if (closed) return@onMain
         closed = true
         hostResumed = false
-        setupTimeout?.let(host::removeCallbacks)
-        setupTimeout = null
+        cancelSetupTimeout()
         operations.toList().forEach { it.fail("unavailable") }
         setupWaiters.clear()
         eventSink = null
@@ -283,35 +280,33 @@ internal class PlayBillingBridge private constructor(
 
     private fun withClient(operation: Operation, action: (PlayBillingClient) -> Unit) {
         if (!operation.active) return
-        val client = billingClient ?: createClient()
-        if (connectionEstablished || client.isReady) {
+        val current = connection as? Connection.Open ?: createClient()
+        val client = current.client
+        if (current is Connection.Ready || client.isReady) {
             // Subsequent disconnections are handled by SDK automatic reconnection.
             action(client)
             return
         }
         setupWaiters[operation] = action
-        if (connecting) return
-        connecting = true
-        val generation = clientGeneration
+        if (current is Connection.Connecting) return
+        val generation = current.generation
         val timeout = Runnable {
-            if (!closed && connecting && generation == clientGeneration) {
+            if (!closed && isConnecting(generation)) {
                 failSetup("network")
             }
         }
-        setupTimeout = timeout
+        connection = Connection.Connecting(client, generation, timeout)
         host.postDelayed(timeout, SETUP_TIMEOUT_MS)
         try {
             client.startConnection(object : BillingClientStateListener {
                 override fun onBillingSetupFinished(result: BillingResult) = onMain {
-                    if (closed || generation != clientGeneration || !connecting) return@onMain
-                    setupTimeout?.let(host::removeCallbacks)
-                    setupTimeout = null
+                    if (closed || !isConnecting(generation)) return@onMain
                     if (result.responseCode != BillingClient.BillingResponseCode.OK) {
                         failSetup(safeCode(result.responseCode))
                         return@onMain
                     }
-                    connecting = false
-                    connectionEstablished = true
+                    cancelSetupTimeout()
+                    connection = Connection.Ready(client, generation)
                     val waiting = setupWaiters.toMap()
                     setupWaiters.clear()
                     waiting.forEach { (request, work) ->
@@ -328,43 +323,63 @@ internal class PlayBillingBridge private constructor(
         }
     }
 
-    private fun createClient(): PlayBillingClient {
+    private fun createClient(): Connection.Open {
         val generation = ++clientGeneration
         val listenerFlowId = flowGate.currentFlowId()
         val listenerOwnerId = listenerFlowId?.let(flowGate::ownerFor)
-        return host.newClient { result, purchases -> onMain {
-            if (!closed && generation == clientGeneration && activeBridge === this) {
+        val client = host.newClient { result, purchases -> onMain {
+            if (!closed && isCurrentClient(generation) && activeBridge === this) {
                 onPurchaseUpdate(result, purchases, listenerFlowId, listenerOwnerId)
             }
-        } }.also { billingClient = it }
+        } }
+        return Connection.Created(client, generation).also { connection = it }
     }
 
     private fun replaceClientForLaunch(launch: Operation) {
         // Listener ownership is fixed for one launch. Closing the previous generation
         // prevents its late callbacks from being attributed to a new account/launch.
-        setupTimeout?.let(host::removeCallbacks)
-        setupTimeout = null
+        cancelSetupTimeout()
         setupWaiters.clear()
         destroyClient()
         operations.toList().filter { it !== launch }.forEach { it.fail("unavailable") }
     }
 
     private fun failSetup(code: String) {
-        setupTimeout?.let(host::removeCallbacks)
-        setupTimeout = null
+        cancelSetupTimeout()
         val waiting = setupWaiters.keys.toList()
         setupWaiters.clear()
         destroyClient()
         waiting.forEach { it.fail(code) }
     }
 
+    private fun isCurrentClient(generation: Int): Boolean =
+        (connection as? Connection.Open)?.generation == generation
+
+    private fun isConnecting(generation: Int): Boolean =
+        (connection as? Connection.Connecting)?.generation == generation
+
+    /** Every way out of [Connection.Connecting] calls this once, before leaving the state. */
+    private fun cancelSetupTimeout() {
+        (connection as? Connection.Connecting)?.let { host.removeCallbacks(it.timeout) }
+    }
+
     private fun destroyClient() {
-        clientGeneration += 1
-        connectionEstablished = false
-        connecting = false
         val oldClient = billingClient
-        billingClient = null
+        connection = Connection.NoClient
         try { oldClient?.endConnection() } catch (_: Exception) { /* no SDK diagnostics */ }
+    }
+
+    /** At most one Play client, whose generation identifies it to late callbacks. */
+    private sealed interface Connection {
+        data object NoClient : Connection
+        sealed class Open(val client: PlayBillingClient, val generation: Int) : Connection
+        /** Built, no setup attempted yet: [withClient] starts one unless the SDK already reports ready. */
+        class Created(client: PlayBillingClient, generation: Int) : Open(client, generation)
+        /** Setup is pending; only this state has a setup timeout. */
+        class Connecting(client: PlayBillingClient, generation: Int, val timeout: Runnable) :
+            Open(client, generation)
+        /** Setup succeeded once; later disconnections belong to the SDK's automatic reconnection. */
+        class Ready(client: PlayBillingClient, generation: Int) : Open(client, generation)
     }
 
     private fun operation(success: (Any?) -> Unit, failure: (String) -> Unit): Operation =

@@ -24,6 +24,18 @@ class OpenVpnControllerWiringTest {
             .containsMatchIn(source))
     }
 
+    // OpenVpnRecoveryTest proves the gate's part. Every refusal before a session begins is
+    // published by failed(): both starts must forget the finished session before the first one.
+    @Test fun eachStartForgetsTheFinishedSessionBeforeItCanRefuse() {
+        for (start in listOf("suspend fun connect(", "suspend fun reconnectLocal(")) {
+            val at = source.indexOf(start)
+            assertTrue(start, at >= 0)
+            val requested = source.indexOf("sessionEvents.startRequested()", at)
+            assertTrue(start, requested in at until source.indexOf("failed(", at))
+        }
+        assertEquals(2, source.split("sessionEvents.startRequested()").size - 1)
+    }
+
     @Test fun identityGuardsAskWhetherANativeSessionIsInUse() {
         val guards = Regex("""if \((.+?)\) \{\s+throw VpnNativeException\("openvpn_identity_in_use"\)""")
             .findAll(source).map { it.groupValues[1] }.toList()

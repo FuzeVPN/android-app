@@ -26,12 +26,17 @@ internal class SystemVpnResumeRegistry(
      */
     private var confirmedInvalidation = false
 
+    /** Any operation that may observe or replace the record ends that acknowledgement. */
+    private fun revokeAcknowledgement() {
+        confirmedInvalidation = false
+    }
+
     @Synchronized
     fun snapshot(): SystemVpnResumeRecord? {
         val raw = try {
             readRaw()
         } catch (error: Throwable) {
-            confirmedInvalidation = false
+            revokeAcknowledgement()
             throw error
         }
         if (raw == invalidatedTombstone()) return null
@@ -39,7 +44,7 @@ internal class SystemVpnResumeRegistry(
         // A missing, replaced, or malformed value is not evidence that this
         // instance's previous tombstone still exists. Missing is fail-closed,
         // but must not authorize a later skipped tombstone write.
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         if (raw == null) return null
         return SystemVpnResumeRecord.decode(raw)
             ?: throw SystemVpnResumeException("system_vpn_resume_corrupt")
@@ -53,7 +58,7 @@ internal class SystemVpnResumeRegistry(
         identityFingerprint: String,
         recoveryConsumed: Boolean = false,
     ): SystemVpnResumeRecord {
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         val session = requireValidSession(sessionPayload)
         requireFingerprint(identityFingerprint, "system_vpn_resume_identity_invalid")
         val payload = profile.encode()
@@ -73,7 +78,7 @@ internal class SystemVpnResumeRegistry(
     /** Atomically claim READY before starting a system-originated tunnel. */
     @Synchronized
     fun reserve(sessionPayload: String, identityFingerprint: String): SystemVpnResumeRecord? {
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         val current = readRecord() ?: return null
         if (current.status != SystemVpnResumeStatus.READY ||
             !matchesCurrentSession(current, sessionPayload, identityFingerprint)
@@ -86,7 +91,7 @@ internal class SystemVpnResumeRegistry(
     /** Re-arm a successfully completed system start for a later process loss. */
     @Synchronized
     fun complete(sessionPayload: String, identityFingerprint: String): SystemVpnResumeRecord? {
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         val current = readRecord() ?: return null
         if (current.status != SystemVpnResumeStatus.RESERVED ||
             !matchesCurrentSession(current, sessionPayload, identityFingerprint)
@@ -107,7 +112,7 @@ internal class SystemVpnResumeRegistry(
         provenIdentityFingerprint: String?,
         commit: (String) -> Unit,
     ): Boolean {
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         val renewedSession = requireValidSession(newSessionPayload)
         // An API renewal may arrive just after expiry. The previous payload
         // still has to be structurally valid and match the exact durable digest.
@@ -128,7 +133,7 @@ internal class SystemVpnResumeRegistry(
     /** A failed local start remains fail-closed until a new explicit connection arms it. */
     @Synchronized
     fun block(errorCode: String): SystemVpnResumeRecord? {
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         requireErrorCode(errorCode)
         val current = readRecord() ?: return null
         if (current.status == SystemVpnResumeStatus.INVALIDATED) return current
@@ -145,7 +150,7 @@ internal class SystemVpnResumeRegistry(
      */
     @Synchronized
     fun consumeRecovery(sessionPayload: String, identityFingerprint: String): SystemVpnResumeRecord? {
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         val current = readRecord() ?: return null
         if (current.status !in setOf(SystemVpnResumeStatus.READY, SystemVpnResumeStatus.RESERVED) ||
             current.recoveryConsumed || !matchesCurrentSession(current, sessionPayload, identityFingerprint) ||
@@ -162,7 +167,7 @@ internal class SystemVpnResumeRegistry(
      */
     @Synchronized
     fun admitNetworkRecovery(sessionPayload: String, identityFingerprint: String): SystemVpnResumeRecord? {
-        confirmedInvalidation = false
+        revokeAcknowledgement()
         val current = readRecord() ?: return null
         if (current.status !in setOf(SystemVpnResumeStatus.READY, SystemVpnResumeStatus.RESERVED) ||
             !matchesCurrentSession(current, sessionPayload, identityFingerprint) ||
@@ -186,7 +191,7 @@ internal class SystemVpnResumeRegistry(
             writeRaw(invalidatedTombstone())
             confirmedInvalidation = true
         } catch (error: Throwable) {
-            confirmedInvalidation = false
+            revokeAcknowledgement()
             throw error
         }
     }

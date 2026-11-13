@@ -385,9 +385,13 @@ class _PremiumCheckoutSummaryState extends State<PremiumCheckoutSummary>
     _scheduleMidnight(now);
   }
 
-  void _scheduleMidnight(DateTime now) {
+  void _cancelMidnight() {
     _midnightTimer?.cancel();
     _midnightTimer = null;
+  }
+
+  void _scheduleMidnight(DateTime now) {
+    _cancelMidnight();
     if (!_foreground || widget.plan?.freeTrialDays == null) return;
     final nextMidnight = DateTime(now.year, now.month, now.day + 1);
     _midnightTimer = Timer(nextMidnight.difference(now), _refreshDate);
@@ -416,8 +420,7 @@ class _PremiumCheckoutSummaryState extends State<PremiumCheckoutSummary>
     if (_foreground) {
       _refreshDate();
     } else {
-      _midnightTimer?.cancel();
-      _midnightTimer = null;
+      _cancelMidnight();
     }
   }
 

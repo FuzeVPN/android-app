@@ -13,18 +13,19 @@ internal class OpenVpnRecoveryPolicy {
     private var networkClaimGeneration = 0L
 
     @Synchronized fun newRequest(recoveryConsumed: Boolean = false): Long {
-        request += 1
-        provenGeneration = 0L
-        used = recoveryConsumed
-        lostGeneration = 0L
-        networkClaimGeneration = 0L
+        replaceRequest(retryUsed = recoveryConsumed)
         return request
     }
 
     @Synchronized fun cancel() {
+        replaceRequest(retryUsed = true)
+    }
+
+    /** Every earlier ticket becomes stale; nothing is proven, lost or claimed for the new one. */
+    private fun replaceRequest(retryUsed: Boolean) {
         request += 1
         provenGeneration = 0L
-        used = true
+        used = retryUsed
         lostGeneration = 0L
         networkClaimGeneration = 0L
     }

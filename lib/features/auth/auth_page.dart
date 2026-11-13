@@ -1358,7 +1358,15 @@ class _PasswordResetSheetState extends State<_PasswordResetSheet> {
     final bool sent = await widget.controller.requestPasswordReset(
       _email.text.trim(),
     );
-    if (!mounted || ModalRoute.of(context)?.isCurrent != true) return;
+    if (!mounted) return;
+    final ModalRoute<Object?>? route = ModalRoute.of(context);
+    if (route?.isCurrent != true) {
+      // Another route covers the sheet, which is still open: it must accept
+      // a new request. Its result stays on the authentication page, as it
+      // does after a dismissal.
+      if (route?.isActive == true) setState(() => _sending = false);
+      return;
+    }
     if (sent) {
       Navigator.of(context).pop();
     } else {

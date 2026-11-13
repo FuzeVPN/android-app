@@ -288,6 +288,54 @@ class PlayBillingBridgeTest {
     }
 
     @Test
+    fun anOkUpdateWithoutTheOwnersReceiptIsSettledByTheReturnCheck() {
+        val client = openSheet("owner-a")
+        val flow = gate.currentFlowId()!!
+        bridge.onActivityPaused()
+        client.update(BillingResponseCode.OK)
+        client.update(BillingResponseCode.OK, receipt("token-b", "owner-b"))
+        assertTrue(gate.isLaunched(flow))
+
+        bridge.onActivityResumed()
+        assertEquals(listOf("error" to "busy"),
+            call(bridge, "launchSubscription", selection(MONTHLY, "owner-a")).outcomes)
+        host.advance(RECOVERY_DELAY)
+        client.answerPurchases()
+        assertNull(gate.currentFlowId())
+        assertEquals(listOf(
+            mapOf("type" to "purchases", "purchases" to emptyList<Any?>()),
+            mapOf("type" to "purchases", "purchases" to listOf(evidence("token-b", "owner-b"))),
+            mapOf("type" to "purchases", "purchases" to emptyList<Any?>(), "obfuscatedAccountId" to "owner-a"),
+        ), events.received)
+        // The slot is free again without any process restart.
+        openSheet("owner-a")
+    }
+
+    @Test
+    fun purchaseUpdatesDuringThePreCheckNeitherReleaseNorCancelTheReservation() {
+        bridge.onActivityResumed()
+        val launch = call(bridge, "launchSubscription", selection(MONTHLY, "owner-a"))
+        val client = host.clients.single()
+        client.finishSetup()
+        val flow = gate.currentFlowId()!!
+
+        client.update(BillingResponseCode.OK, receipt("token-b", "owner-b"))
+        client.update(BillingResponseCode.USER_CANCELED)
+        assertEquals(flow, gate.currentFlowId())
+        assertFalse(gate.isLaunched(flow))
+        assertTrue(launch.outcomes.isEmpty())
+        // Evidence is still forwarded; the failure of a sheet that never opened is not.
+        assertEquals(listOf(
+            mapOf("type" to "purchases", "purchases" to listOf(evidence("token-b", "owner-b"))),
+        ), events.received)
+
+        client.answerPurchases()
+        client.answerPlans(MONTHLY, YEARLY)
+        assertEquals(listOf("success" to null), launch.outcomes)
+        assertTrue(gate.isLaunched(flow))
+    }
+
+    @Test
     fun cancellationAndErrorsReachDartOnceWithTheirLaunchOwner() {
         val first = openSheet("owner-a")
         first.update(BillingResponseCode.USER_CANCELED)
@@ -450,6 +498,84 @@ class PlayBillingBridgeTest {
     }
 
     @Test
+    fun aClientReadyBeforeItsSetupAnswerServesNewWorkOnceAndKeepsWaitingCalls() {
+        val waiting = call(bridge, "queryOwnedPurchases")
+        val client = host.clients.single()
+        assertEquals(0, client.pendingPurchaseQueries)
+        // The SDK is connected, but its setup answer has not reached the main thread yet.
+        client.ready = true
+        val direct = call(bridge, "queryOwnedPurchases")
+        assertEquals(1, client.pendingPurchaseQueries)
+        client.finishSetup()
+        assertEquals(2, client.pendingPurchaseQueries)
+        client.answerPurchases(receipt("token-a", "owner-a"))
+        client.answerPurchases()
+        assertEquals(listOf("success" to listOf(evidence("token-a", "owner-a"))), direct.outcomes)
+        assertEquals(listOf("success" to emptyList<Any?>()), waiting.outcomes)
+
+        // A repeated setup answer and the cancelled setup timeout find nothing left to do.
+        client.finishSetup()
+        assertEquals(0, client.pendingPurchaseQueries)
+        host.advance(OPERATION_TIMEOUT)
+        assertEquals(1, direct.outcomes.size)
+        assertEquals(1, waiting.outcomes.size)
+        assertEquals(1, host.clients.size)
+        assertFalse(client.ended)
+    }
+
+    @Test
+    fun aClientReadyBeforeAnySetupIsUsedDirectlyUntilItStopsReportingReady() {
+        host.clientsStartReady = true
+        val owned = call(bridge, "queryOwnedPurchases")
+        val client = host.clients.single()
+        assertFalse(client.setupRequested)
+        assertEquals(1, client.pendingPurchaseQueries)
+        client.answerPurchases()
+        assertEquals(listOf("success" to emptyList<Any?>()), owned.outcomes)
+
+        // The same client then goes through the normal setup, with its bound.
+        client.ready = false
+        val plans = call(bridge, "queryPremiumPlans")
+        assertTrue(client.setupRequested)
+        assertEquals(0, client.pendingProductQueries)
+        host.advance(SETUP_TIMEOUT - 1)
+        client.finishSetup()
+        client.answerPlans(MONTHLY)
+        assertEquals(listOf("success" to listOf(MONTHLY.channelValue())), plans.outcomes)
+        host.advance(OPERATION_TIMEOUT)
+        assertEquals(1, host.clients.size)
+        assertFalse(client.ended)
+    }
+
+    @Test
+    fun aClientReplacedWhileConnectingLeavesNoTimeoutOrLateSetupBehind() {
+        val restore = call(bridge, "queryOwnedPurchases")
+        val old = host.clients.single()
+        host.advance(SETUP_TIMEOUT - 1)
+        bridge.onActivityResumed()
+        val launch = call(bridge, "launchSubscription", selection(MONTHLY, "owner-a"))
+        assertEquals(listOf("error" to "unavailable"), restore.outcomes)
+        assertTrue(old.ended)
+        val client = host.clients.last()
+
+        // Neither the replaced generation's timeout nor its late setup answer reaches its successor.
+        host.advance(1)
+        old.finishSetup()
+        assertFalse(client.ended)
+        assertTrue(launch.outcomes.isEmpty())
+        assertEquals(0, old.pendingPurchaseQueries)
+        assertEquals(0, client.pendingPurchaseQueries)
+
+        // The successor keeps its own full setup bound.
+        host.advance(SETUP_TIMEOUT - 2)
+        assertTrue(launch.outcomes.isEmpty())
+        host.advance(1)
+        assertEquals(listOf("error" to "network"), launch.outcomes)
+        assertTrue(client.ended)
+        assertNull(gate.currentFlowId())
+    }
+
+    @Test
     fun catalogueRestorationAndManagementKeepTheirNominalResults() {
         val plans = call(bridge, "queryPremiumPlans")
         val client = host.clients.single()
@@ -510,6 +636,7 @@ class PlayBillingBridgeTest {
     /** Main-thread host with a manual clock: delayed work runs only when a test advances it. */
     private class FakeHost : PlayBillingHost {
         var usable = true
+        var clientsStartReady = false
         val clients = mutableListOf<FakeClient>()
         val managementUrls = mutableListOf<String>()
         private var now = 0L
@@ -528,7 +655,10 @@ class PlayBillingBridgeTest {
             managementUrls += url
         }
         override fun newClient(updates: PurchasesUpdatedListener): PlayBillingClient =
-            FakeClient(updates).also { clients += it }
+            FakeClient(updates).also {
+                it.ready = clientsStartReady
+                clients += it
+            }
 
         fun advance(millis: Long) {
             val until = now + millis
@@ -545,6 +675,7 @@ class PlayBillingBridgeTest {
     /** One Play client generation; each SDK answer is delivered when the test decides. */
     private class FakeClient(private val updates: PurchasesUpdatedListener) : PlayBillingClient {
         var ended = false
+        var ready = false
         var featureCode = BillingResponseCode.OK
         var launchCode = BillingResponseCode.OK
         var launchFailure: Exception? = null
@@ -554,10 +685,11 @@ class PlayBillingBridgeTest {
         private val purchaseQueries = ArrayDeque<PurchasesResponseListener>()
         private val productQueries =
             ArrayDeque<(BillingResult, () -> List<PlayBillingBridge.NativePlan>) -> Unit>()
+        val setupRequested: Boolean get() = setup != null
         val pendingPurchaseQueries: Int get() = purchaseQueries.size
         val pendingProductQueries: Int get() = productQueries.size
 
-        override val isReady: Boolean get() = false
+        override val isReady: Boolean get() = ready
         override fun startConnection(listener: BillingClientStateListener) {
             setup = listener
         }

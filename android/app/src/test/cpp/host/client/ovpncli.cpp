@@ -20,10 +20,11 @@ inline bool stop_observed = false;
 inline bool stop_requested = false;
 inline bool throw_connect = false;
 inline bool throw_eval = false;
+inline bool reject_eval = false;
 inline bool stopped_before_run = false;
 inline void Reset(bool hold_setup = false) {
   std::lock_guard<std::mutex> lock(mutex);
-  setup_entered = stop_observed = stop_requested = throw_connect = throw_eval = stopped_before_run = false;
+  setup_entered = stop_observed = stop_requested = throw_connect = throw_eval = reject_eval = stopped_before_run = false;
   release_setup = !hold_setup;
 }
 }
@@ -56,7 +57,9 @@ class OpenVPNClient {
   virtual ~OpenVPNClient() = default;
   EvalConfig eval_config(const Config&) {
     if (native_fixture::throw_eval) throw std::runtime_error("injected evaluation failure");
-    return {};
+    EvalConfig evaluation;
+    evaluation.error = native_fixture::reject_eval;
+    return evaluation;
   }
   Status connect() {
     if (native_fixture::throw_connect) throw std::runtime_error("injected connect failure");

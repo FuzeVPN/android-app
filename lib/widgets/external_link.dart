@@ -31,24 +31,34 @@ class _ExternalLinkFailureDialog extends StatefulWidget {
       _ExternalLinkFailureDialogState();
 }
 
+/// The outcome of a copy. It stays displayed while the next copy runs.
+enum _CopyResult {
+  copied('externalLink.copied'),
+  failed('externalLink.copyFailed');
+
+  const _CopyResult(this.messageKey);
+
+  final String messageKey;
+}
+
 class _ExternalLinkFailureDialogState
     extends State<_ExternalLinkFailureDialog> {
   bool _copying = false;
-  String? _copyStatus;
+  _CopyResult? _copyResult;
 
   Future<void> _copy() async {
     setState(() => _copying = true);
-    String status;
+    _CopyResult result;
     try {
       await Clipboard.setData(ClipboardData(text: widget.url.toString()));
-      status = 'externalLink.copied';
+      result = _CopyResult.copied;
     } on Exception {
-      status = 'externalLink.copyFailed';
+      result = _CopyResult.failed;
     }
     if (!mounted) return;
     setState(() {
       _copying = false;
-      _copyStatus = status;
+      _copyResult = result;
     });
   }
 
@@ -92,14 +102,14 @@ class _ExternalLinkFailureDialogState
             ),
           ),
         ),
-        if (_copyStatus != null) ...<Widget>[
+        if (_copyResult != null) ...<Widget>[
           const SizedBox(height: 12),
           Semantics(
             liveRegion: true,
             child: Text(
-              context.copy(_copyStatus!),
+              context.copy(_copyResult!.messageKey),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: _copyStatus == 'externalLink.copyFailed'
+                color: _copyResult == _CopyResult.failed
                     ? Theme.of(context).colorScheme.error
                     : Theme.of(context).colorScheme.onSurfaceVariant,
               ),

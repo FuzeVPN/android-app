@@ -138,7 +138,6 @@ class GoogleAuthController extends ChangeNotifier {
   bool _securityChallengeBlocked = false;
   String? _securityRequestId;
   _SecurityProof? _securityProof;
-  Timer? _securityExpiryTimer;
   GoogleIdentitySnapshot? _before;
   Future<void>? _action;
   Future<void> _storageWrites = Future<void>.value();
@@ -147,13 +146,14 @@ class GoogleAuthController extends ChangeNotifier {
   bool _admitted = false;
   int _epoch = 0;
 
-  /// Server intents (browser context, ticket) whose cancellation the API
-  /// confirmed in this process while the local removal failed. The reply to a
-  /// second cancellation of the same ticket is unspecified, so a stale copy
-  /// read again is never presented to the API: only its removal is retried.
-  /// Emptied once the slot is cleared or overwritten; a new process starts
-  /// empty (docs/GOOGLE_AUTH.md).
-  final Set<(String, String)> _confirmedCancellations = <(String, String)>{};
+  /// Server intents (browser context, ticket) that this process saw settled,
+  /// by a cancellation the API confirmed or by an admission, while the local
+  /// removal failed. The server holds no pending intent for them and its reply
+  /// to a second cancellation of the same ticket is unspecified, so a stale
+  /// copy read again is never presented to the API: only its removal is
+  /// retried. Emptied once the slot is cleared or overwritten; a new process
+  /// starts empty (docs/GOOGLE_AUTH.md).
+  final Set<(String, String)> _settledIntents = <(String, String)>{};
 
   bool get isBusy => _action != null || _cancelling;
   bool get hasPendingIntent => _pending != null || isBusy;
@@ -256,8 +256,8 @@ class GoogleAuthController extends ChangeNotifier {
     final future = _storageWrites.then((_) async {
       _check(epoch);
       await _store!.writePendingAuthentication(pending.encode());
-      // The slot now holds this intent: no stale cancelled copy remains.
-      _confirmedCancellations.clear();
+      // The slot now holds this intent: no stale settled copy remains.
+      _settledIntents.clear();
       _check(epoch);
     });
     _storageWrites = future.then<void>((_) {}, onError: (Object _) {});
@@ -293,9 +293,7 @@ class GoogleAuthController extends ChangeNotifier {
       _emit(const GoogleAuthState(messageKey: 'google.busy'));
       return;
     }
-    _retryAfter = null;
-    _emailRetryAfter = null;
-    _securityChallengeBlocked = false;
+    _clearBlocks();
     _before = _identity();
     _admitted = false;
     _emit(const GoogleAuthState(step: GoogleAuthStep.selectingAccount));
@@ -673,12 +671,11 @@ class GoogleAuthController extends ChangeNotifier {
   Future<void> _complete() async {
     _admitted = true;
     // A storage cleanup error cannot undo a verified Fuze session or turn Back
-    // into a cancellation that revokes the account just admitted.
-    try {
-      await _store!.clearPendingAuthentication();
-    } catch (_) {
-      // Only encrypted short-lived tickets may remain, never a Google ID token.
-    }
+    // into a cancellation that revokes the account just admitted. Only an
+    // encrypted short-lived ticket may remain, never a Google ID token; as
+    // after a confirmed cancellation, its stale copy read later in this
+    // process only has its removal retried.
+    await _removeSettledTicket(_pending);
     _pending = null;
     _clearBlocks();
     _emit(const GoogleAuthState(step: GoogleAuthStep.authenticated));
@@ -691,9 +688,7 @@ class GoogleAuthController extends ChangeNotifier {
     ++_epoch;
     if (!_disposed) notifyListeners();
     try {
-      final securityRequestId = _securityRequestId;
-      _securityRequestId = null;
-      _discardSecurityProof();
+      final securityRequestId = _abandonSecurityChallenge();
       if (securityRequestId != null) {
         try {
           await _challengeGateway.cancel(requestId: securityRequestId);
@@ -779,7 +774,11 @@ class GoogleAuthController extends ChangeNotifier {
     } catch (_) {
       return false;
     }
-    return _pending != null;
+    if (_pending == null) return false;
+    // As in a new process, this ticket has no anchor yet: the one left by an
+    // earlier attempt of this process describes the session of that time.
+    _before = null;
+    return true;
   }
 
   /// Reads the ticket persisted by an earlier process, or null if there is
@@ -789,8 +788,9 @@ class GoogleAuthController extends ChangeNotifier {
   /// authentication, invalid format or lost Keystore key) or decoded is
   /// unusable: no API call can cancel or resume it, so it is removed without
   /// one and reported as a failed attempt that may be started again. A stale
-  /// copy of a cancellation that the API confirmed in this process counts as
-  /// none: only its removal is retried, without any API call.
+  /// copy of an intent settled in this process (cancellation confirmed by the
+  /// API, or admission) counts as none: only its removal is retried, without
+  /// any API call.
   Future<_PendingGoogleIntent?> _readPersistedTicket() async {
     final String? saved;
     try {
@@ -808,8 +808,8 @@ class GoogleAuthController extends ChangeNotifier {
       await _dropUnusableTicket();
       throw const _GooglePublicFailure('google.error');
     }
-    if (_confirmedCancellations.contains(intent.serverIntent)) {
-      await _removeCancelledTicket(intent);
+    if (_settledIntents.contains(intent.serverIntent)) {
+      await _removeSettledTicket(intent);
       return null;
     }
     return intent;
@@ -850,23 +850,23 @@ class GoogleAuthController extends ChangeNotifier {
     // _complete(), a failed local removal cannot trap Back. A stale copy read
     // later in this process only has its removal retried; a new process,
     // which no longer knows this confirmation, cancels it again on the server.
-    await _removeCancelledTicket(pending);
+    await _removeSettledTicket(pending);
     _pending = null;
     _clearBlocks();
     return true;
   }
 
   /// Best-effort removal of a ticket that the server no longer holds. While
-  /// it fails, [cancelled] is remembered so that this process never asks the
+  /// it fails, [settled] is remembered so that this process never asks the
   /// API about it again.
-  Future<void> _removeCancelledTicket(_PendingGoogleIntent? cancelled) async {
+  Future<void> _removeSettledTicket(_PendingGoogleIntent? settled) async {
     try {
       await _store?.clearPendingAuthentication();
-      _confirmedCancellations.clear();
+      _settledIntents.clear();
     } catch (_) {
       // Only an encrypted ticket that the server no longer holds may remain.
-      if (cancelled != null) {
-        _confirmedCancellations.add(cancelled.serverIntent);
+      if (settled != null) {
+        _settledIntents.add(settled.serverIntent);
       }
     }
   }
@@ -905,6 +905,12 @@ class GoogleAuthController extends ChangeNotifier {
   /// challenge) outlive a Back press, a failed cancellation or a failing /me.
   void _rememberFailureBlocks(Object error) {
     _rememberRetryAfter(error);
+    _rememberChallengeRequirement(error);
+  }
+
+  /// A Turnstile refusal of a registration or claim requires a solved
+  /// challenge before this intent is finalized again.
+  void _rememberChallengeRequirement(Object error) {
     if (_isTurnstileFailure(error) && _registrationContextMatches) {
       _securityChallengeBlocked = true;
     }
@@ -913,10 +919,8 @@ class GoogleAuthController extends ChangeNotifier {
   void _failure(Object error, {bool rememberRetryAfter = true}) {
     _discardSecurityProof();
     if (rememberRetryAfter) _rememberRetryAfter(error);
+    _rememberChallengeRequirement(error);
     final isTurnstileFailure = _isTurnstileFailure(error);
-    if (isTurnstileFailure && _registrationContextMatches) {
-      _securityChallengeBlocked = true;
-    }
     final message = isTurnstileFailure && !_registrationContextMatches
         ? 'google.invalidResponse'
         : switch (error) {
@@ -1036,10 +1040,10 @@ class GoogleAuthController extends ChangeNotifier {
         );
         return;
       }
-      _securityProof = _SecurityProof(proof.token, expiresAt);
-      _securityExpiryTimer = Timer(
-        expiresAt.difference(now),
-        expireSecurityChallenge,
+      _securityProof = _SecurityProof(
+        proof.token,
+        expiresAt,
+        Timer(expiresAt.difference(now), expireSecurityChallenge),
       );
       _emit(
         GoogleAuthState(
@@ -1088,18 +1092,24 @@ class GoogleAuthController extends ChangeNotifier {
   }
 
   void _discardSecurityProof() {
+    _securityProof?.expiry.cancel();
     _securityProof = null;
-    _securityExpiryTimer?.cancel();
-    _securityExpiryTimer = null;
+  }
+
+  /// Ends any challenge of this intent: forgets its proof and returns the
+  /// native request still in flight, which the caller cancels.
+  String? _abandonSecurityChallenge() {
+    final requestId = _securityRequestId;
+    _securityRequestId = null;
+    _discardSecurityProof();
+    return requestId;
   }
 
   @override
   void dispose() {
     _disposed = true;
     ++_epoch;
-    _discardSecurityProof();
-    final securityRequestId = _securityRequestId;
-    _securityRequestId = null;
+    final securityRequestId = _abandonSecurityChallenge();
     if (securityRequestId != null) {
       unawaited(
         _challengeGateway
@@ -1129,9 +1139,12 @@ class GoogleAuthController extends ChangeNotifier {
 }
 
 class _SecurityProof {
-  const _SecurityProof(this.token, this.expiresAt);
+  const _SecurityProof(this.token, this.expiresAt, this.expiry);
   final String token;
   final DateTime expiresAt;
+
+  /// Fires at [expiresAt]; cancelled once the proof is consumed or discarded.
+  final Timer expiry;
   @override
   String toString() => '_SecurityProof(redacted: true)';
 }

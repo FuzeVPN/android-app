@@ -43,17 +43,26 @@ internal class NativeTurnstileBridge(
     private var resumed = false
     private var closed = false
 
+    /** How far the embedded document got. An operation only moves forward, one step at a time. */
+    private enum class Phase {
+        /** The load was requested; no main-frame start was announced yet. */
+        LOADING,
+        /** The expected start was announced; getUrl may still describe the predecessor. */
+        PAGE_STARTED,
+        /** A poll saw the embedded document: it is evaluated and the startup bound runs. */
+        DOCUMENT_OBSERVED,
+        PROVIDER_READY,
+    }
+
     private inner class Operation(val ticket: TurnstileFlowGate.Ticket, val result: MethodChannel.Result) {
         var webView: WebView? = null
         var dialog: AlertDialog? = null
-        var pageStarted = false
+        var phase = Phase.LOADING
         var initialDocumentUrl: String? = null
-        var embeddedDocumentObserved = false
-        var providerReady = false
         val poll = Runnable { poll(this) }
         val timeout = Runnable { finishError(this, "unavailable") }
         // A provider script that fails silently or never initializes must not hold the dialog.
-        val startup = Runnable { if (!providerReady) finishError(this, "provider_error") }
+        val startup = Runnable { if (phase != Phase.PROVIDER_READY) finishError(this, "provider_error") }
     }
 
     init { channel.setMethodCallHandler(this) }
@@ -67,8 +76,8 @@ internal class NativeTurnstileBridge(
             when (call.method) {
                 "solve" -> solve(TurnstilePolicy.selection(call.arguments), result)
                 "cancel" -> {
-                    val requestId = TurnstilePolicy.cancellation(call.arguments)
-                    operation?.takeIf { it.ticket.requestId == requestId }?.let { finishError(it, "cancelled") }
+                    val ticket = gate.matching(TurnstilePolicy.cancellation(call.arguments))
+                    operation?.takeIf { it.ticket === ticket }?.let { finishError(it, "cancelled") }
                     result.success(null)
                 }
                 else -> result.notImplemented()
@@ -177,21 +186,21 @@ internal class NativeTurnstileBridge(
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 if (!owns(current)) return
-                if (current.pageStarted || !TurnstilePolicy.isEmbeddedDocument(url)) {
+                if (current.phase != Phase.LOADING || !TurnstilePolicy.isEmbeddedDocument(url)) {
                     finishError(current, "invalid_response")
-                } else current.pageStarted = true
+                } else current.phase = Phase.PAGE_STARTED
             }
 
             override fun onPageCommitVisible(view: WebView?, url: String?) {
                 if (!owns(current)) return
-                if (!current.pageStarted || !TurnstilePolicy.isEmbeddedDocument(url)) {
+                if (current.phase == Phase.LOADING || !TurnstilePolicy.isEmbeddedDocument(url)) {
                     finishError(current, "invalid_response")
                 }
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 if (!owns(current)) return
-                if (!current.pageStarted || !TurnstilePolicy.isEmbeddedDocument(url)) {
+                if (current.phase == Phase.LOADING || !TurnstilePolicy.isEmbeddedDocument(url)) {
                     finishError(current, "invalid_response")
                 }
             }
@@ -224,25 +233,30 @@ internal class NativeTurnstileBridge(
         // onPageStarted announces a load, while getUrl may still describe its
         // predecessor until commit. Waiting here never authorizes navigation
         // or evaluates that previous document, and never renews the deadline.
-        if (!current.embeddedDocumentObserved &&
-            ((!current.pageStarted && isEmbeddedDocument) ||
+        if (current.phase < Phase.DOCUMENT_OBSERVED &&
+            ((current.phase == Phase.LOADING && isEmbeddedDocument) ||
                 (!isEmbeddedDocument && (documentUrl == null || documentUrl == "about:blank" ||
                     documentUrl == current.initialDocumentUrl)))) {
             main.postDelayed(current.poll, TurnstilePolicy.POLL_INTERVAL_MS)
             return
         }
-        if (!current.pageStarted || !isEmbeddedDocument) {
+        if (current.phase == Phase.LOADING || !isEmbeddedDocument) {
             finishError(current, "invalid_response")
             return
         }
-        if (!current.embeddedDocumentObserved) {
-            current.embeddedDocumentObserved = true
+        if (current.phase == Phase.PAGE_STARTED) {
+            current.phase = Phase.DOCUMENT_OBSERVED
             main.postDelayed(current.startup, TurnstilePolicy.STARTUP_TIMEOUT_MS)
         }
         try {
             webView.evaluateJavascript(TurnstileDocument.takeResultScript) { raw ->
                 if (!owns(current)) return@evaluateJavascript
-                if (!gate.isCurrent(current.ticket) || !resumed) {
+                // This answer can be dispatched ahead of the timeout Runnable: same code as there.
+                if (!gate.isCurrent(current.ticket)) {
+                    finishError(current, "unavailable")
+                    return@evaluateJavascript
+                }
+                if (!resumed) {
                     finishError(current, "interrupted")
                     return@evaluateJavascript
                 }
@@ -254,7 +268,7 @@ internal class NativeTurnstileBridge(
                     when (val response = TurnstilePolicy.pollResult(raw)) {
                         TurnstilePollResult.Pending -> main.postDelayed(current.poll, TurnstilePolicy.POLL_INTERVAL_MS)
                         TurnstilePollResult.Ready -> {
-                            current.providerReady = true
+                            current.phase = Phase.PROVIDER_READY
                             main.removeCallbacks(current.startup)
                             main.postDelayed(current.poll, TurnstilePolicy.POLL_INTERVAL_MS)
                         }
@@ -269,24 +283,27 @@ internal class NativeTurnstileBridge(
         } catch (_: Exception) { finishError(current, "unavailable") }
     }
 
-    private fun owns(current: Operation): Boolean = operation === current && gate.owns(current.ticket)
+    // The gate alone says which operation is live; [operation] only leads to its WebView, dialog and result.
+    private fun owns(current: Operation): Boolean = gate.owns(current.ticket)
 
     private fun finishSuccess(current: Operation, token: String) {
         if (!owns(current) || !gate.isCurrent(current.ticket)) return
-        gate.finishWith(current.ticket, cleanup = {
-            operation = null
-            dispose(current)
-        }, deliver = {
+        finish(current) {
             current.result.success(mapOf("requestId" to current.ticket.requestId, "token" to token))
-        })
+        }
     }
 
     private fun finishError(current: Operation, code: String) {
         if (!owns(current)) return
+        finish(current) { current.result.error(TurnstilePolicy.safeError(code), null, null) }
+    }
+
+    /** The only end of an operation, and the only place where [operation] is cleared. */
+    private fun finish(current: Operation, deliver: () -> Unit) {
         gate.finishWith(current.ticket, cleanup = {
             operation = null
             dispose(current)
-        }, deliver = { current.result.error(TurnstilePolicy.safeError(code), null, null) })
+        }, deliver = deliver)
     }
 
     private fun dispose(current: Operation) {

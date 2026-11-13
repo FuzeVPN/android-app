@@ -125,6 +125,31 @@ class NativeTurnstileBridgeHostTest {
         callback(tokenRaw())
         assertEquals(listOf("unavailable"), fixture.result.errors)
         assertTrue(fixture.result.successes.isEmpty())
+        // Same deadline, same code, when a busy main thread dispatches the queued answer ahead of
+        // the timeout Runnable: nothing interrupted the challenge.
+        for (raw in listOf(tokenRaw(), loading, ready)) {
+            val late = instance(commit = true)
+            Handler.latest.advance(250)
+            val answer = late.view.pendingEvaluation!!
+            SystemClock.now = TurnstilePolicy.TIMEOUT_MS
+            answer(raw)
+            assertEquals(listOf("unavailable"), late.result.errors)
+            assertTrue(late.result.successes.isEmpty())
+            assertTrue(late.view.destroyed && Handler.latest.queue.isEmpty())
+        }
+        // A token whose own callback straddles the deadline is not delivered either, and the call
+        // is still answered once the looper reaches the timeout Runnable.
+        val straddling = instance(commit = true)
+        answerPolls(straddling, TurnstilePolicy.TIMEOUT_MS - 500, ready)
+        Handler.latest.advance(250)
+        val token = straddling.view.pendingEvaluation!!
+        SystemClock.now = TurnstilePolicy.TIMEOUT_MS - 1
+        straddling.view.beforeUrlRead = { SystemClock.now = TurnstilePolicy.TIMEOUT_MS }
+        token(tokenRaw())
+        Handler.latest.advance(0)
+        assertEquals(listOf("unavailable"), straddling.result.errors)
+        assertTrue(straddling.result.successes.isEmpty())
+        assertTrue(straddling.view.destroyed && Handler.latest.queue.isEmpty())
     }
 
     @Test fun secondMainFrameStartIsRejectedEvenOnTheExpectedOrigin() {

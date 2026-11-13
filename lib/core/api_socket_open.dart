@@ -482,6 +482,10 @@ Future<StreamSubscription<RawSocketEvent>> _connectApiProxyTunnel(
   return result.future;
 }
 
+/// [ended]: the raw socket finished by itself (closed or failed) and takes no
+/// more writes; [destroyed]: released by its owner.
+enum _ApiSocketState { open, ended, destroyed }
+
 /// Adapts the public raw TLS API to the Socket stream/sink used by HttpClient.
 /// The underlying IO client still owns keep-alive pooling and HTTP parsing.
 class _ApiSecureSocket extends Stream<Uint8List> implements SecureSocket {
@@ -504,7 +508,7 @@ class _ApiSecureSocket extends Stream<Uint8List> implements SecureSocket {
   late final IOSink _sink;
   late final StreamSubscription<RawSocketEvent> _events;
   Completer<void>? _writable;
-  var _destroyed = false;
+  var _state = _ApiSocketState.open;
 
   void _onEvent(RawSocketEvent event) {
     if (event == RawSocketEvent.read) {
@@ -533,6 +537,9 @@ class _ApiSecureSocket extends Stream<Uint8List> implements SecureSocket {
   }
 
   void _onDone() {
+    // The raw socket refuses any further write with a Dart error, not an
+    // IOException: writes end here, although destroy() still has to run.
+    if (_state == _ApiSocketState.open) _state = _ApiSocketState.ended;
     if (!_reads.isClosed) unawaited(_reads.close());
     _failWriter(const SocketException('API socket closed'), StackTrace.current);
   }
@@ -540,7 +547,9 @@ class _ApiSecureSocket extends Stream<Uint8List> implements SecureSocket {
   Future<void> _write(List<int> bytes) async {
     var offset = 0;
     while (offset < bytes.length) {
-      if (_destroyed) throw const SocketException('API socket closed');
+      if (_state != _ApiSocketState.open) {
+        throw const SocketException('API socket closed');
+      }
       final written = _raw.write(bytes, offset, bytes.length - offset);
       offset += written;
       if (offset < bytes.length) {
@@ -566,8 +575,8 @@ class _ApiSecureSocket extends Stream<Uint8List> implements SecureSocket {
 
   @override
   void destroy() {
-    if (_destroyed) return;
-    _destroyed = true;
+    if (_state == _ApiSocketState.destroyed) return;
+    _state = _ApiSocketState.destroyed;
     _failWriter(const SocketException('API socket closed'), StackTrace.current);
     unawaited(_events.cancel());
     unawaited(_raw.close().then<void>((_) {}, onError: (Object _) {}));

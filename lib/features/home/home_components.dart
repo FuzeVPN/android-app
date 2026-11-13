@@ -45,28 +45,21 @@ class _StatusPresentation {
     required this.label,
     required this.detail,
     required this.icon,
-    required this.color,
   });
 
   final String label;
   final String detail;
   final IconData icon;
-  final _SchemeColor color;
 }
 
-enum _SchemeColor {
-  primary,
-  error,
-  secondary,
-  outline;
-
-  Color resolve(ColorScheme scheme) => switch (this) {
-    _SchemeColor.primary => scheme.primary,
-    _SchemeColor.error => scheme.error,
-    _SchemeColor.secondary => scheme.secondary,
-    _SchemeColor.outline => scheme.outline,
-  };
-}
+/// The label and detail keys of a connecting tunnel: waiting for a network,
+/// reconnecting, or connecting for the first time.
+({String label, String detail}) _connectingStatusKeys(VpnRuntimeState state) =>
+    state.isWaitingForNetwork
+    ? (label: 'status.waitingNetwork', detail: 'status.waitingNetworkDetail')
+    : state.isReconnecting
+    ? (label: 'status.reconnecting', detail: 'status.reconnectingDetail')
+    : (label: 'status.connecting', detail: 'status.connectingDetail');
 
 _StatusPresentation _statusPresentation(
   BuildContext context,
@@ -78,61 +71,49 @@ _StatusPresentation _statusPresentation(
       label: context.copy('status.authorizing'),
       detail: context.copy('status.authorizingDetail'),
       icon: Icons.admin_panel_settings_outlined,
-      color: _SchemeColor.secondary,
     ),
     VpnRuntimePhase.preparing => _StatusPresentation(
       label: context.copy('status.preparing'),
       detail: context.copy('status.preparingDetail'),
       icon: Icons.settings_suggest_outlined,
-      color: _SchemeColor.secondary,
     ),
     VpnRuntimePhase.connecting => _StatusPresentation(
-      label: context.copy(
-        state.isWaitingForNetwork
-            ? 'status.waitingNetwork'
-            : state.isReconnecting
-            ? 'status.reconnecting'
-            : 'status.connecting',
-      ),
-      detail: context.copy(
-        state.isWaitingForNetwork
-            ? 'status.waitingNetworkDetail'
-            : state.isReconnecting
-            ? 'status.reconnectingDetail'
-            : 'status.connectingDetail',
-      ),
+      label: context.copy(_connectingStatusKeys(state).label),
+      detail: context.copy(_connectingStatusKeys(state).detail),
       icon: Icons.sync,
-      color: _SchemeColor.secondary,
     ),
     VpnRuntimePhase.connected => _StatusPresentation(
       label: context.copy('status.connected'),
       detail: context.copy('status.connectedDetail'),
       icon: Icons.verified_user,
-      color: _SchemeColor.secondary,
     ),
     VpnRuntimePhase.disconnecting => _StatusPresentation(
       label: context.copy('status.disconnecting'),
       detail: context.copy('status.disconnectingDetail'),
       icon: Icons.link_off,
-      color: _SchemeColor.outline,
     ),
     VpnRuntimePhase.error => _StatusPresentation(
       label: context.copy('status.error'),
       detail: context.copy('status.errorDetail'),
       icon: Icons.error_outline,
-      color: _SchemeColor.error,
     ),
     VpnRuntimePhase.idle => _StatusPresentation(
       label: context.copy('status.idle'),
       detail: context.copy('status.idleDetail'),
       icon: Icons.shield_outlined,
-      color: _SchemeColor.outline,
     ),
   };
 }
 
 String _protocolLabel(VpnProtocol protocol) =>
     protocol == VpnProtocol.wireGuard ? 'WireGuard' : 'OpenVPN';
+
+/// The protocol in effect: the running tunnel's while one is active, the
+/// selected one otherwise.
+VpnProtocol _effectiveProtocol(VpnAppController controller) =>
+    controller.isTunnelActive
+    ? controller.tunnelState.protocol ?? controller.selectedProtocol
+    : controller.selectedProtocol;
 
 String _themeLabel(BuildContext context, ThemeMode mode) => switch (mode) {
   ThemeMode.system => context.copy('theme.system'),

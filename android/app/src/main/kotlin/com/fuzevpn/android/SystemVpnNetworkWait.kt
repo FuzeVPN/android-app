@@ -49,11 +49,12 @@ internal class LegacyDefaultNetworkTracker<N : Any> {
     /** FOLLOWED: connected or suspended. BLOCKED: held back for this app, which also clears extraInfo. */
     enum class State { FOLLOWED, BLOCKED, OTHER }
 
-    private var key: Pair<Int, String?>? = null
-    private var followed: Set<N>? = null
+    /** The default followed so far: its type and extra information, and the networks standing for it. */
+    private class Followed<N>(val key: Pair<Int, String?>, val networks: Set<N>)
+
+    private var followed: Followed<N>? = null
 
     fun reset() {
-        key = null
         followed = null
     }
 
@@ -69,7 +70,6 @@ internal class LegacyDefaultNetworkTracker<N : Any> {
      */
     fun look(listed: Map<N, Reading>, default: Reading?): Boolean {
         val previous = followed
-        val previousKey = key
         // A BLOCKED default has no extra information: that look sees only departures and types.
         val current = default?.takeIf { it.state != State.BLOCKED }?.let { it.type to it.extraInfo }
         val matches = if (current == null) emptySet() else listed.filterValues {
@@ -80,17 +80,14 @@ internal class LegacyDefaultNetworkTracker<N : Any> {
         val present = if (current == null) listed.keys else matches + listed.filterValues {
             it.state == State.BLOCKED && it.type == current.first
         }.keys
-        val lost = previous != null && previousKey != null && (
-            (default != null && default.type != previousKey.first) ||
-                (current != null && current != previousKey) ||
-                previous.none { it in present })
+        val lost = previous != null && (
+            (default != null && default.type != previous.key.first) ||
+                (current != null && current != previous.key) ||
+                previous.networks.none { it in present })
         when {
             current == null -> if (lost) reset()
-            lost || previous == null -> if (matches.isEmpty()) reset() else {
-                key = current
-                followed = matches
-            }
-            else -> followed = previous.intersect(present)
+            lost || previous == null -> followed = if (matches.isEmpty()) null else Followed(current, matches)
+            else -> followed = Followed(previous.key, previous.networks.intersect(present))
         }
         return lost
     }

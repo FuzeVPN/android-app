@@ -19,6 +19,29 @@ enum _GuestRecovery {
   refused,
 }
 
+/// A guest token renewal in flight; requests arriving meanwhile join [task].
+/// [renewing] from the moment its preconditions passed until it settles: the
+/// session is then being replaced, and other guest work waits.
+class _GuestRenewal {
+  _GuestRenewal(this.task);
+  final Future<_GuestRecovery> task;
+  bool renewing = false;
+}
+
+/// Automatic guest recovery deferred by a temporary failure, for [session]
+/// only (null: it was attempted without any session).
+class _GuestRecoveryDeferral {
+  const _GuestRecoveryDeferral(this.session);
+  final AuthSession? session;
+}
+
+/// A guest Retry-After delay in force: [timer] ends it at [deadline].
+class _GuestRetryDelay {
+  const _GuestRetryDelay(this.deadline, this.timer);
+  final DateTime deadline;
+  final Timer timer;
+}
+
 /// Guest credentials never enter preferences, diagnostics or presentation.
 extension GuestAccountsController on VpnAppController {
   bool _syncGuestHomeAdmission() {
@@ -82,8 +105,7 @@ extension GuestAccountsController on VpnAppController {
         sessionTermination == null &&
         _terminationTask == null &&
         !_sessionOperation.isCurrent) {
-      _sessionOperation = SessionOperation();
-      _sessionExpired = false;
+      _openSessionScope();
     }
   }
 
@@ -98,14 +120,15 @@ extension GuestAccountsController on VpnAppController {
     if (error is ApiFailure &&
         error.statusCode != null &&
         _isTransientFailure(error)) {
-      _guestRetryTimer?.cancel();
+      _guestRetryDelay?.timer.cancel();
       final seconds = (error.retryAfterSeconds ?? 5).clamp(1, 60);
-      _guestRetryAfter = DateTime.now().add(Duration(seconds: seconds));
-      _guestRetryTimer = Timer(Duration(seconds: seconds), () {
-        _guestRetryTimer = null;
-        _guestRetryAfter = null;
-        if (!_disposed) notifyListeners();
-      });
+      _guestRetryDelay = _GuestRetryDelay(
+        DateTime.now().add(Duration(seconds: seconds)),
+        Timer(Duration(seconds: seconds), () {
+          _guestRetryDelay = null;
+          if (!_disposed) notifyListeners();
+        }),
+      );
     }
   }
 
@@ -396,15 +419,10 @@ extension GuestAccountsController on VpnAppController {
   Future<bool> _performGuestProfileRefresh() async {
     final before = profile;
     final activeToken = token;
-    if (_guestRefreshing) {
-      _guestRefreshQueued = true;
-      return false;
-    }
     if (_disposed || before == null || activeToken == null || _guestRenewing) {
       return false;
     }
     final operation = _sessionOperation;
-    _guestRefreshing = true;
     try {
       final next = await _api.me(activeToken);
       operation.check();
@@ -422,8 +440,6 @@ extension GuestAccountsController on VpnAppController {
     } on ApiFailure catch (error) {
       if (operation.isCurrent) await _handleSessionFailure(error, operation);
       return false;
-    } finally {
-      _guestRefreshing = false;
     }
   }
 
@@ -532,7 +548,6 @@ extension GuestAccountsController on VpnAppController {
     // Termination invalidates the session scope first. A new login must not
     // wait for the abandoned lookup; its old callback still owns that scope.
     _guestResumeTask = null;
-    _guestResuming = false;
   }
 
   Future<_GuestRecovery> _resumeGuestSession(
@@ -548,7 +563,6 @@ extension GuestAccountsController on VpnAppController {
     if (_guestActionOwner != null) return Future.value(_GuestRecovery.busy);
     final done = Completer<_GuestRecovery>();
     _guestResumeTask = done.future;
-    _guestResuming = true;
     _ensureAnonymousGuestScope();
     final activeOperation = operation.isCurrent ? operation : _sessionOperation;
     unawaited(() async {
@@ -563,7 +577,6 @@ extension GuestAccountsController on VpnAppController {
       } finally {
         if (identical(_guestResumeTask, done.future)) {
           _guestResumeTask = null;
-          _guestResuming = false;
           if (!_disposed) notifyListeners();
         }
       }
@@ -641,7 +654,7 @@ extension GuestAccountsController on VpnAppController {
         : _GuestRecovery.refused;
 
     check();
-    _guestRecoveryDeferred = false;
+    _guestRecoveryDeferral = null;
     try {
       if (!await store.readGuestAutoResume()) return _GuestRecovery.refused;
       check();
@@ -694,8 +707,7 @@ extension GuestAccountsController on VpnAppController {
       // Published first: an abandoned admission's purge keeps this message.
       _guestFailure(error, fallback: 'guest.serviceUnavailable');
       if (!sessionWriteSubmitted && _isTransientFailure(error)) {
-        _guestRecoveryDeferred = true;
-        _guestRecoveryTarget = previous;
+        _guestRecoveryDeferral = _GuestRecoveryDeferral(previous);
         return _GuestRecovery.deferred;
       }
       await reconcileSubmittedWrite();
@@ -706,25 +718,29 @@ extension GuestAccountsController on VpnAppController {
   /// [owner] is the connection or identity work whose request was refused: it
   /// hands its session over to the renewal and is released if it succeeds.
   Future<_GuestRecovery> _renewGuestSession({Object? owner}) {
-    final existing = _guestRenewalTask;
-    if (existing != null) return existing;
+    final existing = _guestRenewal;
+    if (existing != null) return existing.task;
     final done = Completer<_GuestRecovery>();
-    _guestRenewalTask = done.future;
+    final attempt = _GuestRenewal(done.future);
+    _guestRenewal = attempt;
     unawaited(() async {
       try {
-        done.complete(await _performGuestSessionRenewal(owner));
+        done.complete(await _performGuestSessionRenewal(attempt, owner));
       } catch (_) {
         done.complete(_GuestRecovery.refused);
       } finally {
-        if (identical(_guestRenewalTask, done.future)) {
-          _guestRenewalTask = null;
+        if (identical(_guestRenewal, attempt)) {
+          _guestRenewal = null;
         }
       }
     }());
     return done.future;
   }
 
-  Future<_GuestRecovery> _performGuestSessionRenewal(Object? owner) async {
+  Future<_GuestRecovery> _performGuestSessionRenewal(
+    _GuestRenewal attempt,
+    Object? owner,
+  ) async {
     final before = profile;
     final api = _guestApi;
     final store = _guestStore;
@@ -739,19 +755,16 @@ extension GuestAccountsController on VpnAppController {
     bool ownedByOther(Object? current) =>
         current != null && !identical(current, owner);
     if (isAuthenticating ||
-        _guestRenewing ||
         _guestActionOwner != null ||
         ownedByOther(_connectionOwner) ||
-        ownedByOther(_identityMutationOwner) ||
+        ownedByOther(_identityMutation) ||
         (isConnecting && _connectionOwner == null)) {
       return _GuestRecovery.busy;
     }
     // The server's Retry-After delay owns the next attempt (A13-dart-vpn-02).
-    if (_guestRetryTimer != null) return _GuestRecovery.deferred;
+    if (_guestRetryDelay != null) return _GuestRecovery.deferred;
     final oldOperation = _sessionOperation;
-    final renewalOwner = Object();
-    _guestRenewalOwner = renewalOwner;
-    _guestRenewing = true;
+    attempt.renewing = true;
     try {
       if (!await store.readGuestAutoResume()) return _GuestRecovery.refused;
       oldOperation.check();
@@ -778,14 +791,8 @@ extension GuestAccountsController on VpnAppController {
       oldOperation.invalidate();
       _invalidateListRefreshes();
       _resetMigration();
-      if (_connectionOwner != null) {
-        _connectionOwner = null;
-        isConnecting = false;
-      }
-      if (_identityMutationOwner != null) {
-        _identityMutationOwner = null;
-        isRevoking = false;
-      }
+      if (_connectionOwner != null) _releaseConnectionWork();
+      _identityMutation = null;
       _sessionOperation = SessionOperation(lineage: oldOperation.lineage);
       final operation = _sessionOperation;
       await _sessionWrite(
@@ -827,10 +834,7 @@ extension GuestAccountsController on VpnAppController {
           ? _GuestRecovery.deferred
           : _GuestRecovery.refused;
     } finally {
-      if (identical(_guestRenewalOwner, renewalOwner)) {
-        _guestRenewalOwner = null;
-        _guestRenewing = false;
-      }
+      attempt.renewing = false;
       if (!_disposed) notifyListeners();
     }
   }
@@ -870,8 +874,7 @@ extension GuestAccountsController on VpnAppController {
         return false;
       }
       _sessionOperation.invalidate();
-      _sessionOperation = SessionOperation();
-      _sessionExpired = false;
+      _openSessionScope();
       final admissionOperation = _sessionOperation;
       try {
         final restored = await _setSession(

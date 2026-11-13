@@ -30,8 +30,16 @@ internal class VpnNativeException(val code: String, cause: Throwable? = null) : 
 internal class WireGuardController(
     @Suppress("UNUSED_PARAMETER") context: Context,
     @Suppress("UNUSED_PARAMETER") secureStore: SecureKeystoreStore,
-    @Suppress("UNUSED_PARAMETER") onUnexpectedTunnelDown: () -> Unit,
+    private val onUnexpectedTunnelDown: () -> Unit,
 ) {
+    init { current = this }
+
+    /** The backend reports the tunnel down on its own, as after a revocation or a crash of wireguard-go. */
+    fun tunnelWentDown() {
+        HarnessControl.wireGuardUp = false
+        onUnexpectedTunnelDown()
+    }
+
     fun getOrCreatePublicKey(accountId: String): String {
         HarnessControl.publicKeyGate?.let { gate -> HarnessControl.publicKeyGate = null; gate.hold() }
         HarnessControl.publicKeyFailure?.let { throw VpnNativeException(it) }
@@ -70,5 +78,9 @@ internal class WireGuardController(
     fun clearAccountIdentity(accountId: String) {}
     fun close() {}
 
-    companion object { const val IDENTITY = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }
+    companion object {
+        const val IDENTITY = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        /** The bridge's engine, for tests that end the tunnel behind the bridge's back. */
+        @Volatile var current: WireGuardController? = null
+    }
 }

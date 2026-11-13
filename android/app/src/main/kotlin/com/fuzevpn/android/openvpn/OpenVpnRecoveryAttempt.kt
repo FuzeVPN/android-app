@@ -33,8 +33,8 @@ internal class OpenVpnRecoveryAttempt {
 
     companion object {
         fun profileFailure(status: String, renewalPending: Boolean): String? = when {
-            renewalPending || status == "expired" || status == "expiring" -> "openvpn_renewal_required"
-            status != "valid" -> "openvpn_profile_unavailable"
+            OpenVpnCertificateLifetime.renewalDue(status, renewalPending) -> "openvpn_renewal_required"
+            status != OpenVpnCertificateLifetime.VALID.status -> "openvpn_profile_unavailable"
             else -> null
         }
     }

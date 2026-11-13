@@ -24,6 +24,7 @@ import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
 import 'package:fuzevpn_android/widgets/notice_card.dart';
+import 'package:fuzevpn_android/widgets/vpn_disclosure_dialog.dart';
 
 const Location _frankfurt = Location(
   id: 'frankfurt-01',
@@ -681,6 +682,59 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(BottomSheet), findsNothing);
       expect(h.controller.notice, isNotNull);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets(
+    'reset form covered by another route when its reply arrives stays usable',
+    (WidgetTester tester) async {
+      final _UiHarness h = _UiHarness();
+      addTearDown(h.close);
+      await h.controller.initialize();
+      await h.controller.setLocale(const Locale('fr'));
+      await tester.pumpWidget(
+        FuzeVpnApp(controller: h.controller, autoInitialize: false),
+      );
+      await tester.pumpAndSettle();
+      await _scrollTo(tester, find.byKey(const ValueKey('welcome-sign-in')));
+      await tester.tap(find.byKey(const ValueKey('welcome-sign-in')));
+      await tester.pumpAndSettle();
+      await _reviewScrollTo(tester, find.text('Mot de passe oublié ?'));
+      await tester.tap(find.text('Mot de passe oublié ?'));
+      await tester.pumpAndSettle();
+      h.api.passwordResetRelease = Completer<void>();
+      h.api.passwordResetFailure = const ApiNetworkException();
+      final Finder field = find.descendant(
+        of: find.byType(BottomSheet),
+        matching: find.byType(TextFormField),
+      );
+      await tester.enterText(field, 'client@example.test');
+      await tester.tap(find.text('Envoyer le lien'));
+      await tester.pump();
+      expect(tester.widget<TextFormField>(field).enabled, isFalse);
+      // The application shows its VPN disclosure above every route.
+      final Future<bool> disclosure = showVpnDisclosureDialog(
+        tester.element(find.byType(BottomSheet)),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 400));
+      h.api.passwordResetRelease!.complete();
+      await tester.pump();
+      await tester.pump();
+      await tester.tap(find.byKey(const ValueKey('vpn-disclosure-decline')));
+      await tester.pumpAndSettle();
+      expect(await disclosure, isFalse);
+      // The reply arrived while the sheet was covered: it is left to the page.
+      expect(find.byType(BottomSheet), findsOneWidget);
+      expect(h.controller.notice, isNotNull);
+      expect(tester.widget<TextFormField>(field).enabled, isTrue);
+      h.api.passwordResetRelease = null;
+      h.api.passwordResetFailure = null;
+      await tester.ensureVisible(find.text('Envoyer le lien'));
+      await tester.tap(find.text('Envoyer le lien'));
+      await tester.pumpAndSettle();
+      expect(find.byType(BottomSheet), findsNothing);
       expect(tester.takeException(), isNull);
     },
   );

@@ -30,6 +30,9 @@ constexpr std::string_view kCaEnd = "-----END CERTIFICATE-----";
 constexpr std::string_view kTlsCryptV2Begin = "-----BEGIN OpenVPN tls-crypt-v2 client key-----";
 constexpr std::string_view kTlsCryptV2End = "-----END OpenVPN tls-crypt-v2 client key-----";
 
+// Which part of the profile a line belongs to: directives or an inline block.
+enum class Section { kDirectives, kCa, kTlsCryptV2 };
+
 // Position inside the PEM content of an inline block.
 enum class Pem { kExpectBegin, kExpectBody, kInBody, kAfterEnd };
 
@@ -240,8 +243,7 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
   bool has_tls_crypt_v2 = false;
   bool has_route_ipv6_filter = false;
   bool has_ifconfig_ipv6_filter = false;
-  bool in_ca = false;
-  bool in_tls_crypt_v2 = false;
+  Section section = Section::kDirectives;
   Pem pem = Pem::kExpectBegin;
   size_t certificate_body_bytes = 0;
   size_t tls_crypt_v2_size = 0;
@@ -258,15 +260,15 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
     // Trimming more let " </ca>" close <ca> here but not in Core, and the
     // following lines then reached Core as directives.
     if (count + 1 > kMaxLineBytes) {
-      return reject(in_ca ? ProfileFailure::kInvalidCa
-                    : in_tls_crypt_v2 ? ProfileFailure::kInvalidTlsCryptV2
-                                      : ProfileFailure::kForbiddenDirective);
+      return reject(section == Section::kCa ? ProfileFailure::kInvalidCa
+                    : section == Section::kTlsCryptV2 ? ProfileFailure::kInvalidTlsCryptV2
+                                                      : ProfileFailure::kForbiddenDirective);
     }
 
-    if (in_ca) {
+    if (section == Section::kCa) {
       if (line == "</ca>") {
         if (pem != Pem::kAfterEnd) return reject(ProfileFailure::kInvalidCa);
-        in_ca = false;
+        section = Section::kDirectives;
         continue;
       }
       // CERTIFICATE PEM blocks only, optionally separated by empty lines: no
@@ -285,10 +287,10 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
       }
       continue;
     }
-    if (in_tls_crypt_v2) {
+    if (section == Section::kTlsCryptV2) {
       if (line == "</tls-crypt-v2>") {
         if (pem != Pem::kAfterEnd) return reject(ProfileFailure::kInvalidTlsCryptV2);
-        in_tls_crypt_v2 = false;
+        section = Section::kDirectives;
         continue;
       }
       if (tls_crypt_v2_size + line.size() + 1 > kMaxTlsCryptBytes) {
@@ -319,14 +321,14 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
     if (line == "<ca>") {
       if (has_ca) return reject(ProfileFailure::kForbiddenDirective);
       has_ca = true;
-      in_ca = true;
+      section = Section::kCa;
       pem = Pem::kExpectBegin;
       continue;
     }
     if (line == "<tls-crypt-v2>") {
       if (has_tls_crypt_v2) return reject(ProfileFailure::kForbiddenDirective);
       has_tls_crypt_v2 = true;
-      in_tls_crypt_v2 = true;
+      section = Section::kTlsCryptV2;
       pem = Pem::kExpectBegin;
       continue;
     }
@@ -412,7 +414,7 @@ std::optional<ValidatedProfile> ProfileValidator::Validate(
     }
   }
 
-  if (in_ca || in_tls_crypt_v2) return reject(ProfileFailure::kForbiddenDirective);
+  if (section != Section::kDirectives) return reject(ProfileFailure::kForbiddenDirective);
   if (!(has_client && has_dev_tun && has_proto && has_remote && has_nobind &&
         has_remote_cert_tls && has_verify_name && has_auth_nocache &&
         has_no_compression && ProfileIpv6Allowed(dual_stack, has_block_ipv6, has_ipv6_filter) && has_data_ciphers &&

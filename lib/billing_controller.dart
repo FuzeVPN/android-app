@@ -14,9 +14,39 @@ class BillingAccount {
   final bool allowAutoRestore;
 }
 
+/// The verification in flight for one purchase token, shared by every caller
+/// that asks for that token meanwhile.
 class _BillingVerificationRequest {
+  _BillingVerificationRequest(this.purchaseState);
+
+  /// Play state of the purchase whose verification started this request.
+  final String purchaseState;
   int? sequence;
   late final Future<BillingVerification> result;
+}
+
+/// The purchase context of the current account, with when it was read and the
+/// entitlement applied at that time.
+class _PurchaseContextRead {
+  const _PurchaseContextRead(
+    this.context,
+    this.readAt,
+    this.entitlementSequence,
+  );
+  final BillingPurchaseContext context;
+  final DateTime readAt;
+  final int entitlementSequence;
+}
+
+/// An operation started by the application or the user. Each one starts only
+/// while the controller is not busy, so at most one runs at a time. The
+/// verification of a Play event is not one of them: it may overlap any.
+enum _BillingOperation {
+  loadingCatalog,
+  checkingAccess,
+  purchasing,
+  restoring,
+  retryingProcessing,
 }
 
 /// Why Google Play refuses a new checkout for the current account.
@@ -31,10 +61,45 @@ enum PlayCheckoutBlock {
   existingReceipt,
 }
 
-enum _PlayReceipts { unknown, none, linked, unlinked }
-
 /// The server entitlement observed together with a Play receipt read.
 typedef _EntitlementBasis = (String, bool, String?, DateTime?);
+
+/// What the latest read of the device's Play receipts found for this scope.
+sealed class _PlayReceipts {
+  const _PlayReceipts();
+}
+
+/// No read yet, or the linked receipt it found has lapsed since.
+final class _UnknownReceipts extends _PlayReceipts {
+  const _UnknownReceipts();
+}
+
+final class _NoReceipts extends _PlayReceipts {
+  const _NoReceipts();
+}
+
+/// Only receipts that give this account no access.
+final class _UnlinkedReceipts extends _PlayReceipts {
+  const _UnlinkedReceipts();
+}
+
+/// A receipt of this account.
+final class _LinkedReceipt extends _PlayReceipts {
+  const _LinkedReceipt({
+    required this.suspended,
+    required this.foreign,
+    required this.basis,
+  });
+
+  /// On hold or paused in Play.
+  final bool suspended;
+
+  /// A receipt of another owner was seen in the same read.
+  final bool foreign;
+
+  /// The server entitlement observed with that read.
+  final _EntitlementBasis? basis;
+}
 
 /// Purchase tokens stay in memory. Only the authenticated API grants access.
 class BillingController extends ChangeNotifier {
@@ -86,12 +151,10 @@ class BillingController extends ChangeNotifier {
   int _entitlementSequence = 0;
   int _appliedEntitlementSequence = 0;
   BillingAccount? _account;
-  BillingPurchaseContext? _context;
-  // When the subscription and purchase context were last read successfully,
-  // for which account, and the entitlement then applied.
-  DateTime? _contextReadAt;
-  int? _contextReadRevision;
-  int? _contextReadSequence;
+  // The purchase context last read successfully for this account. A new read
+  // or an account change drops it, so it never describes another account.
+  _PurchaseContextRead? _contextRead;
+  BillingPurchaseContext? get _context => _contextRead?.context;
   BillingSubscription? subscription;
   List<PlaySubscriptionPlan> plans = const [];
   int accountRevision = 0;
@@ -99,10 +162,7 @@ class BillingController extends ChangeNotifier {
   int _subscriptionReadRevision = 0;
   int _appliedSubscriptionReadRevision = 0;
   bool catalogLoaded = false;
-  bool isLoadingCatalog = false;
-  bool isRestoring = false;
-  bool isCheckingAccess = false;
-  bool _working = false;
+  _BillingOperation? _operation;
   bool _eventWorking = false;
   final Set<String> _unsettledTokens = {};
   final Map<String, PlayPurchase> _processingPurchases = {};
@@ -110,7 +170,6 @@ class BillingController extends ChangeNotifier {
   Timer? _retryTimer;
   int _retryEpoch = 0;
   int _retryAttempts = 0;
-  Object? _retryOwner;
   bool _foreground = true;
   bool get _unsettledPurchase => _unsettledTokens.isNotEmpty;
   bool _disposed = false;
@@ -118,12 +177,8 @@ class BillingController extends ChangeNotifier {
   String? _waitingOwner;
   String? _messageKey;
   int _messageRevision = 0;
-  _PlayReceipts _playReceipts = _PlayReceipts.unknown;
-  bool _linkedReceiptSuspended = false;
-  bool _foreignReceipt = false;
-  _EntitlementBasis? _playReceiptsBasis;
+  _PlayReceipts _playReceipts = const _UnknownReceipts();
   final Map<String, _BillingVerificationRequest> _verificationInFlight = {};
-  final Map<String, String> _verificationStates = {};
 
   static const playPaymentIssueMessageKey = 'billing.playOnHold';
   static const playExistingReceiptMessageKey = 'billing.playReceiptUnlinked';
@@ -134,14 +189,18 @@ class BillingController extends ChangeNotifier {
     _messageRevision++;
   }
 
+  bool get isLoadingCatalog => _operation == _BillingOperation.loadingCatalog;
+  bool get isRestoring => _operation == _BillingOperation.restoring;
+  bool get isCheckingAccess => _operation == _BillingOperation.checkingAccess;
+
   bool get isBusy =>
-      _working ||
-      _eventWorking ||
-      isLoadingCatalog ||
-      isRestoring ||
-      isCheckingAccess ||
-      _retryOwner != null ||
-      _waitingOwner != null;
+      _operation != null || _eventWorking || _waitingOwner != null;
+
+  /// Ends [operation] if it is the one running: an operation never ends
+  /// another one.
+  void _endOperation(_BillingOperation operation) {
+    if (_operation == operation) _operation = null;
+  }
 
   /// Whether the UI may offer a purchase. Play itself still decides.
   bool get purchaseAllowed => _purchaseAllowedByServer && !playCheckoutBlocked;
@@ -158,19 +217,19 @@ class BillingController extends ChangeNotifier {
   /// read, a server-side Play hold is the only evidence.
   PlayCheckoutBlock get playCheckoutBlock {
     final current = subscription;
+    final receipts = _playReceipts;
     if (_account == null ||
         current?.hasAccess == true ||
         _unsettledPurchase ||
-        _playReceipts == _PlayReceipts.none) {
+        receipts is _NoReceipts) {
       return PlayCheckoutBlock.none;
     }
     final serverHold =
         current?.provider == 'google_play' && current?.status == 'past_due';
-    if (serverHold ||
-        (_playReceipts == _PlayReceipts.linked && _linkedReceiptSuspended)) {
+    if (serverHold || (receipts is _LinkedReceipt && receipts.suspended)) {
       return PlayCheckoutBlock.paymentIssue;
     }
-    return _playReceipts == _PlayReceipts.unknown
+    return receipts is _UnknownReceipts
         ? PlayCheckoutBlock.none
         : PlayCheckoutBlock.existingReceipt;
   }
@@ -216,27 +275,22 @@ class BillingController extends ChangeNotifier {
         ),
       );
     }
-    _context = null;
+    _contextRead = null;
     subscription = null;
     plans = const [];
     catalogLoaded = false;
-    isLoadingCatalog = isRestoring = isCheckingAccess = _working = false;
+    _operation = null;
     _eventWorking = false;
     _cancelProcessingTimer();
-    _retryOwner = null;
     _retryAttempts = 0;
     _serverRetryDelay = null;
     _processingPurchases.clear();
     _unsettledTokens.clear();
-    _playReceipts = _PlayReceipts.unknown;
-    _linkedReceiptSuspended = false;
-    _foreignReceipt = false;
-    _playReceiptsBasis = null;
+    _playReceipts = const _UnknownReceipts();
     _activated = false;
     _waitingOwner = null;
     messageKey = null;
     _verificationInFlight.clear();
-    _verificationStates.clear();
     _emit();
     if (_autoRestore && next != null && next.allowAutoRestore) {
       final revision = accountRevision;
@@ -275,11 +329,7 @@ class BillingController extends ChangeNotifier {
     _appliedEntitlementSequence = ++_entitlementSequence;
     _entitlementRevision++;
     subscription = recovered;
-    _rememberPlayReceipts(
-      _PlayReceipts.linked,
-      suspended: purchase.suspended,
-      foreign: false,
-    );
+    _rememberLinkedReceipt(suspended: purchase.suspended, foreign: false);
     _activated = true;
     if (purchaseStatus == 'pending') {
       _unsettledTokens.add(purchase.purchaseToken);
@@ -303,15 +353,16 @@ class BillingController extends ChangeNotifier {
       ? null
       : (value.status, value.hasAccess, value.provider, value.expiresAt);
 
-  void _rememberPlayReceipts(
-    _PlayReceipts receipts, {
+  /// Remembers a receipt of this account with the entitlement now applied.
+  void _rememberLinkedReceipt({
     required bool suspended,
     required bool foreign,
   }) {
-    _playReceipts = receipts;
-    _linkedReceiptSuspended = suspended;
-    _foreignReceipt = foreign;
-    _playReceiptsBasis = _basisOf(subscription);
+    _playReceipts = _LinkedReceipt(
+      suspended: suspended,
+      foreign: foreign,
+      basis: _basisOf(subscription),
+    );
   }
 
   /// A linked receipt is this account's own subscription. Once a newer server
@@ -319,14 +370,14 @@ class BillingController extends ChangeNotifier {
   /// end of a hold), Play may no longer hold it: forget it until the next
   /// read. A receipt of another owner seen in the same read still blocks.
   void _forgetLapsedLinkedReceipt() {
-    if (_playReceipts != _PlayReceipts.linked ||
-        _basisOf(subscription) == _playReceiptsBasis) {
+    final receipts = _playReceipts;
+    if (receipts is! _LinkedReceipt ||
+        _basisOf(subscription) == receipts.basis) {
       return;
     }
-    _playReceipts = _foreignReceipt
-        ? _PlayReceipts.unlinked
-        : _PlayReceipts.unknown;
-    _linkedReceiptSuspended = false;
+    _playReceipts = receipts.foreign
+        ? const _UnlinkedReceipts()
+        : const _UnknownReceipts();
   }
 
   /// H-R11-01-01: an operation's late outcome never replaces a message
@@ -349,7 +400,7 @@ class BillingController extends ChangeNotifier {
         !_foreground ||
         _processingPurchases.isEmpty ||
         _retryTimer != null ||
-        _retryOwner != null ||
+        _operation == _BillingOperation.retryingProcessing ||
         _retryAttempts >= _processingRetryDelays.length) {
       return;
     }
@@ -375,8 +426,7 @@ class BillingController extends ChangeNotifier {
         _retryAttempts >= _processingRetryDelays.length) {
       return;
     }
-    final owner = Object();
-    _retryOwner = owner;
+    _operation = _BillingOperation.retryingProcessing;
     _retryAttempts++;
     _emit();
     try {
@@ -386,8 +436,9 @@ class BillingController extends ChangeNotifier {
         restoring: false,
       );
     } finally {
-      if (_current(revision) && identical(_retryOwner, owner)) {
-        _retryOwner = null;
+      if (_current(revision) &&
+          _operation == _BillingOperation.retryingProcessing) {
+        _operation = null;
         _emit();
         _scheduleProcessingRetry(revision);
       }
@@ -395,7 +446,7 @@ class BillingController extends ChangeNotifier {
   }
 
   Future<bool> _refreshContext(int revision) async {
-    _context = null;
+    _contextRead = null;
     final readRevision = ++_subscriptionReadRevision;
     try {
       final read = _queueEntitlement(revision, () async {
@@ -423,10 +474,11 @@ class BillingController extends ChangeNotifier {
       if (!validBillingAccountId(contextResult.obfuscatedAccountId)) {
         return false;
       }
-      _context = contextResult;
-      _contextReadAt = DateTime.now();
-      _contextReadRevision = revision;
-      _contextReadSequence = _appliedEntitlementSequence;
+      _contextRead = _PurchaseContextRead(
+        contextResult,
+        DateTime.now(),
+        _appliedEntitlementSequence,
+      );
       return true;
     } catch (_) {
       return false;
@@ -438,7 +490,7 @@ class BillingController extends ChangeNotifier {
     if (isBusy) return;
     _activated = true;
     final revision = accountRevision;
-    isLoadingCatalog = true;
+    _operation = _BillingOperation.loadingCatalog;
     messageKey = null;
     var messageRevision = _messageRevision;
     _emit();
@@ -475,7 +527,7 @@ class BillingController extends ChangeNotifier {
       }
     } finally {
       if (_catalogCurrent(revision)) {
-        isLoadingCatalog = false;
+        _endOperation(_BillingOperation.loadingCatalog);
         _emit();
       }
     }
@@ -488,12 +540,10 @@ class BillingController extends ChangeNotifier {
   /// still reads it every time.
   Future<void> refreshSubscriptionIfStale() {
     syncAccount();
-    final DateTime? readAt = _contextReadAt;
-    if (_context != null &&
-        readAt != null &&
-        _contextReadRevision == accountRevision &&
-        _contextReadSequence == _appliedEntitlementSequence &&
-        DateTime.now().difference(readAt) < const Duration(minutes: 1)) {
+    final read = _contextRead;
+    if (read != null &&
+        read.entitlementSequence == _appliedEntitlementSequence &&
+        DateTime.now().difference(read.readAt) < const Duration(minutes: 1)) {
       // Only the read is skipped: a visit still clears the previous message,
       // as a refresh does (an automatic restore may have published one).
       if (!isBusy) {
@@ -510,13 +560,13 @@ class BillingController extends ChangeNotifier {
     if (isBusy || _account == null) return;
     _activated = true;
     final revision = accountRevision;
-    isCheckingAccess = true;
+    _operation = _BillingOperation.checkingAccess;
     messageKey = null;
     final messageRevision = _messageRevision;
     _emit();
     final available = await _refreshContext(revision);
     if (!_current(revision)) return;
-    isCheckingAccess = false;
+    _endOperation(_BillingOperation.checkingAccess);
     if (!available) _publishOutcome(messageRevision, 'billing.comingSoon');
     _emit();
   }
@@ -527,7 +577,7 @@ class BillingController extends ChangeNotifier {
       return;
     }
     final revision = accountRevision;
-    _working = true;
+    _operation = _BillingOperation.purchasing;
     messageKey = null;
     final messageRevision = _messageRevision;
     _emit();
@@ -572,7 +622,9 @@ class BillingController extends ChangeNotifier {
         catalogLoaded = false;
       }
       if (error.code == 'already_owned') {
-        _working = false;
+        // The purchase ends here and hands over to a restore, which only
+        // starts while the controller is not busy.
+        _endOperation(_BillingOperation.purchasing);
         await restorePurchases();
       }
     } catch (_) {
@@ -582,7 +634,7 @@ class BillingController extends ChangeNotifier {
       }
     } finally {
       if (_current(revision)) {
-        _working = false;
+        _endOperation(_BillingOperation.purchasing);
         _emit();
       }
     }
@@ -649,17 +701,17 @@ class BillingController extends ChangeNotifier {
   }
 
   _BillingVerificationRequest _queueVerification(
-    String purchaseToken,
+    PlayPurchase purchase,
     int revision,
   ) {
-    final request = _BillingVerificationRequest();
+    final request = _BillingVerificationRequest(purchase.state);
     request.result = _queueEntitlement(revision, () async {
       // Order by actual server invocation, including a queued request emitted
       // after an accepted recovery response.
       request.sequence = ++_entitlementSequence;
       final result = await _api.verifyPurchase(
         token: _account!.accessToken,
-        purchaseToken: purchaseToken,
+        purchaseToken: purchase.purchaseToken,
       );
       if (!_current(revision)) return result;
       if (!const [
@@ -681,6 +733,25 @@ class BillingController extends ChangeNotifier {
       return result;
     });
     return request;
+  }
+
+  /// The verification in flight for this purchase token, started if there is
+  /// none.
+  _BillingVerificationRequest _sharedVerification(
+    PlayPurchase purchase,
+    int revision,
+  ) => _verificationInFlight.putIfAbsent(
+    purchase.purchaseToken,
+    () => _queueVerification(purchase, revision),
+  );
+
+  /// Forgets [verification] if it is still the one in flight for its token.
+  void _releaseVerification(
+    String purchaseToken,
+    _BillingVerificationRequest? verification,
+  ) {
+    if (!identical(_verificationInFlight[purchaseToken], verification)) return;
+    _verificationInFlight.remove(purchaseToken)?.result.ignore();
   }
 
   Future<void> _verify(
@@ -705,14 +776,8 @@ class BillingController extends ChangeNotifier {
       }
       _BillingVerificationRequest? verification;
       try {
-        final initialState = _verificationStates.putIfAbsent(
-          purchase.purchaseToken,
-          () => purchase.state,
-        );
-        verification = _verificationInFlight.putIfAbsent(
-          purchase.purchaseToken,
-          () => _queueVerification(purchase.purchaseToken, revision),
-        );
+        verification = _sharedVerification(purchase, revision);
+        final initialState = verification.purchaseState;
         var result = await verification.result;
         if (!_current(revision)) return;
         // A purchased callback must not be consumed by an older pending lookup.
@@ -720,24 +785,8 @@ class BillingController extends ChangeNotifier {
         if (initialState == 'pending' &&
             purchase.state == 'purchased' &&
             result.purchaseStatus == 'pending') {
-          if (identical(
-            _verificationInFlight[purchase.purchaseToken],
-            verification,
-          )) {
-            _verificationInFlight
-                .remove(purchase.purchaseToken)
-                ?.result
-                .ignore();
-            _verificationStates.remove(purchase.purchaseToken);
-          }
-          _verificationStates.putIfAbsent(
-            purchase.purchaseToken,
-            () => purchase.state,
-          );
-          verification = _verificationInFlight.putIfAbsent(
-            purchase.purchaseToken,
-            () => _queueVerification(purchase.purchaseToken, revision),
-          );
+          _releaseVerification(purchase.purchaseToken, verification);
+          verification = _sharedVerification(purchase, revision);
           result = await verification.result;
         }
         if (!_current(revision)) return;
@@ -791,13 +840,8 @@ class BillingController extends ChangeNotifier {
           }
         }
       } finally {
-        if (_current(revision) &&
-            identical(
-              _verificationInFlight[purchase.purchaseToken],
-              verification,
-            )) {
-          _verificationInFlight.remove(purchase.purchaseToken)?.result.ignore();
-          _verificationStates.remove(purchase.purchaseToken);
+        if (_current(revision)) {
+          _releaseVerification(purchase.purchaseToken, verification);
         }
       }
     }
@@ -812,7 +856,7 @@ class BillingController extends ChangeNotifier {
     _cancelProcessingTimer();
     _retryAttempts = 0;
     _serverRetryDelay = null;
-    isRestoring = true;
+    _operation = _BillingOperation.restoring;
     messageKey = null;
     final messageRevision = _messageRevision;
     _emit();
@@ -830,19 +874,16 @@ class BillingController extends ChangeNotifier {
       final owned = premium
           .where((p) => p.obfuscatedAccountId == _context!.obfuscatedAccountId)
           .toList();
-      // Any premium receipt makes the native pre-check refuse a checkout.
-      final receipts = owned.isNotEmpty
-          ? _PlayReceipts.linked
-          : premium.isNotEmpty
-          ? _PlayReceipts.unlinked
-          : _PlayReceipts.none;
       final suspended = owned.any((p) => p.suspended);
       final foreign = premium.length > owned.length;
       _processingPurchases.clear();
       _unsettledTokens.retainAll(owned.map((p) => p.purchaseToken));
       if (owned.isEmpty) {
         _unsettledTokens.clear();
-        _rememberPlayReceipts(receipts, suspended: suspended, foreign: foreign);
+        // Any premium receipt makes the native pre-check refuse a checkout.
+        _playReceipts = premium.isNotEmpty
+            ? const _UnlinkedReceipts()
+            : const _NoReceipts();
         // A receipt of another owner that blocks checkout is explained with
         // the card's own reason, never as "none". With access, it blocks
         // nothing this account would buy: the baseline result stays.
@@ -855,11 +896,7 @@ class BillingController extends ChangeNotifier {
         await _verify(owned, revision, restoring: true);
         // The read is remembered with the entitlement its verification set.
         if (_current(revision)) {
-          _rememberPlayReceipts(
-            receipts,
-            suspended: suspended,
-            foreign: foreign,
-          );
+          _rememberLinkedReceipt(suspended: suspended, foreign: foreign);
         }
       }
     } catch (_) {
@@ -868,7 +905,7 @@ class BillingController extends ChangeNotifier {
       }
     } finally {
       if (_current(revision)) {
-        isRestoring = false;
+        _endOperation(_BillingOperation.restoring);
         _emit();
       }
     }
@@ -909,7 +946,6 @@ class BillingController extends ChangeNotifier {
     _events.cancel();
     _gateway.dispose();
     _verificationInFlight.clear();
-    _verificationStates.clear();
     _processingPurchases.clear();
     _unsettledTokens.clear();
     super.dispose();

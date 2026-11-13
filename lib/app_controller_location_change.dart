@@ -68,8 +68,7 @@ extension VpnLocationChange on VpnAppController {
     // A cancelled migration may finish server-side, but its stale completion
     // must never continue this connection or replace a newer screen's state.
     _resetMigration();
-    _connectionOwner = null;
-    isConnecting = false;
+    _releaseConnectionWork();
     // Keep a known server-side migration visible and locked after cancelling
     // this continuation. Rebind only its record; the old asynchronous owner
     // stays invalid and cannot restart a tunnel.

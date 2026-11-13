@@ -41,6 +41,41 @@ class GoogleAuthenticationPage extends StatefulWidget {
       _GoogleAuthenticationPageState();
 }
 
+/// How the page leaves. [closing] disables its actions while a cancellation
+/// asked from it is in flight or confirmed, [popAllowed] lets the scheduled
+/// pop through, and [finishing] means that the session is admitted.
+enum _GoogleExit {
+  /// No exit is under way.
+  open(closing: false, popAllowed: false, finishing: false),
+
+  /// A cancellation asked from this page, to leave or to start again, is in
+  /// flight.
+  cancelling(closing: true, popAllowed: false, finishing: false),
+
+  /// The cancellation to leave is confirmed: the pop of this page is
+  /// scheduled.
+  cancelled(closing: true, popAllowed: true, finishing: false),
+
+  /// The session is admitted: the return to the first page is scheduled.
+  authenticated(closing: false, popAllowed: true, finishing: true),
+
+  /// As [authenticated], with a cancellation asked from this page.
+  authenticatedCancelling(closing: true, popAllowed: true, finishing: true);
+
+  const _GoogleExit({
+    required this.closing,
+    required this.popAllowed,
+    required this.finishing,
+  });
+
+  final bool closing;
+  final bool popAllowed;
+  final bool finishing;
+}
+
+/// A refused exit and the controller state it was reported in.
+typedef _ExitFailure = ({String messageKey, GoogleAuthState state});
+
 class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   final _profileForm = GlobalKey<FormState>();
   final _proofForm = GlobalKey<FormState>();
@@ -48,23 +83,45 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   final _emailCode = TextEditingController();
   String? _country;
   bool _terms = false, _privacy = false, _showConsentErrors = false;
-  bool _obscure = true, _closing = false, _allowPop = false, _finishing = false;
-  String? _exitMessage;
+  bool _obscure = true;
+  _GoogleExit _exit = _GoogleExit.open;
   // The state shown when the exit failed: any later state replaces the notice.
-  GoogleAuthState? _exitState;
+  _ExitFailure? _exitFailure;
   Timer? _retryTimer;
   String? _countryOrderLocale;
   List<String>? _countryOrder;
 
   GoogleAuthController get _auth => widget.controller.googleAuth;
 
+  /// What is left of the server-imposed delay, or null once it has passed.
+  Duration? get _retryWait {
+    final wait = _auth.state.retryAfter?.difference(_auth.now);
+    return wait != null && wait > Duration.zero ? wait : null;
+  }
+
+  /// The steps whose form is finalized by a request to the server.
+  static bool _isFormStep(GoogleAuthStep step) =>
+      step == GoogleAuthStep.registrationRequired ||
+      step == GoogleAuthStep.guestClaimRequired ||
+      step == GoogleAuthStep.linkRequired;
+
   bool get _canFinalize =>
-      !_closing &&
+      !_exit.closing &&
       !_auth.isBusy &&
       _auth.state.block == null &&
       (!_auth.state.securityChallengeRequired ||
           _auth.state.challengeExpiresAt?.isAfter(_auth.now) == true) &&
-      _auth.state.retryAfter?.isAfter(_auth.now) != true;
+      _retryWait == null;
+
+  // A cancellation asked from this page starts: its actions wait for it.
+  void _cancelStarted() => _exit = _exit.finishing
+      ? _GoogleExit.authenticatedCancelling
+      : _GoogleExit.cancelling;
+
+  // That cancellation ended and the page stays: an admitted session keeps
+  // its scheduled return.
+  void _cancelEnded() =>
+      _exit = _exit.finishing ? _GoogleExit.authenticated : _GoogleExit.open;
 
   @override
   void initState() {
@@ -82,10 +139,16 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
       return;
     }
     _scheduleRetryRefresh();
-    setState(() {});
-    if (_auth.state.step == GoogleAuthStep.authenticated && !_finishing) {
-      _finishing = true;
-      _allowPop = true;
+    final admitted =
+        _auth.state.step == GoogleAuthStep.authenticated && !_exit.finishing;
+    setState(() {
+      if (admitted) {
+        _exit = _exit.closing
+            ? _GoogleExit.authenticatedCancelling
+            : _GoogleExit.authenticated;
+      }
+    });
+    if (admitted) {
       _password.clear();
       _emailCode.clear();
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -101,12 +164,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
     final now = _auth.now;
     final retryAfter = _auth.state.retryAfter;
     final countdownShown =
-        _auth.state.securityChallengeRequired ||
-        const {
-          GoogleAuthStep.registrationRequired,
-          GoogleAuthStep.guestClaimRequired,
-          GoogleAuthStep.linkRequired,
-        }.contains(_auth.state.step);
+        _auth.state.securityChallengeRequired || _isFormStep(_auth.state.step);
     // While finalization waits, refresh each time the countdown changes.
     DateTime? countdownTick;
     if (countdownShown && retryAfter != null && retryAfter.isAfter(now)) {
@@ -154,32 +212,33 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   }
 
   Future<void> _leave() async {
-    if (_closing) {
+    if (_exit.closing) {
       return;
     }
     FocusScope.of(context).unfocus();
     setState(() {
-      _closing = true;
-      _exitMessage = null;
+      _cancelStarted();
+      _exitFailure = null;
     });
     final cancelled = await _auth.cancel();
     if (!mounted) {
       return;
     }
-    if (_finishing) {
+    if (_exit.finishing) {
       return;
     }
     if (!cancelled) {
       setState(() {
-        _closing = false;
-        _exitMessage = 'google.cancelFailed';
-        _exitState = _auth.state;
+        _cancelEnded();
+        _exitFailure = (messageKey: 'google.cancelFailed', state: _auth.state);
       });
       return;
     }
-    setState(() => _allowPop = true);
+    setState(() => _exit = _GoogleExit.cancelled);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (mounted && !_finishing && ModalRoute.of(context)?.isCurrent == true) {
+      if (mounted &&
+          !_exit.finishing &&
+          ModalRoute.of(context)?.isCurrent == true) {
         Navigator.of(context).pop();
       }
     });
@@ -227,19 +286,28 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   }
 
   Future<void> _restart() async {
-    if (!await _auth.cancel() || !mounted) {
-      if (mounted) {
-        setState(() {
-          _exitMessage = 'google.cancelFailed';
-          _exitState = _auth.state;
-        });
-      }
+    if (_exit.closing) {
+      return;
+    }
+    // Leaving meanwhile would ask the controller for a second cancellation,
+    // which it refuses at once: Back and Cancel wait for this one.
+    setState(_cancelStarted);
+    final cancelled = await _auth.cancel();
+    if (!mounted) {
+      return;
+    }
+    if (!cancelled) {
+      setState(() {
+        _cancelEnded();
+        _exitFailure = (messageKey: 'google.cancelFailed', state: _auth.state);
+      });
       return;
     }
     _password.clear();
     _emailCode.clear();
     setState(() {
-      _exitMessage = null;
+      _cancelEnded();
+      _exitFailure = null;
       _country = null;
       _terms = false;
       _privacy = false;
@@ -251,16 +319,20 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
   @override
   Widget build(BuildContext context) {
     final state = _auth.state;
-    final busy = _auth.isBusy || _closing;
+    final busy = _auth.isBusy || _exit.closing;
     final profileStep =
         state.step == GoogleAuthStep.registrationRequired ||
         state.step == GoogleAuthStep.guestClaimRequired;
-    final formStep = profileStep || state.step == GoogleAuthStep.linkRequired;
+    final formStep = _isFormStep(state.step);
     final retryAfter = state.retryAfter;
-    final retryWait = retryAfter?.difference(_auth.now);
-    final retryPending = retryWait != null && retryWait > Duration.zero;
+    final retryWait = _retryWait;
+    final retryPending = retryWait != null;
     // A failed exit is reported until the controller publishes a newer state.
-    final exitMessage = identical(state, _exitState) ? _exitMessage : null;
+    final exitFailure = _exitFailure;
+    final exitMessage =
+        exitFailure != null && identical(state, exitFailure.state)
+        ? exitFailure.messageKey
+        : null;
     final challengeBlocked = state.block == GoogleAuthBlock.securityChallenge;
     // The controller publishes retryAfter only while it is in force, so a
     // passed deadline marks the limit message of this very state as stale.
@@ -279,14 +351,11 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
         state.securityChallengeRequired &&
         state.block != GoogleAuthBlock.intentMismatch;
     final retrySeconds =
-        retryWait != null &&
-            retryPending &&
-            !busy &&
-            (formStep || challengeAction)
+        retryWait != null && !busy && (formStep || challengeAction)
         ? (retryWait.inMicroseconds / Duration.microsecondsPerSecond).ceil()
         : null;
     return PopScope<void>(
-      canPop: _allowPop,
+      canPop: _exit.popAllowed,
       onPopInvokedWithResult: (didPop, _) {
         if (!didPop) {
           unawaited(_leave());
@@ -295,7 +364,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
       child: Scaffold(
         key: const ValueKey('google-auth-page'),
         appBar: AppBar(
-          leading: BackButton(onPressed: _closing ? null : _leave),
+          leading: BackButton(onPressed: _exit.closing ? null : _leave),
           title: const FuzeBrand(emblemSize: 28),
         ),
         body: SafeArea(
@@ -370,9 +439,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
                   if (challengeAction) ...[
                     OutlinedButton(
                       key: const ValueKey('google-solve-challenge'),
-                      onPressed: state.retryAfter?.isAfter(_auth.now) == true
-                          ? null
-                          : _solveSecurityChallenge,
+                      onPressed: retryPending ? null : _solveSecurityChallenge,
                       child: Text(
                         context.copy('google.solveChallenge'),
                         textAlign: TextAlign.center,
@@ -429,7 +496,7 @@ class _GoogleAuthenticationPageState extends State<GoogleAuthenticationPage> {
                   const SizedBox(height: 20),
                   TextButton(
                     key: const ValueKey('google-cancel'),
-                    onPressed: _closing ? null : _leave,
+                    onPressed: _exit.closing ? null : _leave,
                     child: Text(
                       context.copy(
                         widget.purpose == GoogleAuthPurpose.claim

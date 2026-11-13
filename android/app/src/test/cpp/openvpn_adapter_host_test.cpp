@@ -87,9 +87,39 @@ int main() {
     session.Stop(); // partially initialized client remains cleanable
     ++cases;
   }
+  // A rejected evaluation keeps the stop token without a client: neither Stop
+  // nor the next Start may look for a client behind it.
+  {
+    native_fixture::Reset();
+    native_fixture::reject_eval = true;
+    OpenVpn3CoreSession session;
+    assert(!session.Start(Profile(), "offline.alias", &callbacks));
+    assert(!session.IsConnected());
+    session.Stop();
+    assert(!session.Start(Profile(), "offline.alias", &callbacks));
+    native_fixture::reject_eval = false;
+    assert(session.Start(Profile(), "offline.alias", &callbacks));
+    session.Stop();
+    assert(native_fixture::stop_observed && !session.IsConnected());
+    ++cases;
+  }
+  // Start itself cleans what a failed Start left, and stops a running worker.
+  {
+    native_fixture::Reset();
+    native_fixture::throw_eval = true;
+    OpenVpn3CoreSession session;
+    try { session.Start(Profile(), "offline.alias", &callbacks); assert(false); }
+    catch (const std::runtime_error&) {}
+    native_fixture::throw_eval = false;
+    assert(session.Start(Profile(), "offline.alias", &callbacks));
+    assert(session.Start(Profile(), "offline.alias", &callbacks));
+    session.Stop();
+    assert(native_fixture::stop_observed && !session.IsConnected());
+    ++cases;
+  }
   {
     ::openvpn::Stop stop;
-    AndroidCoreClient client(&callbacks, "offline.alias", {}, &stop);
+    AndroidCoreClient client(&callbacks, {}, &stop);
     assert(client.tun_builder_new());
     auto options = Dns();
     assert(client.tun_builder_set_dns_options(options)); ++cases;

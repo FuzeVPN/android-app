@@ -119,7 +119,7 @@ internal class AndroidVpnBridge(
     private var wireGuardRecoveryInstance = -1L
     private val systemStartLock = Any()
     @Volatile private var systemStartJob: Job? = null
-    @Volatile private var resumeState = "unavailable"
+    @Volatile private var resumeState = ResumeState.UNAVAILABLE
     @Volatile private var resumeError: String? = null
     @Volatile private var resumeStorageFailure = false
     @Volatile private var systemStartInFlight = false
@@ -184,28 +184,24 @@ internal class AndroidVpnBridge(
     private var connectedAtMillis: Long? = null
     @Volatile private var provenConnectionProfile: QuickTileProfile? = null
 
+    // Main thread: the consent dialog awaiting its activity result, if any.
     @Volatile
-    private var permissionResult: MethodChannel.Result? = null
-    private var permissionSessionEpoch = 0L
-    @Volatile private var permissionDisclosureAccepted = false
+    private var vpnPermissionRequest: VpnPermissionRequest? = null
     // Last answer of VpnService.prepare during an explicit user action. The
     // tile never probes it, and a tile click calls it only after its local
     // checks: prepare revokes another app's VPN (C2-01, QT-REVOKE-OVPN-01).
     @Volatile private var vpnPermissionMissing = false
 
     // Main-thread lifecycle state; never retains the Activity or a file path.
-    private var diagnosticExport: DiagnosticExport<MethodChannel.Result>? = null
-    private var diagnosticExportRequestCode: Int? = null
+    private var pendingDiagnosticExport: PendingDiagnosticExport? = null
     private var nextDiagnosticExportRequestCode = DIAGNOSTIC_EXPORT_REQUEST_CODE_START
 
     @Volatile
     private var notificationPermissionPending = false
 
-    private var openVpnEventsJob: Job? = null
     private val recoveryPolicy = OpenVpnRecoveryPolicy()
     private val recoveryLock = Any()
     @Volatile private var recoveryJob: Job? = null
-    @Volatile private var recoveryOwnsSession = false
     @Volatile private var openVpnTransition = false
     private var handledFailureGeneration = 0L
     // Physical onLost count (callback thread) and its value when the current OpenVPN
@@ -231,6 +227,21 @@ internal class AndroidVpnBridge(
         val locationName: String,
         val networkChange: Boolean = false,
     )
+
+    /**
+     * One consent dialog awaiting its activity result. [replaced] is the state its AUTHORIZING
+     * took the place of, [authorizing] that publication (see leaveVpnAuthorizing).
+     */
+    private data class VpnPermissionRequest(
+        val result: MethodChannel.Result,
+        val sessionEpoch: Long,
+        val disclosureAccepted: Boolean,
+        val replaced: VpnState,
+        val authorizing: VpnState?,
+    )
+
+    /** One export awaiting its document picker, with the request code that picker answers. */
+    private class PendingDiagnosticExport(val export: DiagnosticExport<MethodChannel.Result>, val requestCode: Int)
 
     init {
         observeOpenVpnStates()
@@ -457,17 +468,46 @@ internal class AndroidVpnBridge(
         return current == publicationEpoch || current == releasedSystemStartEpoch.get()
     }
 
+    /** What the bridge shows of the durable resume record, published as "resume_state". */
+    private enum class ResumeState(val wireValue: String) {
+        UNAVAILABLE("unavailable"),
+        READY("ready"),
+        BLOCKED("blocked"),
+        WAITING_NETWORK("waiting_network"),
+        RESTORING("restoring"),
+    }
+
+    /**
+     * The record could not be written: until a write succeeds, the bridge shows this failure
+     * instead of the record (see systemProtectionSnapshot). Returns the code it shows.
+     */
+    private fun resumeStorageFailed(error: Exception): String {
+        val code = messageCode(error, "system_vpn_resume_storage_failed")
+        resumeStorageFailure = true
+        resumeState = ResumeState.BLOCKED
+        resumeError = code
+        return code
+    }
+
+    /** Blocks the durable record with [code], or shows why it could not; returns the code shown. */
+    private fun blockResume(code: String): String = try {
+        resumeRegistry.block(code)
+        resumeState = ResumeState.BLOCKED
+        resumeError = code
+        code
+    } catch (error: Exception) {
+        resumeStorageFailed(error)
+    }
+
     private fun invalidateSystemResume() {
         admitExplicitCommand()
         try { resumeRegistry.invalidate() }
         catch (error: Exception) {
-            resumeStorageFailure = true
-            resumeState = "blocked"
-            resumeError = messageCode(error, "system_vpn_resume_storage_failed")
+            resumeStorageFailed(error)
             throw error
         }
         resumeStorageFailure = false
-        resumeState = "unavailable"
+        resumeState = ResumeState.UNAVAILABLE
         resumeError = null
     }
 
@@ -514,14 +554,12 @@ internal class AndroidVpnBridge(
                 quickTileProfiles.write(profile)
                 resumeRegistry.arm(profile, session, identity, renewedRecoveryConsumed ?: false)
             }
-            resumeState = "ready"
+            resumeState = ResumeState.READY
             resumeError = null
             resumeStorageFailure = false
             provenConnectionProfile = profile
         } catch (error: Exception) {
-            resumeStorageFailure = true
-            resumeState = "blocked"
-            resumeError = messageCode(error, "system_vpn_resume_storage_failed")
+            resumeStorageFailed(error)
             throw error
         }
     }
@@ -531,19 +569,19 @@ internal class AndroidVpnBridge(
             try {
                 val record = resumeRegistry.snapshot()
                 resumeState = when (record?.status) {
-                    SystemVpnResumeStatus.READY -> "ready"
-                    SystemVpnResumeStatus.RESERVED, SystemVpnResumeStatus.BLOCKED -> "blocked"
-                    else -> "unavailable"
+                    SystemVpnResumeStatus.READY -> ResumeState.READY
+                    SystemVpnResumeStatus.RESERVED, SystemVpnResumeStatus.BLOCKED -> ResumeState.BLOCKED
+                    else -> ResumeState.UNAVAILABLE
                 }
                 resumeError = record?.errorCode ?: if (record?.status == SystemVpnResumeStatus.RESERVED) "system_vpn_resume_blocked" else null
             } catch (error: Exception) {
-                resumeState = "blocked"
+                resumeState = ResumeState.BLOCKED
                 resumeError = messageCode(error, "system_vpn_resume_corrupt")
             }
         }
         val flags = runCatching { SharedVpnHost.systemFlags() }.getOrDefault(null to null)
         return mapOf("always_on" to flags.first, "lockdown" to flags.second,
-            "resume_state" to resumeState, "resume_error" to resumeError)
+            "resume_state" to resumeState.wireValue, "resume_error" to resumeError)
     }
 
     /** Android callbacks only enqueue work. No worker join or storage access here. */
@@ -657,7 +695,7 @@ internal class AndroidVpnBridge(
                     checkRequest(epoch)
                     sessionLifecycle.check(ticket)
                     if (explicitAdmissionEpoch.get() != authority) throw CancellationException("system_vpn_start_superseded")
-                    resumeState = "waiting_network"
+                    resumeState = ResumeState.WAITING_NETWORK
                     emitState(VpnStatus.CONNECTING, target.protocol, "system_vpn_restoring")
                     restoring = synchronized(stateLock) { currentState }
                     WireGuardForegroundNotifier.startProtocol(appContext, target.protocol, VpnStatus.CONNECTING, isReconnecting = true)
@@ -668,7 +706,7 @@ internal class AndroidVpnBridge(
                 )
                 checkRequest(epoch)
                 sessionLifecycle.check(ticket)
-                resumeState = "restoring"
+                resumeState = ResumeState.RESTORING
                 when (target.protocol) {
                     VpnProtocol.WIREGUARD -> connectWireGuard(target.wireGuardRequest
                         ?: throw VpnNativeException("system_vpn_resume_corrupt"), ticket, epoch, restoring = true,
@@ -697,13 +735,7 @@ internal class AndroidVpnBridge(
                         try { disconnectLocked(userInitiated = false) }
                         catch (stopError: Exception) { code = messageCode(stopError, code) }
                     }
-                    try { resumeRegistry.block(code) }
-                    catch (storageError: Exception) {
-                        resumeStorageFailure = true
-                        code = messageCode(storageError, "system_vpn_resume_storage_failed")
-                    }
-                    resumeState = "blocked"
-                    resumeError = code
+                    code = blockResume(code)
                     emitState(VpnStatus.ERROR, activeProtocol ?: profile?.protocol, code)
                     WireGuardForegroundNotifier.startProtocol(appContext, activeProtocol ?: profile?.protocol,
                         VpnStatus.ERROR, requiresAction = true)
@@ -809,13 +841,7 @@ internal class AndroidVpnBridge(
             var failure = cause
             try { disconnectLocked(userInitiated = false) }
             catch (error: Exception) { failure = messageCode(error, cause) }
-            try { resumeRegistry.block(failure) }
-            catch (error: Exception) {
-                resumeStorageFailure = true
-                failure = messageCode(error, "system_vpn_resume_storage_failed")
-            }
-            resumeState = "blocked"
-            resumeError = failure
+            failure = blockResume(failure)
             emitState(VpnStatus.ERROR, protocol, failure)
         } }.invokeOnCompletion { release() }
     }
@@ -1153,16 +1179,14 @@ internal class AndroidVpnBridge(
     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent? = null): Boolean {
         if (requestCode in DIAGNOSTIC_EXPORT_REQUEST_CODE_START..DIAGNOSTIC_EXPORT_REQUEST_CODE_END) {
             // A picker launched by a destroyed Activity must not finish a new export.
-            if (requestCode == diagnosticExportRequestCode) finishDiagnosticExport(resultCode, data)
+            if (requestCode == pendingDiagnosticExport?.requestCode) finishDiagnosticExport(resultCode, data)
             return true
         }
         if (requestCode != VPN_PERMISSION_REQUEST_CODE) return false
-        val result = permissionResult ?: return true
-        val ticket = permissionSessionEpoch
-        val disclosed = permissionDisclosureAccepted
-        permissionResult = null
-        permissionDisclosureAccepted = false
-        completeVpnPermission(result, ticket, disclosed && resultCode == Activity.RESULT_OK)
+        val request = vpnPermissionRequest ?: return true
+        vpnPermissionRequest = null
+        completeVpnPermission(request.result, request.sessionEpoch,
+            request.disclosureAccepted && resultCode == Activity.RESULT_OK, asked = request)
         return true
     }
 
@@ -1195,9 +1219,14 @@ internal class AndroidVpnBridge(
         eventChannel = null
         eventSink = null
         activityReference = null
-        permissionResult?.error("activity_destroyed", "activity_destroyed", null)
-        permissionResult = null
-        permissionDisclosureAccepted = false
+        vpnPermissionRequest?.let { request ->
+            request.result.error("activity_destroyed", "activity_destroyed", null)
+            vpnPermissionRequest = null
+            leaveVpnAuthorizing(request)
+        }
+        // The answer of a notification request can be lost with its activity: it must not
+        // keep every later request waiting for it.
+        notificationPermissionPending = false
         abandonDiagnosticExport()
     }
 
@@ -1211,7 +1240,7 @@ internal class AndroidVpnBridge(
     }
 
     private fun exportDiagnosticReport(call: MethodCall, result: MethodChannel.Result) {
-        if (diagnosticExport != null) {
+        if (pendingDiagnosticExport != null) {
             result.error("diagnostic_export_in_progress", "diagnostic_export_in_progress", null)
             return
         }
@@ -1223,9 +1252,8 @@ internal class AndroidVpnBridge(
             val json = (call.arguments as? Map<*, *>)?.get("json") as? String
                 ?: throw VpnNativeException("diagnostic_export_invalid")
             val export = DiagnosticExport(DiagnosticExport.payload(json), result)
-            diagnosticExport = export
             val requestCode = nextDiagnosticExportRequestCode++
-            diagnosticExportRequestCode = requestCode
+            pendingDiagnosticExport = PendingDiagnosticExport(export, requestCode)
             val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
                 type = "application/json"
@@ -1235,27 +1263,24 @@ internal class AndroidVpnBridge(
             }
             host.startActivityForResult(intent, requestCode)
         } catch (error: Exception) {
-            diagnosticExport?.abandon()
-            diagnosticExport = null
-            diagnosticExportRequestCode = null
+            pendingDiagnosticExport?.export?.abandon()
+            pendingDiagnosticExport = null
             val code = messageCode(error, "diagnostic_export_failed")
             result.error(code, code, null)
         }
     }
 
     private fun finishDiagnosticExport(resultCode: Int, data: Intent?) {
-        val export = diagnosticExport ?: return
+        val export = pendingDiagnosticExport?.export ?: return
         if (export.writing) return
         if (resultCode != Activity.RESULT_OK) {
-            diagnosticExport = null
-            diagnosticExportRequestCode = null
+            pendingDiagnosticExport = null
             export.abandon()?.success(false)
             return
         }
         val uri = data?.data
         if (uri?.scheme != "content") {
-            diagnosticExport = null
-            diagnosticExportRequestCode = null
+            pendingDiagnosticExport = null
             export.abandon()?.error("diagnostic_export_failed", "diagnostic_export_failed", null)
             return
         }
@@ -1268,10 +1293,7 @@ internal class AndroidVpnBridge(
             } catch (_: Exception) { false }
             finally { export.erase() }
             withContext(Dispatchers.Main) {
-                if (diagnosticExport === export) {
-                    diagnosticExport = null
-                    diagnosticExportRequestCode = null
-                }
+                if (pendingDiagnosticExport?.export === export) pendingDiagnosticExport = null
                 export.takeRecipient()?.let { result ->
                     if (succeeded) result.success(true)
                     else result.error("diagnostic_export_failed", "diagnostic_export_failed", null)
@@ -1281,9 +1303,8 @@ internal class AndroidVpnBridge(
     }
 
     private fun abandonDiagnosticExport() {
-        diagnosticExport?.abandon()?.error("activity_destroyed", "activity_destroyed", null)
-        diagnosticExport = null
-        diagnosticExportRequestCode = null
+        pendingDiagnosticExport?.export?.abandon()?.error("activity_destroyed", "activity_destroyed", null)
+        pendingDiagnosticExport = null
     }
 
     private fun requestVpnPermission(result: MethodChannel.Result, ticket: Long, disclosed: Boolean) {
@@ -1305,7 +1326,7 @@ internal class AndroidVpnBridge(
             result.error("session_operation_cancelled", "session_operation_cancelled", null)
             return
         }
-        if (permissionResult != null) {
+        if (vpnPermissionRequest != null) {
             result.error("permission_request_in_progress", "permission_request_in_progress", null)
             return
         }
@@ -1318,26 +1339,44 @@ internal class AndroidVpnBridge(
             completeVpnPermission(result, ticket, disclosed || accepted, alreadyAccepted = accepted)
             return
         }
-        permissionResult = result
-        permissionSessionEpoch = ticket
-        permissionDisclosureAccepted = disclosed
+        val replaced = synchronized(stateLock) { currentState }
         emitState(VpnStatus.AUTHORIZING, null, null)
+        vpnPermissionRequest = VpnPermissionRequest(result, ticket, disclosed, replaced,
+            authorizing = synchronized(stateLock) { currentState }.takeIf { it.status == VpnStatus.AUTHORIZING })
         try {
             val host = currentActivity() ?: throw IllegalStateException("activity_not_available")
             host.startActivityForResult(intent, VPN_PERMISSION_REQUEST_CODE)
         } catch (error: Exception) {
-            permissionResult = null
-            permissionDisclosureAccepted = false
+            vpnPermissionRequest = null
             emitState(VpnStatus.ERROR, null, "vpn_permission_request_failed")
             result.error("vpn_permission_request_failed", "vpn_permission_request_failed", null)
         }
     }
 
+    /**
+     * A consent request that ends with no state of its own (its activity destroyed or its completion
+     * failed) must not leave its AUTHORIZING published: the application would go on asking for a
+     * consent nobody is shown, and the tile would stay unavailable. Nothing is published once another
+     * operation has published since. A granted request is followed by Dart's next command, which
+     * replaces AUTHORIZING: an engine's old error published first would reach Dart as a new failure.
+     */
+    private fun leaveVpnAuthorizing(request: VpnPermissionRequest) {
+        if (request.authorizing == null || synchronized(stateLock) { currentState } !== request.authorizing) return
+        val engine = activeProtocol
+        if (engine == null) emitState(VpnStatus.IDLE, null, null)
+        // An engine kept after a stop that was not confirmed: its error stands again.
+        else if (request.replaced.status == VpnStatus.ERROR && request.replaced.protocol == engine) {
+            emitState(VpnStatus.ERROR, engine, request.replaced.messageCode)
+        }
+    }
+
+    /** [asked] is the request whose consent dialog was shown, if one was. */
     private fun completeVpnPermission(
         result: MethodChannel.Result,
         ticket: Long,
         disclosed: Boolean,
         alreadyAccepted: Boolean = false,
+        asked: VpnPermissionRequest? = null,
     ) {
         operationScope.launch {
             try {
@@ -1363,7 +1402,10 @@ internal class AndroidVpnBridge(
                 }
             } catch (error: Throwable) {
                 val code = messageCode(error, "secure_storage_write_failed")
-                withContext(Dispatchers.Main) { result.error(code, code, null) }
+                withContext(Dispatchers.Main) {
+                    asked?.let(::leaveVpnAuthorizing)
+                    result.error(code, code, null)
+                }
             }
         }
     }
@@ -1582,7 +1624,6 @@ internal class AndroidVpnBridge(
 
     private fun clearOpenVpnActiveLocked() {
         OpenVpnService.stop(appContext)
-        recoveryOwnsSession = false
         activeProtocol = null
         clearActiveMetadata()
     }
@@ -1626,12 +1667,9 @@ internal class AndroidVpnBridge(
         var stopped = when (protocol) {
             VpnProtocol.WIREGUARD -> wireGuard.disconnect(timing)
             VpnProtocol.OPENVPN -> try {
-                openVpnTransition = true
-                openVpn.disconnect(timing)
+                inOpenVpnTransition { openVpn.disconnect(timing) }
             } catch (_: Exception) {
                 false
-            } finally {
-                openVpnTransition = false
             }
         }
         if (stopped && protocol == VpnProtocol.OPENVPN) OpenVpnService.stop(appContext)
@@ -2056,21 +2094,19 @@ internal class AndroidVpnBridge(
                     )
                     noteDurableResume(encodedResume)
                 }
-                resumeState = if (ready) "ready" else "unavailable"
+                resumeState = if (ready) ResumeState.READY else ResumeState.UNAVAILABLE
                 resumeError = null
                 resumeStorageFailure = false
             }
         } catch (error: Exception) {
-            resumeState = "blocked"
-            resumeError = messageCode(error, "system_vpn_resume_storage_failed")
-            resumeStorageFailure = true
+            resumeStorageFailed(error)
             throw error
         }
     }
 
     private fun endSession(cause: SessionEndCause): CompletableDeferred<SessionTermination> = synchronized(sessionEndLock) {
         sessionLifecycle.beginEnd(cause)
-        permissionDisclosureAccepted = false
+        vpnPermissionRequest = vpnPermissionRequest?.copy(disclosureAccepted = false)
         sessionEndTask?.takeIf { !it.isCompleted }?.let { return@synchronized it }
         cancelRecovery()
         cancelSystemStart()
@@ -2103,10 +2139,13 @@ internal class AndroidVpnBridge(
                             // Only a voluntary end revokes automatic guest recovery.
                             revoked = sessionLifecycle.termination?.revokeGuestRecovery == true
                             store.clearSessionMaterial(disableGuestAutoResume = revoked)
+                            // The purge deleted the resume record too, even when its tombstone
+                            // above could not be written: no process restart stays armed.
+                            noteDurableResume(null)
                         })
                 }
                 confirmed = settleEnd(done, ended, revoked) { settled ->
-                    resumeState = if (settled.sessionCleared) "unavailable" else "blocked"
+                    resumeState = if (settled.sessionCleared) ResumeState.UNAVAILABLE else ResumeState.BLOCKED
                     resumeError = settled.storageError
                     emitState(if (settled.tunnelStopped) VpnStatus.IDLE else VpnStatus.ERROR,
                         activeProtocol, settled.stopError ?: settled.storageError)
@@ -2239,13 +2278,7 @@ internal class AndroidVpnBridge(
     ) = withTunnelOperation {
         if (!sessionLifecycle.isCurrent(ticket)) return@withTunnelOperation
         if (activeProtocol != protocol) return@withTunnelOperation
-        try { resumeRegistry.block(cause) }
-        catch (error: Exception) {
-            resumeStorageFailure = true
-            resumeError = messageCode(error, "system_vpn_resume_storage_failed")
-        }
-        resumeState = "blocked"
-        if (!resumeStorageFailure) resumeError = cause
+        blockResume(cause)
         // A framework revocation/down callback is not proof that the native
         // engine has released its descriptor. Confirm its stop before another
         // protocol can be considered, otherwise retain the active marker.
@@ -2270,7 +2303,7 @@ internal class AndroidVpnBridge(
     }
 
     private fun observeOpenVpnStates() {
-        openVpnEventsJob = observerScope.launch {
+        observerScope.launch {
             openVpn.observeStates().collect { event ->
                 // Startup publishes CONNECTED only after both callback and JNI
                 // proof have been checked. Control failures are never conflated.
@@ -2308,13 +2341,25 @@ internal class AndroidVpnBridge(
 
     private fun markOpenVpnStart() { openVpnStartLosses = physicalLosses.get() }
 
+    /**
+     * One stop or start of the OpenVPN engine, under the tunnel mutex: what Core reports
+     * meanwhile is not a failure of a proven session (see handleOpenVpnFailure).
+     */
+    private inline fun <T> inOpenVpnTransition(block: () -> T): T {
+        openVpnTransition = true
+        try {
+            return block()
+        } finally {
+            openVpnTransition = false
+        }
+    }
+
     private fun handleOpenVpnFailure(generation: Long, code: String) = synchronized(recoveryLock) {
         if (!sessionLifecycle.isCurrent(activeSessionEpoch)) return@synchronized
         if (activeProtocol != VpnProtocol.OPENVPN || generation != openVpn.sessionGeneration ||
             generation == handledFailureGeneration ||
             (openVpnTransition && currentState.status != VpnStatus.CONNECTED)) return@synchronized
         handledFailureGeneration = generation
-        recoveryOwnsSession = true
         val request = recoveryPolicy.currentRequest()
         val reconnect = code == "openvpn_reconnect_required"
         // Without the physical callback, Core can notice a lost network before the next look:
@@ -2370,7 +2415,7 @@ internal class AndroidVpnBridge(
                     }
                 } else {
                     resumeRegistry.block(finalFailure)
-                    resumeState = "blocked"
+                    resumeState = ResumeState.BLOCKED
                     resumeError = finalFailure
                 }
             }
@@ -2380,8 +2425,7 @@ internal class AndroidVpnBridge(
                 isCurrent = { isRecoveryCurrent(target) },
                 stopOld = { withTunnelOperation {
                     if (!isRecoveryCurrent(target) || openVpn.sessionGeneration != target.generation) return@withTunnelOperation false
-                    openVpnTransition = true
-                    try {
+                    inOpenVpnTransition {
                         if (!openVpn.disconnect()) throw VpnNativeException("openvpn_stop_timeout")
                         // Core's worker and handle are gone. OpenVpnService holds the TUN
                         // interface until restartLocal reuses it (same plan, same host) or its
@@ -2394,13 +2438,12 @@ internal class AndroidVpnBridge(
                             throw VpnNativeException(nativeFailure)
                         }
                         true
-                    } finally { openVpnTransition = false }
+                    }
                 } },
                 hasNetwork = { openVpn.hasUsableNetwork() },
                 restartLocal = { withTunnelOperation {
                     if (!isRecoveryCurrent(target)) return@withTunnelOperation
-                    openVpnTransition = true
-                    try {
+                    inOpenVpnTransition {
                         ensureVpnAuthorized()
                         val certificate = openVpn.certificateStatus(target.accountId, target.deviceId)
                         // A certificate that is due is renewed below instead of ending the session.
@@ -2432,7 +2475,7 @@ internal class AndroidVpnBridge(
                             target.locationId, target.locationName, openVpnNetwork = renewed.network),
                             renewedRecoveryConsumed = resumeRegistry.snapshot()?.recoveryConsumed ?: true)
                         Log.i(LOG_TAG, "OpenVPN recovery: connected")
-                    } finally { openVpnTransition = false }
+                    }
                 } },
             )
         } catch (_: CancellationException) {
@@ -2445,24 +2488,17 @@ internal class AndroidVpnBridge(
             withContext(NonCancellable) {
                 withTunnelOperation {
                     if (!isRecoveryCurrent(target)) return@withTunnelOperation
-                    openVpnTransition = true
-                    try {
+                    inOpenVpnTransition {
                         val stopped = runCatching { openVpn.disconnect() }.getOrDefault(false)
                         if (stopped) clearOpenVpnActiveLocked()
                         else {
                             finalFailure = "openvpn_stop_timeout"
                             OpenVpnService.update(appContext, VpnStatus.ERROR)
                         }
-                        try { resumeRegistry.block(finalFailure) }
-                        catch (storageError: Exception) {
-                            resumeStorageFailure = true
-                            finalFailure = messageCode(storageError, "system_vpn_resume_storage_failed")
-                        }
-                        resumeState = "blocked"
-                        resumeError = finalFailure
+                        finalFailure = blockResume(finalFailure)
                         emitState(VpnStatus.ERROR, VpnProtocol.OPENVPN, finalFailure)
                         WireGuardForegroundNotifier.startProtocol(appContext, VpnProtocol.OPENVPN, VpnStatus.ERROR, requiresAction = true)
-                    } finally { openVpnTransition = false }
+                    }
                 }
             }
         }
@@ -2475,7 +2511,6 @@ internal class AndroidVpnBridge(
             sessionLifecycle.current(activeSessionEpoch) {
                 if (profile != null) recordProvenConnection(profile, restoring, sessionPayload, renewedRecoveryConsumed)
                 recoveryPolicy.connected(openVpn.sessionGeneration)
-                recoveryOwnsSession = false
                 connectedAtMillis = System.currentTimeMillis()
                 emitState(VpnStatus.CONNECTED, VpnProtocol.OPENVPN, null)
                 OpenVpnService.update(appContext, VpnStatus.CONNECTED)
@@ -2630,7 +2665,6 @@ internal class AndroidVpnBridge(
     private fun clearActiveMetadata() {
         stopWireGuardRecoveryLocked()
         provenConnectionProfile = null
-        recoveryOwnsSession = false
         activeAccountId = null
         activeDeviceId = null
         activeLocationId = null

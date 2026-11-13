@@ -21,7 +21,10 @@ internal class SecureKeystoreStore(@Suppress("UNUSED_PARAMETER") context: Contex
         }
         return synchronized(VALUES) { VALUES[scope to key] }
     }
-    fun write(scope: String, key: String, value: String) { synchronized(VALUES) { VALUES[scope to key] = value } }
+    fun write(scope: String, key: String, value: String) {
+        HarnessControl.writeFailure?.let { throw SecureStorageException(it) }
+        synchronized(VALUES) { VALUES[scope to key] = value }
+    }
     fun delete(scope: String, key: String) { synchronized(VALUES) { VALUES.remove(scope to key) } }
     fun updateSlotsAtomically(values: Map<SecureStorageSlot, String>, deletedSlots: Set<SecureStorageSlot> = emptySet()) =
         synchronized(VALUES) {

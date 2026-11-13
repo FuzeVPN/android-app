@@ -2457,4 +2457,59 @@ void _reauditFinalGuestTests() {
       expect(h.controller.billing.canManagePlaySubscription, isTrue);
     },
   );
+
+  for (final failedOptOut in [false, true]) {
+    test(
+      'a guest checkout whose answer was lost after a sign-out is resumed '
+      '(failed opt-out before the sign-out=$failedOptOut)',
+      () async {
+        final h = _Harness();
+        addTearDown(h.close);
+        await h.controller.initialize();
+        await h.controller.billing.loadPlans();
+        h.store.credential = _credential;
+        h.store.autoResume = true;
+        // An e-mail session the server refuses. When its opt-out cannot be
+        // written either, automatic guest recovery is blocked behind it.
+        if (failedOptOut) {
+          h.store.autoResumeWriteFailure = const NativeVpnException(
+            'secure_storage_write_failed',
+          );
+        }
+        h.api.onMe = (token) async => token == 'registered-token'
+            ? throw const ApiException(
+                statusCode: 401,
+                errorCode: 'unauthorized',
+              )
+            : _guest();
+        expect(
+          await h.controller.signIn(
+            email: 'existing@example.test',
+            password: 'fixture-password',
+          ),
+          isFalse,
+        );
+        expect(h.controller.hasPendingAccountRestoration, failedOptOut);
+        expect(h.store.autoResume, failedOptOut);
+        expect(h.api.createdCredentials, isEmpty);
+        // The sign-out revokes recovery itself, with the session purge.
+        h.store.autoResumeWriteFailure = null;
+        await h.controller.signOut();
+        expect(h.controller.sessionTermination, isNull);
+        expect(h.store.autoResume, isFalse);
+        // A guest checkout whose creation answer is lost keeps its durable
+        // credential and recovery marker: the next resume admits that guest.
+        h.api.onMe = null;
+        h.api.onCreate = (_) async => throw const ApiNetworkException();
+        expect(await h.controller.beginGuestPurchase(_monthly), isFalse);
+        expect(h.store.autoResume, isTrue);
+        expect(h.controller.isSignedIn, isFalse);
+        h.api.onCreate = null;
+        await h.controller.onAppResumed();
+        expect(h.api.createdCredentials, <String>[_credential, _credential]);
+        expect(h.controller.profile?.isGuest, isTrue);
+        expect(h.controller.token, 'guest-token');
+      },
+    );
+  }
 }

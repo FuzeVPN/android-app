@@ -72,9 +72,13 @@ class WireGuardControllerBoundsTest {
         assertEquals("wireguard_operation_pending", code { controller.connect(fixture.request()) })
         assertNull(controller.recoveryBaseline())
         assertEquals("wireguard_identity_unavailable", code { controller.currentConnectionIdentityFingerprint(fixture.account) })
+        // Only the identity proof is withdrawn when a stop begins: the peer stays readable
+        // until DOWN is confirmed.
+        assertEquals(TunnelStatistics(100, 200, 5_000), controller.statistics())
         assertEquals(1, fixture.engine.startCalls.get())
         fixture.engine.confirmsDown = true
         assertTrue(controller.disconnect())
+        assertEquals(TunnelStatistics(), controller.statistics())
         assertTrue(controller.connect(fixture.request()))
     }
 

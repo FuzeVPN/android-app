@@ -133,7 +133,8 @@ internal class SystemEpochBridge(private val operationScope: CoroutineScope, pro
     private var systemStartJob: Job? = null
     private var systemStartInFlight = false
     private var resumeStorageFailure = false
-    private var resumeState = "ready"
+    // Written only: the extracted ResumeState, or a String in a bridge older than it (negative control).
+    private var resumeState: Any = "ready"
     private var resumeError: String? = null
     val tunnelRequestEpoch = ObservedEpoch()
     val systemStartPublicationEpoch = ObservedEpoch()

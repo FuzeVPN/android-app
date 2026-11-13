@@ -23,13 +23,12 @@ class HedgedHttpOpen {
     final Completer<T> result = Completer<T>();
     Timer? hedgeTimer;
     Timer? timeoutTimer;
+    // An opening that failed has its error set; until then it is pending.
     Object? primaryError;
     StackTrace? primaryStackTrace;
     Object? alternateError;
     StackTrace? alternateStackTrace;
-    var primaryDone = false;
     var alternateStarted = false;
-    var alternateDone = false;
     var finished = false;
 
     void cancel(void Function()? action) {
@@ -89,19 +88,17 @@ class HedgedHttpOpen {
         onError: (Object error, StackTrace stackTrace) {
           if (finished) return;
           if (isPrimary) {
-            primaryDone = true;
             primaryError = error;
             primaryStackTrace = stackTrace;
             if (!alternateStarted) {
               finishError(error, stackTrace);
-            } else if (alternateDone) {
+            } else if (alternateError != null) {
               finishBothFailures();
             }
           } else {
-            alternateDone = true;
             alternateError = error;
             alternateStackTrace = stackTrace;
-            if (primaryDone) finishBothFailures();
+            if (primaryError != null) finishBothFailures();
           }
         },
       );

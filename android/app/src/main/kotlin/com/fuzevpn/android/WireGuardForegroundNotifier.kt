@@ -4,6 +4,7 @@ import android.content.Context
 import java.lang.reflect.InvocationHandler
 import java.lang.reflect.Method
 import java.lang.reflect.Proxy
+import java.util.concurrent.atomic.AtomicReference
 
 /**
  * Connects the audited WireGuard AAR's real VpnService to the application's
@@ -12,12 +13,16 @@ import java.lang.reflect.Proxy
  * does not expose the reviewed foreground-service API.
  */
 internal object WireGuardForegroundNotifier {
-    @Volatile
-    private var status = VpnStatus.PREPARING
-    @Volatile private var protocol: VpnProtocol? = null
-    @Volatile private var reconnecting = false
-    @Volatile private var actionRequired = false
-    @Volatile private var waitingForNetwork = false
+    /** What the notification shows. Replaced as a whole: the factory never reads half of an update. */
+    private data class Content(
+        val status: VpnStatus = VpnStatus.PREPARING,
+        val protocol: VpnProtocol? = null,
+        val reconnecting: Boolean = false,
+        val actionRequired: Boolean = false,
+        val waitingForNetwork: Boolean = false,
+    )
+
+    private val content = AtomicReference(Content())
 
     @Volatile
     private var patchedApi: PatchedApi? = null
@@ -31,11 +36,7 @@ internal object WireGuardForegroundNotifier {
 
     fun startProtocol(context: Context, selected: VpnProtocol?, newStatus: VpnStatus,
                       isReconnecting: Boolean = false, requiresAction: Boolean = false) {
-        protocol = selected
-        status = newStatus
-        reconnecting = isReconnecting
-        actionRequired = requiresAction
-        waitingForNetwork = false
+        content.set(Content(newStatus, selected, isReconnecting, requiresAction))
         if (BuildConfig.USE_PATCHED_WIREGUARD_AAR) {
             installPatchedApi()
             refreshPatchedNotification()
@@ -43,11 +44,7 @@ internal object WireGuardForegroundNotifier {
     }
 
     fun start(context: Context, initialStatus: VpnStatus) {
-        protocol = VpnProtocol.WIREGUARD
-        reconnecting = false
-        actionRequired = false
-        waitingForNetwork = false
-        status = initialStatus
+        content.set(Content(initialStatus, VpnProtocol.WIREGUARD))
         if (useCompanionService()) {
             VpnForegroundService.start(context, VpnProtocol.WIREGUARD, initialStatus)
             return
@@ -58,9 +55,10 @@ internal object WireGuardForegroundNotifier {
 
     fun update(context: Context, newStatus: VpnStatus,
                isReconnecting: Boolean = false, isWaitingForNetwork: Boolean = false) {
-        status = newStatus
-        reconnecting = isReconnecting
-        waitingForNetwork = isWaitingForNetwork
+        // The protocol and the required action stay those of the last start, also one made meanwhile.
+        content.updateAndGet {
+            it.copy(status = newStatus, reconnecting = isReconnecting, waitingForNetwork = isWaitingForNetwork)
+        }
         if (useCompanionService()) {
             VpnForegroundService.update(context, VpnProtocol.WIREGUARD, newStatus,
                 isReconnecting, isWaitingForNetwork)
@@ -128,7 +126,9 @@ internal object WireGuardForegroundNotifier {
     private object NotificationFactoryInvocationHandler : InvocationHandler {
         override fun invoke(proxy: Any, method: Method, arguments: Array<out Any?>?): Any? = when (method.name) {
             "create" -> (arguments?.firstOrNull() as? Context)?.let { context ->
-                VpnForegroundService.notificationFor(context, protocol, status, reconnecting, actionRequired, waitingForNetwork)
+                val shown = content.get()
+                VpnForegroundService.notificationFor(context, shown.protocol, shown.status, shown.reconnecting,
+                    shown.actionRequired, shown.waitingForNetwork)
             }
             "toString" -> "FuzeVPN WireGuard foreground notification factory"
             "hashCode" -> System.identityHashCode(proxy)

@@ -786,6 +786,65 @@ void main() {
       },
     );
 
+    test(
+      'a cleanup left behind by a cancelled migration does not block its retry',
+      () async {
+        final h = await _restoredHarness(events: []);
+        addTearDown(h.close);
+        h.api.deviceConfiguration = _wireGuardConfigurationFor(
+          'device-current',
+        );
+        h.api.migrationStartResult = _locationMigration(
+          status: LocationMigrationStatus.ready,
+        );
+        h.api.listDeviceResults.addAll([
+          _devices('device-current'),
+          _devices('device-current', location: _frankfurt02),
+        ]);
+        await h.controller.selectLocation(_frankfurt02);
+        await h.controller.selectProtocol(VpnProtocol.openVpn);
+        h.tunnel.cleanupResult = OpenVpnRevocationResult(
+          accountId: 'user-a',
+          deviceId: 'device-current',
+          csrSha256: sha256
+              .convert(utf8.encode(h.tunnel.openVpnCsr))
+              .toString(),
+          tunnelStopped: true,
+          storageError: 'openvpn_identity_clear_failed',
+        );
+        h.api.createOpenVpnFailure = const ApiException(
+          statusCode: 409,
+          errorCode: 'openvpn_profile_revoked',
+        );
+        final entered = Completer<void>();
+        final release = Completer<void>();
+        h.tunnel.hooks['cleanRevokedOpenVpnIdentity'] = () async {
+          entered.complete();
+          await release.future;
+        };
+        final connecting = h.controller.connect();
+        await entered.future;
+        // Ends the migration scope of the cleanup, not its device or session.
+        await h.controller.disconnect();
+        release.complete();
+        await connecting;
+        h.tunnel.hooks.remove('cleanRevokedOpenVpnIdentity');
+        expect(h.controller.currentDeviceId, 'device-current');
+        expect(h.controller.token, 'session-a');
+        expect(h.tunnel.revocationCleanupCalls, hasLength(1));
+        await h.controller.initialize();
+        expect(
+          h.controller.openVpnRevocation?.storageError,
+          'openvpn_identity_clear_failed',
+        );
+        h.tunnel.cleanupResult = null;
+        await h.controller.retryOpenVpnRevocation();
+        expect(h.tunnel.revocationCleanupCalls, hasLength(2));
+        expect(h.controller.openVpnRevocation, isNull);
+        expect(h.controller.notice?.messageKey, 'openvpnCleanup.complete');
+      },
+    );
+
     for (final failure in <ApiFailure>[
       const ApiException(statusCode: 409, errorCode: 'openvpn_profile_exists'),
       const ApiException(

@@ -99,9 +99,32 @@ class _Delivery {
   int attempts = 0;
   int nextAt = 0;
   String? rejectedToken;
-  bool terminal = false;
+
+  /// The latest failure, kept as the reason once the report is refused.
   DiagnosticFailure? failure;
-  DiagnosticReceipt? receipt;
+
+  /// How the delivery ended; null while the report may still be attempted.
+  _DeliveryEnd? end;
+
+  bool get terminal => end != null;
+  DiagnosticReceipt? get receipt => switch (end) {
+    _Delivered(:final receipt) => receipt,
+    _ => null,
+  };
+}
+
+sealed class _DeliveryEnd {
+  const _DeliveryEnd();
+}
+
+final class _Delivered extends _DeliveryEnd {
+  const _Delivered(this.receipt);
+  final DiagnosticReceipt receipt;
+}
+
+/// Refused for good: no further attempt is made.
+final class _Refused extends _DeliveryEnd {
+  const _Refused();
 }
 
 class _TimedEvent {
@@ -255,7 +278,7 @@ class DiagnosticService extends ChangeNotifier {
   DiagnosticReport? get preparedReport {
     // Local-only reports have no delivery timer. Enforce their lifetime on
     // every preview/export access as well as while draining the send queue.
-    _prune();
+    _pruneOnRead();
     return _preparedReport;
   }
 
@@ -267,12 +290,12 @@ class DiagnosticService extends ChangeNotifier {
       _owns(_sending!) &&
       _queue.contains(_sending);
   int get pendingCount {
-    _prune();
+    _pruneOnRead();
     return _queue.length;
   }
 
   int get pendingBytes {
-    _prune();
+    _pruneOnRead();
     return _queue.fold(0, (sum, report) => sum + report.byteLength);
   }
 
@@ -435,7 +458,7 @@ class DiagnosticService extends ChangeNotifier {
     _preparedReport = report;
     _lastReceipt = null;
     _lastFailure = null;
-    _status = DiagnosticSendStatus.prepared;
+    _setStatus(DiagnosticSendStatus.prepared);
     _notify();
     return report;
   }
@@ -550,7 +573,7 @@ class DiagnosticService extends ChangeNotifier {
     _lastManual = report;
     if (report._delivery.receipt != null) {
       _lastReceipt = report._delivery.receipt;
-      _status = DiagnosticSendStatus.sent;
+      _setStatus(DiagnosticSendStatus.sent);
       _notify();
       return;
     }
@@ -571,11 +594,13 @@ class DiagnosticService extends ChangeNotifier {
     _queue.removeWhere((report) => !report.automatic);
     _lastManual = null;
     _lastFailure = null;
-    _status = _lastReceipt != null
-        ? DiagnosticSendStatus.sent
-        : _preparedReport != null
-        ? DiagnosticSendStatus.prepared
-        : DiagnosticSendStatus.idle;
+    _setStatus(
+      _lastReceipt != null
+          ? DiagnosticSendStatus.sent
+          : _preparedReport != null
+          ? DiagnosticSendStatus.prepared
+          : DiagnosticSendStatus.idle,
+    );
     _schedule();
     _notify();
   }
@@ -585,7 +610,7 @@ class DiagnosticService extends ChangeNotifier {
     cancelManual();
     _preparedReport = null;
     _lastReceipt = null;
-    _status = DiagnosticSendStatus.idle;
+    _setStatus(DiagnosticSendStatus.idle);
     _notify();
   }
 
@@ -628,7 +653,7 @@ class DiagnosticService extends ChangeNotifier {
       return false;
     }
     _queue.add(report);
-    if (!report.automatic) _status = DiagnosticSendStatus.queued;
+    if (!report.automatic) _setStatus(DiagnosticSendStatus.queued);
     _notify();
     return true;
   }
@@ -676,10 +701,7 @@ class DiagnosticService extends ChangeNotifier {
       final delivery = report._delivery;
       final revision = delivery.revision;
       _sending = report;
-      if (!report.automatic) {
-        _status = DiagnosticSendStatus.sending;
-        _lastFailure = null;
-      }
+      _showDelivery(report, DiagnosticSendStatus.sending);
       _notify();
       // A notification may synchronously revoke consent or switch accounts.
       if (!_owns(report) ||
@@ -699,14 +721,9 @@ class DiagnosticService extends ChangeNotifier {
             _queue.contains(report) &&
             delivery.revision == revision &&
             (!report.automatic || _automaticConsent)) {
-          delivery.receipt = receipt;
-          delivery.terminal = true;
+          delivery.end = _Delivered(receipt);
           _queue.remove(report);
-          if (!report.automatic) {
-            _lastReceipt = receipt;
-            _lastFailure = null;
-            _status = DiagnosticSendStatus.sent;
-          }
+          _showDelivery(report, DiagnosticSendStatus.sent, receipt: receipt);
         }
       } on DiagnosticFailure catch (failure) {
         if (_owns(report) &&
@@ -714,12 +731,13 @@ class DiagnosticService extends ChangeNotifier {
             delivery.revision == revision &&
             (!report.automatic || _automaticConsent)) {
           delivery.failure = failure;
-          if (!report.automatic) _lastFailure = failure;
           if (failure.httpStatus == 401 || failure.httpStatus == 403) {
             delivery.rejectedToken = token;
-            if (!report.automatic) {
-              _status = DiagnosticSendStatus.authenticationRequired;
-            }
+            _showDelivery(
+              report,
+              DiagnosticSendStatus.authenticationRequired,
+              failure: failure,
+            );
           } else if (failure.retryable && delivery.attempts < maxAttempts) {
             final delaySeconds = max(
               failure.retryAfterSeconds ?? 0,
@@ -728,11 +746,19 @@ class DiagnosticService extends ChangeNotifier {
             delivery.nextAt = _tick() + delaySeconds * 1000;
             // Back pressure applies to this account's whole queue.
             _blockedUntil = max(_blockedUntil, delivery.nextAt);
-            if (!report.automatic) _status = DiagnosticSendStatus.queued;
+            _showDelivery(
+              report,
+              DiagnosticSendStatus.queued,
+              failure: failure,
+            );
           } else {
-            delivery.terminal = true;
+            delivery.end = const _Refused();
             _queue.remove(report);
-            if (!report.automatic) _status = DiagnosticSendStatus.failed;
+            _showDelivery(
+              report,
+              DiagnosticSendStatus.failed,
+              failure: failure,
+            );
           }
         }
       } finally {
@@ -765,14 +791,14 @@ class DiagnosticService extends ChangeNotifier {
       _lastManual = null;
       if (manual._delivery.receipt == null) {
         _lastFailure = const DiagnosticFailure('report_expired');
-        _status = DiagnosticSendStatus.failed;
+        _setStatus(DiagnosticSendStatus.failed);
       }
     }
     final prepared = _preparedReport;
     if (prepared != null && now - prepared._collectedAt >= queueTtlMs) {
       _preparedReport = null;
       if (_status == DiagnosticSendStatus.prepared) {
-        _status = DiagnosticSendStatus.idle;
+        _setStatus(DiagnosticSendStatus.idle);
       }
     }
     _queue.removeWhere(
@@ -783,11 +809,47 @@ class DiagnosticService extends ChangeNotifier {
     );
   }
 
+  /// Enforces lifetimes for a getter. A getter may run while its listener is
+  /// building, so a change it causes is announced once it has returned.
+  void _pruneOnRead() {
+    final status = _status;
+    final prepared = _preparedReport;
+    final failure = _lastFailure;
+    _prune();
+    if (_status != status ||
+        !identical(_preparedReport, prepared) ||
+        !identical(_lastFailure, failure)) {
+      scheduleMicrotask(_notify);
+    }
+  }
+
+  /// The only writer of the manual report status.
+  void _setStatus(DiagnosticSendStatus status) {
+    _status = status;
+  }
+
+  /// Publishes a delivery step of [report] to the manual UI: its status, its
+  /// failure if any, and its receipt once delivered. Automatic reports never
+  /// reach that UI.
+  void _showDelivery(
+    DiagnosticReport report,
+    DiagnosticSendStatus status, {
+    DiagnosticReceipt? receipt,
+    DiagnosticFailure? failure,
+  }) {
+    if (report.automatic) return;
+    if (receipt != null) _lastReceipt = receipt;
+    _lastFailure = failure;
+    _setStatus(status);
+  }
+
   void _fail(DiagnosticFailure failure) {
     _lastFailure = failure;
-    _status = failure.code == 'session_required'
-        ? DiagnosticSendStatus.authenticationRequired
-        : DiagnosticSendStatus.failed;
+    _setStatus(
+      failure.code == 'session_required'
+          ? DiagnosticSendStatus.authenticationRequired
+          : DiagnosticSendStatus.failed,
+    );
     _notify();
   }
 
@@ -838,7 +900,7 @@ class DiagnosticService extends ChangeNotifier {
     _lastErrorAt = null;
     _lastReceipt = null;
     _lastFailure = null;
-    _status = DiagnosticSendStatus.idle;
+    _setStatus(DiagnosticSendStatus.idle);
   }
 
   void clear() {

@@ -144,6 +144,101 @@ void main() {
     );
   });
 
+  test('a primary failure before the hedge delay is reported at once and '
+      'never starts the alternate', () async {
+    var alternateCalls = 0;
+    var cancelledAlternate = 0;
+    final Future<String> result =
+        const HedgedHttpOpen(hedgeDelay: Duration(seconds: 30)).open<String>(
+          primary: () async => throw StateError('primary failure'),
+          alternate: () async {
+            alternateCalls++;
+            return 'unused';
+          },
+          abort: (_) {},
+          timeout: const Duration(seconds: 60),
+          cancelAlternate: () => cancelledAlternate++,
+        );
+    await expectLater(
+      result,
+      throwsA(
+        isA<StateError>().having(
+          (StateError error) => error.message,
+          'message',
+          'primary failure',
+        ),
+      ),
+    );
+    await Future<void>.delayed(const Duration(milliseconds: 5));
+    expect(alternateCalls, 0);
+    expect(cancelledAlternate, 1);
+  });
+
+  test('a primary failure after the alternate started waits for the '
+      'alternate, which can still win', () async {
+    final Completer<String> primary = Completer<String>();
+    final Completer<String> alternate = Completer<String>();
+    var settled = false;
+    final Future<String> result =
+        const HedgedHttpOpen(
+          hedgeDelay: Duration(milliseconds: 1),
+        ).open<String>(
+          primary: () => primary.future,
+          alternate: () => alternate.future,
+          abort: (_) {},
+          timeout: const Duration(seconds: 5),
+        );
+    unawaited(
+      result.then<void>(
+        (_) => settled = true,
+        onError: (Object _) {
+          settled = true;
+        },
+      ),
+    );
+    await Future<void>.delayed(const Duration(milliseconds: 5));
+    primary.completeError(StateError('primary failure'));
+    await Future<void>.delayed(const Duration(milliseconds: 5));
+    expect(settled, isFalse);
+    alternate.complete('ipv6');
+    expect(await result, 'ipv6');
+  });
+
+  for (final alternateRank in [1, 2]) {
+    test('two failures, primary first: the alternate error is reported only '
+        'when ranked higher (alternate rank $alternateRank)', () async {
+      final Completer<String> primary = Completer<String>();
+      final Completer<String> alternate = Completer<String>();
+      final Future<String> result =
+          const HedgedHttpOpen(
+            hedgeDelay: Duration(milliseconds: 1),
+          ).open<String>(
+            primary: () => primary.future,
+            alternate: () => alternate.future,
+            abort: (_) {},
+            timeout: const Duration(seconds: 5),
+            errorRank: (Object error) =>
+                (error as StateError).message == 'alternate failure'
+                ? alternateRank
+                : 1,
+          );
+      await Future<void>.delayed(const Duration(milliseconds: 5));
+      primary.completeError(StateError('primary failure'));
+      await Future<void>.delayed(Duration.zero);
+      alternate.completeError(StateError('alternate failure'));
+      await expectLater(
+        result,
+        throwsA(
+          isA<StateError>().having(
+            (StateError error) => error.message,
+            'message',
+            alternateRank > 1 ? 'alternate failure' : 'primary failure',
+          ),
+        ),
+      );
+    });
+  }
+
   test('le délai global abandonne les ouvertures qui arrivent tard', () async {
     final Completer<String> primary = Completer<String>();
     final Completer<String> alternate = Completer<String>();

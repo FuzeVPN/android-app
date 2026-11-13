@@ -98,6 +98,32 @@ class WireGuardRecoveryPolicyTest {
         assertEquals(WireGuardRecoveryPolicy.State.CONNECTED, policy.state)
     }
 
+    // An outage begins with any change that leaves no usable network, seen by a callback or by
+    // an inventory; no other change counts one.
+    @Test fun aCallbackAndAnInventoryCountAnOutageAlike() {
+        fun outages() = networks.snapshot().outageGeneration
+        fun inventory(vararg usable: String) = assertTrue(networks.reconcile(networks.snapshot().generation, setOf(*usable)))
+        networks.update("wifi", false)                  // never usable: no change
+        inventory()                                     // empty before and after: no change
+        assertEquals(0L, networks.snapshot().generation)
+        assertEquals(0L, outages())
+        networks.update("wifi", true); networks.update("cellular", true)
+        networks.update("wifi", false)
+        assertEquals(0L, outages())
+        networks.update("cellular", false)
+        assertEquals(1L, outages())
+        inventory("wifi", "cellular")
+        inventory("cellular")
+        inventory("ethernet")
+        assertEquals(1L, outages())
+        inventory()
+        assertEquals(2L, outages())
+        inventory("wifi")
+        networks.update("wifi", false)
+        assertEquals(3L, outages())
+        assertEquals(10L, networks.snapshot().generation)
+    }
+
     @Test fun inventoryDetectsLossAndReturnWithoutCallbacks() {
         start()
         networks.reconcile(networks.snapshot().generation, emptySet())
