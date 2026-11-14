@@ -191,11 +191,12 @@ class AndroidCoreClient final : public ::openvpn::ClientAPI::OpenVPNClient {
 
   std::uint64_t ticks() const { return ticks_.load(std::memory_order_relaxed); }
 
-  // From the session's watchdog, never from Core's worker.
-  void ReportStall() {
+  // From the session's watchdog, never from Core's worker. True when reported.
+  bool ReportStall() {
     std::lock_guard<std::mutex> lock(state_mutex_);
     const auto update = connection_state_.Stalled();
     if (update) Emit(update->state, update->reason);
+    return update.has_value();
   }
 
   // Makes a send blocked on the transport fail, so a posted stop can run.
@@ -513,6 +514,7 @@ class OpenVpn3CoreSession final : public CoreSession {
       std::lock_guard<std::mutex> lock(worker_mutex_);
       worker_done_ = false;
       stopping_ = false;
+      stalled_ = false;
     }
     try {
       watchdog_ = std::thread([this]() noexcept { Watch(); });
@@ -553,9 +555,11 @@ class OpenVpn3CoreSession final : public CoreSession {
     if (client_thread_.joinable()) {
       // Core stops on its own worker. A worker blocked in a synchronous send
       // never gets there: shut its transport down so that send fails, then
-      // join. The duplicate goes with the client.
+      // join. The duplicate goes with the client. A worker already reported
+      // as stalled gets no grace: it cannot run the stop on its own.
       std::unique_lock<std::mutex> lock(worker_mutex_);
-      const bool ended = worker_changed_.wait_for(lock, timings_.stop_grace, [this] { return worker_done_; });
+      const auto grace = stalled_ ? std::chrono::milliseconds(0) : timings_.stop_grace;
+      const bool ended = worker_changed_.wait_for(lock, grace, [this] { return worker_done_; });
       lock.unlock();
       if (!ended && client_ != nullptr) client_->AbortTransport();
       client_thread_.join();
@@ -594,7 +598,10 @@ class OpenVpn3CoreSession final : public CoreSession {
         silent = (now == seen && client_->IsConnected()) ? silent + 1 : 0;
         seen = now;
         if (silent >= timings_.stall_checks) {
-          client_->ReportStall();
+          if (client_->ReportStall()) {
+            std::lock_guard<std::mutex> stalled_lock(worker_mutex_);
+            stalled_ = true;
+          }
           return;
         }
         lock.lock();
@@ -623,6 +630,7 @@ class OpenVpn3CoreSession final : public CoreSession {
   std::condition_variable worker_changed_;
   bool worker_done_ = false;
   bool stopping_ = false;
+  bool stalled_ = false;
 };
 
 }  // namespace

@@ -146,13 +146,13 @@ class GoogleAuthController extends ChangeNotifier {
   bool _admitted = false;
   int _epoch = 0;
 
-  /// Server intents (browser context, ticket) that this process saw settled,
-  /// by a cancellation the API confirmed or by an admission, while the local
-  /// removal failed. The server holds no pending intent for them and its reply
-  /// to a second cancellation of the same ticket is unspecified, so a stale
-  /// copy read again is never presented to the API: only its removal is
-  /// retried. Emptied once the slot is cleared or overwritten; a new process
-  /// starts empty (docs/GOOGLE_AUTH.md).
+  /// Server intents (browser context, request id) that this process saw
+  /// settled, by a cancellation the API confirmed or by an admission, while
+  /// the local removal failed. The server holds no pending intent for them and
+  /// its reply to a second cancellation is unspecified, so a stale copy read
+  /// again, whichever ticket of that intent it holds, is never presented to
+  /// the API: only its removal is retried. Emptied once the slot is cleared or
+  /// overwritten; a new process starts empty (docs/GOOGLE_AUTH.md).
   final Set<(String, String)> _settledIntents = <(String, String)>{};
 
   bool get isBusy => _action != null || _cancelling;
@@ -450,13 +450,17 @@ class GoogleAuthController extends ChangeNotifier {
 
   Future<void> resume() => _run((epoch) async {
     if (_api == null || _store == null) return;
-    _before ??= _identity();
     if (_pending == null) {
+      // As in a new process, a ticket read from the store is anchored to the
+      // current session: an anchor left by an earlier attempt of this process
+      // describes the session of that time.
+      _before = _identity();
       final saved = await _readPersistedTicket();
       _check(epoch);
       if (saved == null) return;
       _pending = saved;
     } else {
+      _before ??= _identity();
       // Memory may contain a rotated ticket whose atomic disk commit failed.
       // Never replace it with the superseded challenge ticket from disk.
       await _writePending(_pending!, epoch);
@@ -1169,8 +1173,10 @@ class _PendingGoogleIntent {
   final String? challengeId;
   final String? userId;
 
-  /// The server intent that a cancellation of this ticket targets.
-  (String, String) get serverIntent => (browser.browserContextToken, ticket);
+  /// The server intent of this ticket. Unlike [ticket], it survives a
+  /// rotation, so it also matches the pre-rotation copy that a failed write
+  /// of the rotated ticket left on disk.
+  (String, String) get serverIntent => (browser.browserContextToken, requestId);
 
   _PendingGoogleIntent continuation(String token, DateTime expiry) =>
       _PendingGoogleIntent(

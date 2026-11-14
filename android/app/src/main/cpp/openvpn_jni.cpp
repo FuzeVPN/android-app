@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <chrono>
 #include <memory>
 #include <mutex>
 #include <optional>
@@ -35,6 +36,7 @@ constexpr size_t kMaxCertificateUtf8Bytes = 64 * 1024;
 constexpr size_t kMaxPkiRequestUtf8Bytes = 16 * 1024;
 constexpr size_t kMaxPkiSignatureUtf8Bytes = 16 * 1024;
 constexpr size_t kMaxCategoryBytes = 96;
+constexpr std::chrono::milliseconds kQueryWait{2000};
 
 class ScopedEnv final {
  public:
@@ -385,7 +387,7 @@ class NativeSession final {
   bool Start(std::string profile, std::string alias, NetworkPolicy network) {
     ScopedStringErase erase_profile(profile);
     ScopedStringErase erase_alias(alias);
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::lock_guard<std::timed_mutex> lock(mutex_);
     if (!valid() || (lifecycle_ != Lifecycle::kIdle && lifecycle_ != Lifecycle::kStarted)) return false;
     if (lifecycle_ == Lifecycle::kStarted) {
       callbacks_->OnCoreState("error", "session_busy");
@@ -415,12 +417,12 @@ class NativeSession final {
   }
 
   void Stop() {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::lock_guard<std::timed_mutex> lock(mutex_);
     StopLocked();
   }
 
   bool Destroy() {
-    std::lock_guard<std::mutex> lock(mutex_);
+    std::lock_guard<std::timed_mutex> lock(mutex_);
     if (lifecycle_ == Lifecycle::kDestroyed) return true;
     // An already admitted Start must finish before this lock is acquired;
     // a later Start cannot revive the object after it leaves the registry.
@@ -447,14 +449,17 @@ class NativeSession final {
   }
 
  public:
+  // Queries never wait long behind a Start or Stop: a Stop whose Core worker
+  // cannot end would otherwise hold every caller of these, the 1 Hz state
+  // poll included. A session being started or stopped is not connected.
   bool IsConnected() const {
-    std::lock_guard<std::mutex> lock(mutex_);
-    return started() && core_->IsConnected();
+    std::unique_lock<std::timed_mutex> lock(mutex_, kQueryWait);
+    return lock.owns_lock() && started() && core_->IsConnected();
   }
 
   CoreStatistics Statistics() const {
-    std::lock_guard<std::mutex> lock(mutex_);
-    return started() ? core_->Statistics() : CoreStatistics{};
+    std::unique_lock<std::timed_mutex> lock(mutex_, kQueryWait);
+    return lock.owns_lock() && started() ? core_->Statistics() : CoreStatistics{};
   }
 
  private:
@@ -469,7 +474,7 @@ class NativeSession final {
     return lifecycle_ == Lifecycle::kStarted || lifecycle_ == Lifecycle::kDestroyingStarted;
   }
 
-  mutable std::mutex mutex_;
+  mutable std::timed_mutex mutex_;
   std::unique_ptr<JniPlatformCallbacks> callbacks_;
   std::unique_ptr<CoreSession> core_;
   Lifecycle lifecycle_ = Lifecycle::kIdle;

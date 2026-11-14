@@ -2307,8 +2307,11 @@ internal class AndroidVpnBridge(
             openVpn.observeStates().collect { event ->
                 // Startup publishes CONNECTED only after both callback and JNI
                 // proof have been checked. Control failures are never conflated.
+                // A failure published after the app's own stop request belongs to
+                // that stop, which reports it: it is not an interruption to recover,
+                // even when it arrives after the stopping command gave up.
                 if (event.generation != openVpn.sessionGeneration ||
-                    activeProtocol != VpnProtocol.OPENVPN ||
+                    activeProtocol != VpnProtocol.OPENVPN || event.afterStopRequest ||
                     (openVpnTransition && currentState.status != VpnStatus.CONNECTED)) return@collect
                 if (event.state.toVpnStatus() == VpnStatus.ERROR) {
                     handleOpenVpnFailure(event.generation, event.state.messageCode() ?: "openvpn_connection_failed")

@@ -278,7 +278,7 @@ class DiagnosticService extends ChangeNotifier {
   DiagnosticReport? get preparedReport {
     // Local-only reports have no delivery timer. Enforce their lifetime on
     // every preview/export access as well as while draining the send queue.
-    _pruneOnRead();
+    _pruneAndAnnounce();
     return _preparedReport;
   }
 
@@ -290,12 +290,12 @@ class DiagnosticService extends ChangeNotifier {
       _owns(_sending!) &&
       _queue.contains(_sending);
   int get pendingCount {
-    _pruneOnRead();
+    _pruneAndAnnounce();
     return _queue.length;
   }
 
   int get pendingBytes {
-    _pruneOnRead();
+    _pruneAndAnnounce();
     return _queue.fold(0, (sum, report) => sum + report.byteLength);
   }
 
@@ -628,7 +628,7 @@ class DiagnosticService extends ChangeNotifier {
   }
 
   bool _enqueue(DiagnosticReport report) {
-    _prune();
+    _pruneAndAnnounce();
     if (_tick() - report._collectedAt >= queueTtlMs) {
       if (!report.automatic) _fail(const DiagnosticFailure('report_expired'));
       return false;
@@ -677,9 +677,7 @@ class DiagnosticService extends ChangeNotifier {
 
   Future<void> _drain() async {
     while (!_disposed) {
-      final previousStatus = _status;
-      _prune();
-      if (_status != previousStatus) _notify();
+      if (_pruneChanged()) _notify();
       if (!_sessionUsable) {
         if (_queue.any((report) => !report.automatic)) {
           _fail(const DiagnosticFailure('session_required'));
@@ -809,18 +807,25 @@ class DiagnosticService extends ChangeNotifier {
     );
   }
 
-  /// Enforces lifetimes for a getter. A getter may run while its listener is
-  /// building, so a change it causes is announced once it has returned.
-  void _pruneOnRead() {
+  /// Runs [_prune] and tells whether it changed what the getters expose.
+  /// [_prune] only removes from the queue, so its length reveals any removal.
+  bool _pruneChanged() {
     final status = _status;
     final prepared = _preparedReport;
     final failure = _lastFailure;
+    final pending = _queue.length;
     _prune();
-    if (_status != status ||
+    return _status != status ||
         !identical(_preparedReport, prepared) ||
-        !identical(_lastFailure, failure)) {
-      scheduleMicrotask(_notify);
-    }
+        !identical(_lastFailure, failure) ||
+        _queue.length != pending;
+  }
+
+  /// Enforces lifetimes outside the queue drain. A getter, or a setter called
+  /// from a listener, may run while that listener is building, so a change it
+  /// causes is announced once it has returned.
+  void _pruneAndAnnounce() {
+    if (_pruneChanged()) scheduleMicrotask(_notify);
   }
 
   /// The only writer of the manual report status.
@@ -865,7 +870,7 @@ class DiagnosticService extends ChangeNotifier {
     _retryTimer?.cancel();
     _retryTimer = null;
     if (_disposed || !scheduleRetries || !_sessionUsable) return;
-    _prune();
+    _pruneAndAnnounce();
     if (_queue.isEmpty) return;
     final now = _tick();
     var due = now + queueTtlMs;

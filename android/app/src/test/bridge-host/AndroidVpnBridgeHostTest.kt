@@ -2035,6 +2035,21 @@ class AndroidVpnBridgeHostTest {
         assertEquals("error/wireguard/wireguard_stop_timeout", published())
     }
 
+    // OpenVPN freeze (13/11 campaign, V3). The user's stop timed out on an engine that could not
+    // end; the command reported openvpn_stop_timeout. That stopped session's failure arrived next
+    // and started a recovery: two more stops, and a cause that replaced the reported one ("none
+    // left after openvpn_operation_timeout", then "failed with openvpn_stop_timeout").
+    @Test fun aFailureOfTheSessionTheUserStoppedStartsNoRecovery() {
+        connectOpenVpn()
+        HarnessControl.openVpnStopResult = false
+        assertEquals("openvpn_stop_timeout", call("disconnect").await().error)
+        Thread.sleep(1_000) // the late failure (100 ms) and whatever it would start
+        val events = settledEvents()
+        assertEquals(1, HarnessControl.openVpnStops)
+        assertEquals("error/openvpn/openvpn_stop_timeout", published())
+        assertFalse(events.toString(), events.contains(RECONNECTING))
+    }
+
     // Explicit state machines (12/11), notification permission. The system dialog goes with its
     // activity (the task removed while it is shown): no answer ever comes, and the request stayed
     // pending for the life of the process, so the permission was never asked again.

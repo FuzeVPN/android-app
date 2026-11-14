@@ -28,6 +28,8 @@ final _authenticated = GoogleAuthenticatedResult(
 
 void main() {
   _claimRetryCorrectionTests();
+  _resumedTicketAnchorTests();
+  _settledRotatedIntentTests();
   test(
     'constructing Google controller does not read accounts or create intent',
     () {
@@ -1390,5 +1392,159 @@ void _claimRetryCorrectionTests() {
         expect(h.admissions, 0);
       },
     );
+  });
+}
+
+/// A ticket that resume() loads from the store is anchored to the session of
+/// that moment, as in a new process and as when Cancel loads it, never to the
+/// anchor of an opening whose read of that ticket a session change aborted.
+void _resumedTicketAnchorTests() {
+  group('A ticket loaded by resume gets its own anchor', () {
+    const first = GoogleIdentitySnapshot(
+      userId: 'guest-fixture',
+      accessToken: 'guest-bearer-fixture',
+      isGuest: true,
+    );
+    const renewed = GoogleIdentitySnapshot(
+      userId: 'guest-fixture',
+      accessToken: 'renewed-bearer-fixture',
+      isGuest: true,
+    );
+
+    /// A guest claim controller over [store]; `renew` replaces the guest
+    /// bearer, as the account layer does when it renews it.
+    ({
+      GoogleAuthController c,
+      _Api api,
+      List<String?> claimBearers,
+      void Function() renew,
+    })
+    build(_Store store) {
+      var session = first;
+      final api = _Api()..purpose = 'claim';
+      final claimBearers = <String?>[];
+      final c = GoogleAuthController(
+        api: api,
+        gateway: _Gateway(),
+        pendingStore: store,
+        challengeGateway: _SecurityGateway(),
+        identity: () => session,
+        identityMatches: (before) => identical(before, session),
+        admitClaim: (before, isCurrent) async {
+          claimBearers.add(before.accessToken);
+          return false;
+        },
+      );
+      addTearDown(c.dispose);
+      return (
+        c: c,
+        api: api,
+        claimBearers: claimBearers,
+        renew: () => session = renewed,
+      );
+    }
+
+    test('a bearer renewed while the opening reads a persisted claim does '
+        'not make every resume fail', () async {
+      final earlier = _Harness(guest: true);
+      await earlier.controller.begin(GoogleAuthPurpose.claim);
+      earlier.close();
+      final h = build(_Store()..payload = earlier.store.payload);
+      final opening = h.c.begin(GoogleAuthPurpose.claim);
+      // The opening anchored the session and now waits for the store.
+      expect(h.c.state.step, GoogleAuthStep.selectingAccount);
+      h.renew();
+      await opening;
+      expect(h.c.state.messageKey, 'google.accountChanged');
+      expect(h.c.hasPendingIntent, isFalse);
+
+      await h.c.resume();
+      expect(h.claimBearers, ['renewed-bearer-fixture']);
+      expect(h.api.inspectedTicket, 'rotated-ticket-fixture');
+      expect(h.c.state.step, GoogleAuthStep.guestClaimRequired);
+      expect(h.c.hasPendingIntent, isTrue);
+    });
+
+    test('control: an intent held in memory keeps the anchor of its '
+        'attempt', () async {
+      final h = build(_Store());
+      await h.c.begin(GoogleAuthPurpose.claim);
+      expect(h.c.state.step, GoogleAuthStep.guestClaimRequired);
+      h.renew();
+      await h.c.resume();
+      expect(h.c.state.messageKey, 'google.accountChanged');
+      expect(h.claimBearers, isEmpty);
+      expect(h.api.contextReads, 1);
+      expect(h.c.hasPendingIntent, isTrue);
+    });
+  });
+}
+
+/// The write of a rotated ticket failed, so the disk still holds the ticket
+/// of the same intent from before the rotation. Once that intent is settled
+/// in this process while its local removal also fails, that older copy is
+/// recognised like the rotated one: only its removal is retried.
+void _settledRotatedIntentTests() {
+  group('A settled intent is recognised from its pre-rotation copy', () {
+    test('cancelled: Back and resume ask the server nothing more', () async {
+      final h = _Harness();
+      addTearDown(h.close);
+      h.store.failWriteNumber = 2;
+      await h.controller.begin(GoogleAuthPurpose.authenticate);
+      expect(h.controller.state.step, GoogleAuthStep.uncertain);
+      expect(h.store.payload, contains('initial-ticket-fixture'));
+      h.store.failClear = true;
+      expect(await h.controller.cancel(), isTrue);
+      expect(h.api.cancellations, 1);
+      expect(h.api.cancelChallengeId, isNull);
+      expect(h.store.payload, contains('initial-ticket-fixture'));
+
+      // The reply to a second cancellation of that intent is unspecified.
+      h.api.cancelFailure = const ApiException(
+        statusCode: 404,
+        errorCode: 'api_error',
+      );
+      expect(await h.controller.cancel(), isTrue);
+      await h.controller.resume();
+      expect(h.api.cancellations, 1);
+      expect(h.api.contextReads, 0);
+      expect(h.controller.state.step, GoogleAuthStep.idle);
+      expect(h.controller.hasPendingIntent, isFalse);
+      h.store.failClear = false;
+      expect(await h.controller.cancel(), isTrue);
+      expect(h.store.payload, isNull);
+      expect(h.api.cancellations, 1);
+    });
+
+    test('admitted: the old claim ticket is not reconciled again', () async {
+      final h = _Harness(guest: true);
+      addTearDown(h.close);
+      var claimReads = 0;
+      h.claimRead = () async {
+        claimReads++;
+        return h.claimed;
+      };
+      h.store.failWriteNumber = 2;
+      await h.controller.begin(GoogleAuthPurpose.claim);
+      expect(h.controller.state.step, GoogleAuthStep.uncertain);
+      expect(h.store.payload, contains('initial-ticket-fixture'));
+      // Back finds the conversion committed through /me.
+      h.claimed = true;
+      h.store.failClear = true;
+      expect(await h.controller.cancel(), isTrue);
+      expect(h.controller.state.step, GoogleAuthStep.authenticated);
+      expect(claimReads, 1);
+      expect(h.store.payload, contains('initial-ticket-fixture'));
+
+      await h.controller.resume();
+      expect(claimReads, 1);
+      h.store.failClear = false;
+      await h.controller.resume();
+      expect(h.store.payload, isNull);
+      expect(claimReads, 1);
+      expect(h.api.cancellations, 0);
+      expect(h.api.contextReads, 0);
+      expect(h.controller.state.step, GoogleAuthStep.authenticated);
+    });
   });
 }

@@ -56,13 +56,14 @@ DiagnosticService _service(
   _Transport transport,
   _Clock clock, {
   bool session = true,
+  bool scheduleRetries = false,
 }) {
   final service = DiagnosticService(
     transport: transport,
     baseUri: Uri.parse('https://api.example.test/'),
     now: clock.now,
     monotonicMilliseconds: () => clock.milliseconds,
-    scheduleRetries: false,
+    scheduleRetries: scheduleRetries,
   );
   addTearDown(service.dispose);
   service.setMetadata({
@@ -554,6 +555,55 @@ void main() {
       await Future<void>.delayed(Duration.zero);
       expect(expiryNotifications, 1);
       expect(transport.requests, hasLength(1));
+    },
+  );
+
+  test(
+    'a sent report expired by a drain that sends nothing is announced',
+    () async {
+      final transport = _Transport();
+      final clock = _Clock();
+      final service = _service(transport, clock);
+      final report = _full(service);
+      await service.sendManual(report);
+      expect(service.status, DiagnosticStatus.sent);
+      expect(service.preparedReport, same(report));
+      final seen = <DiagnosticReport?>[];
+      service.addListener(() => seen.add(service.preparedReport));
+      clock.advance(const Duration(hours: 24));
+      // The drain expires the report before any getter is read again.
+      await service.retryPending();
+      await Future<void>.delayed(Duration.zero);
+      expect(seen, [null]);
+      expect(service.preparedReport, isNull);
+      expect(service.status, DiagnosticStatus.sent);
+      await Future<void>.delayed(Duration.zero);
+      expect(seen, hasLength(1));
+      expect(transport.requests, hasLength(1));
+    },
+  );
+
+  test(
+    'a prepared report expired while rescheduling is announced after it',
+    () async {
+      final clock = _Clock();
+      final service = _service(_Transport(), clock, scheduleRetries: true);
+      _full(service);
+      final seen = <DiagnosticReport?>[];
+      service.addListener(() => seen.add(service.preparedReport));
+      clock.advance(const Duration(hours: 24));
+      // An unchanged session still reschedules, which expires the report.
+      service.setSession(
+        accountId: 'private-account-a',
+        token: 'private-token-a',
+        expiresAt: clock.now().add(const Duration(days: 2)),
+      );
+      expect(seen, isEmpty);
+      await Future<void>.delayed(Duration.zero);
+      expect(seen, [null]);
+      expect(service.status, DiagnosticStatus.idle);
+      await Future<void>.delayed(Duration.zero);
+      expect(seen, hasLength(1));
     },
   );
 

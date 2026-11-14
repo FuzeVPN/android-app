@@ -154,9 +154,9 @@ périmée restée sur le disque (ouverture de l’écran, reprise, Retour ou
 Annuler), il ne la présente plus à l’API, ni pour la décrire ni pour
 l’annuler (ni pour la relecture `/v1/me` d’un claim : une conversion déjà
 commise est reconnue par la session), et retente seulement son effacement.
-Il retient le ticket lui-même : si l’enregistrement d’un ticket renouvelé
-avait échoué plus tôt, la copie du disque est l’ancien ticket de la même
-tentative, qu’il présente encore à l’API, avec la même limite que ci-dessous. Retour et Annuler quittent
+Il reconnaît la tentative quel que soit son ticket : si l’enregistrement d’un
+ticket renouvelé avait échoué plus tôt, la copie du disque est l’ancien ticket
+de cette tentative, traité de la même façon. Retour et Annuler quittent
 l’écran ; l’ouverture lance un nouveau choix Google, dont l’enregistrement
 remplace cette copie. Cette mémoire disparaît avec le processus. Après un
 redémarrage, la réouverture d’une copie périmée affiche l’état incertain, qui

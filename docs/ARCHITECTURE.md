@@ -341,8 +341,15 @@ socket de transport protégé et s'en sert de deux façons :
   tunnel connecté, comptent comme une interruption récupérable
   (`openvpn_reconnect_required`) et lancent la reprise habituelle ;
 - **à l'arrêt :** si le fil du Core n'a pas fini au bout de 3 s, l'adaptateur
-  coupe ce socket (`shutdown`). L'envoi bloqué échoue, et l'arrêt se termine
-  bien avant les 10 s qu'Android lui accorde.
+  coupe ce socket (`shutdown`) ; il le coupe aussitôt quand ce fil a déjà été
+  signalé figé. L'envoi bloqué échoue, et l'arrêt se termine bien avant les
+  10 s qu'Android lui accorde.
+
+Les requêtes d'état au moteur (connexion, compteurs) n'attendent jamais plus de
+2 s derrière un démarrage ou un arrêt en cours : une session dans cet état est
+rapportée non connectée. Une défaillance publiée après une demande d'arrêt de
+l'app appartient à cet arrêt, qui la rapporte lui-même : elle ne lance pas de
+reprise.
 
 Après la mort du processus, Android ne relance pas le service VPN qu'il a déjà
 délié. Un service sans liaison ni premier plan, `SystemVpnResumeSentinel`

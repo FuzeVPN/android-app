@@ -53,6 +53,8 @@ internal object HarnessControl {
     @Volatile var openVpnConnects = 0
     @Volatile var openVpnReconnects = 0
     @Volatile var openVpnStops = 0
+    /** False makes an OpenVPN stop time out, as a Core worker that cannot end would. */
+    @Volatile var openVpnStopResult = true
     @Volatile var openVpnNetworkLosses = 0
     /** False makes a local OpenVPN restart end without CONNECTED, as a handshake timeout would. */
     @Volatile var openVpnReconnect: () -> Boolean = { true }
@@ -101,6 +103,7 @@ internal object HarnessControl {
         wireGuardStopResult = true; errorNotificationFailure = null
         wireGuardStopGate = null; tileProfileReadGate = null
         openVpnConnects = 0; openVpnReconnects = 0; openVpnStops = 0; openVpnNetworkLosses = 0
+        openVpnStopResult = true
         openVpnReconnect = { true }; openVpnStartGate = null; openVpnService.clear()
         openVpnCertificate = "valid"; openVpnRenewalPending = false; openVpnIdentity = WireGuardController.IDENTITY
         openVpnCsrRequests = 0; openVpnConnect = { true }

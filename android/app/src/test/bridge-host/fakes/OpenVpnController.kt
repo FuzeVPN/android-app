@@ -23,6 +23,19 @@ internal class OpenVpnController(@Suppress("UNUSED_PARAMETER") context: Context)
     var provenNetworkFamilies: List<String> = emptyList()
     suspend fun disconnect(timing: NativeConnectionTiming.TraceContext? = null): Boolean {
         HarnessControl.openVpnStops++
+        if (!HarnessControl.openVpnStopResult) {
+            // As the real engine whose bounded stop times out: the stop is requested, the
+            // session is kept, and its failure reaches the events after the command gave up.
+            if (events.generation > 0) {
+                events.requestStop()
+                val generation = events.generation
+                Thread {
+                    Thread.sleep(100)
+                    events.publish(generation, OpenVpnNativeState.error("openvpn_operation_timeout"))
+                }.start()
+            }
+            return false
+        }
         if (events.generation > 0) { events.requestStop(); events.finish() }
         return true
     }

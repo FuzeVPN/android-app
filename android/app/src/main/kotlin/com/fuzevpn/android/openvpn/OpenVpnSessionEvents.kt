@@ -5,7 +5,12 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import java.util.concurrent.atomic.AtomicBoolean
 
-internal data class OpenVpnSessionEvent(val generation: Long, val state: OpenVpnNativeState)
+/** [afterStopRequest]: published once the app requested this session's stop, which owns its outcome. */
+internal data class OpenVpnSessionEvent(
+    val generation: Long,
+    val state: OpenVpnNativeState,
+    val afterStopRequest: Boolean = false,
+)
 
 /** One ordered consumer for control, and a separate snapshot/first outcome for startup. */
 internal class OpenVpnSessionEvents {
@@ -78,6 +83,7 @@ internal class OpenVpnSessionEvents {
 
     @Synchronized fun publish(id: Long, state: OpenVpnNativeState) {
         if (id != generation || gate == Gate.FINISHED || (connectedRefused() && state.isConnected())) return
+        val afterStopRequest = gate == Gate.STOPPING
         snapshot = state
         if (state.toVpnStatus() == com.fuzevpn.android.VpnStatus.ERROR &&
             (failureCode == null || failureCode == "openvpn_reconnect_required")) {
@@ -88,7 +94,7 @@ internal class OpenVpnSessionEvents {
             gate = Gate.INTERRUPTED
         }
         if (state.isConnectionTerminal()) connectionWait.outcome.complete(state)
-        check(events.trySend(OpenVpnSessionEvent(id, state)).isSuccess)
+        check(events.trySend(OpenVpnSessionEvent(id, state, afterStopRequest)).isSuccess)
     }
 
     @Synchronized fun firstOutcome(id: Long): CompletableDeferred<OpenVpnNativeState> {

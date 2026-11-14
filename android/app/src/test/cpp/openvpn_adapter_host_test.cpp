@@ -209,7 +209,8 @@ int main() {
   }
   // The same worker, left alone while connected: it stops ticking, and the
   // session reports a recoverable interruption once instead of staying
-  // "connected" with a tunnel that carries nothing.
+  // "connected" with a tunnel that carries nothing. The stop that recovery
+  // then requests shuts the transport down at once, without the grace.
   {
     native_fixture::Reset();
     native_fixture::hold_send = true;
@@ -217,13 +218,15 @@ int main() {
     CoreTimings timings;
     timings.tick = 10ms;
     timings.stall_checks = 50;
-    timings.stop_grace = 100ms;
+    timings.stop_grace = 5s;
     OpenVpn3CoreSession session(timings);
     assert(session.Start(Profile(), "offline.alias", &recorder));
     assert(recorder.WaitFor("connected/connected", 2s));
     assert(recorder.WaitFor("error/openvpn_reconnect_required", 5s));
     assert(!session.IsConnected());
+    const auto stop_started = std::chrono::steady_clock::now();
     session.Stop();
+    assert(std::chrono::steady_clock::now() - stop_started < 2s);
     assert(native_fixture::transport_shutdown && native_fixture::duplicates_open == 0);
     ++cases;
   }

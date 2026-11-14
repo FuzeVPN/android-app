@@ -317,6 +317,32 @@ int main() {
     ++cases;
   }
   {
+    // A Stop that cannot finish (a Core worker stuck in its transport) holds
+    // the session. The proof and statistics queries still answer within their
+    // bound, as not connected, instead of holding their caller with it.
+    mock.ResetFailures(); const auto handle = Create(); assert(Start(handle));
+    { std::lock_guard<std::mutex> lock(control.mutex);
+      control.block_stop = true; control.stop_entered = control.release_stop = false;
+    }
+    auto stopped = std::async(std::launch::async, [&] { return NativeStop(&environment, nullptr, handle); });
+    { std::unique_lock<std::mutex> lock(control.mutex);
+      assert(control.changed.wait_for(lock, 2s, [] { return control.stop_entered; }));
+    }
+    auto connected = std::async(std::launch::async, [&] { return NativeIsConnected(&environment, nullptr, handle); });
+    assert(connected.wait_for(5s) == std::future_status::ready);
+    assert(connected.get() == JNI_FALSE);
+    auto counters = std::async(std::launch::async, [&] { return NativeStatistics(&environment, nullptr, handle); });
+    assert(counters.wait_for(5s) == std::future_status::ready);
+    const jlongArray zeros = counters.get();
+    assert(zeros != nullptr);
+    functions.DeleteLocalRef(&environment, zeros);
+    { std::lock_guard<std::mutex> lock(control.mutex); control.release_stop = true; control.changed.notify_all(); }
+    assert(stopped.wait_for(2s) == std::future_status::ready);
+    assert(stopped.get() == JNI_TRUE);
+    control.block_stop = false;
+    Destroy(handle); ++cases;
+  }
+  {
     std::string secret("offline temporary");
     try { ScopedStringErase erase(secret); throw std::runtime_error("injected exit"); }
     catch (const std::runtime_error&) {}

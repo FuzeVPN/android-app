@@ -460,7 +460,7 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
         self.assertEqual(44, data['checks']['turnstile-bridge']['junit']['passed'])
         self.assertEqual(20, data['checks']['turnstile-bridge']['javascript']['passed'])
         self.assertEqual(27, data['checks']['command-epochs']['junit']['passed'])
-        self.assertEqual(109, data['checks']['bridge-host']['junit']['passed'])
+        self.assertEqual(110, data['checks']['bridge-host']['junit']['passed'])
 
     def test_runs_below_the_cases_executed_on_30_october_are_refused(self):
         # Integration of corrections-20261029: Turnstile 44 JUnit + 20 JavaScript
@@ -475,11 +475,12 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
         # with that default suspended, blocked (APN cleared) or replaced by one of the same APN (02/11), then
         # 102 with the OpenVPN certificate renewed by a recovery, a tile click or a system restore (11/11), then
         # 109 with the VPN consent and notification requests lost with their activity, the resume error after a
-        # failed write and the restart disarmed by a session purge (explicit state machines, 12/11).
+        # failed write and the restart disarmed by a session purge (explicit state machines, 12/11), then
+        # 110 with the failure of a session the user stopped, which starts no recovery (OpenVPN freeze, 14/11).
         # The former floors (35, 15, 14, 26, then 26, 33 and 43) or one lost case no longer qualify.
         for name, filename, count in [('turnstile-bridge','junit.log',35), ('turnstile-bridge','junit.log',43),
                                       ('command-epochs','result.log',14), ('command-epochs','result.log',26),
-                                      ('bridge-host','result.log',108), ('bridge-host','result.log',102),
+                                      ('bridge-host','result.log',109), ('bridge-host','result.log',108), ('bridge-host','result.log',102),
                                       ('bridge-host','result.log',101), ('bridge-host','result.log',94),
                                       ('bridge-host','result.log',93), ('bridge-host','result.log',92), ('bridge-host','result.log',91),
                                       ('bridge-host','result.log',90), ('bridge-host','result.log',89),
@@ -505,7 +506,7 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
             with self.subTest(javascript=count), self.assertRaisesRegex(support.ValidationError, 'scenarios'):
                 support.summarize(self.directory)
         path.write_text(original)
-        self.assertEqual({'turnstile-bridge': 44, 'command-epochs': 27, 'bridge-host': 109}, support.HOST_JUNIT_MINIMUMS)
+        self.assertEqual({'turnstile-bridge': 44, 'command-epochs': 27, 'bridge-host': 110}, support.HOST_JUNIT_MINIMUMS)
         self.assertEqual(20, support.TURNSTILE_JAVASCRIPT_MINIMUM)
 
     def test_each_floor_is_the_number_of_cases_versioned_in_its_suite(self):
@@ -620,7 +621,7 @@ class MandatoryHostBoundaryTests(unittest.TestCase):
 
     def test_host_junit_rejects_skips_missing_cases_and_duplicate_success(self):
         for name, filename, count in [('turnstile-bridge','junit.log',44),('command-epochs','result.log',27),
-                                      ('bridge-host','result.log',109)]:
+                                      ('bridge-host','result.log',110)]:
             path = self.directory/name/filename
             original = path.read_text()
             variations = [original.replace('.'*count, '.'*(count-1)+'I'),
