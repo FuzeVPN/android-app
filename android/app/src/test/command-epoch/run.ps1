@@ -79,7 +79,10 @@ if ($wgStart -lt 0 -or $wgBody -lt 0 -or $wgEnd -lt 0 -or $bridge.Substring($wgS
 $generated=$generated.Replace('/* PRODUCTION_WG_ADMISSION */',$bridge.Substring($wgBody,$wgEnd-$wgBody))
 $ovpnStart=$bridge.IndexOf('    private suspend fun reconnectOpenVpn(')
 $ovpnBody=$bridge.IndexOf('        checkRequest(requestEpoch)',$ovpnStart)
-$ovpnEnd=$bridge.IndexOf('        val connectionSession = localSession(profile)',$ovpnBody)
+# Since session renewal (14/11) a certificate renewal may replace the session: the line is a var.
+# An older bridge (negative control) still declares a val.
+$ovpnEnd=$bridge.IndexOf('        var connectionSession = localSession(profile)',$ovpnBody)
+if ($ovpnEnd -lt 0) { $ovpnEnd=$bridge.IndexOf('        val connectionSession = localSession(profile)',$ovpnBody) }
 if ($ovpnStart -lt 0 -or $ovpnBody -lt 0 -or $ovpnEnd -lt 0 -or $bridge.Substring($ovpnStart,$ovpnBody-$ovpnStart) -notmatch '= withTunnelOperation \{') { throw 'OpenVPN admission boundary changed' }
 $generated=$generated.Replace('/* PRODUCTION_OVPN_ADMISSION */',$bridge.Substring($ovpnBody,$ovpnEnd-$ovpnBody))
 [IO.File]::WriteAllText("$OutputDirectory/SystemVpnCommandEpoch.generated.kt",$generated)

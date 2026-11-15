@@ -418,15 +418,15 @@ extension GuestAccountsController on VpnAppController {
 
   Future<bool> _performGuestProfileRefresh() async {
     final before = profile;
-    final activeToken = token;
-    if (_disposed || before == null || activeToken == null || _guestRenewing) {
+    final session = _identityOf(_session);
+    if (_disposed || before == null || session == null || _guestRenewing) {
       return false;
     }
     final operation = _sessionOperation;
     try {
-      final next = await _api.me(activeToken);
+      final next = await _authorized(_api.me);
       operation.check();
-      if (token != activeToken ||
+      if (!identical(_identityOf(_session), session) ||
           profile?.userId != before.userId ||
           next.userId != before.userId) {
         return false;

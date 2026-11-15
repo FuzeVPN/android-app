@@ -222,7 +222,8 @@ Les reconnexions que le natif fait seul renouvellent aussi un certificat à
 clic sur la tuile, reprise système du VPN permanent. Sans Flutter, le pont
 envoie alors la seule requête API qu'il connaisse, `POST .../openvpn/renew`
 (`OpenVpnRenewalContract`, `OpenVpnRenewalApi`), avec le jeton de la session
-stockée et le CSR de la génération en attente, puis démarre Core avec
+stockée (renouvelé d'abord s'il expire dans moins de 5 min, voir « Sessions
+renouvelables ») et le CSR de la génération en attente, puis démarre Core avec
 l'activation reçue, validée comme celle d'une connexion Flutter. La requête
 n'envoie pas `ip_families` : le serveur garde les familles de l'appareil. Elle
 part sur un réseau physique validé (`Network.openConnection`), parce que le TUN
@@ -253,7 +254,7 @@ reconnecte en OpenVPN.
 
 | Code ou situation | Réaction du client |
 | --- | --- |
-| `401 unauthorized` sur le contrôle du compte | Termine la session et le tunnel concerné, puis demande une reconnexion. |
+| `401 unauthorized` sur le contrôle du compte | Session renouvelable : un seul renouvellement forcé puis une seule reprise de l'appel ; un refus du renouvellement termine la session. Session classique ou refus : termine la session et le tunnel concerné, puis demande une reconnexion. |
 | `403 email_verification_required` | Propose la vérification avec le délai de renvoi applicable. |
 | `device_identity_revoked`, `openvpn_profile_revoked` | Invalide l'identité concernée et exige une action explicite. |
 | `openvpn_profile_exists` | Réutilise l'état local idempotent ; ne régénère pas une clé par défaut. |
@@ -380,6 +381,43 @@ l'application lorsqu'une préparation ou un consentement VPN est requis, ou
 quand ce renouvellement est refusé. La déconnexion du compte et la suppression de
 l'identité invalident ce raccourci. Le runtime Maven de debug ne propose pas
 le mode VPN permanent.
+
+## Sessions renouvelables
+
+Le serveur convertit la session de 30 jours d'un compte personnel en un accès
+d'une heure et un droit de renouvellement de 365 jours (contrat
+`session-renewal` de l'API). Le natif est le seul à faire tourner les jetons ;
+Dart ne voit jamais le jeton de renouvellement.
+
+- **Stockage.** L'accès garde son format `{access_token, expires_at}`. Deux
+  créneaux propres au compte s'y ajoutent, purgés en fin de session :
+  `fuzevpn.session.refresh` (droit de renouvellement) et
+  `fuzevpn.session.renewal_pending` (demande en attente : route, jeton
+  présenté, `request_id`).
+- **Rotation (`SessionRenewal`).** La demande est enregistrée avant l'envoi et
+  renvoyée à l'identique après un délai dépassé, une réponse perdue ou un
+  redémarrage. Le nouveau couple, la suppression de la demande et le
+  déplacement de la reprise système vers le nouvel accès forment une seule
+  écriture atomique. Un verrou de renouvellement sérialise conversion et
+  renouvellement ; il précède toujours le verrou du tunnel, et un chemin qui
+  tient déjà le verrou du tunnel ne l'attend jamais. Les échéances se jugent sur
+  la durée annoncée par le serveur et l'horloge monotone, pas sur l'horloge
+  de l'appareil.
+- **Canal.** Dart appelle `sessionUpgrade` après l'établissement d'une session
+  personnelle (jamais pour un invité), `sessionEnsureFresh` au démarrage, au
+  retour au premier plan, avant les opérations principales et, avec `force`,
+  une seule fois sur un `401`, et `sessionLogout` avant l'effacement de la
+  session (déconnexion avec le jeton de renouvellement). Un échec transitoire
+  garde la session locale ; seuls un refus (`session_unauthorized`) ou un droit
+  expiré (`session_refresh_expired`) la terminent.
+- **Natif seul.** Une session est utilisable localement si son accès est
+  valable ou si son droit de renouvellement l'est : la tuile, la reprise
+  système et la reprise OpenVPN fonctionnent après une heure sans l'app.
+- **Côté Dart.** L'identité d'une session survit à la rotation de son accès ;
+  une nouvelle session reste reconnue comme différente. La facturation et le
+  diagnostic obtiennent un accès frais avant leurs envois.
+- **Serveur sans le contrat.** Un `404` à la première conversion garde la
+  session classique, réessayée au démarrage suivant.
 
 ## Stockage et confidentialité
 

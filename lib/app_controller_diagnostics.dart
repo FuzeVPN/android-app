@@ -34,8 +34,12 @@ extension VpnDiagnostics on VpnAppController {
     _diagnostics?.setSession(
       accountId: valid ? profile!.userId : null,
       token: valid ? token : null,
-      // That clock cannot judge a session it already places in the past.
-      expiresAt: valid && !identical(session, _clockAheadSession)
+      // That clock cannot judge a session it already places in the past,
+      // nor a renewable one, whose access is renewed before each send.
+      expiresAt:
+          valid &&
+              !identical(session, _clockAheadSession) &&
+              _identityOf(session)!.renewal != _AccessRenewal.renewable
           ? session.expiresAt
           : null,
     );

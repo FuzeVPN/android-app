@@ -97,6 +97,15 @@ abstract interface class NativeSessionBindingGateway {
   Future<String?> readStoredSessionBinding();
 }
 
+/// Optional: the native owner of renewable app sessions. Each call returns
+/// the raw channel result, checked by [NativeSecureStore]. A null account id
+/// leaves the key out: native code then uses the active account.
+abstract interface class NativeSessionRenewalGateway {
+  Future<Object?> sessionUpgrade({required String accountId});
+  Future<Object?> sessionEnsureFresh({String? accountId, bool force = false});
+  Future<Object?> sessionLogout({String? accountId});
+}
+
 /// Non-sensitive settings still use the native encrypted store, but are
 /// exposed as typed preferences instead of caller-selected key strings.
 abstract interface class AppPreferenceStore {
@@ -145,6 +154,7 @@ class NativeVpnBridge
         NativeStorageGateway,
         NativeGuestStorageGateway,
         NativeSessionBindingGateway,
+        NativeSessionRenewalGateway,
         GuestOnboardingStore,
         FavoriteLocationStore,
         DiagnosticPreferenceStore,
@@ -493,6 +503,57 @@ class NativeVpnBridge
   });
 
   @override
+  Future<Object?> sessionUpgrade({required String accountId}) =>
+      _invokeSession('sessionUpgrade', accountId);
+
+  @override
+  Future<Object?> sessionEnsureFresh({String? accountId, bool force = false}) =>
+      _invokeSession('sessionEnsureFresh', accountId, force: force);
+
+  @override
+  Future<Object?> sessionLogout({String? accountId}) =>
+      _invokeSession('sessionLogout', accountId);
+
+  Future<Object?> _invokeSession(
+    String method,
+    String? accountId, {
+    bool force = false,
+  }) => _invoke<Object?>(method, <String, Object>{
+    if (accountId != null) 'account_id': accountId,
+    if (force) 'force': true,
+  });
+
+  /// The renewal codes of the session methods keep their meaning (and a
+  /// known Retry-After); any other code stays a [NativeVpnException].
+  Exception _platformFailure(String method, PlatformException error) {
+    final SessionRenewalError? kind = switch (method) {
+      'sessionUpgrade' ||
+      'sessionEnsureFresh' ||
+      'sessionLogout' => switch (error.code) {
+        'session_unauthorized' => SessionRenewalError.unauthorized,
+        'session_renewal_unavailable' => SessionRenewalError.unavailable,
+        'session_renewal_invalid' => SessionRenewalError.invalid,
+        'session_refresh_expired' => SessionRenewalError.refreshExpired,
+        _ => null,
+      },
+      _ => null,
+    };
+    if (kind == null) {
+      return NativeVpnException(_stablePlatformCode(error.code));
+    }
+    final Object? details = error.details;
+    final Object? retryAfter = details is Map
+        ? details['retry_after_seconds']
+        : null;
+    return SessionRenewalFailure(
+      kind,
+      retryAfterSeconds: retryAfter is int && retryAfter > 0
+          ? retryAfter.clamp(1, 86400)
+          : null,
+    );
+  }
+
+  @override
   Future<String?> readStoredGuestCredential() async =>
       _readGuestCredential('storageReadGuestCredential');
 
@@ -703,7 +764,7 @@ class NativeVpnBridge
         try {
           return await _channel.invokeMethod<T>(method, tracedArguments);
         } on PlatformException catch (error) {
-          throw NativeVpnException(_stablePlatformCode(error.code));
+          throw _platformFailure(method, error);
         } on MissingPluginException {
           throw const NativeVpnException('native_bridge_unavailable');
         }
@@ -772,6 +833,9 @@ class NativeVpnBridge
     'storageReadGuestOnboardingCompleted' ||
     'storageWriteGuestOnboardingCompleted' ||
     'storageReplaceGuestSession' ||
+    'sessionUpgrade' ||
+    'sessionEnsureFresh' ||
+    'sessionLogout' ||
     'storageClearSession' ||
     'storageReadCurrentDevice' ||
     'storageWriteCurrentDevice' ||
@@ -808,6 +872,7 @@ class NativeSecureStore
         SecureSessionStore,
         PendingAdmissionStore,
         SessionEndCauseStore,
+        SessionRenewalStore,
         GuestCredentialStore,
         GuestSessionRenewalStore,
         GuestOnboardingStore,
@@ -1010,6 +1075,59 @@ class NativeSecureStore
         expired: cause != SessionEndCause.voluntary,
         cause: cause,
       );
+
+  NativeSessionRenewalGateway get _renewalGateway {
+    final store = _store;
+    if (store is! NativeSessionRenewalGateway) {
+      throw const NativeVpnException('native_bridge_unavailable');
+    }
+    return store as NativeSessionRenewalGateway;
+  }
+
+  @override
+  Future<SessionRenewal> upgradeSession({required String userId}) async =>
+      _storedRenewal(await _renewalGateway.sessionUpgrade(accountId: userId));
+
+  @override
+  Future<SessionRenewal> ensureFreshSession({
+    String? userId,
+    bool force = false,
+  }) async => _storedRenewal(
+    await _renewalGateway.sessionEnsureFresh(accountId: userId, force: force),
+  );
+
+  @override
+  Future<bool> logoutSession({String? userId}) async {
+    final Object? value = await _renewalGateway.sessionLogout(
+      accountId: userId,
+    );
+    return switch (value is Map ? value['state'] : null) {
+      'renewable' => true,
+      'classic' => false,
+      _ => throw const NativeVpnException('native_operation_failed'),
+    };
+  }
+
+  /// `{state, payload}`: the payload is the stored access, in the format of
+  /// [readSession]. Anything else is refused, never adopted as a session.
+  SessionRenewal _storedRenewal(Object? value) {
+    final Object? state = value is Map ? value['state'] : null;
+    final Object? payload = value is Map ? value['payload'] : null;
+    if ((state == 'renewable' || state == 'classic') && payload is String) {
+      try {
+        final Object? decoded = jsonDecode(payload);
+        if (decoded is Map<String, dynamic>) {
+          return SessionRenewal(
+            renewable: state == 'renewable',
+            session: AuthSession.fromJson(decoded),
+          );
+        }
+      } on FormatException {
+        // Refused below.
+      }
+    }
+    throw const NativeVpnException('native_operation_failed');
+  }
 
   @override
   Future<String?> readCurrentDeviceId({required String userId}) =>

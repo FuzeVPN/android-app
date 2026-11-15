@@ -65,6 +65,21 @@ class SecureStorageKeyPolicyTest {
         )
     }
 
+    // Session renewal: the renewal grant and the pending request are account session slots,
+    // erased by every session purge with the access they belong to.
+    @Test
+    fun renewalSlotsAreAccountSessionSlots() {
+        val scope = SecureKeystoreStore.accountScope("user-a")
+        assertEquals(SecureStorageSlot(scope, "fuzevpn.session.refresh"), SecureStorageKeyPolicy.accountSessionRefresh("user-a"))
+        assertEquals(SecureStorageSlot(scope, "fuzevpn.session.renewal_pending"),
+            SecureStorageKeyPolicy.accountSessionRenewalPending("user-a"))
+        for (key in listOf("fuzevpn.session.current", "fuzevpn.session.refresh", "fuzevpn.session.renewal_pending")) {
+            assertEquals(key, true, SecureStorageKeyPolicy.isSessionSlot(scope, key))
+            assertEquals(key, false, SecureStorageKeyPolicy.isSessionSlot(SecureKeystoreStore.GLOBAL_SCOPE, key))
+        }
+        assertEquals(false, SecureStorageKeyPolicy.isSessionSlot(scope, "fuzevpn.session.refresh.old"))
+    }
+
     @Test
     fun rejectsMalformedDynamicIdentifiers() {
         assertCode("invalid_device_id") {

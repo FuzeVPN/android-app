@@ -167,6 +167,9 @@ const _swallowedNativeMessages = <String, String>{
   'storage_update_empty': 'require message, caller reports its typed code',
   'storage_value_too_large': 'require message, caller reports its typed code',
   'storage_values_empty': 'require message, caller reports its typed code',
+  // SessionRenewal.kt: the transport failure is a plain Exception whose
+  // message is never read; the renewal reports session_renewal_unavailable.
+  'session_transport_failed': 'Exception message, caller reports its code',
   // Pkcs10Csr: wrapped as openvpn_csr_generation_failed.
   'der_too_large': 'IllegalArgumentException, wrapped by its caller',
   'invalid_oid': 'IllegalArgumentException, wrapped by its caller',
@@ -176,6 +179,9 @@ const _swallowedNativeMessages = <String, String>{
   'native_creation_not_claimable': 'check message, wrapped by its caller',
   // JNI IllegalStateException text, never read by Kotlin.
   'openvpn_native_state_unavailable': 'JNI exception text, never read',
+  // Session renewal: a stored timestamp Dart could not read back
+  // (require message); the renewal reports its own channel code.
+  'timestamp_out_of_range': 'require message, caller reports its typed code',
   // Standard CancellationException tokens (java.util.concurrent or
   // kotlinx.coroutines): only their type is caught, never their text.
   'system_vpn_request_replaced': 'cancellation token, text never read',
@@ -228,17 +234,21 @@ const _nativeWireFields = <String>{
   'openvpn_revocation',
   'os_family',
   'os_major',
+  'presented_token',
   'preserve_existing_certificate',
   'private_key',
   'profile_fingerprint',
   'profile_payload',
   'received_bytes',
   'recovery_consumed',
+  'refresh_expires_at',
+  'refresh_token',
   'remote_cert_tls_server',
   'renewal_pending',
   'request_id',
   'resume_error',
   'resume_state',
+  'retry_after_seconds',
   'sent_bytes',
   'server_name',
   'server_public_key',
@@ -251,6 +261,12 @@ const _nativeWireFields = <String>{
   'tls_crypt_v2_client_key',
   'tunnel_stopped',
   'user_id',
+  // Error values of the session-renewal API that native code reads in an
+  // answer; it reports its own channel code instead (session_renewal_*).
+  'invalid_json',
+  'invalid_session_request_id',
+  'session_transition',
+  'session_upgrade_conflict',
 };
 const _nativeTimingSpans = <String>{
   'openvpn_certificate_read',
@@ -325,6 +341,15 @@ const _unrecordedOutcomes = <String, String>{
   'diagnostic_snapshot_unavailable': 'diagnostic collector, never recorded',
   'session_ending': 'local session end in progress, not a failure cause',
   'session_operation_cancelled': 'superseded operation, not a failure cause',
+  // Session-renewal channel answers (sessionUpgrade, sessionEnsureFresh,
+  // sessionLogout): Dart turns them into SessionRenewalFailure and decides
+  // the session's fate from them; it never records them as a diagnostic.
+  // Paths holding the tunnel report network_unavailable or
+  // openvpn_renewal_required instead.
+  'session_refresh_expired': 'session renewal answer, never recorded',
+  'session_renewal_invalid': 'session renewal answer, never recorded',
+  'session_renewal_unavailable': 'session renewal answer, never recorded',
+  'session_unauthorized': 'session renewal answer, never recorded',
   // Quick Settings tile callbacks (lot N, C2-03 and A11-03): the tile service
   // opens Android's VPN settings or the app; nothing is sent to Dart.
   'quick_tile_open_settings': 'tile service handoff, never sent to Dart',
@@ -492,10 +517,12 @@ String? _swallowedContext(_NativeSource source, String code, int index) {
       ).hasMatch(line)) {
     return 'require';
   }
+  // The message of java.lang.Exception itself (a plain superclass message,
+  // as in `class X : Exception("code")`) is never read either.
   if (kotlin &&
       RegExp(
-        '\\b(?:IllegalArgumentException|IllegalStateException)'
-        '\\(\\s*"$c"\\s*[,)]',
+        '(?:\\b(?:IllegalArgumentException|IllegalStateException)|'
+        '(?<![.\\w])Exception)\\(\\s*"$c"\\s*[,)]',
       ).hasMatch(line)) {
     return 'untyped exception';
   }
@@ -826,6 +853,9 @@ void main() {
     expect(contexts['wireguard_call_withdrawn'], {'cancellation'});
     expect(contexts['system_vpn_start_superseded'], {'cancellation'});
     expect(contexts['system_vpn_request_replaced'], {'cancellation'});
+    // Session renewal: a plain Exception message and a require message.
+    expect(contexts['session_transport_failed'], {'untyped exception'});
+    expect(contexts['timestamp_out_of_range'], {'require'});
     // Synthetic controls: a typed exception, a state factory named error, or
     // a result kept by getOrElse would all transmit the code.
     String? synthetic(String name, String text) => _swallowedContext(
@@ -865,6 +895,10 @@ void main() {
             '.getOrNull()',
       ),
       'runCatching',
+    );
+    expect(
+      synthetic('A.kt', 'class A : Exception("invalid_profile")'),
+      'untyped exception',
     );
     for (final text in [
       'fun f() { throw VpnNativeException("invalid_profile") }',

@@ -142,6 +142,67 @@ abstract interface class SessionEndCauseStore {
   Future<SessionTerminationResult> clearSessionFor(SessionEndCause cause);
 }
 
+/// Native storage that owns renewable app sessions (session-renewal
+/// contract). Only native code holds and presents the refresh token; Dart
+/// only receives the stored access session. [userId] is the account the
+/// stored session is bound to, or null while Dart does not know it yet (a
+/// session read back before /v1/me): native code then uses the active
+/// account's session.
+abstract interface class SessionRenewalStore {
+  /// Converts a personal session confirmed by /v1/me, or resumes a pending
+  /// conversion. A server without the contract keeps it classic.
+  Future<SessionRenewal> upgradeSession({required String userId});
+
+  /// The current access, renewed first when it expires within five minutes,
+  /// or whatever the device clock says when [force]d (after a 401: the
+  /// server's dates prevail). A classic session is returned as it is.
+  Future<SessionRenewal> ensureFreshSession({
+    String? userId,
+    bool force = false,
+  });
+
+  /// Called before the session is cleared. True: native code sends the
+  /// refresh-token logout itself. False: a classic session, whose caller
+  /// keeps the access-token logout.
+  Future<bool> logoutSession({String? userId});
+}
+
+/// The stored access session, as native code returns it.
+class SessionRenewal {
+  const SessionRenewal({required this.renewable, required this.session});
+
+  final bool renewable;
+  final AuthSession session;
+
+  @override
+  String toString() => 'SessionRenewal(renewable: $renewable, redacted: true)';
+}
+
+enum SessionRenewalError {
+  /// The server refused the session: it ends as an expiry.
+  unauthorized,
+
+  /// Temporary (network, 429, 5xx, a renewal in progress): the local session
+  /// is kept and the same request is retried later.
+  unavailable,
+
+  /// A malformed renewal request: a client defect.
+  invalid,
+
+  /// The right to renew has lapsed: a new sign-in is required.
+  refreshExpired,
+}
+
+class SessionRenewalFailure implements Exception {
+  const SessionRenewalFailure(this.error, {this.retryAfterSeconds});
+
+  final SessionRenewalError error;
+  final int? retryAfterSeconds;
+
+  @override
+  String toString() => 'SessionRenewalFailure(${error.name})';
+}
+
 /// The caller owns cleanup after checking the account/device operation again.
 class CorruptLocationMigration implements Exception {
   const CorruptLocationMigration();

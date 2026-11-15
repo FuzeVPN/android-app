@@ -273,6 +273,12 @@ class DiagnosticService extends ChangeNotifier {
   DiagnosticReceipt? _lastReceipt;
   DiagnosticFailure? _lastFailure;
 
+  /// Called once per delivery round, before the first report is sent: the
+  /// application may renew the session's access (a renewable session's
+  /// access lasts one hour) and publish it through [setSession]. A failure
+  /// leaves the current access.
+  Future<void> Function()? sessionRefresher;
+
   bool get automaticConsent => _automaticConsent;
   DiagnosticSendStatus get status => _status;
   DiagnosticReport? get preparedReport {
@@ -676,6 +682,7 @@ class DiagnosticService extends ChangeNotifier {
           report._delivery.rejectedToken != _token);
 
   Future<void> _drain() async {
+    var refreshed = false;
     while (!_disposed) {
       if (_pruneChanged()) _notify();
       if (!_sessionUsable) {
@@ -694,6 +701,17 @@ class DiagnosticService extends ChangeNotifier {
       }
       final eligible = _queue.where((report) => _eligible(report, now));
       if (eligible.isEmpty) return;
+      final refresher = sessionRefresher;
+      if (refresher != null && !refreshed) {
+        refreshed = true;
+        try {
+          await refresher();
+        } catch (_) {
+          // The current access is sent; a refusal is handled as before.
+        }
+        // The session may have changed meanwhile: everything is checked again.
+        continue;
+      }
       final report = eligible.first;
       final token = _token!;
       final delivery = report._delivery;

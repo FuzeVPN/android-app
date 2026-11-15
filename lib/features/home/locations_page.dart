@@ -115,7 +115,7 @@ class _LocationsPageState extends State<LocationsPage> {
       return;
     }
     final account = controller.profile?.userId;
-    final token = controller.token;
+    final sessionIdentity = controller.sessionIdentity;
     final session = controller.locationChangeSessionIdentity;
     final device = controller.currentDeviceId;
     final selected = controller.selectedLocation?.id;
@@ -174,7 +174,7 @@ class _LocationsPageState extends State<LocationsPage> {
           !identical(controller, widget.controller) ||
           !identical(session, controller.locationChangeSessionIdentity) ||
           controller.profile?.userId != account ||
-          controller.token != token ||
+          !identical(controller.sessionIdentity, sessionIdentity) ||
           controller.currentDeviceId != device ||
           controller.selectedLocation?.id != selected ||
           _currentLocationId(controller) != current ||

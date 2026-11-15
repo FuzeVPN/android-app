@@ -123,8 +123,14 @@ elles ne survivent pas à l’arrêt du processus.
 
 Ces réponses sont exigées par le client Android. Le contrat et la
 configuration du serveur doivent être contrôlés dans son propre projet ;
-aucun fichier backend externe n’est requis pour lire ce guide. La route
-`/v1/auth/session` n’est pas utilisée.
+aucun fichier backend externe n’est requis pour lire ce guide. Ce parcours
+n’appelle pas lui-même `/v1/auth/session/upgrade` ni
+`/v1/auth/session/refresh` : une session personnelle admise par Google est
+convertie en session renouvelable par le code natif, comme après une
+connexion par e-mail, mais seulement une fois l’intention Google terminée.
+Tant qu’une intention est en attente (défi Turnstile compris) et que l’accès
+reste valable, aucune rotation n’a lieu ; un accès déjà expiré ou un `401`
+peut seul la forcer.
 
 ## Stockage, annulation et réponse perdue
 

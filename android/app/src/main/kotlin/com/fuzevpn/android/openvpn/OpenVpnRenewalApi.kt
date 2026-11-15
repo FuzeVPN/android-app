@@ -40,7 +40,7 @@ internal class OpenVpnRenewalApi(context: Context, private val baseUrl: String) 
         isCurrent: () -> Boolean,
     ): Map<String, Any?> {
         val request = OpenVpnRenewalContract.request(baseUrl, sessionPayload, deviceId, csrPem)
-        val network = physicalNetwork() ?: throw OpenVpnRenewalRefused(OpenVpnRenewalRefused.NETWORK)
+        val network = connectivity.physicalApiNetwork() ?: throw OpenVpnRenewalRefused(OpenVpnRenewalRefused.NETWORK)
         val outcome = AtomicReference<Result<Map<String, Any?>>?>()
         val connection = AtomicReference<HttpsURLConnection?>()
         val abandoned = AtomicBoolean()
@@ -115,42 +115,6 @@ internal class OpenVpnRenewalApi(context: Context, private val baseUrl: String) 
         else -> OpenVpnRenewalRefused(OpenVpnRenewalRefused.REQUEST)
     }
 
-    /**
-     * A validated physical network this app may bind to. A network Android
-     * only keeps up in the background (mobile data beside Wi-Fi) refuses the
-     * socket of an ordinary app, so the system default physical network is
-     * preferred: under our VPN, the legacy active network info describes it.
-     * On Android 11 the process's ConnectivityManager can refuse every
-     * capability read (see AndroidVpnBridge.physicalCallbackRegistered): that
-     * default is then found through the legacy readings alone, which have no
-     * package check.
-     */
-    @Suppress("DEPRECATION")
-    private fun physicalNetwork(): Network? = try {
-        val default = connectivity.activeNetworkInfo?.takeIf { it.type != ConnectivityManager.TYPE_VPN && it.isConnected }
-        try {
-            val usable = connectivity.allNetworks.filter { network ->
-                connectivity.getNetworkCapabilities(network)?.let { capabilities ->
-                    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN) &&
-                        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_RESTRICTED) &&
-                        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) &&
-                        (Build.VERSION.SDK_INT < Build.VERSION_CODES.P ||
-                            capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_FOREGROUND))
-                } == true
-            }
-            usable.firstOrNull { default != null && connectivity.getNetworkInfo(it)?.type == default.type }
-                ?: usable.firstOrNull()
-        } catch (_: SecurityException) {
-            if (default == null) null
-            else connectivity.allNetworks.firstOrNull { network ->
-                connectivity.getNetworkInfo(network)?.let { it.type == default.type && it.isConnected } == true
-            }
-        }
-    } catch (_: Exception) {
-        null
-    }
-
     private companion object {
         const val CONNECT_TIMEOUT_MS = 10_000
         // The server waits up to 8 s for the VPN node to apply the new certificate.
@@ -158,4 +122,41 @@ internal class OpenVpnRenewalApi(context: Context, private val baseUrl: String) 
         const val REQUEST_TIMEOUT_MS = 25_000L
         const val POLL_MS = 100L
     }
+}
+
+/**
+ * A validated physical network this app may bind to. A network Android
+ * only keeps up in the background (mobile data beside Wi-Fi) refuses the
+ * socket of an ordinary app, so the system default physical network is
+ * preferred: under our VPN, the legacy active network info describes it.
+ * On Android 11 the process's ConnectivityManager can refuse every
+ * capability read (see AndroidVpnBridge.physicalCallbackRegistered): that
+ * default is then found through the legacy readings alone, which have no
+ * package check. Shared with the session renewal (SessionRenewalApi).
+ */
+@Suppress("DEPRECATION")
+internal fun ConnectivityManager.physicalApiNetwork(): Network? = try {
+    val connectivity = this
+    val default = connectivity.activeNetworkInfo?.takeIf { it.type != ConnectivityManager.TYPE_VPN && it.isConnected }
+    try {
+        val usable = connectivity.allNetworks.filter { network ->
+            connectivity.getNetworkCapabilities(network)?.let { capabilities ->
+                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_VPN) &&
+                    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_RESTRICTED) &&
+                    capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) &&
+                    (Build.VERSION.SDK_INT < Build.VERSION_CODES.P ||
+                        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_FOREGROUND))
+            } == true
+        }
+        usable.firstOrNull { default != null && connectivity.getNetworkInfo(it)?.type == default.type }
+            ?: usable.firstOrNull()
+    } catch (_: SecurityException) {
+        if (default == null) null
+        else connectivity.allNetworks.firstOrNull { network ->
+            connectivity.getNetworkInfo(network)?.let { it.type == default.type && it.isConnected } == true
+        }
+    }
+} catch (_: Exception) {
+    null
 }

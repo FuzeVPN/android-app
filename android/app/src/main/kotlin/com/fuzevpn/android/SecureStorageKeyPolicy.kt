@@ -27,6 +27,8 @@ internal object SecureStorageKeyPolicy {
     private const val SESSION_PENDING = "fuzevpn.session.pending"
     private const val SESSION_ACTIVE_USER = "fuzevpn.session.active_user"
     private const val SESSION_CURRENT = "fuzevpn.session.current"
+    private const val SESSION_REFRESH = "fuzevpn.session.refresh"
+    private const val SESSION_RENEWAL_PENDING = "fuzevpn.session.renewal_pending"
     private const val DEVICE_CURRENT = "fuzevpn.device.current"
     private const val DEVICE_LOCATION_MIGRATION_PREFIX = "fuzevpn.device.location_migration."
     private const val VERIFICATION_NEEDED_PREFIX = "fuzevpn.preference.account.verification_needed."
@@ -57,11 +59,18 @@ internal object SecureStorageKeyPolicy {
 
     fun accountSession(accountId: String) = account(accountId, SESSION_CURRENT)
 
+    /** Native only: the renewal grant of a converted session, never read by Flutter. */
+    fun accountSessionRefresh(accountId: String) = account(accountId, SESSION_REFRESH)
+
+    /** Native only: an upgrade or refresh request written before it is sent. */
+    fun accountSessionRenewalPending(accountId: String) = account(accountId, SESSION_RENEWAL_PENDING)
+
     fun isSessionSlot(scope: String, key: String): Boolean =
         if (scope == SecureKeystoreStore.GLOBAL_SCOPE) {
             key in setOf(SESSION_PENDING, SESSION_ACTIVE_USER, QUICK_TILE_PROFILE, SYSTEM_VPN_RESUME)
         } else {
-            Regex("account_[a-f0-9]{48}").matches(scope) && key == SESSION_CURRENT
+            Regex("account_[a-f0-9]{48}").matches(scope) &&
+                key in setOf(SESSION_CURRENT, SESSION_REFRESH, SESSION_RENEWAL_PENDING)
         }
 
     fun currentDevice(accountId: String) = account(accountId, DEVICE_CURRENT)

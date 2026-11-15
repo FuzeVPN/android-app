@@ -434,6 +434,76 @@ class SystemVpnResumeTest {
         assertEquals(2, armed)
     }
 
+    // Session renewal: a converted session's one-hour access expires while the VPN keeps running.
+    // Its expired access stays usable while the account's renewal grant is valid.
+    @Test fun anExpiredAccessStaysUsableOnlyWhileItsSessionCanBeRenewed() {
+        val memory = Memory()
+        var renewableUntil: Instant? = now.plusSeconds(3_600)
+        val registry = SystemVpnResumeRegistry(readRaw = { memory.value }, writeRaw = { memory.value = it },
+            now = { now }, renewableUntil = { account -> assertEquals("account-a", account); renewableUntil })
+        registry.arm(openVpnProfile(), expiredSession(), identity)
+        assertNotNull(registry.reserve(expiredSession(), identity))
+        assertNotNull(registry.complete(expiredSession(), identity))
+        assertNotNull(registry.admitNetworkRecovery(expiredSession(), identity))
+        assertNotNull(registry.consumeRecovery(expiredSession(), identity))
+        // The grant is over, or the session is classic: as before, an expired access is refused.
+        for (until in listOf(now, now.minusSeconds(1), null)) {
+            renewableUntil = until
+            assertNull(registry.admitNetworkRecovery(expiredSession(), identity))
+            assertNull(registry.reserve(expiredSession(), identity))
+            assertThrows(SystemVpnResumeException::class.java) { registry.arm(profile(), expiredSession(), identity) }
+        }
+        // Without the hook (the default), nothing changes.
+        assertThrows(SystemVpnResumeException::class.java) { registry().arm(profile(), expiredSession(), identity) }
+        // The format check stays: exactly the two keys.
+        assertNull(validateSystemVpnSessionPayload("{\"access_token\":\"t\",\"expires_at\":\"2020-01-02T03:04:05Z\",\"x\":1}",
+            now, now.plusSeconds(60)))
+        assertNotNull(validateSystemVpnSessionPayload(expiredSession(), now, now.plusSeconds(60)))
+        assertNull(validateSystemVpnSessionPayload(expiredSession(), now, now))
+    }
+
+    // A rotation keeps the server session: the record follows the new access whatever its status.
+    @Test fun aRotationMovesTheRecordOfThePreviousAccessAndNothingElse() {
+        for (state in listOf("ready", "reserved", "blocked", "consumed")) {
+            val memory = Memory()
+            val registry = registry(memory)
+            registry.arm(openVpnProfile(), session(), identity)
+            when (state) {
+                "reserved" -> registry.reserve(session(), identity)
+                "blocked" -> registry.block("network_unavailable")
+                "consumed" -> registry.consumeRecovery(session(), identity)
+            }
+            val before = notNull(registry.snapshot())
+            var committed: String? = null
+            assertTrue(state, registry.moveSession(session(), otherSession()) { committed = it; memory.value = it })
+            val moved = notNull(registry.snapshot())
+            assertEquals(state, memory.value, committed)
+            assertEquals(state, before.copy(sessionFingerprint = validateSystemVpnSessionPayload(otherSession(), now)!!.fingerprint),
+                moved)
+        }
+        // Absent, invalidated, naming another session or unreadable: commit(null), the record is left as it is.
+        for (state in listOf("absent", "invalidated", "other-session", "corrupt")) {
+            val memory = Memory()
+            val registry = registry(memory)
+            when (state) {
+                "invalidated" -> { registry.arm(profile(), session(), identity); registry.invalidate() }
+                "other-session" -> registry.arm(profile(), otherSession(), identity)
+                "corrupt" -> memory.value = "{bad"
+            }
+            val before = memory.value
+            var calls = 0
+            assertFalse(state, registry.moveSession(session(), otherSession()) { calls++; assertNull(state, it) })
+            assertEquals(state, 1, calls)
+            assertEquals(state, before, memory.value)
+        }
+        // An access already over can be moved: a follow-up renewal replaces it at once.
+        val memory = Memory()
+        val registry = registry(memory)
+        registry.arm(profile(), session(), identity)
+        assertTrue(registry.moveSession(session(), expiredSession()) { memory.value = it })
+        assertThrows(SystemVpnResumeException::class.java) { registry.moveSession(session(), "{}") { } }
+    }
+
     private fun registryWithRaw(raw: String): SystemVpnResumeRegistry =
         SystemVpnResumeRegistry(readRaw = { raw }, writeRaw = { }, now = { now })
 

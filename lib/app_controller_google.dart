@@ -11,6 +11,7 @@ extension _GoogleAccountOperations on VpnAppController {
     return GoogleIdentitySnapshot(
       userId: profile?.userId,
       accessToken: token,
+      session: _identityOf(_session),
       scope: _sessionOperation,
       isGuest: profile?.isGuest == true,
       canManageAccount:
@@ -24,7 +25,7 @@ extension _GoogleAccountOperations on VpnAppController {
       identical(before.scope, _sessionOperation) &&
       _sessionOperation.isCurrent &&
       before.userId == profile?.userId &&
-      before.accessToken == token;
+      identical(before.session, _identityOf(_session));
 
   bool _canBeginGoogle(GoogleAuthPurpose purpose) {
     if (_disposed ||
@@ -61,6 +62,8 @@ extension _GoogleAccountOperations on VpnAppController {
       _guestActionOwner = null;
       _googleGuestOwner = null;
     }
+    // A conversion deferred behind the intent runs once it has ended.
+    if (!_googleAuth.hasPendingIntent) _scheduleSessionUpgrade();
     notifyListeners();
   }
 
@@ -103,8 +106,13 @@ extension _GoogleAccountOperations on VpnAppController {
         verificationNeeded: verified.emailVerified == false,
         authorizationCurrent: isCurrent,
       );
+      // The candidate, whatever renewal of its access token is current.
+      final bool candidateKept = identical(
+        _identityOf(_session),
+        _identityOf(candidate),
+      );
       if (!isCurrent()) {
-        if (identical(_session, candidate) && operation.isCurrent) {
+        if (candidateKept && operation.isCurrent) {
           await _terminateSession();
         }
         return false;
@@ -117,8 +125,7 @@ extension _GoogleAccountOperations on VpnAppController {
       // Profile/catalog restoration may need a retry after the candidate was
       // already verified and durably committed. That is an admitted session,
       // not a still-pending Google intent to revoke on Back.
-      return restored ||
-          (identical(_session, candidate) && hasPendingAccountRestoration);
+      return restored || (candidateKept && hasPendingAccountRestoration);
     } on NativeVpnException catch (error) {
       if (operation.isCurrent) await _handleInitialSessionWriteFailure(error);
       return false;

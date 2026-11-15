@@ -98,14 +98,17 @@ class VpnAppController extends ChangeNotifier {
         'must_be_positive',
       );
     }
+    final BillingApiRepository billingRequests =
+        billingApi ??
+        (_api is BillingApiRepository
+            ? _api as BillingApiRepository
+            : const UnavailableBillingApi());
     _billing = BillingController(
       autoRestore: billingGateway is BillingSessionGateway,
       gateway: billingGateway ?? const UnavailablePlayBillingGateway(),
-      api:
-          billingApi ??
-          (_api is BillingApiRepository
-              ? _api as BillingApiRepository
-              : const UnavailableBillingApi()),
+      api: _sessionStore is SessionRenewalStore
+          ? _RenewingBillingApi(billingRequests, _billingRequest)
+          : billingRequests,
       currentAccount: () => !isSignedIn || token == null
           ? null
           : BillingAccount(
@@ -133,6 +136,9 @@ class VpnAppController extends ChangeNotifier {
     _tunnelSubscription = _tunnel.states.listen(_onTunnelState);
     _billing.addListener(_guestBillingChanged);
     _diagnostics?.addListener(_diagnosticsChanged);
+    if (_sessionStore is SessionRenewalStore) {
+      _diagnostics?.sessionRefresher = _freshAccessForDiagnostics;
+    }
     if (_diagnostics != null) {
       _timingObserver = () {
         final operation = _sessionOperation;
@@ -292,7 +298,38 @@ class VpnAppController extends ChangeNotifier {
 
   bool _sessionLive(AuthSession session) =>
       identical(session, _issuedSession) ||
+      // Native code renews its access: that access no longer dates its end.
+      _identityOf(session)!.renewal == _AccessRenewal.renewable ||
       session.expiresAt.isAfter(DateTime.now());
+
+  // The identity of each session, shared by the renewals of its access token
+  // (see _SessionIdentity).
+  final Expando<_SessionIdentity> _sessionIdentities =
+      Expando<_SessionIdentity>('sessionIdentity');
+  // Requests to native code about the access, answered and adopted in order.
+  Future<void> _renewals = Future<void>.value();
+  // A native logout still reading the refresh token (_clearNativeSession).
+  Future<void>? _pendingNativeLogout;
+  static const Duration _accessRenewalMargin = Duration(minutes: 5);
+  static const Duration _renewalWaitLimit = Duration(seconds: 25);
+
+  _SessionIdentity? _identityOf(AuthSession? session) => session == null
+      ? null
+      : _sessionIdentities[session] ??= _SessionIdentity();
+
+  SessionRenewalStore? get _renewalStore => _sessionStore is SessionRenewalStore
+      ? _sessionStore as SessionRenewalStore
+      : null;
+
+  /// Neither a guest nor a restricted Play session: those keep their own
+  /// resume path and are never converted.
+  bool get _personalSession {
+    final UserProfile? value = profile;
+    return value != null && !value.isGuest && !value.profileRedacted;
+  }
+
+  static bool _accessExpiring(AuthSession session) =>
+      !session.expiresAt.isAfter(DateTime.now().add(_accessRenewalMargin));
 
   // Opens the scope of a new admission, without the expiry of a previous end
   // (a guest token renewal continues its lineage instead). The caller first
@@ -455,15 +492,16 @@ class VpnAppController extends ChangeNotifier {
     _revocationTask = null;
   }
 
-  /// The account, its token and its device binding are still the given ones.
+  /// The account, its session (whatever renewal of its access token is
+  /// current) and its device binding are still the given ones.
   bool _identityIs(
     String? account,
-    String? activeToken,
+    _SessionIdentity? session,
     String? deviceId,
     int deviceEpoch,
   ) =>
       profile?.userId == account &&
-      token == activeToken &&
+      identical(_identityOf(_session), session) &&
       currentDeviceId == deviceId &&
       _deviceEpoch == deviceEpoch;
 
@@ -473,13 +511,13 @@ class VpnAppController extends ChangeNotifier {
   }) {
     final operation = _sessionOperation;
     final account = profile?.userId;
-    final activeToken = token;
+    final session = _identityOf(_session);
     final epoch = _deviceEpoch;
     return _IdentityOperation(
       operation,
       () =>
           account != null &&
-          _identityIs(account, activeToken, deviceId, epoch) &&
+          _identityIs(account, session, deviceId, epoch) &&
           (migrationContext?.isCurrent ?? true),
     );
   }
@@ -573,7 +611,7 @@ class VpnAppController extends ChangeNotifier {
     final epoch = ++_networkAttemptEpoch;
     final operation = _sessionOperation;
     final account = profile?.userId;
-    final activeToken = token;
+    final session = _identityOf(_session);
     final location = selectedLocation?.id;
     final protocol = selectedProtocol;
     final locationChange = _locationChangeOperation;
@@ -587,12 +625,7 @@ class VpnAppController extends ChangeNotifier {
           epoch == _networkAttemptEpoch &&
           location == selectedLocation?.id &&
           protocol == selectedProtocol &&
-          _identityIs(
-            account,
-            activeToken,
-            attempt.deviceId,
-            attempt.deviceEpoch,
-          ),
+          _identityIs(account, session, attempt.deviceId, attempt.deviceEpoch),
     );
   }
 
@@ -645,7 +678,6 @@ class VpnAppController extends ChangeNotifier {
     required _IdentityOperation context,
     required String accountId,
     required String deviceId,
-    required String activeToken,
     required String csr,
     required bool renewal,
     required IpActivationAttempt networkAttempt,
@@ -654,17 +686,21 @@ class VpnAppController extends ChangeNotifier {
     try {
       final activation = await networkAttempt.request(
         (ipv6) async => renewal
-            ? await _api.renewOpenVpnProfile(
-                token: activeToken,
-                deviceId: deviceId,
-                csrPem: csr,
-                requestIpv6: ipv6,
+            ? await _authorized(
+                (access) => _api.renewOpenVpnProfile(
+                  token: access,
+                  deviceId: deviceId,
+                  csrPem: csr,
+                  requestIpv6: ipv6,
+                ),
               )
-            : await _api.createOpenVpnProfile(
-                token: activeToken,
-                deviceId: deviceId,
-                csrPem: csr,
-                requestIpv6: ipv6,
+            : await _authorized(
+                (access) => _api.createOpenVpnProfile(
+                  token: access,
+                  deviceId: deviceId,
+                  csrPem: csr,
+                  requestIpv6: ipv6,
+                ),
               ),
         checkIdentity: context.check,
       );
@@ -730,8 +766,8 @@ class VpnAppController extends ChangeNotifier {
   _MigrationContext _migrationScope() {
     _sessionOperation.check();
     final String? userId = profile?.userId;
-    final String? activeToken = token;
-    if (userId == null || activeToken == null) {
+    final _SessionIdentity? identity = _identityOf(_session);
+    if (userId == null || identity == null) {
       throw const SessionOperationCancelled();
     }
     final _MigrationContext? existing = _migrationContext;
@@ -746,16 +782,16 @@ class VpnAppController extends ChangeNotifier {
     return _migrationContext = _MigrationContext(
       session: _sessionOperation,
       userId: userId,
-      token: activeToken,
+      identity: identity,
       deviceId: deviceId,
       matchesAccount: () =>
           !_disposed &&
           identical(session, _sessionOperation) &&
-          _identityIs(userId, activeToken, deviceId, deviceEpoch),
+          _identityIs(userId, identity, deviceId, deviceEpoch),
       matches: () =>
           (locationChange?.isCurrent ?? true) &&
           profile?.userId == userId &&
-          token == activeToken &&
+          identical(_identityOf(_session), identity) &&
           currentDeviceId == deviceId,
     );
   }
@@ -804,6 +840,10 @@ class VpnAppController extends ChangeNotifier {
       isSignedIn &&
       (profile?.isGuest == false || _guestHomeUserId == profile?.userId);
   String? get token => _session?.accessToken;
+
+  /// Opaque identity of the current session. A renewal of its access token
+  /// keeps it; any other session, even with an equal token, has another one.
+  Object? get sessionIdentity => _identityOf(_session);
   bool get isTunnelActive =>
       tunnelState.phase != VpnRuntimePhase.idle &&
       tunnelState.phase != VpnRuntimePhase.error;
@@ -973,7 +1013,7 @@ class VpnAppController extends ChangeNotifier {
   /// Reads and restores the stored session, at startup or when a retry follows
   /// a transient Keystore read. Returns false while it stays unreadable.
   Future<bool> _restoreStoredSession(SessionOperation operation) async {
-    final AuthSession? savedSession;
+    AuthSession? savedSession;
     try {
       savedSession = await _sessionStore.readSession();
     } catch (error) {
@@ -1003,8 +1043,38 @@ class VpnAppController extends ChangeNotifier {
       }
       if (registered) _registeredSession = savedSession;
     }
+    // An account session read back is renewed by native code before its
+    // expiry is judged: a renewable session outlives its one-hour access.
+    var renewalRefused = false;
     if (savedSession != null &&
-        savedSession.expiresAt.isAfter(DateTime.now())) {
+        !identical(savedSession, _registeredSession) &&
+        _renewalStore != null &&
+        _accessExpiring(savedSession) &&
+        (!savedSession.expiresAt.isAfter(DateTime.now()) ||
+            !_googleAuth.hasPendingIntent)) {
+      final _SessionIdentity identity = _identityOf(savedSession)!;
+      final (outcome, renewal) = await _askRenewal(
+        identity,
+        upgrade: false,
+        wanted: () => !_disposed,
+      );
+      operation.check();
+      if (renewal != null) {
+        _sessionIdentities[renewal.session] = identity;
+        savedSession = renewal.session;
+      }
+      if (outcome == _Freshness.unavailable &&
+          !savedSession.expiresAt.isAfter(DateTime.now())) {
+        // A temporary failure keeps the session pending, with a retry.
+        _session = savedSession;
+        _noticeRenewalUnavailable();
+        return true;
+      }
+      renewalRefused = outcome == _Freshness.refused;
+    }
+    // Once native code reported it renewable, the device clock never ends it:
+    // the server's dates prevail (_sessionLive).
+    if (savedSession != null && !renewalRefused && _sessionLive(savedSession)) {
       _session = savedSession;
       await _restoreAccount(notify: false);
     } else if (savedSession != null &&
@@ -1436,15 +1506,15 @@ class VpnAppController extends ChangeNotifier {
   }
 
   Future<void> resendVerification() async {
+    if (_accessDueForRenewal && !await _renewAccessForOperation()) return;
     final SessionOperation operation = _sessionOperation;
     if (!operation.isCurrent) return;
     try {
-      final String? activeToken = token;
-      if (activeToken == null) return;
+      if (token == null) return;
       notice = null;
       notifyListeners();
       try {
-        await _api.resendVerification(activeToken);
+        await _authorized(_api.resendVerification);
         operation.check();
         notice = _controllerNotice('verification_email_sent');
       } on ApiFailure catch (error) {
@@ -1460,11 +1530,11 @@ class VpnAppController extends ChangeNotifier {
   }
 
   Future<void> refreshDevices() async {
+    if (_accessDueForRenewal && !await _renewAccessForOperation()) return;
     final SessionOperation operation = _sessionOperation;
     if (_disposed || !operation.isCurrent) return;
     try {
-      final String? activeToken = token;
-      if (activeToken == null) return;
+      if (token == null) return;
       final int generation = ++_devicesRefreshGeneration;
       bool isCurrent() =>
           !_disposed &&
@@ -1473,7 +1543,7 @@ class VpnAppController extends ChangeNotifier {
       isLoadingDevices = true;
       notifyListeners();
       try {
-        final DeviceList received = await _api.listDevices(activeToken);
+        final DeviceList received = await _authorized(_api.listDevices);
         operation.check();
         if (!isCurrent()) return;
         deviceList = received;
@@ -1521,6 +1591,7 @@ class VpnAppController extends ChangeNotifier {
   }
 
   Future<void> resumeLocationMigration() async {
+    if (_accessDueForRenewal && !await _renewAccessForOperation()) return;
     if (!_sessionOperation.isCurrent ||
         isStartingLocationMigration ||
         isConnecting ||
@@ -1582,6 +1653,9 @@ class VpnAppController extends ChangeNotifier {
         return false;
       }
     }
+    if (_accessDueForRenewal && !await _renewAccessForOperation()) {
+      return false;
+    }
     if (_disconnectsInFlight > 0 ||
         isStartingLocationMigration ||
         (isChangingLocation &&
@@ -1598,9 +1672,9 @@ class VpnAppController extends ChangeNotifier {
       final VpnProtocol connectionProtocol = selectedProtocol;
 
       final UserProfile? activeProfile = profile;
-      final String? activeToken = token;
+      final _SessionIdentity? activeSession = _identityOf(_session);
       final Location? location = selectedLocation;
-      if (!isSignedIn || activeProfile == null || activeToken == null) {
+      if (!isSignedIn || activeProfile == null || activeSession == null) {
         notice = _controllerNotice('vpn_sign_in_required');
         notifyListeners();
         return false;
@@ -1651,7 +1725,7 @@ class VpnAppController extends ChangeNotifier {
         final _LocationPreparation locationPreparation =
             await _prepareLocationForConnection(
               activeProfile: activeProfile,
-              token: activeToken,
+              session: activeSession,
               location: location,
               protocol: connectionProtocol,
             );
@@ -1684,7 +1758,6 @@ class VpnAppController extends ChangeNotifier {
             if (connectionProtocol == VpnProtocol.wireGuard) {
               await _connectWireGuard(
                 activeProfile,
-                activeToken,
                 location,
                 networkAttempt: networkAttempt,
                 migrationContext: migrationContext,
@@ -1698,7 +1771,6 @@ class VpnAppController extends ChangeNotifier {
             } else {
               await _connectOpenVpn(
                 activeProfile,
-                activeToken,
                 location,
                 networkAttempt: networkAttempt,
                 migrationContext: migrationContext,
@@ -1725,7 +1797,6 @@ class VpnAppController extends ChangeNotifier {
               releasedBlockingOpenVpnProfile = true;
               await _releaseOpenVpnForWireGuard(
                 activeProfile: activeProfile,
-                token: activeToken,
                 migrationContext: migrationContext,
               );
               operation.check();
@@ -2048,6 +2119,8 @@ class VpnAppController extends ChangeNotifier {
         } else {
           await refreshGuestAccount();
         }
+      } else if (isSignedIn && _personalSession && _renewalStore != null) {
+        await _refreshPersonalSessionOnResume();
       } else if (_guestRecoveryDeferredHere &&
           profile == null &&
           !isInitializing &&
@@ -2102,15 +2175,17 @@ class VpnAppController extends ChangeNotifier {
     String deviceId, {
     bool afterGuestRenewal = false,
   }) async {
+    if (_accessDueForRenewal && !await _renewAccessForOperation()) {
+      return false;
+    }
     final SessionOperation operation = _sessionOperation;
     if (!operation.isCurrent) return false;
     var guestRenewed = false;
     try {
       final UserProfile? activeProfile = profile;
-      final String? activeToken = token;
       if (!isSignedIn ||
           activeProfile == null ||
-          activeToken == null ||
+          token == null ||
           isRevoking ||
           isChangingLocation ||
           isConnecting ||
@@ -2131,7 +2206,9 @@ class VpnAppController extends ChangeNotifier {
           operation.check();
           target!.check();
         }
-        await _api.revokeDevice(token: activeToken, deviceId: deviceId);
+        await _authorized(
+          (access) => _api.revokeDevice(token: access, deviceId: deviceId),
+        );
         operation.check();
         target?.check();
         if (revokingCurrent) {
@@ -2329,6 +2406,7 @@ class VpnAppController extends ChangeNotifier {
   Future<void> renewOpenVpnProfile() => ConnectionTiming.run(
     'renewal',
     () async {
+      if (_accessDueForRenewal && !await _renewAccessForOperation()) return;
       final SessionOperation operation = _sessionOperation;
       if (!operation.isCurrent ||
           isChangingLocation ||
@@ -2339,12 +2417,11 @@ class VpnAppController extends ChangeNotifier {
       }
       try {
         final UserProfile? activeProfile = profile;
-        final String? activeToken = token;
         final String? deviceId = currentDeviceId;
         final Location? location = activeDeviceLocation ?? selectedLocation;
         if (!isSignedIn ||
             activeProfile == null ||
-            activeToken == null ||
+            token == null ||
             deviceId == null ||
             location == null) {
           return;
@@ -2387,7 +2464,6 @@ class VpnAppController extends ChangeNotifier {
             context: context,
             accountId: activeProfile.userId,
             deviceId: deviceId,
-            activeToken: activeToken,
             csr: csr,
             renewal: true,
             networkAttempt: networkAttempt,
@@ -2472,17 +2548,49 @@ class VpnAppController extends ChangeNotifier {
         ? _googleAuth.cancel()
         : Future<bool>.value(true);
     final String? oldToken = token;
+    final Future<bool>? nativeLogout = _beginNativeLogout();
     final Future<void> ending = _terminateSession(
       authenticationOwner: authenticationOwner,
     );
     unawaited(googleCancellation.then<void>((_) {}, onError: (Object _) {}));
     unawaited(_googleAuth.clearCredentialState());
-    if (oldToken != null) unawaited(_logoutRemotely(oldToken));
+    if (oldToken != null) {
+      unawaited(_logoutRemotely(oldToken, nativeLogout: nativeLogout));
+    }
     await ending;
     await googleCancellation;
   }
 
-  Future<void> _logoutRemotely(String oldToken) async {
+  /// A renewable session is logged out by native code with its refresh
+  /// token, which must still be stored: the end below clears the session
+  /// only once native code has answered (_clearNativeSession). Guests and
+  /// restricted Play sessions keep the access-token logout alone.
+  Future<bool>? _beginNativeLogout() {
+    final SessionRenewalStore? store = _renewalStore;
+    final UserProfile? owner = profile;
+    if (store == null ||
+        _session == null ||
+        (owner != null && !_personalSession)) {
+      return null;
+    }
+    final Future<bool> logout = store.logoutSession(userId: owner?.userId);
+    _pendingNativeLogout = logout.then<void>(
+      (_) {},
+      onError: (Object _, StackTrace _) {},
+    );
+    return logout;
+  }
+
+  Future<void> _logoutRemotely(
+    String oldToken, {
+    Future<bool>? nativeLogout,
+  }) async {
+    try {
+      // Native code sent the refresh-token logout of a renewable session.
+      if (nativeLogout != null && await nativeLogout) return;
+    } catch (_) {
+      // Without that answer the access-token logout below still applies.
+    }
     try {
       await _api.logout(oldToken).timeout(const Duration(seconds: 20));
     } catch (_) {
@@ -2645,6 +2753,13 @@ class VpnAppController extends ChangeNotifier {
   /// Sends every cause of this end at once: native storage merges requests
   /// that join one end. A store without causes gets the legacy flag once.
   Future<SessionTerminationResult> _clearNativeSession() async {
+    // Never before native code has answered a logout: it reads the refresh
+    // token that this end erases. A late answer still completes the end.
+    final Future<void>? logout = _pendingNativeLogout;
+    if (logout != null) {
+      await logout;
+      if (identical(_pendingNativeLogout, logout)) _pendingNativeLogout = null;
+    }
     final SecureSessionStore store = _sessionStore;
     if (store is! SessionEndCauseStore) {
       _sentEndCauses.addAll(_requiredEndCauses);
@@ -2812,12 +2927,16 @@ class VpnAppController extends ChangeNotifier {
   }) async {
     final SessionOperation operation = _sessionOperation;
     operation.check();
-    final AuthSession? session = _session;
-    if (session == null || _accountRestorationOwner != null) return false;
-    if (!_sessionLive(session)) {
-      await _terminateSession(expired: true);
+    final AuthSession? expiring = _session;
+    if (expiring == null || _accountRestorationOwner != null) return false;
+    if (!_sessionLive(expiring) &&
+        !await _renewExpiredAccess(expiring, operation)) {
       return false;
     }
+    // The same session, with the access native code may have renewed.
+    final AuthSession? session = _session;
+    if (session == null || _accountRestorationOwner != null) return false;
+    final _SessionIdentity identity = _identityOf(session)!;
     final Object owner = Object();
     final int deviceEpoch = _deviceEpoch;
     _accountRestorationOwner = owner;
@@ -2828,14 +2947,14 @@ class VpnAppController extends ChangeNotifier {
       operation.check();
       if (!identical(_accountRestorationOwner, owner) ||
           authorizationCurrent?.call() == false ||
-          !identical(_session, session) ||
+          !identical(_identityOf(_session), identity) ||
           _deviceEpoch != deviceEpoch) {
         throw const SessionOperationCancelled();
       }
     }
 
     try {
-      final UserProfile restoredProfile = await _api.me(session.accessToken);
+      final UserProfile restoredProfile = await _authorized(_api.me);
       check();
       if (expectedUserId != null && restoredProfile.userId != expectedUserId) {
         throw const NativeVpnException('invalid_arguments');
@@ -2851,14 +2970,18 @@ class VpnAppController extends ChangeNotifier {
         });
         check();
       }
-      await _sessionWrite(operation, () {
+      // A renewable session is already bound to its account and native code
+      // owns its stored access: writing an older one would end its renewal.
+      if (identity.renewal != _AccessRenewal.renewable) {
+        await _sessionWrite(operation, () {
+          check();
+          return _sessionStore.writeSession(
+            session,
+            userId: restoredProfile.userId,
+          );
+        });
         check();
-        return _sessionStore.writeSession(
-          session,
-          userId: restoredProfile.userId,
-        );
-      });
-      check();
+      }
       Future<String?> readRestoredDevice() async {
         try {
           return await _sessionStore.readCurrentDeviceId(
@@ -2916,7 +3039,7 @@ class VpnAppController extends ChangeNotifier {
       final int devicesGeneration = ++_devicesRefreshGeneration;
       isLoadingDevices = true;
       try {
-        restoredDevices = await _api.listDevices(session.accessToken);
+        restoredDevices = await _authorized(_api.listDevices);
         check();
       } on ApiFailure catch (error) {
         check();
@@ -2999,15 +3122,18 @@ class VpnAppController extends ChangeNotifier {
       // (offline start, failed reload) is loaded now, in the background.
       _reloadCatalogueIfMissing();
       unawaited(_refreshOpenVpnCertificate());
+      _scheduleSessionUpgrade();
       return true;
     } on ApiFailure catch (error) {
       check();
+      // The session refused, with the latest access it was given.
+      final AuthSession refused = _session!;
       final bool unauthorized =
           error.statusCode == 401 || error.code == 'unauthorized';
       final bool registered =
           unauthorized &&
           expectedUserId == null &&
-          identical(session, _registeredSession);
+          identical(refused, _registeredSession);
       final bool? guestRecovery =
           !registered &&
               expectedUserId == null &&
@@ -3035,9 +3161,9 @@ class VpnAppController extends ChangeNotifier {
         _accountRestorationOwner = null;
         final _GuestRecovery recovery = await _resumeGuestSession(
           operation,
-          previous: session,
+          previous: refused,
         );
-        if (_guestRecoveryRefused(recovery, operation, session)) {
+        if (_guestRecoveryRefused(recovery, operation, refused)) {
           await _terminateSession(expired: true);
         }
         return recovery == _GuestRecovery.admitted;
@@ -3145,19 +3271,19 @@ class VpnAppController extends ChangeNotifier {
 
   Future<_LocationPreparation> _prepareLocationForConnection({
     required UserProfile activeProfile,
-    required String token,
+    required _SessionIdentity session,
     required Location location,
     required VpnProtocol protocol,
   }) => ConnectionTiming.measure('prepare.location', () async {
     final _MigrationContext context = _migrationScope();
     context.check();
-    if (context.userId != activeProfile.userId || context.token != token) {
+    if (context.userId != activeProfile.userId ||
+        !identical(context.identity, session)) {
       throw const SessionOperationCancelled();
     }
     context.connectionOwner = _connectionOwner;
     try {
       final DeviceList snapshot = await _refreshDevicesForConnection(
-        token,
         migrationContext: context,
       );
       context.check();
@@ -3221,8 +3347,7 @@ class VpnAppController extends ChangeNotifier {
     }
   });
 
-  Future<DeviceList> _refreshDevicesForConnection(
-    String activeToken, {
+  Future<DeviceList> _refreshDevicesForConnection({
     _MigrationContext? migrationContext,
   }) async {
     final SessionOperation operation = _sessionOperation;
@@ -3232,7 +3357,7 @@ class VpnAppController extends ChangeNotifier {
     isLoadingDevices = true;
     notifyListeners();
     try {
-      final DeviceList received = await _api.listDevices(activeToken);
+      final DeviceList received = await _authorized(_api.listDevices);
       operation.check();
       migrationContext?.check();
       if (generation == _devicesRefreshGeneration) deviceList = received;
@@ -3285,10 +3410,12 @@ class VpnAppController extends ChangeNotifier {
       _migrationStartRequest = context;
       notifyListeners();
       try {
-        migration = await _api.startLocationMigration(
-          token: context.token,
-          deviceId: deviceId,
-          locationId: location.id,
+        migration = await _authorized(
+          (access) => _api.startLocationMigration(
+            token: access,
+            deviceId: deviceId,
+            locationId: location.id,
+          ),
         );
         await _retainAcceptedMigration(context, migration, location.id);
         recordStored = true;
@@ -3314,7 +3441,6 @@ class VpnAppController extends ChangeNotifier {
   /// key, logical device id and account session are deliberately untouched.
   Future<void> _releaseOpenVpnForWireGuard({
     required UserProfile activeProfile,
-    required String token,
     _MigrationContext? migrationContext,
   }) async {
     final SessionOperation operation = _sessionOperation;
@@ -3324,7 +3450,9 @@ class VpnAppController extends ChangeNotifier {
     if (deviceId == null) {
       throw const _ControllerFailure('invalid_device');
     }
-    await _api.revokeOpenVpnProfile(token: token, deviceId: deviceId);
+    await _authorized(
+      (access) => _api.revokeOpenVpnProfile(token: access, deviceId: deviceId),
+    );
     operation.check();
     migrationContext?.check();
     await _tunnel.clearOpenVpnIdentity(
@@ -3390,10 +3518,12 @@ class VpnAppController extends ChangeNotifier {
     DeviceLocationMigration previous,
   ) async {
     _validateMigration(context, previous);
-    final DeviceLocationMigration received = await _api.getLocationMigration(
-      token: context.token,
-      deviceId: previous.deviceId,
-      migrationId: previous.migrationId,
+    final DeviceLocationMigration received = await _authorized(
+      (access) => _api.getLocationMigration(
+        token: access,
+        deviceId: previous.deviceId,
+        migrationId: previous.migrationId,
+      ),
     );
     context.check();
     _validateMigration(context, received, expected: previous);
@@ -3450,7 +3580,6 @@ class VpnAppController extends ChangeNotifier {
       }
       if (current.status == LocationMigrationStatus.ready) {
         final DeviceList snapshot = await _refreshDevicesForConnection(
-          context.token,
           migrationContext: context,
         );
         context.check();
@@ -3530,7 +3659,6 @@ class VpnAppController extends ChangeNotifier {
 
   Future<void> _connectWireGuard(
     UserProfile activeProfile,
-    String activeToken,
     Location location, {
     required IpActivationAttempt networkAttempt,
     String? expectedDeviceId,
@@ -3547,12 +3675,14 @@ class VpnAppController extends ChangeNotifier {
     networkAttempt.check();
     migrationContext?.check();
     final DeviceConfiguration configuration = await networkAttempt.request(
-      (ipv6) => _api.registerDevice(
-        token: activeToken,
-        name: 'FuzeVPN — Android',
-        publicKey: publicKey,
-        locationId: location.id,
-        requestIpv6: ipv6,
+      (ipv6) => _authorized(
+        (access) => _api.registerDevice(
+          token: access,
+          name: 'FuzeVPN — Android',
+          publicKey: publicKey,
+          locationId: location.id,
+          requestIpv6: ipv6,
+        ),
       ),
     );
     operation.check();
@@ -3596,7 +3726,6 @@ class VpnAppController extends ChangeNotifier {
 
   Future<void> _connectOpenVpn(
     UserProfile activeProfile,
-    String activeToken,
     Location location, {
     required IpActivationAttempt networkAttempt,
     String? expectedDeviceId,
@@ -3609,7 +3738,6 @@ class VpnAppController extends ChangeNotifier {
     migrationContext?.check();
     final String deviceId = await _ensureLogicalDevice(
       activeProfile: activeProfile,
-      token: activeToken,
       location: location,
       networkAttempt: networkAttempt,
       expectedDeviceId: expectedDeviceId,
@@ -3647,7 +3775,6 @@ class VpnAppController extends ChangeNotifier {
         context: context,
         accountId: activeProfile.userId,
         deviceId: deviceId,
-        activeToken: activeToken,
         csr: csr,
         renewal: renewal,
         networkAttempt: networkAttempt,
@@ -3695,7 +3822,6 @@ class VpnAppController extends ChangeNotifier {
 
   Future<String> _ensureLogicalDevice({
     required UserProfile activeProfile,
-    required String token,
     required Location location,
     required IpActivationAttempt networkAttempt,
     String? expectedDeviceId,
@@ -3712,12 +3838,14 @@ class VpnAppController extends ChangeNotifier {
     networkAttempt.check();
     migrationContext?.check();
     final DeviceConfiguration configuration = await networkAttempt.request(
-      (ipv6) => _api.registerDevice(
-        token: token,
-        name: 'FuzeVPN — Android',
-        publicKey: publicKey,
-        locationId: location.id,
-        requestIpv6: ipv6,
+      (ipv6) => _authorized(
+        (access) => _api.registerDevice(
+          token: access,
+          name: 'FuzeVPN — Android',
+          publicKey: publicKey,
+          locationId: location.id,
+          requestIpv6: ipv6,
+        ),
       ),
     );
     operation.check();
@@ -4090,6 +4218,310 @@ class VpnAppController extends ChangeNotifier {
     return false;
   }
 
+  /// One request to native code about the access of [identity]'s session
+  /// ([upgrade]: converts it first; [force]: renews it whatever the device
+  /// clock says), sent after the requests before it so that their answers
+  /// are adopted in order. [userId] is null while the account is not known
+  /// yet. A request no longer [wanted] is not sent.
+  ///
+  /// Only a refusal of the session (session_unauthorized,
+  /// session_refresh_expired) ends it. Any other failure, and a native answer
+  /// that takes longer than [_renewalWaitLimit] (native code may hold its
+  /// renewal lock on a silent network), keeps the local session: it is
+  /// temporary. Only a bridge without these methods (or refusing a session
+  /// it never renewed) leaves the historical behaviour.
+  Future<(_Freshness, SessionRenewal?)> _askRenewal(
+    _SessionIdentity identity, {
+    required bool upgrade,
+    required bool Function() wanted,
+    String? userId,
+    bool force = false,
+  }) {
+    final SessionRenewalStore? store = _renewalStore;
+    if (store == null || (upgrade && userId == null)) {
+      return Future.value((_Freshness.unsupported, null));
+    }
+    final Future<(_Freshness, SessionRenewal?)> result = _renewals.then((
+      _,
+    ) async {
+      if (!wanted()) return (_Freshness.unsupported, null);
+      try {
+        final SessionRenewal renewal =
+            await (upgrade
+                    ? store.upgradeSession(userId: userId!)
+                    : store.ensureFreshSession(userId: userId, force: force))
+                .timeout(_renewalWaitLimit);
+        identity.renewal = renewal.renewable
+            ? _AccessRenewal.renewable
+            : _AccessRenewal.classic;
+        if (upgrade) identity.upgradeSettled = true;
+        return (_Freshness.fresh, renewal);
+      } on SessionRenewalFailure catch (failure) {
+        switch (failure.error) {
+          case SessionRenewalError.unauthorized ||
+              SessionRenewalError.refreshExpired:
+            if (upgrade) identity.upgradeSettled = true;
+            return (_Freshness.refused, null);
+          case SessionRenewalError.invalid when upgrade:
+            // A malformed conversion is a client defect, which native code
+            // logs without any value: it is not asked again.
+            identity.upgradeSettled = true;
+            return (_Freshness.unsupported, null);
+          case SessionRenewalError.unavailable || SessionRenewalError.invalid:
+            // Native code keeps a conversion owed, or its renewal state.
+            return (_Freshness.unavailable, null);
+        }
+      } on NativeVpnException catch (error) {
+        if (identity.renewal != _AccessRenewal.renewable &&
+            (error.code == 'native_bridge_unavailable' ||
+                error.code == 'invalid_arguments')) {
+          if (upgrade) identity.upgradeSettled = true;
+          return (_Freshness.unsupported, null);
+        }
+        return (_Freshness.unavailable, null);
+      } catch (_) {
+        // A timeout or an unexpected failure.
+        return (_Freshness.unavailable, null);
+      }
+    });
+    _renewals = result.then<void>((_) {}, onError: (Object _, StackTrace _) {});
+    return result;
+  }
+
+  /// Asks native code for the current access of the session ([upgrade]:
+  /// converts it first) and adopts it in place.
+  Future<_Freshness> _refreshAccess(
+    _SessionIdentity identity, {
+    bool upgrade = false,
+    bool force = false,
+  }) async {
+    bool current() =>
+        !_disposed &&
+        sessionTermination == null &&
+        identical(_identityOf(_session), identity);
+    final (outcome, renewal) = await _askRenewal(
+      identity,
+      upgrade: upgrade,
+      force: force,
+      userId: profile?.userId,
+      wanted: current,
+    );
+    // A session ended or replaced meanwhile decides nothing from this answer.
+    if (!current()) return _Freshness.unsupported;
+    if (renewal != null) _adoptRenewal(identity, renewal);
+    return outcome;
+  }
+
+  /// Adopts the access native code returned for [identity]'s session, while
+  /// it is the current one. The session keeps its identity: work in flight
+  /// continues with the new token.
+  void _adoptRenewal(_SessionIdentity identity, SessionRenewal renewal) {
+    final AuthSession? current = _session;
+    if (_disposed ||
+        current == null ||
+        sessionTermination != null ||
+        !identical(_identityOf(current), identity)) {
+      return;
+    }
+    final AuthSession next = renewal.session;
+    if (next.accessToken == current.accessToken &&
+        next.expiresAt == current.expiresAt) {
+      return;
+    }
+    _sessionIdentities[next] = identity;
+    if (identical(_registeredSession, current)) _registeredSession = next;
+    _session = next;
+    // Billing (syncAccount) and diagnostics (setSession) take it from here.
+    notifyListeners();
+  }
+
+  /// Converts a personal session once it is established (sign-in,
+  /// registration, Google admission, restoration). No rotation interrupts an
+  /// interactive security flow: behind a pending Google intent (and its
+  /// Turnstile challenge) it waits for the intent to end (_googleChanged).
+  void _scheduleSessionUpgrade() {
+    final _SessionIdentity? identity = _identityOf(_session);
+    if (_disposed ||
+        identity == null ||
+        !_personalSession ||
+        sessionTermination != null ||
+        _renewalStore == null ||
+        identity.renewal == _AccessRenewal.renewable ||
+        identity.upgradeSettled ||
+        identity.upgrading ||
+        _googleAuth.hasPendingIntent) {
+      return;
+    }
+    identity.upgrading = true;
+    unawaited(() async {
+      try {
+        // A refused conversion means its access is refused: an expiry.
+        if (await _refreshAccess(identity, upgrade: true) ==
+                _Freshness.refused &&
+            identical(_identityOf(_session), identity)) {
+          await _terminateSession(expired: true);
+        }
+      } finally {
+        identity.upgrading = false;
+      }
+    }());
+  }
+
+  /// Back in the foreground: a conversion still owed is asked again, and a
+  /// renewable session takes its current access, renewed first when it
+  /// expires soon (or by a background renewal meanwhile).
+  Future<void> _refreshPersonalSessionOnResume() async {
+    final _SessionIdentity? identity = _identityOf(_session);
+    if (identity == null) return;
+    if (identity.renewal != _AccessRenewal.renewable) {
+      _scheduleSessionUpgrade();
+      return;
+    }
+    if (await _refreshAccess(identity) == _Freshness.refused &&
+        identical(_identityOf(_session), identity)) {
+      await _terminateSession(expired: true);
+    }
+  }
+
+  /// A renewable session whose access expires within five minutes: an
+  /// authenticated operation renews it first ([_renewAccessForOperation]).
+  /// A rotation not needed yet waits for an interactive security flow.
+  bool get _accessDueForRenewal {
+    final AuthSession? session = _session;
+    if (session == null ||
+        !_personalSession ||
+        _identityOf(session)!.renewal != _AccessRenewal.renewable ||
+        !_accessExpiring(session)) {
+      return false;
+    }
+    return !session.expiresAt.isAfter(DateTime.now()) ||
+        !_googleAuth.hasPendingIntent;
+  }
+
+  /// False when the operation must not start: native code refused the
+  /// session, which ends as an expiry. After a temporary failure it starts
+  /// anyway: the server's dates, not the device clock, judge its access.
+  Future<bool> _renewAccessForOperation() async {
+    final _SessionIdentity identity = _identityOf(_session)!;
+    if (await _refreshAccess(identity) != _Freshness.refused) return true;
+    if (identical(_identityOf(_session), identity)) {
+      await _terminateSession(expired: true);
+    }
+    return false;
+  }
+
+  /// Before restoring [expired], native code may renew its access: a
+  /// renewable session outlives it. A temporary failure keeps the session
+  /// pending, with a notice; any other outcome ends it as an expiry, as
+  /// before.
+  Future<bool> _renewExpiredAccess(
+    AuthSession expired,
+    SessionOperation operation,
+  ) async {
+    final _SessionIdentity identity = _identityOf(expired)!;
+    final _Freshness outcome =
+        _renewalStore == null || identity.renewal == _AccessRenewal.classic
+        ? _Freshness.unsupported
+        : await _refreshAccess(identity);
+    operation.check();
+    final AuthSession? current = _session;
+    if (current == null || !identical(_identityOf(current), identity)) {
+      throw const SessionOperationCancelled();
+    }
+    if (outcome == _Freshness.fresh && _sessionLive(current)) return true;
+    if (outcome == _Freshness.unavailable) {
+      _noticeRenewalUnavailable();
+      return false;
+    }
+    await _terminateSession(expired: true);
+    return false;
+  }
+
+  /// Sends [request] with the current access token. A 401 on a personal
+  /// session (or one still being restored) forces one renewal by native code,
+  /// whatever the device clock says: the request is sent again only with a
+  /// different token. Otherwise the 401 ends the session as before. A
+  /// temporary renewal failure keeps the session: the request then fails
+  /// like the network.
+  Future<T> _authorized<T>(Future<T> Function(String token) request) async {
+    final AuthSession? session = _session;
+    if (session == null) throw const SessionOperationCancelled();
+    try {
+      return await request(session.accessToken);
+    } on ApiFailure catch (error) {
+      if (error.code != 'unauthorized' && error.statusCode != 401) rethrow;
+      final String? renewed = await _accessAfterUnauthorized(session);
+      if (renewed == null) rethrow;
+      return request(renewed);
+    }
+  }
+
+  Future<String?> _accessAfterUnauthorized(AuthSession used) async {
+    final _SessionIdentity identity = _identityOf(used)!;
+    final AuthSession? current = _session;
+    if (_disposed ||
+        current == null ||
+        !_renewalOwner(identity) ||
+        (profile != null && !_personalSession) ||
+        // A classic session whose conversion was answered: nothing renews it.
+        (identity.upgradeSettled &&
+            identity.renewal != _AccessRenewal.renewable)) {
+      return null;
+    }
+    // Another request already took a different access.
+    if (current.accessToken != used.accessToken) return current.accessToken;
+    // A conversion still owed (perhaps lost on its way back) is resumed: the
+    // access it replaces is refused once the server has converted it.
+    final bool upgrade =
+        profile != null && identity.renewal != _AccessRenewal.renewable;
+    final _Freshness outcome = await _refreshAccess(
+      identity,
+      upgrade: upgrade,
+      force: !upgrade,
+    );
+    if (outcome == _Freshness.unavailable) throw const ApiNetworkException();
+    final String? renewed = _session?.accessToken;
+    return outcome == _Freshness.fresh &&
+            _renewalOwner(identity) &&
+            renewed != used.accessToken
+        ? renewed
+        : null;
+  }
+
+  bool _renewalOwner(_SessionIdentity identity) =>
+      _renewalStore != null && identical(_identityOf(_session), identity);
+
+  /// Diagnostics send with the session's access: one that expires soon is
+  /// renewed first. Nothing else changes (no notice, no end of session).
+  Future<void> _freshAccessForDiagnostics() async {
+    if (_accessDueForRenewal) await _refreshAccess(_identityOf(_session)!);
+  }
+
+  /// A billing request sent with [token]. When it is the current personal
+  /// session's access, it is renewed first if it expires soon, and a 401
+  /// forces one renewal and one retry ([_authorized]). Any other token (a
+  /// guest's, a session ended meanwhile) is sent as it is, as before.
+  Future<T> _billingRequest<T>(
+    String token,
+    Future<T> Function(String token) request,
+  ) async {
+    final AuthSession? session = _session;
+    if (session == null ||
+        session.accessToken != token ||
+        !_personalSession) {
+      return request(token);
+    }
+    final _SessionIdentity identity = _identityOf(session)!;
+    if (_accessDueForRenewal) await _refreshAccess(identity);
+    if (!identical(_identityOf(_session), identity)) return request(token);
+    return _authorized(request);
+  }
+
+  /// The access could not be renewed for now: the session stays, and the
+  /// user is asked to try again.
+  void _noticeRenewalUnavailable() =>
+      _setNotice(ApiErrorMessages.fromFailure(const ApiNetworkException()));
+
   /// Temporary unavailability: a later attempt may succeed, so nothing that
   /// belongs to the session is erased or revoked because of it.
   bool _isTransientNativeFailure(NativeVpnException error) =>
@@ -4216,6 +4648,69 @@ class _OpenVpnRevocationHandled implements Exception {
   const _OpenVpnRevocationHandled();
 }
 
+/// Billing requests of a store that renews sessions: each one goes through
+/// [_send], which renews the current session's access when needed.
+class _RenewingBillingApi implements BillingApiRepository {
+  const _RenewingBillingApi(this._inner, this._send);
+
+  final BillingApiRepository _inner;
+  final Future<T> Function<T>(
+    String token,
+    Future<T> Function(String token) request,
+  )
+  _send;
+
+  @override
+  Future<BillingSubscription> getSubscription(String token) =>
+      _send(token, _inner.getSubscription);
+
+  @override
+  Future<BillingPurchaseContext> getPurchaseContext(String token) =>
+      _send(token, _inner.getPurchaseContext);
+
+  @override
+  Future<BillingVerification> verifyPurchase({
+    required String token,
+    required String purchaseToken,
+  }) => _send(
+    token,
+    (access) =>
+        _inner.verifyPurchase(token: access, purchaseToken: purchaseToken),
+  );
+}
+
+/// What native code last reported about renewing a session.
+enum _AccessRenewal { unknown, classic, renewable }
+
+/// One account session across the renewals of its access token (contract
+/// session-renewal): work started with a previous token continues with the
+/// renewed one. Any other session has its own, even with an equal token: a
+/// login, a session read back from storage, a guest admission or a guest
+/// token renewal.
+class _SessionIdentity {
+  _AccessRenewal renewal = _AccessRenewal.unknown;
+  // The conversion was answered (or cannot be asked): this process does not
+  // ask it again. A temporary failure leaves it owed.
+  bool upgradeSettled = false;
+  bool upgrading = false;
+}
+
+/// How a request to native code about the current access ended.
+enum _Freshness {
+  /// The access native code returned was adopted, renewed or not.
+  fresh,
+
+  /// A temporary failure: the local session is kept.
+  unavailable,
+
+  /// The session can no longer be renewed: it ends as an expiry.
+  refused,
+
+  /// Nothing renews it here (no native owner, a stale request, a defect):
+  /// the historical behaviour applies.
+  unsupported,
+}
+
 /// Identity work in flight. Only a device revocation shows as such in the
 /// device list; an identity reset or an OpenVPN cleanup retry does not.
 class _IdentityMutation {
@@ -4267,14 +4762,15 @@ class _MigrationContext extends SessionOperation {
   _MigrationContext({
     required this.session,
     required this.userId,
-    required this.token,
+    required this.identity,
     required this.deviceId,
     required this.matchesAccount,
     required this.matches,
   });
   final SessionOperation session;
   final String userId;
-  final String token;
+  // Its requests send the session's current access token.
+  final _SessionIdentity identity;
   final String? deviceId;
   final bool Function() matchesAccount;
   final bool Function() matches;

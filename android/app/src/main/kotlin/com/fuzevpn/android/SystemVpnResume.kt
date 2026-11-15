@@ -17,6 +17,12 @@ internal class SystemVpnResumeRegistry(
     private val readRaw: () -> String?,
     private val writeRaw: (String) -> Unit,
     private val now: () -> Instant = { Instant.now() },
+    /**
+     * Until when the account's session may still be renewed (the refresh slot's expiry), or
+     * null for a classic session. Read only once a session's access has expired: a renewable
+     * session stays usable after its one-hour access, as the session-renewal contract allows.
+     */
+    private val renewableUntil: (accountId: String) -> Instant? = { null },
 ) {
     /**
      * This is deliberately an instance-local write acknowledgement, not a
@@ -59,7 +65,8 @@ internal class SystemVpnResumeRegistry(
         recoveryConsumed: Boolean = false,
     ): SystemVpnResumeRecord {
         revokeAcknowledgement()
-        val session = requireValidSession(sessionPayload)
+        val session = usableSession(sessionPayload, profile.accountId)
+            ?: throw SystemVpnResumeException("system_vpn_resume_session_invalid")
         requireFingerprint(identityFingerprint, "system_vpn_resume_identity_invalid")
         val payload = profile.encode()
         val record = SystemVpnResumeRecord(
@@ -128,6 +135,29 @@ internal class SystemVpnResumeRegistry(
         commit(renewed?.encode() ?: invalidatedTombstone())
         confirmedInvalidation = renewed == null
         return renewed != null
+    }
+
+    /**
+     * A renewable session's rotation keeps the account's server session: the record that names
+     * [oldSessionPayload], whatever its status, follows the new access unchanged otherwise.
+     * [commit] receives that record, or null when there is none (absent, invalidated, unreadable
+     * as a record, or naming another session): the record is then left as it is, and stays
+     * fail-closed for the new access. The owner writes the session pair and the record together.
+     */
+    @Synchronized
+    fun moveSession(oldSessionPayload: String, newSessionPayload: String, commit: (String?) -> Unit): Boolean {
+        revokeAcknowledgement()
+        // Structure only: a returned access may already have expired, and a follow-up renews it.
+        val previous = validateSystemVpnSessionPayload(oldSessionPayload, Instant.MIN)
+            ?: throw SystemVpnResumeException("system_vpn_resume_session_invalid")
+        val renewed = validateSystemVpnSessionPayload(newSessionPayload, Instant.MIN)
+            ?: throw SystemVpnResumeException("system_vpn_resume_session_invalid")
+        val raw = readRaw()
+        val current = if (raw == null || raw == invalidatedTombstone()) null else SystemVpnResumeRecord.decode(raw)
+        val moved = current?.takeIf { it.sessionFingerprint == previous.fingerprint }
+            ?.copy(sessionFingerprint = renewed.fingerprint)
+        commit(moved?.encode())
+        return moved != null
     }
 
     /** A failed local start remains fail-closed until a new explicit connection arms it. */
@@ -201,7 +231,7 @@ internal class SystemVpnResumeRegistry(
         sessionPayload: String,
         identityFingerprint: String,
     ): Boolean {
-        val session = validateSystemVpnSessionPayload(sessionPayload, now()) ?: return false
+        val session = usableSession(sessionPayload, record.profile.accountId) ?: return false
         return session.fingerprint == record.sessionFingerprint &&
             identityFingerprint == record.identityFingerprint
     }
@@ -209,6 +239,13 @@ internal class SystemVpnResumeRegistry(
     private fun requireValidSession(sessionPayload: String): SystemVpnResumeSession =
         validateSystemVpnSessionPayload(sessionPayload, now())
             ?: throw SystemVpnResumeException("system_vpn_resume_session_invalid")
+
+    /** A valid access, or an expired one whose session can still be renewed. */
+    private fun usableSession(sessionPayload: String, accountId: String): SystemVpnResumeSession? {
+        val at = now()
+        return validateSystemVpnSessionPayload(sessionPayload, at)
+            ?: validateSystemVpnSessionPayload(sessionPayload, at, renewableUntil(accountId) ?: return null)
+    }
 
     private fun readRecord(): SystemVpnResumeRecord? {
         val raw = readRaw() ?: return null
@@ -230,9 +267,14 @@ internal data class SystemVpnResumeSession(
     val expiresAt: Instant,
 )
 
+/**
+ * The access payload `{access_token, expires_at}` (exactly these two keys), usable at [now]:
+ * its access has not expired, or [renewableUntil] (the session's refresh expiry) has not.
+ */
 internal fun validateSystemVpnSessionPayload(
     payload: String,
     now: Instant = Instant.now(),
+    renewableUntil: Instant? = null,
 ): SystemVpnResumeSession? = runCatching {
     require(payload.length in 2..MAX_SESSION_PAYLOAD_CHARS)
     val root = JSONObject(payload)
@@ -244,7 +286,7 @@ internal fun validateSystemVpnSessionPayload(
     val expiryText = root.get("expires_at") as? String ?: error("invalid_expiry")
     require(expiryText.length in 1..MAX_EXPIRY_CHARS)
     val expiresAt = Instant.parse(expiryText)
-    require(expiresAt.isAfter(now))
+    require(expiresAt.isAfter(now) || renewableUntil?.isAfter(now) == true)
     SystemVpnResumeSession(sha256Hex(payload), expiresAt)
 }.getOrNull()
 

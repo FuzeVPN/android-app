@@ -1,5 +1,7 @@
 package com.fuzevpn.android
 
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.Collections
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
@@ -77,6 +79,32 @@ internal object HarnessControl {
     @Volatile var renewalResponse: (deviceId: String) -> Pair<Int, String> = { renewedActivation(it) }
     /** Keeps a renewal request unanswered, as a slow server would, while it stays current. */
     @Volatile var renewalHold = false
+    /** Session-renewal requests the bridge sent: "path authorization [request_id]". */
+    val sessionRequests: MutableList<String> = Collections.synchronizedList(mutableListOf())
+    /** Whether each of them was bound to a physical network. */
+    val sessionPhysical: MutableList<Boolean> = Collections.synchronizedList(mutableListOf())
+    /** The API's answer to a session request (its path); may throw what the transport would. */
+    @Volatile var sessionResponse: (path: String) -> SessionRenewalContract.Response = ::defaultSessionResponse
+    /** Keeps a session request unanswered, as a slow server would, while it stays current. */
+    @Volatile var sessionHold = false
+
+    const val RENEWED_ACCESS = "renewed-access-token"
+    const val RENEWED_REFRESH = "fr1.renewed-refresh-token"
+
+    /** A 200 of upgrade or refresh as the API returns it: a one-hour access, a one-year grant. */
+    fun sessionPair(access: String = RENEWED_ACCESS, refresh: String = RENEWED_REFRESH,
+        accessExpiry: Instant = Instant.now().plusSeconds(3_600)): SessionRenewalContract.Response {
+        fun utc(at: Instant) = at.truncatedTo(ChronoUnit.SECONDS).toString()
+        return SessionRenewalContract.Response(200, "no-store", null, ("""{"access_token":"$access",""" +
+            """"expires_at":"${utc(accessExpiry)}","refresh_token":"$refresh",""" +
+            """"refresh_expires_at":"${utc(Instant.now().plus(365, ChronoUnit.DAYS))}"}""").toByteArray())
+    }
+
+    /** An error as the API writes it. */
+    fun sessionAnswer(status: Int, error: String = "", retryAfter: String? = null) =
+        SessionRenewalContract.Response(status, "no-store", retryAfter, """{"error":"$error","message":"m"}""".toByteArray())
+
+    private fun defaultSessionResponse(path: String) = if (path == "v1/auth/logout") sessionAnswer(204) else sessionPair()
 
     const val RENEWED_OPENVPN_IDENTITY = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     private const val PEM = "-----BEGIN CERTIFICATE-----\\ntest\\n-----END CERTIFICATE-----"
@@ -108,6 +136,7 @@ internal object HarnessControl {
         openVpnCertificate = "valid"; openVpnRenewalPending = false; openVpnIdentity = WireGuardController.IDENTITY
         openVpnCsrRequests = 0; openVpnConnect = { true }
         renewalRequests.clear(); renewalResponse = { renewedActivation(it) }; renewalHold = false
+        sessionRequests.clear(); sessionPhysical.clear(); sessionResponse = ::defaultSessionResponse; sessionHold = false
         sentinel.clear(); hostStarts = 0; hostStartFailure = null
     }
 }

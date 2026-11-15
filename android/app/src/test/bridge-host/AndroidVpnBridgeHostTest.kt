@@ -16,6 +16,9 @@ import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import java.time.Duration
+import java.time.Instant
+import java.time.temporal.ChronoUnit
 import java.util.Collections
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.CountDownLatch
@@ -39,8 +42,9 @@ internal class ResultProbe : MethodChannel.Result {
     private val done = CountDownLatch(1)
     @Volatile var value: Any? = null
     @Volatile var error: String? = null
+    @Volatile var details: Any? = null
     override fun success(value: Any?) { this.value = value; done.countDown() }
-    override fun error(code: String, message: String?, details: Any?) { error = code; done.countDown() }
+    override fun error(code: String, message: String?, details: Any?) { error = code; this.details = details; done.countDown() }
     override fun notImplemented() { error = "not_implemented"; done.countDown() }
     fun await(): ResultProbe { check(done.await(20, TimeUnit.SECONDS)) { "method result never delivered" }; return this }
     val pending: Boolean get() = done.count > 0
@@ -2106,6 +2110,365 @@ class AndroidVpnBridgeHostTest {
         assertEquals(HarnessControl.sentinel.toString(), false, HarnessControl.sentinel.lastOrNull())
     }
 
+    // Renewable sessions (session-renewal contract, 14/11/2026): the native side alone converts,
+    // renews and logs out, and the refresh token never reaches Flutter.
+    @Test fun sessionUpgradeConvertsTheSessionAndMovesItsResumeRecord() {
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        val before = registry().snapshot()!!
+        assertEquals(fingerprint(SESSION), before.sessionFingerprint)
+        val upgraded = call("sessionUpgrade", mapOf("account_id" to ACCOUNT)).await()
+        assertNull(upgraded.error)
+        val result = upgraded.value as Map<*, *>
+        assertEquals(setOf("state", "payload"), result.keys)
+        assertEquals("renewable", result["state"])
+        val payload = result["payload"] as String
+        // The access slot keeps its two-key format, written as Dart writes it.
+        assertEquals(payload, SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+        assertTrue(payload, Regex("""\{"access_token":"${HarnessControl.RENEWED_ACCESS}","expires_at":""" +
+            """"\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.000Z"\}""").matches(payload))
+        assertEquals(payload, call("storageReadSession").await().value)
+        val request = HarnessControl.sessionRequests.single().split(" ")
+        assertEquals(listOf("v1/auth/session/upgrade", "Bearer", "host-test-token"), request.take(3))
+        assertTrue(request[3], Regex("[A-Za-z0-9_-]{43}").matches(request[3]))
+        assertEquals(HarnessControl.RENEWED_REFRESH, RefreshGrant.decode(SecureKeystoreStore.raw(refreshSlot())!!)!!.token)
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+        // The same tunnel stays restorable, now for the new access.
+        assertEquals(before.copy(sessionFingerprint = fingerprint(payload)), registry().snapshot())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(1, HarnessControl.wireGuardConnects)
+        // Dart rewriting that payload changes nothing; a converted session is not converted again.
+        assertNull(call("storageWriteAccountSession", mapOf("account_id" to ACCOUNT, "payload" to payload)).await().error)
+        assertNotNull(SecureKeystoreStore.raw(refreshSlot()))
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertEquals(mapOf("state" to "renewable", "payload" to payload),
+            call("sessionUpgrade", mapOf("account_id" to ACCOUNT)).await().value)
+        assertEquals(1, HarnessControl.sessionRequests.size)
+    }
+
+    @Test fun sessionUpgradeUnknownToTheServerKeepsTheClassicSession() {
+        signIn()
+        HarnessControl.sessionResponse = { HarnessControl.sessionAnswer(404, "not_found") }
+        assertEquals(mapOf("state" to "classic", "payload" to SESSION),
+            call("sessionUpgrade", mapOf("account_id" to ACCOUNT)).await().value)
+        assertEquals(SESSION, SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+        assertNull(SecureKeystoreStore.raw(refreshSlot()))
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+        // A classic session is returned as it is, without a request.
+        assertEquals(mapOf("state" to "classic", "payload" to SESSION),
+            call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT)).await().value)
+        assertEquals(1, HarnessControl.sessionRequests.size)
+    }
+
+    @Test fun sessionEnsureFreshRenewsOnlyAnAccessThatExpiresWithinFiveMinutes() {
+        renewableSignIn(Duration.ofHours(1))
+        val stored = SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT))
+        assertEquals(mapOf("state" to "renewable", "payload" to stored),
+            call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT)).await().value)
+        assertTrue(HarnessControl.sessionRequests.isEmpty())
+        SecureKeystoreStore.put(SecureStorageKeyPolicy.accountSession(ACCOUNT), access(Duration.ofMinutes(4)))
+        val renewed = call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT)).await().value as Map<*, *>
+        assertEquals("renewable", renewed["state"])
+        assertEquals(SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)), renewed["payload"])
+        assertEquals(HarnessControl.RENEWED_ACCESS, AccessGrant.decode(renewed["payload"] as String)!!.token)
+        assertEquals("v1/auth/session/refresh Bearer $REFRESH", HarnessControl.sessionRequests.single().substringBeforeLast(' '))
+        // No TUN is held: the request follows the default route, as the Dart client's.
+        assertEquals(listOf(false), HarnessControl.sessionPhysical.toList())
+        assertEquals(HarnessControl.RENEWED_REFRESH, RefreshGrant.decode(SecureKeystoreStore.raw(refreshSlot())!!)!!.token)
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+    }
+
+    @Test fun sessionChannelErrorsFollowTheContract() {
+        renewableSignIn(Duration.ofMinutes(2))
+        fun ensure() = call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT)).await()
+        HarnessControl.sessionResponse = { HarnessControl.sessionAnswer(400, "invalid_session_request_id") }
+        assertEquals("session_renewal_invalid", ensure().error)
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+        HarnessControl.sessionResponse = { HarnessControl.sessionAnswer(401, "unauthorized") }
+        assertEquals("session_unauthorized", ensure().error)
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+        SecureKeystoreStore.put(refreshSlot(), grant(Instant.now().minusSeconds(1)))
+        val sent = HarnessControl.sessionRequests.size
+        assertEquals("session_refresh_expired", ensure().error)
+        assertEquals(sent, HarnessControl.sessionRequests.size)
+        SecureKeystoreStore.put(refreshSlot(), grant())
+        HarnessControl.sessionResponse = { HarnessControl.sessionAnswer(503, "server_error", retryAfter = "30") }
+        val unavailable = ensure()
+        assertEquals("session_renewal_unavailable", unavailable.error)
+        assertEquals(mapOf("retry_after_seconds" to 30L), unavailable.details)
+        val pending = SecureKeystoreStore.raw(renewalPendingSlot())
+        assertNotNull("the request is kept for an identical retry", pending)
+        // Within Retry-After nothing is sent; the local session is unchanged.
+        val waiting = ensure()
+        assertEquals("session_renewal_unavailable", waiting.error)
+        assertTrue(waiting.details.toString(), ((waiting.details as Map<*, *>)["retry_after_seconds"] as Long) in 1L..30L)
+        assertEquals(sent + 1, HarnessControl.sessionRequests.size)
+        assertEquals(pending, SecureKeystoreStore.raw(renewalPendingSlot()))
+        // An account other than the active one is refused.
+        assertEquals("invalid_arguments", call("sessionEnsureFresh", mapOf("account_id" to "account-2")).await().error)
+        assertEquals(sent + 1, HarnessControl.sessionRequests.size)
+    }
+
+    // Contract amendment (14/11): at startup Dart reads the stored session before /v1/me and may
+    // omit account_id. The active account is then used; without one, the answer is classic.
+    @Test fun renewalCallsWithoutAnAccountUseTheActiveOneOrAnswerClassic() {
+        renewableSignIn(Duration.ofMinutes(4))
+        val renewed = call("sessionEnsureFresh", emptyMap<String, Any?>()).await().value as Map<*, *>
+        assertEquals("renewable", renewed["state"])
+        assertEquals("v1/auth/session/refresh Bearer $REFRESH", HarnessControl.sessionRequests.single().substringBeforeLast(' '))
+        assertEquals(renewed, call("sessionEnsureFresh").await().value)
+        assertEquals(renewed, call("sessionUpgrade", mapOf("diagnostic_trace_id" to "0123456789abcdef0123456789abcdef")).await().value)
+        assertEquals(1, HarnessControl.sessionRequests.size)
+        assertEquals("invalid_arguments", call("sessionEnsureFresh", mapOf("account_id" to "account-2")).await().error)
+        // No active account, only a pending registration: classic, its payload, no request.
+        SecureKeystoreStore.remove(SecureStorageKeyPolicy.activeUser())
+        SecureKeystoreStore.put(SecureStorageKeyPolicy.pendingSession(), PENDING_REGISTRATION)
+        for (method in listOf("sessionEnsureFresh", "sessionUpgrade")) {
+            assertEquals(method, mapOf("state" to "classic", "payload" to PENDING_REGISTRATION),
+                call(method, emptyMap<String, Any?>()).await().value)
+        }
+        assertEquals(mapOf("state" to "classic"), call("sessionLogout", emptyMap<String, Any?>()).await().value)
+        SecureKeystoreStore.remove(SecureStorageKeyPolicy.pendingSession())
+        assertEquals(mapOf("state" to "classic", "payload" to null), call("sessionEnsureFresh").await().value)
+        // A named account must be the active one.
+        assertEquals("invalid_arguments", call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT)).await().error)
+        Thread.sleep(100)
+        assertEquals(1, HarnessControl.sessionRequests.size)
+    }
+
+    @Test fun aPendingRenewalIsResumedIdenticallyAfterAProcessDeath() {
+        renewableSignIn(Duration.ofHours(-2))
+        SecureKeystoreStore.put(renewalPendingSlot(), PendingRenewal(SessionRenewalContract.REFRESH, REFRESH, REQUEST_ID).encode())
+        processDeath()
+        val renewed = call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT)).await().value as Map<*, *>
+        assertEquals("renewable", renewed["state"])
+        assertEquals(listOf("v1/auth/session/refresh Bearer $REFRESH $REQUEST_ID"), HarnessControl.sessionRequests.toList())
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+        assertEquals(renewed["payload"], SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+    }
+
+    @Test fun sessionLogoutPresentsTheRefreshTokenOfAConvertedSessionOnly() {
+        signIn()
+        assertEquals(mapOf("state" to "classic"), call("sessionLogout", mapOf("account_id" to ACCOUNT)).await().value)
+        Thread.sleep(100)
+        assertTrue(HarnessControl.sessionRequests.isEmpty())
+        SecureKeystoreStore.put(refreshSlot(), grant())
+        assertEquals(mapOf("state" to "renewable"), call("sessionLogout", mapOf("account_id" to ACCOUNT)).await().value)
+        eventually("logout sent") { HarnessControl.sessionRequests.isNotEmpty() }
+        assertEquals(listOf("v1/auth/logout Bearer $REFRESH"), HarnessControl.sessionRequests.toList())
+        // Dart then ends the session as today.
+        assertEquals(true, (call("storageClearSession", mapOf("reason" to "voluntary")).await().value as Map<*, *>)["session_cleared"])
+        assertNull(SecureKeystoreStore.raw(refreshSlot()))
+    }
+
+    // Review of 15/11: a rotation can hold R for tens of seconds while Dart, ending the session,
+    // waits about 10 s for the logout before it erases the session. The logout never waits for R.
+    @Test fun sessionLogoutNeverWaitsForARotationInProgress() {
+        renewableSignIn(Duration.ofMinutes(4))
+        HarnessControl.sessionHold = true
+        val fresh: ResultProbe
+        try {
+            fresh = call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT))
+            eventually("rotation sent") { HarnessControl.sessionRequests.size == 1 }
+            assertEquals(mapOf("state" to "renewable"), call("sessionLogout", mapOf("account_id" to ACCOUNT)).await().value)
+            // The stored (pre-rotation) refresh token: the server revokes an older generation too.
+            eventually("logout sent") { HarnessControl.sessionRequests.size == 2 }
+            assertEquals("v1/auth/logout Bearer $REFRESH", HarnessControl.sessionRequests[1])
+            assertTrue("the rotation was still in progress", fresh.pending)
+        } finally {
+            HarnessControl.sessionHold = false
+        }
+        assertEquals("renewable", (fresh.await().value as Map<*, *>)["state"])
+    }
+
+    // Review of 15/11: Dart forces the refresh on a 401, whatever the device clock says.
+    @Test fun aForcedEnsureFreshRenewsAnAccessThatLooksValid() {
+        renewableSignIn(Duration.ofHours(1))
+        val stored = SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT))
+        assertEquals(mapOf("state" to "renewable", "payload" to stored),
+            call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT, "force" to false)).await().value)
+        assertTrue(HarnessControl.sessionRequests.isEmpty())
+        val forced = call("sessionEnsureFresh", mapOf("force" to true)).await().value as Map<*, *>
+        assertEquals(HarnessControl.RENEWED_ACCESS, AccessGrant.decode(forced["payload"] as String)!!.token)
+        assertEquals("v1/auth/session/refresh Bearer $REFRESH", HarnessControl.sessionRequests.single().substringBeforeLast(' '))
+        assertEquals("invalid_arguments", call("sessionEnsureFresh", mapOf("force" to "yes")).await().error)
+        assertEquals(1, HarnessControl.sessionRequests.size)
+    }
+
+    @Test fun aSessionPurgeErasesTheRenewalGrantAndThePendingRequest() {
+        renewableSignIn(Duration.ofHours(1))
+        SecureKeystoreStore.put(renewalPendingSlot(), PendingRenewal(SessionRenewalContract.REFRESH, REFRESH, REQUEST_ID).encode())
+        val end = call("storageClearSession", mapOf("reason" to "expired")).await().value as Map<*, *>
+        assertEquals(true, end["session_cleared"])
+        assertNull(SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+        assertNull(SecureKeystoreStore.raw(refreshSlot()))
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+    }
+
+    // Contract amendment (14/11): a Dart write of the access never undoes a native rotation. The
+    // stored pair is kept for the same payload or a copy read before the rotation; only another
+    // session (a new login) replaces it, with its renewal grant and pending request.
+    @Test fun dartAccessWritesKeepARenewedPairUnlessTheyBringANewSession() {
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        val stored = (call("sessionUpgrade", mapOf("account_id" to ACCOUNT)).await().value as Map<*, *>)["payload"] as String
+        val renewedGrant = SecureKeystoreStore.raw(refreshSlot())!!
+        val resume = registry().snapshot()!!
+        assertEquals(fingerprint(stored), resume.sessionFingerprint)
+        fun write(payload: String) =
+            assertNull(call("storageWriteAccountSession", mapOf("account_id" to ACCOUNT, "payload" to payload)).await().error)
+        fun assertKept(case: String) {
+            assertEquals(case, stored, SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+            assertEquals(case, renewedGrant, SecureKeystoreStore.raw(refreshSlot()))
+            assertEquals(case, resume, registry().snapshot())
+        }
+        write(stored)
+        assertKept("identical payload")
+        write(access(Duration.ofMinutes(10)))
+        assertKept("earlier expires_at")
+        // The legacy access the upgrade replaced expires later than the new one: still stale.
+        write(SESSION)
+        assertKept("access replaced by a rotation of this process")
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        val pending = PendingRenewal(SessionRenewalContract.REFRESH, HarnessControl.RENEWED_REFRESH, REQUEST_ID).encode()
+        SecureKeystoreStore.put(renewalPendingSlot(), pending)
+        val newLogin = """{"access_token":"new-login","expires_at":"2099-02-01T00:00:00Z"}"""
+        write(newLogin)
+        assertEquals(newLogin, SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+        assertNull(SecureKeystoreStore.raw(refreshSlot()))
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+        assertNull("a new session cancels the resume, as today", registry().snapshot())
+        // A guest replacement follows the same rule.
+        SecureKeystoreStore.put(refreshSlot(), grant())
+        SecureKeystoreStore.put(renewalPendingSlot(), pending)
+        val earlier = """{"access_token":"guest-token","expires_at":"2099-01-15T00:00:00Z"}"""
+        assertNull(call("storageReplaceGuestSession", mapOf("account_id" to ACCOUNT, "payload" to earlier)).await().error)
+        assertEquals(newLogin, SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+        assertEquals(grant(), SecureKeystoreStore.raw(refreshSlot()))
+        val guest = """{"access_token":"guest-token","expires_at":"2099-03-01T00:00:00Z"}"""
+        assertNull(call("storageReplaceGuestSession", mapOf("account_id" to ACCOUNT, "payload" to guest)).await().error)
+        assertEquals(guest, SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT)))
+        assertNull(SecureKeystoreStore.raw(refreshSlot()))
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+    }
+
+    // A converted session's access lasts one hour. The tile, a system restore and an OpenVPN
+    // recovery run hours later without Flutter: the session stays usable while it can be renewed.
+    @Test fun aTileClickHoursAfterTheAccessExpiredConnectsWhileTheSessionCanBeRenewed() {
+        renewableSignIn(Duration.ofHours(-3))
+        storeTileProfile()
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>(null), tileCallbacks.toList())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(1, HarnessControl.wireGuardConnects)
+        assertTrue("WireGuard needs no API call", HarnessControl.sessionRequests.isEmpty())
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.READY, record.status)
+        assertEquals(fingerprint(SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT))!!), record.sessionFingerprint)
+        // Once the renewal grant is over too, the click opens the application as before.
+        assertNull(call("disconnect").await().error)
+        SecureKeystoreStore.put(refreshSlot(), grant(Instant.now().minusSeconds(1)))
+        val second = clickTile()
+        await(second, "second tile callback")
+        assertEquals(listOf(null, "system_vpn_resume_session_invalid"), tileCallbacks.toList())
+        assertEquals(1, HarnessControl.wireGuardConnects)
+    }
+
+    @Test fun aSystemRestoreHoursAfterTheAccessExpiredRestoresWhileTheSessionCanBeRenewed() {
+        renewableSignIn(Duration.ofHours(-3))
+        // Armed when the tunnel was proven, before the access expired.
+        registryAt(Instant.now().minus(Duration.ofHours(4)))
+            .arm(profile, SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT))!!, WireGuardController.IDENTITY)
+        systemStart()
+        eventually("restored", seconds = 10) { sink.events.contains(WIREGUARD_CONNECTED) }
+        settleSystemJob()
+        assertEquals(SystemVpnResumeStatus.READY, registry().snapshot()!!.status)
+        assertEquals(1, HarnessControl.wireGuardConnects)
+        assertTrue(HarnessControl.sessionRequests.isEmpty())
+    }
+
+    @Test fun anOpenVpnRecoveryHoursAfterTheAccessExpiredReconnectsWhileTheSessionCanBeRenewed() {
+        connectOpenVpn()
+        val armed = registry().snapshot()!!
+        val expired = access(Duration.ofHours(-3))
+        SecureKeystoreStore.put(SecureStorageKeyPolicy.accountSession(ACCOUNT), expired)
+        SecureKeystoreStore.put(refreshSlot(), grant())
+        registryAt(Instant.now().minus(Duration.ofHours(4))).arm(armed.profile, expired, armed.identityFingerprint)
+        loseNetwork()
+        eventually("reconnected") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertEquals(1, HarnessControl.openVpnReconnects)
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.READY, record.status)
+        assertEquals(fingerprint(expired), record.sessionFingerprint)
+        assertFalse(record.recoveryConsumed)
+        // A Core failure spends the single retry with the same expired access.
+        engine().coreReconnectRequired()
+        eventually("retried") { sink.events.count { it == OPENVPN_CONNECTED } == 3 }
+        assertTrue(registry().snapshot()!!.recoveryConsumed)
+        assertTrue(HarnessControl.sessionRequests.isEmpty())
+    }
+
+    // The certificate renewal is the only API call made without Flutter: it presents an access
+    // renewed first when that access expires within five minutes.
+    @Test fun anOpenVpnCertificateRenewalRenewsAnExpiringSessionFirst() {
+        connectOpenVpn()
+        assertNull(call("disconnect").await().error)
+        SecureKeystoreStore.put(SecureStorageKeyPolicy.accountSession(ACCOUNT), access(Duration.ofMinutes(2)))
+        SecureKeystoreStore.put(refreshSlot(), grant())
+        HarnessControl.openVpnCertificate = "expired"
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>(null), tileCallbacks.toList())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals("v1/auth/session/refresh Bearer $REFRESH", HarnessControl.sessionRequests.single().substringBeforeLast(' '))
+        // A TUN may be held: the request is bound to a physical network, as the certificate renewal.
+        assertEquals(listOf(true), HarnessControl.sessionPhysical.toList())
+        assertEquals(listOf("https://api.fuzevpn.com/v1/devices/$DEVICE/profiles/openvpn/renew Bearer ${HarnessControl.RENEWED_ACCESS}"),
+            HarnessControl.renewalRequests.toList())
+        val stored = SecureKeystoreStore.raw(SecureStorageKeyPolicy.accountSession(ACCOUNT))!!
+        assertEquals(HarnessControl.RENEWED_ACCESS, AccessGrant.decode(stored)!!.token)
+        assertNull(SecureKeystoreStore.raw(renewalPendingSlot()))
+        val record = registry().snapshot()!!
+        assertEquals(SystemVpnResumeStatus.READY, record.status)
+        assertEquals("the resume names the access the request used", fingerprint(stored), record.sessionFingerprint)
+        assertEquals(HarnessControl.RENEWED_OPENVPN_IDENTITY, record.identityFingerprint)
+    }
+
+    @Test fun anOpenVpnCertificateRenewalNeverWaitsForABusySessionRenewal() {
+        connectOpenVpn()
+        assertNull(call("disconnect").await().error)
+        val valid = access(Duration.ofMinutes(2))
+        SecureKeystoreStore.put(SecureStorageKeyPolicy.accountSession(ACCOUNT), valid)
+        SecureKeystoreStore.put(refreshSlot(), grant())
+        HarnessControl.openVpnCertificate = "expired"
+        HarnessControl.sessionHold = true
+        val fresh: ResultProbe
+        try {
+            // Flutter's renewal holds R while its request waits for the server.
+            fresh = call("sessionEnsureFresh", mapOf("account_id" to ACCOUNT))
+            eventually("session request sent") { HarnessControl.sessionRequests.size == 1 }
+            await(clickTile(), "tile callback")
+            assertEquals(listOf<String?>(null), tileCallbacks.toList())
+            assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+            // The tile kept the stored access, still valid, without waiting.
+            assertEquals(listOf("https://api.fuzevpn.com/v1/devices/$DEVICE/profiles/openvpn/renew Bearer $RENEWABLE_ACCESS"),
+                HarnessControl.renewalRequests.toList())
+            assertEquals(1, HarnessControl.sessionRequests.size)
+            // An expired access cannot be kept: the click fails as without a network, and waits for nothing.
+            assertNull(call("disconnect").await().error)
+            SecureKeystoreStore.put(SecureStorageKeyPolicy.accountSession(ACCOUNT), access(Duration.ofMinutes(-1)))
+            HarnessControl.openVpnCertificate = "expired"
+            await(clickTile(), "second tile callback")
+            assertEquals(listOf(null, "network_unavailable"), tileCallbacks.toList())
+            assertTrue(fresh.pending)
+        } finally {
+            HarnessControl.sessionHold = false
+        }
+        val renewed = fresh.await().value as Map<*, *>
+        assertEquals("renewable", renewed["state"])
+        assertEquals(HarnessControl.RENEWED_ACCESS, AccessGrant.decode(renewed["payload"] as String)!!.token)
+        assertEquals(1, HarnessControl.renewalRequests.size)
+    }
+
     /** A consent request whose dialog (the [dialogs]-th of this test) Android now shows. */
     private fun askConsent(dialogs: Int = 1): ResultProbe {
         VpnService.consentIntent = Intent("android.net.vpn.CONSENT")
@@ -2287,6 +2650,32 @@ class AndroidVpnBridgeHostTest {
         writeRaw = { SecureKeystoreStore.put(SecureStorageKeyPolicy.systemVpnResume(), it) },
     )
 
+    /** The registry as it was at [at], to arm a record for an access that has expired since. */
+    private fun registryAt(at: Instant) = SystemVpnResumeRegistry(
+        readRaw = { SecureKeystoreStore.raw(SecureStorageKeyPolicy.systemVpnResume()) },
+        writeRaw = { SecureKeystoreStore.put(SecureStorageKeyPolicy.systemVpnResume(), it) },
+        now = { at },
+    )
+
+    // The renewal slots by their stored names: the persisted keys are part of the contract.
+    private fun refreshSlot() = SecureStorageSlot(SecureKeystoreStore.accountScope(ACCOUNT), "fuzevpn.session.refresh")
+    private fun renewalPendingSlot() = SecureStorageSlot(SecureKeystoreStore.accountScope(ACCOUNT), "fuzevpn.session.renewal_pending")
+
+    /** A converted session's access expiring [expiresIn] from now, as the bridge stores it. */
+    private fun access(expiresIn: Duration) =
+        AccessGrant(RENEWABLE_ACCESS, Instant.now().plus(expiresIn).truncatedTo(ChronoUnit.SECONDS)).encode()
+
+    private fun grant(expiresAt: Instant = FAR_FUTURE) = RefreshGrant(REFRESH, expiresAt.truncatedTo(ChronoUnit.SECONDS)).encode()
+
+    /** Signed in with a converted session whose access expires [accessIn] from now. */
+    private fun renewableSignIn(accessIn: Duration) {
+        signIn()
+        SecureKeystoreStore.put(SecureStorageKeyPolicy.accountSession(ACCOUNT), access(accessIn))
+        SecureKeystoreStore.put(refreshSlot(), grant())
+    }
+
+    private fun fingerprint(payload: String) = validateSystemVpnSessionPayload(payload, Instant.MIN)!!.fingerprint
+
     private fun armResume() { registry().arm(profile, SESSION, WireGuardController.IDENTITY) }
 
     private fun wireGuardArguments(locationName: String = "Paris") = mapOf(
@@ -2348,6 +2737,12 @@ class AndroidVpnBridgeHostTest {
         const val ACCOUNT = "account-1"
         const val DEVICE = "device-1"
         const val SESSION = """{"access_token":"host-test-token","expires_at":"2099-01-01T00:00:00Z"}"""
+        const val RENEWABLE_ACCESS = "renewable-access"
+        const val REFRESH = "fr1.host-refresh-token"
+        val REQUEST_ID = "A".repeat(42) + "Q"
+        val FAR_FUTURE: Instant = Instant.parse("2099-01-01T00:00:00Z")
+        const val PENDING_REGISTRATION =
+            """{"access_token":"pending-token","expires_at":"2099-01-01T00:00:00Z","admission":"registered"}"""
         const val EMOJI = "\uD83C\uDF0D"
         const val PUBLICATIONS = 20
         const val OPENVPN_CONNECTED = "connected/openvpn/null"

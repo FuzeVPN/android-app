@@ -60,6 +60,7 @@ class GoogleIdentitySnapshot {
   const GoogleIdentitySnapshot({
     this.userId,
     this.accessToken,
+    this.session,
     this.scope,
     this.isGuest = false,
     this.canManageAccount = false,
@@ -67,6 +68,9 @@ class GoogleIdentitySnapshot {
 
   final String? userId;
   final String? accessToken;
+
+  /// The session's identity, which a renewal of its access token keeps.
+  final Object? session;
   final Object? scope;
   final bool isGuest;
   final bool canManageAccount;

@@ -100,6 +100,14 @@ La session invitée a une durée de 30 jours. La credential permet de la renouve
 tant que le compte invité demeure actif. Après inscription, cette credential
 ne permet plus de délivrer une nouvelle session invitée.
 
+Les sessions renouvelables (accès d’une heure, jeton de renouvellement gardé
+par le code natif) ne concernent pas l’invité : une session invitée, ou
+restreinte (`profile_redacted`), n’est jamais convertie, renouvelée ni
+déconnectée par le code natif. Elle garde ce parcours de reprise et la
+déconnexion avec son jeton d’accès. Un invité devenu compte inscrit (`claim`)
+a une session personnelle : elle est convertie au prochain retour au premier
+plan ou au prochain démarrage.
+
 La restauration vérifie le reçu auprès de Google et récupère l’ancien
 propriétaire invité. La credential proposée est associée à ce propriétaire de
 façon atomique et idempotente : une réponse perdue ne doit pas transformer une

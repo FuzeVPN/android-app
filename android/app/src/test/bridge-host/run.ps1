@@ -63,9 +63,10 @@ $production = @('AndroidVpnBridge.kt', 'VpnQuickTileService.kt', 'QuickTileSnaps
     'openvpn/OpenVpnRevocation.kt', 'openvpn/OpenVpnSessionEvents.kt')
 # Optional production units: compiled when the checked source defines them.
 $optional = @('SystemStartAuthority.kt')
-# The renewal transport double reads its answers through this unit. A checked source older than
-# the automatic renewal has none: the repository's own is compiled so the doubles still build.
-$doubleContracts = @('openvpn/OpenVpnRenewalContract.kt')
+# The renewal transport doubles read their answers through these units. A checked source older than
+# the automatic renewal (or than renewable sessions) has none: the repository's own is compiled so the
+# doubles still build. SessionRenewal.kt is also the bridge's own session owner when present.
+$doubleContracts = @('openvpn/OpenVpnRenewalContract.kt', 'SessionRenewal.kt')
 $sources = @()
 foreach ($file in $production) {
     $path = Join-Path $SourceRoot $file

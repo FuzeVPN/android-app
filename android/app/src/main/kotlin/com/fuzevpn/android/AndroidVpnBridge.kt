@@ -40,6 +40,7 @@ import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -48,6 +49,8 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicLong
 import java.lang.ref.WeakReference
+import java.time.Instant
+import kotlin.concurrent.thread
 
 /**
  * The sole native API exposed to Flutter. It serializes all tunnel transitions
@@ -85,7 +88,25 @@ internal class AndroidVpnBridge(
     private val resumeRegistry = SystemVpnResumeRegistry(
         readRaw = { SecureStorageKeyPolicy.systemVpnResume().let { store.read(it.scope, it.key, removeCorrupt = false) } },
         writeRaw = { writeSlot(SecureStorageKeyPolicy.systemVpnResume(), it); noteDurableResume(it) },
+        renewableUntil = ::renewableUntil,
     )
+    // Sole owner of the session's upgrade, refresh and logout (lock R, taken before the tunnel mutex).
+    // Explicit type: see openVpn below.
+    private val sessionRenewal: SessionRenewal by lazy {
+        SessionRenewal(
+            transport = SessionRenewalApi(appContext),
+            baseUrl = OpenVpnRenewalContract.baseUrl(BuildConfig.DEBUG, BuildConfig.DEBUG_API_BASE_URL),
+            slots = ::sessionRenewalSlots,
+            read = { readStrict(it) },
+            write = { slot, value -> writeSlot(slot, value) },
+            delete = { deleteSlot(it) },
+            // Its own thread, outside every scope: a logout runs even while the session is erased.
+            background = { block -> thread(name = "fuzevpn-session-logout", isDaemon = true) { runBlocking { block() } } },
+            log = { Log.i(LOG_TAG, it) },
+        )
+    }
+    // Per account, the last accesses a rotation of this process replaced: a Dart write of one is stale.
+    private val retiredAccess = HashMap<String, ArrayDeque<String>>()
     private val tunnelRequestEpoch = AtomicLong()
     // Automatic restoration owns publications without cancelling explicit commands.
     private val systemStartPublicationEpoch = AtomicLong()
@@ -522,9 +543,117 @@ internal class AndroidVpnBridge(
         }
         val payload = readStrict(SecureStorageKeyPolicy.accountSession(accountId))
             ?: throw VpnNativeException("system_vpn_resume_session_invalid")
-        if (validateSystemVpnSessionPayload(payload) == null) throw VpnNativeException("system_vpn_resume_session_invalid")
+        if (usableSession(accountId, payload) == null) throw VpnNativeException("system_vpn_resume_session_invalid")
         if (sessionLifecycle.termination?.let { !it.complete } == true) throw VpnNativeException("session_ending")
         return payload
+    }
+
+    /**
+     * A session is usable while its access is valid, or while a converted session can still be
+     * renewed: the tile, a system restore and a recovery then run on its expired access, and an
+     * API call made without Flutter renews it first (sessionForApi).
+     */
+    private fun usableSession(accountId: String, payload: String): SystemVpnResumeSession? =
+        validateSystemVpnSessionPayload(payload)
+            ?: validateSystemVpnSessionPayload(payload, Instant.now(), renewableUntil(accountId) ?: return null)
+
+    /** The refresh slot's expiry, read only once an access has expired. Null for a classic session. */
+    private fun renewableUntil(accountId: String): Instant? =
+        readStrict(SecureStorageKeyPolicy.accountSessionRefresh(accountId))?.let(RefreshGrant::decode)?.expiresAt
+
+    private fun sessionRenewalSlots(accountId: String) = SessionRenewalSlots(
+        SecureStorageKeyPolicy.accountSession(accountId),
+        SecureStorageKeyPolicy.accountSessionRefresh(accountId),
+        SecureStorageKeyPolicy.accountSessionRenewalPending(accountId),
+    )
+
+    /**
+     * The account a renewal call names, or the active one when Dart omits account_id (at startup it
+     * reads the stored session before /v1/me). Null: no active account. A named account other than
+     * the active one is refused.
+     */
+    private fun renewalAccount(call: MethodCall): String? {
+        val args = call.arguments as? Map<*, *>
+        if (call.arguments != null && args == null) throw VpnNativeException("invalid_arguments")
+        val named = args?.get(ACCOUNT_ID)
+        val active = sessionRead { readStrict(SecureStorageKeyPolicy.activeUser()) }
+        if (named != null && (named !is String || named != active)) throw VpnNativeException("invalid_arguments")
+        return active
+    }
+
+    /** No active account (none, or only a pending registration): classic, without any request. */
+    private fun classicWithoutAccount(): Map<String, Any?> =
+        mapOf("state" to SessionKind.CLASSIC.wireValue, "payload" to sessionRead { readStoredSession() })
+
+    /** The account this renewal belongs to is still the active one, in the same session. */
+    private fun checkRenewalAccount(ticket: Long, accountId: String) {
+        sessionLifecycle.check(ticket)
+        if (readStrict(SecureStorageKeyPolicy.activeUser()) != accountId) throw VpnNativeException("session_operation_cancelled")
+    }
+
+    /**
+     * Under the tunnel mutex: the rotated pair, the removal of its pending request and the system
+     * resume record moved to the new access, in one durable commit (as storageReplaceGuestSession).
+     * A rotation keeps the server session: a record naming the previous access follows it whatever
+     * its status, and no other record is touched.
+     */
+    private fun commitSessionRotation(rotation: SessionRotation, ticket: Long) = sessionLifecycle.mutate(ticket) {
+        var resumeIncluded = false
+        try {
+            resumeRegistry.moveSession(rotation.previousAccess, rotation.access) { encodedResume ->
+                val values = mutableMapOf(rotation.slots.access to rotation.access, rotation.slots.refresh to rotation.refresh)
+                if (encodedResume != null) {
+                    resumeIncluded = true
+                    values[SecureStorageKeyPolicy.systemVpnResume()] = encodedResume
+                }
+                store.updateSlotsAtomically(values, setOf(rotation.slots.pending))
+                if (encodedResume != null) noteDurableResume(encodedResume)
+            }
+        } catch (error: Exception) {
+            if (resumeIncluded) resumeStorageFailed(error)
+            throw error
+        }
+        synchronized(retiredAccess) {
+            val retired = retiredAccess.getOrPut(rotation.accountId) { ArrayDeque() }
+            retired.addLast(rotation.previousAccess)
+            while (retired.size > RETIRED_ACCESS_KEPT) retired.removeFirst()
+        }
+        Unit
+    }
+
+    /** A renewal requested by Flutter: it takes the tunnel mutex only around storage. */
+    private fun channelRenewalHost(accountId: String, ticket: Long) = object : SessionRenewalHost {
+        override suspend fun <T> locked(block: () -> T): T = withTunnelOperation { block() }
+        override fun checkCurrent() = checkRenewalAccount(ticket, accountId)
+        override fun commit(rotation: SessionRotation) = commitSessionRotation(rotation, ticket)
+        // A recovery or a restore may hold a TUN that drops this app's packets.
+        override val physical: Boolean get() = activeProtocol != null && currentState.status != VpnStatus.CONNECTED
+        override fun isCurrent(): Boolean = sessionLifecycle.isCurrent(ticket)
+    }
+
+    /** A renewal inside a hold of the tunnel mutex: its blocks run in place. */
+    private fun tunnelRenewalHost(accountId: String, ticket: Long, current: () -> Boolean) = object : SessionRenewalHost {
+        override suspend fun <T> locked(block: () -> T): T = block()
+        override fun checkCurrent() = checkRenewalAccount(ticket, accountId)
+        override fun commit(rotation: SessionRotation) = commitSessionRotation(rotation, ticket)
+        override val physical: Boolean get() = true
+        override fun isCurrent(): Boolean = current()
+    }
+
+    /**
+     * Under the tunnel mutex: the access an API call made without Flutter presents. It is renewed
+     * first when it expires within five minutes or a renewal is pending, unless another renewal
+     * holds R (never awaited here). An unavailable renewal keeps a valid access, and fails as the
+     * absence of network otherwise; a refused session needs the application.
+     */
+    private suspend fun sessionForApi(accountId: String, deviceId: String, ticket: Long, isCurrent: () -> Boolean): String {
+        localSession(accountId, deviceId)
+        return try {
+            sessionRenewal.accessHoldingTunnel(accountId, tunnelRenewalHost(accountId, ticket, isCurrent))
+        } catch (refused: SessionRenewalException) {
+            throw VpnNativeException(if (refused.code == SessionRenewalException.UNAVAILABLE) "network_unavailable"
+                else "openvpn_renewal_required", refused)
+        }
     }
 
     private fun localIdentity(profile: QuickTileProfile): String = when (profile.protocol) {
@@ -538,7 +667,7 @@ internal class AndroidVpnBridge(
         // operation mutex. Publication still checks the live session ticket,
         // request epoch and expiry. System restoration keeps its strict reads.
         val session = sessionPayload ?: localSession(profile)
-        if (validateSystemVpnSessionPayload(session) == null) throw VpnNativeException("system_vpn_resume_session_invalid")
+        if (usableSession(profile.accountId, session) == null) throw VpnNativeException("system_vpn_resume_session_invalid")
         // An automatic renewal replaced the identity the record names: only this proven
         // connection can name the new one, and the failure-recovery budget stays as it was.
         val completes = restoring && renewedRecoveryConsumed == null
@@ -1044,8 +1173,12 @@ internal class AndroidVpnBridge(
             "storageWriteAccountSession" -> launchVoidResult(result) {
                 val args = call.requireMap()
                 withTunnelOperation {
-                    sessionLifecycle.activate(sessionTicket, prepare = { prepareStoredAccountSession(args) }) {
-                        writeStoredAccountSession(args)
+                    // Under the tunnel mutex, as a rotation's commit: the comparison cannot go stale.
+                    val renewed = renewedAccessWrite(args.requiredString(ACCOUNT_ID), args.requiredString(PAYLOAD))
+                    // The renewed pair stored, or a copy read before a rotation: kept as it is, resume included.
+                    val keep = renewed == AccessWrite.SAME || renewed == AccessWrite.STALE
+                    sessionLifecycle.activate(sessionTicket, prepare = { if (!keep) prepareStoredAccountSession(args) }) {
+                        if (!keep) writeStoredAccountSession(args)
                     }
                 }
                 // A new session can make the tile's profile connectable again.
@@ -1087,6 +1220,27 @@ internal class AndroidVpnBridge(
                     val ending = endSession(endCause)
                     launchResult(reply) { ending.await().toMap() }
                 }
+            }
+            // Renewable sessions: the refresh token never leaves native code (session-renewal contract).
+            "sessionUpgrade" -> launchSessionResult(result) {
+                val accountId = renewalAccount(call) ?: return@launchSessionResult classicWithoutAccount()
+                sessionRenewal.upgrade(accountId, channelRenewalHost(accountId, sessionTicket)).toMap()
+            }
+            "sessionEnsureFresh" -> launchSessionResult(result) {
+                // Sent by Dart on a 401: renew even if the device clock says the access is still valid.
+                val force = when (val value = (call.arguments as? Map<*, *>)?.get("force")) {
+                    null -> false
+                    is Boolean -> value
+                    else -> throw VpnNativeException("invalid_arguments")
+                }
+                val accountId = renewalAccount(call) ?: return@launchSessionResult classicWithoutAccount()
+                sessionRenewal.ensureFresh(accountId, channelRenewalHost(accountId, sessionTicket), force).toMap()
+            }
+            "sessionLogout" -> launchSessionResult(result) {
+                val kind = renewalAccount(call)?.let { accountId ->
+                    sessionRenewal.logout(accountId, channelRenewalHost(accountId, sessionTicket))
+                } ?: SessionKind.CLASSIC
+                mapOf("state" to kind.wireValue)
             }
             "storageReadCurrentDevice" -> launchResult(result) {
                 sessionRead { readSlot(SecureStorageKeyPolicy.currentDevice(call.requireAccountId())) }
@@ -1438,7 +1592,7 @@ internal class AndroidVpnBridge(
             val saved = resumeRegistry.snapshot() ?: throw VpnNativeException("system_vpn_resume_unavailable")
             val session = localSession(saved.profile)
             if (saved.status != SystemVpnResumeStatus.RESERVED || saved.profile.wireGuardRequest != request ||
-                validateSystemVpnSessionPayload(session)?.fingerprint != saved.sessionFingerprint ||
+                usableSession(saved.profile.accountId, session)?.fingerprint != saved.sessionFingerprint ||
                 localIdentity(saved.profile) != saved.identityFingerprint) throw VpnNativeException("system_vpn_resume_identity_changed")
         }
         ensureVpnAuthorized()
@@ -1903,7 +2057,7 @@ internal class AndroidVpnBridge(
         // checks included, releases older tile clicks (final reaudit A4).
         if (restoring) systemRestoreHoldOpen = true
         sessionLifecycle.check(ticket)
-        val connectionSession = localSession(profile)
+        var connectionSession = localSession(profile)
         if (openVpn.isRevocationBlocked(profile.accountId, profile.deviceId)) {
             throw VpnNativeException("openvpn_identity_cleanup_pending")
         }
@@ -1912,7 +2066,7 @@ internal class AndroidVpnBridge(
         else {
             val saved = resumeRegistry.snapshot() ?: throw VpnNativeException("system_vpn_resume_unavailable")
             if (saved.status != SystemVpnResumeStatus.RESERVED || saved.profile != profile ||
-                validateSystemVpnSessionPayload(localSession(profile))?.fingerprint != saved.sessionFingerprint ||
+                usableSession(profile.accountId, localSession(profile))?.fingerprint != saved.sessionFingerprint ||
                 localIdentity(profile) != saved.identityFingerprint) throw VpnNativeException("system_vpn_resume_identity_changed")
             cancelRecovery()
             recoveryPolicy.newRequest(recoveryConsumed)
@@ -1945,8 +2099,10 @@ internal class AndroidVpnBridge(
         var proven = profile
         val started = try {
             if (renewal) {
-                val renewed = renewOpenVpn(profile.accountId, profile.deviceId, isCurrent)
+                val renewed = renewOpenVpn(profile.accountId, profile.deviceId, ticket, isCurrent)
                 proven = profile.copy(openVpnNetwork = renewed.network)
+                // The session may have been renewed for that request: arm the resume for its access.
+                connectionSession = renewed.session
                 renewed.started
             } else openVpn.reconnectLocal(profile.accountId, profile.deviceId, profile.openVpnNetwork, isCurrent)
         } catch (error: Throwable) {
@@ -1973,7 +2129,7 @@ internal class AndroidVpnBridge(
         true
     }
 
-    private class RenewedOpenVpn(val started: OpenVpnStartResult, val network: TunnelNetworkSpec)
+    private class RenewedOpenVpn(val started: OpenVpnStartResult, val network: TunnelNetworkSpec, val session: String)
 
     /**
      * Under the tunnel mutex, Core stopped: replaces a certificate that is due, then starts
@@ -1981,11 +2137,12 @@ internal class AndroidVpnBridge(
      * Flutter, so that a recovery, a tile click or a system restore never needs the application
      * opened for it. Whatever the server or the network refuses is published as
      * openvpn_renewal_required: a connection started in the application then renews with the
-     * account's own error handling, and presents the CSR kept pending here.
+     * account's own error handling, and presents the CSR kept pending here. A renewable session's
+     * access that expires within five minutes is renewed first (sessionForApi).
      */
-    private suspend fun renewOpenVpn(accountId: String, deviceId: String, isCurrent: () -> Boolean): RenewedOpenVpn {
+    private suspend fun renewOpenVpn(accountId: String, deviceId: String, ticket: Long, isCurrent: () -> Boolean): RenewedOpenVpn {
+        val session = sessionForApi(accountId, deviceId, ticket, isCurrent)
         val activation = try {
-            val session = localSession(accountId, deviceId)
             openVpnRenewal.renew(session, deviceId, openVpn.getOrCreateCsr(accountId, deviceId, renewal = true), isCurrent)
         } catch (refused: OpenVpnRenewalRefused) {
             // Fixed reasons and HTTP statuses only: the device trace of a refused renewal.
@@ -2002,7 +2159,7 @@ internal class AndroidVpnBridge(
         }
         if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
         Log.i(LOG_TAG, "OpenVPN renewal: certificate received")
-        return RenewedOpenVpn(openVpn.connect(accountId, deviceId, activation, isCurrent = isCurrent), network)
+        return RenewedOpenVpn(openVpn.connect(accountId, deviceId, activation, isCurrent = isCurrent), network, session)
     }
 
     /**
@@ -2049,12 +2206,39 @@ internal class AndroidVpnBridge(
 
     private fun writeStoredAccountSession(args: Map<String, Any?>) {
         val accountId = args.requiredString(ACCOUNT_ID)
-        writeSlot(
-            SecureStorageKeyPolicy.accountSession(accountId),
-            args.requiredString(PAYLOAD),
-        )
+        val payload = args.requiredString(PAYLOAD)
+        val sessionSlot = SecureStorageKeyPolicy.accountSession(accountId)
+        val renewalState = setOf(SecureStorageKeyPolicy.accountSessionRefresh(accountId),
+            SecureStorageKeyPolicy.accountSessionRenewalPending(accountId))
+        if (readStrict(sessionSlot) != payload && renewalState.any { readStrict(it) != null }) {
+            // Another session (a new login): the renewal grant and a pending request belong to the
+            // one it replaces, and leave in the commit that stores the new access.
+            store.updateSlotsAtomically(mapOf(sessionSlot to payload), renewalState)
+        } else {
+            writeSlot(sessionSlot, payload)
+        }
         writeSlot(SecureStorageKeyPolicy.activeUser(), accountId)
         deleteSlot(SecureStorageKeyPolicy.pendingSession())
+    }
+
+    /** How a Dart write of the active account's access relates to a renewed pair stored natively. */
+    private enum class AccessWrite { SAME, STALE, NEW }
+
+    /**
+     * Null when the account is not the active one or holds no renewal grant: today's handling.
+     * Otherwise SAME (the stored payload), STALE (read before a native rotation: an earlier
+     * expires_at, or an access a rotation of this process replaced, since an upgrade's one-hour
+     * access expires before the legacy one), or NEW (another session for the account).
+     */
+    private fun renewedAccessWrite(accountId: String, payload: String): AccessWrite? {
+        if (readStrict(SecureStorageKeyPolicy.activeUser()) != accountId ||
+            readStrict(SecureStorageKeyPolicy.accountSessionRefresh(accountId)) == null) return null
+        val stored = readStrict(SecureStorageKeyPolicy.accountSession(accountId)) ?: return null
+        if (stored == payload) return AccessWrite.SAME
+        if (synchronized(retiredAccess) { retiredAccess[accountId]?.contains(payload) == true }) return AccessWrite.STALE
+        val incoming = validateSystemVpnSessionPayload(payload, Instant.MIN)?.expiresAt ?: return AccessWrite.NEW
+        val current = validateSystemVpnSessionPayload(stored, Instant.MIN)?.expiresAt ?: return AccessWrite.NEW
+        return if (incoming.isBefore(current)) AccessWrite.STALE else AccessWrite.NEW
     }
 
     private fun replaceStoredGuestSession(args: Map<String, Any?>, ticket: Long) {
@@ -2067,6 +2251,8 @@ internal class AndroidVpnBridge(
         if (validateSystemVpnSessionPayload(payload) == null) {
             throw VpnNativeException("system_vpn_resume_session_invalid")
         }
+        // A guest never holds a renewal grant; were one stored, its pair is kept as for any Dart write.
+        renewedAccessWrite(accountId, payload)?.let { if (it != AccessWrite.NEW) return }
         val profile = provenConnectionProfile?.takeIf {
             it.accountId == accountId && currentState.status == VpnStatus.CONNECTED &&
                 activeProtocol == it.protocol && activeAccountId == it.accountId &&
@@ -2088,9 +2274,11 @@ internal class AndroidVpnBridge(
         try {
             sessionLifecycle.mutate(ticket) {
                 val ready = resumeRegistry.renewSession(previousPayload, payload, profile, identity) { encodedResume ->
+                    // A guest never holds a renewal grant; none may outlive the session it belonged to.
                     store.updateSlotsAtomically(
                         mapOf(sessionSlot to payload, SecureStorageKeyPolicy.systemVpnResume() to encodedResume),
-                        setOf(SecureStorageKeyPolicy.pendingSession()),
+                        setOf(SecureStorageKeyPolicy.pendingSession(), SecureStorageKeyPolicy.accountSessionRefresh(accountId),
+                            SecureStorageKeyPolicy.accountSessionRenewalPending(accountId)),
                     )
                     noteDurableResume(encodedResume)
                 }
@@ -2459,7 +2647,7 @@ internal class AndroidVpnBridge(
                             throw VpnNativeException("openvpn_service_start_failed")
                         }
                         markOpenVpnStart()
-                        val renewed = if (renewal) renewOpenVpn(target.accountId, target.deviceId) {
+                        val renewed = if (renewal) renewOpenVpn(target.accountId, target.deviceId, activeSessionEpoch) {
                             isRecoveryCurrent(target)
                         } else null
                         val started = renewed?.started ?: openVpn.reconnectLocal(target.accountId, target.deviceId) {
@@ -2696,6 +2884,23 @@ internal class AndroidVpnBridge(
         }
     }
 
+    /** As launchResult; an unavailable renewal also names when it may be tried again. */
+    private fun launchSessionResult(result: MethodChannel.Result, block: suspend () -> Any?) {
+        operationScope.launch {
+            try {
+                val value = block()
+                withContext(Dispatchers.Main) { result.success(value) }
+            } catch (error: Throwable) {
+                val refused = error as? SessionRenewalException
+                val code = refused?.code ?: messageCode(error, "native_operation_failed")
+                val details = refused?.retryAfterSeconds?.let { mapOf("retry_after_seconds" to it) }
+                withContext(Dispatchers.Main) {
+                    result.error(code, nativeErrorMessage(code), details)
+                }
+            }
+        }
+    }
+
     private fun launchVoidResult(result: MethodChannel.Result, block: suspend () -> Any?) =
         operationScope.launch {
             try {
@@ -2804,6 +3009,7 @@ internal class AndroidVpnBridge(
         private const val LOCATION_NAME = "location_name"
         private const val PAYLOAD = "payload"
         private const val VALUE = "value"
+        private const val RETIRED_ACCESS_KEPT = 4
         @Volatile
         private var retainedRuntime: AndroidVpnBridge? = null
 
