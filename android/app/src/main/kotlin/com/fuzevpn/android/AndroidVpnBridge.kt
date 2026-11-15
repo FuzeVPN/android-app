@@ -124,6 +124,8 @@ internal class AndroidVpnBridge(
     private var systemRestoreInstance = -1L
     private val publicationSequence = AtomicLong()
     private val tunnelInstanceEpoch = AtomicLong()
+    // The tunnel instance the user was sent to stop in Android's VPN settings (-1: none).
+    private val settingsStopInstance = AtomicLong(-1L)
     private val physicalNetworks = PhysicalNetworkTracker<Network>()
     private val connectivity = appContext.getSystemService(ConnectivityManager::class.java)
     private val physicalNetworkRequest = NetworkRequest.Builder()
@@ -964,6 +966,13 @@ internal class AndroidVpnBridge(
         val epoch = tunnelRequestEpoch.get()
         connectedAtMillis = null
         if (protocol == VpnProtocol.OPENVPN) openVpn.permissionRevoked()
+        if (stopMadeInSettings(eventEpoch)) {
+            operationScope.launch { withTunnelOperation {
+                if (tunnelRequestEpoch.get() != epoch || activeProtocol != protocol) return@withTunnelOperation
+                endStopMadeInSettings(protocol, cause)
+            } }.invokeOnCompletion { release() }
+            return
+        }
         emitState(VpnStatus.ERROR, protocol, cause)
         operationScope.launch { withTunnelOperation {
             if (tunnelRequestEpoch.get() != epoch || activeProtocol != protocol) return@withTunnelOperation
@@ -991,6 +1000,25 @@ internal class AndroidVpnBridge(
         SystemVpnResumeSentinel.sync(appContext, processRestartArmed(
             Build.VERSION.SDK_INT, BuildConfig.USE_PATCHED_WIREGUARD_AAR, processRestartHolds.get(),
             resumeArmedInStorage, alwaysOnWhileEstablished))
+    }
+
+    /** The app sends the user to Android's VPN settings to stop the current tunnel. */
+    internal fun noteStopSentToSettings() = settingsStopInstance.set(tunnelInstanceEpoch.get())
+
+    /**
+     * The tunnel [instance] is one the user was sent to stop in Android's VPN settings: its loss
+     * there (revocation, host destruction, the engine's own report of it) is that stop.
+     */
+    private fun stopMadeInSettings(instance: Long = tunnelInstanceEpoch.get()) = settingsStopInstance.get() == instance
+
+    /** Under the tunnel mutex: ends a stop made in Android's VPN settings IDLE, as a stop from the app. */
+    private suspend fun endStopMadeInSettings(protocol: VpnProtocol?, cause: String) {
+        try {
+            invalidateSystemResume()
+            disconnectLocked(userInitiated = true)
+        } catch (error: Exception) {
+            emitState(VpnStatus.ERROR, protocol, blockResume(messageCode(error, cause)))
+        }
     }
 
     /** Until the returned release runs, nothing can re-arm the restart. The release is idempotent. */
@@ -1061,6 +1089,9 @@ internal class AndroidVpnBridge(
             }
             "exportDiagnosticReport" -> exportDiagnosticReport(call, result)
             "openVpnSettings" -> {
+                // Where the app cannot stop its tunnel (Android 8-9, permanent VPN), Flutter's stop
+                // opens these settings directly: what the user does to the tunnel there is theirs.
+                noteStopSentToSettings()
                 try { appContext.startActivity(SharedVpnHost.settingsIntent()); result.success(null) }
                 catch (_: Exception) { result.error("vpn_settings_unavailable", "vpn_settings_unavailable", null) }
             }
@@ -1084,6 +1115,7 @@ internal class AndroidVpnBridge(
             "disconnect" -> launchVoidResult(reply) { disconnect(userInitiated = true, ticket = sessionTicket, requestEpoch = requestEpoch, timing = timing) }
             "disconnectByUser" -> {
                 if (SharedVpnHost.userStopOpensSettings()) {
+                    noteStopSentToSettings()
                     try { appContext.startActivity(SharedVpnHost.settingsIntent()); result.success(null) }
                     catch (_: Exception) { result.error("vpn_settings_unavailable", "vpn_settings_unavailable", null) }
                 } else {
@@ -2466,6 +2498,10 @@ internal class AndroidVpnBridge(
     ) = withTunnelOperation {
         if (!sessionLifecycle.isCurrent(ticket)) return@withTunnelOperation
         if (activeProtocol != protocol) return@withTunnelOperation
+        if (stopMadeInSettings()) {
+            endStopMadeInSettings(protocol, cause)
+            return@withTunnelOperation
+        }
         blockResume(cause)
         // A framework revocation/down callback is not proof that the native
         // engine has released its descriptor. Confirm its stop before another
@@ -2550,6 +2586,8 @@ internal class AndroidVpnBridge(
         if (activeProtocol != VpnProtocol.OPENVPN || generation != openVpn.sessionGeneration ||
             generation == handledFailureGeneration ||
             (openVpnTransition && currentState.status != VpnStatus.CONNECTED)) return@synchronized
+        // The host loss that interrupted the session ends this stop (onVpnHostLost): no recovery.
+        if (code == "tun_permission_revoked" && stopMadeInSettings()) return@synchronized
         handledFailureGeneration = generation
         val request = recoveryPolicy.currentRequest()
         val reconnect = code == "openvpn_reconnect_required"

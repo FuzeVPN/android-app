@@ -53,7 +53,8 @@ internal class OpenVpnController(@Suppress("UNUSED_PARAMETER") context: Context)
     suspend fun pendingRevocation(accountId: String, deviceId: String): OpenVpnRevocationState? = null
     fun currentConnectionIdentityFingerprint(accountId: String, deviceId: String): String = HarnessControl.openVpnIdentity
     suspend fun statistics(): TunnelStatistics = TunnelStatistics()
-    fun permissionRevoked() {}
+    /** As the controller: Android revoked the VPN, the session is interrupted without proof. */
+    fun permissionRevoked() = events.interrupt("tun_permission_revoked", requireProof = false)
     fun observeStates(): Flow<OpenVpnSessionEvent> = events.flow
     fun networkLost() {
         HarnessControl.openVpnNetworkLosses++

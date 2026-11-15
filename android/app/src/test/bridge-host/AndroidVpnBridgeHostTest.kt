@@ -1471,6 +1471,153 @@ class AndroidVpnBridgeHostTest {
         assertTrue(settledEvents().toString(), settledEvents().isEmpty())
     }
 
+    // D1 (VM campaign on Android 8 to 10, 15/11/2026): where the app cannot stop its tunnel
+    // (Android 8-9, or a permanent VPN) the user is sent to Android's VPN settings. The
+    // revocation, then the host destruction, that follow are that stop: IDLE, not an error.
+    @Test fun aStopMadeInAndroidVpnSettingsEndsIdle() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        assertNull(call("disconnectByUser").await().error)
+        assertTrue(context.startedActivities.any { it.action == "android.settings.VPN_SETTINGS" })
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        sink.events.clear()
+        val loss = bridge.captureHostLoss()
+        // Android revokes the VPN: the backend reports its tunnel down, the host its revocation.
+        WireGuardController.current!!.tunnelWentDown()
+        HarnessMain.run { bridge.onVpnHostLost("tun_permission_revoked", loss.first) }
+        HarnessMain.run { bridge.onVpnHostLost("vpn_host_destroyed", loss.first) }
+        eventually("idle") { bridge.quickTileState().status == VpnStatus.IDLE }
+        Thread.sleep(300)
+        val events = settledEvents()
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        assertNull(bridge.quickTileState().messageCode)
+        assertFalse(events.toString(), events.any { it.startsWith("error/") })
+    }
+
+    // Flutter's stop opens the settings itself when the permanent VPN is unknown (Android 8-9)
+    // or on: requestUserDisconnect calls openVpnSettings, never disconnectByUser (VM, 15/11).
+    @Test fun aStopMadeAfterFlutterOpenedAndroidVpnSettingsEndsIdle() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        assertNull(call("openVpnSettings").await().error)
+        assertTrue(context.startedActivities.any { it.action == "android.settings.VPN_SETTINGS" })
+        sink.events.clear()
+        val loss = bridge.captureHostLoss()
+        WireGuardController.current!!.tunnelWentDown()
+        HarnessMain.run { bridge.onVpnHostLost("tun_permission_revoked", loss.first) }
+        eventually("idle") { bridge.quickTileState().status == VpnStatus.IDLE }
+        Thread.sleep(300)
+        val events = settledEvents()
+        assertNull(bridge.quickTileState().messageCode)
+        assertFalse(events.toString(), events.any { it.startsWith("error/") })
+    }
+
+    @Test fun aTileStopMadeInAndroidVpnSettingsEndsIdle() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        val service = VpnQuickTileService()
+        HarnessMain.run { service.onClick() }
+        HarnessMain.drain()
+        assertEquals(listOf("intent:android.settings.VPN_SETTINGS"), TileService.launches.toList())
+        sink.events.clear()
+        HarnessMain.run { bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first) }
+        WireGuardController.current!!.tunnelWentDown()
+        eventually("idle") { bridge.quickTileState().status == VpnStatus.IDLE }
+        Thread.sleep(300)
+        val events = settledEvents()
+        assertNull(bridge.quickTileState().messageCode)
+        assertFalse(events.toString(), events.any { it.startsWith("error/") })
+    }
+
+    @Test fun aStopMadeInAndroidVpnSettingsWithThePermanentVpnRestoresNothing() {
+        armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
+        assertNull(call("disconnectByUser").await().error)
+        assertTrue(context.startedActivities.any { it.action == "android.settings.VPN_SETTINGS" })
+        bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first)
+        eventually("idle") { bridge.quickTileState().status == VpnStatus.IDLE }
+        assertNull(bridge.quickTileState().messageCode)
+        eventually("disarmed") { HarnessControl.sentinel.lastOrNull() == false }
+        processDeath()
+        processRestart()
+        settleSystemJob()
+        assertEquals(0, HarnessControl.hostStarts)
+        assertTrue(settledEvents().toString(), settledEvents().isEmpty())
+    }
+
+    // OpenVPN: the revocation also interrupts the session (tun_permission_revoked), which must not
+    // end the stop in an error or start a recovery.
+    @Test fun anOpenVpnStopMadeInAndroidVpnSettingsEndsIdle() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        connectOpenVpn()
+        assertNull(call("disconnectByUser").await().error)
+        assertTrue(context.startedActivities.any { it.action == "android.settings.VPN_SETTINGS" })
+        sink.events.clear()
+        HarnessMain.run { bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first) }
+        eventually("idle") { bridge.quickTileState().status == VpnStatus.IDLE }
+        Thread.sleep(300)
+        val events = settledEvents()
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        assertNull(bridge.quickTileState().messageCode)
+        assertFalse(events.toString(), events.any { it.startsWith("error/") })
+        assertEquals(0, HarnessControl.openVpnReconnects)
+    }
+
+    // A stop sent to the settings that the user does not make there keeps the OpenVPN recovery.
+    @Test fun aStopSentToSettingsKeepsTheOpenVpnRecovery() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        connectOpenVpn()
+        assertNull(call("disconnectByUser").await().error)
+        engine().coreReconnectRequired()
+        eventually("failure retry") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertEquals(1, HarnessControl.openVpnReconnects)
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+    }
+
+    // Without a stop sent to Android's settings, a revocation is still reported as such.
+    @Test fun aRevocationWithoutAStopInSettingsStaysAnError() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first)
+        eventually("revoked") { bridge.quickTileState().messageCode == "tun_permission_revoked" }
+        Thread.sleep(300)
+        HarnessMain.drain()
+        assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+        assertEquals("tun_permission_revoked", bridge.quickTileState().messageCode)
+    }
+
+    // The stop sent to the settings belongs to its tunnel: a later tunnel revoked is an error.
+    @Test fun aStopInSettingsCoversOnlyItsOwnTunnel() {
+        android.os.Build.VERSION.SDK_INT = 28
+        SharedVpnHost.flags = null to null
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        assertNull(call("disconnectByUser").await().error)
+        assertNull(call("disconnect").await().error)
+        assertEquals(VpnStatus.IDLE, bridge.quickTileState().status)
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected again") { bridge.quickTileState().status == VpnStatus.CONNECTED }
+        bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first)
+        eventually("revoked") { bridge.quickTileState().messageCode == "tun_permission_revoked" }
+        Thread.sleep(300)
+        HarnessMain.drain()
+        assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+    }
+
     @Test fun restoreInterruptedByDeathIsNotRetried() {
         signIn()
         armResume()

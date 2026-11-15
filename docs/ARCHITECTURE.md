@@ -300,7 +300,14 @@ Le tunnel peut rester actif en arrière-plan. Le VPN permanent et le blocage
 des connexions sans VPN sont deux réglages Android distincts que l'utilisateur
 active dans les paramètres système. Une notification persistante ne prouve pas
 que le blocage est activé. Si le VPN permanent empêche un arrêt applicatif,
-l'interface et la tuile orientent vers les réglages Android.
+l'interface et la tuile orientent vers les réglages Android. C'est aussi le cas
+sur Android 8 et 9, où ce réglage ne peut pas être lu. Le pont note alors le
+tunnel concerné. Sa révocation, la destruction de l'hôte et la fin que le
+moteur en signale (tunnel WireGuard tombé, interruption OpenVPN
+`tun_permission_revoked`) sont l'arrêt demandé : l'état finit « Déconnecté »,
+sans code d'erreur, sans reprise, et rien n'est restauré ensuite. Les autres
+pannes OpenVPN de ce tunnel gardent leur reprise. Sans ce passage par les
+réglages, une révocation reste signalée (`tun_permission_revoked`).
 
 La reprise système utilise seulement un profil local ayant déjà obtenu une
 preuve native de connexion, avec vérification de sa session et de son identité.

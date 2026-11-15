@@ -689,7 +689,7 @@ découvertes par les tests JVM Gradle ; leurs reçus restent séparés et
 obligatoires. L'agrégateur exige au moins les cas exécutés le 30 octobre 2026
 (`HOST_JUNIT_MINIMUMS` de `tools/validation_support.py`) : 44 tests JUnit et
 20 scénarios JavaScript pour `turnstile-bridge`, 27 tests pour
-`command-epochs` et 126 pour `bridge-host` (14 novembre 2026). Chaque plancher
+`command-epochs` et 134 pour `bridge-host` (15 novembre 2026). Chaque plancher
 JUnit est égal au
 nombre de `@Test` des sources de sa suite (contrôlé par `tools/tests`) : un
 cas ajouté doit relever le plancher dans le même changement. Aucun de ces

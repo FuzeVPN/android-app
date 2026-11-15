@@ -116,6 +116,7 @@ class VpnQuickTileService : TileService() {
                     VpnStatus.CONNECTING,
                     VpnStatus.DISCONNECTING,
                 ) && SharedVpnHost.userStopOpensSettings()) {
+                runtime.noteStopSentToSettings()
                 openVpnSettings()
                 return@unlockAndRun
             }
@@ -134,7 +135,10 @@ class VpnQuickTileService : TileService() {
             // its storage checks; those checks must never block the UI thread.
             runtime.toggleFromQuickTile { failureCode ->
                 if (!destroyed) when {
-                    failureCode == QUICK_TILE_OPEN_SETTINGS -> openVpnSettings()
+                    failureCode == QUICK_TILE_OPEN_SETTINGS -> {
+                        runtime.noteStopSentToSettings()
+                        openVpnSettings()
+                    }
                     quickTileFailureOpensApplication(failureCode) -> openApplication()
                 }
                 // SystemUI stopped the tile after the busy render, so updateTile()
