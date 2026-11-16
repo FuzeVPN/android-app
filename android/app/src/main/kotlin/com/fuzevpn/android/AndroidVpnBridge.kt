@@ -22,6 +22,7 @@ import com.fuzevpn.android.openvpn.OpenVpnRecoveryAttempt
 import com.fuzevpn.android.openvpn.OpenVpnRenewalApi
 import com.fuzevpn.android.openvpn.OpenVpnRenewalContract
 import com.fuzevpn.android.openvpn.OpenVpnRenewalRefused
+import com.fuzevpn.android.openvpn.OpenVpnRequestGate
 import com.fuzevpn.android.openvpn.OpenVpnRevocationState
 import com.fuzevpn.android.openvpn.OpenVpnStartResult
 import com.fuzevpn.android.openvpn.RevokedOpenVpnIdentity
@@ -180,6 +181,10 @@ internal class AndroidVpnBridge(
     private val openVpnRenewal: OpenVpnRenewalApi by lazy {
         OpenVpnRenewalApi(appContext, OpenVpnRenewalContract.baseUrl(BuildConfig.DEBUG, BuildConfig.DEBUG_API_BASE_URL))
     }
+    /** After the API's 429, no OpenVPN profile creation or renewal of that device before its Retry-After. */
+    private val openVpnRequestGate = OpenVpnRequestGate()
+    /** When a renewal refused for its rate may be sent again (wall clock), for the error it publishes. */
+    @Volatile private var openVpnRetryAtMillis: Long? = null
 
     @Volatile
     private var eventSink: EventChannel.EventSink? = null
@@ -1137,21 +1142,31 @@ internal class AndroidVpnBridge(
             "getOrCreateOpenVpnCsr" -> launchResult(result) {
                 val args = call.requireMap()
                 val renewal = args["renewal"] as? Boolean ?: false
+                val replacePending = args["replace_pending"] as? Boolean ?: false
                 withTunnelOperation {
                     requireAccountSession(sessionTicket, args.requiredString(ACCOUNT_ID))
                     openVpn.getOrCreateCsr(
                     args.requiredString(ACCOUNT_ID),
                     args.requiredString(DEVICE_ID),
                     renewal,
+                    replacePending,
                 )
                 }
             }
             "getOpenVpnCertificateStatus" -> launchResult(result) {
                 val args = call.requireMap()
-                openVpn.certificateStatus(
-                    args.requiredString(ACCOUNT_ID),
-                    args.requiredString(DEVICE_ID),
-                ).toMap()
+                val accountId = args.requiredString(ACCOUNT_ID)
+                val deviceId = args.requiredString(DEVICE_ID)
+                val status = openVpn.certificateStatus(accountId, deviceId).toMap()
+                // Flutter sends no creation or renewal before the API accepts one again.
+                openVpnRequestGate.remainingSeconds(accountId, deviceId)
+                    ?.let { status + ("retry_after_seconds" to it) } ?: status
+            }
+            "deferOpenVpnProfileRequests" -> launchVoidResult(reply) {
+                val args = call.requireMap()
+                val seconds = args["retry_after_seconds"] as? Int
+                if (seconds == null || seconds < 1) throw VpnNativeException("invalid_arguments")
+                openVpnRequestGate.defer(args.requiredString(ACCOUNT_ID), args.requiredString(DEVICE_ID), seconds)
             }
             "clearOpenVpnIdentity" -> launchVoidResult(reply) {
                 val args = call.requireMap()
@@ -2163,6 +2178,12 @@ internal class AndroidVpnBridge(
 
     private class RenewedOpenVpn(val started: OpenVpnStartResult, val network: TunnelNetworkSpec, val session: String)
 
+    /** A renewal held until the API accepts it again; the error it ends in says when, if known. */
+    private fun openVpnRateLimited(seconds: Int?, cause: Throwable? = null): VpnNativeException {
+        openVpnRetryAtMillis = seconds?.let { System.currentTimeMillis() + it * 1_000L }
+        return VpnNativeException(OPENVPN_RENEWAL_RATE_LIMITED, cause)
+    }
+
     /**
      * Under the tunnel mutex, Core stopped: replaces a certificate that is due, then starts
      * Core with the new identity. This renewal is the only control-plane request made without
@@ -2171,14 +2192,32 @@ internal class AndroidVpnBridge(
      * openvpn_renewal_required: a connection started in the application then renews with the
      * account's own error handling, and presents the CSR kept pending here. A renewable session's
      * access that expires within five minutes is renewed first (sessionForApi).
+     *
+     * Two refusals are answered here. A 429 (six creations or renewals an hour per device) holds
+     * every request for this device until its Retry-After, and nothing is sent before: both end
+     * in openvpn_renewal_rate_limited with that deadline. A 409 openvpn_renewal_expired (the
+     * certificate the pending CSR obtained has expired since) is renewed once more at once, with
+     * a new key: that CSR can never renew again.
      */
     private suspend fun renewOpenVpn(accountId: String, deviceId: String, ticket: Long, isCurrent: () -> Boolean): RenewedOpenVpn {
+        openVpnRequestGate.remainingSeconds(accountId, deviceId)?.let { throw openVpnRateLimited(it) }
         val session = sessionForApi(accountId, deviceId, ticket, isCurrent)
         val activation = try {
-            openVpnRenewal.renew(session, deviceId, openVpn.getOrCreateCsr(accountId, deviceId, renewal = true), isCurrent)
+            try {
+                openVpnRenewal.renew(session, deviceId, openVpn.getOrCreateCsr(accountId, deviceId, renewal = true), isCurrent)
+            } catch (refused: OpenVpnRenewalRefused) {
+                if (refused.reason != OpenVpnRenewalRefused.RENEWAL_EXPIRED) throw refused
+                Log.i(LOG_TAG, "OpenVPN renewal: refused, ${refused.reason}; new key")
+                val csr = openVpn.getOrCreateCsr(accountId, deviceId, renewal = true, replacePending = true)
+                openVpnRenewal.renew(session, deviceId, csr, isCurrent)
+            }
         } catch (refused: OpenVpnRenewalRefused) {
             // Fixed reasons and HTTP statuses only: the device trace of a refused renewal.
             Log.i(LOG_TAG, "OpenVPN renewal: refused, ${refused.reason}")
+            if (refused.reason == OpenVpnRenewalRefused.status(429).reason) {
+                refused.retryAfterSeconds?.let { openVpnRequestGate.defer(accountId, deviceId, it) }
+                throw openVpnRateLimited(openVpnRequestGate.remainingSeconds(accountId, deviceId), refused)
+            }
             throw VpnNativeException(
                 if (refused.reason == OpenVpnRenewalRefused.NETWORK) "network_unavailable" else "openvpn_renewal_required",
                 refused,
@@ -2795,6 +2834,7 @@ internal class AndroidVpnBridge(
             receivedBytes = previous.receivedBytes.takeIf { sameTunnel },
             sentBytes = previous.sentBytes.takeIf { sameTunnel },
             latestHandshakeMillis = previous.latestHandshakeMillis.takeIf { sameTunnel },
+            retryAtMillis = openVpnRetryAtMillis.takeIf { messageCode == OPENVPN_RENEWAL_RATE_LIMITED },
             ipFamilies = if (status == VpnStatus.CONNECTED) {
                 when (protocol) {
                     VpnProtocol.WIREGUARD -> wireGuardIpFamilies
@@ -3040,6 +3080,7 @@ internal class AndroidVpnBridge(
         private const val NOT_PERMANENT_VPN = "the permanent VPN is no longer this app"
         private const val ALWAYS_ON_VPN_APP_SETTING = "always_on_vpn_app"
         private const val OPENVPN_RECONNECTING = "openvpn_reconnecting"
+        private const val OPENVPN_RENEWAL_RATE_LIMITED = "openvpn_renewal_rate_limited"
         private const val LOG_TAG = "FuzeVpnBridge"
         private const val ACCOUNT_ID = "account_id"
         private const val DEVICE_ID = "device_id"

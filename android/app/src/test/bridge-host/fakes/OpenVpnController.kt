@@ -62,14 +62,25 @@ internal class OpenVpnController(@Suppress("UNUSED_PARAMETER") context: Context)
     }
     /** Core's own transport failure (keepalive expiry, server restart). */
     fun coreReconnectRequired() = events.publish(events.generation, OpenVpnNativeState.error("openvpn_reconnect_required"))
-    /** As the real engine: one pending renewal CSR, kept and returned again until an activation uses it. */
-    suspend fun getOrCreateCsr(accountId: String, deviceId: String, renewal: Boolean = false): String {
+    /**
+     * As the real engine: one pending renewal CSR, kept and returned again until an activation uses
+     * it; replacePending discards it for a new key, whose CSR differs.
+     */
+    suspend fun getOrCreateCsr(accountId: String, deviceId: String, renewal: Boolean = false,
+        replacePending: Boolean = false): String {
         if (!renewal) error("openvpn not used")
         if (events.snapshot.isConnected()) throw com.fuzevpn.android.VpnNativeException("openvpn_identity_in_use")
         HarnessControl.openVpnCsrRequests++
+        if (replacePending || !HarnessControl.openVpnRenewalPending || pendingCsr == null) {
+            pendingCsr = if (keys == 0) RENEWAL_CSR else RENEWAL_CSR.replace("host", "host-key-$keys")
+            keys++
+        }
         HarnessControl.openVpnRenewalPending = true
-        return RENEWAL_CSR
+        return pendingCsr!!
     }
+    /** The pending renewal CSR; the first key of this engine presents RENEWAL_CSR. */
+    private var pendingCsr: String? = null
+    private var keys = 0
     fun existingIdentityFingerprint(accountId: String, deviceId: String): String = HarnessControl.openVpnIdentity
     suspend fun connect(accountId: String, deviceId: String, activation: Map<String, Any?>,
         timing: NativeConnectionTiming.TraceContext? = null, isCurrent: () -> Boolean = { true }): OpenVpnStartResult {

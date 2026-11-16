@@ -19,6 +19,7 @@ import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/google_auth_controller.dart';
+import 'package:fuzevpn_android/l10n/app_copy.dart';
 import 'package:fuzevpn_android/l10n/app_localization_delegates.dart';
 import 'package:fuzevpn_android/l10n/generated/app_localizations.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
@@ -31,6 +32,7 @@ part 'support/google_controller_cases.dart';
 part 'support/location_change_controller_cases.dart';
 part 'support/location_capacity_controller_cases.dart';
 part 'support/openvpn_certificate_cases.dart';
+part 'support/openvpn_profile_limit_cases.dart';
 part 'support/wireguard_roaming_cases.dart';
 
 const Location _frankfurt = Location(
@@ -141,6 +143,7 @@ void main() {
   apiRefreshTests();
   googleControllerTests();
   openVpnCertificateTests();
+  openVpnProfileLimitTests();
   group('VPN disclosure cancellation', () {
     test(
       'WireGuard cancellation is silent and leaves identity ready for retry',
@@ -3675,6 +3678,7 @@ class _FakeTunnel implements VpnTunnelGateway, VpnSystemProtectionGateway {
     required String accountId,
     required String deviceId,
     bool renewal = false,
+    bool replacePending = false,
   }) async {
     await pause('getOrCreateOpenVpnCsr');
     openVpnCsrCalls.add(
@@ -3682,12 +3686,34 @@ class _FakeTunnel implements VpnTunnelGateway, VpnSystemProtectionGateway {
         accountId: accountId,
         deviceId: deviceId,
         renewal: renewal,
+        replacePending: replacePending,
       ),
     );
+    // As native code: a replaced renewal key has a CSR of its own.
+    if (replacePending) openVpnCsr = 'new-key-${++replacedRenewalKeys}-csr';
     return openVpnCsr;
   }
 
+  int replacedRenewalKeys = 0;
+
   final List<String> certificateStatusReads = <String>[];
+
+  /// The native deadline of OpenVPN profile requests, in seconds from now,
+  /// as getOpenVpnCertificateStatus reports it (null: requests allowed).
+  int? openVpnRetryAfterSeconds;
+
+  /// deferOpenVpnProfileRequests calls: "account/device seconds".
+  final List<String> deferredOpenVpnRequests = <String>[];
+
+  @override
+  Future<void> deferOpenVpnProfileRequests({
+    required String accountId,
+    required String deviceId,
+    required int retryAfterSeconds,
+  }) async {
+    deferredOpenVpnRequests.add('$accountId/$deviceId $retryAfterSeconds');
+    openVpnRetryAfterSeconds = retryAfterSeconds;
+  }
 
   // No await without a hook: the answer keeps its place among the microtasks.
   @override
@@ -3698,7 +3724,15 @@ class _FakeTunnel implements VpnTunnelGateway, VpnSystemProtectionGateway {
     certificateStatusReads.add('$accountId/$deviceId');
     final Future<void> Function()? hook = hooks['getOpenVpnCertificateStatus'];
     if (hook != null) await hook();
-    return openVpnCertificateStatus;
+    final OpenVpnCertificateStatus status = openVpnCertificateStatus;
+    final int? retryAfter = openVpnRetryAfterSeconds;
+    if (retryAfter == null) return status;
+    return OpenVpnCertificateStatus(
+      phase: status.phase,
+      notAfter: status.notAfter,
+      renewalPending: status.renewalPending,
+      retryAfterSeconds: retryAfter,
+    );
   }
 
   @override
@@ -3772,11 +3806,13 @@ class _OpenVpnCsrCall {
     required this.accountId,
     required this.deviceId,
     required this.renewal,
+    this.replacePending = false,
   });
 
   final String accountId;
   final String deviceId;
   final bool renewal;
+  final bool replacePending;
 }
 
 class _LocationMigrationCall {

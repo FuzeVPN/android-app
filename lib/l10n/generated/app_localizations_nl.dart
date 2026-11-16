@@ -785,6 +785,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'invalid_api_response': 'Ongeldig serverantwoord',
       'ipv6_unavailable': 'IPv6 niet beschikbaar',
       'invalid_ip_families': 'Netwerkconfiguratie geweigerd',
+      'openvpn_renewal_expired': 'OpenVPN-certificaat verlopen',
       'other': 'Service niet beschikbaar',
     });
     return '$_temp0';
@@ -856,6 +857,8 @@ class AppLocalizationsNl extends AppLocalizations {
           'De server kan IPv6 momenteel niet activeren. Probeer het later opnieuw.',
       'invalid_ip_families':
           'De tunnelconfiguratie is onvolledig of komt niet overeen met de geautoriseerde adressen. Probeer het opnieuw vanuit de app.',
+      'openvpn_renewal_expired':
+          'Het OpenVPN-certificaat is verlopen. Start een nieuwe verbinding in de app om het te vernieuwen.',
       'other': 'Er is een serverfout opgetreden. Probeer het later opnieuw.',
     });
     return '$_temp0';
@@ -1016,6 +1019,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN-herstel al gebruikt',
       'openvpn_recovery_failed': 'OpenVPN-herstel mislukt',
       'openvpn_renewal_required': 'OpenVPN-certificaat moet worden vernieuwd',
+      'openvpn_renewal_rate_limited': 'Te veel pogingen',
       'other': 'Niet-geclassificeerde native VPN-fout',
     });
     return '$_temp0';
@@ -1223,6 +1227,7 @@ class AppLocalizationsNl extends AppLocalizations {
           'Android kon de WireGuard-sleutel niet aanmaken of uit de beveiligde opslag lezen.',
       'csr_generation_failed':
           'Android Keystore kon de OpenVPN P-256-CSR niet aanmaken of ondertekenen.',
+      'openvpn_renewal_rate_limited': 'Wacht even voordat u opnieuw probeert.',
       'other':
           'Een niet-gedocumenteerde native tak is mislukt. Stuur de hieronder weergegeven diagnosecode naar de ondersteuning.',
     });

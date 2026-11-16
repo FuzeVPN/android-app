@@ -775,6 +775,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'invalid_api_response': 'სერვერის არასწორი პასუხი',
       'ipv6_unavailable': 'IPv6 მიუწვდომელია',
       'invalid_ip_families': 'ქსელის კონფიგურაცია უარყოფილია',
+      'openvpn_renewal_expired': 'OpenVPN-ის სერტიფიკატის ვადა ამოიწურა',
       'other': 'სერვისი მიუწვდომელია',
     });
     return '$_temp0';
@@ -839,6 +840,8 @@ class AppLocalizationsKa extends AppLocalizations {
           'სერვერს ამჟამად IPv6-ის გააქტიურება არ შეუძლია. სცადეთ მოგვიანებით.',
       'invalid_ip_families':
           'გვირაბის კონფიგურაცია არასრულია ან არ შეესაბამება ნებადართულ მისამართებს. სცადეთ აპიდან ხელახლა.',
+      'openvpn_renewal_expired':
+          'OpenVPN-ის სერტიფიკატის ვადა ამოიწურა. მის განსაახლებლად აპში დაამყარეთ ახალი კავშირი.',
       'other': 'მოხდა სერვერის შეცდომა. სცადეთ მოგვიანებით.',
     });
     return '$_temp0';
@@ -999,6 +1002,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN-ის აღდგენა უკვე გამოყენებულია',
       'openvpn_recovery_failed': 'OpenVPN-ის აღდგენა ვერ მოხერხდა',
       'openvpn_renewal_required': 'OpenVPN-ის სერტიფიკატის განახლება საჭიროა',
+      'openvpn_renewal_rate_limited': 'ძალიან ბევრი მცდელობა',
       'other': 'არაკლასიფიცირებული ნატიური VPN შეცდომა',
     });
     return '$_temp0';
@@ -1206,6 +1210,8 @@ class AppLocalizationsKa extends AppLocalizations {
           'Android-მა ვერ შექმნა ან ვერ წაიკითხა WireGuard-ის გასაღები დაცულ საცავში.',
       'csr_generation_failed':
           'Android Keystore-მა ვერ შექმნა ან ხელი ვერ მოაწერა OpenVPN P-256 CSR-ს.',
+      'openvpn_renewal_rate_limited':
+          'გთხოვთ, ცოტა ხანს დაელოდეთ და ხელახლა სცადეთ.',
       'other':
           'მოხდა გაუთვალისწინებელი ნატიური შეცდომა. გაუგზავნეთ მხარდაჭერას ქვემოთ ნაჩვენები დიაგნოსტიკის კოდი.',
     });

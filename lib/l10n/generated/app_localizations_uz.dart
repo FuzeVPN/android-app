@@ -783,6 +783,7 @@ class AppLocalizationsUz extends AppLocalizations {
       'invalid_api_response': 'Server javobi notoʻgʻri',
       'ipv6_unavailable': 'IPv6 mavjud emas',
       'invalid_ip_families': 'Tarmoq sozlamasi rad etildi',
+      'openvpn_renewal_expired': 'OpenVPN sertifikati muddati tugagan',
       'other': 'Xizmat mavjud emas',
     });
     return '$_temp0';
@@ -852,6 +853,8 @@ class AppLocalizationsUz extends AppLocalizations {
           'Server hozir IPv6’ni faollashtira olmaydi. Keyinroq qayta urinib koʻring.',
       'invalid_ip_families':
           'Tunnel sozlamasi toʻliq emas yoki ruxsat etilgan manzillarga mos kelmaydi. Ilovadan qayta urinib koʻring.',
+      'openvpn_renewal_expired':
+          'OpenVPN sertifikati muddati tugagan. Uni yangilash uchun ilovada yangi ulanishni boshlang.',
       'other': 'Serverda xatolik yuz berdi. Keyinroq qayta urinib koʻring.',
     });
     return '$_temp0';
@@ -1013,6 +1016,7 @@ class AppLocalizationsUz extends AppLocalizations {
       'openvpn_recovery_failed': 'OpenVPN’ni tiklab boʻlmadi',
       'openvpn_renewal_required':
           'OpenVPN sertifikatini yangilash talab qilinadi',
+      'openvpn_renewal_rate_limited': 'Urinishlar juda koʻp',
       'other': 'Tasniflanmagan ichki VPN xatosi',
     });
     return '$_temp0';
@@ -1218,6 +1222,8 @@ class AppLocalizationsUz extends AppLocalizations {
           'Android xavfsiz xotirada WireGuard kalitini yarata yoki oʻqiy olmadi.',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR’ni yarata yoki imzolay olmadi.',
+      'openvpn_renewal_rate_limited':
+          'Iltimos, qayta urinishdan oldin biroz kuting.',
       'other':
           'Hujjatlashtirilmagan ichki kod yoʻli ishlamay qoldi. Quyida koʻrsatilgan diagnostika kodini qoʻllab-quvvatlash xizmatiga yuboring.',
     });

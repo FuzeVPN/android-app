@@ -75,8 +75,12 @@ internal object HarnessControl {
     @Volatile var openVpnConnect: () -> Boolean = { true }
     /** Renewal requests the bridge sent: "url authorization". */
     val renewalRequests: MutableList<String> = Collections.synchronizedList(mutableListOf())
+    /** The CSR each of those requests presented. */
+    val renewalCsrs: MutableList<String> = Collections.synchronizedList(mutableListOf())
     /** The server's answer to a renewal (status, body); may throw what the transport would. */
     @Volatile var renewalResponse: (deviceId: String) -> Pair<Int, String> = { renewedActivation(it) }
+    /** The Retry-After header of that answer, as the API sends it with a 429. */
+    @Volatile var renewalRetryAfter: String? = null
     /** Keeps a renewal request unanswered, as a slow server would, while it stays current. */
     @Volatile var renewalHold = false
     /** Session-renewal requests the bridge sent: "path authorization [request_id]". */
@@ -135,7 +139,8 @@ internal object HarnessControl {
         openVpnReconnect = { true }; openVpnStartGate = null; openVpnService.clear()
         openVpnCertificate = "valid"; openVpnRenewalPending = false; openVpnIdentity = WireGuardController.IDENTITY
         openVpnCsrRequests = 0; openVpnConnect = { true }
-        renewalRequests.clear(); renewalResponse = { renewedActivation(it) }; renewalHold = false
+        renewalRequests.clear(); renewalCsrs.clear(); renewalResponse = { renewedActivation(it) }; renewalHold = false
+        renewalRetryAfter = null
         sessionRequests.clear(); sessionPhysical.clear(); sessionResponse = ::defaultSessionResponse; sessionHold = false
         sentinel.clear(); hostStarts = 0; hostStartFailure = null
     }

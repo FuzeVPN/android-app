@@ -777,6 +777,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'invalid_api_response': 'Neplatná odpoveď servera',
       'ipv6_unavailable': 'IPv6 nie je k dispozícii',
       'invalid_ip_families': 'Konfigurácia siete bola odmietnutá',
+      'openvpn_renewal_expired': 'Platnosť certifikátu OpenVPN vypršala',
       'other': 'Služba nie je k dispozícii',
     });
     return '$_temp0';
@@ -842,6 +843,8 @@ class AppLocalizationsSk extends AppLocalizations {
           'Server momentálne nemôže aktivovať IPv6. Skúste to neskôr.',
       'invalid_ip_families':
           'Konfigurácia tunela je neúplná alebo nezodpovedá povoleným adresám. Skúste to znova z aplikácie.',
+      'openvpn_renewal_expired':
+          'Platnosť certifikátu OpenVPN vypršala. Ak ho chcete obnoviť, spustite nové pripojenie v aplikácii.',
       'other': 'Došlo k chybe servera. Skúste to neskôr.',
     });
     return '$_temp0';
@@ -1000,6 +1003,7 @@ class AppLocalizationsSk extends AppLocalizations {
           'Automatické zotavenie OpenVPN už bolo použité',
       'openvpn_recovery_failed': 'Automatické zotavenie OpenVPN zlyhalo',
       'openvpn_renewal_required': 'Vyžaduje sa obnovenie certifikátu OpenVPN',
+      'openvpn_renewal_rate_limited': 'Príliš veľa pokusov',
       'other': 'Nezaradená natívna chyba VPN',
     });
     return '$_temp0';
@@ -1202,6 +1206,7 @@ class AppLocalizationsSk extends AppLocalizations {
           'Android nemohol vytvoriť ani prečítať kľúč WireGuard v zabezpečenom úložisku.',
       'csr_generation_failed':
           'Android Keystore nemohol vytvoriť ani podpísať žiadosť CSR P-256 pre OpenVPN.',
+      'openvpn_renewal_rate_limited': 'Počkajte, prosím, a skúste to znova.',
       'other':
           'Nezdokumentovaná natívna vetva zlyhala. Pošlite podpore diagnostický kód zobrazený nižšie.',
     });

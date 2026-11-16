@@ -785,6 +785,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'invalid_api_response': 'Tsy mety ny valin’ny mpizara',
       'ipv6_unavailable': 'Tsy azo ampiasaina ny IPv6',
       'invalid_ip_families': 'Nolavina ny fanamboarana tambajotra',
+      'openvpn_renewal_expired': 'Lany daty ny sertifika OpenVPN',
       'other': 'Tsy azo ampiasaina ny serivisy',
     });
     return '$_temp0';
@@ -853,6 +854,8 @@ class AppLocalizationsMg extends AppLocalizations {
           'Tsy afaka mampandeha ny IPv6 ny mpizara amin’izao fotoana izao. Andramo indray any aoriana.',
       'invalid_ip_families':
           'Tsy feno na tsy mifanaraka amin’ny adiresy nahazoan-dalana ny fanamboarana ny tunnel. Andramo indray avy ao amin’ny fampiharana.',
+      'openvpn_renewal_expired':
+          'Lany daty ny sertifika OpenVPN. Atombohy ny fifandraisana vaovao ao amin’ny fampiharana mba hanavao azy.',
       'other': 'Nisy hadisoana tamin’ny mpizara. Andramo indray any aoriana.',
     });
     return '$_temp0';
@@ -1019,6 +1022,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Efa nampiasaina ny fanarenana OpenVPN',
       'openvpn_recovery_failed': 'Tsy nahomby ny fanarenana OpenVPN',
       'openvpn_renewal_required': 'Ilaina ny fanavaozana ny sertifika OpenVPN',
+      'openvpn_renewal_rate_limited': 'Fanandramana betsaka loatra',
       'other': 'Hadisoana VPN anatiny tsy voasokajy',
     });
     return '$_temp0';
@@ -1227,6 +1231,8 @@ class AppLocalizationsMg extends AppLocalizations {
           'Tsy afaka namorona na namaky ny fanalahidy WireGuard tao amin’ny fitehirizana voaaro ny Android.',
       'csr_generation_failed':
           'Tsy afaka namorona na nanao sonia ny CSR P-256 OpenVPN ny Android Keystore.',
+      'openvpn_renewal_rate_limited':
+          'Miandrasa kely alohan’ny hanandrana indray, azafady.',
       'other':
           'Tsy nahomby ny sampana anatiny tsy voarakitra. Alefaso any amin’ny fanohanana ny kaody diagnostika aseho eto ambany.',
     });

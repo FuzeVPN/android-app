@@ -309,10 +309,20 @@ internal class OpenVpnController(context: Context) {
     /**
      * Reuses the encrypted CSR and Keystore key for idempotent profile
      * creation. A caller that explicitly renews a profile gets a fresh P-256
-     * identity only after the active tunnel has been stopped.
+     * identity only after the active tunnel has been stopped. [replacePending]
+     * (a renewal only) discards the renewal key already prepared for a new
+     * one: the API answered openvpn_renewal_expired, the certificate that CSR
+     * obtained has expired and presenting it again can never renew. The
+     * active identity is never touched.
      */
-    suspend fun getOrCreateCsr(accountId: String, deviceId: String, renewal: Boolean = false): String =
+    suspend fun getOrCreateCsr(
+        accountId: String,
+        deviceId: String,
+        renewal: Boolean = false,
+        replacePending: Boolean = false,
+    ): String =
         operationMutex.withLock {
+            if (replacePending && !renewal) throw VpnNativeException("invalid_arguments")
             revocations.requireUsable(accountId, deviceId)
             if (ownedNative.nativeSessionInUse()) {
                 throw VpnNativeException("openvpn_identity_in_use")
@@ -322,6 +332,14 @@ internal class OpenVpnController(context: Context) {
                 pendingRenewalIdentityFor(accountId, deviceId)
             } else {
                 identityFor(accountId, deviceId)
+            }
+            if (replacePending) {
+                // The pending generation is never the active one (pendingRenewalIdentityFor).
+                try {
+                    deleteIdentity(identity)
+                } catch (error: Exception) {
+                    throw VpnNativeException("openvpn_identity_clear_failed", error)
+                }
             }
             val existing = try {
                 secureStore.read(identity.scope, csrSlot(identity.identityId))

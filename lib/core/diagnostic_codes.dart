@@ -36,6 +36,7 @@ const diagnosticCodeAliases = <String, String>{
   'openvpn_reconnect_required': 'openvpn_transport_failed',
   'openvpn_recovery_failed': 'openvpn_connection_failed',
   'openvpn_relay_failed': 'openvpn_transport_failed',
+  'openvpn_renewal_rate_limited': 'rate_limited',
   'openvpn_renewal_required': 'openvpn_certificate_expired',
   // Controller notice whose reference is APP-OVPN-RENEW · renewal_unexpected.
   'openvpn_renewal_unexpected': 'renewal_unexpected',

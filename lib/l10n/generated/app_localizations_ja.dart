@@ -741,6 +741,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'invalid_api_response': '無効なサーバー応答です',
       'ipv6_unavailable': 'IPv6を利用できません',
       'invalid_ip_families': 'ネットワーク設定が拒否されました',
+      'openvpn_renewal_expired': 'OpenVPN証明書の有効期限が切れています',
       'other': 'サービスを利用できません',
     });
     return '$_temp0';
@@ -786,6 +787,8 @@ class AppLocalizationsJa extends AppLocalizations {
       'invalid_api_response': 'サーバーから予期しない応答が返されました。後でもう一度試してください。',
       'ipv6_unavailable': 'サーバーは現在IPv6を有効にできません。後でもう一度試してください。',
       'invalid_ip_families': 'トンネル設定が不完全か、認証済みアドレスと一致しません。アプリからもう一度試してください。',
+      'openvpn_renewal_expired':
+          'OpenVPN証明書の有効期限が切れています。更新するには、アプリで新しい接続を開始してください。',
       'other': 'サーバーエラーが発生しました。後でもう一度試してください。',
     });
     return '$_temp0';
@@ -931,6 +934,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPNの自動復旧は使用済みです',
       'openvpn_recovery_failed': 'OpenVPNの自動復旧に失敗しました',
       'openvpn_renewal_required': 'OpenVPN証明書の更新が必要です',
+      'openvpn_renewal_rate_limited': '試行回数が多すぎます',
       'other': '分類されていないネイティブVPNエラー',
     });
     return '$_temp0';
@@ -1085,6 +1089,7 @@ class AppLocalizationsJa extends AppLocalizations {
           'Androidは安全なストレージにWireGuardキーを作成または読み取りできませんでした。',
       'csr_generation_failed':
           'Android KeystoreはOpenVPN P-256 CSRを作成または署名できませんでした。',
+      'openvpn_renewal_rate_limited': 'しばらく待ってから再試行してください。',
       'other': '未文書化のネイティブ分岐が失敗しました。下に表示された診断コードをサポートに送信してください。',
     });
     return '$_temp0';

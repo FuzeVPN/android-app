@@ -768,6 +768,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'invalid_api_response': 'د سرور ناسم ځواب',
       'ipv6_unavailable': 'IPv6 شتون نلري',
       'invalid_ip_families': 'د شبکې تنظیمات رد شول',
+      'openvpn_renewal_expired': 'د OpenVPN سرټیفیکېټ ختم شوی دی',
       'other': 'خدمت شتون نلري',
     });
     return '$_temp0';
@@ -824,6 +825,8 @@ class AppLocalizationsPs extends AppLocalizations {
           'سرور همدا اوس IPv6 فعالولای نشي. وروسته بیا هڅه وکړئ.',
       'invalid_ip_families':
           'د تونل تنظیمات نابشپړ دي یا له اجازه ورکړل شویو پتو سره نه سمېږي. له اپلیکیشن څخه بیا هڅه وکړئ.',
+      'openvpn_renewal_expired':
+          'د OpenVPN سرټیفیکېټ ختم شوی دی. د نوي کولو لپاره یې په اپلیکیشن کې نوی اتصال پیل کړئ.',
       'other': 'د سرور تېروتنه رامنځته شوه. وروسته بیا هڅه وکړئ.',
     });
     return '$_temp0';
@@ -969,6 +972,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'openvpn_recovery_exhausted': 'د OpenVPN بیا رغونه مخکې کارول شوې ده',
       'openvpn_recovery_failed': 'د OpenVPN بیا رغونه ناکامه شوه',
       'openvpn_renewal_required': 'د OpenVPN سرټیفیکېټ نوي کول اړین دي',
+      'openvpn_renewal_rate_limited': 'ډېرې هڅې',
       'other': 'نامعلومه بومي VPN تېروتنه',
     });
     return '$_temp0';
@@ -1165,6 +1169,8 @@ class AppLocalizationsPs extends AppLocalizations {
           'Android ونه توانېد چې په خوندي ذخیره کې WireGuard کلیډ جوړ کړي یا ولولي.',
       'csr_generation_failed':
           'Android Keystore ونه توانېد چې د OpenVPN P-256 CSR جوړ یا لاسلیک کړي.',
+      'openvpn_renewal_rate_limited':
+          'مهرباني وکړئ، له بیا هڅې مخکې یو څه انتظار وکړئ.',
       'other':
           'یوه نامستند بومي برخه ناکامه شوه. لاندې ښودل شوی د تشخیص کوډ ملاتړ ته ولېږئ.',
     });

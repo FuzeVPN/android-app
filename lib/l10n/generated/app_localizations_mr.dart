@@ -772,6 +772,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'invalid_api_response': 'सर्व्हरचा प्रतिसाद अवैध आहे',
       'ipv6_unavailable': 'IPv6 उपलब्ध नाही',
       'invalid_ip_families': 'नेटवर्क कॉन्फिगरेशन नाकारले',
+      'openvpn_renewal_expired': 'OpenVPN प्रमाणपत्राची मुदत संपली',
       'other': 'सेवा उपलब्ध नाही',
     });
     return '$_temp0';
@@ -836,6 +837,8 @@ class AppLocalizationsMr extends AppLocalizations {
           'सर्व्हर सध्या IPv6 सक्रिय करू शकत नाही. नंतर पुन्हा प्रयत्न करा.',
       'invalid_ip_families':
           'टनेल कॉन्फिगरेशन अपूर्ण आहे किंवा अधिकृत पत्त्यांशी जुळत नाही. ॲपमधून पुन्हा प्रयत्न करा.',
+      'openvpn_renewal_expired':
+          'OpenVPN प्रमाणपत्राची मुदत संपली आहे. त्याचे नूतनीकरण करण्यासाठी ॲपमध्ये नवीन कनेक्शन सुरू करा.',
       'other': 'सर्व्हरमध्ये त्रुटी आली. नंतर पुन्हा प्रयत्न करा.',
     });
     return '$_temp0';
@@ -987,6 +990,7 @@ class AppLocalizationsMr extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN पुनर्प्राप्ती आधीच वापरली आहे',
       'openvpn_recovery_failed': 'OpenVPN पुनर्प्राप्ती अयशस्वी झाली',
       'openvpn_renewal_required': 'OpenVPN प्रमाणपत्राचे नूतनीकरण आवश्यक आहे',
+      'openvpn_renewal_rate_limited': 'खूप जास्त प्रयत्न झाले',
       'other': 'वर्गीकृत न केलेली नेटिव्ह VPN त्रुटी',
     });
     return '$_temp0';
@@ -1192,6 +1196,8 @@ class AppLocalizationsMr extends AppLocalizations {
           'Android ला सुरक्षित स्टोरेजमधील WireGuard की तयार करता आली किंवा वाचता आली नाही.',
       'csr_generation_failed':
           'Android Keystore ला OpenVPN P-256 CSR तयार किंवा त्यावर स्वाक्षरी करता आली नाही.',
+      'openvpn_renewal_rate_limited':
+          'कृपया पुन्हा प्रयत्न करण्यापूर्वी प्रतीक्षा करा.',
       'other':
           'एक नोंद नसलेली नेटिव्ह शाखा अयशस्वी झाली. खाली दाखवलेला निदान कोड सपोर्टला पाठवा.',
     });

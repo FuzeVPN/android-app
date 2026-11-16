@@ -13,12 +13,14 @@ internal class OpenVpnRenewalApi(@Suppress("UNUSED_PARAMETER") context: Context,
     suspend fun renew(sessionPayload: String, deviceId: String, csrPem: String, isCurrent: () -> Boolean): Map<String, Any?> {
         val request = OpenVpnRenewalContract.request(baseUrl, sessionPayload, deviceId, csrPem)
         HarnessControl.renewalRequests += "${request.url} ${request.headers["authorization"]}"
+        HarnessControl.renewalCsrs += csrPem
         // As the real transport: a command received meanwhile never waits for the server.
         while (HarnessControl.renewalHold) {
             if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
             Thread.sleep(5)
         }
         val (status, body) = HarnessControl.renewalResponse(deviceId)
-        return OpenVpnRenewalContract.activation(status, "no-store", body.toByteArray(StandardCharsets.UTF_8), deviceId)
+        return OpenVpnRenewalContract.activation(status, "no-store", body.toByteArray(StandardCharsets.UTF_8), deviceId,
+            HarnessControl.renewalRetryAfter)
     }
 }

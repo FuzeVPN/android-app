@@ -36,8 +36,12 @@ class OpenVpnRenewalContractTest {
         change()
     }.toString().toByteArray(StandardCharsets.UTF_8)
 
-    private fun activation(body: ByteArray = response(), status: Int = 201, cacheControl: String? = "no-store") =
-        OpenVpnRenewalContract.activation(status, cacheControl, body, "device-1")
+    private fun activation(
+        body: ByteArray = response(),
+        status: Int = 201,
+        cacheControl: String? = "no-store",
+        retryAfter: String? = null,
+    ) = OpenVpnRenewalContract.activation(status, cacheControl, body, "device-1", retryAfter)
 
     private fun refused(block: () -> Unit): String = assertThrows(OpenVpnRenewalRefused::class.java) { block() }.reason
 
@@ -212,5 +216,68 @@ class OpenVpnRenewalContractTest {
         assertEquals("response", refused { activation(secret) })
         assertEquals("http_409", refused { activation("""{"error":"openvpn_profile_revoked"}""".toByteArray(), status = 409) })
         assertEquals("http_409", OpenVpnRenewalRefused.status(409).message)
+    }
+
+    // The API counts six creations or renewals an hour per device; its 429 names the seconds left
+    // in that hour (Retry-After, delay-seconds). An unreadable value is ignored, a longer one is
+    // bounded to a day, and only a 429 delays the next attempt.
+    @Test fun aRateLimitCarriesItsRetryAfter() {
+        val envelope = """{"error":"rate_limited","message":"m"}""".toByteArray()
+        fun limited(header: String?, status: Int = 429) = assertThrows(OpenVpnRenewalRefused::class.java) {
+            activation(envelope, status = status, retryAfter = header)
+        }
+        assertEquals("http_429", limited("1800").reason)
+        assertEquals(1_800, limited("1800").retryAfterSeconds)
+        assertEquals(1, limited(" 1 ").retryAfterSeconds)
+        assertEquals(60, limited("+060").retryAfterSeconds)
+        assertEquals(86_400, limited("90000").retryAfterSeconds)
+        assertEquals(86_400, limited("99999999999999999999").retryAfterSeconds)
+        // Repeated fields joined by a comma keep the longest readable delay, as the Dart client does.
+        assertEquals(1_800, limited("60, 1800, soon").retryAfterSeconds)
+        for (header in listOf(null, "", "0", "-5", "1.5", "soon", "Wed, 21 Oct 2026 07:28:00 GMT")) {
+            assertEquals("$header", null, limited(header).retryAfterSeconds)
+        }
+        assertEquals(null, limited("60", status = 503).retryAfterSeconds)
+        assertEquals("http_503", limited("60", status = 503).reason)
+    }
+
+    // 409 openvpn_renewal_expired: the certificate this CSR obtained has expired since, so only a
+    // new key can renew. Any other conflict keeps its status; no other code is ever kept.
+    @Test fun anExpiredRenewalIsToldApartFromOtherConflicts() {
+        val expired = """{"error":"openvpn_renewal_expired","message":"m"}""".toByteArray()
+        assertEquals(OpenVpnRenewalRefused.RENEWAL_EXPIRED, refused { activation(expired, status = 409) })
+        assertEquals("openvpn_renewal_expired", OpenVpnRenewalRefused.RENEWAL_EXPIRED)
+        assertEquals("http_409", refused { activation("""{"error":"openvpn_profile_revoked"}""".toByteArray(), status = 409) })
+        assertEquals("http_409", refused { activation("""{"error":["openvpn_renewal_expired"]}""".toByteArray(), status = 409) })
+        assertEquals("http_409", refused { activation("not json".toByteArray(), status = 409) })
+        assertEquals("http_409", refused { activation(byteArrayOf(0xC3.toByte(), 0x28), status = 409) })
+        assertEquals("http_409", refused { activation(ByteArray(0), status = 409) })
+        assertEquals("http_503", refused { activation(expired, status = 503) })
+    }
+
+    // The deadline the bridge keeps per account and device after a 429, on a monotonic clock.
+    @Test fun theGateHoldsEachDeviceUntilItsDeadline() {
+        var now = 5_000L
+        val gate = OpenVpnRequestGate { now }
+        assertEquals(null, gate.remainingSeconds("account", "device"))
+        gate.defer("account", "device", 1_800)
+        assertEquals(1_800, gate.remainingSeconds("account", "device"))
+        assertEquals(null, gate.remainingSeconds("account", "device-2"))
+        assertEquals(null, gate.remainingSeconds("account-2", "device"))
+        now += 1_799_000_000_001L
+        assertEquals(1, gate.remainingSeconds("account", "device"))
+        now += 999_999_999L
+        assertEquals(null, gate.remainingSeconds("account", "device"))
+        // A shorter delay never shortens a longer one; a day at most; nothing for no delay.
+        gate.defer("account", "device", 600)
+        gate.defer("account", "device", 60)
+        assertEquals(600, gate.remainingSeconds("account", "device"))
+        gate.defer("account", "device", 900)
+        assertEquals(900, gate.remainingSeconds("account", "device"))
+        gate.defer("account", "device-3", Int.MAX_VALUE)
+        assertEquals(86_400, gate.remainingSeconds("account", "device-3"))
+        gate.defer("account", "device-4", 0)
+        gate.defer("account", "device-4", -1)
+        assertEquals(null, gate.remainingSeconds("account", "device-4"))
     }
 }

@@ -756,6 +756,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'invalid_api_response': 'תגובת שרת לא תקינה',
       'ipv6_unavailable': 'IPv6 אינו זמין',
       'invalid_ip_families': 'הגדרות הרשת נדחו',
+      'openvpn_renewal_expired': 'פג תוקף תעודת OpenVPN',
       'other': 'השירות אינו זמין',
     });
     return '$_temp0';
@@ -807,6 +808,8 @@ class AppLocalizationsHe extends AppLocalizations {
       'ipv6_unavailable': 'השרת לא יכול להפעיל IPv6 כרגע. נסה שוב מאוחר יותר.',
       'invalid_ip_families':
           'הגדרות המנהרה חסרות או אינן תואמות לכתובות המורשות. נסה שוב מהאפליקציה.',
+      'openvpn_renewal_expired':
+          'פג תוקף תעודת OpenVPN. התחל חיבור חדש באפליקציה כדי לחדש אותה.',
       'other': 'אירעה שגיאה בשרת. נסה שוב מאוחר יותר.',
     });
     return '$_temp0';
@@ -955,6 +958,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'openvpn_recovery_exhausted': 'שחזור OpenVPN כבר נוצל',
       'openvpn_recovery_failed': 'שחזור OpenVPN נכשל',
       'openvpn_renewal_required': 'נדרש חידוש של תעודת OpenVPN',
+      'openvpn_renewal_rate_limited': 'יותר מדי ניסיונות',
       'other': 'שגיאת VPN מקומית לא מסווגת',
     });
     return '$_temp0';
@@ -1142,6 +1146,7 @@ class AppLocalizationsHe extends AppLocalizations {
           'Android לא הצליח ליצור או לקרוא את מפתח WireGuard באחסון המאובטח.',
       'csr_generation_failed':
           'Android Keystore לא הצליח ליצור או לחתום על CSR P-256 של OpenVPN.',
+      'openvpn_renewal_rate_limited': 'המתן לפני שתנסה שוב.',
       'other':
           'אירעה שגיאה מקומית לא מתועדת. שלח לתמיכה את קוד האבחון המוצג למטה.',
     });

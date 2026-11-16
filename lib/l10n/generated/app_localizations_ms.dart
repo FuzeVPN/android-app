@@ -779,6 +779,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'invalid_api_response': 'Respons pelayan tidak sah',
       'ipv6_unavailable': 'IPv6 tidak tersedia',
       'invalid_ip_families': 'Konfigurasi rangkaian ditolak',
+      'openvpn_renewal_expired': 'Sijil OpenVPN tamat tempoh',
       'other': 'Perkhidmatan tidak tersedia',
     });
     return '$_temp0';
@@ -841,6 +842,8 @@ class AppLocalizationsMs extends AppLocalizations {
           'Pelayan tidak dapat mengaktifkan IPv6 buat masa ini. Cuba lagi kemudian.',
       'invalid_ip_families':
           'Konfigurasi terowong tidak lengkap atau tidak sepadan dengan alamat yang dibenarkan. Cuba lagi dari aplikasi.',
+      'openvpn_renewal_expired':
+          'Sijil OpenVPN telah tamat tempoh. Mulakan sambungan baharu dalam aplikasi untuk memperbaharuinya.',
       'other': 'Ralat pelayan berlaku. Cuba lagi kemudian.',
     });
     return '$_temp0';
@@ -995,6 +998,7 @@ class AppLocalizationsMs extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Pemulihan OpenVPN telah digunakan',
       'openvpn_recovery_failed': 'Pemulihan OpenVPN gagal',
       'openvpn_renewal_required': 'Sijil OpenVPN perlu diperbaharui',
+      'openvpn_renewal_rate_limited': 'Terlalu banyak percubaan',
       'other': 'Ralat VPN asli tidak diklasifikasikan',
     });
     return '$_temp0';
@@ -1203,6 +1207,7 @@ class AppLocalizationsMs extends AppLocalizations {
           'Android tidak dapat mencipta atau membaca kunci WireGuard dalam storan selamat.',
       'csr_generation_failed':
           'Android Keystore tidak dapat mencipta atau menandatangani CSR OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Sila tunggu sebelum mencuba lagi.',
       'other':
           'Cabang asli yang tidak didokumenkan gagal. Hantar kod diagnostik yang dipaparkan di bawah kepada sokongan.',
     });

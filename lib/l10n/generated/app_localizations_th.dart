@@ -772,6 +772,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'invalid_api_response': 'การตอบกลับจากเซิร์ฟเวอร์ไม่ถูกต้อง',
       'ipv6_unavailable': 'IPv6 ไม่พร้อมใช้งาน',
       'invalid_ip_families': 'การกำหนดค่าเครือข่ายถูกปฏิเสธ',
+      'openvpn_renewal_expired': 'ใบรับรอง OpenVPN หมดอายุ',
       'other': 'บริการไม่พร้อมใช้งาน',
     });
     return '$_temp0';
@@ -830,6 +831,8 @@ class AppLocalizationsTh extends AppLocalizations {
           'ขณะนี้เซิร์ฟเวอร์ไม่สามารถเปิดใช้งาน IPv6 ได้ ลองใหม่ภายหลัง',
       'invalid_ip_families':
           'การกำหนดค่าอุโมงค์ไม่สมบูรณ์หรือไม่ตรงกับที่อยู่ที่ได้รับอนุญาต ลองอีกครั้งจากแอป',
+      'openvpn_renewal_expired':
+          'ใบรับรอง OpenVPN หมดอายุแล้ว เริ่มการเชื่อมต่อใหม่ในแอปเพื่อต่ออายุ',
       'other': 'เกิดข้อผิดพลาดที่เซิร์ฟเวอร์ ลองใหม่ภายหลัง',
     });
     return '$_temp0';
@@ -984,6 +987,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'openvpn_recovery_exhausted': 'ใช้การกู้คืน OpenVPN ไปแล้ว',
       'openvpn_recovery_failed': 'กู้คืน OpenVPN ไม่สำเร็จ',
       'openvpn_renewal_required': 'ต้องต่ออายุใบรับรอง OpenVPN',
+      'openvpn_renewal_rate_limited': 'พยายามมากเกินไป',
       'other': 'ข้อผิดพลาด VPN ภายในเครื่องที่ไม่จัดประเภท',
     });
     return '$_temp0';
@@ -1185,6 +1189,7 @@ class AppLocalizationsTh extends AppLocalizations {
           'Android สร้างหรืออ่านคีย์ WireGuard ในพื้นที่เก็บข้อมูลที่ปลอดภัยไม่ได้',
       'csr_generation_failed':
           'Android Keystore สร้างหรือลงนาม CSR ของ OpenVPN P-256 ไม่ได้',
+      'openvpn_renewal_rate_limited': 'โปรดรอก่อนลองอีกครั้ง',
       'other':
           'สาขาภายในเครื่องที่ไม่มีเอกสารล้มเหลว ส่งรหัสการวินิจฉัยด้านล่างให้ฝ่ายสนับสนุน',
     });

@@ -773,6 +773,7 @@ class AppLocalizationsGu extends AppLocalizations {
       'invalid_api_response': 'અમાન્ય સર્વર પ્રતિસાદ',
       'ipv6_unavailable': 'IPv6 ઉપલબ્ધ નથી',
       'invalid_ip_families': 'નેટવર્ક ગોઠવણી નકારાઈ',
+      'openvpn_renewal_expired': 'OpenVPN સર્ટિફિકેટની મુદત પૂરી થઈ ગઈ',
       'other': 'સેવા ઉપલબ્ધ નથી',
     });
     return '$_temp0';
@@ -831,6 +832,8 @@ class AppLocalizationsGu extends AppLocalizations {
           'સર્વર હાલ IPv6 સક્રિય કરી શકતું નથી. પછીથી ફરી પ્રયાસ કરો.',
       'invalid_ip_families':
           'ટનલ ગોઠવણી અધૂરી છે અથવા અધિકૃત સરનામાં સાથે મેળ ખાતી નથી. ઍપમાંથી ફરી પ્રયાસ કરો.',
+      'openvpn_renewal_expired':
+          'OpenVPN સર્ટિફિકેટની મુદત પૂરી થઈ ગઈ છે. તેનું નવીકરણ કરવા માટે ઍપમાં નવું કનેક્શન શરૂ કરો.',
       'other': 'સર્વરમાં ભૂલ આવી. પછીથી ફરી પ્રયાસ કરો.',
     });
     return '$_temp0';
@@ -980,6 +983,7 @@ class AppLocalizationsGu extends AppLocalizations {
           'OpenVPN પુનઃપ્રાપ્તિ પહેલેથી વપરાઈ ચૂકી છે',
       'openvpn_recovery_failed': 'OpenVPN પુનઃપ્રાપ્તિ નિષ્ફળ ગઈ',
       'openvpn_renewal_required': 'OpenVPN સર્ટિફિકેટનું નવીકરણ જરૂરી છે',
+      'openvpn_renewal_rate_limited': 'વધુ પડતા પ્રયાસો',
       'other': 'વર્ગીકૃત ન થયેલી નેટિવ VPN ભૂલ',
     });
     return '$_temp0';
@@ -1182,6 +1186,8 @@ class AppLocalizationsGu extends AppLocalizations {
           'Android સુરક્ષિત સ્ટોરેજમાં WireGuard કી બનાવી કે વાંચી શક્યું નથી.',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR બનાવી કે તેના પર સહી કરી શક્યું નથી.',
+      'openvpn_renewal_rate_limited':
+          'કૃપા કરીને ફરી પ્રયાસ કરતાં પહેલાં રાહ જુઓ.',
       'other':
           'દસ્તાવેજીકૃત ન હોય તેવી નેટિવ શાખા નિષ્ફળ ગઈ. નીચે બતાવેલો ડાયગ્નોસ્ટિક કોડ સપોર્ટને મોકલો.',
     });

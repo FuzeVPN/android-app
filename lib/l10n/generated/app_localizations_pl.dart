@@ -778,6 +778,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'invalid_api_response': 'Nieprawidłowa odpowiedź serwera',
       'ipv6_unavailable': 'IPv6 niedostępny',
       'invalid_ip_families': 'Odrzucono konfigurację sieci',
+      'openvpn_renewal_expired': 'Certyfikat OpenVPN wygasł',
       'other': 'Usługa niedostępna',
     });
     return '$_temp0';
@@ -842,6 +843,8 @@ class AppLocalizationsPl extends AppLocalizations {
           'Serwer nie może obecnie aktywować IPv6. Spróbuj ponownie później.',
       'invalid_ip_families':
           'Konfiguracja tunelu jest niekompletna lub nie pasuje do autoryzowanych adresów. Spróbuj ponownie z poziomu aplikacji.',
+      'openvpn_renewal_expired':
+          'Certyfikat OpenVPN wygasł. Rozpocznij nowe połączenie w aplikacji, aby go odnowić.',
       'other': 'Wystąpił błąd serwera. Spróbuj ponownie później.',
     });
     return '$_temp0';
@@ -1005,6 +1008,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Odzyskiwanie OpenVPN już użyte',
       'openvpn_recovery_failed': 'Odzyskiwanie OpenVPN nie powiodło się',
       'openvpn_renewal_required': 'Wymagane odnowienie certyfikatu OpenVPN',
+      'openvpn_renewal_rate_limited': 'Zbyt wiele prób',
       'other': 'Niesklasyfikowany natywny błąd VPN',
     });
     return '$_temp0';
@@ -1208,6 +1212,7 @@ class AppLocalizationsPl extends AppLocalizations {
           'Android nie mógł utworzyć ani odczytać klucza WireGuard w bezpiecznej pamięci.',
       'csr_generation_failed':
           'Android Keystore nie mógł utworzyć ani podpisać żądania CSR OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Zaczekaj przed ponowną próbą.',
       'other':
           'Nieudokumentowana natywna gałąź zakończyła się błędem. Wyślij pokazany poniżej kod diagnostyczny do pomocy technicznej.',
     });

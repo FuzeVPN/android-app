@@ -775,6 +775,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'invalid_api_response': 'Ogiltigt serversvar',
       'ipv6_unavailable': 'IPv6 är inte tillgängligt',
       'invalid_ip_families': 'Nätverkskonfigurationen nekades',
+      'openvpn_renewal_expired': 'OpenVPN-certifikatet har löpt ut',
       'other': 'Tjänsten är inte tillgänglig',
     });
     return '$_temp0';
@@ -842,6 +843,8 @@ class AppLocalizationsSv extends AppLocalizations {
           'Servern kan inte aktivera IPv6 just nu. Försök igen senare.',
       'invalid_ip_families':
           'Tunnelkonfigurationen är ofullständig eller stämmer inte med de godkända adresserna. Försök igen från appen.',
+      'openvpn_renewal_expired':
+          'OpenVPN-certifikatet har löpt ut. Starta en ny anslutning i appen för att förnya det.',
       'other': 'Ett serverfel inträffade. Försök igen senare.',
     });
     return '$_temp0';
@@ -1001,6 +1004,7 @@ class AppLocalizationsSv extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN-återställning redan använd',
       'openvpn_recovery_failed': 'OpenVPN-återställningen misslyckades',
       'openvpn_renewal_required': 'OpenVPN-certifikatet måste förnyas',
+      'openvpn_renewal_rate_limited': 'För många försök',
       'other': 'Okategoriserat inbyggt VPN-fel',
     });
     return '$_temp0';
@@ -1208,6 +1212,7 @@ class AppLocalizationsSv extends AppLocalizations {
           'Android kunde inte skapa eller läsa WireGuard-nyckeln i säker lagring.',
       'csr_generation_failed':
           'Android Keystore kunde inte skapa eller signera OpenVPN P-256 CSR.',
+      'openvpn_renewal_rate_limited': 'Vänta innan du försöker igen.',
       'other':
           'En odokumenterad inbyggd gren misslyckades. Skicka diagnostikkoden som visas nedan till supporten.',
     });

@@ -772,6 +772,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'invalid_api_response': 'ការឆ្លើយតបពីម៉ាស៊ីនមេមិនត្រឹមត្រូវ',
       'ipv6_unavailable': 'IPv6 មិនអាចប្រើបាន',
       'invalid_ip_families': 'ការកំណត់បណ្តាញត្រូវបានបដិសេធ',
+      'openvpn_renewal_expired': 'វិញ្ញាបនបត្រ OpenVPN បានផុតកំណត់',
       'other': 'សេវាមិនអាចប្រើបាន',
     });
     return '$_temp0';
@@ -836,6 +837,8 @@ class AppLocalizationsKm extends AppLocalizations {
           'ម៉ាស៊ីនមេមិនអាចបើក IPv6 បានក្នុងពេលនេះទេ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។',
       'invalid_ip_families':
           'ការកំណត់ផ្លូវតុនែលមិនពេញលេញ ឬមិនត្រូវនឹងអាសយដ្ឋានដែលបានអនុញ្ញាតទេ។ សូមព្យាយាមម្តងទៀតពីកម្មវិធី។',
+      'openvpn_renewal_expired':
+          'វិញ្ញាបនបត្រ OpenVPN បានផុតកំណត់។ សូមចាប់ផ្តើមការតភ្ជាប់ថ្មីនៅក្នុងកម្មវិធី ដើម្បីបន្តសុពលភាព។',
       'other': 'មានកំហុសម៉ាស៊ីនមេកើតឡើង។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។',
     });
     return '$_temp0';
@@ -986,6 +989,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'openvpn_recovery_exhausted': 'ការស្តារ OpenVPN ត្រូវបានប្រើរួចហើយ',
       'openvpn_recovery_failed': 'ការស្តារ OpenVPN បានបរាជ័យ',
       'openvpn_renewal_required': 'តម្រូវឱ្យបន្តសុពលភាពវិញ្ញាបនបត្រ OpenVPN',
+      'openvpn_renewal_rate_limited': 'ការព្យាយាមច្រើនដងពេក',
       'other': 'កំហុស VPN ដើមដែលមិនបានចាត់ថ្នាក់',
     });
     return '$_temp0';
@@ -1190,6 +1194,7 @@ class AppLocalizationsKm extends AppLocalizations {
           'Android មិនអាចបង្កើត ឬអានកូនសោ WireGuard ក្នុងទីផ្ទុកសុវត្ថិភាពបានទេ។',
       'csr_generation_failed':
           'Android Keystore មិនអាចបង្កើត ឬចុះហត្ថលេខាលើ CSR P-256 របស់ OpenVPN បានទេ។',
+      'openvpn_renewal_rate_limited': 'សូមរង់ចាំមុនពេលព្យាយាមម្តងទៀត។',
       'other':
           'ផ្នែកដើមមួយដែលមិនមានឯកសារបានបរាជ័យ។ សូមផ្ញើលេខកូដរោគវិនិច្ឆ័យដែលបង្ហាញខាងក្រោម ទៅផ្នែកជំនួយ។',
     });

@@ -773,6 +773,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'invalid_api_response': 'Invalid server response',
       'ipv6_unavailable': 'IPv6 unavailable',
       'invalid_ip_families': 'Network configuration rejected',
+      'openvpn_renewal_expired': 'OpenVPN certificate expired',
       'other': 'Service unavailable',
     });
     return '$_temp0';
@@ -836,6 +837,8 @@ class AppLocalizationsEn extends AppLocalizations {
           'The server cannot activate IPv6 at the moment. Try again later.',
       'invalid_ip_families':
           'The tunnel configuration is incomplete or does not match the authorized addresses. Try again from the app.',
+      'openvpn_renewal_expired':
+          'The OpenVPN certificate has expired. Start a new connection in the app to renew it.',
       'other': 'A server error occurred. Try again later.',
     });
     return '$_temp0';
@@ -983,6 +986,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN recovery already used',
       'openvpn_recovery_failed': 'OpenVPN recovery failed',
       'openvpn_renewal_required': 'OpenVPN certificate renewal required',
+      'openvpn_renewal_rate_limited': 'Too many attempts',
       'other': 'Unclassified native VPN error',
     });
     return '$_temp0';
@@ -1188,6 +1192,7 @@ class AppLocalizationsEn extends AppLocalizations {
           'Android could not create or read the WireGuard key in secure storage.',
       'csr_generation_failed':
           'Android Keystore could not create or sign the OpenVPN P-256 CSR.',
+      'openvpn_renewal_rate_limited': 'Please wait before trying again.',
       'other':
           'An undocumented native branch failed. Send the diagnostic code shown below to support.',
     });

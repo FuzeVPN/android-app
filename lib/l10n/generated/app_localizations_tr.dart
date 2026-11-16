@@ -779,6 +779,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'invalid_api_response': 'Geçersiz sunucu yanıtı',
       'ipv6_unavailable': 'IPv6 kullanılamıyor',
       'invalid_ip_families': 'Ağ yapılandırması reddedildi',
+      'openvpn_renewal_expired': 'OpenVPN sertifikasının süresi doldu',
       'other': 'Hizmet kullanılamıyor',
     });
     return '$_temp0';
@@ -845,6 +846,8 @@ class AppLocalizationsTr extends AppLocalizations {
           'Sunucu şu anda IPv6\'yı etkinleştiremiyor. Daha sonra tekrar deneyin.',
       'invalid_ip_families':
           'Tünel yapılandırması eksik veya izin verilen adreslerle eşleşmiyor. Uygulamadan tekrar deneyin.',
+      'openvpn_renewal_expired':
+          'OpenVPN sertifikasının süresi doldu. Yenilemek için uygulamada yeni bir bağlantı başlatın.',
       'other': 'Bir sunucu hatası oluştu. Daha sonra tekrar deneyin.',
     });
     return '$_temp0';
@@ -997,6 +1000,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'openvpn_recovery_failed': 'OpenVPN kurtarma başarısız oldu',
       'openvpn_renewal_required':
           'OpenVPN sertifikasının yenilenmesi gerekiyor',
+      'openvpn_renewal_rate_limited': 'Çok fazla deneme yapıldı',
       'other': 'Sınıflandırılmamış yerel VPN hatası',
     });
     return '$_temp0';
@@ -1201,6 +1205,7 @@ class AppLocalizationsTr extends AppLocalizations {
           'Android, WireGuard anahtarını güvenli depolamada oluşturamadı veya okuyamadı.',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR\'ını oluşturamadı veya imzalayamadı.',
+      'openvpn_renewal_rate_limited': 'Tekrar denemeden önce lütfen bekleyin.',
       'other':
           'Belgelenmemiş bir yerel dal başarısız oldu. Aşağıda gösterilen tanılama kodunu desteğe gönderin.',
     });

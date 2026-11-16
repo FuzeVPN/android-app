@@ -797,6 +797,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'invalid_api_response': 'Μη έγκυρη απάντηση διακομιστή',
       'ipv6_unavailable': 'Το IPv6 δεν είναι διαθέσιμο',
       'invalid_ip_families': 'Η διαμόρφωση δικτύου απορρίφθηκε',
+      'openvpn_renewal_expired': 'Το πιστοποιητικό OpenVPN έληξε',
       'other': 'Η υπηρεσία δεν είναι διαθέσιμη',
     });
     return '$_temp0';
@@ -871,6 +872,8 @@ class AppLocalizationsEl extends AppLocalizations {
           'Ο διακομιστής δεν μπορεί να ενεργοποιήσει το IPv6 αυτή τη στιγμή. Δοκιμάστε ξανά αργότερα.',
       'invalid_ip_families':
           'Η διαμόρφωση της σήραγγας είναι ελλιπής ή δεν αντιστοιχεί στις εγκεκριμένες διευθύνσεις. Δοκιμάστε ξανά από την εφαρμογή.',
+      'openvpn_renewal_expired':
+          'Το πιστοποιητικό OpenVPN έχει λήξει. Ξεκινήστε νέα σύνδεση στην εφαρμογή για να το ανανεώσετε.',
       'other': 'Παρουσιάστηκε σφάλμα διακομιστή. Δοκιμάστε ξανά αργότερα.',
     });
     return '$_temp0';
@@ -1040,6 +1043,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'openvpn_recovery_failed': 'Η ανάκτηση OpenVPN απέτυχε',
       'openvpn_renewal_required':
           'Απαιτείται ανανέωση του πιστοποιητικού OpenVPN',
+      'openvpn_renewal_rate_limited': 'Υπερβολικά πολλές προσπάθειες',
       'other': 'Μη ταξινομημένο εγγενές σφάλμα VPN',
     });
     return '$_temp0';
@@ -1248,6 +1252,7 @@ class AppLocalizationsEl extends AppLocalizations {
           'Το Android δεν μπόρεσε να δημιουργήσει ή να διαβάσει το κλειδί WireGuard από την ασφαλή αποθήκευση.',
       'csr_generation_failed':
           'Το Android Keystore δεν μπόρεσε να δημιουργήσει ή να υπογράψει το CSR OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Περιμένετε πριν δοκιμάσετε ξανά.',
       'other':
           'Απέτυχε ένας μη τεκμηριωμένος εγγενής κλάδος. Στείλτε στην υποστήριξη τον διαγνωστικό κωδικό που εμφανίζεται παρακάτω.',
     });

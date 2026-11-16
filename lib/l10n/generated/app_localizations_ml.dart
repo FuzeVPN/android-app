@@ -780,6 +780,7 @@ class AppLocalizationsMl extends AppLocalizations {
       'invalid_api_response': 'അസാധുവായ സെർവർ പ്രതികരണം',
       'ipv6_unavailable': 'IPv6 ലഭ്യമല്ല',
       'invalid_ip_families': 'നെറ്റ്‌വർക്ക് കോൺഫിഗറേഷൻ നിരസിച്ചു',
+      'openvpn_renewal_expired': 'OpenVPN സർട്ടിഫിക്കറ്റിന്റെ കാലാവധി കഴിഞ്ഞു',
       'other': 'സേവനം ലഭ്യമല്ല',
     });
     return '$_temp0';
@@ -847,6 +848,8 @@ class AppLocalizationsMl extends AppLocalizations {
           'ഇപ്പോൾ IPv6 സജീവമാക്കാൻ സെർവറിന് കഴിയുന്നില്ല. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
       'invalid_ip_families':
           'ടണൽ കോൺഫിഗറേഷൻ അപൂർണ്ണമാണ്, അല്ലെങ്കിൽ അനുവദിച്ച വിലാസങ്ങളുമായി പൊരുത്തപ്പെടുന്നില്ല. ആപ്പിൽ നിന്ന് വീണ്ടും ശ്രമിക്കുക.',
+      'openvpn_renewal_expired':
+          'OpenVPN സർട്ടിഫിക്കറ്റിന്റെ കാലാവധി കഴിഞ്ഞു. അത് പുതുക്കാൻ ആപ്പിൽ ഒരു പുതിയ കണക്ഷൻ ആരംഭിക്കുക.',
       'other': 'ഒരു സെർവർ പിശക് സംഭവിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.',
     });
     return '$_temp0';
@@ -1001,6 +1004,7 @@ class AppLocalizationsMl extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN വീണ്ടെടുക്കൽ ഇതിനകം ഉപയോഗിച്ചു',
       'openvpn_recovery_failed': 'OpenVPN വീണ്ടെടുക്കൽ പരാജയപ്പെട്ടു',
       'openvpn_renewal_required': 'OpenVPN സർട്ടിഫിക്കറ്റ് പുതുക്കൽ ആവശ്യമാണ്',
+      'openvpn_renewal_rate_limited': 'വളരെയധികം ശ്രമങ്ങൾ നടത്തി',
       'other': 'തരംതിരിക്കാത്ത നേറ്റീവ് VPN പിശക്',
     });
     return '$_temp0';
@@ -1204,6 +1208,8 @@ class AppLocalizationsMl extends AppLocalizations {
           'സുരക്ഷിത സ്റ്റോറേജിൽ WireGuard കീ സൃഷ്ടിക്കാനോ വായിക്കാനോ Android-ന് കഴിഞ്ഞില്ല.',
       'csr_generation_failed':
           'OpenVPN P-256 CSR സൃഷ്ടിക്കാനോ ഒപ്പിടാനോ Android Keystore-ന് കഴിഞ്ഞില്ല.',
+      'openvpn_renewal_rate_limited':
+          'വീണ്ടും ശ്രമിക്കുന്നതിന് മുമ്പ് ദയവായി കാത്തിരിക്കുക.',
       'other':
           'ഡോക്യുമെന്റ് ചെയ്യാത്ത ഒരു നേറ്റീവ് കോഡ് ഭാഗം പരാജയപ്പെട്ടു. താഴെ കാണിച്ചിരിക്കുന്ന ഡയഗ്നോസ്റ്റിക് കോഡ് പിന്തുണാ ടീമിന് അയയ്ക്കുക.',
     });

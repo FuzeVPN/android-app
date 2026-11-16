@@ -778,6 +778,7 @@ class AppLocalizationsLt extends AppLocalizations {
       'invalid_api_response': 'Netinkamas serverio atsakas',
       'ipv6_unavailable': 'IPv6 nepasiekiamas',
       'invalid_ip_families': 'Tinklo konfigūracija atmesta',
+      'openvpn_renewal_expired': 'OpenVPN sertifikato galiojimas baigėsi',
       'other': 'Paslauga nepasiekiama',
     });
     return '$_temp0';
@@ -842,6 +843,8 @@ class AppLocalizationsLt extends AppLocalizations {
           'Serveris šiuo metu negali įjungti IPv6. Bandykite vėliau.',
       'invalid_ip_families':
           'Tunelio konfigūracija neišsami arba neatitinka leistinų adresų. Bandykite dar kartą programoje.',
+      'openvpn_renewal_expired':
+          'OpenVPN sertifikato galiojimas baigėsi. Norėdami atnaujinti sertifikatą, programoje pradėkite naują ryšį.',
       'other': 'Įvyko serverio klaida. Bandykite vėliau.',
     });
     return '$_temp0';
@@ -990,6 +993,7 @@ class AppLocalizationsLt extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN atkūrimas jau panaudotas',
       'openvpn_recovery_failed': 'Nepavyko atkurti OpenVPN',
       'openvpn_renewal_required': 'Reikia atnaujinti OpenVPN sertifikatą',
+      'openvpn_renewal_rate_limited': 'Per daug bandymų',
       'other': 'Neklasifikuota vietinė VPN klaida',
     });
     return '$_temp0';
@@ -1193,6 +1197,7 @@ class AppLocalizationsLt extends AppLocalizations {
           'Android nepavyko sukurti arba perskaityti WireGuard rakto saugioje saugykloje.',
       'csr_generation_failed':
           'Android Keystore nepavyko sukurti arba pasirašyti OpenVPN P-256 CSR.',
+      'openvpn_renewal_rate_limited': 'Prieš bandydami dar kartą, palaukite.',
       'other':
           'Įvyko nedokumentuota vietinė klaida. Išsiųskite toliau rodomą diagnostikos kodą palaikymo tarnybai.',
     });

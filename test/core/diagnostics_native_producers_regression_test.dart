@@ -112,6 +112,8 @@ const _nativeFailureCategories = <String, String>{
   'openvpn_csr_required': 'openvpn_identity_unavailable',
   'openvpn_identity_in_use': 'openvpn_operation_pending',
   'openvpn_profile_revoked_cleaned': 'device_identity_revoked',
+  // A renewal held by the API's 429 until its Retry-After (16/11/2026).
+  'openvpn_renewal_rate_limited': 'rate_limited',
   'openvpn_renewal_required': 'openvpn_certificate_expired',
   'platform_callback_failed': 'openvpn_external_pki_failed',
   'platform_identity_unavailable': 'openvpn_identity_unavailable',
@@ -245,10 +247,12 @@ const _nativeWireFields = <String>{
   'refresh_token',
   'remote_cert_tls_server',
   'renewal_pending',
+  'replace_pending',
   'request_id',
   'resume_error',
   'resume_state',
   'retry_after_seconds',
+  'retry_at',
   'sent_bytes',
   'server_name',
   'server_public_key',
@@ -267,6 +271,9 @@ const _nativeWireFields = <String>{
   'invalid_session_request_id',
   'session_transition',
   'session_upgrade_conflict',
+  // Error value of the OpenVPN renewal API: the bridge renews once more with a
+  // new key, then reports its own code (openvpn_renewal_required).
+  'openvpn_renewal_expired',
 };
 const _nativeTimingSpans = <String>{
   'openvpn_certificate_read',

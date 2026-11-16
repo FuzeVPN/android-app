@@ -786,6 +786,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'invalid_api_response': 'Jawaabta server-ka ma sax aha',
       'ipv6_unavailable': 'IPv6 lama heli karo',
       'invalid_ip_families': 'Habaynta shabakadda waa la diiday',
+      'openvpn_renewal_expired': 'Shahaadada OpenVPN way dhacday',
       'other': 'Adeegga lama heli karo',
     });
     return '$_temp0';
@@ -856,6 +857,8 @@ class AppLocalizationsSo extends AppLocalizations {
           'Server-ku hadda ma shidi karo IPv6. Mar dambe isku day.',
       'invalid_ip_families':
           'Habaynta tunnel-ka ma dhammaystirna ama ma waafaqsana cinwaannada la oggolaaday. Barnaamijka ka isku day mar kale.',
+      'openvpn_renewal_expired':
+          'Shahaadada OpenVPN way dhacday. Barnaamijka ka bilow xidhiidh cusub si loo cusboonaysiiyo.',
       'other': 'Khalad dhinaca server-ka ah ayaa dhacay. Mar dambe isku day.',
     });
     return '$_temp0';
@@ -1023,6 +1026,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'openvpn_recovery_failed': 'Soo kabashada OpenVPN way guuldareysatay',
       'openvpn_renewal_required':
           'Cusboonaysiinta shahaadada OpenVPN ayaa loo baahan yahay',
+      'openvpn_renewal_rate_limited': 'Isku dayo aad u badan',
       'other': 'Khalad VPN oo aan la kala saarin',
     });
     return '$_temp0';
@@ -1232,6 +1236,8 @@ class AppLocalizationsSo extends AppLocalizations {
           'Android ma abuuri karin ama ma akhriyi karin furaha WireGuard ee kaydka ammaanka ah.',
       'csr_generation_failed':
           'Android Keystore ma abuuri karin ama ma saxiixi karin CSR-ka OpenVPN P-256.',
+      'openvpn_renewal_rate_limited':
+          'Fadlan sug ka hor intaadan mar kale isku dayin.',
       'other':
           'Qayb asal ah oo aan la dukumeentiyin ayaa guuldareysatay. U dir koodhka baaritaanka ee hoos ku muuqda kooxda taageerada.',
     });

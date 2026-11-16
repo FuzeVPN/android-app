@@ -777,6 +777,7 @@ class AppLocalizationsNb extends AppLocalizations {
       'invalid_api_response': 'Ugyldig serversvar',
       'ipv6_unavailable': 'IPv6 er utilgjengelig',
       'invalid_ip_families': 'Nettverkskonfigurasjonen ble avvist',
+      'openvpn_renewal_expired': 'OpenVPN-sertifikatet er utløpt',
       'other': 'Tjenesten er utilgjengelig',
     });
     return '$_temp0';
@@ -842,6 +843,8 @@ class AppLocalizationsNb extends AppLocalizations {
           'Serveren kan ikke aktivere IPv6 akkurat nå. Prøv igjen senere.',
       'invalid_ip_families':
           'Tunnelkonfigurasjonen er ufullstendig eller samsvarer ikke med de autoriserte adressene. Prøv igjen fra appen.',
+      'openvpn_renewal_expired':
+          'OpenVPN-sertifikatet er utløpt. Start en ny tilkobling i appen for å fornye det.',
       'other': 'Det oppstod en serverfeil. Prøv igjen senere.',
     });
     return '$_temp0';
@@ -998,6 +1001,7 @@ class AppLocalizationsNb extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN-gjenoppretting allerede brukt',
       'openvpn_recovery_failed': 'OpenVPN-gjenoppretting mislyktes',
       'openvpn_renewal_required': 'OpenVPN-sertifikatet må fornyes',
+      'openvpn_renewal_rate_limited': 'For mange forsøk',
       'other': 'Uklassifisert opprinnelig VPN-feil',
     });
     return '$_temp0';
@@ -1202,6 +1206,7 @@ class AppLocalizationsNb extends AppLocalizations {
           'Android kunne ikke opprette eller lese WireGuard-nøkkelen i sikker lagring.',
       'csr_generation_failed':
           'Android Keystore kunne ikke opprette eller signere OpenVPN P-256-CSR-en.',
+      'openvpn_renewal_rate_limited': 'Vent før du prøver igjen.',
       'other':
           'En udokumentert opprinnelig gren mislyktes. Send diagnostikkoden som vises nedenfor, til kundestøtte.',
     });

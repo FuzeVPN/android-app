@@ -759,6 +759,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'invalid_api_response': 'استجابة الخادم غير صالحة',
       'ipv6_unavailable': 'IPv6 غير متاح',
       'invalid_ip_families': 'رُفض إعداد الشبكة',
+      'openvpn_renewal_expired': 'انتهت صلاحية شهادة OpenVPN',
       'other': 'الخدمة غير متاحة',
     });
     return '$_temp0';
@@ -815,6 +816,8 @@ class AppLocalizationsAr extends AppLocalizations {
           'لا يستطيع الخادم تفعيل IPv6 في الوقت الحالي. حاول مرة أخرى لاحقًا.',
       'invalid_ip_families':
           'إعداد النفق غير مكتمل أو لا يطابق العناوين المصرح بها. حاول مرة أخرى من التطبيق.',
+      'openvpn_renewal_expired':
+          'انتهت صلاحية شهادة OpenVPN. ابدأ اتصالًا جديدًا في التطبيق لتجديدها.',
       'other': 'حدث خطأ في الخادم. حاول مرة أخرى لاحقًا.',
     });
     return '$_temp0';
@@ -972,6 +975,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'openvpn_recovery_exhausted': 'استعادة OpenVPN مستخدمة بالفعل',
       'openvpn_recovery_failed': 'فشلت استعادة OpenVPN',
       'openvpn_renewal_required': 'يلزم تجديد شهادة OpenVPN',
+      'openvpn_renewal_rate_limited': 'محاولات كثيرة جدًا',
       'other': 'خطأ غير مصنف في VPN الأصلي',
     });
     return '$_temp0';
@@ -1161,6 +1165,7 @@ class AppLocalizationsAr extends AppLocalizations {
           'تعذر على Android إنشاء مفتاح WireGuard في التخزين الآمن أو قراءته.',
       'csr_generation_failed':
           'تعذر على Android Keystore إنشاء CSR لـ OpenVPN أو توقيعه.',
+      'openvpn_renewal_rate_limited': 'يرجى الانتظار قبل المحاولة مجددًا.',
       'other':
           'فشل فرع أصلي غير موثق. أرسل رمز التشخيص الظاهر أدناه إلى الدعم.',
     });

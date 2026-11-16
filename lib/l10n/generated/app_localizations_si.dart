@@ -779,6 +779,7 @@ class AppLocalizationsSi extends AppLocalizations {
       'invalid_api_response': 'වලංගු නොවන සේවාදායක ප්‍රතිචාරයක්',
       'ipv6_unavailable': 'IPv6 ලබා ගත නොහැක',
       'invalid_ip_families': 'ජාල වින්‍යාසය ප්‍රතික්ෂේප විය',
+      'openvpn_renewal_expired': 'OpenVPN සහතිකය කල් ඉකුත් විය',
       'other': 'සේවාව ලබා ගත නොහැක',
     });
     return '$_temp0';
@@ -842,6 +843,8 @@ class AppLocalizationsSi extends AppLocalizations {
           'සේවාදායකයට මේ මොහොතේ IPv6 සක්‍රිය කළ නොහැක. පසුව නැවත උත්සාහ කරන්න.',
       'invalid_ip_families':
           'ටනලයේ වින්‍යාසය අසම්පූර්ණයි හෝ අනුමත ලිපින සමඟ නොගැළපේ. යෙදුමෙන් නැවත උත්සාහ කරන්න.',
+      'openvpn_renewal_expired':
+          'OpenVPN සහතිකය කල් ඉකුත් වී ඇත. එය නවීකරණය කිරීමට යෙදුමේ නව සම්බන්ධතාවක් ආරම්භ කරන්න.',
       'other': 'සේවාදායක දෝෂයක් ඇති විය. පසුව නැවත උත්සාහ කරන්න.',
     });
     return '$_temp0';
@@ -995,6 +998,7 @@ class AppLocalizationsSi extends AppLocalizations {
           'OpenVPN ප්‍රකෘතිමත් කිරීම දැනටමත් භාවිත විය',
       'openvpn_recovery_failed': 'OpenVPN ප්‍රකෘතිමත් කිරීම අසාර්ථක විය',
       'openvpn_renewal_required': 'OpenVPN සහතික නවීකරණය අවශ්‍යයි',
+      'openvpn_renewal_rate_limited': 'උත්සාහ ගණන ඉතා වැඩියි',
       'other': 'වර්ගීකරණය නොකළ නේටිව් VPN දෝෂය',
     });
     return '$_temp0';
@@ -1199,6 +1203,8 @@ class AppLocalizationsSi extends AppLocalizations {
           'ආරක්ෂිත ගබඩාවේ WireGuard යතුර සෑදීමට හෝ කියවීමට Android හට නොහැකි විය.',
       'csr_generation_failed':
           'OpenVPN P-256 CSR සෑදීමට හෝ අත්සන් කිරීමට Android Keystore හට නොහැකි විය.',
+      'openvpn_renewal_rate_limited':
+          'නැවත උත්සාහ කිරීමට පෙර කරුණාකර රැඳී සිටින්න.',
       'other':
           'ලේඛනගත නොකළ නේටිව් ශාඛාවක් අසාර්ථක විය. පහත පෙන්වා ඇති රෝග විනිශ්චය කේතය සහාය අංශයට යවන්න.',
     });

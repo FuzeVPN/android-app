@@ -781,6 +781,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'invalid_api_response': 'Respuesta del servidor no válida',
       'ipv6_unavailable': 'IPv6 no disponible',
       'invalid_ip_families': 'Configuración de red rechazada',
+      'openvpn_renewal_expired': 'Certificado OpenVPN caducado',
       'other': 'Servicio no disponible',
     });
     return '$_temp0';
@@ -849,6 +850,8 @@ class AppLocalizationsEs extends AppLocalizations {
           'El servidor no puede activar IPv6 en este momento. Reinténtelo más tarde.',
       'invalid_ip_families':
           'La configuración del túnel está incompleta o no coincide con las direcciones autorizadas. Reinténtelo desde la aplicación.',
+      'openvpn_renewal_expired':
+          'El certificado OpenVPN ha caducado. Inicia una nueva conexión en la aplicación para renovarlo.',
       'other': 'Se produjo un error del servidor. Inténtalo más tarde.',
     });
     return '$_temp0';
@@ -1004,6 +1007,7 @@ class AppLocalizationsEs extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Reconexión de OpenVPN ya utilizada',
       'openvpn_recovery_failed': 'Reconexión de OpenVPN fallida',
       'openvpn_renewal_required': 'Es necesario renovar el certificado OpenVPN',
+      'openvpn_renewal_rate_limited': 'Demasiados intentos',
       'other': 'Error VPN nativo sin clasificar',
     });
     return '$_temp0';
@@ -1212,6 +1216,7 @@ class AppLocalizationsEs extends AppLocalizations {
           'Android no pudo crear o leer la clave WireGuard en el almacenamiento seguro.',
       'csr_generation_failed':
           'Android Keystore no pudo crear o firmar el CSR P-256 de OpenVPN.',
+      'openvpn_renewal_rate_limited': 'Espera antes de intentarlo de nuevo.',
       'other':
           'Falló una rama nativa no documentada. Envía al soporte el código de diagnóstico mostrado abajo.',
     });

@@ -222,10 +222,24 @@ abstract interface class VpnTunnelGateway {
   Future<String> getOrCreateWireGuardPublicKey({required String accountId});
 
   /// Returns a public P-256 CSR. The private key stays in Android Keystore.
+  /// [replacePending] discards the renewal key already prepared for a new
+  /// one: the API answered that the certificate its CSR obtained has expired
+  /// (`openvpn_renewal_expired`), so that CSR can never renew.
   Future<String> getOrCreateOpenVpnCsr({
     required String accountId,
     required String deviceId,
     bool renewal = false,
+    bool replacePending = false,
+  });
+
+  /// Gives native code the API's `Retry-After` of a refused OpenVPN profile
+  /// creation or renewal (`429 rate_limited`): neither Flutter nor the native
+  /// renewals send one for this device before it. Read back through
+  /// [OpenVpnCertificateStatus.retryAfterSeconds].
+  Future<void> deferOpenVpnProfileRequests({
+    required String accountId,
+    required String deviceId,
+    required int retryAfterSeconds,
   });
 
   /// Reads only the locally authenticated certificate lifetime and renewal
@@ -357,11 +371,16 @@ class OpenVpnCertificateStatus {
     required this.phase,
     required this.renewalPending,
     this.notAfter,
+    this.retryAfterSeconds,
   });
 
   final OpenVpnCertificatePhase phase;
   final DateTime? notAfter;
   final bool renewalPending;
+
+  /// Seconds before the API accepts a creation or renewal for this device
+  /// again, after its `429`; null when one may be sent now.
+  final int? retryAfterSeconds;
 
   bool get requiresRenewal =>
       renewalPending ||
@@ -412,6 +431,7 @@ class VpnRuntimeState {
     this.openVpnRevocation,
     this.ipFamilies = const <String>[],
     this.systemProtection = const SystemVpnProtection(),
+    this.retryAt,
   });
 
   final VpnRuntimePhase phase;
@@ -427,6 +447,10 @@ class VpnRuntimeState {
   final OpenVpnRevocationResult? openVpnRevocation;
   final List<String> ipFamilies;
   final SystemVpnProtection systemProtection;
+
+  /// With `openvpn_renewal_rate_limited`: when the API accepts the renewal
+  /// again (`retry_at`, device clock).
+  final DateTime? retryAt;
   List<String> get connectedIpFamilies =>
       isConnected ? ipFamilies : const <String>[];
 
@@ -506,6 +530,9 @@ class VpnRuntimeState {
               (value['system_protection'] as Map).cast<Object?, Object?>(),
             )
           : const SystemVpnProtection(),
+      retryAt: messageCode == 'openvpn_renewal_rate_limited'
+          ? timestamp('retry_at')
+          : null,
     );
   }
 
@@ -524,6 +551,7 @@ class VpnRuntimeState {
         openVpnRevocation: openVpnRevocation,
         ipFamilies: ipFamilies,
         systemProtection: systemProtection ?? this.systemProtection,
+        retryAt: retryAt,
       );
 
   @override

@@ -773,6 +773,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'invalid_api_response': 'Phản hồi máy chủ không hợp lệ',
       'ipv6_unavailable': 'IPv6 không khả dụng',
       'invalid_ip_families': 'Cấu hình mạng bị từ chối',
+      'openvpn_renewal_expired': 'Chứng chỉ OpenVPN đã hết hạn',
       'other': 'Dịch vụ không khả dụng',
     });
     return '$_temp0';
@@ -835,6 +836,8 @@ class AppLocalizationsVi extends AppLocalizations {
           'Hiện máy chủ không thể kích hoạt IPv6. Hãy thử lại sau.',
       'invalid_ip_families':
           'Cấu hình đường hầm chưa hoàn chỉnh hoặc không khớp với các địa chỉ được cấp quyền. Hãy thử lại từ ứng dụng.',
+      'openvpn_renewal_expired':
+          'Chứng chỉ OpenVPN đã hết hạn. Hãy bắt đầu kết nối mới trong ứng dụng để gia hạn chứng chỉ.',
       'other': 'Đã xảy ra lỗi máy chủ. Hãy thử lại sau.',
     });
     return '$_temp0';
@@ -985,6 +988,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Đã dùng khôi phục OpenVPN',
       'openvpn_recovery_failed': 'Khôi phục OpenVPN thất bại',
       'openvpn_renewal_required': 'Cần gia hạn chứng chỉ OpenVPN',
+      'openvpn_renewal_rate_limited': 'Quá nhiều lần thử',
       'other': 'Lỗi VPN gốc chưa được phân loại',
     });
     return '$_temp0';
@@ -1187,6 +1191,7 @@ class AppLocalizationsVi extends AppLocalizations {
           'Android không thể tạo hoặc đọc khóa WireGuard trong bộ nhớ bảo mật.',
       'csr_generation_failed':
           'Android Keystore không thể tạo hoặc ký CSR OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Vui lòng đợi trước khi thử lại.',
       'other':
           'Một nhánh gốc chưa được ghi nhận đã thất bại. Hãy gửi mã chẩn đoán bên dưới cho bộ phận hỗ trợ.',
     });

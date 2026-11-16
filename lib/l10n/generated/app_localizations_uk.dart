@@ -785,6 +785,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'invalid_api_response': 'Недійсна відповідь сервера',
       'ipv6_unavailable': 'IPv6 недоступний',
       'invalid_ip_families': 'Конфігурацію мережі відхилено',
+      'openvpn_renewal_expired': 'Термін дії сертифіката OpenVPN минув',
       'other': 'Служба недоступна',
     });
     return '$_temp0';
@@ -848,6 +849,8 @@ class AppLocalizationsUk extends AppLocalizations {
           'Сервер наразі не може активувати IPv6. Спробуйте пізніше.',
       'invalid_ip_families':
           'Конфігурація тунелю неповна або не відповідає дозволеним адресам. Спробуйте ще раз із програми.',
+      'openvpn_renewal_expired':
+          'Термін дії сертифіката OpenVPN минув. Щоб оновити сертифікат, почніть нове підключення у програмі.',
       'other': 'Сталася помилка сервера. Спробуйте пізніше.',
     });
     return '$_temp0';
@@ -1005,6 +1008,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Відновлення OpenVPN уже використано',
       'openvpn_recovery_failed': 'Не вдалося відновити OpenVPN',
       'openvpn_renewal_required': 'Потрібно оновити сертифікат OpenVPN',
+      'openvpn_renewal_rate_limited': 'Забагато спроб',
       'other': 'Некласифікована власна помилка VPN',
     });
     return '$_temp0';
@@ -1207,6 +1211,7 @@ class AppLocalizationsUk extends AppLocalizations {
           'Android не зміг створити або прочитати ключ WireGuard у захищеному сховищі.',
       'csr_generation_failed':
           'Android Keystore не зміг створити або підписати CSR OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Зачекайте перед повторною спробою.',
       'other':
           'Не задокументована власна гілка завершилася помилкою. Надішліть показаний нижче код діагностики до служби підтримки.',
     });

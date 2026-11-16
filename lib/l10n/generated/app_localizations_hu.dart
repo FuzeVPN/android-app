@@ -782,6 +782,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'invalid_api_response': 'Érvénytelen szerverválasz',
       'ipv6_unavailable': 'Az IPv6 nem érhető el',
       'invalid_ip_families': 'A hálózati konfigurációt elutasították',
+      'openvpn_renewal_expired': 'Az OpenVPN-tanúsítvány lejárt',
       'other': 'A szolgáltatás nem érhető el',
     });
     return '$_temp0';
@@ -848,6 +849,8 @@ class AppLocalizationsHu extends AppLocalizations {
           'A szerver jelenleg nem tudja aktiválni az IPv6-ot. Próbálja újra később.',
       'invalid_ip_families':
           'Az alagút beállítása hiányos, vagy nem egyezik a jóváhagyott címekkel. Próbálja újra az alkalmazásból.',
+      'openvpn_renewal_expired':
+          'Az OpenVPN-tanúsítvány lejárt. A megújításához indítson új kapcsolatot az alkalmazásban.',
       'other': 'Szerverhiba történt. Próbálja újra később.',
     });
     return '$_temp0';
@@ -1006,6 +1009,7 @@ class AppLocalizationsHu extends AppLocalizations {
           'Az OpenVPN-helyreállítást már igénybe vették',
       'openvpn_recovery_failed': 'Az OpenVPN-helyreállítás sikertelen',
       'openvpn_renewal_required': 'Az OpenVPN-tanúsítványt meg kell újítani',
+      'openvpn_renewal_rate_limited': 'Túl sok próbálkozás',
       'other': 'Besorolatlan natív VPN-hiba',
     });
     return '$_temp0';
@@ -1213,6 +1217,8 @@ class AppLocalizationsHu extends AppLocalizations {
           'Az Android nem tudta létrehozni vagy beolvasni a WireGuard-kulcsot a biztonságos tárolóban.',
       'csr_generation_failed':
           'Az Android Keystore nem tudta létrehozni vagy aláírni az OpenVPN P-256 CSR-t.',
+      'openvpn_renewal_rate_limited':
+          'Kérjük, várjon, mielőtt újra megpróbálja.',
       'other':
           'Egy dokumentálatlan natív ágban hiba történt. Küldje el az alábbi diagnosztikai kódot az ügyfélszolgálatnak.',
     });

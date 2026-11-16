@@ -751,6 +751,7 @@ class AppLocalizationsAm extends AppLocalizations {
       'invalid_api_response': 'ልክ ያልሆነ የአገልጋይ ምላሽ',
       'ipv6_unavailable': 'IPv6 አይገኝም',
       'invalid_ip_families': 'የአውታረ መረብ ውቅር ውድቅ ተደርጓል',
+      'openvpn_renewal_expired': 'የOpenVPN ሰርተፍኬት ጊዜው አልፎበታል',
       'other': 'አገልግሎቱ አይገኝም',
     });
     return '$_temp0';
@@ -799,6 +800,8 @@ class AppLocalizationsAm extends AppLocalizations {
       'ipv6_unavailable': 'አገልጋዩ አሁን IPv6ን ማንቃት አይችልም። ቆይተው እንደገና ይሞክሩ።',
       'invalid_ip_families':
           'የቱነል ውቅሩ ያልተሟላ ነው ወይም ከተፈቀዱት አድራሻዎች ጋር አይዛመድም። ከመተግበሪያው እንደገና ይሞክሩ።',
+      'openvpn_renewal_expired':
+          'የOpenVPN ሰርተፍኬቱ ጊዜው አልፎበታል። ለማደስ በመተግበሪያው ውስጥ አዲስ ግንኙነት ይጀምሩ።',
       'other': 'የአገልጋይ ስህተት ተከስቷል። ቆይተው እንደገና ይሞክሩ።',
     });
     return '$_temp0';
@@ -944,6 +947,7 @@ class AppLocalizationsAm extends AppLocalizations {
       'openvpn_recovery_exhausted': 'የOpenVPN ራስ-ሰር መልሶ ማግኘት አስቀድሞ ጥቅም ላይ ውሏል',
       'openvpn_recovery_failed': 'የOpenVPN ራስ-ሰር መልሶ ማግኘት አልተሳካም',
       'openvpn_renewal_required': 'የOpenVPN ሰርተፍኬት ማደስ ያስፈልጋል',
+      'openvpn_renewal_rate_limited': 'በጣም ብዙ ሙከራዎች',
       'other': 'ያልተመደበ ቤተኛ የVPN ስህተት',
     });
     return '$_temp0';
@@ -1128,6 +1132,7 @@ class AppLocalizationsAm extends AppLocalizations {
           'Android በደህንነቱ የተጠበቀ ማከማቻ ውስጥ የWireGuard ቁልፍን መፍጠር ወይም ማንበብ አልቻለም።',
       'csr_generation_failed':
           'Android Keystore የOpenVPN P-256 CSR መፍጠር ወይም መፈረም አልቻለም።',
+      'openvpn_renewal_rate_limited': 'እባክዎ እንደገና ከመሞከርዎ በፊት ይጠብቁ።',
       'other': 'ያልተመዘገበ ቤተኛ ሂደት አልተሳካም። ከታች የሚታየውን የምርመራ ኮድ ለድጋፍ ቡድኑ ይላኩ።',
     });
     return '$_temp0';

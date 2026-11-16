@@ -787,6 +787,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'invalid_api_response': 'ဆာဗာ တုံ့ပြန်ချက် မမှန်ကန်ပါ',
       'ipv6_unavailable': 'IPv6 မရရှိနိုင်ပါ',
       'invalid_ip_families': 'ကွန်ရက် ဖွဲ့စည်းပုံ ပယ်ချခံရသည်',
+      'openvpn_renewal_expired': 'OpenVPN လက်မှတ် သက်တမ်းကုန်သွားသည်',
       'other': 'ဝန်ဆောင်မှု မရရှိနိုင်ပါ',
     });
     return '$_temp0';
@@ -857,6 +858,8 @@ class AppLocalizationsMy extends AppLocalizations {
           'ဆာဗာသည် ယခု IPv6 ကို ဖွင့်၍ မရပါ။ နောက်မှ ထပ်ကြိုးစားပါ။',
       'invalid_ip_families':
           'တန်နယ် ဖွဲ့စည်းပုံ မပြည့်စုံပါ သို့မဟုတ် ခွင့်ပြုထားသော လိပ်စာများနှင့် မကိုက်ညီပါ။ အက်ပ်မှ ထပ်မံ ကြိုးစားပါ။',
+      'openvpn_renewal_expired':
+          'OpenVPN လက်မှတ် သက်တမ်းကုန်သွားပါပြီ။ သက်တမ်းတိုးရန် အက်ပ်တွင် ချိတ်ဆက်မှုအသစ် စတင်ပါ။',
       'other': 'ဆာဗာ အမှား ဖြစ်ပွားခဲ့သည်။ နောက်မှ ထပ်ကြိုးစားပါ။',
     });
     return '$_temp0';
@@ -1010,6 +1013,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN ပြန်လည်ရယူမှု အသုံးပြုပြီးပါပြီ',
       'openvpn_recovery_failed': 'OpenVPN ပြန်လည်ရယူမှု မအောင်မြင်ပါ',
       'openvpn_renewal_required': 'OpenVPN လက်မှတ် သက်တမ်းတိုးခြင်း လိုအပ်သည်',
+      'openvpn_renewal_rate_limited': 'ကြိုးစားမှု များလွန်းသည်',
       'other': 'အမျိုးအစားခွဲခြားမထားသော အတွင်းပိုင်း VPN အမှား',
     });
     return '$_temp0';
@@ -1217,6 +1221,7 @@ class AppLocalizationsMy extends AppLocalizations {
           'Android သည် လုံခြုံသော သိုလှောင်မှုတွင် WireGuard သော့ကို ဖန်တီးခြင်း သို့မဟုတ် ဖတ်ခြင်း မပြုနိုင်ပါ။',
       'csr_generation_failed':
           'Android Keystore သည် OpenVPN P-256 CSR ကို ဖန်တီးခြင်း သို့မဟုတ် လက်မှတ်ရေးထိုးခြင်း မပြုနိုင်ပါ။',
+      'openvpn_renewal_rate_limited': 'ထပ်ကြိုးစားမီ ခဏစောင့်ပါ။',
       'other':
           'မှတ်တမ်းမတင်ထားသော အတွင်းပိုင်း လုပ်ငန်းစဉ်လမ်းကြောင်း တစ်ခု မအောင်မြင်ပါ။ အောက်တွင် ပြထားသော ပြဿနာ ရှာဖွေမှု ကုဒ်ကို ပံ့ပိုးမှု အဖွဲ့သို့ ပို့ပါ။',
     });

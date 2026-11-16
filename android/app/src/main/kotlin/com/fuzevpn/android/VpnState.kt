@@ -36,6 +36,11 @@ internal data class VpnState(
     val sessionTermination: SessionTermination? = null,
     val openVpnRevocation: com.fuzevpn.android.openvpn.OpenVpnRevocationState? = null,
     val systemProtection: Map<String, Any?> = emptyMap(),
+    /**
+     * With openvpn_renewal_rate_limited: when the API accepts the renewal again (wall clock,
+     * milliseconds), so that Flutter can say how long to wait.
+     */
+    val retryAtMillis: Long? = null,
 ) {
     val isWireGuardRecovery: Boolean get() = protocol == VpnProtocol.WIREGUARD &&
         status == VpnStatus.CONNECTING && messageCode in setOf("wireguard_waiting_network", "wireguard_recovering")
@@ -64,6 +69,7 @@ internal data class VpnState(
         put("system_protection", systemProtection)
         sessionTermination?.let { put("session_termination", it.toMap()) }
         openVpnRevocation?.let { put("openvpn_revocation", it.toMap()) }
+        retryAtMillis?.takeIf { status == VpnStatus.ERROR && it > 0 }?.let { put("retry_at", it) }
     }
 }
 

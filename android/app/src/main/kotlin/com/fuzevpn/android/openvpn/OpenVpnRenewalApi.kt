@@ -30,7 +30,8 @@ internal class OpenVpnRenewalApi(context: Context, private val baseUrl: String) 
     /**
      * One request, never repeated here: after a lost response the next
      * attempt presents the same pending CSR, which the server answers with
-     * the certificate it already issued. [isCurrent] is polled so that a
+     * the certificate it already issued (or, once that certificate has
+     * expired, with openvpn_renewal_expired). [isCurrent] is polled so that a
      * command received meanwhile never waits for the server.
      */
     suspend fun renew(
@@ -88,8 +89,19 @@ internal class OpenVpnRenewalApi(context: Context, private val baseUrl: String) 
             request.headers.forEach { (name, value) -> connection.setRequestProperty(name, value) }
             connection.outputStream.use { it.write(request.body) }
             val status = connection.responseCode
-            val body = if (status == 201) connection.inputStream.use(::readBounded) else ByteArray(0)
-            return OpenVpnRenewalContract.activation(status, connection.getHeaderField("Cache-Control"), body, deviceId)
+            val body = when (status) {
+                201 -> connection.inputStream.use(::readBounded)
+                // Only a conflict's error code is read: openvpn_renewal_expired asks for a new key.
+                409 -> connection.errorStream?.use(::readBounded) ?: ByteArray(0)
+                else -> ByteArray(0)
+            }
+            return OpenVpnRenewalContract.activation(
+                status,
+                connection.getHeaderField("Cache-Control"),
+                body,
+                deviceId,
+                connection.getHeaderField("Retry-After"),
+            )
         } finally {
             connection.disconnect()
         }

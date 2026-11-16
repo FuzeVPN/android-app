@@ -784,6 +784,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'invalid_api_response': 'தவறான சர்வர் பதில்',
       'ipv6_unavailable': 'IPv6 கிடைக்கவில்லை',
       'invalid_ip_families': 'நெட்வொர்க் உள்ளமைவு நிராகரிக்கப்பட்டது',
+      'openvpn_renewal_expired': 'OpenVPN சான்றிதழ் காலாவதியானது',
       'other': 'சேவை கிடைக்கவில்லை',
     });
     return '$_temp0';
@@ -853,6 +854,8 @@ class AppLocalizationsTa extends AppLocalizations {
           'சர்வரால் இப்போது IPv6-ஐ இயக்க முடியவில்லை. பின்னர் மீண்டும் முயற்சிக்கவும்.',
       'invalid_ip_families':
           'சுரங்கப்பாதை உள்ளமைவு முழுமையடையவில்லை அல்லது அங்கீகரிக்கப்பட்ட முகவரிகளுடன் பொருந்தவில்லை. பயன்பாட்டிலிருந்து மீண்டும் முயற்சிக்கவும்.',
+      'openvpn_renewal_expired':
+          'OpenVPN சான்றிதழ் காலாவதியாகிவிட்டது. அதைப் புதுப்பிக்கப் பயன்பாட்டில் புதிய இணைப்பைத் தொடங்கவும்.',
       'other': 'சர்வர் பிழை ஏற்பட்டது. பின்னர் மீண்டும் முயற்சிக்கவும்.',
     });
     return '$_temp0';
@@ -1012,6 +1015,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN மீட்பு ஏற்கனவே பயன்படுத்தப்பட்டது',
       'openvpn_recovery_failed': 'OpenVPN மீட்பு தோல்வியடைந்தது',
       'openvpn_renewal_required': 'OpenVPN சான்றிதழைப் புதுப்பிக்க வேண்டும்',
+      'openvpn_renewal_rate_limited': 'அளவுக்கு அதிகமான முயற்சிகள்',
       'other': 'வகைப்படுத்தப்படாத நேட்டிவ் VPN பிழை',
     });
     return '$_temp0';
@@ -1221,6 +1225,8 @@ class AppLocalizationsTa extends AppLocalizations {
           'பாதுகாப்பான சேமிப்பகத்தில் WireGuard விசையை Android-ஆல் உருவாக்கவோ படிக்கவோ முடியவில்லை.',
       'csr_generation_failed':
           'OpenVPN P-256 CSR-ஐ Android Keystore-ஆல் உருவாக்கவோ கையொப்பமிடவோ முடியவில்லை.',
+      'openvpn_renewal_rate_limited':
+          'மீண்டும் முயல்வதற்கு முன் சிறிது நேரம் காத்திருக்கவும்.',
       'other':
           'ஆவணப்படுத்தப்படாத நேட்டிவ் கிளை தோல்வியடைந்தது. கீழே காட்டப்பட்டுள்ள கண்டறிதல் குறியீட்டை ஆதரவுக் குழுவுக்கு அனுப்பவும்.',
     });

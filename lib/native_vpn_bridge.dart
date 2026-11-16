@@ -340,11 +340,13 @@ class NativeVpnBridge
     required String accountId,
     required String deviceId,
     bool renewal = false,
+    bool replacePending = false,
   }) async {
     final value = await _invoke<String>('getOrCreateOpenVpnCsr', {
       'account_id': accountId,
       'device_id': deviceId,
       'renewal': renewal,
+      if (replacePending) 'replace_pending': true,
     });
     if (value == null || value.isEmpty) {
       throw const NativeVpnException('csr_generation_failed');
@@ -372,14 +374,29 @@ class NativeVpnBridge
       _ => OpenVpnCertificatePhase.missing,
     };
     final String? notAfterValue = map['not_after'] as String?;
+    final Object? retryAfter = map['retry_after_seconds'];
     return OpenVpnCertificateStatus(
       phase: phase,
       notAfter: notAfterValue == null
           ? null
           : DateTime.tryParse(notAfterValue)?.toUtc(),
       renewalPending: map['renewal_pending'] == true,
+      retryAfterSeconds: retryAfter is int && retryAfter > 0
+          ? retryAfter.clamp(1, 86400)
+          : null,
     );
   }
+
+  @override
+  Future<void> deferOpenVpnProfileRequests({
+    required String accountId,
+    required String deviceId,
+    required int retryAfterSeconds,
+  }) => _invoke<void>('deferOpenVpnProfileRequests', {
+    'account_id': accountId,
+    'device_id': deviceId,
+    'retry_after_seconds': retryAfterSeconds.clamp(1, 86400),
+  });
 
   @override
   Future<void> connectWireGuard({
@@ -811,6 +828,7 @@ class NativeVpnBridge
     'getOrCreateWireGuardPublicKey' ||
     'getOrCreateOpenVpnCsr' ||
     'getOpenVpnCertificateStatus' ||
+    'deferOpenVpnProfileRequests' ||
     'connectWireGuard' ||
     'connectOpenVpn' ||
     'disconnect' ||

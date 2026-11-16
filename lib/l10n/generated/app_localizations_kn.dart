@@ -776,6 +776,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'invalid_api_response': 'ಸರ್ವರ್ ಪ್ರತಿಕ್ರಿಯೆ ಅಮಾನ್ಯವಾಗಿದೆ',
       'ipv6_unavailable': 'IPv6 ಲಭ್ಯವಿಲ್ಲ',
       'invalid_ip_families': 'ನೆಟ್‌ವರ್ಕ್ ಸಂರಚನೆ ತಿರಸ್ಕರಿಸಲಾಗಿದೆ',
+      'openvpn_renewal_expired': 'OpenVPN ಪ್ರಮಾಣಪತ್ರದ ಅವಧಿ ಮುಗಿದಿದೆ',
       'other': 'ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ',
     });
     return '$_temp0';
@@ -837,6 +838,8 @@ class AppLocalizationsKn extends AppLocalizations {
           'ಸರ್ವರ್‌ಗೆ ಸದ್ಯಕ್ಕೆ IPv6 ಅನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗುತ್ತಿಲ್ಲ. ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
       'invalid_ip_families':
           'ಟನಲ್ ಸಂರಚನೆ ಅಪೂರ್ಣವಾಗಿದೆ ಅಥವಾ ಅಧಿಕೃತ ವಿಳಾಸಗಳಿಗೆ ಹೊಂದಿಕೆಯಾಗುವುದಿಲ್ಲ. ಆ್ಯಪ್ ಮೂಲಕ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+      'openvpn_renewal_expired':
+          'OpenVPN ಪ್ರಮಾಣಪತ್ರದ ಅವಧಿ ಮುಗಿದಿದೆ. ಅದನ್ನು ನವೀಕರಿಸಲು ಆ್ಯಪ್‌ನಲ್ಲಿ ಹೊಸ ಸಂಪರ್ಕವನ್ನು ಪ್ರಾರಂಭಿಸಿ.',
       'other': 'ಸರ್ವರ್ ದೋಷ ಸಂಭವಿಸಿದೆ. ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
     });
     return '$_temp0';
@@ -984,6 +987,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'secure_storage_write_failed': 'ಸುರಕ್ಷಿತ ಬರೆಯುವಿಕೆ ವಿಫಲವಾಗಿದೆ',
       'key_generation_failed': 'WireGuard ಕೀ ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
       'csr_generation_failed': 'OpenVPN CSR ರಚಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
+      'openvpn_renewal_rate_limited': 'ಹಲವು ಬಾರಿ ಪ್ರಯತ್ನಿಸಲಾಗಿದೆ',
       'other': 'ವರ್ಗೀಕರಿಸದ ನೇಟಿವ್ VPN ದೋಷ',
     });
     return '$_temp0';
@@ -1188,6 +1192,8 @@ class AppLocalizationsKn extends AppLocalizations {
           'ಸುರಕ್ಷಿತ ಸಂಗ್ರಹಣೆಯಲ್ಲಿ WireGuard ಕೀಯನ್ನು ರಚಿಸಲು ಅಥವಾ ಓದಲು Android ಗೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
       'csr_generation_failed':
           'OpenVPN P-256 CSR ಅನ್ನು ರಚಿಸಲು ಅಥವಾ ಸಹಿ ಮಾಡಲು Android Keystore ಗೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
+      'openvpn_renewal_rate_limited':
+          'ಮತ್ತೆ ಪ್ರಯತ್ನಿಸುವ ಮೊದಲು ದಯವಿಟ್ಟು ಕಾಯಿರಿ.',
       'other':
           'ದಾಖಲಿಸದ ನೇಟಿವ್ ಶಾಖೆ ವಿಫಲವಾಗಿದೆ. ಕೆಳಗೆ ತೋರಿಸಿರುವ ಡಯಾಗ್ನೋಸ್ಟಿಕ್ ಕೋಡ್ ಅನ್ನು ಬೆಂಬಲ ತಂಡಕ್ಕೆ ಕಳುಹಿಸಿ.',
     });

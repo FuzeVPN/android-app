@@ -3628,7 +3628,15 @@ class _UiTunnel implements VpnTunnelGateway {
     required String accountId,
     required String deviceId,
     bool renewal = false,
+    bool replacePending = false,
   }) async => 'public-csr';
+
+  @override
+  Future<void> deferOpenVpnProfileRequests({
+    required String accountId,
+    required String deviceId,
+    required int retryAfterSeconds,
+  }) async {}
 
   @override
   Future<OpenVpnCertificateStatus> getOpenVpnCertificateStatus({

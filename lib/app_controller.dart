@@ -674,7 +674,63 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
-  Future<OpenVpnActivation> _requestOpenVpnActivation({
+  /// Sends the creation or renewal of this device's OpenVPN profile. Its
+  /// CSR may have obtained a certificate that has expired since: the API
+  /// answers 409 openvpn_renewal_expired and that CSR can never renew, so a
+  /// new key is renewed once more at once. The result says whether the
+  /// activation renews, which a creation answered that way then does.
+  Future<({OpenVpnActivation activation, bool renewal})>
+  _requestOpenVpnActivation({
+    required _IdentityOperation context,
+    required String accountId,
+    required String deviceId,
+    required String csr,
+    required bool renewal,
+    required IpActivationAttempt networkAttempt,
+  }) async {
+    try {
+      return (
+        activation: await _sendOpenVpnActivation(
+          context: context,
+          accountId: accountId,
+          deviceId: deviceId,
+          csr: csr,
+          renewal: renewal,
+          networkAttempt: networkAttempt,
+        ),
+        renewal: renewal,
+      );
+    } on ApiFailure catch (error) {
+      context.check();
+      if (error.statusCode != 409 || error.code != 'openvpn_renewal_expired') {
+        rethrow;
+      }
+    }
+    final String newKey = await _tunnel.getOrCreateOpenVpnCsr(
+      accountId: accountId,
+      deviceId: deviceId,
+      renewal: true,
+      replacePending: true,
+    );
+    context.check();
+    return (
+      activation: await _sendOpenVpnActivation(
+        context: context,
+        accountId: accountId,
+        deviceId: deviceId,
+        csr: newKey,
+        renewal: true,
+        networkAttempt: networkAttempt,
+      ),
+      renewal: true,
+    );
+  }
+
+  /// The API's 429 on an OpenVPN profile request names the seconds left in
+  /// its hour (six creations or renewals per device): native code keeps that
+  /// deadline for Flutter and for its own renewals, and nothing is sent
+  /// before it.
+  Future<OpenVpnActivation> _sendOpenVpnActivation({
     required _IdentityOperation context,
     required String accountId,
     required String deviceId,
@@ -708,6 +764,12 @@ class VpnAppController extends ChangeNotifier {
       return activation;
     } on ApiFailure catch (error) {
       context.check();
+      if (error.statusCode == 429 && error.code == 'rate_limited') {
+        if (error.retryAfterSeconds case final int seconds when seconds > 0) {
+          await _deferOpenVpnRequests(accountId, deviceId, seconds);
+        }
+        rethrow;
+      }
       if (error.statusCode != 409 || error.code != 'openvpn_profile_revoked') {
         rethrow;
       }
@@ -723,6 +785,30 @@ class VpnAppController extends ChangeNotifier {
       throw const _OpenVpnRevocationHandled();
     }
   }
+
+  /// A failed native write only loses the deadline: the API's next refusal
+  /// names the time left again.
+  Future<void> _deferOpenVpnRequests(
+    String accountId,
+    String deviceId,
+    int seconds,
+  ) async {
+    try {
+      await _tunnel.deferOpenVpnProfileRequests(
+        accountId: accountId,
+        deviceId: deviceId,
+        retryAfterSeconds: seconds,
+      );
+    } catch (_) {}
+  }
+
+  /// The API's 429 still holds this device: shown as that refusal, with the
+  /// time left, and nothing is sent.
+  static ApiException _openVpnRequestsHeld(int seconds) => ApiException(
+    statusCode: 429,
+    errorCode: 'rate_limited',
+    retryAfterSeconds: seconds,
+  );
 
   Object? _connectionOwner;
   _LocationChangeOperation? _locationChangeOperation;
@@ -2433,6 +2519,19 @@ class VpnAppController extends ChangeNotifier {
         notice = null;
         notifyListeners();
         try {
+          // Before the tunnel stops: a renewal the API would refuse changes
+          // nothing.
+          final OpenVpnCertificateStatus certificate = await _tunnel
+              .getOpenVpnCertificateStatus(
+                accountId: activeProfile.userId,
+                deviceId: deviceId,
+              );
+          operation.check();
+          networkAttempt.check();
+          context.check();
+          if (certificate.retryAfterSeconds case final int wait) {
+            throw _openVpnRequestsHeld(wait);
+          }
           await _prepareTunnelRequest(activeProfile.userId);
           operation.check();
           networkAttempt.check();
@@ -2460,14 +2559,14 @@ class VpnAppController extends ChangeNotifier {
           operation.check();
           networkAttempt.check();
           context.check();
-          final OpenVpnActivation activation = await _requestOpenVpnActivation(
+          final OpenVpnActivation activation = (await _requestOpenVpnActivation(
             context: context,
             accountId: activeProfile.userId,
             deviceId: deviceId,
             csr: csr,
             renewal: true,
             networkAttempt: networkAttempt,
-          );
+          )).activation;
           operation.check();
           networkAttempt.check();
           context.check();
@@ -3761,22 +3860,24 @@ class VpnAppController extends ChangeNotifier {
       migrationContext?.check();
       context.check();
       networkAttempt.check();
-      final bool renewal = certificateStatus.requiresRenewal;
+      if (certificateStatus.retryAfterSeconds case final int wait) {
+        throw _openVpnRequestsHeld(wait);
+      }
       final String csr = await _tunnel.getOrCreateOpenVpnCsr(
         accountId: activeProfile.userId,
         deviceId: deviceId,
-        renewal: renewal,
+        renewal: certificateStatus.requiresRenewal,
       );
       operation.check();
       networkAttempt.check();
       migrationContext?.check();
       context.check();
-      final OpenVpnActivation activation = await _requestOpenVpnActivation(
+      final (:activation, :renewal) = await _requestOpenVpnActivation(
         context: context,
         accountId: activeProfile.userId,
         deviceId: deviceId,
         csr: csr,
-        renewal: renewal,
+        renewal: certificateStatus.requiresRenewal,
         networkAttempt: networkAttempt,
       );
       operation.check();
@@ -4024,7 +4125,12 @@ class VpnAppController extends ChangeNotifier {
       return;
     }
     _shownNativeError = code;
-    notice ??= _nativeNotice(code, protocol: state.protocol, record: false);
+    notice ??= _nativeNotice(
+      code,
+      protocol: state.protocol,
+      record: false,
+      retryAt: state.retryAt,
+    );
   }
 
   void _syncTunnelMetricsTimer() {
@@ -4070,19 +4176,29 @@ class VpnAppController extends ChangeNotifier {
     }
   }
 
+  /// [retryAt] (openvpn_renewal_rate_limited) says when the API accepts the
+  /// renewal again: the message then names the time left.
   AppNotice _nativeNotice(
     String code, {
     VpnProtocol? protocol,
     bool record = true,
+    DateTime? retryAt,
   }) {
     if (record) _recordDiagnosticError(code, protocol: protocol);
     final String localizationCode = _nativeLocalizationCode(code);
+    final int milliseconds = retryAt == null
+        ? 0
+        : retryAt.difference(DateTime.now()).inMilliseconds;
+    final int? wait = milliseconds > 0
+        ? ((milliseconds + 999) ~/ 1000).clamp(1, ApiRetryAfter.maximumSeconds)
+        : null;
     return AppNotice(
       titleKey: 'notice.native.title',
-      messageKey: 'notice.native.message',
+      messageKey: wait == null ? 'notice.native.message' : 'notice.retryAfter',
       arguments: <String, Object?>{
         'code': localizationCode,
         'protocol': _protocolName(protocol),
+        if (wait != null) 'seconds': wait,
       },
       diagnosticCode: '${_diagnosticStage(code, protocol)} · $code',
     );

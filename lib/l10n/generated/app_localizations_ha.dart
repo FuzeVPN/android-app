@@ -773,6 +773,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'invalid_api_response': 'Amsar sabar ba daidai ba ce',
       'ipv6_unavailable': 'IPv6 ba ya samuwa',
       'invalid_ip_families': 'An ƙi saitin hanyar sadarwa',
+      'openvpn_renewal_expired': 'Takardar shaidar OpenVPN ta ƙare',
       'other': 'Sabis ba ya samuwa',
     });
     return '$_temp0';
@@ -840,6 +841,8 @@ class AppLocalizationsHa extends AppLocalizations {
           'Sabar ba za ta iya kunna IPv6 a yanzu ba. Ku sake gwadawa daga baya.',
       'invalid_ip_families':
           'Saitin ramin bai cika ba ko kuma bai dace da adiresoshin da aka ba da izini ba. Ku sake gwadawa daga manhajar.',
+      'openvpn_renewal_expired':
+          'Takardar shaidar OpenVPN ta ƙare. Ku fara sabon haɗi a cikin manhajar don sabunta ta.',
       'other': 'An samu matsalar sabar. Ku sake gwadawa daga baya.',
     });
     return '$_temp0';
@@ -1001,6 +1004,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'openvpn_recovery_failed': 'Dawo da OpenVPN ya gaza',
       'openvpn_renewal_required':
           'Ana buƙatar sabunta takardar shaidar OpenVPN',
+      'openvpn_renewal_rate_limited': 'An yi yunƙurori da yawa',
       'other': 'Kuskuren VPN na asali wanda ba a rarraba ba',
     });
     return '$_temp0';
@@ -1204,6 +1208,8 @@ class AppLocalizationsHa extends AppLocalizations {
           'Android ba ta iya ƙirƙira ko karanta maɓallin WireGuard a cikin ma’ajiya mai tsaro ba.',
       'csr_generation_failed':
           'Android Keystore ba ta iya ƙirƙira ko sanya hannu kan CSR na OpenVPN P-256 ba.',
+      'openvpn_renewal_rate_limited':
+          'Don Allah ku jira kafin ku sake gwadawa.',
       'other':
           'Wani reshe na asali wanda ba a rubuta ba ya gaza. Ku aika lambar rahoton bincike da ke ƙasa ga tallafi.',
     });

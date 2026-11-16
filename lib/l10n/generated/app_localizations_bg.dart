@@ -785,6 +785,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'invalid_api_response': 'Невалиден отговор от сървъра',
       'ipv6_unavailable': 'IPv6 е недостъпен',
       'invalid_ip_families': 'Мрежовата конфигурация е отхвърлена',
+      'openvpn_renewal_expired': 'Сертификатът за OpenVPN е изтекъл',
       'other': 'Услугата е недостъпна',
     });
     return '$_temp0';
@@ -848,6 +849,8 @@ class AppLocalizationsBg extends AppLocalizations {
           'Сървърът не може да активира IPv6 в момента. Опитайте отново по-късно.',
       'invalid_ip_families':
           'Конфигурацията на тунела е непълна или не съответства на разрешените адреси. Опитайте отново от приложението.',
+      'openvpn_renewal_expired':
+          'Сертификатът за OpenVPN е изтекъл. За да го подновите, стартирайте нова връзка в приложението.',
       'other': 'Възникна грешка в сървъра. Опитайте отново по-късно.',
     });
     return '$_temp0';
@@ -1015,6 +1018,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'openvpn_recovery_failed': 'Възстановяването на OpenVPN не успя',
       'openvpn_renewal_required':
           'Изисква се подновяване на сертификата за OpenVPN',
+      'openvpn_renewal_rate_limited': 'Твърде много опити',
       'other': 'Некласифицирана нативна VPN грешка',
     });
     return '$_temp0';
@@ -1222,6 +1226,8 @@ class AppLocalizationsBg extends AppLocalizations {
           'Android не можа да създаде или прочете ключа на WireGuard в защитеното хранилище.',
       'csr_generation_failed':
           'Android Keystore не можа да създаде или подпише P-256 CSR заявката за OpenVPN.',
+      'openvpn_renewal_rate_limited':
+          'Моля, изчакайте, преди да опитате отново.',
       'other':
           'Възникна грешка в недокументиран нативен клон на кода. Изпратете диагностичния код, показан по-долу, до поддръжката.',
     });

@@ -716,6 +716,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'invalid_api_response': '服务器响应无效',
       'ipv6_unavailable': 'IPv6 不可用',
       'invalid_ip_families': '网络配置被拒绝',
+      'openvpn_renewal_expired': 'OpenVPN 证书已过期',
       'other': '服务不可用',
     });
     return '$_temp0';
@@ -759,6 +760,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'invalid_api_response': '服务器返回了意外响应。请稍后重试。',
       'ipv6_unavailable': '服务器目前无法启用 IPv6。请稍后重试。',
       'invalid_ip_families': '隧道配置不完整，或与已授权的地址不匹配。请从应用中重试。',
+      'openvpn_renewal_expired': 'OpenVPN 证书已过期。请在应用中开始新的连接以更新证书。',
       'other': '发生服务器错误。请稍后重试。',
     });
     return '$_temp0';
@@ -904,6 +906,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN 自动恢复已使用',
       'openvpn_recovery_failed': 'OpenVPN 自动恢复失败',
       'openvpn_renewal_required': '需要更新 OpenVPN 证书',
+      'openvpn_renewal_rate_limited': '尝试次数过多',
       'other': '未分类的原生 VPN 错误',
     });
     return '$_temp0';
@@ -1017,6 +1020,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'secure_storage_write_failed': 'Android 密钥库无法加密或保存本地数据。',
       'key_generation_failed': 'Android 无法在安全存储中创建或读取 WireGuard 密钥。',
       'csr_generation_failed': 'Android 密钥库无法创建或签署 OpenVPN P-256 CSR。',
+      'openvpn_renewal_rate_limited': '请稍等后重试。',
       'other': '未记录的原生分支失败。请将下方显示的诊断代码发送给支持人员。',
     });
     return '$_temp0';
@@ -2692,6 +2696,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'invalid_api_response': '服务器响应无效',
       'ipv6_unavailable': 'IPv6 不可用',
       'invalid_ip_families': '网络配置被拒绝',
+      'openvpn_renewal_expired': 'OpenVPN 证书已过期',
       'other': '服务不可用',
     });
     return '$_temp0';
@@ -2735,6 +2740,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'invalid_api_response': '服务器返回了意外响应。请稍后重试。',
       'ipv6_unavailable': '服务器目前无法启用 IPv6。请稍后重试。',
       'invalid_ip_families': '隧道配置不完整，或与已授权的地址不匹配。请从应用中重试。',
+      'openvpn_renewal_expired': 'OpenVPN 证书已过期。请在应用中开始新的连接以更新证书。',
       'other': '发生服务器错误。请稍后重试。',
     });
     return '$_temp0';
@@ -2880,6 +2886,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'openvpn_recovery_exhausted': 'OpenVPN 自动恢复已使用',
       'openvpn_recovery_failed': 'OpenVPN 自动恢复失败',
       'openvpn_renewal_required': '需要更新 OpenVPN 证书',
+      'openvpn_renewal_rate_limited': '尝试次数过多',
       'other': '未分类的原生 VPN 错误',
     });
     return '$_temp0';
@@ -2993,6 +3000,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'secure_storage_write_failed': 'Android 密钥库无法加密或保存本地数据。',
       'key_generation_failed': 'Android 无法在安全存储中创建或读取 WireGuard 密钥。',
       'csr_generation_failed': 'Android 密钥库无法创建或签署 OpenVPN P-256 CSR。',
+      'openvpn_renewal_rate_limited': '请稍等后重试。',
       'other': '未记录的原生分支失败。请将下方显示的诊断代码发送给支持人员。',
     });
     return '$_temp0';
@@ -4670,6 +4678,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'invalid_api_response': '伺服器回應無效',
       'ipv6_unavailable': 'IPv6 無法使用',
       'invalid_ip_families': '網路設定遭拒',
+      'openvpn_renewal_expired': 'OpenVPN 憑證已過期',
       'other': '服務無法使用',
     });
     return '$_temp0';
@@ -4713,6 +4722,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'invalid_api_response': '伺服器傳回非預期的回應。請稍後再試。',
       'ipv6_unavailable': '伺服器目前無法啟用 IPv6。請稍後再試。',
       'invalid_ip_families': '通道設定不完整，或與授權地址不相符。請從應用程式再試一次。',
+      'openvpn_renewal_expired': 'OpenVPN 憑證已過期。請在應用程式中開始新的連線以更新憑證。',
       'other': '發生伺服器錯誤。請稍後再試。',
     });
     return '$_temp0';
@@ -4858,6 +4868,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'openvpn_recovery_exhausted': 'OpenVPN 自動復原已使用',
       'openvpn_recovery_failed': 'OpenVPN 自動復原失敗',
       'openvpn_renewal_required': '需要更新 OpenVPN 憑證',
+      'openvpn_renewal_rate_limited': '嘗試次數過多',
       'other': '未分類的原生 VPN 錯誤',
     });
     return '$_temp0';
@@ -4975,6 +4986,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'secure_storage_write_failed': 'Android Keystore 無法加密或儲存本機資料。',
       'key_generation_failed': 'Android 無法在安全儲存空間中建立或讀取 WireGuard 金鑰。',
       'csr_generation_failed': 'Android Keystore 無法建立或簽署 OpenVPN P-256 CSR。',
+      'openvpn_renewal_rate_limited': '請稍候再重試。',
       'other': '未記錄的原生分支失敗。請將下方顯示的診斷代碼傳送給支援人員。',
     });
     return '$_temp0';

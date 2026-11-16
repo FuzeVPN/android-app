@@ -776,6 +776,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'invalid_api_response': 'చెల్లని సర్వర్ ప్రతిస్పందన',
       'ipv6_unavailable': 'IPv6 అందుబాటులో లేదు',
       'invalid_ip_families': 'నెట్‌వర్క్ కాన్ఫిగరేషన్ తిరస్కరించబడింది',
+      'openvpn_renewal_expired': 'OpenVPN సర్టిఫికెట్ గడువు ముగిసింది',
       'other': 'సేవ అందుబాటులో లేదు',
     });
     return '$_temp0';
@@ -844,6 +845,8 @@ class AppLocalizationsTe extends AppLocalizations {
           'ప్రస్తుతం సర్వర్ IPv6ను యాక్టివేట్ చేయలేకపోతోంది. కొంత సేపటి తర్వాత మళ్లీ ప్రయత్నించండి.',
       'invalid_ip_families':
           'టన్నెల్ కాన్ఫిగరేషన్ అసంపూర్ణంగా ఉంది లేదా అనుమతించబడిన చిరునామాలతో సరిపోలడం లేదు. యాప్ నుండి మళ్లీ ప్రయత్నించండి.',
+      'openvpn_renewal_expired':
+          'OpenVPN సర్టిఫికెట్ గడువు ముగిసింది. దాన్ని పునరుద్ధరించడానికి యాప్‌లో కొత్త కనెక్షన్‌ను ప్రారంభించండి.',
       'other': 'సర్వర్ లోపం ఏర్పడింది. కొంత సేపటి తర్వాత మళ్లీ ప్రయత్నించండి.',
     });
     return '$_temp0';
@@ -997,6 +1000,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN రికవరీ ఇప్పటికే ఉపయోగించబడింది',
       'openvpn_recovery_failed': 'OpenVPN రికవరీ విఫలమైంది',
       'openvpn_renewal_required': 'OpenVPN సర్టిఫికెట్ పునరుద్ధరణ అవసరం',
+      'openvpn_renewal_rate_limited': 'చాలాసార్లు ప్రయత్నించారు',
       'other': 'వర్గీకరించని నేటివ్ VPN లోపం',
     });
     return '$_temp0';
@@ -1203,6 +1207,8 @@ class AppLocalizationsTe extends AppLocalizations {
           'Android సురక్షిత నిల్వలో WireGuard కీని సృష్టించలేకపోయింది లేదా చదవలేకపోయింది.',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSRను సృష్టించలేకపోయింది లేదా దానిపై సంతకం చేయలేకపోయింది.',
+      'openvpn_renewal_rate_limited':
+          'దయచేసి మళ్లీ ప్రయత్నించే ముందు వేచి ఉండండి.',
       'other':
           'డాక్యుమెంట్ చేయని నేటివ్ బ్రాంచ్ విఫలమైంది. దిగువ చూపిన డయాగ్నస్టిక్ కోడ్‌ను సపోర్ట్ బృందానికి పంపండి.',
     });

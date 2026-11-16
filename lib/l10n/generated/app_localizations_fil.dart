@@ -796,6 +796,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'invalid_api_response': 'Hindi wastong tugon ng server',
       'ipv6_unavailable': 'Hindi magagamit ang IPv6',
       'invalid_ip_families': 'Tinanggihan ang configuration ng network',
+      'openvpn_renewal_expired': 'Nag-expire ang certificate ng OpenVPN',
       'other': 'Hindi magagamit ang serbisyo',
     });
     return '$_temp0';
@@ -866,6 +867,8 @@ class AppLocalizationsFil extends AppLocalizations {
           'Hindi ma-activate ng server ang IPv6 sa ngayon. Subukan muli mamaya.',
       'invalid_ip_families':
           'Hindi kumpleto ang configuration ng tunnel o hindi ito tumutugma sa mga awtorisadong address. Subukan muli mula sa app.',
+      'openvpn_renewal_expired':
+          'Nag-expire na ang certificate ng OpenVPN. Magsimula ng bagong koneksyon sa app upang i-renew ito.',
       'other': 'May naganap na error sa server. Subukan muli mamaya.',
     });
     return '$_temp0';
@@ -1040,6 +1043,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'openvpn_recovery_failed': 'Nabigo ang pag-recover ng OpenVPN',
       'openvpn_renewal_required':
           'Kailangang i-renew ang certificate ng OpenVPN',
+      'openvpn_renewal_rate_limited': 'Napakaraming pagtatangka',
       'other': 'Hindi nauri na native VPN error',
     });
     return '$_temp0';
@@ -1248,6 +1252,7 @@ class AppLocalizationsFil extends AppLocalizations {
           'Hindi makagawa o makabasa ang Android ng WireGuard key sa ligtas na imbakan.',
       'csr_generation_failed':
           'Hindi makagawa o maka-sign ang Android Keystore ng OpenVPN P-256 CSR.',
+      'openvpn_renewal_rate_limited': 'Maghintay bago subukang muli.',
       'other':
           'Nabigo ang isang hindi dokumentadong native branch. Ipadala sa suporta ang diagnostic code na ipinapakita sa ibaba.',
     });

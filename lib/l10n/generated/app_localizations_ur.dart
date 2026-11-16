@@ -778,6 +778,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'invalid_api_response': 'سرور کا جواب درست نہیں ہے',
       'ipv6_unavailable': 'IPv6 دستیاب نہیں ہے',
       'invalid_ip_families': 'نیٹ ورک کی ترتیب مسترد کر دی گئی',
+      'openvpn_renewal_expired': 'OpenVPN سرٹیفکیٹ کی میعاد ختم ہو گئی',
       'other': 'سروس دستیاب نہیں ہے',
     });
     return '$_temp0';
@@ -843,6 +844,8 @@ class AppLocalizationsUr extends AppLocalizations {
           'سرور اس وقت IPv6 فعال نہیں کر سکتا۔ بعد میں دوبارہ کوشش کریں۔',
       'invalid_ip_families':
           'ٹَنل کی ترتیب نامکمل ہے یا مجاز پتوں سے مطابقت نہیں رکھتی۔ ایپ سے دوبارہ کوشش کریں۔',
+      'openvpn_renewal_expired':
+          'OpenVPN سرٹیفکیٹ کی میعاد ختم ہو گئی ہے۔ اس کی تجدید کے لیے ایپ میں نیا کنکشن شروع کریں۔',
       'other': 'سرور میں خرابی پیش آ گئی۔ بعد میں دوبارہ کوشش کریں۔',
     });
     return '$_temp0';
@@ -998,6 +1001,7 @@ class AppLocalizationsUr extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN بحالی پہلے ہی استعمال ہو چکی ہے',
       'openvpn_recovery_failed': 'OpenVPN بحالی ناکام ہو گئی',
       'openvpn_renewal_required': 'OpenVPN سرٹیفکیٹ کی تجدید ضروری ہے',
+      'openvpn_renewal_rate_limited': 'بہت زیادہ کوششیں',
       'other': 'غیر درجہ بند مقامی VPN خرابی',
     });
     return '$_temp0';
@@ -1199,6 +1203,7 @@ class AppLocalizationsUr extends AppLocalizations {
           'Android محفوظ ذخیرے میں WireGuard کلید بنا یا پڑھ نہیں سکا۔',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR بنا یا اس پر دستخط نہیں کر سکا۔',
+      'openvpn_renewal_rate_limited': 'دوبارہ کوشش کرنے سے پہلے انتظار کریں۔',
       'other':
           'ایک غیر دستاویزی مقامی شاخ ناکام ہو گئی۔ نیچے دکھایا گیا تشخیصی کوڈ معاونت کو بھیجیں۔',
     });

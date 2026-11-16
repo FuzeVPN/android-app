@@ -30,6 +30,7 @@ import kotlinx.coroutines.cancel
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
@@ -1322,6 +1323,93 @@ class AndroidVpnBridgeHostTest {
         val events = settledEvents()
         assertEquals(events.toString(), "idle/null/null", events.last())
         assertFalse(events.toString(), events.any { it.endsWith("/openvpn_renewal_required") })
+    }
+
+    // The API counts six profile creations or renewals an hour per device. Its 429 now names the
+    // seconds left in that hour (Retry-After): nothing is sent before, neither by the next
+    // recovery, tile click or restore nor by the application, which reads the same deadline.
+    @Test fun aRateLimitedRenewalSendsNothingBeforeItsRetryAfter() {
+        connectOpenVpn()
+        HarnessControl.openVpnCertificate = "expiring"
+        HarnessControl.renewalResponse = { 429 to """{"error":"rate_limited","message":"m"}""" }
+        HarnessControl.renewalRetryAfter = "2"
+        loseNetwork()
+        eventually("renewal refused") { bridge.quickTileState().messageCode == "openvpn_renewal_rate_limited" }
+        eventually("TUN hold released") { HarnessControl.openVpnService.lastOrNull() == "stop" }
+        assertEquals(1, HarnessControl.renewalRequests.size)
+        val events = settledEvents()
+        assertEquals(events.toString(), "error/openvpn/openvpn_renewal_rate_limited", events.last())
+        // Flutter says how long to wait: the deadline travels with the error.
+        val retryAt = (call("getState").await().value as Map<*, *>)["retry_at"] as? Long
+        val now = System.currentTimeMillis()
+        assertTrue("retry_at $retryAt", retryAt != null && retryAt in now..now + 2_000)
+        assertEquals("openvpn_renewal_rate_limited", registry().snapshot()!!.errorCode)
+        assertTrue("the pending CSR was dropped", HarnessControl.openVpnRenewalPending)
+        val status = call("getOpenVpnCertificateStatus", mapOf("account_id" to ACCOUNT, "device_id" to DEVICE)).await()
+        assertTrue(status.value.toString(), ((status.value as Map<*, *>)["retry_after_seconds"] as? Int) in 1..2)
+        HarnessControl.renewalResponse = { HarnessControl.renewedActivation(it) }
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>("openvpn_renewal_rate_limited"), tileCallbacks.toList())
+        assertEquals("a renewal was sent before Retry-After", 1, HarnessControl.renewalRequests.size)
+        Thread.sleep(2_100)
+        await(clickTile(), "second tile callback")
+        assertEquals(listOf("openvpn_renewal_rate_limited", null), tileCallbacks.toList())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(2, HarnessControl.renewalRequests.size)
+        val open = call("getOpenVpnCertificateStatus", mapOf("account_id" to ACCOUNT, "device_id" to DEVICE)).await()
+        assertFalse(open.value.toString(), (open.value as Map<*, *>).containsKey("retry_after_seconds"))
+    }
+
+    // A 429 the application received holds the renewals made without it, for that device only.
+    @Test fun aDeadlineTheApplicationReceivedHoldsTheRenewalsMadeWithoutIt() {
+        connectOpenVpn()
+        assertNull(call("disconnect").await().error)
+        HarnessControl.openVpnCertificate = "expired"
+        val defer = mapOf("account_id" to ACCOUNT, "device_id" to DEVICE, "retry_after_seconds" to 1_800)
+        assertNull(call("deferOpenVpnProfileRequests", defer).await().error)
+        val status = call("getOpenVpnCertificateStatus", mapOf("account_id" to ACCOUNT, "device_id" to DEVICE)).await()
+        assertTrue(status.value.toString(), ((status.value as Map<*, *>)["retry_after_seconds"] as? Int) in 1_799..1_800)
+        val other = call("getOpenVpnCertificateStatus", mapOf("account_id" to ACCOUNT, "device_id" to "device-2")).await()
+        assertFalse(other.value.toString(), (other.value as Map<*, *>).containsKey("retry_after_seconds"))
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>("openvpn_renewal_rate_limited"), tileCallbacks.toList())
+        assertEquals(0, HarnessControl.renewalRequests.size)
+        assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+        for (seconds in listOf(0, -1, "60", null)) {
+            val refused = call("deferOpenVpnProfileRequests", defer + ("retry_after_seconds" to seconds)).await()
+            assertEquals("$seconds", "invalid_arguments", refused.error)
+        }
+    }
+
+    // A renewal whose answer was lost, retried once its certificate had expired: the API no longer
+    // finds that profile and now answers 409 openvpn_renewal_expired instead of a 503 each time.
+    // That CSR can never renew again: a new key is created and renewed at once, only once.
+    @Test fun anExpiredRenewalIsRenewedAgainWithANewKey() {
+        connectOpenVpn()
+        assertNull(call("disconnect").await().error)
+        HarnessControl.openVpnCertificate = "expired"
+        HarnessControl.openVpnRenewalPending = true
+        val answers = java.util.concurrent.atomic.AtomicInteger()
+        HarnessControl.renewalResponse = {
+            if (answers.getAndIncrement() == 0) 409 to """{"error":"openvpn_renewal_expired","message":"m"}"""
+            else HarnessControl.renewedActivation(it)
+        }
+        await(clickTile(), "tile callback")
+        assertEquals(listOf<String?>(null), tileCallbacks.toList())
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(2, HarnessControl.renewalRequests.size)
+        assertEquals(com.fuzevpn.android.openvpn.OpenVpnController.RENEWAL_CSR, HarnessControl.renewalCsrs[0])
+        assertNotEquals("the expired CSR was presented again", HarnessControl.renewalCsrs[0], HarnessControl.renewalCsrs[1])
+        assertEquals(HarnessControl.RENEWED_OPENVPN_IDENTITY, registry().snapshot()!!.identityFingerprint)
+
+        // A new key that the API also finds expired is not renewed a third time.
+        assertNull(call("disconnect").await().error)
+        HarnessControl.openVpnCertificate = "expired"
+        HarnessControl.renewalRequests.clear()
+        HarnessControl.renewalResponse = { 409 to """{"error":"openvpn_renewal_expired","message":"m"}""" }
+        await(clickTile(), "second tile callback")
+        assertEquals(listOf(null, "openvpn_renewal_required"), tileCallbacks.toList())
+        assertEquals(2, HarnessControl.renewalRequests.size)
     }
 
     @Test fun wireGuardSessionNeverTriggersOpenVpnLoss() {

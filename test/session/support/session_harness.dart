@@ -526,6 +526,7 @@ class SessionTunnel extends Fake implements VpnTunnelGateway {
     required String accountId,
     required String deviceId,
     bool renewal = false,
+    bool replacePending = false,
   }) async {
     if (openVpnRetained) {
       throw const NativeVpnException('openvpn_identity_in_use');

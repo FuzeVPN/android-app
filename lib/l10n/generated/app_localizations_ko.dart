@@ -743,6 +743,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'invalid_api_response': '잘못된 서버 응답',
       'ipv6_unavailable': 'IPv6을 사용할 수 없음',
       'invalid_ip_families': '네트워크 구성 거부됨',
+      'openvpn_renewal_expired': 'OpenVPN 인증서 만료됨',
       'other': '서비스를 사용할 수 없음',
     });
     return '$_temp0';
@@ -788,6 +789,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'invalid_api_response': '서버에서 예상치 못한 응답을 반환했습니다. 나중에 다시 시도하세요.',
       'ipv6_unavailable': '현재 서버에서 IPv6을 활성화할 수 없습니다. 나중에 다시 시도하세요.',
       'invalid_ip_families': '터널 구성이 완전하지 않거나 승인된 주소와 일치하지 않습니다. 앱에서 다시 시도하세요.',
+      'openvpn_renewal_expired': 'OpenVPN 인증서가 만료되었습니다. 갱신하려면 앱에서 새 연결을 시작하세요.',
       'other': '서버 오류가 발생했습니다. 나중에 다시 시도하세요.',
     });
     return '$_temp0';
@@ -933,6 +935,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN 복구 이미 사용됨',
       'openvpn_recovery_failed': 'OpenVPN 복구 실패',
       'openvpn_renewal_required': 'OpenVPN 인증서 갱신 필요',
+      'openvpn_renewal_rate_limited': '시도 횟수 초과',
       'other': '분류되지 않은 네이티브 VPN 오류',
     });
     return '$_temp0';
@@ -1096,6 +1099,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'key_generation_failed': 'Android에서 보안 저장소의 WireGuard 키를 만들거나 읽지 못했습니다.',
       'csr_generation_failed':
           'Android Keystore에서 OpenVPN P-256 CSR을 만들거나 서명하지 못했습니다.',
+      'openvpn_renewal_rate_limited': '잠시 기다린 후 다시 시도하세요.',
       'other': '문서화되지 않은 네이티브 분기에서 오류가 발생했습니다. 아래에 표시된 진단 코드를 지원팀에 보내세요.',
     });
     return '$_temp0';

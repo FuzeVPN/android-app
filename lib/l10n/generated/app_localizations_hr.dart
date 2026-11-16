@@ -777,6 +777,7 @@ class AppLocalizationsHr extends AppLocalizations {
       'invalid_api_response': 'Nevažeći odgovor poslužitelja',
       'ipv6_unavailable': 'IPv6 nije dostupan',
       'invalid_ip_families': 'Mrežna konfiguracija odbijena',
+      'openvpn_renewal_expired': 'OpenVPN certifikat je istekao',
       'other': 'Usluga nije dostupna',
     });
     return '$_temp0';
@@ -839,6 +840,8 @@ class AppLocalizationsHr extends AppLocalizations {
           'Poslužitelj trenutačno ne može aktivirati IPv6. Pokušajte ponovo kasnije.',
       'invalid_ip_families':
           'Konfiguracija tunela je nepotpuna ili ne odgovara odobrenim adresama. Pokušajte ponovo iz aplikacije.',
+      'openvpn_renewal_expired':
+          'OpenVPN certifikat je istekao. Pokrenite novu vezu u aplikaciji da biste ga obnovili.',
       'other': 'Došlo je do pogreške poslužitelja. Pokušajte ponovo kasnije.',
     });
     return '$_temp0';
@@ -994,6 +997,7 @@ class AppLocalizationsHr extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Oporavak OpenVPN-a je već iskorišten',
       'openvpn_recovery_failed': 'Oporavak OpenVPN-a nije uspio',
       'openvpn_renewal_required': 'Potrebno je obnoviti OpenVPN certifikat',
+      'openvpn_renewal_rate_limited': 'Previše pokušaja',
       'other': 'Nerazvrstana izvorna VPN pogreška',
     });
     return '$_temp0';
@@ -1201,6 +1205,7 @@ class AppLocalizationsHr extends AppLocalizations {
           'Android nije mogao stvoriti ili pročitati WireGuard ključ u sigurnoj pohrani.',
       'csr_generation_failed':
           'Android Keystore nije mogao stvoriti ili potpisati OpenVPN P-256 CSR.',
+      'openvpn_renewal_rate_limited': 'Pričekajte prije novog pokušaja.',
       'other':
           'Nedokumentirana izvorna grana nije uspjela. Pošaljite dijagnostički kôd prikazan u nastavku podršci.',
     });

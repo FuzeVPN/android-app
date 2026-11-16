@@ -772,6 +772,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'invalid_api_response': 'Сервердің жауабы жарамсыз',
       'ipv6_unavailable': 'IPv6 қолжетімсіз',
       'invalid_ip_families': 'Желі конфигурациясы қабылданбады',
+      'openvpn_renewal_expired': 'OpenVPN сертификатының мерзімі аяқталды',
       'other': 'Қызмет қолжетімсіз',
     });
     return '$_temp0';
@@ -839,6 +840,8 @@ class AppLocalizationsKk extends AppLocalizations {
           'Сервер қазір IPv6 протоколын белсендіре алмайды. Кейінірек қайталап көріңіз.',
       'invalid_ip_families':
           'Туннель конфигурациясы толық емес немесе рұқсат етілген мекенжайларға сәйкес келмейді. Қолданбадан қайталап көріңіз.',
+      'openvpn_renewal_expired':
+          'OpenVPN сертификатының мерзімі аяқталды. Оны жаңарту үшін қолданбада жаңа қосылымды бастаңыз.',
       'other': 'Сервер қатесі орын алды. Кейінірек қайталап көріңіз.',
     });
     return '$_temp0';
@@ -994,6 +997,7 @@ class AppLocalizationsKk extends AppLocalizations {
           'OpenVPN қалпына келтіру қазірдің өзінде пайдаланылды',
       'openvpn_recovery_failed': 'OpenVPN қалпына келтіру сәтсіз аяқталды',
       'openvpn_renewal_required': 'OpenVPN сертификатын жаңарту қажет',
+      'openvpn_renewal_rate_limited': 'Тым көп әрекет жасалды',
       'other': 'Жіктелмеген VPN қатесі',
     });
     return '$_temp0';
@@ -1198,6 +1202,7 @@ class AppLocalizationsKk extends AppLocalizations {
           'Android қауіпсіз сақтауда WireGuard кілтін жасай немесе оқи алмады.',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR жасай немесе қол қоя алмады.',
+      'openvpn_renewal_rate_limited': 'Қайтадан әрекет жасамас бұрын күтіңіз.',
       'other':
           'Құжатталмаған жергілікті бөлім сәтсіз аяқталды. Төменде көрсетілген диагностика кодын қолдау қызметіне жіберіңіз.',
     });

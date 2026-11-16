@@ -772,6 +772,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'invalid_api_response': 'ການຕອບກັບຂອງເຊີບເວີບໍ່ຖືກຕ້ອງ',
       'ipv6_unavailable': 'IPv6 ບໍ່ພ້ອມໃຊ້ງານ',
       'invalid_ip_families': 'ການຕັ້ງຄ່າເຄືອຂ່າຍຖືກປະຕິເສດ',
+      'openvpn_renewal_expired': 'ໃບຮັບຮອງ OpenVPN ໝົດອາຍຸແລ້ວ',
       'other': 'ບໍລິການບໍ່ພ້ອມໃຊ້ງານ',
     });
     return '$_temp0';
@@ -831,6 +832,8 @@ class AppLocalizationsLo extends AppLocalizations {
           'ຕອນນີ້ເຊີບເວີເປີດໃຊ້ IPv6 ບໍ່ໄດ້. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.',
       'invalid_ip_families':
           'ການຕັ້ງຄ່າອຸໂມງບໍ່ສົມບູນ ຫຼື ບໍ່ກົງກັບທີ່ຢູ່ທີ່ໄດ້ຮັບອະນຸຍາດ. ກະລຸນາລອງໃໝ່ຈາກແອັບ.',
+      'openvpn_renewal_expired':
+          'ໃບຮັບຮອງ OpenVPN ໝົດອາຍຸແລ້ວ. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ໃນແອັບເພື່ອຕໍ່ອາຍຸ.',
       'other': 'ເກີດຂໍ້ຜິດພາດຂອງເຊີບເວີ. ກະລຸນາລອງໃໝ່ໃນພາຍຫຼັງ.',
     });
     return '$_temp0';
@@ -976,6 +979,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'openvpn_recovery_exhausted': 'ການກູ້ຄືນ OpenVPN ຖືກໃຊ້ໄປແລ້ວ',
       'openvpn_recovery_failed': 'ການກູ້ຄືນ OpenVPN ລົ້ມເຫຼວ',
       'openvpn_renewal_required': 'ຕ້ອງຕໍ່ອາຍຸໃບຮັບຮອງ OpenVPN',
+      'openvpn_renewal_rate_limited': 'ພະຍາຍາມຫຼາຍເກີນໄປ',
       'other': 'ຂໍ້ຜິດພາດ VPN ເນທີຟທີ່ບໍ່ໄດ້ຈັດປະເພດ',
     });
     return '$_temp0';
@@ -1176,6 +1180,7 @@ class AppLocalizationsLo extends AppLocalizations {
           'Android ບໍ່ສາມາດສ້າງ ຫຼື ອ່ານກະແຈ WireGuard ໃນບ່ອນເກັບຂໍ້ມູນທີ່ປອດໄພໄດ້.',
       'csr_generation_failed':
           'Android Keystore ບໍ່ສາມາດສ້າງ ຫຼື ເຊັນ CSR P-256 ຂອງ OpenVPN ໄດ້.',
+      'openvpn_renewal_rate_limited': 'ກະລຸນາລໍຖ້າກ່ອນລອງໃໝ່.',
       'other':
           'ເສັ້ນທາງໂຄດເນທີຟທີ່ບໍ່ມີໃນເອກະສານລົ້ມເຫຼວ. ກະລຸນາສົ່ງລະຫັດວິນິດໄສທີ່ສະແດງດ້ານລຸ່ມໃຫ້ຝ່າຍສະໜັບສະໜູນ.',
     });

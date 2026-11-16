@@ -786,6 +786,7 @@ class AppLocalizationsRw extends AppLocalizations {
       'invalid_api_response': 'Igisubizo cya seriveri ntikemewe',
       'ipv6_unavailable': 'IPv6 ntiboneka',
       'invalid_ip_families': 'Igenamiterere ry’urusobe ryanzwe',
+      'openvpn_renewal_expired': 'Icyemezo cya OpenVPN cyarangiye',
       'other': 'Serivisi ntiboneka',
     });
     return '$_temp0';
@@ -855,6 +856,8 @@ class AppLocalizationsRw extends AppLocalizations {
           'Seriveri ntishobora gukoresha IPv6 ubu. Mwongere mugerageze nyuma.',
       'invalid_ip_families':
           'Igenamiterere ry’umuyoboro ntiryuzuye cyangwa ntirihuza n’aderesi zemewe. Mwongere mugerageze muri porogaramu.',
+      'openvpn_renewal_expired':
+          'Icyemezo cya OpenVPN cyarangiye. Mutangire ihuza rishya muri porogaramu kugira ngo kivugururwe.',
       'other': 'Habaye ikosa rya seriveri. Mwongere mugerageze nyuma.',
     });
     return '$_temp0';
@@ -1017,6 +1020,7 @@ class AppLocalizationsRw extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Kugarura OpenVPN byamaze gukoreshwa',
       'openvpn_recovery_failed': 'Kugarura OpenVPN ntibyashobotse',
       'openvpn_renewal_required': 'Kuvugurura icyemezo cya OpenVPN birakenewe',
+      'openvpn_renewal_rate_limited': 'Mwagerageje inshuro nyinshi',
       'other': 'Ikosa kavukire rya VPN ritashyizwe mu byiciro',
     });
     return '$_temp0';
@@ -1222,6 +1226,7 @@ class AppLocalizationsRw extends AppLocalizations {
           'Android ntiyashoboye gukora cyangwa gusoma urufunguzo rwa WireGuard mu bubiko butekanye.',
       'csr_generation_failed':
           'Android Keystore ntiyashoboye gukora cyangwa gusinya CSR ya OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Mutegereze mbere yo kongera kugerageza.',
       'other':
           'Igice kavukire kitari cyanditswe ntikigenze neza. Mwohereze ku bufasha kode y’isuzuma iri hepfo.',
     });

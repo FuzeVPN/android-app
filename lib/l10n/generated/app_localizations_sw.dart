@@ -783,6 +783,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'invalid_api_response': 'Jibu la seva si sahihi',
       'ipv6_unavailable': 'IPv6 haipatikani',
       'invalid_ip_families': 'Usanidi wa mtandao umekataliwa',
+      'openvpn_renewal_expired': 'Cheti cha OpenVPN kimeisha muda',
       'other': 'Huduma haipatikani',
     });
     return '$_temp0';
@@ -846,6 +847,8 @@ class AppLocalizationsSw extends AppLocalizations {
           'Seva haiwezi kuwasha IPv6 kwa sasa. Jaribu tena baadaye.',
       'invalid_ip_families':
           'Usanidi wa handaki haujakamilika au hauendani na anwani zilizoidhinishwa. Jaribu tena kutoka kwenye programu.',
+      'openvpn_renewal_expired':
+          'Cheti cha OpenVPN kimeisha muda. Anzisha muunganisho mpya kwenye programu ili kukifanya upya.',
       'other': 'Hitilafu ya seva imetokea. Jaribu tena baadaye.',
     });
     return '$_temp0';
@@ -1007,6 +1010,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Urejeshaji wa OpenVPN umeshatumika',
       'openvpn_recovery_failed': 'Urejeshaji wa OpenVPN umeshindwa',
       'openvpn_renewal_required': 'Cheti cha OpenVPN kinahitaji kufanywa upya',
+      'openvpn_renewal_rate_limited': 'Majaribio mengi mno',
       'other': 'Hitilafu asilia ya VPN isiyoainishwa',
     });
     return '$_temp0';
@@ -1213,6 +1217,8 @@ class AppLocalizationsSw extends AppLocalizations {
           'Android haikuweza kuunda au kusoma ufunguo wa WireGuard kwenye hifadhi salama.',
       'csr_generation_failed':
           'Android Keystore haikuweza kuunda au kutia saini CSR ya OpenVPN P-256.',
+      'openvpn_renewal_rate_limited':
+          'Tafadhali subiri kabla ya kujaribu tena.',
       'other':
           'Hitilafu isiyoandikiwa nyaraka imetokea kwenye sehemu asilia. Tuma msimbo wa uchunguzi ulioonyeshwa hapa chini kwa usaidizi.',
     });

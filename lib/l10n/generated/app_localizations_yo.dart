@@ -772,6 +772,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'invalid_api_response': 'Ìdáhùn olùpín kò tọ̀nà',
       'ipv6_unavailable': 'IPv6 kò sí',
       'invalid_ip_families': 'A kọ̀ ìṣètò nẹ́tíwọ́ọ̀kì',
+      'openvpn_renewal_expired': 'Ìwé-ẹ̀rí OpenVPN ti parí',
       'other': 'Iṣẹ́ kò sí',
     });
     return '$_temp0';
@@ -838,6 +839,8 @@ class AppLocalizationsYo extends AppLocalizations {
           'Olùpín kò lè mú IPv6 ṣiṣẹ́ lásìkò yìí. Ẹ tún gbìyànjú lẹ́yìn ìgbà díẹ̀.',
       'invalid_ip_families':
           'Ìṣètò ọ̀nà ìsopọ̀ ààbò kò pé, tàbí kò bá àwọn àdírẹ́sì tí a fọwọ́sí mu. Ẹ tún gbìyànjú láti inú ohun èlò náà.',
+      'openvpn_renewal_expired':
+          'Ìwé-ẹ̀rí OpenVPN ti parí. Ẹ bẹ̀rẹ̀ àsopọ̀ tuntun nínú ohun èlò náà láti sọ ọ́ di tuntun.',
       'other': 'Àṣìṣe kan wáyé lórí olùpín. Ẹ tún gbìyànjú lẹ́yìn ìgbà díẹ̀.',
     });
     return '$_temp0';
@@ -981,6 +984,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'secure_storage_write_failed': 'Kíkọ sí ibi ìpamọ́ ààbò kùnà',
       'key_generation_failed': 'A kò lè ṣẹ̀dá kọ́kọ́rọ́ WireGuard',
       'csr_generation_failed': 'A kò lè ṣẹ̀dá CSR OpenVPN',
+      'openvpn_renewal_rate_limited': 'Ìgbìyànjú pọ̀ jù',
       'other': 'Àṣìṣe VPN ti ẹ̀rọ tí a kò tíì pín sí ẹ̀ka',
     });
     return '$_temp0';
@@ -1180,6 +1184,8 @@ class AppLocalizationsYo extends AppLocalizations {
           'Android kò lè ṣẹ̀dá tàbí kà kọ́kọ́rọ́ WireGuard nínú ibi ìpamọ́ aláàbò.',
       'csr_generation_failed':
           'Android Keystore kò lè ṣẹ̀dá tàbí buwọ́lù CSR P-256 OpenVPN.',
+      'openvpn_renewal_rate_limited':
+          'Ẹ jọ̀wọ́ dúró díẹ̀ kí ẹ tó tún gbìyànjú.',
       'other':
           'Ẹ̀ka ẹ̀rọ kan tí a kò kọ sílẹ̀ kùnà. Ẹ fi kóòdù àyẹ̀wò tí a fihàn nísàlẹ̀ ránṣẹ́ sí ẹgbẹ́ atìlẹ́yìn.',
     });

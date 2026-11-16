@@ -787,6 +787,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'invalid_api_response': 'Përgjigje e pavlefshme nga serveri',
       'ipv6_unavailable': 'IPv6 nuk disponohet',
       'invalid_ip_families': 'Konfigurimi i rrjetit u refuzua',
+      'openvpn_renewal_expired': 'Certifikata OpenVPN ka skaduar',
       'other': 'Shërbimi nuk disponohet',
     });
     return '$_temp0';
@@ -858,6 +859,8 @@ class AppLocalizationsSq extends AppLocalizations {
           'Serveri nuk mund ta aktivizojë IPv6 për momentin. Provoni përsëri më vonë.',
       'invalid_ip_families':
           'Konfigurimi i tunelit është i paplotë ose nuk përputhet me adresat e autorizuara. Provoni përsëri nga aplikacioni.',
+      'openvpn_renewal_expired':
+          'Certifikata OpenVPN ka skaduar. Nisni një lidhje të re në aplikacion për ta rinovuar.',
       'other': 'Ndodhi një gabim i serverit. Provoni përsëri më vonë.',
     });
     return '$_temp0';
@@ -1016,6 +1019,7 @@ class AppLocalizationsSq extends AppLocalizations {
           'Rikuperimi i OpenVPN është përdorur tashmë',
       'openvpn_recovery_failed': 'Rikuperimi i OpenVPN dështoi',
       'openvpn_renewal_required': 'Kërkohet rinovimi i certifikatës OpenVPN',
+      'openvpn_renewal_rate_limited': 'Shumë përpjekje',
       'other': 'Gabim nativ i paklasifikuar i VPN-së',
     });
     return '$_temp0';
@@ -1220,6 +1224,8 @@ class AppLocalizationsSq extends AppLocalizations {
           'Android nuk arriti të krijojë ose të lexojë çelësin WireGuard në ruajtjen e sigurt.',
       'csr_generation_failed':
           'Android Keystore nuk arriti të krijojë ose të nënshkruajë CSR-në P-256 të OpenVPN.',
+      'openvpn_renewal_rate_limited':
+          'Ju lutemi prisni përpara se të provoni përsëri.',
       'other':
           'Një degë native e padokumentuar dështoi. Dërgoni kodin e diagnostikimit të shfaqur më poshtë te mbështetja.',
     });

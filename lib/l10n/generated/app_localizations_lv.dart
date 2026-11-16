@@ -780,6 +780,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'invalid_api_response': 'Nederīga servera atbilde',
       'ipv6_unavailable': 'IPv6 nav pieejams',
       'invalid_ip_families': 'Tīkla konfigurācija noraidīta',
+      'openvpn_renewal_expired': 'OpenVPN sertifikāta derīgums beidzies',
       'other': 'Pakalpojums nav pieejams',
     });
     return '$_temp0';
@@ -847,6 +848,8 @@ class AppLocalizationsLv extends AppLocalizations {
           'Serveris pašlaik nevar aktivizēt IPv6. Mēģiniet vēlāk.',
       'invalid_ip_families':
           'Tuneļa konfigurācija ir nepilnīga vai neatbilst atļautajām adresēm. Mēģiniet vēlreiz no lietotnes.',
+      'openvpn_renewal_expired':
+          'OpenVPN sertifikāta derīgums ir beidzies. Lai atjaunotu sertifikātu, lietotnē sāciet jaunu savienojumu.',
       'other': 'Radās servera kļūda. Mēģiniet vēlāk.',
     });
     return '$_temp0';
@@ -998,6 +1001,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN atkopšana jau izmantota',
       'openvpn_recovery_failed': 'OpenVPN atkopšana neizdevās',
       'openvpn_renewal_required': 'Nepieciešams atjaunot OpenVPN sertifikātu',
+      'openvpn_renewal_rate_limited': 'Pārāk daudz mēģinājumu',
       'other': 'Neklasificēta natīvā VPN kļūda',
     });
     return '$_temp0';
@@ -1205,6 +1209,8 @@ class AppLocalizationsLv extends AppLocalizations {
           'Android nevarēja izveidot vai nolasīt WireGuard atslēgu drošajā krātuvē.',
       'csr_generation_failed':
           'Android Keystore nevarēja izveidot vai parakstīt OpenVPN P-256 CSR.',
+      'openvpn_renewal_rate_limited':
+          'Lūdzu, pagaidiet, pirms mēģināt vēlreiz.',
       'other':
           'Kļūda nedokumentētā natīvā koda zarā. Nosūtiet tālāk redzamo diagnostikas kodu atbalsta dienestam.',
     });

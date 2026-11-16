@@ -777,6 +777,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'invalid_api_response': 'अमान्य सर्वर प्रतिक्रिया',
       'ipv6_unavailable': 'IPv6 अनुपलब्ध है',
       'invalid_ip_families': 'नेटवर्क कॉन्फ़िगरेशन अस्वीकार किया गया',
+      'openvpn_renewal_expired': 'OpenVPN प्रमाणपत्र की अवधि समाप्त हो गई',
       'other': 'सेवा अनुपलब्ध है',
     });
     return '$_temp0';
@@ -838,6 +839,8 @@ class AppLocalizationsHi extends AppLocalizations {
           'सर्वर इस समय IPv6 सक्रिय नहीं कर सकता। बाद में फिर प्रयास करें।',
       'invalid_ip_families':
           'टनल कॉन्फ़िगरेशन अधूरा है या अधिकृत पतों से मेल नहीं खाता। ऐप से फिर प्रयास करें।',
+      'openvpn_renewal_expired':
+          'OpenVPN प्रमाणपत्र की अवधि समाप्त हो गई है। इसका नवीनीकरण करने के लिए ऐप में नया कनेक्शन शुरू करें।',
       'other': 'सर्वर में त्रुटि हुई। बाद में फिर प्रयास करें।',
     });
     return '$_temp0';
@@ -990,6 +993,7 @@ class AppLocalizationsHi extends AppLocalizations {
           'OpenVPN पुनर्प्राप्ति पहले ही उपयोग हो चुकी है',
       'openvpn_recovery_failed': 'OpenVPN पुनर्प्राप्ति विफल रही',
       'openvpn_renewal_required': 'OpenVPN प्रमाणपत्र का नवीनीकरण आवश्यक है',
+      'openvpn_renewal_rate_limited': 'बहुत अधिक प्रयास',
       'other': 'वर्गीकृत न की गई मूल VPN त्रुटि',
     });
     return '$_temp0';
@@ -1194,6 +1198,7 @@ class AppLocalizationsHi extends AppLocalizations {
           'Android सुरक्षित संग्रहण में WireGuard कुंजी बना या पढ़ नहीं सका।',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR बना या उस पर हस्ताक्षर नहीं कर सका।',
+      'openvpn_renewal_rate_limited': 'फिर प्रयास करने से पहले प्रतीक्षा करें।',
       'other':
           'एक अनिर्दिष्ट मूल शाखा विफल रही। नीचे दिखाया गया निदान कोड सहायता टीम को भेजें।',
     });

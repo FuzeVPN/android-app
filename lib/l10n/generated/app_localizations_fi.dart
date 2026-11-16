@@ -778,6 +778,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'invalid_api_response': 'Virheellinen palvelimen vastaus',
       'ipv6_unavailable': 'IPv6 ei ole käytettävissä',
       'invalid_ip_families': 'Verkkoasetukset hylättiin',
+      'openvpn_renewal_expired': 'OpenVPN-varmenne on vanhentunut',
       'other': 'Palvelu ei ole käytettävissä',
     });
     return '$_temp0';
@@ -841,6 +842,8 @@ class AppLocalizationsFi extends AppLocalizations {
           'Palvelin ei voi ottaa IPv6:ta käyttöön tällä hetkellä. Yritä myöhemmin uudelleen.',
       'invalid_ip_families':
           'Tunnelin asetukset ovat puutteelliset tai eivät vastaa valtuutettuja osoitteita. Yritä uudelleen sovelluksesta.',
+      'openvpn_renewal_expired':
+          'OpenVPN-varmenne on vanhentunut. Aloita uusi yhteys sovelluksessa, niin varmenne uusitaan.',
       'other': 'Palvelimessa tapahtui virhe. Yritä myöhemmin uudelleen.',
     });
     return '$_temp0';
@@ -1001,6 +1004,7 @@ class AppLocalizationsFi extends AppLocalizations {
           'Suojattuun tallennukseen kirjoittaminen epäonnistui',
       'key_generation_failed': 'WireGuard-avainta ei voitu luoda',
       'csr_generation_failed': 'OpenVPN-varmennepyyntöä ei voitu luoda',
+      'openvpn_renewal_rate_limited': 'Liian monta yritystä',
       'other': 'Luokittelematon natiivi VPN-virhe',
     });
     return '$_temp0';
@@ -1206,6 +1210,7 @@ class AppLocalizationsFi extends AppLocalizations {
           'Android ei voinut luoda tai lukea WireGuard-avainta suojatusta tallennustilasta.',
       'csr_generation_failed':
           'Android Keystore ei voinut luoda tai allekirjoittaa OpenVPN P-256 -varmennepyyntöä.',
+      'openvpn_renewal_rate_limited': 'Odota hetki ennen uutta yritystä.',
       'other':
           'Dokumentoimaton natiivihaara epäonnistui. Lähetä alla näkyvä diagnostiikkakoodi tukeen.',
     });

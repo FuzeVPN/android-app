@@ -354,6 +354,103 @@ void main() {
     expect(jsonEncode(calls.single.arguments), isNot(contains('profile')));
   });
 
+  // The API's 429 on an OpenVPN profile request: native code keeps the one
+  // deadline that Flutter and the native renewals both respect.
+  test('the OpenVPN request deadline crosses the channel', () async {
+    responses['getOpenVpnCertificateStatus'] = <String, Object?>{
+      'status': 'expiring',
+      'not_after': '2026-09-03T12:00:00Z',
+      'renewal_pending': true,
+      'retry_after_seconds': 1795,
+    };
+    final OpenVpnCertificateStatus held = await bridge
+        .getOpenVpnCertificateStatus(accountId: 'user-a', deviceId: 'device-a');
+    expect(held.retryAfterSeconds, 1795);
+    for (final Object? value in <Object?>[null, 0, -3, '60', 1.5]) {
+      responses['getOpenVpnCertificateStatus'] = <String, Object?>{
+        'status': 'valid',
+        'retry_after_seconds': value,
+      };
+      final OpenVpnCertificateStatus open = await bridge
+          .getOpenVpnCertificateStatus(
+            accountId: 'user-a',
+            deviceId: 'device-a',
+          );
+      expect(open.retryAfterSeconds, isNull, reason: '$value');
+    }
+    responses['getOpenVpnCertificateStatus'] = <String, Object?>{
+      'status': 'valid',
+      'retry_after_seconds': 999999,
+    };
+    expect(
+      (await bridge.getOpenVpnCertificateStatus(
+        accountId: 'user-a',
+        deviceId: 'device-a',
+      )).retryAfterSeconds,
+      86400,
+    );
+
+    calls.clear();
+    await bridge.deferOpenVpnProfileRequests(
+      accountId: 'user-a',
+      deviceId: 'device-a',
+      retryAfterSeconds: 1800,
+    );
+    expect(calls.single.method, 'deferOpenVpnProfileRequests');
+    expect(calls.single.arguments, <String, Object?>{
+      'account_id': 'user-a',
+      'device_id': 'device-a',
+      'retry_after_seconds': 1800,
+    });
+
+    calls.clear();
+    responses['getOrCreateOpenVpnCsr'] = 'new-csr';
+    await bridge.getOrCreateOpenVpnCsr(
+      accountId: 'user-a',
+      deviceId: 'device-a',
+      renewal: true,
+      replacePending: true,
+    );
+    await bridge.getOrCreateOpenVpnCsr(
+      accountId: 'user-a',
+      deviceId: 'device-a',
+      renewal: true,
+    );
+    expect(calls.map((call) => call.arguments), <Object?>[
+      <String, Object?>{
+        'account_id': 'user-a',
+        'device_id': 'device-a',
+        'renewal': true,
+        'replace_pending': true,
+      },
+      <String, Object?>{
+        'account_id': 'user-a',
+        'device_id': 'device-a',
+        'renewal': true,
+      },
+    ]);
+  });
+
+  test('a native rate refusal carries its deadline only', () {
+    final DateTime at = DateTime.utc(2026, 11, 16, 12, 30);
+    VpnRuntimeState state(String code, {String status = 'error'}) =>
+        VpnRuntimeState.fromWire(<Object?, Object?>{
+          'status': status,
+          'message_code': code,
+          'retry_at': at.millisecondsSinceEpoch,
+        });
+    expect(state('openvpn_renewal_rate_limited').retryAt?.toUtc(), at);
+    expect(state('openvpn_renewal_required').retryAt, isNull);
+    expect(
+      VpnRuntimeState.fromWire(<Object?, Object?>{
+        'status': 'error',
+        'message_code': 'openvpn_renewal_rate_limited',
+        'retry_at': 'soon',
+      }).retryAt,
+      isNull,
+    );
+  });
+
   test(
     'cleanup reports stop and erase independently and fails closed',
     () async {

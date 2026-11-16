@@ -474,6 +474,7 @@ Compléter cette matrice avec les scénarios suivants :
 | Révocation et session | Vérifier arrêt, effacement limité à l'identité concernée, perte de session et changement de compte. |
 | Renouvellement OpenVPN | Utiliser un certificat à J-7 ou expiré ; vérifier `/renew`, reprise du même CSR et conservation de l'identité active en cas d'échec API. |
 | Renouvellement OpenVPN sans l'application | Avec ce même certificat, sans ouvrir l'application : changer de réseau pendant le tunnel, cliquer la tuile, puis redémarrer avec le VPN permanent et « Bloquer les connexions sans VPN ». Vérifier que la requête `/renew` part hors du tunnel, que le tunnel revient avec le nouveau certificat et que la reprise suivante n'appelle plus l'API. Rejouer avec l'API injoignable : arrêt sur `openvpn_renewal_required`, puis renouvellement par « Se connecter » avec le même CSR. Build debug : `--dart-define=FUZEVPN_API_BASE_URL=https://…` vaut aussi pour cette requête native. |
+| Limites de l'API OpenVPN | Après six créations ou renouvellements dans l'heure, vérifier « Trop de tentatives » et « Réessayez dans X minutes » (`Retry-After`), puis qu'aucune requête ne part avant ce délai, ni par « Se connecter » ou « Renouveler », ni par la tuile. Avec un CSR en attente dont le certificat a expiré (`409 openvpn_renewal_expired`), vérifier un second envoi aussitôt, avec un autre CSR, puis la connexion. |
 | Consentement et interruptions | Refuser la permission VPN, interrompre une préparation et confirmer l'absence de boucle ou de second tunnel. |
 | Interface | Vérifier hiérarchie, recherche, favoris, confirmation, capacité refusée, soixante-dix langues, RTL et notifications. |
 | Diagnostics | Vérifier consentements séparés, export, absence de secrets et exactitude des contrôles inconnus/non exécutés. |
@@ -689,7 +690,7 @@ découvertes par les tests JVM Gradle ; leurs reçus restent séparés et
 obligatoires. L'agrégateur exige au moins les cas exécutés le 30 octobre 2026
 (`HOST_JUNIT_MINIMUMS` de `tools/validation_support.py`) : 44 tests JUnit et
 20 scénarios JavaScript pour `turnstile-bridge`, 27 tests pour
-`command-epochs` et 134 pour `bridge-host` (15 novembre 2026). Chaque plancher
+`command-epochs` et 137 pour `bridge-host` (16 novembre 2026). Chaque plancher
 JUnit est égal au
 nombre de `@Test` des sources de sa suite (contrôlé par `tools/tests`) : un
 cas ajouté doit relever le plancher dans le même changement. Aucun de ces

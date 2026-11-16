@@ -766,6 +766,7 @@ class AppLocalizationsIg extends AppLocalizations {
       'invalid_api_response': 'Nzaghachi sava ezighị ezi',
       'ipv6_unavailable': 'IPv6 adịghị dị',
       'invalid_ip_families': 'Ajụrụ nhazi netwọkụ',
+      'openvpn_renewal_expired': 'Asambodo OpenVPN agwụla oge',
       'other': 'Ọrụ adịghị dị',
     });
     return '$_temp0';
@@ -824,6 +825,8 @@ class AppLocalizationsIg extends AppLocalizations {
           'Sava enweghị ike ịgbanye IPv6 ugbu a. Nwaa ọzọ mgbe e mesịrị.',
       'invalid_ip_families':
           'Nhazi tunnel ezughị oke ma ọ bụ ọ dabaghị na adreesị e nyere ikike. Nwaa ọzọ site na ngwa a.',
+      'openvpn_renewal_expired':
+          'Asambodo OpenVPN agwụla oge. Malite njikọ ọhụrụ na ngwa ahụ iji megharịa ya.',
       'other': 'Njehie sava mere. Nwaa ọzọ mgbe e mesịrị.',
     });
     return '$_temp0';
@@ -969,6 +972,7 @@ class AppLocalizationsIg extends AppLocalizations {
       'secure_storage_write_failed': 'Ide n’ebe nchekwa e chebere dara',
       'key_generation_failed': 'Enweghị ike imepụta igodo WireGuard',
       'csr_generation_failed': 'Enweghị ike imepụta CSR OpenVPN',
+      'openvpn_renewal_rate_limited': 'Mbọ gafere oke',
       'other': 'Njehie VPN nke injin amataghị ụdị ya',
     });
     return '$_temp0';
@@ -1165,6 +1169,7 @@ class AppLocalizationsIg extends AppLocalizations {
           'Android enweghị ike imepụta ma ọ bụ ịgụ igodo WireGuard n’ime nchekwa e chebere.',
       'csr_generation_failed':
           'Android Keystore enweghị ike imepụta ma ọ bụ ibinye aka na CSR OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Biko chere tupu ị nwaa ọzọ.',
       'other':
           'Otu ngalaba injin nke enweghị akwụkwọ nkọwa dara. Zipụrụ ndị nkwado koodu nyocha nsogbu egosiri n’okpuru.',
     });

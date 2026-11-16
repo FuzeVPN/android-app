@@ -231,18 +231,44 @@ retenu pendant une reprise rejette tout paquet routé par le VPN ; Android le
 permet à l'application propriétaire du VPN, y compris avec « Bloquer les
 connexions sans VPN ». Elle n'est jamais répétée : après une réponse perdue, la
 tentative suivante présente le même CSR, auquel le serveur répond par le
-certificat déjà émis. Une commande reçue entre-temps l'abandonne aussitôt.
+certificat déjà émis. Si ce certificat a expiré depuis, le serveur ne retrouve
+plus le profil et répond `409 openvpn_renewal_expired` (avant, `503` à chaque
+fois) : le pont jette la clé en attente, en crée une nouvelle et renouvelle
+aussitôt avec son CSR, une seule fois. Une commande reçue entre-temps
+l'abandonne aussitôt.
 
-Tout refus (session, abonnement, profil révoqué, quota, serveur ou réseau
-injoignable, réponse invalide) termine comme avant ce renouvellement : arrêt
-avec `openvpn_renewal_required`, ou `network_unavailable` sans réseau physique,
-notification, reprise bloquée. L'identité active et le CSR en attente sont
+Tout refus (session, abonnement, profil révoqué, serveur ou réseau
+injoignable, réponse invalide, second `openvpn_renewal_expired`) termine comme
+avant ce renouvellement : arrêt avec `openvpn_renewal_required`, ou
+`network_unavailable` sans réseau physique, notification, reprise bloquée. Un
+`429` finit en `openvpn_renewal_rate_limited` (voir ci-dessous). L'identité
+active et le CSR en attente sont
 conservés ; une connexion lancée dans l'application renouvelle alors avec le
 traitement d'erreurs du compte. Seuls un motif fixe ou le statut HTTP sont
 journalisés, jamais le corps, l'URL ni le jeton. Après un renouvellement
 réussi, l'état de reprise et le profil de la tuile sont réécrits pour la
 nouvelle identité et le réseau de l'activation, sans rendre la reprise sur
 échec déjà consommée.
+
+Création et renouvellement sont limités par l'API à six essais par heure et
+par appareil, dans une heure fixe (UTC) ; un rejeu exact qui retrouve le
+profil enregistré n'est pas compté. Au-delà, le `429 rate_limited` donne en
+`Retry-After` les secondes jusqu'à la fin de l'heure. Le pont garde cette
+échéance pour l'appareil (`OpenVpnRequestGate`, horloge monotone, en mémoire) :
+rien n'est envoyé avant, ni par Flutter, ni par la tuile, une reprise ou la
+relance du VPN permanent. Flutter lit le délai restant dans
+`getOpenVpnCertificateStatus` (`retry_after_seconds`) avant toute création ou
+tout renouvellement, et donne au pont celui d'un `429` reçu
+(`deferOpenVpnProfileRequests`). L'app affiche alors « Trop de tentatives »
+et « Réessayez dans X minutes », sans rien envoyer ; le bouton « Renouveler »
+vérifie ce délai avant d'arrêter le tunnel. Un renouvellement natif refusé
+ainsi finit en `openvpn_renewal_rate_limited`, et l'état d'erreur publié porte
+l'échéance (`retry_at`, en millisecondes) pour le même message. L'échéance est
+perdue à la mort du processus : la requête suivante reçoit alors du serveur le
+délai restant. Un `409 openvpn_renewal_expired` reçu par Flutter, à une
+création comme à un renouvellement, est traité comme dans le pont : nouvelle
+clé (`getOrCreateOpenVpnCsr` avec `replace_pending`), un seul renouvellement
+aussitôt, puis connexion avec la nouvelle génération.
 
 Un tunnel resté connecté n'est pas interrompu pour renouveler : le serveur
 révoque l'ancien certificat à chaque renouvellement. Il l'est à sa prochaine
@@ -258,6 +284,8 @@ reconnecte en OpenVPN.
 | `403 email_verification_required` | Propose la vérification avec le délai de renvoi applicable. |
 | `device_identity_revoked`, `openvpn_profile_revoked` | Invalide l'identité concernée et exige une action explicite. |
 | `openvpn_profile_exists` | Réutilise l'état local idempotent ; ne régénère pas une clé par défaut. |
+| `409 openvpn_renewal_expired` | Le certificat obtenu par ce CSR a expiré : nouvelle clé et nouveau CSR, puis un seul renouvellement aussitôt, y compris après une création. |
+| `429 rate_limited` sur une création ou un renouvellement OpenVPN | Affiche le délai de `Retry-After` (« Réessayez dans X minutes ») ; le pont garde l'échéance de l'appareil et rien n'est envoyé avant, par l'app ou sans elle. |
 | `openvpn_operation_pending`, `location_migration_pending` | Garde une attente contrôlée et l'opération en cours, sans multiplier les activations. |
 | `location_migration_blocked`, `target_ca_mismatch` | Conserve l'état et indique l'intervention nécessaire. |
 | `location_migration_conflict` | Actualise les appareils avant un nouvel essai contrôlé. |

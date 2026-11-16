@@ -772,6 +772,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'invalid_api_response': 'پاسخ سرور نامعتبر است',
       'ipv6_unavailable': 'IPv6 در دسترس نیست',
       'invalid_ip_families': 'پیکربندی شبکه رد شد',
+      'openvpn_renewal_expired': 'گواهی OpenVPN منقضی شده است',
       'other': 'سرویس در دسترس نیست',
     });
     return '$_temp0';
@@ -831,6 +832,8 @@ class AppLocalizationsFa extends AppLocalizations {
           'سرور در حال حاضر نمی‌تواند IPv6 را فعال کند. بعداً دوباره تلاش کنید.',
       'invalid_ip_families':
           'پیکربندی تونل ناقص است یا با نشانی‌های مجاز مطابقت ندارد. از داخل برنامه دوباره تلاش کنید.',
+      'openvpn_renewal_expired':
+          'گواهی OpenVPN منقضی شده است. برای تمدید آن، اتصال جدیدی در برنامه آغاز کنید.',
       'other': 'خطایی در سرور رخ داد. بعداً دوباره تلاش کنید.',
     });
     return '$_temp0';
@@ -979,6 +982,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'openvpn_recovery_exhausted': 'بازیابی OpenVPN قبلاً استفاده شده است',
       'openvpn_recovery_failed': 'بازیابی OpenVPN ناموفق بود',
       'openvpn_renewal_required': 'تمدید گواهی OpenVPN لازم است',
+      'openvpn_renewal_rate_limited': 'تلاش‌های بیش از حد',
       'other': 'خطای طبقه‌بندی‌نشده وی‌پی‌ان محلی',
     });
     return '$_temp0';
@@ -1176,6 +1180,7 @@ class AppLocalizationsFa extends AppLocalizations {
           'Android نتوانست کلید WireGuard را در فضای امن ایجاد یا بخواند.',
       'csr_generation_failed':
           'Android Keystore نتوانست CSR مربوط به OpenVPN P-256 را ایجاد یا امضا کند.',
+      'openvpn_renewal_rate_limited': 'پیش از تلاش دوباره کمی صبر کنید.',
       'other':
           'یک شاخه محلی مستندنشده ناموفق بود. کد تشخیص نمایش‌داده‌شده در زیر را برای پشتیبانی ارسال کنید.',
     });

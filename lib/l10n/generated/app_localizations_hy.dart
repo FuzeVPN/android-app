@@ -775,6 +775,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'invalid_api_response': 'Անվավեր սերվերի պատասխան',
       'ipv6_unavailable': 'IPv6-ը հասանելի չէ',
       'invalid_ip_families': 'Ցանցի կազմաձևումը մերժվել է',
+      'openvpn_renewal_expired': 'OpenVPN-ի վկայագիրը ժամկետանց է',
       'other': 'Ծառայությունը հասանելի չէ',
     });
     return '$_temp0';
@@ -837,6 +838,8 @@ class AppLocalizationsHy extends AppLocalizations {
           'Սերվերն այս պահին չի կարող միացնել IPv6-ը։ Նորից փորձեք ավելի ուշ։',
       'invalid_ip_families':
           'Թունելի կազմաձևումը թերի է կամ չի համապատասխանում թույլատրված հասցեներին։ Նորից փորձեք հավելվածից։',
+      'openvpn_renewal_expired':
+          'OpenVPN-ի վկայագրի ժամկետն անցել է։ Այն թարմացնելու համար հավելվածում սկսեք նոր միացում։',
       'other': 'Սերվերում սխալ է տեղի ունեցել։ Նորից փորձեք ավելի ուշ։',
     });
     return '$_temp0';
@@ -993,6 +996,7 @@ class AppLocalizationsHy extends AppLocalizations {
           'OpenVPN-ի վերականգնումն արդեն օգտագործվել է',
       'openvpn_recovery_failed': 'OpenVPN-ի վերականգնումը չհաջողվեց',
       'openvpn_renewal_required': 'Պահանջվում է OpenVPN-ի վկայագրի թարմացում',
+      'openvpn_renewal_rate_limited': 'Չափազանց շատ փորձեր',
       'other': 'Չդասակարգված VPN սխալ',
     });
     return '$_temp0';
@@ -1198,6 +1202,8 @@ class AppLocalizationsHy extends AppLocalizations {
           'Android-ը չկարողացավ ստեղծել կամ կարդալ WireGuard բանալին անվտանգ պահոցում։',
       'csr_generation_failed':
           'Android Keystore-ը չկարողացավ ստեղծել կամ ստորագրել OpenVPN P-256 CSR-ը։',
+      'openvpn_renewal_rate_limited':
+          'Խնդրում ենք սպասել, նախքան նորից փորձելը։',
       'other':
           'Չփաստաթղթավորված համակարգային ճյուղում սխալ է տեղի ունեցել։ Ստորև ցուցադրված ախտորոշման կոդն ուղարկեք աջակցության ծառայությանը։',
     });

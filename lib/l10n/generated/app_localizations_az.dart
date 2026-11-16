@@ -774,6 +774,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'invalid_api_response': 'Etibarsız server cavabı',
       'ipv6_unavailable': 'IPv6 əlçatan deyil',
       'invalid_ip_families': 'Şəbəkə konfiqurasiyası rədd edildi',
+      'openvpn_renewal_expired': 'OpenVPN sertifikatının müddəti bitib',
       'other': 'Xidmət əlçatan deyil',
     });
     return '$_temp0';
@@ -841,6 +842,8 @@ class AppLocalizationsAz extends AppLocalizations {
           'Server hazırda IPv6-nı aktivləşdirə bilmir. Daha sonra yenidən cəhd edin.',
       'invalid_ip_families':
           'Tunel konfiqurasiyası natamamdır və ya icazəli ünvanlara uyğun gəlmir. Tətbiqdən yenidən cəhd edin.',
+      'openvpn_renewal_expired':
+          'OpenVPN sertifikatının müddəti bitib. Onu yeniləmək üçün tətbiqdə yeni bağlantı başladın.',
       'other': 'Server xətası baş verdi. Daha sonra yenidən cəhd edin.',
     });
     return '$_temp0';
@@ -1001,6 +1004,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'openvpn_recovery_failed': 'OpenVPN bərpası uğursuz oldu',
       'openvpn_renewal_required':
           'OpenVPN sertifikatının yenilənməsi tələb olunur',
+      'openvpn_renewal_rate_limited': 'Çox sayda cəhd',
       'other': 'Təsnif edilməmiş daxili VPN xətası',
     });
     return '$_temp0';
@@ -1209,6 +1213,8 @@ class AppLocalizationsAz extends AppLocalizations {
           'Android təhlükəsiz yaddaşda WireGuard açarını yarada və ya oxuya bilmədi.',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR sorğusunu yarada və ya imzalaya bilmədi.',
+      'openvpn_renewal_rate_limited':
+          'Yenidən cəhd etməzdən əvvəl bir az gözləyin.',
       'other':
           'Sənədləşdirilməmiş daxili kod bölməsi uğursuz oldu. Aşağıda göstərilən diaqnostika kodunu dəstək xidmətinə göndərin.',
     });

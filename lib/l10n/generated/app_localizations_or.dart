@@ -780,6 +780,7 @@ class AppLocalizationsOr extends AppLocalizations {
       'invalid_api_response': 'ଅବୈଧ ସର୍ଭର ପ୍ରତିକ୍ରିୟା',
       'ipv6_unavailable': 'IPv6 ଉପଲବ୍ଧ ନାହିଁ',
       'invalid_ip_families': 'ନେଟୱର୍କ ବିନ୍ୟାସ ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି',
+      'openvpn_renewal_expired': 'OpenVPN ସାର୍ଟିଫିକେଟ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି',
       'other': 'ସେବା ଉପଲବ୍ଧ ନାହିଁ',
     });
     return '$_temp0';
@@ -846,6 +847,8 @@ class AppLocalizationsOr extends AppLocalizations {
           'ସର୍ଭର ବର୍ତ୍ତମାନ IPv6 ସକ୍ରିୟ କରିପାରୁନାହିଁ। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
       'invalid_ip_families':
           'ଟନେଲ ବିନ୍ୟାସ ଅସମ୍ପୂର୍ଣ୍ଣ କିମ୍ବା ଅନୁମୋଦିତ ଠିକଣା ସହ ମେଳ ଖାଉନାହିଁ। ଆପ୍‌ରୁ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
+      'openvpn_renewal_expired':
+          'OpenVPN ସାର୍ଟିଫିକେଟ୍‌ର ମିଆଦ ଶେଷ ହୋଇଛି। ଏହାକୁ ନବୀକରଣ କରିବାକୁ ଆପ୍‌ରେ ଏକ ନୂଆ ସଂଯୋଗ ଆରମ୍ଭ କରନ୍ତୁ।',
       'other': 'ସର୍ଭରରେ ଏକ ତ୍ରୁଟି ଘଟିଛି। ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
     });
     return '$_temp0';
@@ -998,6 +1001,7 @@ class AppLocalizationsOr extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN ପୁନରୁଦ୍ଧାର ପୂର୍ବରୁ ବ୍ୟବହୃତ ହୋଇଛି',
       'openvpn_recovery_failed': 'OpenVPN ପୁନରୁଦ୍ଧାର ବିଫଳ ହୋଇଛି',
       'openvpn_renewal_required': 'OpenVPN ସାର୍ଟିଫିକେଟ୍ ନବୀକରଣ ଆବଶ୍ୟକ',
+      'openvpn_renewal_rate_limited': 'ବହୁତ ଥର ଚେଷ୍ଟା କରାଯାଇଛି',
       'other': 'ଅବର୍ଗୀକୃତ ନେଟିଭ୍ VPN ତ୍ରୁଟି',
     });
     return '$_temp0';
@@ -1202,6 +1206,8 @@ class AppLocalizationsOr extends AppLocalizations {
           'Android ସୁରକ୍ଷିତ ଷ୍ଟୋରେଜ୍‌ରେ WireGuard ଚାବି ସୃଷ୍ଟି କିମ୍ବା ପଢ଼ିପାରିଲା ନାହିଁ।',
       'csr_generation_failed':
           'Android Keystore OpenVPN P-256 CSR ସୃଷ୍ଟି କିମ୍ବା ସ୍ୱାକ୍ଷର କରିପାରିଲା ନାହିଁ।',
+      'openvpn_renewal_rate_limited':
+          'ପୁଣି ଚେଷ୍ଟା କରିବା ପୂର୍ବରୁ ଦୟାକରି ଅପେକ୍ଷା କରନ୍ତୁ।',
       'other':
           'ଡକ୍ୟୁମେଣ୍ଟ ହୋଇନଥିବା ଏକ ନେଟିଭ୍ ଶାଖା ବିଫଳ ହୋଇଛି। ତଳେ ଦେଖାଯାଇଥିବା ଡାଏଗ୍ନୋଷ୍ଟିକ୍ କୋଡ୍ ସହାୟତା ଦଳକୁ ପଠାନ୍ତୁ।',
     });

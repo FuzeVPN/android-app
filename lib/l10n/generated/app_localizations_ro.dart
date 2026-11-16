@@ -786,6 +786,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'invalid_api_response': 'Răspuns nevalid al serverului',
       'ipv6_unavailable': 'IPv6 indisponibil',
       'invalid_ip_families': 'Configurarea rețelei a fost respinsă',
+      'openvpn_renewal_expired': 'Certificatul OpenVPN a expirat',
       'other': 'Serviciu indisponibil',
     });
     return '$_temp0';
@@ -855,6 +856,8 @@ class AppLocalizationsRo extends AppLocalizations {
           'Serverul nu poate activa IPv6 momentan. Încearcă din nou mai târziu.',
       'invalid_ip_families':
           'Configurația tunelului este incompletă sau nu corespunde adreselor autorizate. Încearcă din nou din aplicație.',
+      'openvpn_renewal_expired':
+          'Certificatul OpenVPN a expirat. Pornește o conexiune nouă din aplicație pentru a-l reînnoi.',
       'other': 'A apărut o eroare a serverului. Încearcă din nou mai târziu.',
     });
     return '$_temp0';
@@ -1017,6 +1020,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Recuperarea OpenVPN a fost deja folosită',
       'openvpn_recovery_failed': 'Recuperarea OpenVPN a eșuat',
       'openvpn_renewal_required': 'Certificatul OpenVPN trebuie reînnoit',
+      'openvpn_renewal_rate_limited': 'Prea multe încercări',
       'other': 'Eroare VPN nativă neclasificată',
     });
     return '$_temp0';
@@ -1225,6 +1229,7 @@ class AppLocalizationsRo extends AppLocalizations {
           'Android nu a putut crea sau citi cheia WireGuard din stocarea securizată.',
       'csr_generation_failed':
           'Android Keystore nu a putut crea sau semna CSR-ul OpenVPN P-256.',
+      'openvpn_renewal_rate_limited': 'Așteaptă înainte de a încerca din nou.',
       'other':
           'O ramură nativă nedocumentată a eșuat. Trimite codul de diagnosticare afișat mai jos serviciului de asistență.',
     });

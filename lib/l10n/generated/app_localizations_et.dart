@@ -775,6 +775,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'invalid_api_response': 'Vigane serveri vastus',
       'ipv6_unavailable': 'IPv6 pole saadaval',
       'invalid_ip_families': 'Võrgukonfiguratsioon lükati tagasi',
+      'openvpn_renewal_expired': 'OpenVPN-i sertifikaat on aegunud',
       'other': 'Teenus pole saadaval',
     });
     return '$_temp0';
@@ -837,6 +838,8 @@ class AppLocalizationsEt extends AppLocalizations {
           'Server ei saa praegu IPv6 aktiveerida. Proovi hiljem uuesti.',
       'invalid_ip_families':
           'Tunneli konfiguratsioon on puudulik või ei vasta lubatud aadressidele. Proovi rakendusest uuesti.',
+      'openvpn_renewal_expired':
+          'OpenVPN-i sertifikaat on aegunud. Selle uuendamiseks loo rakenduses uus ühendus.',
       'other': 'Tekkis serveri viga. Proovi hiljem uuesti.',
     });
     return '$_temp0';
@@ -995,6 +998,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'openvpn_recovery_failed': 'OpenVPN-i taastamine ebaõnnestus',
       'openvpn_renewal_required':
           'OpenVPN-i sertifikaadi uuendamine on vajalik',
+      'openvpn_renewal_rate_limited': 'Liiga palju katseid',
       'other': 'Liigitamata natiivne VPN-i viga',
     });
     return '$_temp0';
@@ -1200,6 +1204,7 @@ class AppLocalizationsEt extends AppLocalizations {
           'Android ei saanud turvalises hoidlas WireGuardi võtit luua ega lugeda.',
       'csr_generation_failed':
           'Android Keystore ei saanud luua ega allkirjastada OpenVPN-i P-256 CSR-i.',
+      'openvpn_renewal_rate_limited': 'Palun oota enne uuesti proovimist.',
       'other':
           'Dokumenteerimata natiivne koodiharu ebaõnnestus. Saada allpool kuvatud diagnostikakood klienditoele.',
     });

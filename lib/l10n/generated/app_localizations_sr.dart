@@ -775,6 +775,7 @@ class AppLocalizationsSr extends AppLocalizations {
       'invalid_api_response': 'Неважећи одговор сервера',
       'ipv6_unavailable': 'IPv6 није доступан',
       'invalid_ip_families': 'Мрежна конфигурација је одбијена',
+      'openvpn_renewal_expired': 'OpenVPN сертификат је истекао',
       'other': 'Услуга није доступна',
     });
     return '$_temp0';
@@ -835,6 +836,8 @@ class AppLocalizationsSr extends AppLocalizations {
           'Сервер тренутно не може да активира IPv6. Покушајте поново касније.',
       'invalid_ip_families':
           'Конфигурација тунела је непотпуна или не одговара овлашћеним адресама. Покушајте поново из апликације.',
+      'openvpn_renewal_expired':
+          'OpenVPN сертификат је истекао. Покрените нову везу у апликацији да бисте га обновили.',
       'other': 'Дошло је до грешке на серверу. Покушајте поново касније.',
     });
     return '$_temp0';
@@ -989,6 +992,7 @@ class AppLocalizationsSr extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Опоравак OpenVPN-а је већ искоришћен',
       'openvpn_recovery_failed': 'Опоравак OpenVPN-а није успео',
       'openvpn_renewal_required': 'Потребно је обнављање OpenVPN сертификата',
+      'openvpn_renewal_rate_limited': 'Превише покушаја',
       'other': 'Неразврстана нативна VPN грешка',
     });
     return '$_temp0';
@@ -1193,6 +1197,7 @@ class AppLocalizationsSr extends AppLocalizations {
           'Android није могао да креира или прочита WireGuard кључ у безбедном складишту.',
       'csr_generation_failed':
           'Android Keystore није могао да креира или потпише OpenVPN P-256 CSR.',
+      'openvpn_renewal_rate_limited': 'Сачекајте пре него што покушате поново.',
       'other':
           'Недокументована нативна грана није успела. Пошаљите дијагностички код приказан испод подршци.',
     });
