@@ -130,18 +130,21 @@ class ReleaseSbomTest(unittest.TestCase):
     def test_fixture_locks_exclude_nonrelease_coordinates(self):
         self.assertNotIn("only.test", json.dumps(self.generate()["packages"]))
 
-    def test_all_74_real_runtime_coordinates_include_48_previous_omissions(self):
+    # 74 coordinates on 19/10, then 76 with Google Play review and Play Core common (19/11/2026).
+    def test_all_76_real_runtime_coordinates_include_50_previous_omissions(self):
         locked = sbom.parse_gradle_lock((ROOT / sbom.LOCK).read_text())
         runtime = {f"pkg:maven/{p['group']}/{p['artifact']}@{p['version']}" for p in locked if "releaseRuntimeClasspath" in p["configurations"]}
         old = json.loads((ROOT / "docs/SBOM.spdx.json").read_text(encoding="utf-8-sig"))
         previous = {r["referenceLocator"] for p in old["packages"] for r in p.get("externalRefs", []) if r.get("referenceType") == "purl"}
-        self.assertEqual(74, len(runtime))
+        self.assertEqual(76, len(runtime))
+        self.assertLessEqual({"pkg:maven/com.google.android.play/review@2.0.2",
+                              "pkg:maven/com.google.android.play/core-common@2.0.4"}, runtime)
         previous_modules = {p.rsplit("@", 1)[0] for p in previous if p.startswith("pkg:maven/")}
         omitted = {p for p in runtime if p.rsplit("@", 1)[0] not in previous_modules}
         wrong_version = {p for p in runtime if p not in previous and p.rsplit("@", 1)[0] in previous_modules}
-        self.assertEqual(48, len(omitted))
+        self.assertEqual(50, len(omitted))
         self.assertEqual({"pkg:maven/androidx.core/core-ktx@1.17.0", "pkg:maven/androidx.annotation/annotation@1.10.0"}, wrong_version)
-        self.assertEqual(50, len(runtime - previous))
+        self.assertEqual(52, len(runtime - previous))
         self.write(sbom.LOCK, (ROOT / sbom.LOCK).read_bytes())
         produced = {r["referenceLocator"] for p in self.generate()["packages"] for r in p.get("externalRefs", []) if r["referenceLocator"].startswith("pkg:maven/") and "releaseRuntimeClasspath" in annotation(p).get("configurations", [])}
         self.assertEqual(runtime, produced)

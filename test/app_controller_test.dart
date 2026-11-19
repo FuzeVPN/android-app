@@ -17,6 +17,7 @@ import 'package:fuzevpn_android/core/google_credentials.dart';
 import 'package:fuzevpn_android/core/guest_accounts.dart';
 import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
+import 'package:fuzevpn_android/core/review_prompt.dart';
 import 'package:fuzevpn_android/features/home/home_shell.dart';
 import 'package:fuzevpn_android/google_auth_controller.dart';
 import 'package:fuzevpn_android/l10n/app_copy.dart';
@@ -2938,6 +2939,190 @@ void main() {
       expect(h.api.startMigrationCalls, isEmpty);
     });
   });
+
+  group('Google Play review', () {
+    const VpnRuntimeState idle = VpnRuntimeState(phase: VpnRuntimePhase.idle);
+    const VpnRuntimeState connected = VpnRuntimeState(
+      phase: VpnRuntimePhase.connected,
+      protocol: VpnProtocol.wireGuard,
+    );
+    const SystemVpnProtection permanentOff = SystemVpnProtection(
+      alwaysOn: false,
+      lockdown: false,
+    );
+
+    Future<(_SignedInHarness, _ReviewTunnel)> harness() async {
+      final _ReviewTunnel tunnel = _ReviewTunnel()
+        ..systemProtection = permanentOff;
+      final _SignedInHarness h = await _signedInHarness(withTunnel: tunnel);
+      addTearDown(h.close);
+      return (h, tunnel);
+    }
+
+    // Each connection: from stopped to connected.
+    Future<void> succeed(_ReviewTunnel tunnel, int times) async {
+      for (var i = 0; i < times; i++) {
+        tunnel.emitState(idle);
+        tunnel.emitState(connected);
+        await pumpEventQueue();
+      }
+    }
+
+    Future<void> stop(_SignedInHarness h) async {
+      await h.controller.requestUserDisconnect();
+      await pumpEventQueue();
+    }
+
+    String record(int connections, int requests, Duration ago) =>
+        ReviewPromptState(
+          connections: connections,
+          requests: requests,
+          lastRequestAt: DateTime.now().toUtc().subtract(ago),
+        ).encode();
+
+    test('asks once five connections succeeded and the user stopped', () async {
+      final (h, tunnel) = await harness();
+      await succeed(tunnel, 4);
+      // A recovery of the same connection is not a new connection.
+      tunnel.emitState(
+        const VpnRuntimeState(
+          phase: VpnRuntimePhase.connecting,
+          protocol: VpnProtocol.openVpn,
+          messageCode: 'openvpn_reconnecting',
+        ),
+      );
+      tunnel.emitState(connected);
+      await pumpEventQueue();
+      await stop(h);
+      expect(tunnel.reviewRequests, 0);
+      expect(ReviewPromptState.decode(tunnel.reviewRecord).connections, 4);
+
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 1);
+      final ReviewPromptState state = ReviewPromptState.decode(
+        tunnel.reviewRecord,
+      );
+      expect(state.connections, 5);
+      expect(state.requests, 1);
+      expect(state.lastRequestAt, isNotNull);
+
+      // The next stop, right after, does not ask again.
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 1);
+    });
+
+    test('the second request waits 4 weeks, the third 3 months, then never', () async {
+      final (h, tunnel) = await harness();
+      tunnel.reviewRecord = record(5, 1, const Duration(days: 27));
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 0);
+
+      tunnel.reviewRecord = record(5, 1, const Duration(days: 29));
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 1);
+      expect(ReviewPromptState.decode(tunnel.reviewRecord).requests, 2);
+
+      tunnel.reviewRecord = record(9, 2, const Duration(days: 89));
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 1);
+
+      tunnel.reviewRecord = record(9, 2, const Duration(days: 91));
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 2);
+      expect(ReviewPromptState.decode(tunnel.reviewRecord).requests, 3);
+
+      tunnel.reviewRecord = record(9, 3, const Duration(days: 400));
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 2);
+    });
+
+    test('a stop made in Android VPN settings asks on the return, if stopped', () async {
+      final (h, tunnel) = await harness();
+      tunnel.reviewRecord = record(5, 0, Duration.zero);
+      // Android 8-9: the permanent VPN cannot be read, the stop opens settings.
+      tunnel.systemProtection = const SystemVpnProtection();
+      await succeed(tunnel, 1);
+
+      await h.controller.requestUserDisconnect();
+      expect(tunnel.openVpnSettingsCalls, 1);
+      h.controller.onAppPaused();
+      await h.controller.onAppResumed();
+      await pumpEventQueue();
+      expect(tunnel.reviewRequests, 0, reason: 'back without stopping');
+
+      await h.controller.requestUserDisconnect();
+      h.controller.onAppPaused();
+      tunnel.emitState(idle);
+      await pumpEventQueue();
+      expect(tunnel.reviewRequests, 0, reason: 'still in Android settings');
+      await h.controller.onAppResumed();
+      await pumpEventQueue();
+      expect(tunnel.reviewRequests, 1);
+    });
+
+    test('a cancelled connection or a failed stop never asks', () async {
+      final (h, tunnel) = await harness();
+      tunnel.reviewRecord = record(5, 0, Duration.zero);
+      tunnel.emitState(
+        const VpnRuntimeState(
+          phase: VpnRuntimePhase.connecting,
+          protocol: VpnProtocol.wireGuard,
+        ),
+      );
+      await pumpEventQueue();
+      await stop(h);
+      expect(tunnel.reviewRequests, 0);
+
+      await succeed(tunnel, 1);
+      tunnel.disconnectFailure = const NativeVpnException(
+        'wireguard_stop_timeout',
+      );
+      await stop(h);
+      expect(h.controller.tunnelState.phase, VpnRuntimePhase.error);
+      expect(tunnel.reviewRequests, 0);
+    });
+
+    test('a flow Play does not launch is asked for again at the next stop', () async {
+      final (h, tunnel) = await harness();
+      tunnel.reviewRecord = record(5, 0, Duration.zero);
+      tunnel.reviewLaunched = false;
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 1);
+      expect(ReviewPromptState.decode(tunnel.reviewRecord).requests, 0);
+      tunnel.reviewLaunched = true;
+      await succeed(tunnel, 1);
+      await stop(h);
+      expect(tunnel.reviewRequests, 2);
+      expect(ReviewPromptState.decode(tunnel.reviewRecord).requests, 1);
+    });
+  });
+}
+
+class _ReviewTunnel extends _FakeTunnel implements InAppReviewGateway {
+  String? reviewRecord;
+  int reviewRequests = 0;
+  bool reviewLaunched = true;
+
+  @override
+  Future<String?> readReviewPromptState() async => reviewRecord;
+
+  @override
+  Future<void> writeReviewPromptState(String value) async =>
+      reviewRecord = value;
+
+  @override
+  Future<bool> requestInAppReview() async {
+    reviewRequests += 1;
+    return reviewLaunched;
+  }
 }
 
 VpnAppController _controller({
@@ -2954,7 +3139,7 @@ VpnAppController _controller({
   migrationDelay: migrationDelay,
 );
 
-Future<_SignedInHarness> _signedInHarness() async {
+Future<_SignedInHarness> _signedInHarness({_FakeTunnel? withTunnel}) async {
   final _FakeApi api = _FakeApi()
     ..loginResult = _session('session-a')
     ..profilesByToken['session-a'] = _profile('user-a')
@@ -2962,7 +3147,7 @@ Future<_SignedInHarness> _signedInHarness() async {
     ..deviceConfiguration = _wireGuardConfiguration
     ..openVpnActivation = _openVpnActivation();
   final _FakeSessionStore store = _FakeSessionStore();
-  final _FakeTunnel tunnel = _FakeTunnel();
+  final _FakeTunnel tunnel = withTunnel ?? _FakeTunnel();
   final VpnAppController controller = _controller(
     api: api,
     store: store,

@@ -113,6 +113,37 @@ informations. Le panneau des appareils conserve son état ouvert pendant le
 défilement grâce au stockage de page. L'application et les surfaces Android suivent la même préférence
 de langue ; voir [la procédure de localisation](DEVELOPMENT.md#localisation).
 
+### Demande d'avis Google Play
+
+L'app demande l'avis de l'utilisateur avec la fenêtre officielle de Google Play
+(In-App Review API, `com.google.android.play:review`). Play seul décide de
+l'afficher et ne dit jamais ce que l'utilisateur a fait. Les règles sont dans
+`ReviewPromptState` (`lib/core/review_prompt.dart`) :
+- **Première demande** : après une déconnexion demandée par l'utilisateur
+  depuis un tunnel connecté, une fois cinq connexions réussies.
+- **Deuxième demande** : quatre semaines après la première, au même moment.
+- **Dernière demande** : trois mois (90 jours) après la deuxième.
+
+**Ce qui compte comme connexion réussie :** chaque passage à « Connecté » vu
+par l'app. Une reprise de la même connexion (OpenVPN, WireGuard, reprise
+système) ne compte pas.
+
+**Ce qui ne déclenche rien :**
+- une annulation pendant la connexion ;
+- un arrêt en erreur ;
+- un arrêt fait depuis la tuile.
+
+**Quand l'arrêt passe par les réglages VPN d'Android** (Android 8 et 9, VPN
+permanent), la demande attend le retour dans l'app, et seulement si le tunnel y
+a bien été arrêté.
+
+**Une demande ne compte que si Play a lancé son flux.** L'état (connexions,
+demandes, date de la dernière en UTC) est une préférence opaque du stockage
+natif chiffré (`fuzevpn.preference.review.prompt`), indépendante du compte. Un
+enregistrement illisible ne fait plus jamais demander. Une horloge reculée fait
+attendre la demande suivante. Rien de tout cela n'apparaît à l'écran et ne
+touche au VPN.
+
 ## Compte invité et connexion depuis Réglages
 
 L’identité invitée porte les droits et appareils sans email ni mot de passe.

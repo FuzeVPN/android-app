@@ -20,6 +20,7 @@ import 'core/ip_activation_attempt.dart';
 import 'core/models.dart';
 import 'core/play_billing.dart';
 import 'core/repositories.dart';
+import 'core/review_prompt.dart';
 import 'google_auth_controller.dart';
 import 'l10n/app_languages.dart';
 import 'native_vpn_bridge.dart';
@@ -31,6 +32,7 @@ part 'app_controller_google.dart';
 part 'app_controller_guest.dart';
 part 'app_controller_location_change.dart';
 part 'app_controller_preferences.dart';
+part 'app_controller_review.dart';
 
 class AppNotice {
   const AppNotice({
@@ -193,6 +195,10 @@ class VpnAppController extends ChangeNotifier {
   Timer? _tunnelMetricsTimer;
   bool _tunnelMetricsRefreshInFlight = false;
   bool _appInBackground = false;
+  // Google Play review (app_controller_review.dart): its record's read-change-
+  // write steps, one at a time, and a stop sent to Android's VPN settings.
+  Future<void> _reviewPromptWrites = Future<void>.value();
+  bool _reviewAfterStopInSettings = false;
   // Each tunnel sample, counters included. The metrics card listens to it, so
   // a sample that only moves counters (the 1 s poll while connected) no longer
   // rebuilds the whole app.
@@ -2111,18 +2117,23 @@ class VpnAppController extends ChangeNotifier {
     // Revoke automatic restart before even waiting for Android's settings read.
     _cancelLocationChange();
     final SessionOperation operation = _sessionOperation;
+    // Only the stop of a connected tunnel may lead to a review request.
+    final bool wasConnected = tunnelState.phase == VpnRuntimePhase.connected;
     if (supportsSystemProtectionSettings) {
       await refreshSystemProtection(notify: false);
       if (!operation.isCurrent) return;
       final SystemVpnProtection protection = systemProtection;
       if (protection.alwaysOn != false) {
+        _reviewAfterStopInSettings = wasConnected;
         await openSystemVpnSettings();
         return;
       }
       await disconnect(userRequested: true);
+      if (wasConnected) _afterUserStop();
       return;
     }
     await disconnect();
+    if (wasConnected) _afterUserStop();
   }
 
   Future<void> _prepareTunnelRequest(String accountId) =>
@@ -2191,6 +2202,7 @@ class VpnAppController extends ChangeNotifier {
     final mayResumeGuest = !isAuthenticating;
     await _reconcileTunnelState();
     if (_disposed) return;
+    _afterReturnFromVpnSettings();
     // Authentication may have started and finished while the snapshot waited.
     // That earlier resume must not revive a credential for another account.
     if (mayResumeGuest &&
@@ -4061,6 +4073,7 @@ class VpnAppController extends ChangeNotifier {
       return;
     }
     final bool countersOnly = _differsOnlyInCounters(tunnelState, state);
+    _noteTunnelForReview(tunnelState, state);
     tunnelState = state;
     _tunnelSamples.value = state;
     _syncTunnelMetricsTimer();

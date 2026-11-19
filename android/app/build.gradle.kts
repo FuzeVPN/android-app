@@ -224,6 +224,8 @@ dependencies {
     implementation("androidx.core:core-ktx:1.16.0")
     // Prepare the Play product catalog; no purchase is launched by this build.
     implementation("com.android.billingclient:billing:9.1.0")
+    // Google Play's own review card (In-App Review API), asked for by Flutter.
+    implementation("com.google.android.play:review:2.0.2")
     // Explicit button flow; consumer R8 rules are supplied by these libraries.
     implementation("androidx.credentials:credentials:1.6.0")
     implementation("androidx.credentials:credentials-play-services-auth:1.6.0")

@@ -11,6 +11,7 @@ open class Activity : Context() {
     val permissionRequests: MutableList<Int> = java.util.Collections.synchronizedList(mutableListOf())
     open fun requestPermissions(permissions: Array<String>, requestCode: Int) { permissionRequests += requestCode }
     open fun startActivityForResult(intent: Intent, requestCode: Int) { startedActivities += intent }
+    @Volatile var isFinishing = false
     companion object { const val RESULT_OK = -1 }
 }
 

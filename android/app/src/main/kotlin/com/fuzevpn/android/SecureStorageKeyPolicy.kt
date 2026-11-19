@@ -14,6 +14,8 @@ internal enum class SecureAppPreference(internal val storageKey: String) {
     FAVORITE_LOCATIONS("fuzevpn.preference.ui.favorite_locations"),
     DIAGNOSTICS_AUTOMATIC_OPT_IN("fuzevpn.preference.diagnostics.automatic_opt_in"),
     VPN_DISCLOSURE_VERSION("fuzevpn.preference.vpn.disclosure_version"),
+    // Successful connections and Google Play review requests, written by Flutter (opaque here).
+    REVIEW_PROMPT("fuzevpn.preference.review.prompt"),
 }
 
 /**

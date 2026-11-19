@@ -1327,6 +1327,18 @@ internal class AndroidVpnBridge(
             "storageWriteThemeMode" -> launchVoidResult(result) {
                 writePreference(SecureAppPreference.THEME_MODE, call.requireMap().requiredString(VALUE))
             }
+            "storageReadReviewPrompt" -> launchResult(result) {
+                readPreference(SecureAppPreference.REVIEW_PROMPT)
+            }
+            "storageWriteReviewPrompt" -> launchVoidResult(result) {
+                writePreference(SecureAppPreference.REVIEW_PROMPT, call.requireMap().requiredString(VALUE))
+            }
+            "requestInAppReview" -> {
+                // Main thread: Google Play's review flow needs the activity on screen.
+                val host = currentActivity()
+                if (host == null || host.isFinishing) result.success(false)
+                else InAppReviewLauncher.launch(host) { launched -> result.success(launched) }
+            }
             "storageReadLocale" -> launchResult(result) {
                 NativeLocalePolicy.canonicalTag(readPreference(SecureAppPreference.LOCALE))
             }

@@ -1547,6 +1547,28 @@ class AndroidVpnBridgeHostTest {
         assertNull("tombstone", registry().snapshot())
     }
 
+    // Google Play review (In-App Review API): Flutter keeps its own opaque state in one preference.
+    @Test fun reviewPromptStateRoundTripsInItsOwnPreference() {
+        assertNull(call("storageReadReviewPrompt").await().value)
+        assertNull(call("storageWriteReviewPrompt", mapOf("value" to "{\"v\":1}")).await().error)
+        assertEquals("{\"v\":1}", call("storageReadReviewPrompt").await().value)
+        assertEquals("{\"v\":1}",
+            SecureKeystoreStore.raw(SecureStorageKeyPolicy.preference(SecureAppPreference.REVIEW_PROMPT)))
+        assertEquals("invalid_arguments", call("storageWriteReviewPrompt", mapOf("value" to 1)).await().error)
+    }
+
+    // The flow needs the activity on screen; Play's answer is only « launched or not ».
+    @Test fun reviewFlowIsLaunchedOnlyFromTheActivityOnScreen() {
+        assertEquals(true, call("requestInAppReview").await().value)
+        assertEquals(1, HarnessControl.reviewLaunches)
+        HarnessControl.reviewLaunched = false
+        assertEquals(false, call("requestInAppReview").await().value)
+        assertEquals(2, HarnessControl.reviewLaunches)
+        activity.isFinishing = true
+        assertEquals(false, call("requestInAppReview").await().value)
+        assertEquals(2, HarnessControl.reviewLaunches)
+    }
+
     @Test fun revokedHostDisarmsAndTheRestartRestoresNothing() {
         armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
         bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first)

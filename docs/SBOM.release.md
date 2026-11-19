@@ -18,17 +18,23 @@ complète des composants internes Flutter, des licences ou des vulnérabilités.
 
 ## Versions et périmètres
 
-`android/gradle/dependency-locks/app-patched.lockfile` sélectionne **74
-coordonnées Maven dans `releaseRuntimeClasspath`**. L'union avec
-`releaseCompileClasspath` contient 83 coordonnées, chacune avec une identité
-comprenant sa version et la liste exacte de ses configurations. Les
-configurations de tests, debug, lint et outils ne sont pas assimilées au runtime
-release. Le verrou utilisé et son empreinte figurent dans le snapshot.
+`android/gradle/dependency-locks/app-patched.lockfile` sélectionne **76
+coordonnées Maven dans `releaseRuntimeClasspath`**. Les snapshots du 19 et du 28
+octobre en comptaient 74. Depuis le 19 novembre 2026 s'y ajoutent
+`com.google.android.play:review:2.0.2` et `com.google.android.play:core-common:2.0.4`,
+pour la demande d'avis Google Play. Les documents SPDX ci-dessus ne sont pas
+régénérés.
 
-La comparaison avec l'ancien inventaire distingue **48 modules absents** et
-**deux modules présents à une autre version** : cela fait 50 PURL de version
-exacte absents, et non 50 nouveaux modules. Les deux versions de compilation et
-de runtime sont conservées séparément :
+L'union avec `releaseCompileClasspath` contient 85 coordonnées (83 en octobre),
+chacune avec une identité comprenant sa version et la liste exacte de ses
+configurations. Les configurations de tests, debug, lint et outils ne sont pas
+assimilées au runtime release. Le verrou utilisé et son empreinte figurent dans
+le snapshot.
+
+La comparaison avec l'ancien inventaire distingue **50 modules absents** (48 en
+octobre) et **deux modules présents à une autre version** : cela fait 52 PURL de
+version exacte absents, et non 52 nouveaux modules. Les deux versions de
+compilation et de runtime sont conservées séparément :
 
 | Module | Compilation release | Runtime release |
 | --- | --- | --- |

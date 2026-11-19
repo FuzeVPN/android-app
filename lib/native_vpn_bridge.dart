@@ -136,6 +136,18 @@ abstract interface class FavoriteLocationStore {
   Future<void> writeFavoriteLocations(Set<String> locationIds);
 }
 
+/// Google Play's own review card (In-App Review API) and the state, kept in
+/// the native encrypted store, that spaces the requests (ReviewPromptState).
+/// Optional: a platform without it never asks.
+abstract interface class InAppReviewGateway {
+  Future<String?> readReviewPromptState();
+  Future<void> writeReviewPromptState(String value);
+
+  /// Whether Play launched its review flow. Play alone decides whether the
+  /// card is shown, and never says what the user did.
+  Future<bool> requestInAppReview();
+}
+
 abstract interface class DiagnosticPlatformGateway {
   Future<Map<String, Object?>> diagnosticMetadata();
 
@@ -158,7 +170,8 @@ class NativeVpnBridge
         GuestOnboardingStore,
         FavoriteLocationStore,
         DiagnosticPreferenceStore,
-        DiagnosticPlatformGateway {
+        DiagnosticPlatformGateway,
+        InAppReviewGateway {
   NativeVpnBridge({
     MethodChannel? channel,
     EventChannel? events,
@@ -726,6 +739,20 @@ class NativeVpnBridge
       _invoke<void>('storageWriteThemeMode', <String, Object>{'value': value});
 
   @override
+  Future<String?> readReviewPromptState() =>
+      _invoke<String>('storageReadReviewPrompt');
+
+  @override
+  Future<void> writeReviewPromptState(String value) => _invoke<void>(
+    'storageWriteReviewPrompt',
+    <String, Object>{'value': value},
+  );
+
+  @override
+  Future<bool> requestInAppReview() async =>
+      await _invoke<bool>('requestInAppReview') ?? false;
+
+  @override
   Future<String?> readStoredLocale() => _invoke<String>('storageReadLocale');
 
   @override
@@ -863,6 +890,9 @@ class NativeVpnBridge
     'storageClearLocationMigration' ||
     'storageReadThemeMode' ||
     'storageWriteThemeMode' ||
+    'storageReadReviewPrompt' ||
+    'storageWriteReviewPrompt' ||
+    'requestInAppReview' ||
     'storageReadLocale' ||
     'storageWriteLocale' ||
     'storageReadProtocol' ||

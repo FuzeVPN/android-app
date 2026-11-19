@@ -125,6 +125,9 @@ internal object HarnessControl {
     @Volatile var hostStarts = 0
     /** SharedVpnHost.start throws this code, as a refused foreground start would. */
     @Volatile var hostStartFailure: String? = null
+    /** Google Play review flows launched, and whether the next one reports launched. */
+    @Volatile var reviewLaunches = 0
+    @Volatile var reviewLaunched = true
 
     fun reset() {
         notifications.clear(); locales.clear(); purges.clear()
@@ -143,5 +146,6 @@ internal object HarnessControl {
         renewalRetryAfter = null
         sessionRequests.clear(); sessionPhysical.clear(); sessionResponse = ::defaultSessionResponse; sessionHold = false
         sentinel.clear(); hostStarts = 0; hostStartFailure = null
+        reviewLaunches = 0; reviewLaunched = true
     }
 }
