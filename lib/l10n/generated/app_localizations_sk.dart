@@ -1496,6 +1496,19 @@ class AppLocalizationsSk extends AppLocalizations {
   String get locations_filterFavorites => 'Obľúbené';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P povolené';
+
+  @override
+  String get locations_noP2p => 'Zatiaľ žiadne lokality s P2P';
+
+  @override
+  String get locations_noP2pHint =>
+      'P2P momentálne nie je povolené na žiadnom serveri.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

@@ -1505,6 +1505,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get locations_filterFavorites => 'Favoritos';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P permitido';
+
+  @override
+  String get locations_noP2p => 'Aún no hay ubicaciones P2P';
+
+  @override
+  String get locations_noP2pHint =>
+      'El P2P no está permitido en ningún servidor por ahora.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

@@ -1492,6 +1492,18 @@ class AppLocalizationsEt extends AppLocalizations {
   String get locations_filterFavorites => 'Lemmikud';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P lubatud';
+
+  @override
+  String get locations_noP2p => 'P2P-asukohti veel pole';
+
+  @override
+  String get locations_noP2pHint => 'P2P pole praegu üheski serveris lubatud.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

@@ -1455,6 +1455,18 @@ class AppLocalizationsIg extends AppLocalizations {
   String get locations_filterFavorites => 'Ndị kacha amasị';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'Enyere ikike P2P';
+
+  @override
+  String get locations_noP2p => 'Enweghị ebe P2P ọ bụla ugbu a';
+
+  @override
+  String get locations_noP2pHint => 'Ekweghị P2P na sava ọ bụla ugbu a.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

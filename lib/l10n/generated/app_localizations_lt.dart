@@ -1486,6 +1486,19 @@ class AppLocalizationsLt extends AppLocalizations {
   String get locations_filterFavorites => 'Mėgstamiausios';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P leidžiama';
+
+  @override
+  String get locations_noP2p => 'P2P vietų dar nėra';
+
+  @override
+  String get locations_noP2pHint =>
+      'Šiuo metu P2P neleidžiamas jokiame serveryje.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

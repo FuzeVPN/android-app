@@ -1285,6 +1285,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get locations_filterFavorites => '收藏';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => '允许 P2P';
+
+  @override
+  String get locations_noP2p => '暂无支持 P2P 的位置';
+
+  @override
+  String get locations_noP2pHint => '目前没有服务器允许 P2P。';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -3263,6 +3275,18 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get locations_filterFavorites => '收藏';
+
+  @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => '允许 P2P';
+
+  @override
+  String get locations_noP2p => '暂无支持 P2P 的位置';
+
+  @override
+  String get locations_noP2pHint => '目前没有服务器允许 P2P。';
 
   @override
   String locations_results(int count) {
@@ -5250,6 +5274,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get locations_filterFavorites => '我的最愛';
+
+  @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => '允許 P2P';
+
+  @override
+  String get locations_noP2p => '目前沒有支援 P2P 的位置';
+
+  @override
+  String get locations_noP2pHint => '目前沒有伺服器允許 P2P。';
 
   @override
   String locations_results(int count) {

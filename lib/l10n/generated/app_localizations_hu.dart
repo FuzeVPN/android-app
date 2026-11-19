@@ -1506,6 +1506,19 @@ class AppLocalizationsHu extends AppLocalizations {
   String get locations_filterFavorites => 'Kedvencek';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P engedélyezett';
+
+  @override
+  String get locations_noP2p => 'Még nincs P2P-hely';
+
+  @override
+  String get locations_noP2pHint =>
+      'A P2P jelenleg egyik szerveren sem engedélyezett.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

@@ -1371,6 +1371,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get locations_filterFavorites => '즐겨찾기';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P 허용';
+
+  @override
+  String get locations_noP2p => '아직 P2P 위치가 없습니다';
+
+  @override
+  String get locations_noP2pHint => '현재 P2P가 허용된 서버가 없습니다.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

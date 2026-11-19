@@ -1488,6 +1488,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get locations_filterFavorites => 'पसंदीदा';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P की अनुमति है';
+
+  @override
+  String get locations_noP2p => 'अभी कोई P2P स्थान नहीं है';
+
+  @override
+  String get locations_noP2pHint =>
+      'फ़िलहाल किसी भी सर्वर पर P2P की अनुमति नहीं है।';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

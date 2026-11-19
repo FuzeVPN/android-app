@@ -1503,6 +1503,19 @@ class AppLocalizationsAz extends AppLocalizations {
   String get locations_filterFavorites => 'Sevimlilər';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P icazəlidir';
+
+  @override
+  String get locations_noP2p => 'Hələ P2P məkanı yoxdur';
+
+  @override
+  String get locations_noP2pHint =>
+      'Hazırda heç bir serverdə P2P-yə icazə verilmir.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

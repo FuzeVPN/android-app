@@ -1477,6 +1477,18 @@ class AppLocalizationsGu extends AppLocalizations {
   String get locations_filterFavorites => 'મનપસંદ';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P મંજૂર છે';
+
+  @override
+  String get locations_noP2p => 'હજી કોઈ P2P સ્થાન નથી';
+
+  @override
+  String get locations_noP2pHint => 'હાલમાં કોઈપણ સર્વર પર P2P મંજૂર નથી.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

@@ -1476,6 +1476,18 @@ class AppLocalizationsTh extends AppLocalizations {
   String get locations_filterFavorites => 'รายการโปรด';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'อนุญาต P2P';
+
+  @override
+  String get locations_noP2p => 'ยังไม่มีตำแหน่ง P2P';
+
+  @override
+  String get locations_noP2pHint => 'ขณะนี้ยังไม่มีเซิร์ฟเวอร์ใดอนุญาต P2P';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

@@ -48,6 +48,24 @@ const _frankfurtTwo = Location(
   supportedProtocols: {VpnProtocol.openVpn},
 );
 const _catalog = [_paris, _saoPaulo, _frankfurt, _frankfurtTwo];
+const _chisinau = Location(
+  id: 'chisinau-01',
+  city: 'Chisinau',
+  countryCode: 'MD',
+  displayName: 'Chisinau 01',
+  supportedProtocols: {VpnProtocol.wireGuard, VpnProtocol.openVpn},
+  p2pAllowed: true,
+);
+// Sorts after Frankfurt 01: the automatic choice for Frankfurt is not P2P.
+const _frankfurtP2p = Location(
+  id: 'frankfurt-p2p',
+  city: 'Frankfurt',
+  countryCode: 'DE',
+  displayName: 'Frankfurt P2P',
+  supportedProtocols: {VpnProtocol.wireGuard, VpnProtocol.openVpn},
+  p2pAllowed: true,
+);
+const _p2pCatalog = [_paris, _chisinau, _frankfurt, _frankfurtP2p];
 const _profile = UserProfile(
   userId: 'fixture-user',
   email: 'fixture@example.test',
@@ -62,6 +80,115 @@ const _profile = UserProfile(
 );
 
 void main() {
+  group('P2P', () {
+    Finder badge(String id) => find.byKey(ValueKey('p2p-$id'));
+
+    _locationsTest(
+      'the P2P chip browses only P2P servers, with the gold badge at each step',
+      (tester, h) async {
+        final semantics = tester.ensureSemantics();
+        await h.mount(tester, searchAll: false);
+        expect(
+          find.descendant(
+            of: find.byKey(const ValueKey('locations-filter-p2p')),
+            matching: find.text('P2P'),
+          ),
+          findsOneWidget,
+        );
+        await _tap(tester, 'locations-filter-p2p');
+        await tester.pumpAndSettle();
+
+        expect(find.text('P2P'), findsWidgets);
+        expect(find.byKey(const ValueKey('locations-breadcrumb')), findsOneWidget);
+        expect(
+          tester.widget<Text>(find.byKey(const ValueKey('locations-breadcrumb'))).data,
+          'P2P',
+        );
+        expect(find.byKey(const ValueKey('browse-country-FR')), findsNothing);
+        expect(badge('country-MD'), findsOneWidget);
+        expect(badge('country-DE'), findsOneWidget);
+        expect(find.bySemanticsLabel(RegExp('P2P autorisé')), findsWidgets);
+
+        await _tap(tester, 'browse-country-DE');
+        await tester.pumpAndSettle();
+        expect(badge('city-DE-frankfurt'), findsOneWidget);
+        await _tap(tester, 'browse-city-DE-frankfurt');
+        await tester.pumpAndSettle();
+        expect(find.byKey(const ValueKey('location-frankfurt-p2p')), findsOneWidget);
+        expect(find.byKey(const ValueKey('location-frankfurt-01')), findsNothing);
+        expect(badge('location-frankfurt-p2p'), findsOneWidget);
+        expect(
+          find.text('P2P › Allemagne › Frankfurt'),
+          findsOneWidget,
+        );
+
+        // Back: city, country, then every location again.
+        for (var i = 0; i < 3; i++) {
+          await _tap(tester, 'locations-back');
+          await tester.pumpAndSettle();
+        }
+        expect(
+          tester.widget<ChoiceChip>(
+            find.byKey(const ValueKey('locations-filter-all')),
+          ).selected,
+          isTrue,
+        );
+        expect(find.byKey(const ValueKey('browse-country-FR')), findsOneWidget);
+        expect(h.tunnel.actions, isEmpty);
+        semantics.dispose();
+      },
+      setup: (h) => h.api.catalog = _p2pCatalog,
+    );
+
+    _locationsTest(
+      'in All, a group shows the badge only when the server it selects allows P2P',
+      (tester, h) async {
+        await h.mount(tester, searchAll: false);
+        expect(badge('country-MD'), findsOneWidget);
+        expect(badge('country-FR'), findsNothing);
+        // Frankfurt 01, chosen first, is not P2P.
+        expect(badge('country-DE'), findsNothing);
+        await _tap(tester, 'browse-country-DE');
+        await tester.pumpAndSettle();
+        expect(badge('city-DE-frankfurt'), findsNothing);
+        await _tap(tester, 'browse-city-DE-frankfurt');
+        await tester.pumpAndSettle();
+        expect(badge('location-frankfurt-p2p'), findsOneWidget);
+        expect(badge('location-frankfurt-01'), findsNothing);
+
+        // The selected server is P2P: its city and country show the badge.
+        await h.controller.selectLocation(_frankfurtP2p);
+        await tester.pumpAndSettle();
+        await _tap(tester, 'locations-back');
+        await tester.pumpAndSettle();
+        expect(badge('city-DE-frankfurt'), findsOneWidget);
+        await _tap(tester, 'locations-back');
+        await tester.pumpAndSettle();
+        expect(badge('country-DE'), findsOneWidget);
+        expect(badge('country-FR'), findsNothing);
+      },
+      setup: (h) => h.api.catalog = _p2pCatalog,
+    );
+
+    _locationsTest(
+      'without any P2P server the P2P list says so and offers every location',
+      (tester, h) async {
+        await h.mount(tester, searchAll: false);
+        expect(find.byKey(const ValueKey('p2p-country-FR')), findsNothing);
+        await _tap(tester, 'locations-filter-p2p');
+        await tester.pumpAndSettle();
+        expect(find.text('Aucun emplacement P2P pour l’instant'), findsOneWidget);
+        expect(
+          find.text('Le P2P n’est autorisé sur aucun serveur pour le moment.'),
+          findsOneWidget,
+        );
+        await _tap(tester, 'locations-empty-action');
+        await tester.pumpAndSettle();
+        expect(find.byKey(const ValueKey('browse-country-FR')), findsOneWidget);
+      },
+    );
+  });
+
   _locationsTest(
     'a rejected duplicate catalogue preserves the exact confirmed destination',
     (tester, h) async {

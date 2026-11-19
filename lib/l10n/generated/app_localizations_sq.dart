@@ -1514,6 +1514,19 @@ class AppLocalizationsSq extends AppLocalizations {
   String get locations_filterFavorites => 'Të preferuarat';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P i lejuar';
+
+  @override
+  String get locations_noP2p => 'Ende nuk ka vendndodhje P2P';
+
+  @override
+  String get locations_noP2pHint =>
+      'Aktualisht P2P nuk lejohet në asnjë server.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

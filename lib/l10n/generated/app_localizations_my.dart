@@ -1509,6 +1509,19 @@ class AppLocalizationsMy extends AppLocalizations {
   String get locations_filterFavorites => 'အကြိုက်ဆုံးများ';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P ခွင့်ပြုထားသည်';
+
+  @override
+  String get locations_noP2p => 'P2P တည်နေရာ မရှိသေးပါ';
+
+  @override
+  String get locations_noP2pHint =>
+      'ယခုအချိန်တွင် မည်သည့်ဆာဗာမှ P2P ကို ခွင့်မပြုထားပါ။';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

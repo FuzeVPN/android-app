@@ -266,6 +266,8 @@ abstract final class AppCopy {
       'locations.clearSearch' => localizations.locations_clearSearch,
       'locations.filterAll' => localizations.locations_filterAll,
       'locations.filterFavorites' => localizations.locations_filterFavorites,
+      'locations.filterP2p' => localizations.locations_filterP2p,
+      'locations.p2pBadge' => localizations.locations_p2pBadge,
       'locations.results' => localizations.locations_results(
         arguments['count'] as int? ?? 0,
       ),
@@ -273,6 +275,8 @@ abstract final class AppCopy {
       'locations.noResultsHint' => localizations.locations_noResultsHint,
       'locations.noFavorites' => localizations.locations_noFavorites,
       'locations.noFavoritesHint' => localizations.locations_noFavoritesHint,
+      'locations.noP2p' => localizations.locations_noP2p,
+      'locations.noP2pHint' => localizations.locations_noP2pHint,
       'locations.showAll' => localizations.locations_showAll,
       'locations.addFavorite' => localizations.locations_addFavorite(
         arguments['name'] as String? ?? '',

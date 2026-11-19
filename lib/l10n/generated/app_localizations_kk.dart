@@ -1488,6 +1488,18 @@ class AppLocalizationsKk extends AppLocalizations {
   String get locations_filterFavorites => 'Таңдаулылар';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P рұқсат етілген';
+
+  @override
+  String get locations_noP2p => 'Әзірге P2P орындары жоқ';
+
+  @override
+  String get locations_noP2pHint => 'Қазір ешбір серверде P2P-ге рұқсат жоқ.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

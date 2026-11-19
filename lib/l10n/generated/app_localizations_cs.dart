@@ -1486,6 +1486,18 @@ class AppLocalizationsCs extends AppLocalizations {
   String get locations_filterFavorites => 'Oblíbené';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P povoleno';
+
+  @override
+  String get locations_noP2p => 'Zatím žádné lokality s P2P';
+
+  @override
+  String get locations_noP2pHint => 'P2P teď není povoleno na žádném serveru.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

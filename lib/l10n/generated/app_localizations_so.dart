@@ -1527,6 +1527,18 @@ class AppLocalizationsSo extends AppLocalizations {
   String get locations_filterFavorites => 'Kuwa la jecel yahay';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P waa la oggol yahay';
+
+  @override
+  String get locations_noP2p => 'Weli ma jiraan goobo P2P';
+
+  @override
+  String get locations_noP2pHint => 'Hadda P2P lagama oggola server kasta.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

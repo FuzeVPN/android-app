@@ -49,6 +49,35 @@ void main() {
 
       expect(location.supportedProtocols, isEmpty);
     });
+
+    test('P2P autorisé seulement sur un p2p_allowed explicitement vrai', () {
+      Location parse(Object? value, {bool present = true}) =>
+          Location.fromJson(<String, dynamic>{
+            'id': 'chisinau-01',
+            'display_name': 'chisinau-01',
+            'city': 'Chisinau',
+            'country_code': 'MD',
+            'supported_protocols': <String>['wireguard'],
+            if (present) 'p2p_allowed': value,
+          });
+
+      expect(parse(true).p2pAllowed, isTrue);
+      expect(parse(false).p2pAllowed, isFalse);
+      expect(parse(null, present: false).p2pAllowed, isFalse);
+      // A malformed value never shows P2P, and never drops the location.
+      for (final Object? malformed in <Object?>[null, 'true', 1, <String>[]]) {
+        expect(parse(malformed).p2pAllowed, isFalse, reason: '$malformed');
+      }
+      expect(
+        const Location(
+          id: 'paris-01',
+          city: 'Paris',
+          countryCode: 'FR',
+          displayName: 'Paris',
+        ).p2pAllowed,
+        isFalse,
+      );
+    });
   });
 
   group('OpenVpnActivation', () {

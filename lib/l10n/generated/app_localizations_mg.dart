@@ -1523,6 +1523,19 @@ class AppLocalizationsMg extends AppLocalizations {
   String get locations_filterFavorites => 'Ankafiziana';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'Avela ny P2P';
+
+  @override
+  String get locations_noP2p => 'Mbola tsy misy toerana P2P';
+
+  @override
+  String get locations_noP2pHint =>
+      'Tsy avela amin’ny mpizara rehetra ny P2P amin’izao fotoana izao.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

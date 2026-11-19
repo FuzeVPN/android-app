@@ -1479,6 +1479,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String get locations_filterFavorites => 'Yêu thích';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'Cho phép P2P';
+
+  @override
+  String get locations_noP2p => 'Chưa có vị trí P2P nào';
+
+  @override
+  String get locations_noP2pHint => 'Hiện chưa có máy chủ nào cho phép P2P.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

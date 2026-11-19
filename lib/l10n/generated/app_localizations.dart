@@ -1890,6 +1890,30 @@ abstract class AppLocalizations {
   /// **'Favoris'**
   String get locations_filterFavorites;
 
+  /// No description provided for @locations_filterP2p.
+  ///
+  /// In fr, this message translates to:
+  /// **'P2P'**
+  String get locations_filterP2p;
+
+  /// No description provided for @locations_p2pBadge.
+  ///
+  /// In fr, this message translates to:
+  /// **'P2P autorisé'**
+  String get locations_p2pBadge;
+
+  /// No description provided for @locations_noP2p.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun emplacement P2P pour l’instant'**
+  String get locations_noP2p;
+
+  /// No description provided for @locations_noP2pHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le P2P n’est autorisé sur aucun serveur pour le moment.'**
+  String get locations_noP2pHint;
+
   /// No description provided for @locations_results.
   ///
   /// In fr, this message translates to:

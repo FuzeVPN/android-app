@@ -1496,6 +1496,19 @@ class AppLocalizationsHa extends AppLocalizations {
   String get locations_filterFavorites => 'Waɗanda aka fi so';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'An yarda da P2P';
+
+  @override
+  String get locations_noP2p => 'Babu wuraren P2P tukuna';
+
+  @override
+  String get locations_noP2pHint =>
+      'Ba a yarda da P2P a kowace sabar a yanzu ba.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

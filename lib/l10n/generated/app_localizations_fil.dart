@@ -1542,6 +1542,19 @@ class AppLocalizationsFil extends AppLocalizations {
   String get locations_filterFavorites => 'Mga paborito';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'Pinapayagan ang P2P';
+
+  @override
+  String get locations_noP2p => 'Wala pang lokasyong may P2P';
+
+  @override
+  String get locations_noP2pHint =>
+      'Hindi pinapayagan ang P2P sa alinmang server sa ngayon.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

@@ -1499,6 +1499,19 @@ class AppLocalizationsFi extends AppLocalizations {
   String get locations_filterFavorites => 'Suosikit';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P sallittu';
+
+  @override
+  String get locations_noP2p => 'P2P-sijainteja ei vielä ole';
+
+  @override
+  String get locations_noP2pHint =>
+      'P2P ei ole tällä hetkellä sallittu millään palvelimella.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

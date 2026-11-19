@@ -1465,6 +1465,18 @@ class AppLocalizationsFa extends AppLocalizations {
   String get locations_filterFavorites => 'موردعلاقه‌ها';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P مجاز است';
+
+  @override
+  String get locations_noP2p => 'هنوز مکان P2P وجود ندارد';
+
+  @override
+  String get locations_noP2pHint => 'در حال حاضر P2P روی هیچ سروری مجاز نیست.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

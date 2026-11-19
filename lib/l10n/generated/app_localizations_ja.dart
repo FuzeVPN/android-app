@@ -1363,6 +1363,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String get locations_filterFavorites => 'お気に入り';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P 可';
+
+  @override
+  String get locations_noP2p => 'P2P 対応の場所はまだありません';
+
+  @override
+  String get locations_noP2pHint => '現在、P2P を許可しているサーバーはありません。';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

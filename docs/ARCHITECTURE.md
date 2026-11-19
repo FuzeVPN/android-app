@@ -82,6 +82,16 @@ et favoris affichent directement les serveurs ; quitter ces modes retrouve la
 navigation hiérarchique. Les serveurs incompatibles avec le protocole effectif
 ne sont pas sélectionnables.
 
+Le filtre « P2P », à côté de « Favoris », garde la navigation pays, ville,
+serveur, limitée aux serveurs dont `p2p_allowed` vaut `true`. Un badge doré
+« P2P » suit le nom :
+- d'un serveur qui autorise le P2P ;
+- d'un pays ou d'une ville dont le serveur qu'ils sélectionnent (le serveur
+  choisi quand il s'y trouve, sinon le choix automatique) l'autorise.
+
+Dans le filtre « P2P », chaque ligne porte donc le badge. Revenir depuis ses pays
+réaffiche tous les emplacements.
+
 Les favoris sont des identifiants d'emplacement stockés dans une préférence
 Android chiffrée, locale au téléphone et indépendante du compte, avec une limite
 de 500. Ils survivent à la déconnexion et à l'absence temporaire d'un serveur
@@ -146,7 +156,7 @@ quatre réponses intermédiaires.
 | Confirmation d'e-mail | `POST /v1/auth/email/verify` : `200` avec `email_verified: true` |
 | Réinitialisation de mot de passe | `/v1/auth/password/reset/request` : `202` ; `/confirm` : `204` |
 | Profil du compte | `GET` et `PUT /v1/me` : `200`. L'absence de `email_verified` signifie inconnu, pas faux. |
-| Catalogue | `GET /v1/locations` : `200`. `supported_protocols` détermine les protocoles proposés. `supported_ip_families` n'est qu'un indice : IPv6 n'est proposé que si la valeur est une liste qui contient à la fois `ipv4` et `ipv6` (comparaison exacte, casse comprise), quel que soit l'ordre ; ses autres éléments (doublons, familles inconnues ou futures, autre casse, valeurs non textuelles) sont ignorés. Une liste à laquelle manque l'une de ces deux valeurs, ou une forme inattendue (champ absent, texte, objet), laisse l'emplacement en IPv4. Aucune de ces formes n'invalide le catalogue ni la liste des appareils. Une ligne dont `display_name` est un texte que le natif refuserait (vide ou blanc, plus de 96 unités UTF-16, caractère de contrôle ISO) n'est pas proposée ; les autres lignes restent disponibles. Un `display_name` absent ou non textuel et des identifiants dupliqués refusent toujours tout le catalogue. |
+| Catalogue | `GET /v1/locations` : `200`. `supported_protocols` détermine les protocoles proposés. `supported_ip_families` n'est qu'un indice : IPv6 n'est proposé que si la valeur est une liste qui contient à la fois `ipv4` et `ipv6` (comparaison exacte, casse comprise), quel que soit l'ordre ; ses autres éléments (doublons, familles inconnues ou futures, autre casse, valeurs non textuelles) sont ignorés. Une liste à laquelle manque l'une de ces deux valeurs, ou une forme inattendue (champ absent, texte, objet), laisse l'emplacement en IPv4. Aucune de ces formes n'invalide le catalogue ni la liste des appareils. Une ligne dont `display_name` est un texte que le natif refuserait (vide ou blanc, plus de 96 unités UTF-16, caractère de contrôle ISO) n'est pas proposée ; les autres lignes restent disponibles. Un `display_name` absent ou non textuel et des identifiants dupliqués refusent toujours tout le catalogue. `p2p_allowed` (choix du propriétaire du nœud) n'autorise le P2P que s'il vaut exactement `true` ; absent ou d'une autre forme, il vaut `false` sans invalider la ligne. |
 | Activation WireGuard | `POST /v1/devices` : `201`. Envoie nom, clé publique locale et `location_id`, puis importe l'activation dans le composant natif. |
 | Liste et suppression d'appareils | `GET /v1/devices` : `200` ; `DELETE /v1/devices/{id}` : `204` |
 | Métadonnées des profils | `GET /v1/devices/{id}/profiles` : `200`, sans activation ni secrets |

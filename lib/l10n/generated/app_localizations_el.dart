@@ -1543,6 +1543,19 @@ class AppLocalizationsEl extends AppLocalizations {
   String get locations_filterFavorites => 'Αγαπημένες';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'Επιτρέπεται P2P';
+
+  @override
+  String get locations_noP2p => 'Δεν υπάρχουν ακόμα τοποθεσίες P2P';
+
+  @override
+  String get locations_noP2pHint =>
+      'Το P2P δεν επιτρέπεται σε κανέναν διακομιστή αυτή τη στιγμή.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

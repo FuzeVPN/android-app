@@ -34,6 +34,7 @@ class Location {
     required this.displayName,
     this.supportedProtocols = const <VpnProtocol>{},
     this.supportsIpv6 = false,
+    this.p2pAllowed = false,
   });
 
   final String id;
@@ -42,6 +43,10 @@ class Location {
   final String displayName;
   final Set<VpnProtocol> supportedProtocols;
   final bool supportsIpv6;
+
+  /// The node owner allows P2P on this server (`p2p_allowed`). Only an
+  /// explicit `true` counts: an absent or malformed value never shows P2P.
+  final bool p2pAllowed;
 
   bool supports(VpnProtocol protocol) => supportedProtocols.contains(protocol);
 
@@ -95,6 +100,7 @@ class Location {
       supportsIpv6: VpnNetworkConfiguration.advertisedIpv6(
         json['supported_ip_families'],
       ),
+      p2pAllowed: json['p2p_allowed'] == true,
     );
     if (!isNativeDisplayName(location.displayName)) {
       throw UnsupportedLocationException(id);

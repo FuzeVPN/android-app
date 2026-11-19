@@ -1492,6 +1492,19 @@ class AppLocalizationsHy extends AppLocalizations {
   String get locations_filterFavorites => 'Ընտրյալներ';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P-ն թույլատրված է';
+
+  @override
+  String get locations_noP2p => 'P2P վայրեր դեռ չկան';
+
+  @override
+  String get locations_noP2pHint =>
+      'Ներկայումս P2P-ն թույլատրված չէ ոչ մի սերվերում։';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

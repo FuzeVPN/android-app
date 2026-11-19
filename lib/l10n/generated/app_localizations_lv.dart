@@ -1497,6 +1497,18 @@ class AppLocalizationsLv extends AppLocalizations {
   String get locations_filterFavorites => 'Izlase';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P atļauts';
+
+  @override
+  String get locations_noP2p => 'Vēl nav P2P atrašanās vietu';
+
+  @override
+  String get locations_noP2pHint => 'Pašlaik P2P nav atļauts nevienā serverī.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

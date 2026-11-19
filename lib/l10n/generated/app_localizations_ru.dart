@@ -1506,6 +1506,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get locations_filterFavorites => 'Избранные';
 
   @override
+  String get locations_filterP2p => 'P2P';
+
+  @override
+  String get locations_p2pBadge => 'P2P разрешён';
+
+  @override
+  String get locations_noP2p => 'Пока нет локаций с P2P';
+
+  @override
+  String get locations_noP2pHint =>
+      'Сейчас P2P не разрешён ни на одном сервере.';
+
+  @override
   String locations_results(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,

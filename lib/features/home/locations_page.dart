@@ -1,5 +1,9 @@
 part of 'home_shell.dart';
 
+/// What the page lists: every location, the user's favorites (a flat list of
+/// servers), or only the servers that allow P2P (browsed like every location).
+enum _LocationFilter { all, favorites, p2p }
+
 class LocationsPage extends StatefulWidget {
   const LocationsPage({
     super.key,
@@ -20,7 +24,7 @@ class _LocationsPageState extends State<LocationsPage> {
   final _search = TextEditingController();
   final _searchFocus = FocusNode();
   final _scroll = ScrollController();
-  bool _favoritesOnly = false;
+  _LocationFilter _filter = _LocationFilter.all;
   bool _confirmingChange = false;
   // The country being browsed and, once one of them is opened, its city.
   ({String countryCode, String? cityKey})? _browsing;
@@ -41,11 +45,35 @@ class _LocationsPageState extends State<LocationsPage> {
     }
   }
 
+  bool get _favoritesOnly => _filter == _LocationFilter.favorites;
+
+  bool get _p2pOnly => _filter == _LocationFilter.p2p;
+
+  /// The locations the page browses under the current filter.
+  List<Location> _catalogue(VpnAppController controller) => _p2pOnly
+      ? controller.locations
+            .where((location) => location.p2pAllowed)
+            .toList(growable: false)
+      : controller.locations;
+
+  void _setFilter(_LocationFilter filter) {
+    if (filter == _filter) return;
+    if (filter == _LocationFilter.p2p || _filter == _LocationFilter.p2p) {
+      // P2P has its own countries and cities: browsing starts again from them.
+      _navigate(() {
+        _filter = filter;
+        _browsing = null;
+      });
+    } else {
+      setState(() => _filter = filter);
+    }
+  }
+
   void _catalogueChanged() {
     final browsing = _browsing;
     if (browsing == null) return;
     final country = groupLocations(
-      widget.controller.locations,
+      _catalogue(widget.controller),
       languageCode: 'en',
     ).where((group) => group.countryCode == browsing.countryCode).firstOrNull;
     final cityExists =
@@ -84,11 +112,14 @@ class _LocationsPageState extends State<LocationsPage> {
     if (_search.text.trim().isNotEmpty) {
       _search.clear();
     } else if (_favoritesOnly) {
-      _favoritesOnly = false;
+      _filter = _LocationFilter.all;
     } else if (browsing != null && browsing.cityKey != null) {
       _browsing = (countryCode: browsing.countryCode, cityKey: null);
-    } else {
+    } else if (browsing != null) {
       _browsing = null;
+    } else {
+      // The P2P countries: back shows every location again.
+      _filter = _LocationFilter.all;
     }
   });
 
@@ -197,10 +228,8 @@ class _LocationsPageState extends State<LocationsPage> {
       final controller = widget.controller;
       final language = Localizations.localeOf(context).toLanguageTag();
       final query = _search.text.trim();
-      final groups = groupLocations(
-        controller.locations,
-        languageCode: language,
-      );
+      final catalogue = _catalogue(controller);
+      final groups = groupLocations(catalogue, languageCode: language);
       final browsing = _browsing;
       final country = groups
           .where((group) => group.countryCode == browsing?.countryCode)
@@ -209,8 +238,8 @@ class _LocationsPageState extends State<LocationsPage> {
           .where((group) => group.key == browsing?.cityKey)
           .firstOrNull;
       final flat = _favoritesOnly || query.isNotEmpty;
-      final hasBack = flat || country != null;
-      final visible = controller.locations
+      final hasBack = flat || country != null || _p2pOnly;
+      final visible = catalogue
           .where((location) {
             return (!_favoritesOnly ||
                     controller.isFavoriteLocation(location.id)) &&
@@ -282,8 +311,8 @@ class _LocationsPageState extends State<LocationsPage> {
                 ChoiceChip(
                   key: const ValueKey('locations-filter-all'),
                   label: Text(context.copy('locations.filterAll')),
-                  selected: !_favoritesOnly,
-                  onSelected: (_) => setState(() => _favoritesOnly = false),
+                  selected: _filter == _LocationFilter.all,
+                  onSelected: (_) => _setFilter(_LocationFilter.all),
                   materialTapTargetSize: MaterialTapTargetSize.padded,
                   showCheckmark: false,
                   avatar: const Icon(Icons.public_rounded, size: 17),
@@ -292,10 +321,19 @@ class _LocationsPageState extends State<LocationsPage> {
                   key: const ValueKey('locations-filter-favorites'),
                   label: Text(context.copy('locations.filterFavorites')),
                   selected: _favoritesOnly,
-                  onSelected: (_) => setState(() => _favoritesOnly = true),
+                  onSelected: (_) => _setFilter(_LocationFilter.favorites),
                   materialTapTargetSize: MaterialTapTargetSize.padded,
                   showCheckmark: false,
                   avatar: const Icon(Icons.star_rounded, size: 17),
+                ),
+                ChoiceChip(
+                  key: const ValueKey('locations-filter-p2p'),
+                  label: Text(context.copy('locations.filterP2p')),
+                  selected: _p2pOnly,
+                  onSelected: (_) => _setFilter(_LocationFilter.p2p),
+                  materialTapTargetSize: MaterialTapTargetSize.padded,
+                  showCheckmark: false,
+                  avatar: const Icon(Icons.swap_horiz_rounded, size: 17),
                 ),
               ],
             ),
@@ -334,10 +372,16 @@ class _LocationsPageState extends State<LocationsPage> {
                           ? context.copy(
                               _favoritesOnly
                                   ? 'locations.filterFavorites'
+                                  : _p2pOnly
+                                  ? 'locations.filterP2p'
                                   : 'locations.allCountries',
                             )
                           : [
-                              context.copy('locations.allCountries'),
+                              context.copy(
+                                _p2pOnly
+                                    ? 'locations.filterP2p'
+                                    : 'locations.allCountries',
+                              ),
                               if (country != null) country.name,
                               if (city != null) city.name,
                             ].join(' › '),
@@ -460,10 +504,11 @@ class _LocationsPageState extends State<LocationsPage> {
               _LocationsEmptyState(
                 isCatalogEmpty: controller.locations.isEmpty,
                 isFavoritesOnly: _favoritesOnly,
+                isP2pOnly: _p2pOnly,
                 hasQuery: query.isNotEmpty,
                 onRefresh: controller.refreshLocations,
                 onClearSearch: _clearSearch,
-                onShowAll: () => setState(() => _favoritesOnly = false),
+                onShowAll: () => _setFilter(_LocationFilter.all),
               ),
           ],
         ),
@@ -509,6 +554,8 @@ class _LocationsPageState extends State<LocationsPage> {
       isCountry: isCountry,
       selected: selected,
       compatible: target != null,
+      // The server this row selects (the selected one when it is here).
+      p2pAllowed: target?.p2pAllowed ?? false,
       onSelected:
           target == null ||
               _confirmingChange ||
@@ -531,6 +578,7 @@ class _LocationGroupRow extends StatelessWidget {
     required this.isCountry,
     required this.selected,
     required this.compatible,
+    required this.p2pAllowed,
     required this.onSelected,
     required this.onBrowse,
   });
@@ -542,6 +590,7 @@ class _LocationGroupRow extends StatelessWidget {
   final bool isCountry;
   final bool selected;
   final bool compatible;
+  final bool p2pAllowed;
   final VoidCallback? onSelected;
   final VoidCallback onBrowse;
 
@@ -618,7 +667,11 @@ class _LocationGroupRow extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(name, style: theme.textTheme.titleMedium),
+                          _NameWithP2pBadge(
+                            name: name,
+                            style: theme.textTheme.titleMedium,
+                            badgeKey: p2pAllowed ? ValueKey('p2p-$id') : null,
+                          ),
                           const SizedBox(height: 5),
                           Text(
                             context.copy(
@@ -709,6 +762,7 @@ class _LocationsEmptyState extends StatelessWidget {
   const _LocationsEmptyState({
     required this.isCatalogEmpty,
     required this.isFavoritesOnly,
+    required this.isP2pOnly,
     required this.hasQuery,
     required this.onRefresh,
     required this.onClearSearch,
@@ -717,6 +771,7 @@ class _LocationsEmptyState extends StatelessWidget {
 
   final bool isCatalogEmpty;
   final bool isFavoritesOnly;
+  final bool isP2pOnly;
   final bool hasQuery;
   final VoidCallback onRefresh;
   final VoidCallback onClearSearch;
@@ -725,15 +780,20 @@ class _LocationsEmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final emptyFavorites = isFavoritesOnly && !hasQuery && !isCatalogEmpty;
+    final emptyP2p = isP2pOnly && !hasQuery && !isCatalogEmpty;
     final title = isCatalogEmpty
         ? 'locations.emptyTitle'
         : emptyFavorites
         ? 'locations.noFavorites'
+        : emptyP2p
+        ? 'locations.noP2p'
         : 'locations.noResults';
     final detail = isCatalogEmpty
         ? 'locations.emptyHint'
         : emptyFavorites
         ? 'locations.noFavoritesHint'
+        : emptyP2p
+        ? 'locations.noP2pHint'
         : 'locations.noResultsHint';
     return Card(
       key: const ValueKey('locations-empty'),
@@ -823,6 +883,63 @@ class _LocationFlagBadge extends StatelessWidget {
   );
 }
 
+/// A location name followed, when [badgeKey] is set, by the gold P2P badge.
+class _NameWithP2pBadge extends StatelessWidget {
+  const _NameWithP2pBadge({
+    required this.name,
+    required this.style,
+    required this.badgeKey,
+  });
+
+  final String name;
+  final TextStyle? style;
+  final Key? badgeKey;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Text(name, style: style);
+    final key = badgeKey;
+    if (key == null) return text;
+    return Wrap(
+      spacing: 8,
+      runSpacing: 4,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [text, _P2pBadge(key: key)],
+    );
+  }
+}
+
+/// Small gold « P2P » mark: the node owner allows P2P on this server.
+class _P2pBadge extends StatelessWidget {
+  const _P2pBadge({super.key});
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+    label: context.copy('locations.p2pBadge'),
+    child: ExcludeSemantics(
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: FuzeVpnTheme.signal,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: FuzeVpnTheme.signalDeep),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+          child: Text(
+            context.copy('locations.filterP2p'),
+            style: FuzeVpnTheme.mono(
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+              color: FuzeVpnTheme.ink,
+              letterSpacing: 0.4,
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 class _LocationSelectedLabel extends StatelessWidget {
   const _LocationSelectedLabel();
 
@@ -889,7 +1006,13 @@ class LocationRow extends StatelessWidget {
     final information = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: theme.textTheme.titleMedium),
+        _NameWithP2pBadge(
+          name: title,
+          style: theme.textTheme.titleMedium,
+          badgeKey: location.p2pAllowed
+              ? ValueKey('p2p-location-${location.id}')
+              : null,
+        ),
         if (contextLabel.toLowerCase() != title.toLowerCase()) ...[
           const SizedBox(height: 3),
           Text(
