@@ -371,6 +371,14 @@ class AppLocalizationsHa extends AppLocalizations {
       'Ba a tabbatar da haɗin VPN ba. Ku sake gwadawa.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Wani VPN ya karɓi wurin, ko kuma an dakatar da VPN a saitunan Android. Ku taɓa Haɗa don ci gaba.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Wani VPN yana aiki. Idan an saita shi a matsayin VPN mai aiki koyaushe, ku kashe hakan a saitunan VPN na Android.';
+
+  @override
   String get status_idle => 'An katse haɗi';
 
   @override
@@ -661,6 +669,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'vpn_sign_in_required': 'Ana buƙatar shiga asusu',
       'protocol_unavailable_at_location': 'Ƙa’ida ba ta samuwa',
       'vpn_permission_denied': 'An ƙi izinin VPN',
+      'vpn_permission_other_vpn': 'Wani VPN yana aiki',
       'revoked_identity_device_limit': 'An kai iyakar na’urori',
       'tunnel_start_unexpected': 'VPN bai iya farawa ba',
       'flutter_disconnect_timeout': 'Ba a tabbatar da katse haɗi ba',
@@ -697,6 +706,8 @@ class AppLocalizationsHa extends AppLocalizations {
           'Wannan wuri ba ya bayar da ƙa’idar da kuka zaɓa. Ku sabunta wurare ko ku zaɓi wata ƙa’ida.',
       'vpn_permission_denied':
           'Android ta ƙi izinin VPN. Ku sake fara haɗi, kuma ku karɓi buƙatar tsarin.',
+      'vpn_permission_other_vpn':
+          'Android ba ta ba FuzeVPN izinin VPN ba saboda wata manhajar VPN tana aiki. Idan an saita ta a matsayin VPN mai aiki koyaushe, ku kashe hakan a saitunan VPN na Android, sannan ku sake gwadawa.',
       'revoked_identity_device_limit':
           'An cire damar VPN ta wannan na’ura kuma an kai iyakar na’urori. Ku cire na’ura a ƙarƙashin Asusu → Sarrafa na’urorina.',
       'tunnel_start_unexpected':
@@ -908,6 +919,7 @@ class AppLocalizationsHa extends AppLocalizations {
       'vpn_host_unavailable': 'Ɓangaren VPN na Android ba ya samuwa',
       'vpn_permission_required': 'Ana buƙatar izinin VPN',
       'vpn_permission_denied': 'An ƙi izinin VPN',
+      'vpn_permission_other_vpn': 'Wani VPN yana aiki',
       'vpn_permission_request_failed': 'Ba a iya neman izini ba',
       'wireguard_foreground_service_unavailable':
           'Sabis ɗin WireGuard ba ya samuwa',
@@ -1051,6 +1063,8 @@ class AppLocalizationsHa extends AppLocalizations {
           'Android tana buƙatar sabon izinin VPN kafin fara ramin.',
       'vpn_permission_denied':
           'Ku ba da izini ga FuzeVPN a cikin buƙatar Android don ci gaba.',
+      'vpn_permission_other_vpn':
+          'Android ba ta ba FuzeVPN izinin VPN ba saboda wata manhajar VPN tana aiki. Idan an saita ta a matsayin VPN mai aiki koyaushe, ku kashe hakan a saitunan VPN na Android, sannan ku sake gwadawa.',
       'vpn_permission_request_failed':
           'Android ba ta iya buɗe allon izinin VPN ba.',
       'wireguard_foreground_service_unavailable':

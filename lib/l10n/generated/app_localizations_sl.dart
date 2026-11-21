@@ -368,6 +368,14 @@ class AppLocalizationsSl extends AppLocalizations {
   String get status_errorDetail => 'Povezava VPN ni potrjena. Poskusite znova.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Mesto je prevzel drug VPN ali pa je bil VPN ustavljen v nastavitvah Androida. Za nadaljevanje se dotaknite Poveži.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Aktiven je drug VPN. Če je nastavljen kot „Vedno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu.';
+
+  @override
   String get status_idle => 'Ni povezano';
 
   @override
@@ -661,6 +669,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'vpn_sign_in_required': 'Potrebna je prijava',
       'protocol_unavailable_at_location': 'Protokol ni na voljo',
       'vpn_permission_denied': 'Dovoljenje za VPN je zavrnjeno',
+      'vpn_permission_other_vpn': 'Aktiven je drug VPN',
       'revoked_identity_device_limit': 'Dosežena omejitev naprav',
       'tunnel_start_unexpected': 'VPN se ni mogel zagnati',
       'flutter_disconnect_timeout': 'Prekinitev povezave ni potrjena',
@@ -699,6 +708,8 @@ class AppLocalizationsSl extends AppLocalizations {
           'Izbrani protokol na tej lokaciji ni na voljo. Osvežite lokacije ali izberite drug protokol.',
       'vpn_permission_denied':
           'Android je zavrnil dovoljenje za VPN. Znova vzpostavite povezavo in sprejmite zahtevo sistema.',
+      'vpn_permission_other_vpn':
+          'Android aplikaciji FuzeVPN ni dal dovoljenja za VPN, ker je aktivna druga aplikacija VPN. Če je nastavljena kot „Vedno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu in poskusite znova.',
       'revoked_identity_device_limit':
           'Dostop te naprave do VPN-ja je bil odstranjen, omejitev števila naprav pa je dosežena. Odstranite napravo v razdelku Račun → Upravljaj moje naprave.',
       'tunnel_start_unexpected':
@@ -913,6 +924,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'vpn_host_unavailable': 'Gostitelj VPN-ja v Androidu ni na voljo',
       'vpn_permission_required': 'Potrebno je dovoljenje za VPN',
       'vpn_permission_denied': 'Dovoljenje za VPN je zavrnjeno',
+      'vpn_permission_other_vpn': 'Aktiven je drug VPN',
       'vpn_permission_request_failed': 'Dovoljenja ni mogoče zahtevati',
       'wireguard_foreground_service_unavailable':
           'Storitev WireGuard ni na voljo',
@@ -1053,6 +1065,8 @@ class AppLocalizationsSl extends AppLocalizations {
           'Android pred zagonom tunela zahteva novo dovoljenje za VPN.',
       'vpn_permission_denied':
           'Za nadaljevanje v zahtevi Androida dovolite FuzeVPN.',
+      'vpn_permission_other_vpn':
+          'Android aplikaciji FuzeVPN ni dal dovoljenja za VPN, ker je aktivna druga aplikacija VPN. Če je nastavljena kot „Vedno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu in poskusite znova.',
       'vpn_permission_request_failed':
           'Android ni mogel odpreti zaslona za dovoljenje za VPN.',
       'wireguard_foreground_service_unavailable':

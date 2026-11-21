@@ -368,6 +368,14 @@ class AppLocalizationsIg extends AppLocalizations {
   String get status_errorDetail => 'Akwadoghị njikọ VPN. Nwaa ọzọ.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN ọzọ ewerela ọnọdụ ya, ma ọ bụ a kwụsịrị VPN na ntọala Android. Pịa Jikọọ ka ịga n’ihu.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'VPN ọzọ na-arụ ọrụ. Ọ bụrụ na edobere ya dị ka VPN na-arụ ọrụ mgbe niile, gbanyụọ ntọala ahụ na ntọala VPN nke Android.';
+
+  @override
   String get status_idle => 'Ejikọghị';
 
   @override
@@ -654,6 +662,7 @@ class AppLocalizationsIg extends AppLocalizations {
       'vpn_sign_in_required': 'Achọrọ ịbanye n’akaụntụ',
       'protocol_unavailable_at_location': 'Usoro adịghị dị',
       'vpn_permission_denied': 'Ajụrụ ikike VPN',
+      'vpn_permission_other_vpn': 'VPN ọzọ na-arụ ọrụ',
       'revoked_identity_device_limit': 'Oke ngwaọrụ eruola',
       'tunnel_start_unexpected': 'VPN enweghị ike ịmalite',
       'flutter_disconnect_timeout': 'Akwadoghị ịkwụsị njikọ',
@@ -690,6 +699,8 @@ class AppLocalizationsIg extends AppLocalizations {
           'Ebe a anaghị enye usoro ahọpụtara. Melite ebe ndị ahụ ma ọ bụ họrọ usoro ọzọ.',
       'vpn_permission_denied':
           'Android jụrụ ikike VPN. Malite njikọ ọzọ ma nabata arịrịọ sistemu.',
+      'vpn_permission_other_vpn':
+          'Android enyeghị FuzeVPN ikike VPN n’ihi na ngwa VPN ọzọ na-arụ ọrụ. Ọ bụrụ na edobere ya dị ka VPN na-arụ ọrụ mgbe niile, gbanyụọ ntọala ahụ na ntọala VPN nke Android, wee nwaa ọzọ.',
       'revoked_identity_device_limit':
           'Ewepụrụ inweta VPN nke ngwaọrụ a ma oke ngwaọrụ eruola. Wepụ otu ngwaọrụ n’okpuru Akaụntụ → Jikwaa ngwaọrụ m.',
       'tunnel_start_unexpected':
@@ -888,6 +899,7 @@ class AppLocalizationsIg extends AppLocalizations {
       'openvpn_recovery_exhausted': 'Ejirilarị mgbake OpenVPN',
       'vpn_permission_required': 'Achọrọ ikike VPN',
       'vpn_permission_denied': 'Ajụrụ ikike VPN',
+      'vpn_permission_other_vpn': 'VPN ọzọ na-arụ ọrụ',
       'vpn_permission_request_failed': 'Enweghị ike ịrịọ ikike',
       'wireguard_foreground_service_unavailable': 'Ọrụ WireGuard adịghị dị',
       'wireguard_identity_invalid': 'Igodo WireGuard dị na ngwaọrụ ezighị ezi',
@@ -1018,6 +1030,8 @@ class AppLocalizationsIg extends AppLocalizations {
       'vpn_permission_required':
           'Android chọrọ ikike VPN ọhụrụ tupu ịmalite tunnel.',
       'vpn_permission_denied': 'Kwere FuzeVPN na arịrịọ Android iji gaa n’ihu.',
+      'vpn_permission_other_vpn':
+          'Android enyeghị FuzeVPN ikike VPN n’ihi na ngwa VPN ọzọ na-arụ ọrụ. Ọ bụrụ na edobere ya dị ka VPN na-arụ ọrụ mgbe niile, gbanyụọ ntọala ahụ na ntọala VPN nke Android, wee nwaa ọzọ.',
       'vpn_permission_request_failed':
           'Android enweghị ike imepe ihuenyo ikike VPN.',
       'wireguard_foreground_service_unavailable':

@@ -370,6 +370,14 @@ class AppLocalizationsBn extends AppLocalizations {
   String get status_errorDetail => 'VPN সংযোগ নিশ্চিত হয়নি। আবার চেষ্টা করুন।';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'অন্য একটি VPN জায়গা নিয়েছে, অথবা Android সেটিংসে VPN বন্ধ করা হয়েছে। আবার চালু করতে সংযুক্ত করুন-এ ট্যাপ করুন।';
+
+  @override
+  String get status_otherVpnDetail =>
+      'অন্য একটি VPN সক্রিয় আছে। সেটি সর্বদা-চালু VPN হিসেবে সেট করা থাকলে Android-এর VPN সেটিংসে তা বন্ধ করুন।';
+
+  @override
   String get status_idle => 'সংযোগ বিচ্ছিন্ন';
 
   @override
@@ -665,6 +673,7 @@ class AppLocalizationsBn extends AppLocalizations {
       'vpn_sign_in_required': 'সাইন ইন প্রয়োজন',
       'protocol_unavailable_at_location': 'প্রোটোকল উপলব্ধ নেই',
       'vpn_permission_denied': 'VPN-এর অনুমতি প্রত্যাখ্যান করা হয়েছে',
+      'vpn_permission_other_vpn': 'অন্য একটি VPN সক্রিয় আছে',
       'revoked_identity_device_limit': 'ডিভাইসের সীমা পূর্ণ হয়েছে',
       'tunnel_start_unexpected': 'VPN শুরু করা যায়নি',
       'flutter_disconnect_timeout': 'সংযোগ বিচ্ছিন্ন হওয়া নিশ্চিত হয়নি',
@@ -704,6 +713,8 @@ class AppLocalizationsBn extends AppLocalizations {
           'নির্বাচিত প্রোটোকলটি এই অবস্থানে পাওয়া যাচ্ছে না। অবস্থানগুলো রিফ্রেশ করুন অথবা অন্য একটি প্রোটোকল বেছে নিন।',
       'vpn_permission_denied':
           'Android VPN-এর অনুমতি প্রত্যাখ্যান করেছে। আবার সংযোগ শুরু করুন এবং সিস্টেমের অনুরোধটি গ্রহণ করুন।',
+      'vpn_permission_other_vpn':
+          'অন্য একটি VPN অ্যাপ সক্রিয় থাকায় Android FuzeVPN-কে VPN-এর অনুমতি দেয়নি। সেটি সর্বদা-চালু VPN হিসেবে সেট করা থাকলে Android-এর VPN সেটিংসে তা বন্ধ করুন, তারপর আবার চেষ্টা করুন।',
       'revoked_identity_device_limit':
           'এই ডিভাইসের VPN অ্যাক্সেস সরানো হয়েছে এবং ডিভাইসের সীমা পূর্ণ হয়েছে। অ্যাকাউন্ট → আমার ডিভাইস পরিচালনা করুন থেকে একটি ডিভাইস সরান।',
       'tunnel_start_unexpected':
@@ -910,6 +921,7 @@ class AppLocalizationsBn extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN হোস্ট উপলব্ধ নেই',
       'vpn_permission_required': 'VPN-এর অনুমতি প্রয়োজন',
       'vpn_permission_denied': 'VPN-এর অনুমতি প্রত্যাখ্যান করা হয়েছে',
+      'vpn_permission_other_vpn': 'অন্য একটি VPN সক্রিয় আছে',
       'vpn_permission_request_failed': 'অনুমতির অনুরোধ করা যায়নি',
       'wireguard_foreground_service_unavailable':
           'WireGuard পরিষেবা উপলব্ধ নেই',
@@ -1049,6 +1061,8 @@ class AppLocalizationsBn extends AppLocalizations {
           'টানেল শুরু করার আগে Android-এর নতুন VPN অনুমতি প্রয়োজন।',
       'vpn_permission_denied':
           'চালিয়ে যেতে Android-এর অনুরোধে FuzeVPN-কে অনুমতি দিন।',
+      'vpn_permission_other_vpn':
+          'অন্য একটি VPN অ্যাপ সক্রিয় থাকায় Android FuzeVPN-কে VPN-এর অনুমতি দেয়নি। সেটি সর্বদা-চালু VPN হিসেবে সেট করা থাকলে Android-এর VPN সেটিংসে তা বন্ধ করুন, তারপর আবার চেষ্টা করুন।',
       'vpn_permission_request_failed':
           'Android VPN অনুমতির স্ক্রিন খুলতে পারেনি।',
       'wireguard_foreground_service_unavailable':

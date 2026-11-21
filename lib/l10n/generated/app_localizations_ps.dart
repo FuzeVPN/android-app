@@ -368,6 +368,14 @@ class AppLocalizationsPs extends AppLocalizations {
   String get status_errorDetail => 'د VPN اتصال تایید نشو. بیا هڅه وکړئ.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'بل VPN ځای ونیو، یا VPN د Android په تنظیماتو کې ودرول شو. د دوام لپاره «وصل کړئ» کېکاږئ.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'بل VPN فعال دی. که دا د همېشه فعال VPN په توګه ټاکل شوی وي، دا تنظیم د Android د VPN په تنظیماتو کې غیرفعال کړئ.';
+
+  @override
   String get status_idle => 'قطع شوی';
 
   @override
@@ -658,6 +666,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'vpn_sign_in_required': 'ننوتل اړین دی',
       'protocol_unavailable_at_location': 'پروتوکول شتون نلري',
       'vpn_permission_denied': 'د VPN اجازه رد شوه',
+      'vpn_permission_other_vpn': 'بل VPN فعال دی',
       'revoked_identity_device_limit': 'د وسیلو حد پوره شو',
       'tunnel_start_unexpected': 'VPN پیل نشو',
       'flutter_disconnect_timeout': 'قطع کېدل تایید نشو',
@@ -693,6 +702,8 @@ class AppLocalizationsPs extends AppLocalizations {
           'ټاکل شوی پروتوکول په دې ځای کې وړاندې نه کېږي. ځایونه تازه کړئ یا بل پروتوکول وټاکئ.',
       'vpn_permission_denied':
           'Android د VPN اجازه رد کړه. اتصال بیا پیل کړئ او د سیسټم غوښتنه ومنئ.',
+      'vpn_permission_other_vpn':
+          'Android FuzeVPN ته د VPN اجازه ورنه کړه، ځکه چې بل VPN اپ فعال دی. که دا د همېشه فعال VPN په توګه ټاکل شوی وي، دا تنظیم د Android د VPN په تنظیماتو کې غیرفعال کړئ، بیا بیا هڅه وکړئ.',
       'revoked_identity_device_limit':
           'د دې وسیلې د VPN لاسرسی لرې شو او د وسیلو حد پوره شوی دی. په حساب ← «خپلې وسیلې اداره کړئ» کې یوه وسیله لرې کړئ.',
       'tunnel_start_unexpected':
@@ -887,6 +898,7 @@ class AppLocalizationsPs extends AppLocalizations {
       'vpn_host_unavailable': 'د Android VPN کوربه شتون نلري',
       'vpn_permission_required': 'د VPN اجازه اړینه ده',
       'vpn_permission_denied': 'د VPN اجازه رد شوه',
+      'vpn_permission_other_vpn': 'بل VPN فعال دی',
       'vpn_permission_request_failed': 'د اجازې غوښتنه ونه شوه',
       'wireguard_foreground_service_unavailable': 'د WireGuard خدمت شتون نلري',
       'wireguard_identity_invalid': 'د WireGuard محلي کلیډ ناسم دی',
@@ -1019,6 +1031,8 @@ class AppLocalizationsPs extends AppLocalizations {
           'Android د تونل له پیلېدو مخکې نوې VPN اجازه غواړي.',
       'vpn_permission_denied':
           'د دوام لپاره د Android په غوښتنه کې FuzeVPN ته اجازه ورکړئ.',
+      'vpn_permission_other_vpn':
+          'Android FuzeVPN ته د VPN اجازه ورنه کړه، ځکه چې بل VPN اپ فعال دی. که دا د همېشه فعال VPN په توګه ټاکل شوی وي، دا تنظیم د Android د VPN په تنظیماتو کې غیرفعال کړئ، بیا بیا هڅه وکړئ.',
       'vpn_permission_request_failed':
           'Android ونه توانېد چې د VPN د اجازې سکرین خلاص کړي.',
       'wireguard_foreground_service_unavailable':

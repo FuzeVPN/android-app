@@ -371,6 +371,14 @@ class AppLocalizationsSw extends AppLocalizations {
       'Muunganisho wa VPN haujathibitishwa. Jaribu tena.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN nyingine imechukua nafasi, au VPN ilisimamishwa kwenye mipangilio ya Android. Gusa Unganisha ili kuendelea.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'VPN nyingine inatumika. Ikiwa imewekwa kama “VPN ya kila wakati”, zima mpangilio huo kwenye mipangilio ya VPN ya Android.';
+
+  @override
   String get status_idle => 'Imetenganishwa';
 
   @override
@@ -666,6 +674,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'vpn_sign_in_required': 'Kuingia kunahitajika',
       'protocol_unavailable_at_location': 'Itifaki haipatikani',
       'vpn_permission_denied': 'Ruhusa ya VPN imekataliwa',
+      'vpn_permission_other_vpn': 'VPN nyingine inatumika',
       'revoked_identity_device_limit': 'Umefikia kikomo cha vifaa',
       'tunnel_start_unexpected': 'VPN haikuweza kuanza',
       'flutter_disconnect_timeout': 'Kutenganishwa hakujathibitishwa',
@@ -706,6 +715,8 @@ class AppLocalizationsSw extends AppLocalizations {
           'Itifaki iliyochaguliwa haitolewi na eneo hili. Onyesha upya maeneo au chagua itifaki nyingine.',
       'vpn_permission_denied':
           'Android imekataa ruhusa ya VPN. Anza muunganisho tena kisha ukubali ombi la mfumo.',
+      'vpn_permission_other_vpn':
+          'Android haikuipa FuzeVPN ruhusa ya VPN kwa sababu programu nyingine ya VPN inatumika. Ikiwa imewekwa kama “VPN ya kila wakati”, zima mpangilio huo kwenye mipangilio ya VPN ya Android, kisha ujaribu tena.',
       'revoked_identity_device_limit':
           'Ufikiaji wa VPN wa kifaa hiki umeondolewa na kikomo cha vifaa kimefikiwa. Ondoa kifaa chini ya Akaunti → Dhibiti vifaa vyangu.',
       'tunnel_start_unexpected':
@@ -916,6 +927,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'vpn_host_unavailable': 'Sehemu ya VPN ya Android haipatikani',
       'vpn_permission_required': 'Ruhusa ya VPN inahitajika',
       'vpn_permission_denied': 'Ruhusa ya VPN imekataliwa',
+      'vpn_permission_other_vpn': 'VPN nyingine inatumika',
       'vpn_permission_request_failed': 'Imeshindwa kuomba ruhusa',
       'wireguard_foreground_service_unavailable':
           'Huduma ya WireGuard haipatikani',
@@ -1057,6 +1069,8 @@ class AppLocalizationsSw extends AppLocalizations {
           'Android inahitaji ruhusa mpya ya VPN kabla ya kuanzisha handaki.',
       'vpn_permission_denied':
           'Ruhusu FuzeVPN kwenye ombi la Android ili kuendelea.',
+      'vpn_permission_other_vpn':
+          'Android haikuipa FuzeVPN ruhusa ya VPN kwa sababu programu nyingine ya VPN inatumika. Ikiwa imewekwa kama “VPN ya kila wakati”, zima mpangilio huo kwenye mipangilio ya VPN ya Android, kisha ujaribu tena.',
       'vpn_permission_request_failed':
           'Android haikuweza kufungua skrini ya ruhusa ya VPN.',
       'wireguard_foreground_service_unavailable':

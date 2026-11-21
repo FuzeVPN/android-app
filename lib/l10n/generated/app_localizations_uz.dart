@@ -370,6 +370,14 @@ class AppLocalizationsUz extends AppLocalizations {
       'VPN ulanishi tasdiqlanmadi. Qayta urinib koʻring.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Boshqa VPN oʻrnini egalladi yoki VPN Android sozlamalarida toʻxtatildi. Davom etish uchun Ulanish tugmasini bosing.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Boshqa VPN faol. Agar u Doimiy VPN sifatida sozlangan boʻlsa, buni Android VPN sozlamalarida oʻchiring.';
+
+  @override
   String get status_idle => 'Uzilgan';
 
   @override
@@ -667,6 +675,7 @@ class AppLocalizationsUz extends AppLocalizations {
       'vpn_sign_in_required': 'Hisobga kirish talab qilinadi',
       'protocol_unavailable_at_location': 'Protokol mavjud emas',
       'vpn_permission_denied': 'VPN uchun ruxsat rad etildi',
+      'vpn_permission_other_vpn': 'Boshqa VPN faol',
       'revoked_identity_device_limit': 'Qurilmalar limitiga yetildi',
       'tunnel_start_unexpected': 'VPN ishga tushmadi',
       'flutter_disconnect_timeout': 'Uzilish tasdiqlanmadi',
@@ -706,6 +715,8 @@ class AppLocalizationsUz extends AppLocalizations {
           'Tanlangan protokol bu joylashuvda taklif etilmaydi. Joylashuvlarni yangilang yoki boshqa protokolni tanlang.',
       'vpn_permission_denied':
           'Android VPN uchun ruxsat bermadi. Ulanishni qaytadan boshlang va tizim soʻrovini qabul qiling.',
+      'vpn_permission_other_vpn':
+          'Boshqa VPN ilovasi faol boʻlgani uchun Android FuzeVPN’ga VPN ruxsatini bermadi. Agar u Doimiy VPN sifatida sozlangan boʻlsa, buni Android VPN sozlamalarida oʻchiring va qayta urinib koʻring.',
       'revoked_identity_device_limit':
           'Bu qurilmaning VPN kirish huquqi olib tashlandi va qurilmalar limitiga yetildi. Hisob → Qurilmalarimni boshqarish boʻlimida qurilmani olib tashlang.',
       'tunnel_start_unexpected':
@@ -921,6 +932,7 @@ class AppLocalizationsUz extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN komponenti mavjud emas',
       'vpn_permission_required': 'VPN ruxsati talab qilinadi',
       'vpn_permission_denied': 'VPN ruxsati rad etildi',
+      'vpn_permission_other_vpn': 'Boshqa VPN faol',
       'vpn_permission_request_failed': 'Ruxsat soʻrab boʻlmadi',
       'wireguard_foreground_service_unavailable':
           'WireGuard xizmati mavjud emas',
@@ -1063,6 +1075,8 @@ class AppLocalizationsUz extends AppLocalizations {
           'Tunnelni ishga tushirishdan oldin Android yangi VPN ruxsatini talab qiladi.',
       'vpn_permission_denied':
           'Davom etish uchun Android soʻrovida FuzeVPN’ga ruxsat bering.',
+      'vpn_permission_other_vpn':
+          'Boshqa VPN ilovasi faol boʻlgani uchun Android FuzeVPN’ga VPN ruxsatini bermadi. Agar u Doimiy VPN sifatida sozlangan boʻlsa, buni Android VPN sozlamalarida oʻchiring va qayta urinib koʻring.',
       'vpn_permission_request_failed':
           'Android VPN ruxsati ekranini ocha olmadi.',
       'wireguard_foreground_service_unavailable':

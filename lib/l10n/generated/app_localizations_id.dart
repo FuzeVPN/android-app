@@ -370,6 +370,14 @@ class AppLocalizationsId extends AppLocalizations {
   String get status_errorDetail => 'Koneksi VPN belum dikonfirmasi. Coba lagi.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN lain telah mengambil alih, atau VPN dihentikan di pengaturan Android. Ketuk Hubungkan untuk melanjutkan.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'VPN lain sedang aktif. Jika VPN itu disetel sebagai VPN selalu aktif, matikan pengaturan tersebut di pengaturan VPN Android.';
+
+  @override
   String get status_idle => 'Terputus';
 
   @override
@@ -665,6 +673,7 @@ class AppLocalizationsId extends AppLocalizations {
       'vpn_sign_in_required': 'Harus masuk',
       'protocol_unavailable_at_location': 'Protokol tidak tersedia',
       'vpn_permission_denied': 'Izin VPN ditolak',
+      'vpn_permission_other_vpn': 'VPN lain sedang aktif',
       'revoked_identity_device_limit': 'Batas perangkat tercapai',
       'tunnel_start_unexpected': 'VPN tidak dapat dimulai',
       'flutter_disconnect_timeout': 'Pemutusan belum dikonfirmasi',
@@ -702,6 +711,8 @@ class AppLocalizationsId extends AppLocalizations {
           'Protokol yang dipilih tidak ditawarkan oleh lokasi ini. Segarkan lokasi atau pilih protokol lain.',
       'vpn_permission_denied':
           'Android menolak izin VPN. Mulai kembali koneksi dan terima permintaan sistem.',
+      'vpn_permission_other_vpn':
+          'Android tidak memberikan izin VPN kepada FuzeVPN karena aplikasi VPN lain sedang aktif. Jika aplikasi itu disetel sebagai VPN selalu aktif, matikan pengaturan tersebut di pengaturan VPN Android, lalu coba lagi.',
       'revoked_identity_device_limit':
           'Akses VPN perangkat ini telah dihapus dan batas perangkat telah tercapai. Hapus perangkat melalui Akun → Kelola perangkat saya.',
       'tunnel_start_unexpected':
@@ -908,6 +919,7 @@ class AppLocalizationsId extends AppLocalizations {
       'vpn_host_unavailable': 'Host VPN Android tidak tersedia',
       'vpn_permission_required': 'Izin VPN diperlukan',
       'vpn_permission_denied': 'Izin VPN ditolak',
+      'vpn_permission_other_vpn': 'VPN lain sedang aktif',
       'vpn_permission_request_failed': 'Tidak dapat meminta izin',
       'wireguard_foreground_service_unavailable':
           'Layanan latar depan WireGuard tidak tersedia',
@@ -1042,6 +1054,8 @@ class AppLocalizationsId extends AppLocalizations {
           'Android memerlukan otorisasi VPN baru sebelum memulai tunnel.',
       'vpn_permission_denied':
           'Izinkan FuzeVPN dalam permintaan Android untuk melanjutkan.',
+      'vpn_permission_other_vpn':
+          'Android tidak memberikan izin VPN kepada FuzeVPN karena aplikasi VPN lain sedang aktif. Jika aplikasi itu disetel sebagai VPN selalu aktif, matikan pengaturan tersebut di pengaturan VPN Android, lalu coba lagi.',
       'vpn_permission_request_failed':
           'Android tidak dapat membuka layar izin VPN.',
       'wireguard_foreground_service_unavailable':

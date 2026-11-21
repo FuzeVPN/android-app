@@ -1109,6 +1109,91 @@ void main() {
     },
   );
 
+  // VM Android 17, 20/11/2026: another app's VPN took the place (or the VPN
+  // was stopped in Android's settings). The status says so, not "not confirmed".
+  testWidgets('a VPN taken by another app says so under the status', (
+    tester,
+  ) async {
+    final h = _UiHarness();
+    addTearDown(h.close);
+    h.store.session = _session;
+    h.tunnel.initialState = const VpnRuntimeState(
+      phase: VpnRuntimePhase.error,
+      protocol: VpnProtocol.wireGuard,
+      messageCode: 'tun_permission_revoked',
+    );
+    await h.controller.initialize();
+    await h.controller.setLocale(const Locale('fr'));
+    await tester.pumpWidget(
+      FuzeVpnApp(controller: h.controller, autoInitialize: false),
+    );
+    await tester.pumpAndSettle();
+    final l = lookupAppLocalizations(const Locale('fr'));
+    expect(find.text(l.status_vpnRevokedDetail), findsOneWidget);
+    expect(find.text(l.status_errorDetail), findsNothing);
+  });
+
+  testWidgets('a refusal caused by another VPN opens Android VPN settings', (
+    tester,
+  ) async {
+    final tunnel = _UiProtectedTunnel();
+    final h = _UiHarness(withTunnel: tunnel);
+    addTearDown(h.close);
+    h.store.session = _session;
+    await h.controller.initialize();
+    await h.controller.setLocale(const Locale('fr'));
+    h.controller.tunnelState = const VpnRuntimeState(
+      phase: VpnRuntimePhase.error,
+      messageCode: 'vpn_permission_other_vpn',
+    );
+    h.controller.notice = const AppNotice(
+      titleKey: 'notice.controller.title',
+      messageKey: 'notice.controller.message',
+      arguments: {'code': 'vpn_permission_other_vpn'},
+      diagnosticCode: 'APP-LOGIC · vpn_permission_other_vpn',
+    );
+    await tester.pumpWidget(
+      FuzeVpnApp(controller: h.controller, autoInitialize: false),
+    );
+    await tester.pumpAndSettle();
+    final l = lookupAppLocalizations(const Locale('fr'));
+    expect(find.text(l.status_otherVpnDetail), findsOneWidget);
+    final open = find.byKey(
+      const ValueKey('connection-error-open-vpn-settings'),
+    );
+    await _scrollTo(tester, open);
+    expect(
+      find.text(l.notice_controller_title('vpn_permission_other_vpn')),
+      findsOneWidget,
+    );
+    await tester.tap(open);
+    await tester.pumpAndSettle();
+    expect(tunnel.openVpnSettingsCalls, 1);
+  });
+
+  testWidgets('a refusal by the user offers no Android VPN settings', (
+    tester,
+  ) async {
+    final h = _UiHarness(withTunnel: _UiProtectedTunnel());
+    addTearDown(h.close);
+    h.store.session = _session;
+    await h.controller.initialize();
+    h.controller.notice = const AppNotice(
+      titleKey: 'notice.controller.title',
+      messageKey: 'notice.controller.message',
+      arguments: {'code': 'vpn_permission_denied'},
+      diagnosticCode: 'APP-LOGIC · vpn_permission_denied',
+    );
+    await tester.pumpWidget(
+      FuzeVpnApp(controller: h.controller, autoInitialize: false),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      find.byKey(const ValueKey('connection-error-open-vpn-settings')),
+      findsNothing,
+    );
+  });
+
   testWidgets(
     'a completed native termination restores the expired-session notice',
     (tester) async {
@@ -3209,11 +3294,11 @@ Future<void> _openConnectionDetails(WidgetTester tester) async {
 }
 
 class _UiHarness {
-  _UiHarness({int migrationMaxPollAttempts = 45})
+  _UiHarness({int migrationMaxPollAttempts = 45, _UiTunnel? withTunnel})
     : api = _UiApi(),
       store = _MemorySessionStore(),
       preferences = _MemoryPreferences(),
-      tunnel = _UiTunnel() {
+      tunnel = withTunnel ?? _UiTunnel() {
     controller = VpnAppController(
       api: api,
       sessionStore: store,
@@ -3529,6 +3614,25 @@ class _MemoryPreferences implements AppPreferenceStore {
   }) async {
     verificationNeeded[userId] = value;
   }
+}
+
+/// A tunnel with Android's VPN settings (permanent VPN), as on Android.
+class _UiProtectedTunnel extends _UiTunnel
+    implements VpnSystemProtectionGateway {
+  int openVpnSettingsCalls = 0;
+
+  @override
+  Future<SystemVpnProtection> getSystemVpnProtection() async =>
+      const SystemVpnProtection();
+
+  @override
+  Future<void> openVpnSettings() async => openVpnSettingsCalls += 1;
+
+  @override
+  Future<void> disconnectByUser() async {}
+
+  @override
+  Future<void> prepareTunnelRequest({required String accountId}) async {}
 }
 
 class _UiTunnel implements VpnTunnelGateway {

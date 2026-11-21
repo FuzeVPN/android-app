@@ -372,6 +372,14 @@ class AppLocalizationsSq extends AppLocalizations {
       'Lidhja VPN nuk është konfirmuar. Provoni përsëri.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Një VPN tjetër zuri vendin, ose VPN-ja u ndal te cilësimet e Android. Prekni «Lidhu» për të vazhduar.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Një VPN tjetër është aktive. Nëse është caktuar si «VPN gjithmonë aktive», çaktivizojeni këtë te cilësimet e VPN-së në Android.';
+
+  @override
   String get status_idle => 'I shkëputur';
 
   @override
@@ -669,6 +677,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'vpn_sign_in_required': 'Kërkohet hyrja',
       'protocol_unavailable_at_location': 'Protokolli nuk disponohet',
       'vpn_permission_denied': 'Leja VPN u refuzua',
+      'vpn_permission_other_vpn': 'Një VPN tjetër është aktive',
       'revoked_identity_device_limit': 'U arrit kufiri i pajisjeve',
       'tunnel_start_unexpected': 'VPN-ja nuk mund të nisej',
       'flutter_disconnect_timeout': 'Shkëputja nuk u konfirmua',
@@ -709,6 +718,8 @@ class AppLocalizationsSq extends AppLocalizations {
           'Kjo vendndodhje nuk e ofron protokollin e zgjedhur. Përditësoni vendndodhjet ose zgjidhni një protokoll tjetër.',
       'vpn_permission_denied':
           'Android e refuzoi lejen VPN. Nisni lidhjen sërish dhe pranoni kërkesën e sistemit.',
+      'vpn_permission_other_vpn':
+          'Android nuk i dha FuzeVPN lejen VPN, sepse një aplikacion tjetër VPN është aktiv. Nëse është caktuar si «VPN gjithmonë aktive», çaktivizojeni këtë te cilësimet e VPN-së në Android dhe provoni përsëri.',
       'revoked_identity_device_limit':
           'Qasja VPN e kësaj pajisjeje u hoq dhe kufiri i pajisjeve u arrit. Hiqni një pajisje te Llogaria → Menaxho pajisjet e mia.',
       'tunnel_start_unexpected':
@@ -926,6 +937,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'vpn_host_unavailable': 'Komponenti VPN i Android nuk disponohet',
       'vpn_permission_required': 'Kërkohet leja VPN',
       'vpn_permission_denied': 'Leja VPN u refuzua',
+      'vpn_permission_other_vpn': 'Një VPN tjetër është aktive',
       'vpn_permission_request_failed': 'Leja nuk mund të kërkohej',
       'wireguard_foreground_service_unavailable':
           'Shërbimi WireGuard nuk disponohet',
@@ -1066,6 +1078,8 @@ class AppLocalizationsSq extends AppLocalizations {
           'Android kërkon një autorizim të ri VPN përpara nisjes së tunelit.',
       'vpn_permission_denied':
           'Lejoni FuzeVPN në kërkesën e Android për të vazhduar.',
+      'vpn_permission_other_vpn':
+          'Android nuk i dha FuzeVPN lejen VPN, sepse një aplikacion tjetër VPN është aktiv. Nëse është caktuar si «VPN gjithmonë aktive», çaktivizojeni këtë te cilësimet e VPN-së në Android dhe provoni përsëri.',
       'vpn_permission_request_failed':
           'Android nuk arriti të hapë ekranin e lejes VPN.',
       'wireguard_foreground_service_unavailable':

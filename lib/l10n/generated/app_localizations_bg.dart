@@ -371,6 +371,14 @@ class AppLocalizationsBg extends AppLocalizations {
       'VPN връзката не е потвърдена. Опитайте отново.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Друга VPN връзка зае мястото или VPN беше спряна от настройките на Android. Докоснете „Свързване“, за да продължите.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Активна е друга VPN връзка. Ако е зададена като „Винаги включен VPN“, изключете тази настройка в настройките за VPN на Android.';
+
+  @override
   String get status_idle => 'Не е свързан';
 
   @override
@@ -668,6 +676,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'vpn_sign_in_required': 'Необходим е вход',
       'protocol_unavailable_at_location': 'Протоколът не е наличен',
       'vpn_permission_denied': 'VPN разрешението е отказано',
+      'vpn_permission_other_vpn': 'Активна е друга VPN връзка',
       'revoked_identity_device_limit': 'Достигнат е лимитът за устройства',
       'tunnel_start_unexpected': 'VPN не можа да стартира',
       'flutter_disconnect_timeout': 'Прекъсването не е потвърдено',
@@ -707,6 +716,8 @@ class AppLocalizationsBg extends AppLocalizations {
           'Избраният протокол не се предлага на това местоположение. Обновете местоположенията или изберете друг протокол.',
       'vpn_permission_denied':
           'Android отказа VPN разрешението. Стартирайте отново връзката и приемете системната заявка.',
+      'vpn_permission_other_vpn':
+          'Android не даде разрешение за VPN на FuzeVPN, защото е активно друго VPN приложение. Ако то е зададено като „Винаги включен VPN“, изключете тази настройка в настройките за VPN на Android и опитайте отново.',
       'revoked_identity_device_limit':
           'VPN достъпът на това устройство е премахнат и е достигнат лимитът за устройства. Премахнете устройство в Акаунт → Управление на устройствата ми.',
       'tunnel_start_unexpected':
@@ -918,6 +929,7 @@ class AppLocalizationsBg extends AppLocalizations {
       'vpn_host_unavailable': 'Компонентът за VPN на Android не е наличен',
       'vpn_permission_required': 'Изисква се разрешение за VPN',
       'vpn_permission_denied': 'Разрешението за VPN е отказано',
+      'vpn_permission_other_vpn': 'Активна е друга VPN връзка',
       'vpn_permission_request_failed': 'Не може да се поиска разрешение',
       'wireguard_foreground_service_unavailable':
           'Услугата WireGuard не е налична',
@@ -1065,6 +1077,8 @@ class AppLocalizationsBg extends AppLocalizations {
           'Android изисква ново разрешение за VPN, преди да стартира тунела.',
       'vpn_permission_denied':
           'Разрешете FuzeVPN в заявката на Android, за да продължите.',
+      'vpn_permission_other_vpn':
+          'Android не даде разрешение за VPN на FuzeVPN, защото е активно друго VPN приложение. Ако то е зададено като „Винаги включен VPN“, изключете тази настройка в настройките за VPN на Android и опитайте отново.',
       'vpn_permission_request_failed':
           'Android не можа да отвори екрана за разрешение за VPN.',
       'wireguard_foreground_service_unavailable':

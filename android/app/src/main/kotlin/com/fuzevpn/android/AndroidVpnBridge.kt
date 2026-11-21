@@ -127,6 +127,8 @@ internal class AndroidVpnBridge(
     private val tunnelInstanceEpoch = AtomicLong()
     // The tunnel instance the user was sent to stop in Android's VPN settings (-1: none).
     private val settingsStopInstance = AtomicLong(-1L)
+    // The tunnel instance whose host loss is being handled (NO_HOST_LOSS: none), see onVpnHostLost.
+    private val hostLossInFlight = AtomicLong(NO_HOST_LOSS)
     private val physicalNetworks = PhysicalNetworkTracker<Network>()
     private val connectivity = appContext.getSystemService(ConnectivityManager::class.java)
     private val physicalNetworkRequest = NetworkRequest.Builder()
@@ -966,6 +968,16 @@ internal class AndroidVpnBridge(
         val protocol = activeProtocol
         val interruptedRestore = systemStartInFlight
         if (protocol == null && !interruptedRestore) { release(); return }
+        // One loss, two callbacks: when another app's VPN takes the place, Android calls onRevoke(),
+        // then onDestroy() of the same host while the stop below is still running (VM Android 17,
+        // 20/11/2026). Only the first is handled: the second would replace the revocation with
+        // vpn_host_destroyed, which Flutter sends as an automatic diagnostic report.
+        if (hostLossInFlight.get() == eventEpoch) { release(); return }
+        hostLossInFlight.set(eventEpoch)
+        val handled = {
+            hostLossInFlight.compareAndSet(eventEpoch, NO_HOST_LOSS)
+            release()
+        }
         cancelRecovery()
         cancelSystemStart()
         val epoch = tunnelRequestEpoch.get()
@@ -975,7 +987,7 @@ internal class AndroidVpnBridge(
             operationScope.launch { withTunnelOperation {
                 if (tunnelRequestEpoch.get() != epoch || activeProtocol != protocol) return@withTunnelOperation
                 endStopMadeInSettings(protocol, cause)
-            } }.invokeOnCompletion { release() }
+            } }.invokeOnCompletion { handled() }
             return
         }
         emitState(VpnStatus.ERROR, protocol, cause)
@@ -986,7 +998,7 @@ internal class AndroidVpnBridge(
             catch (error: Exception) { failure = messageCode(error, cause) }
             failure = blockResume(failure)
             emitState(VpnStatus.ERROR, protocol, failure)
-        } }.invokeOnCompletion { release() }
+        } }.invokeOnCompletion { handled() }
     }
 
     private fun noteDurableResume(raw: String?) {
@@ -1339,6 +1351,9 @@ internal class AndroidVpnBridge(
                 if (host == null || host.isFinishing) result.success(false)
                 else InAppReviewLauncher.launch(host) { launched -> result.success(launched) }
             }
+            // Flutter asks after Android refused the VPN permission: another app's VPN that
+            // carries this app (its permanent VPN, for instance) explains the refusal.
+            "anotherVpnActive" -> result.success(anotherAppVpnCarriesThisApp())
             "storageReadLocale" -> launchResult(result) {
                 NativeLocalePolicy.canonicalTag(readPreference(SecureAppPreference.LOCALE))
             }
@@ -1609,6 +1624,10 @@ internal class AndroidVpnBridge(
                         if (granted) {
                             requestNotificationPermissionIfNeeded()
                             if (activeProtocol == null) emitState(VpnStatus.IDLE, null, null)
+                        } else if (anotherAppVpnCarriesThisApp()) {
+                            // The permanent VPN of another app makes Android refuse at once, without
+                            // asking: the state names it, and keeps it for Flutter's next read.
+                            emitState(VpnStatus.ERROR, null, "vpn_permission_other_vpn")
                         } else emitState(VpnStatus.ERROR, null, "vpn_permission_denied")
                         result.success(granted)
                     }
@@ -2955,6 +2974,18 @@ internal class AndroidVpnBridge(
 
     private fun currentActivity(): Activity? = activityReference?.get()
 
+    // Another app's VPN carries this app while no tunnel of this app runs: Android then makes it
+    // this app's default network (VM Android 17, 20/11/2026: Uids 0-99999, INTERNET). Unknown is
+    // false: this only chooses the message shown, never a tunnel action.
+    private fun anotherAppVpnCarriesThisApp(): Boolean =
+        activeProtocol == null && !systemStartInFlight && try {
+            val active = connectivity.activeNetwork
+            active != null &&
+                connectivity.getNetworkCapabilities(active)?.hasTransport(NetworkCapabilities.TRANSPORT_VPN) == true
+        } catch (_: Exception) {
+            false
+        }
+
     private fun dispatchAsync(block: suspend (Long) -> Unit) {
         val ticket = activeSessionEpoch
         operationScope.launch { block(ticket) }
@@ -3089,6 +3120,7 @@ internal class AndroidVpnBridge(
         private const val OPENVPN_SERVICE_START_TIMEOUT_MS = 5_000L
         private const val ALWAYS_ON_SAMPLE_MS = 2_000L
         private const val ANOTHER_VPN_ACTIVE = "another VPN is active"
+        private const val NO_HOST_LOSS = Long.MIN_VALUE
         private const val NOT_PERMANENT_VPN = "the permanent VPN is no longer this app"
         private const val ALWAYS_ON_VPN_APP_SETTING = "always_on_vpn_app"
         private const val OPENVPN_RECONNECTING = "openvpn_reconnecting"

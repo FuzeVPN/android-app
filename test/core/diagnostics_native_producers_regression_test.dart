@@ -93,6 +93,8 @@ const _nativeFailureCategories = <String, String>{
   'permission_request_in_progress': 'vpn_permission_request_failed',
   'vpn_disclosure_required': 'permission_denied',
   'vpn_permission_denied': 'permission_denied',
+  // Refused because another app's VPN is active (its permanent VPN, 20/11/2026).
+  'vpn_permission_other_vpn': 'permission_denied',
   'vpn_permission_required': 'permission_denied',
   // Local arguments and identifiers rejected before any tunnel effect.
   'invalid_account_id': 'invalid_configuration',
@@ -1074,6 +1076,8 @@ void main() {
     }
     for (final code in [
       'vpn_permission_denied',
+      // Another app's VPN refused the permission: not an app failure (20/11/2026).
+      'vpn_permission_other_vpn',
       'vpn_permission_required',
       'vpn_disclosure_required',
       'tunnel_disconnected',

@@ -371,6 +371,14 @@ class AppLocalizationsRo extends AppLocalizations {
       'Conexiunea VPN nu este confirmată. Încearcă din nou.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Un alt VPN a preluat locul sau VPN-ul a fost oprit din setările Android. Atinge Conectează-te pentru a relua.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Un alt VPN este activ. Dacă este setat ca VPN permanent, dezactivează această opțiune în setările VPN din Android.';
+
+  @override
   String get status_idle => 'Deconectat';
 
   @override
@@ -669,6 +677,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'vpn_sign_in_required': 'Este necesară autentificarea',
       'protocol_unavailable_at_location': 'Protocol indisponibil',
       'vpn_permission_denied': 'Permisiunea VPN a fost refuzată',
+      'vpn_permission_other_vpn': 'Un alt VPN este activ',
       'revoked_identity_device_limit': 'Limita de dispozitive a fost atinsă',
       'tunnel_start_unexpected': 'VPN-ul nu a putut porni',
       'flutter_disconnect_timeout': 'Deconectarea nu este confirmată',
@@ -709,6 +718,8 @@ class AppLocalizationsRo extends AppLocalizations {
           'Protocolul selectat nu este oferit de această locație. Reîmprospătează locațiile sau alege un alt protocol.',
       'vpn_permission_denied':
           'Android a refuzat permisiunea VPN. Pornește din nou conexiunea și acceptă solicitarea sistemului.',
+      'vpn_permission_other_vpn':
+          'Android nu a acordat permisiunea VPN pentru FuzeVPN, deoarece o altă aplicație VPN este activă. Dacă este setată ca VPN permanent, dezactivează această opțiune în setările VPN din Android, apoi încearcă din nou.',
       'revoked_identity_device_limit':
           'Accesul VPN al acestui dispozitiv a fost eliminat, iar limita de dispozitive a fost atinsă. Elimină un dispozitiv din Cont → Gestionează dispozitivele mele.',
       'tunnel_start_unexpected':
@@ -928,6 +939,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'vpn_host_unavailable': 'Gazda VPN Android nu este disponibilă',
       'vpn_permission_required': 'Este necesară permisiunea VPN',
       'vpn_permission_denied': 'Permisiunea VPN a fost refuzată',
+      'vpn_permission_other_vpn': 'Un alt VPN este activ',
       'vpn_permission_request_failed': 'Permisiunea nu a putut fi solicitată',
       'wireguard_foreground_service_unavailable':
           'Serviciul WireGuard nu este disponibil',
@@ -1067,6 +1079,8 @@ class AppLocalizationsRo extends AppLocalizations {
           'Android necesită o nouă autorizare VPN înainte de pornirea tunelului.',
       'vpn_permission_denied':
           'Permite accesul FuzeVPN în solicitarea Android pentru a continua.',
+      'vpn_permission_other_vpn':
+          'Android nu a acordat permisiunea VPN pentru FuzeVPN, deoarece o altă aplicație VPN este activă. Dacă este setată ca VPN permanent, dezactivează această opțiune în setările VPN din Android, apoi încearcă din nou.',
       'vpn_permission_request_failed':
           'Android nu a putut deschide ecranul permisiunii VPN.',
       'wireguard_foreground_service_unavailable':

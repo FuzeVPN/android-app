@@ -369,6 +369,14 @@ class AppLocalizationsTh extends AppLocalizations {
       'ยังยืนยันการเชื่อมต่อ VPN ไม่ได้ ลองอีกครั้ง';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN อื่นเข้ามาแทนที่ หรือ VPN ถูกหยุดในการตั้งค่า Android แตะ เชื่อมต่อ เพื่อดำเนินการต่อ';
+
+  @override
+  String get status_otherVpnDetail =>
+      'มี VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น VPN แบบเปิดตลอดเวลา ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android';
+
+  @override
   String get status_idle => 'ตัดการเชื่อมต่อแล้ว';
 
   @override
@@ -660,6 +668,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'vpn_sign_in_required': 'ต้องเข้าสู่ระบบ',
       'protocol_unavailable_at_location': 'โปรโตคอลไม่พร้อมใช้งาน',
       'vpn_permission_denied': 'ไม่ได้รับอนุญาตให้ใช้ VPN',
+      'vpn_permission_other_vpn': 'มี VPN อื่นทำงานอยู่',
       'revoked_identity_device_limit': 'ถึงขีดจำกัดอุปกรณ์แล้ว',
       'tunnel_start_unexpected': 'ไม่สามารถเริ่ม VPN ได้',
       'flutter_disconnect_timeout': 'ยังยืนยันการตัดการเชื่อมต่อไม่ได้',
@@ -697,6 +706,8 @@ class AppLocalizationsTh extends AppLocalizations {
           'ตำแหน่งนี้ไม่มีโปรโตคอลที่เลือก รีเฟรชตำแหน่งหรือเลือกโปรโตคอลอื่น',
       'vpn_permission_denied':
           'Android ไม่อนุญาตให้ใช้ VPN เริ่มการเชื่อมต่ออีกครั้งและยอมรับคำขอของระบบ',
+      'vpn_permission_other_vpn':
+          'Android ไม่ได้ให้สิทธิ์ VPN แก่ FuzeVPN เนื่องจากมีแอป VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น VPN แบบเปิดตลอดเวลา ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android แล้วลองอีกครั้ง',
       'revoked_identity_device_limit':
           'การเข้าถึง VPN ของอุปกรณ์นี้ถูกนำออกแล้ว และถึงขีดจำกัดอุปกรณ์แล้ว นำอุปกรณ์ออกในการตั้งค่าบัญชี → จัดการอุปกรณ์ของฉัน',
       'tunnel_start_unexpected':
@@ -899,6 +910,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'vpn_host_unavailable': 'โฮสต์ VPN ของ Android ไม่พร้อมใช้งาน',
       'vpn_permission_required': 'ต้องได้รับอนุญาตให้ใช้ VPN',
       'vpn_permission_denied': 'ไม่ได้รับอนุญาตให้ใช้ VPN',
+      'vpn_permission_other_vpn': 'มี VPN อื่นทำงานอยู่',
       'vpn_permission_request_failed': 'ขออนุญาตไม่ได้',
       'wireguard_foreground_service_unavailable':
           'บริการ WireGuard ไม่พร้อมใช้งาน',
@@ -1034,6 +1046,8 @@ class AppLocalizationsTh extends AppLocalizations {
           'Android ต้องได้รับอนุญาต VPN ใหม่ก่อนเริ่มอุโมงค์',
       'vpn_permission_denied':
           'อนุญาต FuzeVPN ในคำขอของ Android เพื่อดำเนินการต่อ',
+      'vpn_permission_other_vpn':
+          'Android ไม่ได้ให้สิทธิ์ VPN แก่ FuzeVPN เนื่องจากมีแอป VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น VPN แบบเปิดตลอดเวลา ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android แล้วลองอีกครั้ง',
       'vpn_permission_request_failed': 'Android เปิดหน้าจออนุญาต VPN ไม่ได้',
       'wireguard_foreground_service_unavailable':
           'Android ไม่สามารถให้บริการ WireGuard ทำงานเบื้องหน้าได้',

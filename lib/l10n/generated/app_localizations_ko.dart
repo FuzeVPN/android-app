@@ -358,6 +358,14 @@ class AppLocalizationsKo extends AppLocalizations {
   String get status_errorDetail => 'VPN 연결이 확인되지 않았습니다. 다시 시도하세요.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      '다른 VPN이 연결을 넘겨받았거나 Android 설정에서 VPN이 중지되었습니다. 다시 시작하려면 연결을 탭하세요.';
+
+  @override
+  String get status_otherVpnDetail =>
+      '다른 VPN이 활성 상태입니다. 항상 사용 VPN으로 설정되어 있다면 Android VPN 설정에서 끄세요.';
+
+  @override
   String get status_idle => '연결 해제됨';
 
   @override
@@ -637,6 +645,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'vpn_sign_in_required': '로그인 필요',
       'protocol_unavailable_at_location': '프로토콜을 사용할 수 없음',
       'vpn_permission_denied': 'VPN 권한 거부됨',
+      'vpn_permission_other_vpn': '다른 VPN이 활성 상태입니다',
       'revoked_identity_device_limit': '기기 한도에 도달함',
       'tunnel_start_unexpected': 'VPN을 시작할 수 없음',
       'flutter_disconnect_timeout': '연결 해제가 확인되지 않음',
@@ -672,6 +681,8 @@ class AppLocalizationsKo extends AppLocalizations {
           '선택한 위치에서 해당 프로토콜을 제공하지 않습니다. 위치를 새로 고치거나 다른 프로토콜을 선택하세요.',
       'vpn_permission_denied':
           'Android에서 VPN 권한을 거부했습니다. 연결을 다시 시작하고 시스템 요청을 승인하세요.',
+      'vpn_permission_other_vpn':
+          '다른 VPN 앱이 활성 상태여서 Android가 FuzeVPN에 VPN 권한을 주지 않았습니다. 항상 사용 VPN으로 설정되어 있다면 Android VPN 설정에서 끈 다음 다시 시도하세요.',
       'revoked_identity_device_limit':
           '이 기기의 VPN 접근 권한이 삭제되었고 기기 한도에 도달했습니다. 계정 → 내 기기 관리에서 기기를 삭제하세요.',
       'tunnel_start_unexpected':
@@ -850,6 +861,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN 호스트를 사용할 수 없음',
       'vpn_permission_required': 'VPN 권한 필요',
       'vpn_permission_denied': 'VPN 권한 거부됨',
+      'vpn_permission_other_vpn': '다른 VPN이 활성 상태입니다',
       'vpn_permission_request_failed': '권한을 요청할 수 없음',
       'wireguard_foreground_service_unavailable': 'WireGuard 서비스를 사용할 수 없음',
       'wireguard_identity_invalid': '잘못된 로컬 WireGuard 키',
@@ -975,6 +987,8 @@ class AppLocalizationsKo extends AppLocalizations {
       'openvpn_recovery_exhausted': '자동 복구가 이미 사용되었습니다. 앱에서 새 연결을 시작하세요.',
       'vpn_permission_required': '터널을 시작하기 전에 Android에 새 VPN 승인이 필요합니다.',
       'vpn_permission_denied': '계속하려면 Android 요청에서 FuzeVPN을 허용하세요.',
+      'vpn_permission_other_vpn':
+          '다른 VPN 앱이 활성 상태여서 Android가 FuzeVPN에 VPN 권한을 주지 않았습니다. 항상 사용 VPN으로 설정되어 있다면 Android VPN 설정에서 끈 다음 다시 시도하세요.',
       'vpn_permission_request_failed': 'Android에서 VPN 권한 화면을 열지 못했습니다.',
       'wireguard_foreground_service_unavailable':
           'Android에서 WireGuard 서비스를 포그라운드에 유지하지 못했습니다.',

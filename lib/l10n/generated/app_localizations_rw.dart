@@ -374,6 +374,14 @@ class AppLocalizationsRw extends AppLocalizations {
       'Ihuza rya VPN ntiryemejwe. Mwongere mugerageze.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Indi VPN yafashe umwanya, cyangwa VPN yahagaritswe mu igenamiterere rya Android. Kanda Guhuza kugira ngo ukomeze.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Hari indi VPN ikora. Niba yashyizweho nka “VPN ihora ikora”, zimya iryo genamiterere mu igenamiterere rya VPN rya Android.';
+
+  @override
   String get status_idle => 'Ntibyahujwe';
 
   @override
@@ -672,6 +680,7 @@ class AppLocalizationsRw extends AppLocalizations {
       'vpn_sign_in_required': 'Birakenewe kwinjira',
       'protocol_unavailable_at_location': 'Protokole ntiboneka aha hantu',
       'vpn_permission_denied': 'Uruhushya rwa VPN rwanzwe',
+      'vpn_permission_other_vpn': 'Hari indi VPN ikora',
       'revoked_identity_device_limit':
           'Umubare ntarengwa w’ibikoresho wagezweho',
       'tunnel_start_unexpected': 'VPN ntiyashoboye gutangira',
@@ -710,6 +719,8 @@ class AppLocalizationsRw extends AppLocalizations {
           'Protokole mwahisemo ntitangwa n’aha hantu. Muvugurure ahantu cyangwa muhitemo indi protokole.',
       'vpn_permission_denied':
           'Android yanze uruhushya rwa VPN. Mwongere mutangire ihuza, hanyuma mwemere icyifuzo cya sisitemu.',
+      'vpn_permission_other_vpn':
+          'Android ntiyahaye FuzeVPN uruhushya rwa VPN kubera ko hari indi porogaramu ya VPN ikora. Niba yashyizweho nka “VPN ihora ikora”, zimya iryo genamiterere mu igenamiterere rya VPN rya Android, hanyuma wongere ugerageze.',
       'revoked_identity_device_limit':
           'Uburenganzira bwa VPN bw’iki gikoresho bwakuweho, kandi umubare ntarengwa w’ibikoresho wagezweho. Mukureho igikoresho muri Konti → Gucunga ibikoresho byanyu.',
       'tunnel_start_unexpected':
@@ -922,6 +933,7 @@ class AppLocalizationsRw extends AppLocalizations {
       'vpn_host_unavailable': 'Igice cya Android cyakira VPN ntikiboneka',
       'vpn_permission_required': 'Hakenewe uruhushya rwa VPN',
       'vpn_permission_denied': 'Uruhushya rwa VPN rwanzwe',
+      'vpn_permission_other_vpn': 'Hari indi VPN ikora',
       'vpn_permission_request_failed': 'Gusaba uruhushya ntibyashobotse',
       'wireguard_foreground_service_unavailable':
           'Serivisi ya WireGuard ntiboneka',
@@ -1067,6 +1079,8 @@ class AppLocalizationsRw extends AppLocalizations {
           'Android isaba uruhushya rushya rwa VPN mbere yo gutangira umuyoboro.',
       'vpn_permission_denied':
           'Mwemerere FuzeVPN mu cyifuzo cya Android kugira ngo mukomeze.',
+      'vpn_permission_other_vpn':
+          'Android ntiyahaye FuzeVPN uruhushya rwa VPN kubera ko hari indi porogaramu ya VPN ikora. Niba yashyizweho nka “VPN ihora ikora”, zimya iryo genamiterere mu igenamiterere rya VPN rya Android, hanyuma wongere ugerageze.',
       'vpn_permission_request_failed':
           'Android ntiyashoboye gufungura urupapuro rw’uruhushya rwa VPN.',
       'wireguard_foreground_service_unavailable':

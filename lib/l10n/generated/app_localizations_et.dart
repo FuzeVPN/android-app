@@ -371,6 +371,14 @@ class AppLocalizationsEt extends AppLocalizations {
       'VPN-ühendus pole kinnitatud. Proovi uuesti.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Teine VPN võttis koha üle või peatati VPN Androidi seadetes. Jätkamiseks puuduta nuppu Ühenda.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Teine VPN on aktiivne. Kui see on seadistatud kui „Alati sees VPN“, lülita see Androidi VPN-i seadetes välja.';
+
+  @override
   String get status_idle => 'Ühendus katkestatud';
 
   @override
@@ -663,6 +671,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'vpn_sign_in_required': 'Sisselogimine on vajalik',
       'protocol_unavailable_at_location': 'Protokoll pole saadaval',
       'vpn_permission_denied': 'VPN-i luba pole antud',
+      'vpn_permission_other_vpn': 'Teine VPN on aktiivne',
       'revoked_identity_device_limit': 'Seadmete limiit on täis',
       'tunnel_start_unexpected': 'VPN-i ei õnnestunud käivitada',
       'flutter_disconnect_timeout': 'Ühenduse katkestamine pole kinnitatud',
@@ -699,6 +708,8 @@ class AppLocalizationsEt extends AppLocalizations {
           'See asukoht ei paku valitud protokolli. Värskenda asukohti või vali teine protokoll.',
       'vpn_permission_denied':
           'Android ei andnud VPN-i luba. Alusta ühendamist uuesti ja nõustu süsteemi taotlusega.',
+      'vpn_permission_other_vpn':
+          'Android ei andnud FuzeVPN-ile VPN-i luba, sest teine VPN-rakendus on aktiivne. Kui see on seadistatud kui „Alati sees VPN“, lülita see Androidi VPN-i seadetes välja ja proovi uuesti.',
       'revoked_identity_device_limit':
           'Selle seadme VPN-juurdepääs eemaldati ja seadmete limiit on täis. Eemalda mõni seade jaotises Konto → Halda minu seadmeid.',
       'tunnel_start_unexpected':
@@ -902,6 +913,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'vpn_host_unavailable': 'Androidi VPN-i komponent pole saadaval',
       'vpn_permission_required': 'VPN-i luba on vajalik',
       'vpn_permission_denied': 'VPN-i luba pole antud',
+      'vpn_permission_other_vpn': 'Teine VPN on aktiivne',
       'vpn_permission_request_failed': 'Luba ei õnnestunud taotleda',
       'wireguard_foreground_service_unavailable':
           'WireGuardi teenus pole saadaval',
@@ -1045,6 +1057,8 @@ class AppLocalizationsEt extends AppLocalizations {
           'Android nõuab enne tunneli käivitamist uut VPN-i luba.',
       'vpn_permission_denied':
           'Jätkamiseks anna Androidi taotluses FuzeVPN-ile luba.',
+      'vpn_permission_other_vpn':
+          'Android ei andnud FuzeVPN-ile VPN-i luba, sest teine VPN-rakendus on aktiivne. Kui see on seadistatud kui „Alati sees VPN“, lülita see Androidi VPN-i seadetes välja ja proovi uuesti.',
       'vpn_permission_request_failed':
           'Android ei saanud avada VPN-i loa ekraani.',
       'wireguard_foreground_service_unavailable':

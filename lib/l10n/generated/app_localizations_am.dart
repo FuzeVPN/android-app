@@ -362,6 +362,14 @@ class AppLocalizationsAm extends AppLocalizations {
   String get status_errorDetail => 'የVPN ግንኙነቱ አልተረጋገጠም። እንደገና ይሞክሩ።';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'ሌላ VPN ቦታውን ወስዷል፣ ወይም VPN በAndroid ቅንብሮች ውስጥ ቆሟል። ለመቀጠል ይገናኙ የሚለውን ይንኩ።';
+
+  @override
+  String get status_otherVpnDetail =>
+      'ሌላ VPN ንቁ ነው። እንደ ሁልጊዜ የበራ VPN ከተቀናበረ፣ በAndroid የVPN ቅንብሮች ውስጥ ያጥፉት።';
+
+  @override
   String get status_idle => 'ተቋርጧል';
 
   @override
@@ -644,6 +652,7 @@ class AppLocalizationsAm extends AppLocalizations {
       'vpn_sign_in_required': 'መግባት ያስፈልጋል',
       'protocol_unavailable_at_location': 'ፕሮቶኮል አይገኝም',
       'vpn_permission_denied': 'የVPN ፈቃድ ተከልክሏል',
+      'vpn_permission_other_vpn': 'ሌላ VPN ንቁ ነው',
       'revoked_identity_device_limit': 'የመሣሪያ ገደብ ላይ ደርሷል',
       'tunnel_start_unexpected': 'VPN መጀመር አልቻለም',
       'flutter_disconnect_timeout': 'ግንኙነቱ መቋረጡ አልተረጋገጠም',
@@ -679,6 +688,8 @@ class AppLocalizationsAm extends AppLocalizations {
           'የተመረጠው ፕሮቶኮል በዚህ አካባቢ አይቀርብም። አካባቢዎችን ያድሱ ወይም ሌላ ፕሮቶኮል ይምረጡ።',
       'vpn_permission_denied':
           'Android የVPN ፈቃዱን ከልክሏል። ግንኙነቱን እንደገና ይጀምሩ እና የስርዓቱን ጥያቄ ይቀበሉ።',
+      'vpn_permission_other_vpn':
+          'ሌላ የVPN መተግበሪያ ንቁ ስለሆነ Android ለFuzeVPN የVPN ፈቃድ አልሰጠም። እንደ ሁልጊዜ የበራ VPN ከተቀናበረ፣ በAndroid የVPN ቅንብሮች ውስጥ ያጥፉት፣ ከዚያ እንደገና ይሞክሩ።',
       'revoked_identity_device_limit':
           'የዚህ መሣሪያ የVPN መዳረሻ ተወግዷል እና የመሣሪያ ገደቡ ላይ ደርሷል። በመለያ → መሣሪያዎቼን ያስተዳድሩ ስር አንድ መሣሪያ ያስወግዱ።',
       'tunnel_start_unexpected':
@@ -862,6 +873,7 @@ class AppLocalizationsAm extends AppLocalizations {
       'vpn_host_unavailable': 'የAndroid VPN አስተናጋጅ አይገኝም',
       'vpn_permission_required': 'የVPN ፈቃድ ያስፈልጋል',
       'vpn_permission_denied': 'የVPN ፈቃድ ተከልክሏል',
+      'vpn_permission_other_vpn': 'ሌላ VPN ንቁ ነው',
       'vpn_permission_request_failed': 'ፈቃድ መጠየቅ አልተቻለም',
       'wireguard_foreground_service_unavailable': 'የWireGuard አገልግሎት አይገኝም',
       'wireguard_identity_invalid': 'በመሣሪያው ላይ ያለው የWireGuard ቁልፍ ልክ አይደለም',
@@ -992,6 +1004,8 @@ class AppLocalizationsAm extends AppLocalizations {
       'vpn_permission_required':
           'ቱነሉን ከመጀመርዎ በፊት Android አዲስ የVPN ፈቃድ ያስፈልገዋል።',
       'vpn_permission_denied': 'ለመቀጠል በAndroid ጥያቄው ውስጥ FuzeVPNን ይፍቀዱ።',
+      'vpn_permission_other_vpn':
+          'ሌላ የVPN መተግበሪያ ንቁ ስለሆነ Android ለFuzeVPN የVPN ፈቃድ አልሰጠም። እንደ ሁልጊዜ የበራ VPN ከተቀናበረ፣ በAndroid የVPN ቅንብሮች ውስጥ ያጥፉት፣ ከዚያ እንደገና ይሞክሩ።',
       'vpn_permission_request_failed': 'Android የVPN ፈቃድ ማያ ገጽን መክፈት አልቻለም።',
       'wireguard_foreground_service_unavailable':
           'Android የWireGuard አገልግሎቱን በፊት ለፊት ማቆየት አልቻለም።',

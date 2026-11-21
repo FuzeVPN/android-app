@@ -369,6 +369,14 @@ class AppLocalizationsTe extends AppLocalizations {
       'VPN కనెక్షన్ నిర్ధారణ కాలేదు. మళ్లీ ప్రయత్నించండి.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'మరొక VPN స్థానాన్ని తీసుకుంది, లేదా Android సెట్టింగ్‌లలో VPN ఆపివేయబడింది. కొనసాగించడానికి కనెక్ట్ చేయండిని ట్యాప్ చేయండి.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'మరొక VPN యాక్టివ్‌గా ఉంది. అది ఎల్లప్పుడూ ఆన్‌లో ఉండే VPNగా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేయండి.';
+
+  @override
   String get status_idle => 'డిస్‌కనెక్ట్ అయింది';
 
   @override
@@ -664,6 +672,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'vpn_sign_in_required': 'సైన్ ఇన్ అవసరం',
       'protocol_unavailable_at_location': 'ప్రోటోకాల్ అందుబాటులో లేదు',
       'vpn_permission_denied': 'VPN అనుమతి తిరస్కరించబడింది',
+      'vpn_permission_other_vpn': 'మరొక VPN యాక్టివ్‌గా ఉంది',
       'revoked_identity_device_limit': 'పరికరాల పరిమితి చేరుకుంది',
       'tunnel_start_unexpected': 'VPN ప్రారంభం కాలేదు',
       'flutter_disconnect_timeout': 'డిస్‌కనెక్షన్ నిర్ధారణ కాలేదు',
@@ -700,6 +709,8 @@ class AppLocalizationsTe extends AppLocalizations {
           'ఎంచుకున్న ప్రోటోకాల్ ఈ స్థానంలో అందుబాటులో లేదు. స్థానాలను రిఫ్రెష్ చేయండి లేదా మరొక ప్రోటోకాల్‌ను ఎంచుకోండి.',
       'vpn_permission_denied':
           'VPN అనుమతిని Android తిరస్కరించింది. కనెక్షన్‌ను మళ్లీ ప్రారంభించి, సిస్టమ్ అభ్యర్థనను అంగీకరించండి.',
+      'vpn_permission_other_vpn':
+          'మరొక VPN యాప్ యాక్టివ్‌గా ఉన్నందున Android, FuzeVPNకు VPN అనుమతి ఇవ్వలేదు. అది ఎల్లప్పుడూ ఆన్‌లో ఉండే VPNగా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేసి, మళ్లీ ప్రయత్నించండి.',
       'revoked_identity_device_limit':
           'ఈ పరికరం యొక్క VPN యాక్సెస్ తీసివేయబడింది, మరియు పరికరాల పరిమితి చేరుకుంది. ఖాతా → నా పరికరాలను నిర్వహించండి కింద ఒక పరికరాన్ని తీసివేయండి.',
       'tunnel_start_unexpected':
@@ -908,6 +919,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN హోస్ట్ అందుబాటులో లేదు',
       'vpn_permission_required': 'VPN అనుమతి అవసరం',
       'vpn_permission_denied': 'VPN అనుమతి తిరస్కరించబడింది',
+      'vpn_permission_other_vpn': 'మరొక VPN యాక్టివ్‌గా ఉంది',
       'vpn_permission_request_failed': 'అనుమతిని అభ్యర్థించడం సాధ్యం కాలేదు',
       'wireguard_foreground_service_unavailable':
           'WireGuard సేవ అందుబాటులో లేదు',
@@ -1047,6 +1059,8 @@ class AppLocalizationsTe extends AppLocalizations {
           'టన్నెల్‌ను ప్రారంభించడానికి ముందు Android కొత్త VPN అనుమతిని కోరుతుంది.',
       'vpn_permission_denied':
           'కొనసాగించడానికి Android అభ్యర్థనలో FuzeVPNను అనుమతించండి.',
+      'vpn_permission_other_vpn':
+          'మరొక VPN యాప్ యాక్టివ్‌గా ఉన్నందున Android, FuzeVPNకు VPN అనుమతి ఇవ్వలేదు. అది ఎల్లప్పుడూ ఆన్‌లో ఉండే VPNగా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేసి, మళ్లీ ప్రయత్నించండి.',
       'vpn_permission_request_failed':
           'VPN అనుమతి స్క్రీన్‌ను Android తెరవలేకపోయింది.',
       'wireguard_foreground_service_unavailable':

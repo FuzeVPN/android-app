@@ -166,6 +166,27 @@ class AndroidVpnBridgeHostTest {
         assertEquals(true, second.value)
     }
 
+    // The permanent VPN of another app (VM Android 17, 20/11/2026): Android answers the consent
+    // request at once, refused. The published state names the cause, so that Flutter keeps it when it
+    // reads the state again on a resume; without another VPN the refusal stays the user's.
+    @Test fun aPermissionRefusedWhileAnotherAppsVpnIsActiveSaysSo() {
+        signIn()
+        ConnectivityManager.vpn = Network()
+        VpnService.consentIntent = Intent("android.net.vpn.CONSENT")
+        val first = call("requestVpnPermission", mapOf("disclosure_accepted" to true))
+        eventually("consent activity") { activity.startedActivities.count { it.action == "android.net.vpn.CONSENT" } == 1 }
+        HarnessMain.run { bridge.onActivityResult(9811, Activity.RESULT_CANCELED) }
+        assertEquals(false, first.await().value)
+        assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+        assertEquals("vpn_permission_other_vpn", bridge.quickTileState().messageCode)
+        ConnectivityManager.vpn = null
+        val second = call("requestVpnPermission", mapOf("disclosure_accepted" to true))
+        eventually("second consent activity") { activity.startedActivities.count { it.action == "android.net.vpn.CONSENT" } == 2 }
+        HarnessMain.run { bridge.onActivityResult(9811, Activity.RESULT_CANCELED) }
+        assertEquals(false, second.await().value)
+        assertEquals("vpn_permission_denied", bridge.quickTileState().messageCode)
+    }
+
     @Test fun connectionAndStateEventsSurviveTileListeningFailure() {
         signIn()
         TileService.listeningFailure = IllegalArgumentException("User 10 is not the current user")
@@ -1569,6 +1590,24 @@ class AndroidVpnBridgeHostTest {
         assertEquals(2, HarnessControl.reviewLaunches)
     }
 
+    // Android refused the VPN permission: Flutter asks whether another app's VPN carries this app,
+    // as the permanent VPN of another app does (VM Android 17, 20/11/2026). Never this app's tunnel.
+    @Test fun anotherAppsVpnIsReportedOnlyWhileItCarriesThisAppWithoutATunnelOfItsOwn() {
+        signIn()
+        assertEquals(false, call("anotherVpnActive").await().value)
+        ConnectivityManager.vpn = Network()
+        assertEquals(true, call("anotherVpnActive").await().value)
+        ConnectivityManager.vpnCoversApp = false
+        assertEquals(false, call("anotherVpnActive").await().value)
+        ConnectivityManager.vpnCoversApp = true
+        ConnectivityManager.vpn = null
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected") { bridge.quickTileState().status == VpnStatus.CONNECTED }
+        // This app's own tunnel is then the VPN of its default network.
+        ConnectivityManager.vpn = Network()
+        assertEquals(false, call("anotherVpnActive").await().value)
+    }
+
     @Test fun revokedHostDisarmsAndTheRestartRestoresNothing() {
         armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
         bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first)
@@ -1726,6 +1765,30 @@ class AndroidVpnBridgeHostTest {
         Thread.sleep(300)
         HarnessMain.drain()
         assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+    }
+
+    // Another app's VPN takes the place (VM Android 17, 20/11/2026): Android calls onRevoke(), then
+    // onDestroy() while the stop started by the revocation is still running. Both callbacks report
+    // the same loss: one error, the revocation, never vpn_host_destroyed, which Flutter sends as an
+    // automatic diagnostic report.
+    @Test fun aVpnTakenByAnotherAppIsOneLossNotAHostDestruction() {
+        signIn()
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        eventually("connected delivered") { sink.events.contains(WIREGUARD_CONNECTED) }
+        sink.events.clear()
+        val stop = Gate("engine stop").also { HarnessControl.wireGuardStopGate = it }
+        try {
+            HarnessMain.run { bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first) }
+            stop.awaitReached()
+            HarnessMain.run { bridge.onVpnHostLost("vpn_host_destroyed", bridge.captureHostLoss().first) }
+        } finally { stop.open() }
+        eventually("stopped") { HarnessControl.wireGuardStops == 1 && bridge.quickTileState().status == VpnStatus.ERROR }
+        Thread.sleep(300)
+        val events = settledEvents()
+        assertFalse(events.toString(), events.any { it.contains("vpn_host_destroyed") })
+        assertEquals(VpnStatus.ERROR, bridge.quickTileState().status)
+        assertEquals("tun_permission_revoked", bridge.quickTileState().messageCode)
+        assertEquals(1, HarnessControl.wireGuardStops)
     }
 
     @Test fun restoreInterruptedByDeathIsNotRetried() {

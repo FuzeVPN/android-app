@@ -371,6 +371,14 @@ class AppLocalizationsLt extends AppLocalizations {
       'VPN ryšys nepatvirtintas. Bandykite dar kartą.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Vietą užėmė kitas VPN arba VPN buvo sustabdytas Android nustatymuose. Norėdami tęsti, palieskite Prisijungti.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Aktyvus kitas VPN. Jei jis nustatytas kaip „Visada įjungtas VPN“, išjunkite tai Android VPN nustatymuose.';
+
+  @override
   String get status_idle => 'Atjungta';
 
   @override
@@ -664,6 +672,7 @@ class AppLocalizationsLt extends AppLocalizations {
       'vpn_sign_in_required': 'Reikia prisijungti prie paskyros',
       'protocol_unavailable_at_location': 'Protokolas nepasiekiamas',
       'vpn_permission_denied': 'VPN leidimas atmestas',
+      'vpn_permission_other_vpn': 'Aktyvus kitas VPN',
       'revoked_identity_device_limit': 'Pasiekta įrenginių riba',
       'tunnel_start_unexpected': 'VPN nepavyko paleisti',
       'flutter_disconnect_timeout': 'Atjungimas nepatvirtintas',
@@ -702,6 +711,8 @@ class AppLocalizationsLt extends AppLocalizations {
           'Šioje vietoje pasirinkto protokolo nėra. Atnaujinkite vietas arba pasirinkite kitą protokolą.',
       'vpn_permission_denied':
           'Android nesuteikė VPN leidimo. Pradėkite prisijungimą iš naujo ir patvirtinkite sistemos užklausą.',
+      'vpn_permission_other_vpn':
+          'Android nesuteikė FuzeVPN VPN leidimo, nes aktyvi kita VPN programa. Jei ji nustatyta kaip „Visada įjungtas VPN“, išjunkite tai Android VPN nustatymuose ir bandykite dar kartą.',
       'revoked_identity_device_limit':
           'Šio įrenginio VPN prieiga pašalinta, o įrenginių riba pasiekta. Pašalinkite įrenginį skiltyje „Paskyra“ → „Tvarkyti mano įrenginius“.',
       'tunnel_start_unexpected':
@@ -905,6 +916,7 @@ class AppLocalizationsLt extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN komponentas nepasiekiamas',
       'vpn_permission_required': 'Reikalingas VPN leidimas',
       'vpn_permission_denied': 'VPN leidimas atmestas',
+      'vpn_permission_other_vpn': 'Aktyvus kitas VPN',
       'vpn_permission_request_failed': 'Nepavyko paprašyti leidimo',
       'wireguard_foreground_service_unavailable':
           'WireGuard paslauga nepasiekiama',
@@ -1040,6 +1052,8 @@ class AppLocalizationsLt extends AppLocalizations {
           'Prieš paleisdamas tunelį Android reikalauja naujo VPN leidimo.',
       'vpn_permission_denied':
           'Norėdami tęsti, Android užklausoje leiskite FuzeVPN.',
+      'vpn_permission_other_vpn':
+          'Android nesuteikė FuzeVPN VPN leidimo, nes aktyvi kita VPN programa. Jei ji nustatyta kaip „Visada įjungtas VPN“, išjunkite tai Android VPN nustatymuose ir bandykite dar kartą.',
       'vpn_permission_request_failed':
           'Android nepavyko atidaryti VPN leidimo ekrano.',
       'wireguard_foreground_service_unavailable':

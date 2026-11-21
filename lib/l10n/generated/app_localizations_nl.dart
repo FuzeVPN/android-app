@@ -371,6 +371,14 @@ class AppLocalizationsNl extends AppLocalizations {
       'De VPN-verbinding is niet bevestigd. Probeer het opnieuw.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Een andere VPN heeft het overgenomen, of de VPN is gestopt in de Android-instellingen. Tik op Verbinden om verder te gaan.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Er is een andere VPN actief. Als deze is ingesteld als Altijd ingeschakelde VPN, schakel dat dan uit in de VPN-instellingen van Android.';
+
+  @override
   String get status_idle => 'Verbinding verbroken';
 
   @override
@@ -670,6 +678,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'vpn_sign_in_required': 'Aanmelden vereist',
       'protocol_unavailable_at_location': 'Protocol niet beschikbaar',
       'vpn_permission_denied': 'VPN-toestemming geweigerd',
+      'vpn_permission_other_vpn': 'Er is een andere VPN actief',
       'revoked_identity_device_limit': 'Apparaatlimiet bereikt',
       'tunnel_start_unexpected': 'VPN kon niet starten',
       'flutter_disconnect_timeout': 'Verbreking niet bevestigd',
@@ -709,6 +718,8 @@ class AppLocalizationsNl extends AppLocalizations {
           'Het geselecteerde protocol wordt niet aangeboden op deze locatie. Vernieuw de locaties of kies een ander protocol.',
       'vpn_permission_denied':
           'Android heeft de VPN-toestemming geweigerd. Start de verbinding opnieuw en accepteer het systeemverzoek.',
+      'vpn_permission_other_vpn':
+          'Android heeft FuzeVPN geen VPN-toestemming gegeven omdat een andere VPN-app actief is. Als deze is ingesteld als Altijd ingeschakelde VPN, schakel dat dan uit in de VPN-instellingen van Android en probeer het opnieuw.',
       'revoked_identity_device_limit':
           'De VPN-toegang van dit apparaat is verwijderd en de apparaatlimiet is bereikt. Verwijder een apparaat via Account → Mijn apparaten beheren.',
       'tunnel_start_unexpected':
@@ -925,6 +936,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'vpn_host_unavailable': 'Android-VPN-host niet beschikbaar',
       'vpn_permission_required': 'VPN-toestemming vereist',
       'vpn_permission_denied': 'VPN-toestemming geweigerd',
+      'vpn_permission_other_vpn': 'Er is een andere VPN actief',
       'vpn_permission_request_failed':
           'Toestemming kon niet worden aangevraagd',
       'wireguard_foreground_service_unavailable':
@@ -1066,6 +1078,8 @@ class AppLocalizationsNl extends AppLocalizations {
           'Android vereist nieuwe VPN-autorisatie voordat de tunnel wordt gestart.',
       'vpn_permission_denied':
           'Sta FuzeVPN toe in het Android-verzoek om door te gaan.',
+      'vpn_permission_other_vpn':
+          'Android heeft FuzeVPN geen VPN-toestemming gegeven omdat een andere VPN-app actief is. Als deze is ingesteld als Altijd ingeschakelde VPN, schakel dat dan uit in de VPN-instellingen van Android en probeer het opnieuw.',
       'vpn_permission_request_failed':
           'Android kon het VPN-toestemmingsscherm niet openen.',
       'wireguard_foreground_service_unavailable':

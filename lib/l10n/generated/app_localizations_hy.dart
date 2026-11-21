@@ -369,6 +369,14 @@ class AppLocalizationsHy extends AppLocalizations {
   String get status_errorDetail => 'VPN կապը չի հաստատվել։ Նորից փորձեք։';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Մեկ այլ VPN զբաղեցրել է տեղը, կամ VPN-ն անջատվել է Android-ի կարգավորումներում։ Շարունակելու համար հպեք «Միանալ»։';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Մեկ այլ VPN ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ միացված VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում։';
+
+  @override
   String get status_idle => 'Անջատված է';
 
   @override
@@ -662,6 +670,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'vpn_sign_in_required': 'Պահանջվում է մուտք գործել',
       'protocol_unavailable_at_location': 'Պրոտոկոլն անհասանելի է',
       'vpn_permission_denied': 'VPN-ի թույլտվությունը մերժվել է',
+      'vpn_permission_other_vpn': 'Մեկ այլ VPN ակտիվ է',
       'revoked_identity_device_limit': 'Սարքերի սահմանաչափը սպառվել է',
       'tunnel_start_unexpected': 'VPN-ը չհաջողվեց գործարկել',
       'flutter_disconnect_timeout': 'Անջատումը չի հաստատվել',
@@ -699,6 +708,8 @@ class AppLocalizationsHy extends AppLocalizations {
           'Ընտրված պրոտոկոլն այս վայրում չի առաջարկվում։ Թարմացրեք վայրերը կամ ընտրեք այլ պրոտոկոլ։',
       'vpn_permission_denied':
           'Android-ը մերժել է VPN-ի թույլտվությունը։ Նորից սկսեք միացումը և ընդունեք համակարգի հարցումը։',
+      'vpn_permission_other_vpn':
+          'Android-ը FuzeVPN-ին VPN-ի թույլտվություն չտվեց, քանի որ մեկ այլ VPN հավելված ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ միացված VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում, ապա նորից փորձեք։',
       'revoked_identity_device_limit':
           'Այս սարքի VPN հասանելիությունը հեռացվել է, և սարքերի սահմանաչափը սպառվել է։ Հեռացրեք սարք «Հաշիվ → Կառավարել իմ սարքերը» բաժնում։',
       'tunnel_start_unexpected':
@@ -903,6 +914,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'vpn_host_unavailable': 'Android-ի VPN բաղադրիչը հասանելի չէ',
       'vpn_permission_required': 'Պահանջվում է VPN-ի թույլտվություն',
       'vpn_permission_denied': 'VPN-ի թույլտվությունը մերժվել է',
+      'vpn_permission_other_vpn': 'Մեկ այլ VPN ակտիվ է',
       'vpn_permission_request_failed': 'Չհաջողվեց թույլտվություն խնդրել',
       'wireguard_foreground_service_unavailable':
           'WireGuard ծառայությունը հասանելի չէ',
@@ -1043,6 +1055,8 @@ class AppLocalizationsHy extends AppLocalizations {
           'Android-ը թունելը մեկնարկելուց առաջ պահանջում է VPN-ի նոր թույլտվություն։',
       'vpn_permission_denied':
           'Շարունակելու համար Android-ի հարցումում թույլատրեք FuzeVPN-ին։',
+      'vpn_permission_other_vpn':
+          'Android-ը FuzeVPN-ին VPN-ի թույլտվություն չտվեց, քանի որ մեկ այլ VPN հավելված ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ միացված VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում, ապա նորից փորձեք։',
       'vpn_permission_request_failed':
           'Android-ը չկարողացավ բացել VPN-ի թույլտվության էկրանը։',
       'wireguard_foreground_service_unavailable':

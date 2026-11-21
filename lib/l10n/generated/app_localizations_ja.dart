@@ -357,6 +357,14 @@ class AppLocalizationsJa extends AppLocalizations {
   String get status_errorDetail => 'VPN接続を確認できません。もう一度試してください。';
 
   @override
+  String get status_vpnRevokedDetail =>
+      '別のVPNに切り替わったか、Androidの設定でVPNが停止されました。再開するには「接続」をタップしてください。';
+
+  @override
+  String get status_otherVpnDetail =>
+      '別のVPNが有効になっています。常時接続VPNに設定されている場合は、AndroidのVPN設定でオフにしてください。';
+
+  @override
   String get status_idle => '切断済み';
 
   @override
@@ -637,6 +645,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'vpn_sign_in_required': 'サインインが必要です',
       'protocol_unavailable_at_location': 'プロトコルを利用できません',
       'vpn_permission_denied': 'VPN権限が拒否されました',
+      'vpn_permission_other_vpn': '別のVPNが有効です',
       'revoked_identity_device_limit': 'デバイス上限に達しました',
       'tunnel_start_unexpected': 'VPNを起動できませんでした',
       'flutter_disconnect_timeout': '切断を確認できません',
@@ -671,6 +680,8 @@ class AppLocalizationsJa extends AppLocalizations {
           '選択したプロトコルはこの場所では提供されていません。場所を更新するか、別のプロトコルを選択してください。',
       'vpn_permission_denied':
           'AndroidがVPN権限を拒否しました。接続をもう一度開始し、システムのリクエストを承認してください。',
+      'vpn_permission_other_vpn':
+          '別のVPNアプリが有効なため、AndroidはFuzeVPNにVPN権限を与えませんでした。常時接続VPNに設定されている場合は、AndroidのVPN設定でオフにしてから、もう一度お試しください。',
       'revoked_identity_device_limit':
           'このデバイスのVPNアクセスが削除され、デバイス上限に達しました。アカウント → デバイスを管理からデバイスを削除してください。',
       'tunnel_start_unexpected':
@@ -849,6 +860,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPNホストを利用できません',
       'vpn_permission_required': 'VPN権限が必要です',
       'vpn_permission_denied': 'VPN権限が拒否されました',
+      'vpn_permission_other_vpn': '別のVPNが有効です',
       'vpn_permission_request_failed': '権限をリクエストできませんでした',
       'wireguard_foreground_service_unavailable': 'WireGuardサービスを利用できません',
       'wireguard_identity_invalid': 'ローカルWireGuardキーが無効です',
@@ -971,6 +983,8 @@ class AppLocalizationsJa extends AppLocalizations {
       'openvpn_recovery_exhausted': '自動復旧はすでに使用されています。アプリで新しい接続を開始してください。',
       'vpn_permission_required': 'トンネルを開始する前に、Androidで新しいVPN認証が必要です。',
       'vpn_permission_denied': '続行するには、AndroidのリクエストでFuzeVPNを許可してください。',
+      'vpn_permission_other_vpn':
+          '別のVPNアプリが有効なため、AndroidはFuzeVPNにVPN権限を与えませんでした。常時接続VPNに設定されている場合は、AndroidのVPN設定でオフにしてから、もう一度お試しください。',
       'vpn_permission_request_failed': 'AndroidはVPN権限画面を開けませんでした。',
       'wireguard_foreground_service_unavailable':
           'AndroidはWireGuardサービスをフォアグラウンドで維持できませんでした。',

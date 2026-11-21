@@ -12,7 +12,7 @@ open class Activity : Context() {
     open fun requestPermissions(permissions: Array<String>, requestCode: Int) { permissionRequests += requestCode }
     open fun startActivityForResult(intent: Intent, requestCode: Int) { startedActivities += intent }
     @Volatile var isFinishing = false
-    companion object { const val RESULT_OK = -1 }
+    companion object { const val RESULT_OK = -1; const val RESULT_CANCELED = 0 }
 }
 
 class PendingIntent private constructor(val intent: Intent, val requestCode: Int) {

@@ -371,6 +371,14 @@ class AppLocalizationsFi extends AppLocalizations {
       'VPN-yhteyttä ei ole vahvistettu. Yritä uudelleen.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Toinen VPN otti paikan tai VPN pysäytettiin Androidin asetuksista. Jatka napauttamalla Yhdistä.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Toinen VPN on käytössä. Jos se on asetettu Aina päällä olevaksi VPN:ksi, poista asetus käytöstä Androidin VPN-asetuksista.';
+
+  @override
   String get status_idle => 'Yhteys katkaistu';
 
   @override
@@ -665,6 +673,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'vpn_sign_in_required': 'Kirjautuminen vaaditaan',
       'protocol_unavailable_at_location': 'Protokolla ei ole käytettävissä',
       'vpn_permission_denied': 'VPN-lupa evätty',
+      'vpn_permission_other_vpn': 'Toinen VPN on käytössä',
       'revoked_identity_device_limit': 'Laitteiden enimmäismäärä saavutettu',
       'tunnel_start_unexpected': 'VPN ei voinut käynnistyä',
       'flutter_disconnect_timeout': 'Yhteyden katkaisua ei ole vahvistettu',
@@ -702,6 +711,8 @@ class AppLocalizationsFi extends AppLocalizations {
           'Tämä sijainti ei tarjoa valittua protokollaa. Päivitä sijainnit tai valitse toinen protokolla.',
       'vpn_permission_denied':
           'Android eväsi VPN-luvan. Aloita yhteys uudelleen ja hyväksy järjestelmän pyyntö.',
+      'vpn_permission_other_vpn':
+          'Android ei antanut FuzeVPN:lle VPN-lupaa, koska toinen VPN-sovellus on käytössä. Jos se on asetettu Aina päällä olevaksi VPN:ksi, poista asetus käytöstä Androidin VPN-asetuksista ja yritä uudelleen.',
       'revoked_identity_device_limit':
           'Tämän laitteen VPN-käyttöoikeus poistettiin, ja laitteiden enimmäismäärä on saavutettu. Poista laite kohdassa Tili → Hallitse laitteitani.',
       'tunnel_start_unexpected':
@@ -914,6 +925,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN:n palautus on jo käytetty',
       'vpn_permission_required': 'VPN-lupa vaaditaan',
       'vpn_permission_denied': 'VPN-lupa evätty',
+      'vpn_permission_other_vpn': 'Toinen VPN on käytössä',
       'vpn_permission_request_failed': 'Lupaa ei voitu pyytää',
       'wireguard_foreground_service_unavailable':
           'WireGuard-palvelu ei ole käytettävissä',
@@ -1051,6 +1063,8 @@ class AppLocalizationsFi extends AppLocalizations {
           'Android vaatii uuden VPN-luvan ennen tunnelin käynnistämistä.',
       'vpn_permission_denied':
           'Salli FuzeVPN Androidin pyynnössä, jotta voit jatkaa.',
+      'vpn_permission_other_vpn':
+          'Android ei antanut FuzeVPN:lle VPN-lupaa, koska toinen VPN-sovellus on käytössä. Jos se on asetettu Aina päällä olevaksi VPN:ksi, poista asetus käytöstä Androidin VPN-asetuksista ja yritä uudelleen.',
       'vpn_permission_request_failed':
           'Android ei voinut avata VPN-luvan näyttöä.',
       'wireguard_foreground_service_unavailable':

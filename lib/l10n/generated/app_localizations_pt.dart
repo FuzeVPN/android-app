@@ -371,6 +371,14 @@ class AppLocalizationsPt extends AppLocalizations {
       'A conexão VPN não foi confirmada. Tente novamente.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Outra VPN assumiu o lugar, ou a VPN foi interrompida nas configurações do Android. Toque em Conectar para retomar.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Outra VPN está ativa. Se ela estiver definida como VPN sempre ativa, desative essa opção nas configurações de VPN do Android.';
+
+  @override
   String get status_idle => 'Desconectado';
 
   @override
@@ -670,6 +678,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'vpn_sign_in_required': 'Login necessário',
       'protocol_unavailable_at_location': 'Protocolo indisponível',
       'vpn_permission_denied': 'Permissão da VPN negada',
+      'vpn_permission_other_vpn': 'Outra VPN está ativa',
       'revoked_identity_device_limit': 'Limite de dispositivos atingido',
       'tunnel_start_unexpected': 'Não foi possível iniciar a VPN',
       'flutter_disconnect_timeout': 'Desconexão não confirmada',
@@ -709,6 +718,8 @@ class AppLocalizationsPt extends AppLocalizations {
           'O protocolo selecionado não é oferecido por esta localização. Atualize as localizações ou escolha outro protocolo.',
       'vpn_permission_denied':
           'O Android negou a permissão da VPN. Inicie a conexão novamente e aceite a solicitação do sistema.',
+      'vpn_permission_other_vpn':
+          'O Android não deu a permissão de VPN ao FuzeVPN porque outro app de VPN está ativo. Se ele estiver definido como VPN sempre ativa, desative essa opção nas configurações de VPN do Android e tente novamente.',
       'revoked_identity_device_limit':
           'O acesso VPN deste dispositivo foi removido e o limite de dispositivos foi atingido. Remova um dispositivo em Conta → Gerenciar meus dispositivos.',
       'tunnel_start_unexpected':
@@ -922,6 +933,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'vpn_host_unavailable': 'Host da VPN do Android indisponível',
       'vpn_permission_required': 'Permissão da VPN necessária',
       'vpn_permission_denied': 'Permissão da VPN negada',
+      'vpn_permission_other_vpn': 'Outra VPN está ativa',
       'vpn_permission_request_failed': 'Não foi possível solicitar a permissão',
       'wireguard_foreground_service_unavailable':
           'Serviço WireGuard indisponível',
@@ -1063,6 +1075,8 @@ class AppLocalizationsPt extends AppLocalizations {
           'O Android requer uma nova autorização da VPN antes de iniciar o túnel.',
       'vpn_permission_denied':
           'Permita o FuzeVPN na solicitação do Android para continuar.',
+      'vpn_permission_other_vpn':
+          'O Android não deu a permissão de VPN ao FuzeVPN porque outro app de VPN está ativo. Se ele estiver definido como VPN sempre ativa, desative essa opção nas configurações de VPN do Android e tente novamente.',
       'vpn_permission_request_failed':
           'O Android não conseguiu abrir a tela de permissão da VPN.',
       'wireguard_foreground_service_unavailable':

@@ -370,6 +370,14 @@ class AppLocalizationsNe extends AppLocalizations {
       'VPN जडानको पुष्टि भएको छैन। फेरि प्रयास गर्नुहोस्।';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'अर्को VPN ले ठाउँ लियो, वा Android सेटिङमा VPN रोकियो। जारी राख्न जडान गर्नुहोस् मा ट्याप गर्नुहोस्।';
+
+  @override
+  String get status_otherVpnDetail =>
+      'अर्को VPN सक्रिय छ। यो सधैं सक्रिय VPN को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्।';
+
+  @override
   String get status_idle => 'जडान विच्छेद भएको';
 
   @override
@@ -662,6 +670,7 @@ class AppLocalizationsNe extends AppLocalizations {
       'vpn_sign_in_required': 'साइन इन आवश्यक छ',
       'protocol_unavailable_at_location': 'प्रोटोकल उपलब्ध छैन',
       'vpn_permission_denied': 'VPN अनुमति अस्वीकृत',
+      'vpn_permission_other_vpn': 'अर्को VPN सक्रिय छ',
       'revoked_identity_device_limit': 'डिभाइसको सीमा पुग्यो',
       'tunnel_start_unexpected': 'VPN सुरु हुन सकेन',
       'flutter_disconnect_timeout': 'जडान विच्छेद पुष्टि भएन',
@@ -699,6 +708,8 @@ class AppLocalizationsNe extends AppLocalizations {
           'चयन गरिएको प्रोटोकल यो स्थानले प्रदान गर्दैन। स्थानहरू ताजा गर्नुहोस् वा अर्को प्रोटोकल छान्नुहोस्।',
       'vpn_permission_denied':
           'Android ले VPN अनुमति अस्वीकार गर्यो। जडान फेरि सुरु गर्नुहोस् र सिस्टमको अनुरोध स्वीकार गर्नुहोस्।',
+      'vpn_permission_other_vpn':
+          'अर्को VPN एप सक्रिय भएकाले Android ले FuzeVPN लाई VPN अनुमति दिएन। यो सधैं सक्रिय VPN को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्, अनि फेरि प्रयास गर्नुहोस्।',
       'revoked_identity_device_limit':
           'यो डिभाइसको VPN पहुँच हटाइएको छ र डिभाइसको सीमा पुगेको छ। खाता → मेरा डिभाइसहरू व्यवस्थापन गर्नुहोस् अन्तर्गत कुनै डिभाइस हटाउनुहोस्।',
       'tunnel_start_unexpected':
@@ -899,6 +910,7 @@ class AppLocalizationsNe extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN होस्ट उपलब्ध छैन',
       'vpn_permission_required': 'VPN अनुमति आवश्यक छ',
       'vpn_permission_denied': 'VPN अनुमति अस्वीकार गरियो',
+      'vpn_permission_other_vpn': 'अर्को VPN सक्रिय छ',
       'vpn_permission_request_failed': 'अनुमति अनुरोध गर्न सकिएन',
       'wireguard_foreground_service_unavailable': 'WireGuard सेवा उपलब्ध छैन',
       'wireguard_identity_invalid': 'स्थानीय WireGuard कुञ्जी अमान्य',
@@ -1032,6 +1044,8 @@ class AppLocalizationsNe extends AppLocalizations {
           'टनेल सुरु गर्नुअघि Android लाई नयाँ VPN अनुमति चाहिन्छ।',
       'vpn_permission_denied':
           'जारी राख्न Android को अनुरोधमा FuzeVPN लाई अनुमति दिनुहोस्।',
+      'vpn_permission_other_vpn':
+          'अर्को VPN एप सक्रिय भएकाले Android ले FuzeVPN लाई VPN अनुमति दिएन। यो सधैं सक्रिय VPN को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्, अनि फेरि प्रयास गर्नुहोस्।',
       'vpn_permission_request_failed':
           'Android ले VPN अनुमति स्क्रिन खोल्न सकेन।',
       'wireguard_foreground_service_unavailable':

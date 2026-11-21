@@ -71,6 +71,8 @@ const diagnosticCodeAliases = <String, String>{
   'tunnel_disconnected': 'tunnel_failure',
   'vpn_disclosure_required': 'permission_denied',
   'vpn_permission_denied': 'permission_denied',
+  // Android refused the permission because another app's VPN is active.
+  'vpn_permission_other_vpn': 'permission_denied',
   'vpn_permission_required': 'permission_denied',
   // A user stop under always-on whose Android VPN settings cannot open.
   'vpn_settings_unavailable': 'tunnel_stop_failed',

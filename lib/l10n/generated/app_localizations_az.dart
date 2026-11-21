@@ -369,6 +369,14 @@ class AppLocalizationsAz extends AppLocalizations {
       'VPN bağlantısı təsdiqlənməyib. Yenidən cəhd edin.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Başqa VPN yeri tutdu və ya VPN Android ayarlarında dayandırıldı. Davam etmək üçün «Qoşulun» düyməsinə toxunun.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Başqa VPN aktivdir. O, Həmişə aktiv VPN kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün.';
+
+  @override
   String get status_idle => 'Bağlantı kəsilib';
 
   @override
@@ -661,6 +669,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'vpn_sign_in_required': 'Daxil olmaq tələb olunur',
       'protocol_unavailable_at_location': 'Protokol əlçatan deyil',
       'vpn_permission_denied': 'VPN icazəsi rədd edildi',
+      'vpn_permission_other_vpn': 'Başqa VPN aktivdir',
       'revoked_identity_device_limit': 'Cihaz limitinə çatılıb',
       'tunnel_start_unexpected': 'VPN başlaya bilmədi',
       'flutter_disconnect_timeout': 'Bağlantının kəsilməsi təsdiqlənmədi',
@@ -698,6 +707,8 @@ class AppLocalizationsAz extends AppLocalizations {
           'Seçilmiş protokol bu məkanda mövcud deyil. Məkanları yeniləyin və ya başqa protokol seçin.',
       'vpn_permission_denied':
           'Android VPN icazəsini rədd etdi. Qoşulmanı yenidən başladın və sistem sorğusunu qəbul edin.',
+      'vpn_permission_other_vpn':
+          'Başqa VPN tətbiqi aktiv olduğu üçün Android FuzeVPN-ə VPN icazəsi vermədi. O, Həmişə aktiv VPN kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün, sonra yenidən cəhd edin.',
       'revoked_identity_device_limit':
           'Bu cihazın VPN girişi ləğv edilib və cihaz limitinə çatılıb. Hesab → Cihazlarımı idarə edin bölməsində cihaz çıxarın.',
       'tunnel_start_unexpected':
@@ -911,6 +922,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN komponenti əlçatan deyil',
       'vpn_permission_required': 'VPN icazəsi tələb olunur',
       'vpn_permission_denied': 'VPN icazəsi rədd edildi',
+      'vpn_permission_other_vpn': 'Başqa VPN aktivdir',
       'vpn_permission_request_failed': 'İcazə sorğusu göndərilə bilmədi',
       'wireguard_foreground_service_unavailable':
           'WireGuard xidməti əlçatan deyil',
@@ -1051,6 +1063,8 @@ class AppLocalizationsAz extends AppLocalizations {
           'Tuneli başlatmazdan əvvəl Android yeni VPN icazəsi tələb edir.',
       'vpn_permission_denied':
           'Davam etmək üçün Android sorğusunda FuzeVPN-ə icazə verin.',
+      'vpn_permission_other_vpn':
+          'Başqa VPN tətbiqi aktiv olduğu üçün Android FuzeVPN-ə VPN icazəsi vermədi. O, Həmişə aktiv VPN kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün, sonra yenidən cəhd edin.',
       'vpn_permission_request_failed':
           'Android VPN icazə ekranını aça bilmədi.',
       'wireguard_foreground_service_unavailable':

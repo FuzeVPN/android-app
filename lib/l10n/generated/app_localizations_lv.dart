@@ -373,6 +373,14 @@ class AppLocalizationsLv extends AppLocalizations {
       'VPN savienojums nav apstiprināts. Mēģiniet vēlreiz.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Vietu pārņēma cits VPN, vai VPN tika apturēts Android iestatījumos. Lai turpinātu, pieskarieties pie Savienot.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Ir aktīvs cits VPN. Ja tas ir iestatīts kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos.';
+
+  @override
   String get status_idle => 'Atvienots';
 
   @override
@@ -667,6 +675,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'vpn_sign_in_required': 'Nepieciešama pierakstīšanās',
       'protocol_unavailable_at_location': 'Protokols nav pieejams',
       'vpn_permission_denied': 'VPN atļauja noraidīta',
+      'vpn_permission_other_vpn': 'Ir aktīvs cits VPN',
       'revoked_identity_device_limit': 'Sasniegts ierīču limits',
       'tunnel_start_unexpected': 'Neizdevās palaist VPN',
       'flutter_disconnect_timeout': 'Atvienošana nav apstiprināta',
@@ -704,6 +713,8 @@ class AppLocalizationsLv extends AppLocalizations {
           'Šajā atrašanās vietā nav pieejams izvēlētais protokols. Atsvaidziniet atrašanās vietas vai izvēlieties citu protokolu.',
       'vpn_permission_denied':
           'Android noraidīja VPN atļauju. Sāciet savienojumu vēlreiz un apstipriniet sistēmas pieprasījumu.',
+      'vpn_permission_other_vpn':
+          'Android nepiešķīra FuzeVPN VPN atļauju, jo ir aktīva cita VPN lietotne. Ja tā ir iestatīta kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos un mēģiniet vēlreiz.',
       'revoked_identity_device_limit':
           'Šīs ierīces VPN piekļuve tika noņemta, un ierīču limits ir sasniegts. Noņemiet ierīci sadaļā Konts → Pārvaldīt manas ierīces.',
       'tunnel_start_unexpected':
@@ -911,6 +922,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN komponents nav pieejams',
       'vpn_permission_required': 'Nepieciešama VPN atļauja',
       'vpn_permission_denied': 'VPN atļauja noraidīta',
+      'vpn_permission_other_vpn': 'Ir aktīvs cits VPN',
       'vpn_permission_request_failed': 'Neizdevās pieprasīt atļauju',
       'wireguard_foreground_service_unavailable':
           'WireGuard pakalpojums nav pieejams',
@@ -1048,6 +1060,8 @@ class AppLocalizationsLv extends AppLocalizations {
           'Pirms tuneļa palaišanas Android pieprasa jaunu VPN atļauju.',
       'vpn_permission_denied':
           'Lai turpinātu, Android pieprasījumā atļaujiet FuzeVPN.',
+      'vpn_permission_other_vpn':
+          'Android nepiešķīra FuzeVPN VPN atļauju, jo ir aktīva cita VPN lietotne. Ja tā ir iestatīta kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos un mēģiniet vēlreiz.',
       'vpn_permission_request_failed':
           'Android nevarēja atvērt VPN atļaujas ekrānu.',
       'wireguard_foreground_service_unavailable':

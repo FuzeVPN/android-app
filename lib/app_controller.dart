@@ -1840,7 +1840,7 @@ class VpnAppController extends ChangeNotifier {
         networkAttempt.check();
         migrationContext?.check();
         if (!permissionGranted) {
-          throw const _ControllerFailure('vpn_permission_denied');
+          throw _ControllerFailure(await _vpnPermissionRefusal());
         }
         var replacedRevokedIdentity = false;
         final bool migratedCurrentDevice = locationPreparation.migrated;
@@ -2561,7 +2561,7 @@ class VpnAppController extends ChangeNotifier {
           networkAttempt.check();
           context.check();
           if (!permissionGranted) {
-            throw const _ControllerFailure('vpn_permission_denied');
+            throw _ControllerFailure(await _vpnPermissionRefusal());
           }
           final String csr = await _tunnel.getOrCreateOpenVpnCsr(
             accountId: activeProfile.userId,
@@ -4698,6 +4698,21 @@ class VpnAppController extends ChangeNotifier {
       arguments: <String, Object?>{'code': code, ...arguments},
       diagnosticCode: diagnosticCode,
     );
+  }
+
+  /// Android refuses the VPN permission without asking anything while another
+  /// app is the permanent VPN (VM Android 17, 20/11/2026): the refusal is then
+  /// not the user's. The reason only chooses the message; the refusal stands.
+  Future<String> _vpnPermissionRefusal() async {
+    final Object tunnel = _tunnel;
+    if (tunnel is ForeignVpnProbe) {
+      try {
+        if (await tunnel.anotherVpnActive()) return 'vpn_permission_other_vpn';
+      } catch (_) {
+        // Unknown: shown as the usual refusal.
+      }
+    }
+    return 'vpn_permission_denied';
   }
 
   AppNotice _controllerFailureNotice(_ControllerFailure failure) =>

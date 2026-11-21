@@ -480,6 +480,8 @@ abstract final class AppCopy {
       'status.disconnectingDetail' => localizations.status_disconnectingDetail,
       'status.error' => localizations.status_error,
       'status.errorDetail' => localizations.status_errorDetail,
+      'status.vpnRevokedDetail' => localizations.status_vpnRevokedDetail,
+      'status.otherVpnDetail' => localizations.status_otherVpnDetail,
       'status.idle' => localizations.status_idle,
       'status.idleDetail' => localizations.status_idleDetail,
       'trust.note' => localizations.trust_note,

@@ -378,6 +378,24 @@ sans code d'erreur, sans reprise, et rien n'est restauré ensuite. Les autres
 pannes OpenVPN de ce tunnel gardent leur reprise. Sans ce passage par les
 réglages, une révocation reste signalée (`tun_permission_revoked`).
 
+Un seul VPN est actif à la fois sur Android. Quand le VPN d'une autre app prend
+la place (campagne Android 17 du 20/11/2026), Android appelle `onRevoke()`,
+puis `onDestroy()` du même hôte pendant l'arrêt lancé par la révocation. Le
+pont traite cette perte une seule fois : l'état finit en
+`tun_permission_revoked`, sans `vpn_host_destroyed`, qui part en rapport
+automatique. Sous « Connexion indisponible », l'app indique qu'un autre VPN a
+pris la place, ou que le VPN a été coupé dans les réglages d'Android, et
+qu'« Se connecter » reprend la protection.
+
+Si une autre app est le VPN permanent, Android refuse l'autorisation à FuzeVPN
+sans rien demander. Après un refus, Flutter demande au pont si le VPN d'une
+autre app couvre l'app (`anotherVpnActive`, réseau par défaut en
+`TRANSPORT_VPN`, jamais pendant un tunnel de l'app). Si c'est le cas, le refus
+devient `vpn_permission_other_vpn`, dans l'état publié par le pont comme dans
+le contrôleur : le message explique la cause et propose
+d'ouvrir les réglages VPN d'Android. Ce code, comme un refus de l'utilisateur,
+n'est jamais envoyé en rapport automatique.
+
 La reprise système utilise seulement un profil local ayant déjà obtenu une
 preuve native de connexion, avec vérification de sa session et de son identité.
 Elle ne prépare pas une nouvelle identité par l'API, sauf pour renouveler un

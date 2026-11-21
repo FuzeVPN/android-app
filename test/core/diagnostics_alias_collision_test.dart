@@ -21,6 +21,8 @@ import 'package:fuzevpn_android/native_vpn_bridge.dart';
 const _sharedControllerAliases = <String, String>{
   // Same refusal as the native one: the user declined the VPN permission.
   'vpn_permission_denied': 'permission_denied',
+  // The same refusal, explained: another app's VPN kept Android from granting it.
+  'vpn_permission_other_vpn': 'permission_denied',
   // The notice shows the reference APP-OVPN-RENEW · renewal_unexpected.
   'openvpn_renewal_unexpected': 'renewal_unexpected',
 };

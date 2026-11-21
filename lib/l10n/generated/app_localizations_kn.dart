@@ -371,6 +371,14 @@ class AppLocalizationsKn extends AppLocalizations {
       'VPN ಸಂಪರ್ಕವನ್ನು ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'ಬೇರೊಂದು VPN ಸ್ಥಾನವನ್ನು ಪಡೆದುಕೊಂಡಿದೆ, ಅಥವಾ Android ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ VPN ಅನ್ನು ನಿಲ್ಲಿಸಲಾಗಿದೆ. ಮುಂದುವರಿಸಲು ‘ಸಂಪರ್ಕಿಸಿ’ ಟ್ಯಾಪ್ ಮಾಡಿ.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'ಬೇರೊಂದು VPN ಸಕ್ರಿಯವಾಗಿದೆ. ಅದನ್ನು ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ.';
+
+  @override
   String get status_idle => 'ಸಂಪರ್ಕ ಕಡಿತ';
 
   @override
@@ -663,6 +671,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'vpn_sign_in_required': 'ಸೈನ್ ಇನ್ ಅಗತ್ಯ',
       'protocol_unavailable_at_location': 'ಪ್ರೋಟೋಕಾಲ್ ಲಭ್ಯವಿಲ್ಲ',
       'vpn_permission_denied': 'VPN ಅನುಮತಿಯನ್ನು ನಿರಾಕರಿಸಲಾಗಿದೆ',
+      'vpn_permission_other_vpn': 'ಬೇರೊಂದು VPN ಸಕ್ರಿಯವಾಗಿದೆ',
       'revoked_identity_device_limit': 'ಸಾಧನ ಮಿತಿ ತಲುಪಿದೆ',
       'tunnel_start_unexpected': 'VPN ಪ್ರಾರಂಭಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
       'flutter_disconnect_timeout': 'ಸಂಪರ್ಕ ಕಡಿತವನ್ನು ದೃಢೀಕರಿಸಲಾಗಿಲ್ಲ',
@@ -700,6 +709,8 @@ class AppLocalizationsKn extends AppLocalizations {
           'ಆಯ್ಕೆಮಾಡಿದ ಪ್ರೋಟೋಕಾಲ್ ಈ ಸ್ಥಳದಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ. ಸ್ಥಳಗಳನ್ನು ರಿಫ್ರೆಶ್ ಮಾಡಿ ಅಥವಾ ಬೇರೆ ಪ್ರೋಟೋಕಾಲ್ ಆಯ್ಕೆಮಾಡಿ.',
       'vpn_permission_denied':
           'VPN ಅನುಮತಿಯನ್ನು Android ನಿರಾಕರಿಸಿದೆ. ಸಂಪರ್ಕವನ್ನು ಮತ್ತೆ ಪ್ರಾರಂಭಿಸಿ ಮತ್ತು ಸಿಸ್ಟಮ್ ವಿನಂತಿಯನ್ನು ಒಪ್ಪಿಕೊಳ್ಳಿ.',
+      'vpn_permission_other_vpn':
+          'ಬೇರೊಂದು VPN ಆ್ಯಪ್ ಸಕ್ರಿಯವಾಗಿರುವುದರಿಂದ Android, FuzeVPN ಗೆ VPN ಅನುಮತಿ ನೀಡಲಿಲ್ಲ. ಅದನ್ನು ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
       'revoked_identity_device_limit':
           'ಈ ಸಾಧನದ VPN ಪ್ರವೇಶವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ ಮತ್ತು ಸಾಧನ ಮಿತಿ ತಲುಪಿದೆ. ಖಾತೆ → ನನ್ನ ಸಾಧನಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಅಡಿಯಲ್ಲಿ ಒಂದು ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಿ.',
       'tunnel_start_unexpected':
@@ -903,6 +914,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'openvpn_recovery_exhausted': 'OpenVPN ಮರುಪಡೆಯುವಿಕೆ ಈಗಾಗಲೇ ಬಳಸಲಾಗಿದೆ',
       'vpn_permission_required': 'VPN ಅನುಮತಿ ಅಗತ್ಯವಿದೆ',
       'vpn_permission_denied': 'VPN ಅನುಮತಿ ನಿರಾಕರಿಸಲಾಗಿದೆ',
+      'vpn_permission_other_vpn': 'ಬೇರೊಂದು VPN ಸಕ್ರಿಯವಾಗಿದೆ',
       'vpn_permission_request_failed': 'ಅನುಮತಿ ವಿನಂತಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ',
       'wireguard_foreground_service_unavailable': 'WireGuard ಸೇವೆ ಲಭ್ಯವಿಲ್ಲ',
       'wireguard_identity_invalid': 'ಅಮಾನ್ಯ ಸ್ಥಳೀಯ WireGuard ಕೀ',
@@ -1034,6 +1046,8 @@ class AppLocalizationsKn extends AppLocalizations {
           'ಟನಲ್ ಪ್ರಾರಂಭಿಸುವ ಮೊದಲು Android ಗೆ ಹೊಸ VPN ಅನುಮತಿ ಬೇಕು.',
       'vpn_permission_denied':
           'ಮುಂದುವರಿಸಲು Android ವಿನಂತಿಯಲ್ಲಿ FuzeVPN ಅನ್ನು ಅನುಮತಿಸಿ.',
+      'vpn_permission_other_vpn':
+          'ಬೇರೊಂದು VPN ಆ್ಯಪ್ ಸಕ್ರಿಯವಾಗಿರುವುದರಿಂದ Android, FuzeVPN ಗೆ VPN ಅನುಮತಿ ನೀಡಲಿಲ್ಲ. ಅದನ್ನು ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
       'vpn_permission_request_failed':
           'VPN ಅನುಮತಿ ಪರದೆಯನ್ನು ತೆರೆಯಲು Android ಗೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
       'wireguard_foreground_service_unavailable':

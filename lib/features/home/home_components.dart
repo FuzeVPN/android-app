@@ -94,7 +94,7 @@ _StatusPresentation _statusPresentation(
     ),
     VpnRuntimePhase.error => _StatusPresentation(
       label: context.copy('status.error'),
-      detail: context.copy('status.errorDetail'),
+      detail: context.copy(_errorDetailKey(state.messageCode)),
       icon: Icons.error_outline,
     ),
     VpnRuntimePhase.idle => _StatusPresentation(
@@ -104,6 +104,15 @@ _StatusPresentation _statusPresentation(
     ),
   };
 }
+
+/// Two stops whose cause Android gives: another VPN took the place (or the VPN
+/// was stopped in Android's settings), and another app's VPN kept Android from
+/// granting the permission. The general detail would hide them (20/11/2026).
+String _errorDetailKey(String? code) => switch (code) {
+  'tun_permission_revoked' => 'status.vpnRevokedDetail',
+  'vpn_permission_other_vpn' => 'status.otherVpnDetail',
+  _ => 'status.errorDetail',
+};
 
 String _protocolLabel(VpnProtocol protocol) =>
     protocol == VpnProtocol.wireGuard ? 'WireGuard' : 'OpenVPN';

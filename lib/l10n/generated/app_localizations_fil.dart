@@ -375,6 +375,14 @@ class AppLocalizationsFil extends AppLocalizations {
       'Hindi nakumpirma ang koneksyon sa VPN. Subukan muli.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'May ibang VPN na pumalit, o itinigil ang VPN sa mga setting ng Android. I-tap ang Kumonekta para magpatuloy.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'May ibang VPN na aktibo. Kung naka-set ito bilang Always-on VPN, i-off iyon sa mga setting ng VPN ng Android.';
+
+  @override
   String get status_idle => 'Nakadiskonekta';
 
   @override
@@ -677,6 +685,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'vpn_sign_in_required': 'Kailangang mag-sign in',
       'protocol_unavailable_at_location': 'Hindi magagamit ang protocol',
       'vpn_permission_denied': 'Tinanggihan ang pahintulot sa VPN',
+      'vpn_permission_other_vpn': 'May ibang VPN na aktibo',
       'revoked_identity_device_limit': 'Naabot ang limitasyon ng device',
       'tunnel_start_unexpected': 'Hindi masimulan ang VPN',
       'flutter_disconnect_timeout': 'Hindi nakumpirma ang pagdiskonekta',
@@ -717,6 +726,8 @@ class AppLocalizationsFil extends AppLocalizations {
           'Hindi inaalok ng lokasyong ito ang napiling protocol. I-refresh ang mga lokasyon o pumili ng ibang protocol.',
       'vpn_permission_denied':
           'Tinanggihan ng Android ang pahintulot sa VPN. Simulan muli ang koneksyon at tanggapin ang kahilingan ng system.',
+      'vpn_permission_other_vpn':
+          'Hindi ibinigay ng Android sa FuzeVPN ang pahintulot sa VPN dahil may ibang VPN app na aktibo. Kung naka-set ito bilang Always-on VPN, i-off iyon sa mga setting ng VPN ng Android, pagkatapos ay subukang muli.',
       'revoked_identity_device_limit':
           'Inalis ang access ng device na ito sa VPN at naabot na ang limitasyon ng device. Mag-alis ng device sa Account → Pamahalaan ang aking mga device.',
       'tunnel_start_unexpected':
@@ -938,6 +949,7 @@ class AppLocalizationsFil extends AppLocalizations {
       'vpn_host_unavailable': 'Hindi magagamit ang Android VPN host',
       'vpn_permission_required': 'Kailangan ng pahintulot sa VPN',
       'vpn_permission_denied': 'Tinanggihan ang pahintulot sa VPN',
+      'vpn_permission_other_vpn': 'May ibang VPN na aktibo',
       'vpn_permission_request_failed': 'Hindi makahiling ng pahintulot',
       'wireguard_foreground_service_unavailable':
           'Hindi magagamit ang serbisyo ng WireGuard',
@@ -1090,6 +1102,8 @@ class AppLocalizationsFil extends AppLocalizations {
           'Kailangan ng Android ng bagong awtorisasyon sa VPN bago simulan ang tunnel.',
       'vpn_permission_denied':
           'Payagan ang FuzeVPN sa kahilingan ng Android upang magpatuloy.',
+      'vpn_permission_other_vpn':
+          'Hindi ibinigay ng Android sa FuzeVPN ang pahintulot sa VPN dahil may ibang VPN app na aktibo. Kung naka-set ito bilang Always-on VPN, i-off iyon sa mga setting ng VPN ng Android, pagkatapos ay subukang muli.',
       'vpn_permission_request_failed':
           'Hindi mabuksan ng Android ang screen ng pahintulot sa VPN.',
       'wireguard_foreground_service_unavailable':

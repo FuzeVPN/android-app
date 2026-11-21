@@ -370,6 +370,14 @@ class AppLocalizationsCs extends AppLocalizations {
       'Připojení VPN není potvrzeno. Zkuste to znovu.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Místo převzala jiná VPN, nebo byla VPN zastavena v nastavení Androidu. Pokračujte klepnutím na Připojit.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Je aktivní jiná VPN. Pokud je nastavena jako VPN stále zapnutá, vypněte to v nastavení VPN v Androidu.';
+
+  @override
   String get status_idle => 'Odpojeno';
 
   @override
@@ -661,6 +669,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'vpn_sign_in_required': 'Vyžadováno přihlášení',
       'protocol_unavailable_at_location': 'Protokol není k dispozici',
       'vpn_permission_denied': 'Oprávnění VPN zamítnuto',
+      'vpn_permission_other_vpn': 'Je aktivní jiná VPN',
       'revoked_identity_device_limit': 'Dosažen limit zařízení',
       'tunnel_start_unexpected': 'VPN se nepodařilo spustit',
       'flutter_disconnect_timeout': 'Odpojení nebylo potvrzeno',
@@ -698,6 +707,8 @@ class AppLocalizationsCs extends AppLocalizations {
           'Vybraný protokol tato lokalita nenabízí. Obnovte seznam lokalit nebo vyberte jiný protokol.',
       'vpn_permission_denied':
           'Android zamítl oprávnění VPN. Spusťte připojení znovu a přijměte systémový požadavek.',
+      'vpn_permission_other_vpn':
+          'Android neudělil aplikaci FuzeVPN oprávnění VPN, protože je aktivní jiná aplikace VPN. Pokud je nastavena jako VPN stále zapnutá, vypněte to v nastavení VPN v Androidu a zkuste to znovu.',
       'revoked_identity_device_limit':
           'Přístup tohoto zařízení k VPN byl odebrán a byl dosažen limit zařízení. Odeberte zařízení v části Účet → Spravovat moje zařízení.',
       'tunnel_start_unexpected':
@@ -906,6 +917,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'vpn_host_unavailable': 'Hostitel VPN v Androidu není k dispozici',
       'vpn_permission_required': 'Vyžadováno oprávnění VPN',
       'vpn_permission_denied': 'Oprávnění VPN zamítnuto',
+      'vpn_permission_other_vpn': 'Je aktivní jiná VPN',
       'vpn_permission_request_failed':
           'Požadavek na oprávnění se nepodařilo odeslat',
       'wireguard_foreground_service_unavailable':
@@ -1043,6 +1055,8 @@ class AppLocalizationsCs extends AppLocalizations {
           'Android před spuštěním tunelu vyžaduje nové oprávnění VPN.',
       'vpn_permission_denied':
           'Pro pokračování povolte FuzeVPN v požadavku Androidu.',
+      'vpn_permission_other_vpn':
+          'Android neudělil aplikaci FuzeVPN oprávnění VPN, protože je aktivní jiná aplikace VPN. Pokud je nastavena jako VPN stále zapnutá, vypněte to v nastavení VPN v Androidu a zkuste to znovu.',
       'vpn_permission_request_failed':
           'Android nemohl otevřít obrazovku s oprávněním VPN.',
       'wireguard_foreground_service_unavailable':

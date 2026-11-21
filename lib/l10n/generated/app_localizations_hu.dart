@@ -372,6 +372,14 @@ class AppLocalizationsHu extends AppLocalizations {
       'A VPN-kapcsolat nincs megerősítve. Próbálja újra.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Egy másik VPN vette át a helyét, vagy a VPN-t leállították az Android beállításaiban. A folytatáshoz koppintson a Csatlakozás gombra.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Egy másik VPN aktív. Ha „Mindig bekapcsolt VPN”-ként van beállítva, kapcsolja ki ezt az Android VPN-beállításaiban.';
+
+  @override
   String get status_idle => 'Nincs csatlakoztatva';
 
   @override
@@ -668,6 +676,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'vpn_sign_in_required': 'Bejelentkezés szükséges',
       'protocol_unavailable_at_location': 'Protokoll nem elérhető',
       'vpn_permission_denied': 'VPN-engedély megtagadva',
+      'vpn_permission_other_vpn': 'Egy másik VPN aktív',
       'revoked_identity_device_limit': 'Elérte az eszközkorlátot',
       'tunnel_start_unexpected': 'A VPN nem tudott elindulni',
       'flutter_disconnect_timeout': 'A leválasztás nincs megerősítve',
@@ -706,6 +715,8 @@ class AppLocalizationsHu extends AppLocalizations {
           'Ez a hely nem kínálja a kiválasztott protokollt. Frissítse a helyeket, vagy válasszon másik protokollt.',
       'vpn_permission_denied':
           'Az Android megtagadta a VPN-engedélyt. Indítsa újra a csatlakozást, és fogadja el a rendszerkérést.',
+      'vpn_permission_other_vpn':
+          'Az Android nem adta meg a VPN-engedélyt a FuzeVPN-nek, mert egy másik VPN-alkalmazás aktív. Ha „Mindig bekapcsolt VPN”-ként van beállítva, kapcsolja ki ezt az Android VPN-beállításaiban, majd próbálja újra.',
       'revoked_identity_device_limit':
           'Ennek az eszköznek a VPN-hozzáférését eltávolították, az eszközkorlát pedig betelt. Távolítson el egy eszközt a Fiók → Eszközeim kezelése menüpontban.',
       'tunnel_start_unexpected':
@@ -915,6 +926,7 @@ class AppLocalizationsHu extends AppLocalizations {
       'vpn_host_unavailable': 'Az Android VPN-összetevő nem érhető el',
       'vpn_permission_required': 'VPN-engedély szükséges',
       'vpn_permission_denied': 'VPN-engedély megtagadva',
+      'vpn_permission_other_vpn': 'Egy másik VPN aktív',
       'vpn_permission_request_failed': 'Az engedélykérés sikertelen',
       'wireguard_foreground_service_unavailable':
           'A WireGuard-szolgáltatás nem érhető el',
@@ -1056,6 +1068,8 @@ class AppLocalizationsHu extends AppLocalizations {
           'Az Android új VPN-engedélyt kér az alagút indítása előtt.',
       'vpn_permission_denied':
           'A folytatáshoz engedélyezze a FuzeVPN-t az Android kérésében.',
+      'vpn_permission_other_vpn':
+          'Az Android nem adta meg a VPN-engedélyt a FuzeVPN-nek, mert egy másik VPN-alkalmazás aktív. Ha „Mindig bekapcsolt VPN”-ként van beállítva, kapcsolja ki ezt az Android VPN-beállításaiban, majd próbálja újra.',
       'vpn_permission_request_failed':
           'Az Android nem tudta megnyitni a VPN-engedély képernyőjét.',
       'wireguard_foreground_service_unavailable':

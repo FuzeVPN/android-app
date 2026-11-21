@@ -368,6 +368,14 @@ class AppLocalizationsLo extends AppLocalizations {
       'ຍັງບໍ່ໄດ້ຢືນຢັນການເຊື່ອມຕໍ່ VPN. ກະລຸນາລອງໃໝ່.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN ອື່ນໄດ້ເຂົ້າມາແທນ, ຫຼື VPN ຖືກຢຸດໃນການຕັ້ງຄ່າ Android. ແຕະ ເຊື່ອມຕໍ່ ເພື່ອສືບຕໍ່.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'ມີ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ VPN ເປີດຕະຫຼອດເວລາ, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android.';
+
+  @override
   String get status_idle => 'ຕັດການເຊື່ອມຕໍ່ແລ້ວ';
 
   @override
@@ -660,6 +668,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'vpn_sign_in_required': 'ຕ້ອງເຂົ້າສູ່ລະບົບ',
       'protocol_unavailable_at_location': 'ໂປຣໂຕຄໍບໍ່ພ້ອມໃຊ້ງານ',
       'vpn_permission_denied': 'ການອະນຸຍາດ VPN ຖືກປະຕິເສດ',
+      'vpn_permission_other_vpn': 'ມີ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່',
       'revoked_identity_device_limit': 'ຮອດຂີດຈຳກັດອຸປະກອນແລ້ວ',
       'tunnel_start_unexpected': 'ບໍ່ສາມາດເລີ່ມ VPN ໄດ້',
       'flutter_disconnect_timeout': 'ຍັງບໍ່ໄດ້ຢືນຢັນການຕັດການເຊື່ອມຕໍ່',
@@ -697,6 +706,8 @@ class AppLocalizationsLo extends AppLocalizations {
           'ສະຖານທີ່ນີ້ບໍ່ຮອງຮັບໂປຣໂຕຄໍທີ່ເລືອກ. ກະລຸນາໂຫຼດສະຖານທີ່ໃໝ່ ຫຼື ເລືອກໂປຣໂຕຄໍອື່ນ.',
       'vpn_permission_denied':
           'Android ປະຕິເສດການອະນຸຍາດ VPN. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ ແລະ ຍອມຮັບຄຳຂໍຂອງລະບົບ.',
+      'vpn_permission_other_vpn':
+          'Android ບໍ່ໄດ້ໃຫ້ການອະນຸຍາດ VPN ແກ່ FuzeVPN ເພາະມີແອັບ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ VPN ເປີດຕະຫຼອດເວລາ, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android ແລ້ວລອງໃໝ່.',
       'revoked_identity_device_limit':
           'ການເຂົ້າເຖິງ VPN ຂອງອຸປະກອນນີ້ຖືກລຶບອອກແລ້ວ ແລະ ຮອດຂີດຈຳກັດອຸປະກອນແລ້ວ. ກະລຸນາລຶບອຸປະກອນໜຶ່ງໃນ ບັນຊີ → ຈັດການອຸປະກອນຂອງຂ້ອຍ.',
       'tunnel_start_unexpected':
@@ -892,6 +903,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'vpn_host_unavailable': 'ໂຮສ VPN ຂອງ Android ບໍ່ພ້ອມໃຊ້ງານ',
       'vpn_permission_required': 'ຕ້ອງການການອະນຸຍາດ VPN',
       'vpn_permission_denied': 'ການອະນຸຍາດ VPN ຖືກປະຕິເສດ',
+      'vpn_permission_other_vpn': 'ມີ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່',
       'vpn_permission_request_failed': 'ບໍ່ສາມາດຮ້ອງຂໍການອະນຸຍາດໄດ້',
       'wireguard_foreground_service_unavailable':
           'ບໍລິການ WireGuard ບໍ່ພ້ອມໃຊ້ງານ',
@@ -1026,6 +1038,8 @@ class AppLocalizationsLo extends AppLocalizations {
           'Android ຕ້ອງການການອະນຸຍາດ VPN ໃໝ່ກ່ອນເລີ່ມອຸໂມງ.',
       'vpn_permission_denied':
           'ກະລຸນາອະນຸຍາດ FuzeVPN ໃນຄຳຂໍຂອງ Android ເພື່ອສືບຕໍ່.',
+      'vpn_permission_other_vpn':
+          'Android ບໍ່ໄດ້ໃຫ້ການອະນຸຍາດ VPN ແກ່ FuzeVPN ເພາະມີແອັບ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ VPN ເປີດຕະຫຼອດເວລາ, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android ແລ້ວລອງໃໝ່.',
       'vpn_permission_request_failed':
           'Android ບໍ່ສາມາດເປີດໜ້າການອະນຸຍາດ VPN ໄດ້.',
       'wireguard_foreground_service_unavailable':

@@ -373,6 +373,14 @@ class AppLocalizationsUk extends AppLocalizations {
       'VPN-з’єднання не підтверджено. Спробуйте ще раз.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Інший VPN зайняв місце, або VPN було зупинено в налаштуваннях Android. Натисніть «Підключити», щоб продовжити.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Активний інший VPN. Якщо його налаштовано як VPN у режимі постійного підключення, вимкніть це в налаштуваннях VPN Android.';
+
+  @override
   String get status_idle => 'Відключено';
 
   @override
@@ -669,6 +677,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'vpn_sign_in_required': 'Потрібен вхід',
       'protocol_unavailable_at_location': 'Протокол недоступний',
       'vpn_permission_denied': 'У дозволі на VPN відмовлено',
+      'vpn_permission_other_vpn': 'Активний інший VPN',
       'revoked_identity_device_limit': 'Досягнуто обмеження пристроїв',
       'tunnel_start_unexpected': 'Не вдалося запустити VPN',
       'flutter_disconnect_timeout': 'Відключення не підтверджено',
@@ -708,6 +717,8 @@ class AppLocalizationsUk extends AppLocalizations {
           'Вибраний протокол не пропонується в цьому розташуванні. Оновіть список розташувань або виберіть інший протокол.',
       'vpn_permission_denied':
           'Android відмовив у дозволі на VPN. Почніть підключення знову та прийміть системний запит.',
+      'vpn_permission_other_vpn':
+          'Android не надав FuzeVPN дозвіл на VPN, бо активний інший VPN-застосунок. Якщо його налаштовано як VPN у режимі постійного підключення, вимкніть це в налаштуваннях VPN Android і спробуйте ще раз.',
       'revoked_identity_device_limit':
           'Доступ цього пристрою до VPN видалено, а ліміт пристроїв досягнуто. Видаліть пристрій у розділі «Обліковий запис» → «Керувати моїми пристроями».',
       'tunnel_start_unexpected':
@@ -919,6 +930,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'vpn_host_unavailable': 'Хост Android VPN недоступний',
       'vpn_permission_required': 'Потрібен дозвіл на VPN',
       'vpn_permission_denied': 'У дозволі на VPN відмовлено',
+      'vpn_permission_other_vpn': 'Активний інший VPN',
       'vpn_permission_request_failed': 'Не вдалося запросити дозвіл',
       'wireguard_foreground_service_unavailable': 'Служба WireGuard недоступна',
       'wireguard_identity_invalid': 'Недійсний локальний ключ WireGuard',
@@ -1055,6 +1067,8 @@ class AppLocalizationsUk extends AppLocalizations {
           'Android потребує нової авторизації VPN перед запуском тунелю.',
       'vpn_permission_denied':
           'Дозвольте FuzeVPN у запиті Android, щоб продовжити.',
+      'vpn_permission_other_vpn':
+          'Android не надав FuzeVPN дозвіл на VPN, бо активний інший VPN-застосунок. Якщо його налаштовано як VPN у режимі постійного підключення, вимкніть це в налаштуваннях VPN Android і спробуйте ще раз.',
       'vpn_permission_request_failed':
           'Android не зміг відкрити екран дозволу VPN.',
       'wireguard_foreground_service_unavailable':

@@ -368,6 +368,14 @@ class AppLocalizationsVi extends AppLocalizations {
   String get status_errorDetail => 'Chưa xác nhận kết nối VPN. Hãy thử lại.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Một VPN khác đã thay thế, hoặc VPN đã bị dừng trong phần cài đặt Android. Nhấn Kết nối để tiếp tục.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Một VPN khác đang hoạt động. Nếu VPN đó được đặt là VPN luôn bật, hãy tắt tùy chọn này trong phần cài đặt VPN của Android.';
+
+  @override
   String get status_idle => 'Đã ngắt kết nối';
 
   @override
@@ -660,6 +668,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'vpn_sign_in_required': 'Cần đăng nhập',
       'protocol_unavailable_at_location': 'Giao thức không khả dụng',
       'vpn_permission_denied': 'Quyền VPN bị từ chối',
+      'vpn_permission_other_vpn': 'Một VPN khác đang hoạt động',
       'revoked_identity_device_limit': 'Đã đạt giới hạn thiết bị',
       'tunnel_start_unexpected': 'Không thể khởi động VPN',
       'flutter_disconnect_timeout': 'Chưa xác nhận ngắt kết nối',
@@ -697,6 +706,8 @@ class AppLocalizationsVi extends AppLocalizations {
           'Vị trí này không cung cấp giao thức đã chọn. Hãy làm mới danh sách vị trí hoặc chọn giao thức khác.',
       'vpn_permission_denied':
           'Android đã từ chối quyền VPN. Hãy bắt đầu lại kết nối và chấp nhận yêu cầu của hệ thống.',
+      'vpn_permission_other_vpn':
+          'Android không cấp quyền VPN cho FuzeVPN vì một ứng dụng VPN khác đang hoạt động. Nếu ứng dụng đó được đặt là VPN luôn bật, hãy tắt tùy chọn này trong phần cài đặt VPN của Android rồi thử lại.',
       'revoked_identity_device_limit':
           'Quyền truy cập VPN của thiết bị này đã bị xóa và đã đạt giới hạn thiết bị. Hãy xóa một thiết bị trong Tài khoản → Quản lý thiết bị của tôi.',
       'tunnel_start_unexpected':
@@ -899,6 +910,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'vpn_host_unavailable': 'Máy chủ VPN Android không khả dụng',
       'vpn_permission_required': 'Cần cấp quyền VPN',
       'vpn_permission_denied': 'Quyền VPN bị từ chối',
+      'vpn_permission_other_vpn': 'Một VPN khác đang hoạt động',
       'vpn_permission_request_failed': 'Không thể yêu cầu quyền',
       'wireguard_foreground_service_unavailable':
           'Dịch vụ WireGuard không khả dụng',
@@ -1035,6 +1047,8 @@ class AppLocalizationsVi extends AppLocalizations {
           'Android yêu cầu cấp quyền VPN mới trước khi bắt đầu đường hầm.',
       'vpn_permission_denied':
           'Hãy cho phép FuzeVPN trong yêu cầu của Android để tiếp tục.',
+      'vpn_permission_other_vpn':
+          'Android không cấp quyền VPN cho FuzeVPN vì một ứng dụng VPN khác đang hoạt động. Nếu ứng dụng đó được đặt là VPN luôn bật, hãy tắt tùy chọn này trong phần cài đặt VPN của Android rồi thử lại.',
       'vpn_permission_request_failed':
           'Android không thể mở màn hình cấp quyền VPN.',
       'wireguard_foreground_service_unavailable':

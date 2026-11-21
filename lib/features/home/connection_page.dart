@@ -62,6 +62,23 @@ class ConnectionPage extends StatelessWidget {
             ],
           ),
         ],
+        // Another app's VPN kept Android from granting the permission: its
+        // permanent VPN setting is in Android's VPN settings.
+        if (controller.notice?.titleKey == 'notice.controller.title' &&
+            controller.notice?.arguments['code'] ==
+                'vpn_permission_other_vpn' &&
+            controller.supportsSystemProtectionSettings) ...<Widget>[
+          const SizedBox(height: 8),
+          Align(
+            alignment: AlignmentDirectional.centerStart,
+            child: TextButton.icon(
+              key: const ValueKey('connection-error-open-vpn-settings'),
+              onPressed: controller.openSystemVpnSettings,
+              icon: const Icon(Icons.open_in_new),
+              label: Text(context.copy('protection.openSettings')),
+            ),
+          ),
+        ],
         if (controller.notice != null) const SizedBox(height: 12),
         if (controller.mayNeedEmailVerification) ...<Widget>[
           if (controller.profile?.hasSessionCapabilities == true &&

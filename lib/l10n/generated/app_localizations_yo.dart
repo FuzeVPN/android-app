@@ -369,6 +369,14 @@ class AppLocalizationsYo extends AppLocalizations {
       'A kò tíì jẹ́rìí sí àsopọ̀ VPN. Ẹ tún gbìyànjú.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN mìíràn ti gba ipò rẹ̀, tàbí a dá VPN dúró nínú ìṣètò Android. Tẹ Sopọ̀ láti tẹ̀síwájú.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'VPN mìíràn ń ṣiṣẹ́. Tí a bá ṣètò rẹ̀ gẹ́gẹ́ bí VPN nígbà gbogbo, ẹ pa ìṣètò náà nínú ìṣètò VPN ti Android.';
+
+  @override
   String get status_idle => 'Ti gé àsopọ̀';
 
   @override
@@ -660,6 +668,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'vpn_sign_in_required': 'A nílò ìwọlé',
       'protocol_unavailable_at_location': 'Ìlànà kò sí',
       'vpn_permission_denied': 'A kọ̀ ìyọ̀ǹda VPN',
+      'vpn_permission_other_vpn': 'VPN mìíràn ń ṣiṣẹ́',
       'revoked_identity_device_limit': 'Iye ẹ̀rọ ti dé ààlà',
       'tunnel_start_unexpected': 'VPN kò lè bẹ̀rẹ̀',
       'flutter_disconnect_timeout': 'A kò jẹ́rìí sí gígé àsopọ̀',
@@ -696,6 +705,8 @@ class AppLocalizationsYo extends AppLocalizations {
           'Ìlànà tí ẹ yàn kò sí ní ibi yìí. Ẹ sọdọ̀tun àwọn ibi tàbí kí ẹ yan ìlànà mìíràn.',
       'vpn_permission_denied':
           'Android kọ̀ ìyọ̀ǹda VPN. Ẹ tún bẹ̀rẹ̀ àsopọ̀ náà kí ẹ sì gbà ìbéèrè ètò náà.',
+      'vpn_permission_other_vpn':
+          'Android kò fún FuzeVPN ní ìyọ̀ǹda VPN nítorí pé áàpù VPN mìíràn ń ṣiṣẹ́. Tí a bá ṣètò rẹ̀ gẹ́gẹ́ bí VPN nígbà gbogbo, ẹ pa ìṣètò náà nínú ìṣètò VPN ti Android, lẹ́yìn náà ẹ tún gbìyànjú.',
       'revoked_identity_device_limit':
           'A ti yọ ìwọlé VPN ẹ̀rọ yìí kúrò, iye ẹ̀rọ sì ti dé ààlà. Ẹ yọ ẹ̀rọ kan kúrò lábẹ́ Àkántì → Ṣàkóso àwọn ẹ̀rọ mi.',
       'tunnel_start_unexpected':
@@ -901,6 +912,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'openvpn_recovery_exhausted': 'A ti lo ìmúpadàbọ̀sípò OpenVPN tẹ́lẹ̀',
       'vpn_permission_required': 'A nílò ìyọ̀ǹda VPN',
       'vpn_permission_denied': 'A kọ̀ ìyọ̀ǹda VPN',
+      'vpn_permission_other_vpn': 'VPN mìíràn ń ṣiṣẹ́',
       'vpn_permission_request_failed': 'A kò lè béèrè ìyọ̀ǹda',
       'wireguard_foreground_service_unavailable': 'Iṣẹ́ WireGuard kò sí',
       'wireguard_identity_invalid': 'Kọ́kọ́rọ́ WireGuard orí ẹ̀rọ kò tọ́',
@@ -1031,6 +1043,8 @@ class AppLocalizationsYo extends AppLocalizations {
           'Android nílò ìyọ̀ǹda VPN tuntun kí ó tó bẹ̀rẹ̀ ọ̀nà ìsopọ̀ ààbò.',
       'vpn_permission_denied':
           'Ẹ gba FuzeVPN láyè nínú ìbéèrè Android láti tẹ̀síwájú.',
+      'vpn_permission_other_vpn':
+          'Android kò fún FuzeVPN ní ìyọ̀ǹda VPN nítorí pé áàpù VPN mìíràn ń ṣiṣẹ́. Tí a bá ṣètò rẹ̀ gẹ́gẹ́ bí VPN nígbà gbogbo, ẹ pa ìṣètò náà nínú ìṣètò VPN ti Android, lẹ́yìn náà ẹ tún gbìyànjú.',
       'vpn_permission_request_failed': 'Android kò lè ṣí ìbòjú ìyọ̀ǹda VPN.',
       'wireguard_foreground_service_unavailable':
           'Android kò lè jẹ́ kí iṣẹ́ WireGuard wà ní iwájú.',

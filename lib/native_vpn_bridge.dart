@@ -148,6 +148,13 @@ abstract interface class InAppReviewGateway {
   Future<bool> requestInAppReview();
 }
 
+/// Android refused the VPN permission: whether another app's VPN carries this
+/// app, as the permanent VPN of another app does (Android then refuses without
+/// asking anything). Optional: without it, a refusal is the user's own.
+abstract interface class ForeignVpnProbe {
+  Future<bool> anotherVpnActive();
+}
+
 abstract interface class DiagnosticPlatformGateway {
   Future<Map<String, Object?>> diagnosticMetadata();
 
@@ -171,7 +178,8 @@ class NativeVpnBridge
         FavoriteLocationStore,
         DiagnosticPreferenceStore,
         DiagnosticPlatformGateway,
-        InAppReviewGateway {
+        InAppReviewGateway,
+        ForeignVpnProbe {
   NativeVpnBridge({
     MethodChannel? channel,
     EventChannel? events,
@@ -753,6 +761,10 @@ class NativeVpnBridge
       await _invoke<bool>('requestInAppReview') ?? false;
 
   @override
+  Future<bool> anotherVpnActive() async =>
+      await _invoke<bool>('anotherVpnActive') ?? false;
+
+  @override
   Future<String?> readStoredLocale() => _invoke<String>('storageReadLocale');
 
   @override
@@ -893,6 +905,7 @@ class NativeVpnBridge
     'storageReadReviewPrompt' ||
     'storageWriteReviewPrompt' ||
     'requestInAppReview' ||
+    'anotherVpnActive' ||
     'storageReadLocale' ||
     'storageWriteLocale' ||
     'storageReadProtocol' ||

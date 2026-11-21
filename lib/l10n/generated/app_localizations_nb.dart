@@ -369,6 +369,14 @@ class AppLocalizationsNb extends AppLocalizations {
       'VPN-tilkoblingen er ikke bekreftet. Prøv igjen.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'En annen VPN har tatt over, eller VPN ble stoppet i Android-innstillingene. Trykk på Koble til for å fortsette.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'En annen VPN er aktiv. Hvis den er satt som Alltid på-VPN, slår du det av i VPN-innstillingene i Android.';
+
+  @override
   String get status_idle => 'Frakoblet';
 
   @override
@@ -664,6 +672,7 @@ class AppLocalizationsNb extends AppLocalizations {
       'vpn_sign_in_required': 'Innlogging kreves',
       'protocol_unavailable_at_location': 'Protokollen er utilgjengelig',
       'vpn_permission_denied': 'VPN-tillatelse avslått',
+      'vpn_permission_other_vpn': 'En annen VPN er aktiv',
       'revoked_identity_device_limit': 'Enhetsgrensen er nådd',
       'tunnel_start_unexpected': 'VPN kunne ikke starte',
       'flutter_disconnect_timeout': 'Frakoblingen er ikke bekreftet',
@@ -701,6 +710,8 @@ class AppLocalizationsNb extends AppLocalizations {
           'Den valgte protokollen tilbys ikke på denne lokasjonen. Oppdater lokasjonene eller velg en annen protokoll.',
       'vpn_permission_denied':
           'Android avslo VPN-tillatelsen. Start tilkoblingen på nytt og godta systemforespørselen.',
+      'vpn_permission_other_vpn':
+          'Android ga ikke FuzeVPN VPN-tillatelsen fordi en annen VPN-app er aktiv. Hvis den er satt som Alltid på-VPN, slår du det av i VPN-innstillingene i Android og prøver igjen.',
       'revoked_identity_device_limit':
           'VPN-tilgangen til denne enheten ble fjernet, og enhetsgrensen er nådd. Fjern en enhet under Konto → Administrer enhetene mine.',
       'tunnel_start_unexpected':
@@ -911,6 +922,7 @@ class AppLocalizationsNb extends AppLocalizations {
       'vpn_host_unavailable': 'Android-verten for VPN utilgjengelig',
       'vpn_permission_required': 'VPN-tillatelse kreves',
       'vpn_permission_denied': 'VPN-tillatelse avslått',
+      'vpn_permission_other_vpn': 'En annen VPN er aktiv',
       'vpn_permission_request_failed': 'Kunne ikke be om tillatelse',
       'wireguard_foreground_service_unavailable':
           'WireGuard-tjenesten utilgjengelig',
@@ -1048,6 +1060,8 @@ class AppLocalizationsNb extends AppLocalizations {
           'Android krever en ny VPN-godkjenning før tunnelen startes.',
       'vpn_permission_denied':
           'Tillat FuzeVPN i Android-forespørselen for å fortsette.',
+      'vpn_permission_other_vpn':
+          'Android ga ikke FuzeVPN VPN-tillatelsen fordi en annen VPN-app er aktiv. Hvis den er satt som Alltid på-VPN, slår du det av i VPN-innstillingene i Android og prøver igjen.',
       'vpn_permission_request_failed':
           'Android kunne ikke åpne VPN-tillatelsessiden.',
       'wireguard_foreground_service_unavailable':

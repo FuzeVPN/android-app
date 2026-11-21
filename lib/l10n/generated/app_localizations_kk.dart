@@ -368,6 +368,14 @@ class AppLocalizationsKk extends AppLocalizations {
   String get status_errorDetail => 'VPN қосылымы расталмады. Қайталап көріңіз.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Орынды басқа VPN алды немесе VPN Android параметрлерінде тоқтатылды. Жалғастыру үшін «Қосылу» түймесін түртіңіз.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Басқа VPN белсенді. Ол «Үнемі қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріңіз.';
+
+  @override
   String get status_idle => 'Ажыратылды';
 
   @override
@@ -660,6 +668,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'vpn_sign_in_required': 'Кіру қажет',
       'protocol_unavailable_at_location': 'Протокол қолжетімсіз',
       'vpn_permission_denied': 'VPN рұқсаты берілмеді',
+      'vpn_permission_other_vpn': 'Басқа VPN белсенді',
       'revoked_identity_device_limit': 'Құрылғы шегіне жетті',
       'tunnel_start_unexpected': 'VPN іске қосылмады',
       'flutter_disconnect_timeout': 'Ажырату расталмады',
@@ -696,6 +705,8 @@ class AppLocalizationsKk extends AppLocalizations {
           'Таңдалған протокол бұл орында ұсынылмайды. Орындарды жаңартыңыз немесе басқа протоколды таңдаңыз.',
       'vpn_permission_denied':
           'Android VPN рұқсатын бермеді. Қосылымды қайтадан бастап, жүйелік сұрауды қабылдаңыз.',
+      'vpn_permission_other_vpn':
+          'Басқа VPN қолданбасы белсенді болғандықтан, Android FuzeVPN-ге VPN рұқсатын бермеді. Ол «Үнемі қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріп, қайталап көріңіз.',
       'revoked_identity_device_limit':
           'Осы құрылғының VPN қолжетімділігі жойылды және құрылғы шегіне жетті. Аккаунт → Құрылғыларымды басқару бөлімінен бір құрылғыны алып тастаңыз.',
       'tunnel_start_unexpected':
@@ -904,6 +915,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN компоненті қолжетімсіз',
       'vpn_permission_required': 'VPN рұқсаты қажет',
       'vpn_permission_denied': 'VPN рұқсаты берілмеді',
+      'vpn_permission_other_vpn': 'Басқа VPN белсенді',
       'vpn_permission_request_failed': 'Рұқсат сұрау мүмкін болмады',
       'wireguard_foreground_service_unavailable':
           'WireGuard қызметі қолжетімсіз',
@@ -1044,6 +1056,8 @@ class AppLocalizationsKk extends AppLocalizations {
           'Туннельді іске қосар алдында Android жаңа VPN рұқсатын талап етеді.',
       'vpn_permission_denied':
           'Жалғастыру үшін Android сұрауында FuzeVPN-ге рұқсат беріңіз.',
+      'vpn_permission_other_vpn':
+          'Басқа VPN қолданбасы белсенді болғандықтан, Android FuzeVPN-ге VPN рұқсатын бермеді. Ол «Үнемі қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріп, қайталап көріңіз.',
       'vpn_permission_request_failed': 'Android VPN рұқсат экранын аша алмады.',
       'wireguard_foreground_service_unavailable':
           'Android WireGuard қызметін алдыңғы планда ұстай алмады.',

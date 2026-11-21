@@ -371,6 +371,14 @@ class AppLocalizationsFa extends AppLocalizations {
       'اتصال وی‌پی‌ان تأیید نشد. دوباره تلاش کنید.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'وی‌پی‌ان دیگری جای آن را گرفت، یا وی‌پی‌ان در تنظیمات Android متوقف شد. برای ادامه، روی «اتصال» بزنید.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'وی‌پی‌ان دیگری فعال است. اگر به‌عنوان وی‌پی‌ان همیشه‌روشن تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید.';
+
+  @override
   String get status_idle => 'قطع‌شده';
 
   @override
@@ -661,6 +669,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'vpn_sign_in_required': 'ورود لازم است',
       'protocol_unavailable_at_location': 'پروتکل در دسترس نیست',
       'vpn_permission_denied': 'اجازه وی‌پی‌ان رد شد',
+      'vpn_permission_other_vpn': 'وی‌پی‌ان دیگری فعال است',
       'revoked_identity_device_limit': 'محدودیت دستگاه‌ها به پایان رسید',
       'tunnel_start_unexpected': 'وی‌پی‌ان شروع نشد',
       'flutter_disconnect_timeout': 'قطع اتصال تأیید نشد',
@@ -696,6 +705,8 @@ class AppLocalizationsFa extends AppLocalizations {
           'پروتکل انتخاب‌شده در این مکان ارائه نمی‌شود. مکان‌ها را تازه‌سازی کنید یا پروتکل دیگری انتخاب کنید.',
       'vpn_permission_denied':
           'Android اجازه وی‌پی‌ان را رد کرد. اتصال را دوباره آغاز و درخواست سیستم را بپذیرید.',
+      'vpn_permission_other_vpn':
+          'Android اجازه وی‌پی‌ان را به FuzeVPN نداد، چون برنامه وی‌پی‌ان دیگری فعال است. اگر به‌عنوان وی‌پی‌ان همیشه‌روشن تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید و دوباره تلاش کنید.',
       'revoked_identity_device_limit':
           'دسترسی وی‌پی‌ان این دستگاه حذف شده و محدودیت دستگاه‌ها به پایان رسیده است. یک دستگاه را از مسیر حساب ← مدیریت دستگاه‌های من حذف کنید.',
       'tunnel_start_unexpected':
@@ -895,6 +906,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'vpn_host_unavailable': 'میزبان وی‌پی‌ان Android در دسترس نیست',
       'vpn_permission_required': 'اجازه وی‌پی‌ان لازم است',
       'vpn_permission_denied': 'اجازه وی‌پی‌ان رد شد',
+      'vpn_permission_other_vpn': 'وی‌پی‌ان دیگری فعال است',
       'vpn_permission_request_failed': 'درخواست اجازه ممکن نشد',
       'wireguard_foreground_service_unavailable':
           'سرویس WireGuard در دسترس نیست',
@@ -1029,6 +1041,8 @@ class AppLocalizationsFa extends AppLocalizations {
           'Android پیش از آغاز تونل به مجوز جدید وی‌پی‌ان نیاز دارد.',
       'vpn_permission_denied':
           'برای ادامه، FuzeVPN را در درخواست Android مجاز کنید.',
+      'vpn_permission_other_vpn':
+          'Android اجازه وی‌پی‌ان را به FuzeVPN نداد، چون برنامه وی‌پی‌ان دیگری فعال است. اگر به‌عنوان وی‌پی‌ان همیشه‌روشن تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید و دوباره تلاش کنید.',
       'vpn_permission_request_failed':
           'Android نتوانست صفحه اجازه وی‌پی‌ان را باز کند.',
       'wireguard_foreground_service_unavailable':

@@ -372,6 +372,14 @@ class AppLocalizationsMg extends AppLocalizations {
       'Tsy voamarina ny fifandraisana VPN. Andramo indray.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN hafa no naka ny toerana, na najanona tao amin’ny fikirana Android ny VPN. Tsindrio ny Hifandray raha hanohy.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Misy VPN hafa mavitrika. Raha napetraka ho “VPN mavitrika mandrakariva” izy, vonoy izany ao amin’ny fikirana VPN an’ny Android.';
+
+  @override
   String get status_idle => 'Tsy mifandray';
 
   @override
@@ -670,6 +678,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'vpn_sign_in_required': 'Ilaina ny fidirana',
       'protocol_unavailable_at_location': 'Tsy azo ampiasaina ny protokole',
       'vpn_permission_denied': 'Nolavina ny alalana VPN',
+      'vpn_permission_other_vpn': 'Misy VPN hafa mavitrika',
       'revoked_identity_device_limit': 'Efa feno ny isan’ny fitaovana',
       'tunnel_start_unexpected': 'Tsy afaka nanomboka ny VPN',
       'flutter_disconnect_timeout': 'Tsy voamarina ny fialana',
@@ -708,6 +717,8 @@ class AppLocalizationsMg extends AppLocalizations {
           'Tsy omen’ity toerana ity ny protokole voafidy. Havaozy ny toerana na misafidiana protokole hafa.',
       'vpn_permission_denied':
           'Nolavin’ny Android ny alalana VPN. Atombohy indray ny fifandraisana ary ekeno ny fangatahana avy amin’ny rafitra.',
+      'vpn_permission_other_vpn':
+          'Tsy nanome alalana VPN ho an’ny FuzeVPN ny Android satria misy rindranasa VPN hafa mavitrika. Raha napetraka ho “VPN mavitrika mandrakariva” izy, vonoy izany ao amin’ny fikirana VPN an’ny Android, dia andramo indray.',
       'revoked_identity_device_limit':
           'Nesorina ny fidirana VPN an’ity fitaovana ity ary efa feno ny isan’ny fitaovana. Esory fitaovana iray ao amin’ny Kaonty → Hitantana ny fitaovako.',
       'tunnel_start_unexpected':
@@ -924,6 +935,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'vpn_host_unavailable': 'Tsy azo ampiasaina ny mpampiantrano VPN Android',
       'vpn_permission_required': 'Ilaina ny alalana VPN',
       'vpn_permission_denied': 'Nolavina ny alalana VPN',
+      'vpn_permission_other_vpn': 'Misy VPN hafa mavitrika',
       'vpn_permission_request_failed': 'Tsy afaka nangataka alalana',
       'wireguard_foreground_service_unavailable':
           'Tsy azo ampiasaina ny serivisy WireGuard',
@@ -1069,6 +1081,8 @@ class AppLocalizationsMg extends AppLocalizations {
           'Mila alalana VPN vaovao ny Android alohan’ny hanombohana ny tunnel.',
       'vpn_permission_denied':
           'Avelao ny FuzeVPN ao amin’ny fangatahana Android mba hanohizana.',
+      'vpn_permission_other_vpn':
+          'Tsy nanome alalana VPN ho an’ny FuzeVPN ny Android satria misy rindranasa VPN hafa mavitrika. Raha napetraka ho “VPN mavitrika mandrakariva” izy, vonoy izany ao amin’ny fikirana VPN an’ny Android, dia andramo indray.',
       'vpn_permission_request_failed':
           'Tsy afaka nanokatra ny efijery alalana VPN ny Android.',
       'wireguard_foreground_service_unavailable':

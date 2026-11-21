@@ -363,6 +363,14 @@ class AppLocalizationsHe extends AppLocalizations {
   String get status_errorDetail => 'חיבור ה-VPN לא אושר. נסה שוב.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN אחר תפס את המקום, או שה-VPN הופסק בהגדרות של Android. הקש על “התחבר” כדי להמשיך.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'VPN אחר פעיל. אם הוא מוגדר כ“VPN תמיד פעיל”, כבה זאת בהגדרות ה-VPN של Android.';
+
+  @override
   String get status_idle => 'מנותק';
 
   @override
@@ -646,6 +654,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'vpn_sign_in_required': 'נדרשת כניסה',
       'protocol_unavailable_at_location': 'הפרוטוקול אינו זמין',
       'vpn_permission_denied': 'הרשאת ה-VPN נדחתה',
+      'vpn_permission_other_vpn': 'VPN אחר פעיל',
       'revoked_identity_device_limit': 'הגעת למגבלת המכשירים',
       'tunnel_start_unexpected': 'לא ניתן להפעיל את ה-VPN',
       'flutter_disconnect_timeout': 'הניתוק לא אושר',
@@ -681,6 +690,8 @@ class AppLocalizationsHe extends AppLocalizations {
           'הפרוטוקול שנבחר אינו מוצע במיקום הזה. רענן את המיקומים או בחר פרוטוקול אחר.',
       'vpn_permission_denied':
           'Android דחה את הרשאת ה-VPN. התחל שוב את החיבור ואשר את בקשת המערכת.',
+      'vpn_permission_other_vpn':
+          'Android לא העניק ל-FuzeVPN את הרשאת ה-VPN, כי אפליקציית VPN אחרת פעילה. אם היא מוגדרת כ“VPN תמיד פעיל”, כבה זאת בהגדרות ה-VPN של Android ונסה שוב.',
       'revoked_identity_device_limit':
           'גישת ה-VPN של המכשיר הזה הוסרה, והגעת למגבלת המכשירים. הסר מכשיר בקטע חשבון ← נהל את המכשירים שלי.',
       'tunnel_start_unexpected':
@@ -873,6 +884,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'vpn_host_unavailable': 'מארח ה-VPN של Android אינו זמין',
       'vpn_permission_required': 'נדרשת הרשאת VPN',
       'vpn_permission_denied': 'הרשאת VPN נדחתה',
+      'vpn_permission_other_vpn': 'VPN אחר פעיל',
       'vpn_permission_request_failed': 'לא ניתן לבקש הרשאה',
       'wireguard_foreground_service_unavailable': 'שירות WireGuard אינו זמין',
       'wireguard_identity_invalid': 'מפתח WireGuard מקומי אינו תקין',
@@ -1004,6 +1016,8 @@ class AppLocalizationsHe extends AppLocalizations {
       'vpn_permission_required':
           'Android דורש הרשאת VPN חדשה לפני הפעלת המנהרה.',
       'vpn_permission_denied': 'אשר את FuzeVPN בבקשת Android כדי להמשיך.',
+      'vpn_permission_other_vpn':
+          'Android לא העניק ל-FuzeVPN את הרשאת ה-VPN, כי אפליקציית VPN אחרת פעילה. אם היא מוגדרת כ“VPN תמיד פעיל”, כבה זאת בהגדרות ה-VPN של Android ונסה שוב.',
       'vpn_permission_request_failed':
           'Android לא הצליח לפתוח את מסך הרשאת ה-VPN.',
       'wireguard_foreground_service_unavailable':

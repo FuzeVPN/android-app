@@ -353,6 +353,14 @@ class AppLocalizationsZh extends AppLocalizations {
   String get status_errorDetail => '尚未确认 VPN 连接。请重试。';
 
   @override
+  String get status_vpnRevokedDetail =>
+      '另一个 VPN 已接管，或 VPN 已在 Android 设置中停止。点按“连接”即可恢复。';
+
+  @override
+  String get status_otherVpnDetail =>
+      '另一个 VPN 正在运行。如果它被设为“始终开启的 VPN”，请在 Android 的 VPN 设置中关闭此设置。';
+
+  @override
   String get status_idle => '已断开连接';
 
   @override
@@ -625,6 +633,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'vpn_sign_in_required': '需要登录',
       'protocol_unavailable_at_location': '协议不可用',
       'vpn_permission_denied': 'VPN 权限被拒绝',
+      'vpn_permission_other_vpn': '另一个 VPN 正在运行',
       'revoked_identity_device_limit': '已达到设备上限',
       'tunnel_start_unexpected': 'VPN 无法启动',
       'flutter_disconnect_timeout': '未确认断开连接',
@@ -655,6 +664,8 @@ class AppLocalizationsZh extends AppLocalizations {
       'vpn_sign_in_required': '启动 VPN 前请登录您的账户。',
       'protocol_unavailable_at_location': '所选协议在此位置不可用。请刷新位置列表或选择其他协议。',
       'vpn_permission_denied': 'Android 拒绝了 VPN 权限。请重新开始连接，并接受系统请求。',
+      'vpn_permission_other_vpn':
+          '由于另一个 VPN 应用正在运行，Android 未向 FuzeVPN 授予 VPN 权限。如果它被设为“始终开启的 VPN”，请在 Android 的 VPN 设置中关闭此设置，然后重试。',
       'revoked_identity_device_limit':
           '此设备的 VPN 访问权限已被移除，并且已达到设备上限。请在“账户”→“管理我的设备”中移除一台设备。',
       'tunnel_start_unexpected': '意外错误中断了隧道准备。请查看诊断代码并重试。',
@@ -821,6 +832,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN 主机不可用',
       'vpn_permission_required': '需要 VPN 权限',
       'vpn_permission_denied': 'VPN 权限被拒绝',
+      'vpn_permission_other_vpn': '另一个 VPN 正在运行',
       'vpn_permission_request_failed': '无法请求权限',
       'wireguard_foreground_service_unavailable': 'WireGuard 服务不可用',
       'wireguard_identity_invalid': '本地 WireGuard 密钥无效',
@@ -934,6 +946,8 @@ class AppLocalizationsZh extends AppLocalizations {
       'openvpn_recovery_exhausted': '自动恢复已使用过。请在应用中开始新的连接。',
       'vpn_permission_required': '启动隧道前，Android 需要新的 VPN 授权。',
       'vpn_permission_denied': '请在 Android 请求中允许 FuzeVPN 继续。',
+      'vpn_permission_other_vpn':
+          '由于另一个 VPN 应用正在运行，Android 未向 FuzeVPN 授予 VPN 权限。如果它被设为“始终开启的 VPN”，请在 Android 的 VPN 设置中关闭此设置，然后重试。',
       'vpn_permission_request_failed': 'Android 无法打开 VPN 权限页面。',
       'wireguard_foreground_service_unavailable':
           'Android 无法让 WireGuard 服务保持在前台运行。',
@@ -2345,6 +2359,14 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get status_errorDetail => '尚未确认 VPN 连接。请重试。';
 
   @override
+  String get status_vpnRevokedDetail =>
+      '另一个 VPN 已接管，或 VPN 已在 Android 设置中停止。点按“连接”即可恢复。';
+
+  @override
+  String get status_otherVpnDetail =>
+      '另一个 VPN 正在运行。如果它被设为“始终开启的 VPN”，请在 Android 的 VPN 设置中关闭此设置。';
+
+  @override
   String get status_idle => '已断开连接';
 
   @override
@@ -2617,6 +2639,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'vpn_sign_in_required': '需要登录',
       'protocol_unavailable_at_location': '协议不可用',
       'vpn_permission_denied': 'VPN 权限被拒绝',
+      'vpn_permission_other_vpn': '另一个 VPN 正在运行',
       'revoked_identity_device_limit': '已达到设备上限',
       'tunnel_start_unexpected': 'VPN 无法启动',
       'flutter_disconnect_timeout': '未确认断开连接',
@@ -2647,6 +2670,8 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'vpn_sign_in_required': '启动 VPN 前请登录您的账户。',
       'protocol_unavailable_at_location': '所选协议在此位置不可用。请刷新位置列表或选择其他协议。',
       'vpn_permission_denied': 'Android 拒绝了 VPN 权限。请重新开始连接，并接受系统请求。',
+      'vpn_permission_other_vpn':
+          '由于另一个 VPN 应用正在运行，Android 未向 FuzeVPN 授予 VPN 权限。如果它被设为“始终开启的 VPN”，请在 Android 的 VPN 设置中关闭此设置，然后重试。',
       'revoked_identity_device_limit':
           '此设备的 VPN 访问权限已被移除，并且已达到设备上限。请在“账户”→“管理我的设备”中移除一台设备。',
       'tunnel_start_unexpected': '意外错误中断了隧道准备。请查看诊断代码并重试。',
@@ -2813,6 +2838,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'vpn_host_unavailable': 'Android VPN 主机不可用',
       'vpn_permission_required': '需要 VPN 权限',
       'vpn_permission_denied': 'VPN 权限被拒绝',
+      'vpn_permission_other_vpn': '另一个 VPN 正在运行',
       'vpn_permission_request_failed': '无法请求权限',
       'wireguard_foreground_service_unavailable': 'WireGuard 服务不可用',
       'wireguard_identity_invalid': '本地 WireGuard 密钥无效',
@@ -2926,6 +2952,8 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'openvpn_recovery_exhausted': '自动恢复已使用过。请在应用中开始新的连接。',
       'vpn_permission_required': '启动隧道前，Android 需要新的 VPN 授权。',
       'vpn_permission_denied': '请在 Android 请求中允许 FuzeVPN 继续。',
+      'vpn_permission_other_vpn':
+          '由于另一个 VPN 应用正在运行，Android 未向 FuzeVPN 授予 VPN 权限。如果它被设为“始终开启的 VPN”，请在 Android 的 VPN 设置中关闭此设置，然后重试。',
       'vpn_permission_request_failed': 'Android 无法打开 VPN 权限页面。',
       'wireguard_foreground_service_unavailable':
           'Android 无法让 WireGuard 服务保持在前台运行。',
@@ -4337,6 +4365,14 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get status_errorDetail => '尚未確認 VPN 連線。請再試一次。';
 
   @override
+  String get status_vpnRevokedDetail =>
+      '另一個 VPN 已接手，或 VPN 已在 Android 設定中停止。輕觸「連線」即可繼續。';
+
+  @override
+  String get status_otherVpnDetail =>
+      '另一個 VPN 正在運作。如果它設為「永遠開啟的 VPN」，請在 Android 的 VPN 設定中關閉這項設定。';
+
+  @override
   String get status_idle => '已中斷連線';
 
   @override
@@ -4611,6 +4647,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'vpn_sign_in_required': '需要登入',
       'protocol_unavailable_at_location': '通訊協定無法使用',
       'vpn_permission_denied': 'VPN 權限遭拒',
+      'vpn_permission_other_vpn': '另一個 VPN 正在運作',
       'revoked_identity_device_limit': '已達裝置上限',
       'tunnel_start_unexpected': 'VPN 無法啟動',
       'flutter_disconnect_timeout': '尚未確認中斷連線',
@@ -4641,6 +4678,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'vpn_sign_in_required': '請先登入您的帳戶，再啟動 VPN。',
       'protocol_unavailable_at_location': '所選通訊協定未由此位置提供。請重新整理位置或選擇其他通訊協定。',
       'vpn_permission_denied': 'Android 拒絕了 VPN 權限。請重新開始連線並接受系統要求。',
+      'vpn_permission_other_vpn':
+          '由於另一個 VPN 應用程式正在運作，Android 未授予 FuzeVPN VPN 權限。如果它設為「永遠開啟的 VPN」，請在 Android 的 VPN 設定中關閉這項設定，然後再試一次。',
       'revoked_identity_device_limit':
           '此裝置的 VPN 存取權已移除，且已達裝置上限。請前往「帳戶」→「管理我的裝置」移除裝置。',
       'tunnel_start_unexpected': '非預期錯誤中斷了通道準備作業。請檢查診斷代碼並再試一次。',
@@ -4807,6 +4846,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'vpn_host_unavailable': 'Android VPN 主機無法使用',
       'vpn_permission_required': '需要 VPN 權限',
       'vpn_permission_denied': 'VPN 權限遭拒',
+      'vpn_permission_other_vpn': '另一個 VPN 正在運作',
       'vpn_permission_request_failed': '無法要求權限',
       'wireguard_foreground_service_unavailable': 'WireGuard 服務無法使用',
       'wireguard_identity_invalid': '本機 WireGuard 金鑰無效',
@@ -4922,6 +4962,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'openvpn_recovery_exhausted': '自動復原已使用過。請在應用程式中開始新的連線。',
       'vpn_permission_required': 'Android 需要新的 VPN 授權，才能啟動通道。',
       'vpn_permission_denied': '請在 Android 要求中允許 FuzeVPN，以繼續操作。',
+      'vpn_permission_other_vpn':
+          '由於另一個 VPN 應用程式正在運作，Android 未授予 FuzeVPN VPN 權限。如果它設為「永遠開啟的 VPN」，請在 Android 的 VPN 設定中關閉這項設定，然後再試一次。',
       'vpn_permission_request_failed': 'Android 無法開啟 VPN 權限畫面。',
       'wireguard_foreground_service_unavailable':
           'Android 無法讓 WireGuard 服務保持在前景。',

@@ -3104,6 +3104,72 @@ void main() {
       expect(ReviewPromptState.decode(tunnel.reviewRecord).requests, 1);
     });
   });
+
+  // VM Android 17, 20/11/2026: while another app is the permanent VPN, Android
+  // refuses the permission without asking anything. The refusal is explained.
+  group('another VPN', () {
+    Future<(_SignedInHarness, _ForeignVpnTunnel)> harness() async {
+      final _ForeignVpnTunnel tunnel = _ForeignVpnTunnel()
+        ..permissionGranted = false;
+      final _SignedInHarness h = await _signedInHarness(withTunnel: tunnel);
+      addTearDown(h.close);
+      return (h, tunnel);
+    }
+
+    test("a refusal while another app's VPN is active names it", () async {
+      final (h, tunnel) = await harness();
+      await h.controller.connect();
+      expect(tunnel.probes, 1);
+      expect(h.controller.notice?.titleKey, 'notice.controller.title');
+      expect(
+        h.controller.notice?.arguments['code'],
+        'vpn_permission_other_vpn',
+      );
+      expect(h.controller.tunnelState.phase, VpnRuntimePhase.error);
+      expect(h.controller.tunnelState.messageCode, 'vpn_permission_other_vpn');
+    });
+
+    test("a refusal without another VPN stays the user's refusal", () async {
+      final (h, tunnel) = await harness();
+      tunnel.active = false;
+      await h.controller.connect();
+      expect(tunnel.probes, 1);
+      expect(h.controller.notice?.arguments['code'], 'vpn_permission_denied');
+      expect(h.controller.tunnelState.messageCode, 'vpn_permission_denied');
+    });
+
+    test('an unknown answer stays the usual refusal', () async {
+      final (h, tunnel) = await harness();
+      tunnel.failure = const NativeVpnException('native_operation_failed');
+      await h.controller.connect();
+      expect(h.controller.notice?.arguments['code'], 'vpn_permission_denied');
+    });
+
+    test('a granted permission asks nothing about other VPNs', () async {
+      final (h, tunnel) = await harness();
+      tunnel.permissionGranted = true;
+      await h.controller.connect();
+      expect(tunnel.probes, 0);
+      expect(
+        h.controller.notice?.arguments['code'],
+        isNot('vpn_permission_other_vpn'),
+      );
+    });
+  });
+}
+
+class _ForeignVpnTunnel extends _FakeTunnel implements ForeignVpnProbe {
+  bool active = true;
+  Object? failure;
+  int probes = 0;
+
+  @override
+  Future<bool> anotherVpnActive() async {
+    probes += 1;
+    final Object? error = failure;
+    if (error != null) throw error;
+    return active;
+  }
 }
 
 class _ReviewTunnel extends _FakeTunnel implements InAppReviewGateway {

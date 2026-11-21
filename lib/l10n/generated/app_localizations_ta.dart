@@ -373,6 +373,14 @@ class AppLocalizationsTa extends AppLocalizations {
       'VPN இணைப்பு உறுதிப்படுத்தப்படவில்லை. மீண்டும் முயற்சிக்கவும்.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'வேறொரு VPN இடத்தைப் பிடித்துக்கொண்டது, அல்லது Android அமைப்புகளில் VPN நிறுத்தப்பட்டது. தொடர “இணைக்கவும்” என்பதைத் தட்டவும்.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'வேறொரு VPN செயலில் உள்ளது. அது “எப்போதும் இயக்கத்தில் உள்ள VPN” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கவும்.';
+
+  @override
   String get status_idle => 'இணையவில்லை';
 
   @override
@@ -670,6 +678,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'vpn_sign_in_required': 'உள்நுழைவு தேவை',
       'protocol_unavailable_at_location': 'நெறிமுறை கிடைக்கவில்லை',
       'vpn_permission_denied': 'VPN அனுமதி மறுக்கப்பட்டது',
+      'vpn_permission_other_vpn': 'வேறொரு VPN செயலில் உள்ளது',
       'revoked_identity_device_limit': 'சாதன வரம்பு எட்டப்பட்டது',
       'tunnel_start_unexpected': 'VPN தொடங்க முடியவில்லை',
       'flutter_disconnect_timeout': 'துண்டிப்பு உறுதிப்படுத்தப்படவில்லை',
@@ -708,6 +717,8 @@ class AppLocalizationsTa extends AppLocalizations {
           'தேர்ந்தெடுக்கப்பட்ட நெறிமுறை இந்த இடத்தில் வழங்கப்படவில்லை. இடங்களைப் புதுப்பிக்கவும் அல்லது வேறு நெறிமுறையைத் தேர்ந்தெடுக்கவும்.',
       'vpn_permission_denied':
           'VPN அனுமதியை Android மறுத்துவிட்டது. இணைப்பை மீண்டும் தொடங்கி, சிஸ்டம் கோரிக்கையை ஏற்கவும்.',
+      'vpn_permission_other_vpn':
+          'வேறொரு VPN ஆப்ஸ் செயலில் இருப்பதால் Android, FuzeVPN-க்கு VPN அனுமதியை வழங்கவில்லை. அது “எப்போதும் இயக்கத்தில் உள்ள VPN” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கிவிட்டு மீண்டும் முயலவும்.',
       'revoked_identity_device_limit':
           'இந்தச் சாதனத்தின் VPN அணுகல் அகற்றப்பட்டது, சாதன வரம்பும் எட்டப்பட்டுவிட்டது. கணக்கு → “எனது சாதனங்களை நிர்வகிக்கவும்” என்பதன் கீழ் ஒரு சாதனத்தை அகற்றவும்.',
       'tunnel_start_unexpected':
@@ -920,6 +931,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN ஹோஸ்ட் கிடைக்கவில்லை',
       'vpn_permission_required': 'VPN அனுமதி தேவை',
       'vpn_permission_denied': 'VPN அனுமதி மறுக்கப்பட்டது',
+      'vpn_permission_other_vpn': 'வேறொரு VPN செயலில் உள்ளது',
       'vpn_permission_request_failed': 'அனுமதியைக் கோர முடியவில்லை',
       'wireguard_foreground_service_unavailable':
           'WireGuard சேவை கிடைக்கவில்லை',
@@ -1062,6 +1074,8 @@ class AppLocalizationsTa extends AppLocalizations {
           'சுரங்கப்பாதையைத் தொடங்கும் முன் Android புதிய VPN அனுமதியைக் கோருகிறது.',
       'vpn_permission_denied':
           'தொடர Android கோரிக்கையில் FuzeVPN-ஐ அனுமதிக்கவும்.',
+      'vpn_permission_other_vpn':
+          'வேறொரு VPN ஆப்ஸ் செயலில் இருப்பதால் Android, FuzeVPN-க்கு VPN அனுமதியை வழங்கவில்லை. அது “எப்போதும் இயக்கத்தில் உள்ள VPN” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கிவிட்டு மீண்டும் முயலவும்.',
       'vpn_permission_request_failed':
           'VPN அனுமதித் திரையை Android-ஆல் திறக்க முடியவில்லை.',
       'wireguard_foreground_service_unavailable':

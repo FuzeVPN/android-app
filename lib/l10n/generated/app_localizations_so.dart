@@ -375,6 +375,14 @@ class AppLocalizationsSo extends AppLocalizations {
       'Xidhiidhka VPN lama xaqiijin. Isku day mar kale.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'VPN kale ayaa meesha qabsaday, ama VPN-ka waxaa lagu joojiyay dejinta Android. Taabo Ku xidh si aad u sii wadato.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'VPN kale ayaa firfircoon. Haddii loo dejiyay sida “VPN had iyo jeer”, ka demi dejintaas dejinta VPN-ka ee Android.';
+
+  @override
   String get status_idle => 'Ma ku xidhna';
 
   @override
@@ -670,6 +678,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'vpn_sign_in_required': 'Soo galitaan ayaa loo baahan yahay',
       'protocol_unavailable_at_location': 'Protokolka lama heli karo',
       'vpn_permission_denied': 'Oggolaanshaha VPN waa la diiday',
+      'vpn_permission_other_vpn': 'VPN kale ayaa firfircoon',
       'revoked_identity_device_limit': 'Xadka aaladaha waa la gaaray',
       'tunnel_start_unexpected': 'VPN lama bilaabi karin',
       'flutter_disconnect_timeout': 'Joojinta xidhiidhka lama xaqiijin',
@@ -708,6 +717,8 @@ class AppLocalizationsSo extends AppLocalizations {
           'Goobtan ma bixiso protokolka la doortay. Cusboonaysii goobaha ama dooro protokol kale.',
       'vpn_permission_denied':
           'Android ayaa diiday oggolaanshaha VPN. Mar kale bilow xidhiidhka, kadibna aqbal codsiga nidaamka.',
+      'vpn_permission_other_vpn':
+          'Android ma siin FuzeVPN oggolaanshaha VPN sababtoo ah app VPN kale ayaa firfircoon. Haddii loo dejiyay sida “VPN had iyo jeer”, ka demi dejintaas dejinta VPN-ka ee Android, kadibna isku day mar kale.',
       'revoked_identity_device_limit':
           'Gelitaanka VPN ee aaladdan waa la ka qaaday, xadka aaladahana waa la gaaray. Aalad ka saar qaybta Akoon → Maamul aaladahayga.',
       'tunnel_start_unexpected':
@@ -926,6 +937,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'vpn_host_unavailable': 'Qaybta VPN ee Android lama heli karo',
       'vpn_permission_required': 'Oggolaansho VPN ayaa loo baahan yahay',
       'vpn_permission_denied': 'Oggolaanshaha VPN waa la diiday',
+      'vpn_permission_other_vpn': 'VPN kale ayaa firfircoon',
       'vpn_permission_request_failed': 'Oggolaansho lama codsan karin',
       'wireguard_foreground_service_unavailable':
           'Adeegga WireGuard lama heli karo',
@@ -1073,6 +1085,8 @@ class AppLocalizationsSo extends AppLocalizations {
           'Android wuxuu u baahan yahay oggolaansho VPN oo cusub ka hor inta aan tunnel-ka la bilaabin.',
       'vpn_permission_denied':
           'Codsiga Android ku oggolow FuzeVPN si aad u sii waddo.',
+      'vpn_permission_other_vpn':
+          'Android ma siin FuzeVPN oggolaanshaha VPN sababtoo ah app VPN kale ayaa firfircoon. Haddii loo dejiyay sida “VPN had iyo jeer”, ka demi dejintaas dejinta VPN-ka ee Android, kadibna isku day mar kale.',
       'vpn_permission_request_failed':
           'Android ma furi karin shaashadda oggolaanshaha VPN.',
       'wireguard_foreground_service_unavailable':

@@ -377,6 +377,14 @@ class AppLocalizationsEl extends AppLocalizations {
       'Η σύνδεση VPN δεν έχει επιβεβαιωθεί. Δοκιμάστε ξανά.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Ένα άλλο VPN πήρε τη θέση του ή το VPN σταμάτησε από τις ρυθμίσεις του Android. Πατήστε Σύνδεση για να συνεχίσετε.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Ένα άλλο VPN είναι ενεργό. Αν έχει οριστεί ως VPN σε μόνιμη λειτουργία, απενεργοποιήστε το από τις ρυθμίσεις VPN του Android.';
+
+  @override
   String get status_idle => 'Αποσυνδεδεμένο';
 
   @override
@@ -679,6 +687,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'vpn_sign_in_required': 'Απαιτείται σύνδεση',
       'protocol_unavailable_at_location': 'Το πρωτόκολλο δεν είναι διαθέσιμο',
       'vpn_permission_denied': 'Η άδεια VPN απορρίφθηκε',
+      'vpn_permission_other_vpn': 'Ένα άλλο VPN είναι ενεργό',
       'revoked_identity_device_limit': 'Συμπληρώθηκε το όριο συσκευών',
       'tunnel_start_unexpected': 'Δεν ήταν δυνατή η εκκίνηση του VPN',
       'flutter_disconnect_timeout': 'Η αποσύνδεση δεν επιβεβαιώθηκε',
@@ -719,6 +728,8 @@ class AppLocalizationsEl extends AppLocalizations {
           'Το επιλεγμένο πρωτόκολλο δεν προσφέρεται από αυτή την τοποθεσία. Ανανεώστε τις τοποθεσίες ή επιλέξτε άλλο πρωτόκολλο.',
       'vpn_permission_denied':
           'Το Android απέρριψε την άδεια VPN. Ξεκινήστε ξανά τη σύνδεση και αποδεχτείτε το αίτημα του συστήματος.',
+      'vpn_permission_other_vpn':
+          'Το Android δεν έδωσε στο FuzeVPN την άδεια VPN, επειδή είναι ενεργή μια άλλη εφαρμογή VPN. Αν έχει οριστεί ως VPN σε μόνιμη λειτουργία, απενεργοποιήστε το από τις ρυθμίσεις VPN του Android και δοκιμάστε ξανά.',
       'revoked_identity_device_limit':
           'Η πρόσβαση VPN αυτής της συσκευής αφαιρέθηκε και συμπληρώθηκε το όριο συσκευών. Αφαιρέστε μια συσκευή από τον Λογαριασμό → Διαχείριση των συσκευών μου.',
       'tunnel_start_unexpected':
@@ -939,6 +950,7 @@ class AppLocalizationsEl extends AppLocalizations {
           'Ο κεντρικός υπολογιστής VPN του Android δεν είναι διαθέσιμος',
       'vpn_permission_required': 'Απαιτείται άδεια VPN',
       'vpn_permission_denied': 'Η άδεια VPN απορρίφθηκε',
+      'vpn_permission_other_vpn': 'Ένα άλλο VPN είναι ενεργό',
       'vpn_permission_request_failed': 'Δεν ήταν δυνατή η αίτηση άδειας',
       'wireguard_foreground_service_unavailable':
           'Η υπηρεσία WireGuard δεν είναι διαθέσιμη',
@@ -1090,6 +1102,8 @@ class AppLocalizationsEl extends AppLocalizations {
           'Το Android απαιτεί νέα εξουσιοδότηση VPN πριν από την εκκίνηση της σήραγγας.',
       'vpn_permission_denied':
           'Επιτρέψτε το FuzeVPN στο αίτημα Android για να συνεχίσετε.',
+      'vpn_permission_other_vpn':
+          'Το Android δεν έδωσε στο FuzeVPN την άδεια VPN, επειδή είναι ενεργή μια άλλη εφαρμογή VPN. Αν έχει οριστεί ως VPN σε μόνιμη λειτουργία, απενεργοποιήστε το από τις ρυθμίσεις VPN του Android και δοκιμάστε ξανά.',
       'vpn_permission_request_failed':
           'Το Android δεν μπόρεσε να ανοίξει την οθόνη άδειας VPN.',
       'wireguard_foreground_service_unavailable':

@@ -371,6 +371,14 @@ class AppLocalizationsKa extends AppLocalizations {
       'VPN კავშირი დადასტურებული არ არის. სცადეთ ხელახლა.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'ადგილი სხვა VPN-მა დაიკავა, ან VPN შეჩერდა Android-ის პარამეტრებში. გასაგრძელებლად შეეხეთ „დაკავშირება“-ს.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'აქტიურია სხვა VPN. თუ ის დაყენებულია, როგორც „ყოველთვის ჩართული VPN“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში.';
+
+  @override
   String get status_idle => 'გათიშულია';
 
   @override
@@ -661,6 +669,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'vpn_sign_in_required': 'საჭიროა შესვლა',
       'protocol_unavailable_at_location': 'პროტოკოლი მიუწვდომელია',
       'vpn_permission_denied': 'VPN-ის ნებართვა უარყოფილია',
+      'vpn_permission_other_vpn': 'აქტიურია სხვა VPN',
       'revoked_identity_device_limit': 'მოწყობილობების ლიმიტი ამოიწურა',
       'tunnel_start_unexpected': 'VPN-ის გაშვება ვერ მოხერხდა',
       'flutter_disconnect_timeout': 'გათიშვა არ არის დადასტურებული',
@@ -699,6 +708,8 @@ class AppLocalizationsKa extends AppLocalizations {
           'ამ მდებარეობაზე არჩეული პროტოკოლი ხელმისაწვდომი არ არის. განაახლეთ მდებარეობები ან აირჩიეთ სხვა პროტოკოლი.',
       'vpn_permission_denied':
           'Android-მა VPN-ის ნებართვა უარყო. ხელახლა დაიწყეთ კავშირი და დაადასტურეთ სისტემური მოთხოვნა.',
+      'vpn_permission_other_vpn':
+          'Android-მა FuzeVPN-ს VPN-ის ნებართვა არ მისცა, რადგან აქტიურია სხვა VPN აპი. თუ ის დაყენებულია, როგორც „ყოველთვის ჩართული VPN“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში და სცადეთ ხელახლა.',
       'revoked_identity_device_limit':
           'ამ მოწყობილობის VPN წვდომა წაიშალა და მოწყობილობების ლიმიტი ამოიწურა. წაშალეთ მოწყობილობა აქ: ანგარიში → ჩემი მოწყობილობების მართვა.',
       'tunnel_start_unexpected':
@@ -906,6 +917,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'vpn_host_unavailable': 'Android-ის VPN მასპინძელი მიუწვდომელია',
       'vpn_permission_required': 'VPN-ის ნებართვა საჭიროა',
       'vpn_permission_denied': 'VPN-ის ნებართვა უარყოფილია',
+      'vpn_permission_other_vpn': 'აქტიურია სხვა VPN',
       'vpn_permission_request_failed': 'ნებართვის მოთხოვნა ვერ მოხერხდა',
       'wireguard_foreground_service_unavailable':
           'WireGuard-ის სერვისი მიუწვდომელია',
@@ -1049,6 +1061,8 @@ class AppLocalizationsKa extends AppLocalizations {
           'Android-ს გვირაბის დაწყებამდე VPN-ის ახალი ნებართვა სჭირდება.',
       'vpn_permission_denied':
           'გასაგრძელებლად Android-ის მოთხოვნაში დართეთ ნებართვა FuzeVPN-ს.',
+      'vpn_permission_other_vpn':
+          'Android-მა FuzeVPN-ს VPN-ის ნებართვა არ მისცა, რადგან აქტიურია სხვა VPN აპი. თუ ის დაყენებულია, როგორც „ყოველთვის ჩართული VPN“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში და სცადეთ ხელახლა.',
       'vpn_permission_request_failed':
           'Android-მა ვერ გახსნა VPN-ის ნებართვის ეკრანი.',
       'wireguard_foreground_service_unavailable':

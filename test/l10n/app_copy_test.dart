@@ -228,6 +228,7 @@ void main() {
         'wireguard_identity_unavailable',
         'vpn_host_destroyed',
         'vpn_host_unavailable',
+        'vpn_permission_other_vpn',
       ]) {
         expect(l.notice_native_title(code, 'VPN'), isNotEmpty);
         expect(

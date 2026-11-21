@@ -369,6 +369,14 @@ class AppLocalizationsEn extends AppLocalizations {
       'The VPN connection is not confirmed. Try again.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'Another VPN took over, or the VPN was stopped in Android settings. Tap Connect to resume.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'Another VPN is active. If it is set as Always-on VPN, turn that off in Android VPN settings.';
+
+  @override
   String get status_idle => 'Disconnected';
 
   @override
@@ -660,6 +668,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'vpn_sign_in_required': 'Sign-in required',
       'protocol_unavailable_at_location': 'Protocol unavailable',
       'vpn_permission_denied': 'VPN permission denied',
+      'vpn_permission_other_vpn': 'Another VPN is active',
       'revoked_identity_device_limit': 'Device limit reached',
       'tunnel_start_unexpected': 'VPN could not start',
       'flutter_disconnect_timeout': 'Disconnection not confirmed',
@@ -697,6 +706,8 @@ class AppLocalizationsEn extends AppLocalizations {
           'The selected protocol is not offered by this location. Refresh locations or choose another protocol.',
       'vpn_permission_denied':
           'Android denied the VPN permission. Start the connection again and accept the system request.',
+      'vpn_permission_other_vpn':
+          'Android did not give FuzeVPN the VPN permission because another VPN app is active. If it is set as Always-on VPN, turn that off in Android VPN settings, then try again.',
       'revoked_identity_device_limit':
           'This device’s VPN access was removed and the device limit has been reached. Remove a device under Account → Manage my devices.',
       'tunnel_start_unexpected':
@@ -899,6 +910,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN host unavailable',
       'vpn_permission_required': 'VPN permission required',
       'vpn_permission_denied': 'VPN permission denied',
+      'vpn_permission_other_vpn': 'Another VPN is active',
       'vpn_permission_request_failed': 'Could not request permission',
       'wireguard_foreground_service_unavailable':
           'WireGuard service unavailable',
@@ -1033,6 +1045,8 @@ class AppLocalizationsEn extends AppLocalizations {
           'Android requires a new VPN authorization before starting the tunnel.',
       'vpn_permission_denied':
           'Allow FuzeVPN in the Android request to continue.',
+      'vpn_permission_other_vpn':
+          'Android did not give FuzeVPN the VPN permission because another VPN app is active. If it is set as Always-on VPN, turn that off in Android VPN settings, then try again.',
       'vpn_permission_request_failed':
           'Android could not open the VPN permission screen.',
       'wireguard_foreground_service_unavailable':

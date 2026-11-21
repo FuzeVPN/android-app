@@ -365,6 +365,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get status_errorDetail => 'لم يُؤكَّد اتصال VPN. حاول مرة أخرى.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'تولّى VPN آخر الاتصال، أو أُوقف VPN من إعدادات Android. اضغط على «اتصال» للمتابعة.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'يوجد VPN آخر نشط. إذا كان مضبوطًا كـ VPN الدائم، فأوقف هذا الإعداد في إعدادات VPN في Android.';
+
+  @override
   String get status_idle => 'غير متصل';
 
   @override
@@ -651,6 +659,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'vpn_sign_in_required': 'تسجيل الدخول مطلوب',
       'protocol_unavailable_at_location': 'البروتوكول غير متاح',
       'vpn_permission_denied': 'رُفض إذن VPN',
+      'vpn_permission_other_vpn': 'يوجد VPN آخر نشط',
       'revoked_identity_device_limit': 'تم بلوغ حد الأجهزة',
       'tunnel_start_unexpected': 'تعذر تشغيل VPN',
       'flutter_disconnect_timeout': 'لم يُؤكَّد قطع الاتصال',
@@ -686,6 +695,8 @@ class AppLocalizationsAr extends AppLocalizations {
           'البروتوكول المحدد غير مقدم في هذا الموقع. حدّث المواقع أو اختر بروتوكولًا آخر.',
       'vpn_permission_denied':
           'رفض Android إذن VPN. ابدأ الاتصال مرة أخرى ووافق على طلب النظام.',
+      'vpn_permission_other_vpn':
+          'لم يمنح Android إذن VPN لتطبيق FuzeVPN لأن تطبيق VPN آخر نشط. إذا كان مضبوطًا كـ VPN الدائم، فأوقف هذا الإعداد في إعدادات VPN في Android، ثم حاول مرة أخرى.',
       'revoked_identity_device_limit':
           'أُزيل وصول VPN لهذا الجهاز وتم بلوغ حد الأجهزة. أزل جهازًا من «الحساب ← إدارة أجهزتي».',
       'tunnel_start_unexpected':
@@ -890,6 +901,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'vpn_host_unavailable': 'مضيف VPN في Android غير متاح',
       'vpn_permission_required': 'إذن VPN مطلوب',
       'vpn_permission_denied': 'رُفض إذن VPN',
+      'vpn_permission_other_vpn': 'يوجد VPN آخر نشط',
       'vpn_permission_request_failed': 'تعذر طلب الإذن',
       'wireguard_foreground_service_unavailable': 'خدمة WireGuard غير متاحة',
       'wireguard_identity_invalid': 'مفتاح WireGuard المحلي غير صالح',
@@ -1021,6 +1033,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'vpn_permission_required':
           'يتطلب Android تفويضًا جديدًا لـ VPN قبل بدء النفق.',
       'vpn_permission_denied': 'اسمح لـ FuzeVPN في طلب Android للمتابعة.',
+      'vpn_permission_other_vpn':
+          'لم يمنح Android إذن VPN لتطبيق FuzeVPN لأن تطبيق VPN آخر نشط. إذا كان مضبوطًا كـ VPN الدائم، فأوقف هذا الإعداد في إعدادات VPN في Android، ثم حاول مرة أخرى.',
       'vpn_permission_request_failed': 'تعذر على Android فتح شاشة إذن VPN.',
       'wireguard_foreground_service_unavailable':
           'تعذر على Android إبقاء خدمة WireGuard في الواجهة الأمامية.',

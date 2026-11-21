@@ -373,6 +373,14 @@ class AppLocalizationsMy extends AppLocalizations {
       'VPN ချိတ်ဆက်မှုကို အတည်မပြုရသေးပါ။ ထပ်ကြိုးစားပါ။';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'အခြား VPN တစ်ခုက နေရာယူသွားသည်၊ သို့မဟုတ် Android ဆက်တင်များတွင် VPN ကို ရပ်လိုက်သည်။ ဆက်လုပ်ရန် ချိတ်ဆက်ရန် ကို တို့ပါ။';
+
+  @override
+  String get status_otherVpnDetail =>
+      'အခြား VPN တစ်ခု ဖွင့်ထားသည်။ ၎င်းကို အမြဲဖွင့်ထားသော VPN အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပါ။';
+
+  @override
   String get status_idle => 'ချိတ်ဆက်မထားပါ';
 
   @override
@@ -671,6 +679,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'vpn_sign_in_required': 'အကောင့်ဝင်ရန် လိုအပ်သည်',
       'protocol_unavailable_at_location': 'ပရိုတိုကော မရရှိနိုင်ပါ',
       'vpn_permission_denied': 'VPN ခွင့်ပြုချက် ငြင်းပယ်ခံရသည်',
+      'vpn_permission_other_vpn': 'အခြား VPN တစ်ခု ဖွင့်ထားသည်',
       'revoked_identity_device_limit': 'စက်ပစ္စည်း အကန့်အသတ် ပြည့်သွားပါပြီ',
       'tunnel_start_unexpected': 'VPN စတင်၍ မရပါ',
       'flutter_disconnect_timeout': 'ချိတ်ဆက်မှု ဖြတ်ခြင်းကို အတည်မပြုရသေးပါ',
@@ -709,6 +718,8 @@ class AppLocalizationsMy extends AppLocalizations {
           'ရွေးချယ်ထားသော ပရိုတိုကော ဤတည်နေရာတွင် မရရှိနိုင်ပါ။ တည်နေရာများကို ပြန်လည်ဆန်းသစ်ပါ သို့မဟုတ် အခြား ပရိုတိုကော တစ်ခု ရွေးပါ။',
       'vpn_permission_denied':
           'Android က VPN ခွင့်ပြုချက်ကို ငြင်းပယ်လိုက်သည်။ ချိတ်ဆက်မှုကို ထပ်စတင်ပြီး စနစ်ဆိုင်ရာ တောင်းဆိုမှုကို လက်ခံပါ။',
+      'vpn_permission_other_vpn':
+          'အခြား VPN အက်ပ်တစ်ခု ဖွင့်ထားသောကြောင့် Android က FuzeVPN ကို VPN ခွင့်ပြုချက် မပေးခဲ့ပါ။ ၎င်းကို အမြဲဖွင့်ထားသော VPN အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပြီး ထပ်စမ်းကြည့်ပါ။',
       'revoked_identity_device_limit':
           'ဤစက်ပစ္စည်း၏ VPN အသုံးပြုခွင့်ကို ဖယ်ရှားထားပြီး စက်ပစ္စည်း အကန့်အသတ် ပြည့်သွားပါပြီ။ အကောင့် → စက်ပစ္စည်းများကို စီမံရန်တွင် စက်ပစ္စည်းတစ်ခုကို ဖယ်ရှားပါ။',
       'tunnel_start_unexpected':
@@ -920,6 +931,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN အစိတ်အပိုင်း မရနိုင်ပါ',
       'vpn_permission_required': 'VPN ခွင့်ပြုချက် လိုအပ်သည်',
       'vpn_permission_denied': 'VPN ခွင့်ပြုချက် ငြင်းပယ်ခံရသည်',
+      'vpn_permission_other_vpn': 'အခြား VPN တစ်ခု ဖွင့်ထားသည်',
       'vpn_permission_request_failed': 'ခွင့်ပြုချက် တောင်းဆို၍ မရပါ',
       'wireguard_foreground_service_unavailable':
           'WireGuard ဝန်ဆောင်မှု မရနိုင်ပါ',
@@ -1060,6 +1072,8 @@ class AppLocalizationsMy extends AppLocalizations {
           'တန်နယ် မစတင်မီ Android က VPN ခွင့်ပြုချက် အသစ် လိုအပ်ပါသည်။',
       'vpn_permission_denied':
           'ဆက်လုပ်ရန် Android တောင်းဆိုမှုတွင် FuzeVPN ကို ခွင့်ပြုပါ။',
+      'vpn_permission_other_vpn':
+          'အခြား VPN အက်ပ်တစ်ခု ဖွင့်ထားသောကြောင့် Android က FuzeVPN ကို VPN ခွင့်ပြုချက် မပေးခဲ့ပါ။ ၎င်းကို အမြဲဖွင့်ထားသော VPN အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပြီး ထပ်စမ်းကြည့်ပါ။',
       'vpn_permission_request_failed':
           'Android က VPN ခွင့်ပြုချက် စခရင်ကို ဖွင့်၍ မရပါ။',
       'wireguard_foreground_service_unavailable':

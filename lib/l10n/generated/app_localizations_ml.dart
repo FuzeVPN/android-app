@@ -373,6 +373,14 @@ class AppLocalizationsMl extends AppLocalizations {
       'VPN കണക്ഷൻ സ്ഥിരീകരിച്ചിട്ടില്ല. വീണ്ടും ശ്രമിക്കുക.';
 
   @override
+  String get status_vpnRevokedDetail =>
+      'മറ്റൊരു VPN സ്ഥാനം ഏറ്റെടുത്തു, അല്ലെങ്കിൽ Android ക്രമീകരണങ്ങളിൽ VPN നിർത്തി. തുടരാൻ ബന്ധിപ്പിക്കുക ടാപ്പ് ചെയ്യുക.';
+
+  @override
+  String get status_otherVpnDetail =>
+      'മറ്റൊരു VPN സജീവമാണ്. അത് എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN ആയി സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കിൽ, Android-ന്റെ VPN ക്രമീകരണങ്ങളിൽ അത് ഓഫ് ചെയ്യുക.';
+
+  @override
   String get status_idle => 'വിച്ഛേദിച്ചു';
 
   @override
@@ -666,6 +674,7 @@ class AppLocalizationsMl extends AppLocalizations {
       'vpn_sign_in_required': 'സൈൻ ഇൻ ആവശ്യമാണ്',
       'protocol_unavailable_at_location': 'പ്രോട്ടോക്കോൾ ലഭ്യമല്ല',
       'vpn_permission_denied': 'VPN അനുമതി നിരസിച്ചു',
+      'vpn_permission_other_vpn': 'മറ്റൊരു VPN സജീവമാണ്',
       'revoked_identity_device_limit': 'ഉപകരണ പരിധിയിലെത്തി',
       'tunnel_start_unexpected': 'VPN ആരംഭിക്കാനായില്ല',
       'flutter_disconnect_timeout': 'വിച്ഛേദിക്കൽ സ്ഥിരീകരിച്ചില്ല',
@@ -704,6 +713,8 @@ class AppLocalizationsMl extends AppLocalizations {
           'തിരഞ്ഞെടുത്ത പ്രോട്ടോക്കോൾ ഈ ലൊക്കേഷനിൽ ലഭ്യമല്ല. ലൊക്കേഷനുകൾ പുതുക്കുക അല്ലെങ്കിൽ മറ്റൊരു പ്രോട്ടോക്കോൾ തിരഞ്ഞെടുക്കുക.',
       'vpn_permission_denied':
           'VPN അനുമതി Android നിരസിച്ചു. കണക്ഷൻ വീണ്ടും ആരംഭിച്ച് സിസ്റ്റം അഭ്യർത്ഥന സ്വീകരിക്കുക.',
+      'vpn_permission_other_vpn':
+          'മറ്റൊരു VPN ആപ്പ് സജീവമായതിനാൽ Android, FuzeVPN-ന് VPN അനുമതി നൽകിയില്ല. അത് എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN ആയി സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കിൽ, Android-ന്റെ VPN ക്രമീകരണങ്ങളിൽ അത് ഓഫ് ചെയ്ത് വീണ്ടും ശ്രമിക്കുക.',
       'revoked_identity_device_limit':
           'ഈ ഉപകരണത്തിന്റെ VPN ആക്‌സസ് നീക്കം ചെയ്തു, ഉപകരണ പരിധിയിലും എത്തിയിരിക്കുന്നു. അക്കൗണ്ട് → എന്റെ ഉപകരണങ്ങൾ മാനേജ് ചെയ്യുക എന്നതിൽ ഒരു ഉപകരണം നീക്കം ചെയ്യുക.',
       'tunnel_start_unexpected':
@@ -911,6 +922,7 @@ class AppLocalizationsMl extends AppLocalizations {
       'vpn_host_unavailable': 'Android VPN ഹോസ്റ്റ് ലഭ്യമല്ല',
       'vpn_permission_required': 'VPN അനുമതി ആവശ്യമാണ്',
       'vpn_permission_denied': 'VPN അനുമതി നിരസിച്ചു',
+      'vpn_permission_other_vpn': 'മറ്റൊരു VPN സജീവമാണ്',
       'vpn_permission_request_failed': 'അനുമതി അഭ്യർത്ഥിക്കാനായില്ല',
       'wireguard_foreground_service_unavailable': 'WireGuard സേവനം ലഭ്യമല്ല',
       'wireguard_identity_invalid': 'ഉപകരണത്തിലെ WireGuard കീ അസാധുവാണ്',
@@ -1051,6 +1063,8 @@ class AppLocalizationsMl extends AppLocalizations {
           'ടണൽ ആരംഭിക്കുന്നതിന് മുമ്പ് Android-ന് പുതിയ VPN അനുമതി ആവശ്യമാണ്.',
       'vpn_permission_denied':
           'തുടരാൻ Android അഭ്യർത്ഥനയിൽ FuzeVPN-നെ അനുവദിക്കുക.',
+      'vpn_permission_other_vpn':
+          'മറ്റൊരു VPN ആപ്പ് സജീവമായതിനാൽ Android, FuzeVPN-ന് VPN അനുമതി നൽകിയില്ല. അത് എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN ആയി സജ്ജീകരിച്ചിട്ടുണ്ടെങ്കിൽ, Android-ന്റെ VPN ക്രമീകരണങ്ങളിൽ അത് ഓഫ് ചെയ്ത് വീണ്ടും ശ്രമിക്കുക.',
       'vpn_permission_request_failed':
           'VPN അനുമതി സ്ക്രീൻ തുറക്കാൻ Android-ന് കഴിഞ്ഞില്ല.',
       'wireguard_foreground_service_unavailable':
