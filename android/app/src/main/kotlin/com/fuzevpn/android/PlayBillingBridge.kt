@@ -2,9 +2,9 @@ package com.fuzevpn.android
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Handler
 import android.os.Looper
+import androidx.core.net.toUri
 import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.BillingClientStateListener
 import com.android.billingclient.api.BillingFlowParams
@@ -507,7 +507,7 @@ private class ActivityBillingHost(private val activity: Activity) : PlayBillingH
     override fun postDelayed(action: Runnable, delayMillis: Long) { main.postDelayed(action, delayMillis) }
     override fun removeCallbacks(action: Runnable) = main.removeCallbacks(action)
     override fun openSubscriptionManagement(url: String) =
-        activity.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        activity.startActivity(Intent(Intent.ACTION_VIEW, url.toUri()))
 
     override fun newClient(updates: PurchasesUpdatedListener): PlayBillingClient {
         val client = BillingClient.newBuilder(activity.applicationContext)

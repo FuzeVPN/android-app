@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties
+import androidx.core.content.edit
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import java.security.KeyStore
@@ -158,7 +159,7 @@ internal class SecureKeystoreStore(
             } catch (error: Exception) {
                 // SharedPreferences changes memory before reporting a failed
                 // disk commit. Keep this process denied as well as the disk.
-                runCatching { privacyPreferences.edit().putBoolean(DIAGNOSTICS_DENIED_KEY, true).commit() }
+                runCatching { privacyPreferences.edit(commit = true) { putBoolean(DIAGNOSTICS_DENIED_KEY, true) } }
                 throw error
             }
         }
