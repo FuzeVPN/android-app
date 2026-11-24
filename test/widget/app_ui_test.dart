@@ -1109,6 +1109,42 @@ void main() {
     },
   );
 
+  // Item [A] checked on 23/11/2026: an account whose address is not confirmed
+  // (email_verified false, no VPN until then) is asked to confirm it, with a
+  // resend button, after an e-mail sign-in or a restored session.
+  testWidgets('an unconfirmed e-mail address offers to resend the e-mail', (
+    tester,
+  ) async {
+    final h = _UiHarness();
+    addTearDown(h.close);
+    h.store.session = _session;
+    h.api.profileResult = const UserProfile(
+      userId: 'user-test',
+      email: 'client@example.test',
+      firstName: 'Client',
+      lastName: 'Test',
+      phone: '+33600000000',
+      addressLine1: '1 rue Exemple',
+      addressLine2: '',
+      postalCode: '75001',
+      city: 'Paris',
+      countryCode: 'FR',
+      emailVerified: false,
+      canUseVpn: false,
+    );
+    await h.controller.initialize();
+    await h.controller.setLocale(const Locale('fr'));
+    await tester.pumpWidget(
+      FuzeVpnApp(controller: h.controller, autoInitialize: false),
+    );
+    await tester.pumpAndSettle();
+    final l = lookupAppLocalizations(const Locale('fr'));
+    final resend = find.text(l.verification_resend);
+    await _scrollTo(tester, resend);
+    expect(find.text(l.verification_message), findsOneWidget);
+    expect(resend, findsOneWidget);
+  });
+
   // VM Android 17, 20/11/2026: another app's VPN took the place (or the VPN
   // was stopped in Android's settings). The status says so, not "not confirmed".
   testWidgets('a VPN taken by another app says so under the status', (

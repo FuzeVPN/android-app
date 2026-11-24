@@ -3156,6 +3156,68 @@ void main() {
       );
     });
   });
+
+  // Item [A] checked on 23/11/2026: after an e-mail sign-in, an unconfirmed
+  // address was never shown (the profile's email_verified was ignored), and the
+  // server's refusal (403 email_verification_required) offered no resend.
+  group('e-mail confirmation after an e-mail sign-in', () {
+    UserProfile unconfirmed() => const UserProfile(
+      userId: 'user-a',
+      email: 'user-a@example.test',
+      firstName: 'Client',
+      lastName: 'Test',
+      phone: '+33600000000',
+      addressLine1: '1 rue Exemple',
+      addressLine2: '',
+      postalCode: '75001',
+      city: 'Paris',
+      countryCode: 'FR',
+      emailVerified: false,
+      canUseVpn: false,
+    );
+
+    test('an unconfirmed address is shown, kept and can be resent', () async {
+      final _FakePreferences preferences = _FakePreferences();
+      final h = await _signedInHarness(
+        withProfile: unconfirmed(),
+        withPreferences: preferences,
+      );
+      addTearDown(h.close);
+      expect(h.controller.mayNeedEmailVerification, isTrue);
+      expect(preferences.verificationNeeded['user-a'], isTrue);
+      var resent = 0;
+      h.api.hooks['resendVerification'] = () async {
+        resent += 1;
+      };
+      await h.controller.resendVerification();
+      expect(resent, 1);
+      expect(h.controller.notice?.arguments['code'], 'verification_email_sent');
+    });
+
+    test('a confirmed address shows nothing', () async {
+      final h = await _signedInHarness();
+      addTearDown(h.close);
+      expect(h.controller.mayNeedEmailVerification, isFalse);
+    });
+
+    test('the server refusing an unconfirmed address shows the confirmation', () async {
+      final h = await _signedInHarness();
+      addTearDown(h.close);
+      expect(h.controller.mayNeedEmailVerification, isFalse);
+      h.api.registerDeviceFailures.add(
+        const ApiException(
+          statusCode: 403,
+          errorCode: 'email_verification_required',
+        ),
+      );
+      await h.controller.connect();
+      expect(
+        h.controller.notice?.arguments['code'],
+        'email_verification_required',
+      );
+      expect(h.controller.mayNeedEmailVerification, isTrue);
+    });
+  });
 }
 
 class _ForeignVpnTunnel extends _FakeTunnel implements ForeignVpnProbe {
@@ -3205,10 +3267,14 @@ VpnAppController _controller({
   migrationDelay: migrationDelay,
 );
 
-Future<_SignedInHarness> _signedInHarness({_FakeTunnel? withTunnel}) async {
+Future<_SignedInHarness> _signedInHarness({
+  _FakeTunnel? withTunnel,
+  UserProfile? withProfile,
+  _FakePreferences? withPreferences,
+}) async {
   final _FakeApi api = _FakeApi()
     ..loginResult = _session('session-a')
-    ..profilesByToken['session-a'] = _profile('user-a')
+    ..profilesByToken['session-a'] = withProfile ?? _profile('user-a')
     ..deviceListResult = const DeviceList(limit: 2, devices: <VpnDevice>[])
     ..deviceConfiguration = _wireGuardConfiguration
     ..openVpnActivation = _openVpnActivation();
@@ -3217,7 +3283,7 @@ Future<_SignedInHarness> _signedInHarness({_FakeTunnel? withTunnel}) async {
   final VpnAppController controller = _controller(
     api: api,
     store: store,
-    preferences: _FakePreferences(),
+    preferences: withPreferences ?? _FakePreferences(),
     tunnel: tunnel,
   );
   await controller.initialize();

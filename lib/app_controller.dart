@@ -3127,21 +3127,26 @@ class VpnAppController extends ChangeNotifier {
               revocation.deviceId != restoredDevice)) {
         throw const NativeVpnException('invalid_arguments');
       }
+      // The account's own profile says whether its address is confirmed
+      // (absent: unknown). An e-mail sign-in has no answer of its own: an
+      // unconfirmed address was never shown after it (23/11/2026).
+      final bool profileUnconfirmed = _unconfirmedAddress(restoredProfile);
       final bool restoredVerification =
-          verificationNeeded ??
-          ((await _safe<bool?>(
-                _preferences.readVerificationNeeded(
-                  userId: restoredProfile.userId,
-                ),
-              )) ??
-              false);
+          profileUnconfirmed ||
+          (verificationNeeded ??
+              ((await _safe<bool?>(
+                    _preferences.readVerificationNeeded(
+                      userId: restoredProfile.userId,
+                    ),
+                  )) ??
+                  false));
       check();
-      if (verificationNeeded != null) {
+      if (verificationNeeded != null || profileUnconfirmed) {
         await _sessionWrite(operation, () {
           check();
           return _preferences.writeVerificationNeeded(
             userId: restoredProfile.userId,
-            value: verificationNeeded,
+            value: restoredVerification,
           );
         });
         check();
@@ -4677,12 +4682,42 @@ class VpnAppController extends ChangeNotifier {
         domain: 'api',
         httpStatus: message.httpStatus,
       );
+      // The server refuses until the address is confirmed: show the
+      // confirmation and its resend button, wherever the refusal came from.
+      if (code == 'email_verification_required') _noteUnconfirmedAddress();
     }
     notice = AppNotice(
       titleKey: message.titleKey,
       messageKey: message.messageKey,
       arguments: message.arguments,
       diagnosticCode: message.diagnosticCode,
+    );
+  }
+
+  /// A registered account that manages itself, whose profile says its
+  /// address is not confirmed. Guests and redacted profiles have no address.
+  bool _unconfirmedAddress(UserProfile account) =>
+      !account.isGuest &&
+      !account.profileRedacted &&
+      account.canManageAccount &&
+      account.emailVerified == false;
+
+  void _noteUnconfirmedAddress() {
+    final UserProfile? account = profile;
+    if (account == null ||
+        account.isGuest ||
+        account.profileRedacted ||
+        !account.canManageAccount) {
+      return;
+    }
+    mayNeedEmailVerification = true;
+    unawaited(
+      _safe<void>(
+        _preferences.writeVerificationNeeded(
+          userId: account.userId,
+          value: true,
+        ),
+      ),
     );
   }
 

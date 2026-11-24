@@ -322,7 +322,7 @@ reconnecte en OpenVPN.
 | Code ou situation | Réaction du client |
 | --- | --- |
 | `401 unauthorized` sur le contrôle du compte | Session renouvelable : un seul renouvellement forcé puis une seule reprise de l'appel ; un refus du renouvellement termine la session. Session classique ou refus : termine la session et le tunnel concerné, puis demande une reconnexion. |
-| `403 email_verification_required` | Propose la vérification avec le délai de renvoi applicable. |
+| `403 email_verification_required` | Affiche l'encadré « Confirmez votre adresse e-mail » et son bouton de renvoi, avec le délai de renvoi applicable. Après une connexion par e-mail, cet encadré s'affiche déjà quand le profil (`GET /v1/me`) porte `email_verified: false` pour un compte inscrit. |
 | `device_identity_revoked`, `openvpn_profile_revoked` | Invalide l'identité concernée et exige une action explicite. |
 | `openvpn_profile_exists` | Réutilise l'état local idempotent ; ne régénère pas une clé par défaut. |
 | `409 openvpn_renewal_expired` | Le certificat obtenu par ce CSR a expiré : nouvelle clé et nouveau CSR, puis un seul renouvellement aussitôt, y compris après une création. |
