@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.os.Build
+import androidx.core.graphics.createBitmap
 import java.io.ByteArrayOutputStream
 
 /**
@@ -46,7 +47,7 @@ internal class InstalledApps(context: Context) {
         }
         return try {
             val drawable = packages.getApplicationIcon(packageName)
-            val bitmap = Bitmap.createBitmap(sizePx, sizePx, Bitmap.Config.ARGB_8888)
+            val bitmap = createBitmap(sizePx, sizePx, Bitmap.Config.ARGB_8888)
             drawable.setBounds(0, 0, sizePx, sizePx)
             drawable.draw(Canvas(bitmap))
             ByteArrayOutputStream().use { output ->
