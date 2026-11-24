@@ -53,11 +53,13 @@ internal class WireGuardController(
     fun currentConnectionIdentityFingerprint(accountId: String): String = IDENTITY
     fun connect(
         request: WireGuardRequest,
+        excludedApplications: List<String> = emptyList(),
         isCurrent: () -> Boolean = { true },
         requireExistingIdentity: Boolean = false,
         timing: NativeConnectionTiming.TraceContext? = null,
     ): Boolean {
         if (!isCurrent()) throw VpnNativeException("session_operation_cancelled")
+        HarnessControl.wireGuardExclusions += excludedApplications
         HarnessControl.wireGuardConnects++
         HarnessControl.wireGuardUp = true
         HarnessControl.wireGuardConnectGate?.let { gate -> HarnessControl.wireGuardConnectGate = null; gate.hold() }

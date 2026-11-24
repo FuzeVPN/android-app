@@ -241,6 +241,48 @@ class AppLocalizationsMl extends AppLocalizations {
   String get connection_advancedOptions => 'വിപുലമായ ഓപ്‌ഷനുകൾ';
 
   @override
+  String get splitTunnel_title => 'VPN-ന് പുറത്തുള്ള ആപ്പുകൾ';
+
+  @override
+  String get splitTunnel_allInVpn => 'എല്ലാ ആപ്പുകളും VPN ഉപയോഗിക്കുന്നു.';
+
+  @override
+  String get splitTunnel_intro =>
+      'ടിക്ക് ചെയ്ത ആപ്പുകൾ VPN ഉപയോഗിക്കില്ല: അവ നിങ്ങളുടെ സാധാരണ നെറ്റ്‌വർക്ക് വഴി, നിങ്ങളുടെ യഥാർത്ഥ IP വിലാസത്തോടെ കണക്ട് ചെയ്യുന്നു. FuzeVPN എപ്പോഴും VPN-നുള്ളിൽ തന്നെ തുടരും.';
+
+  @override
+  String get splitTunnel_search => 'ഒരു ആപ്പ് തിരയുക';
+
+  @override
+  String get splitTunnel_loading => 'ആപ്പുകൾ ലോഡ് ചെയ്യുന്നു…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ആപ്പുകളുടെ ലിസ്റ്റ് ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ഈ തിരഞ്ഞെടുപ്പ് സംരക്ഷിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get splitTunnel_noApps => 'ആപ്പുകളൊന്നും കണ്ടെത്തിയില്ല.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'നിലവിലെ കണക്ഷൻ അത് ആരംഭിച്ചപ്പോഴുള്ള ലിസ്റ്റ് തന്നെ നിലനിർത്തും. പുതിയ ലിസ്റ്റ് അടുത്ത കണക്ഷൻ മുതൽ ബാധകമാകും, അല്ലെങ്കിൽ നിങ്ങൾ വീണ്ടും ബന്ധിപ്പിച്ചാൽ ഉടൻ തന്നെ.';
+
+  @override
+  String get splitTunnel_reconnect => 'വീണ്ടും ബന്ധിപ്പിക്കുക';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android-ൽ “VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക” ഓണാണ്: ടിക്ക് ചെയ്ത ആപ്പുകൾക്ക് ഇന്റർനെറ്റ് ആക്‌സസ് ഒട്ടുമില്ല.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android-ൽ “VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക” ഓണാണെങ്കിൽ, ടിക്ക് ചെയ്ത ആപ്പുകൾക്ക് ഇന്റർനെറ്റ് ആക്‌സസ് ഒട്ടും ഉണ്ടാകില്ല.';
+
+  @override
   String get connection_location => 'ലൊക്കേഷൻ';
 
   @override

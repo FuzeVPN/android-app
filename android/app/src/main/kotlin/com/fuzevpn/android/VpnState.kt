@@ -41,6 +41,11 @@ internal data class VpnState(
      * milliseconds), so that Flutter can say how long to wait.
      */
     val retryAtMillis: Long? = null,
+    /**
+     * While CONNECTED: the apps excluded from the VPN (split tunneling) that were saved when this tunnel
+     * started. Flutter compares them with the saved list to offer a reconnection.
+     */
+    val excludedApps: List<String>? = null,
 ) {
     val isWireGuardRecovery: Boolean get() = protocol == VpnProtocol.WIREGUARD &&
         status == VpnStatus.CONNECTING && messageCode in setOf("wireguard_waiting_network", "wireguard_recovering")
@@ -70,6 +75,7 @@ internal data class VpnState(
         sessionTermination?.let { put("session_termination", it.toMap()) }
         openVpnRevocation?.let { put("openvpn_revocation", it.toMap()) }
         retryAtMillis?.takeIf { status == VpnStatus.ERROR && it > 0 }?.let { put("retry_at", it) }
+        excludedApps?.takeIf { status == VpnStatus.CONNECTED }?.let { put("excluded_apps", it) }
     }
 }
 

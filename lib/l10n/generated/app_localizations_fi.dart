@@ -240,6 +240,48 @@ class AppLocalizationsFi extends AppLocalizations {
   String get connection_advancedOptions => 'Lisäasetukset';
 
   @override
+  String get splitTunnel_title => 'VPN:n ulkopuoliset sovellukset';
+
+  @override
+  String get splitTunnel_allInVpn => 'Kaikki sovellukset käyttävät VPN:ää.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Valitut sovellukset eivät käytä VPN:ää: ne muodostavat yhteyden tavallisen verkkosi kautta todellisella IP-osoitteellasi. FuzeVPN pysyy aina VPN:ssä.';
+
+  @override
+  String get splitTunnel_search => 'Hae sovellusta';
+
+  @override
+  String get splitTunnel_loading => 'Ladataan sovelluksia…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Sovellusluetteloa ei voitu ladata. Yritä uudelleen.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Tätä valintaa ei voitu tallentaa. Yritä uudelleen.';
+
+  @override
+  String get splitTunnel_noApps => 'Sovelluksia ei löytynyt.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Nykyinen yhteys käyttää edelleen listaa, jolla se aloitettiin. Uusi lista on käytössä seuraavasta yhteydestä alkaen tai heti, jos yhdistät uudelleen.';
+
+  @override
+  String get splitTunnel_reconnect => 'Yhdistä uudelleen';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '”Estä yhteydet ilman VPN:ää” on käytössä Androidissa: valituilla sovelluksilla ei ole lainkaan internetyhteyttä.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Jos ”Estä yhteydet ilman VPN:ää” on käytössä Androidissa, valituilla sovelluksilla ei ole lainkaan internetyhteyttä.';
+
+  @override
   String get connection_location => 'Sijainti';
 
   @override

@@ -239,6 +239,48 @@ class AppLocalizationsUr extends AppLocalizations {
   String get connection_advancedOptions => 'اعلیٰ ترتیبات';
 
   @override
+  String get splitTunnel_title => 'VPN سے باہر ایپس';
+
+  @override
+  String get splitTunnel_allInVpn => 'تمام ایپس VPN استعمال کرتی ہیں۔';
+
+  @override
+  String get splitTunnel_intro =>
+      'منتخب کردہ ایپس VPN استعمال نہیں کرتیں: وہ آپ کے معمول کے نیٹ ورک سے، آپ کے اصل IP پتے کے ساتھ کنیکٹ ہوتی ہیں۔ FuzeVPN ہمیشہ VPN میں ہی رہتا ہے۔';
+
+  @override
+  String get splitTunnel_search => 'ایپ تلاش کریں';
+
+  @override
+  String get splitTunnel_loading => 'ایپس لوڈ ہو رہی ہیں…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ایپس کی فہرست لوڈ نہیں ہو سکی۔ دوبارہ کوشش کریں۔';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'یہ انتخاب محفوظ نہیں کیا جا سکا۔ دوبارہ کوشش کریں۔';
+
+  @override
+  String get splitTunnel_noApps => 'کوئی ایپ نہیں ملی۔';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'موجودہ کنکشن وہی فہرست برقرار رکھتا ہے جس کے ساتھ یہ شروع ہوا تھا۔ نئی فہرست اگلے کنکشن سے لاگو ہوگی، یا دوبارہ کنیکٹ کرنے پر فوراً۔';
+
+  @override
+  String get splitTunnel_reconnect => 'دوبارہ کنیکٹ کریں';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android میں “VPN کے بغیر کنکشنز بلاک کریں” آن ہے: منتخب کردہ ایپس کو انٹرنیٹ تک بالکل رسائی نہیں ہے۔';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'اگر Android میں “VPN کے بغیر کنکشنز بلاک کریں” آن ہو تو منتخب کردہ ایپس کو انٹرنیٹ تک بالکل رسائی نہیں ہوتی۔';
+
+  @override
   String get connection_location => 'مقام';
 
   @override

@@ -237,6 +237,48 @@ class AppLocalizationsPa extends AppLocalizations {
   String get connection_advancedOptions => 'ਉੱਨਤ ਵਿਕਲਪ';
 
   @override
+  String get splitTunnel_title => 'VPN ਤੋਂ ਬਾਹਰ ਦੀਆਂ ਐਪਾਂ';
+
+  @override
+  String get splitTunnel_allInVpn => 'ਸਾਰੀਆਂ ਐਪਾਂ VPN ਵਰਤਦੀਆਂ ਹਨ।';
+
+  @override
+  String get splitTunnel_intro =>
+      'ਚੁਣੀਆਂ ਗਈਆਂ ਐਪਾਂ VPN ਨਹੀਂ ਵਰਤਦੀਆਂ: ਉਹ ਤੁਹਾਡੇ ਆਮ ਨੈੱਟਵਰਕ ਰਾਹੀਂ, ਤੁਹਾਡੇ ਅਸਲ IP ਪਤੇ ਨਾਲ ਕਨੈਕਟ ਹੁੰਦੀਆਂ ਹਨ। FuzeVPN ਹਮੇਸ਼ਾ VPN ਵਿੱਚ ਹੀ ਰਹਿੰਦਾ ਹੈ।';
+
+  @override
+  String get splitTunnel_search => 'ਐਪ ਖੋਜੋ';
+
+  @override
+  String get splitTunnel_loading => 'ਐਪਾਂ ਲੋਡ ਹੋ ਰਹੀਆਂ ਹਨ…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ਐਪਾਂ ਦੀ ਸੂਚੀ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ਇਹ ਚੋਣ ਸੁਰੱਖਿਅਤ ਨਹੀਂ ਹੋ ਸਕੀ। ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ।';
+
+  @override
+  String get splitTunnel_noApps => 'ਕੋਈ ਐਪ ਨਹੀਂ ਮਿਲੀ।';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'ਮੌਜੂਦਾ ਕਨੈਕਸ਼ਨ ਉਹੀ ਸੂਚੀ ਰੱਖਦਾ ਹੈ ਜਿਸ ਨਾਲ ਇਹ ਸ਼ੁਰੂ ਹੋਇਆ ਸੀ। ਨਵੀਂ ਸੂਚੀ ਅਗਲੇ ਕਨੈਕਸ਼ਨ ਤੋਂ ਲਾਗੂ ਹੋਵੇਗੀ, ਜਾਂ ਮੁੜ ਕਨੈਕਟ ਕਰਨ ’ਤੇ ਤੁਰੰਤ।';
+
+  @override
+  String get splitTunnel_reconnect => 'ਮੁੜ ਕਨੈਕਟ ਕਰੋ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android ਵਿੱਚ “VPN ਤੋਂ ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰੋ” ਚਾਲੂ ਹੈ: ਚੁਣੀਆਂ ਗਈਆਂ ਐਪਾਂ ਕੋਲ ਇੰਟਰਨੈੱਟ ਦੀ ਕੋਈ ਪਹੁੰਚ ਨਹੀਂ ਹੈ।';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'ਜੇ Android ਵਿੱਚ “VPN ਤੋਂ ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰੋ” ਚਾਲੂ ਹੈ, ਤਾਂ ਚੁਣੀਆਂ ਗਈਆਂ ਐਪਾਂ ਕੋਲ ਇੰਟਰਨੈੱਟ ਦੀ ਕੋਈ ਪਹੁੰਚ ਨਹੀਂ ਹੁੰਦੀ।';
+
+  @override
   String get connection_location => 'ਟਿਕਾਣਾ';
 
   @override

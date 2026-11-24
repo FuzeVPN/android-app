@@ -60,7 +60,7 @@ $production = @('AndroidVpnBridge.kt', 'VpnQuickTileService.kt', 'QuickTileSnaps
     'TunnelNetworkSpec.kt', 'NativeConnectionTiming.kt', 'GuestCredentialStorage.kt', 'GuestOnboardingStorage.kt',
     'ExpectedDeviceIdentity.kt', 'FavoriteLocations.kt', 'NativeLocalePolicy.kt', 'DiagnosticExport.kt',
     'DiagnosticSnapshot.kt', 'openvpn/OpenVpnRecoveryAttempt.kt', 'openvpn/OpenVpnRecoveryPolicy.kt',
-    'openvpn/OpenVpnRevocation.kt', 'openvpn/OpenVpnSessionEvents.kt')
+    'openvpn/OpenVpnRevocation.kt', 'openvpn/OpenVpnSessionEvents.kt', 'SplitTunnel.kt')
 # Optional production units: compiled when the checked source defines them.
 $optional = @('SystemStartAuthority.kt')
 # The renewal transport doubles read their answers through these units. A checked source older than

@@ -12,6 +12,7 @@ import 'package:fuzevpn_android/core/api_client.dart'
 import 'package:fuzevpn_android/core/api_exception.dart';
 import 'package:fuzevpn_android/core/connection_timing.dart';
 import 'package:fuzevpn_android/core/diagnostics.dart';
+import 'package:fuzevpn_android/core/excluded_apps.dart';
 import 'package:fuzevpn_android/core/google_auth.dart';
 import 'package:fuzevpn_android/core/google_credentials.dart';
 import 'package:fuzevpn_android/core/guest_accounts.dart';
@@ -34,6 +35,7 @@ part 'support/location_change_controller_cases.dart';
 part 'support/location_capacity_controller_cases.dart';
 part 'support/openvpn_certificate_cases.dart';
 part 'support/openvpn_profile_limit_cases.dart';
+part 'support/split_tunnel_controller_cases.dart';
 part 'support/wireguard_roaming_cases.dart';
 
 const Location _frankfurt = Location(
@@ -145,6 +147,7 @@ void main() {
   googleControllerTests();
   openVpnCertificateTests();
   openVpnProfileLimitTests();
+  splitTunnelControllerTests();
   group('VPN disclosure cancellation', () {
     test(
       'WireGuard cancellation is silent and leaves identity ready for retry',

@@ -240,6 +240,48 @@ class AppLocalizationsMy extends AppLocalizations {
   String get connection_advancedOptions => 'အဆင့်မြင့် ရွေးချယ်စရာများ';
 
   @override
+  String get splitTunnel_title => 'VPN ပြင်ပရှိ အက်ပ်များ';
+
+  @override
+  String get splitTunnel_allInVpn => 'အက်ပ်အားလုံး VPN ကို အသုံးပြုသည်။';
+
+  @override
+  String get splitTunnel_intro =>
+      'ရွေးထားသော အက်ပ်များသည် VPN ကို အသုံးမပြုပါ။ ၎င်းတို့သည် သင်၏ ပုံမှန်ကွန်ရက်မှတစ်ဆင့် သင်၏ အစစ်အမှန် IP လိပ်စာဖြင့် ချိတ်ဆက်ပါသည်။ FuzeVPN ကမူ VPN အတွင်း၌ အမြဲရှိနေပါသည်။';
+
+  @override
+  String get splitTunnel_search => 'အက်ပ် ရှာရန်';
+
+  @override
+  String get splitTunnel_loading => 'အက်ပ်များကို တင်နေသည်…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'အက်ပ်စာရင်းကို တင်၍ မရပါ။ ထပ်ကြိုးစားပါ။';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ဤရွေးချယ်မှုကို သိမ်း၍ မရပါ။ ထပ်ကြိုးစားပါ။';
+
+  @override
+  String get splitTunnel_noApps => 'အက်ပ် မတွေ့ပါ။';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'လက်ရှိချိတ်ဆက်မှုသည် စတင်ချိန်က စာရင်းကိုသာ ဆက်သုံးပါသည်။ စာရင်းအသစ်သည် နောက်တစ်ကြိမ် ချိတ်ဆက်သည့်အခါ သက်ရောက်မည်ဖြစ်ပြီး ပြန်ချိတ်ဆက်ပါက ချက်ချင်း သက်ရောက်ပါမည်။';
+
+  @override
+  String get splitTunnel_reconnect => 'ပြန်ချိတ်ဆက်ရန်';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android တွင် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ဖွင့်ထားသည်။ ရွေးထားသော အက်ပ်များ အင်တာနက်ကို လုံးဝ အသုံးပြု၍ မရပါ။';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android တွင် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ဖွင့်ထားပါက ရွေးထားသော အက်ပ်များ အင်တာနက်ကို လုံးဝ အသုံးပြု၍ မရပါ။';
+
+  @override
   String get connection_location => 'တည်နေရာ';
 
   @override

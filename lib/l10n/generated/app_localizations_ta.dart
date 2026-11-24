@@ -240,6 +240,49 @@ class AppLocalizationsTa extends AppLocalizations {
   String get connection_advancedOptions => 'மேம்பட்ட விருப்பங்கள்';
 
   @override
+  String get splitTunnel_title => 'VPN-க்கு வெளியே உள்ள பயன்பாடுகள்';
+
+  @override
+  String get splitTunnel_allInVpn =>
+      'எல்லாப் பயன்பாடுகளும் VPN-ஐப் பயன்படுத்துகின்றன.';
+
+  @override
+  String get splitTunnel_intro =>
+      'தேர்ந்தெடுத்த பயன்பாடுகள் VPN-ஐப் பயன்படுத்தாது: அவை உங்கள் வழக்கமான நெட்வொர்க் வழியாக, உங்கள் உண்மையான IP முகவரியுடன் இணைகின்றன. FuzeVPN எப்போதும் VPN-க்குள்ளேயே இருக்கும்.';
+
+  @override
+  String get splitTunnel_search => 'பயன்பாட்டைத் தேடவும்';
+
+  @override
+  String get splitTunnel_loading => 'பயன்பாடுகள் ஏற்றப்படுகின்றன…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'பயன்பாடுகளின் பட்டியலை ஏற்ற முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'இந்தத் தேர்வைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get splitTunnel_noApps => 'பயன்பாடுகள் எதுவும் கிடைக்கவில்லை.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'தற்போதைய இணைப்பு, அது தொடங்கியபோது இருந்த பட்டியலையே வைத்திருக்கும். புதிய பட்டியல் அடுத்த இணைப்பிலிருந்து பொருந்தும், அல்லது மீண்டும் இணைத்தால் உடனே பொருந்தும்.';
+
+  @override
+  String get splitTunnel_reconnect => 'மீண்டும் இணைக்கவும்';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android-இல் “VPN இல்லாமல் இணைப்புகளைத் தடுக்கவும்” இயக்கத்தில் உள்ளது: தேர்ந்தெடுத்த பயன்பாடுகளுக்கு இணைய அணுகல் எதுவும் இல்லை.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android-இல் “VPN இல்லாமல் இணைப்புகளைத் தடுக்கவும்” இயக்கத்தில் இருந்தால், தேர்ந்தெடுத்த பயன்பாடுகளுக்கு இணைய அணுகல் எதுவும் இருக்காது.';
+
+  @override
   String get connection_location => 'இடம்';
 
   @override

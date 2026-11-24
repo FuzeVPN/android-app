@@ -234,6 +234,48 @@ class AppLocalizationsKm extends AppLocalizations {
   String get connection_advancedOptions => 'ជម្រើសកម្រិតខ្ពស់';
 
   @override
+  String get splitTunnel_title => 'កម្មវិធីនៅក្រៅ VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'កម្មវិធីទាំងអស់ប្រើ VPN។';
+
+  @override
+  String get splitTunnel_intro =>
+      'កម្មវិធីដែលបានធីកមិនប្រើ VPN ទេ៖ ពួកវាតភ្ជាប់តាមបណ្តាញធម្មតារបស់អ្នក ជាមួយអាសយដ្ឋាន IP ពិតរបស់អ្នក។ FuzeVPN តែងតែស្ថិតនៅក្នុង VPN។';
+
+  @override
+  String get splitTunnel_search => 'ស្វែងរកកម្មវិធី';
+
+  @override
+  String get splitTunnel_loading => 'កំពុងផ្ទុកកម្មវិធី…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'មិនអាចផ្ទុកបញ្ជីកម្មវិធីបានទេ។ សូមព្យាយាមម្តងទៀត។';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'មិនអាចរក្សាទុកជម្រើសនេះបានទេ។ សូមព្យាយាមម្តងទៀត។';
+
+  @override
+  String get splitTunnel_noApps => 'រកមិនឃើញកម្មវិធីទេ។';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'ការតភ្ជាប់បច្ចុប្បន្នរក្សាបញ្ជីដែលវាបានចាប់ផ្តើមជាមួយ។ បញ្ជីថ្មីនឹងអនុវត្តចាប់ពីការតភ្ជាប់លើកក្រោយ ឬភ្លាមៗ ប្រសិនបើអ្នកភ្ជាប់ឡើងវិញ។';
+
+  @override
+  String get splitTunnel_reconnect => 'ភ្ជាប់ឡើងវិញ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“ទប់ស្កាត់ការតភ្ជាប់ដោយគ្មាន VPN” ត្រូវបានបើកនៅក្នុង Android៖ កម្មវិធីដែលបានធីកមិនអាចចូលប្រើអ៊ីនធឺណិតបានទាល់តែសោះ។';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'ប្រសិនបើ “ទប់ស្កាត់ការតភ្ជាប់ដោយគ្មាន VPN” ត្រូវបានបើកនៅក្នុង Android កម្មវិធីដែលបានធីកមិនអាចចូលប្រើអ៊ីនធឺណិតបានទាល់តែសោះ។';
+
+  @override
   String get connection_location => 'ទីតាំង';
 
   @override

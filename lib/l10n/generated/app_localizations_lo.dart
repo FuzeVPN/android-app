@@ -236,6 +236,48 @@ class AppLocalizationsLo extends AppLocalizations {
   String get connection_advancedOptions => 'ຕົວເລືອກຂັ້ນສູງ';
 
   @override
+  String get splitTunnel_title => 'ແອັບທີ່ຢູ່ນອກ VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'ແອັບທັງໝົດໃຊ້ VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'ແອັບທີ່ເລືອກໄວ້ຈະບໍ່ໃຊ້ VPN: ພວກມັນເຊື່ອມຕໍ່ຜ່ານເຄືອຂ່າຍປົກກະຕິຂອງທ່ານ ດ້ວຍທີ່ຢູ່ IP ແທ້ຂອງທ່ານ. FuzeVPN ຈະຢູ່ໃນ VPN ສະເໝີ.';
+
+  @override
+  String get splitTunnel_search => 'ຄົ້ນຫາແອັບ';
+
+  @override
+  String get splitTunnel_loading => 'ກຳລັງໂຫຼດແອັບ…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ບໍ່ສາມາດໂຫຼດລາຍຊື່ແອັບໄດ້. ກະລຸນາລອງໃໝ່.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ບໍ່ສາມາດບັນທຶກການເລືອກນີ້ໄດ້. ກະລຸນາລອງໃໝ່.';
+
+  @override
+  String get splitTunnel_noApps => 'ບໍ່ພົບແອັບ.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'ການເຊື່ອມຕໍ່ປັດຈຸບັນຈະໃຊ້ລາຍຊື່ເດີມທີ່ໃຊ້ຕອນເລີ່ມຕົ້ນ. ລາຍຊື່ໃໝ່ຈະມີຜົນຕັ້ງແຕ່ການເຊື່ອມຕໍ່ຄັ້ງຕໍ່ໄປ ຫຼື ທັນທີຫາກທ່ານເຊື່ອມຕໍ່ໃໝ່.';
+
+  @override
+  String get splitTunnel_reconnect => 'ເຊື່ອມຕໍ່ໃໝ່';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN” ເປີດຢູ່ໃນ Android: ແອັບທີ່ເລືອກໄວ້ຈະບໍ່ສາມາດເຂົ້າເຖິງອິນເຕີເນັດໄດ້ເລີຍ.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'ຫາກ “ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN” ເປີດຢູ່ໃນ Android, ແອັບທີ່ເລືອກໄວ້ຈະບໍ່ສາມາດເຂົ້າເຖິງອິນເຕີເນັດໄດ້ເລີຍ.';
+
+  @override
   String get connection_location => 'ສະຖານທີ່';
 
   @override

@@ -240,6 +240,48 @@ class AppLocalizationsSq extends AppLocalizations {
   String get connection_advancedOptions => 'Opsionet e avancuara';
 
   @override
+  String get splitTunnel_title => 'Aplikacionet jashtë VPN-së';
+
+  @override
+  String get splitTunnel_allInVpn => 'Të gjitha aplikacionet përdorin VPN-në.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Aplikacionet e zgjedhura nuk përdorin VPN-në: ato lidhen përmes rrjetit tuaj të zakonshëm, me adresën tuaj të vërtetë IP. FuzeVPN mbetet gjithmonë në VPN.';
+
+  @override
+  String get splitTunnel_search => 'Kërko një aplikacion';
+
+  @override
+  String get splitTunnel_loading => 'Duke ngarkuar aplikacionet…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Lista e aplikacioneve nuk mund të ngarkohej. Provoni përsëri.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Kjo zgjedhje nuk mund të ruhej. Provoni përsëri.';
+
+  @override
+  String get splitTunnel_noApps => 'Nuk u gjet asnjë aplikacion.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Lidhja aktuale ruan listën me të cilën nisi. Lista e re zbatohet nga lidhja e ardhshme, ose menjëherë nëse rilidheni.';
+
+  @override
+  String get splitTunnel_reconnect => 'Rilidhu';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '«Blloko lidhjet pa VPN» është aktiv në Android: aplikacionet e zgjedhura nuk kanë fare qasje në internet.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Nëse «Blloko lidhjet pa VPN» është aktiv në Android, aplikacionet e zgjedhura nuk kanë fare qasje në internet.';
+
+  @override
   String get connection_location => 'Vendndodhja';
 
   @override

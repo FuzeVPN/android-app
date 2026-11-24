@@ -239,6 +239,48 @@ class AppLocalizationsMs extends AppLocalizations {
   String get connection_advancedOptions => 'Pilihan lanjutan';
 
   @override
+  String get splitTunnel_title => 'Aplikasi di luar VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Semua aplikasi menggunakan VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Aplikasi yang ditanda tidak menggunakan VPN: aplikasi ini bersambung melalui rangkaian biasa anda, dengan alamat IP sebenar anda. FuzeVPN sentiasa kekal dalam VPN.';
+
+  @override
+  String get splitTunnel_search => 'Cari aplikasi';
+
+  @override
+  String get splitTunnel_loading => 'Memuatkan aplikasi…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Senarai aplikasi tidak dapat dimuatkan. Cuba lagi.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Pilihan ini tidak dapat disimpan. Cuba lagi.';
+
+  @override
+  String get splitTunnel_noApps => 'Tiada aplikasi ditemui.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Sambungan semasa mengekalkan senarai yang digunakan semasa ia dimulakan. Senarai baharu digunakan mulai sambungan seterusnya, atau serta-merta jika anda menyambung semula.';
+
+  @override
+  String get splitTunnel_reconnect => 'Sambung semula';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Sekat sambungan tanpa VPN” dihidupkan dalam Android: aplikasi yang ditanda tidak mempunyai sebarang akses Internet.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Jika “Sekat sambungan tanpa VPN” dihidupkan dalam Android, aplikasi yang ditanda tidak mempunyai sebarang akses Internet.';
+
+  @override
   String get connection_location => 'Lokasi';
 
   @override

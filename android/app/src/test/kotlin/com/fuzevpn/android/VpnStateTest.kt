@@ -53,6 +53,17 @@ class VpnStateTest {
         assertEquals(VpnProtocol.WIREGUARD, VpnProtocol.fromWireValue("wireguard"))
     }
 
+    // Split tunneling: the list saved when the tunnel started, named only while it is connected.
+    @Test fun excludedAppsAreNamedOnlyWhileConnected() {
+        val apps = listOf("com.example.game", "org.example.bank")
+        assertEquals(apps, VpnState(status = VpnStatus.CONNECTED, protocol = VpnProtocol.OPENVPN,
+            excludedApps = apps).toChannelMap()["excluded_apps"])
+        assertEquals(emptyList<String>(),
+            VpnState(status = VpnStatus.CONNECTED, excludedApps = emptyList()).toChannelMap()["excluded_apps"])
+        assertFalse(VpnState(status = VpnStatus.CONNECTING, excludedApps = apps).toChannelMap().containsKey("excluded_apps"))
+        assertFalse(VpnState(status = VpnStatus.CONNECTED).toChannelMap().containsKey("excluded_apps"))
+    }
+
     @Test fun firstFailedStatisticsReadDoesNotPublishInventedZeroCounters() {
         val state = VpnState(status = VpnStatus.CONNECTED).withTunnelStatistics(null)
         assertNull(state.receivedBytes)

@@ -239,6 +239,48 @@ class AppLocalizationsId extends AppLocalizations {
   String get connection_advancedOptions => 'Opsi lanjutan';
 
   @override
+  String get splitTunnel_title => 'Aplikasi di luar VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Semua aplikasi menggunakan VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Aplikasi yang dicentang tidak menggunakan VPN: aplikasi tersebut terhubung melalui jaringan biasa Anda, dengan alamat IP asli Anda. FuzeVPN selalu tetap berada di dalam VPN.';
+
+  @override
+  String get splitTunnel_search => 'Cari aplikasi';
+
+  @override
+  String get splitTunnel_loading => 'Memuat aplikasi…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Daftar aplikasi tidak dapat dimuat. Coba lagi.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Pilihan ini tidak dapat disimpan. Coba lagi.';
+
+  @override
+  String get splitTunnel_noApps => 'Tidak ada aplikasi yang ditemukan.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Koneksi saat ini tetap memakai daftar yang digunakan saat dimulai. Daftar baru berlaku mulai koneksi berikutnya, atau langsung jika Anda terhubung kembali.';
+
+  @override
+  String get splitTunnel_reconnect => 'Hubungkan kembali';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Blokir koneksi tanpa VPN” aktif di Android: aplikasi yang dicentang sama sekali tidak memiliki akses internet.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Jika “Blokir koneksi tanpa VPN” aktif di Android, aplikasi yang dicentang sama sekali tidak memiliki akses internet.';
+
+  @override
   String get connection_location => 'Lokasi';
 
   @override

@@ -927,6 +927,10 @@ class ProtocolOptions extends StatelessWidget {
               child: _OpenVpnCertificate(controller: controller),
             ),
           ],
+          if (controller.supportsSplitTunneling) ...<Widget>[
+            const SizedBox(height: 12),
+            _SplitTunnelEntry(controller: controller),
+          ],
         ],
       ),
     );

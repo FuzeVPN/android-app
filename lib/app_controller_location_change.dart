@@ -77,7 +77,12 @@ extension VpnLocationChange on VpnAppController {
     }
   }
 
-  Future<void> changeLocationAndConnect(Location location) async {
+  /// [reconnect]: the target may be where the tunnel already is; it then
+  /// reconnects there, as split tunneling does to apply a new list.
+  Future<void> changeLocationAndConnect(
+    Location location, {
+    bool reconnect = false,
+  }) async {
     if (!canChangeLocation) return;
     final candidates = locations.where((item) => item.id == location.id);
     final Location? target = candidates.isEmpty ? null : candidates.first;
@@ -93,7 +98,7 @@ extension VpnLocationChange on VpnAppController {
         tunnelState.locationId ??
         activeDeviceLocation?.id ??
         selectedLocation?.id;
-    if (isConnected && activeLocation == target.id) return;
+    if (!reconnect && isConnected && activeLocation == target.id) return;
     // Renew a guest token about to expire while the current tunnel still
     // runs: a refused renewal leaves that tunnel untouched, with a notice.
     if (_guestSessionNearExpiry) {

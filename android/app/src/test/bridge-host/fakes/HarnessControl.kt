@@ -128,6 +128,12 @@ internal object HarnessControl {
     /** Google Play review flows launched, and whether the next one reports launched. */
     @Volatile var reviewLaunches = 0
     @Volatile var reviewLaunched = true
+    /** Packages InstalledApps reports installed and launchable (split tunneling). */
+    val installedApps: MutableSet<String> = Collections.synchronizedSet(linkedSetOf())
+    /** The apps each WireGuard start was asked to exclude, in order. */
+    val wireGuardExclusions: MutableList<List<String>> = Collections.synchronizedList(mutableListOf())
+    /** The apps the bridge set OpenVpnService to exclude before each new OpenVPN connection, in order. */
+    val openVpnExclusions: MutableList<List<String>> = Collections.synchronizedList(mutableListOf())
 
     fun reset() {
         notifications.clear(); locales.clear(); purges.clear()
@@ -147,5 +153,6 @@ internal object HarnessControl {
         sessionRequests.clear(); sessionPhysical.clear(); sessionResponse = ::defaultSessionResponse; sessionHold = false
         sentinel.clear(); hostStarts = 0; hostStartFailure = null
         reviewLaunches = 0; reviewLaunched = true
+        installedApps.clear(); wireGuardExclusions.clear(); openVpnExclusions.clear()
     }
 }

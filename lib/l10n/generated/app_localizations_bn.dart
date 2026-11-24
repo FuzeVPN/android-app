@@ -240,6 +240,48 @@ class AppLocalizationsBn extends AppLocalizations {
   String get connection_advancedOptions => 'উন্নত বিকল্পসমূহ';
 
   @override
+  String get splitTunnel_title => 'VPN-এর বাইরের অ্যাপ';
+
+  @override
+  String get splitTunnel_allInVpn => 'সব অ্যাপ VPN ব্যবহার করে।';
+
+  @override
+  String get splitTunnel_intro =>
+      'চিহ্নিত অ্যাপগুলো VPN ব্যবহার করে না: সেগুলো আপনার সাধারণ নেটওয়ার্কের মাধ্যমে, আপনার আসল IP ঠিকানা দিয়ে সংযুক্ত হয়। FuzeVPN সবসময় VPN-এর মধ্যেই থাকে।';
+
+  @override
+  String get splitTunnel_search => 'অ্যাপ অনুসন্ধান করুন';
+
+  @override
+  String get splitTunnel_loading => 'অ্যাপগুলো লোড হচ্ছে…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'অ্যাপের তালিকা লোড করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'এই পছন্দটি সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
+  String get splitTunnel_noApps => 'কোনো অ্যাপ পাওয়া যায়নি।';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'বর্তমান সংযোগটি যে তালিকা নিয়ে শুরু হয়েছিল, সেটিই রাখে। নতুন তালিকা পরবর্তী সংযোগ থেকে প্রযোজ্য হবে, অথবা আবার সংযুক্ত হলে এখনই।';
+
+  @override
+  String get splitTunnel_reconnect => 'আবার সংযুক্ত করুন';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android-এ “VPN ছাড়া সংযোগ ব্লক করুন” চালু আছে: চিহ্নিত অ্যাপগুলোর কোনো ইন্টারনেট অ্যাক্সেস নেই।';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android-এ “VPN ছাড়া সংযোগ ব্লক করুন” চালু থাকলে চিহ্নিত অ্যাপগুলোর কোনো ইন্টারনেট অ্যাক্সেস থাকে না।';
+
+  @override
   String get connection_location => 'অবস্থান';
 
   @override

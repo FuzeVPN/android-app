@@ -218,6 +218,7 @@ const _nativeWireFields = <String>{
   'diagnostic_trace_id',
   'disclosure_accepted',
   'error_code',
+  'excluded_apps',
   'expected_device_id',
   'expires_at',
   'identity_cleared',

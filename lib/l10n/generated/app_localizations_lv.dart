@@ -239,6 +239,48 @@ class AppLocalizationsLv extends AppLocalizations {
   String get connection_advancedOptions => 'Papildu opcijas';
 
   @override
+  String get splitTunnel_title => 'Lietotnes ārpus VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Visas lietotnes izmanto VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Atzīmētās lietotnes neizmanto VPN: tās savienojas caur jūsu ierasto tīklu ar jūsu īsto IP adresi. FuzeVPN vienmēr paliek VPN.';
+
+  @override
+  String get splitTunnel_search => 'Meklēt lietotni';
+
+  @override
+  String get splitTunnel_loading => 'Ielādē lietotnes…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Nevarēja ielādēt lietotņu sarakstu. Mēģiniet vēlreiz.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Šo izvēli nevarēja saglabāt. Mēģiniet vēlreiz.';
+
+  @override
+  String get splitTunnel_noApps => 'Lietotnes nav atrastas.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Pašreizējais savienojums saglabā sarakstu, ar kuru tas tika sākts. Jaunais saraksts tiek lietots no nākamā savienojuma vai uzreiz, ja savienojaties vēlreiz.';
+
+  @override
+  String get splitTunnel_reconnect => 'Savienot vēlreiz';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android iestatījumos ir ieslēgts „Bloķēt savienojumus bez VPN“: atzīmētajām lietotnēm nav nekādas piekļuves internetam.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Ja Android iestatījumos ir ieslēgts „Bloķēt savienojumus bez VPN“, atzīmētajām lietotnēm nav nekādas piekļuves internetam.';
+
+  @override
   String get connection_location => 'Atrašanās vieta';
 
   @override

@@ -660,6 +660,78 @@ abstract class AppLocalizations {
   /// **'Options avancées'**
   String get connection_advancedOptions;
 
+  /// No description provided for @splitTunnel_title.
+  ///
+  /// In fr, this message translates to:
+  /// **'Apps hors VPN'**
+  String get splitTunnel_title;
+
+  /// No description provided for @splitTunnel_allInVpn.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes les apps passent par le VPN.'**
+  String get splitTunnel_allInVpn;
+
+  /// No description provided for @splitTunnel_intro.
+  ///
+  /// In fr, this message translates to:
+  /// **'Les apps cochées n’utilisent pas le VPN : elles passent par votre réseau habituel, avec votre adresse IP réelle. FuzeVPN reste toujours dans le VPN.'**
+  String get splitTunnel_intro;
+
+  /// No description provided for @splitTunnel_search.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher une app'**
+  String get splitTunnel_search;
+
+  /// No description provided for @splitTunnel_loading.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chargement des apps…'**
+  String get splitTunnel_loading;
+
+  /// No description provided for @splitTunnel_loadFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'La liste des apps n’a pas pu être chargée. Réessayez.'**
+  String get splitTunnel_loadFailed;
+
+  /// No description provided for @splitTunnel_saveFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce choix n’a pas pu être enregistré. Réessayez.'**
+  String get splitTunnel_saveFailed;
+
+  /// No description provided for @splitTunnel_noApps.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune app trouvée.'**
+  String get splitTunnel_noApps;
+
+  /// No description provided for @splitTunnel_reconnectMessage.
+  ///
+  /// In fr, this message translates to:
+  /// **'La connexion en cours garde la liste de son démarrage. La nouvelle liste s’applique à la prochaine connexion, ou dès maintenant si vous reconnectez.'**
+  String get splitTunnel_reconnectMessage;
+
+  /// No description provided for @splitTunnel_reconnect.
+  ///
+  /// In fr, this message translates to:
+  /// **'Reconnecter'**
+  String get splitTunnel_reconnect;
+
+  /// No description provided for @splitTunnel_lockdownActive.
+  ///
+  /// In fr, this message translates to:
+  /// **'« Bloquer les connexions sans VPN » est activé dans Android : les apps cochées n’ont aucun accès à Internet.'**
+  String get splitTunnel_lockdownActive;
+
+  /// No description provided for @splitTunnel_lockdownNote.
+  ///
+  /// In fr, this message translates to:
+  /// **'Si « Bloquer les connexions sans VPN » est activé dans Android, les apps cochées n’ont aucun accès à Internet.'**
+  String get splitTunnel_lockdownNote;
+
   /// No description provided for @connection_location.
   ///
   /// In fr, this message translates to:

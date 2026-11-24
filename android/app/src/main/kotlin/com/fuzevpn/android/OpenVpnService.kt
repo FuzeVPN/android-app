@@ -1,6 +1,7 @@
 package com.fuzevpn.android
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
@@ -19,6 +20,14 @@ internal object OpenVpnService {
     private val retainedTun = RetainedTun<ParcelFileDescriptor, ValidatedTun>()
     // Set by a recovery restart only: an explicit connect or a restore always establishes.
     @Volatile private var recoveryMayReuse = false
+    // The apps this connection keeps out of the VPN (split tunneling). Set by the bridge before each new
+    // connection; Core's own reconnections and the bridge's recoveries keep it.
+    @Volatile private var excludedApplications: List<String> = emptyList()
+
+    internal fun excludeApplications(packages: List<String>) {
+        excludedApplications = packages.toList()
+    }
+
     internal fun establishFromPlan(planJson: String, network: TunnelNetworkSpec = TunnelNetworkSpec.legacyIpv4()): Int {
         if (!tunEstablishmentClaimed.compareAndSet(false, true)) return TUN_ALREADY_ESTABLISHED
         return try {
@@ -30,7 +39,7 @@ internal object OpenVpnService {
             val validated = network.validateTun(
                 plan.tunStrings("addresses"), plan.tunStrings("routes"), plan.tunStrings("dns"),
                 tunMtu(plan.optInt("mtu", DEFAULT_MTU)),
-            )
+            ).copy(excludedApplications = excludedApplications)
             val service = SharedVpnHost.current() ?: return TUN_PERMISSION_REVOKED
             service.setUnderlyingNetworks(null)
             if (recoveryMayReuse) reuseRetainedTun(validated, service)?.let { return it }
@@ -38,6 +47,10 @@ internal object OpenVpnService {
             validated.addresses.forEach { builder.addAddress(it.host, it.prefix) }
             validated.routes.forEach { builder.addRoute(it.host, it.prefix) }
             validated.dns.forEach { builder.addDnsServer(it) }
+            // An app removed since the bridge checked it is left out rather than failing the tunnel.
+            validated.excludedApplications.forEach {
+                try { builder.addDisallowedApplication(it) } catch (_: PackageManager.NameNotFoundException) { }
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) builder.setMetered(false)
             val tun = builder.establish() ?: return TUN_ESTABLISH_RETURNED_NULL
             // Core owns and closes the fd it receives. This duplicate keeps the interface, routes

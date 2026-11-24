@@ -239,6 +239,48 @@ class AppLocalizationsEt extends AppLocalizations {
   String get connection_advancedOptions => 'Täpsemad valikud';
 
   @override
+  String get splitTunnel_title => 'VPN-ist väljas olevad rakendused';
+
+  @override
+  String get splitTunnel_allInVpn => 'Kõik rakendused kasutavad VPN-i.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Märgitud rakendused ei kasuta VPN-i: need ühenduvad sinu tavapärase võrgu kaudu, sinu tegeliku IP-aadressiga. FuzeVPN jääb alati VPN-i.';
+
+  @override
+  String get splitTunnel_search => 'Otsi rakendust';
+
+  @override
+  String get splitTunnel_loading => 'Rakenduste laadimine…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Rakenduste loendi laadimine ebaõnnestus. Proovi uuesti.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Seda valikut ei õnnestunud salvestada. Proovi uuesti.';
+
+  @override
+  String get splitTunnel_noApps => 'Rakendusi ei leitud.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Praegune ühendus kasutab edasi loendit, millega see alustas. Uus loend kehtib järgmisest ühendusest või kohe, kui ühendad uuesti.';
+
+  @override
+  String get splitTunnel_reconnect => 'Ühenda uuesti';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Androidis on „Blokeeri ühendused ilma VPN-ita“ sisse lülitatud: märgitud rakendustel pole üldse internetiühendust.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Kui Androidis on „Blokeeri ühendused ilma VPN-ita“ sisse lülitatud, pole märgitud rakendustel üldse internetiühendust.';
+
+  @override
   String get connection_location => 'Asukoht';
 
   @override

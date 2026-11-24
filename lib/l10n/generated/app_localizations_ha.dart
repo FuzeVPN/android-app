@@ -240,6 +240,48 @@ class AppLocalizationsHa extends AppLocalizations {
   String get connection_advancedOptions => 'Zaɓuɓɓukan ci gaba';
 
   @override
+  String get splitTunnel_title => 'Manhajoji a wajen VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Duk manhajoji suna amfani da VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Manhajojin da aka yi wa alama ba sa amfani da VPN: suna haɗuwa ta hanyar sadarwarku ta yau da kullum, da ainihin adireshin IP ɗinku. FuzeVPN kansa yana zama cikin VPN koyaushe.';
+
+  @override
+  String get splitTunnel_search => 'Bincika manhaja';
+
+  @override
+  String get splitTunnel_loading => 'Ana ɗora manhajoji…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Ba a iya ɗora jerin manhajoji ba. Ku sake gwadawa.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Ba a iya ajiye wannan zaɓin ba. Ku sake gwadawa.';
+
+  @override
+  String get splitTunnel_noApps => 'Ba a sami manhaja ba.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Haɗin da ke gudana yana riƙe jerin da ya fara da shi. Sabon jerin zai fara aiki daga haɗi na gaba, ko nan take idan kun sake haɗawa.';
+
+  @override
+  String get splitTunnel_reconnect => 'Sake haɗawa';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'An kunna “Toshe haɗi ba tare da VPN ba” a Android: manhajojin da aka yi wa alama ba su da damar shiga intanet ko kaɗan.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Idan an kunna “Toshe haɗi ba tare da VPN ba” a Android, manhajojin da aka yi wa alama ba su da damar shiga intanet ko kaɗan.';
+
+  @override
   String get connection_location => 'Wuri';
 
   @override

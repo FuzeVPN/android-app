@@ -239,6 +239,48 @@ class AppLocalizationsSw extends AppLocalizations {
   String get connection_advancedOptions => 'Chaguo za kina';
 
   @override
+  String get splitTunnel_title => 'Programu zilizo nje ya VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Programu zote zinatumia VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Programu zilizoteuliwa hazitumii VPN: zinaunganishwa kupitia mtandao wako wa kawaida, kwa anwani yako halisi ya IP. FuzeVPN hubaki ndani ya VPN kila wakati.';
+
+  @override
+  String get splitTunnel_search => 'Tafuta programu';
+
+  @override
+  String get splitTunnel_loading => 'Inapakia programu…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Orodha ya programu haikuweza kupakiwa. Jaribu tena.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Chaguo hili halikuweza kuhifadhiwa. Jaribu tena.';
+
+  @override
+  String get splitTunnel_noApps => 'Hakuna programu iliyopatikana.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Muunganisho wa sasa unaendelea kutumia orodha ulioanza nayo. Orodha mpya itatumika kuanzia muunganisho ujao, au sasa hivi ukiunganisha tena.';
+
+  @override
+  String get splitTunnel_reconnect => 'Unganisha tena';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Zuia miunganisho bila VPN” imewashwa katika Android: programu zilizoteuliwa hazina ufikiaji wowote wa intaneti.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Ikiwa “Zuia miunganisho bila VPN” imewashwa katika Android, programu zilizoteuliwa hazina ufikiaji wowote wa intaneti.';
+
+  @override
   String get connection_location => 'Eneo';
 
   @override

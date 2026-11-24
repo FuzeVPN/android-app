@@ -240,6 +240,48 @@ class AppLocalizationsHr extends AppLocalizations {
   String get connection_advancedOptions => 'Napredne opcije';
 
   @override
+  String get splitTunnel_title => 'Aplikacije izvan VPN-a';
+
+  @override
+  String get splitTunnel_allInVpn => 'Sve aplikacije koriste VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Označene aplikacije ne koriste VPN: povezuju se putem vaše uobičajene mreže, s vašom stvarnom IP adresom. FuzeVPN uvijek ostaje u VPN-u.';
+
+  @override
+  String get splitTunnel_search => 'Pretražite aplikaciju';
+
+  @override
+  String get splitTunnel_loading => 'Učitavanje aplikacija…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Popis aplikacija nije bilo moguće učitati. Pokušajte ponovo.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Ovaj odabir nije bilo moguće spremiti. Pokušajte ponovo.';
+
+  @override
+  String get splitTunnel_noApps => 'Nije pronađena nijedna aplikacija.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Trenutačna veza zadržava popis s kojim je započela. Novi popis primjenjuje se od sljedećeg povezivanja ili odmah ako se ponovo povežete.';
+
+  @override
+  String get splitTunnel_reconnect => 'Ponovo poveži';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Opcija „Blokiraj veze bez VPN-a” uključena je u Androidu: označene aplikacije nemaju nikakav pristup internetu.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Ako je u Androidu uključena opcija „Blokiraj veze bez VPN-a”, označene aplikacije nemaju nikakav pristup internetu.';
+
+  @override
   String get connection_location => 'Lokacija';
 
   @override

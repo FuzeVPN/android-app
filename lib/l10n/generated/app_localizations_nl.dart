@@ -240,6 +240,48 @@ class AppLocalizationsNl extends AppLocalizations {
   String get connection_advancedOptions => 'Geavanceerde opties';
 
   @override
+  String get splitTunnel_title => 'Apps buiten de VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Alle apps gebruiken de VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Aangevinkte apps gebruiken de VPN niet: ze maken verbinding via je gewone netwerk, met je echte IP-adres. FuzeVPN blijft altijd in de VPN.';
+
+  @override
+  String get splitTunnel_search => 'Zoek een app';
+
+  @override
+  String get splitTunnel_loading => 'Apps laden…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'De lijst met apps kon niet worden geladen. Probeer het opnieuw.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Deze keuze kon niet worden opgeslagen. Probeer het opnieuw.';
+
+  @override
+  String get splitTunnel_noApps => 'Geen apps gevonden.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'De huidige verbinding behoudt de lijst waarmee ze is gestart. De nieuwe lijst geldt vanaf de volgende verbinding, of meteen als je opnieuw verbinding maakt.';
+
+  @override
+  String get splitTunnel_reconnect => 'Opnieuw verbinden';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '‘Verbindingen zonder VPN blokkeren’ staat aan in Android: aangevinkte apps hebben helemaal geen internettoegang.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Als ‘Verbindingen zonder VPN blokkeren’ aanstaat in Android, hebben aangevinkte apps helemaal geen internettoegang.';
+
+  @override
   String get connection_location => 'Locatie';
 
   @override

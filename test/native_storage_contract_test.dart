@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fuzevpn_android/core/excluded_apps.dart';
 import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/repositories.dart';
 import 'package:fuzevpn_android/native_vpn_bridge.dart';
@@ -53,6 +54,96 @@ void main() {
       );
     },
   );
+
+  // Split tunneling: package names only cross the channel, sorted; an icon
+  // size is bounded; the state names the list a connected tunnel started with.
+  test('excluded apps cross the channel as package names only', () async {
+    expect(await bridge.readExcludedApps(), isEmpty);
+    responses['storageReadExcludedApps'] = [
+      'org.example.bank',
+      'com.example.game',
+    ];
+    expect(await bridge.readExcludedApps(), {
+      'org.example.bank',
+      'com.example.game',
+    });
+    responses['storageReadExcludedApps'] = ['../invalid'];
+    await expectLater(
+      bridge.readExcludedApps(),
+      throwsA(
+        isA<NativeVpnException>().having(
+          (NativeVpnException error) => error.code,
+          'code',
+          'secure_storage_corrupt',
+        ),
+      ),
+    );
+    await bridge.writeExcludedApps({'org.example.bank', 'com.example.game'});
+    expect(calls.last.method, 'storageWriteExcludedApps');
+    expect(calls.last.arguments, {
+      'value': ['com.example.game', 'org.example.bank'],
+    });
+    final int sent = calls.length;
+    expect(
+      () => bridge.writeExcludedApps({'not a package'}),
+      throwsFormatException,
+    );
+    expect(calls, hasLength(sent));
+    _expectNoFreeStorageKeys(calls);
+  });
+
+  test('launchable apps and icons are checked before use', () async {
+    responses['listLaunchableApps'] = [
+      {'package': 'org.example.bank', 'label': 'Bank\napp'},
+      {'package': 'com.example.game', 'label': ''},
+      {'package': '../x', 'label': 'X'},
+      'junk',
+    ];
+    final List<InstalledApp> apps = await bridge.launchableApps();
+    expect(apps.map((InstalledApp app) => app.packageName), [
+      'org.example.bank',
+      'com.example.game',
+    ]);
+    expect(apps.map((InstalledApp app) => app.label), [
+      'Bank app',
+      'com.example.game',
+    ]);
+    responses['getAppIcon'] = Uint8List.fromList([137, 80, 78, 71]);
+    expect(await bridge.appIcon('org.example.bank', 999), hasLength(4));
+    expect(calls.last.arguments, {'package': 'org.example.bank', 'size': 256});
+    final int sent = calls.length;
+    expect(await bridge.appIcon('../x', 48), isNull);
+    expect(calls, hasLength(sent));
+    responses['getAppIcon'] = null;
+    expect(await bridge.appIcon('com.example.game', 8), isNull);
+    expect(calls.last.arguments, {'package': 'com.example.game', 'size': 16});
+  });
+
+  test('the state names the excluded apps of the connected tunnel', () {
+    VpnRuntimeState state(Object? apps) => VpnRuntimeState.fromWire({
+      'status': 'connected',
+      'protocol': 'wireguard',
+      'excluded_apps': apps,
+    });
+    expect(
+      state([
+        'org.example.bank',
+        'com.example.game',
+        'org.example.bank',
+      ]).excludedApps,
+      ['com.example.game', 'org.example.bank'],
+    );
+    expect(state(<Object?>[]).excludedApps, isEmpty);
+    expect(state(null).excludedApps, isNull);
+    expect(state(['org.example.bank', '../x']).excludedApps, isNull);
+    expect(state('org.example.bank').excludedApps, isNull);
+    expect(
+      state(<String>[])
+          .copyWith(systemProtection: const SystemVpnProtection(lockdown: true))
+          .excludedApps,
+      isEmpty,
+    );
+  });
 
   test(
     'diagnostic consent is a typed encrypted preference, disabled by default',

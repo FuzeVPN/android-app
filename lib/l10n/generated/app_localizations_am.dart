@@ -234,6 +234,46 @@ class AppLocalizationsAm extends AppLocalizations {
   String get connection_advancedOptions => 'የላቁ አማራጮች';
 
   @override
+  String get splitTunnel_title => 'ከVPN ውጭ ያሉ መተግበሪያዎች';
+
+  @override
+  String get splitTunnel_allInVpn => 'ሁሉም መተግበሪያዎች VPNን ይጠቀማሉ።';
+
+  @override
+  String get splitTunnel_intro =>
+      'ምልክት የተደረገባቸው መተግበሪያዎች VPNን አይጠቀሙም። በተለመደው አውታረ መረብዎ እና በእውነተኛው የIP አድራሻዎ ይገናኛሉ። FuzeVPN ራሱ ሁልጊዜ በVPN ውስጥ ይቆያል።';
+
+  @override
+  String get splitTunnel_search => 'መተግበሪያ ይፈልጉ';
+
+  @override
+  String get splitTunnel_loading => 'መተግበሪያዎችን በመጫን ላይ…';
+
+  @override
+  String get splitTunnel_loadFailed => 'የመተግበሪያዎች ዝርዝር ሊጫን አልቻለም። እንደገና ይሞክሩ።';
+
+  @override
+  String get splitTunnel_saveFailed => 'ይህ ምርጫ ሊቀመጥ አልቻለም። እንደገና ይሞክሩ።';
+
+  @override
+  String get splitTunnel_noApps => 'ምንም መተግበሪያ አልተገኘም።';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'አሁን ያለው ግንኙነት በተጀመረበት ዝርዝር ይቀጥላል። አዲሱ ዝርዝር ከቀጣዩ ግንኙነት ጀምሮ ወይም እንደገና ከተገናኙ ወዲያውኑ ተግባራዊ ይሆናል።';
+
+  @override
+  String get splitTunnel_reconnect => 'እንደገና ይገናኙ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“VPN ከሌለ ግንኙነቶችን ያግዱ” በAndroid ውስጥ በርቷል፦ ምልክት የተደረገባቸው መተግበሪያዎች ምንም የኢንተርኔት መዳረሻ የላቸውም።';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      '“VPN ከሌለ ግንኙነቶችን ያግዱ” በAndroid ውስጥ ከበራ፣ ምልክት የተደረገባቸው መተግበሪያዎች ምንም የኢንተርኔት መዳረሻ የላቸውም።';
+
+  @override
   String get connection_location => 'አካባቢ';
 
   @override

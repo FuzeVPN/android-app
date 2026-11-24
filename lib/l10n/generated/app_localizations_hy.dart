@@ -239,6 +239,48 @@ class AppLocalizationsHy extends AppLocalizations {
   String get connection_advancedOptions => 'Լրացուցիչ կարգավորումներ';
 
   @override
+  String get splitTunnel_title => 'VPN-ից դուրս հավելվածներ';
+
+  @override
+  String get splitTunnel_allInVpn => 'Բոլոր հավելվածներն օգտագործում են VPN-ը։';
+
+  @override
+  String get splitTunnel_intro =>
+      'Նշված հավելվածները չեն օգտագործում VPN-ը։ Դրանք միանում են ձեր սովորական ցանցով՝ ձեր իրական IP հասցեով։ FuzeVPN-ը միշտ մնում է VPN-ում։';
+
+  @override
+  String get splitTunnel_search => 'Որոնել հավելված';
+
+  @override
+  String get splitTunnel_loading => 'Հավելվածները բեռնվում են…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Հավելվածների ցանկը չհաջողվեց բեռնել։ Նորից փորձեք։';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Այս ընտրությունը չհաջողվեց պահպանել։ Նորից փորձեք։';
+
+  @override
+  String get splitTunnel_noApps => 'Հավելվածներ չեն գտնվել։';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Ընթացիկ կապը պահպանում է այն ցանկը, որով սկսվել է։ Նոր ցանկը կկիրառվի հաջորդ միացումից, կամ անմիջապես, եթե նորից միանաք։';
+
+  @override
+  String get splitTunnel_reconnect => 'Նորից միանալ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android-ում միացված է «Արգելափակել առանց VPN-ի կապերը» կարգավորումը։ Նշված հավելվածներն ընդհանրապես ինտերնետ հասանելիություն չունեն։';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Եթե Android-ում միացված է «Արգելափակել առանց VPN-ի կապերը» կարգավորումը, նշված հավելվածներն ընդհանրապես ինտերնետ հասանելիություն չունեն։';
+
+  @override
   String get connection_location => 'Վայր';
 
   @override

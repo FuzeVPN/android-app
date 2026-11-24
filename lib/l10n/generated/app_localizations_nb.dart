@@ -238,6 +238,48 @@ class AppLocalizationsNb extends AppLocalizations {
   String get connection_advancedOptions => 'Avanserte alternativer';
 
   @override
+  String get splitTunnel_title => 'Apper utenfor VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Alle apper bruker VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Merkede apper bruker ikke VPN: de kobler til via det vanlige nettverket ditt, med den ekte IP-adressen din. FuzeVPN blir alltid i VPN.';
+
+  @override
+  String get splitTunnel_search => 'Søk etter en app';
+
+  @override
+  String get splitTunnel_loading => 'Laster inn apper…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Listen over apper kunne ikke lastes inn. Prøv igjen.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Dette valget kunne ikke lagres. Prøv igjen.';
+
+  @override
+  String get splitTunnel_noApps => 'Fant ingen apper.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Den nåværende tilkoblingen beholder listen den startet med. Den nye listen gjelder fra neste tilkobling, eller med en gang hvis du kobler til på nytt.';
+
+  @override
+  String get splitTunnel_reconnect => 'Koble til på nytt';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '«Blokker tilkoblinger uten VPN» er slått på i Android: merkede apper har ingen internettilgang i det hele tatt.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Hvis «Blokker tilkoblinger uten VPN» er slått på i Android, har merkede apper ingen internettilgang i det hele tatt.';
+
+  @override
   String get connection_location => 'Lokasjon';
 
   @override

@@ -239,6 +239,48 @@ class AppLocalizationsSv extends AppLocalizations {
   String get connection_advancedOptions => 'Avancerade alternativ';
 
   @override
+  String get splitTunnel_title => 'Appar utanför VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Alla appar använder VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Markerade appar använder inte VPN: de ansluter via ditt vanliga nätverk, med din riktiga IP-adress. FuzeVPN stannar alltid i VPN.';
+
+  @override
+  String get splitTunnel_search => 'Sök efter en app';
+
+  @override
+  String get splitTunnel_loading => 'Läser in appar…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Listan med appar kunde inte läsas in. Försök igen.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Det här valet kunde inte sparas. Försök igen.';
+
+  @override
+  String get splitTunnel_noApps => 'Inga appar hittades.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Den aktuella anslutningen behåller listan den startade med. Den nya listan gäller från nästa anslutning, eller direkt om du ansluter igen.';
+
+  @override
+  String get splitTunnel_reconnect => 'Anslut igen';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '”Blockera anslutningar utan VPN” är aktiverat i Android: markerade appar har ingen internetåtkomst alls.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Om ”Blockera anslutningar utan VPN” är aktiverat i Android har markerade appar ingen internetåtkomst alls.';
+
+  @override
   String get connection_location => 'Plats';
 
   @override

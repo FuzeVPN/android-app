@@ -238,6 +238,48 @@ class AppLocalizationsVi extends AppLocalizations {
   String get connection_advancedOptions => 'Tùy chọn nâng cao';
 
   @override
+  String get splitTunnel_title => 'Ứng dụng ngoài VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Tất cả ứng dụng đều dùng VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Các ứng dụng được chọn không dùng VPN: chúng kết nối qua mạng thông thường của bạn, với địa chỉ IP thật của bạn. FuzeVPN luôn ở trong VPN.';
+
+  @override
+  String get splitTunnel_search => 'Tìm kiếm ứng dụng';
+
+  @override
+  String get splitTunnel_loading => 'Đang tải ứng dụng…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Không thể tải danh sách ứng dụng. Hãy thử lại.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Không thể lưu lựa chọn này. Hãy thử lại.';
+
+  @override
+  String get splitTunnel_noApps => 'Không tìm thấy ứng dụng nào.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Kết nối hiện tại giữ nguyên danh sách lúc bắt đầu. Danh sách mới sẽ áp dụng từ lần kết nối tiếp theo, hoặc ngay lập tức nếu bạn kết nối lại.';
+
+  @override
+  String get splitTunnel_reconnect => 'Kết nối lại';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Chặn kết nối không qua VPN” đang bật trong Android: các ứng dụng được chọn hoàn toàn không có quyền truy cập Internet.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Nếu “Chặn kết nối không qua VPN” đang bật trong Android, các ứng dụng được chọn hoàn toàn không có quyền truy cập Internet.';
+
+  @override
   String get connection_location => 'Vị trí';
 
   @override

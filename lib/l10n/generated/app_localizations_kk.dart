@@ -238,6 +238,48 @@ class AppLocalizationsKk extends AppLocalizations {
   String get connection_advancedOptions => 'Қосымша параметрлер';
 
   @override
+  String get splitTunnel_title => 'VPN-нен тыс қолданбалар';
+
+  @override
+  String get splitTunnel_allInVpn => 'Барлық қолданба VPN пайдаланады.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Белгіленген қолданбалар VPN пайдаланбайды: олар әдеттегі желіңіз арқылы, нақты IP мекенжайыңызбен қосылады. FuzeVPN әрқашан VPN ішінде қалады.';
+
+  @override
+  String get splitTunnel_search => 'Қолданбаны іздеу';
+
+  @override
+  String get splitTunnel_loading => 'Қолданбалар жүктелуде…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Қолданбалар тізімін жүктеу мүмкін болмады. Қайталап көріңіз.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Бұл таңдауды сақтау мүмкін болмады. Қайталап көріңіз.';
+
+  @override
+  String get splitTunnel_noApps => 'Қолданба табылмады.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Ағымдағы қосылым өзі басталған тізімді сақтайды. Жаңа тізім келесі қосылымнан бастап немесе қайта қосылсаңыз, бірден қолданылады.';
+
+  @override
+  String get splitTunnel_reconnect => 'Қайта қосылу';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android жүйесінде «VPN-сіз қосылымдарды бұғаттау» қосулы: белгіленген қолданбалардың интернетке мүлде қолжетімділігі жоқ.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android жүйесінде «VPN-сіз қосылымдарды бұғаттау» қосулы болса, белгіленген қолданбалардың интернетке мүлде қолжетімділігі болмайды.';
+
+  @override
   String get connection_location => 'Орын';
 
   @override

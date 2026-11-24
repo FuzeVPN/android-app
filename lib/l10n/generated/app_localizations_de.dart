@@ -241,6 +241,48 @@ class AppLocalizationsDe extends AppLocalizations {
   String get connection_advancedOptions => 'Erweiterte Optionen';
 
   @override
+  String get splitTunnel_title => 'Apps außerhalb des VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Alle Apps nutzen das VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Ausgewählte Apps nutzen das VPN nicht, sondern Ihr übliches Netzwerk mit Ihrer echten IP-Adresse. FuzeVPN bleibt immer im VPN.';
+
+  @override
+  String get splitTunnel_search => 'App suchen';
+
+  @override
+  String get splitTunnel_loading => 'Apps werden geladen…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Die App-Liste konnte nicht geladen werden. Versuchen Sie es erneut.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Diese Auswahl konnte nicht gespeichert werden. Versuchen Sie es erneut.';
+
+  @override
+  String get splitTunnel_noApps => 'Keine Apps gefunden.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Die aktuelle Verbindung behält die Liste, mit der sie gestartet wurde. Die neue Liste gilt ab der nächsten Verbindung oder sofort, wenn Sie die Verbindung neu herstellen.';
+
+  @override
+  String get splitTunnel_reconnect => 'Neu verbinden';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '„Verbindungen ohne VPN blockieren“ ist in Android aktiviert: Ausgewählte Apps haben keinerlei Internetzugang.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Wenn „Verbindungen ohne VPN blockieren“ in Android aktiviert ist, haben ausgewählte Apps keinerlei Internetzugang.';
+
+  @override
   String get connection_location => 'Standort';
 
   @override

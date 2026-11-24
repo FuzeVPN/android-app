@@ -39,6 +39,9 @@ class SystemVpnResumeSentinel {
 }
 
 internal object OpenVpnService {
+    internal fun excludeApplications(packages: List<String>) {
+        HarnessControl.openVpnExclusions += packages.toList()
+    }
     internal fun start(context: Context, reconnecting: Boolean = false) {
         HarnessControl.openVpnService += "start(reconnecting=$reconnecting)"
     }

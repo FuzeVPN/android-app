@@ -230,6 +230,46 @@ class AppLocalizationsJa extends AppLocalizations {
   String get connection_advancedOptions => '詳細オプション';
 
   @override
+  String get splitTunnel_title => 'VPN外のアプリ';
+
+  @override
+  String get splitTunnel_allInVpn => 'すべてのアプリがVPNを使用しています。';
+
+  @override
+  String get splitTunnel_intro =>
+      'チェックしたアプリはVPNを使用せず、通常のネットワークから実際のIPアドレスで接続します。FuzeVPN自体は常にVPNを経由します。';
+
+  @override
+  String get splitTunnel_search => 'アプリを検索';
+
+  @override
+  String get splitTunnel_loading => 'アプリを読み込み中…';
+
+  @override
+  String get splitTunnel_loadFailed => 'アプリのリストを読み込めませんでした。もう一度試してください。';
+
+  @override
+  String get splitTunnel_saveFailed => 'この選択を保存できませんでした。もう一度試してください。';
+
+  @override
+  String get splitTunnel_noApps => 'アプリが見つかりません。';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      '現在の接続では、開始時のリストがそのまま使われます。新しいリストは次回の接続から、または再接続するとすぐに適用されます。';
+
+  @override
+  String get splitTunnel_reconnect => '再接続';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Androidで「VPNなしの接続をブロック」がオンになっています。チェックしたアプリはインターネットにまったくアクセスできません。';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Androidで「VPNなしの接続をブロック」がオンの場合、チェックしたアプリはインターネットにまったくアクセスできません。';
+
+  @override
   String get connection_location => '場所';
 
   @override

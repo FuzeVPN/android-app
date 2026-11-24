@@ -242,6 +242,48 @@ class AppLocalizationsFil extends AppLocalizations {
   String get connection_advancedOptions => 'Mga advanced na opsyon';
 
   @override
+  String get splitTunnel_title => 'Mga app sa labas ng VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Gumagamit ng VPN ang lahat ng app.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Hindi gumagamit ng VPN ang mga naka-check na app: kumokonekta ang mga ito sa iyong karaniwang network, gamit ang iyong totoong IP address. Laging nananatili sa VPN ang FuzeVPN.';
+
+  @override
+  String get splitTunnel_search => 'Maghanap ng app';
+
+  @override
+  String get splitTunnel_loading => 'Nilo-load ang mga app…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Hindi ma-load ang listahan ng mga app. Subukan muli.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Hindi ma-save ang pagpiling ito. Subukan muli.';
+
+  @override
+  String get splitTunnel_noApps => 'Walang nakitang app.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Pinapanatili ng kasalukuyang koneksyon ang listahang ginamit nito sa pagsisimula. Ilalapat ang bagong listahan sa susunod na koneksyon, o ngayon din kung muli kang kumonekta.';
+
+  @override
+  String get splitTunnel_reconnect => 'Kumonekta muli';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Naka-on ang “I-block ang mga koneksyong walang VPN” sa Android: walang anumang access sa internet ang mga naka-check na app.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Kung naka-on ang “I-block ang mga koneksyong walang VPN” sa Android, walang anumang access sa internet ang mga naka-check na app.';
+
+  @override
   String get connection_location => 'Lokasyon';
 
   @override

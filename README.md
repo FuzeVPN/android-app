@@ -45,6 +45,8 @@ Details in the [release notes](docs/RELEASE_NOTES.md).
 - Dedicated VPN disclosure and explicit consent before Android permission,
   with an option to decline. See the [video walkthrough](docs/VPN_DISCLOSURE.md).
 - Country/city locations, search, favourites and confirmed location changes.
+- Apps outside the VPN (split tunneling): chosen apps use the usual network,
+  with WireGuard and OpenVPN alike; FuzeVPN itself always stays in the VPN.
 - Seventy languages, light/dark themes and right-to-left layouts.
 - Explicit diagnostic consent and encrypted local session/device storage.
 - Google Play subscriptions with localized prices and purchase restoration.

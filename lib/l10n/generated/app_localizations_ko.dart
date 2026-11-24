@@ -231,6 +231,46 @@ class AppLocalizationsKo extends AppLocalizations {
   String get connection_advancedOptions => '고급 옵션';
 
   @override
+  String get splitTunnel_title => 'VPN 제외 앱';
+
+  @override
+  String get splitTunnel_allInVpn => '모든 앱이 VPN을 사용합니다.';
+
+  @override
+  String get splitTunnel_intro =>
+      '선택한 앱은 VPN을 사용하지 않고 평소 사용하는 네트워크를 통해 실제 IP 주소로 연결됩니다. FuzeVPN은 항상 VPN을 통해 연결됩니다.';
+
+  @override
+  String get splitTunnel_search => '앱 검색';
+
+  @override
+  String get splitTunnel_loading => '앱 불러오는 중…';
+
+  @override
+  String get splitTunnel_loadFailed => '앱 목록을 불러오지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get splitTunnel_saveFailed => '이 선택을 저장하지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get splitTunnel_noApps => '앱을 찾을 수 없습니다.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      '현재 연결은 시작할 때의 목록을 유지합니다. 새 목록은 다음 연결부터 적용되며, 다시 연결하면 바로 적용됩니다.';
+
+  @override
+  String get splitTunnel_reconnect => '다시 연결';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android에서 “VPN 없이 연결 차단” 옵션이 켜져 있어 선택한 앱은 인터넷에 전혀 접속할 수 없습니다.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android에서 “VPN 없이 연결 차단” 옵션이 켜져 있으면 선택한 앱은 인터넷에 전혀 접속할 수 없습니다.';
+
+  @override
   String get connection_location => '위치';
 
   @override

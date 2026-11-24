@@ -240,6 +240,48 @@ class AppLocalizationsHu extends AppLocalizations {
   String get connection_advancedOptions => 'Speciális beállítások';
 
   @override
+  String get splitTunnel_title => 'VPN-en kívüli alkalmazások';
+
+  @override
+  String get splitTunnel_allInVpn => 'Minden alkalmazás a VPN-t használja.';
+
+  @override
+  String get splitTunnel_intro =>
+      'A bejelölt alkalmazások nem használják a VPN-t: az Ön szokásos hálózatán keresztül, az Ön valódi IP-címével csatlakoznak. A FuzeVPN mindig a VPN-ben marad.';
+
+  @override
+  String get splitTunnel_search => 'Alkalmazás keresése';
+
+  @override
+  String get splitTunnel_loading => 'Alkalmazások betöltése…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Az alkalmazások listáját nem sikerült betölteni. Próbálja újra.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Ezt a választást nem sikerült menteni. Próbálja újra.';
+
+  @override
+  String get splitTunnel_noApps => 'Nem található alkalmazás.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Az aktuális kapcsolat megtartja azt a listát, amellyel elindult. Az új lista a következő csatlakozástól érvényes, vagy azonnal, ha újracsatlakozik.';
+
+  @override
+  String get splitTunnel_reconnect => 'Újracsatlakozás';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Az Android rendszerben be van kapcsolva a „VPN nélküli kapcsolatok letiltása” beállítás: a bejelölt alkalmazások egyáltalán nem érik el az internetet.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Ha az Android rendszerben be van kapcsolva a „VPN nélküli kapcsolatok letiltása” beállítás, a bejelölt alkalmazások egyáltalán nem érik el az internetet.';
+
+  @override
   String get connection_location => 'Hely';
 
   @override

@@ -241,6 +241,48 @@ class AppLocalizationsOr extends AppLocalizations {
   String get connection_advancedOptions => 'ଉନ୍ନତ ବିକଳ୍ପ';
 
   @override
+  String get splitTunnel_title => 'VPN ବାହାରେ ଥିବା ଆପ୍‌ଗୁଡ଼ିକ';
+
+  @override
+  String get splitTunnel_allInVpn => 'ସମସ୍ତ ଆପ୍‌ଗୁଡ଼ିକ VPN ବ୍ୟବହାର କରନ୍ତି।';
+
+  @override
+  String get splitTunnel_intro =>
+      'ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକ VPN ବ୍ୟବହାର କରନ୍ତି ନାହିଁ: ସେଗୁଡ଼ିକ ଆପଣଙ୍କ ସାଧାରଣ ନେଟୱର୍କ ଦେଇ, ଆପଣଙ୍କ ପ୍ରକୃତ IP ଠିକଣା ସହିତ ସଂଯୋଗ ହୁଅନ୍ତି। FuzeVPN ସର୍ବଦା VPN ଭିତରେ ରହେ।';
+
+  @override
+  String get splitTunnel_search => 'ଏକ ଆପ୍ ଖୋଜନ୍ତୁ';
+
+  @override
+  String get splitTunnel_loading => 'ଆପ୍‌ଗୁଡ଼ିକ ଲୋଡ୍ ହେଉଛି…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ଆପ୍ ତାଲିକା ଲୋଡ୍ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ଏହି ପସନ୍ଦ ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।';
+
+  @override
+  String get splitTunnel_noApps => 'କୌଣସି ଆପ୍ ମିଳିଲା ନାହିଁ।';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'ବର୍ତ୍ତମାନର ସଂଯୋଗ ଆରମ୍ଭ ସମୟର ତାଲିକା ହିଁ ରଖେ। ନୂଆ ତାଲିକା ପରବର୍ତ୍ତୀ ସଂଯୋଗରୁ ଲାଗୁ ହେବ, କିମ୍ବା ଆପଣ ପୁନର୍ବାର ସଂଯୋଗ କଲେ ତୁରନ୍ତ ଲାଗୁ ହେବ।';
+
+  @override
+  String get splitTunnel_reconnect => 'ପୁନର୍ବାର ସଂଯୋଗ କରନ୍ତୁ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Androidରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ଚାଲୁ ଅଛି: ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକର କୌଣସି ଇଣ୍ଟରନେଟ୍ ପ୍ରବେଶ ନାହିଁ।';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Androidରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ଚାଲୁ ଥିଲେ, ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକର କୌଣସି ଇଣ୍ଟରନେଟ୍ ପ୍ରବେଶ ରହେ ନାହିଁ।';
+
+  @override
   String get connection_location => 'ଅବସ୍ଥାନ';
 
   @override

@@ -131,7 +131,29 @@ class WireGuardConfigurationTest {
         )
     }
 
-    private fun configuration(request: WireGuardRequest): Config {
+    // Split tunneling: GoBackend excludes each listed app through VpnService.Builder.addDisallowedApplication.
+    @Test fun excludedAppsReachTheInterfaceAndChangeNothingElse() {
+        val apps = listOf("com.example.game", "org.example.bank")
+        val split = configuration(request(address6), apps)
+        val full = configuration(request(address6))
+
+        assertEquals(apps.toSet(), split.`interface`.excludedApplications)
+        assertTrue(split.`interface`.includedApplications.isEmpty())
+        assertEquals(full.peers, split.peers)
+        assertEquals(full.`interface`.addresses, split.`interface`.addresses)
+        assertEquals(full.`interface`.dnsServers, split.`interface`.dnsServers)
+        assertEquals(full.toWgUserspaceString(), split.toWgUserspaceString())
+    }
+
+    @Test fun anExcludedAppThatIsNotAPackageNameCannotInjectADirective() {
+        for (apps in listOf(listOf("org.example.bank\nEndpoint = 198.51.100.2:51820"), listOf("org.example.bank, x"),
+            listOf(""), List(SplitTunnelPolicy.MAX_APPS + 1) { "org.example.app$it" })) {
+            val failure = assertThrows(VpnNativeException::class.java) { configuration(request(), apps) }
+            assertEquals("wireguard_configuration_invalid", failure.code)
+        }
+    }
+
+    private fun configuration(request: WireGuardRequest, excludedApplications: List<String> = emptyList()): Config {
         // The private writer is pure but lives on a controller whose constructor
         // starts Android backend setup. Allocate only for this method so the test
         // executes production code without replacing it or loading native code.
@@ -140,10 +162,10 @@ class WireGuardConfigurationTest {
         val controller = unsafeClass.getMethod("allocateInstance", Class::class.java)
             .invoke(unsafeField.get(null), WireGuardController::class.java)
         val writer = WireGuardController::class.java.getDeclaredMethod(
-            "buildConfiguration", WireGuardRequest::class.java, String::class.java,
+            "buildConfiguration", WireGuardRequest::class.java, String::class.java, List::class.java,
         ).apply { isAccessible = true }
         return try {
-            writer.invoke(controller, request, client.privateKey.toBase64()) as Config
+            writer.invoke(controller, request, client.privateKey.toBase64(), excludedApplications) as Config
         } catch (error: InvocationTargetException) {
             throw error.targetException
         }

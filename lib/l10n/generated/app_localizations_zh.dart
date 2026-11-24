@@ -227,6 +227,46 @@ class AppLocalizationsZh extends AppLocalizations {
   String get connection_advancedOptions => '高级选项';
 
   @override
+  String get splitTunnel_title => '不使用 VPN 的应用';
+
+  @override
+  String get splitTunnel_allInVpn => '所有应用都使用 VPN。';
+
+  @override
+  String get splitTunnel_intro =>
+      '选中的应用不使用 VPN：它们通过您平常的网络连接，使用您的真实 IP 地址。FuzeVPN 自身始终使用 VPN。';
+
+  @override
+  String get splitTunnel_search => '搜索应用';
+
+  @override
+  String get splitTunnel_loading => '正在加载应用…';
+
+  @override
+  String get splitTunnel_loadFailed => '无法加载应用列表。请重试。';
+
+  @override
+  String get splitTunnel_saveFailed => '无法保存此选择。请重试。';
+
+  @override
+  String get splitTunnel_noApps => '未找到应用。';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      '当前连接会保留启动时的列表。新列表将在下次连接时生效；如果您重新连接，则会立即生效。';
+
+  @override
+  String get splitTunnel_reconnect => '重新连接';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android 中已开启“阻止无 VPN 连接”：选中的应用将完全无法访问互联网。';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      '如果 Android 中开启了“阻止无 VPN 连接”，选中的应用将完全无法访问互联网。';
+
+  @override
   String get connection_location => '位置';
 
   @override
@@ -2233,6 +2273,46 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get connection_advancedOptions => '高级选项';
 
   @override
+  String get splitTunnel_title => '不使用 VPN 的应用';
+
+  @override
+  String get splitTunnel_allInVpn => '所有应用都使用 VPN。';
+
+  @override
+  String get splitTunnel_intro =>
+      '选中的应用不使用 VPN：它们通过您平常的网络连接，使用您的真实 IP 地址。FuzeVPN 自身始终使用 VPN。';
+
+  @override
+  String get splitTunnel_search => '搜索应用';
+
+  @override
+  String get splitTunnel_loading => '正在加载应用…';
+
+  @override
+  String get splitTunnel_loadFailed => '无法加载应用列表。请重试。';
+
+  @override
+  String get splitTunnel_saveFailed => '无法保存此选择。请重试。';
+
+  @override
+  String get splitTunnel_noApps => '未找到应用。';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      '当前连接会保留启动时的列表。新列表将在下次连接时生效；如果您重新连接，则会立即生效。';
+
+  @override
+  String get splitTunnel_reconnect => '重新连接';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android 中已开启“阻止无 VPN 连接”：选中的应用将完全无法访问互联网。';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      '如果 Android 中开启了“阻止无 VPN 连接”，选中的应用将完全无法访问互联网。';
+
+  @override
   String get connection_location => '位置';
 
   @override
@@ -4237,6 +4317,46 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get connection_advancedOptions => '進階選項';
+
+  @override
+  String get splitTunnel_title => '不使用 VPN 的應用程式';
+
+  @override
+  String get splitTunnel_allInVpn => '所有應用程式都使用 VPN。';
+
+  @override
+  String get splitTunnel_intro =>
+      '勾選的應用程式不會使用 VPN：它們會透過您平常的網路連線，並使用您的真實 IP 位址。FuzeVPN 本身始終使用 VPN。';
+
+  @override
+  String get splitTunnel_search => '搜尋應用程式';
+
+  @override
+  String get splitTunnel_loading => '正在載入應用程式…';
+
+  @override
+  String get splitTunnel_loadFailed => '無法載入應用程式清單。請再試一次。';
+
+  @override
+  String get splitTunnel_saveFailed => '無法儲存此選擇。請再試一次。';
+
+  @override
+  String get splitTunnel_noApps => '找不到應用程式。';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      '目前的連線會保留啟動時的清單。新清單將在下次連線時套用；如果您重新連線，則會立即套用。';
+
+  @override
+  String get splitTunnel_reconnect => '重新連線';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android 已開啟「封鎖沒有 VPN 的連線」：勾選的應用程式將完全無法存取網際網路。';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      '如果 Android 開啟了「封鎖沒有 VPN 的連線」，勾選的應用程式將完全無法存取網際網路。';
 
   @override
   String get connection_location => '位置';

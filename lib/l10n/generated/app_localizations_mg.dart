@@ -241,6 +241,48 @@ class AppLocalizationsMg extends AppLocalizations {
   String get connection_advancedOptions => 'Safidy mandroso';
 
   @override
+  String get splitTunnel_title => 'Fampiharana ivelan’ny VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Mampiasa ny VPN ny fampiharana rehetra.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Tsy mampiasa ny VPN ireo fampiharana misy marika: mifandray amin’ny alalan’ny tambajotra mahazatra anao izy ireo, miaraka amin’ny adiresy IP tena izy anao. Mijanona ao anatin’ny VPN foana ny FuzeVPN.';
+
+  @override
+  String get splitTunnel_search => 'Hitady fampiharana';
+
+  @override
+  String get splitTunnel_loading => 'Mampidina ny fampiharana…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Tsy afaka nampidina ny lisitry ny fampiharana. Andramo indray.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Tsy voatahiry ity safidy ity. Andramo indray.';
+
+  @override
+  String get splitTunnel_noApps => 'Tsy misy fampiharana hita.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Ny fifandraisana amin’izao fotoana izao dia mitazona ny lisitra nanombohany. Ny lisitra vaovao dia mihatra manomboka amin’ny fifandraisana manaraka, na avy hatrany raha mifandray indray ianao.';
+
+  @override
+  String get splitTunnel_reconnect => 'Hifandray indray';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Mandeha ao amin’ny Android ny “Sakano ny fifandraisana tsy misy VPN”: tsy misy fidirana amin’ny Internet mihitsy ireo fampiharana misy marika.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Raha mandeha ao amin’ny Android ny “Sakano ny fifandraisana tsy misy VPN”, tsy misy fidirana amin’ny Internet mihitsy ireo fampiharana misy marika.';
+
+  @override
   String get connection_location => 'Toerana';
 
   @override

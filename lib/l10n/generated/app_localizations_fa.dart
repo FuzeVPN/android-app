@@ -239,6 +239,49 @@ class AppLocalizationsFa extends AppLocalizations {
   String get connection_advancedOptions => 'گزینه‌های پیشرفته';
 
   @override
+  String get splitTunnel_title => 'برنامه‌های خارج از وی‌پی‌ان';
+
+  @override
+  String get splitTunnel_allInVpn =>
+      'همه برنامه‌ها از وی‌پی‌ان استفاده می‌کنند.';
+
+  @override
+  String get splitTunnel_intro =>
+      'برنامه‌های علامت‌زده از وی‌پی‌ان استفاده نمی‌کنند: آن‌ها از طریق شبکه معمول شما و با نشانی IP واقعی‌تان متصل می‌شوند. FuzeVPN همیشه داخل وی‌پی‌ان می‌ماند.';
+
+  @override
+  String get splitTunnel_search => 'جست‌وجوی برنامه';
+
+  @override
+  String get splitTunnel_loading => 'در حال بارگیری برنامه‌ها…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'فهرست برنامه‌ها بارگیری نشد. دوباره تلاش کنید.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'این انتخاب ذخیره نشد. دوباره تلاش کنید.';
+
+  @override
+  String get splitTunnel_noApps => 'برنامه‌ای پیدا نشد.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'اتصال فعلی فهرستی را که با آن شروع شده است حفظ می‌کند. فهرست جدید از اتصال بعدی اعمال می‌شود، یا اگر دوباره متصل شوید، همین حالا.';
+
+  @override
+  String get splitTunnel_reconnect => 'اتصال دوباره';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '«مسدود کردن اتصال‌ها بدون وی‌پی‌ان» در Android روشن است: برنامه‌های علامت‌زده هیچ دسترسی‌ای به اینترنت ندارند.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'اگر «مسدود کردن اتصال‌ها بدون وی‌پی‌ان» در Android روشن باشد، برنامه‌های علامت‌زده هیچ دسترسی‌ای به اینترنت ندارند.';
+
+  @override
   String get connection_location => 'مکان';
 
   @override

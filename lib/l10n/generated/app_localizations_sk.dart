@@ -239,6 +239,48 @@ class AppLocalizationsSk extends AppLocalizations {
   String get connection_advancedOptions => 'Rozšírené možnosti';
 
   @override
+  String get splitTunnel_title => 'Aplikácie mimo VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Všetky aplikácie používajú VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Zaškrtnuté aplikácie nepoužívajú VPN: pripájajú sa cez vašu bežnú sieť s vašou skutočnou IP adresou. FuzeVPN vždy zostáva vo VPN.';
+
+  @override
+  String get splitTunnel_search => 'Hľadať aplikáciu';
+
+  @override
+  String get splitTunnel_loading => 'Načítavanie aplikácií…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Zoznam aplikácií sa nepodarilo načítať. Skúste to znova.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Túto voľbu sa nepodarilo uložiť. Skúste to znova.';
+
+  @override
+  String get splitTunnel_noApps => 'Nenašli sa žiadne aplikácie.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Aktuálne pripojenie si ponechá zoznam, s ktorým sa začalo. Nový zoznam platí od ďalšieho pripojenia alebo hneď, ak sa znova pripojíte.';
+
+  @override
+  String get splitTunnel_reconnect => 'Znova pripojiť';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'V systéme Android je zapnutá možnosť „Blokovať pripojenia bez VPN“: zaškrtnuté aplikácie nemajú žiadny prístup na internet.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Ak je v systéme Android zapnutá možnosť „Blokovať pripojenia bez VPN“, zaškrtnuté aplikácie nemajú žiadny prístup na internet.';
+
+  @override
   String get connection_location => 'Lokalita';
 
   @override

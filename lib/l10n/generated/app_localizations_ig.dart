@@ -238,6 +238,47 @@ class AppLocalizationsIg extends AppLocalizations {
   String get connection_advancedOptions => 'Nhọrọ dị elu';
 
   @override
+  String get splitTunnel_title => 'Ngwa ndị anaghị eji VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Ngwa niile na-eji VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Ngwa ndị nwere akara anaghị eji VPN: ha na-ejikọ site na netwọkụ gị a na-ejikarị, na adreesị IP gị n’ezie. FuzeVPN na-anọ mgbe niile n’ime VPN.';
+
+  @override
+  String get splitTunnel_search => 'Chọọ ngwa';
+
+  @override
+  String get splitTunnel_loading => 'Na-ebudata ngwa…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Enweghị ike ibudata ndepụta ngwa. Nwaa ọzọ.';
+
+  @override
+  String get splitTunnel_saveFailed => 'Enweghị ike ichekwa nhọrọ a. Nwaa ọzọ.';
+
+  @override
+  String get splitTunnel_noApps => 'Ahụghị ngwa ọ bụla.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Njikọ dị ugbu a na-edobe ndepụta o ji malite. Ndepụta ọhụrụ ga-amalite ọrụ site na njikọ na-esote, ma ọ bụ ozugbo ma ọ bụrụ na ị jikọọ ọzọ.';
+
+  @override
+  String get splitTunnel_reconnect => 'Jikọọ ọzọ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Gbochie njikọ na-enweghị VPN” gbanyere na Android: ngwa ndị nwere akara enweghị ike ịbanye n’ịntanetị ma ọlị.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Ọ bụrụ na “Gbochie njikọ na-enweghị VPN” gbanyere na Android, ngwa ndị nwere akara enweghị ike ịbanye n’ịntanetị ma ọlị.';
+
+  @override
   String get connection_location => 'Ebe';
 
   @override

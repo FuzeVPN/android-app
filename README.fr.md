@@ -48,6 +48,8 @@ Détails dans les [notes de version](docs/RELEASE_NOTES.md).
 - Mention VPN dédiée avec accord explicite avant la permission Android et
   possibilité de refuser. Voir le [parcours à filmer](docs/VPN_DISCLOSURE.md).
 - Emplacements par pays/ville, recherche, favoris et changement confirmé.
+- Apps hors VPN (split tunneling) : les apps choisies passent par le réseau
+  habituel, en WireGuard comme en OpenVPN ; FuzeVPN reste toujours dans le VPN.
 - Soixante-dix langues, thèmes clair/sombre et interfaces de droite à gauche.
 - Diagnostics soumis au consentement et stockage local chiffré.
 - Abonnements Google Play, prix localisés et restauration des achats.

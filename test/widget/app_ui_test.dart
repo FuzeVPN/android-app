@@ -11,6 +11,7 @@ import 'package:fuzevpn_android/app.dart';
 import 'package:fuzevpn_android/app_controller.dart';
 import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/core/api_exception.dart';
+import 'package:fuzevpn_android/core/excluded_apps.dart';
 import 'package:fuzevpn_android/core/guest_accounts.dart';
 import 'package:fuzevpn_android/core/models.dart';
 import 'package:fuzevpn_android/core/play_billing.dart';
@@ -1228,6 +1229,140 @@ void main() {
       find.byKey(const ValueKey('connection-error-open-vpn-settings')),
       findsNothing,
     );
+  });
+
+  // Split tunneling: the advanced options open the apps kept out of the VPN.
+  group('apps outside the VPN', () {
+    Future<(_UiHarness, _UiSplitTunnel)> open(
+      WidgetTester tester, {
+      Set<String> saved = const <String>{},
+      VpnRuntimeState? state,
+    }) async {
+      final tunnel = _UiSplitTunnel()..saved = saved;
+      final h = _UiHarness(withTunnel: tunnel);
+      addTearDown(h.close);
+      h.store.session = _session;
+      await h.controller.initialize();
+      await h.controller.setLocale(const Locale('fr'));
+      if (state != null) h.controller.tunnelState = state;
+      await tester.pumpWidget(
+        FuzeVpnApp(controller: h.controller, autoInitialize: false),
+      );
+      await tester.pumpAndSettle();
+      final l = lookupAppLocalizations(const Locale('fr'));
+      await _scrollTo(tester, find.text(l.connection_advancedOptions));
+      await tester.tap(find.text(l.connection_advancedOptions));
+      await tester.pumpAndSettle();
+      final entry = find.byKey(const ValueKey('split-tunnel-open'));
+      await _scrollTo(tester, entry);
+      return (h, tunnel);
+    }
+
+    Future<void> openPage(WidgetTester tester) async {
+      await tester.tap(find.byKey(const ValueKey('split-tunnel-open')));
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('a box keeps an app out of the VPN and saves it at once', (
+      tester,
+    ) async {
+      final (h, tunnel) = await open(tester);
+      final l = lookupAppLocalizations(const Locale('fr'));
+      expect(find.text(l.splitTunnel_allInVpn), findsOneWidget);
+      await openPage(tester);
+      expect(find.byKey(const ValueKey('split-tunnel-page')), findsOneWidget);
+      expect(find.text(l.splitTunnel_intro), findsOneWidget);
+      expect(
+        find.byKey(const ValueKey('split-tunnel-lockdown-note')),
+        findsOneWidget,
+      );
+      expect(find.text(l.splitTunnel_lockdownNote), findsOneWidget);
+      expect(find.text('Banque'), findsOneWidget);
+      expect(find.text('Jeu'), findsOneWidget);
+      expect(find.byKey(const ValueKey('split-tunnel-pending')), findsNothing);
+      await tester.tap(
+        find.byKey(const ValueKey('split-tunnel-app-org.example.bank')),
+      );
+      await tester.pumpAndSettle();
+      expect(tunnel.writes, <Set<String>>[
+        <String>{'org.example.bank'},
+      ]);
+      // The search filters by name or package.
+      await tester.enterText(
+        find.byKey(const ValueKey('split-tunnel-search')),
+        'jeu',
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Banque'), findsNothing);
+      expect(find.text('Jeu'), findsOneWidget);
+      expect(find.byTooltip('Retour'), findsOneWidget);
+      await tester.binding.handlePopRoute();
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<Text>(find.byKey(const ValueKey('split-tunnel-count')))
+            .data,
+        '1',
+      );
+      expect(h.controller.excludedApps, <String>{'org.example.bank'});
+    });
+
+    testWidgets(
+      'a tunnel started with another list offers a reconnection, and the '
+      'blocking without VPN of Android is named',
+      (tester) async {
+        final (h, tunnel) = await open(
+          tester,
+          saved: <String>{'org.example.bank'},
+          state: const VpnRuntimeState(
+            phase: VpnRuntimePhase.connected,
+            protocol: VpnProtocol.wireGuard,
+            locationId: 'frankfurt-01',
+            excludedApps: <String>[],
+            systemProtection: SystemVpnProtection(
+              alwaysOn: true,
+              lockdown: true,
+            ),
+          ),
+        );
+        final l = lookupAppLocalizations(const Locale('fr'));
+        await openPage(tester);
+        expect(find.text(l.splitTunnel_reconnectMessage), findsOneWidget);
+        final reconnect = find.byKey(const ValueKey('split-tunnel-reconnect'));
+        expect(tester.widget<FilledButton>(reconnect).onPressed, isNotNull);
+        expect(find.text(l.splitTunnel_lockdownActive), findsOneWidget);
+        expect(find.text(l.splitTunnel_lockdownNote), findsNothing);
+        await tester.tap(
+          find.byKey(const ValueKey('split-tunnel-open-settings')),
+        );
+        await tester.pumpAndSettle();
+        expect(tunnel.openVpnSettingsCalls, 1);
+        // Back to the list the tunnel started with: nothing to apply.
+        await tester.tap(
+          find.byKey(const ValueKey('split-tunnel-app-org.example.bank')),
+        );
+        await tester.pumpAndSettle();
+        expect(h.controller.excludedApps, isEmpty);
+        expect(
+          find.byKey(const ValueKey('split-tunnel-pending')),
+          findsNothing,
+        );
+        expect(find.text(l.splitTunnel_lockdownActive), findsNothing);
+      },
+    );
+
+    testWidgets('an unreadable app list offers to try again', (tester) async {
+      final (_, tunnel) = await open(tester);
+      tunnel.appsFailure = const NativeVpnException('native_operation_failed');
+      final l = lookupAppLocalizations(const Locale('fr'));
+      await openPage(tester);
+      expect(find.text(l.splitTunnel_loadFailed), findsOneWidget);
+      tunnel.appsFailure = null;
+      await tester.tap(find.byKey(const ValueKey('split-tunnel-retry')));
+      await tester.pumpAndSettle();
+      expect(find.text(l.splitTunnel_loadFailed), findsNothing);
+      expect(find.text('Banque'), findsOneWidget);
+    });
   });
 
   testWidgets(
@@ -3650,6 +3785,35 @@ class _MemoryPreferences implements AppPreferenceStore {
   }) async {
     verificationNeeded[userId] = value;
   }
+}
+
+/// A protected tunnel that also keeps apps out of the VPN, as on Android.
+class _UiSplitTunnel extends _UiProtectedTunnel implements SplitTunnelGateway {
+  Set<String> saved = <String>{};
+  final List<Set<String>> writes = <Set<String>>[];
+  Object? appsFailure;
+
+  @override
+  Future<Set<String>> readExcludedApps() async => saved;
+
+  @override
+  Future<void> writeExcludedApps(Set<String> packageNames) async {
+    writes.add(packageNames);
+    saved = packageNames;
+  }
+
+  @override
+  Future<List<InstalledApp>> launchableApps() async {
+    final Object? failure = appsFailure;
+    if (failure != null) throw failure;
+    return const <InstalledApp>[
+      InstalledApp(packageName: 'org.example.bank', label: 'Banque'),
+      InstalledApp(packageName: 'com.example.game', label: 'Jeu'),
+    ];
+  }
+
+  @override
+  Future<Uint8List?> appIcon(String packageName, int sizePx) async => null;
 }
 
 /// A tunnel with Android's VPN settings (permanent VPN), as on Android.

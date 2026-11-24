@@ -1608,6 +1608,92 @@ class AndroidVpnBridgeHostTest {
         assertEquals(false, call("anotherVpnActive").await().value)
     }
 
+    // Split tunneling: the apps kept out of the VPN, saved as package names in their own preference,
+    // sorted and without duplicates. FuzeVPN itself, or anything else than a package name, is refused.
+    @Test fun excludedAppsRoundTripInTheirOwnPreferenceAndNeverExcludeThisApp() {
+        assertEquals(emptyList<String>(), call("storageReadExcludedApps").await().value)
+        assertNull(call("storageWriteExcludedApps", mapOf("value" to listOf(BANK, GAME, BANK))).await().error)
+        assertEquals(listOf(GAME, BANK), call("storageReadExcludedApps").await().value)
+        assertEquals("[\"$GAME\",\"$BANK\"]", SecureKeystoreStore.raw(excludedAppsSlot()))
+        for (refused in listOf(listOf(context.packageName), listOf("not a package"), listOf("bank"), listOf(1), "x")) {
+            assertEquals("$refused", "invalid_arguments",
+                call("storageWriteExcludedApps", mapOf("value" to refused)).await().error)
+        }
+        assertEquals(listOf(GAME, BANK), call("storageReadExcludedApps").await().value)
+        // Unreadable data excludes nothing: every app stays in the VPN, as the screen then shows.
+        SecureKeystoreStore.put(excludedAppsSlot(), "{")
+        assertEquals(emptyList<String>(), call("storageReadExcludedApps").await().value)
+    }
+
+    // The apps offered are those of the launcher (manifest queries); an icon is a bounded PNG.
+    @Test fun launchableAppsAndTheirIconsAreReadOffTheMainThread() {
+        HarnessControl.installedApps += listOf(BANK, GAME)
+        val apps = call("listLaunchableApps").await().value as List<*>
+        assertEquals(listOf(BANK, GAME), apps.map { (it as Map<*, *>)["package"] })
+        assertNotNull(call("getAppIcon", mapOf("package" to BANK, "size" to 96)).await().value)
+        assertNull(call("getAppIcon", mapOf("package" to REMOVED, "size" to 96)).await().value)
+        assertEquals("invalid_arguments", call("getAppIcon", mapOf("package" to BANK, "size" to 4)).await().error)
+        assertEquals("invalid_arguments", call("getAppIcon", mapOf("package" to "../x", "size" to 96)).await().error)
+        assertEquals("invalid_arguments", call("getAppIcon", mapOf("package" to BANK)).await().error)
+    }
+
+    // Each WireGuard start excludes the saved apps still installed (Android refuses an unknown package),
+    // and the state names the list saved when it started. A list saved since applies from the next one.
+    @Test fun wireGuardExcludesTheSavedAppsStillInstalledFromTheNextConnection() {
+        signIn()
+        HarnessControl.installedApps += listOf(BANK, GAME)
+        assertNull(call("storageWriteExcludedApps", mapOf("value" to listOf(BANK, GAME, REMOVED))).await().error)
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        assertEquals(listOf(listOf(GAME, BANK)), HarnessControl.wireGuardExclusions.toList())
+        assertEquals(listOf(GAME, BANK, REMOVED), publishedExclusions())
+        assertNull(call("storageWriteExcludedApps", mapOf("value" to listOf(BANK))).await().error)
+        assertEquals("a saved list never restarts the tunnel", 1, HarnessControl.wireGuardConnects)
+        assertEquals(listOf(GAME, BANK, REMOVED), publishedExclusions())
+        assertNull(call("disconnect").await().error)
+        assertNull("only a connected tunnel names its list", publishedExclusions())
+        assertNull(call("connectWireGuard", wireGuardArguments()).await().error)
+        assertEquals(listOf(BANK), HarnessControl.wireGuardExclusions.last())
+        assertEquals(listOf(BANK), publishedExclusions())
+    }
+
+    // The permanent VPN and the tile start tunnels without Flutter: they apply the list saved then.
+    @Test fun permanentVpnAndTileStartsExcludeTheListSavedWhenTheyStart() {
+        signIn()
+        storeTileProfile()
+        armResume()
+        HarnessControl.installedApps += listOf(BANK, GAME)
+        SecureKeystoreStore.put(excludedAppsSlot(), "[\"$BANK\"]")
+        systemStart()
+        settleSystemJob()
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(listOf(listOf(BANK)), HarnessControl.wireGuardExclusions.toList())
+        assertNull(call("disconnect").await().error)
+        SecureKeystoreStore.put(excludedAppsSlot(), "[\"$GAME\"]")
+        await(clickTile(), "tile callback")
+        assertEquals(VpnStatus.CONNECTED, bridge.quickTileState().status)
+        assertEquals(listOf(listOf(BANK), listOf(GAME)), HarnessControl.wireGuardExclusions.toList())
+        assertEquals(listOf(GAME), publishedExclusions())
+    }
+
+    // OpenVPN: the service gets the list before each new connection; Core's restarts after a network
+    // change keep the list of their connection, even when another one was saved meanwhile.
+    @Test fun openVpnExcludesTheSavedAppsAndItsRecoveriesKeepTheirList() {
+        HarnessControl.installedApps += listOf(BANK, GAME)
+        SecureKeystoreStore.put(excludedAppsSlot(), "[\"$BANK\",\"$REMOVED\"]")
+        connectOpenVpn()
+        assertEquals(listOf(listOf(BANK)), HarnessControl.openVpnExclusions.toList())
+        SecureKeystoreStore.put(excludedAppsSlot(), "[\"$GAME\"]")
+        loseNetwork()
+        eventually("reconnected") { sink.events.count { it == OPENVPN_CONNECTED } == 2 }
+        assertEquals(listOf("start(reconnecting=false)", "start(reconnecting=true)"), HarnessControl.openVpnService.toList())
+        assertEquals(listOf(listOf(BANK)), HarnessControl.openVpnExclusions.toList())
+        assertEquals(listOf(BANK, REMOVED), publishedExclusions())
+        assertNull(call("disconnect").await().error)
+        assertNull(call("connectOpenVpn", openVpnArguments()).await().error)
+        assertEquals(listOf(listOf(BANK), listOf(GAME)), HarnessControl.openVpnExclusions.toList())
+        assertEquals(listOf(GAME), publishedExclusions())
+    }
+
     @Test fun revokedHostDisarmsAndTheRestartRestoresNothing() {
         armed { assertNull(call("connectWireGuard", wireGuardArguments()).await().error); WIREGUARD_CONNECTED }
         bridge.onVpnHostLost("tun_permission_revoked", bridge.captureHostLoss().first)
@@ -2965,6 +3051,10 @@ class AndroidVpnBridgeHostTest {
 
     private fun storeTileProfile() = SecureKeystoreStore.put(SecureStorageKeyPolicy.quickTileProfile(), profile.encode())
 
+    // Split tunneling: the preference by its stored name, and the list the state names.
+    private fun excludedAppsSlot() = SecureStorageSlot(SecureKeystoreStore.GLOBAL_SCOPE, "fuzevpn.preference.vpn.excluded_apps")
+    private fun publishedExclusions(): Any? = (call("getState").await().value as Map<*, *>)["excluded_apps"]
+
     private fun registry() = SystemVpnResumeRegistry(
         readRaw = { SecureKeystoreStore.raw(SecureStorageKeyPolicy.systemVpnResume()) },
         writeRaw = { SecureKeystoreStore.put(SecureStorageKeyPolicy.systemVpnResume(), it) },
@@ -3065,6 +3155,9 @@ class AndroidVpnBridgeHostTest {
             """{"access_token":"pending-token","expires_at":"2099-01-01T00:00:00Z","admission":"registered"}"""
         const val EMOJI = "\uD83C\uDF0D"
         const val PUBLICATIONS = 20
+        const val BANK = "org.example.bank"
+        const val GAME = "com.example.game"
+        const val REMOVED = "org.example.removed"
         const val OPENVPN_CONNECTED = "connected/openvpn/null"
         const val WIREGUARD_CONNECTED = "connected/wireguard/null"
         const val RECONNECTING = "connecting/openvpn/openvpn_reconnecting"

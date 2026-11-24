@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
 import '../../app_controller.dart';
 import '../../app_theme.dart';
 import '../../core/diagnostics.dart';
+import '../../core/excluded_apps.dart';
 import '../../core/location_grouping.dart';
 import '../../core/location_presentation.dart';
 import '../../core/models.dart';
@@ -31,6 +33,7 @@ part 'connection_page.dart';
 part 'diagnostics_page.dart';
 part 'home_components.dart';
 part 'locations_page.dart';
+part 'split_tunnel_page.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key, required this.controller});

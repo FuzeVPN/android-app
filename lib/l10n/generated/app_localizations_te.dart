@@ -238,6 +238,48 @@ class AppLocalizationsTe extends AppLocalizations {
   String get connection_advancedOptions => 'అధునాతన ఎంపికలు';
 
   @override
+  String get splitTunnel_title => 'VPN వెలుపల ఉన్న యాప్‌లు';
+
+  @override
+  String get splitTunnel_allInVpn => 'అన్ని యాప్‌లు VPNను ఉపయోగిస్తాయి.';
+
+  @override
+  String get splitTunnel_intro =>
+      'టిక్ చేసిన యాప్‌లు VPNను ఉపయోగించవు: అవి మీ సాధారణ నెట్‌వర్క్ ద్వారా, మీ అసలు IP చిరునామాతో కనెక్ట్ అవుతాయి. FuzeVPN ఎల్లప్పుడూ VPN లోపలే ఉంటుంది.';
+
+  @override
+  String get splitTunnel_search => 'యాప్ కోసం శోధించండి';
+
+  @override
+  String get splitTunnel_loading => 'యాప్‌లు లోడ్ అవుతున్నాయి…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'యాప్‌ల జాబితాను లోడ్ చేయడం సాధ్యం కాలేదు. మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ఈ ఎంపికను సేవ్ చేయలేకపోయాము. మళ్లీ ప్రయత్నించండి.';
+
+  @override
+  String get splitTunnel_noApps => 'యాప్‌లు ఏవీ కనుగొనబడలేదు.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'ప్రస్తుత కనెక్షన్ అది ప్రారంభమైనప్పటి జాబితానే ఉంచుకుంటుంది. కొత్త జాబితా తదుపరి కనెక్షన్ నుండి వర్తిస్తుంది, లేదా మీరు మళ్లీ కనెక్ట్ చేస్తే వెంటనే వర్తిస్తుంది.';
+
+  @override
+  String get splitTunnel_reconnect => 'మళ్లీ కనెక్ట్ చేయండి';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Androidలో “VPN లేకుండా కనెక్షన్‌లను బ్లాక్ చేయండి” ఆన్‌లో ఉంది: టిక్ చేసిన యాప్‌లకు ఇంటర్నెట్ యాక్సెస్ అస్సలు ఉండదు.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Androidలో “VPN లేకుండా కనెక్షన్‌లను బ్లాక్ చేయండి” ఆన్‌లో ఉంటే, టిక్ చేసిన యాప్‌లకు ఇంటర్నెట్ యాక్సెస్ అస్సలు ఉండదు.';
+
+  @override
   String get connection_location => 'స్థానం';
 
   @override

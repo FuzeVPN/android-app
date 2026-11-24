@@ -238,6 +238,48 @@ class AppLocalizationsYo extends AppLocalizations {
   String get connection_advancedOptions => 'Àwọn àṣàyàn ìlọsíwájú';
 
   @override
+  String get splitTunnel_title => 'Àwọn ohun èlò ní ìta VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Gbogbo ohun èlò ń lo VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Àwọn ohun èlò tí a fi àmì sí kò lo VPN: wọ́n ń sopọ̀ nípasẹ̀ nẹ́tíwọ́ọ̀kì tí ẹ máa ń lò, pẹ̀lú àdírẹ́sì IP yín gidi. FuzeVPN fúnra rẹ̀ máa ń wà nínú VPN nígbà gbogbo.';
+
+  @override
+  String get splitTunnel_search => 'Ṣàwárí ohun èlò';
+
+  @override
+  String get splitTunnel_loading => 'Ń gbé àwọn ohun èlò wá…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'A kò lè gbé àkójọ àwọn ohun èlò wá. Ẹ tún gbìyànjú.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'A kò lè fi àṣàyàn yìí pamọ́. Ẹ tún gbìyànjú.';
+
+  @override
+  String get splitTunnel_noApps => 'A kò rí ohun èlò kankan.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Àsopọ̀ tó ń lọ lọ́wọ́ máa ń lo àkójọ tí ó fi bẹ̀rẹ̀. Àkójọ tuntun yóò bẹ̀rẹ̀ iṣẹ́ láti àsopọ̀ tó kàn, tàbí lẹ́sẹ̀kẹsẹ̀ tí ẹ bá tún sopọ̀.';
+
+  @override
+  String get splitTunnel_reconnect => 'Tún sopọ̀';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Dènà àsopọ̀ láìsí VPN” ti wà ní títàn nínú Android: àwọn ohun èlò tí a fi àmì sí kò ní ààyè sí Íńtánẹ́ẹ̀tì rárá.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Tí “Dènà àsopọ̀ láìsí VPN” bá wà ní títàn nínú Android, àwọn ohun èlò tí a fi àmì sí kò ní ààyè sí Íńtánẹ́ẹ̀tì rárá.';
+
+  @override
   String get connection_location => 'Ibi';
 
   @override

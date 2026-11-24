@@ -142,9 +142,11 @@ internal class WireGuardController(
     /**
      * Brings WireGuard up and returns only after a fresh handshake is observed.
      * A merely established Android TUN interface is never reported as connected.
+     * [excludedApplications] are installed packages kept out of the tunnel (split tunneling).
      */
     fun connect(
         request: WireGuardRequest,
+        excludedApplications: List<String> = emptyList(),
         isCurrent: () -> Boolean = { true },
         requireExistingIdentity: Boolean = false,
         timing: NativeConnectionTiming.TraceContext? = null,
@@ -160,7 +162,7 @@ internal class WireGuardController(
             privateKeyFor(request.accountId, requireExistingIdentity)
         }
         val configuration = NativeConnectionTiming.span(timing, "wireguard_identity_config") {
-            buildConfiguration(request, privateKey)
+            buildConfiguration(request, privateKey, excludedApplications)
         }
         val identityFingerprint = fingerprint(KeyPair(Key.fromBase64(privateKey)).publicKey.toBase64())
         val tunnel = ManagedTunnel(TUNNEL_NAME) {
@@ -299,7 +301,7 @@ internal class WireGuardController(
         .digest(value.toByteArray(StandardCharsets.UTF_8))
         .joinToString("") { byte -> "%02x".format(byte.toInt() and 0xff) }
 
-    private fun buildConfiguration(request: WireGuardRequest, privateKey: String): Config {
+    private fun buildConfiguration(request: WireGuardRequest, privateKey: String, excludedApplications: List<String>): Config {
         fun clean(value: String, field: String): String {
             if (value.isBlank() || value.length > MAX_CONFIGURATION_FIELD || value.any { it == '\n' || it == '\r' || it == '\u0000' }) {
                 throw VpnNativeException("wireguard_configuration_invalid", IllegalArgumentException(field))
@@ -307,7 +309,9 @@ internal class WireGuardController(
             return value.trim()
         }
 
-        if (request.dns.isEmpty() || request.allowedIps.isEmpty()) {
+        if (request.dns.isEmpty() || request.allowedIps.isEmpty() ||
+            excludedApplications.size > SplitTunnelPolicy.MAX_APPS ||
+            excludedApplications.any { !SplitTunnelPolicy.isPackageName(it) }) {
             throw VpnNativeException("wireguard_configuration_invalid")
         }
 
@@ -319,6 +323,10 @@ internal class WireGuardController(
             append("PrivateKey = ").append(clean(privateKey, "private_key")).appendLine()
             append("Address = ").append(request.network.addresses.joinToString(", ")).appendLine()
             append("DNS = ").append(request.dns.joinToString(", ") { clean(it, "dns") }).appendLine()
+            // GoBackend passes each one to VpnService.Builder.addDisallowedApplication.
+            if (excludedApplications.isNotEmpty()) {
+                append("ExcludedApplications = ").append(excludedApplications.joinToString(", ")).appendLine()
+            }
             appendLine()
             appendLine("[Peer]")
             append("PublicKey = ").append(clean(request.serverPublicKey, "server_public_key")).appendLine()

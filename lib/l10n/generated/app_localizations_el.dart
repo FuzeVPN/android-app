@@ -243,6 +243,48 @@ class AppLocalizationsEl extends AppLocalizations {
   String get connection_advancedOptions => 'Σύνθετες επιλογές';
 
   @override
+  String get splitTunnel_title => 'Εφαρμογές εκτός VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Όλες οι εφαρμογές χρησιμοποιούν το VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Οι επιλεγμένες εφαρμογές δεν χρησιμοποιούν το VPN: συνδέονται μέσω του συνηθισμένου δικτύου σας, με την πραγματική σας διεύθυνση IP. Το FuzeVPN παραμένει πάντα στο VPN.';
+
+  @override
+  String get splitTunnel_search => 'Αναζήτηση εφαρμογής';
+
+  @override
+  String get splitTunnel_loading => 'Φόρτωση εφαρμογών…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Δεν ήταν δυνατή η φόρτωση της λίστας εφαρμογών. Δοκιμάστε ξανά.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Δεν ήταν δυνατή η αποθήκευση αυτής της επιλογής. Δοκιμάστε ξανά.';
+
+  @override
+  String get splitTunnel_noApps => 'Δεν βρέθηκαν εφαρμογές.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Η τρέχουσα σύνδεση διατηρεί τη λίστα με την οποία ξεκίνησε. Η νέα λίστα ισχύει από την επόμενη σύνδεση ή αμέσως, αν συνδεθείτε ξανά.';
+
+  @override
+  String get splitTunnel_reconnect => 'Επανασύνδεση';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Η ρύθμιση «Αποκλεισμός συνδέσεων χωρίς VPN» είναι ενεργή στο Android: οι επιλεγμένες εφαρμογές δεν έχουν καμία πρόσβαση στο διαδίκτυο.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Αν η ρύθμιση «Αποκλεισμός συνδέσεων χωρίς VPN» είναι ενεργή στο Android, οι επιλεγμένες εφαρμογές δεν έχουν καμία πρόσβαση στο διαδίκτυο.';
+
+  @override
   String get connection_location => 'Τοποθεσία';
 
   @override

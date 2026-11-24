@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/foundation.dart'
-    show ValueListenable, listEquals, mapEquals;
+    show ValueListenable, listEquals, mapEquals, setEquals;
 import 'package:flutter/material.dart';
 
 import 'billing_controller.dart';
@@ -12,6 +13,7 @@ import 'core/api_exception.dart';
 import 'core/connection_timing.dart';
 import 'core/diagnostic_schema.dart' show DiagnosticMetadata;
 import 'core/diagnostics.dart';
+import 'core/excluded_apps.dart';
 import 'core/favorite_locations.dart';
 import 'core/google_auth.dart';
 import 'core/google_credentials.dart';
@@ -33,6 +35,7 @@ part 'app_controller_guest.dart';
 part 'app_controller_location_change.dart';
 part 'app_controller_preferences.dart';
 part 'app_controller_review.dart';
+part 'app_controller_split_tunnel.dart';
 
 class AppNotice {
   const AppNotice({
@@ -191,6 +194,16 @@ class VpnAppController extends ChangeNotifier {
   bool favoritesLoadFailed = false;
   bool _favoritesLoaded = false;
   Future<void>? _favoriteRead;
+  // Split tunneling (app_controller_split_tunnel.dart), as the favorites.
+  Set<String> _excludedApps = const <String>{};
+  Set<String> _savedExcludedApps = const <String>{};
+  Future<void> _excludedAppWrites = Future<void>.value();
+  Future<void>? _excludedAppsRead;
+  int _excludedAppsEpoch = 0;
+  int _excludedAppWritesPending = 0;
+  bool _excludedAppsLoaded = false;
+  bool excludedAppsLoadFailed = false;
+  bool excludedAppsSaveFailed = false;
   late final StreamSubscription<VpnRuntimeState> _tunnelSubscription;
   Timer? _tunnelMetricsTimer;
   bool _tunnelMetricsRefreshInFlight = false;
@@ -1023,6 +1036,7 @@ class VpnAppController extends ChangeNotifier {
     notifyListeners();
     try {
       unawaited(_initializeDiagnostics());
+      unawaited(_initializeExcludedApps());
       await _initializeFavorites();
       operation.check();
       final String? savedTheme = await _safe<String?>(
@@ -4114,6 +4128,7 @@ class VpnAppController extends ChangeNotifier {
       a.openVpnRevocation == null &&
       b.openVpnRevocation == null &&
       listEquals(a.ipFamilies, b.ipFamilies) &&
+      listEquals(a.excludedApps, b.excludedApps) &&
       a.systemProtection.alwaysOn == b.systemProtection.alwaysOn &&
       a.systemProtection.lockdown == b.systemProtection.lockdown &&
       a.systemProtection.resumeState == b.systemProtection.resumeState &&

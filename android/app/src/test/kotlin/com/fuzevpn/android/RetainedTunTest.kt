@@ -21,6 +21,19 @@ class RetainedTunTest {
         }
     }
 
+    // Split tunneling: a TUN established without some apps is reused only for the same apps.
+    @Test fun aTunEstablishedForOtherExcludedAppsIsNotReused() {
+        val plan = TunnelNetworkSpec.legacyIpv4().validateTun(listOf("10.9.0.2/32"), listOf("0.0.0.0/0"),
+            listOf("10.9.0.1"), 1400)
+        val retained = RetainedTun<Handle, ValidatedTun>()
+        retained.replace(Handle("tun"), plan.copy(excludedApplications = listOf("org.example.bank")), host)
+        assertEquals("another network plan", retained.refusal(plan, host))
+        assertEquals("another network plan",
+            retained.refusal(plan.copy(excludedApplications = listOf("com.example.game")), host))
+        assertNull(retained.refusal(plan.copy(excludedApplications = listOf("org.example.bank")), host))
+        assertNull(retained.reuse(plan, host) { it })
+    }
+
     @Test fun theNewHandleIsHeldBeforeTheOldOneCloses() {
         val retained = RetainedTun<Handle, String>()
         val old = Handle("old")

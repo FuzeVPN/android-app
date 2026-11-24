@@ -239,6 +239,48 @@ class AppLocalizationsUz extends AppLocalizations {
   String get connection_advancedOptions => 'Qoʻshimcha sozlamalar';
 
   @override
+  String get splitTunnel_title => 'VPN’dan tashqaridagi ilovalar';
+
+  @override
+  String get splitTunnel_allInVpn => 'Barcha ilovalar VPN’dan foydalanadi.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Belgilangan ilovalar VPN’dan foydalanmaydi: ular odatiy tarmogʻingiz orqali, haqiqiy IP manzilingiz bilan ulanadi. FuzeVPN esa doim VPN ichida qoladi.';
+
+  @override
+  String get splitTunnel_search => 'Ilovani qidirish';
+
+  @override
+  String get splitTunnel_loading => 'Ilovalar yuklanmoqda…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Ilovalar roʻyxatini yuklab boʻlmadi. Qayta urinib koʻring.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Bu tanlovni saqlab boʻlmadi. Qayta urinib koʻring.';
+
+  @override
+  String get splitTunnel_noApps => 'Ilovalar topilmadi.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Joriy ulanish oʻzi boshlangan roʻyxatni saqlab qoladi. Yangi roʻyxat keyingi ulanishdan, yoki qayta ulansangiz, darhol qoʻllanadi.';
+
+  @override
+  String get splitTunnel_reconnect => 'Qayta ulanish';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android’da “VPN’siz ulanishlarni bloklash” yoqilgan: belgilangan ilovalar Internetga umuman kira olmaydi.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android’da “VPN’siz ulanishlarni bloklash” yoqilgan boʻlsa, belgilangan ilovalar Internetga umuman kira olmaydi.';
+
+  @override
   String get connection_location => 'Joylashuv';
 
   @override

@@ -240,6 +240,48 @@ class AppLocalizationsLt extends AppLocalizations {
   String get connection_advancedOptions => 'Išplėstinės parinktys';
 
   @override
+  String get splitTunnel_title => 'Programos už VPN ribų';
+
+  @override
+  String get splitTunnel_allInVpn => 'Visos programos naudoja VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Pažymėtos programos nenaudoja VPN: jos jungiasi per jūsų įprastą tinklą, naudodamos jūsų tikrąjį IP adresą. FuzeVPN visada lieka VPN viduje.';
+
+  @override
+  String get splitTunnel_search => 'Ieškoti programos';
+
+  @override
+  String get splitTunnel_loading => 'Įkeliamos programos…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Programų sąrašo nepavyko įkelti. Bandykite dar kartą.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Šio pasirinkimo nepavyko išsaugoti. Bandykite dar kartą.';
+
+  @override
+  String get splitTunnel_noApps => 'Programų nerasta.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Dabartinis ryšys išlaiko sąrašą, su kuriuo buvo pradėtas. Naujas sąrašas taikomas nuo kito prisijungimo arba iškart, jei prisijungsite iš naujo.';
+
+  @override
+  String get splitTunnel_reconnect => 'Prisijungti iš naujo';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android sistemoje įjungta „Blokuoti ryšius be VPN“: pažymėtos programos visiškai neturi interneto prieigos.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Jei Android sistemoje įjungta „Blokuoti ryšius be VPN“, pažymėtos programos visiškai neturi interneto prieigos.';
+
+  @override
   String get connection_location => 'Vieta';
 
   @override

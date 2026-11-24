@@ -240,6 +240,48 @@ class AppLocalizationsBg extends AppLocalizations {
   String get connection_advancedOptions => 'Разширени опции';
 
   @override
+  String get splitTunnel_title => 'Приложения извън VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Всички приложения използват VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Отбелязаните приложения не използват VPN: те се свързват през обичайната ви мрежа, с истинския ви IP адрес. FuzeVPN винаги остава във VPN.';
+
+  @override
+  String get splitTunnel_search => 'Търсене на приложение';
+
+  @override
+  String get splitTunnel_loading => 'Зареждане на приложенията…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Списъкът с приложения не може да се зареди. Опитайте отново.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Този избор не можа да бъде запазен. Опитайте отново.';
+
+  @override
+  String get splitTunnel_noApps => 'Няма намерени приложения.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Текущата връзка запазва списъка, с който е започнала. Новият списък се прилага от следващото свързване или веднага, ако се свържете отново.';
+
+  @override
+  String get splitTunnel_reconnect => 'Повторно свързване';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Опцията „Блокиране на връзки без VPN“ е включена в Android: отбелязаните приложения нямат никакъв достъп до интернет.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Ако опцията „Блокиране на връзки без VPN“ е включена в Android, отбелязаните приложения нямат никакъв достъп до интернет.';
+
+  @override
   String get connection_location => 'Местоположение';
 
   @override

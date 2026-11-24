@@ -239,6 +239,48 @@ class AppLocalizationsNe extends AppLocalizations {
   String get connection_advancedOptions => 'उन्नत विकल्पहरू';
 
   @override
+  String get splitTunnel_title => 'VPN बाहिरका एपहरू';
+
+  @override
+  String get splitTunnel_allInVpn => 'सबै एपहरूले VPN प्रयोग गर्छन्।';
+
+  @override
+  String get splitTunnel_intro =>
+      'चिन्ह लगाइएका एपहरूले VPN प्रयोग गर्दैनन्: तिनीहरू तपाईंको सामान्य नेटवर्कबाट, तपाईंको वास्तविक IP ठेगानासहित जडान हुन्छन्। FuzeVPN भने सधैं VPN भित्रै रहन्छ।';
+
+  @override
+  String get splitTunnel_search => 'एप खोज्नुहोस्';
+
+  @override
+  String get splitTunnel_loading => 'एपहरू लोड हुँदैछन्…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'एपहरूको सूची लोड गर्न सकिएन। फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'यो छनोट सेभ गर्न सकिएन। फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get splitTunnel_noApps => 'कुनै एप भेटिएन।';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'हालको जडानले सुरु हुँदाको सूची नै कायम राख्छ। नयाँ सूची अर्को जडानदेखि लागू हुन्छ, वा फेरि जडान गर्नुभयो भने तुरुन्तै।';
+
+  @override
+  String get splitTunnel_reconnect => 'फेरि जडान गर्नुहोस्';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android मा “VPN बिना जडानहरू अवरुद्ध गर्नुहोस्” सक्रिय छ: चिन्ह लगाइएका एपहरूसँग कुनै पनि इन्टरनेट पहुँच छैन।';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android मा “VPN बिना जडानहरू अवरुद्ध गर्नुहोस्” सक्रिय भएमा, चिन्ह लगाइएका एपहरूसँग कुनै पनि इन्टरनेट पहुँच हुँदैन।';
+
+  @override
   String get connection_location => 'स्थान';
 
   @override

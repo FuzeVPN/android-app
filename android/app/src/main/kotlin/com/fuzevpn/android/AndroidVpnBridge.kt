@@ -210,6 +210,12 @@ internal class AndroidVpnBridge(
     private var activeLocationName: String? = null
     private var wireGuardIpFamilies: List<String> = emptyList()
 
+    // Split tunneling: the excluded apps saved when the current tunnel started. A list saved since
+    // applies from the next connection; Flutter compares the two (published while CONNECTED).
+    @Volatile
+    private var tunnelExclusions: List<String>? = null
+    private val installedApps = InstalledApps(appContext)
+
     @Volatile
     private var connectedAtMillis: Long? = null
     @Volatile private var provenConnectionProfile: QuickTileProfile? = null
@@ -1377,6 +1383,21 @@ internal class AndroidVpnBridge(
                 writePreference(SecureAppPreference.FAVORITE_LOCATIONS,
                     FavoriteLocations.encode(call.requireMap()[VALUE]))
             }
+            // Split tunneling: the saved list applies from the next connection; the apps offered are those
+            // with an icon in the launcher.
+            "storageReadExcludedApps" -> launchResult(result) {
+                SplitTunnelPolicy.decode(readPreference(SecureAppPreference.EXCLUDED_APPS), appContext.packageName)
+            }
+            "storageWriteExcludedApps" -> launchVoidResult(result) {
+                writePreference(SecureAppPreference.EXCLUDED_APPS,
+                    SplitTunnelPolicy.encode(call.requireMap()[VALUE], appContext.packageName))
+            }
+            "listLaunchableApps" -> launchResult(result) { installedApps.launchable() }
+            "getAppIcon" -> launchResult(result) {
+                val args = call.requireMap()
+                val size = args[ICON_SIZE] as? Int ?: throw VpnNativeException("invalid_arguments")
+                installedApps.icon(args.requiredString(PACKAGE_NAME), size)
+            }
             "storageReadAutomaticDiagnostics" -> launchResult(result) {
                 store.readAutomaticDiagnosticsConsent()
             }
@@ -1686,6 +1707,7 @@ internal class AndroidVpnBridge(
             locationId = request.locationId,
             locationName = request.locationName,
         )
+        val excludedApps = beginTunnelExclusions()
         if (restoring) systemRestoreInstance = tunnelInstanceEpoch.get()
         emitState(VpnStatus.PREPARING, VpnProtocol.WIREGUARD, null)
         wireGuardIpFamilies = request.network.ipFamilies
@@ -1697,7 +1719,7 @@ internal class AndroidVpnBridge(
         // protocol until disconnect has positively completed.
         activeProtocol = VpnProtocol.WIREGUARD
         val connected = try {
-            wireGuard.connect(request, requireExistingIdentity = restoring || localOnly, timing = timing, isCurrent = {
+            wireGuard.connect(request, excludedApps, requireExistingIdentity = restoring || localOnly, timing = timing, isCurrent = {
                 sessionLifecycle.isCurrent(ticket) && tunnelRequestEpoch.get() == requestEpoch
             })
         } catch (error: VpnNativeException) {
@@ -1796,6 +1818,7 @@ internal class AndroidVpnBridge(
         // session, while still refusing to run two VPNs concurrently.
         if (activeProtocol != null) NativeConnectionTiming.spanSuspend(timing, "stop_worker") { disconnectLocked(userInitiated = false, timing = timing) }
         setActiveMetadata(accountId, deviceId, locationId, locationName)
+        OpenVpnService.excludeApplications(beginTunnelExclusions())
         emitState(VpnStatus.PREPARING, VpnProtocol.OPENVPN, null)
         NativeConnectionTiming.span(timing, "vpn_service_start") { OpenVpnService.start(appContext) }
         if (!NativeConnectionTiming.span(timing, "vpn_service_await") { OpenVpnService.awaitReady(OPENVPN_SERVICE_START_TIMEOUT_MS) }) {
@@ -2161,6 +2184,7 @@ internal class AndroidVpnBridge(
             profile.locationId,
             profile.locationName,
         )
+        OpenVpnService.excludeApplications(beginTunnelExclusions())
         if (restoring) systemRestoreInstance = tunnelInstanceEpoch.get()
         emitState(VpnStatus.PREPARING, VpnProtocol.OPENVPN, null)
         OpenVpnService.start(appContext)
@@ -2866,6 +2890,7 @@ internal class AndroidVpnBridge(
             sentBytes = previous.sentBytes.takeIf { sameTunnel },
             latestHandshakeMillis = previous.latestHandshakeMillis.takeIf { sameTunnel },
             retryAtMillis = openVpnRetryAtMillis.takeIf { messageCode == OPENVPN_RENEWAL_RATE_LIMITED },
+            excludedApps = tunnelExclusions.takeIf { status == VpnStatus.CONNECTED && activeProtocol == protocol },
             ipFamilies = if (status == VpnStatus.CONNECTED) {
                 when (protocol) {
                     VpnProtocol.WIREGUARD -> wireGuardIpFamilies
@@ -2962,8 +2987,27 @@ internal class AndroidVpnBridge(
         connectedAtMillis = null
     }
 
+    /**
+     * Split tunneling for the tunnel starting now (from the app, the tile or the permanent VPN): keeps the
+     * saved list for the state, and returns what the engine excludes, the saved apps still installed. A list
+     * that cannot be read excludes nothing: every app then stays in the VPN.
+     */
+    private fun beginTunnelExclusions(): List<String> {
+        val own = appContext.packageName
+        val saved = try {
+            SplitTunnelPolicy.decode(readPreference(SecureAppPreference.EXCLUDED_APPS), own)
+        } catch (_: Exception) {
+            emptyList()
+        }
+        tunnelExclusions = saved
+        return SplitTunnelPolicy.forTunnel(saved, own) { name ->
+            try { installedApps.isInstalled(name) } catch (_: Exception) { false }
+        }
+    }
+
     private fun clearActiveMetadata() {
         stopWireGuardRecoveryLocked()
+        tunnelExclusions = null
         provenConnectionProfile = null
         activeAccountId = null
         activeDeviceId = null
@@ -3132,6 +3176,8 @@ internal class AndroidVpnBridge(
         private const val LOCATION_NAME = "location_name"
         private const val PAYLOAD = "payload"
         private const val VALUE = "value"
+        private const val PACKAGE_NAME = "package"
+        private const val ICON_SIZE = "size"
         private const val RETIRED_ACCESS_KEPT = 4
         @Volatile
         private var retainedRuntime: AndroidVpnBridge? = null

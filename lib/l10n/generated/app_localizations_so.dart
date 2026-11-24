@@ -240,6 +240,49 @@ class AppLocalizationsSo extends AppLocalizations {
   String get connection_advancedOptions => 'Doorashooyin horumarsan';
 
   @override
+  String get splitTunnel_title => 'Barnaamijyada ka baxsan VPN-ka';
+
+  @override
+  String get splitTunnel_allInVpn =>
+      'Dhammaan barnaamijyadu waxay isticmaalaan VPN-ka.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Barnaamijyada la calaamadeeyay ma isticmaalaan VPN-ka: waxay ku xidhmaan shabakaddaada caadiga ah, iyagoo wata cinwaankaaga IP ee dhabta ah. FuzeVPN had iyo jeer wuxuu ku jiraa VPN-ka.';
+
+  @override
+  String get splitTunnel_search => 'Raadi barnaamij';
+
+  @override
+  String get splitTunnel_loading => 'Barnaamijyada waa la soo rarayaa…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Liiska barnaamijyada lama soo rari karin. Isku day mar kale.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Doorashadan lama kaydin karin. Isku day mar kale.';
+
+  @override
+  String get splitTunnel_noApps => 'Barnaamij lama helin.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Xidhiidhka hadda socda wuxuu haystaa liiskii uu ku bilaabmay. Liiska cusub wuxuu dhaqan gelayaa xidhiidhka xiga, ama isla markiiba haddii aad dib ugu xidhanto.';
+
+  @override
+  String get splitTunnel_reconnect => 'Dib ugu xidh';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Xannib xidhiidhada aan VPN lahayn” waa ka shidan yahay Android: barnaamijyada la calaamadeeyay gabi ahaanba ma gelin karaan internetka.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Haddii “Xannib xidhiidhada aan VPN lahayn” uu ka shidan yahay Android, barnaamijyada la calaamadeeyay gabi ahaanba ma gelin karaan internetka.';
+
+  @override
   String get connection_location => 'Goob';
 
   @override

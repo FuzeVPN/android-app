@@ -241,6 +241,48 @@ class AppLocalizationsRw extends AppLocalizations {
   String get connection_advancedOptions => 'Amahitamo y’inyongera';
 
   @override
+  String get splitTunnel_title => 'Porogaramu ziri hanze ya VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'Porogaramu zose zikoresha VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Porogaramu zashyizweho ikimenyetso ntizikoresha VPN: zihuza zinyuze ku rusobe rwanyu rusanzwe, zikoresheje aderesi IP yanyu nyakuri. FuzeVPN yo ihora iri muri VPN.';
+
+  @override
+  String get splitTunnel_search => 'Gushakisha porogaramu';
+
+  @override
+  String get splitTunnel_loading => 'Irimo kuzana porogaramu…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Ntibyashobotse kuzana urutonde rwa porogaramu. Mwongere mugerageze.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Ntibyashobotse kubika iri hitamo. Mwongere mugerageze.';
+
+  @override
+  String get splitTunnel_noApps => 'Nta porogaramu yabonetse.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Ihuza riri gukora rigumana urutonde ryatangiranye. Urutonde rushya ruzakurikizwa guhera ku ihuza ritaha, cyangwa ako kanya nimwongera guhuza.';
+
+  @override
+  String get splitTunnel_reconnect => 'Kongera guhuza';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Guhagarika ihuza ridafite VPN” irafunguye muri Android: porogaramu zashyizweho ikimenyetso nta interineti na mba zibona.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Niba “Guhagarika ihuza ridafite VPN” ifunguye muri Android, porogaramu zashyizweho ikimenyetso nta interineti na mba zibona.';
+
+  @override
   String get connection_location => 'Ahantu';
 
   @override

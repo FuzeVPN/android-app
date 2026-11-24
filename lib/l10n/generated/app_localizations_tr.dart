@@ -239,6 +239,48 @@ class AppLocalizationsTr extends AppLocalizations {
   String get connection_advancedOptions => 'Gelişmiş seçenekler';
 
   @override
+  String get splitTunnel_title => 'VPN dışındaki uygulamalar';
+
+  @override
+  String get splitTunnel_allInVpn => 'Tüm uygulamalar VPN\'i kullanıyor.';
+
+  @override
+  String get splitTunnel_intro =>
+      'İşaretli uygulamalar VPN\'i kullanmaz: normal ağınız üzerinden, gerçek IP adresinizle bağlanır. FuzeVPN her zaman VPN içinde kalır.';
+
+  @override
+  String get splitTunnel_search => 'Uygulama arayın';
+
+  @override
+  String get splitTunnel_loading => 'Uygulamalar yükleniyor…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Uygulama listesi yüklenemedi. Tekrar deneyin.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Bu seçim kaydedilemedi. Tekrar deneyin.';
+
+  @override
+  String get splitTunnel_noApps => 'Uygulama bulunamadı.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Mevcut bağlantı, başladığı listeyi korur. Yeni liste bir sonraki bağlantıda veya yeniden bağlanırsanız hemen uygulanır.';
+
+  @override
+  String get splitTunnel_reconnect => 'Yeniden bağlan';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android\'de “VPN olmadan bağlantıları engelle” açık: işaretli uygulamaların hiç internet erişimi yok.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android\'de “VPN olmadan bağlantıları engelle” açıksa işaretli uygulamaların hiç internet erişimi olmaz.';
+
+  @override
   String get connection_location => 'Konum';
 
   @override

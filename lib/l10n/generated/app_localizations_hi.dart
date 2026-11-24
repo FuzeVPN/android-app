@@ -237,6 +237,48 @@ class AppLocalizationsHi extends AppLocalizations {
   String get connection_advancedOptions => 'उन्नत विकल्प';
 
   @override
+  String get splitTunnel_title => 'VPN से बाहर के ऐप्स';
+
+  @override
+  String get splitTunnel_allInVpn => 'सभी ऐप्स VPN का उपयोग करते हैं।';
+
+  @override
+  String get splitTunnel_intro =>
+      'चेक किए गए ऐप्स VPN का उपयोग नहीं करते: वे आपके सामान्य नेटवर्क से, आपके असली IP पते के साथ कनेक्ट होते हैं। FuzeVPN हमेशा VPN में ही रहता है।';
+
+  @override
+  String get splitTunnel_search => 'ऐप खोजें';
+
+  @override
+  String get splitTunnel_loading => 'ऐप्स लोड हो रहे हैं…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ऐप्स की सूची लोड नहीं हो सकी। फिर प्रयास करें।';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'यह चयन सहेजा नहीं जा सका। फिर प्रयास करें।';
+
+  @override
+  String get splitTunnel_noApps => 'कोई ऐप नहीं मिला।';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'मौजूदा कनेक्शन उसी सूची के साथ चलता रहता है जिससे वह शुरू हुआ था। नई सूची अगले कनेक्शन से लागू होगी, या फिर से कनेक्ट करने पर तुरंत लागू होगी।';
+
+  @override
+  String get splitTunnel_reconnect => 'फिर से कनेक्ट करें';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android में “VPN के बिना कनेक्शन अवरुद्ध करें” चालू है: चेक किए गए ऐप्स के पास इंटरनेट की कोई पहुंच नहीं है।';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'अगर Android में “VPN के बिना कनेक्शन अवरुद्ध करें” चालू है, तो चेक किए गए ऐप्स के पास इंटरनेट की कोई पहुंच नहीं होती।';
+
+  @override
   String get connection_location => 'स्थान';
 
   @override

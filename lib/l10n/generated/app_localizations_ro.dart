@@ -239,6 +239,48 @@ class AppLocalizationsRo extends AppLocalizations {
   String get connection_advancedOptions => 'Opțiuni avansate';
 
   @override
+  String get splitTunnel_title => 'Aplicații în afara VPN-ului';
+
+  @override
+  String get splitTunnel_allInVpn => 'Toate aplicațiile folosesc VPN-ul.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Aplicațiile bifate nu folosesc VPN-ul: se conectează prin rețeaua ta obișnuită, cu adresa ta IP reală. FuzeVPN rămâne mereu în VPN.';
+
+  @override
+  String get splitTunnel_search => 'Caută o aplicație';
+
+  @override
+  String get splitTunnel_loading => 'Se încarcă aplicațiile…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'Lista de aplicații nu a putut fi încărcată. Încearcă din nou.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'Această alegere nu a putut fi salvată. Încearcă din nou.';
+
+  @override
+  String get splitTunnel_noApps => 'Nu a fost găsită nicio aplicație.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'Conexiunea curentă păstrează lista cu care a pornit. Noua listă se aplică de la următoarea conectare sau imediat, dacă te reconectezi.';
+
+  @override
+  String get splitTunnel_reconnect => 'Reconectează-te';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '„Blochează conexiunile fără VPN” este activat în Android: aplicațiile bifate nu au deloc acces la internet.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Dacă „Blochează conexiunile fără VPN” este activat în Android, aplicațiile bifate nu au deloc acces la internet.';
+
+  @override
   String get connection_location => 'Locație';
 
   @override

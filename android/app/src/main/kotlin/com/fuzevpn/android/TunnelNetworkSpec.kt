@@ -129,4 +129,7 @@ internal data class NetworkCidr(val host: InetAddress, val prefix: Int) {
         (host.address[0].toInt() and 255) == (if (upper) 128 else 0) && host.address.drop(1).all { it == 0.toByte() }
 }
 
-internal data class ValidatedTun(val addresses: List<NetworkCidr>, val routes: List<NetworkCidr>, val dns: List<InetAddress>, val mtu: Int)
+// excludedApplications: the apps the TUN was established without (split tunneling); part of the plan a
+// retained TUN must match to be reused.
+internal data class ValidatedTun(val addresses: List<NetworkCidr>, val routes: List<NetworkCidr>, val dns: List<InetAddress>, val mtu: Int,
+    val excludedApplications: List<String> = emptyList())

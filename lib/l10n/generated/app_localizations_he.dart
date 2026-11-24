@@ -233,6 +233,48 @@ class AppLocalizationsHe extends AppLocalizations {
   String get connection_advancedOptions => 'אפשרויות מתקדמות';
 
   @override
+  String get splitTunnel_title => 'אפליקציות מחוץ ל-VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'כל האפליקציות משתמשות ב-VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'אפליקציות מסומנות לא משתמשות ב-VPN: הן מתחברות דרך הרשת הרגילה שלך, עם כתובת ה-IP האמיתית שלך. FuzeVPN תמיד נשארת בתוך ה-VPN.';
+
+  @override
+  String get splitTunnel_search => 'חפש אפליקציה';
+
+  @override
+  String get splitTunnel_loading => 'טוען אפליקציות…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'לא ניתן לטעון את רשימת האפליקציות. נסה שוב.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'לא ניתן היה לשמור את הבחירה הזו. נסה שוב.';
+
+  @override
+  String get splitTunnel_noApps => 'לא נמצאו אפליקציות.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'החיבור הנוכחי שומר על הרשימה שאיתה התחיל. הרשימה החדשה תחול מהחיבור הבא, או מיד אם תתחבר מחדש.';
+
+  @override
+  String get splitTunnel_reconnect => 'התחבר מחדש';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“חסום חיבורים ללא VPN” מופעל ב-Android: לאפליקציות המסומנות אין שום גישה לאינטרנט.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'אם “חסום חיבורים ללא VPN” מופעל ב-Android, לאפליקציות המסומנות אין שום גישה לאינטרנט.';
+
+  @override
   String get connection_location => 'מיקום';
 
   @override

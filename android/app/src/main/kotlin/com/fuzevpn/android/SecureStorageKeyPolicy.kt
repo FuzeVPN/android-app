@@ -16,6 +16,8 @@ internal enum class SecureAppPreference(internal val storageKey: String) {
     VPN_DISCLOSURE_VERSION("fuzevpn.preference.vpn.disclosure_version"),
     // Successful connections and Google Play review requests, written by Flutter (opaque here).
     REVIEW_PROMPT("fuzevpn.preference.review.prompt"),
+    // Apps kept out of the VPN (split tunneling): a JSON list of package names, see SplitTunnelPolicy.
+    EXCLUDED_APPS("fuzevpn.preference.vpn.excluded_apps"),
 }
 
 /**

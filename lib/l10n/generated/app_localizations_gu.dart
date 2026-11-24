@@ -237,6 +237,48 @@ class AppLocalizationsGu extends AppLocalizations {
   String get connection_advancedOptions => 'ઍડવાન્સ્ડ વિકલ્પો';
 
   @override
+  String get splitTunnel_title => 'VPN બહારની ઍપ';
+
+  @override
+  String get splitTunnel_allInVpn => 'બધી ઍપ VPNનો ઉપયોગ કરે છે.';
+
+  @override
+  String get splitTunnel_intro =>
+      'ચેક કરેલી ઍપ VPNનો ઉપયોગ કરતી નથી: તે તમારા સામાન્ય નેટવર્ક દ્વારા, તમારા વાસ્તવિક IP સરનામા સાથે કનેક્ટ થાય છે. FuzeVPN હંમેશાં VPNમાં જ રહે છે.';
+
+  @override
+  String get splitTunnel_search => 'ઍપ શોધો';
+
+  @override
+  String get splitTunnel_loading => 'ઍપ લોડ થઈ રહી છે…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ઍપની સૂચિ લોડ કરી શકાઈ નથી. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'આ પસંદગી સાચવી શકાઈ નથી. ફરી પ્રયાસ કરો.';
+
+  @override
+  String get splitTunnel_noApps => 'કોઈ ઍપ મળી નથી.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'હાલનું કનેક્શન જે સૂચિ સાથે શરૂ થયું હતું તે જ જાળવી રાખે છે. નવી સૂચિ આગામી કનેક્શનથી લાગુ થશે, અથવા તમે ફરી કનેક્ટ કરો તો તરત જ.';
+
+  @override
+  String get splitTunnel_reconnect => 'ફરી કનેક્ટ કરો';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Androidમાં “VPN વિના કનેક્શન બ્લૉક કરો” ચાલુ છે: ચેક કરેલી ઍપને ઇન્ટરનેટ ઍક્સેસ બિલકુલ નથી.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'જો Androidમાં “VPN વિના કનેક્શન બ્લૉક કરો” ચાલુ હોય, તો ચેક કરેલી ઍપને ઇન્ટરનેટ ઍક્સેસ બિલકુલ મળતો નથી.';
+
+  @override
   String get connection_location => 'સ્થાન';
 
   @override

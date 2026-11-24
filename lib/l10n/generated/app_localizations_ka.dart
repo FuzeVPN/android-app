@@ -239,6 +239,48 @@ class AppLocalizationsKa extends AppLocalizations {
   String get connection_advancedOptions => 'დამატებითი პარამეტრები';
 
   @override
+  String get splitTunnel_title => 'VPN-ის გარეთ არსებული აპები';
+
+  @override
+  String get splitTunnel_allInVpn => 'ყველა აპი იყენებს VPN-ს.';
+
+  @override
+  String get splitTunnel_intro =>
+      'მონიშნული აპები არ იყენებს VPN-ს: ისინი თქვენი ჩვეული ქსელით, თქვენი რეალური IP მისამართით უკავშირდება. FuzeVPN ყოველთვის VPN-ში რჩება.';
+
+  @override
+  String get splitTunnel_search => 'აპის ძიება';
+
+  @override
+  String get splitTunnel_loading => 'აპები იტვირთება…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'აპების სიის ჩატვირთვა ვერ მოხერხდა. სცადეთ ხელახლა.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ეს არჩევანი ვერ შეინახა. სცადეთ ხელახლა.';
+
+  @override
+  String get splitTunnel_noApps => 'აპები ვერ მოიძებნა.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'მიმდინარე კავშირი ინარჩუნებს სიას, რომლითაც დაიწყო. ახალი სია გამოიყენება შემდეგი დაკავშირებიდან, ან დაუყოვნებლივ, თუ ხელახლა დაუკავშირდებით.';
+
+  @override
+  String get splitTunnel_reconnect => 'ხელახლა დაკავშირება';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android-ში ჩართულია „VPN-ის გარეშე კავშირების დაბლოკვა“: მონიშნულ აპებს ინტერნეტზე წვდომა საერთოდ არ აქვს.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'თუ Android-ში ჩართულია „VPN-ის გარეშე კავშირების დაბლოკვა“, მონიშნულ აპებს ინტერნეტზე წვდომა საერთოდ არ აქვს.';
+
+  @override
   String get connection_location => 'მდებარეობა';
 
   @override

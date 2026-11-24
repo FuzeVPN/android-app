@@ -235,6 +235,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connection_advancedOptions => 'خيارات متقدمة';
 
   @override
+  String get splitTunnel_title => 'تطبيقات خارج VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'تستخدم جميع التطبيقات VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'لا تستخدم التطبيقات المحددة VPN: فهي تتصل عبر شبكتك المعتادة، بعنوان IP الحقيقي الخاص بك. يبقى FuzeVPN دائمًا داخل VPN.';
+
+  @override
+  String get splitTunnel_search => 'ابحث عن تطبيق';
+
+  @override
+  String get splitTunnel_loading => 'جارٍ تحميل التطبيقات…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'تعذر تحميل قائمة التطبيقات. حاول مرة أخرى.';
+
+  @override
+  String get splitTunnel_saveFailed => 'تعذر حفظ هذا الاختيار. حاول مرة أخرى.';
+
+  @override
+  String get splitTunnel_noApps => 'لم يُعثر على تطبيقات.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'يحتفظ الاتصال الحالي بالقائمة التي بدأ بها. تُطبَّق القائمة الجديدة بدءًا من الاتصال التالي، أو فورًا إذا أعدت الاتصال.';
+
+  @override
+  String get splitTunnel_reconnect => 'إعادة الاتصال';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '«حظر الاتصالات دون VPN» مفعّل في Android: لا تملك التطبيقات المحددة أي وصول إلى الإنترنت.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'إذا كان «حظر الاتصالات دون VPN» مفعّلًا في Android، فلن يكون للتطبيقات المحددة أي وصول إلى الإنترنت.';
+
+  @override
   String get connection_location => 'الموقع';
 
   @override

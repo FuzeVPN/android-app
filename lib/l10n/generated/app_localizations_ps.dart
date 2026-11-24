@@ -238,6 +238,47 @@ class AppLocalizationsPs extends AppLocalizations {
   String get connection_advancedOptions => 'پرمختللي اختیارونه';
 
   @override
+  String get splitTunnel_title => 'له VPN بهر اپلیکیشنونه';
+
+  @override
+  String get splitTunnel_allInVpn => 'ټول اپلیکیشنونه VPN کاروي.';
+
+  @override
+  String get splitTunnel_intro =>
+      'نښه شوي اپلیکیشنونه VPN نه کاروي: دوی ستاسو د معمول شبکې له لارې، ستاسو د اصلي IP پتې سره وصلېږي. FuzeVPN تل د VPN دننه پاتې کېږي.';
+
+  @override
+  String get splitTunnel_search => 'اپلیکیشن ولټوئ';
+
+  @override
+  String get splitTunnel_loading => 'اپلیکیشنونه بارول کېږي…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'د اپلیکیشنونو لېست بار نشو. بیا هڅه وکړئ.';
+
+  @override
+  String get splitTunnel_saveFailed => 'دا انتخاب ونه ساتل شو. بیا هڅه وکړئ.';
+
+  @override
+  String get splitTunnel_noApps => 'هېڅ اپلیکیشن ونه موندل شو.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'اوسنی اتصال هغه لېست ساتي چې ورسره پیل شوی و. نوی لېست له راتلونکي اتصال څخه پلي کېږي، یا سمدستي که تاسو بیا وصل شئ.';
+
+  @override
+  String get splitTunnel_reconnect => 'بیا وصل شئ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '«له VPN پرته اتصالات مسدود کړئ» په Android کې فعال دی: نښه شوي اپلیکیشنونه انټرنېټ ته هېڅ لاسرسی نه لري.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'که «له VPN پرته اتصالات مسدود کړئ» په Android کې فعال وي، نښه شوي اپلیکیشنونه انټرنېټ ته هېڅ لاسرسی نه لري.';
+
+  @override
   String get connection_location => 'ځای';
 
   @override

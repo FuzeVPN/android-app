@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'core/connection_timing.dart';
+import 'core/excluded_apps.dart';
 import 'core/favorite_locations.dart';
 import 'core/guest_accounts.dart';
 import 'core/models.dart';
@@ -155,6 +156,20 @@ abstract interface class ForeignVpnProbe {
   Future<bool> anotherVpnActive();
 }
 
+/// Split tunneling: the apps kept out of the VPN. Native code saves the list
+/// and applies it to each new tunnel, whoever starts it (the app, the tile or
+/// Android's permanent VPN). Optional: a platform without it offers nothing.
+abstract interface class SplitTunnelGateway {
+  Future<Set<String>> readExcludedApps();
+  Future<void> writeExcludedApps(Set<String> packageNames);
+
+  /// The apps with an icon in the launcher, FuzeVPN left out.
+  Future<List<InstalledApp>> launchableApps();
+
+  /// The app's icon, a square PNG of [sizePx] pixels; null when unreadable.
+  Future<Uint8List?> appIcon(String packageName, int sizePx);
+}
+
 abstract interface class DiagnosticPlatformGateway {
   Future<Map<String, Object?>> diagnosticMetadata();
 
@@ -179,7 +194,8 @@ class NativeVpnBridge
         DiagnosticPreferenceStore,
         DiagnosticPlatformGateway,
         InAppReviewGateway,
-        ForeignVpnProbe {
+        ForeignVpnProbe,
+        SplitTunnelGateway {
   NativeVpnBridge({
     MethodChannel? channel,
     EventChannel? events,
@@ -765,6 +781,44 @@ class NativeVpnBridge
       await _invoke<bool>('anotherVpnActive') ?? false;
 
   @override
+  Future<Set<String>> readExcludedApps() async {
+    final Object? value = await _invoke<Object?>('storageReadExcludedApps');
+    if (value == null) return const <String>{};
+    try {
+      if (value is! List) throw const FormatException('excluded_apps');
+      return ExcludedApps.checked(value);
+    } on FormatException {
+      throw const NativeVpnException('secure_storage_corrupt');
+    }
+  }
+
+  @override
+  Future<void> writeExcludedApps(Set<String> packageNames) =>
+      _invoke<void>('storageWriteExcludedApps', <String, Object>{
+        'value': ExcludedApps.checked(packageNames).toList()..sort(),
+      });
+
+  @override
+  Future<List<InstalledApp>> launchableApps() async {
+    final Object? value = await _invoke<Object?>('listLaunchableApps');
+    if (value is! List) return const <InstalledApp>[];
+    return value
+        .map(InstalledApp.fromWire)
+        .whereType<InstalledApp>()
+        .toList(growable: false);
+  }
+
+  @override
+  Future<Uint8List?> appIcon(String packageName, int sizePx) async {
+    if (!ExcludedApps.isPackageName(packageName)) return null;
+    final Object? value = await _invoke<Object?>('getAppIcon', <String, Object>{
+      'package': packageName,
+      'size': sizePx.clamp(16, 256),
+    });
+    return value is Uint8List && value.isNotEmpty ? value : null;
+  }
+
+  @override
   Future<String?> readStoredLocale() => _invoke<String>('storageReadLocale');
 
   @override
@@ -906,6 +960,10 @@ class NativeVpnBridge
     'storageWriteReviewPrompt' ||
     'requestInAppReview' ||
     'anotherVpnActive' ||
+    'storageReadExcludedApps' ||
+    'storageWriteExcludedApps' ||
+    'listLaunchableApps' ||
+    'getAppIcon' ||
     'storageReadLocale' ||
     'storageWriteLocale' ||
     'storageReadProtocol' ||

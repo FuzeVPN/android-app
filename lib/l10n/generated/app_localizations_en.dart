@@ -238,6 +238,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get connection_advancedOptions => 'Advanced options';
 
   @override
+  String get splitTunnel_title => 'Apps outside the VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'All apps use the VPN.';
+
+  @override
+  String get splitTunnel_intro =>
+      'Checked apps don’t use the VPN: they connect through your usual network, with your real IP address. FuzeVPN always stays in the VPN.';
+
+  @override
+  String get splitTunnel_search => 'Search for an app';
+
+  @override
+  String get splitTunnel_loading => 'Loading apps…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'The list of apps could not be loaded. Try again.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'This choice could not be saved. Try again.';
+
+  @override
+  String get splitTunnel_noApps => 'No apps found.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'The current connection keeps the list it started with. The new list applies from the next connection, or now if you reconnect.';
+
+  @override
+  String get splitTunnel_reconnect => 'Reconnect';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“Block connections without VPN” is on in Android: checked apps have no internet access.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'If “Block connections without VPN” is on in Android, checked apps have no internet access.';
+
+  @override
   String get connection_location => 'Location';
 
   @override

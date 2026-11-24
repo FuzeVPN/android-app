@@ -236,6 +236,46 @@ class AppLocalizationsTh extends AppLocalizations {
   String get connection_advancedOptions => 'ตัวเลือกขั้นสูง';
 
   @override
+  String get splitTunnel_title => 'แอปที่อยู่นอก VPN';
+
+  @override
+  String get splitTunnel_allInVpn => 'แอปทั้งหมดใช้ VPN';
+
+  @override
+  String get splitTunnel_intro =>
+      'แอปที่เลือกไว้จะไม่ใช้ VPN แต่จะเชื่อมต่อผ่านเครือข่ายปกติของคุณด้วยที่อยู่ IP จริงของคุณ FuzeVPN จะอยู่ใน VPN เสมอ';
+
+  @override
+  String get splitTunnel_search => 'ค้นหาแอป';
+
+  @override
+  String get splitTunnel_loading => 'กำลังโหลดแอป…';
+
+  @override
+  String get splitTunnel_loadFailed => 'โหลดรายการแอปไม่ได้ โปรดลองอีกครั้ง';
+
+  @override
+  String get splitTunnel_saveFailed => 'บันทึกตัวเลือกนี้ไม่ได้ ลองอีกครั้ง';
+
+  @override
+  String get splitTunnel_noApps => 'ไม่พบแอป';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'การเชื่อมต่อปัจจุบันจะใช้รายการเดิมตั้งแต่ตอนเริ่มต้น รายการใหม่จะมีผลตั้งแต่การเชื่อมต่อครั้งถัดไป หรือทันทีหากคุณเชื่อมต่อใหม่';
+
+  @override
+  String get splitTunnel_reconnect => 'เชื่อมต่อใหม่';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      '“บล็อกการเชื่อมต่อที่ไม่มี VPN” เปิดอยู่ใน Android แอปที่เลือกไว้จะเข้าถึงอินเทอร์เน็ตไม่ได้เลย';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'หาก “บล็อกการเชื่อมต่อที่ไม่มี VPN” เปิดอยู่ใน Android แอปที่เลือกไว้จะเข้าถึงอินเทอร์เน็ตไม่ได้เลย';
+
+  @override
   String get connection_location => 'ตำแหน่ง';
 
   @override

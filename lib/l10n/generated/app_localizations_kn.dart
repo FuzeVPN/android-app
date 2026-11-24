@@ -239,6 +239,48 @@ class AppLocalizationsKn extends AppLocalizations {
   String get connection_advancedOptions => 'ಸುಧಾರಿತ ಆಯ್ಕೆಗಳು';
 
   @override
+  String get splitTunnel_title => 'VPN ಹೊರಗಿನ ಆ್ಯಪ್‌ಗಳು';
+
+  @override
+  String get splitTunnel_allInVpn => 'ಎಲ್ಲಾ ಆ್ಯಪ್‌ಗಳು VPN ಬಳಸುತ್ತವೆ.';
+
+  @override
+  String get splitTunnel_intro =>
+      'ಗುರುತಿಸಿದ ಆ್ಯಪ್‌ಗಳು VPN ಬಳಸುವುದಿಲ್ಲ: ಅವು ನಿಮ್ಮ ಸಾಮಾನ್ಯ ನೆಟ್‌ವರ್ಕ್ ಮೂಲಕ, ನಿಮ್ಮ ನಿಜವಾದ IP ವಿಳಾಸದೊಂದಿಗೆ ಸಂಪರ್ಕಗೊಳ್ಳುತ್ತವೆ. FuzeVPN ಯಾವಾಗಲೂ VPN ಒಳಗೇ ಇರುತ್ತದೆ.';
+
+  @override
+  String get splitTunnel_search => 'ಆ್ಯಪ್ ಹುಡುಕಿ';
+
+  @override
+  String get splitTunnel_loading => 'ಆ್ಯಪ್‌ಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ…';
+
+  @override
+  String get splitTunnel_loadFailed =>
+      'ಆ್ಯಪ್‌ಗಳ ಪಟ್ಟಿಯನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get splitTunnel_saveFailed =>
+      'ಈ ಆಯ್ಕೆಯನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get splitTunnel_noApps => 'ಯಾವುದೇ ಆ್ಯಪ್ ಕಂಡುಬಂದಿಲ್ಲ.';
+
+  @override
+  String get splitTunnel_reconnectMessage =>
+      'ಪ್ರಸ್ತುತ ಸಂಪರ್ಕವು ಅದು ಪ್ರಾರಂಭವಾದಾಗಿನ ಪಟ್ಟಿಯನ್ನೇ ಉಳಿಸಿಕೊಳ್ಳುತ್ತದೆ. ಹೊಸ ಪಟ್ಟಿಯು ಮುಂದಿನ ಸಂಪರ್ಕದಿಂದ ಅನ್ವಯವಾಗುತ್ತದೆ, ಅಥವಾ ನೀವು ಮತ್ತೆ ಸಂಪರ್ಕಿಸಿದರೆ ತಕ್ಷಣವೇ ಅನ್ವಯವಾಗುತ್ತದೆ.';
+
+  @override
+  String get splitTunnel_reconnect => 'ಮತ್ತೆ ಸಂಪರ್ಕಿಸಿ';
+
+  @override
+  String get splitTunnel_lockdownActive =>
+      'Android ನಲ್ಲಿ “VPN ಇಲ್ಲದೆ ಸಂಪರ್ಕಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ” ಆನ್ ಆಗಿದೆ: ಗುರುತಿಸಿದ ಆ್ಯಪ್‌ಗಳಿಗೆ ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶ ಇಲ್ಲ.';
+
+  @override
+  String get splitTunnel_lockdownNote =>
+      'Android ನಲ್ಲಿ “VPN ಇಲ್ಲದೆ ಸಂಪರ್ಕಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ” ಆನ್ ಆಗಿದ್ದರೆ, ಗುರುತಿಸಿದ ಆ್ಯಪ್‌ಗಳಿಗೆ ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶ ಇರುವುದಿಲ್ಲ.';
+
+  @override
   String get connection_location => 'ಸ್ಥಳ';
 
   @override

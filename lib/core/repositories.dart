@@ -1,3 +1,4 @@
+import 'excluded_apps.dart';
 import 'models.dart';
 import 'openvpn_revocation.dart';
 import 'session_lifecycle.dart';
@@ -432,6 +433,7 @@ class VpnRuntimeState {
     this.ipFamilies = const <String>[],
     this.systemProtection = const SystemVpnProtection(),
     this.retryAt,
+    this.excludedApps,
   });
 
   final VpnRuntimePhase phase;
@@ -451,6 +453,11 @@ class VpnRuntimeState {
   /// With `openvpn_renewal_rate_limited`: when the API accepts the renewal
   /// again (`retry_at`, device clock).
   final DateTime? retryAt;
+
+  /// While connected: the apps excluded from the VPN (split tunneling) that
+  /// were saved when this tunnel started (`excluded_apps`), as package names.
+  /// Null when native code did not say.
+  final List<String>? excludedApps;
   List<String> get connectedIpFamilies =>
       isConnected ? ipFamilies : const <String>[];
 
@@ -533,6 +540,15 @@ class VpnRuntimeState {
       retryAt: messageCode == 'openvpn_renewal_rate_limited'
           ? timestamp('retry_at')
           : null,
+      excludedApps: switch (value['excluded_apps']) {
+        final List<Object?> apps
+            when apps.length <= ExcludedApps.maxApps &&
+                apps.every(ExcludedApps.isPackageName) =>
+          List<String>.unmodifiable(
+            apps.cast<String>().toSet().toList()..sort(),
+          ),
+        _ => null,
+      },
     );
   }
 
@@ -552,6 +568,7 @@ class VpnRuntimeState {
         ipFamilies: ipFamilies,
         systemProtection: systemProtection ?? this.systemProtection,
         retryAt: retryAt,
+        excludedApps: excludedApps,
       );
 
   @override

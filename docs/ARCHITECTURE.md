@@ -396,6 +396,35 @@ le contrôleur : le message explique la cause et propose
 d'ouvrir les réglages VPN d'Android. Ce code, comme un refus de l'utilisateur,
 n'est jamais envoyé en rapport automatique.
 
+### Apps hors VPN (split tunneling)
+
+« Options avancées » ouvre la liste des apps à garder hors du VPN : elles
+passent par le réseau habituel, avec l'adresse IP réelle. L'app ne liste que
+les apps qui ont une icône dans le lanceur : le manifeste déclare seulement
+cette intention dans `<queries>`, jamais `QUERY_ALL_PACKAGES`. FuzeVPN
+lui-même n'est jamais exclu.
+
+La liste est enregistrée tout de suite, en noms de paquets, dans une
+préférence chiffrée (`fuzevpn.preference.vpn.excluded_apps`). Le pont la lit à
+chaque nouveau tunnel, qu'il vienne de l'app, de la tuile ou du VPN permanent,
+et en retire les apps désinstallées depuis : Android refuse d'établir un VPN
+qui exclut un paquet inconnu. WireGuard la reçoit dans sa configuration
+(`ExcludedApplications`), que `GoBackend` passe à
+`VpnService.Builder.addDisallowedApplication` ; OpenVPN l'applique à chaque
+`establish()`, et l'interface retenue pendant une reprise n'est réutilisée que
+pour la même liste. Les reprises d'un tunnel gardent la liste de son
+démarrage.
+
+Android n'applique une liste qu'en établissant une interface VPN. Un tunnel
+connecté garde donc la liste de son démarrage, que l'état publié nomme
+(`excluded_apps`). Si la liste enregistrée diffère, l'écran le dit et propose
+« Reconnecter », qui refait la connexion au même emplacement, avec le même
+protocole (une brève coupure). Quand « Bloquer les connexions sans VPN » est
+actif, Android coupe tout accès réseau aux apps exclues : l'écran l'indique
+lorsque le tunnel de l'app permet de le savoir, et propose les réglages VPN
+d'Android ; sinon, une phrase le rappelle. La liste n'entre dans aucun
+diagnostic.
+
 La reprise système utilise seulement un profil local ayant déjà obtenu une
 preuve native de connexion, avec vérification de sa session et de son identité.
 Elle ne prépare pas une nouvelle identité par l'API, sauf pour renouveler un
