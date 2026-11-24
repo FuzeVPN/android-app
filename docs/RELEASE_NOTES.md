@@ -1,3 +1,82 @@
+# Android 1.0.0+80000 — 2026-11-24
+
+## Français
+
+- Apps hors VPN (split tunneling) : dans « Options avancées », les apps cochées
+  passent par le réseau habituel, en WireGuard comme en OpenVPN. FuzeVPN reste
+  toujours dans le VPN. Une liste changée pendant une connexion s'applique à la
+  suivante, et l'écran propose « Reconnecter ».
+- Emplacements : la puce « P2P » ne garde que les serveurs qui autorisent le
+  P2P, et un badge doré les signale dans la liste.
+- OpenVPN : le certificat se renouvelle seul, y compris pendant une reprise
+  (changement de réseau, tuile, VPN permanent), sans ouvrir l'app. Son
+  échéance et un bouton « Renouveler » sont dans les options de connexion.
+  Après trop de demandes, l'app indique dans combien de temps réessayer.
+- OpenVPN : un tunnel resté « Connecté » sans trafic, moteur bloqué, est
+  détecté et repris, et son arrêt n'attend plus sans fin.
+- Comptes personnels : la session se renouvelle seule, y compris en
+  arrière-plan (tuile, VPN permanent).
+- Quand un autre VPN prend la place, « Connexion indisponible » en donne la
+  cause et, si besoin, ouvre les réglages Android.
+- Android 8 et 9 : un arrêt fait dans les réglages VPN d'Android se termine sur
+  « Déconnecté », et non plus sur « Connexion indisponible ».
+- Après une connexion par e-mail, une adresse non confirmée affiche l'encadré
+  de confirmation et son bouton « Renvoyer l'e-mail ».
+- 70 langues, dont 40 nouvelles.
+- Après une déconnexion, l'app peut demander un avis Google Play, trois fois
+  au plus ; Google Play décide d'afficher ou non sa fenêtre.
+- Fiabilité : les états de l'app et du pont VPN sont désormais explicites, ce
+  qui corrige plusieurs blocages rares (demande d'autorisation VPN perdue, page
+  de fin de session restée affichée, etc.).
+
+Limite : les traductions autres que le français et l'anglais n'ont pas toutes
+été relues par un locuteur natif, en particulier les 40 nouvelles langues.
+
+## English
+
+- Apps outside the VPN (split tunneling): in Advanced options, the checked apps
+  use the usual network, with WireGuard and OpenVPN alike. FuzeVPN itself
+  always stays in the VPN. A list changed while connected applies to the next
+  connection, and the screen offers Reconnect.
+- Locations: the P2P chip keeps only the servers that allow P2P, and a gold
+  badge marks them in the list.
+- OpenVPN: the certificate renews itself, including during a recovery (network
+  change, tile, always-on VPN), without opening the app. Its expiry and a Renew
+  button are in the connection options. After too many requests, the app says
+  how long to wait.
+- OpenVPN: a tunnel left "Connected" without traffic, its engine stuck, is
+  detected and recovered, and stopping it no longer waits forever.
+- Personal accounts: the session renews itself, including in the background
+  (tile, always-on VPN).
+- When another VPN takes over, "Connection unavailable" gives the cause and,
+  when needed, opens the Android settings.
+- Android 8 and 9: a stop made in the Android VPN settings now ends on
+  "Disconnected" instead of "Connection unavailable".
+- After an email sign-in, an unconfirmed address shows the confirmation box and
+  its Resend email button.
+- 70 languages, 40 of them new.
+- After a disconnection, the app may ask for a Google Play review, three times
+  at most; Google Play decides whether to show its window.
+- Reliability: the states of the app and of the VPN bridge are now explicit,
+  which fixes several rare hangs (lost VPN permission request, session-end page
+  left on screen, and so on).
+
+Limit: translations other than French and English have not all been reviewed
+by a native speaker, especially the 40 new languages.
+
+## Qualification / Validation
+
+Local validation: 26 steps passed (4,003 Flutter, 538 JVM, 238 Python and 147
+bridge-host tests; lint without errors or warnings). The changes were checked
+on Android emulators (x86_64) with internal builds as they were made: a
+pre-release campaign on Android 8 to 17 (15 November), then targeted runs for
+the API limits, P2P, the review request, another VPN and split tunneling
+(Android 11, 14 and 17). The email confirmation box was not tried on a device:
+no test account has an unconfirmed address. The 1.0.0 build itself has not yet
+run on an emulator or a phone.
+
+---
+
 # Android 0.2.11+74018 — 2026-11-05
 
 ## Français
