@@ -55,7 +55,11 @@ tasks.register('resolveProbe') {
     }
     $log = Join-Path $OutputDirectory "$Name.log"
     $ErrorActionPreference = 'Continue'
-    & $wrapperPath @('-p', $fixture, 'resolveProbe', '--offline', '--console=plain') *> $log
+    # --no-daemon: each probe runs in a single-use JVM that exits with the build.
+    # A daemon started here (when Gradle has expired the idle one, e.g. for low
+    # memory) would inherit the output pipe of validate_project.ps1 and keep that
+    # step waiting until the CI timeout.
+    & $wrapperPath @('-p', $fixture, 'resolveProbe', '--offline', '--no-daemon', '--console=plain') *> $log
     $probeExit = $LASTEXITCODE
     $ErrorActionPreference = 'Stop'
     $output = Get-Content -LiteralPath $log -Raw

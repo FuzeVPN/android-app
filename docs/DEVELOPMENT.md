@@ -113,6 +113,9 @@ normale : relancer ensuite les builds sans `--write-locks` ni
 `tools/test_dependency_integrity.ps1` vérifie le succès avec une dépendance
 approuvée et les refus pour empreinte altérée, version contradictoire et
 verrou absent ; il ne modifie ni le cache ni les verrous de l'application.
+Chaque essai tourne sans démon Gradle (`--no-daemon`) : un démon lancé depuis
+ce script imbriqué garderait ouvert le flux de sortie de la validation et
+bloquerait l'étape jusqu'au délai maximal de la CI.
 
 ### Entrées natives
 
