@@ -233,6 +233,8 @@ dependencies {
     // Keep these explicit so a locally built WireGuard AAR has the same
     // runtime dependencies as the official Maven publication's POM.
     implementation("androidx.annotation:annotation:1.9.1")
+    // collection includes its Kotlin extensions since 1.3; collection-ktx is an empty alias.
+    //noinspection KtxExtensionAvailable
     implementation("androidx.collection:collection:1.5.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
 
