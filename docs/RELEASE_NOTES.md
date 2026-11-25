@@ -1,4 +1,4 @@
-# Android 1.0.0+80000 — 2026-11-24
+# Android 1.0.0+80000 — 2026-11-25
 
 ## Français
 
@@ -71,9 +71,15 @@ bridge-host tests; lint without errors or warnings). The changes were checked
 on Android emulators (x86_64) with internal builds as they were made: a
 pre-release campaign on Android 8 to 17 (15 November), then targeted runs for
 the API limits, P2P, the review request, another VPN and split tunneling
-(Android 11, 14 and 17). The email confirmation box was not tried on a device:
-no test account has an unconfirmed address. The 1.0.0 build itself has not yet
-run on an emulator or a phone.
+(Android 11, 14 and 17). On 25 November, the published x86_64 build, re-signed
+with the emulators' key and otherwise identical, passed a full campaign on
+Android 8.0 to 17 phone emulators, a 16 KB page-size emulator and an Android 14
+tablet emulator: WireGuard and OpenVPN traffic checked by the exit address,
+network changes, always-on VPN, tile, certificate renewal, apps outside the
+VPN, P2P filter, another VPN, review request and 200 % text. The arm64-v8a and
+armeabi-v7a builds come from the same sources but were not tried on a device.
+The email confirmation box was not tried on a device: no test account has an
+unconfirmed address.
 
 ---
 

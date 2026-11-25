@@ -21,7 +21,7 @@ If the page is unavailable, do not post details publicly; wait for the private
 channel to be available. No unverified security email address or response-time
 commitment is listed here.
 
-The current release is **0.2.11+74018** (tag `v0.2.11`). The dated
+The current release is **1.0.0+80000** (tag `v1.0.0`). The dated
 [qualification registry](docs/VALIDATION.md) identifies tested versions and
 open prerequisites. Signed APKs are published as GitHub Releases (see
 [docs/APK.md](docs/APK.md)); no formal support lifecycle is declared. Older code

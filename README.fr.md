@@ -12,7 +12,7 @@ services distincts, absents de ce dépôt.
 
 ## Télécharger
 
-Version actuelle : **0.2.11** (build 74018).
+Version actuelle : **1.0.0** (build 80000).
 
 Des APK signés sont joints à chaque
 [release GitHub](https://github.com/FuzeVPN/android-app/releases), avec leurs
@@ -24,21 +24,24 @@ Si vous avez installé FuzeVPN depuis Google Play, continuez à le mettre à jou
 par Google Play : les versions Google Play et GitHub sont signées avec des clés
 différentes, l'une ne peut pas mettre à jour l'autre.
 
-## Nouveautés de la 0.2.11
+## Nouveautés de la 1.0.0
 
-- La carte de connexion indique « Préparation » dès le tap sur « Se connecter »,
-  et chaque changement d'emplacement OpenVPN affiche sa progression, étape par
-  étape.
-- Depuis Android 11, le VPN permanent revient seul après un arrêt de l'app par
-  un plantage ou par Android, même quand la tuile des réglages rapides ou un
-  autre composant relance l'app en premier (Android 10 : sans ce secours,
-  non testé).
-- OpenVPN ne coupe plus les transferts quand le téléphone repasse en Wi-Fi.
-- Android 11 : plus de plantage au démarrage ; Android 8 à 11 : plus de
-  plantage quand le service VPN est arrêté juste après son démarrage.
-- Avec un texte très agrandi (200 %), les dialogues de confirmation ne coupent
-  plus les mots.
-- Moins de travail pendant la connexion et sur l'onglet Compte.
+- Apps hors VPN (split tunneling) : dans « Options avancées », les apps
+  cochées passent par le réseau habituel, en WireGuard comme en OpenVPN.
+  FuzeVPN reste toujours dans le VPN.
+- Emplacements : la puce « P2P » ne garde que les serveurs qui autorisent le
+  P2P, et un badge doré les signale dans la liste.
+- OpenVPN : le certificat se renouvelle seul, y compris pendant une reprise
+  (changement de réseau, tuile, VPN permanent), sans ouvrir l'app. Un tunnel
+  resté « Connecté » sans trafic est détecté et repris.
+- Comptes personnels : la session se renouvelle seule, y compris en
+  arrière-plan.
+- Quand un autre VPN prend la place, « Connexion indisponible » en donne la
+  cause et, si besoin, ouvre les réglages Android.
+- 70 langues, dont 40 nouvelles ; toutes n'ont pas été relues par un locuteur
+  natif.
+- Les états de l'app et du pont VPN sont désormais explicites, ce qui corrige
+  plusieurs blocages rares.
 
 Détails dans les [notes de version](docs/RELEASE_NOTES.md).
 

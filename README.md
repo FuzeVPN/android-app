@@ -12,7 +12,7 @@ are not included here.
 
 ## Download
 
-Current version: **0.2.11** (build 74018).
+Current version: **1.0.0** (build 80000).
 
 Signed APKs are attached to each
 [GitHub release](https://github.com/FuzeVPN/android-app/releases), with their
@@ -23,19 +23,23 @@ how to check it before installing.
 If you installed FuzeVPN from Google Play, keep updating it there: Google Play
 and GitHub builds are signed with different keys, so one cannot update the other.
 
-## What's new in 0.2.11
+## What's new in 1.0.0
 
-- The connection card says "Preparing" as soon as you tap Connect, and every
-  OpenVPN location change shows its progress, step by step.
-- From Android 11, always-on VPN comes back on its own after the app is
-  stopped by a crash or by Android, even when the quick settings tile or
-  another component restarts the app first (Android 10: without that
-  fallback, untested).
-- OpenVPN keeps transfers running when the phone switches back to Wi-Fi.
-- Android 11: no more crash at startup; Android 8 to 11: no more crash when the
-  VPN service is stopped right after it starts.
-- With very large text (200 %), confirmation dialogs no longer cut words.
-- Less work while connected and on the Account tab.
+- Apps outside the VPN (split tunneling): in Advanced options, the checked
+  apps use the usual network, with WireGuard and OpenVPN alike. FuzeVPN itself
+  always stays in the VPN.
+- Locations: the P2P chip keeps only the servers that allow P2P, and a gold
+  badge marks them in the list.
+- OpenVPN: the certificate renews itself, even during a recovery (network
+  change, tile, always-on VPN), without opening the app. A tunnel left
+  "Connected" without traffic is detected and recovered.
+- Personal accounts: the session renews itself, including in the background.
+- When another VPN takes over, "Connection unavailable" gives the cause and,
+  when needed, opens the Android settings.
+- 70 languages, 40 of them new; not all have been reviewed by a native
+  speaker.
+- The app and VPN bridge states are now explicit, which fixes several rare
+  hangs.
 
 Details in the [release notes](docs/RELEASE_NOTES.md).
 
