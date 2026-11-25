@@ -276,11 +276,11 @@ class AppLocalizationsRw extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“Guhagarika ihuza ridafite VPN” irafunguye muri Android: porogaramu zashyizweho ikimenyetso nta interineti na mba zibona.';
+      'Igenamiterere “Guhagarika ihuza ridafite VPN” rirafunguye muri Android: porogaramu zashyizweho ikimenyetso ntizishobora kugera kuri interineti.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Niba “Guhagarika ihuza ridafite VPN” ifunguye muri Android, porogaramu zashyizweho ikimenyetso nta interineti na mba zibona.';
+      'Niba igenamiterere “Guhagarika ihuza ridafite VPN” rifunguye muri Android, porogaramu zashyizweho ikimenyetso ntizishobora kugera kuri interineti.';
 
   @override
   String get connection_location => 'Ahantu';

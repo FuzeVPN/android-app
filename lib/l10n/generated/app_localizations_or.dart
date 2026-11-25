@@ -244,11 +244,11 @@ class AppLocalizationsOr extends AppLocalizations {
   String get splitTunnel_title => 'VPN ବାହାରେ ଥିବା ଆପ୍‌ଗୁଡ଼ିକ';
 
   @override
-  String get splitTunnel_allInVpn => 'ସମସ୍ତ ଆପ୍‌ଗୁଡ଼ିକ VPN ବ୍ୟବହାର କରନ୍ତି।';
+  String get splitTunnel_allInVpn => 'ସମସ୍ତ ଆପ୍ VPN ବ୍ୟବହାର କରନ୍ତି।';
 
   @override
   String get splitTunnel_intro =>
-      'ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକ VPN ବ୍ୟବହାର କରନ୍ତି ନାହିଁ: ସେଗୁଡ଼ିକ ଆପଣଙ୍କ ସାଧାରଣ ନେଟୱର୍କ ଦେଇ, ଆପଣଙ୍କ ପ୍ରକୃତ IP ଠିକଣା ସହିତ ସଂଯୋଗ ହୁଅନ୍ତି। FuzeVPN ସର୍ବଦା VPN ଭିତରେ ରହେ।';
+      'ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକ VPN ବ୍ୟବହାର କରନ୍ତି ନାହିଁ: ସେଗୁଡ଼ିକ ଆପଣଙ୍କ ସାଧାରଣ ନେଟୱର୍କ ଦେଇ, ଆପଣଙ୍କ ପ୍ରକୃତ IP ଠିକଣା ବ୍ୟବହାର କରି ସଂଯୁକ୍ତ ହୁଅନ୍ତି। FuzeVPN ସର୍ବଦା VPN ଭିତରେ ରହେ।';
 
   @override
   String get splitTunnel_search => 'ଏକ ଆପ୍ ଖୋଜନ୍ତୁ';

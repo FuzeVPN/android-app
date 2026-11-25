@@ -255,7 +255,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get splitTunnel_loadFailed =>
-      'A kò lè gbé àkójọ àwọn ohun èlò wá. Ẹ tún gbìyànjú.';
+      'A kò lè gbé àtòjọ àwọn ohun èlò wá. Ẹ tún gbìyànjú.';
 
   @override
   String get splitTunnel_saveFailed =>
@@ -266,7 +266,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get splitTunnel_reconnectMessage =>
-      'Àsopọ̀ tó ń lọ lọ́wọ́ máa ń lo àkójọ tí ó fi bẹ̀rẹ̀. Àkójọ tuntun yóò bẹ̀rẹ̀ iṣẹ́ láti àsopọ̀ tó kàn, tàbí lẹ́sẹ̀kẹsẹ̀ tí ẹ bá tún sopọ̀.';
+      'Àsopọ̀ tó ń lọ lọ́wọ́ máa ń lo àtòjọ tí ó fi bẹ̀rẹ̀. Àtòjọ tuntun yóò bẹ̀rẹ̀ iṣẹ́ láti àsopọ̀ tó kàn, tàbí lẹ́sẹ̀kẹsẹ̀ tí ẹ bá tún sopọ̀.';
 
   @override
   String get splitTunnel_reconnect => 'Tún sopọ̀';
@@ -748,7 +748,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'vpn_permission_denied':
           'Android kọ̀ ìyọ̀ǹda VPN. Ẹ tún bẹ̀rẹ̀ àsopọ̀ náà kí ẹ sì gbà ìbéèrè ètò náà.',
       'vpn_permission_other_vpn':
-          'Android kò fún FuzeVPN ní ìyọ̀ǹda VPN nítorí pé áàpù VPN mìíràn ń ṣiṣẹ́. Tí a bá ṣètò rẹ̀ gẹ́gẹ́ bí VPN nígbà gbogbo, ẹ pa ìṣètò náà nínú ìṣètò VPN ti Android, lẹ́yìn náà ẹ tún gbìyànjú.',
+          'Android kò fún FuzeVPN ní ìyọ̀ǹda VPN nítorí pé ohun èlò VPN mìíràn ń ṣiṣẹ́. Tí a bá ṣètò rẹ̀ gẹ́gẹ́ bí VPN nígbà gbogbo, ẹ pa ìṣètò náà nínú ìṣètò VPN ti Android, lẹ́yìn náà ẹ tún gbìyànjú.',
       'revoked_identity_device_limit':
           'A ti yọ ìwọlé VPN ẹ̀rọ yìí kúrò, iye ẹ̀rọ sì ti dé ààlà. Ẹ yọ ẹ̀rọ kan kúrò lábẹ́ Àkántì → Ṣàkóso àwọn ẹ̀rọ mi.',
       'tunnel_start_unexpected':
@@ -1086,7 +1086,7 @@ class AppLocalizationsYo extends AppLocalizations {
       'vpn_permission_denied':
           'Ẹ gba FuzeVPN láyè nínú ìbéèrè Android láti tẹ̀síwájú.',
       'vpn_permission_other_vpn':
-          'Android kò fún FuzeVPN ní ìyọ̀ǹda VPN nítorí pé áàpù VPN mìíràn ń ṣiṣẹ́. Tí a bá ṣètò rẹ̀ gẹ́gẹ́ bí VPN nígbà gbogbo, ẹ pa ìṣètò náà nínú ìṣètò VPN ti Android, lẹ́yìn náà ẹ tún gbìyànjú.',
+          'Android kò fún FuzeVPN ní ìyọ̀ǹda VPN nítorí pé ohun èlò VPN mìíràn ń ṣiṣẹ́. Tí a bá ṣètò rẹ̀ gẹ́gẹ́ bí VPN nígbà gbogbo, ẹ pa ìṣètò náà nínú ìṣètò VPN ti Android, lẹ́yìn náà ẹ tún gbìyànjú.',
       'vpn_permission_request_failed': 'Android kò lè ṣí ìbòjú ìyọ̀ǹda VPN.',
       'wireguard_foreground_service_unavailable':
           'Android kò lè jẹ́ kí iṣẹ́ WireGuard wà ní iwájú.',
@@ -1539,7 +1539,7 @@ class AppLocalizationsYo extends AppLocalizations {
 
   @override
   String get locations_noP2pHint =>
-      'Lọ́wọ́lọ́wọ́, a kò gba P2P láàyè lórí olupin kankan.';
+      'Lọ́wọ́lọ́wọ́, a kò gba P2P láàyè lórí olùpín kankan.';
 
   @override
   String locations_results(int count) {

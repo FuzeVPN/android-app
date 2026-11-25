@@ -248,13 +248,13 @@ class AppLocalizationsMg extends AppLocalizations {
 
   @override
   String get splitTunnel_intro =>
-      'Tsy mampiasa ny VPN ireo fampiharana misy marika: mifandray amin’ny alalan’ny tambajotra mahazatra anao izy ireo, miaraka amin’ny adiresy IP tena izy anao. Mijanona ao anatin’ny VPN foana ny FuzeVPN.';
+      'Tsy mampiasa ny VPN ireo fampiharana misy marika: mifandray amin’ny alalan’ny tambajotra mahazatra anareo izy ireo, miaraka amin’ny adiresy IP-nareo tena izy. Mijanona ao anatin’ny VPN foana ny FuzeVPN.';
 
   @override
   String get splitTunnel_search => 'Hitady fampiharana';
 
   @override
-  String get splitTunnel_loading => 'Mampidina ny fampiharana…';
+  String get splitTunnel_loading => 'Mampidina ny lisitry ny fampiharana…';
 
   @override
   String get splitTunnel_loadFailed =>
@@ -269,7 +269,7 @@ class AppLocalizationsMg extends AppLocalizations {
 
   @override
   String get splitTunnel_reconnectMessage =>
-      'Ny fifandraisana amin’izao fotoana izao dia mitazona ny lisitra nanombohany. Ny lisitra vaovao dia mihatra manomboka amin’ny fifandraisana manaraka, na avy hatrany raha mifandray indray ianao.';
+      'Ny fifandraisana amin’izao fotoana izao dia mitazona ny lisitra nanombohany. Ny lisitra vaovao dia mihatra manomboka amin’ny fifandraisana manaraka, na avy hatrany raha mifandray indray ianareo.';
 
   @override
   String get splitTunnel_reconnect => 'Hifandray indray';
@@ -760,7 +760,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'vpn_permission_denied':
           'Nolavin’ny Android ny alalana VPN. Atombohy indray ny fifandraisana ary ekeno ny fangatahana avy amin’ny rafitra.',
       'vpn_permission_other_vpn':
-          'Tsy nanome alalana VPN ho an’ny FuzeVPN ny Android satria misy rindranasa VPN hafa mavitrika. Raha napetraka ho “VPN mavitrika mandrakariva” izy, vonoy izany ao amin’ny fikirana VPN an’ny Android, dia andramo indray.',
+          'Tsy nanome alalana VPN ho an’ny FuzeVPN ny Android satria misy fampiharana VPN hafa mavitrika. Raha napetraka ho “VPN mavitrika mandrakariva” izy, vonoy izany ao amin’ny fikirana VPN an’ny Android, dia andramo indray.',
       'revoked_identity_device_limit':
           'Nesorina ny fidirana VPN an’ity fitaovana ity ary efa feno ny isan’ny fitaovana. Esory fitaovana iray ao amin’ny Kaonty → Hitantana ny fitaovako.',
       'tunnel_start_unexpected':
@@ -1124,7 +1124,7 @@ class AppLocalizationsMg extends AppLocalizations {
       'vpn_permission_denied':
           'Avelao ny FuzeVPN ao amin’ny fangatahana Android mba hanohizana.',
       'vpn_permission_other_vpn':
-          'Tsy nanome alalana VPN ho an’ny FuzeVPN ny Android satria misy rindranasa VPN hafa mavitrika. Raha napetraka ho “VPN mavitrika mandrakariva” izy, vonoy izany ao amin’ny fikirana VPN an’ny Android, dia andramo indray.',
+          'Tsy nanome alalana VPN ho an’ny FuzeVPN ny Android satria misy fampiharana VPN hafa mavitrika. Raha napetraka ho “VPN mavitrika mandrakariva” izy, vonoy izany ao amin’ny fikirana VPN an’ny Android, dia andramo indray.',
       'vpn_permission_request_failed':
           'Tsy afaka nanokatra ny efijery alalana VPN ny Android.',
       'wireguard_foreground_service_unavailable':

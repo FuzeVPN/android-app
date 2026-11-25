@@ -269,7 +269,7 @@ class AppLocalizationsSo extends AppLocalizations {
 
   @override
   String get splitTunnel_reconnectMessage =>
-      'Xidhiidhka hadda socda wuxuu haystaa liiskii uu ku bilaabmay. Liiska cusub wuxuu dhaqan gelayaa xidhiidhka xiga, ama isla markiiba haddii aad dib ugu xidhanto.';
+      'Xidhiidhka hadda socda wuxuu haystaa liiskii uu ku bilaabmay. Liiska cusub wuxuu dhaqan gelayaa laga bilaabo xidhiidhka xiga, ama isla markiiba haddii aad dib ugu xidhanto.';
 
   @override
   String get splitTunnel_reconnect => 'Dib ugu xidh';
@@ -761,7 +761,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'vpn_permission_denied':
           'Android ayaa diiday oggolaanshaha VPN. Mar kale bilow xidhiidhka, kadibna aqbal codsiga nidaamka.',
       'vpn_permission_other_vpn':
-          'Android ma siin FuzeVPN oggolaanshaha VPN sababtoo ah app VPN kale ayaa firfircoon. Haddii loo dejiyay sida “VPN had iyo jeer”, ka demi dejintaas dejinta VPN-ka ee Android, kadibna isku day mar kale.',
+          'Android ma siin FuzeVPN oggolaanshaha VPN sababtoo ah barnaamij VPN kale ayaa firfircoon. Haddii loo dejiyay sida “VPN had iyo jeer”, ka demi dejintaas dejinta VPN-ka ee Android, kadibna isku day mar kale.',
       'revoked_identity_device_limit':
           'Gelitaanka VPN ee aaladdan waa la ka qaaday, xadka aaladahana waa la gaaray. Aalad ka saar qaybta Akoon → Maamul aaladahayga.',
       'tunnel_start_unexpected':
@@ -1129,7 +1129,7 @@ class AppLocalizationsSo extends AppLocalizations {
       'vpn_permission_denied':
           'Codsiga Android ku oggolow FuzeVPN si aad u sii waddo.',
       'vpn_permission_other_vpn':
-          'Android ma siin FuzeVPN oggolaanshaha VPN sababtoo ah app VPN kale ayaa firfircoon. Haddii loo dejiyay sida “VPN had iyo jeer”, ka demi dejintaas dejinta VPN-ka ee Android, kadibna isku day mar kale.',
+          'Android ma siin FuzeVPN oggolaanshaha VPN sababtoo ah barnaamij VPN kale ayaa firfircoon. Haddii loo dejiyay sida “VPN had iyo jeer”, ka demi dejintaas dejinta VPN-ka ee Android, kadibna isku day mar kale.',
       'vpn_permission_request_failed':
           'Android ma furi karin shaashadda oggolaanshaha VPN.',
       'wireguard_foreground_service_unavailable':

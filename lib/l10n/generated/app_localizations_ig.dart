@@ -251,7 +251,7 @@ class AppLocalizationsIg extends AppLocalizations {
   String get splitTunnel_search => 'Chọọ ngwa';
 
   @override
-  String get splitTunnel_loading => 'Na-ebudata ngwa…';
+  String get splitTunnel_loading => 'Na-ebudata ndepụta ngwa…';
 
   @override
   String get splitTunnel_loadFailed =>
@@ -272,11 +272,11 @@ class AppLocalizationsIg extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“Gbochie njikọ na-enweghị VPN” gbanyere na Android: ngwa ndị nwere akara enweghị ike ịbanye n’ịntanetị ma ọlị.';
+      '“Gbochie njikọ na-enweghị VPN” dị n’ọrụ na Android: ngwa ndị nwere akara enweghị ike inweta ịntanetị ma ọlị.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Ọ bụrụ na “Gbochie njikọ na-enweghị VPN” gbanyere na Android, ngwa ndị nwere akara enweghị ike ịbanye n’ịntanetị ma ọlị.';
+      'Ọ bụrụ na “Gbochie njikọ na-enweghị VPN” dị n’ọrụ na Android, ngwa ndị nwere akara enweghị ike inweta ịntanetị ma ọlị.';
 
   @override
   String get connection_location => 'Ebe';

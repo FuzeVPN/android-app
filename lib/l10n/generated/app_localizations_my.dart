@@ -247,7 +247,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get splitTunnel_intro =>
-      'ရွေးထားသော အက်ပ်များသည် VPN ကို အသုံးမပြုပါ။ ၎င်းတို့သည် သင်၏ ပုံမှန်ကွန်ရက်မှတစ်ဆင့် သင်၏ အစစ်အမှန် IP လိပ်စာဖြင့် ချိတ်ဆက်ပါသည်။ FuzeVPN ကမူ VPN အတွင်း၌ အမြဲရှိနေပါသည်။';
+      'ရွေးထားသော အက်ပ်များသည် VPN ကို အသုံးမပြုပါ။ ၎င်းတို့သည် သင့်ပုံမှန်ကွန်ရက်မှတစ်ဆင့် သင့်အစစ်အမှန် IP လိပ်စာဖြင့် ချိတ်ဆက်ပါသည်။ FuzeVPN ကမူ VPN အတွင်း၌ အမြဲရှိနေပါသည်။';
 
   @override
   String get splitTunnel_search => 'အက်ပ် ရှာရန်';

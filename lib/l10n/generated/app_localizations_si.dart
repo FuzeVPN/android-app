@@ -238,14 +238,14 @@ class AppLocalizationsSi extends AppLocalizations {
   String get connection_advancedOptions => 'උසස් විකල්ප';
 
   @override
-  String get splitTunnel_title => 'VPN වලින් පිටත යෙදුම්';
+  String get splitTunnel_title => 'VPN භාවිත නොකරන යෙදුම්';
 
   @override
   String get splitTunnel_allInVpn => 'සියලු යෙදුම් VPN භාවිත කරයි.';
 
   @override
   String get splitTunnel_intro =>
-      'සලකුණු කළ යෙදුම් VPN භාවිත නොකරයි: ඒවා ඔබේ සාමාන්‍ය ජාලය හරහා, ඔබේ සැබෑ IP ලිපිනය සමඟ සම්බන්ධ වේ. FuzeVPN සැමවිටම VPN තුළම පවතී.';
+      'සලකුණු කළ යෙදුම් VPN භාවිත නොකරයි: ඒවා ඔබේ සාමාන්‍ය ජාලය හරහා, ඔබේ සැබෑ IP ලිපිනය භාවිතයෙන් සම්බන්ධ වේ. FuzeVPN සැමවිටම VPN තුළම පවතී.';
 
   @override
   String get splitTunnel_search => 'යෙදුමක් සොයන්න';
