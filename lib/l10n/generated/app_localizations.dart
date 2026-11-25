@@ -2229,7 +2229,7 @@ abstract class AppLocalizations {
   /// No description provided for @protection_guideDisable.
   ///
   /// In fr, this message translates to:
-  /// **'Dans les mêmes réglages, désactivez le blocage sans VPN pour autoriser Internet sans VPN. Désactivez aussi le VPN permanent si vous ne voulez plus qu’Android le relance.'**
+  /// **'Dans les mêmes réglages, désactivez « Bloquer les connexions sans VPN » pour autoriser Internet sans VPN. Désactivez aussi « VPN permanent » si vous ne voulez plus qu’Android le relance.'**
   String get protection_guideDisable;
 
   /// No description provided for @protection_guideManual.

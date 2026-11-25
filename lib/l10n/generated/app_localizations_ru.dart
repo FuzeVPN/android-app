@@ -275,11 +275,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Параметр «Блокировать подключения без VPN» включён в Android: у отмеченных приложений нет никакого доступа к интернету.';
+      'Параметр «Блокировать соединения без VPN» включён в Android: у отмеченных приложений нет никакого доступа к интернету.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Если в Android включён параметр «Блокировать подключения без VPN», у отмеченных приложений нет никакого доступа к интернету.';
+      'Если в Android включён параметр «Блокировать соединения без VPN», у отмеченных приложений нет никакого доступа к интернету.';
 
   @override
   String get connection_location => 'Локация';
@@ -418,7 +418,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Активен другой VPN. Если он настроен как «VPN всегда включён», отключите этот параметр в настройках VPN Android.';
+      'Активен другой VPN. Если он настроен как «Постоянная VPN», отключите этот параметр в настройках VPN Android.';
 
   @override
   String get status_idle => 'Отключено';
@@ -758,7 +758,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'vpn_permission_denied':
           'Android отклонил разрешение VPN. Запустите подключение снова и примите системный запрос.',
       'vpn_permission_other_vpn':
-          'Android не выдал FuzeVPN разрешение на VPN, потому что активно другое VPN-приложение. Если оно настроено как «VPN всегда включён», отключите этот параметр в настройках VPN Android и повторите попытку.',
+          'Android не выдал FuzeVPN разрешение на VPN, потому что активно другое VPN-приложение. Если оно настроено как «Постоянная VPN», отключите этот параметр в настройках VPN Android и повторите попытку.',
       'revoked_identity_device_limit':
           'Доступ этого устройства к VPN удалён, и лимит устройств достигнут. Удалите устройство в разделе «Учётная запись» → «Управление моими устройствами».',
       'tunnel_start_unexpected':
@@ -1115,7 +1115,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'vpn_permission_denied':
           'Разрешите FuzeVPN в запросе Android, чтобы продолжить.',
       'vpn_permission_other_vpn':
-          'Android не выдал FuzeVPN разрешение на VPN, потому что активно другое VPN-приложение. Если оно настроено как «VPN всегда включён», отключите этот параметр в настройках VPN Android и повторите попытку.',
+          'Android не выдал FuzeVPN разрешение на VPN, потому что активно другое VPN-приложение. Если оно настроено как «Постоянная VPN», отключите этот параметр в настройках VPN Android и повторите попытку.',
       'vpn_permission_request_failed':
           'Android не смог открыть экран разрешения VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1662,7 +1662,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Если Android продолжает поддерживать VPN активным, отключите постоянно включённый VPN в открывшихся настройках.';
+      'Если Android продолжает поддерживать VPN активным, отключите «Постоянная VPN» в открывшихся настройках.';
 
   @override
   String get connection_certificate => 'Сертификат OpenVPN';
@@ -1689,14 +1689,14 @@ class AppLocalizationsRu extends AppLocalizations {
       'Эта защита не позволяет приложениям использовать интернет напрямую при отключении VPN. Она настраивается в Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN всегда включён';
+  String get protection_guideAlwaysOnTitle => 'Постоянная VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android поддерживает работу службы VPN и может перезапустить её после перезагрузки телефона.';
 
   @override
-  String get protection_guideBlockTitle => 'Блокировать подключения без VPN';
+  String get protection_guideBlockTitle => 'Блокировать соединения без VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1719,7 +1719,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Включите «VPN всегда включён», а затем «Блокировать подключения без VPN», если эти параметры доступны.';
+      'Включите «Постоянная VPN», а затем «Блокировать соединения без VPN», если эти параметры доступны.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1730,7 +1730,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'В тех же настройках отключите блокировку подключений без VPN, чтобы разрешить доступ к интернету без VPN. Также отключите «VPN всегда включён», если больше не хотите, чтобы Android перезапускал его.';
+      'В тех же настройках отключите «Блокировать соединения без VPN», чтобы разрешить доступ к интернету без VPN. Также отключите «Постоянная VPN», если больше не хотите, чтобы Android перезапускал его.';
 
   @override
   String get protection_guideManual =>

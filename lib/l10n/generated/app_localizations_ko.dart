@@ -264,11 +264,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android에서 “VPN 없이 연결 차단” 옵션이 켜져 있어 선택한 앱은 인터넷에 전혀 접속할 수 없습니다.';
+      'Android에서 “VPN 없는 연결 차단” 옵션이 켜져 있어 선택한 앱은 인터넷에 전혀 접속할 수 없습니다.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android에서 “VPN 없이 연결 차단” 옵션이 켜져 있으면 선택한 앱은 인터넷에 전혀 접속할 수 없습니다.';
+      'Android에서 “VPN 없는 연결 차단” 옵션이 켜져 있으면 선택한 앱은 인터넷에 전혀 접속할 수 없습니다.';
 
   @override
   String get connection_location => '위치';
@@ -403,7 +403,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      '다른 VPN이 활성 상태입니다. 항상 사용 VPN으로 설정되어 있다면 Android VPN 설정에서 끄세요.';
+      '다른 VPN이 활성 상태입니다. “연결 유지 VPN”으로 설정되어 있다면 Android VPN 설정에서 끄세요.';
 
   @override
   String get status_idle => '연결 해제됨';
@@ -722,7 +722,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'vpn_permission_denied':
           'Android에서 VPN 권한을 거부했습니다. 연결을 다시 시작하고 시스템 요청을 승인하세요.',
       'vpn_permission_other_vpn':
-          '다른 VPN 앱이 활성 상태여서 Android가 FuzeVPN에 VPN 권한을 주지 않았습니다. 항상 사용 VPN으로 설정되어 있다면 Android VPN 설정에서 끈 다음 다시 시도하세요.',
+          '다른 VPN 앱이 활성 상태여서 Android가 FuzeVPN에 VPN 권한을 주지 않았습니다. “연결 유지 VPN”으로 설정되어 있다면 Android VPN 설정에서 끈 다음 다시 시도하세요.',
       'revoked_identity_device_limit':
           '이 기기의 VPN 접근 권한이 삭제되었고 기기 한도에 도달했습니다. 계정 → 내 기기 관리에서 기기를 삭제하세요.',
       'tunnel_start_unexpected':
@@ -1028,7 +1028,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'vpn_permission_required': '터널을 시작하기 전에 Android에 새 VPN 승인이 필요합니다.',
       'vpn_permission_denied': '계속하려면 Android 요청에서 FuzeVPN을 허용하세요.',
       'vpn_permission_other_vpn':
-          '다른 VPN 앱이 활성 상태여서 Android가 FuzeVPN에 VPN 권한을 주지 않았습니다. 항상 사용 VPN으로 설정되어 있다면 Android VPN 설정에서 끈 다음 다시 시도하세요.',
+          '다른 VPN 앱이 활성 상태여서 Android가 FuzeVPN에 VPN 권한을 주지 않았습니다. “연결 유지 VPN”으로 설정되어 있다면 Android VPN 설정에서 끈 다음 다시 시도하세요.',
       'vpn_permission_request_failed': 'Android에서 VPN 권한 화면을 열지 못했습니다.',
       'wireguard_foreground_service_unavailable':
           'Android에서 WireGuard 서비스를 포그라운드에 유지하지 못했습니다.',
@@ -1520,7 +1520,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android에서 VPN을 계속 활성 상태로 유지하는 경우 열리는 설정에서 항상 사용 VPN을 끄세요.';
+      'Android에서 VPN을 계속 활성 상태로 유지하는 경우 열리는 설정에서 “연결 유지 VPN”을 끄세요.';
 
   @override
   String get connection_certificate => 'OpenVPN 인증서';
@@ -1546,14 +1546,14 @@ class AppLocalizationsKo extends AppLocalizations {
       '이 보호 기능은 VPN 연결이 끊어졌을 때 앱이 인터넷을 직접 사용하지 못하게 합니다. Android에서 구성됩니다.';
 
   @override
-  String get protection_guideAlwaysOnTitle => '항상 사용 VPN';
+  String get protection_guideAlwaysOnTitle => '연결 유지 VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android는 VPN 서비스를 계속 실행하고 휴대전화가 재부팅된 후 다시 시작할 수 있습니다.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN 없이 연결 차단';
+  String get protection_guideBlockTitle => 'VPN 없는 연결 차단';
 
   @override
   String get protection_guideBlock =>
@@ -1574,7 +1574,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      '항상 사용 VPN을 활성화한 다음, 해당 옵션이 있으면 VPN 없이 연결 차단을 활성화하세요.';
+      '“연결 유지 VPN”을 활성화한 다음, 해당 옵션이 있으면 “VPN 없는 연결 차단”을 활성화하세요.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1585,7 +1585,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      '같은 설정에서 VPN 없이 차단을 끄면 VPN 없이 인터넷에 접근할 수 있습니다. Android가 VPN을 다시 시작하지 않도록 하려면 항상 사용 VPN도 끄세요.';
+      '같은 설정에서 “VPN 없는 연결 차단”을 끄면 VPN 없이 인터넷에 접근할 수 있습니다. Android가 VPN을 다시 시작하지 않도록 하려면 “연결 유지 VPN”도 끄세요.';
 
   @override
   String get protection_guideManual =>

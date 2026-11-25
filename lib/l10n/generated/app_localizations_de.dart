@@ -1751,7 +1751,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Deaktiviere dort die Sperre ohne VPN, um Internetzugang ohne VPN zuzulassen. Deaktiviere auch das durchgehend aktive VPN, wenn Android es nicht mehr neu starten soll.';
+      'Deaktiviere dort „Verbindungen ohne VPN blockieren“, um Internetzugang ohne VPN zuzulassen. Deaktiviere auch „Durchgehend aktives VPN“, wenn Android es nicht mehr neu starten soll.';
 
   @override
   String get protection_guideManual =>

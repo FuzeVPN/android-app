@@ -491,7 +491,7 @@
   "protection_guideStep3": "Įjunkite „Visada įjungtas VPN“, tada – „Blokuoti ryšius be VPN“, jei šios parinktys pasiekiamos.",
   "protection_guideManufacturers": "Pavadinimai skiriasi priklausomai nuo telefono. Jei reikia, nustatymuose ieškokite „VPN“, dažniausiai skiltyje „Tinklas ir internetas“.",
   "protection_guideDisableTitle": "Išjunkite šią apsaugą",
-  "protection_guideDisable": "Tuose pačiuose nustatymuose išjunkite blokavimą be VPN, kad būtų galima naudotis internetu be VPN. Taip pat išjunkite „Visada įjungtas VPN“, jei nebenorite, kad Android jį paleistų iš naujo.",
+  "protection_guideDisable": "Tuose pačiuose nustatymuose išjunkite „Blokuoti ryšius be VPN“, kad būtų galima naudotis internetu be VPN. Taip pat išjunkite „Visada įjungtas VPN“, jei nebenorite, kad Android jį paleistų iš naujo.",
   "protection_guideManual": "Šiuos nustatymus pasirenkate Android sistemoje. FuzeVPN jų už jus nekeičia.",
   "locations_changeTitle": "Keisti vietą?",
   "locations_changeActive": "VPN atsijungs, tada bandys prisijungti prie vietos: {name}.",

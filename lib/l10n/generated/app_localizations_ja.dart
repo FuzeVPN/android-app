@@ -263,11 +263,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Androidで「VPNなしの接続をブロック」がオンになっています。チェックしたアプリはインターネットにまったくアクセスできません。';
+      'Androidで「VPN 以外の接続のブロック」がオンになっています。チェックしたアプリはインターネットにまったくアクセスできません。';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Androidで「VPNなしの接続をブロック」がオンの場合、チェックしたアプリはインターネットにまったくアクセスできません。';
+      'Androidで「VPN 以外の接続のブロック」がオンの場合、チェックしたアプリはインターネットにまったくアクセスできません。';
 
   @override
   String get connection_location => '場所';
@@ -402,7 +402,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      '別のVPNが有効になっています。常時接続VPNに設定されている場合は、AndroidのVPN設定でオフにしてください。';
+      '別のVPNが有効になっています。「常時接続 VPN」に設定されている場合は、AndroidのVPN設定でオフにしてください。';
 
   @override
   String get status_idle => '切断済み';
@@ -721,7 +721,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'vpn_permission_denied':
           'AndroidがVPN権限を拒否しました。接続をもう一度開始し、システムのリクエストを承認してください。',
       'vpn_permission_other_vpn':
-          '別のVPNアプリが有効なため、AndroidはFuzeVPNにVPN権限を与えませんでした。常時接続VPNに設定されている場合は、AndroidのVPN設定でオフにしてから、もう一度お試しください。',
+          '別のVPNアプリが有効なため、AndroidはFuzeVPNにVPN権限を与えませんでした。「常時接続 VPN」に設定されている場合は、AndroidのVPN設定でオフにしてから、もう一度お試しください。',
       'revoked_identity_device_limit':
           'このデバイスのVPNアクセスが削除され、デバイス上限に達しました。アカウント → デバイスを管理からデバイスを削除してください。',
       'tunnel_start_unexpected':
@@ -1024,7 +1024,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'vpn_permission_required': 'トンネルを開始する前に、Androidで新しいVPN認証が必要です。',
       'vpn_permission_denied': '続行するには、AndroidのリクエストでFuzeVPNを許可してください。',
       'vpn_permission_other_vpn':
-          '別のVPNアプリが有効なため、AndroidはFuzeVPNにVPN権限を与えませんでした。常時接続VPNに設定されている場合は、AndroidのVPN設定でオフにしてから、もう一度お試しください。',
+          '別のVPNアプリが有効なため、AndroidはFuzeVPNにVPN権限を与えませんでした。「常時接続 VPN」に設定されている場合は、AndroidのVPN設定でオフにしてから、もう一度お試しください。',
       'vpn_permission_request_failed': 'AndroidはVPN権限画面を開けませんでした。',
       'wireguard_foreground_service_unavailable':
           'AndroidはWireGuardサービスをフォアグラウンドで維持できませんでした。',
@@ -1512,7 +1512,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'AndroidがVPNをアクティブなままにする場合は、開いた設定で常時接続VPNをオフにしてください。';
+      'AndroidがVPNをアクティブなままにする場合は、開いた設定で「常時接続 VPN」をオフにしてください。';
 
   @override
   String get connection_certificate => 'OpenVPN証明書';
@@ -1538,14 +1538,14 @@ class AppLocalizationsJa extends AppLocalizations {
       'この保護により、VPNが切断された場合にアプリがインターネットを直接使用できなくなります。Androidで設定します。';
 
   @override
-  String get protection_guideAlwaysOnTitle => '常時接続VPN';
+  String get protection_guideAlwaysOnTitle => '常時接続 VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'AndroidはVPNサービスを実行し続け、スマートフォンの再起動後に再開できます。';
 
   @override
-  String get protection_guideBlockTitle => 'VPNなしの接続をブロック';
+  String get protection_guideBlockTitle => 'VPN 以外の接続のブロック';
 
   @override
   String get protection_guideBlock => 'この設定により、接続が中断されている間も含め、VPNを迂回する通信を防ぎます。';
@@ -1565,7 +1565,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      '利用できる場合は、常時接続VPN、次にVPNなしの接続をブロックを有効にします。';
+      '利用できる場合は、「常時接続 VPN」、次に「VPN 以外の接続のブロック」を有効にします。';
 
   @override
   String get protection_guideManufacturers =>
@@ -1576,7 +1576,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      '同じ設定でVPNなしのブロックをオフにすると、VPNなしでインターネットにアクセスできます。Androidによる再起動を望まない場合は、常時接続VPNもオフにしてください。';
+      '同じ設定で「VPN 以外の接続のブロック」をオフにすると、VPNなしでインターネットにアクセスできます。Androidによる再起動を望まない場合は、「常時接続 VPN」もオフにしてください。';
 
   @override
   String get protection_guideManual =>

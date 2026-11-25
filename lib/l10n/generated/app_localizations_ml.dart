@@ -276,11 +276,11 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android-ൽ “VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക” ഓണാണ്: ടിക്ക് ചെയ്ത ആപ്പുകൾക്ക് ഇന്റർനെറ്റ് ആക്‌സസ് ഒട്ടുമില്ല.';
+      'Android-ൽ “VPN ഇല്ലാത്ത കണക്ഷനുകൾ ബ്ലോക്കുചെയ്യുക” ഓണാണ്: ടിക്ക് ചെയ്ത ആപ്പുകൾക്ക് ഇന്റർനെറ്റ് ആക്‌സസ് ഒട്ടുമില്ല.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android-ൽ “VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക” ഓണാണെങ്കിൽ, ടിക്ക് ചെയ്ത ആപ്പുകൾക്ക് ഇന്റർനെറ്റ് ആക്‌സസ് ഒട്ടും ഉണ്ടാകില്ല.';
+      'Android-ൽ “VPN ഇല്ലാത്ത കണക്ഷനുകൾ ബ്ലോക്കുചെയ്യുക” ഓണാണെങ്കിൽ, ടിക്ക് ചെയ്ത ആപ്പുകൾക്ക് ഇന്റർനെറ്റ് ആക്‌സസ് ഒട്ടും ഉണ്ടാകില്ല.';
 
   @override
   String get connection_location => 'ലൊക്കേഷൻ';
@@ -1691,7 +1691,8 @@ class AppLocalizationsMl extends AppLocalizations {
       'VPN സേവനം Android പ്രവർത്തനക്ഷമമായി നിലനിർത്തുന്നു, ഫോൺ റീസ്റ്റാർട്ട് ചെയ്ത ശേഷം അത് വീണ്ടും ആരംഭിക്കാനും Android-ന് കഴിയും.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക';
+  String get protection_guideBlockTitle =>
+      'VPN ഇല്ലാത്ത കണക്ഷനുകൾ ബ്ലോക്കുചെയ്യുക';
 
   @override
   String get protection_guideBlock =>
@@ -1714,7 +1715,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'ഈ ഓപ്‌ഷനുകൾ ലഭ്യമാണെങ്കിൽ, “എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN”, തുടർന്ന് “VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുക” എന്നിവ ഓണാക്കുക.';
+      'ഈ ഓപ്‌ഷനുകൾ ലഭ്യമാണെങ്കിൽ, “എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN”, തുടർന്ന് “VPN ഇല്ലാത്ത കണക്ഷനുകൾ ബ്ലോക്കുചെയ്യുക” എന്നിവ ഓണാക്കുക.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1725,7 +1726,7 @@ class AppLocalizationsMl extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'അതേ ക്രമീകരണങ്ങളിൽ, VPN ഇല്ലാതെ ഇന്റർനെറ്റ് ആക്‌സസ് അനുവദിക്കാൻ VPN ഇല്ലാതെയുള്ള കണക്ഷനുകൾ തടയുന്നത് ഓഫാക്കുക. VPN വീണ്ടും ആരംഭിക്കാൻ Android-നെ അനുവദിക്കേണ്ടതില്ലെങ്കിൽ എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN കൂടി ഓഫാക്കുക.';
+      'അതേ ക്രമീകരണങ്ങളിൽ, VPN ഇല്ലാതെ ഇന്റർനെറ്റ് ആക്‌സസ് അനുവദിക്കാൻ “VPN ഇല്ലാത്ത കണക്ഷനുകൾ ബ്ലോക്കുചെയ്യുക” ഓഫാക്കുക. VPN വീണ്ടും ആരംഭിക്കാൻ Android-നെ അനുവദിക്കേണ്ടതില്ലെങ്കിൽ “എല്ലായ്‌പ്പോഴും ഓണായിരിക്കുന്ന VPN” കൂടി ഓഫാക്കുക.';
 
   @override
   String get protection_guideManual =>

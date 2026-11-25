@@ -1767,7 +1767,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Sa parehong mga setting, i-off ang pag-block kapag walang VPN upang payagan ang internet nang walang VPN. I-off din ang Always-on VPN kung ayaw mo nang i-restart ito ng Android.';
+      'Sa parehong mga setting, i-off ang “I-block ang mga koneksyong walang VPN” upang payagan ang internet nang walang VPN. I-off din ang “Always-on VPN” kung ayaw mo nang i-restart ito ng Android.';
 
   @override
   String get protection_guideManual =>

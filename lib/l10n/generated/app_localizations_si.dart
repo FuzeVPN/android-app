@@ -273,11 +273,11 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android හි “VPN නොමැතිව සම්බන්ධතා අවහිර කරන්න” සක්‍රියයි: සලකුණු කළ යෙදුම්වලට කිසිදු අන්තර්ජාල ප්‍රවේශයක් නැත.';
+      'Android හි “VPN නොමැතිව සම්බන්ධතා අවහිර කිරීම” සක්‍රියයි: සලකුණු කළ යෙදුම්වලට කිසිදු අන්තර්ජාල ප්‍රවේශයක් නැත.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android හි “VPN නොමැතිව සම්බන්ධතා අවහිර කරන්න” සක්‍රිය නම්, සලකුණු කළ යෙදුම්වලට කිසිදු අන්තර්ජාල ප්‍රවේශයක් නැත.';
+      'Android හි “VPN නොමැතිව සම්බන්ධතා අවහිර කිරීම” සක්‍රිය නම්, සලකුණු කළ යෙදුම්වලට කිසිදු අන්තර්ජාල ප්‍රවේශයක් නැත.';
 
   @override
   String get connection_location => 'ස්ථානය';
@@ -417,7 +417,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'වෙනත් VPN එකක් සක්‍රියයි. එය සැමවිටම ක්‍රියාකාරී VPN ලෙස සකසා ඇත්නම්, Android හි VPN සැකසුම්වල එය අක්‍රිය කරන්න.';
+      'වෙනත් VPN එකක් සක්‍රියයි. එය “සැමවිට-සක්‍රිය VPN” ලෙස සකසා ඇත්නම්, Android හි VPN සැකසුම්වල එය අක්‍රිය කරන්න.';
 
   @override
   String get status_idle => 'විසන්ධි වී ඇත';
@@ -755,7 +755,7 @@ class AppLocalizationsSi extends AppLocalizations {
       'vpn_permission_denied':
           'Android මගින් VPN අවසරය ප්‍රතික්ෂේප කළේය. සම්බන්ධතාව නැවත ආරම්භ කර පද්ධති ඉල්ලීම පිළිගන්න.',
       'vpn_permission_other_vpn':
-          'වෙනත් VPN යෙදුමක් සක්‍රිය නිසා Android විසින් FuzeVPN වෙත VPN අවසරය ලබා දුන්නේ නැත. එය සැමවිටම ක්‍රියාකාරී VPN ලෙස සකසා ඇත්නම්, Android හි VPN සැකසුම්වල එය අක්‍රිය කර නැවත උත්සාහ කරන්න.',
+          'වෙනත් VPN යෙදුමක් සක්‍රිය නිසා Android විසින් FuzeVPN වෙත VPN අවසරය ලබා දුන්නේ නැත. එය “සැමවිට-සක්‍රිය VPN” ලෙස සකසා ඇත්නම්, Android හි VPN සැකසුම්වල එය අක්‍රිය කර නැවත උත්සාහ කරන්න.',
       'revoked_identity_device_limit':
           'මෙම උපාංගයේ VPN ප්‍රවේශය ඉවත් කර ඇති අතර උපාංග සීමාවට ළඟා වී ඇත. ගිණුම → “මගේ උපාංග කළමනාකරණය කරන්න” වෙත ගොස් උපාංගයක් ඉවත් කරන්න.',
       'tunnel_start_unexpected':
@@ -1100,7 +1100,7 @@ class AppLocalizationsSi extends AppLocalizations {
       'vpn_permission_denied':
           'ඉදිරියට යාමට Android ඉල්ලීමේදී FuzeVPN සඳහා ඉඩ දෙන්න.',
       'vpn_permission_other_vpn':
-          'වෙනත් VPN යෙදුමක් සක්‍රිය නිසා Android විසින් FuzeVPN වෙත VPN අවසරය ලබා දුන්නේ නැත. එය සැමවිටම ක්‍රියාකාරී VPN ලෙස සකසා ඇත්නම්, Android හි VPN සැකසුම්වල එය අක්‍රිය කර නැවත උත්සාහ කරන්න.',
+          'වෙනත් VPN යෙදුමක් සක්‍රිය නිසා Android විසින් FuzeVPN වෙත VPN අවසරය ලබා දුන්නේ නැත. එය “සැමවිට-සක්‍රිය VPN” ලෙස සකසා ඇත්නම්, Android හි VPN සැකසුම්වල එය අක්‍රිය කර නැවත උත්සාහ කරන්න.',
       'vpn_permission_request_failed':
           'VPN අවසර තිරය විවෘත කිරීමට Android හට නොහැකි විය.',
       'wireguard_foreground_service_unavailable':
@@ -1646,7 +1646,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android මගින් VPN සක්‍රියව තබා ගන්නේ නම්, විවෘත වන සැකසුම්වල සැමවිටම ක්‍රියාකාරී VPN අක්‍රිය කරන්න.';
+      'Android මගින් VPN සක්‍රියව තබා ගන්නේ නම්, විවෘත වන සැකසුම්වල “සැමවිට-සක්‍රිය VPN” අක්‍රිය කරන්න.';
 
   @override
   String get connection_certificate => 'OpenVPN සහතිකය';
@@ -1673,14 +1673,14 @@ class AppLocalizationsSi extends AppLocalizations {
       'මෙම ආරක්ෂණය VPN විසන්ධි වුවහොත් යෙදුම් සෘජුවම අන්තර්ජාලය භාවිත කිරීම වළක්වයි. එය Android හි සකස් කෙරේ.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'සැමවිටම ක්‍රියාකාරී VPN';
+  String get protection_guideAlwaysOnTitle => 'සැමවිට-සක්‍රිය VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android මගින් VPN සේවාව ක්‍රියාත්මකව තබා ගන්නා අතර දුරකථනය යළි ආරම්භ වූ පසු එය නැවත ක්‍රියාත්මක කළ හැක.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN නොමැතිව සම්බන්ධතා අවහිර කරන්න';
+  String get protection_guideBlockTitle => 'VPN නොමැතිව සම්බන්ධතා අවහිර කිරීම';
 
   @override
   String get protection_guideBlock =>
@@ -1703,7 +1703,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'මෙම විකල්ප තිබේ නම්, සැමවිටම ක්‍රියාකාරී VPN සක්‍රිය කර, ඉන්පසු VPN නොමැතිව සම්බන්ධතා අවහිර කරන්න සක්‍රිය කරන්න.';
+      'මෙම විකල්ප තිබේ නම්, “සැමවිට-සක්‍රිය VPN” සක්‍රිය කර, ඉන්පසු “VPN නොමැතිව සම්බන්ධතා අවහිර කිරීම” සක්‍රිය කරන්න.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1714,7 +1714,7 @@ class AppLocalizationsSi extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'එම සැකසුම් තුළම, VPN නොමැතිව අන්තර්ජාල ප්‍රවේශයට ඉඩ දීමට VPN නොමැතිව සම්බන්ධතා අවහිර කිරීම අක්‍රිය කරන්න. Android එය නැවත ආරම්භ කිරීම ඔබට අවශ්‍ය නොවේ නම්, සැමවිටම ක්‍රියාකාරී VPN ද අක්‍රිය කරන්න.';
+      'එම සැකසුම් තුළම, VPN නොමැතිව අන්තර්ජාල ප්‍රවේශයට ඉඩ දීමට “VPN නොමැතිව සම්බන්ධතා අවහිර කිරීම” අක්‍රිය කරන්න. Android එය නැවත ආරම්භ කිරීම ඔබට අවශ්‍ය නොවේ නම්, “සැමවිට-සක්‍රිය VPN” ද අක්‍රිය කරන්න.';
 
   @override
   String get protection_guideManual =>

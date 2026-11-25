@@ -276,11 +276,11 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android-இல் “VPN இல்லாமல் இணைப்புகளைத் தடுக்கவும்” இயக்கத்தில் உள்ளது: தேர்ந்தெடுத்த பயன்பாடுகளுக்கு இணைய அணுகல் எதுவும் இல்லை.';
+      'Android-இல் “VPN இல்லாமல் இணைப்புகளைத் தடு” இயக்கத்தில் உள்ளது: தேர்ந்தெடுத்த பயன்பாடுகளுக்கு இணைய அணுகல் எதுவும் இல்லை.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android-இல் “VPN இல்லாமல் இணைப்புகளைத் தடுக்கவும்” இயக்கத்தில் இருந்தால், தேர்ந்தெடுத்த பயன்பாடுகளுக்கு இணைய அணுகல் எதுவும் இருக்காது.';
+      'Android-இல் “VPN இல்லாமல் இணைப்புகளைத் தடு” இயக்கத்தில் இருந்தால், தேர்ந்தெடுத்த பயன்பாடுகளுக்கு இணைய அணுகல் எதுவும் இருக்காது.';
 
   @override
   String get connection_location => 'இடம்';
@@ -421,7 +421,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'வேறொரு VPN செயலில் உள்ளது. அது “எப்போதும் இயக்கத்தில் உள்ள VPN” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கவும்.';
+      'வேறொரு VPN செயலில் உள்ளது. அது “VPN எப்போதும் இயக்கத்தில்” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கவும்.';
 
   @override
   String get status_idle => 'இணையவில்லை';
@@ -761,7 +761,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'vpn_permission_denied':
           'VPN அனுமதியை Android மறுத்துவிட்டது. இணைப்பை மீண்டும் தொடங்கி, சிஸ்டம் கோரிக்கையை ஏற்கவும்.',
       'vpn_permission_other_vpn':
-          'வேறொரு VPN ஆப்ஸ் செயலில் இருப்பதால் Android, FuzeVPN-க்கு VPN அனுமதியை வழங்கவில்லை. அது “எப்போதும் இயக்கத்தில் உள்ள VPN” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கிவிட்டு மீண்டும் முயலவும்.',
+          'வேறொரு VPN ஆப்ஸ் செயலில் இருப்பதால் Android, FuzeVPN-க்கு VPN அனுமதியை வழங்கவில்லை. அது “VPN எப்போதும் இயக்கத்தில்” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கிவிட்டு மீண்டும் முயலவும்.',
       'revoked_identity_device_limit':
           'இந்தச் சாதனத்தின் VPN அணுகல் அகற்றப்பட்டது, சாதன வரம்பும் எட்டப்பட்டுவிட்டது. கணக்கு → “எனது சாதனங்களை நிர்வகிக்கவும்” என்பதன் கீழ் ஒரு சாதனத்தை அகற்றவும்.',
       'tunnel_start_unexpected':
@@ -1118,7 +1118,7 @@ class AppLocalizationsTa extends AppLocalizations {
       'vpn_permission_denied':
           'தொடர Android கோரிக்கையில் FuzeVPN-ஐ அனுமதிக்கவும்.',
       'vpn_permission_other_vpn':
-          'வேறொரு VPN ஆப்ஸ் செயலில் இருப்பதால் Android, FuzeVPN-க்கு VPN அனுமதியை வழங்கவில்லை. அது “எப்போதும் இயக்கத்தில் உள்ள VPN” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கிவிட்டு மீண்டும் முயலவும்.',
+          'வேறொரு VPN ஆப்ஸ் செயலில் இருப்பதால் Android, FuzeVPN-க்கு VPN அனுமதியை வழங்கவில்லை. அது “VPN எப்போதும் இயக்கத்தில்” ஆக அமைக்கப்பட்டிருந்தால், Android VPN அமைப்புகளில் அதை முடக்கிவிட்டு மீண்டும் முயலவும்.',
       'vpn_permission_request_failed':
           'VPN அனுமதித் திரையை Android-ஆல் திறக்க முடியவில்லை.',
       'wireguard_foreground_service_unavailable':
@@ -1673,7 +1673,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android VPN-ஐத் தொடர்ந்து செயலில் வைத்திருந்தால், திறக்கும் அமைப்புகளில் “எப்போதும் இயக்கத்தில் உள்ள VPN” விருப்பத்தை முடக்கவும்.';
+      'Android VPN-ஐத் தொடர்ந்து செயலில் வைத்திருந்தால், திறக்கும் அமைப்புகளில் “VPN எப்போதும் இயக்கத்தில்” விருப்பத்தை முடக்கவும்.';
 
   @override
   String get connection_certificate => 'OpenVPN சான்றிதழ்';
@@ -1700,15 +1700,14 @@ class AppLocalizationsTa extends AppLocalizations {
       'VPN துண்டிக்கப்பட்டால், பயன்பாடுகள் நேரடியாக இணையத்தைப் பயன்படுத்துவதை இந்தப் பாதுகாப்பு தடுக்கும். இது Android-இல் அமைக்கப்படுகிறது.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'எப்போதும் இயக்கத்தில் உள்ள VPN';
+  String get protection_guideAlwaysOnTitle => 'VPN எப்போதும் இயக்கத்தில்';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android VPN சேவையைத் தொடர்ந்து இயக்கத்தில் வைத்திருக்கும்; தொலைபேசியை மறுதொடக்கம் செய்த பிறகும் அதை மீண்டும் தொடங்க முடியும்.';
 
   @override
-  String get protection_guideBlockTitle =>
-      'VPN இல்லாமல் இணைப்புகளைத் தடுக்கவும்';
+  String get protection_guideBlockTitle => 'VPN இல்லாமல் இணைப்புகளைத் தடு';
 
   @override
   String get protection_guideBlock =>
@@ -1731,7 +1730,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'இந்த விருப்பங்கள் இருந்தால், முதலில் “எப்போதும் இயக்கத்தில் உள்ள VPN”-ஐயும், பிறகு “VPN இல்லாமல் இணைப்புகளைத் தடுக்கவும்”-ஐயும் இயக்கவும்.';
+      'இந்த விருப்பங்கள் இருந்தால், முதலில் “VPN எப்போதும் இயக்கத்தில்”-ஐயும், பிறகு “VPN இல்லாமல் இணைப்புகளைத் தடு”-ஐயும் இயக்கவும்.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1742,7 +1741,7 @@ class AppLocalizationsTa extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'அதே அமைப்புகளில், VPN இல்லாமல் இணையத்தை அனுமதிக்க “VPN இல்லாமல் இணைப்புகளைத் தடுக்கவும்” விருப்பத்தை முடக்கவும். Android அதை மீண்டும் தொடங்கக்கூடாது என்று விரும்பினால், “எப்போதும் இயக்கத்தில் உள்ள VPN”-ஐயும் முடக்கவும்.';
+      'அதே அமைப்புகளில், VPN இல்லாமல் இணையத்தை அனுமதிக்க “VPN இல்லாமல் இணைப்புகளைத் தடு” விருப்பத்தை முடக்கவும். Android அதை மீண்டும் தொடங்கக்கூடாது என்று விரும்பினால், “VPN எப்போதும் இயக்கத்தில்”-ஐயும் முடக்கவும்.';
 
   @override
   String get protection_guideManual =>

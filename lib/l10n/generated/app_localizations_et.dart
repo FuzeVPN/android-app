@@ -274,11 +274,11 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Androidis on „Blokeeri ühendused ilma VPN-ita“ sisse lülitatud: märgitud rakendustel pole üldse internetiühendust.';
+      'Androidis on „VPN-ita ühenduste blokeerimine“ sisse lülitatud: märgitud rakendustel pole üldse internetiühendust.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Kui Androidis on „Blokeeri ühendused ilma VPN-ita“ sisse lülitatud, pole märgitud rakendustel üldse internetiühendust.';
+      'Kui Androidis on „VPN-ita ühenduste blokeerimine“ sisse lülitatud, pole märgitud rakendustel üldse internetiühendust.';
 
   @override
   String get connection_location => 'Asukoht';
@@ -1679,7 +1679,7 @@ class AppLocalizationsEt extends AppLocalizations {
       'Android hoiab VPN-teenuse töös ja saab selle pärast telefoni taaskäivitamist uuesti käivitada.';
 
   @override
-  String get protection_guideBlockTitle => 'Blokeeri ühendused ilma VPN-ita';
+  String get protection_guideBlockTitle => 'VPN-ita ühenduste blokeerimine';
 
   @override
   String get protection_guideBlock =>
@@ -1702,7 +1702,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Lülita sisse „Alati sees VPN“ ning seejärel „Blokeeri ühendused ilma VPN-ita“, kui need valikud on saadaval.';
+      'Lülita sisse „Alati sees VPN“ ning seejärel „VPN-ita ühenduste blokeerimine“, kui need valikud on saadaval.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1713,7 +1713,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Lülita samades seadetes blokeerimine ilma VPN-ita välja, et saaksid internetti kasutada ka ilma VPN-ita. Kui sa ei soovi enam, et Android VPN-i uuesti käivitaks, lülita välja ka „Alati sees VPN“.';
+      'Lülita samades seadetes „VPN-ita ühenduste blokeerimine“ välja, et saaksid internetti kasutada ka ilma VPN-ita. Kui sa ei soovi enam, et Android VPN-i uuesti käivitaks, lülita välja ka „Alati sees VPN“.';
 
   @override
   String get protection_guideManual =>

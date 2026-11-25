@@ -269,11 +269,11 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“ទប់ស្កាត់ការតភ្ជាប់ដោយគ្មាន VPN” ត្រូវបានបើកនៅក្នុង Android៖ កម្មវិធីដែលបានធីកមិនអាចចូលប្រើអ៊ីនធឺណិតបានទាល់តែសោះ។';
+      '“ទប់ស្កាត់ការ​តភ្ជាប់​ដោយ​មិនចាំបាច់ប្រើ VPN ទេ” ត្រូវបានបើកនៅក្នុង Android៖ កម្មវិធីដែលបានធីកមិនអាចចូលប្រើអ៊ីនធឺណិតបានទាល់តែសោះ។';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'ប្រសិនបើ “ទប់ស្កាត់ការតភ្ជាប់ដោយគ្មាន VPN” ត្រូវបានបើកនៅក្នុង Android កម្មវិធីដែលបានធីកមិនអាចចូលប្រើអ៊ីនធឺណិតបានទាល់តែសោះ។';
+      'ប្រសិនបើ “ទប់ស្កាត់ការ​តភ្ជាប់​ដោយ​មិនចាំបាច់ប្រើ VPN ទេ” ត្រូវបានបើកនៅក្នុង Android កម្មវិធីដែលបានធីកមិនអាចចូលប្រើអ៊ីនធឺណិតបានទាល់តែសោះ។';
 
   @override
   String get connection_location => 'ទីតាំង';
@@ -414,7 +414,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'VPN ផ្សេងទៀតកំពុងដំណើរការ។ ប្រសិនបើវាត្រូវបានកំណត់ជា VPN បើកជានិច្ច សូមបិទការកំណត់នោះនៅក្នុងការកំណត់ VPN របស់ Android។';
+      'VPN ផ្សេងទៀតកំពុងដំណើរការ។ ប្រសិនបើវាត្រូវបានកំណត់ជា “បើក VPN ជា​និច្ច” សូមបិទការកំណត់នោះនៅក្នុងការកំណត់ VPN របស់ Android។';
 
   @override
   String get status_idle => 'បានផ្តាច់';
@@ -748,7 +748,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'vpn_permission_denied':
           'Android បានបដិសេធការអនុញ្ញាត VPN។ សូមចាប់ផ្តើមការតភ្ជាប់ឡើងវិញ ហើយទទួលយកសំណើប្រព័ន្ធ។',
       'vpn_permission_other_vpn':
-          'Android មិនបានផ្តល់ការអនុញ្ញាត VPN ដល់ FuzeVPN ទេ ព្រោះកម្មវិធី VPN ផ្សេងទៀតកំពុងដំណើរការ។ ប្រសិនបើវាត្រូវបានកំណត់ជា VPN បើកជានិច្ច សូមបិទការកំណត់នោះនៅក្នុងការកំណត់ VPN របស់ Android រួចព្យាយាមម្តងទៀត។',
+          'Android មិនបានផ្តល់ការអនុញ្ញាត VPN ដល់ FuzeVPN ទេ ព្រោះកម្មវិធី VPN ផ្សេងទៀតកំពុងដំណើរការ។ ប្រសិនបើវាត្រូវបានកំណត់ជា “បើក VPN ជា​និច្ច” សូមបិទការកំណត់នោះនៅក្នុងការកំណត់ VPN របស់ Android រួចព្យាយាមម្តងទៀត។',
       'revoked_identity_device_limit':
           'ការចូលប្រើ VPN របស់ឧបករណ៍នេះត្រូវបានដកចេញ ហើយចំនួនឧបករណ៍បានដល់ដែនកំណត់។ សូមដកឧបករណ៍មួយចេញនៅក្នុង គណនី → គ្រប់គ្រងឧបករណ៍របស់ខ្ញុំ។',
       'tunnel_start_unexpected':
@@ -1091,7 +1091,7 @@ class AppLocalizationsKm extends AppLocalizations {
       'vpn_permission_denied':
           'សូមអនុញ្ញាត FuzeVPN នៅក្នុងសំណើរបស់ Android ដើម្បីបន្ត។',
       'vpn_permission_other_vpn':
-          'Android មិនបានផ្តល់ការអនុញ្ញាត VPN ដល់ FuzeVPN ទេ ព្រោះកម្មវិធី VPN ផ្សេងទៀតកំពុងដំណើរការ។ ប្រសិនបើវាត្រូវបានកំណត់ជា VPN បើកជានិច្ច សូមបិទការកំណត់នោះនៅក្នុងការកំណត់ VPN របស់ Android រួចព្យាយាមម្តងទៀត។',
+          'Android មិនបានផ្តល់ការអនុញ្ញាត VPN ដល់ FuzeVPN ទេ ព្រោះកម្មវិធី VPN ផ្សេងទៀតកំពុងដំណើរការ។ ប្រសិនបើវាត្រូវបានកំណត់ជា “បើក VPN ជា​និច្ច” សូមបិទការកំណត់នោះនៅក្នុងការកំណត់ VPN របស់ Android រួចព្យាយាមម្តងទៀត។',
       'vpn_permission_request_failed':
           'Android មិនអាចបើកអេក្រង់ការអនុញ្ញាត VPN បានទេ។',
       'wireguard_foreground_service_unavailable':
@@ -1636,7 +1636,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'ប្រសិនបើ Android នៅតែរក្សា VPN ឱ្យដំណើរការ សូមបិទ VPN បើកជានិច្ច នៅក្នុងការកំណត់ដែលនឹងបើកឡើង។';
+      'ប្រសិនបើ Android នៅតែរក្សា VPN ឱ្យដំណើរការ សូមបិទ “បើក VPN ជា​និច្ច” នៅក្នុងការកំណត់ដែលនឹងបើកឡើង។';
 
   @override
   String get connection_certificate => 'វិញ្ញាបនបត្រ OpenVPN';
@@ -1663,14 +1663,15 @@ class AppLocalizationsKm extends AppLocalizations {
       'ការការពារនេះទប់ស្កាត់មិនឱ្យកម្មវិធីប្រើអ៊ីនធឺណិតដោយផ្ទាល់ ប្រសិនបើ VPN ដាច់។ ការកំណត់នេះធ្វើឡើងនៅក្នុង Android។';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN បើកជានិច្ច';
+  String get protection_guideAlwaysOnTitle => 'បើក VPN ជា​និច្ច';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android រក្សាសេវា VPN ឱ្យដំណើរការជានិច្ច ហើយអាចចាប់ផ្តើមវាម្តងទៀតបន្ទាប់ពីទូរស័ព្ទចាប់ផ្តើមឡើងវិញ។';
 
   @override
-  String get protection_guideBlockTitle => 'ទប់ស្កាត់ការតភ្ជាប់ដោយគ្មាន VPN';
+  String get protection_guideBlockTitle =>
+      'ទប់ស្កាត់ការ​តភ្ជាប់​ដោយ​មិនចាំបាច់ប្រើ VPN ទេ';
 
   @override
   String get protection_guideBlock =>
@@ -1693,7 +1694,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'សូមបើក “VPN បើកជានិច្ច” បន្ទាប់មកបើក “ទប់ស្កាត់ការតភ្ជាប់ដោយគ្មាន VPN” ប្រសិនបើជម្រើសទាំងនេះមាន។';
+      'សូមបើក “បើក VPN ជា​និច្ច” បន្ទាប់មកបើក “ទប់ស្កាត់ការ​តភ្ជាប់​ដោយ​មិនចាំបាច់ប្រើ VPN ទេ” ប្រសិនបើជម្រើសទាំងនេះមាន។';
 
   @override
   String get protection_guideManufacturers =>
@@ -1704,7 +1705,7 @@ class AppLocalizationsKm extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'នៅក្នុងការកំណត់ដដែល សូមបិទ “ទប់ស្កាត់ការតភ្ជាប់ដោយគ្មាន VPN” ដើម្បីអនុញ្ញាតឱ្យចូលប្រើអ៊ីនធឺណិតដោយគ្មាន VPN។ សូមបិទ “VPN បើកជានិច្ច” ផងដែរ ប្រសិនបើអ្នកលែងចង់ឱ្យ Android ចាប់ផ្តើមវាឡើងវិញ។';
+      'នៅក្នុងការកំណត់ដដែល សូមបិទ “ទប់ស្កាត់ការ​តភ្ជាប់​ដោយ​មិនចាំបាច់ប្រើ VPN ទេ” ដើម្បីអនុញ្ញាតឱ្យចូលប្រើអ៊ីនធឺណិតដោយគ្មាន VPN។ សូមបិទ “បើក VPN ជា​និច្ច” ផងដែរ ប្រសិនបើអ្នកលែងចង់ឱ្យ Android ចាប់ផ្តើមវាឡើងវិញ។';
 
   @override
   String get protection_guideManual =>

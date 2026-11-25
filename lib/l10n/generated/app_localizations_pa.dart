@@ -272,11 +272,11 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android ਵਿੱਚ “VPN ਤੋਂ ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰੋ” ਚਾਲੂ ਹੈ: ਚੁਣੀਆਂ ਗਈਆਂ ਐਪਾਂ ਕੋਲ ਇੰਟਰਨੈੱਟ ਦੀ ਕੋਈ ਪਹੁੰਚ ਨਹੀਂ ਹੈ।';
+      'Android ਵਿੱਚ “ਬਿਨਾਂ VPN ਤੋਂ ਕਨੈਕਸ਼ਨਾਂ ਨੂੰ ਬਲਾਕ ਕਰੋ” ਚਾਲੂ ਹੈ: ਚੁਣੀਆਂ ਗਈਆਂ ਐਪਾਂ ਕੋਲ ਇੰਟਰਨੈੱਟ ਦੀ ਕੋਈ ਪਹੁੰਚ ਨਹੀਂ ਹੈ।';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'ਜੇ Android ਵਿੱਚ “VPN ਤੋਂ ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰੋ” ਚਾਲੂ ਹੈ, ਤਾਂ ਚੁਣੀਆਂ ਗਈਆਂ ਐਪਾਂ ਕੋਲ ਇੰਟਰਨੈੱਟ ਦੀ ਕੋਈ ਪਹੁੰਚ ਨਹੀਂ ਹੁੰਦੀ।';
+      'ਜੇ Android ਵਿੱਚ “ਬਿਨਾਂ VPN ਤੋਂ ਕਨੈਕਸ਼ਨਾਂ ਨੂੰ ਬਲਾਕ ਕਰੋ” ਚਾਲੂ ਹੈ, ਤਾਂ ਚੁਣੀਆਂ ਗਈਆਂ ਐਪਾਂ ਕੋਲ ਇੰਟਰਨੈੱਟ ਦੀ ਕੋਈ ਪਹੁੰਚ ਨਹੀਂ ਹੁੰਦੀ।';
 
   @override
   String get connection_location => 'ਟਿਕਾਣਾ';
@@ -416,7 +416,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'ਕੋਈ ਹੋਰ VPN ਚਾਲੂ ਹੈ। ਜੇ ਇਹ ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN ਵਜੋਂ ਸੈੱਟ ਹੈ, ਤਾਂ Android ਦੀਆਂ VPN ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸਨੂੰ ਬੰਦ ਕਰੋ।';
+      'ਕੋਈ ਹੋਰ VPN ਚਾਲੂ ਹੈ। ਜੇ ਇਹ “ਹਮੇਸ਼ਾਂ-ਚਾਲੂ VPN” ਵਜੋਂ ਸੈੱਟ ਹੈ, ਤਾਂ Android ਦੀਆਂ VPN ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸਨੂੰ ਬੰਦ ਕਰੋ।';
 
   @override
   String get status_idle => 'ਡਿਸਕਨੈਕਟ ਹੋਇਆ';
@@ -748,7 +748,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'vpn_permission_denied':
           'Android ਨੇ VPN ਇਜਾਜ਼ਤ ਦੇਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ। ਕਨੈਕਸ਼ਨ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ ਅਤੇ ਸਿਸਟਮ ਦੀ ਬੇਨਤੀ ਸਵੀਕਾਰ ਕਰੋ।',
       'vpn_permission_other_vpn':
-          'ਕੋਈ ਹੋਰ VPN ਐਪ ਚਾਲੂ ਹੋਣ ਕਰਕੇ Android ਨੇ FuzeVPN ਨੂੰ VPN ਇਜਾਜ਼ਤ ਨਹੀਂ ਦਿੱਤੀ। ਜੇ ਇਹ ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN ਵਜੋਂ ਸੈੱਟ ਹੈ, ਤਾਂ Android ਦੀਆਂ VPN ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸਨੂੰ ਬੰਦ ਕਰੋ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+          'ਕੋਈ ਹੋਰ VPN ਐਪ ਚਾਲੂ ਹੋਣ ਕਰਕੇ Android ਨੇ FuzeVPN ਨੂੰ VPN ਇਜਾਜ਼ਤ ਨਹੀਂ ਦਿੱਤੀ। ਜੇ ਇਹ “ਹਮੇਸ਼ਾਂ-ਚਾਲੂ VPN” ਵਜੋਂ ਸੈੱਟ ਹੈ, ਤਾਂ Android ਦੀਆਂ VPN ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸਨੂੰ ਬੰਦ ਕਰੋ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
       'revoked_identity_device_limit':
           'ਇਸ ਡੀਵਾਈਸ ਦੀ VPN ਪਹੁੰਚ ਹਟਾ ਦਿੱਤੀ ਗਈ ਹੈ ਅਤੇ ਡੀਵਾਈਸ ਦੀ ਹੱਦ ਪੂਰੀ ਹੋ ਚੁੱਕੀ ਹੈ। “ਖਾਤਾ” → “ਮੇਰੇ ਡੀਵਾਈਸ ਪ੍ਰਬੰਧਿਤ ਕਰੋ” ਵਿੱਚ ਜਾ ਕੇ ਕੋਈ ਡੀਵਾਈਸ ਹਟਾਓ।',
       'tunnel_start_unexpected':
@@ -1086,7 +1086,7 @@ class AppLocalizationsPa extends AppLocalizations {
       'vpn_permission_denied':
           'ਜਾਰੀ ਰੱਖਣ ਲਈ Android ਦੀ ਬੇਨਤੀ ਵਿੱਚ FuzeVPN ਨੂੰ ਇਜਾਜ਼ਤ ਦਿਓ।',
       'vpn_permission_other_vpn':
-          'ਕੋਈ ਹੋਰ VPN ਐਪ ਚਾਲੂ ਹੋਣ ਕਰਕੇ Android ਨੇ FuzeVPN ਨੂੰ VPN ਇਜਾਜ਼ਤ ਨਹੀਂ ਦਿੱਤੀ। ਜੇ ਇਹ ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN ਵਜੋਂ ਸੈੱਟ ਹੈ, ਤਾਂ Android ਦੀਆਂ VPN ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸਨੂੰ ਬੰਦ ਕਰੋ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
+          'ਕੋਈ ਹੋਰ VPN ਐਪ ਚਾਲੂ ਹੋਣ ਕਰਕੇ Android ਨੇ FuzeVPN ਨੂੰ VPN ਇਜਾਜ਼ਤ ਨਹੀਂ ਦਿੱਤੀ। ਜੇ ਇਹ “ਹਮੇਸ਼ਾਂ-ਚਾਲੂ VPN” ਵਜੋਂ ਸੈੱਟ ਹੈ, ਤਾਂ Android ਦੀਆਂ VPN ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਇਸਨੂੰ ਬੰਦ ਕਰੋ, ਫਿਰ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।',
       'vpn_permission_request_failed':
           'Android VPN ਇਜਾਜ਼ਤ ਵਾਲੀ ਸਕ੍ਰੀਨ ਨਹੀਂ ਖੋਲ੍ਹ ਸਕਿਆ।',
       'wireguard_foreground_service_unavailable':
@@ -1633,7 +1633,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'ਜੇ Android VPN ਨੂੰ ਚਾਲੂ ਰੱਖਦਾ ਹੈ, ਤਾਂ ਖੁੱਲ੍ਹਣ ਵਾਲੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN ਬੰਦ ਕਰੋ।';
+      'ਜੇ Android VPN ਨੂੰ ਚਾਲੂ ਰੱਖਦਾ ਹੈ, ਤਾਂ ਖੁੱਲ੍ਹਣ ਵਾਲੀਆਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ “ਹਮੇਸ਼ਾਂ-ਚਾਲੂ VPN” ਬੰਦ ਕਰੋ।';
 
   @override
   String get connection_certificate => 'OpenVPN ਸਰਟੀਫ਼ਿਕੇਟ';
@@ -1660,14 +1660,15 @@ class AppLocalizationsPa extends AppLocalizations {
       'ਜੇ VPN ਡਿਸਕਨੈਕਟ ਹੋ ਜਾਵੇ, ਤਾਂ ਇਹ ਸੁਰੱਖਿਆ ਐਪਾਂ ਨੂੰ ਸਿੱਧਾ ਇੰਟਰਨੈੱਟ ਵਰਤਣ ਤੋਂ ਰੋਕਦੀ ਹੈ। ਇਹ Android ਵਿੱਚ ਸੈੱਟ ਕੀਤੀ ਜਾਂਦੀ ਹੈ।';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN';
+  String get protection_guideAlwaysOnTitle => 'ਹਮੇਸ਼ਾਂ-ਚਾਲੂ VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android VPN ਸੇਵਾ ਨੂੰ ਚਾਲੂ ਰੱਖਦਾ ਹੈ ਅਤੇ ਫ਼ੋਨ ਮੁੜ ਚਾਲੂ ਹੋਣ ਤੋਂ ਬਾਅਦ ਇਸ ਨੂੰ ਮੁੜ ਸ਼ੁਰੂ ਕਰ ਸਕਦਾ ਹੈ।';
 
   @override
-  String get protection_guideBlockTitle => 'VPN ਤੋਂ ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰੋ';
+  String get protection_guideBlockTitle =>
+      'ਬਿਨਾਂ VPN ਤੋਂ ਕਨੈਕਸ਼ਨਾਂ ਨੂੰ ਬਲਾਕ ਕਰੋ';
 
   @override
   String get protection_guideBlock =>
@@ -1690,7 +1691,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'ਜੇ ਇਹ ਵਿਕਲਪ ਉਪਲਬਧ ਹਨ, ਤਾਂ “ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN” ਅਤੇ ਫਿਰ “VPN ਤੋਂ ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰੋ” ਨੂੰ ਚਾਲੂ ਕਰੋ।';
+      'ਜੇ ਇਹ ਵਿਕਲਪ ਉਪਲਬਧ ਹਨ, ਤਾਂ “ਹਮੇਸ਼ਾਂ-ਚਾਲੂ VPN” ਅਤੇ ਫਿਰ “ਬਿਨਾਂ VPN ਤੋਂ ਕਨੈਕਸ਼ਨਾਂ ਨੂੰ ਬਲਾਕ ਕਰੋ” ਨੂੰ ਚਾਲੂ ਕਰੋ।';
 
   @override
   String get protection_guideManufacturers =>
@@ -1701,7 +1702,7 @@ class AppLocalizationsPa extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'ਇਨ੍ਹਾਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਹੀ, VPN ਤੋਂ ਬਿਨਾਂ ਕਨੈਕਸ਼ਨ ਬਲਾਕ ਕਰਨਾ ਬੰਦ ਕਰੋ, ਤਾਂ ਜੋ VPN ਤੋਂ ਬਿਨਾਂ ਵੀ ਇੰਟਰਨੈੱਟ ਵਰਤਿਆ ਜਾ ਸਕੇ। ਜੇ ਤੁਸੀਂ ਨਹੀਂ ਚਾਹੁੰਦੇ ਕਿ Android VPN ਨੂੰ ਮੁੜ ਸ਼ੁਰੂ ਕਰੇ, ਤਾਂ “ਹਮੇਸ਼ਾ-ਚਾਲੂ VPN” ਵੀ ਬੰਦ ਕਰੋ।';
+      'ਇਨ੍ਹਾਂ ਸੈਟਿੰਗਾਂ ਵਿੱਚ ਹੀ, “ਬਿਨਾਂ VPN ਤੋਂ ਕਨੈਕਸ਼ਨਾਂ ਨੂੰ ਬਲਾਕ ਕਰੋ” ਬੰਦ ਕਰੋ, ਤਾਂ ਜੋ VPN ਤੋਂ ਬਿਨਾਂ ਵੀ ਇੰਟਰਨੈੱਟ ਵਰਤਿਆ ਜਾ ਸਕੇ। ਜੇ ਤੁਸੀਂ ਨਹੀਂ ਚਾਹੁੰਦੇ ਕਿ Android VPN ਨੂੰ ਮੁੜ ਸ਼ੁਰੂ ਕਰੇ, ਤਾਂ “ਹਮੇਸ਼ਾਂ-ਚਾਲੂ VPN” ਵੀ ਬੰਦ ਕਰੋ।';
 
   @override
   String get protection_guideManual =>

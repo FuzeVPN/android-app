@@ -493,7 +493,7 @@
     "protection_guideStep3": "I-enable ang Always-on VPN, pagkatapos ay ang I-block ang mga koneksyong walang VPN, kung magagamit ang mga opsyong ito.",
     "protection_guideManufacturers": "Nag-iiba ang mga pangalan depende sa telepono. Kung kailangan, hanapin ang VPN sa Settings, kadalasan sa ilalim ng Network at internet.",
     "protection_guideDisableTitle": "I-off ang proteksyong ito",
-    "protection_guideDisable": "Sa parehong mga setting, i-off ang pag-block kapag walang VPN upang payagan ang internet nang walang VPN. I-off din ang Always-on VPN kung ayaw mo nang i-restart ito ng Android.",
+    "protection_guideDisable": "Sa parehong mga setting, i-off ang “I-block ang mga koneksyong walang VPN” upang payagan ang internet nang walang VPN. I-off din ang “Always-on VPN” kung ayaw mo nang i-restart ito ng Android.",
     "protection_guideManual": "Ikaw ang pumipili ng mga setting na ito sa Android. Hindi binabago ng FuzeVPN ang mga ito para sa iyo.",
     "locations_changeTitle": "Magpalit ng lokasyon?",
     "locations_changeActive": "Madidiskonekta ang VPN, pagkatapos ay susubukang kumonekta sa {name}.",

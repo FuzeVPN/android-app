@@ -274,11 +274,11 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android’da “VPN’siz ulanishlarni bloklash” yoqilgan: belgilangan ilovalar Internetga umuman kira olmaydi.';
+      'Android’da “VPN tarmoqsiz ulanishlarni bloklash” yoqilgan: belgilangan ilovalar Internetga umuman kira olmaydi.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android’da “VPN’siz ulanishlarni bloklash” yoqilgan boʻlsa, belgilangan ilovalar Internetga umuman kira olmaydi.';
+      'Android’da “VPN tarmoqsiz ulanishlarni bloklash” yoqilgan boʻlsa, belgilangan ilovalar Internetga umuman kira olmaydi.';
 
   @override
   String get connection_location => 'Joylashuv';
@@ -1701,7 +1701,8 @@ class AppLocalizationsUz extends AppLocalizations {
       'Android VPN xizmatini doimiy yoniq saqlaydi va telefon qayta yoqilgandan keyin uni qayta ishga tushirishi mumkin.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN’siz ulanishlarni bloklash';
+  String get protection_guideBlockTitle =>
+      'VPN tarmoqsiz ulanishlarni bloklash';
 
   @override
   String get protection_guideBlock =>
@@ -1724,7 +1725,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Agar mavjud boʻlsa, “Doimiy VPN”ni, soʻng “VPN’siz ulanishlarni bloklash”ni yoqing.';
+      'Agar mavjud boʻlsa, “Doimiy VPN”ni, soʻng “VPN tarmoqsiz ulanishlarni bloklash”ni yoqing.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1735,7 +1736,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Xuddi shu sozlamalarda VPN’siz ulanishlarni bloklashni oʻchiring, shunda VPN’siz Internetdan foydalanish mumkin boʻladi. Agar Android uni qayta ishga tushirishini istamasangiz, “Doimiy VPN”ni ham oʻchiring.';
+      'Xuddi shu sozlamalarda “VPN tarmoqsiz ulanishlarni bloklash”ni oʻchiring, shunda VPN’siz Internetdan foydalanish mumkin boʻladi. Agar Android uni qayta ishga tushirishini istamasangiz, “Doimiy VPN”ni ham oʻchiring.';
 
   @override
   String get protection_guideManual =>

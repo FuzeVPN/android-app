@@ -274,11 +274,11 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android मा “VPN बिना जडानहरू अवरुद्ध गर्नुहोस्” सक्रिय छ: चिन्ह लगाइएका एपहरूसँग कुनै पनि इन्टरनेट पहुँच छैन।';
+      'Android मा “VPN रहित जडानहरूमाथि रोक लगाउनुहोस्” सक्रिय छ: चिन्ह लगाइएका एपहरूसँग कुनै पनि इन्टरनेट पहुँच छैन।';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android मा “VPN बिना जडानहरू अवरुद्ध गर्नुहोस्” सक्रिय भएमा, चिन्ह लगाइएका एपहरूसँग कुनै पनि इन्टरनेट पहुँच हुँदैन।';
+      'Android मा “VPN रहित जडानहरूमाथि रोक लगाउनुहोस्” सक्रिय भएमा, चिन्ह लगाइएका एपहरूसँग कुनै पनि इन्टरनेट पहुँच हुँदैन।';
 
   @override
   String get connection_location => 'स्थान';
@@ -417,7 +417,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'अर्को VPN सक्रिय छ। यो सधैं सक्रिय VPN को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्।';
+      'अर्को VPN सक्रिय छ। यो “सधैँ VPN मा” को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्।';
 
   @override
   String get status_idle => 'जडान विच्छेद भएको';
@@ -751,7 +751,7 @@ class AppLocalizationsNe extends AppLocalizations {
       'vpn_permission_denied':
           'Android ले VPN अनुमति अस्वीकार गर्यो। जडान फेरि सुरु गर्नुहोस् र सिस्टमको अनुरोध स्वीकार गर्नुहोस्।',
       'vpn_permission_other_vpn':
-          'अर्को VPN एप सक्रिय भएकाले Android ले FuzeVPN लाई VPN अनुमति दिएन। यो सधैं सक्रिय VPN को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्, अनि फेरि प्रयास गर्नुहोस्।',
+          'अर्को VPN एप सक्रिय भएकाले Android ले FuzeVPN लाई VPN अनुमति दिएन। यो “सधैँ VPN मा” को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्, अनि फेरि प्रयास गर्नुहोस्।',
       'revoked_identity_device_limit':
           'यो डिभाइसको VPN पहुँच हटाइएको छ र डिभाइसको सीमा पुगेको छ। खाता → मेरा डिभाइसहरू व्यवस्थापन गर्नुहोस् अन्तर्गत कुनै डिभाइस हटाउनुहोस्।',
       'tunnel_start_unexpected':
@@ -1087,7 +1087,7 @@ class AppLocalizationsNe extends AppLocalizations {
       'vpn_permission_denied':
           'जारी राख्न Android को अनुरोधमा FuzeVPN लाई अनुमति दिनुहोस्।',
       'vpn_permission_other_vpn':
-          'अर्को VPN एप सक्रिय भएकाले Android ले FuzeVPN लाई VPN अनुमति दिएन। यो सधैं सक्रिय VPN को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्, अनि फेरि प्रयास गर्नुहोस्।',
+          'अर्को VPN एप सक्रिय भएकाले Android ले FuzeVPN लाई VPN अनुमति दिएन। यो “सधैँ VPN मा” को रूपमा सेट छ भने, Android को VPN सेटिङमा यसलाई बन्द गर्नुहोस्, अनि फेरि प्रयास गर्नुहोस्।',
       'vpn_permission_request_failed':
           'Android ले VPN अनुमति स्क्रिन खोल्न सकेन।',
       'wireguard_foreground_service_unavailable':
@@ -1630,7 +1630,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android ले VPN सक्रिय राखेमा, खुल्ने सेटिङमा सधैं सक्रिय VPN बन्द गर्नुहोस्।';
+      'Android ले VPN सक्रिय राखेमा, खुल्ने सेटिङमा “सधैँ VPN मा” बन्द गर्नुहोस्।';
 
   @override
   String get connection_certificate => 'OpenVPN प्रमाणपत्र';
@@ -1657,14 +1657,15 @@ class AppLocalizationsNe extends AppLocalizations {
       'यो सुरक्षाले VPN को जडान विच्छेद भएमा एपहरूलाई सिधै इन्टरनेट प्रयोग गर्न दिँदैन। यो Android मा कन्फिगर गरिन्छ।';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'सधैं सक्रिय VPN';
+  String get protection_guideAlwaysOnTitle => 'सधैँ VPN मा';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android ले VPN सेवालाई चलिरहन दिन्छ र फोन पुनः सुरु भएपछि यसलाई फेरि सुरु गर्न सक्छ।';
 
   @override
-  String get protection_guideBlockTitle => 'VPN बिना जडानहरू अवरुद्ध गर्नुहोस्';
+  String get protection_guideBlockTitle =>
+      'VPN रहित जडानहरूमाथि रोक लगाउनुहोस्';
 
   @override
   String get protection_guideBlock =>
@@ -1687,7 +1688,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'उपलब्ध भएमा पहिले “सधैं सक्रिय VPN” र त्यसपछि “VPN बिना जडानहरू अवरुद्ध गर्नुहोस्” सक्रिय गर्नुहोस्।';
+      'उपलब्ध भएमा पहिले “सधैँ VPN मा” र त्यसपछि “VPN रहित जडानहरूमाथि रोक लगाउनुहोस्” सक्रिय गर्नुहोस्।';
 
   @override
   String get protection_guideManufacturers =>
@@ -1698,7 +1699,7 @@ class AppLocalizationsNe extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'VPN बिना इन्टरनेट पहुँचको अनुमति दिन उही सेटिङमा “VPN बिना जडानहरू अवरुद्ध गर्नुहोस्” बन्द गर्नुहोस्। Android ले VPN लाई फेरि सुरु गरेको तपाईं चाहनुहुन्न भने “सधैं सक्रिय VPN” पनि बन्द गर्नुहोस्।';
+      'VPN बिना इन्टरनेट पहुँचको अनुमति दिन उही सेटिङमा “VPN रहित जडानहरूमाथि रोक लगाउनुहोस्” बन्द गर्नुहोस्। Android ले VPN लाई फेरि सुरु गरेको तपाईं चाहनुहुन्न भने “सधैँ VPN मा” पनि बन्द गर्नुहोस्।';
 
   @override
   String get protection_guideManual =>

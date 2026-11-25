@@ -275,11 +275,11 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '«مسدود کردن اتصال‌ها بدون وی‌پی‌ان» در Android روشن است: برنامه‌های علامت‌زده هیچ دسترسی‌ای به اینترنت ندارند.';
+      '«‏اتصالات مسدود‌شده بدون VPN» در Android روشن است: برنامه‌های علامت‌زده هیچ دسترسی‌ای به اینترنت ندارند.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'اگر «مسدود کردن اتصال‌ها بدون وی‌پی‌ان» در Android روشن باشد، برنامه‌های علامت‌زده هیچ دسترسی‌ای به اینترنت ندارند.';
+      'اگر «‏اتصالات مسدود‌شده بدون VPN» در Android روشن باشد، برنامه‌های علامت‌زده هیچ دسترسی‌ای به اینترنت ندارند.';
 
   @override
   String get connection_location => 'مکان';
@@ -419,7 +419,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'وی‌پی‌ان دیگری فعال است. اگر به‌عنوان وی‌پی‌ان همیشه‌روشن تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید.';
+      'وی‌پی‌ان دیگری فعال است. اگر به‌عنوان «‏VPN همیشه روشن» تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید.';
 
   @override
   String get status_idle => 'قطع‌شده';
@@ -749,7 +749,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'vpn_permission_denied':
           'Android اجازه وی‌پی‌ان را رد کرد. اتصال را دوباره آغاز و درخواست سیستم را بپذیرید.',
       'vpn_permission_other_vpn':
-          'Android اجازه وی‌پی‌ان را به FuzeVPN نداد، چون برنامه وی‌پی‌ان دیگری فعال است. اگر به‌عنوان وی‌پی‌ان همیشه‌روشن تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید و دوباره تلاش کنید.',
+          'Android اجازه وی‌پی‌ان را به FuzeVPN نداد، چون برنامه وی‌پی‌ان دیگری فعال است. اگر به‌عنوان «‏VPN همیشه روشن» تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید و دوباره تلاش کنید.',
       'revoked_identity_device_limit':
           'دسترسی وی‌پی‌ان این دستگاه حذف شده و محدودیت دستگاه‌ها به پایان رسیده است. یک دستگاه را از مسیر حساب ← مدیریت دستگاه‌های من حذف کنید.',
       'tunnel_start_unexpected':
@@ -1085,7 +1085,7 @@ class AppLocalizationsFa extends AppLocalizations {
       'vpn_permission_denied':
           'برای ادامه، FuzeVPN را در درخواست Android مجاز کنید.',
       'vpn_permission_other_vpn':
-          'Android اجازه وی‌پی‌ان را به FuzeVPN نداد، چون برنامه وی‌پی‌ان دیگری فعال است. اگر به‌عنوان وی‌پی‌ان همیشه‌روشن تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید و دوباره تلاش کنید.',
+          'Android اجازه وی‌پی‌ان را به FuzeVPN نداد، چون برنامه وی‌پی‌ان دیگری فعال است. اگر به‌عنوان «‏VPN همیشه روشن» تنظیم شده است، این تنظیم را در تنظیمات وی‌پی‌ان Android خاموش کنید و دوباره تلاش کنید.',
       'vpn_permission_request_failed':
           'Android نتوانست صفحه اجازه وی‌پی‌ان را باز کند.',
       'wireguard_foreground_service_unavailable':
@@ -1620,7 +1620,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'اگر Android وی‌پی‌ان را فعال نگه می‌دارد، وی‌پی‌ان همیشه‌روشن را در تنظیماتی که باز می‌شوند خاموش کنید.';
+      'اگر Android وی‌پی‌ان را فعال نگه می‌دارد، «‏VPN همیشه روشن» را در تنظیماتی که باز می‌شوند خاموش کنید.';
 
   @override
   String get connection_certificate => 'گواهی OpenVPN';
@@ -1647,14 +1647,14 @@ class AppLocalizationsFa extends AppLocalizations {
       'این محافظت مانع استفاده مستقیم برنامه‌ها از اینترنت در صورت قطع شدن وی‌پی‌ان می‌شود. این قابلیت در Android پیکربندی می‌شود.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'وی‌پی‌ان همیشه‌روشن';
+  String get protection_guideAlwaysOnTitle => '‏VPN همیشه روشن';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android سرویس وی‌پی‌ان را در حال اجرا نگه می‌دارد و می‌تواند پس از راه‌اندازی دوباره تلفن آن را دوباره اجرا کند.';
 
   @override
-  String get protection_guideBlockTitle => 'مسدود کردن اتصال‌ها بدون وی‌پی‌ان';
+  String get protection_guideBlockTitle => '‏اتصالات مسدود‌شده بدون VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1677,7 +1677,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'وی‌پی‌ان همیشه‌روشن و سپس مسدود کردن اتصال‌ها بدون وی‌پی‌ان را فعال کنید، اگر این گزینه‌ها در دسترس هستند.';
+      '«‏VPN همیشه روشن» و سپس «‏اتصالات مسدود‌شده بدون VPN» را فعال کنید، اگر این گزینه‌ها در دسترس هستند.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1688,7 +1688,7 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'در همان تنظیمات، مسدودسازی بدون وی‌پی‌ان را خاموش کنید تا دسترسی به اینترنت بدون وی‌پی‌ان مجاز شود. اگر دیگر نمی‌خواهید Android آن را دوباره اجرا کند، وی‌پی‌ان همیشه‌روشن را هم خاموش کنید.';
+      'در همان تنظیمات، «‏اتصالات مسدود‌شده بدون VPN» را خاموش کنید تا دسترسی به اینترنت بدون وی‌پی‌ان مجاز شود. اگر دیگر نمی‌خواهید Android آن را دوباره اجرا کند، «‏VPN همیشه روشن» را هم خاموش کنید.';
 
   @override
   String get protection_guideManual =>

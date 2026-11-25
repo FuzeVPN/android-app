@@ -273,11 +273,11 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android-də “VPN olmadan bağlantıları blok edin” aktivdir: işarələnmiş tətbiqlərin internetə heç bir girişi yoxdur.';
+      'Android-də “VPN\'siz bağlantıları blok edin” aktivdir: işarələnmiş tətbiqlərin internetə heç bir girişi yoxdur.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android-də “VPN olmadan bağlantıları blok edin” aktivdirsə, işarələnmiş tətbiqlərin internetə heç bir girişi yoxdur.';
+      'Android-də “VPN\'siz bağlantıları blok edin” aktivdirsə, işarələnmiş tətbiqlərin internetə heç bir girişi yoxdur.';
 
   @override
   String get connection_location => 'Məkan';
@@ -416,7 +416,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Başqa VPN aktivdir. O, Həmişə aktiv VPN kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün.';
+      'Başqa VPN aktivdir. O, “VPN həmişə aktiv” kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün.';
 
   @override
   String get status_idle => 'Bağlantı kəsilib';
@@ -750,7 +750,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'vpn_permission_denied':
           'Android VPN icazəsini rədd etdi. Qoşulmanı yenidən başladın və sistem sorğusunu qəbul edin.',
       'vpn_permission_other_vpn':
-          'Başqa VPN tətbiqi aktiv olduğu üçün Android FuzeVPN-ə VPN icazəsi vermədi. O, Həmişə aktiv VPN kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün, sonra yenidən cəhd edin.',
+          'Başqa VPN tətbiqi aktiv olduğu üçün Android FuzeVPN-ə VPN icazəsi vermədi. O, “VPN həmişə aktiv” kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün, sonra yenidən cəhd edin.',
       'revoked_identity_device_limit':
           'Bu cihazın VPN girişi ləğv edilib və cihaz limitinə çatılıb. Hesab → Cihazlarımı idarə edin bölməsində cihaz çıxarın.',
       'tunnel_start_unexpected':
@@ -1106,7 +1106,7 @@ class AppLocalizationsAz extends AppLocalizations {
       'vpn_permission_denied':
           'Davam etmək üçün Android sorğusunda FuzeVPN-ə icazə verin.',
       'vpn_permission_other_vpn':
-          'Başqa VPN tətbiqi aktiv olduğu üçün Android FuzeVPN-ə VPN icazəsi vermədi. O, Həmişə aktiv VPN kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün, sonra yenidən cəhd edin.',
+          'Başqa VPN tətbiqi aktiv olduğu üçün Android FuzeVPN-ə VPN icazəsi vermədi. O, “VPN həmişə aktiv” kimi təyin edilibsə, Android VPN ayarlarında bunu söndürün, sonra yenidən cəhd edin.',
       'vpn_permission_request_failed':
           'Android VPN icazə ekranını aça bilmədi.',
       'wireguard_foreground_service_unavailable':
@@ -1658,7 +1658,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android VPN-i aktiv saxlayırsa, açılan ayarlarda Həmişə aktiv VPN-i söndürün.';
+      'Android VPN-i aktiv saxlayırsa, açılan ayarlarda “VPN həmişə aktiv” seçimini söndürün.';
 
   @override
   String get connection_certificate => 'OpenVPN sertifikatı';
@@ -1686,14 +1686,14 @@ class AppLocalizationsAz extends AppLocalizations {
       'Bu qorunma VPN bağlantısı kəsildikdə tətbiqlərin birbaşa internetdən istifadə etməsinin qarşısını alır. Bu, Android-də tənzimlənir.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Həmişə aktiv VPN';
+  String get protection_guideAlwaysOnTitle => 'VPN həmişə aktiv';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android VPN xidmətini işlək saxlayır və telefon yenidən başladıqdan sonra onu yenidən işə sala bilər.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN olmadan bağlantıları blok edin';
+  String get protection_guideBlockTitle => 'VPN\'siz bağlantıları blok edin';
 
   @override
   String get protection_guideBlock =>
@@ -1716,7 +1716,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Mümkündürsə, “Həmişə aktiv VPN” və sonra “VPN olmadan bağlantıları blok edin” seçimlərini aktivləşdirin.';
+      'Mümkündürsə, “VPN həmişə aktiv” və sonra “VPN\'siz bağlantıları blok edin” seçimlərini aktivləşdirin.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1727,7 +1727,7 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Eyni ayarlarda VPN olmadan bloklamanı söndürün ki, VPN olmadan internetə giriş mümkün olsun. Android-in VPN-i yenidən işə salmasını istəmirsinizsə, Həmişə aktiv VPN seçimini də söndürün.';
+      'Eyni ayarlarda “VPN\'siz bağlantıları blok edin” seçimini söndürün ki, VPN olmadan internetə giriş mümkün olsun. Android-in VPN-i yenidən işə salmasını istəmirsinizsə, “VPN həmişə aktiv” seçimini də söndürün.';
 
   @override
   String get protection_guideManual =>

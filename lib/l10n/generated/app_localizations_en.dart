@@ -1702,7 +1702,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'In the same settings, turn off blocking without VPN to allow internet access without the VPN. Also turn off Always-on VPN if you no longer want Android to restart it.';
+      'In the same settings, turn off “Block connections without VPN” to allow internet access without the VPN. Also turn off “Always-on VPN” if you no longer want Android to restart it.';
 
   @override
   String get protection_guideManual =>

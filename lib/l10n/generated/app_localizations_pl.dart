@@ -420,7 +420,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Aktywny jest inny VPN. Jeśli jest ustawiony jako VPN zawsze włączony, wyłącz to w ustawieniach VPN Androida.';
+      'Aktywny jest inny VPN. Jeśli jest ustawiony jako „Stały VPN”, wyłącz to w ustawieniach VPN Androida.';
 
   @override
   String get status_idle => 'Rozłączono';
@@ -754,7 +754,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'vpn_permission_denied':
           'Android odmówił uprawnienia VPN. Uruchom połączenie ponownie i zaakceptuj żądanie systemu.',
       'vpn_permission_other_vpn':
-          'Android nie przyznał FuzeVPN uprawnienia VPN, ponieważ aktywna jest inna aplikacja VPN. Jeśli jest ustawiona jako VPN zawsze włączony, wyłącz to w ustawieniach VPN Androida, a potem spróbuj ponownie.',
+          'Android nie przyznał FuzeVPN uprawnienia VPN, ponieważ aktywna jest inna aplikacja VPN. Jeśli jest ustawiona jako „Stały VPN”, wyłącz to w ustawieniach VPN Androida, a potem spróbuj ponownie.',
       'revoked_identity_device_limit':
           'Dostęp VPN tego urządzenia został usunięty, a limit urządzeń został osiągnięty. Usuń urządzenie w sekcji Konto → Zarządzaj moimi urządzeniami.',
       'tunnel_start_unexpected':
@@ -1110,7 +1110,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'vpn_permission_denied':
           'Zezwól aplikacji FuzeVPN w żądaniu Androida, aby kontynuować.',
       'vpn_permission_other_vpn':
-          'Android nie przyznał FuzeVPN uprawnienia VPN, ponieważ aktywna jest inna aplikacja VPN. Jeśli jest ustawiona jako VPN zawsze włączony, wyłącz to w ustawieniach VPN Androida, a potem spróbuj ponownie.',
+          'Android nie przyznał FuzeVPN uprawnienia VPN, ponieważ aktywna jest inna aplikacja VPN. Jeśli jest ustawiona jako „Stały VPN”, wyłącz to w ustawieniach VPN Androida, a potem spróbuj ponownie.',
       'vpn_permission_request_failed':
           'Android nie mógł otworzyć ekranu uprawnienia VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1661,7 +1661,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Jeśli Android utrzymuje VPN aktywny, wyłącz opcję VPN zawsze włączony w otwartych ustawieniach.';
+      'Jeśli Android utrzymuje VPN aktywny, wyłącz opcję „Stały VPN” w otwartych ustawieniach.';
 
   @override
   String get connection_certificate => 'Certyfikat OpenVPN';
@@ -1688,7 +1688,7 @@ class AppLocalizationsPl extends AppLocalizations {
       'Ta ochrona uniemożliwia aplikacjom bezpośrednie korzystanie z internetu po rozłączeniu VPN. Jest konfigurowana w systemie Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN zawsze włączony';
+  String get protection_guideAlwaysOnTitle => 'Stały VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1718,7 +1718,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Włącz opcję VPN zawsze włączony, a następnie Blokuj połączenia bez VPN, jeśli te opcje są dostępne.';
+      'Włącz opcję „Stały VPN”, a następnie „Blokuj połączenia bez VPN”, jeśli te opcje są dostępne.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1729,7 +1729,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'W tych samych ustawieniach wyłącz blokowanie połączeń bez VPN, aby zezwolić na dostęp do internetu bez VPN. Wyłącz także opcję VPN zawsze włączony, jeśli nie chcesz już, aby Android uruchamiał VPN ponownie.';
+      'W tych samych ustawieniach wyłącz opcję „Blokuj połączenia bez VPN”, aby zezwolić na dostęp do internetu bez VPN. Wyłącz także opcję „Stały VPN”, jeśli nie chcesz już, aby Android uruchamiał VPN ponownie.';
 
   @override
   String get protection_guideManual =>

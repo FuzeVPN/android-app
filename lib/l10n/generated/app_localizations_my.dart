@@ -275,11 +275,11 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android တွင် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ဖွင့်ထားသည်။ ရွေးထားသော အက်ပ်များ အင်တာနက်ကို လုံးဝ အသုံးပြု၍ မရပါ။';
+      'Android တွင် “VPN မပါသည့် ချိတ်ဆက်မှုများကို ပိတ်ဆို့ရန်” ကို ဖွင့်ထားသည်။ ရွေးထားသော အက်ပ်များ အင်တာနက်ကို လုံးဝ အသုံးပြု၍ မရပါ။';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android တွင် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ဖွင့်ထားပါက ရွေးထားသော အက်ပ်များ အင်တာနက်ကို လုံးဝ အသုံးပြု၍ မရပါ။';
+      'Android တွင် “VPN မပါသည့် ချိတ်ဆက်မှုများကို ပိတ်ဆို့ရန်” ကို ဖွင့်ထားပါက ရွေးထားသော အက်ပ်များ အင်တာနက်ကို လုံးဝ အသုံးပြု၍ မရပါ။';
 
   @override
   String get connection_location => 'တည်နေရာ';
@@ -420,7 +420,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'အခြား VPN တစ်ခု ဖွင့်ထားသည်။ ၎င်းကို အမြဲဖွင့်ထားသော VPN အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပါ။';
+      'အခြား VPN တစ်ခု ဖွင့်ထားသည်။ ၎င်းကို “VPN အမြဲတမ်းဖွင့်ထားရန်” အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပါ။';
 
   @override
   String get status_idle => 'ချိတ်ဆက်မထားပါ';
@@ -761,7 +761,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'vpn_permission_denied':
           'Android က VPN ခွင့်ပြုချက်ကို ငြင်းပယ်လိုက်သည်။ ချိတ်ဆက်မှုကို ထပ်စတင်ပြီး စနစ်ဆိုင်ရာ တောင်းဆိုမှုကို လက်ခံပါ။',
       'vpn_permission_other_vpn':
-          'အခြား VPN အက်ပ်တစ်ခု ဖွင့်ထားသောကြောင့် Android က FuzeVPN ကို VPN ခွင့်ပြုချက် မပေးခဲ့ပါ။ ၎င်းကို အမြဲဖွင့်ထားသော VPN အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပြီး ထပ်စမ်းကြည့်ပါ။',
+          'အခြား VPN အက်ပ်တစ်ခု ဖွင့်ထားသောကြောင့် Android က FuzeVPN ကို VPN ခွင့်ပြုချက် မပေးခဲ့ပါ။ ၎င်းကို “VPN အမြဲတမ်းဖွင့်ထားရန်” အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပြီး ထပ်စမ်းကြည့်ပါ။',
       'revoked_identity_device_limit':
           'ဤစက်ပစ္စည်း၏ VPN အသုံးပြုခွင့်ကို ဖယ်ရှားထားပြီး စက်ပစ္စည်း အကန့်အသတ် ပြည့်သွားပါပြီ။ အကောင့် → စက်ပစ္စည်းများကို စီမံရန်တွင် စက်ပစ္စည်းတစ်ခုကို ဖယ်ရှားပါ။',
       'tunnel_start_unexpected':
@@ -1115,7 +1115,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'vpn_permission_denied':
           'ဆက်လုပ်ရန် Android တောင်းဆိုမှုတွင် FuzeVPN ကို ခွင့်ပြုပါ။',
       'vpn_permission_other_vpn':
-          'အခြား VPN အက်ပ်တစ်ခု ဖွင့်ထားသောကြောင့် Android က FuzeVPN ကို VPN ခွင့်ပြုချက် မပေးခဲ့ပါ။ ၎င်းကို အမြဲဖွင့်ထားသော VPN အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပြီး ထပ်စမ်းကြည့်ပါ။',
+          'အခြား VPN အက်ပ်တစ်ခု ဖွင့်ထားသောကြောင့် Android က FuzeVPN ကို VPN ခွင့်ပြုချက် မပေးခဲ့ပါ။ ၎င်းကို “VPN အမြဲတမ်းဖွင့်ထားရန်” အဖြစ် သတ်မှတ်ထားပါက Android ၏ VPN ဆက်တင်များတွင် ပိတ်ပြီး ထပ်စမ်းကြည့်ပါ။',
       'vpn_permission_request_failed':
           'Android က VPN ခွင့်ပြုချက် စခရင်ကို ဖွင့်၍ မရပါ။',
       'wireguard_foreground_service_unavailable':
@@ -1664,7 +1664,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android က VPN ကို ဆက်ဖွင့်ထားပါက ဖွင့်လာသော ဆက်တင်များတွင် အမြဲဖွင့်ထားသော VPN ကို ပိတ်ပါ။';
+      'Android က VPN ကို ဆက်ဖွင့်ထားပါက ဖွင့်လာသော ဆက်တင်များတွင် “VPN အမြဲတမ်းဖွင့်ထားရန်” ကို ပိတ်ပါ။';
 
   @override
   String get connection_certificate => 'OpenVPN လက်မှတ်';
@@ -1691,7 +1691,7 @@ class AppLocalizationsMy extends AppLocalizations {
       'VPN ချိတ်ဆက်မှု ပြတ်သွားပါက ဤအကာအကွယ်က အက်ပ်များ အင်တာနက်ကို တိုက်ရိုက် အသုံးပြုခြင်းကို တားဆီးပေးပါသည်။ ၎င်းကို Android တွင် သတ်မှတ်ပါသည်။';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'အမြဲဖွင့်ထားသော VPN';
+  String get protection_guideAlwaysOnTitle => 'VPN အမြဲတမ်းဖွင့်ထားရန်';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1699,7 +1699,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get protection_guideBlockTitle =>
-      'VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်';
+      'VPN မပါသည့် ချိတ်ဆက်မှုများကို ပိတ်ဆို့ရန်';
 
   @override
   String get protection_guideBlock =>
@@ -1722,7 +1722,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'ရရှိနိုင်ပါက “အမြဲဖွင့်ထားသော VPN” ကို ဖွင့်ပြီး၊ ထို့နောက် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ဖွင့်ပါ။';
+      'ရရှိနိုင်ပါက “VPN အမြဲတမ်းဖွင့်ထားရန်” ကို ဖွင့်ပြီး၊ ထို့နောက် “VPN မပါသည့် ချိတ်ဆက်မှုများကို ပိတ်ဆို့ရန်” ကို ဖွင့်ပါ။';
 
   @override
   String get protection_guideManufacturers =>
@@ -1733,7 +1733,7 @@ class AppLocalizationsMy extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'တူညီသော ဆက်တင်များတွင် VPN မပါဘဲ အင်တာနက် သုံးခွင့်ပေးရန် “VPN မပါဘဲ ချိတ်ဆက်မှုများကို ပိတ်ရန်” ကို ပိတ်ပါ။ Android က ပြန်လည် စတင်စေခြင်းကို မလိုချင်တော့ပါက “အမြဲဖွင့်ထားသော VPN” ကိုလည်း ပိတ်ပါ။';
+      'တူညီသော ဆက်တင်များတွင် VPN မပါဘဲ အင်တာနက် သုံးခွင့်ပေးရန် “VPN မပါသည့် ချိတ်ဆက်မှုများကို ပိတ်ဆို့ရန်” ကို ပိတ်ပါ။ Android က ပြန်လည် စတင်စေခြင်းကို မလိုချင်တော့ပါက “VPN အမြဲတမ်းဖွင့်ထားရန်” ကိုလည်း ပိတ်ပါ။';
 
   @override
   String get protection_guideManual =>

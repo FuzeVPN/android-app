@@ -416,7 +416,7 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Активан је други VPN. Ако је подешен као „Увек укључен VPN“, искључите то у VPN подешавањима Android-а.';
+      'Активан је други VPN. Ако је подешен као „Стално укључен VPN“, искључите то у VPN подешавањима Android-а.';
 
   @override
   String get status_idle => 'Није повезано';
@@ -751,7 +751,7 @@ class AppLocalizationsSr extends AppLocalizations {
       'vpn_permission_denied':
           'Android је одбио VPN дозволу. Поново покрените везу и прихватите системски захтев.',
       'vpn_permission_other_vpn':
-          'Android није дао FuzeVPN-у дозволу за VPN јер је активна друга VPN апликација. Ако је подешена као „Увек укључен VPN“, искључите то у VPN подешавањима Android-а, па покушајте поново.',
+          'Android није дао FuzeVPN-у дозволу за VPN јер је активна друга VPN апликација. Ако је подешена као „Стално укључен VPN“, искључите то у VPN подешавањима Android-а, па покушајте поново.',
       'revoked_identity_device_limit':
           'VPN приступ овом уређају је уклоњен и достигнуто је ограничење уређаја. Уклоните уређај у одељку Налог → Управљај мојим уређајима.',
       'tunnel_start_unexpected':
@@ -1094,7 +1094,7 @@ class AppLocalizationsSr extends AppLocalizations {
       'vpn_permission_denied':
           'Дозволите FuzeVPN у Android захтеву да бисте наставили.',
       'vpn_permission_other_vpn':
-          'Android није дао FuzeVPN-у дозволу за VPN јер је активна друга VPN апликација. Ако је подешена као „Увек укључен VPN“, искључите то у VPN подешавањима Android-а, па покушајте поново.',
+          'Android није дао FuzeVPN-у дозволу за VPN јер је активна друга VPN апликација. Ако је подешена као „Стално укључен VPN“, искључите то у VPN подешавањима Android-а, па покушајте поново.',
       'vpn_permission_request_failed':
           'Android није могао да отвори екран за VPN дозволу.',
       'wireguard_foreground_service_unavailable':
@@ -1642,7 +1642,7 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Ако Android и даље држи VPN активним, искључите „Увек укључен VPN“ у подешавањима која се отварају.';
+      'Ако Android и даље држи VPN активним, искључите „Стално укључен VPN“ у подешавањима која се отварају.';
 
   @override
   String get connection_certificate => 'OpenVPN сертификат';
@@ -1669,7 +1669,7 @@ class AppLocalizationsSr extends AppLocalizations {
       'Ова заштита спречава да апликације директно користе интернет ако се VPN веза прекине. Подешава се у систему Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Увек укључен VPN';
+  String get protection_guideAlwaysOnTitle => 'Стално укључен VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1699,7 +1699,7 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Укључите „Увек укључен VPN“, па „Блокирај везе без VPN-а“, ако су ове опције доступне.';
+      'Укључите „Стално укључен VPN“, па „Блокирај везе без VPN-а“, ако су ове опције доступне.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1710,7 +1710,7 @@ class AppLocalizationsSr extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'У истим подешавањима искључите блокирање веза без VPN-а да бисте дозволили приступ интернету без VPN-а. Искључите и опцију „Увек укључен VPN“ ако више не желите да га Android поново покреће.';
+      'У истим подешавањима искључите опцију „Блокирај везе без VPN-а“ да бисте дозволили приступ интернету без VPN-а. Искључите и опцију „Стално укључен VPN“ ако више не желите да га Android поново покреће.';
 
   @override
   String get protection_guideManual =>

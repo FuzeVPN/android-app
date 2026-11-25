@@ -273,11 +273,11 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Androidలో “VPN లేకుండా కనెక్షన్‌లను బ్లాక్ చేయండి” ఆన్‌లో ఉంది: టిక్ చేసిన యాప్‌లకు ఇంటర్నెట్ యాక్సెస్ అస్సలు ఉండదు.';
+      'Androidలో “VPN లేని కనెక్షన్‌లను బ్లాక్ చేయండి” ఆన్‌లో ఉంది: టిక్ చేసిన యాప్‌లకు ఇంటర్నెట్ యాక్సెస్ అస్సలు ఉండదు.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Androidలో “VPN లేకుండా కనెక్షన్‌లను బ్లాక్ చేయండి” ఆన్‌లో ఉంటే, టిక్ చేసిన యాప్‌లకు ఇంటర్నెట్ యాక్సెస్ అస్సలు ఉండదు.';
+      'Androidలో “VPN లేని కనెక్షన్‌లను బ్లాక్ చేయండి” ఆన్‌లో ఉంటే, టిక్ చేసిన యాప్‌లకు ఇంటర్నెట్ యాక్సెస్ అస్సలు ఉండదు.';
 
   @override
   String get connection_location => 'స్థానం';
@@ -416,7 +416,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'మరొక VPN యాక్టివ్‌గా ఉంది. అది ఎల్లప్పుడూ ఆన్‌లో ఉండే VPNగా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేయండి.';
+      'మరొక VPN యాక్టివ్‌గా ఉంది. అది “ఎల్లప్పుడూ-ఆన్‌లో ఉండే VPN”గా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేయండి.';
 
   @override
   String get status_idle => 'డిస్‌కనెక్ట్ అయింది';
@@ -752,7 +752,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'vpn_permission_denied':
           'VPN అనుమతిని Android తిరస్కరించింది. కనెక్షన్‌ను మళ్లీ ప్రారంభించి, సిస్టమ్ అభ్యర్థనను అంగీకరించండి.',
       'vpn_permission_other_vpn':
-          'మరొక VPN యాప్ యాక్టివ్‌గా ఉన్నందున Android, FuzeVPNకు VPN అనుమతి ఇవ్వలేదు. అది ఎల్లప్పుడూ ఆన్‌లో ఉండే VPNగా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేసి, మళ్లీ ప్రయత్నించండి.',
+          'మరొక VPN యాప్ యాక్టివ్‌గా ఉన్నందున Android, FuzeVPNకు VPN అనుమతి ఇవ్వలేదు. అది “ఎల్లప్పుడూ-ఆన్‌లో ఉండే VPN”గా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేసి, మళ్లీ ప్రయత్నించండి.',
       'revoked_identity_device_limit':
           'ఈ పరికరం యొక్క VPN యాక్సెస్ తీసివేయబడింది, మరియు పరికరాల పరిమితి చేరుకుంది. ఖాతా → నా పరికరాలను నిర్వహించండి కింద ఒక పరికరాన్ని తీసివేయండి.',
       'tunnel_start_unexpected':
@@ -1102,7 +1102,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'vpn_permission_denied':
           'కొనసాగించడానికి Android అభ్యర్థనలో FuzeVPNను అనుమతించండి.',
       'vpn_permission_other_vpn':
-          'మరొక VPN యాప్ యాక్టివ్‌గా ఉన్నందున Android, FuzeVPNకు VPN అనుమతి ఇవ్వలేదు. అది ఎల్లప్పుడూ ఆన్‌లో ఉండే VPNగా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేసి, మళ్లీ ప్రయత్నించండి.',
+          'మరొక VPN యాప్ యాక్టివ్‌గా ఉన్నందున Android, FuzeVPNకు VPN అనుమతి ఇవ్వలేదు. అది “ఎల్లప్పుడూ-ఆన్‌లో ఉండే VPN”గా సెట్ చేయబడి ఉంటే, Android VPN సెట్టింగ్‌లలో దాన్ని ఆఫ్ చేసి, మళ్లీ ప్రయత్నించండి.',
       'vpn_permission_request_failed':
           'VPN అనుమతి స్క్రీన్‌ను Android తెరవలేకపోయింది.',
       'wireguard_foreground_service_unavailable':
@@ -1654,7 +1654,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android VPNను యాక్టివ్‌గా ఉంచితే, తెరుచుకునే సెట్టింగ్‌లలో ఎల్లప్పుడూ ఆన్‌లో ఉండే VPNను ఆఫ్ చేయండి.';
+      'Android VPNను యాక్టివ్‌గా ఉంచితే, తెరుచుకునే సెట్టింగ్‌లలో “ఎల్లప్పుడూ-ఆన్‌లో ఉండే VPN”ను ఆఫ్ చేయండి.';
 
   @override
   String get connection_certificate => 'OpenVPN సర్టిఫికెట్';
@@ -1681,7 +1681,7 @@ class AppLocalizationsTe extends AppLocalizations {
       'VPN డిస్‌కనెక్ట్ అయితే, యాప్‌లు నేరుగా ఇంటర్నెట్‌ను ఉపయోగించకుండా ఈ రక్షణ నిరోధిస్తుంది. దీన్ని Androidలో కాన్ఫిగర్ చేస్తారు.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'ఎల్లప్పుడూ ఆన్‌లో ఉండే VPN';
+  String get protection_guideAlwaysOnTitle => 'ఎల్లప్పుడూ-ఆన్‌లో ఉండే VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1689,7 +1689,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get protection_guideBlockTitle =>
-      'VPN లేకుండా కనెక్షన్‌లను బ్లాక్ చేయండి';
+      'VPN లేని కనెక్షన్‌లను బ్లాక్ చేయండి';
 
   @override
   String get protection_guideBlock =>
@@ -1712,7 +1712,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'అందుబాటులో ఉంటే, “ఎల్లప్పుడూ ఆన్‌లో ఉండే VPN”ను, ఆ తర్వాత “VPN లేకుండా కనెక్షన్‌లను బ్లాక్ చేయండి”ని ఆన్ చేయండి.';
+      'అందుబాటులో ఉంటే, “ఎల్లప్పుడూ-ఆన్‌లో ఉండే VPN”ను, ఆ తర్వాత “VPN లేని కనెక్షన్‌లను బ్లాక్ చేయండి”ని ఆన్ చేయండి.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1723,7 +1723,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'అదే సెట్టింగ్‌లలో, VPN లేకుండా ఇంటర్నెట్ యాక్సెస్ కోసం “VPN లేకుండా కనెక్షన్‌లను బ్లాక్ చేయండి”ని ఆఫ్ చేయండి. ఇకపై Android దాన్ని మళ్లీ ప్రారంభించకూడదనుకుంటే, “ఎల్లప్పుడూ ఆన్‌లో ఉండే VPN”ను కూడా ఆఫ్ చేయండి.';
+      'అదే సెట్టింగ్‌లలో, VPN లేకుండా ఇంటర్నెట్ యాక్సెస్ కోసం “VPN లేని కనెక్షన్‌లను బ్లాక్ చేయండి”ని ఆఫ్ చేయండి. ఇకపై Android దాన్ని మళ్లీ ప్రారంభించకూడదనుకుంటే, “ఎల్లప్పుడూ-ఆన్‌లో ఉండే VPN”ను కూడా ఆఫ్ చేయండి.';
 
   @override
   String get protection_guideManual =>

@@ -500,7 +500,7 @@
     "protection_guideStep3": "Activez « VPN permanent », puis « Bloquer les connexions sans VPN », si ces options sont proposées.",
     "protection_guideManufacturers": "Les noms varient selon le téléphone. Si nécessaire, recherchez « VPN » dans les paramètres, souvent dans Réseau et Internet.",
     "protection_guideDisableTitle": "Désactiver cette protection",
-    "protection_guideDisable": "Dans les mêmes réglages, désactivez le blocage sans VPN pour autoriser Internet sans VPN. Désactivez aussi le VPN permanent si vous ne voulez plus qu’Android le relance.",
+    "protection_guideDisable": "Dans les mêmes réglages, désactivez « Bloquer les connexions sans VPN » pour autoriser Internet sans VPN. Désactivez aussi « VPN permanent » si vous ne voulez plus qu’Android le relance.",
     "protection_guideManual": "Vous choisissez ces réglages dans Android. FuzeVPN ne les modifie pas à votre place.",
     "locations_changeTitle": "Changer d’emplacement ?",
     "locations_changeActive": "Le VPN va se déconnecter, puis tenter une connexion à {name}.",

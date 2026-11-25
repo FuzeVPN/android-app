@@ -1728,7 +1728,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'En los mismos ajustes, desactiva el bloqueo sin VPN para permitir Internet sin la VPN. Desactiva también la VPN siempre activada si no quieres que Android la reinicie.';
+      'En los mismos ajustes, desactiva « Bloquear conexiones sin VPN » para permitir Internet sin la VPN. Desactiva también « VPN siempre activada » si no quieres que Android la reinicie.';
 
   @override
   String get protection_guideManual =>

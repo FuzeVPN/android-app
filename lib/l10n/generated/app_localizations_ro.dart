@@ -418,7 +418,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Un alt VPN este activ. Dacă este setat ca VPN permanent, dezactivează această opțiune în setările VPN din Android.';
+      'Un alt VPN este activ. Dacă este setat ca „VPN activat permanent”, dezactivează această opțiune în setările VPN din Android.';
 
   @override
   String get status_idle => 'Deconectat';
@@ -761,7 +761,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'vpn_permission_denied':
           'Android a refuzat permisiunea VPN. Pornește din nou conexiunea și acceptă solicitarea sistemului.',
       'vpn_permission_other_vpn':
-          'Android nu a acordat permisiunea VPN pentru FuzeVPN, deoarece o altă aplicație VPN este activă. Dacă este setată ca VPN permanent, dezactivează această opțiune în setările VPN din Android, apoi încearcă din nou.',
+          'Android nu a acordat permisiunea VPN pentru FuzeVPN, deoarece o altă aplicație VPN este activă. Dacă este setată ca „VPN activat permanent”, dezactivează această opțiune în setările VPN din Android, apoi încearcă din nou.',
       'revoked_identity_device_limit':
           'Accesul VPN al acestui dispozitiv a fost eliminat, iar limita de dispozitive a fost atinsă. Elimină un dispozitiv din Cont → Gestionează dispozitivele mele.',
       'tunnel_start_unexpected':
@@ -1122,7 +1122,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'vpn_permission_denied':
           'Permite accesul FuzeVPN în solicitarea Android pentru a continua.',
       'vpn_permission_other_vpn':
-          'Android nu a acordat permisiunea VPN pentru FuzeVPN, deoarece o altă aplicație VPN este activă. Dacă este setată ca VPN permanent, dezactivează această opțiune în setările VPN din Android, apoi încearcă din nou.',
+          'Android nu a acordat permisiunea VPN pentru FuzeVPN, deoarece o altă aplicație VPN este activă. Dacă este setată ca „VPN activat permanent”, dezactivează această opțiune în setările VPN din Android, apoi încearcă din nou.',
       'vpn_permission_request_failed':
           'Android nu a putut deschide ecranul permisiunii VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1675,7 +1675,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Dacă Android menține VPN-ul activ, dezactivează VPN-ul permanent din setările care se deschid.';
+      'Dacă Android menține VPN-ul activ, dezactivează „VPN activat permanent” din setările care se deschid.';
 
   @override
   String get connection_certificate => 'Certificat OpenVPN';
@@ -1702,7 +1702,7 @@ class AppLocalizationsRo extends AppLocalizations {
       'Această protecție împiedică aplicațiile să folosească direct internetul dacă VPN-ul se deconectează. Este configurată în Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN permanent';
+  String get protection_guideAlwaysOnTitle => 'VPN activat permanent';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1732,7 +1732,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Activează VPN permanent, apoi Blochează conexiunile fără VPN, dacă aceste opțiuni sunt disponibile.';
+      'Activează „VPN activat permanent”, apoi „Blochează conexiunile fără VPN”, dacă aceste opțiuni sunt disponibile.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1743,7 +1743,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'În aceleași setări, dezactivează blocarea fără VPN pentru a permite accesul la internet fără VPN. Dezactivează și VPN-ul permanent dacă nu mai vrei ca Android să îl repornească.';
+      'În aceleași setări, dezactivează „Blochează conexiunile fără VPN” pentru a permite accesul la internet fără VPN. Dezactivează și „VPN activat permanent” dacă nu mai vrei ca Android să îl repornească.';
 
   @override
   String get protection_guideManual =>

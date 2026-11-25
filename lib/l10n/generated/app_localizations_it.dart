@@ -275,11 +275,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“Blocca le connessioni senza VPN” è attivo in Android: le app selezionate non hanno alcun accesso a Internet.';
+      '“Blocca connessioni senza VPN” è attivo in Android: le app selezionate non hanno alcun accesso a Internet.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Se “Blocca le connessioni senza VPN” è attivo in Android, le app selezionate non hanno alcun accesso a Internet.';
+      'Se “Blocca connessioni senza VPN” è attivo in Android, le app selezionate non hanno alcun accesso a Internet.';
 
   @override
   String get connection_location => 'Posizione';
@@ -1705,7 +1705,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'Android mantiene attivo il servizio VPN e può riavviarlo dopo il riavvio del telefono.';
 
   @override
-  String get protection_guideBlockTitle => 'Blocca le connessioni senza VPN';
+  String get protection_guideBlockTitle => 'Blocca connessioni senza VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1728,7 +1728,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Abilita VPN sempre attiva, poi Blocca le connessioni senza VPN, se queste opzioni sono disponibili.';
+      'Abilita “VPN sempre attiva”, poi “Blocca connessioni senza VPN”, se queste opzioni sono disponibili.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1739,7 +1739,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Nelle stesse impostazioni, disattiva il blocco senza VPN per consentire l\'accesso a Internet senza la VPN. Disattiva anche VPN sempre attiva se non vuoi più che Android la riavvii.';
+      'Nelle stesse impostazioni, disattiva “Blocca connessioni senza VPN” per consentire l\'accesso a Internet senza la VPN. Disattiva anche “VPN sempre attiva” se non vuoi più che Android la riavvii.';
 
   @override
   String get protection_guideManual =>

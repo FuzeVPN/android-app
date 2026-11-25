@@ -276,11 +276,11 @@ class AppLocalizationsOr extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Androidରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ଚାଲୁ ଅଛି: ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକର କୌଣସି ଇଣ୍ଟରନେଟ୍ ପ୍ରବେଶ ନାହିଁ।';
+      'Androidରେ “ବିନା VPNରେ ସଂଯୋଗଗୁଡ଼ିକୁ ବ୍ଲକ୍ କରନ୍ତୁ” ଚାଲୁ ଅଛି: ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକର କୌଣସି ଇଣ୍ଟରନେଟ୍ ପ୍ରବେଶ ନାହିଁ।';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Androidରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ଚାଲୁ ଥିଲେ, ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକର କୌଣସି ଇଣ୍ଟରନେଟ୍ ପ୍ରବେଶ ରହେ ନାହିଁ।';
+      'Androidରେ “ବିନା VPNରେ ସଂଯୋଗଗୁଡ଼ିକୁ ବ୍ଲକ୍ କରନ୍ତୁ” ଚାଲୁ ଥିଲେ, ଚିହ୍ନିତ ଆପ୍‌ଗୁଡ଼ିକର କୌଣସି ଇଣ୍ଟରନେଟ୍ ପ୍ରବେଶ ରହେ ନାହିଁ।';
 
   @override
   String get connection_location => 'ଅବସ୍ଥାନ';
@@ -419,7 +419,7 @@ class AppLocalizationsOr extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'ଅନ୍ୟ ଏକ VPN ସକ୍ରିୟ ଅଛି। ଯଦି ଏହା ସର୍ବଦା ଚାଲୁ ଥିବା VPN ଭାବେ ସେଟ୍ ହୋଇଛି, ତେବେ Androidର VPN ସେଟିଂସ୍‌ରେ ଏହାକୁ ବନ୍ଦ କରନ୍ତୁ।';
+      'ଅନ୍ୟ ଏକ VPN ସକ୍ରିୟ ଅଛି। ଯଦି ଏହା “ସର୍ବଦା-ଅନ୍‌ ଥିବା VPN” ଭାବେ ସେଟ୍ ହୋଇଛି, ତେବେ Androidର VPN ସେଟିଂସ୍‌ରେ ଏହାକୁ ବନ୍ଦ କରନ୍ତୁ।';
 
   @override
   String get status_idle => 'ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ';
@@ -756,7 +756,7 @@ class AppLocalizationsOr extends AppLocalizations {
       'vpn_permission_denied':
           'Android ଦ୍ୱାରା VPN ଅନୁମତି ପ୍ରତ୍ୟାଖ୍ୟାନ ହୋଇଛି। ସଂଯୋଗ ପୁନର୍ବାର ଆରମ୍ଭ କରନ୍ତୁ ଏବଂ ସିଷ୍ଟମ୍ ଅନୁରୋଧ ସ୍ୱୀକାର କରନ୍ତୁ।',
       'vpn_permission_other_vpn':
-          'ଅନ୍ୟ ଏକ VPN ଆପ୍ ସକ୍ରିୟ ଥିବାରୁ Android FuzeVPNକୁ VPN ଅନୁମତି ଦେଇନାହିଁ। ଯଦି ଏହା ସର୍ବଦା ଚାଲୁ ଥିବା VPN ଭାବେ ସେଟ୍ ହୋଇଛି, ତେବେ Androidର VPN ସେଟିଂସ୍‌ରେ ଏହାକୁ ବନ୍ଦ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
+          'ଅନ୍ୟ ଏକ VPN ଆପ୍ ସକ୍ରିୟ ଥିବାରୁ Android FuzeVPNକୁ VPN ଅନୁମତି ଦେଇନାହିଁ। ଯଦି ଏହା “ସର୍ବଦା-ଅନ୍‌ ଥିବା VPN” ଭାବେ ସେଟ୍ ହୋଇଛି, ତେବେ Androidର VPN ସେଟିଂସ୍‌ରେ ଏହାକୁ ବନ୍ଦ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
       'revoked_identity_device_limit':
           'ଏହି ଡିଭାଇସ୍‌ର VPN ପ୍ରବେଶାଧିକାର ହଟାଯାଇଛି ଏବଂ ଡିଭାଇସ୍ ସୀମାରେ ପହଞ୍ଚିଛି। ଆକାଉଣ୍ଟ → “ମୋ ଡିଭାଇସ୍ ପରିଚାଳନା କରନ୍ତୁ” ଅଧୀନରେ ଏକ ଡିଭାଇସ୍ ହଟାନ୍ତୁ।',
       'tunnel_start_unexpected':
@@ -1103,7 +1103,7 @@ class AppLocalizationsOr extends AppLocalizations {
       'vpn_permission_denied':
           'ଜାରି ରଖିବା ପାଇଁ Android ଅନୁରୋଧରେ FuzeVPNକୁ ଅନୁମତି ଦିଅନ୍ତୁ।',
       'vpn_permission_other_vpn':
-          'ଅନ୍ୟ ଏକ VPN ଆପ୍ ସକ୍ରିୟ ଥିବାରୁ Android FuzeVPNକୁ VPN ଅନୁମତି ଦେଇନାହିଁ। ଯଦି ଏହା ସର୍ବଦା ଚାଲୁ ଥିବା VPN ଭାବେ ସେଟ୍ ହୋଇଛି, ତେବେ Androidର VPN ସେଟିଂସ୍‌ରେ ଏହାକୁ ବନ୍ଦ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
+          'ଅନ୍ୟ ଏକ VPN ଆପ୍ ସକ୍ରିୟ ଥିବାରୁ Android FuzeVPNକୁ VPN ଅନୁମତି ଦେଇନାହିଁ। ଯଦି ଏହା “ସର୍ବଦା-ଅନ୍‌ ଥିବା VPN” ଭାବେ ସେଟ୍ ହୋଇଛି, ତେବେ Androidର VPN ସେଟିଂସ୍‌ରେ ଏହାକୁ ବନ୍ଦ କରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।',
       'vpn_permission_request_failed':
           'Android VPN ଅନୁମତି ସ୍କ୍ରିନ୍ ଖୋଲିପାରିଲା ନାହିଁ।',
       'wireguard_foreground_service_unavailable':
@@ -1650,7 +1650,7 @@ class AppLocalizationsOr extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'ଯଦି Android VPNକୁ ସକ୍ରିୟ ରଖେ, ଖୋଲୁଥିବା ସେଟିଂସ୍‌ରେ ସର୍ବଦା ଚାଲୁ ଥିବା VPN ବନ୍ଦ କରନ୍ତୁ।';
+      'ଯଦି Android VPNକୁ ସକ୍ରିୟ ରଖେ, ଖୋଲୁଥିବା ସେଟିଂସ୍‌ରେ “ସର୍ବଦା-ଅନ୍‌ ଥିବା VPN” ବନ୍ଦ କରନ୍ତୁ।';
 
   @override
   String get connection_certificate => 'OpenVPN ସାର୍ଟିଫିକେଟ୍';
@@ -1677,14 +1677,15 @@ class AppLocalizationsOr extends AppLocalizations {
       'VPN ସଂଯୋଗ ବିଚ୍ଛିନ୍ନ ହେଲେ, ଏହି ସୁରକ୍ଷା ଆପ୍‌ଗୁଡ଼ିକୁ ସିଧାସଳଖ ଇଣ୍ଟରନେଟ୍ ବ୍ୟବହାର କରିବାରୁ ରୋକିଥାଏ। ଏହା Androidରେ ବିନ୍ୟାସ କରାଯାଏ।';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'ସର୍ବଦା ଚାଲୁ ଥିବା VPN';
+  String get protection_guideAlwaysOnTitle => 'ସର୍ବଦା-ଅନ୍‌ ଥିବା VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android VPN ସେବାକୁ ଚାଲୁ ରଖେ ଏବଂ ଫୋନ୍ ପୁନଃ ଚାଲୁ ହେବା ପରେ ଏହାକୁ ପୁନର୍ବାର ଆରମ୍ଭ କରିପାରେ।';
 
   @override
-  String get protection_guideBlockTitle => 'VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ';
+  String get protection_guideBlockTitle =>
+      'ବିନା VPNରେ ସଂଯୋଗଗୁଡ଼ିକୁ ବ୍ଲକ୍ କରନ୍ତୁ';
 
   @override
   String get protection_guideBlock =>
@@ -1707,7 +1708,7 @@ class AppLocalizationsOr extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'ଉପଲବ୍ଧ ଥିଲେ, “ସର୍ବଦା ଚାଲୁ ଥିବା VPN” ସକ୍ରିୟ କରନ୍ତୁ, ତା’ପରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ସକ୍ରିୟ କରନ୍ତୁ।';
+      'ଉପଲବ୍ଧ ଥିଲେ, “ସର୍ବଦା-ଅନ୍‌ ଥିବା VPN” ସକ୍ରିୟ କରନ୍ତୁ, ତା’ପରେ “ବିନା VPNରେ ସଂଯୋଗଗୁଡ଼ିକୁ ବ୍ଲକ୍ କରନ୍ତୁ” ସକ୍ରିୟ କରନ୍ତୁ।';
 
   @override
   String get protection_guideManufacturers =>
@@ -1718,7 +1719,7 @@ class AppLocalizationsOr extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'ସେହି ସେଟିଂସ୍‌ରେ “VPN ବିନା ସଂଯୋଗ ଅବରୋଧ କରନ୍ତୁ” ବନ୍ଦ କରନ୍ତୁ, ଯାହାଫଳରେ VPN ବିନା ଇଣ୍ଟରନେଟ୍ ବ୍ୟବହାର କରିହେବ। ଯଦି ଆପଣ ଆଉ ଚାହାନ୍ତି ନାହିଁ ଯେ Android ଏହାକୁ ପୁନର୍ବାର ଆରମ୍ଭ କରୁ, ତେବେ “ସର୍ବଦା ଚାଲୁ ଥିବା VPN” ମଧ୍ୟ ବନ୍ଦ କରନ୍ତୁ।';
+      'ସେହି ସେଟିଂସ୍‌ରେ “ବିନା VPNରେ ସଂଯୋଗଗୁଡ଼ିକୁ ବ୍ଲକ୍ କରନ୍ତୁ” ବନ୍ଦ କରନ୍ତୁ, ଯାହାଫଳରେ VPN ବିନା ଇଣ୍ଟରନେଟ୍ ବ୍ୟବହାର କରିହେବ। ଯଦି ଆପଣ ଆଉ ଚାହାନ୍ତି ନାହିଁ ଯେ Android ଏହାକୁ ପୁନର୍ବାର ଆରମ୍ଭ କରୁ, ତେବେ “ସର୍ବଦା-ଅନ୍‌ ଥିବା VPN” ମଧ୍ୟ ବନ୍ଦ କରନ୍ତୁ।';
 
   @override
   String get protection_guideManual =>

@@ -274,11 +274,11 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android-ում միացված է «Արգելափակել առանց VPN-ի կապերը» կարգավորումը։ Նշված հավելվածներն ընդհանրապես ինտերնետ հասանելիություն չունեն։';
+      'Android-ում միացված է «Արգելափակել առանց VPN-ի միացումները» կարգավորումը։ Նշված հավելվածներն ընդհանրապես ինտերնետ հասանելիություն չունեն։';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Եթե Android-ում միացված է «Արգելափակել առանց VPN-ի կապերը» կարգավորումը, նշված հավելվածներն ընդհանրապես ինտերնետ հասանելիություն չունեն։';
+      'Եթե Android-ում միացված է «Արգելափակել առանց VPN-ի միացումները» կարգավորումը, նշված հավելվածներն ընդհանրապես ինտերնետ հասանելիություն չունեն։';
 
   @override
   String get connection_location => 'Վայր';
@@ -416,7 +416,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Մեկ այլ VPN ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ միացված VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում։';
+      'Մեկ այլ VPN ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ ակտիվ VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում։';
 
   @override
   String get status_idle => 'Անջատված է';
@@ -751,7 +751,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'vpn_permission_denied':
           'Android-ը մերժել է VPN-ի թույլտվությունը։ Նորից սկսեք միացումը և ընդունեք համակարգի հարցումը։',
       'vpn_permission_other_vpn':
-          'Android-ը FuzeVPN-ին VPN-ի թույլտվություն չտվեց, քանի որ մեկ այլ VPN հավելված ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ միացված VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում, ապա նորից փորձեք։',
+          'Android-ը FuzeVPN-ին VPN-ի թույլտվություն չտվեց, քանի որ մեկ այլ VPN հավելված ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ ակտիվ VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում, ապա նորից փորձեք։',
       'revoked_identity_device_limit':
           'Այս սարքի VPN հասանելիությունը հեռացվել է, և սարքերի սահմանաչափը սպառվել է։ Հեռացրեք սարք «Հաշիվ → Կառավարել իմ սարքերը» բաժնում։',
       'tunnel_start_unexpected':
@@ -1098,7 +1098,7 @@ class AppLocalizationsHy extends AppLocalizations {
       'vpn_permission_denied':
           'Շարունակելու համար Android-ի հարցումում թույլատրեք FuzeVPN-ին։',
       'vpn_permission_other_vpn':
-          'Android-ը FuzeVPN-ին VPN-ի թույլտվություն չտվեց, քանի որ մեկ այլ VPN հավելված ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ միացված VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում, ապա նորից փորձեք։',
+          'Android-ը FuzeVPN-ին VPN-ի թույլտվություն չտվեց, քանի որ մեկ այլ VPN հավելված ակտիվ է։ Եթե այն սահմանված է որպես «Միշտ ակտիվ VPN», անջատեք այդ կարգավորումը Android-ի VPN կարգավորումներում, ապա նորից փորձեք։',
       'vpn_permission_request_failed':
           'Android-ը չկարողացավ բացել VPN-ի թույլտվության էկրանը։',
       'wireguard_foreground_service_unavailable':
@@ -1646,7 +1646,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Եթե Android-ը շարունակում է VPN-ն ակտիվ պահել, բացվող կարգավորումներում անջատեք «Միշտ միացված VPN»-ը։';
+      'Եթե Android-ը շարունակում է VPN-ն ակտիվ պահել, բացվող կարգավորումներում անջատեք «Միշտ ակտիվ VPN»-ը։';
 
   @override
   String get connection_certificate => 'OpenVPN-ի վկայագիր';
@@ -1673,14 +1673,15 @@ class AppLocalizationsHy extends AppLocalizations {
       'Այս պաշտպանությունը թույլ չի տալիս հավելվածներին ուղղակիորեն օգտվել ինտերնետից, եթե VPN-ն անջատվի։ Այն կարգավորվում է Android-ում։';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Միշտ միացված VPN';
+  String get protection_guideAlwaysOnTitle => 'Միշտ ակտիվ VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android-ը VPN ծառայությունը մշտապես աշխատեցնում է և կարող է այն նորից գործարկել հեռախոսի վերագործարկումից հետո։';
 
   @override
-  String get protection_guideBlockTitle => 'Արգելափակել առանց VPN-ի կապերը';
+  String get protection_guideBlockTitle =>
+      'Արգելափակել առանց VPN-ի միացումները';
 
   @override
   String get protection_guideBlock =>
@@ -1703,7 +1704,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Եթե այս ընտրանքները հասանելի են, միացրեք «Միշտ միացված VPN»-ը, ապա՝ «Արգելափակել առանց VPN-ի կապերը»։';
+      'Եթե այս ընտրանքները հասանելի են, միացրեք «Միշտ ակտիվ VPN»-ը, ապա՝ «Արգելափակել առանց VPN-ի միացումները»։';
 
   @override
   String get protection_guideManufacturers =>
@@ -1714,7 +1715,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Նույն կարգավորումներում անջատեք «Արգելափակել առանց VPN-ի կապերը»՝ VPN-ից դուրս ինտերնետ մուտք թույլ տալու համար։ Եթե այլևս չեք ցանկանում, որ Android-ը նորից գործարկի VPN-ը, անջատեք նաև «Միշտ միացված VPN»-ը։';
+      'Նույն կարգավորումներում անջատեք «Արգելափակել առանց VPN-ի միացումները»՝ VPN-ից դուրս ինտերնետ մուտք թույլ տալու համար։ Եթե այլևս չեք ցանկանում, որ Android-ը նորից գործարկի VPN-ը, անջատեք նաև «Միշտ ակտիվ VPN»-ը։';
 
   @override
   String get protection_guideManual =>

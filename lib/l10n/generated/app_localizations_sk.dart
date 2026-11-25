@@ -274,11 +274,11 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'V systéme Android je zapnutá možnosť „Blokovať pripojenia bez VPN“: zaškrtnuté aplikácie nemajú žiadny prístup na internet.';
+      'V systéme Android je zapnutá možnosť „Blokovať pripojenia bez siete VPN“: zaškrtnuté aplikácie nemajú žiadny prístup na internet.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Ak je v systéme Android zapnutá možnosť „Blokovať pripojenia bez VPN“, zaškrtnuté aplikácie nemajú žiadny prístup na internet.';
+      'Ak je v systéme Android zapnutá možnosť „Blokovať pripojenia bez siete VPN“, zaškrtnuté aplikácie nemajú žiadny prístup na internet.';
 
   @override
   String get connection_location => 'Lokalita';
@@ -1686,7 +1686,7 @@ class AppLocalizationsSk extends AppLocalizations {
       'Android udržiava službu VPN v chode a po reštarte telefónu ju môže znova spustiť.';
 
   @override
-  String get protection_guideBlockTitle => 'Blokovať pripojenia bez VPN';
+  String get protection_guideBlockTitle => 'Blokovať pripojenia bez siete VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1709,7 +1709,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Zapnite možnosť Vždy zapnutá VPN a potom Blokovať pripojenia bez VPN, ak sú tieto možnosti k dispozícii.';
+      'Zapnite možnosť „Vždy zapnutá VPN“ a potom „Blokovať pripojenia bez siete VPN“, ak sú tieto možnosti k dispozícii.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1720,7 +1720,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'V rovnakých nastaveniach vypnite možnosť Blokovať pripojenia bez VPN, aby ste mohli používať internet aj bez VPN. Ak už nechcete, aby ju Android znova spúšťal, vypnite aj možnosť Vždy zapnutá VPN.';
+      'V rovnakých nastaveniach vypnite možnosť „Blokovať pripojenia bez siete VPN“, aby ste mohli používať internet aj bez VPN. Ak už nechcete, aby ju Android znova spúšťal, vypnite aj možnosť „Vždy zapnutá VPN“.';
 
   @override
   String get protection_guideManual =>

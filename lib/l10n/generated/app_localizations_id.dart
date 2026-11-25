@@ -274,11 +274,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“Blokir koneksi tanpa VPN” aktif di Android: aplikasi yang dicentang sama sekali tidak memiliki akses internet.';
+      '“Memblokir koneksi tanpa VPN” aktif di Android: aplikasi yang dicentang sama sekali tidak memiliki akses internet.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Jika “Blokir koneksi tanpa VPN” aktif di Android, aplikasi yang dicentang sama sekali tidak memiliki akses internet.';
+      'Jika “Memblokir koneksi tanpa VPN” aktif di Android, aplikasi yang dicentang sama sekali tidak memiliki akses internet.';
 
   @override
   String get connection_location => 'Lokasi';
@@ -1678,7 +1678,7 @@ class AppLocalizationsId extends AppLocalizations {
       'Android menjaga layanan VPN tetap berjalan dan dapat memulainya kembali setelah ponsel dimulai ulang.';
 
   @override
-  String get protection_guideBlockTitle => 'Blokir koneksi tanpa VPN';
+  String get protection_guideBlockTitle => 'Memblokir koneksi tanpa VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1701,7 +1701,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Aktifkan VPN selalu aktif, lalu Blokir koneksi tanpa VPN, jika opsi tersebut tersedia.';
+      'Aktifkan “VPN selalu aktif”, lalu “Memblokir koneksi tanpa VPN”, jika opsi tersebut tersedia.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1712,7 +1712,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Di pengaturan yang sama, matikan pemblokiran tanpa VPN untuk mengizinkan akses internet tanpa VPN. Matikan juga VPN selalu aktif jika Anda tidak ingin Android memulainya kembali.';
+      'Di pengaturan yang sama, matikan “Memblokir koneksi tanpa VPN” untuk mengizinkan akses internet tanpa VPN. Matikan juga “VPN selalu aktif” jika Anda tidak ingin Android memulainya kembali.';
 
   @override
   String get protection_guideManual =>

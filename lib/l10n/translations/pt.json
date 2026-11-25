@@ -493,7 +493,7 @@
     "protection_guideStep3": "Ative VPN sempre ativa e depois Bloquear conexões sem VPN, se essas opções estiverem disponíveis.",
     "protection_guideManufacturers": "Os nomes variam conforme o telefone. Se necessário, pesquise por VPN em Configurações, geralmente em Rede e internet.",
     "protection_guideDisableTitle": "Desativar esta proteção",
-    "protection_guideDisable": "Nas mesmas configurações, desative o bloqueio sem VPN para permitir acesso à internet sem a VPN. Desative também a VPN sempre ativa se não quiser mais que o Android a reinicie.",
+    "protection_guideDisable": "Nas mesmas configurações, desative “Bloquear conexões sem VPN” para permitir acesso à internet sem a VPN. Desative também “VPN sempre ativa” se não quiser mais que o Android a reinicie.",
     "protection_guideManual": "Você escolhe essas configurações no Android. O FuzeVPN não as altera por você.",
     "locations_changeTitle": "Alterar localização?",
     "locations_changeActive": "A VPN será desconectada e tentará se conectar a {name}.",

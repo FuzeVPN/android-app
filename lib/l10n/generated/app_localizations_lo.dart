@@ -271,11 +271,11 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN” ເປີດຢູ່ໃນ Android: ແອັບທີ່ເລືອກໄວ້ຈະບໍ່ສາມາດເຂົ້າເຖິງອິນເຕີເນັດໄດ້ເລີຍ.';
+      '“ບລັອກການເຊື່ອມຕໍ່ໂດຍບໍ່ໃຊ້ VPN” ເປີດຢູ່ໃນ Android: ແອັບທີ່ເລືອກໄວ້ຈະບໍ່ສາມາດເຂົ້າເຖິງອິນເຕີເນັດໄດ້ເລີຍ.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'ຫາກ “ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN” ເປີດຢູ່ໃນ Android, ແອັບທີ່ເລືອກໄວ້ຈະບໍ່ສາມາດເຂົ້າເຖິງອິນເຕີເນັດໄດ້ເລີຍ.';
+      'ຫາກ “ບລັອກການເຊື່ອມຕໍ່ໂດຍບໍ່ໃຊ້ VPN” ເປີດຢູ່ໃນ Android, ແອັບທີ່ເລືອກໄວ້ຈະບໍ່ສາມາດເຂົ້າເຖິງອິນເຕີເນັດໄດ້ເລີຍ.';
 
   @override
   String get connection_location => 'ສະຖານທີ່';
@@ -415,7 +415,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'ມີ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ VPN ເປີດຕະຫຼອດເວລາ, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android.';
+      'ມີ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ “VPN ແບບເປີດຕະຫຼອດເວລາ”, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android.';
 
   @override
   String get status_idle => 'ຕັດການເຊື່ອມຕໍ່ແລ້ວ';
@@ -749,7 +749,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'vpn_permission_denied':
           'Android ປະຕິເສດການອະນຸຍາດ VPN. ກະລຸນາເລີ່ມການເຊື່ອມຕໍ່ໃໝ່ ແລະ ຍອມຮັບຄຳຂໍຂອງລະບົບ.',
       'vpn_permission_other_vpn':
-          'Android ບໍ່ໄດ້ໃຫ້ການອະນຸຍາດ VPN ແກ່ FuzeVPN ເພາະມີແອັບ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ VPN ເປີດຕະຫຼອດເວລາ, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android ແລ້ວລອງໃໝ່.',
+          'Android ບໍ່ໄດ້ໃຫ້ການອະນຸຍາດ VPN ແກ່ FuzeVPN ເພາະມີແອັບ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ “VPN ແບບເປີດຕະຫຼອດເວລາ”, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android ແລ້ວລອງໃໝ່.',
       'revoked_identity_device_limit':
           'ການເຂົ້າເຖິງ VPN ຂອງອຸປະກອນນີ້ຖືກລຶບອອກແລ້ວ ແລະ ຮອດຂີດຈຳກັດອຸປະກອນແລ້ວ. ກະລຸນາລຶບອຸປະກອນໜຶ່ງໃນ ບັນຊີ → ຈັດການອຸປະກອນຂອງຂ້ອຍ.',
       'tunnel_start_unexpected':
@@ -1081,7 +1081,7 @@ class AppLocalizationsLo extends AppLocalizations {
       'vpn_permission_denied':
           'ກະລຸນາອະນຸຍາດ FuzeVPN ໃນຄຳຂໍຂອງ Android ເພື່ອສືບຕໍ່.',
       'vpn_permission_other_vpn':
-          'Android ບໍ່ໄດ້ໃຫ້ການອະນຸຍາດ VPN ແກ່ FuzeVPN ເພາະມີແອັບ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ VPN ເປີດຕະຫຼອດເວລາ, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android ແລ້ວລອງໃໝ່.',
+          'Android ບໍ່ໄດ້ໃຫ້ການອະນຸຍາດ VPN ແກ່ FuzeVPN ເພາະມີແອັບ VPN ອື່ນກຳລັງເຮັດວຽກຢູ່. ຖ້າມັນຖືກຕັ້ງເປັນ “VPN ແບບເປີດຕະຫຼອດເວລາ”, ກະລຸນາປິດການຕັ້ງຄ່ານັ້ນໃນການຕັ້ງຄ່າ VPN ຂອງ Android ແລ້ວລອງໃໝ່.',
       'vpn_permission_request_failed':
           'Android ບໍ່ສາມາດເປີດໜ້າການອະນຸຍາດ VPN ໄດ້.',
       'wireguard_foreground_service_unavailable':
@@ -1620,7 +1620,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'ຖ້າ Android ຍັງເປີດ VPN ຢູ່, ກະລຸນາປິດ VPN ເປີດຕະຫຼອດເວລາໃນການຕັ້ງຄ່າທີ່ເປີດຂຶ້ນມາ.';
+      'ຖ້າ Android ຍັງເປີດ VPN ຢູ່, ກະລຸນາປິດ “VPN ແບບເປີດຕະຫຼອດເວລາ” ໃນການຕັ້ງຄ່າທີ່ເປີດຂຶ້ນມາ.';
 
   @override
   String get connection_certificate => 'ໃບຮັບຮອງ OpenVPN';
@@ -1647,14 +1647,14 @@ class AppLocalizationsLo extends AppLocalizations {
       'ການປົກປ້ອງນີ້ຈະບໍ່ໃຫ້ແອັບໃຊ້ອິນເຕີເນັດໂດຍກົງ ຖ້າ VPN ຕັດການເຊື່ອມຕໍ່. ຕັ້ງຄ່າໄດ້ໃນ Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN ເປີດຕະຫຼອດເວລາ';
+  String get protection_guideAlwaysOnTitle => 'VPN ແບບເປີດຕະຫຼອດເວລາ';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android ຮັກສາບໍລິການ VPN ໃຫ້ເຮັດວຽກຢູ່ ແລະ ສາມາດເລີ່ມມັນຄືນໃໝ່ໄດ້ຫຼັງຈາກໂທລະສັບເລີ່ມເຄື່ອງໃໝ່.';
 
   @override
-  String get protection_guideBlockTitle => 'ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN';
+  String get protection_guideBlockTitle => 'ບລັອກການເຊື່ອມຕໍ່ໂດຍບໍ່ໃຊ້ VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1677,7 +1677,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'ເປີດ “VPN ເປີດຕະຫຼອດເວລາ” ຈາກນັ້ນເປີດ “ບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN” ຖ້າມີຕົວເລືອກເຫຼົ່ານີ້.';
+      'ເປີດ “VPN ແບບເປີດຕະຫຼອດເວລາ” ຈາກນັ້ນເປີດ “ບລັອກການເຊື່ອມຕໍ່ໂດຍບໍ່ໃຊ້ VPN” ຖ້າມີຕົວເລືອກເຫຼົ່ານີ້.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1688,7 +1688,7 @@ class AppLocalizationsLo extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'ໃນການຕັ້ງຄ່າດຽວກັນ ໃຫ້ປິດການບລັອກການເຊື່ອມຕໍ່ທີ່ບໍ່ມີ VPN ເພື່ອໃຫ້ເຂົ້າອິນເຕີເນັດໄດ້ໂດຍບໍ່ໃຊ້ VPN. ນອກຈາກນີ້ ໃຫ້ປິດ VPN ເປີດຕະຫຼອດເວລາ ຖ້າທ່ານບໍ່ຕ້ອງການໃຫ້ Android ເລີ່ມມັນໃໝ່ອີກ.';
+      'ໃນການຕັ້ງຄ່າດຽວກັນ ໃຫ້ປິດ “ບລັອກການເຊື່ອມຕໍ່ໂດຍບໍ່ໃຊ້ VPN” ເພື່ອໃຫ້ເຂົ້າອິນເຕີເນັດໄດ້ໂດຍບໍ່ໃຊ້ VPN. ນອກຈາກນີ້ ໃຫ້ປິດ “VPN ແບບເປີດຕະຫຼອດເວລາ” ຖ້າທ່ານບໍ່ຕ້ອງການໃຫ້ Android ເລີ່ມມັນໃໝ່ອີກ.';
 
   @override
   String get protection_guideManual =>

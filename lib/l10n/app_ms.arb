@@ -491,7 +491,7 @@
   "protection_guideStep3": "Dayakan VPN sentiasa hidup, kemudian Sekat sambungan tanpa VPN, jika pilihan ini tersedia.",
   "protection_guideManufacturers": "Nama berbeza mengikut telefon. Jika perlu, cari VPN dalam Tetapan, biasanya di bawah Rangkaian & Internet.",
   "protection_guideDisableTitle": "Matikan perlindungan ini",
-  "protection_guideDisable": "Dalam tetapan yang sama, matikan penyekatan tanpa VPN untuk membenarkan akses Internet tanpa VPN. Matikan juga VPN sentiasa hidup jika anda tidak lagi mahu Android memulakannya semula.",
+  "protection_guideDisable": "Dalam tetapan yang sama, matikan “Sekat sambungan tanpa VPN” untuk membenarkan akses Internet tanpa VPN. Matikan juga “VPN sentiasa hidup” jika anda tidak lagi mahu Android memulakannya semula.",
   "protection_guideManual": "Anda memilih tetapan ini dalam Android. FuzeVPN tidak mengubahnya untuk anda.",
   "locations_changeTitle": "Tukar lokasi?",
   "locations_changeActive": "VPN akan terputus, kemudian cuba bersambung ke {name}.",

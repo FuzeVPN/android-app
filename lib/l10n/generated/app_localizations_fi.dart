@@ -275,11 +275,11 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '”Estä yhteydet ilman VPN:ää” on käytössä Androidissa: valituilla sovelluksilla ei ole lainkaan internetyhteyttä.';
+      '”Estä yhteydet, jotka eivät käytä VPN:ää” on käytössä Androidissa: valituilla sovelluksilla ei ole lainkaan internetyhteyttä.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Jos ”Estä yhteydet ilman VPN:ää” on käytössä Androidissa, valituilla sovelluksilla ei ole lainkaan internetyhteyttä.';
+      'Jos ”Estä yhteydet, jotka eivät käytä VPN:ää” on käytössä Androidissa, valituilla sovelluksilla ei ole lainkaan internetyhteyttä.';
 
   @override
   String get connection_location => 'Sijainti';
@@ -418,7 +418,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Toinen VPN on käytössä. Jos se on asetettu Aina päällä olevaksi VPN:ksi, poista asetus käytöstä Androidin VPN-asetuksista.';
+      'Toinen VPN on käytössä. Jos sille on otettu käyttöön ”Aina käytössä oleva VPN”, poista asetus käytöstä Androidin VPN-asetuksista.';
 
   @override
   String get status_idle => 'Yhteys katkaistu';
@@ -754,7 +754,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'vpn_permission_denied':
           'Android eväsi VPN-luvan. Aloita yhteys uudelleen ja hyväksy järjestelmän pyyntö.',
       'vpn_permission_other_vpn':
-          'Android ei antanut FuzeVPN:lle VPN-lupaa, koska toinen VPN-sovellus on käytössä. Jos se on asetettu Aina päällä olevaksi VPN:ksi, poista asetus käytöstä Androidin VPN-asetuksista ja yritä uudelleen.',
+          'Android ei antanut FuzeVPN:lle VPN-lupaa, koska toinen VPN-sovellus on käytössä. Jos sille on otettu käyttöön ”Aina käytössä oleva VPN”, poista asetus käytöstä Androidin VPN-asetuksista ja yritä uudelleen.',
       'revoked_identity_device_limit':
           'Tämän laitteen VPN-käyttöoikeus poistettiin, ja laitteiden enimmäismäärä on saavutettu. Poista laite kohdassa Tili → Hallitse laitteitani.',
       'tunnel_start_unexpected':
@@ -1106,7 +1106,7 @@ class AppLocalizationsFi extends AppLocalizations {
       'vpn_permission_denied':
           'Salli FuzeVPN Androidin pyynnössä, jotta voit jatkaa.',
       'vpn_permission_other_vpn':
-          'Android ei antanut FuzeVPN:lle VPN-lupaa, koska toinen VPN-sovellus on käytössä. Jos se on asetettu Aina päällä olevaksi VPN:ksi, poista asetus käytöstä Androidin VPN-asetuksista ja yritä uudelleen.',
+          'Android ei antanut FuzeVPN:lle VPN-lupaa, koska toinen VPN-sovellus on käytössä. Jos sille on otettu käyttöön ”Aina käytössä oleva VPN”, poista asetus käytöstä Androidin VPN-asetuksista ja yritä uudelleen.',
       'vpn_permission_request_failed':
           'Android ei voinut avata VPN-luvan näyttöä.',
       'wireguard_foreground_service_unavailable':
@@ -1653,7 +1653,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Jos Android pitää VPN-yhteyden aktiivisena, poista avautuvissa asetuksissa käytöstä Aina päällä oleva VPN.';
+      'Jos Android pitää VPN-yhteyden aktiivisena, poista avautuvissa asetuksissa käytöstä ”Aina käytössä oleva VPN”.';
 
   @override
   String get connection_certificate => 'OpenVPN-varmenne';
@@ -1680,14 +1680,15 @@ class AppLocalizationsFi extends AppLocalizations {
       'Tämä suojaus estää sovelluksia käyttämästä internetiä suoraan, jos VPN-yhteys katkeaa. Se määritetään Androidissa.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Aina päällä oleva VPN';
+  String get protection_guideAlwaysOnTitle => 'Aina käytössä oleva VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android pitää VPN-palvelun käynnissä ja voi käynnistää sen automaattisesti puhelimen uudelleenkäynnistyksen jälkeen.';
 
   @override
-  String get protection_guideBlockTitle => 'Estä yhteydet ilman VPN:ää';
+  String get protection_guideBlockTitle =>
+      'Estä yhteydet, jotka eivät käytä VPN:ää';
 
   @override
   String get protection_guideBlock =>
@@ -1710,7 +1711,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Ota käyttöön ”Aina päällä oleva VPN” ja sen jälkeen ”Estä yhteydet ilman VPN:ää”, jos nämä vaihtoehdot ovat saatavilla.';
+      'Ota käyttöön ”Aina käytössä oleva VPN” ja sen jälkeen ”Estä yhteydet, jotka eivät käytä VPN:ää”, jos nämä vaihtoehdot ovat saatavilla.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1721,7 +1722,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Poista samoissa asetuksissa käytöstä ”Estä yhteydet ilman VPN:ää”, jotta internet toimii ilman VPN-yhteyttä. Poista myös käytöstä ”Aina päällä oleva VPN”, jos et enää halua, että Android käynnistää sen uudelleen.';
+      'Poista samoissa asetuksissa käytöstä ”Estä yhteydet, jotka eivät käytä VPN:ää”, jotta internet toimii ilman VPN-yhteyttä. Poista myös käytöstä ”Aina käytössä oleva VPN”, jos et enää halua, että Android käynnistää sen uudelleen.';
 
   @override
   String get protection_guideManual =>

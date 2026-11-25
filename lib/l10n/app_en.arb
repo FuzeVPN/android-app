@@ -491,7 +491,7 @@
   "protection_guideStep3": "Enable Always-on VPN, then Block connections without VPN, if these options are available.",
   "protection_guideManufacturers": "Names vary by phone. If needed, search for VPN in Settings, often under Network & internet.",
   "protection_guideDisableTitle": "Turn off this protection",
-  "protection_guideDisable": "In the same settings, turn off blocking without VPN to allow internet access without the VPN. Also turn off Always-on VPN if you no longer want Android to restart it.",
+  "protection_guideDisable": "In the same settings, turn off “Block connections without VPN” to allow internet access without the VPN. Also turn off “Always-on VPN” if you no longer want Android to restart it.",
   "protection_guideManual": "You choose these settings in Android. FuzeVPN does not change them for you.",
   "locations_changeTitle": "Change location?",
   "locations_changeActive": "The VPN will disconnect, then try to connect to {name}.",

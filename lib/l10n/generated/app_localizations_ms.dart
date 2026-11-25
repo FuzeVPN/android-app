@@ -1718,7 +1718,7 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Dalam tetapan yang sama, matikan penyekatan tanpa VPN untuk membenarkan akses Internet tanpa VPN. Matikan juga VPN sentiasa hidup jika anda tidak lagi mahu Android memulakannya semula.';
+      'Dalam tetapan yang sama, matikan “Sekat sambungan tanpa VPN” untuk membenarkan akses Internet tanpa VPN. Matikan juga “VPN sentiasa hidup” jika anda tidak lagi mahu Android memulakannya semula.';
 
   @override
   String get protection_guideManual =>

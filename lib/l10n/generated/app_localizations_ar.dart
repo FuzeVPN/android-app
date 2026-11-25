@@ -269,11 +269,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '«حظر الاتصالات دون VPN» مفعّل في Android: لا تملك التطبيقات المحددة أي وصول إلى الإنترنت.';
+      '«‏حظر أي اتصالات بدون شبكة VPN» مفعّل في Android: لا تملك التطبيقات المحددة أي وصول إلى الإنترنت.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'إذا كان «حظر الاتصالات دون VPN» مفعّلًا في Android، فلن يكون للتطبيقات المحددة أي وصول إلى الإنترنت.';
+      'إذا كان «‏حظر أي اتصالات بدون شبكة VPN» مفعّلًا في Android، فلن يكون للتطبيقات المحددة أي وصول إلى الإنترنت.';
 
   @override
   String get connection_location => 'الموقع';
@@ -411,7 +411,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'يوجد VPN آخر نشط. إذا كان مضبوطًا كـ VPN الدائم، فأوقف هذا الإعداد في إعدادات VPN في Android.';
+      'يوجد VPN آخر نشط. إذا كان مضبوطًا كـ «‏شبكة VPN قيد التشغيل دائمًا»، فأوقف هذا الإعداد في إعدادات VPN في Android.';
 
   @override
   String get status_idle => 'غير متصل';
@@ -737,7 +737,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'vpn_permission_denied':
           'رفض Android إذن VPN. ابدأ الاتصال مرة أخرى ووافق على طلب النظام.',
       'vpn_permission_other_vpn':
-          'لم يمنح Android إذن VPN لتطبيق FuzeVPN لأن تطبيق VPN آخر نشط. إذا كان مضبوطًا كـ VPN الدائم، فأوقف هذا الإعداد في إعدادات VPN في Android، ثم حاول مرة أخرى.',
+          'لم يمنح Android إذن VPN لتطبيق FuzeVPN لأن تطبيق VPN آخر نشط. إذا كان مضبوطًا كـ «‏شبكة VPN قيد التشغيل دائمًا»، فأوقف هذا الإعداد في إعدادات VPN في Android، ثم حاول مرة أخرى.',
       'revoked_identity_device_limit':
           'أُزيل وصول VPN لهذا الجهاز وتم بلوغ حد الأجهزة. أزل جهازًا من «الحساب ← إدارة أجهزتي».',
       'tunnel_start_unexpected':
@@ -1075,7 +1075,7 @@ class AppLocalizationsAr extends AppLocalizations {
           'يتطلب Android تفويضًا جديدًا لـ VPN قبل بدء النفق.',
       'vpn_permission_denied': 'اسمح لـ FuzeVPN في طلب Android للمتابعة.',
       'vpn_permission_other_vpn':
-          'لم يمنح Android إذن VPN لتطبيق FuzeVPN لأن تطبيق VPN آخر نشط. إذا كان مضبوطًا كـ VPN الدائم، فأوقف هذا الإعداد في إعدادات VPN في Android، ثم حاول مرة أخرى.',
+          'لم يمنح Android إذن VPN لتطبيق FuzeVPN لأن تطبيق VPN آخر نشط. إذا كان مضبوطًا كـ «‏شبكة VPN قيد التشغيل دائمًا»، فأوقف هذا الإعداد في إعدادات VPN في Android، ثم حاول مرة أخرى.',
       'vpn_permission_request_failed': 'تعذر على Android فتح شاشة إذن VPN.',
       'wireguard_foreground_service_unavailable':
           'تعذر على Android إبقاء خدمة WireGuard في الواجهة الأمامية.',
@@ -1608,7 +1608,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'إذا أبقى Android VPN نشطًا، فأوقف VPN الدائم في الإعدادات التي ستُفتح.';
+      'إذا أبقى Android VPN نشطًا، فأوقف «‏شبكة VPN قيد التشغيل دائمًا» في الإعدادات التي ستُفتح.';
 
   @override
   String get connection_certificate => 'شهادة OpenVPN';
@@ -1635,14 +1635,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'تمنع هذه الحماية التطبيقات من استخدام الإنترنت مباشرة إذا انقطع VPN. ويُضبط ذلك في Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN الدائم';
+  String get protection_guideAlwaysOnTitle => '‏شبكة VPN قيد التشغيل دائمًا';
 
   @override
   String get protection_guideAlwaysOn =>
       'يبقي Android خدمة VPN قيد التشغيل ويمكنه إعادة تشغيلها بعد إعادة تشغيل الهاتف.';
 
   @override
-  String get protection_guideBlockTitle => 'حظر الاتصالات دون VPN';
+  String get protection_guideBlockTitle => '‏حظر أي اتصالات بدون شبكة VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1665,7 +1665,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'فعّل VPN الدائم، ثم «حظر الاتصالات دون VPN» إذا كانت هذه الخيارات متاحة.';
+      'فعّل «‏شبكة VPN قيد التشغيل دائمًا»، ثم «‏حظر أي اتصالات بدون شبكة VPN» إذا كانت هذه الخيارات متاحة.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1676,7 +1676,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'في الإعدادات نفسها، أوقف الحظر دون VPN للسماح بالوصول إلى الإنترنت من دون VPN. وأوقف VPN الدائم أيضًا إذا لم تعد تريد من Android إعادة تشغيله.';
+      'في الإعدادات نفسها، أوقف «‏حظر أي اتصالات بدون شبكة VPN» للسماح بالوصول إلى الإنترنت من دون VPN. وأوقف «‏شبكة VPN قيد التشغيل دائمًا» أيضًا إذا لم تعد تريد من Android إعادة تشغيله.';
 
   @override
   String get protection_guideManual =>

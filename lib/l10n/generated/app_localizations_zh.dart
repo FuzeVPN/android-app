@@ -260,11 +260,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android 中已开启“阻止无 VPN 连接”：选中的应用将完全无法访问互联网。';
+      'Android 中已开启“屏蔽未使用 VPN 的所有连接”：选中的应用将完全无法访问互联网。';
 
   @override
   String get splitTunnel_lockdownNote =>
-      '如果 Android 中开启了“阻止无 VPN 连接”，选中的应用将完全无法访问互联网。';
+      '如果 Android 中开启了“屏蔽未使用 VPN 的所有连接”，选中的应用将完全无法访问互联网。';
 
   @override
   String get connection_location => '位置';
@@ -1467,7 +1467,7 @@ class AppLocalizationsZh extends AppLocalizations {
       'Android 会保持 VPN 服务运行，并可在手机重启后重新启动该服务。';
 
   @override
-  String get protection_guideBlockTitle => '阻止无 VPN 连接';
+  String get protection_guideBlockTitle => '屏蔽未使用 VPN 的所有连接';
 
   @override
   String get protection_guideBlock => '此设置会阻止流量绕过 VPN，包括连接中断期间的流量。';
@@ -1486,7 +1486,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      '启用“始终开启的 VPN”，然后启用“阻止无 VPN 连接”（如果这些选项可用）。';
+      '启用“始终开启的 VPN”，然后启用“屏蔽未使用 VPN 的所有连接”（如果这些选项可用）。';
 
   @override
   String get protection_guideManufacturers =>
@@ -1497,7 +1497,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      '在相同设置中关闭无 VPN 阻止功能，以允许在没有 VPN 时访问互联网。如果不再希望 Android 自动重启 VPN，也请关闭“始终开启的 VPN”。';
+      '在相同设置中关闭“屏蔽未使用 VPN 的所有连接”，以允许在没有 VPN 时访问互联网。如果不再希望 Android 自动重启 VPN，也请关闭“始终开启的 VPN”。';
 
   @override
   String get protection_guideManual => '这些设置由您在 Android 中选择。FuzeVPN 不会替您更改。';
@@ -2306,11 +2306,11 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android 中已开启“阻止无 VPN 连接”：选中的应用将完全无法访问互联网。';
+      'Android 中已开启“屏蔽未使用 VPN 的所有连接”：选中的应用将完全无法访问互联网。';
 
   @override
   String get splitTunnel_lockdownNote =>
-      '如果 Android 中开启了“阻止无 VPN 连接”，选中的应用将完全无法访问互联网。';
+      '如果 Android 中开启了“屏蔽未使用 VPN 的所有连接”，选中的应用将完全无法访问互联网。';
 
   @override
   String get connection_location => '位置';
@@ -3513,7 +3513,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
       'Android 会保持 VPN 服务运行，并可在手机重启后重新启动该服务。';
 
   @override
-  String get protection_guideBlockTitle => '阻止无 VPN 连接';
+  String get protection_guideBlockTitle => '屏蔽未使用 VPN 的所有连接';
 
   @override
   String get protection_guideBlock => '此设置会阻止流量绕过 VPN，包括连接中断期间的流量。';
@@ -3532,7 +3532,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get protection_guideStep3 =>
-      '启用“始终开启的 VPN”，然后启用“阻止无 VPN 连接”（如果这些选项可用）。';
+      '启用“始终开启的 VPN”，然后启用“屏蔽未使用 VPN 的所有连接”（如果这些选项可用）。';
 
   @override
   String get protection_guideManufacturers =>
@@ -3543,7 +3543,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get protection_guideDisable =>
-      '在相同设置中关闭无 VPN 阻止功能，以允许在没有 VPN 时访问互联网。如果不再希望 Android 自动重启 VPN，也请关闭“始终开启的 VPN”。';
+      '在相同设置中关闭“屏蔽未使用 VPN 的所有连接”，以允许在没有 VPN 时访问互联网。如果不再希望 Android 自动重启 VPN，也请关闭“始终开启的 VPN”。';
 
   @override
   String get protection_guideManual => '这些设置由您在 Android 中选择。FuzeVPN 不会替您更改。';
@@ -4490,7 +4490,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get status_otherVpnDetail =>
-      '另一個 VPN 正在運作。如果它設為「永遠開啟的 VPN」，請在 Android 的 VPN 設定中關閉這項設定。';
+      '另一個 VPN 正在運作。如果它設為「永久連線 VPN」，請在 Android 的 VPN 設定中關閉這項設定。';
 
   @override
   String get status_idle => '已中斷連線';
@@ -4799,7 +4799,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'protocol_unavailable_at_location': '所選通訊協定未由此位置提供。請重新整理位置或選擇其他通訊協定。',
       'vpn_permission_denied': 'Android 拒絕了 VPN 權限。請重新開始連線並接受系統要求。',
       'vpn_permission_other_vpn':
-          '由於另一個 VPN 應用程式正在運作，Android 未授予 FuzeVPN VPN 權限。如果它設為「永遠開啟的 VPN」，請在 Android 的 VPN 設定中關閉這項設定，然後再試一次。',
+          '由於另一個 VPN 應用程式正在運作，Android 未授予 FuzeVPN VPN 權限。如果它設為「永久連線 VPN」，請在 Android 的 VPN 設定中關閉這項設定，然後再試一次。',
       'revoked_identity_device_limit':
           '此裝置的 VPN 存取權已移除，且已達裝置上限。請前往「帳戶」→「管理我的裝置」移除裝置。',
       'tunnel_start_unexpected': '非預期錯誤中斷了通道準備作業。請檢查診斷代碼並再試一次。',
@@ -5083,7 +5083,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       'vpn_permission_required': 'Android 需要新的 VPN 授權，才能啟動通道。',
       'vpn_permission_denied': '請在 Android 要求中允許 FuzeVPN，以繼續操作。',
       'vpn_permission_other_vpn':
-          '由於另一個 VPN 應用程式正在運作，Android 未授予 FuzeVPN VPN 權限。如果它設為「永遠開啟的 VPN」，請在 Android 的 VPN 設定中關閉這項設定，然後再試一次。',
+          '由於另一個 VPN 應用程式正在運作，Android 未授予 FuzeVPN VPN 權限。如果它設為「永久連線 VPN」，請在 Android 的 VPN 設定中關閉這項設定，然後再試一次。',
       'vpn_permission_request_failed': 'Android 無法開啟 VPN 權限畫面。',
       'wireguard_foreground_service_unavailable':
           'Android 無法讓 WireGuard 服務保持在前景。',
@@ -5533,7 +5533,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get connection_androidDisconnectHint =>
-      '如果 Android 讓 VPN 保持啟用，請在開啟的設定中關閉「永遠開啟的 VPN」。';
+      '如果 Android 讓 VPN 保持啟用，請在開啟的設定中關閉「永久連線 VPN」。';
 
   @override
   String get connection_certificate => 'OpenVPN 憑證';
@@ -5559,7 +5559,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
       '如果 VPN 中斷連線，此保護功能會防止應用程式直接使用網際網路。此功能在 Android 中設定。';
 
   @override
-  String get protection_guideAlwaysOnTitle => '永遠開啟的 VPN';
+  String get protection_guideAlwaysOnTitle => '永久連線 VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -5585,7 +5585,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get protection_guideStep3 =>
-      '啟用「永遠開啟的 VPN」，然後啟用「封鎖沒有 VPN 的連線」（如果有這些選項）。';
+      '啟用「永久連線 VPN」，然後啟用「封鎖沒有 VPN 的連線」（如果有這些選項）。';
 
   @override
   String get protection_guideManufacturers =>
@@ -5596,7 +5596,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get protection_guideDisable =>
-      '在相同設定中，關閉沒有 VPN 時的封鎖功能，即可允許沒有 VPN 的網際網路存取。如果不再希望 Android 自動重新啟動 VPN，也請關閉「永遠開啟的 VPN」。';
+      '在相同設定中，關閉「封鎖沒有 VPN 的連線」，即可允許沒有 VPN 的網際網路存取。如果不再希望 Android 自動重新啟動 VPN，也請關閉「永久連線 VPN」。';
 
   @override
   String get protection_guideManual => '您可以在 Android 中選擇這些設定。FuzeVPN 不會替您變更設定。';

@@ -275,11 +275,11 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android-এ “VPN ছাড়া সংযোগ ব্লক করুন” চালু আছে: চিহ্নিত অ্যাপগুলোর কোনো ইন্টারনেট অ্যাক্সেস নেই।';
+      'Android-এ “VPN বিহীন সংযোগগুলি ব্লক করুন” চালু আছে: চিহ্নিত অ্যাপগুলোর কোনো ইন্টারনেট অ্যাক্সেস নেই।';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android-এ “VPN ছাড়া সংযোগ ব্লক করুন” চালু থাকলে চিহ্নিত অ্যাপগুলোর কোনো ইন্টারনেট অ্যাক্সেস থাকে না।';
+      'Android-এ “VPN বিহীন সংযোগগুলি ব্লক করুন” চালু থাকলে চিহ্নিত অ্যাপগুলোর কোনো ইন্টারনেট অ্যাক্সেস থাকে না।';
 
   @override
   String get connection_location => 'অবস্থান';
@@ -1686,7 +1686,7 @@ class AppLocalizationsBn extends AppLocalizations {
       'Android VPN পরিষেবা চালু রাখে এবং ফোন রিস্টার্ট হওয়ার পর সেটি আবার চালু করতে পারে।';
 
   @override
-  String get protection_guideBlockTitle => 'VPN ছাড়া সংযোগ ব্লক করুন';
+  String get protection_guideBlockTitle => 'VPN বিহীন সংযোগগুলি ব্লক করুন';
 
   @override
   String get protection_guideBlock =>
@@ -1709,7 +1709,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'উপলব্ধ থাকলে প্রথমে “সর্বদা-চালু VPN” এবং তারপর “VPN ছাড়া সংযোগ ব্লক করুন” চালু করুন।';
+      'উপলব্ধ থাকলে প্রথমে “সর্বদা-চালু VPN” এবং তারপর “VPN বিহীন সংযোগগুলি ব্লক করুন” চালু করুন।';
 
   @override
   String get protection_guideManufacturers =>
@@ -1720,7 +1720,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'একই সেটিংসে “VPN ছাড়া সংযোগ ব্লক করুন” বন্ধ করলে VPN ছাড়াই ইন্টারনেট ব্যবহারের অনুমতি মিলবে। Android যাতে আর VPN চালু না করে, তা চাইলে “সর্বদা-চালু VPN”-ও বন্ধ করুন।';
+      'একই সেটিংসে “VPN বিহীন সংযোগগুলি ব্লক করুন” বন্ধ করলে VPN ছাড়াই ইন্টারনেট ব্যবহারের অনুমতি মিলবে। Android যাতে আর VPN চালু না করে, তা চাইলে “সর্বদা-চালু VPN”-ও বন্ধ করুন।';
 
   @override
   String get protection_guideManual =>

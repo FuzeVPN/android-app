@@ -274,11 +274,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android\'de “VPN olmadan bağlantıları engelle” açık: işaretli uygulamaların hiç internet erişimi yok.';
+      'Android\'de “VPN\'si olmayan bağlantıları engelle” açık: işaretli uygulamaların hiç internet erişimi yok.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android\'de “VPN olmadan bağlantıları engelle” açıksa işaretli uygulamaların hiç internet erişimi olmaz.';
+      'Android\'de “VPN\'si olmayan bağlantıları engelle” açıksa işaretli uygulamaların hiç internet erişimi olmaz.';
 
   @override
   String get connection_location => 'Konum';
@@ -1681,7 +1681,8 @@ class AppLocalizationsTr extends AppLocalizations {
       'Android VPN hizmetini çalışır durumda tutar ve telefon yeniden başlatıldıktan sonra yeniden başlatabilir.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN olmadan bağlantıları engelle';
+  String get protection_guideBlockTitle =>
+      'VPN\'si olmayan bağlantıları engelle';
 
   @override
   String get protection_guideBlock =>
@@ -1704,7 +1705,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Varsa Her zaman açık VPN\'i, ardından VPN olmadan bağlantıları engelle seçeneğini etkinleştirin.';
+      'Varsa “Her zaman açık VPN” seçeneğini, ardından “VPN\'si olmayan bağlantıları engelle” seçeneğini etkinleştirin.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1715,7 +1716,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Aynı ayarlarda, VPN olmadan internet erişimine izin vermek için VPN olmadan engellemeyi kapatın. Android\'in artık yeniden başlatmasını istemiyorsanız Her zaman açık VPN\'i de kapatın.';
+      'Aynı ayarlarda, VPN olmadan internet erişimine izin vermek için “VPN\'si olmayan bağlantıları engelle” seçeneğini kapatın. Android\'in artık yeniden başlatmasını istemiyorsanız “Her zaman açık VPN” seçeneğini de kapatın.';
 
   @override
   String get protection_guideManual =>

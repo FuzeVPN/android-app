@@ -418,7 +418,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'აქტიურია სხვა VPN. თუ ის დაყენებულია, როგორც „ყოველთვის ჩართული VPN“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში.';
+      'აქტიურია სხვა VPN. თუ ის დაყენებულია, როგორც „მუდამ VPN-ზე“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში.';
 
   @override
   String get status_idle => 'გათიშულია';
@@ -751,7 +751,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'vpn_permission_denied':
           'Android-მა VPN-ის ნებართვა უარყო. ხელახლა დაიწყეთ კავშირი და დაადასტურეთ სისტემური მოთხოვნა.',
       'vpn_permission_other_vpn':
-          'Android-მა FuzeVPN-ს VPN-ის ნებართვა არ მისცა, რადგან აქტიურია სხვა VPN აპი. თუ ის დაყენებულია, როგორც „ყოველთვის ჩართული VPN“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში და სცადეთ ხელახლა.',
+          'Android-მა FuzeVPN-ს VPN-ის ნებართვა არ მისცა, რადგან აქტიურია სხვა VPN აპი. თუ ის დაყენებულია, როგორც „მუდამ VPN-ზე“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში და სცადეთ ხელახლა.',
       'revoked_identity_device_limit':
           'ამ მოწყობილობის VPN წვდომა წაიშალა და მოწყობილობების ლიმიტი ამოიწურა. წაშალეთ მოწყობილობა აქ: ანგარიში → ჩემი მოწყობილობების მართვა.',
       'tunnel_start_unexpected':
@@ -1104,7 +1104,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'vpn_permission_denied':
           'გასაგრძელებლად Android-ის მოთხოვნაში დართეთ ნებართვა FuzeVPN-ს.',
       'vpn_permission_other_vpn':
-          'Android-მა FuzeVPN-ს VPN-ის ნებართვა არ მისცა, რადგან აქტიურია სხვა VPN აპი. თუ ის დაყენებულია, როგორც „ყოველთვის ჩართული VPN“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში და სცადეთ ხელახლა.',
+          'Android-მა FuzeVPN-ს VPN-ის ნებართვა არ მისცა, რადგან აქტიურია სხვა VPN აპი. თუ ის დაყენებულია, როგორც „მუდამ VPN-ზე“, გამორთეთ ეს პარამეტრი Android-ის VPN პარამეტრებში და სცადეთ ხელახლა.',
       'vpn_permission_request_failed':
           'Android-მა ვერ გახსნა VPN-ის ნებართვის ეკრანი.',
       'wireguard_foreground_service_unavailable':
@@ -1652,7 +1652,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'თუ Android VPN-ს აქტიურს ტოვებს, გახსნილ პარამეტრებში გამორთეთ „ყოველთვის ჩართული VPN“.';
+      'თუ Android VPN-ს აქტიურს ტოვებს, გახსნილ პარამეტრებში გამორთეთ „მუდამ VPN-ზე“.';
 
   @override
   String get connection_certificate => 'OpenVPN-ის სერტიფიკატი';
@@ -1679,7 +1679,7 @@ class AppLocalizationsKa extends AppLocalizations {
       'ეს დაცვა ხელს უშლის აპებს, VPN-ის გათიშვისას ინტერნეტით პირდაპირ ისარგებლონ. ის Android-ში ყენდება.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'ყოველთვის ჩართული VPN';
+  String get protection_guideAlwaysOnTitle => 'მუდამ VPN-ზე';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1709,7 +1709,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'თუ ეს პარამეტრები ხელმისაწვდომია, ჩართეთ „ყოველთვის ჩართული VPN“, შემდეგ კი „VPN-ის გარეშე კავშირების დაბლოკვა“.';
+      'თუ ეს პარამეტრები ხელმისაწვდომია, ჩართეთ „მუდამ VPN-ზე“, შემდეგ კი „VPN-ის გარეშე კავშირების დაბლოკვა“.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1720,7 +1720,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'იმავე პარამეტრებში გამორთეთ „VPN-ის გარეშე კავშირების დაბლოკვა“, რათა VPN-ის გარეშე ინტერნეტით ისარგებლოთ. ასევე გამორთეთ „ყოველთვის ჩართული VPN“, თუ აღარ გსურთ, რომ Android-მა VPN ხელახლა გაუშვას.';
+      'იმავე პარამეტრებში გამორთეთ „VPN-ის გარეშე კავშირების დაბლოკვა“, რათა VPN-ის გარეშე ინტერნეტით ისარგებლოთ. ასევე გამორთეთ „მუდამ VPN-ზე“, თუ აღარ გსურთ, რომ Android-მა VPN ხელახლა გაუშვას.';
 
   @override
   String get protection_guideManual =>

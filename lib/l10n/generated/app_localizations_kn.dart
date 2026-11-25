@@ -274,11 +274,11 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android ನಲ್ಲಿ “VPN ಇಲ್ಲದೆ ಸಂಪರ್ಕಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ” ಆನ್ ಆಗಿದೆ: ಗುರುತಿಸಿದ ಆ್ಯಪ್‌ಗಳಿಗೆ ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶ ಇಲ್ಲ.';
+      'Android ನಲ್ಲಿ “VPN ಇಲ್ಲದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿ” ಆನ್ ಆಗಿದೆ: ಗುರುತಿಸಿದ ಆ್ಯಪ್‌ಗಳಿಗೆ ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶ ಇಲ್ಲ.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android ನಲ್ಲಿ “VPN ಇಲ್ಲದೆ ಸಂಪರ್ಕಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ” ಆನ್ ಆಗಿದ್ದರೆ, ಗುರುತಿಸಿದ ಆ್ಯಪ್‌ಗಳಿಗೆ ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶ ಇರುವುದಿಲ್ಲ.';
+      'Android ನಲ್ಲಿ “VPN ಇಲ್ಲದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿ” ಆನ್ ಆಗಿದ್ದರೆ, ಗುರುತಿಸಿದ ಆ್ಯಪ್‌ಗಳಿಗೆ ಯಾವುದೇ ಇಂಟರ್ನೆಟ್ ಪ್ರವೇಶ ಇರುವುದಿಲ್ಲ.';
 
   @override
   String get connection_location => 'ಸ್ಥಳ';
@@ -418,7 +418,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'ಬೇರೊಂದು VPN ಸಕ್ರಿಯವಾಗಿದೆ. ಅದನ್ನು ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ.';
+      'ಬೇರೊಂದು VPN ಸಕ್ರಿಯವಾಗಿದೆ. ಅದನ್ನು ‘VPN ಆನ್‌ ಆಗಿರಿಸಿ’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ.';
 
   @override
   String get status_idle => 'ಸಂಪರ್ಕ ಕಡಿತ';
@@ -752,7 +752,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'vpn_permission_denied':
           'VPN ಅನುಮತಿಯನ್ನು Android ನಿರಾಕರಿಸಿದೆ. ಸಂಪರ್ಕವನ್ನು ಮತ್ತೆ ಪ್ರಾರಂಭಿಸಿ ಮತ್ತು ಸಿಸ್ಟಮ್ ವಿನಂತಿಯನ್ನು ಒಪ್ಪಿಕೊಳ್ಳಿ.',
       'vpn_permission_other_vpn':
-          'ಬೇರೊಂದು VPN ಆ್ಯಪ್ ಸಕ್ರಿಯವಾಗಿರುವುದರಿಂದ Android, FuzeVPN ಗೆ VPN ಅನುಮತಿ ನೀಡಲಿಲ್ಲ. ಅದನ್ನು ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+          'ಬೇರೊಂದು VPN ಆ್ಯಪ್ ಸಕ್ರಿಯವಾಗಿರುವುದರಿಂದ Android, FuzeVPN ಗೆ VPN ಅನುಮತಿ ನೀಡಲಿಲ್ಲ. ಅದನ್ನು ‘VPN ಆನ್‌ ಆಗಿರಿಸಿ’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
       'revoked_identity_device_limit':
           'ಈ ಸಾಧನದ VPN ಪ್ರವೇಶವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ ಮತ್ತು ಸಾಧನ ಮಿತಿ ತಲುಪಿದೆ. ಖಾತೆ → ನನ್ನ ಸಾಧನಗಳನ್ನು ನಿರ್ವಹಿಸಿ ಅಡಿಯಲ್ಲಿ ಒಂದು ಸಾಧನವನ್ನು ತೆಗೆದುಹಾಕಿ.',
       'tunnel_start_unexpected':
@@ -1089,7 +1089,7 @@ class AppLocalizationsKn extends AppLocalizations {
       'vpn_permission_denied':
           'ಮುಂದುವರಿಸಲು Android ವಿನಂತಿಯಲ್ಲಿ FuzeVPN ಅನ್ನು ಅನುಮತಿಸಿ.',
       'vpn_permission_other_vpn':
-          'ಬೇರೊಂದು VPN ಆ್ಯಪ್ ಸಕ್ರಿಯವಾಗಿರುವುದರಿಂದ Android, FuzeVPN ಗೆ VPN ಅನುಮತಿ ನೀಡಲಿಲ್ಲ. ಅದನ್ನು ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
+          'ಬೇರೊಂದು VPN ಆ್ಯಪ್ ಸಕ್ರಿಯವಾಗಿರುವುದರಿಂದ Android, FuzeVPN ಗೆ VPN ಅನುಮತಿ ನೀಡಲಿಲ್ಲ. ಅದನ್ನು ‘VPN ಆನ್‌ ಆಗಿರಿಸಿ’ ಆಗಿ ಹೊಂದಿಸಿದ್ದರೆ, Android ನ VPN ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ಅದನ್ನು ಆಫ್ ಮಾಡಿ, ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.',
       'vpn_permission_request_failed':
           'VPN ಅನುಮತಿ ಪರದೆಯನ್ನು ತೆರೆಯಲು Android ಗೆ ಸಾಧ್ಯವಾಗಲಿಲ್ಲ.',
       'wireguard_foreground_service_unavailable':
@@ -1638,7 +1638,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android VPN ಅನ್ನು ಸಕ್ರಿಯವಾಗಿಯೇ ಇರಿಸಿದರೆ, ತೆರೆಯುವ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ‘ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN’ ಅನ್ನು ಆಫ್ ಮಾಡಿ.';
+      'Android VPN ಅನ್ನು ಸಕ್ರಿಯವಾಗಿಯೇ ಇರಿಸಿದರೆ, ತೆರೆಯುವ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ ‘VPN ಆನ್‌ ಆಗಿರಿಸಿ’ ಅನ್ನು ಆಫ್ ಮಾಡಿ.';
 
   @override
   String get connection_certificate => 'OpenVPN ಪ್ರಮಾಣಪತ್ರ';
@@ -1665,14 +1665,15 @@ class AppLocalizationsKn extends AppLocalizations {
       'VPN ಸಂಪರ್ಕ ಕಡಿತಗೊಂಡರೆ ಈ ರಕ್ಷಣೆ ಆ್ಯಪ್‌ಗಳು ನೇರವಾಗಿ ಇಂಟರ್ನೆಟ್ ಬಳಸದಂತೆ ತಡೆಯುತ್ತದೆ. ಇದನ್ನು Android ನಲ್ಲಿ ಹೊಂದಿಸಲಾಗುತ್ತದೆ.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN';
+  String get protection_guideAlwaysOnTitle => 'VPN ಆನ್‌ ಆಗಿರಿಸಿ';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android VPN ಸೇವೆಯನ್ನು ಚಾಲನೆಯಲ್ಲಿರಿಸುತ್ತದೆ ಮತ್ತು ಫೋನ್ ರೀಬೂಟ್ ಆದ ನಂತರ ಅದನ್ನು ಮರುಪ್ರಾರಂಭಿಸಬಹುದು.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN ಇಲ್ಲದೆ ಸಂಪರ್ಕಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ';
+  String get protection_guideBlockTitle =>
+      'VPN ಇಲ್ಲದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿ';
 
   @override
   String get protection_guideBlock =>
@@ -1695,7 +1696,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'ಈ ಆಯ್ಕೆಗಳು ಲಭ್ಯವಿದ್ದರೆ, ಮೊದಲು “ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN” ಅನ್ನು ಆನ್ ಮಾಡಿ, ನಂತರ “VPN ಇಲ್ಲದೆ ಸಂಪರ್ಕಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ” ಅನ್ನು ಆನ್ ಮಾಡಿ.';
+      'ಈ ಆಯ್ಕೆಗಳು ಲಭ್ಯವಿದ್ದರೆ, ಮೊದಲು “VPN ಆನ್‌ ಆಗಿರಿಸಿ” ಅನ್ನು ಆನ್ ಮಾಡಿ, ನಂತರ “VPN ಇಲ್ಲದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿ” ಅನ್ನು ಆನ್ ಮಾಡಿ.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1706,7 +1707,7 @@ class AppLocalizationsKn extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'ಅದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ, VPN ಇಲ್ಲದೆ ಇಂಟರ್ನೆಟ್ ಬಳಸಲು “VPN ಇಲ್ಲದೆ ಸಂಪರ್ಕಗಳನ್ನು ನಿರ್ಬಂಧಿಸಿ” ಆಯ್ಕೆಯನ್ನು ಆಫ್ ಮಾಡಿ. Android ಅದನ್ನು ಮರುಪ್ರಾರಂಭಿಸಬಾರದು ಎಂದಾದರೆ “ಯಾವಾಗಲೂ ಆನ್ ಇರುವ VPN” ಅನ್ನೂ ಆಫ್ ಮಾಡಿ.';
+      'ಅದೇ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ, VPN ಇಲ್ಲದೆ ಇಂಟರ್ನೆಟ್ ಬಳಸಲು “VPN ಇಲ್ಲದಿರುವ ಸಂಪರ್ಕಗಳನ್ನು ಬ್ಲಾಕ್ ಮಾಡಿ” ಆಯ್ಕೆಯನ್ನು ಆಫ್ ಮಾಡಿ. Android ಅದನ್ನು ಮರುಪ್ರಾರಂಭಿಸಬಾರದು ಎಂದಾದರೆ “VPN ಆನ್‌ ಆಗಿರಿಸಿ” ಅನ್ನೂ ಆಫ್ ಮಾಡಿ.';
 
   @override
   String get protection_guideManual =>

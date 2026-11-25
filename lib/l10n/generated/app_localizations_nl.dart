@@ -418,7 +418,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Er is een andere VPN actief. Als deze is ingesteld als Altijd ingeschakelde VPN, schakel dat dan uit in de VPN-instellingen van Android.';
+      'Er is een andere VPN actief. Als deze is ingesteld als ‘Always-on VPN’, schakel dat dan uit in de VPN-instellingen van Android.';
 
   @override
   String get status_idle => 'Verbinding verbroken';
@@ -761,7 +761,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'vpn_permission_denied':
           'Android heeft de VPN-toestemming geweigerd. Start de verbinding opnieuw en accepteer het systeemverzoek.',
       'vpn_permission_other_vpn':
-          'Android heeft FuzeVPN geen VPN-toestemming gegeven omdat een andere VPN-app actief is. Als deze is ingesteld als Altijd ingeschakelde VPN, schakel dat dan uit in de VPN-instellingen van Android en probeer het opnieuw.',
+          'Android heeft FuzeVPN geen VPN-toestemming gegeven omdat een andere VPN-app actief is. Als deze is ingesteld als ‘Always-on VPN’, schakel dat dan uit in de VPN-instellingen van Android en probeer het opnieuw.',
       'revoked_identity_device_limit':
           'De VPN-toegang van dit apparaat is verwijderd en de apparaatlimiet is bereikt. Verwijder een apparaat via Account → Mijn apparaten beheren.',
       'tunnel_start_unexpected':
@@ -1121,7 +1121,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'vpn_permission_denied':
           'Sta FuzeVPN toe in het Android-verzoek om door te gaan.',
       'vpn_permission_other_vpn':
-          'Android heeft FuzeVPN geen VPN-toestemming gegeven omdat een andere VPN-app actief is. Als deze is ingesteld als Altijd ingeschakelde VPN, schakel dat dan uit in de VPN-instellingen van Android en probeer het opnieuw.',
+          'Android heeft FuzeVPN geen VPN-toestemming gegeven omdat een andere VPN-app actief is. Als deze is ingesteld als ‘Always-on VPN’, schakel dat dan uit in de VPN-instellingen van Android en probeer het opnieuw.',
       'vpn_permission_request_failed':
           'Android kon het VPN-toestemmingsscherm niet openen.',
       'wireguard_foreground_service_unavailable':
@@ -1671,7 +1671,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Als Android de VPN actief houdt, schakel dan Altijd ingeschakelde VPN uit in de instellingen die worden geopend.';
+      'Als Android de VPN actief houdt, schakel dan ‘Always-on VPN’ uit in de instellingen die worden geopend.';
 
   @override
   String get connection_certificate => 'OpenVPN-certificaat';
@@ -1698,7 +1698,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Deze beveiliging voorkomt dat apps rechtstreeks internet gebruiken als de VPN-verbinding wordt verbroken. Dit wordt in Android ingesteld.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Altijd ingeschakelde VPN';
+  String get protection_guideAlwaysOnTitle => 'Always-on VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1728,7 +1728,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Schakel Altijd ingeschakelde VPN in en daarna Verbindingen zonder VPN blokkeren, als deze opties beschikbaar zijn.';
+      'Schakel ‘Always-on VPN’ in en daarna ‘Verbindingen zonder VPN blokkeren’, als deze opties beschikbaar zijn.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1739,7 +1739,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Schakel in dezelfde instellingen het blokkeren zonder VPN uit om internettoegang zonder de VPN toe te staan. Schakel Altijd ingeschakelde VPN ook uit als je niet meer wilt dat Android deze opnieuw start.';
+      'Schakel in dezelfde instellingen ‘Verbindingen zonder VPN blokkeren’ uit om internettoegang zonder de VPN toe te staan. Schakel ‘Always-on VPN’ ook uit als je niet meer wilt dat Android deze opnieuw start.';
 
   @override
   String get protection_guideManual =>

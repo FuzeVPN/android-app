@@ -417,7 +417,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Je aktivní jiná VPN. Pokud je nastavena jako VPN stále zapnutá, vypněte to v nastavení VPN v Androidu.';
+      'Je aktivní jiná VPN. Pokud je nastavena jako „Trvalá síť VPN“, vypněte to v nastavení VPN v Androidu.';
 
   @override
   String get status_idle => 'Odpojeno';
@@ -750,7 +750,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'vpn_permission_denied':
           'Android zamítl oprávnění VPN. Spusťte připojení znovu a přijměte systémový požadavek.',
       'vpn_permission_other_vpn':
-          'Android neudělil aplikaci FuzeVPN oprávnění VPN, protože je aktivní jiná aplikace VPN. Pokud je nastavena jako VPN stále zapnutá, vypněte to v nastavení VPN v Androidu a zkuste to znovu.',
+          'Android neudělil aplikaci FuzeVPN oprávnění VPN, protože je aktivní jiná aplikace VPN. Pokud je nastavena jako „Trvalá síť VPN“, vypněte to v nastavení VPN v Androidu a zkuste to znovu.',
       'revoked_identity_device_limit':
           'Přístup tohoto zařízení k VPN byl odebrán a byl dosažen limit zařízení. Odeberte zařízení v části Účet → Spravovat moje zařízení.',
       'tunnel_start_unexpected':
@@ -1098,7 +1098,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'vpn_permission_denied':
           'Pro pokračování povolte FuzeVPN v požadavku Androidu.',
       'vpn_permission_other_vpn':
-          'Android neudělil aplikaci FuzeVPN oprávnění VPN, protože je aktivní jiná aplikace VPN. Pokud je nastavena jako VPN stále zapnutá, vypněte to v nastavení VPN v Androidu a zkuste to znovu.',
+          'Android neudělil aplikaci FuzeVPN oprávnění VPN, protože je aktivní jiná aplikace VPN. Pokud je nastavena jako „Trvalá síť VPN“, vypněte to v nastavení VPN v Androidu a zkuste to znovu.',
       'vpn_permission_request_failed':
           'Android nemohl otevřít obrazovku s oprávněním VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1640,7 +1640,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Pokud Android udržuje VPN aktivní, vypněte v otevřeném nastavení možnost VPN stále zapnutá.';
+      'Pokud Android udržuje VPN aktivní, vypněte v otevřeném nastavení možnost „Trvalá síť VPN“.';
 
   @override
   String get connection_certificate => 'Certifikát OpenVPN';
@@ -1667,7 +1667,7 @@ class AppLocalizationsCs extends AppLocalizations {
       'Tato ochrana zabrání aplikacím v přímém používání internetu při odpojení VPN. Konfiguruje se v Androidu.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN stále zapnutá';
+  String get protection_guideAlwaysOnTitle => 'Trvalá síť VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1697,7 +1697,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Zapněte VPN stále zapnutou a poté Blokovat připojení bez VPN, pokud jsou tyto možnosti k dispozici.';
+      'Zapněte „Trvalá síť VPN“ a poté „Blokovat připojení bez VPN“, pokud jsou tyto možnosti k dispozici.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1708,7 +1708,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Ve stejném nastavení vypněte blokování bez VPN, aby byl povolen přístup k internetu bez VPN. Pokud už nechcete, aby ji Android znovu spouštěl, vypněte také VPN stále zapnutou.';
+      'Ve stejném nastavení vypněte „Blokovat připojení bez VPN“, aby byl povolen přístup k internetu bez VPN. Pokud už nechcete, aby ji Android znovu spouštěl, vypněte také „Trvalá síť VPN“.';
 
   @override
   String get protection_guideManual =>

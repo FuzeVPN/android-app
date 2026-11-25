@@ -273,11 +273,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“Chặn kết nối không qua VPN” đang bật trong Android: các ứng dụng được chọn hoàn toàn không có quyền truy cập Internet.';
+      '“Chặn các đường kết nối không qua VPN” đang bật trong Android: các ứng dụng được chọn hoàn toàn không có quyền truy cập Internet.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Nếu “Chặn kết nối không qua VPN” đang bật trong Android, các ứng dụng được chọn hoàn toàn không có quyền truy cập Internet.';
+      'Nếu “Chặn các đường kết nối không qua VPN” đang bật trong Android, các ứng dụng được chọn hoàn toàn không có quyền truy cập Internet.';
 
   @override
   String get connection_location => 'Vị trí';
@@ -1667,7 +1667,8 @@ class AppLocalizationsVi extends AppLocalizations {
       'Android giữ dịch vụ VPN hoạt động và có thể khởi động lại dịch vụ sau khi điện thoại khởi động lại.';
 
   @override
-  String get protection_guideBlockTitle => 'Chặn kết nối không qua VPN';
+  String get protection_guideBlockTitle =>
+      'Chặn các đường kết nối không qua VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1690,7 +1691,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Bật VPN luôn bật, sau đó bật Chặn kết nối không qua VPN nếu các tùy chọn này khả dụng.';
+      'Bật “VPN luôn bật”, sau đó bật “Chặn các đường kết nối không qua VPN” nếu các tùy chọn này khả dụng.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1701,7 +1702,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Trong cùng phần cài đặt, hãy tắt chế độ chặn kết nối không qua VPN để cho phép truy cập Internet khi không có VPN. Đồng thời tắt VPN luôn bật nếu bạn không muốn Android khởi động lại VPN.';
+      'Trong cùng phần cài đặt, hãy tắt “Chặn các đường kết nối không qua VPN” để cho phép truy cập Internet khi không có VPN. Đồng thời tắt “VPN luôn bật” nếu bạn không muốn Android khởi động lại VPN.';
 
   @override
   String get protection_guideManual =>

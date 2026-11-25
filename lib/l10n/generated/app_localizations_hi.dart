@@ -272,11 +272,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android में “VPN के बिना कनेक्शन अवरुद्ध करें” चालू है: चेक किए गए ऐप्स के पास इंटरनेट की कोई पहुंच नहीं है।';
+      'Android में “बिना वीपीएन वाले कनेक्शन ब्लॉक करें” चालू है: चेक किए गए ऐप्स के पास इंटरनेट की कोई पहुंच नहीं है।';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'अगर Android में “VPN के बिना कनेक्शन अवरुद्ध करें” चालू है, तो चेक किए गए ऐप्स के पास इंटरनेट की कोई पहुंच नहीं होती।';
+      'अगर Android में “बिना वीपीएन वाले कनेक्शन ब्लॉक करें” चालू है, तो चेक किए गए ऐप्स के पास इंटरनेट की कोई पहुंच नहीं होती।';
 
   @override
   String get connection_location => 'स्थान';
@@ -417,7 +417,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'कोई दूसरा VPN सक्रिय है। अगर वह हमेशा चालू VPN के रूप में सेट है, तो Android की VPN सेटिंग में इसे बंद करें।';
+      'कोई दूसरा VPN सक्रिय है। अगर उसके लिए “वीपीएन हमेशा चालू रखें” चालू है, तो Android की VPN सेटिंग में इसे बंद करें।';
 
   @override
   String get status_idle => 'डिस्कनेक्टेड';
@@ -753,7 +753,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'vpn_permission_denied':
           'Android ने VPN अनुमति अस्वीकार कर दी। कनेक्शन फिर शुरू करें और सिस्टम अनुरोध स्वीकार करें।',
       'vpn_permission_other_vpn':
-          'कोई दूसरा VPN ऐप सक्रिय होने के कारण Android ने FuzeVPN को VPN अनुमति नहीं दी। अगर वह हमेशा चालू VPN के रूप में सेट है, तो Android की VPN सेटिंग में इसे बंद करें, फिर दोबारा कोशिश करें।',
+          'कोई दूसरा VPN ऐप सक्रिय होने के कारण Android ने FuzeVPN को VPN अनुमति नहीं दी। अगर उसके लिए “वीपीएन हमेशा चालू रखें” चालू है, तो Android की VPN सेटिंग में इसे बंद करें, फिर दोबारा कोशिश करें।',
       'revoked_identity_device_limit':
           'इस डिवाइस की VPN पहुंच हटा दी गई है और डिवाइस की सीमा पूरी हो गई है। खाता → मेरे डिवाइस प्रबंधित करें में जाकर कोई डिवाइस हटाएं।',
       'tunnel_start_unexpected':
@@ -1095,7 +1095,7 @@ class AppLocalizationsHi extends AppLocalizations {
       'vpn_permission_denied':
           'जारी रखने के लिए Android के अनुरोध में FuzeVPN की अनुमति दें।',
       'vpn_permission_other_vpn':
-          'कोई दूसरा VPN ऐप सक्रिय होने के कारण Android ने FuzeVPN को VPN अनुमति नहीं दी। अगर वह हमेशा चालू VPN के रूप में सेट है, तो Android की VPN सेटिंग में इसे बंद करें, फिर दोबारा कोशिश करें।',
+          'कोई दूसरा VPN ऐप सक्रिय होने के कारण Android ने FuzeVPN को VPN अनुमति नहीं दी। अगर उसके लिए “वीपीएन हमेशा चालू रखें” चालू है, तो Android की VPN सेटिंग में इसे बंद करें, फिर दोबारा कोशिश करें।',
       'vpn_permission_request_failed':
           'Android VPN अनुमति स्क्रीन नहीं खोल सका।',
       'wireguard_foreground_service_unavailable':
@@ -1642,7 +1642,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'यदि Android VPN को सक्रिय रखता है, तो खुलने वाली सेटिंग में हमेशा चालू VPN बंद करें।';
+      'यदि Android VPN को सक्रिय रखता है, तो खुलने वाली सेटिंग में “वीपीएन हमेशा चालू रखें” बंद करें।';
 
   @override
   String get connection_certificate => 'OpenVPN प्रमाणपत्र';
@@ -1669,14 +1669,15 @@ class AppLocalizationsHi extends AppLocalizations {
       'VPN डिस्कनेक्ट होने पर यह सुरक्षा ऐप्स को सीधे इंटरनेट का उपयोग करने से रोकती है। इसे Android में कॉन्फ़िगर किया जाता है।';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'हमेशा चालू VPN';
+  String get protection_guideAlwaysOnTitle => 'वीपीएन हमेशा चालू रखें';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android VPN सेवा को चालू रखता है और फ़ोन रीबूट होने के बाद इसे फिर शुरू कर सकता है।';
 
   @override
-  String get protection_guideBlockTitle => 'VPN के बिना कनेक्शन अवरुद्ध करें';
+  String get protection_guideBlockTitle =>
+      'बिना वीपीएन वाले कनेक्शन ब्लॉक करें';
 
   @override
   String get protection_guideBlock =>
@@ -1699,7 +1700,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'हमेशा चालू VPN सक्षम करें, फिर VPN के बिना कनेक्शन अवरुद्ध करें, यदि ये विकल्प उपलब्ध हों।';
+      '“वीपीएन हमेशा चालू रखें” सक्षम करें, फिर “बिना वीपीएन वाले कनेक्शन ब्लॉक करें”, यदि ये विकल्प उपलब्ध हों।';
 
   @override
   String get protection_guideManufacturers =>
@@ -1710,7 +1711,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'उन्हीं सेटिंग में VPN के बिना अवरोधन बंद करके VPN के बिना इंटरनेट पहुंच की अनुमति दें। यदि आप नहीं चाहते कि Android इसे फिर शुरू करे, तो हमेशा चालू VPN भी बंद करें।';
+      'उन्हीं सेटिंग में “बिना वीपीएन वाले कनेक्शन ब्लॉक करें” बंद करके VPN के बिना इंटरनेट पहुंच की अनुमति दें। यदि आप नहीं चाहते कि Android इसे फिर शुरू करे, तो “वीपीएन हमेशा चालू रखें” भी बंद करें।';
 
   @override
   String get protection_guideManual =>

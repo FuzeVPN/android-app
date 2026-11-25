@@ -273,11 +273,11 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Android жүйесінде «VPN-сіз қосылымдарды бұғаттау» қосулы: белгіленген қолданбалардың интернетке мүлде қолжетімділігі жоқ.';
+      'Android жүйесінде «VPN желісінсіз байланыстарды бөгеу» қосулы: белгіленген қолданбалардың интернетке мүлде қолжетімділігі жоқ.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Android жүйесінде «VPN-сіз қосылымдарды бұғаттау» қосулы болса, белгіленген қолданбалардың интернетке мүлде қолжетімділігі болмайды.';
+      'Android жүйесінде «VPN желісінсіз байланыстарды бөгеу» қосулы болса, белгіленген қолданбалардың интернетке мүлде қолжетімділігі болмайды.';
 
   @override
   String get connection_location => 'Орын';
@@ -415,7 +415,7 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Басқа VPN белсенді. Ол «Үнемі қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріңіз.';
+      'Басқа VPN белсенді. Ол «Әрқашан қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріңіз.';
 
   @override
   String get status_idle => 'Ажыратылды';
@@ -748,7 +748,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'vpn_permission_denied':
           'Android VPN рұқсатын бермеді. Қосылымды қайтадан бастап, жүйелік сұрауды қабылдаңыз.',
       'vpn_permission_other_vpn':
-          'Басқа VPN қолданбасы белсенді болғандықтан, Android FuzeVPN-ге VPN рұқсатын бермеді. Ол «Үнемі қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріп, қайталап көріңіз.',
+          'Басқа VPN қолданбасы белсенді болғандықтан, Android FuzeVPN-ге VPN рұқсатын бермеді. Ол «Әрқашан қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріп, қайталап көріңіз.',
       'revoked_identity_device_limit':
           'Осы құрылғының VPN қолжетімділігі жойылды және құрылғы шегіне жетті. Аккаунт → Құрылғыларымды басқару бөлімінен бір құрылғыны алып тастаңыз.',
       'tunnel_start_unexpected':
@@ -1099,7 +1099,7 @@ class AppLocalizationsKk extends AppLocalizations {
       'vpn_permission_denied':
           'Жалғастыру үшін Android сұрауында FuzeVPN-ге рұқсат беріңіз.',
       'vpn_permission_other_vpn':
-          'Басқа VPN қолданбасы белсенді болғандықтан, Android FuzeVPN-ге VPN рұқсатын бермеді. Ол «Үнемі қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріп, қайталап көріңіз.',
+          'Басқа VPN қолданбасы белсенді болғандықтан, Android FuzeVPN-ге VPN рұқсатын бермеді. Ол «Әрқашан қосулы VPN» ретінде орнатылса, бұл параметрді Android-тің VPN параметрлерінде өшіріп, қайталап көріңіз.',
       'vpn_permission_request_failed': 'Android VPN рұқсат экранын аша алмады.',
       'wireguard_foreground_service_unavailable':
           'Android WireGuard қызметін алдыңғы планда ұстай алмады.',
@@ -1641,7 +1641,7 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android VPN-ді белсенді ұстап тұрса, ашылатын параметрлерде «Үнемі қосулы VPN» опциясын өшіріңіз.';
+      'Android VPN-ді белсенді ұстап тұрса, ашылатын параметрлерде «Әрқашан қосулы VPN» опциясын өшіріңіз.';
 
   @override
   String get connection_certificate => 'OpenVPN сертификаты';
@@ -1668,14 +1668,14 @@ class AppLocalizationsKk extends AppLocalizations {
       'Бұл қорғаныс VPN ажыратылған кезде қолданбалардың интернетке тікелей қосылуына жол бермейді. Ол Android жүйесінде реттеледі.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Үнемі қосулы VPN';
+  String get protection_guideAlwaysOnTitle => 'Әрқашан қосулы VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android VPN қызметін іске қосулы ұстайды және телефон қайта жүктелгеннен кейін оны қайта іске қоса алады.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN-сіз қосылымдарды бұғаттау';
+  String get protection_guideBlockTitle => 'VPN желісінсіз байланыстарды бөгеу';
 
   @override
   String get protection_guideBlock =>
@@ -1698,7 +1698,7 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Қолжетімді болса, алдымен «Үнемі қосулы VPN», содан кейін «VPN-сіз қосылымдарды бұғаттау» опцияларын қосыңыз.';
+      'Қолжетімді болса, алдымен «Әрқашан қосулы VPN», содан кейін «VPN желісінсіз байланыстарды бөгеу» опцияларын қосыңыз.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1709,7 +1709,7 @@ class AppLocalizationsKk extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Сол параметрлерде VPN-сіз интернетті пайдалану үшін «VPN-сіз қосылымдарды бұғаттау» опциясын өшіріңіз. Егер Android VPN қызметін қайта іске қоспауын қаласаңыз, «Үнемі қосулы VPN» опциясын да өшіріңіз.';
+      'Сол параметрлерде VPN-сіз интернетті пайдалану үшін «VPN желісінсіз байланыстарды бөгеу» опциясын өшіріңіз. Егер Android VPN қызметін қайта іске қоспауын қаласаңыз, «Әрқашан қосулы VPN» опциясын да өшіріңіз.';
 
   @override
   String get protection_guideManual =>

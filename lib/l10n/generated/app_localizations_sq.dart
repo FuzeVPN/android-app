@@ -275,11 +275,11 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '«Blloko lidhjet pa VPN» është aktiv në Android: aplikacionet e zgjedhura nuk kanë fare qasje në internet.';
+      '«Blloko lidhjet pa rrjetin VPN» është aktiv në Android: aplikacionet e zgjedhura nuk kanë fare qasje në internet.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Nëse «Blloko lidhjet pa VPN» është aktiv në Android, aplikacionet e zgjedhura nuk kanë fare qasje në internet.';
+      'Nëse «Blloko lidhjet pa rrjetin VPN» është aktiv në Android, aplikacionet e zgjedhura nuk kanë fare qasje në internet.';
 
   @override
   String get connection_location => 'Vendndodhja';
@@ -419,7 +419,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Një VPN tjetër është aktive. Nëse është caktuar si «VPN gjithmonë aktive», çaktivizojeni këtë te cilësimet e VPN-së në Android.';
+      'Një VPN tjetër është aktive. Nëse është caktuar si «Rrjeti VPN gjithmonë aktiv», çaktivizojeni këtë te cilësimet e VPN-së në Android.';
 
   @override
   String get status_idle => 'I shkëputur';
@@ -761,7 +761,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'vpn_permission_denied':
           'Android e refuzoi lejen VPN. Nisni lidhjen sërish dhe pranoni kërkesën e sistemit.',
       'vpn_permission_other_vpn':
-          'Android nuk i dha FuzeVPN lejen VPN, sepse një aplikacion tjetër VPN është aktiv. Nëse është caktuar si «VPN gjithmonë aktive», çaktivizojeni këtë te cilësimet e VPN-së në Android dhe provoni përsëri.',
+          'Android nuk i dha FuzeVPN lejen VPN, sepse një aplikacion tjetër VPN është aktiv. Nëse është caktuar si «Rrjeti VPN gjithmonë aktiv», çaktivizojeni këtë te cilësimet e VPN-së në Android dhe provoni përsëri.',
       'revoked_identity_device_limit':
           'Qasja VPN e kësaj pajisjeje u hoq dhe kufiri i pajisjeve u arrit. Hiqni një pajisje te Llogaria → Menaxho pajisjet e mia.',
       'tunnel_start_unexpected':
@@ -1121,7 +1121,7 @@ class AppLocalizationsSq extends AppLocalizations {
       'vpn_permission_denied':
           'Lejoni FuzeVPN në kërkesën e Android për të vazhduar.',
       'vpn_permission_other_vpn':
-          'Android nuk i dha FuzeVPN lejen VPN, sepse një aplikacion tjetër VPN është aktiv. Nëse është caktuar si «VPN gjithmonë aktive», çaktivizojeni këtë te cilësimet e VPN-së në Android dhe provoni përsëri.',
+          'Android nuk i dha FuzeVPN lejen VPN, sepse një aplikacion tjetër VPN është aktiv. Nëse është caktuar si «Rrjeti VPN gjithmonë aktiv», çaktivizojeni këtë te cilësimet e VPN-së në Android dhe provoni përsëri.',
       'vpn_permission_request_failed':
           'Android nuk arriti të hapë ekranin e lejes VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1669,7 +1669,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Nëse Android e mban VPN-në aktive, çaktivizoni «VPN gjithmonë aktive» te cilësimet që hapen.';
+      'Nëse Android e mban VPN-në aktive, çaktivizoni «Rrjeti VPN gjithmonë aktiv» te cilësimet që hapen.';
 
   @override
   String get connection_certificate => 'Certifikata OpenVPN';
@@ -1696,14 +1696,14 @@ class AppLocalizationsSq extends AppLocalizations {
       'Kjo mbrojtje i pengon aplikacionet të përdorin internetin drejtpërdrejt nëse VPN-ja shkëputet. Ajo konfigurohet në Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN gjithmonë aktive';
+  String get protection_guideAlwaysOnTitle => 'Rrjeti VPN gjithmonë aktiv';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android e mban shërbimin VPN aktiv dhe mund ta rinisë pasi të riniset telefoni.';
 
   @override
-  String get protection_guideBlockTitle => 'Blloko lidhjet pa VPN';
+  String get protection_guideBlockTitle => 'Blloko lidhjet pa rrjetin VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1726,7 +1726,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Aktivizoni «VPN gjithmonë aktive», pastaj «Blloko lidhjet pa VPN», nëse këto opsione janë të disponueshme.';
+      'Aktivizoni «Rrjeti VPN gjithmonë aktiv», pastaj «Blloko lidhjet pa rrjetin VPN», nëse këto opsione janë të disponueshme.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1737,7 +1737,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Në të njëjtat cilësime, çaktivizoni bllokimin e lidhjeve pa VPN për të lejuar qasjen në internet pa VPN. Çaktivizoni gjithashtu «VPN gjithmonë aktive» nëse nuk dëshironi që Android ta rinisë më.';
+      'Në të njëjtat cilësime, çaktivizoni «Blloko lidhjet pa rrjetin VPN» për të lejuar qasjen në internet pa VPN. Çaktivizoni gjithashtu «Rrjeti VPN gjithmonë aktiv» nëse nuk dëshironi që Android ta rinisë më.';
 
   @override
   String get protection_guideManual =>

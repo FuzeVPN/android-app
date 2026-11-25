@@ -273,11 +273,11 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Možnost „Blokiraj povezave brez VPN-ja“ je v sistemu Android vklopljena: izbrane aplikacije nimajo nobenega dostopa do interneta.';
+      'Možnost „Blokiraj povezave brez omrežja VPN“ je v sistemu Android vklopljena: izbrane aplikacije nimajo nobenega dostopa do interneta.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Če je v sistemu Android vklopljena možnost „Blokiraj povezave brez VPN-ja“, izbrane aplikacije nimajo nobenega dostopa do interneta.';
+      'Če je v sistemu Android vklopljena možnost „Blokiraj povezave brez omrežja VPN“, izbrane aplikacije nimajo nobenega dostopa do interneta.';
 
   @override
   String get connection_location => 'Lokacija';
@@ -415,7 +415,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Aktiven je drug VPN. Če je nastavljen kot „Vedno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu.';
+      'Aktiven je drug VPN. Če je nastavljen kot „Stalno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu.';
 
   @override
   String get status_idle => 'Ni povezano';
@@ -751,7 +751,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'vpn_permission_denied':
           'Android je zavrnil dovoljenje za VPN. Znova vzpostavite povezavo in sprejmite zahtevo sistema.',
       'vpn_permission_other_vpn':
-          'Android aplikaciji FuzeVPN ni dal dovoljenja za VPN, ker je aktivna druga aplikacija VPN. Če je nastavljena kot „Vedno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu in poskusite znova.',
+          'Android aplikaciji FuzeVPN ni dal dovoljenja za VPN, ker je aktivna druga aplikacija VPN. Če je nastavljena kot „Stalno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu in poskusite znova.',
       'revoked_identity_device_limit':
           'Dostop te naprave do VPN-ja je bil odstranjen, omejitev števila naprav pa je dosežena. Odstranite napravo v razdelku Račun → Upravljaj moje naprave.',
       'tunnel_start_unexpected':
@@ -1108,7 +1108,7 @@ class AppLocalizationsSl extends AppLocalizations {
       'vpn_permission_denied':
           'Za nadaljevanje v zahtevi Androida dovolite FuzeVPN.',
       'vpn_permission_other_vpn':
-          'Android aplikaciji FuzeVPN ni dal dovoljenja za VPN, ker je aktivna druga aplikacija VPN. Če je nastavljena kot „Vedno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu in poskusite znova.',
+          'Android aplikaciji FuzeVPN ni dal dovoljenja za VPN, ker je aktivna druga aplikacija VPN. Če je nastavljena kot „Stalno vklopljen VPN“, to izklopite v nastavitvah VPN v Androidu in poskusite znova.',
       'vpn_permission_request_failed':
           'Android ni mogel odpreti zaslona za dovoljenje za VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1658,7 +1658,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Če Android ohranja VPN aktiven, v nastavitvah, ki se odprejo, izklopite „Vedno vklopljen VPN“.';
+      'Če Android ohranja VPN aktiven, v nastavitvah, ki se odprejo, izklopite „Stalno vklopljen VPN“.';
 
   @override
   String get connection_certificate => 'Potrdilo OpenVPN';
@@ -1685,14 +1685,14 @@ class AppLocalizationsSl extends AppLocalizations {
       'Ta zaščita preprečuje, da bi aplikacije uporabljale internet neposredno, če se VPN prekine. Nastavi se v sistemu Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Vedno vklopljen VPN';
+  String get protection_guideAlwaysOnTitle => 'Stalno vklopljen VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android ohranja storitev VPN aktivno in jo lahko po ponovnem zagonu telefona znova zažene.';
 
   @override
-  String get protection_guideBlockTitle => 'Blokiraj povezave brez VPN-ja';
+  String get protection_guideBlockTitle => 'Blokiraj povezave brez omrežja VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1715,7 +1715,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Vklopite možnost „Vedno vklopljen VPN“ in nato „Blokiraj povezave brez VPN-ja“, če sta na voljo.';
+      'Vklopite možnost „Stalno vklopljen VPN“ in nato „Blokiraj povezave brez omrežja VPN“, če sta na voljo.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1726,7 +1726,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'V istih nastavitvah izklopite blokiranje brez VPN-ja, če želite dostop do interneta brez VPN-ja. Če ne želite več, da Android VPN samodejno znova zažene, izklopite tudi „Vedno vklopljen VPN“.';
+      'V istih nastavitvah izklopite „Blokiraj povezave brez omrežja VPN“, če želite dostop do interneta brez VPN-ja. Če ne želite več, da Android VPN samodejno znova zažene, izklopite tudi „Stalno vklopljen VPN“.';
 
   @override
   String get protection_guideManual =>

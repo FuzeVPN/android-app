@@ -420,7 +420,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Ir aktīvs cits VPN. Ja tas ir iestatīts kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos.';
+      'Ir aktīvs cits VPN. Ja tas ir iestatīts kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos.';
 
   @override
   String get status_idle => 'Atvienots';
@@ -756,7 +756,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'vpn_permission_denied':
           'Android noraidīja VPN atļauju. Sāciet savienojumu vēlreiz un apstipriniet sistēmas pieprasījumu.',
       'vpn_permission_other_vpn':
-          'Android nepiešķīra FuzeVPN VPN atļauju, jo ir aktīva cita VPN lietotne. Ja tā ir iestatīta kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos un mēģiniet vēlreiz.',
+          'Android nepiešķīra FuzeVPN VPN atļauju, jo ir aktīva cita VPN lietotne. Ja tā ir iestatīta kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos un mēģiniet vēlreiz.',
       'revoked_identity_device_limit':
           'Šīs ierīces VPN piekļuve tika noņemta, un ierīču limits ir sasniegts. Noņemiet ierīci sadaļā Konts → Pārvaldīt manas ierīces.',
       'tunnel_start_unexpected':
@@ -1103,7 +1103,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'vpn_permission_denied':
           'Lai turpinātu, Android pieprasījumā atļaujiet FuzeVPN.',
       'vpn_permission_other_vpn':
-          'Android nepiešķīra FuzeVPN VPN atļauju, jo ir aktīva cita VPN lietotne. Ja tā ir iestatīta kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos un mēģiniet vēlreiz.',
+          'Android nepiešķīra FuzeVPN VPN atļauju, jo ir aktīva cita VPN lietotne. Ja tā ir iestatīta kā „Vienmēr ieslēgts VPN“, izslēdziet to Android VPN iestatījumos un mēģiniet vēlreiz.',
       'vpn_permission_request_failed':
           'Android nevarēja atvērt VPN atļaujas ekrānu.',
       'wireguard_foreground_service_unavailable':
@@ -1652,7 +1652,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Ja Android uztur VPN aktīvu, atvērtajos iestatījumos izslēdziet „Vienmēr ieslēgts VPN“.';
+      'Ja Android uztur VPN aktīvu, atvērtajos iestatījumos izslēdziet „Vienmēr ieslēgts VPN“.';
 
   @override
   String get connection_certificate => 'OpenVPN sertifikāts';
@@ -1679,7 +1679,7 @@ class AppLocalizationsLv extends AppLocalizations {
       'Šī aizsardzība neļauj lietotnēm izmantot internetu tieši, ja VPN savienojums tiek pārtraukts. To konfigurē Android iestatījumos.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'Vienmēr ieslēgts VPN';
+  String get protection_guideAlwaysOnTitle => 'Vienmēr ieslēgts VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1709,7 +1709,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Ja šīs opcijas ir pieejamas, ieslēdziet „Vienmēr ieslēgts VPN“, pēc tam „Bloķēt savienojumus bez VPN“.';
+      'Ja šīs opcijas ir pieejamas, ieslēdziet „Vienmēr ieslēgts VPN“, pēc tam „Bloķēt savienojumus bez VPN“.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1720,7 +1720,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Tajos pašos iestatījumos izslēdziet „Bloķēt savienojumus bez VPN“, lai atļautu piekļuvi internetam bez VPN. Ja vairs nevēlaties, lai Android to atkārtoti palaiž, izslēdziet arī „Vienmēr ieslēgts VPN“.';
+      'Tajos pašos iestatījumos izslēdziet „Bloķēt savienojumus bez VPN“, lai atļautu piekļuvi internetam bez VPN. Ja vairs nevēlaties, lai Android to atkārtoti palaiž, izslēdziet arī „Vienmēr ieslēgts VPN“.';
 
   @override
   String get protection_guideManual =>

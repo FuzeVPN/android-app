@@ -419,7 +419,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'En anden VPN er aktiv. Hvis den er indstillet som VPN altid til, skal du slå det fra i Androids VPN-indstillinger.';
+      'En anden VPN er aktiv. Hvis den er indstillet som “Konstant VPN”, skal du slå det fra i Androids VPN-indstillinger.';
 
   @override
   String get status_idle => 'Ikke forbundet';
@@ -755,7 +755,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'vpn_permission_denied':
           'Android afviste VPN-tilladelsen. Start forbindelsen igen, og accepter systemanmodningen.',
       'vpn_permission_other_vpn':
-          'Android gav ikke FuzeVPN VPN-tilladelsen, fordi en anden VPN-app er aktiv. Hvis den er indstillet som VPN altid til, skal du slå det fra i Androids VPN-indstillinger og prøve igen.',
+          'Android gav ikke FuzeVPN VPN-tilladelsen, fordi en anden VPN-app er aktiv. Hvis den er indstillet som “Konstant VPN”, skal du slå det fra i Androids VPN-indstillinger og prøve igen.',
       'revoked_identity_device_limit':
           'Denne enheds VPN-adgang blev fjernet, og enhedsgrænsen er nået. Fjern en enhed under Konto → Administrer mine enheder.',
       'tunnel_start_unexpected':
@@ -1103,7 +1103,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'vpn_permission_denied':
           'Tillad FuzeVPN i Android-anmodningen for at fortsætte.',
       'vpn_permission_other_vpn':
-          'Android gav ikke FuzeVPN VPN-tilladelsen, fordi en anden VPN-app er aktiv. Hvis den er indstillet som VPN altid til, skal du slå det fra i Androids VPN-indstillinger og prøve igen.',
+          'Android gav ikke FuzeVPN VPN-tilladelsen, fordi en anden VPN-app er aktiv. Hvis den er indstillet som “Konstant VPN”, skal du slå det fra i Androids VPN-indstillinger og prøve igen.',
       'vpn_permission_request_failed':
           'Android kunne ikke åbne VPN-tilladelsesskærmen.',
       'wireguard_foreground_service_unavailable':
@@ -1650,7 +1650,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Hvis Android holder VPN aktiv, skal du slå VPN altid til fra i de indstillinger, der åbnes.';
+      'Hvis Android holder VPN aktiv, skal du slå “Konstant VPN” fra i de indstillinger, der åbnes.';
 
   @override
   String get connection_certificate => 'OpenVPN-certifikat';
@@ -1677,7 +1677,7 @@ class AppLocalizationsDa extends AppLocalizations {
       'Denne beskyttelse forhindrer apps i at bruge internettet direkte, hvis VPN-forbindelsen afbrydes. Den konfigureres i Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN altid til';
+  String get protection_guideAlwaysOnTitle => 'Konstant VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1707,7 +1707,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Aktivér VPN altid til og derefter Bloker forbindelser uden VPN, hvis disse indstillinger er tilgængelige.';
+      'Aktivér “Konstant VPN” og derefter “Bloker forbindelser uden VPN”, hvis disse indstillinger er tilgængelige.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1718,7 +1718,7 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Slå blokering uden VPN fra i de samme indstillinger for at tillade internetadgang uden VPN. Slå også VPN altid til fra, hvis du ikke længere ønsker, at Android genstarter den.';
+      'Slå “Bloker forbindelser uden VPN” fra i de samme indstillinger for at tillade internetadgang uden VPN. Slå også “Konstant VPN” fra, hvis du ikke længere ønsker, at Android genstarter den.';
 
   @override
   String get protection_guideManual =>

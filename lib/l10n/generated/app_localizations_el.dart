@@ -424,7 +424,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Ένα άλλο VPN είναι ενεργό. Αν έχει οριστεί ως VPN σε μόνιμη λειτουργία, απενεργοποιήστε το από τις ρυθμίσεις VPN του Android.';
+      'Ένα άλλο VPN είναι ενεργό. Αν έχει οριστεί ως «Πάντα ενεργοποιημένο VPN», απενεργοποιήστε το από τις ρυθμίσεις VPN του Android.';
 
   @override
   String get status_idle => 'Αποσυνδεδεμένο';
@@ -771,7 +771,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'vpn_permission_denied':
           'Το Android απέρριψε την άδεια VPN. Ξεκινήστε ξανά τη σύνδεση και αποδεχτείτε το αίτημα του συστήματος.',
       'vpn_permission_other_vpn':
-          'Το Android δεν έδωσε στο FuzeVPN την άδεια VPN, επειδή είναι ενεργή μια άλλη εφαρμογή VPN. Αν έχει οριστεί ως VPN σε μόνιμη λειτουργία, απενεργοποιήστε το από τις ρυθμίσεις VPN του Android και δοκιμάστε ξανά.',
+          'Το Android δεν έδωσε στο FuzeVPN την άδεια VPN, επειδή είναι ενεργή μια άλλη εφαρμογή VPN. Αν έχει οριστεί ως «Πάντα ενεργοποιημένο VPN», απενεργοποιήστε το από τις ρυθμίσεις VPN του Android και δοκιμάστε ξανά.',
       'revoked_identity_device_limit':
           'Η πρόσβαση VPN αυτής της συσκευής αφαιρέθηκε και συμπληρώθηκε το όριο συσκευών. Αφαιρέστε μια συσκευή από τον Λογαριασμό → Διαχείριση των συσκευών μου.',
       'tunnel_start_unexpected':
@@ -1145,7 +1145,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'vpn_permission_denied':
           'Επιτρέψτε το FuzeVPN στο αίτημα Android για να συνεχίσετε.',
       'vpn_permission_other_vpn':
-          'Το Android δεν έδωσε στο FuzeVPN την άδεια VPN, επειδή είναι ενεργή μια άλλη εφαρμογή VPN. Αν έχει οριστεί ως VPN σε μόνιμη λειτουργία, απενεργοποιήστε το από τις ρυθμίσεις VPN του Android και δοκιμάστε ξανά.',
+          'Το Android δεν έδωσε στο FuzeVPN την άδεια VPN, επειδή είναι ενεργή μια άλλη εφαρμογή VPN. Αν έχει οριστεί ως «Πάντα ενεργοποιημένο VPN», απενεργοποιήστε το από τις ρυθμίσεις VPN του Android και δοκιμάστε ξανά.',
       'vpn_permission_request_failed':
           'Το Android δεν μπόρεσε να ανοίξει την οθόνη άδειας VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1698,7 +1698,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Αν το Android διατηρεί ενεργό το VPN, απενεργοποιήστε το VPN σε μόνιμη λειτουργία από τις ρυθμίσεις που ανοίγουν.';
+      'Αν το Android διατηρεί ενεργό το VPN, απενεργοποιήστε το «Πάντα ενεργοποιημένο VPN» από τις ρυθμίσεις που ανοίγουν.';
 
   @override
   String get connection_certificate => 'Πιστοποιητικό OpenVPN';
@@ -1725,7 +1725,7 @@ class AppLocalizationsEl extends AppLocalizations {
       'Αυτή η προστασία εμποδίζει τις εφαρμογές να χρησιμοποιούν απευθείας το διαδίκτυο αν αποσυνδεθεί το VPN. Διαμορφώνεται στο Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN σε μόνιμη λειτουργία';
+  String get protection_guideAlwaysOnTitle => 'Πάντα ενεργοποιημένο VPN';
 
   @override
   String get protection_guideAlwaysOn =>
@@ -1755,7 +1755,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Ενεργοποιήστε το VPN σε μόνιμη λειτουργία και, στη συνέχεια, τον αποκλεισμό συνδέσεων χωρίς VPN, αν αυτές οι επιλογές είναι διαθέσιμες.';
+      'Ενεργοποιήστε το «Πάντα ενεργοποιημένο VPN» και, στη συνέχεια, το «Αποκλεισμός συνδέσεων χωρίς VPN», αν αυτές οι επιλογές είναι διαθέσιμες.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1767,7 +1767,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Στις ίδιες ρυθμίσεις, απενεργοποιήστε τον αποκλεισμό χωρίς VPN για να επιτρέψετε την πρόσβαση στο διαδίκτυο χωρίς το VPN. Απενεργοποιήστε επίσης το VPN σε μόνιμη λειτουργία αν δεν θέλετε πλέον το Android να το επανεκκινεί.';
+      'Στις ίδιες ρυθμίσεις, απενεργοποιήστε το «Αποκλεισμός συνδέσεων χωρίς VPN» για να επιτρέψετε την πρόσβαση στο διαδίκτυο χωρίς το VPN. Απενεργοποιήστε επίσης το «Πάντα ενεργοποιημένο VPN» αν δεν θέλετε πλέον το Android να το επανεκκινεί.';
 
   @override
   String get protection_guideManual =>

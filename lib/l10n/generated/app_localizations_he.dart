@@ -268,11 +268,11 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“חסום חיבורים ללא VPN” מופעל ב-Android: לאפליקציות המסומנות אין שום גישה לאינטרנט.';
+      '“‏חסימת חיבורים ללא VPN” מופעל ב-Android: לאפליקציות המסומנות אין שום גישה לאינטרנט.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'אם “חסום חיבורים ללא VPN” מופעל ב-Android, לאפליקציות המסומנות אין שום גישה לאינטרנט.';
+      'אם “‏חסימת חיבורים ללא VPN” מופעל ב-Android, לאפליקציות המסומנות אין שום גישה לאינטרנט.';
 
   @override
   String get connection_location => 'מיקום';
@@ -410,7 +410,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'VPN אחר פעיל. אם הוא מוגדר כ“VPN תמיד פעיל”, כבה זאת בהגדרות ה-VPN של Android.';
+      'VPN אחר פעיל. אם הוא מוגדר כ“‏VPN שפועל כל הזמן”, כבה זאת בהגדרות ה-VPN של Android.';
 
   @override
   String get status_idle => 'מנותק';
@@ -733,7 +733,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'vpn_permission_denied':
           'Android דחה את הרשאת ה-VPN. התחל שוב את החיבור ואשר את בקשת המערכת.',
       'vpn_permission_other_vpn':
-          'Android לא העניק ל-FuzeVPN את הרשאת ה-VPN, כי אפליקציית VPN אחרת פעילה. אם היא מוגדרת כ“VPN תמיד פעיל”, כבה זאת בהגדרות ה-VPN של Android ונסה שוב.',
+          'Android לא העניק ל-FuzeVPN את הרשאת ה-VPN, כי אפליקציית VPN אחרת פעילה. אם היא מוגדרת כ“‏VPN שפועל כל הזמן”, כבה זאת בהגדרות ה-VPN של Android ונסה שוב.',
       'revoked_identity_device_limit':
           'גישת ה-VPN של המכשיר הזה הוסרה, והגעת למגבלת המכשירים. הסר מכשיר בקטע חשבון ← נהל את המכשירים שלי.',
       'tunnel_start_unexpected':
@@ -1059,7 +1059,7 @@ class AppLocalizationsHe extends AppLocalizations {
           'Android דורש הרשאת VPN חדשה לפני הפעלת המנהרה.',
       'vpn_permission_denied': 'אשר את FuzeVPN בבקשת Android כדי להמשיך.',
       'vpn_permission_other_vpn':
-          'Android לא העניק ל-FuzeVPN את הרשאת ה-VPN, כי אפליקציית VPN אחרת פעילה. אם היא מוגדרת כ“VPN תמיד פעיל”, כבה זאת בהגדרות ה-VPN של Android ונסה שוב.',
+          'Android לא העניק ל-FuzeVPN את הרשאת ה-VPN, כי אפליקציית VPN אחרת פעילה. אם היא מוגדרת כ“‏VPN שפועל כל הזמן”, כבה זאת בהגדרות ה-VPN של Android ונסה שוב.',
       'vpn_permission_request_failed':
           'Android לא הצליח לפתוח את מסך הרשאת ה-VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1583,7 +1583,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'אם Android משאיר את ה-VPN פעיל, כבה את “VPN תמיד פעיל” בהגדרות שייפתחו.';
+      'אם Android משאיר את ה-VPN פעיל, כבה את “‏VPN שפועל כל הזמן” בהגדרות שייפתחו.';
 
   @override
   String get connection_certificate => 'תעודת OpenVPN';
@@ -1609,14 +1609,14 @@ class AppLocalizationsHe extends AppLocalizations {
       'הגנה זו מונעת מאפליקציות להשתמש ישירות באינטרנט אם ה-VPN מתנתק. היא מוגדרת ב-Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN תמיד פעיל';
+  String get protection_guideAlwaysOnTitle => '‏VPN שפועל כל הזמן';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android משאיר את שירות ה-VPN פעיל ויכול להפעיל אותו מחדש לאחר אתחול הטלפון.';
 
   @override
-  String get protection_guideBlockTitle => 'חסום חיבורים ללא VPN';
+  String get protection_guideBlockTitle => '‏חסימת חיבורים ללא VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1639,7 +1639,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'הפעל את “VPN תמיד פעיל”, ואז את “חסום חיבורים ללא VPN”, אם האפשרויות האלה מוצעות.';
+      'הפעל את “‏VPN שפועל כל הזמן”, ואז את “‏חסימת חיבורים ללא VPN”, אם האפשרויות האלה מוצעות.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1650,7 +1650,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'באותן הגדרות, כבה את חסימת החיבורים ללא VPN כדי לאפשר גישה לאינטרנט בלי VPN. כבה גם את “VPN תמיד פעיל”, אם אינך רוצה ש-Android יפעיל אותו מחדש.';
+      'באותן הגדרות, כבה את “‏חסימת חיבורים ללא VPN” כדי לאפשר גישה לאינטרנט בלי VPN. כבה גם את “‏VPN שפועל כל הזמן”, אם אינך רוצה ש-Android יפעיל אותו מחדש.';
 
   @override
   String get protection_guideManual =>

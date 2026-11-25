@@ -277,11 +277,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Параметр «Блокувати з’єднання без VPN» увімкнено в Android: позначені програми не мають жодного доступу до інтернету.';
+      'Параметр «Блокувати підключення не через VPN» увімкнено в Android: позначені програми не мають жодного доступу до інтернету.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Якщо в Android увімкнено параметр «Блокувати з’єднання без VPN», позначені програми не мають жодного доступу до інтернету.';
+      'Якщо в Android увімкнено параметр «Блокувати підключення не через VPN», позначені програми не мають жодного доступу до інтернету.';
 
   @override
   String get connection_location => 'Розташування';
@@ -420,7 +420,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'Активний інший VPN. Якщо його налаштовано як VPN у режимі постійного підключення, вимкніть це в налаштуваннях VPN Android.';
+      'Активний інший VPN. Якщо його налаштовано як «Постійна мережа VPN», вимкніть це в налаштуваннях VPN Android.';
 
   @override
   String get status_idle => 'Відключено';
@@ -760,7 +760,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'vpn_permission_denied':
           'Android відмовив у дозволі на VPN. Почніть підключення знову та прийміть системний запит.',
       'vpn_permission_other_vpn':
-          'Android не надав FuzeVPN дозвіл на VPN, бо активний інший VPN-застосунок. Якщо його налаштовано як VPN у режимі постійного підключення, вимкніть це в налаштуваннях VPN Android і спробуйте ще раз.',
+          'Android не надав FuzeVPN дозвіл на VPN, бо активний інший VPN-застосунок. Якщо його налаштовано як «Постійна мережа VPN», вимкніть це в налаштуваннях VPN Android і спробуйте ще раз.',
       'revoked_identity_device_limit':
           'Доступ цього пристрою до VPN видалено, а ліміт пристроїв досягнуто. Видаліть пристрій у розділі «Обліковий запис» → «Керувати моїми пристроями».',
       'tunnel_start_unexpected':
@@ -1110,7 +1110,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'vpn_permission_denied':
           'Дозвольте FuzeVPN у запиті Android, щоб продовжити.',
       'vpn_permission_other_vpn':
-          'Android не надав FuzeVPN дозвіл на VPN, бо активний інший VPN-застосунок. Якщо його налаштовано як VPN у режимі постійного підключення, вимкніть це в налаштуваннях VPN Android і спробуйте ще раз.',
+          'Android не надав FuzeVPN дозвіл на VPN, бо активний інший VPN-застосунок. Якщо його налаштовано як «Постійна мережа VPN», вимкніть це в налаштуваннях VPN Android і спробуйте ще раз.',
       'vpn_permission_request_failed':
           'Android не зміг відкрити екран дозволу VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1657,7 +1657,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Якщо Android не вимикає VPN, вимкніть VPN у режимі постійного підключення у відкритих налаштуваннях.';
+      'Якщо Android не вимикає VPN, вимкніть «Постійна мережа VPN» у відкритих налаштуваннях.';
 
   @override
   String get connection_certificate => 'Сертифікат OpenVPN';
@@ -1684,15 +1684,14 @@ class AppLocalizationsUk extends AppLocalizations {
       'Цей захист не дає програмам напряму використовувати інтернет, якщо VPN відключиться. Його налаштовано в Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle =>
-      'VPN у режимі постійного підключення';
+  String get protection_guideAlwaysOnTitle => 'Постійна мережа VPN';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android підтримує роботу служби VPN і може перезапустити її після перезавантаження телефона.';
 
   @override
-  String get protection_guideBlockTitle => 'Блокувати з’єднання без VPN';
+  String get protection_guideBlockTitle => 'Блокувати підключення не через VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1715,7 +1714,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Увімкніть VPN у режимі постійного підключення, а потім «Блокувати з’єднання без VPN», якщо ці параметри доступні.';
+      'Увімкніть «Постійна мережа VPN», а потім «Блокувати підключення не через VPN», якщо ці параметри доступні.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1726,7 +1725,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'У тих самих налаштуваннях вимкніть блокування без VPN, щоб дозволити доступ до інтернету без VPN. Також вимкніть VPN у режимі постійного підключення, якщо більше не хочете, щоб Android перезапускав його.';
+      'У тих самих налаштуваннях вимкніть «Блокувати підключення не через VPN», щоб дозволити доступ до інтернету без VPN. Також вимкніть «Постійна мережа VPN», якщо більше не хочете, щоб Android перезапускав його.';
 
   @override
   String get protection_guideManual =>

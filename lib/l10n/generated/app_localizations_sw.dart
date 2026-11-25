@@ -274,11 +274,11 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“Zuia miunganisho bila VPN” imewashwa katika Android: programu zilizoteuliwa hazina ufikiaji wowote wa intaneti.';
+      '“Zuia miunganisho isiyotumia VPN” imewashwa katika Android: programu zilizoteuliwa hazina ufikiaji wowote wa intaneti.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Ikiwa “Zuia miunganisho bila VPN” imewashwa katika Android, programu zilizoteuliwa hazina ufikiaji wowote wa intaneti.';
+      'Ikiwa “Zuia miunganisho isiyotumia VPN” imewashwa katika Android, programu zilizoteuliwa hazina ufikiaji wowote wa intaneti.';
 
   @override
   String get connection_location => 'Eneo';
@@ -418,7 +418,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'VPN nyingine inatumika. Ikiwa imewekwa kama “VPN ya kila wakati”, zima mpangilio huo kwenye mipangilio ya VPN ya Android.';
+      'VPN nyingine inatumika. Ikiwa imewekwa kama “VPN Iliyowashwa kila mara”, zima mpangilio huo kwenye mipangilio ya VPN ya Android.';
 
   @override
   String get status_idle => 'Imetenganishwa';
@@ -758,7 +758,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'vpn_permission_denied':
           'Android imekataa ruhusa ya VPN. Anza muunganisho tena kisha ukubali ombi la mfumo.',
       'vpn_permission_other_vpn':
-          'Android haikuipa FuzeVPN ruhusa ya VPN kwa sababu programu nyingine ya VPN inatumika. Ikiwa imewekwa kama “VPN ya kila wakati”, zima mpangilio huo kwenye mipangilio ya VPN ya Android, kisha ujaribu tena.',
+          'Android haikuipa FuzeVPN ruhusa ya VPN kwa sababu programu nyingine ya VPN inatumika. Ikiwa imewekwa kama “VPN Iliyowashwa kila mara”, zima mpangilio huo kwenye mipangilio ya VPN ya Android, kisha ujaribu tena.',
       'revoked_identity_device_limit':
           'Ufikiaji wa VPN wa kifaa hiki umeondolewa na kikomo cha vifaa kimefikiwa. Ondoa kifaa chini ya Akaunti → Dhibiti vifaa vyangu.',
       'tunnel_start_unexpected':
@@ -1112,7 +1112,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'vpn_permission_denied':
           'Ruhusu FuzeVPN kwenye ombi la Android ili kuendelea.',
       'vpn_permission_other_vpn':
-          'Android haikuipa FuzeVPN ruhusa ya VPN kwa sababu programu nyingine ya VPN inatumika. Ikiwa imewekwa kama “VPN ya kila wakati”, zima mpangilio huo kwenye mipangilio ya VPN ya Android, kisha ujaribu tena.',
+          'Android haikuipa FuzeVPN ruhusa ya VPN kwa sababu programu nyingine ya VPN inatumika. Ikiwa imewekwa kama “VPN Iliyowashwa kila mara”, zima mpangilio huo kwenye mipangilio ya VPN ya Android, kisha ujaribu tena.',
       'vpn_permission_request_failed':
           'Android haikuweza kufungua skrini ya ruhusa ya VPN.',
       'wireguard_foreground_service_unavailable':
@@ -1661,7 +1661,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'Android ikiendelea kuiweka VPN hai, zima “VPN ya kila wakati” kwenye mipangilio itakayofunguka.';
+      'Android ikiendelea kuiweka VPN hai, zima “VPN Iliyowashwa kila mara” kwenye mipangilio itakayofunguka.';
 
   @override
   String get connection_certificate => 'Cheti cha OpenVPN';
@@ -1688,14 +1688,14 @@ class AppLocalizationsSw extends AppLocalizations {
       'Ulinzi huu huzuia programu kutumia intaneti moja kwa moja VPN ikikatika. Husanidiwa katika Android.';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN ya kila wakati';
+  String get protection_guideAlwaysOnTitle => 'VPN Iliyowashwa kila mara';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android huendelea kuendesha huduma ya VPN, na inaweza kuianzisha upya baada ya simu kuwashwa tena.';
 
   @override
-  String get protection_guideBlockTitle => 'Zuia miunganisho bila VPN';
+  String get protection_guideBlockTitle => 'Zuia miunganisho isiyotumia VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1718,7 +1718,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Washa “VPN ya kila wakati”, kisha “Zuia miunganisho bila VPN”, ikiwa chaguo hizi zinapatikana.';
+      'Washa “VPN Iliyowashwa kila mara”, kisha “Zuia miunganisho isiyotumia VPN”, ikiwa chaguo hizi zinapatikana.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1729,7 +1729,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Katika mipangilio hiyo hiyo, zima “Zuia miunganisho bila VPN” ili kuruhusu intaneti bila VPN. Zima pia “VPN ya kila wakati” ikiwa hutaki tena Android iianzishe upya.';
+      'Katika mipangilio hiyo hiyo, zima “Zuia miunganisho isiyotumia VPN” ili kuruhusu intaneti bila VPN. Zima pia “VPN Iliyowashwa kila mara” ikiwa hutaki tena Android iianzishe upya.';
 
   @override
   String get protection_guideManual =>

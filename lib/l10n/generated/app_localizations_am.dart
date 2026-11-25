@@ -267,11 +267,11 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“VPN ከሌለ ግንኙነቶችን ያግዱ” በAndroid ውስጥ በርቷል፦ ምልክት የተደረገባቸው መተግበሪያዎች ምንም የኢንተርኔት መዳረሻ የላቸውም።';
+      '“ቪፒኤን የሌላቸው ግንኙነቶችን አግድ” በAndroid ውስጥ በርቷል፦ ምልክት የተደረገባቸው መተግበሪያዎች ምንም የኢንተርኔት መዳረሻ የላቸውም።';
 
   @override
   String get splitTunnel_lockdownNote =>
-      '“VPN ከሌለ ግንኙነቶችን ያግዱ” በAndroid ውስጥ ከበራ፣ ምልክት የተደረገባቸው መተግበሪያዎች ምንም የኢንተርኔት መዳረሻ የላቸውም።';
+      '“ቪፒኤን የሌላቸው ግንኙነቶችን አግድ” በAndroid ውስጥ ከበራ፣ ምልክት የተደረገባቸው መተግበሪያዎች ምንም የኢንተርኔት መዳረሻ የላቸውም።';
 
   @override
   String get connection_location => 'አካባቢ';
@@ -1593,7 +1593,7 @@ class AppLocalizationsAm extends AppLocalizations {
       'Android የVPN አገልግሎቱን ንቁ አድርጎ ያቆያል፤ ስልኩ ዳግም ከጀመረ በኋላም መልሶ ሊያስጀምረው ይችላል።';
 
   @override
-  String get protection_guideBlockTitle => 'VPN ከሌለ ግንኙነቶችን ያግዱ';
+  String get protection_guideBlockTitle => 'ቪፒኤን የሌላቸው ግንኙነቶችን አግድ';
 
   @override
   String get protection_guideBlock =>
@@ -1616,7 +1616,7 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'እነዚህ አማራጮች ካሉ፣ መጀመሪያ “ሁልጊዜ የበራ VPN”ን፣ ከዚያም “VPN ከሌለ ግንኙነቶችን ያግዱ”ን ያንቁ።';
+      'እነዚህ አማራጮች ካሉ፣ መጀመሪያ “ሁልጊዜ የበራ VPN”ን፣ ከዚያም “ቪፒኤን የሌላቸው ግንኙነቶችን አግድ”ን ያንቁ።';
 
   @override
   String get protection_guideManufacturers =>
@@ -1627,7 +1627,7 @@ class AppLocalizationsAm extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'በተመሳሳዩ ቅንብሮች ውስጥ፣ ያለ VPN ኢንተርኔትን ለመጠቀም “VPN ከሌለ ግንኙነቶችን ያግዱ”ን ያጥፉ። Android እንደገና እንዲያስጀምረው ካልፈለጉ “ሁልጊዜ የበራ VPN”ንም ያጥፉ።';
+      'በተመሳሳዩ ቅንብሮች ውስጥ፣ ያለ VPN ኢንተርኔትን ለመጠቀም “ቪፒኤን የሌላቸው ግንኙነቶችን አግድ”ን ያጥፉ። Android እንደገና እንዲያስጀምረው ካልፈለጉ “ሁልጊዜ የበራ VPN”ንም ያጥፉ።';
 
   @override
   String get protection_guideManual =>

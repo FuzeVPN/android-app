@@ -493,7 +493,7 @@
     "protection_guideStep3": "Aktiviere „Durchgehend aktives VPN“ und dann „Verbindungen ohne VPN blockieren“, sofern diese Optionen verfügbar sind.",
     "protection_guideManufacturers": "Die Bezeichnungen unterscheiden sich je nach Telefon. Suche bei Bedarf in den Einstellungen nach „VPN“, häufig unter Netzwerk & Internet.",
     "protection_guideDisableTitle": "Diesen Schutz deaktivieren",
-    "protection_guideDisable": "Deaktiviere dort die Sperre ohne VPN, um Internetzugang ohne VPN zuzulassen. Deaktiviere auch das durchgehend aktive VPN, wenn Android es nicht mehr neu starten soll.",
+    "protection_guideDisable": "Deaktiviere dort „Verbindungen ohne VPN blockieren“, um Internetzugang ohne VPN zuzulassen. Deaktiviere auch „Durchgehend aktives VPN“, wenn Android es nicht mehr neu starten soll.",
     "protection_guideManual": "Du wählst diese Einstellungen in Android. FuzeVPN ändert sie nicht für dich.",
     "locations_changeTitle": "Standort wechseln?",
     "locations_changeActive": "Das VPN wird getrennt und versucht dann, eine Verbindung zu {name} herzustellen.",

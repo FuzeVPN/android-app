@@ -269,11 +269,11 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      '“บล็อกการเชื่อมต่อที่ไม่มี VPN” เปิดอยู่ใน Android แอปที่เลือกไว้จะเข้าถึงอินเทอร์เน็ตไม่ได้เลย';
+      '“บล็อกการเชื่อมต่อโดยไม่ใช้ VPN” เปิดอยู่ใน Android แอปที่เลือกไว้จะเข้าถึงอินเทอร์เน็ตไม่ได้เลย';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'หาก “บล็อกการเชื่อมต่อที่ไม่มี VPN” เปิดอยู่ใน Android แอปที่เลือกไว้จะเข้าถึงอินเทอร์เน็ตไม่ได้เลย';
+      'หาก “บล็อกการเชื่อมต่อโดยไม่ใช้ VPN” เปิดอยู่ใน Android แอปที่เลือกไว้จะเข้าถึงอินเทอร์เน็ตไม่ได้เลย';
 
   @override
   String get connection_location => 'ตำแหน่ง';
@@ -414,7 +414,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get status_otherVpnDetail =>
-      'มี VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น VPN แบบเปิดตลอดเวลา ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android';
+      'มี VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น “การเชื่อมต่อ VPN ตลอดเวลา” ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android';
 
   @override
   String get status_idle => 'ตัดการเชื่อมต่อแล้ว';
@@ -747,7 +747,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'vpn_permission_denied':
           'Android ไม่อนุญาตให้ใช้ VPN เริ่มการเชื่อมต่ออีกครั้งและยอมรับคำขอของระบบ',
       'vpn_permission_other_vpn':
-          'Android ไม่ได้ให้สิทธิ์ VPN แก่ FuzeVPN เนื่องจากมีแอป VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น VPN แบบเปิดตลอดเวลา ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android แล้วลองอีกครั้ง',
+          'Android ไม่ได้ให้สิทธิ์ VPN แก่ FuzeVPN เนื่องจากมีแอป VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น “การเชื่อมต่อ VPN ตลอดเวลา” ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android แล้วลองอีกครั้ง',
       'revoked_identity_device_limit':
           'การเข้าถึง VPN ของอุปกรณ์นี้ถูกนำออกแล้ว และถึงขีดจำกัดอุปกรณ์แล้ว นำอุปกรณ์ออกในการตั้งค่าบัญชี → จัดการอุปกรณ์ของฉัน',
       'tunnel_start_unexpected':
@@ -1087,7 +1087,7 @@ class AppLocalizationsTh extends AppLocalizations {
       'vpn_permission_denied':
           'อนุญาต FuzeVPN ในคำขอของ Android เพื่อดำเนินการต่อ',
       'vpn_permission_other_vpn':
-          'Android ไม่ได้ให้สิทธิ์ VPN แก่ FuzeVPN เนื่องจากมีแอป VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น VPN แบบเปิดตลอดเวลา ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android แล้วลองอีกครั้ง',
+          'Android ไม่ได้ให้สิทธิ์ VPN แก่ FuzeVPN เนื่องจากมีแอป VPN อื่นทำงานอยู่ หากตั้งค่าไว้เป็น “การเชื่อมต่อ VPN ตลอดเวลา” ให้ปิดการตั้งค่านั้นในการตั้งค่า VPN ของ Android แล้วลองอีกครั้ง',
       'vpn_permission_request_failed': 'Android เปิดหน้าจออนุญาต VPN ไม่ได้',
       'wireguard_foreground_service_unavailable':
           'Android ไม่สามารถให้บริการ WireGuard ทำงานเบื้องหน้าได้',
@@ -1627,7 +1627,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get connection_androidDisconnectHint =>
-      'หาก Android ยังคงเปิด VPN อยู่ ให้ปิด VPN แบบเปิดตลอดเวลาในการตั้งค่าที่เปิดขึ้น';
+      'หาก Android ยังคงเปิด VPN อยู่ ให้ปิด “การเชื่อมต่อ VPN ตลอดเวลา” ในการตั้งค่าที่เปิดขึ้น';
 
   @override
   String get connection_certificate => 'ใบรับรอง OpenVPN';
@@ -1654,14 +1654,14 @@ class AppLocalizationsTh extends AppLocalizations {
       'การปกป้องนี้ป้องกันไม่ให้แอปใช้อินเทอร์เน็ตโดยตรงหาก VPN ตัดการเชื่อมต่อ โดยกำหนดค่าใน Android';
 
   @override
-  String get protection_guideAlwaysOnTitle => 'VPN แบบเปิดตลอดเวลา';
+  String get protection_guideAlwaysOnTitle => 'การเชื่อมต่อ VPN ตลอดเวลา';
 
   @override
   String get protection_guideAlwaysOn =>
       'Android จะให้บริการ VPN ทำงานอยู่เสมอ และสามารถเริ่มบริการใหม่หลังโทรศัพท์รีบูต';
 
   @override
-  String get protection_guideBlockTitle => 'บล็อกการเชื่อมต่อที่ไม่มี VPN';
+  String get protection_guideBlockTitle => 'บล็อกการเชื่อมต่อโดยไม่ใช้ VPN';
 
   @override
   String get protection_guideBlock =>
@@ -1684,7 +1684,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'เปิด VPN แบบเปิดตลอดเวลา แล้วเปิดบล็อกการเชื่อมต่อที่ไม่มี VPN หากมีตัวเลือกเหล่านี้';
+      'เปิด “การเชื่อมต่อ VPN ตลอดเวลา” แล้วเปิด “บล็อกการเชื่อมต่อโดยไม่ใช้ VPN” หากมีตัวเลือกเหล่านี้';
 
   @override
   String get protection_guideManufacturers =>
@@ -1695,7 +1695,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'ในการตั้งค่าเดียวกัน ให้ปิดการบล็อกที่ไม่มี VPN เพื่ออนุญาตให้อินเทอร์เน็ตทำงานโดยไม่มี VPN และปิด VPN แบบเปิดตลอดเวลาหากไม่ต้องการให้ Android เริ่มบริการใหม่อีก';
+      'ในการตั้งค่าเดียวกัน ให้ปิด “บล็อกการเชื่อมต่อโดยไม่ใช้ VPN” เพื่ออนุญาตให้อินเทอร์เน็ตทำงานโดยไม่มี VPN และปิด “การเชื่อมต่อ VPN ตลอดเวลา” หากไม่ต้องการให้ Android เริ่มบริการใหม่อีก';
 
   @override
   String get protection_guideManual =>

@@ -1710,7 +1710,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Tuose pačiuose nustatymuose išjunkite blokavimą be VPN, kad būtų galima naudotis internetu be VPN. Taip pat išjunkite „Visada įjungtas VPN“, jei nebenorite, kad Android jį paleistų iš naujo.';
+      'Tuose pačiuose nustatymuose išjunkite „Blokuoti ryšius be VPN“, kad būtų galima naudotis internetu be VPN. Taip pat išjunkite „Visada įjungtas VPN“, jei nebenorite, kad Android jį paleistų iš naujo.';
 
   @override
   String get protection_guideManual =>

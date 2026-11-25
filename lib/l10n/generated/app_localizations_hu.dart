@@ -275,11 +275,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get splitTunnel_lockdownActive =>
-      'Az Android rendszerben be van kapcsolva a „VPN nélküli kapcsolatok letiltása” beállítás: a bejelölt alkalmazások egyáltalán nem érik el az internetet.';
+      'Az Android rendszerben be van kapcsolva a „VPN nélküli csatlakozások letiltása” beállítás: a bejelölt alkalmazások egyáltalán nem érik el az internetet.';
 
   @override
   String get splitTunnel_lockdownNote =>
-      'Ha az Android rendszerben be van kapcsolva a „VPN nélküli kapcsolatok letiltása” beállítás, a bejelölt alkalmazások egyáltalán nem érik el az internetet.';
+      'Ha az Android rendszerben be van kapcsolva a „VPN nélküli csatlakozások letiltása” beállítás, a bejelölt alkalmazások egyáltalán nem érik el az internetet.';
 
   @override
   String get connection_location => 'Hely';
@@ -1694,7 +1694,8 @@ class AppLocalizationsHu extends AppLocalizations {
       'Az Android folyamatosan futtatja a VPN-szolgáltatást, és a telefon újraindítása után újra el tudja indítani.';
 
   @override
-  String get protection_guideBlockTitle => 'VPN nélküli kapcsolatok letiltása';
+  String get protection_guideBlockTitle =>
+      'VPN nélküli csatlakozások letiltása';
 
   @override
   String get protection_guideBlock =>
@@ -1717,7 +1718,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get protection_guideStep3 =>
-      'Ha elérhetők, kapcsolja be a „Mindig bekapcsolt VPN”, majd a „VPN nélküli kapcsolatok letiltása” beállítást.';
+      'Ha elérhetők, kapcsolja be a „Mindig bekapcsolt VPN”, majd a „VPN nélküli csatlakozások letiltása” beállítást.';
 
   @override
   String get protection_guideManufacturers =>
@@ -1728,7 +1729,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get protection_guideDisable =>
-      'Ugyanezekben a beállításokban kapcsolja ki a VPN nélküli kapcsolatok letiltását, hogy VPN nélkül is elérhető legyen az internet. Ha már nem szeretné, hogy az Android újraindítsa, a Mindig bekapcsolt VPN beállítást is kapcsolja ki.';
+      'Ugyanezekben a beállításokban kapcsolja ki a „VPN nélküli csatlakozások letiltása” beállítást, hogy VPN nélkül is elérhető legyen az internet. Ha már nem szeretné, hogy az Android újraindítsa, a „Mindig bekapcsolt VPN” beállítást is kapcsolja ki.';
 
   @override
   String get protection_guideManual =>
