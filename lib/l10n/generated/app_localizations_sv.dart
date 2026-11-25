@@ -1733,6 +1733,25 @@ class AppLocalizationsSv extends AppLocalizations {
       'Du väljer de här inställningarna i Android. FuzeVPN ändrar dem inte åt dig.';
 
   @override
+  String get adBlocker_title => 'Annonsblockering';
+
+  @override
+  String get adBlocker_description =>
+      'Blockerar kända annonser och spårare i dina VPN-anslutningar.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Tillfälligt otillgänglig. Ditt val behålls.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Inställningen kunde inte läsas in. Försök igen.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Det här valet kunde inte sparas. Försök igen.';
+
+  @override
   String get locations_changeTitle => 'Byta plats?';
 
   @override

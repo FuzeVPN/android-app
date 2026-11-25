@@ -1583,6 +1583,21 @@ class AppLocalizationsJa extends AppLocalizations {
       'これらの設定はAndroidで選択します。FuzeVPNが代わりに変更することはありません。';
 
   @override
+  String get adBlocker_title => '広告ブロッカー';
+
+  @override
+  String get adBlocker_description => 'VPN接続上の既知の広告とトラッカーをブロックします。';
+
+  @override
+  String get adBlocker_unavailable => '一時的に利用できません。選択内容は保持されます。';
+
+  @override
+  String get adBlocker_loadFailed => 'この設定を読み込めませんでした。もう一度試してください。';
+
+  @override
+  String get adBlocker_saveFailed => 'この選択を保存できませんでした。もう一度試してください。';
+
+  @override
   String get locations_changeTitle => '場所を変更しますか？';
 
   @override

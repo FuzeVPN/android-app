@@ -1748,6 +1748,25 @@ class AppLocalizationsTa extends AppLocalizations {
       'இந்த அமைப்புகளை Android-இல் நீங்களே தேர்ந்தெடுக்கிறீர்கள். FuzeVPN இவற்றை உங்களுக்காக மாற்றாது.';
 
   @override
+  String get adBlocker_title => 'விளம்பரத் தடுப்பான்';
+
+  @override
+  String get adBlocker_description =>
+      'உங்கள் VPN இணைப்புகளில் அறியப்பட்ட விளம்பரங்களையும் டிராக்கர்களையும் தடுக்கும்.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'தற்காலிகமாகக் கிடைக்கவில்லை. உங்கள் தேர்வு அப்படியே உள்ளது.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'இந்த அமைப்பை ஏற்ற முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'இந்தத் தேர்வைச் சேமிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.';
+
+  @override
   String get locations_changeTitle => 'இடத்தை மாற்றவா?';
 
   @override

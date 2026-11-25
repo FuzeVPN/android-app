@@ -1727,6 +1727,25 @@ class AppLocalizationsSk extends AppLocalizations {
       'Tieto nastavenia určujete v systéme Android. Aplikácia FuzeVPN ich za vás nemení.';
 
   @override
+  String get adBlocker_title => 'Blokovanie reklám';
+
+  @override
+  String get adBlocker_description =>
+      'Blokuje známe reklamy a sledovacie prvky vo vašich pripojeniach VPN.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Dočasne nedostupné. Vaša voľba zostáva zachovaná.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Toto nastavenie sa nepodarilo načítať. Skúste to znova.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Túto voľbu sa nepodarilo uložiť. Skúste to znova.';
+
+  @override
   String get locations_changeTitle => 'Zmeniť lokalitu?';
 
   @override

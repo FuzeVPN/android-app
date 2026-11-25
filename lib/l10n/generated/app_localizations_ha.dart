@@ -1725,6 +1725,25 @@ class AppLocalizationsHa extends AppLocalizations {
       'Ku ne kuke zaɓar waɗannan saitunan a Android. FuzeVPN ba ya canza muku su.';
 
   @override
+  String get adBlocker_title => 'Mai toshe tallace-tallace';
+
+  @override
+  String get adBlocker_description =>
+      'Yana toshe sanannun tallace-tallace da masu bin diddigi a haɗin VPN ɗinku.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Ba ya samuwa na ɗan lokaci. An kiyaye zaɓinku.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Ba a iya ɗora wannan saitin ba. Ku sake gwadawa.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Ba a iya ajiye wannan zaɓin ba. Ku sake gwadawa.';
+
+  @override
   String get locations_changeTitle => 'Canza wuri?';
 
   @override

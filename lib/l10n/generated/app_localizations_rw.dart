@@ -1746,6 +1746,25 @@ class AppLocalizationsRw extends AppLocalizations {
       'Ayo magenamiterere muyahitamo ubwanyu muri Android. FuzeVPN ntihindura ayo magenamiterere mu cyimbo cyanyu.';
 
   @override
+  String get adBlocker_title => 'Guhagarika ibyamamaza';
+
+  @override
+  String get adBlocker_description =>
+      'Bihagarika ibyamamaza n’ibikurikirana bizwi ku mihuza yanyu ya VPN.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Ntibiboneka by’agateganyo. Ihitamo ryanyu riguma ribitswe.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Ntibyashobotse kuzana iri genamiterere. Mwongere mugerageze.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Ntibyashobotse kubika iri hitamo. Mwongere mugerageze.';
+
+  @override
   String get locations_changeTitle => 'Guhindura ahantu?';
 
   @override

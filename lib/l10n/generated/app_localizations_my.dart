@@ -1740,6 +1740,24 @@ class AppLocalizationsMy extends AppLocalizations {
       'ဤဆက်တင်များကို Android တွင် သင်ကိုယ်တိုင် ရွေးချယ်ပါသည်။ FuzeVPN သည် ၎င်းတို့ကို သင့်အစား ပြောင်းလဲပေးခြင်း မရှိပါ။';
 
   @override
+  String get adBlocker_title => 'ကြော်ငြာ ပိတ်ဆို့စနစ်';
+
+  @override
+  String get adBlocker_description =>
+      'သင့် VPN ချိတ်ဆက်မှုများတွင် သိရှိထားသော ကြော်ငြာများနှင့် ခြေရာခံကိရိယာများကို ပိတ်ဆို့သည်။';
+
+  @override
+  String get adBlocker_unavailable =>
+      'ယာယီ မရရှိနိုင်ပါ။ သင့်ရွေးချယ်မှုကို ထိန်းသိမ်းထားပါသည်။';
+
+  @override
+  String get adBlocker_loadFailed => 'ဤဆက်တင်ကို တင်၍ မရပါ။ ထပ်ကြိုးစားပါ။';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'ဤရွေးချယ်မှုကို သိမ်း၍ မရပါ။ ထပ်ကြိုးစားပါ။';
+
+  @override
   String get locations_changeTitle => 'တည်နေရာကို ပြောင်းမလား?';
 
   @override

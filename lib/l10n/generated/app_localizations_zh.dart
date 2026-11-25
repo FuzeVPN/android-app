@@ -1503,6 +1503,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String get protection_guideManual => '这些设置由您在 Android 中选择。FuzeVPN 不会替您更改。';
 
   @override
+  String get adBlocker_title => '广告拦截';
+
+  @override
+  String get adBlocker_description => '拦截 VPN 连接中已知的广告和跟踪器。';
+
+  @override
+  String get adBlocker_unavailable => '暂时不可用。您的选择将被保留。';
+
+  @override
+  String get adBlocker_loadFailed => '无法加载此设置。请重试。';
+
+  @override
+  String get adBlocker_saveFailed => '无法保存此选择。请重试。';
+
+  @override
   String get locations_changeTitle => '要更改位置吗？';
 
   @override
@@ -3547,6 +3562,21 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get protection_guideManual => '这些设置由您在 Android 中选择。FuzeVPN 不会替您更改。';
+
+  @override
+  String get adBlocker_title => '广告拦截';
+
+  @override
+  String get adBlocker_description => '拦截 VPN 连接中已知的广告和跟踪器。';
+
+  @override
+  String get adBlocker_unavailable => '暂时不可用。您的选择将被保留。';
+
+  @override
+  String get adBlocker_loadFailed => '无法加载此设置。请重试。';
+
+  @override
+  String get adBlocker_saveFailed => '无法保存此选择。请重试。';
 
   @override
   String get locations_changeTitle => '要更改位置吗？';
@@ -5600,6 +5630,21 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get protection_guideManual => '您可以在 Android 中選擇這些設定。FuzeVPN 不會替您變更設定。';
+
+  @override
+  String get adBlocker_title => '廣告封鎖';
+
+  @override
+  String get adBlocker_description => '封鎖 VPN 連線中已知的廣告和追蹤器。';
+
+  @override
+  String get adBlocker_unavailable => '暫時無法使用。您的選擇將被保留。';
+
+  @override
+  String get adBlocker_loadFailed => '無法載入此設定。請再試一次。';
+
+  @override
+  String get adBlocker_saveFailed => '無法儲存此選擇。請再試一次。';
 
   @override
   String get locations_changeTitle => '要變更位置嗎？';

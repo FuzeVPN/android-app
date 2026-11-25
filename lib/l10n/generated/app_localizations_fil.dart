@@ -1774,6 +1774,25 @@ class AppLocalizationsFil extends AppLocalizations {
       'Ikaw ang pumipili ng mga setting na ito sa Android. Hindi binabago ng FuzeVPN ang mga ito para sa iyo.';
 
   @override
+  String get adBlocker_title => 'Ad blocker';
+
+  @override
+  String get adBlocker_description =>
+      'Bina-block ang mga kilalang ad at tracker sa iyong mga koneksyon sa VPN.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Pansamantalang hindi magagamit. Nananatili ang iyong pinili.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Hindi ma-load ang setting na ito. Subukan muli.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Hindi ma-save ang pagpiling ito. Subukan muli.';
+
+  @override
   String get locations_changeTitle => 'Magpalit ng lokasyon?';
 
   @override

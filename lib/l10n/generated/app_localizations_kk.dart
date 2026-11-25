@@ -1716,6 +1716,25 @@ class AppLocalizationsKk extends AppLocalizations {
       'Бұл параметрлерді Android жүйесінде өзіңіз таңдайсыз. FuzeVPN оларды сіз үшін өзгертпейді.';
 
   @override
+  String get adBlocker_title => 'Жарнама блокаторы';
+
+  @override
+  String get adBlocker_description =>
+      'VPN байланыстарыңыздағы белгілі жарнамалар мен трекерлерді бұғаттайды.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Уақытша қолжетімсіз. Таңдауыңыз сақталады.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Бұл параметрді жүктеу мүмкін болмады. Қайталап көріңіз.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Бұл таңдауды сақтау мүмкін болмады. Қайталап көріңіз.';
+
+  @override
   String get locations_changeTitle => 'Орынды өзгертесіз бе?';
 
   @override

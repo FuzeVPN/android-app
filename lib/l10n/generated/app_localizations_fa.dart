@@ -1695,6 +1695,23 @@ class AppLocalizationsFa extends AppLocalizations {
       'این تنظیمات را خودتان در Android انتخاب می‌کنید. FuzeVPN آن‌ها را به جای شما تغییر نمی‌دهد.';
 
   @override
+  String get adBlocker_title => 'مسدودکننده تبلیغات';
+
+  @override
+  String get adBlocker_description =>
+      'تبلیغات و ردیاب‌های شناخته‌شده را در اتصال‌های وی‌پی‌ان شما مسدود می‌کند.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'موقتاً در دسترس نیست. انتخاب شما حفظ می‌شود.';
+
+  @override
+  String get adBlocker_loadFailed => 'این تنظیم بارگیری نشد. دوباره تلاش کنید.';
+
+  @override
+  String get adBlocker_saveFailed => 'این انتخاب ذخیره نشد. دوباره تلاش کنید.';
+
+  @override
   String get locations_changeTitle => 'مکان تغییر کند؟';
 
   @override

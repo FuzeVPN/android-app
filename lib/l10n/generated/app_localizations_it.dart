@@ -1746,6 +1746,25 @@ class AppLocalizationsIt extends AppLocalizations {
       'Scegli tu queste impostazioni in Android. FuzeVPN non le modifica al posto tuo.';
 
   @override
+  String get adBlocker_title => 'Blocco pubblicità';
+
+  @override
+  String get adBlocker_description =>
+      'Blocca pubblicità e tracker noti sulle tue connessioni VPN.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Temporaneamente non disponibile. La tua scelta viene mantenuta.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Impossibile caricare questa impostazione. Riprova.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Non è stato possibile salvare questa scelta. Riprova.';
+
+  @override
   String get locations_changeTitle => 'Cambiare posizione?';
 
   @override

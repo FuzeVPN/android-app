@@ -1736,6 +1736,25 @@ class AppLocalizationsSw extends AppLocalizations {
       'Unachagua mipangilio hii katika Android. FuzeVPN haibadilishi mipangilio hii kwa niaba yako.';
 
   @override
+  String get adBlocker_title => 'Kizuia matangazo';
+
+  @override
+  String get adBlocker_description =>
+      'Huzuia matangazo na vifuatiliaji vinavyojulikana kwenye miunganisho yako ya VPN.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Haipatikani kwa muda. Chaguo lako limehifadhiwa.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Mpangilio huu haukuweza kupakiwa. Jaribu tena.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Chaguo hili halikuweza kuhifadhiwa. Jaribu tena.';
+
+  @override
   String get locations_changeTitle => 'Badilisha eneo?';
 
   @override

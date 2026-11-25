@@ -1722,6 +1722,25 @@ class AppLocalizationsHy extends AppLocalizations {
       'Այս կարգավորումները դուք եք ընտրում Android-ում։ FuzeVPN-ը դրանք ձեր փոխարեն չի փոխում։';
 
   @override
+  String get adBlocker_title => 'Գովազդի արգելափակիչ';
+
+  @override
+  String get adBlocker_description =>
+      'Արգելափակում է հայտնի գովազդներն ու հետագծիչները Ձեր VPN կապերում։';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Ժամանակավորապես անհասանելի է։ Ձեր ընտրությունը պահպանվում է։';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Այս կարգավորումը չհաջողվեց բեռնել։ Նորից փորձեք։';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Այս ընտրությունը չհաջողվեց պահպանել։ Նորից փորձեք։';
+
+  @override
   String get locations_changeTitle => 'Փոխե՞լ վայրը';
 
   @override

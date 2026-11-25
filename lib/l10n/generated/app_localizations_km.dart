@@ -1712,6 +1712,25 @@ class AppLocalizationsKm extends AppLocalizations {
       'អ្នកជ្រើសរើសការកំណត់ទាំងនេះដោយខ្លួនឯងនៅក្នុង Android។ FuzeVPN មិនផ្លាស់ប្តូរវាជំនួសអ្នកទេ។';
 
   @override
+  String get adBlocker_title => 'កម្មវិធីទប់ស្កាត់ពាណិជ្ជកម្ម';
+
+  @override
+  String get adBlocker_description =>
+      'ទប់ស្កាត់ពាណិជ្ជកម្ម និងកម្មវិធីតាមដានដែលគេស្គាល់ នៅលើការតភ្ជាប់ VPN របស់អ្នក។';
+
+  @override
+  String get adBlocker_unavailable =>
+      'មិនអាចប្រើបានជាបណ្តោះអាសន្នទេ។ ជម្រើសរបស់អ្នកត្រូវបានរក្សាទុក។';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'មិនអាចផ្ទុកការកំណត់នេះបានទេ។ សូមព្យាយាមម្តងទៀត។';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'មិនអាចរក្សាទុកជម្រើសនេះបានទេ។ សូមព្យាយាមម្តងទៀត។';
+
+  @override
   String get locations_changeTitle => 'ប្តូរទីតាំង?';
 
   @override

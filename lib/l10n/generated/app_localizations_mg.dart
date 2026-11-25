@@ -1753,6 +1753,25 @@ class AppLocalizationsMg extends AppLocalizations {
       'Ianareo no misafidy ireo fikirana ireo ao amin’ny Android. Tsy manova azy ho anareo ny FuzeVPN.';
 
   @override
+  String get adBlocker_title => 'Mpanakana dokam-barotra';
+
+  @override
+  String get adBlocker_description =>
+      'Manakana ireo dokam-barotra sy mpanara-maso fantatra amin’ny fifandraisana VPN anareo.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Tsy azo ampiasaina vonjimaika. Voatahiry ny safidinareo.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Tsy afaka nampidina ity fikirana ity. Andramo indray.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Tsy voatahiry ity safidy ity. Andramo indray.';
+
+  @override
   String get locations_changeTitle => 'Hiova toerana ve?';
 
   @override

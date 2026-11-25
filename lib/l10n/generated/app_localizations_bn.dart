@@ -1727,6 +1727,25 @@ class AppLocalizationsBn extends AppLocalizations {
       'এই সেটিংসগুলো আপনি Android-এ বেছে নেন। FuzeVPN আপনার পক্ষ থেকে এগুলো পরিবর্তন করে না।';
 
   @override
+  String get adBlocker_title => 'বিজ্ঞাপন ব্লকার';
+
+  @override
+  String get adBlocker_description =>
+      'আপনার VPN সংযোগে পরিচিত বিজ্ঞাপন ও ট্র্যাকার ব্লক করে।';
+
+  @override
+  String get adBlocker_unavailable =>
+      'সাময়িকভাবে উপলব্ধ নেই। আপনার পছন্দ সংরক্ষিত থাকবে।';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'এই সেটিংটি লোড করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'এই পছন্দটি সংরক্ষণ করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
   String get locations_changeTitle => 'অবস্থান পরিবর্তন করবেন?';
 
   @override

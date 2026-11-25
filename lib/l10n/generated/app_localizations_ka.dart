@@ -1727,6 +1727,24 @@ class AppLocalizationsKa extends AppLocalizations {
       'ამ პარამეტრებს Android-ში თავად ირჩევთ. FuzeVPN მათ თქვენ მაგივრად არ ცვლის.';
 
   @override
+  String get adBlocker_title => 'რეკლამის ბლოკერი';
+
+  @override
+  String get adBlocker_description =>
+      'ბლოკავს ცნობილ რეკლამებსა და ტრეკერებს თქვენს VPN კავშირებში.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'დროებით მიუწვდომელია. თქვენი არჩევანი შენარჩუნებულია.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'ამ პარამეტრის ჩატვირთვა ვერ მოხერხდა. სცადეთ ხელახლა.';
+
+  @override
+  String get adBlocker_saveFailed => 'ეს არჩევანი ვერ შეინახა. სცადეთ ხელახლა.';
+
+  @override
   String get locations_changeTitle => 'შეიცვალოს მდებარეობა?';
 
   @override

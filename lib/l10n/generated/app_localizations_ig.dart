@@ -1681,6 +1681,22 @@ class AppLocalizationsIg extends AppLocalizations {
       'Ị na-ahọrọ ntọala ndị a na Android. FuzeVPN anaghị agbanwe ha maka gị.';
 
   @override
+  String get adBlocker_title => 'Ihe mgbochi mgbasa ozi';
+
+  @override
+  String get adBlocker_description =>
+      'Ọ na-egbochi mgbasa ozi na ndị na-eso ụzọ a ma ama na njikọ VPN gị.';
+
+  @override
+  String get adBlocker_unavailable => 'Ọ dịghị nwa oge. E chekwara nhọrọ gị.';
+
+  @override
+  String get adBlocker_loadFailed => 'Enweghị ike ibudata ntọala a. Nwaa ọzọ.';
+
+  @override
+  String get adBlocker_saveFailed => 'Enweghị ike ichekwa nhọrọ a. Nwaa ọzọ.';
+
+  @override
   String get locations_changeTitle => 'Gbanwee ebe?';
 
   @override

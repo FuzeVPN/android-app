@@ -1592,6 +1592,21 @@ class AppLocalizationsKo extends AppLocalizations {
       '이 설정은 Android에서 직접 선택합니다. FuzeVPN이 대신 변경하지 않습니다.';
 
   @override
+  String get adBlocker_title => '광고 차단';
+
+  @override
+  String get adBlocker_description => 'VPN 연결에서 알려진 광고와 추적기를 차단합니다.';
+
+  @override
+  String get adBlocker_unavailable => '일시적으로 사용할 수 없습니다. 선택한 설정은 유지됩니다.';
+
+  @override
+  String get adBlocker_loadFailed => '이 설정을 불러오지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get adBlocker_saveFailed => '이 선택을 저장하지 못했습니다. 다시 시도하세요.';
+
+  @override
   String get locations_changeTitle => '위치를 변경하시겠습니까?';
 
   @override

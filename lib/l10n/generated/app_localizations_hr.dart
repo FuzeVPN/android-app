@@ -1725,6 +1725,25 @@ class AppLocalizationsHr extends AppLocalizations {
       'Ove postavke određujete u Androidu. FuzeVPN ih ne mijenja umjesto vas.';
 
   @override
+  String get adBlocker_title => 'Blokator oglasa';
+
+  @override
+  String get adBlocker_description =>
+      'Blokira poznate oglase i alate za praćenje u vašim VPN vezama.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Privremeno nedostupno. Vaš odabir ostaje spremljen.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Ovu postavku nije bilo moguće učitati. Pokušajte ponovo.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Ovaj odabir nije bilo moguće spremiti. Pokušajte ponovo.';
+
+  @override
   String get locations_changeTitle => 'Promijeniti lokaciju?';
 
   @override

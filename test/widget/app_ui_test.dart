@@ -11,6 +11,7 @@ import 'package:fuzevpn_android/app.dart';
 import 'package:fuzevpn_android/app_controller.dart';
 import 'package:fuzevpn_android/app_theme.dart';
 import 'package:fuzevpn_android/core/api_exception.dart';
+import 'package:fuzevpn_android/core/dns_filter.dart';
 import 'package:fuzevpn_android/core/excluded_apps.dart';
 import 'package:fuzevpn_android/core/guest_accounts.dart';
 import 'package:fuzevpn_android/core/models.dart';
@@ -518,6 +519,154 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+
+  group('bloqueur de publicité', () {
+    Future<_UiHarness> openAccount(
+      WidgetTester tester, {
+      void Function(_UiApi api)? configure,
+    }) async {
+      final _UiHarness h = _UiHarness();
+      addTearDown(h.close);
+      configure?.call(h.api);
+      h.store.session = _session;
+      await h.controller.initialize();
+      await h.controller.setLocale(const Locale('fr'));
+      await tester.pumpWidget(
+        FuzeVpnApp(controller: h.controller, autoInitialize: false),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Compte'));
+      await tester.pumpAndSettle();
+      await _scrollTo(tester, find.byKey(const ValueKey('ad-blocker')));
+      return h;
+    }
+
+    final Finder adSwitch = find.byKey(const ValueKey('ad-blocker-switch'));
+    SwitchListTile tile(WidgetTester tester) =>
+        tester.widget<SwitchListTile>(adSwitch);
+
+    testWidgets('lit le choix du compte puis l’active', (tester) async {
+      final _UiHarness h = await openAccount(tester);
+      expect(find.text('Bloqueur de publicité'), findsOneWidget);
+      expect(
+        find.text(
+          'Bloque les publicités et les traceurs connus sur vos connexions '
+          'VPN.',
+        ),
+        findsOneWidget,
+      );
+      expect(h.api.dnsFilterTokens, <String>[_session.accessToken]);
+      expect(tile(tester).value, isFalse);
+      expect(tile(tester).onChanged, isNotNull);
+
+      final Completer<void> release = h.api.dnsFilterUpdateRelease =
+          Completer<void>();
+      await tester.tap(adSwitch);
+      await tester.pump();
+      expect(h.api.dnsFilterUpdates, <bool>[true]);
+      expect(tile(tester).value, isTrue);
+      expect(tile(tester).onChanged, isNull);
+
+      release.complete();
+      await tester.pumpAndSettle();
+      expect(tile(tester).value, isTrue);
+      expect(tile(tester).onChanged, isNotNull);
+      expect(find.byKey(const ValueKey('ad-blocker-status')), findsNothing);
+      expect(h.api.dnsFilterTokens, hasLength(1));
+      expect(h.controller.tunnelState.phase, VpnRuntimePhase.idle);
+    });
+
+    testWidgets('remet le choix du compte si l’enregistrement échoue', (
+      tester,
+    ) async {
+      final _UiHarness h = await openAccount(tester);
+      h.api.dnsFilterUpdateFailure = const ApiNetworkException();
+      await tester.tap(adSwitch);
+      await tester.pumpAndSettle();
+      expect(h.api.dnsFilterUpdates, <bool>[true]);
+      expect(tile(tester).value, isFalse);
+      expect(
+        find.text('Ce choix n’a pas pu être enregistré. Réessayez.'),
+        findsOneWidget,
+      );
+      expect(h.controller.token, _session.accessToken);
+
+      h.api.dnsFilterUpdateFailure = null;
+      await tester.tap(adSwitch);
+      await tester.pumpAndSettle();
+      expect(h.api.dnsFilterUpdates, <bool>[true, true]);
+      expect(tile(tester).value, isTrue);
+      expect(find.byKey(const ValueKey('ad-blocker-status')), findsNothing);
+    });
+
+    testWidgets('réessaie une lecture échouée et signale un arrêt général', (
+      tester,
+    ) async {
+      final _UiHarness h = await openAccount(
+        tester,
+        configure: (api) => api.dnsFilterFailure = const ApiNetworkException(),
+      );
+      expect(
+        find.text('Ce réglage n’a pas pu être chargé. Réessayez.'),
+        findsOneWidget,
+      );
+      expect(tile(tester).value, isFalse);
+      expect(tile(tester).onChanged, isNull);
+
+      h.api
+        ..dnsFilterFailure = null
+        ..dnsFilterResult = const DnsFilterSettings(
+          adBlocking: true,
+          available: false,
+        );
+      await tester.tap(find.byKey(const ValueKey('ad-blocker-retry')));
+      await tester.pumpAndSettle();
+      expect(h.api.dnsFilterTokens, hasLength(2));
+      expect(tile(tester).value, isTrue);
+      expect(tile(tester).onChanged, isNotNull);
+      expect(
+        find.text('Momentanément indisponible. Votre choix est conservé.'),
+        findsOneWidget,
+      );
+      expect(find.byKey(const ValueKey('ad-blocker-retry')), findsNothing);
+    });
+
+    testWidgets('relit le choix pour une nouvelle session', (tester) async {
+      final _UiHarness h = _UiHarness();
+      addTearDown(h.close);
+      h.store.session = _session;
+      await h.controller.initialize();
+      expect(h.controller.adBlockerNeedsLoad, isTrue);
+      await h.controller.loadAdBlocker();
+      await h.controller.setAdBlocking(true);
+      expect(h.controller.adBlocking, isTrue);
+      expect(h.controller.adBlockerNeedsLoad, isFalse);
+
+      await h.controller.signOut();
+      expect(h.controller.supportsAdBlocker, isFalse);
+      expect(h.controller.adBlocking, isNull);
+
+      h.api
+        ..loginSession = AuthSession(
+          accessToken: 'session-b',
+          expiresAt: DateTime.utc(2099),
+        )
+        ..dnsFilterResult = const DnsFilterSettings(
+          adBlocking: false,
+          available: true,
+        );
+      await h.controller.signIn(email: 'b@example.test', password: 'fixture');
+      expect(h.controller.token, 'session-b');
+      expect(h.controller.adBlockerNeedsLoad, isTrue);
+      expect(h.controller.adBlocking, isNull);
+      await h.controller.loadAdBlocker();
+      expect(h.api.dnsFilterTokens, <String>[
+        _session.accessToken,
+        'session-b',
+      ]);
+      expect(h.controller.adBlocking, isFalse);
+    });
+  });
 
   testWidgets('account shows a failure only once', (WidgetTester tester) async {
     final _UiHarness h = _UiHarness();
@@ -3492,7 +3641,38 @@ class _UiHarness {
   }
 }
 
-class _UiApi implements VpnApiRepository {
+class _UiApi implements VpnApiRepository, DnsFilterApiRepository {
+  DnsFilterSettings dnsFilterResult = const DnsFilterSettings(
+    adBlocking: false,
+    available: true,
+  );
+  ApiFailure? dnsFilterFailure;
+  ApiFailure? dnsFilterUpdateFailure;
+  Completer<void>? dnsFilterUpdateRelease;
+  final List<String> dnsFilterTokens = <String>[];
+  final List<bool> dnsFilterUpdates = <bool>[];
+
+  @override
+  Future<DnsFilterSettings> dnsFilter(String token) async {
+    dnsFilterTokens.add(token);
+    if (dnsFilterFailure case final ApiFailure failure) throw failure;
+    return dnsFilterResult;
+  }
+
+  @override
+  Future<DnsFilterSettings> updateDnsFilter({
+    required String token,
+    required bool adBlocking,
+  }) async {
+    dnsFilterUpdates.add(adBlocking);
+    await dnsFilterUpdateRelease?.future;
+    if (dnsFilterUpdateFailure case final ApiFailure failure) throw failure;
+    return dnsFilterResult = DnsFilterSettings(
+      adBlocking: adBlocking,
+      available: dnsFilterResult.available,
+    );
+  }
+
   final List<String> loginEmails = <String>[];
   ApiFailure? locationsFailure;
   ApiFailure? passwordResetFailure;

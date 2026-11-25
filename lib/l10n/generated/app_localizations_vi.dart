@@ -1709,6 +1709,23 @@ class AppLocalizationsVi extends AppLocalizations {
       'Bạn tự chọn các cài đặt này trong Android. FuzeVPN không thay đổi chúng thay bạn.';
 
   @override
+  String get adBlocker_title => 'Chặn quảng cáo';
+
+  @override
+  String get adBlocker_description =>
+      'Chặn quảng cáo và trình theo dõi đã biết trên các kết nối VPN của bạn.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Tạm thời không khả dụng. Lựa chọn của bạn được giữ nguyên.';
+
+  @override
+  String get adBlocker_loadFailed => 'Không thể tải cài đặt này. Hãy thử lại.';
+
+  @override
+  String get adBlocker_saveFailed => 'Không thể lưu lựa chọn này. Hãy thử lại.';
+
+  @override
   String get locations_changeTitle => 'Thay đổi vị trí?';
 
   @override

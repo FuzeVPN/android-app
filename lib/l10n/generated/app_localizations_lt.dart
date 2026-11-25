@@ -1717,6 +1717,25 @@ class AppLocalizationsLt extends AppLocalizations {
       'Šiuos nustatymus pasirenkate Android sistemoje. FuzeVPN jų už jus nekeičia.';
 
   @override
+  String get adBlocker_title => 'Reklamų blokavimas';
+
+  @override
+  String get adBlocker_description =>
+      'Blokuoja žinomas reklamas ir stebėjimo priemones jūsų VPN ryšiuose.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Laikinai nepasiekiama. Jūsų pasirinkimas išlieka.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Šio nustatymo nepavyko įkelti. Bandykite dar kartą.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Šio pasirinkimo nepavyko išsaugoti. Bandykite dar kartą.';
+
+  @override
   String get locations_changeTitle => 'Keisti vietą?';
 
   @override

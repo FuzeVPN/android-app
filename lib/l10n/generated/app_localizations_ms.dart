@@ -1725,6 +1725,25 @@ class AppLocalizationsMs extends AppLocalizations {
       'Anda memilih tetapan ini dalam Android. FuzeVPN tidak mengubahnya untuk anda.';
 
   @override
+  String get adBlocker_title => 'Penyekat iklan';
+
+  @override
+  String get adBlocker_description =>
+      'Menyekat iklan dan penjejak yang diketahui pada sambungan VPN anda.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Tidak tersedia buat sementara. Pilihan anda dikekalkan.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Tetapan ini tidak dapat dimuatkan. Cuba lagi.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Pilihan ini tidak dapat disimpan. Cuba lagi.';
+
+  @override
   String get locations_changeTitle => 'Tukar lokasi?';
 
   @override

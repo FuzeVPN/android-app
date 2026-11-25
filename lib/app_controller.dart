@@ -13,6 +13,7 @@ import 'core/api_exception.dart';
 import 'core/connection_timing.dart';
 import 'core/diagnostic_schema.dart' show DiagnosticMetadata;
 import 'core/diagnostics.dart';
+import 'core/dns_filter.dart';
 import 'core/excluded_apps.dart';
 import 'core/favorite_locations.dart';
 import 'core/google_auth.dart';
@@ -27,6 +28,7 @@ import 'google_auth_controller.dart';
 import 'l10n/app_languages.dart';
 import 'native_vpn_bridge.dart';
 
+part 'app_controller_ad_blocker.dart';
 part 'app_controller_capacity.dart';
 part 'app_controller_diagnostics.dart';
 part 'app_controller_favorites.dart';
@@ -204,6 +206,11 @@ class VpnAppController extends ChangeNotifier {
   bool _excludedAppsLoaded = false;
   bool excludedAppsLoadFailed = false;
   bool excludedAppsSaveFailed = false;
+  // Ad blocker (app_controller_ad_blocker.dart), for one account session.
+  _AdBlockerState? _adBlockerState;
+
+  /// The account screen offers the ad blocker (app_controller_ad_blocker.dart).
+  bool get supportsAdBlocker => _adBlockerSupported;
   late final StreamSubscription<VpnRuntimeState> _tunnelSubscription;
   Timer? _tunnelMetricsTimer;
   bool _tunnelMetricsRefreshInFlight = false;

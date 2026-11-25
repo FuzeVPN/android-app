@@ -1743,6 +1743,25 @@ class AppLocalizationsUz extends AppLocalizations {
       'Bu sozlamalarni Android’da oʻzingiz tanlaysiz. FuzeVPN ularni siz uchun oʻzgartirmaydi.';
 
   @override
+  String get adBlocker_title => 'Reklama bloklagichi';
+
+  @override
+  String get adBlocker_description =>
+      'VPN ulanishlaringizdagi maʼlum reklamalar va kuzatuvchilarni bloklaydi.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Vaqtincha mavjud emas. Tanlovingiz saqlanib qoladi.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Bu sozlamani yuklab boʻlmadi. Qayta urinib koʻring.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Bu tanlovni saqlab boʻlmadi. Qayta urinib koʻring.';
+
+  @override
   String get locations_changeTitle => 'Joylashuvni oʻzgartirasizmi?';
 
   @override

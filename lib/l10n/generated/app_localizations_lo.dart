@@ -1695,6 +1695,25 @@ class AppLocalizationsLo extends AppLocalizations {
       'ທ່ານກຳນົດການຕັ້ງຄ່າເຫຼົ່ານີ້ເອງໃນ Android. FuzeVPN ຈະບໍ່ປ່ຽນແປງການຕັ້ງຄ່າເຫຼົ່ານີ້ແທນທ່ານ.';
 
   @override
+  String get adBlocker_title => 'ຕົວບລັອກໂຄສະນາ';
+
+  @override
+  String get adBlocker_description =>
+      'ບລັອກໂຄສະນາ ແລະ ຕົວຕິດຕາມທີ່ຮູ້ຈັກ ໃນການເຊື່ອມຕໍ່ VPN ຂອງທ່ານ.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'ບໍ່ພ້ອມໃຊ້ງານຊົ່ວຄາວ. ການເລືອກຂອງທ່ານຍັງຄົງຢູ່.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'ບໍ່ສາມາດໂຫຼດການຕັ້ງຄ່ານີ້ໄດ້. ກະລຸນາລອງໃໝ່.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'ບໍ່ສາມາດບັນທຶກການເລືອກນີ້ໄດ້. ກະລຸນາລອງໃໝ່.';
+
+  @override
   String get locations_changeTitle => 'ປ່ຽນສະຖານທີ່ບໍ?';
 
   @override

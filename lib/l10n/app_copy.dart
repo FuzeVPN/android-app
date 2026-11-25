@@ -228,6 +228,11 @@ abstract final class AppCopy {
         localizations.protection_guideDisableTitle,
       'protection.guideDisable' => localizations.protection_guideDisable,
       'protection.guideManual' => localizations.protection_guideManual,
+      'adBlocker.title' => localizations.adBlocker_title,
+      'adBlocker.description' => localizations.adBlocker_description,
+      'adBlocker.unavailable' => localizations.adBlocker_unavailable,
+      'adBlocker.loadFailed' => localizations.adBlocker_loadFailed,
+      'adBlocker.saveFailed' => localizations.adBlocker_saveFailed,
       'locations.changeTitle' => localizations.locations_changeTitle,
       'locations.changeActive' => localizations.locations_changeActive(
         arguments['name'] as String? ?? '',

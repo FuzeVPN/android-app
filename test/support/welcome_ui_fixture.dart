@@ -60,6 +60,8 @@ class WelcomeUiController extends ChangeNotifier implements VpnAppController {
   @override
   bool get isSignedIn => profile != null;
   @override
+  bool get supportsAdBlocker => false;
+  @override
   bool get isAuthenticating => false;
   int restores = 0, claims = 0;
   bool restoreSucceeds = false;

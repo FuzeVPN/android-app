@@ -1736,6 +1736,25 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ezeket a beállításokat Androidban adhatja meg. A FuzeVPN nem módosítja őket Ön helyett.';
 
   @override
+  String get adBlocker_title => 'Hirdetésblokkoló';
+
+  @override
+  String get adBlocker_description =>
+      'Letiltja az ismert hirdetéseket és nyomkövetőket a VPN-kapcsolataiban.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Átmenetileg nem elérhető. A választása megmarad.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Ezt a beállítást nem sikerült betölteni. Próbálja újra.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Ezt a választást nem sikerült menteni. Próbálja újra.';
+
+  @override
   String get locations_changeTitle => 'Hely váltása?';
 
   @override

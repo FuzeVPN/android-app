@@ -1714,6 +1714,25 @@ class AppLocalizationsKn extends AppLocalizations {
       'ಈ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು Android ನಲ್ಲಿ ನೀವೇ ಆಯ್ಕೆ ಮಾಡಿಕೊಳ್ಳುತ್ತೀರಿ. FuzeVPN ಅವುಗಳನ್ನು ನಿಮ್ಮ ಪರವಾಗಿ ಬದಲಿಸುವುದಿಲ್ಲ.';
 
   @override
+  String get adBlocker_title => 'ಜಾಹೀರಾತು ಬ್ಲಾಕರ್';
+
+  @override
+  String get adBlocker_description =>
+      'ನಿಮ್ಮ VPN ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಪರಿಚಿತ ಜಾಹೀರಾತುಗಳು ಮತ್ತು ಟ್ರ್ಯಾಕರ್‌ಗಳನ್ನು ನಿರ್ಬಂಧಿಸುತ್ತದೆ.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'ತಾತ್ಕಾಲಿಕವಾಗಿ ಲಭ್ಯವಿಲ್ಲ. ನಿಮ್ಮ ಆಯ್ಕೆ ಉಳಿದಿದೆ.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'ಈ ಸೆಟ್ಟಿಂಗ್ ಅನ್ನು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'ಈ ಆಯ್ಕೆಯನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.';
+
+  @override
   String get locations_changeTitle => 'ಸ್ಥಳ ಬದಲಿಸಬೇಕೇ?';
 
   @override

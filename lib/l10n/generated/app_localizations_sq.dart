@@ -1744,6 +1744,25 @@ class AppLocalizationsSq extends AppLocalizations {
       'Ju zgjidhni këto cilësime në Android. FuzeVPN nuk i ndryshon ato për ju.';
 
   @override
+  String get adBlocker_title => 'Bllokuesi i reklamave';
+
+  @override
+  String get adBlocker_description =>
+      'Bllokon reklamat dhe gjurmuesit e njohur në lidhjet tuaja VPN.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Nuk disponohet përkohësisht. Zgjedhja juaj ruhet.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Ky cilësim nuk mund të ngarkohej. Provoni përsëri.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Kjo zgjedhje nuk mund të ruhej. Provoni përsëri.';
+
+  @override
   String get locations_changeTitle => 'Të ndryshohet vendndodhja?';
 
   @override

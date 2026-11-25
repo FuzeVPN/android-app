@@ -113,6 +113,10 @@ class AccountPage extends StatelessWidget {
         icon: Icons.shield_outlined,
       ),
       _NetworkProtectionCard(controller: controller),
+      if (controller.supportsAdBlocker) ...<Widget>[
+        const SizedBox(height: 12),
+        _AdBlockerCard(controller: controller),
+      ],
       const SizedBox(height: 24),
       _AccountSectionLabel(
         label: context.copy('settings.help'),
@@ -615,6 +619,86 @@ Future<void> _showPreferenceSheet(
     ),
   ),
 );
+
+/// The account's ad blocker: one switch, read once per session.
+class _AdBlockerCard extends StatelessWidget {
+  const _AdBlockerCard({required this.controller});
+
+  final VpnAppController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    if (controller.adBlockerNeedsLoad) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => controller.loadAdBlocker(),
+      );
+    }
+    final ThemeData theme = Theme.of(context);
+    final bool? enabled = controller.adBlocking;
+    final bool failed =
+        controller.adBlockerLoadFailed || controller.adBlockerSaveFailed;
+    final String? status = controller.adBlockerLoadFailed
+        ? context.copy('adBlocker.loadFailed')
+        : controller.adBlockerSaveFailed
+        ? context.copy('adBlocker.saveFailed')
+        : !controller.adBlockerAvailable
+        ? context.copy('adBlocker.unavailable')
+        : null;
+    return Card(
+      key: const ValueKey('ad-blocker'),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          SwitchListTile(
+            key: const ValueKey('ad-blocker-switch'),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 6,
+            ),
+            secondary: MediaQuery.textScalerOf(context).scale(16) > 24
+                ? null
+                : const _AccountIcon(icon: Icons.block),
+            title: Text(context.copy('adBlocker.title')),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(context.copy('adBlocker.description')),
+                if (status != null)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: Text(
+                      status,
+                      key: const ValueKey('ad-blocker-status'),
+                      style: failed
+                          ? TextStyle(color: theme.colorScheme.error)
+                          : null,
+                    ),
+                  ),
+              ],
+            ),
+            value: enabled ?? false,
+            onChanged: enabled == null || controller.adBlockerBusy
+                ? null
+                : controller.setAdBlocking,
+          ),
+          if (controller.adBlockerLoadFailed)
+            Padding(
+              padding: const EdgeInsetsDirectional.only(end: 12, bottom: 8),
+              child: Align(
+                alignment: AlignmentDirectional.centerEnd,
+                child: TextButton(
+                  key: const ValueKey('ad-blocker-retry'),
+                  onPressed: controller.loadAdBlocker,
+                  child: Text(context.copy('action.retry')),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
 
 class _NetworkProtectionCard extends StatelessWidget {
   const _NetworkProtectionCard({required this.controller});

@@ -2238,6 +2238,36 @@ abstract class AppLocalizations {
   /// **'Vous choisissez ces réglages dans Android. FuzeVPN ne les modifie pas à votre place.'**
   String get protection_guideManual;
 
+  /// No description provided for @adBlocker_title.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloqueur de publicité'**
+  String get adBlocker_title;
+
+  /// No description provided for @adBlocker_description.
+  ///
+  /// In fr, this message translates to:
+  /// **'Bloque les publicités et les traceurs connus sur vos connexions VPN.'**
+  String get adBlocker_description;
+
+  /// No description provided for @adBlocker_unavailable.
+  ///
+  /// In fr, this message translates to:
+  /// **'Momentanément indisponible. Votre choix est conservé.'**
+  String get adBlocker_unavailable;
+
+  /// No description provided for @adBlocker_loadFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce réglage n’a pas pu être chargé. Réessayez.'**
+  String get adBlocker_loadFailed;
+
+  /// No description provided for @adBlocker_saveFailed.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce choix n’a pas pu être enregistré. Réessayez.'**
+  String get adBlocker_saveFailed;
+
   /// No description provided for @locations_changeTitle.
   ///
   /// In fr, this message translates to:

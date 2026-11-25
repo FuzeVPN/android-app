@@ -1702,6 +1702,24 @@ class AppLocalizationsYo extends AppLocalizations {
       'Ẹ̀yin ni ẹ máa yan àwọn ìṣètò wọ̀nyí nínú Android. FuzeVPN kò yí wọn padà fún yín.';
 
   @override
+  String get adBlocker_title => 'Adènà ìpolówó';
+
+  @override
+  String get adBlocker_description =>
+      'Ó ń dènà àwọn ìpolówó àti olùtọpinpin tí a mọ̀ lórí àwọn àsopọ̀ VPN yín.';
+
+  @override
+  String get adBlocker_unavailable => 'Kò sí fún ìgbà díẹ̀. Àṣàyàn yín ṣì wà.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'A kò lè gbé ìṣètò yìí wá. Ẹ tún gbìyànjú.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'A kò lè fi àṣàyàn yìí pamọ́. Ẹ tún gbìyànjú.';
+
+  @override
   String get locations_changeTitle => 'Yí ibi padà?';
 
   @override

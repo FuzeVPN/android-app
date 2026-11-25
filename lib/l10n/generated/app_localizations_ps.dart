@@ -1684,6 +1684,23 @@ class AppLocalizationsPs extends AppLocalizations {
       'دا تنظیمات تاسو په Android کې ټاکئ. FuzeVPN دا ستاسو پر ځای نه بدلوي.';
 
   @override
+  String get adBlocker_title => 'د اعلانونو بندوونکی';
+
+  @override
+  String get adBlocker_description =>
+      'ستاسو د VPN په اړیکو کې پېژندل شوي اعلانونه او تعقیبونکي بندوي.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'د لنډ وخت لپاره شتون نلري. ستاسو انتخاب ساتل شوی دی.';
+
+  @override
+  String get adBlocker_loadFailed => 'دا تنظیم بار نشو. بیا هڅه وکړئ.';
+
+  @override
+  String get adBlocker_saveFailed => 'دا انتخاب ونه ساتل شو. بیا هڅه وکړئ.';
+
+  @override
   String get locations_changeTitle => 'ځای بدل کړئ؟';
 
   @override

@@ -1757,6 +1757,25 @@ class AppLocalizationsSo extends AppLocalizations {
       'Dejintan waxaad ku doortaa gudaha Android. FuzeVPN kuuma beddelo.';
 
   @override
+  String get adBlocker_title => 'Xannibaha xayaysiiska';
+
+  @override
+  String get adBlocker_description =>
+      'Wuxuu xannibaa xayaysiisyada iyo raad-raacayaasha la yaqaan ee ku jira xiriirada VPN-kaaga.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Si ku meel gaar ah looma heli karo. Doorashadaada waa la ilaaliyay.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Dejintan lama soo rari karin. Isku day mar kale.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Doorashadan lama kaydin karin. Isku day mar kale.';
+
+  @override
   String get locations_changeTitle => 'Ma beddelaysaa goobta?';
 
   @override

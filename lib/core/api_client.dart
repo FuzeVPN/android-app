@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart'
 import 'api_exception.dart';
 import 'api_socket_open.dart';
 import 'connection_timing.dart';
+import 'dns_filter.dart';
 import 'google_auth.dart';
 import 'guest_accounts.dart';
 import 'hedged_http_open.dart';
@@ -16,6 +17,7 @@ import 'play_billing.dart';
 import 'repositories.dart';
 
 export 'api_exception.dart';
+export 'dns_filter.dart';
 export 'google_auth.dart';
 export 'guest_accounts.dart';
 export 'models.dart';
@@ -336,7 +338,8 @@ class ApiClient
         VpnApiRepository,
         BillingApiRepository,
         GuestApiRepository,
-        GoogleAuthApiRepository {
+        GoogleAuthApiRepository,
+        DnsFilterApiRepository {
   ApiClient({Uri? baseUri, ApiHttpTransport? transport})
     : baseUri = _normalizedBaseUri(baseUri ?? productionBaseUri),
       _transport = transport ?? IoApiHttpTransport();
@@ -872,6 +875,34 @@ class ApiClient
       expectedStatusCodes: const <int>{200},
     );
     return _parseObject(response, UserProfile.fromJson);
+  }
+
+  @override
+  Future<DnsFilterSettings> dnsFilter(String token) async {
+    final ApiHttpResponse response = await _request(
+      'GET',
+      'v1/me/dns-filter',
+      token: token,
+      expectedStatusCodes: const <int>{200},
+      requireNoStore: true,
+    );
+    return _parseObject(response, DnsFilterSettings.fromJson);
+  }
+
+  @override
+  Future<DnsFilterSettings> updateDnsFilter({
+    required String token,
+    required bool adBlocking,
+  }) async {
+    final ApiHttpResponse response = await _request(
+      'PUT',
+      'v1/me/dns-filter',
+      token: token,
+      body: <String, Object?>{'ad_blocking': adBlocking},
+      expectedStatusCodes: const <int>{200},
+      requireNoStore: true,
+    );
+    return _parseObject(response, DnsFilterSettings.fromJson);
   }
 
   @override

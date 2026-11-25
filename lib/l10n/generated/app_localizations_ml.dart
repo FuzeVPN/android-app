@@ -1733,6 +1733,25 @@ class AppLocalizationsMl extends AppLocalizations {
       'ഈ ക്രമീകരണങ്ങൾ Android-ൽ നിങ്ങളാണ് തിരഞ്ഞെടുക്കുന്നത്. FuzeVPN ഇവ നിങ്ങൾക്കായി മാറ്റുന്നില്ല.';
 
   @override
+  String get adBlocker_title => 'പരസ്യ ബ്ലോക്കർ';
+
+  @override
+  String get adBlocker_description =>
+      'നിങ്ങളുടെ VPN കണക്ഷനുകളിലെ അറിയപ്പെടുന്ന പരസ്യങ്ങളും ട്രാക്കറുകളും തടയുന്നു.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'താൽക്കാലികമായി ലഭ്യമല്ല. നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ് നിലനിർത്തിയിട്ടുണ്ട്.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'ഈ ക്രമീകരണം ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'ഈ തിരഞ്ഞെടുപ്പ് സംരക്ഷിക്കാനായില്ല. വീണ്ടും ശ്രമിക്കുക.';
+
+  @override
   String get locations_changeTitle => 'ലൊക്കേഷൻ മാറ്റണോ?';
 
   @override

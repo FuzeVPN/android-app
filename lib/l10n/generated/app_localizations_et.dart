@@ -1720,6 +1720,25 @@ class AppLocalizationsEt extends AppLocalizations {
       'Need seaded valid sa ise Androidis. FuzeVPN ei muuda neid sinu eest.';
 
   @override
+  String get adBlocker_title => 'Reklaamiblokeerija';
+
+  @override
+  String get adBlocker_description =>
+      'Blokeerib tuntud reklaamid ja jälgijad sinu VPN-ühendustes.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Ajutiselt kättesaamatu. Sinu valik jääb alles.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Seda seadet ei õnnestunud laadida. Proovi uuesti.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Seda valikut ei õnnestunud salvestada. Proovi uuesti.';
+
+  @override
   String get locations_changeTitle => 'Kas muuta asukohta?';
 
   @override

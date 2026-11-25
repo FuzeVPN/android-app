@@ -1726,6 +1726,25 @@ class AppLocalizationsOr extends AppLocalizations {
       'ଏହି ସେଟିଂସ୍ ଆପଣ Androidରେ ନିଜେ ବାଛନ୍ତି। FuzeVPN ଆପଣଙ୍କ ପାଇଁ ସେଗୁଡ଼ିକୁ ବଦଳାଏ ନାହିଁ।';
 
   @override
+  String get adBlocker_title => 'ବିଜ୍ଞାପନ ବ୍ଲକର୍';
+
+  @override
+  String get adBlocker_description =>
+      'ଆପଣଙ୍କ VPN ସଂଯୋଗରେ ଜଣାଶୁଣା ବିଜ୍ଞାପନ ଏବଂ ଟ୍ରାକର୍ ଅବରୋଧ କରେ।';
+
+  @override
+  String get adBlocker_unavailable =>
+      'ଅସ୍ଥାୟୀ ଭାବେ ଉପଲବ୍ଧ ନାହିଁ। ଆପଣଙ୍କ ପସନ୍ଦ ରଖାଯାଇଛି।';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'ଏହି ସେଟିଂ ଲୋଡ୍ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'ଏହି ପସନ୍ଦ ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ। ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।';
+
+  @override
   String get locations_changeTitle => 'ଅବସ୍ଥାନ ବଦଳାଇବେ କି?';
 
   @override

@@ -1729,6 +1729,25 @@ class AppLocalizationsFi extends AppLocalizations {
       'Määrität nämä asetukset itse Androidissa. FuzeVPN ei muuta niitä puolestasi.';
 
   @override
+  String get adBlocker_title => 'Mainosten esto';
+
+  @override
+  String get adBlocker_description =>
+      'Estää tunnetut mainokset ja seurannan VPN-yhteyksissäsi.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'Tilapäisesti poissa käytöstä. Valintasi säilyy.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'Tätä asetusta ei voitu ladata. Yritä uudelleen.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'Tätä valintaa ei voitu tallentaa. Yritä uudelleen.';
+
+  @override
   String get locations_changeTitle => 'Vaihdetaanko sijaintia?';
 
   @override

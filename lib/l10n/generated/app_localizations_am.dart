@@ -1634,6 +1634,22 @@ class AppLocalizationsAm extends AppLocalizations {
       'እነዚህን ቅንብሮች የሚመርጡት በAndroid ውስጥ ነው። FuzeVPN በእርስዎ ምትክ አይቀይራቸውም።';
 
   @override
+  String get adBlocker_title => 'የማስታወቂያ ማገጃ';
+
+  @override
+  String get adBlocker_description =>
+      'በVPN ግንኙነቶችዎ ላይ የታወቁ ማስታወቂያዎችን እና መከታተያዎችን ያግዳል።';
+
+  @override
+  String get adBlocker_unavailable => 'ለጊዜው አይገኝም። ምርጫዎ ይቀመጣል።';
+
+  @override
+  String get adBlocker_loadFailed => 'ይህ ቅንብር ሊጫን አልቻለም። እንደገና ይሞክሩ።';
+
+  @override
+  String get adBlocker_saveFailed => 'ይህ ምርጫ ሊቀመጥ አልቻለም። እንደገና ይሞክሩ።';
+
+  @override
   String get locations_changeTitle => 'አካባቢ ይቀይሩ?';
 
   @override

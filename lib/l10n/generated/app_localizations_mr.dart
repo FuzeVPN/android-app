@@ -1714,6 +1714,25 @@ class AppLocalizationsMr extends AppLocalizations {
       'ही सेटिंग्ज तुम्ही Android मध्ये निवडता. FuzeVPN ती तुमच्यासाठी बदलत नाही.';
 
   @override
+  String get adBlocker_title => 'जाहिरात ब्लॉकर';
+
+  @override
+  String get adBlocker_description =>
+      'तुमच्या VPN कनेक्शनमधील ज्ञात जाहिराती आणि ट्रॅकर ब्लॉक करते.';
+
+  @override
+  String get adBlocker_unavailable =>
+      'तात्पुरते उपलब्ध नाही. तुमची निवड कायम ठेवली आहे.';
+
+  @override
+  String get adBlocker_loadFailed =>
+      'हे सेटिंग लोड करता आले नाही. पुन्हा प्रयत्न करा.';
+
+  @override
+  String get adBlocker_saveFailed =>
+      'ही निवड जतन करता आली नाही. पुन्हा प्रयत्न करा.';
+
+  @override
   String get locations_changeTitle => 'स्थान बदलायचे?';
 
   @override
